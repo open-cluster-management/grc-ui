@@ -41,8 +41,6 @@ jobs:
       name: "Build the image and run unit tests"
       before_install:
         - make init
-        - chmod +x copyright-check.sh
-        - make copyright-check
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - |
