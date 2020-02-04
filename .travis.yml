@@ -48,7 +48,7 @@ jobs:
       name: "Build the image"
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
-        - make build
+        - make component/build
         - make component/push
     - stage: test-e2e
       name: "Run e2e tests"
