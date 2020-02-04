@@ -1,7 +1,5 @@
 sudo: required
 language: node_js
-node_js:
-  - 10
 
 arch:
   - amd64
@@ -32,7 +30,7 @@ env:
 stages:
   - build
   - unit-test
-  - test-e2e
+  # - test-e2e
   - publish
   
 jobs:
@@ -45,8 +43,6 @@ jobs:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - |
           make local
-          make image
-          make run
     - stage: unit-test
       name: "Deploy the image to a cluster and run e2e tests"
       script:
