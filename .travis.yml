@@ -5,6 +5,7 @@ node_js:
 
 os:
   - linux
+  - linux-ppc64le
     
 services:
   - docker
@@ -20,26 +21,12 @@ branches:
 
 env:
   global:
-    # Required
-    - OS=linux
     - COMPONENT_TAG_EXTENSION="-${TRAVIS_COMMIT}"
 
 before_install:
   - make init
 
-install:
-  - npm i --verbose
-#   - chmod +x copyright-check.sh
-#   - make copyright-check
-#   - make unit-test
-
-before_script:
-  - make local
-  - make image
-  - make run
-
 stages:
-  - install-dependencies
   - build
   - unit-test
   - test-e2e
@@ -47,16 +34,10 @@ stages:
   
 jobs:
   include:
-    - stage: install-dependencies
-      name: "Install dependencies"
-      script:
-        - |
-          make init
     - stage: build
       name: "Build the image and run unit tests"
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - |
-          make
-          make component/build
-          make component/push
+          make local
+          make image
