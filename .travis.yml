@@ -36,21 +36,20 @@ stages:
   # - test-e2e
   - publish
   
-before_install:
-  - make init
-
 jobs:
   include:
     - stage: unit-test
       name: "Build and run unit tests"
       script:
         - |
+          make lint
           make unit-test
     - stage: build
       name: "Build the image"
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - |
+          make init
           make component/build
           make component/push
 
