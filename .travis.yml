@@ -31,8 +31,8 @@ env:
     - COMPONENT_BUILD_COMMAND=${TRAVIS_BUILD_DIR}/build.sh
 
 stages:
-  - build
   - unit-test
+  - build
   # - test-e2e
   - publish
   
