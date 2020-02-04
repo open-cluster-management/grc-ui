@@ -1,5 +1,7 @@
 os:
   - linux
+  - linux-ppc64le
+  - linux-s390
 
 sudo: required
 language: node_js
@@ -8,12 +10,19 @@ services:
   - docker
   - xvfb
 
+branches:
+  only:
+    - master
+    - dev
+    - /^[0-9]+\..*$/
+    - /^v[0-9]+\..*$/
+    - /^release-[0-9]+\..*$/
+
 env:
   global:
     # Required
     - OS=linux
     - COMPONENT_TAG_EXTENSION="-${TRAVIS_COMMIT}"
-
 
 before_install:
   - make init
