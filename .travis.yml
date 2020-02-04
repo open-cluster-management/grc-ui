@@ -1,11 +1,11 @@
-os:
-  - linux
-  # - linux-ppc64le
-  # - linux-s390
-
 sudo: required
 language: node_js
+node_js:
+  - 10
 
+os:
+  - linux
+    
 services:
   - docker
   - xvfb
@@ -28,7 +28,7 @@ before_install:
   - make init
 
 install:
-  - npm ci --verbose
+  - npm i --verbose
 #   - chmod +x copyright-check.sh
 #   - make copyright-check
 #   - make unit-test
