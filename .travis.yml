@@ -40,8 +40,8 @@ jobs:
   include:
     - stage: build
       name: "Build the image"
-      # before_install:
-      #   - make init
+      before_install:
+        - make init
       # install:
       #   - npm install
       script:
