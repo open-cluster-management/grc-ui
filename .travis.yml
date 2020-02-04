@@ -3,10 +3,11 @@ language: node_js
 node_js:
   - 10
 
-os:
-  - linux
-  - linux-ppc64le
-    
+os: linux
+arch:
+  - amd64
+  - ppc64le
+
 services:
   - docker
   - xvfb
