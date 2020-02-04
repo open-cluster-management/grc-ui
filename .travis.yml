@@ -4,9 +4,6 @@ node_js:
   - 10
 
 os: linux
-arch:
-  - amd64
-  - ppc64le
 
 services:
   - docker
@@ -35,6 +32,10 @@ stages:
   
 jobs:
   include:
+    - os: linux
+      arch: amd64
+    - os: linux
+      arch: ppc64le
     - stage: build
       name: "Build the image and run unit tests"
       script:
