@@ -63,16 +63,6 @@ endif
 
 .PHONY: unit-test
 unit-test:
-	npm install \
-	del@3.0.0 \
-	enzyme@3.7.0 \
-	enzyme-adapter-react-16@1.6.0 \
-	jest@22.4.2 \
-	react-test-renderer@16.4.0 \
-	jsonfile@4.0.0 \
-	redux-mock-store@1.5.1 \
-	jest-tap-reporter@1.9.0 \
-	properties-parser@0.3.1 
 ifeq ($(UNIT_TESTS), TRUE)
 	if [ ! -d "test-output" ]; then \
 		mkdir test-output; \

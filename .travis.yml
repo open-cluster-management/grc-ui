@@ -36,24 +36,24 @@ stages:
   # - test-e2e
   - publish
   
+before_install:
+  - make init
+
 jobs:
   include:
+    - stage: unit-test
+      name: "Build and run unit tests"
+      script:
+        - |
+          make unit-test
     - stage: build
       name: "Build the image"
-      before_install:
-        - make init
-      # install:
-      #   - npm install
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - |
-          make
           make component/build
           make component/push
-    - stage: unit-test
-      name: "Run unit tests"
-      script:
-        - make unit-test
+
     - stage: test-e2e
       name: "Run e2e tests"
       if: type = pull_request
