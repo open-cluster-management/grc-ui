@@ -28,7 +28,7 @@ before_install:
   - make init
 
 install:
-  - npm install
+  - npm ci --verbose
 #   - chmod +x copyright-check.sh
 #   - make copyright-check
 #   - make unit-test
