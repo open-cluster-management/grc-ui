@@ -11,12 +11,10 @@
 var express = require('express'),
     router = express.Router()
 
-var inspect = require('@icp/security-middleware')
-
 //controllers
 var app = require('./app')
 
 // router.use(csrf) TODO: Revisit csrf
-router.all(['/', '/*'], inspect.ui, app)
+router.all(['/', '/*'], app)
 
 module.exports = router

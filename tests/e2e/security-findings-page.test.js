@@ -38,7 +38,7 @@ module.exports = {
 
   'Security findings page: Run Accessibility Scan': (browser) => {
     page.navigate(`${browser.launch_url}${config.get('contextPath')}/policies/findings`)
-    a11yScan.runAccessibilityScan(browser, 'securityFindings')
+    // a11yScan.runAccessibilityScan(browser, 'securityFindings')
   },
 
   after: function (browser, done) {
