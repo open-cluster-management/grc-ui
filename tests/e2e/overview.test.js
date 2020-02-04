@@ -8,7 +8,7 @@
  *******************************************************************************/
 
 const config = require('../../config')
-const a11yScan = require('../utils/accessibilityScan')
+// const a11yScan = require('../utils/accessibilityScan')
 let page
 
 module.exports = {
@@ -44,7 +44,7 @@ module.exports = {
     page.verifyPolicySummary()
   },
 
-  'Overview: Run accessibility scan': (browser) => {
+  'Overview: Run accessibility scan': () => {
     // a11yScan.runAccessibilityScan(browser, 'overview')
   },
 

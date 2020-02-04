@@ -8,7 +8,7 @@
  *******************************************************************************/
 
 const config = require('../../config')
-const a11yScan = require('../utils/accessibilityScan')
+// const a11yScan = require('../utils/accessibilityScan')
 let page
 
 module.exports = {
