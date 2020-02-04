@@ -27,12 +27,13 @@ env:
 before_install:
   - make init
   - echo -e "machine github.ibm.com\n  login $GITHUB_USER\n  password $GITHUB_TOKEN" > ~/.netrc
+  - cat ~/.netrc
 
-install:
-  - npm install
-  - chmod +x copyright-check.sh
-  - make copyright-check
-  - make unit-test
+# install:
+#   - npm install
+#   - chmod +x copyright-check.sh
+#   - make copyright-check
+#   - make unit-test
 
 before_script:
   - make local
