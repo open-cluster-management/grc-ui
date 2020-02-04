@@ -1,9 +1,6 @@
 sudo: required
 language: node_js
 
-arch:
-  - amd64
-  - ppc64le
 os: linux
 
 services:
@@ -25,7 +22,13 @@ branches:
 
 env:
   global:
+    # Required
+    - OS=linux
     - COMPONENT_TAG_EXTENSION="-${TRAVIS_COMMIT}"
+
+    # Component Specific
+    - COMPONENT_TYPE="make"
+    - COMPONENT_BUILD_COMMAND=${TRAVIS_BUILD_DIR}/build.sh
 
 stages:
   - build
@@ -36,19 +39,23 @@ stages:
 jobs:
   include:
     - stage: build
-      name: "Build the image and run unit tests"
-      before_install:
-        - make init
+      name: "Build the image"
+      # before_install:
+      #   - make init
+      # install:
+      #   - npm install
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - |
-          make local
+          make
+          make component/build
+          make component/push
     - stage: unit-test
-      name: "Deploy the image to a cluster and run e2e tests"
+      name: "Run unit tests"
       script:
         - make unit-test
     - stage: test-e2e
-      name: "Deploy the image to a cluster and run e2e tests"
+      name: "Run e2e tests"
       if: type = pull_request
       script:
         #Check out a clusterpool, set up oc, deploy, run e2e tests, and return clusterpool cluster
