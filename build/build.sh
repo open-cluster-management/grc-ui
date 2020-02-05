@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export IMAGE_NAME_AND_VERSION=${1}
-echo "IMAGE_NAME_AND_VERSION=${IMAGE_NAME_AND_VERSION}"
+export DOCKER_IMAGE_AND_TAG=${1}
+echo "DOCKER_IMAGE_AND_TAG=${DOCKER_IMAGE_AND_TAG}"
 
 npm ci
 npm run build:production
