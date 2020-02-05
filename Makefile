@@ -18,13 +18,8 @@ DOCKER_FILE = Dockerfile
 endif
 @echo "using DOCKER_FILE: $(DOCKER_FILE)"
 
-.PHONY: init\:
 init::
 -include $(shell curl -H 'Authorization: token ${GITHUB_TOKEN}' -H 'Accept: application/vnd.github.v4.raw' -L https://api.github.com/repos/open-cluster-management/build-harness-extensions/contents/templates/Makefile.build-harness-bootstrap -o .build-harness-bootstrap; echo .build-harness-bootstrap)
-
-.PHONY: copyright-check
-copyright-check:
-	./copyright-check.sh
 
 lint:
 	npm run lint
@@ -32,25 +27,8 @@ lint:
 prune:
 	npm prune --production
 
-.PHONY: build
 build:
 	npm run build:production
-
-local:: build lint prune
-
-#Check default DOCKER_BUILD_OPTS/DOCKER_RUN_OPTS/DOCKER_REGISTRY/DOCKER_BUILD_TAG/SCRATCH_TAG/DOCKER_TAG 
-# values in Configfile. Only new value other than default need to be set here.
-.PHONY: docker-logins
-docker-logins:
-	make docker:login DOCKER_REGISTRY=$(DOCKER_EDGE_REGISTRY)
-	make docker:login DOCKER_REGISTRY=$(DOCKER_SCRATCH_REGISTRY)
-	make docker:login
-
-.PHONY: image
-image:: docker-logins
-	make docker:info
-	make docker:build
-	docker image ls -a
 
 .PHONY: run
 run: 
@@ -63,12 +41,10 @@ endif
 
 .PHONY: unit-test
 unit-test:
-ifeq ($(UNIT_TESTS), TRUE)
 	if [ ! -d "test-output" ]; then \
 		mkdir test-output; \
 	fi
 	npm test
-endif
 
 .PHONY: e2e-test
 e2e-test:
@@ -85,29 +61,3 @@ else
 endif
 endif
 endif
-
-.PHONY: push
-push:
-	make docker:login DOCKER_REGISTRY=$(DOCKER_SCRATCH_REGISTRY)
-	make docker:tag-arch DOCKER_REGISTRY=$(DOCKER_SCRATCH_REGISTRY) DOCKER_TAG=$(SCRATCH_TAG)
-	make docker:push-arch DOCKER_REGISTRY=$(DOCKER_SCRATCH_REGISTRY) DOCKER_TAG=$(SCRATCH_TAG)
-
-.PHONY: release
-release:
-	make docker:login
-	make docker:tag-arch
-	make docker:push-arch
-	make docker:tag-arch DOCKER_TAG=$(SEMVERSION)
-	make docker:push-arch DOCKER_TAG=$(SEMVERSION)
-ifeq ($(ARCH), x86_64)
-	make docker:tag-arch DOCKER_TAG=$(RELEASE_TAG_RED_HAT)
-	make docker:push-arch DOCKER_TAG=$(RELEASE_TAG_RED_HAT)
-	make docker:tag-arch DOCKER_TAG=$(SEMVERSION_RED_HAT)
-	make docker:push-arch DOCKER_TAG=$(SEMVERSION_RED_HAT)
-endif
-
-.PHONY: multi-arch
-multi-arch:
-	make docker:manifest-tool
-	make docker:multi-arch
-	make docker:multi-arch DOCKER_TAG=$(SEMVERSION)
