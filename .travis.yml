@@ -37,9 +37,6 @@ stages:
   - test-e2e
   - publish
  
-install:
-  - exit 0
-
 before_script:
   - make init
 
