@@ -36,9 +36,12 @@ stages:
   - unit-test
   - test-e2e
   - publish
-  
-before_install:
-  - make init 
+ 
+install:
+  - exit 0
+
+before_script:
+  - make init
 
 jobs:
   include:
