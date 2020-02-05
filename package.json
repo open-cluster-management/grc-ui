@@ -91,7 +91,7 @@
     "react-apollo": "^2.3.1",
     "react-copy-to-clipboard": "^5.0.1",
     "react-custom-scrollbars": "^4.2.1",
-    "react-d3-radar": "^1.0.0-rc6",
+    "react-d3-radar": "file:pkg/react-d3-radar-0.2.6.tgz",
     "react-dom": "^16.8.0",
     "react-lazyload": "^2.3.0",
     "react-lines-ellipsis": "^0.14.0",

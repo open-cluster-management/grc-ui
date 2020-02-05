@@ -4927,15 +4927,6 @@
         "d3-time-format": "2"
       }
     },
-    "d3-scale-chromatic": {
-      "version": "1.5.0",
-      "resolved": "https://registry.npmjs.org/d3-scale-chromatic/-/d3-scale-chromatic-1.5.0.tgz",
-      "integrity": "sha512-ACcL46DYImpRFMBcpk9HhtIyC7bTBR4fNOPxwVSl0LfulDAwyiHyPOTqcDG1+t5d4P9W7t/2NAuWu59aKko/cg==",
-      "requires": {
-        "d3-color": "1",
-        "d3-interpolate": "1"
-      }
-    },
     "d3-selection": {
       "version": "1.3.0",
       "resolved": "https://registry.npmjs.org/d3-selection/-/d3-selection-1.3.0.tgz",
@@ -14396,43 +14387,13 @@
       }
     },
     "react-d3-radar": {
-      "version": "1.0.0-rc6",
-      "resolved": "https://registry.npmjs.org/react-d3-radar/-/react-d3-radar-1.0.0-rc6.tgz",
-      "integrity": "sha512-MSOhgo/zgbufi1NWr552HDB9CXViLFNnTg8kCmVJJ+7V0gr1gYLU7c8ZJtvN6/P+/JyUPljOO4aiyBxytnkggA==",
+      "version": "file:pkg/react-d3-radar-0.2.6.tgz",
+      "integrity": "sha512-DU0EYUYv0F4URmd7ZO1b60Sj0VfPsdHuQkTKdYwr/O6NfqfFw/4nap17CW+jfTykoV/9A9DOmjE9u5CdVYZq9Q==",
       "requires": {
-        "d3-scale": "^2.1.2",
-        "d3-scale-chromatic": "^1.3.3",
-        "d3-shape": "^1.2.2",
-        "d3-voronoi": "^1.1.4",
-        "lodash": "^4.17.11"
-      },
-      "dependencies": {
-        "d3-scale": {
-          "version": "2.2.2",
-          "resolved": "https://registry.npmjs.org/d3-scale/-/d3-scale-2.2.2.tgz",
-          "integrity": "sha512-LbeEvGgIb8UMcAa0EATLNX0lelKWGYDQiPdHj+gLblGVhGLyNbaCn3EvrJf0A3Y/uOOU5aD6MTh5ZFCdEwGiCw==",
-          "requires": {
-            "d3-array": "^1.2.0",
-            "d3-collection": "1",
-            "d3-format": "1",
-            "d3-interpolate": "1",
-            "d3-time": "1",
-            "d3-time-format": "2"
-          }
-        },
-        "d3-shape": {
-          "version": "1.3.7",
-          "resolved": "https://registry.npmjs.org/d3-shape/-/d3-shape-1.3.7.tgz",
-          "integrity": "sha512-EUkvKjqPFUAZyOlhY5gzCxCeI0Aep04LwIRpsZ/mLFelJiUfnK56jo5JMDSE7yyP2kLSb6LtF+S5chMk7uqPqw==",
-          "requires": {
-            "d3-path": "1"
-          }
-        },
-        "d3-voronoi": {
-          "version": "1.1.4",
-          "resolved": "https://registry.npmjs.org/d3-voronoi/-/d3-voronoi-1.1.4.tgz",
-          "integrity": "sha512-dArJ32hchFsrQ8uMiTBLq256MpnZjeuBtdHpaDlYuQyjU0CVzCJl/BVW+SkszaAeH95D/8gxqAhgx0ouAWAfRg=="
-        }
+        "d3-scale": "^1.0.4",
+        "d3-shape": "^1.0.4",
+        "d3-voronoi": "^1.1.1",
+        "lodash": "^4.17.4"
       }
     },
     "react-dev-utils": {
