@@ -143,10 +143,14 @@ class ImpactedControlsModule extends React.Component {
 
   renderLegend() {
     const { locale } = this.context
-    const legend = [
+    const { showFindings } = this.props
+    const legend = showFindings ? [
       {title: msgs.get('overview.impacted.controls.legend.policies', locale), className: 'policies'},
       {title: msgs.get('overview.impacted.controls.legend.findings', locale), className: 'findings'},
+    ] : [
+      {title: msgs.get('overview.impacted.controls.legend.policies', locale), className: 'policies'},
     ]
+
     return (
       <div className='card-legend'>
         <div key={'key'} className='key' >{msgs.get('overview.impacted.controls.legend.key', locale)}</div>
@@ -753,6 +757,7 @@ ImpactedControlsModule.propTypes = {
   history: PropTypes.object.isRequired,
   location: PropTypes.object,
   policies: PropTypes.array,
+  showFindings: PropTypes.bool,
   updateViewState: PropTypes.func,
   viewState: PropTypes.object,
 }

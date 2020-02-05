@@ -86,6 +86,7 @@ export class OverviewView extends React.Component {
 
   render() {
     const { locale } = this.context
+    const showFindings = config['feature_security-findings']
     const { loading, error, policies, findings, applications, activeFilters={} } = this.props
     hideResourceToolbar()
 
@@ -116,6 +117,7 @@ export class OverviewView extends React.Component {
         <ResourceFilterBar />
         <RecentActivityModule
           policies={filteredPolicies}
+          showFindings={showFindings}
           findings={filteredFindings}
           applications={applications}
           handleDrillDownClick={this.handleDrillDownClickOverview}
@@ -125,6 +127,7 @@ export class OverviewView extends React.Component {
           viewState={viewState}
           updateViewState={this.updateViewState}
           policies={filteredPolicies}
+          showFindings={showFindings}
           findings={filteredFindings}
           activeFilters={activeFilters}
           availableFilters={availableFilters}
