@@ -22,6 +22,9 @@ log4js.configure(log4js_config || 'config/log4js.json')
 var config = require('../../config/auth-config.js')
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
+logger.info(config.ocp.serviceaccount_token)
+logger.info(config.ocp.apiserver_url)
+
 //token review api to validate Bearer token/ retrieve user info
 const request = require('request').defaults({ rejectUnauthorized: false })
 const options = {
@@ -46,6 +49,7 @@ const passport = require('passport')
 const OAuth2Strategy = require('passport-oauth2')
 
 const callbackUrl = `${config.ocp.app_host}/multicloud/auth/callback`
+logger.info('callback url: ' + callbackUrl)
 
 passport.use(new OAuth2Strategy({
   //state: true,
@@ -86,23 +90,24 @@ router.use(passport.initialize())
 router.get('/auth/login', (passport.authenticate('oauth2')))
 
 // Callback service parsing the authorization token and asking for the access token
-router.get('/auth/callback', passport.authenticate('oauth2', { failureRedirect: '/login' }),
+router.get('/auth/callback', passport.authenticate('oauth2', { failureRedirect: '/multicloud/login' }),
   (req, res) => {
+    logger.info('in callback!')
     // Successful authentication, redirect home.
-    logger.info('callback User ', req.user)
-    return res.redirect('/dashboard/'+  encodeURI(req.user.username))
+    return res.redirect('/multicloud/')
   })
+//router.get('/auth/callback', (passport.authenticate('oauth2', {successRedirect: '/dashboard', failureRedirect: '/login'})))
 
 
 router.get('/login', (req, res) => {
-  logger.info('auth failure, redirecting to remote login..')
-  res.redirect('https://icp-console.apps.straits.os.fyre.ibm.com/oidc/login.jsp')
+  logger.info('redirecting to login..')
+  res.redirect('/multicloud/auth/login')
 })
 
 /* GET home page. */
 router.get('/',  (req, res) => {
-  logger.info('redirect to auth login.. ' + config.ocp.app_host + 'multicloud/auth/login')
-  res.redirect('multicloud/auth/login')
+  logger.info('redirect to auth login.. ' + config.ocp.app_host + '/multicloud/auth/login')
+  res.redirect('/multicloud/auth/login')
 })
 
 /* GET home page. */
