@@ -7,16 +7,16 @@
 #  IBM Corporation - initial API and implementation
 ###############################################################################
 
-include Configfile
+# include Configfile
 
-SHELL := /bin/bash
+# SHELL := /bin/bash
 
-ifneq ($(ARCH), x86_64)
-DOCKER_FILE = Dockerfile.$(ARCH)
-else
-DOCKER_FILE = Dockerfile
-endif
-@echo "using DOCKER_FILE: $(DOCKER_FILE)"
+# ifneq ($(ARCH), x86_64)
+# DOCKER_FILE = Dockerfile.$(ARCH)
+# else
+# DOCKER_FILE = Dockerfile
+# endif
+# @echo "using DOCKER_FILE: $(DOCKER_FILE)"
 
 init::
 -include $(shell curl -H 'Authorization: token ${GITHUB_TOKEN}' -H 'Accept: application/vnd.github.v4.raw' -L https://api.github.com/repos/open-cluster-management/build-harness-extensions/contents/templates/Makefile.build-harness-bootstrap -o .build-harness-bootstrap; echo .build-harness-bootstrap)
