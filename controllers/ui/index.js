@@ -50,6 +50,8 @@ const OAuth2Strategy = require('passport-oauth2')
 
 const callbackUrl = `${config.ocp.app_host}/multicloud/auth/callback`
 logger.info('callback url: ' + callbackUrl)
+logger.info('config.ocp.oauth2_clientid: ' + config.ocp.oauth2_clientid)
+logger.info('config.ocp.oauth2_clientsecret: ' + config.ocp.oauth2_clientsecret)
 
 passport.use(new OAuth2Strategy({
   //state: true,
@@ -69,7 +71,13 @@ async (accessToken, refreshToken, profile, cb) => {
     if (err) {
       return cb(err)
     }
-    return cb(null, reviewbody.status.user)
+    console.log("user info resp body ",reviewbody)
+    if(reviewbody.status && reviewbody.status.user){
+      console.log("User :", reviewbody.status.user)
+      reviewbody.status.user.token = accessToken
+      return cb(null, reviewbody.status.user)
+    }
+    return cb(new Error('Server Error'))
   })
 }
 ))
@@ -94,7 +102,8 @@ router.get('/auth/callback', passport.authenticate('oauth2', { failureRedirect: 
   (req, res) => {
     logger.info('in callback!')
     // Successful authentication, redirect home.
-    return res.redirect('/multicloud/')
+    //return res.redirect('/multicloud/')
+    res.status(500).send('Callback successful');
   })
 //router.get('/auth/callback', (passport.authenticate('oauth2', {successRedirect: '/dashboard', failureRedirect: '/login'})))
 
