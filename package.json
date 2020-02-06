@@ -2,7 +2,7 @@
   "name": "grc-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development node app.js",
     "start:production": "cross-env NODE_ENV=production node app.js",
@@ -21,9 +21,7 @@
     "test:e2e": "nightwatch",
     "test:update-snapshot": "jest --updateSnapshot",
     "test:update-a11ySnap": "find ./test-output/a11y -name '*.json' -not -name 'summary*' -exec cp {} ./tests/utils/A11y-snapshot/ \\;",
-    "test:install-selenium": "selenium-standalone install --version=3.141.59  --drivers.chrome.version=2.36",
-    "storybook": "start-storybook -p 6006 -s ./public,./node_modules/carbon-components/css",
-    "build-storybook": "build-storybook"
+    "test:install-selenium": "selenium-standalone install --version=3.141.59  --drivers.chrome.version=2.36"
   },
   "repository": {
     "type": "git",
@@ -115,10 +113,6 @@
   },
   "devDependencies": {
     "@storybook/addon-centered": "^3.4.6",
-    "@storybook/addon-info": "^3.4.6",
-    "@storybook/addon-links": "^3.4.6",
-    "@storybook/addons": "^3.4.6",
-    "@storybook/react": "^3.4.6",
     "assets-webpack-plugin": "^3.0.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
