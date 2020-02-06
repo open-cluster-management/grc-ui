@@ -1,24 +1,18 @@
 sudo: required
 language: node_js
 
-os: linux
-
 services:
   - docker
   - xvfb
+
+branches:
+  only:
+    - /^release-[0-9]+\..*$/
 
 addons:
   packages:
     - openjdk-8-jdk
   chrome: stable
-
-branches:
-  only:
-    - master
-    - dev
-    - /^[0-9]+\..*$/
-    - /^v[0-9]+\..*$/
-    - /^release-[0-9]+\..*$/
 
 env:
   global:
@@ -63,5 +57,5 @@ jobs:
       name: "Publish the image to quay with an official version/sha tag and publish entry to integration pipeline stage"
       if: type = push AND branch IN ( master )
       script:
-        - make component/pull 
+        - make pipeline-manifest/update PIPELINE_MANIFEST_COMPONENT_SHA256=${TRAVIS_COMMIT} PIPELINE_MANIFEST_COMPONENT_REPO=${TRAVIS_REPO_SLUG}
     

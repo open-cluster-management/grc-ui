@@ -7,39 +7,27 @@
 #  IBM Corporation - initial API and implementation
 ###############################################################################
 
-include Configfile
+include build/Configfile
 
-init::
 -include $(shell curl -H 'Authorization: token ${GITHUB_TOKEN}' -H 'Accept: application/vnd.github.v4.raw' -L https://api.github.com/repos/open-cluster-management/build-harness-extensions/contents/templates/Makefile.build-harness-bootstrap -o .build-harness-bootstrap; echo .build-harness-bootstrap)
 
-.PHONY: run
-run: 
-ifeq ($(ARCH), x86_64)
-	# Both containers grc-ui and grc-ui-api must be on the same network.
-	docker network create --subnet 10.10.0.0/16 $(NETWORK_NAME)
-	make docker:info DOCKER_NETWORK_OP=$(NETWORK_OP) DOCKER_NETWORK=$(NETWORK_NAME)
-	make docker:run DOCKER_NETWORK_OP=$(NETWORK_OP) DOCKER_NETWORK=$(NETWORK_NAME)
-endif
+default::
+	@echo "Build Harness Bootstrapped"
 
-.PHONY: unit-test
+install:
+	npm install
+
+lint:
+	npm run lint
+
+prune:
+	npm prune --production
+
+build-prod:
+	npm run build:production
+
 unit-test:
 	if [ ! -d "test-output" ]; then \
 		mkdir test-output; \
 	fi
 	npm test
-
-.PHONY: e2e-test
-e2e-test:
-ifeq ($(SELENIUM_TESTS), TRUE)
-ifeq ($(ARCH), x86_64)
-	make docker:pull DOCKER_URI=$(GRC_UI_API_DOCKER_URI)
-	docker image ls -a
-	make docker:run DOCKER_NETWORK_OP=$(NETWORK_OP) DOCKER_NETWORK=$(NETWORK_NAME) DOCKER_IP_OP=$(IP_OP) DOCKER_IP=$(GRC_UI_API_DOCKER_IP) DOCKER_CONTAINER_NAME=$(GRC_UI_API_DOCKER_CONTAINER_NAME) DOCKER_BIND_PORT=$(GRC_UI_API_DOCKER_BIND_PORT) DOCKER_IMAGE=$(GRC_UI_API_DOCKER_URI) DOCKER_BUILD_TAG=$(RELEASE_TAG)
-	npm install selenium-standalone@6.17.0 nightwatch@0.9.21
-ifeq ($(A11Y_TESTS), TRUE)
-	nightwatch
-else
-	nightwatch --env no-a11y
-endif
-endif
-endif
