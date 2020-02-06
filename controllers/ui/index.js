@@ -11,10 +11,12 @@
 var express = require('express'),
     router = express.Router(),
     log4js = require('log4js'),
-    logger = log4js.getLogger('server')
+    logger = log4js.getLogger('server'),
+    session = require('express-session'),
+    bodyParser = require('body-parser')
 
 //controllers
-//var app = require('./app')
+var app = require('./app')
 
 var log4js_config = process.env.LOG4JS_CONFIG ? JSON.parse(process.env.LOG4JS_CONFIG) : undefined
 log4js.configure(log4js_config || 'config/log4js.json')
@@ -61,8 +63,9 @@ passport.use(new OAuth2Strategy({
   clientSecret: config.ocp.oauth2_clientsecret,
   callbackURL: callbackUrl,
   scope: 'user:full',
+  passReqToCallback: true,
 },
-async (accessToken, refreshToken, profile, cb) => {
+async (req, accessToken, refreshToken, profile, cb) => {
   logger.info('accessToken',accessToken)
   options.body.spec.token=accessToken
 
@@ -89,12 +92,15 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((user, done) => {
+  logger.info('deserialize-------------------------')
+  logger.info(user)
   done(null, user)
 })
 
+router.use(session({ secret: config.ocp.oauth2_clientsecret }))
+router.use(bodyParser.urlencoded({ extended: false }))
 router.use(passport.initialize())
-
-//router.all(['/', '/*'], inspect.ui, app)
+router.use(passport.session())
 
 /* GET home page. */
 router.get('/auth/login', (passport.authenticate('oauth2')))
@@ -102,12 +108,15 @@ router.get('/auth/login', (passport.authenticate('oauth2')))
 // Callback service parsing the authorization token and asking for the access token
 router.get('/auth/callback', passport.authenticate('oauth2', { failureRedirect: '/multicloud/login' }),
   (req, res) => {
-    logger.info('in callback!')
+    logger.info('Successful authentication, callback endpoint reached')
     // Successful authentication, redirect home.
-    //return res.redirect('/multicloud/')
-    res.status(500).send('Callback successful')
+    //res.status(500).send('Callback successful')
+    req.user = req.session.passport.user
+    res.redirect(req.session.returnTo || '/multicloud/welcome')
+    delete req.session.returnTo
   })
 
+//router.get('/auth/callback', passport.authenticate('oauth2', { failureRedirect: '/multicloud/login', successRedirect: '/multicloud/welcome' }))
 
 router.get('/login', (req, res) => {
   logger.info('redirecting to login..')
@@ -115,18 +124,33 @@ router.get('/login', (req, res) => {
 })
 
 /* GET home page. */
-router.get('/',  (req, res) => {
-  logger.info('redirect to auth login.. ' + config.ocp.app_host + '/multicloud/auth/login')
-  res.redirect('/multicloud/auth/login')
-})
+// router.get('/', isLoggedIn, (req, res) => {
+//   res.redirect('/multicloud/policies')
+// })
 
-/* GET home page. */
-router.get('/dashboard/*',  (req, res) => {
-  const username = req.params[0]
-  logger.info('dashboard user :', username)
-  res.render('index', { username: username })
-})
+//check if session has been authenticated
+// function isLoggedIn(req, res, next){
+//   logger.info('request is authenticated: ', req.isAuthenticated())
+//   if(req.isAuthenticated()){
+//     next()
+//   } else{
+//     res.redirect('/multicloud/login')
+//   }
+// }
 
-// router.use(csrf) TODO: Revisit csrf
+router.all(['/', '/*'], (req, res, next) => {
+  logger.info('/* endpoint, session:')
+  logger.info(req.session)
+  if (!req.session.passport || !req.session.passport.user) {
+    req.session.returnTo = req.originalUrl
+    res.redirect('/multicloud/auth/login')
+  } else {
+    logger.info('Already logged in')
+    logger.info(req.user)
+    return next()
+  }
+}, app)
+
+//router.all(['/', '/*'], (passport.authenticate('oauth2')), app)
 
 module.exports = router

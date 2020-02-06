@@ -39,6 +39,7 @@ router.get('/logout', (req, res) => {
   return res.send({ redirectUrl })
 })
 
+// eslint-disable-next-line no-unused-vars
 router.get('*', (req, res) => {
   reducers = reducers === undefined ? require('../../src-web/reducers') : reducers
 
@@ -50,10 +51,32 @@ router.get('*', (req, res) => {
   store.dispatch(Login.receiveLoginSuccess(req.user))
 
   App = App === undefined ? require('../../src-web/containers/App').default : App
+  // eslint-disable-next-line no-unused-vars
   const context = getContext(req)
-  fetchHeader(req, res, store, context)
+
+  res.render('main', Object.assign({
+    manifest: appUtil.app().locals.manifest,
+    content: ReactDOMServer.renderToString(
+      <Provider store={store}>
+        <StaticRouter
+          location={req.originalUrl}
+          context={context}>
+          <App />
+        </StaticRouter>
+      </Provider>
+    ),
+    contextPath: config.get('contextPath'),
+    state: store.getState(),
+    props: context,
+    header: null,
+    propsH: null,
+    stateH: null,
+    filesH: null
+  }, context))
+  //fetchHeader(req, res, store, context)
 })
 
+// eslint-disable-next-line no-unused-vars
 function fetchHeader(req, res, store, context) {
   const options = {
     method: 'GET',
