@@ -88,5 +88,5 @@ items:
     name: grc-ui-app
   grantMethod: auto
   redirectURIs:
-  - http://localhost:3000/multicloud/auth/callback
+  - https://localhost:3000/multicloud/auth/callback
   secret: grc-ui-app-test-secret

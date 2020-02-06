@@ -71,9 +71,11 @@ async (accessToken, refreshToken, profile, cb) => {
     if (err) {
       return cb(err)
     }
-    console.log("user info resp body ",reviewbody)
-    if(reviewbody.status && reviewbody.status.user){
-      console.log("User :", reviewbody.status.user)
+    // eslint-disable-next-line no-console
+    console.log('user info resp body ', reviewbody)
+    if (reviewbody.status && reviewbody.status.user){
+      // eslint-disable-next-line no-console
+      console.log('User :', reviewbody.status.user)
       reviewbody.status.user.token = accessToken
       return cb(null, reviewbody.status.user)
     }
@@ -103,9 +105,8 @@ router.get('/auth/callback', passport.authenticate('oauth2', { failureRedirect: 
     logger.info('in callback!')
     // Successful authentication, redirect home.
     //return res.redirect('/multicloud/')
-    res.status(500).send('Callback successful');
+    res.status(500).send('Callback successful')
   })
-//router.get('/auth/callback', (passport.authenticate('oauth2', {successRedirect: '/dashboard', failureRedirect: '/login'})))
 
 
 router.get('/login', (req, res) => {
