@@ -147,6 +147,8 @@ router.all(['/', '/*'], (req, res, next) => {
   } else {
     logger.info('Already logged in')
     logger.info(req.user)
+    //req.cookies['cfc-access-token-cookie'] = req.session.passport.user.token
+    res.cookie('cfc-access-token-cookie', req.session.passport.user.token)
     return next()
   }
 }, app)
