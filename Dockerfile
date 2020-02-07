@@ -1,4 +1,4 @@
-FROM hyc-cloud-private-edge-docker-local.artifactory.swg-devops.com/build-images/node-dubnium-ubi8-minimal-amd64:8.1-279
+FROM registry.access.redhat.com/ubi8/nodejs-10:latest
 
 ARG VCS_REF
 ARG VCS_URL
@@ -31,15 +31,16 @@ LABEL org.label-schema.vendor="IBM" \
       io.k8s.description="$IMAGE_DESCRIPTION" \
       io.openshift.tags="$IMAGE_OPENSHIFT_TAGS"
 
-RUN mkdir -p /opt/ibm/grc-ui
-RUN mkdir -p /opt/ibm/grc-ui /licenses
-ADD license.txt /licenses
-WORKDIR /opt/ibm/grc-ui
+ENV BABEL_DISABLE_CACHE=1 \
+    NODE_ENV=production \
+    USER_UID=1001
 
-COPY . /opt/ibm/grc-ui
+RUN mkdir -p /opt/app-root/src/grc-ui
+WORKDIR /opt/app-root/src/grc-ui
+
+COPY . /opt/app-root/src/grc-ui
 
 EXPOSE 3000
 
-ENV BABEL_DISABLE_CACHE 1
-ENV NODE_ENV production
+USER ${USER_UID}
 CMD ["node", "app.js"]
