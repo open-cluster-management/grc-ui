@@ -20,6 +20,7 @@ QUAYSCAN_IMAGE_TAG_EXTENSION := ${COMPONENT_TAG_EXTENSION}
 QUAYSCAN_DOCKER_REPO := "quay.io/open-cluster-management"
 
 .PHONY : quayscan\:status
+quayscan\:status:
 	@echo "---quayscan status---"
 	@echo "${QUAYSCAN_DOCKER_REPO}/${QUAYSCAN_IMAGE_NAME}:${QUAYSCAN_IMAGE_VERSION}${QUAYSCAN_IMAGE_TAG_EXTENSION}"
 
