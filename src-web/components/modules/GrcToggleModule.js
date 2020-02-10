@@ -126,6 +126,7 @@ export class GrcToggleModule extends React.Component {
 
   renderTabSwitcher(displayType, grcTabToggleIndex) {
     const { locale } = this.context
+    const { showApplications } = this.props
     let toggleText1, toggleText2, toggleText3
     switch(displayType) {
     case 'all':
@@ -144,10 +145,14 @@ export class GrcToggleModule extends React.Component {
         <div className='module-toggle-tab-switch-makeup'>
         </div>
         <div className='module-toggle-tab-switch'>
-          {displayType==='all' && <ContentSwitcher onChange={this.onChange} selectedIndex={grcTabToggleIndex}>
+          {displayType==='all' && showApplications && <ContentSwitcher onChange={this.onChange} selectedIndex={grcTabToggleIndex}>
             <Switch text={toggleText1} onClick={this.toggleClick} />
             <Switch text={toggleText2} onClick={this.toggleClick} />
             <Switch text={toggleText3} onClick={this.toggleClick} />
+          </ContentSwitcher>}
+          {displayType==='all' && !showApplications && <ContentSwitcher onChange={this.onChange} selectedIndex={grcTabToggleIndex}>
+            <Switch text={toggleText1} onClick={this.toggleClick} />
+            <Switch text={toggleText2} onClick={this.toggleClick} />
           </ContentSwitcher>}
           {displayType==='findings' && <ContentSwitcher onChange={this.onChange} selectedIndex={grcTabToggleIndex}>
             <Switch text={toggleText1} onClick={this.toggleClick} />
@@ -184,6 +189,7 @@ GrcToggleModule.propTypes = {
   history: PropTypes.object,
   location: PropTypes.object,
   secondaryHeaderProps: PropTypes.object,
+  showApplications: PropTypes.bool,
   showGrcTabToggle: PropTypes.bool,
   showSidePanel: PropTypes.bool,
 }

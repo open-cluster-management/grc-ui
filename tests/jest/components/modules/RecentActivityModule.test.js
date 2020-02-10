@@ -14,10 +14,11 @@ import renderer from 'react-test-renderer'
 import { policiesTestingDataSet1, findingsTestingDataSet1 } from './ModuleTestingData'
 import RecentActivityModule from '../../../../src-web/components/modules/RecentActivityModule'
 
-describe('RecentActivityModule view', () => {
+describe('RecentActivityModule view with applications', () => {
   jest
     .spyOn(window, 'getComputedStyle')
     .mockImplementation(() => ({display: 'block', 'padding-right': '0.625rem'}))
+  const showApplications = true
   const handleDrillDownClick = jest.fn()
   const filteredPolicies = policiesTestingDataSet1
   const filteredFindings = findingsTestingDataSet1
@@ -25,6 +26,29 @@ describe('RecentActivityModule view', () => {
   const updateViewState = jest.fn()
   it('renders as expected', () => {
     const component = renderer.create(<BrowserRouter><RecentActivityModule
+      showApplications={showApplications}
+      policies={filteredPolicies}
+      findings={filteredFindings}
+      viewState={viewState}
+      updateViewState={updateViewState}
+      handleDrillDownClick={handleDrillDownClick} /></BrowserRouter>)
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
+
+describe('RecentActivityModule view without applications', () => {
+  jest
+    .spyOn(window, 'getComputedStyle')
+    .mockImplementation(() => ({display: 'block', 'padding-right': '0.625rem'}))
+  const showApplications = false
+  const handleDrillDownClick = jest.fn()
+  const filteredPolicies = policiesTestingDataSet1
+  const filteredFindings = findingsTestingDataSet1
+  const viewState = {}
+  const updateViewState = jest.fn()
+  it('renders as expected', () => {
+    const component = renderer.create(<BrowserRouter><RecentActivityModule
+      showApplications={showApplications}
       policies={filteredPolicies}
       findings={filteredFindings}
       viewState={viewState}
