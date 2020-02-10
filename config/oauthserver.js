@@ -2,9 +2,6 @@ var request = require('request').defaults({ rejectUnauthorized: false })
 var config  = require('./auth-config.js')
 
 module.exports.info = (cb) => {
-  // eslint-disable-next-line no-console
-  console.log(config)
-
   // for both  running local and inside  cluster, the below endpoint can used to get the oauth2 server
   // and authorizepath  and tokenpath endpoints.
   const options = {

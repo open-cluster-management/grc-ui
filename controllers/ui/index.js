@@ -28,10 +28,6 @@ log4js.configure(log4js_config || 'config/log4js.json')
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
 configjs.initialize((err, config) => {
-  logger.info('config:')
-  logger.info(config)
-  logger.info(config.ocp.serviceaccount_token)
-  logger.info(config.ocp.apiserver_url)
 
   //token review api to validate Bearer token/ retrieve user info
   const request = require('request').defaults({ rejectUnauthorized: false })
@@ -53,9 +49,6 @@ configjs.initialize((err, config) => {
   }
 
   const callbackUrl = `${config.ocp.oauth2_redirecturl}`
-  logger.info('callback url: ' + callbackUrl)
-  logger.info('config.ocp.oauth2_clientid: ' + config.ocp.oauth2_clientid)
-  logger.info('config.ocp.oauth2_clientsecret: ' + config.ocp.oauth2_clientsecret)
 
   passport.use(new OAuth2Strategy({
     //state: true,
@@ -68,7 +61,6 @@ configjs.initialize((err, config) => {
     passReqToCallback: true,
   },
   async (req, accessToken, refreshToken, profile, cb) => {
-    logger.info('accessToken',accessToken)
     options.body.spec.token=accessToken
 
     //retrieving user info through token review api
@@ -76,11 +68,7 @@ configjs.initialize((err, config) => {
       if (err) {
         return cb(err)
       }
-      // eslint-disable-next-line no-console
-      console.log('user info resp body ', reviewbody)
       if (reviewbody.status && reviewbody.status.user){
-        // eslint-disable-next-line no-console
-        console.log('User :', reviewbody.status.user)
         reviewbody.status.user.token = accessToken
         return cb(null, reviewbody.status.user)
       }
@@ -94,8 +82,6 @@ configjs.initialize((err, config) => {
   })
 
   passport.deserializeUser((user, done) => {
-    logger.info('deserialize-------------------------')
-    logger.info(user)
     done(null, user)
   })
 })
@@ -111,51 +97,24 @@ router.get('/auth/login', (passport.authenticate('oauth2')))
 // Callback service parsing the authorization token and asking for the access token
 router.get('/auth/callback', passport.authenticate('oauth2', { failureRedirect: '/multicloud/login' }),
   (req, res) => {
-    logger.info('Successful authentication, callback endpoint reached')
-    // Successful authentication, redirect home.
-    //res.status(500).send('Callback successful')
     req.user = req.session.passport.user
     res.redirect(req.session.returnTo || '/multicloud/welcome')
     delete req.session.returnTo
   })
-
-//router.get('/auth/callback', passport.authenticate('oauth2', { failureRedirect: '/multicloud/login', successRedirect: '/multicloud/welcome' }))
 
 router.get('/login', (req, res) => {
   logger.info('redirecting to login..')
   res.redirect('/multicloud/auth/login')
 })
 
-/* GET home page. */
-// router.get('/', isLoggedIn, (req, res) => {
-//   res.redirect('/multicloud/policies')
-// })
-
-//check if session has been authenticated
-// function isLoggedIn(req, res, next){
-//   logger.info('request is authenticated: ', req.isAuthenticated())
-//   if(req.isAuthenticated()){
-//     next()
-//   } else{
-//     res.redirect('/multicloud/login')
-//   }
-// }
-
 router.all(['/', '/*'], (req, res, next) => {
-  logger.info('/* endpoint, session:')
-  logger.info(req.session)
   if (!req.session.passport || !req.session.passport.user) {
     req.session.returnTo = req.originalUrl
     res.redirect('/multicloud/auth/login')
   } else {
-    logger.info('Already logged in')
-    logger.info(req.user)
-    //req.cookies['cfc-access-token-cookie'] = req.session.passport.user.token
     res.cookie('cfc-access-token-cookie', req.session.passport.user.token)
     return next()
   }
 }, app)
-
-//router.all(['/', '/*'], (passport.authenticate('oauth2')), app)
 
 module.exports = router
