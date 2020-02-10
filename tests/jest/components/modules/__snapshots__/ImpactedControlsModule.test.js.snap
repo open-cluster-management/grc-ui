@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ImpactedControlsModule view renders as expected 1`] = `
+exports[`ImpactedControlsModule view with Security Findings renders as expected 1`] = `
 <div
   className="module-impacted-controls"
 >
@@ -105,6 +105,248 @@ exports[`ImpactedControlsModule view renders as expected 1`] = `
                   <span
                     className="bx--list-box__label"
                     htmlFor="downshift-0-input"
+                  >
+                    All
+                  </span>
+                  <div
+                    className="bx--list-box__menu-icon"
+                  >
+                    <svg
+                      alt="Open menu"
+                      aria-label="Open menu"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Open menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="card-slider"
+            >
+              <div
+                className="bx--form-item"
+              >
+                <label
+                  className="bx--label"
+                  htmlFor="slider"
+                >
+                  Show more or less controls
+                </label>
+                <div
+                  className="bx--slider-container"
+                >
+                  <div
+                    className="bx--slider"
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onKeyPress={[Function]}
+                    role="presentation"
+                    tabIndex={-1}
+                    value={0}
+                  >
+                    <div
+                      aria-valuemax={0}
+                      aria-valuemin={1}
+                      aria-valuenow={0}
+                      className="bx--slider__thumb"
+                      id="slider"
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      onTouchStart={[Function]}
+                      role="slider"
+                      style={
+                        Object {
+                          "left": "0%",
+                        }
+                      }
+                      tabIndex={0}
+                    />
+                    <div
+                      className="bx--slider__track"
+                    />
+                    <div
+                      className="bx--slider__filled-track"
+                      style={
+                        Object {
+                          "transform": "translate(0%, -50%) scaleX(0)",
+                        }
+                      }
+                    />
+                    <input
+                      className="bx--slider__input"
+                      max={0}
+                      min={1}
+                      name="Show more or less controls"
+                      onChange={[Function]}
+                      required={undefined}
+                      step={1}
+                      type="hidden"
+                      value={0}
+                    />
+                  </div>
+                  <span
+                    className="bx--slider__range-label"
+                  >
+                    1
+                  </span>
+                  <span
+                    className="bx--slider__range-label"
+                  >
+                    0
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="card-radar-container"
+        >
+          <div
+            className="card-radar"
+          >
+            <div>
+              <div
+                className="no-resource"
+              >
+                <img
+                  alt="Your data visualizations cannot be displayed"
+                  className="no-resource-icon"
+                  src="undefined/policies/graphics/no-impacted-controls-overlap.svg"
+                />
+                <div
+                  className="no-resource-title"
+                >
+                  Your data visualizations cannot be displayed
+                </div>
+                <div
+                  className="no-resource-detail"
+                >
+                  There are no controls that have both policy violations and security findings. You can try selecting different filters or clearing the current filters. The system will continue to monitor and display the visualization here.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ImpactedControlsModule view without Security Findings renders as expected 1`] = `
+<div
+  className="module-impacted-controls"
+>
+  <div
+    className="card-container-container"
+  >
+    <div
+      className="card-title-container"
+    >
+      <div
+        className="card-title"
+      >
+        Most impacted controls
+      </div>
+      <div
+        align="end"
+        className="bx--tooltip-icon"
+      >
+        <button
+          aria-label="This radar chart helps you to visualize problem areas. It shows you the highest number of impacts, and gives you a view into the areas where security and policy violations are overlapping and may be higher priority areas to investigate."
+          className="bx--tooltip__trigger bx--tooltip--icon__top"
+        >
+          <svg
+            className="info-icon"
+          >
+            <use
+              href="#diagramIcons_info"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      className="card-container"
+    >
+      <div
+        className="card-content"
+      >
+        <div
+          className="card-controls"
+        >
+          <div
+            className="card-legend"
+          >
+            <div
+              className="key"
+            >
+              Key
+            </div>
+            <div
+              className="legend-container"
+            >
+              <div
+                className="legend policies"
+              />
+              Policy violations
+            </div>
+          </div>
+          <div
+            className="card-control-panel"
+          >
+            <div
+              className="card-selection"
+            >
+              <div
+                className="card-selection-title"
+              >
+                Standard
+              </div>
+              <div
+                aria-invalid={undefined}
+                aria-label="Most impacted controls"
+                className="bx--dropdown selection bx--list-box"
+                data-invalid={undefined}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="listbox"
+                tabIndex={null}
+              >
+                <div
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  aria-label="open menu"
+                  className="bx--list-box__field"
+                  data-toggle={true}
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  role="button"
+                  tabIndex="0"
+                  type="button"
+                >
+                  <span
+                    className="bx--list-box__label"
+                    htmlFor="downshift-1-input"
                   >
                     All
                   </span>
