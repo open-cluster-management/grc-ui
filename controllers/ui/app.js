@@ -39,7 +39,6 @@ router.get('/logout', (req, res) => {
   return res.send({ redirectUrl })
 })
 
-// eslint-disable-next-line no-unused-vars
 router.get('*', (req, res) => {
   reducers = reducers === undefined ? require('../../src-web/reducers') : reducers
 
@@ -51,36 +50,14 @@ router.get('*', (req, res) => {
   store.dispatch(Login.receiveLoginSuccess(req.user))
 
   App = App === undefined ? require('../../src-web/containers/App').default : App
-  // eslint-disable-next-line no-unused-vars
   const context = getContext(req)
-
-  res.render('main', Object.assign({
-    manifest: appUtil.app().locals.manifest,
-    content: ReactDOMServer.renderToString(
-      <Provider store={store}>
-        <StaticRouter
-          location={req.originalUrl}
-          context={context}>
-          <App />
-        </StaticRouter>
-      </Provider>
-    ),
-    contextPath: config.get('contextPath'),
-    state: store.getState(),
-    props: context,
-    header: null,
-    propsH: null,
-    stateH: null,
-    filesH: null
-  }, context))
-  //fetchHeader(req, res, store, context)
+  fetchHeader(req, res, store, context)
 })
 
-// eslint-disable-next-line no-unused-vars
 function fetchHeader(req, res, store, context) {
   const options = {
     method: 'GET',
-    url: `${config.get('cfcRouterUrl')}${config.get('platformHeaderContextPath')}/api/v1/header/${config.get('leftNav')}?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}`,
+    url: `http://acm-header-kube-system.apps.straits.os.fyre.ibm.com/multicloud/header/api/v1/header/${config.get('leftNav')}?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}`,
     json: true,
     headers: {
       Cookie: req.headers.cookie,

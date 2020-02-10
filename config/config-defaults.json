@@ -5,7 +5,7 @@
     "searchApiUrl": "",
     "cfcRouterUrl": "",
     "complianceNamespace": "mcm",
-    "platformHeaderContextPath": "/common-nav",
+    "platformHeaderContextPath": "/multicloud/header",
     "leftNav":"multicluster-hub-nav",
     "feature_searchRelated": false,
     "feature_search-api": true,

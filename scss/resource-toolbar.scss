@@ -27,7 +27,7 @@
   .resource-toolbar-container {
     position: fixed;
     right: 5%;
-    top: $secondary-header-max-height - 4.375rem;
+    top: $secondary-header-max-height - 3.375rem;
     display: flex;
     min-height: $secondary-header-min-height;
     flex-direction: column;
@@ -86,8 +86,6 @@
       font-size: 0.625rem;
       height: 1.25rem;
       margin-right: inherit;
-      margin-top: 0.9375rem;
-      margin-bottom: 1.25rem;
       white-space: pre;
 
       .bx--loading--small {

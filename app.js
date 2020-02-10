@@ -114,14 +114,14 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
 
 if (process.env.NODE_ENV === 'development') {
   app.use(appConfig.get('platformHeaderContextPath'), cookieParser(), proxy({
-    target: appConfig.get('cfcRouterUrl'),
+    target: 'http://acm-header-kube-system.apps.straits.os.fyre.ibm.com',
     changeOrigin: true,
     secure: false,
     ws: true
   }))
 
-  app.use(`${appConfig.get('contextPath')}/policies/api/proxy`, cookieParser(), proxy({
-    target: appConfig.get('cfcRouterUrl'),
+  app.use(`${appConfig.get('contextPath')}/policies/api/proxy${appConfig.get('platformHeaderContextPath')}`, cookieParser(), proxy({
+    target: 'http://acm-header-kube-system.apps.straits.os.fyre.ibm.com',
     changeOrigin: true,
     pathRewrite: {
       [`^${appConfig.get('contextPath')}/policies/api/proxy`]: ''
