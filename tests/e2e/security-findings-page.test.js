@@ -8,7 +8,7 @@
  *******************************************************************************/
 
 const config = require('../../config')
-const a11yScan = require('../utils/accessibilityScan')
+// const a11yScan = require('../utils/accessibilityScan')
 let page
 
 module.exports = {
@@ -38,7 +38,7 @@ module.exports = {
 
   'Security findings page: Run Accessibility Scan': (browser) => {
     page.navigate(`${browser.launch_url}${config.get('contextPath')}/policies/findings`)
-    a11yScan.runAccessibilityScan(browser, 'securityFindings')
+    // a11yScan.runAccessibilityScan(browser, 'securityFindings')
   },
 
   after: function (browser, done) {

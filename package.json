@@ -2,7 +2,7 @@
   "name": "grc-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development node app.js",
     "start:production": "cross-env NODE_ENV=production node app.js",
@@ -21,9 +21,7 @@
     "test:e2e": "nightwatch",
     "test:update-snapshot": "jest --updateSnapshot",
     "test:update-a11ySnap": "find ./test-output/a11y -name '*.json' -not -name 'summary*' -exec cp {} ./tests/utils/A11y-snapshot/ \\;",
-    "test:install-selenium": "selenium-standalone install --version=3.141.59  --drivers.chrome.version=2.36",
-    "storybook": "start-storybook -p 6006 -s ./public,./node_modules/carbon-components/css",
-    "build-storybook": "build-storybook"
+    "test:install-selenium": "selenium-standalone install --version=3.141.59  --drivers.chrome.version=2.36"
   },
   "repository": {
     "type": "git",
@@ -36,7 +34,7 @@
     "npm": "6.4.1"
   },
   "dependencies": {
-    "@icp/security-middleware": "^2.0.90",
+    "@icp/security-middleware": "file:pkg/icp-security-middleware-2.0.95.tgz",
     "apollo-boost": "^0.1.20",
     "apollo-client": "^2.2.8",
     "async": "^2.1.5",
@@ -94,7 +92,7 @@
     "react-apollo": "^2.3.1",
     "react-copy-to-clipboard": "^5.0.1",
     "react-custom-scrollbars": "^4.2.1",
-    "react-d3-radar": "git+https://@github.ibm.com/IBMPrivateCloud/react-d3-radar.git#master",
+    "react-d3-radar": "file:pkg/react-d3-radar-0.2.6.tgz",
     "react-dom": "^16.8.0",
     "react-lazyload": "^2.3.0",
     "react-lines-ellipsis": "^0.14.0",
@@ -102,6 +100,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-tag-autocomplete": "^5.5.1",
+    "react-transition-group": "^2.3.1",
     "recharts": "^1.5.0",
     "recompose": "^0.27.0",
     "redux": "^4.0.0",
@@ -117,12 +116,7 @@
     "watchr": "^4.0.1"
   },
   "devDependencies": {
-    "@ibma/aat": "^1.5.1",
     "@storybook/addon-centered": "^3.4.6",
-    "@storybook/addon-info": "^3.4.6",
-    "@storybook/addon-links": "^3.4.6",
-    "@storybook/addons": "^3.4.6",
-    "@storybook/react": "^3.4.6",
     "assets-webpack-plugin": "^3.0.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",

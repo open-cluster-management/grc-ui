@@ -1,4 +1,4 @@
-# grc-ui[![Build Status](https://travis.ibm.com/IBMPrivateCloud/grc-ui.svg?token=FQtRyxd2oucrshZSEEqZ&branch=master)](https://travis.ibm.com/IBMPrivateCloud/grc-ui)
+# grc-ui[![Build Status](https://travis-ci.com/open-cluster-management/grc-ui.svg?token=1xoYGv8XzWhB2heDk2My&branch=master)](https://travis-ci.com/open-cluster-management/grc-ui)
 The UI micro-service for IBM Hybrid Cloud Manager.
 
 ## Design
