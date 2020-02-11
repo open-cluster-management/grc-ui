@@ -60,6 +60,7 @@ export default class TopInformationModule extends React.Component {
   }
 
   render() {
+    const { hideFindings } = this.props
     let cardData = this.state.cardData
     if (cardData.length > 0) {
       if (cardData.length > this.props.threshold) {
@@ -72,12 +73,22 @@ export default class TopInformationModule extends React.Component {
       cardData.push(this.getEmptyCardStatements())
     }
 
-    return (
-      <div className='module-top-information'>
-        {this.renderHeader()}
-        {this.renderCards(cardData)}
-      </div>
-    )
+    if( hideFindings === true) {
+      return (
+        <div className='module-top-information' style={{width:100+'%'}}>
+          {this.renderHeader()}
+          {this.renderCards(cardData)}
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className='module-top-information'>
+          {this.renderHeader()}
+          {this.renderCards(cardData)}
+        </div>
+      )
+    }
   }
 
   getEmptyCardStatements() {
@@ -542,6 +553,7 @@ TopInformations.propTypes = {
 TopInformationModule.propTypes = {
   applications: PropTypes.array,
   handleDrillDownClick: PropTypes.func,
+  hideFindings: PropTypes.bool,
   items: PropTypes.array,
   threshold: PropTypes.number,
   type: PropTypes.string,

@@ -9,7 +9,7 @@
     "leftNav":"multicluster-hub-nav",
     "feature_searchRelated": false,
     "feature_search-api": true,
-    "feature_security-findings": true,
+    "feature_security-findings": false,
     "featureFlags": {},
     "PLATFORM_IDENTITY_PROVIDER_URL": "",
     "WLP_CLIENT_ID": "",

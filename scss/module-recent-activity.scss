@@ -41,6 +41,14 @@
           justify-content: space-between;
           align-items: center;
 
+          &-vertical {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: space-around;
+            height: 100%;
+          }
+
           .card-counts {
             display: flex;
             align-items: center;
