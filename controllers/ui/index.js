@@ -15,12 +15,11 @@ var express = require('express'),
     session = require('express-session'),
     bodyParser = require('body-parser'),
     configjs = require('../../config/init-auth-config.js'),
-    baseconfig = require('../../config/auth-config')
-
-//controllers
-var app = require('./app')
-const passport = require('passport')
-const OAuth2Strategy = require('passport-oauth2')
+    baseconfig = require('../../config/auth-config'),
+    app = require('./app'),
+    passport = require('passport'),
+    OAuth2Strategy = require('passport-oauth2'),
+    inspectClient = require('../inspect-client')
 
 var log4js_config = process.env.LOG4JS_CONFIG ? JSON.parse(process.env.LOG4JS_CONFIG) : undefined
 log4js.configure(log4js_config || 'config/log4js.json')
@@ -91,15 +90,16 @@ router.use(bodyParser.urlencoded({ extended: false }))
 router.use(passport.initialize())
 router.use(passport.session())
 
-/* GET home page. */
 router.get('/auth/login', (passport.authenticate('oauth2')))
 
 // Callback service parsing the authorization token and asking for the access token
 router.get('/auth/callback', passport.authenticate('oauth2', { failureRedirect: '/multicloud/login' }),
   (req, res) => {
+    res.cookie('acm-access-token-cookie', req.session.passport.user.token)
     req.user = req.session.passport.user
-    res.redirect(req.session.returnTo || '/multicloud/welcome')
-    delete req.session.returnTo
+    const redirectURL = req.cookies.redirectURL == '' ? '/multicloud/welcome' : req.cookies.redirectURL
+    res.clearCookie('redirectURL')
+    res.redirect(redirectURL)
   })
 
 router.get('/login', (req, res) => {
@@ -107,13 +107,34 @@ router.get('/login', (req, res) => {
   res.redirect('/multicloud/auth/login')
 })
 
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if(err) {
+      return logger.error(err)
+    }
+    res.clearCookie('connect.sid')
+    res.redirect('/multicloud/login')
+  })
+})
+
 router.all(['/', '/*'], (req, res, next) => {
-  if (!req.session.passport || !req.session.passport.user) {
-    req.session.returnTo = req.originalUrl
+  if ((!req.session.passport || !req.session.passport.user) && !req.cookies['acm-access-token-cookie']) {
+    res.cookie('redirectURL', req.originalUrl)
     res.redirect('/multicloud/auth/login')
   } else {
-    res.cookie('cfc-access-token-cookie', req.session.passport.user.token)
-    return next()
+    //cookie exists, need to validate before proceeding
+    const token = req.cookies['acm-access-token-cookie'] || req.session.passport.user.token
+    inspectClient.inspect(req, token, (err, response, body) => {
+      if (err) {
+        return res.status(500).send(err.details)
+      } else if (body && body.status && body.status.user && response.statusCode == 201) {
+        req.user = body.status.user
+        logger.info('Security middleware check passed')
+        return next()
+      }
+      logger.info('Security middleware check failed; redirecting to login')
+      res.redirect('/multicloud/auth/login')
+    })
   }
 }, app)
 
