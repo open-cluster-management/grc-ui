@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
   config.ocp.serviceaccount_token=process.env.SERVICEACCT_TOKEN
 } else {
   // SERVICE ACCOUNT TOKEN needed to review user token
-  config.ocp.apiserver_url='https://kubernetes.default.svc'
+  config.ocp.apiserver_url='https://kubernetes.kube-system.svc'
   config.ocp.serviceaccount_token =  fs.readFileSync('/var/run/secrets/kubernetes.io/serviceaccount/token').toString()
 }
 
