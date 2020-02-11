@@ -112,14 +112,15 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
   secure: false
 }))
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(appConfig.get('headerContextPath'), cookieParser(), proxy({
-    target: appConfig.get('headerRouteUrl'),
-    changeOrigin: true,
-    secure: false,
-    ws: true
-  }))
 
+app.use(appConfig.get('headerContextPath'), cookieParser(), proxy({
+  target: appConfig.get('headerRouteUrl'),
+  changeOrigin: true,
+  secure: false,
+  ws: true
+}))
+
+if (process.env.NODE_ENV === 'development') {
   app.use(`${appConfig.get('contextPath')}/policies/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), proxy({
     target: appConfig.get('headerRouteUrl'),
     changeOrigin: true,
