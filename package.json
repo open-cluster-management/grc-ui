@@ -170,6 +170,7 @@
     ],
     "setupFiles": [
       "./tests/jest/config/setup.js"
-    ]
+    ],
+    "testResultsProcessor": "jest-sonar-reporter"
   }
 }
