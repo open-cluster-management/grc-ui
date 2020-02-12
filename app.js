@@ -84,7 +84,7 @@ var proxy = require('http-proxy-middleware')
 app.use(`${appConfig.get('contextPath')}/policies/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('Pragma', 'no-cache')
-  const accessToken = req.cookies['cfc-access-token-cookie']
+  const accessToken = req.cookies['acm-access-token-cookie']
   req.headers.Authorization = `Bearer ${accessToken}`
   next()
 }, proxy({
@@ -99,7 +99,7 @@ app.use(`${appConfig.get('contextPath')}/policies/graphql`, cookieParser(), csrf
 app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('Pragma', 'no-cache')
-  const accessToken = req.cookies['cfc-access-token-cookie']
+  const accessToken = req.cookies['acm-access-token-cookie']
   req.headers.Authorization = `Bearer ${accessToken}`
   next()
 }, proxy({
@@ -112,16 +112,17 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
   secure: false
 }))
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(appConfig.get('platformHeaderContextPath'), cookieParser(), proxy({
-    target: appConfig.get('cfcRouterUrl'),
-    changeOrigin: true,
-    secure: false,
-    ws: true
-  }))
 
-  app.use(`${appConfig.get('contextPath')}/policies/api/proxy`, cookieParser(), proxy({
-    target: appConfig.get('cfcRouterUrl'),
+app.use(appConfig.get('headerContextPath'), cookieParser(), proxy({
+  target: appConfig.get('headerRouteUrl'),
+  changeOrigin: true,
+  secure: false,
+  ws: true
+}))
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(`${appConfig.get('contextPath')}/policies/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), proxy({
+    target: appConfig.get('headerRouteUrl'),
     changeOrigin: true,
     pathRewrite: {
       [`^${appConfig.get('contextPath')}/policies/api/proxy`]: ''

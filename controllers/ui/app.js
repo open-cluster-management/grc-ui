@@ -57,7 +57,7 @@ router.get('*', (req, res) => {
 function fetchHeader(req, res, store, context) {
   const options = {
     method: 'GET',
-    url: `${config.get('cfcRouterUrl')}${config.get('platformHeaderContextPath')}/api/v1/header/${config.get('leftNav')}?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}`,
+    url: `${config.get('headerRouteUrl')}${config.get('headerContextPath')}/api/v1/header/${config.get('leftNav')}?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}`,
     json: true,
     headers: {
       Cookie: req.headers.cookie,

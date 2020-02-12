@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -97,4 +98,4 @@ GrcRouter.propTypes = {
   match: PropTypes.object,
 }
 
-export default withRouter(withAccess(GrcRouter, ROLES.ADMIN))
+export default withRouter(GrcRouter)
