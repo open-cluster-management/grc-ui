@@ -125,6 +125,18 @@ export class OverviewView extends React.Component {
             handleDrillDownClick={this.handleDrillDownClickOverview}
             viewState={viewState}
             updateViewState={this.updateViewState} />
+          <ImpactedControlsModule
+            viewState={viewState}
+            updateViewState={this.updateViewState}
+            policies={filteredPolicies}
+            showFindings={showFindings}
+            findings={filteredFindings}
+            activeFilters={activeFilters}
+            availableFilters={availableFilters}
+            handleDrillDownClick={this.handleDrillDownClickOverview} />
+          <PolicySummaryModule
+            policies={filteredPolicies}
+            findings={filteredFindings} />
         </div>
       )
     }
