@@ -34,7 +34,7 @@ router.use(passport.session())
 router.get('/auth/login', securityMW.login(passport))
 
 // Callback service parsing the authorization token and asking for the access token
-router.get('/auth/callback', securityMW.callback(passport))
+router.get('/auth/callback', securityMW.callback(passport), securityMW.callback1)
 
 router.get('/login', (req, res) => {
   logger.info('redirecting to login..')

@@ -76,17 +76,15 @@ module.exports.login = (passport) => {
   return passport.authenticate('oauth2')
 }
 
-module.exports.callback = (passport) => {
-  return passport.authenticate('oauth2', { failureRedirect: '/multicloud/login' }),
-  (req, res) => {
-    logger.info('///////')
-    logger.info(req.session)
-    res.cookie('acm-access-token-cookie', req.session.passport.user.token)
-    req.user = req.session.passport.user
-    const redirectURL = req.cookies.redirectURL == '' ? '/multicloud/welcome' : req.cookies.redirectURL
-    res.clearCookie('redirectURL')
-    res.redirect(redirectURL)
-  }
+module.exports.callback = (passport) => passport.authenticate('oauth2', { failureRedirect: '/multicloud/login' })
+module.exports.callback1 = (req, res) => {
+  logger.info('///////')
+  logger.info(req.session)
+  res.cookie('acm-access-token-cookie', req.session.passport.user.token)
+  req.user = req.session.passport.user
+  const redirectURL = req.cookies.redirectURL == '' ? '/multicloud/welcome' : req.cookies.redirectURL
+  res.clearCookie('redirectURL')
+  res.redirect(redirectURL)
 }
 
 module.exports.validate = (req, res, next) => {
