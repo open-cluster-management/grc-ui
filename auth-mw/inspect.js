@@ -73,12 +73,14 @@ module.exports.initializePassport = (passport) => {
 }
 
 module.exports.login = (passport) => {
-  passport.authenticate('oauth2')
+  return passport.authenticate('oauth2')
 }
 
 module.exports.callback = (passport) => {
-  passport.authenticate('oauth2', { failureRedirect: '/multicloud/login' }),
+  return passport.authenticate('oauth2', { failureRedirect: '/multicloud/login' }),
   (req, res) => {
+    logger.info('///////')
+    logger.info(req.session)
     res.cookie('acm-access-token-cookie', req.session.passport.user.token)
     req.user = req.session.passport.user
     const redirectURL = req.cookies.redirectURL == '' ? '/multicloud/welcome' : req.cookies.redirectURL
@@ -116,6 +118,40 @@ module.exports.logout = (req, res) => {
     res.clearCookie('connect.sid')
     res.redirect('/multicloud/login')
   })
+}
+
+module.exports.app = (req, res, next) => {
+  let token
+  if (req.headers.authorization || req.headers.Authorization) {
+    token = req.headers.authorization ? req.headers.authorization : req.headers.Authorization
+    const words = token.trim().split(/[\s,]+/)
+    if (!(words[0].toLowerCase().match('bearer'))) {
+      res.status(403).send('No bearer in value')
+    }
+    if (words[1] && words[1].length > 1) {
+      [, token] = words
+    }
+  } else if (req.get('Authorization')) {
+    token = req.get('Authorization')
+  }
+
+  if (!token) {
+    return res.status(401).send('The request is unauthorized, no token provided.')
+  }
+
+  inspectClient.inspect(req, token, (err, response, body) => {
+    if (err) {
+      return res.status(500).send(err.details)
+    } else if (body && body.status && body.status.error) {
+      return res.status(401).send(body.status.error)
+    } else if (body && body.status && body.status.user) {
+      req.user = body.status.user
+      req.token = token
+      return next()
+    }
+    return res.status(401).send('The token provided is not valid')
+  })
+  return null
 }
 
 

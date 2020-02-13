@@ -2,6 +2,9 @@ const request = require('request').defaults({ rejectUnauthorized: false })
 const config = require('../config/auth-config.js')
 // const fs = require('fs');
 
+var log4js = require('log4js'),
+    logger = log4js.getLogger('server')
+
 module.exports.inspect = (req, token, cb) => {
   // token review api to validate Bearer token/ retrieve user info
   // const serviceaccounttoken = fs.readFileSync(config.ocp.serviceaccount_tokenpath).toString();
@@ -23,7 +26,7 @@ module.exports.inspect = (req, token, cb) => {
       },
     },
   }
-
+  logger.info(options)
   // retrieving user info through token review api
   request.post(options, (err, resp, reviewbody) => cb(err, resp, reviewbody))
 }
