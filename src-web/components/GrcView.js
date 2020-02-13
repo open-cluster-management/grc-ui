@@ -116,7 +116,7 @@ export class GrcView extends React.Component {
 
   render() {
     const { locale } = this.context
-    const showApplications = config['feature_applications']
+    const showApplications = this.props.showApplications === undefined ? config['feature_applications'] : this.props.showApplications
     const { viewState } = this.state
     const { loading, error, grcItems, applications, activeFilters={}, secondaryHeaderProps, refreshControl, location } = this.props
     hideResourceToolbar()
@@ -275,6 +275,7 @@ GrcView.propTypes = {
   location: PropTypes.object,
   refreshControl: PropTypes.object,
   secondaryHeaderProps: PropTypes.object,
+  showApplications: PropTypes.any,
   updateActiveFilters: PropTypes.func,
   updateResourceToolbar: PropTypes.func,
 }
