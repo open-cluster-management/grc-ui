@@ -13,7 +13,7 @@ exports[`Grc Router container test renders as expected 1`] = `
   }
 >
   <BrowserRouter>
-    <withRouter(Connect(checkAccess))
+    <withRouter(GrcRouter)
       ROLES={
         Object {
           "ACCOUNT_ADMIN": "AccountAdministrator",
