@@ -171,6 +171,6 @@
     "setupFiles": [
       "./tests/jest/config/setup.js"
     ],
-    "testResultsProcessor": "jest-sonar-reporter"
+    "testResultsProcessor": ["jest-sonar-reporter"]
   }
 }
