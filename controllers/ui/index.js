@@ -17,18 +17,18 @@ var express = require('express'),
     config = require('../../config'),
     securityMW = require('security-middleware')
 
-securityMW.initializePassport(passport, config.get('contextPath'))
+securityMW.initializePassport(passport, `${config.get('contextPath')}/policies`)
 
 router.use(session({ secret: 'grc-ui', resave: true, saveUninitialized: false  }))
 router.use(bodyParser.urlencoded({ extended: false }))
 router.use(passport.initialize())
 router.use(passport.session())
 
-router.get('/auth/login', securityMW.auth(passport))
+router.get('/policies/auth/login', securityMW.auth(passport))
 
-router.get('/auth/callback', securityMW.auth(passport), securityMW.callback)
+router.get('/policies/auth/callback', securityMW.auth(passport), securityMW.callback)
 
-router.get('/logout', securityMW.logout)
+router.get('/policies/logout', securityMW.logout)
 
 router.all(['/', '/*'], securityMW.validate, app)
 
