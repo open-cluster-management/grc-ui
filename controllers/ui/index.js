@@ -12,14 +12,14 @@ var express = require('express'),
     router = express.Router(),
     session = require('express-session'),
     bodyParser = require('body-parser'),
-    baseconfig = require('../../config/auth-config'),
     app = require('./app'),
     passport = require('passport'),
+    config = require('../../config'),
     securityMW = require('security-middleware')
 
-securityMW.initializePassport(passport)
+securityMW.initializePassport(passport, config.get('contextPath'))
 
-router.use(session({ secret: baseconfig.ocp.oauth2_clientsecret, resave: true, saveUninitialized: true  }))
+router.use(session({ secret: 'grc-ui', resave: true, saveUninitialized: true  }))
 router.use(bodyParser.urlencoded({ extended: false }))
 router.use(passport.initialize())
 router.use(passport.session())
