@@ -5,6 +5,10 @@ services:
   - docker
   # - xvfb
 
+branches:
+  only:
+    - master
+    - /^release-[0-9]+\..*$/
 # addons:
 #   packages:
 #     - openjdk-8-jdk
