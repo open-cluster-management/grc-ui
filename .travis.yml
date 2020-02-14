@@ -47,9 +47,9 @@ jobs:
     - stage: unit-test
       name: "Build and run unit tests"
       script:
-        - npm i -D jest-sonar-reporter
+        - make sonar/js/jest-init
         - make component/test/unit
-        - sonar-scanner --debug
+        - make sonar/js
     - stage: test-e2e
       name: "Run e2e tests"
       if: type = pull_request
