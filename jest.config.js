@@ -30,9 +30,7 @@ const jestConfig = {
     'text',
     'text-summary'
   ],
-  testResultsProcessor: [
-    'jest-sonar-reporter',
-  ],
+  testResultsProcessor: 'jest-sonar-reporter',
   testURL: 'http://localhost/',
   coverageThreshold: {
     global: {
