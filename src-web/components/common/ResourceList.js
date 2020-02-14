@@ -236,7 +236,7 @@ const mapStateToProps = (state, ownProps) => {
         items[key].hasPendingActions = true
     })
   }
-  const userRole = state.role.role
+  const userRole = state.role && state.role.role
 
   return {
     userRole,
