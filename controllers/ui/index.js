@@ -19,7 +19,7 @@ var express = require('express'),
 
 securityMW.initializePassport(passport, config.get('contextPath'))
 
-router.use(session({ secret: 'grc-ui', resave: true, saveUninitialized: true  }))
+router.use(session({ secret: 'grc-ui', resave: true, saveUninitialized: false  }))
 router.use(bodyParser.urlencoded({ extended: false }))
 router.use(passport.initialize())
 router.use(passport.session())
