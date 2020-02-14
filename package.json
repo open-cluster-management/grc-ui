@@ -34,7 +34,6 @@
     "npm": "6.4.1"
   },
   "dependencies": {
-    "@icp/security-middleware": "file:pkg/icp-security-middleware-2.0.95.tgz",
     "apollo-boost": "^0.1.20",
     "apollo-client": "^2.2.8",
     "async": "^2.1.5",
@@ -85,7 +84,6 @@
     "node-i18n-util": "^1.0.2",
     "normalizr": "^3.2.4",
     "passport": "^0.4.1",
-    "passport-oauth2": "^1.5.0",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
     "react": "^16.8.0",
@@ -93,7 +91,7 @@
     "react-apollo": "^2.3.1",
     "react-copy-to-clipboard": "^5.0.1",
     "react-custom-scrollbars": "^4.2.1",
-    "react-d3-radar": "file:pkg/react-d3-radar-0.2.6.tgz",
+    "react-d3-radar": "github:open-cluster-management/react-d3-radar",
     "react-dom": "^16.8.0",
     "react-lazyload": "^2.3.0",
     "react-lines-ellipsis": "^0.14.0",
@@ -109,6 +107,7 @@
     "redux-thunk": "^2.2.0",
     "requestretry": "^1.13.0",
     "reselect": "^3.0.1",
+    "security-middleware": "github:open-cluster-management/security-middleware#package",
     "selenium-webdriver": "^4.0.0-alpha.5",
     "svg-loader": "0.0.2",
     "svg-react-loader": "^0.4.6",

@@ -10,36 +10,23 @@
 
 var express = require('express'),
     router = express.Router(),
-    log4js = require('log4js'),
-    logger = log4js.getLogger('server'),
     session = require('express-session'),
     bodyParser = require('body-parser'),
     baseconfig = require('../../config/auth-config'),
     app = require('./app'),
     passport = require('passport'),
-    securityMW = require('../../auth-mw/inspect')
-
-var log4js_config = process.env.LOG4JS_CONFIG ? JSON.parse(process.env.LOG4JS_CONFIG) : undefined
-log4js.configure(log4js_config || 'config/log4js.json')
-
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
+    securityMW = require('security-middleware')
 
 securityMW.initializePassport(passport)
 
-router.use(session({ secret: baseconfig.ocp.oauth2_clientsecret }))
+router.use(session({ secret: baseconfig.ocp.oauth2_clientsecret, resave: true, saveUninitialized: true  }))
 router.use(bodyParser.urlencoded({ extended: false }))
 router.use(passport.initialize())
 router.use(passport.session())
 
-router.get('/auth/login', securityMW.login(passport))
+router.get('/auth/login', securityMW.auth(passport))
 
-// Callback service parsing the authorization token and asking for the access token
-router.get('/auth/callback', securityMW.callback(passport), securityMW.callback1)
-
-router.get('/login', (req, res) => {
-  logger.info('redirecting to login..')
-  res.redirect('/multicloud/auth/login')
-})
+router.get('/auth/callback', securityMW.auth(passport), securityMW.callback)
 
 router.get('/logout', securityMW.logout)
 
