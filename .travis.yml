@@ -49,8 +49,7 @@ jobs:
       script:
         - npm i -D jest-sonar-reporter
         - make component/test/unit
-        - find . -name "*xml*" -not -path './node_modules/*'
-        - sonar-scanner # --debug
+        - sonar-scanner --debug
     - stage: test-e2e
       name: "Run e2e tests"
       if: type = pull_request
