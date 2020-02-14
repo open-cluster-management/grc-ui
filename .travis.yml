@@ -49,7 +49,7 @@ jobs:
       script:
         - npm i -D jest-sonar-reporter
         - make component/test/unit
-        - ls -lR tests
+        - ls -lR
         - sonar-scanner # --debug
     - stage: test-e2e
       name: "Run e2e tests"
