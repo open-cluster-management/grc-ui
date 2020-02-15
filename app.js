@@ -85,7 +85,12 @@ app.use(`${appConfig.get('contextPath')}/policies/graphql`, cookieParser(), csrf
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('Pragma', 'no-cache')
   const accessToken = req.cookies['acm-access-token-cookie']
-  req.headers.Authorization = `Bearer ${accessToken}`
+  if (req.headers.authorization)
+    req.headers.authorization = `Bearer ${accessToken}`
+  else
+    req.headers.Authorization = `Bearer ${accessToken}`
+  // eslint-disable-next-line no-console
+  console.log(req.headers)
   next()
 }, proxy({
   target: appConfig.get('grcUiApiUrl') || 'https://localhost:4000/grcuiapi',
@@ -100,7 +105,10 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('Pragma', 'no-cache')
   const accessToken = req.cookies['acm-access-token-cookie']
-  req.headers.Authorization = `Bearer ${accessToken}`
+  if (req.headers.authorization)
+    req.headers.authorization = `Bearer ${accessToken}`
+  else
+    req.headers.Authorization = `Bearer ${accessToken}`
   next()
 }, proxy({
   // TODO - use flag while ironing out the chart changes
