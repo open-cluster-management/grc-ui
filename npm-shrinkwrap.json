@@ -14907,10 +14907,14 @@
       "integrity": "sha1-8MgtmKOxOah3aogIBQuCRDEIf8o="
     },
     "security-middleware": {
-      "version": "github:open-cluster-management/security-middleware#c65ad247f1a5e40af4869ed23269f24043f24d54",
+      "version": "github:open-cluster-management/security-middleware#471365a0a897ee95f94518b783cc32721028fa63",
       "from": "github:open-cluster-management/security-middleware#package",
       "requires": {
+        "body-parser": "^1.18.2",
+        "express": "^4.16.3",
+        "express-session": "^1.17.0",
         "log4js": "^6.1.2",
+        "passport": "^0.4.1",
         "passport-oauth2": "^1.5.0",
         "request": "^2.88.2"
       },
