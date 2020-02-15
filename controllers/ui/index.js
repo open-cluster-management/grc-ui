@@ -24,7 +24,7 @@ router.use(bodyParser.urlencoded({ extended: false }))
 router.use(passport.initialize())
 router.use(passport.session())
 
-router.get('/policies/auth/login', securityMW.auth(passport))
+router.get('/policies/auth/login', securityMW.auth0(passport))
 
 router.get('/policies/auth/callback', securityMW.auth(passport), securityMW.callback)
 
