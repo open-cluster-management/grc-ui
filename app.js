@@ -89,8 +89,6 @@ app.use(`${appConfig.get('contextPath')}/policies/graphql`, cookieParser(), csrf
     req.headers.authorization = `Bearer ${accessToken}`
   else
     req.headers.Authorization = `Bearer ${accessToken}`
-  // eslint-disable-next-line no-console
-  console.log(req.headers)
   next()
 }, proxy({
   target: appConfig.get('grcUiApiUrl') || 'https://localhost:4000/grcuiapi',

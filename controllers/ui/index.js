@@ -10,26 +10,9 @@
 
 var express = require('express'),
     router = express.Router(),
-    session = require('express-session'),
-    bodyParser = require('body-parser'),
     app = require('./app'),
-    passport = require('passport'),
-    config = require('../../config'),
-    securityMW = require('security-middleware')
+    inspect = require('security-middleware')
 
-securityMW.initializePassport(passport, `${config.get('contextPath')}/policies`)
-
-router.use(session({ secret: process.env.OAUTH2_CLIENT_SECRET , resave: true, saveUninitialized: true  }))
-router.use(bodyParser.urlencoded({ extended: false }))
-router.use(passport.initialize())
-router.use(passport.session())
-
-router.get('/policies/auth/login', securityMW.auth(passport))
-
-router.get('/policies/auth/callback', securityMW.auth(passport), securityMW.callback)
-
-router.get('/policies/logout', securityMW.logout)
-
-router.all(['/', '/*'], securityMW.validate, app)
+router.all(['/', '/*'], inspect.ui(), app)
 
 module.exports = router
