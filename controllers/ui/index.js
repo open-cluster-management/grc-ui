@@ -19,12 +19,12 @@ var express = require('express'),
 
 securityMW.initializePassport(passport, `${config.get('contextPath')}/policies`)
 
-router.use(session({ secret: 'grc-ui', resave: true, saveUninitialized: true  }))
+router.use(session({ secret: process.env.OAUTH2_CLIENT_SECRET , resave: true, saveUninitialized: true  }))
 router.use(bodyParser.urlencoded({ extended: false }))
 router.use(passport.initialize())
 router.use(passport.session())
 
-router.get('/policies/auth/login', securityMW.auth0(passport))
+router.get('/policies/auth/login', securityMW.auth(passport))
 
 router.get('/policies/auth/callback', securityMW.auth(passport), securityMW.callback)
 
