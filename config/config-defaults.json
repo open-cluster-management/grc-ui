@@ -3,7 +3,7 @@
     "httpPort": 3000,
     "grcUiApiUrl": "",
     "searchApiUrl": "",
-    "headerUrl":"",
+    "headerUrl":"http://console-header:3000",
     "headerContextPath": "/multicloud/header",
     "leftNav":"console-header-nav",
     "feature_searchRelated": false,
