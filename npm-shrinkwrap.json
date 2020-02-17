@@ -14916,8 +14916,8 @@
       "integrity": "sha1-8MgtmKOxOah3aogIBQuCRDEIf8o="
     },
     "security-middleware": {
-      "version": "github:open-cluster-management/security-middleware#471365a0a897ee95f94518b783cc32721028fa63",
-      "from": "github:open-cluster-management/security-middleware#package",
+      "version": "github:open-cluster-management/security-middleware#59531433a9e7a34293bba38231ee9322523c46a3",
+      "from": "github:open-cluster-management/security-middleware",
       "requires": {
         "body-parser": "^1.18.2",
         "express": "^4.16.3",
