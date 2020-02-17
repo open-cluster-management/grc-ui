@@ -62,7 +62,7 @@ export class CreationTab extends React.Component {
     const { mutateStatus, mutateErrorMsg } = this.props
     if (mutateStatus && mutateStatus === 'DONE') {
       this.props.cleanReqStatus && this.props.cleanReqStatus()
-      return <Redirect to={`${config.contextPath}/policies/all`} />
+      return <Redirect to={`${config.contextPath}/all`} />
     }
     return (
       <Page>

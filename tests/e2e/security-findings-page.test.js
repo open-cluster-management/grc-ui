@@ -19,7 +19,7 @@ module.exports = {
     loginPage.navigate()
     loginPage.authenticate()
 
-    const url = `${browser.launch_url}${config.get('contextPath')}/policies/findings`
+    const url = `${browser.launch_url}${config.get('contextPath')}/findings`
     page = browser.page.SecurityFindingsPage()
     page.navigate(url)
   },
@@ -29,7 +29,7 @@ module.exports = {
   },
 
   'Security findings page: Verify summary table': (browser) => {
-    page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/policies/findings`)
+    page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/findings`)
   },
 
   'Security findings page: Test pagination': (browser) => {
@@ -37,7 +37,7 @@ module.exports = {
   },
 
   'Security findings page: Run Accessibility Scan': (browser) => {
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/policies/findings`)
+    page.navigate(`${browser.launch_url}${config.get('contextPath')}/findings`)
     // a11yScan.runAccessibilityScan(browser, 'securityFindings')
   },
 

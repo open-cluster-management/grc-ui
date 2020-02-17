@@ -1,5 +1,5 @@
 {
-    "contextPath": "/multicloud",
+    "contextPath": "/multicloud/policies",
     "httpPort": 3000,
     "grcUiApiUrl": "",
     "searchApiUrl": "",

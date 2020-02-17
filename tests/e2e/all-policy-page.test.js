@@ -19,7 +19,7 @@ module.exports = {
     loginPage.navigate()
     loginPage.authenticate()
 
-    const url = `${browser.launch_url}${config.get('contextPath')}/policies/all`
+    const url = `${browser.launch_url}${config.get('contextPath')}/all`
     page = browser.page.AllPolicyPage()
     page.navigate(url)
   },
@@ -27,31 +27,31 @@ module.exports = {
   'All policy page: Add, search, disable/enable test policy': (browser) => {
     const time = browser.globals.time
     page.createTestPolicy(browser, time)
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/policies/all`)
+    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
     page.searchPolicy(true, time)
     page.testDetailsPage(browser, `${time}-policy-test`)
     // page.verifyDisableEnable(`${time}-policy-test`, browser)
   },
 
   // 'All policy page: Load and run expand': (browser) => {
-  //   page.navigate(`${browser.launch_url}${config.get('contextPath')}/policies/all`)
+  //   page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
   //   page.verifyTable(browser, false)
   // },
 
   'All policy page: Verify summary table': (browser) => {
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/policies/all`)
-    page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/policies/all`)
+    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
+    page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
   },
 
   'All policy page: Test pagination': (browser) => {
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/policies/all`)
+    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
     page.verifyPagination(browser)
   },
 
   'All policy page: Run Accessibility Scan': (browser) => {
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/policies/all`)
+    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
     // a11yScan.runAccessibilityScan(browser, 'allPolicy')
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/policies/all`)
+    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
     // a11yScan.runAccessibilityScan(browser, 'policyDetail')
   },
 

@@ -18,7 +18,7 @@ module.exports = {
     loginPage.navigate()
     loginPage.authenticate()
 
-    const url = `${browser.launch_url}${config.get('contextPath')}/policies/all`
+    const url = `${browser.launch_url}${config.get('contextPath')}/all`
     page = browser.page.AllPolicyPage()
     page.navigate(url)
   },

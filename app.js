@@ -81,7 +81,7 @@ const csrfMiddleware = csurf({
 })
 
 var proxy = require('http-proxy-middleware')
-app.use(`${appConfig.get('contextPath')}/policies/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
+app.use(`${appConfig.get('contextPath')}/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('Pragma', 'no-cache')
   const accessToken = req.cookies['acm-access-token-cookie']
@@ -94,7 +94,7 @@ app.use(`${appConfig.get('contextPath')}/policies/graphql`, cookieParser(), csrf
   target: appConfig.get('grcUiApiUrl') || 'https://localhost:4000/grcuiapi',
   changeOrigin: true,
   pathRewrite: {
-    [`^${appConfig.get('contextPath')}/policies/graphql`]: '/graphql'
+    [`^${appConfig.get('contextPath')}/graphql`]: '/graphql'
   },
   secure: false
 }))
@@ -127,11 +127,11 @@ app.use(appConfig.get('headerContextPath'), cookieParser(), proxy({
 }))
 
 if (process.env.NODE_ENV === 'development') {
-  app.use(`${appConfig.get('contextPath')}/policies/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), proxy({
+  app.use(`${appConfig.get('contextPath')}/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), proxy({
     target: appConfig.get('headerRouteUrl'),
     changeOrigin: true,
     pathRewrite: {
-      [`^${appConfig.get('contextPath')}/policies/api/proxy`]: ''
+      [`^${appConfig.get('contextPath')}/api/proxy`]: ''
     },
     secure: false
   }))
@@ -162,7 +162,7 @@ app.use(cookieParser(), csrfMiddleware, (req, res, next) => {
   req.url = `${req.url}.gz`
   next()
 })
-app.use(`${CONTEXT_PATH}/policies`, express.static(STATIC_PATH, {
+app.use(`${CONTEXT_PATH}`, express.static(STATIC_PATH, {
   maxAge: process.env.NODE_ENV === 'development' ? 0 : 1000 * 60 * 60 * 24 * 365,
   setHeaders: (res, fp) => {
     // set cahce control to 30min, expect for nls
