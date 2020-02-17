@@ -40,14 +40,12 @@ or npm run build:production
 2. The folloing environment variables need to be set. [shared dev env](https://ibm.ent.box.com/notes/291748731101)
 <pre>
 hcmUiApiUrl=https://localhost:4000/hcmuiapi
-headerRouteUrl
+headerUrl
 OAUTH2_CLIENT_ID
 OAUTH2_CLIENT_SECRET
-OAUTH2_REDIRECT_URL=https://localhost:3000/multicloud/auth/callback
+OAUTH2_REDIRECT_URL=https://localhost:3000/multicloud/policies/auth/callback
 SERVICEACCT_TOKEN
 API_SERVER_URL
-ARTIFACTORY_USER - mcmdev@us.ibm.com
-ARTIFACTORY_PWD - Artifactory API KEY, base64 encoded. You can get this value for functional id mcmdev@us.ibm.com from: https://ibm.ent.box.com/notes/287638278960
 </pre>
 
 3. Start the server for production
