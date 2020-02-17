@@ -228,7 +228,7 @@ exports[`ImpactedControlsModule view renders as expected 1`] = `
                 <img
                   alt="Your data visualizations cannot be displayed"
                   className="no-resource-icon"
-                  src="undefined/policies/graphics/no-impacted-controls-overlap.svg"
+                  src="undefined/graphics/no-impacted-controls-overlap.svg"
                 />
                 <div
                   className="no-resource-title"

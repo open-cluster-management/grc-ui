@@ -31,7 +31,7 @@ exports[`hcm-policies #getStatus Should return healthy status 1`] = `
 exports[`hcm-policies - createPolicyLink Should return empty Link obj 1`] = `
 <Link
   replace={false}
-  to="undefined/policies/local/"
+  to="undefined/local/"
 >
   {}
 </Link>
@@ -42,7 +42,7 @@ exports[`hcm-policies - createPolicyLink Should return item name 1`] = `"TestPol
 exports[`hcm-policies - createPolicyLink Should return vaild Link obj 1`] = `
 <Link
   replace={false}
-  to="undefined/policies/local/TestPolicyNamespace/TestPolicyName"
+  to="undefined/local/TestPolicyNamespace/TestPolicyName"
 >
   TestPolicyName
 </Link>

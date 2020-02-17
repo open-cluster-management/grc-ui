@@ -721,7 +721,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 className={undefined}
               >
                 <a
-                  href="undefined/policies/all/policy-limitrange"
+                  href="undefined/all/policy-limitrange"
                   onClick={[Function]}
                 >
                   policy-limitrange
@@ -844,7 +844,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 className={undefined}
               >
                 <a
-                  href="undefined/policies/all/policy-namespace"
+                  href="undefined/all/policy-namespace"
                   onClick={[Function]}
                 >
                   policy-namespace
@@ -3116,7 +3116,7 @@ exports[`GrcView component 7 renders as expected 1`] = `
     <img
       alt="No resource"
       className="no-resource-icon"
-      src="undefined/policies/graphics/no-policy.svg"
+      src="undefined/graphics/no-policy.svg"
     />
     <div
       className="no-resource-title"
@@ -3191,7 +3191,7 @@ exports[`GrcView component 8 renders as expected 1`] = `
     <img
       alt="No resource"
       className="no-resource-icon"
-      src="undefined/policies/graphics/no-policy.svg"
+      src="undefined/graphics/no-policy.svg"
     />
     <div
       className="no-resource-title"

@@ -47,7 +47,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "push": false,
-      "to": "undefined/policies/all",
+      "to": "undefined/all",
     },
     "ref": null,
     "rendered": null,
@@ -60,7 +60,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "push": false,
-        "to": "undefined/policies/all",
+        "to": "undefined/all",
       },
       "ref": null,
       "rendered": null,

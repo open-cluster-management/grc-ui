@@ -104,7 +104,7 @@ exports[`OverviewView component 3 renders as expected 1`] = `
     <img
       alt="No resource"
       className="no-resource-icon"
-      src="undefined/policies/graphics/no-policy.svg"
+      src="undefined/graphics/no-policy.svg"
     />
     <div
       className="no-resource-title"
