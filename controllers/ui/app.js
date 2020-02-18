@@ -62,7 +62,7 @@ function fetchHeader(req, res, store, context) {
     json: true,
     headers: {
       Cookie: req.headers.cookie,
-      Authorization: req.headers.Authorization || req.headers.authorization,
+      Authorization: req.headers.Authorization || req.headers.authorization || `Bearer ${req.cookies['acm-access-token-cookie']}`,
       'Accept-Language': i18n.locale(req)
     }
   }
