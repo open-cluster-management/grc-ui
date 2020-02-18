@@ -62,6 +62,7 @@ function fetchHeader(req, res, store, context) {
     json: true,
     headers: {
       Cookie: req.headers.cookie,
+      Authorization: req.headers.Authorization || req.headers.authorization,
       'Accept-Language': i18n.locale(req)
     }
   }
