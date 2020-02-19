@@ -26,11 +26,14 @@ const ReactDOMServer = require('react-dom/server'),
       i18n = require('node-i18n-util'),
       securityMW = require('security-middleware')
 
-// var log4js = require('log4js'),
-//     logger = log4js.getLogger('app')
+var log4js = require('log4js'),
+    logger = log4js.getLogger('app')
 
 let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to reduce startup time seen on k8s
-router.get('/logout', securityMW.logout)
+router.get('/logout', securityMW.logout, (req, res) => {
+  logger.info('inside logout callback')
+  res.redirect('/auth/login')
+})
 
 router.get('*', (req, res) => {
   reducers = reducers === undefined ? require('../../src-web/reducers') : reducers
