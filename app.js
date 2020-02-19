@@ -120,15 +120,12 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
 
 if (process.env.NODE_ENV === 'development') {
   app.use(appConfig.get('headerContextPath'), cookieParser(), proxy({
-    target: appConfig.get('headerContextPath'),
+    target: appConfig.get('headerUrl'),
     changeOrigin: true,
     secure: false,
-    ws: true
   }))
-
-
   app.use(`${appConfig.get('contextPath')}/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), proxy({
-    target: appConfig.get('headerContextPath'),
+    target: appConfig.get('headerUrl'),
     changeOrigin: true,
     pathRewrite: {
       [`^${appConfig.get('contextPath')}/api/proxy`]: ''
