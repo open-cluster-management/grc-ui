@@ -34,7 +34,6 @@ router.get('/logout', securityMW.logout, (req, res) => {
   logger.info('inside logout callback, redirecting to:')
   const redirect = `${req.baseUrl}`
   logger.info(redirect)
-  //res.send({ redirect })
   res.redirect(redirect)
 })
 
