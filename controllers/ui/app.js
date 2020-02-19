@@ -50,6 +50,7 @@ router.get('*', (req, res) => {
   store.dispatch(Login.receiveLoginSuccess(req.user))
 
   App = App === undefined ? require('../../src-web/containers/App').default : App
+
   const context = getContext(req)
   fetchHeader(req, res, store, context)
 })
@@ -57,10 +58,11 @@ router.get('*', (req, res) => {
 function fetchHeader(req, res, store, context) {
   const options = {
     method: 'GET',
-    url: `${config.get('headerRouteUrl')}${config.get('headerContextPath')}/api/v1/header/${config.get('leftNav')}?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}`,
+    url: `${config.get('headerUrl')}${config.get('headerContextPath')}/api/v1/header/${config.get('leftNav')}?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}`,
     json: true,
     headers: {
       Cookie: req.headers.cookie,
+      Authorization: req.headers.Authorization || req.headers.authorization || `Bearer ${req.cookies['acm-access-token-cookie']}`,
       'Accept-Language': i18n.locale(req)
     }
   }
@@ -83,7 +85,7 @@ function fetchHeader(req, res, store, context) {
 
     if(process.env.NODE_ENV === 'development') {
       lodash.forOwn(filesH, value => {
-        value.path = `${config.get('contextPath')}/policies/api/proxy${value.path}` //preprend with proxy route
+        value.path = `${config.get('contextPath')}/api/proxy${value.path}` //preprend with proxy route
       })
     }
     try {
