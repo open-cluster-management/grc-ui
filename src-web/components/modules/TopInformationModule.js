@@ -60,7 +60,7 @@ export default class TopInformationModule extends React.Component {
   }
 
   render() {
-    const { hideFindings } = this.props
+    const { hideFindings, hideTabs } = this.props
     let cardData = this.state.cardData
     if (cardData.length > 0) {
       if (cardData.length > this.props.threshold) {
@@ -75,8 +75,8 @@ export default class TopInformationModule extends React.Component {
 
     if( hideFindings === true) {
       return (
-        <div className='module-top-information' style={{width:100+'%'}}>
-          {this.renderHeader()}
+        <div className='module-top-information' style={{width:48+'%'}}>
+          { hideTabs ? this.renderHeaderWithoutTabs() : this.renderHeader() }
           {this.renderCards(cardData)}
         </div>
       )
@@ -166,6 +166,17 @@ export default class TopInformationModule extends React.Component {
             {type==='policies' && <Tab label={msgs.get('overview.top.informations.applications', locale)} />}
           </Tabs>
         </div>
+      </div>
+    )
+  }
+
+  renderHeaderWithoutTabs() {
+    const { locale } = this.context
+    const { type, viewState } = this.props
+    const title = msgs.get(`overview.top.informations.title.${type}.${viewState}`, locale)
+    return (
+      <div className='header-container'>
+        <div className={'header-title'}>{title}</div>
       </div>
     )
   }
@@ -554,6 +565,7 @@ TopInformationModule.propTypes = {
   applications: PropTypes.array,
   handleDrillDownClick: PropTypes.func,
   hideFindings: PropTypes.bool,
+  hideTabs: PropTypes.bool,
   items: PropTypes.array,
   threshold: PropTypes.number,
   type: PropTypes.string,
