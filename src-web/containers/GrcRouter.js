@@ -24,7 +24,7 @@ export const CreationTab = loadable(() => import(/* webpackChunkName: "creation"
 export const PolicyDetail = loadable(() => import(/* webpackChunkName: "policy" */ './PolicyDetail'))
 export const PolicyClusterDetail = loadable(() => import(/* webpackChunkName: "policyCluster" */ '../components/common/PolicyClusterDetail'))
 
-const BASE_PAGE_PATH = `${config.contextPath}/policies`
+const BASE_PAGE_PATH = `${config.contextPath}`
 
 const SECONDARY_HEADER_PROPS = {
   title: 'routes.grc',

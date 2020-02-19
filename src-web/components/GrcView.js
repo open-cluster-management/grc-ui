@@ -261,7 +261,7 @@ export class GrcView extends React.Component {
   }
 
   handleCreatePolicy(){
-    this.props.history.push(`${config.contextPath}/policies/create`)
+    this.props.history.push(`${config.contextPath}/create`)
   }
 }
 

@@ -81,17 +81,20 @@ const csrfMiddleware = csurf({
 })
 
 var proxy = require('http-proxy-middleware')
-app.use(`${appConfig.get('contextPath')}/policies/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
+app.use(`${appConfig.get('contextPath')}/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('Pragma', 'no-cache')
   const accessToken = req.cookies['acm-access-token-cookie']
-  req.headers.Authorization = `Bearer ${accessToken}`
+  if (req.headers.authorization)
+    req.headers.authorization = `Bearer ${accessToken}`
+  else
+    req.headers.Authorization = `Bearer ${accessToken}`
   next()
 }, proxy({
   target: appConfig.get('grcUiApiUrl') || 'https://localhost:4000/grcuiapi',
   changeOrigin: true,
   pathRewrite: {
-    [`^${appConfig.get('contextPath')}/policies/graphql`]: '/graphql'
+    [`^${appConfig.get('contextPath')}/graphql`]: '/graphql'
   },
   secure: false
 }))
@@ -100,7 +103,10 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
   res.setHeader('Cache-Control', 'no-store')
   res.setHeader('Pragma', 'no-cache')
   const accessToken = req.cookies['acm-access-token-cookie']
-  req.headers.Authorization = `Bearer ${accessToken}`
+  if (req.headers.authorization)
+    req.headers.authorization = `Bearer ${accessToken}`
+  else
+    req.headers.Authorization = `Bearer ${accessToken}`
   next()
 }, proxy({
   // TODO - use flag while ironing out the chart changes
@@ -112,20 +118,17 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
   secure: false
 }))
 
-
-app.use(appConfig.get('headerContextPath'), cookieParser(), proxy({
-  target: appConfig.get('headerRouteUrl'),
-  changeOrigin: true,
-  secure: false,
-  ws: true
-}))
-
 if (process.env.NODE_ENV === 'development') {
-  app.use(`${appConfig.get('contextPath')}/policies/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), proxy({
-    target: appConfig.get('headerRouteUrl'),
+  app.use(appConfig.get('headerContextPath'), cookieParser(), proxy({
+    target: appConfig.get('headerUrl'),
+    changeOrigin: true,
+    secure: false,
+  }))
+  app.use(`${appConfig.get('contextPath')}/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), proxy({
+    target: appConfig.get('headerUrl'),
     changeOrigin: true,
     pathRewrite: {
-      [`^${appConfig.get('contextPath')}/policies/api/proxy`]: ''
+      [`^${appConfig.get('contextPath')}/api/proxy`]: ''
     },
     secure: false
   }))
@@ -156,7 +159,7 @@ app.use(cookieParser(), csrfMiddleware, (req, res, next) => {
   req.url = `${req.url}.gz`
   next()
 })
-app.use(`${CONTEXT_PATH}/policies`, express.static(STATIC_PATH, {
+app.use(`${CONTEXT_PATH}`, express.static(STATIC_PATH, {
   maxAge: process.env.NODE_ENV === 'development' ? 0 : 1000 * 60 * 60 * 24 * 365,
   setHeaders: (res, fp) => {
     // set cahce control to 30min, expect for nls

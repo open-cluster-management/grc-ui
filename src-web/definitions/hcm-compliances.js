@@ -964,9 +964,9 @@ export function createComplianceLink(item = {}, ...param){
     return item.metadata.name
   } else {
     if (item.raw.kind == 'Compliance')
-      return <Link to={`${config.contextPath}/policies/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name} (Deprecated)</Link>
+      return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name} (Deprecated)</Link>
     else
-      return <Link to={`${config.contextPath}/policies/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
+      return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
   }
 }
 
@@ -1049,14 +1049,14 @@ export function createCompliancePolicyLink(item = {}, ...param){
 
   return policyArray.length > 0 ?
     <ul>{policyArray.map(policy => (<li key={`${policy.cluster}-${policy.name}`}>
-      <Link to={`${config.contextPath}/policies/all/${encodeURIComponent(policy.complianceNamespace)}/${encodeURIComponent(policy.complianceName)}/compliancePolicy/${encodeURIComponent(policy.name)}/${policy.cluster}`}>{policy.cluster}</Link>
+      <Link to={`${config.contextPath}/all/${encodeURIComponent(policy.complianceNamespace)}/${encodeURIComponent(policy.complianceName)}/compliancePolicy/${encodeURIComponent(policy.name)}/${policy.cluster}`}>{policy.cluster}</Link>
     </li>))}</ul>
     :
     '-'
 }
 
 export function createPolicyLink(item = {}){
-  return  <Link to={`${config.contextPath}/policies/all/${encodeURIComponent(item.complianceNamespace)}/${encodeURIComponent(item.complianceName)}/compliancePolicy/${encodeURIComponent(item.name)}`}>{item.name}</Link>
+  return  <Link to={`${config.contextPath}/all/${encodeURIComponent(item.complianceNamespace)}/${encodeURIComponent(item.complianceName)}/compliancePolicy/${encodeURIComponent(item.name)}`}>{item.name}</Link>
 }
 
 export function getStatusCount(item) {

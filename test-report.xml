@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/NoResource.test.js">
+    <testCase name="NoResource component renders as expected" duration="29"/>
+    <testCase name="NoResource component renders as expected" duration="3"/>
+    <testCase name="NoResource component renders as expected" duration="2"/>
+    <testCase name="NoResource component renders as expected" duration="1"/>
+    <testCase name="NoResource component renders as expected" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/definitions/hcm-policies-policy.test.js">
+    <testCase name="createComplianceLink Should item.metadata.name" duration="12"/>
+    <testCase name="createComplianceLink Should create policy link" duration="6"/>
+    <testCase name="createComplianceLink Should create compliance link" duration="0"/>
+    <testCase name="createComplianceLink Should undefined" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/definitions/hcm-compliances.test.js">
+    <testCase name="hcm-compliances - createComplianceLink should return valid compliance link" duration="16"/>
+    <testCase name="hcm-compliances - getComplianceStatusIcon should return compliance status incon" duration="5"/>
+    <testCase name="hcm-compliances - getCompliancePolicyStatus should return compliance policy status" duration="1"/>
+    <testCase name="hcm-compliances - createPolicyLink should return valid policy link" duration="3"/>
+    <testCase name="hcm-compliances - createCompliancePolicyLink should return valid compliance policy link" duration="2"/>
+    <testCase name="hcm-compliances - getStatus should return compliant status" duration="1"/>
+    <testCase name="hcm-compliances - getStatus should return compliant status" duration="0"/>
+    <testCase name="hcm-compliances - getStatus should return &quot;-&quot;" duration="1"/>
+    <testCase name="hcm-compliances - getStatusIcon should return compliant status" duration="1"/>
+    <testCase name="hcm-compliances - getStatusIcon should return noncompliant status" duration="0"/>
+    <testCase name="hcm-compliances - getStatusIcon should return &quot;-&quot;" duration="0"/>
+    <testCase name="hcm-compliances - getStatusIconForPolicy should return compliant status" duration="1"/>
+    <testCase name="hcm-compliances - getStatusIconForPolicy should return noncompliant status" duration="1"/>
+    <testCase name="hcm-compliances - getStatusIconForPolicy should return &quot;-&quot;" duration="1"/>
+    <testCase name="hcm-compliances - getStatusCount should return status count" duration="0"/>
+    <testCase name="hcm-compliances - getClusterCount should return cluster count" duration="1"/>
+    <testCase name="hcm-compliances - getControls should return control status" duration="3"/>
+    <testCase name="hcm-compliances - getStandards should return standards status" duration="1"/>
+    <testCase name="hcm-compliances - getCategories should return categories status" duration="1"/>
+    <testCase name="hcm-compliances - getDecisions should return decisions status" duration="1"/>
+    <testCase name="hcm-compliances - getDecisions should return default status" duration="4"/>
+    <testCase name="hcm-compliances - getSubjects should get subjects" duration="0"/>
+    <testCase name="hcm-compliances - getSubjects should get &quot;-&quot; " duration="1"/>
+    <testCase name="hcm-compliances - getSubjects should get &quot;&quot; " duration="0"/>
+    <testCase name="hcm-compliances - convertToStartCase should get start cases" duration="1"/>
+    <testCase name="hcm-compliances - convertToStartCase should get &quot;-&quot; " duration="0"/>
+    <testCase name="hcm-compliances - convertToStartCase should get &quot;-&quot; " duration="1"/>
+    <testCase name="hcm-compliances - formLinkToCluster should get formLinkToCluster" duration="0"/>
+    <testCase name="hcm-compliances - formLinkToCluster should get null " duration="0"/>
+    <testCase name="hcm-compliances - formLinkToCluster should get null " duration="0"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/definitions/hcm-policies.test.js">
+    <testCase name="hcm-policies - createPolicyLink Should return item name" duration="9"/>
+    <testCase name="hcm-policies - createPolicyLink Should return vaild Link obj" duration="38"/>
+    <testCase name="hcm-policies - createPolicyLink Should return empty Link obj" duration="1"/>
+    <testCase name="hcm-policies #getStatus Should return healthy status" duration="5"/>
+    <testCase name="hcm-policies #getStatus Should return critical status" duration="1"/>
+    <testCase name="hcm-policies #getStatus Should return healthy compliant status" duration="0"/>
+    <testCase name="hcm-policies #getStatus Should return critical compliant status" duration="4"/>
+    <testCase name="hcm-policies #getStatus should return &quot;-&quot;" duration="1"/>
+    <testCase name="hcm-policies #getStatus should return &quot;-&quot;" duration="1"/>
+    <testCase name="hcm-policies #getStatus should return &quot;-&quot;" duration="0"/>
+    <testCase name="hcm-policies #getEnforcement should return the enforcement of policy" duration="1"/>
+    <testCase name="hcm-policies #getEnforcement should return &quot;-&quot;" duration="0"/>
+    <testCase name="hcm-policies - getExcludedNamespace Should return string of namespaces" duration="4"/>
+    <testCase name="hcm-policies - getExcludedNamespace Should return -" duration="0"/>
+    <testCase name="hcm-policies - getIncludeNamespace Should return string of namespaces" duration="0"/>
+    <testCase name="hcm-policies - getIncludeNamespace Should return -" duration="0"/>
+    <testCase name="hcm-policies - getAPIGroups Should return string of groups" duration="0"/>
+    <testCase name="hcm-policies - getAPIGroups Should return -" duration="0"/>
+    <testCase name="hcm-policies - getRuleVerbs Should return string of rule verbs" duration="1"/>
+    <testCase name="hcm-policies - getRuleVerbs Should return -" duration="2"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modules/ImpactedControlsModule.test.js">
+    <testCase name="ImpactedControlsModule view renders as expected" duration="97"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modules/RecentActivityModule.test.js">
+    <testCase name="RecentActivityModule view renders as expected" duration="371"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/reducers/common.test.js">
+    <testCase name="resourceToolbar creation should return a default state" duration="3"/>
+    <testCase name="resourceToolbar creation should return a state with activeFilters" duration="1"/>
+    <testCase name="resourceToolbar creation should return a state with activeFilters" duration="0"/>
+    <testCase name="secondaryHeader creation should return a default state" duration="0"/>
+    <testCase name="secondaryHeader creation should return a state with title" duration="1"/>
+    <testCase name="resourceItemByName should resourceItemByName" duration="2"/>
+    <testCase name="resourceItemByName should resourceItemByName" duration="50"/>
+    <testCase name="ResourceReducer creation should return a default state" duration="0"/>
+    <testCase name="ResourceReducer creation should return a state with title" duration="1"/>
+    <testCase name="resourceReducerFunction should return the initial state" duration="2"/>
+    <testCase name="resourceReducerFunction should return a state with IN_PROGRESS status" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state with DONE status" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state with ERROR status" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state with post:IN_PROGRESS status" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state with post:DONE status" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state with post:DONE status" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state with post:ERROR status" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state with put:IN_PROGRESS status" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state with put:DONE status" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state with put:ERROR status" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state with PATCH request" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state with PATCH RECEIVE SUCCESS" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state with PATCH RECEIVE FAILURE" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state with clear action" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state for table search action" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state for table sort action" duration="0"/>
+    <testCase name="resourceReducerFunction should return a state for table page change action" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state for resource modify action" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state for resource mutate action" duration="4"/>
+    <testCase name="resourceReducerFunction should return a state for resource mutate failure action" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state for resource mutate success action" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state for resource delete action" duration="0"/>
+    <testCase name="resourceReducerFunction should return default state for resource delete action" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state for delete receive success action" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state for delete receive success action" duration="1"/>
+    <testCase name="resourceReducerFunction should return a state for non-existing action" duration="0"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modules/TopInformationModule.test.js">
+    <testCase name="TopInformationModule clusters view renders as expected" duration="78"/>
+    <testCase name="TopInformationModule policies view renders as expected" duration="43"/>
+    <testCase name="TopInformationModule findings view renders as expected" duration="34"/>
+    <testCase name="TopInformationModule findings clusters view renders as expected" duration="40"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/TemplateEditor/TemplateEditor.test.js">
+    <testCase name="TemplateEditor component renders as expected" duration="283"/>
+    <testCase name="on control change function renders as expected" duration="218"/>
+    <testCase name="on editor change function renders as expected" duration="30"/>
+    <testCase name="handleEditorCommand function renders as expected" duration="25"/>
+    <testCase name="getResourceJSON function renders as expected" duration="27"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modules/GrcCardsModule.test.js">
+    <testCase name="GrcCardsModule policies page categories view renders expand as expected" duration="34"/>
+    <testCase name="GrcCardsModule policies page categories view renders collapse as expected" duration="12"/>
+    <testCase name="GrcCardsModule policies page standards view renders expand as expected" duration="21"/>
+    <testCase name="GrcCardsModule policies page standards view renders collapse as expected" duration="13"/>
+    <testCase name="GrcCardsModule findings page categories view renders expand as expected" duration="21"/>
+    <testCase name="GrcCardsModule findings page categories view renders collapse as expected" duration="12"/>
+    <testCase name="GrcCardsModule findings page standards view renders expand as expected" duration="19"/>
+    <testCase name="GrcCardsModule findings page standards view renders collapse as expected" duration="14"/>
+    <testCase name="GrcCardsModule collapseClick collapseClick expand as expected" duration="6"/>
+    <testCase name="GrcCardsModule collapseClick collapseClick collapse as expected" duration="2"/>
+    <testCase name="GrcCardsModule collapseClick collapseClick collapse as expected" duration="1"/>
+    <testCase name="GrcCardsModule collapseClick onChange as expected" duration="12"/>
+    <testCase name="GrcCardsModule collapseClick getPolicyCardChoices as expected" duration="2"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/OverviewView.test.js">
+    <testCase name="OverviewView component 1 renders as expected" duration="65"/>
+    <testCase name="OverviewView component 2 renders as expected" duration="13"/>
+    <testCase name="OverviewView component 3 renders as expected" duration="6"/>
+    <testCase name="OverviewView handleDrillDownClickOverview 1 renders as expected" duration="17"/>
+    <testCase name="OverviewView handleDrillDownClickOverview 1 renders as expected" duration="13"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/containers/CreationTab.test.js">
+    <testCase name="CreationTab container renders as expected" duration="31"/>
+    <testCase name="CreationTab container renders as expected" duration="11"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/GrcView.test.js">
+    <testCase name="GrcView component 1 renders as expected" duration="168"/>
+    <testCase name="GrcView component 2 renders as expected" duration="5"/>
+    <testCase name="GrcView component 3 renders as expected" duration="6"/>
+    <testCase name="GrcView component 4 renders as expected" duration="12"/>
+    <testCase name="GrcView component 5 renders as expected" duration="124"/>
+    <testCase name="GrcView component 6 renders as expected" duration="15"/>
+    <testCase name="GrcView component 7 renders as expected" duration="5"/>
+    <testCase name="GrcView component 8 renders as expected" duration="5"/>
+    <testCase name="GrcView handleDrillDownClickGrcView renders as expected" duration="11"/>
+    <testCase name="GrcView handleDrillDownClickGrcView renders as expected" duration="6"/>
+    <testCase name="GrcView handleDrillDownClickGrcView renders as expected" duration="2"/>
+    <testCase name="GrcView handleDrillDownClickGrcView renders as expected" duration="2"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceTable.test.js">
+    <testCase name="ResourceTable no search renders as expected" duration="91"/>
+    <testCase name="ResourceTable no search renders as expected" duration="51"/>
+    <testCase name="ResourceTable with search renders as expected" duration="48"/>
+    <testCase name="ResourceTable not expandable renders as expected" duration="28"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/definitions/hcm-security-findings.test.js">
+    <testCase name="getSeverity Should get severity" duration="3"/>
+    <testCase name="getSeverity Should get severity" duration="1"/>
+    <testCase name="getSeverity Should get severity" duration="2"/>
+    <testCase name="getSeverity Should get severity" duration="1"/>
+    <testCase name="getSeverity Should get severity" duration="0"/>
+    <testCase name="getSeverity Should get severity" duration="1"/>
+    <testCase name="compressArray Should compress array" duration="1"/>
+    <testCase name="compressArray Should compress array" duration="0"/>
+    <testCase name="compressArray Should compress array" duration="1"/>
+    <testCase name="showTypeAndName Should show type and name" duration="1"/>
+    <testCase name="showTypeAndName Should show type and name" duration="1"/>
+    <testCase name="showTypeAndName Should show type and name" duration="1"/>
+    <testCase name="getFindingStandards Should return formarted FindingStandards" duration="1"/>
+    <testCase name="getFindingStandards Should return formarted FindingStandards" duration="0"/>
+    <testCase name="getFindingStandards Should return formarted FindingStandards" duration="1"/>
+    <testCase name="getFindingStandards Should return formarted FindingStandards" duration="0"/>
+    <testCase name="getFindingControl Should return formarted FindingControl" duration="1"/>
+    <testCase name="getFindingControl Should return formarted FindingControl" duration="0"/>
+    <testCase name="getFindingControl Should return formarted FindingControl" duration="1"/>
+    <testCase name="getFindingControl Should return formarted FindingControl" duration="0"/>
+    <testCase name="getFindingControl Should return formarted FindingControl" duration="1"/>
+    <testCase name="getFindingControl Should return formarted FindingControl" duration="1"/>
+    <testCase name="getFindingControl Should return formarted FindingControl" duration="0"/>
+    <testCase name="getFindingControl Should return formarted FindingControl" duration="1"/>
+    <testCase name="getFindingControl Should return formarted FindingControl" duration="0"/>
+    <testCase name="getFindingControl Should return formarted FindingControl" duration="0"/>
+    <testCase name="getFindingCategories Should return formarted FindingCategories" duration="1"/>
+    <testCase name="getFindingCategories Should return formarted FindingCategories" duration="3"/>
+    <testCase name="getFindingCategories Should return formarted FindingCategories" duration="0"/>
+    <testCase name="getFindingCategories Should return formarted FindingCategories" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceOverview.test.js">
+    <testCase name="ResourceOverview component renders as expected" duration="53"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceDetails.test.js">
+    <testCase name="ResourceDetails error renders as expected" duration="133"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/PolicyTemplates.test.js">
+    <testCase name="PolicyTemplates component renders as expected" duration="164"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceList.test.js">
+    <testCase name="ResourceFilterBar no filters applied renders as expected" duration="25"/>
+    <testCase name="ResourceFilterBar w/ filter applied renders as expected" duration="5"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceToolbar.test.js">
+    <testCase name="ResourceToolbar component renders as expected" duration="59"/>
+    <testCase name="ResourceToolbar component no filter renders as expected" duration="2"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/PolicyDetailsOverview.test.js">
+    <testCase name="PolicyDetailsOverview component renders as expected" duration="86"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceTableModule.test.js">
+    <testCase name="ResourceTableModule component test renders as expected" duration="245"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modules/GrcToggleModule.test.js">
+    <testCase name="GrcToggle view renders expand as expected" duration="225"/>
+    <testCase name="GrcToggle view renders expand as expected" duration="50"/>
+    <testCase name="GrcToggle view renders expand as expected" duration="21"/>
+    <testCase name="GrcToggle view renders expand as expected" duration="12"/>
+    <testCase name="GrcView toggleClick renders as expected" duration="12"/>
+    <testCase name="GrcView toggleClick renders as expected" duration="6"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modals/RemoveResourceModal.test.js">
+    <testCase name="RemoveResourceModal test renders as expected" duration="307"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modals/PolicySidePanelDetailsModal.test.js">
+    <testCase name="PoliciesView view renders expand as expected" duration="12"/>
+    <testCase name="ClustersView view renders expand as expected" duration="23"/>
+    <testCase name="PoliciesTable 1 renders expand as expected" duration="28"/>
+    <testCase name="PoliciesTable 2 renders expand as expected" duration="12"/>
+    <testCase name="ClustersOrApplicationsTable 1 renders expand as expected" duration="23"/>
+    <testCase name="ClustersOrApplicationsTable 2 renders expand as expected" duration="6"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/containers/PolicyDetail.test.js">
+    <testCase name="PolicyTemplateTab container test renders as expected" duration="234"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/containers/FindingsTab.test.js">
+    <testCase name="FindingsTab container test renders as expected" duration="84"/>
+    <testCase name="FindingsTab container formatEmptySecurityClassification test renders as expected" duration="5"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/containers/PolicyViolationTab.test.js">
+    <testCase name="PolicyDetail container test renders as expected" duration="82"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modals/FindingSidePanelDetailsModal.test.js">
+    <testCase name="FindingSidePanelDetailsModal renders as expected" duration="30"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/containers/OverviewTab.test.js">
+    <testCase name="OverviewTab container test renders as expected" duration="102"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceTableModuleFromProps.test.js">
+    <testCase name="ResourceTableModuleFromProps component test renders as expected" duration="11"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/SecondaryHeader.test.js">
+    <testCase name="SecondaryHeader component 1 renders as expected" duration="5"/>
+    <testCase name="SecondaryHeader component 2 renders as expected" duration="16"/>
+    <testCase name="SecondaryHeader component 3 renders as expected" duration="9"/>
+    <testCase name="SecondaryHeader component 4 renders as expected" duration="2"/>
+    <testCase name="SecondaryHeader component 5 clickTab as expected" duration="11"/>
+    <testCase name="SecondaryHeader component 5 renderHeader with description" duration="2"/>
+    <testCase name="SecondaryHeader component 5 renderHeader without description" duration="1"/>
+    <testCase name="SecondaryHeader component 5 renderLinks as expected" duration="2"/>
+    <testCase name="SecondaryHeader component 5 renderTabs as expected" duration="3"/>
+    <testCase name="SecondaryHeader component 5 renderBreadCrumb1 as expected" duration="1"/>
+    <testCase name="SecondaryHeader component 5 renderBreadCrumb2 as expected" duration="1"/>
+    <testCase name="SecondaryHeader component 5 renderBreadCrumb3 as expected" duration="3"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/containers/GrcRouter.test.js">
+    <testCase name="Grc Router container test renders as expected" duration="11"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceTableRowMenuItemActions.test.js">
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.policy.edit renders as expected" duration="2"/>
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.policy.edit renders as expected" duration="0"/>
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.finding.sidepanel renders as expected" duration="1"/>
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.applications.remove renders as expected" duration="1"/>
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.compliance.remove renders as expected" duration="0"/>
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.policy.remove renders as expected" duration="1"/>
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.remove renders as expected" duration="1"/>
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.cluster.view.nodes renders as expected" duration="1"/>
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.cluster.view.pods renders as expected" duration="1"/>
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.cluster.edit.labels renders as expected" duration="0"/>
+    <testCase name="ResourceTableRowMenuItemActions component table.actions.pod.logs renders as expected" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ScrollToTop.test.js">
+    <testCase name="ScrollToTop component test renders as expected" duration="23"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceFilterBar.test.js">
+    <testCase name="ResourceFilterBar no filters applied renders as expected" duration="22"/>
+    <testCase name="ResourceFilterBar w/ filter applied renders as expected" duration="4"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/definitions/index.test.js">
+    <testCase name="definitions/index #getDefaultSearchField should return the default search field of node" duration="1"/>
+    <testCase name="definitions/index #getDefaultSearchField should return undefined" duration="16"/>
+    <testCase name="definitions/index #getDefaultSortField should return the default sort field of node" duration="0"/>
+    <testCase name="definitions/index #getDefaultSortField should return undefined and error log" duration="17"/>
+    <testCase name="definitions/index #getLink should return the link of node as /namespace/name" duration="1"/>
+    <testCase name="definitions/index #getLink should return the link of node as /namespace/name" duration="0"/>
+    <testCase name="definitions/index #getLink should return the link of node as /domain/host" duration="1"/>
+    <testCase name="definitions/index #getPrimaryKey should return the primary key of node" duration="0"/>
+    <testCase name="definitions/index #getPrimaryKey should return default value metadata.uid" duration="5"/>
+    <testCase name="definitions/index #getSecondaryKey should return the secondary key of node" duration="0"/>
+    <testCase name="definitions/index #getSecondaryKey should return default value cluster" duration="3"/>
+    <testCase name="definitions/index #getURIKey should return the default sort field of node" duration="0"/>
+    <testCase name="definitions/index #getURIKey should return default value metadata.name" duration="2"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modals/CreateResourceModal.test.js">
+    <testCase name="CreateResourceModal modal renders as expected" duration="14"/>
+    <testCase name="CreateResourceModal modal handleModalOpen as expected" duration="9"/>
+    <testCase name="CreateResourceModal modal handleEditorChange as expected" duration="2"/>
+    <testCase name="CreateResourceModal modal handleNotificationClosed as expected" duration="2"/>
+    <testCase name="CreateResourceModal modal isSubmitDisabled as expected" duration="1"/>
+    <testCase name="CreateResourceModal modal handleModalCancel as expected" duration="2"/>
+    <testCase name="CreateResourceModal modal handleModalSubmit as expected" duration="2"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modals/ResourceModal.test.js">
+    <testCase name="CreateResourceModal modal renders as expected" duration="47"/>
+    <testCase name="CreateResourceModal modal renders as expected" duration="16"/>
+    <testCase name="CreateResourceModal modal onChange as expected" duration="47"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/containers/PoliciesTab.test.js">
+    <testCase name="PoliciesTab container test renders as expected" duration="36"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modals/EnableModal.test.js">
+    <testCase name="DisableModal modal renders as expected" duration="11"/>
+    <testCase name="DisableModal modal renders errors as expected" duration="12"/>
+    <testCase name="DisableModal modal handleSubmit as expected" duration="12"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modals/DescriptionModal.test.js">
+    <testCase name="DescriptionModal render test renders as expected" duration="7"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/TagInput.test.js">
+    <testCase name="TagInput component 1 renders as expected" duration="84"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modals/DisableModal.test.js">
+    <testCase name="DisableModal modal renders as expected" duration="12"/>
+    <testCase name="DisableModal modal renders errors as expected" duration="7"/>
+    <testCase name="DisableModal modal handleSubmit as expected" duration="11"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/PolicyClusterDetail.test.js">
+    <testCase name="PolicyClusterDetail component renders as expected" duration="108"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceFilterView.test.js">
+    <testCase name="ResourceFilterView component renders as expected" duration="28"/>
+    <testCase name="ResourceFilterView component no filter renders as expected" duration="5"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/NestedTable.test.js">
+    <testCase name="NestedTable component 1 renders as expected" duration="68"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/StructuredListModule.test.js">
+    <testCase name="StructuredListModule component test renders as expected" duration="23"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/ResourceTableRowExpandableTable.test.js">
+    <testCase name="ResourceTableRowExpandableTable component test renders as expected" duration="26"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/definitions/hcm-policies-application.test.js">
+    <testCase name="createClusterLink Should return createClusterLink" duration="6"/>
+    <testCase name="createClusterLink Should return cluster name" duration="1"/>
+    <testCase name="createClusterLink Should return -" duration="1"/>
+    <testCase name="createClusterLink Should return -" duration="0"/>
+    <testCase name="createClusterLink Should return -" duration="0"/>
+    <testCase name="getAppViolationLabels Should return &quot;-&quot;" duration="0"/>
+    <testCase name="getAppViolationLabels Should return &quot;-&quot;" duration="1"/>
+    <testCase name="getAppViolationLabels Should return &quot;-&quot;" duration="0"/>
+    <testCase name="getAppViolationLabels Should return &quot;-&quot;" duration="1"/>
+    <testCase name="getAppViolationLabels Should return single" duration="1"/>
+    <testCase name="getAppViolationLabels Should return multi" duration="1"/>
+    <testCase name="getAppViolationLabels Should return multi" duration="0"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/definitions/hcm-policies-cluster.test.js">
+    <testCase name="getTruncatedText Should return truncated text item" duration="2"/>
+    <testCase name="getClusterViolationLabels Should return labels of truncated text item" duration="1"/>
+    <testCase name="createClusterLink Should return createClusterLink" duration="1"/>
+    <testCase name="createClusterLink Should return cluster name" duration="1"/>
+    <testCase name="createClusterLink Should return -" duration="0"/>
+    <testCase name="createClusterLink Should return -" duration="1"/>
+    <testCase name="createClusterLink Should return -" duration="4"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modals/FilterModal.test.js">
+    <testCase name="CreateResourceModal modal renders as expected" duration="10"/>
+    <testCase name="CreateResourceModal modal componentWillReceiveProps as expected" duration="9"/>
+    <testCase name="CreateResourceModal modal convertFilterArray as expected" duration="2"/>
+    <testCase name="CreateResourceModal modal convertFilterArray as expected" duration="2"/>
+    <testCase name="CreateResourceModal modal selectionChanged as expected" duration="2"/>
+    <testCase name="CreateResourceModal modal handleSubmitClick as expected" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/StatusField.test.js">
+    <testCase name="StatusField renders ok as expected" duration="22"/>
+    <testCase name="StatusField renders warning as expected" duration="2"/>
+    <testCase name="StatusField renders failed as expected" duration="2"/>
+    <testCase name="StatusField renders default as expected" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/reducers/modal.test.js">
+    <testCase name="modal reducer should return a state with MODAL_UPDATE status" duration="2"/>
+    <testCase name="modal reducer should return a state with CLEAR_REQUEST_STATUS status" duration="1"/>
+    <testCase name="modal reducer should return a state with POST_REQUEST status" duration="0"/>
+    <testCase name="modal reducer should return a state with PUT_REQUEST status" duration="1"/>
+    <testCase name="modal reducer should return a state with DEL_REQUEST status" duration="1"/>
+    <testCase name="modal reducer should return a state with POST_RECEIVE_SUCCESS status" duration="0"/>
+    <testCase name="modal reducer should return a state with PUT_RECEIVE_SUCCESS status" duration="1"/>
+    <testCase name="modal reducer should return a state with DEL_RECEIVE_SUCCESS status" duration="0"/>
+    <testCase name="modal reducer should return a state with DEL_RECEIVE_SUCCESS status" duration="1"/>
+    <testCase name="modal reducer should return a state with POST_RECEIVE_FAILURE status" duration="0"/>
+    <testCase name="modal reducer should return a state with PUT_RECEIVE_FAILURE status" duration="1"/>
+    <testCase name="modal reducer should return a state with DEL_RECEIVE_FAILURE status" duration="0"/>
+    <testCase name="modal reducer should return a state with DEL_RECEIVE_FAILURE status" duration="1"/>
+    <testCase name="modal reducer should return a default state" duration="0"/>
+    <testCase name="modal reducer should return undefined state" duration="1"/>
+    <testCase name="modal reducer should return undefined state" duration="0"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modules/SubResourceListModule.test.js">
+    <testCase name="PolicieSubResourceList view renders as expected" duration="23"/>
+    <testCase name="ClusterSubResourceList view renders as expected" duration="13"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/RefreshTimeSelect.test.js">
+    <testCase name="RefreshTimeSelect component renders as expected" duration="31"/>
+    <testCase name="RefreshTimeSelect component with data renders as expected" duration="6"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/containers/PolicyTemplateTab.test.js">
+    <testCase name="PolicyDetail container test renders as expected" duration="159"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/reducers/index.test.js">
+    <testCase name="predicate should return true" duration="3"/>
+    <testCase name="predicate should return true" duration="1"/>
+    <testCase name="predicate should return undefined" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/FormatTableData.test.js">
+    <testCase name="formatPoliciesToClustersTableData should correctly format" duration="16"/>
+    <testCase name="formatPoliciesToClustersTableData should correctly format" duration="2"/>
+    <testCase name="formatPoliciesToClustersTableData should correctly format" duration="1"/>
+    <testCase name="formatFindingsToClustersTableData should correctly format" duration="11"/>
+    <testCase name="formatFindingsToClustersTableData should correctly format" duration="0"/>
+    <testCase name="formatExpandablePolicies should correctly format" duration="9"/>
+    <testCase name="formatExpandablePolicies should correctly format" duration="2"/>
+    <testCase name="formatExpandablePolicies should correctly format" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/containers/App.test.js">
+    <testCase name="App container test renders as expected" duration="20"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/modules/PolicySummaryModule.test.js">
+    <testCase name="PolicySummaryModule view renders as expected" duration="16"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/util/table-helper.test.js">
+    <testCase name="table-helper handleInputValue handleInputValue should execute call back function" duration="3"/>
+    <testCase name="table-helper handleSort newSortColumn==defaultSortColumn handleSort should execute call back function" duration="9"/>
+    <testCase name="table-helper handleSort newSortColumn==defaultSortColumn handleSort should execute call back function" duration="1"/>
+    <testCase name="table-helper handleSort newSortColumn!=defaultSortColumn handleSort should execute call back function" duration="1"/>
+    <testCase name="table-helper handleSort newSortColumn!=defaultSortColumn handleSort should execute call back function" duration="1"/>
+    <testCase name="table-helper handleSort newSortColumn!=defaultSortColumn handleSort should execute call back function" duration="1"/>
+    <testCase name="table-helper handleSort newSortColumn!=defaultSortColumn handleSort should execute call back function" duration="1"/>
+    <testCase name="table-helper handleSort newSortColumn!=defaultSortColumn handleSort should not execute call back function" duration="1"/>
+    <testCase name="table-helper handleSort newSortColumn!=defaultSortColumn handleSort should not execute call back function" duration="0"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/YamlEditor.test.js">
+    <testCase name="YamlEditor renders as expected" duration="103"/>
+    <testCase name="YamlEditor renders as expected" duration="23"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/reducers/role.test.js">
+    <testCase name="role reducer should return a state with ROLE_RECEIVE_SUCCESS status" duration="2"/>
+    <testCase name="role reducer should return a state with ROLE_RECEIVE_FAILURE status" duration="0"/>
+    <testCase name="role reducer should return a default state" duration="1"/>
+    <testCase name="role reducer should return undefined state" duration="0"/>
+    <testCase name="role reducer should return undefined state" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/TruncateText.test.js">
+    <testCase name="TruncateText renders as expected for truncated text" duration="20"/>
+    <testCase name="TruncateText renders as expected for non truncated text" duration="2"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/CreateDocLink.test.js">
+    <testCase name="createDocLink view renders show create link as expected" duration="10"/>
+    <testCase name="createDocLink view renders does not show create link as expected" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/FilterTag.test.js">
+    <testCase name="FilterTag component renders as expected" duration="4"/>
+    <testCase name="FilterTag component renders as expected" duration="2"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/reducers/filter.test.js">
+    <testCase name="filter reducer should return a state with RESOURCE_FILTERS_RECEIVE_SUCCESS status" duration="2"/>
+    <testCase name="filter reducer should return a state with RESOURCE_FILTERS_UPDATE status" duration="1"/>
+    <testCase name="filter reducer should return a state with RESOURCE_FILTERS_UPDATE status" duration="0"/>
+    <testCase name="filter reducer should return a default state" duration="1"/>
+    <testCase name="filter reducer should return undefined state" duration="0"/>
+    <testCase name="filter reducer should return undefined state" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/withAccess.test.js">
+    <testCase name="withaccess component test renders as expected" duration="3"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/definitions/hcm-cluster-findings.test.js">
+    <testCase name="getTruncatedText Should return flatten string from object" duration="2"/>
+    <testCase name="getTruncatedText Should return flatten string from object" duration="1"/>
+    <testCase name="getTruncatedText Should return flatten string from object" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/common/Page.test.js">
+    <testCase name="NoResource component renders as expected" duration="3"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/reducers/user.test.js">
+    <testCase name="User reducer #user should return the initial state" duration="2"/>
+    <testCase name="User reducer #user should handle USER_LOGIN_RECEIVE_SUCCESS" duration="1"/>
+    <testCase name="User reducer #user should handle USER_LOGOUT_RECEIVE_SUCCESS" duration="0"/>
+    <testCase name="User reducer #loggedIn should return the initial state" duration="1"/>
+    <testCase name="User reducer #loggedIn should return the default state" duration="0"/>
+    <testCase name="User reducer #loggedIn should handle USER_LOGOUT_REQUEST" duration="0"/>
+    <testCase name="User reducer #loggedIn should handle USER_LOGIN_RECEIVE_SUCCESS" duration="0"/>
+    <testCase name="User reducer #loggedIn should handle USER_LOGOUT_RECEIVE_FAILURE" duration="1"/>
+    <testCase name="User reducer #loggedIn should handle USER_LOGOUT_RECEIVE_SUCCESS" duration="0"/>
+    <testCase name="User reducer #isAuthenticated should return is Authenticated" duration="1"/>
+    <testCase name="User reducer #isAuthenticated should return is not Authenticated" duration="0"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/reducers/uniconfig.test.js">
+    <testCase name="uiconfig reducer should return a state with ROLE_RECEIVE_SUCCESS status" duration="1"/>
+    <testCase name="uiconfig reducer should return a default state" duration="1"/>
+    <testCase name="uiconfig reducer should return undefined state" duration="0"/>
+    <testCase name="uiconfig reducer should return undefined state" duration="0"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/util/truncate-middle.test.js">
+    <testCase name="truncate middle should truncate string as expected" duration="2"/>
+    <testCase name="truncate middle should truncate string as expected" duration="0"/>
+    <testCase name="truncate middle should truncate string as expected" duration="4"/>
+    <testCase name="truncate middle should truncate string as expected" duration="0"/>
+    <testCase name="truncate middle should truncate string as expected" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/reducers/userpreferences.test.js">
+    <testCase name="User Preferences reducer #userpreferences should return the null state" duration="2"/>
+    <testCase name="User Preferences reducer #userpreferences should return the initial state" duration="1"/>
+    <testCase name="User Preferences reducer #userpreferences should handle USERPREFERENCES_RECEIVE_SUCCESS" duration="0"/>
+    <testCase name="User Preferences reducer #userpreferences should handle USERPREFERENCES_RECEIVE_FAILURE" duration="1"/>
+  </file>
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/components/TemplateEditor/validator.test.js">
+    <testCase name="truncate middle should truncate string as expected" duration="1"/>
+  </file>
+</testExecutions>

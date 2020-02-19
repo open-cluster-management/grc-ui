@@ -52,9 +52,8 @@ class App extends React.Component {
         <SecondaryHeader />
         <ResourceToolbar />
         <Switch>
-          <Route path={`${match.url}/policies`} render={() => <GrcRouter />} />
-          <Route path={`${match.url}/topology`} render={() => <div />} />
-          <Redirect to={`${config.contextPath}/policies`} />
+          <Route path={`${match.url}`} render={() => <GrcRouter />} />
+          <Redirect to={`${config.contextPath}`} />
         </Switch>
         <Modal locale={serverProps.context.locale} />
         <input type='hidden' id='app-access' value={serverProps.xsrfToken.toString('base64')} locale={serverProps.context.locale} />
