@@ -31,10 +31,12 @@ var log4js = require('log4js'),
 
 let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to reduce startup time seen on k8s
 router.get('/logout', securityMW.logout, (req, res) => {
-  logger.info('inside logout callback, redirecting to:')
-  const redirect = `${req.baseUrl}`
-  logger.info(redirect)
-  res.redirect(redirect)
+  setTimeout(() => {
+    logger.info('inside logout callback, redirecting to:')
+    const redirect = `${req.baseUrl}`
+    logger.info(redirect)
+    res.redirect(redirect)
+  }, 10000)
 })
 
 router.get('*', (req, res) => {
