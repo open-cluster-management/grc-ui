@@ -27,6 +27,8 @@ const ReactDOMServer = require('react-dom/server'),
       securityMW = require('security-middleware')
 
 let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to reduce startup time seen on k8s
+
+// Logout middleware
 router.get('/logout', securityMW.logout, securityMW.redirectLogin)
 
 router.get('*', (req, res) => {
