@@ -88,35 +88,37 @@ export default class RecentActivityModule extends React.Component {
     return  (
       <div className='module-recent-activity' style={{marginLeft:'-10px'}}>
         <div className='card-container-container'>
-          <div className='card-title'>
-            {title}
+          <div className='card-title-container'>
+            <div className='card-title'>
+              {title}
+            </div>
           </div>
-        </div>
-        <div className='violation-container' style={{display:'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '20px'}}>
-          <TopInformationModule
-            hideFindings={true}
-            hideTabs={true}
-            type={'policies'}
-            viewState={'policies'}
-            updateViewState={updateViewState}
-            items={policies}
-            applications={applications}
-            threshold={this.state.threshold}
-            updateThreshold={this.thresholdCallback}
-            handleDrillDownClick={handleDrillDownClick}
-          />
-          <TopInformationModule
-            hideFindings={true}
-            hideTabs={true}
-            type={'policies'}
-            viewState={'clusters'}
-            updateViewState={updateViewState}
-            items={policies}
-            applications={applications}
-            threshold={this.state.threshold}
-            updateThreshold={this.thresholdCallback}
-            handleDrillDownClick={handleDrillDownClick}
-          />
+          <div className='violation-container' style={{display:'flex', flexDirection: 'row', justifyContent: 'space-between', paddingRight: '20px'}}>
+            <TopInformationModule
+              hideFindings={true}
+              hideTabs={true}
+              type={'policies'}
+              viewState={'policies'}
+              updateViewState={updateViewState}
+              items={policies}
+              applications={applications}
+              threshold={this.state.threshold}
+              updateThreshold={this.thresholdCallback}
+              handleDrillDownClick={handleDrillDownClick}
+            />
+            <TopInformationModule
+              hideFindings={true}
+              hideTabs={true}
+              type={'policies'}
+              viewState={'clusters'}
+              updateViewState={updateViewState}
+              items={policies}
+              applications={applications}
+              threshold={this.state.threshold}
+              updateThreshold={this.thresholdCallback}
+              handleDrillDownClick={handleDrillDownClick}
+            />
+          </div>
         </div>
       </div>
 
