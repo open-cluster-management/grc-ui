@@ -28,6 +28,7 @@ const ReactDOMServer = require('react-dom/server'),
 
 let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to reduce startup time seen on k8s
 
+// gets logout endpoint, then fetches login to clear session
 router.get('/logout', securityMW.logout, securityMW.redirectLogin)
 
 router.get('*', (req, res) => {
