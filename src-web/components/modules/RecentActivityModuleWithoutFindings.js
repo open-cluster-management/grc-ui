@@ -84,7 +84,7 @@ export default class RecentActivityModule extends React.Component {
     const { locale } = this.context
     const title = msgs.get('overview.recent.activity.title.nofinding', locale)
     const { handleDrillDownClick, policies, applications, updateViewState } = this.props
-
+    const moduleData = this.getModuleData()
     return  (
       <div className='module-recent-activity' style={{marginLeft:'-10px'}}>
         <div className='card-container-container'>
@@ -99,6 +99,7 @@ export default class RecentActivityModule extends React.Component {
               hideTabs={true}
               type={'policies'}
               viewState={'policies'}
+              count={moduleData.violations[0].count}
               updateViewState={updateViewState}
               items={policies}
               applications={applications}
@@ -111,6 +112,7 @@ export default class RecentActivityModule extends React.Component {
               hideTabs={true}
               type={'policies'}
               viewState={'clusters'}
+              count={moduleData.violations[1].count}
               updateViewState={updateViewState}
               items={policies}
               applications={applications}

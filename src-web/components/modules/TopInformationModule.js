@@ -14,7 +14,7 @@ import classNames from 'classnames'
 import resources from '../../../lib/shared/resources'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
-import { Tabs, Tab } from 'carbon-components-react'
+import { Tabs, Tab, Tag } from 'carbon-components-react'
 import LinesEllipsis from 'react-lines-ellipsis'
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC'
 import NoResource from '../common/NoResource'
@@ -172,11 +172,12 @@ export default class TopInformationModule extends React.Component {
 
   renderHeaderWithoutTabs() {
     const { locale } = this.context
-    const { type, viewState } = this.props
+    const { type, viewState, count } = this.props
     const title = msgs.get(`overview.top.informations.title.${type}.${viewState}`, locale)
     return (
       <div className='header-container'>
-        <div className={'header-title'}>{title}</div>
+        <div className={'header-title'} style={{width:'auto', marginRight:'1rem'}}>{title}</div>
+        <Tag className='tag-fake-red' type={'community'}>{msgs.get('overview.top informations.title.count', [count], locale)}</Tag>
       </div>
     )
   }
@@ -563,6 +564,7 @@ TopInformations.propTypes = {
 
 TopInformationModule.propTypes = {
   applications: PropTypes.array,
+  count: PropTypes.number,
   handleDrillDownClick: PropTypes.func,
   hideFindings: PropTypes.bool,
   hideTabs: PropTypes.bool,
