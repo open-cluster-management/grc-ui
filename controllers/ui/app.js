@@ -34,14 +34,14 @@ let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to
 router.get('/logout', securityMW.logout, (req) => {
   logger.info('logout browser callback')
   logger.info(req.user)
-  const form = document.createElement('form')
+  const form = window.document.createElement('form')
   form.method = 'POST'
   form.action = 'https://oauth-openshift.apps.straits.os.fyre.ibm.com/logout'
   // const input = document.createElement('input')
   // input.type = 'hidden'
   // input.name = 'then'
   // input.value =
-  document.body.appendChild(form)
+  window.document.body.appendChild(form)
   form.submit()
 }, securityMW.redirectLogin)
 
