@@ -104,8 +104,9 @@ function fetchHeader(req, res, store, context) {
             <StaticRouter
               location={req.originalUrl}
               context={context}>
-              <App />
-              <form method='POST' action='https://oauth-openshift.apps.straits.os.fyre.ibm.com/logout' ref={logoutRef}></form>
+              <App>
+                <form method='POST' action='https://oauth-openshift.apps.straits.os.fyre.ibm.com/logout' ref={logoutRef}></form>
+              </App>
             </StaticRouter>
           </Provider>
         ),
