@@ -24,12 +24,26 @@ const ReactDOMServer = require('react-dom/server'),
       lodash = require('lodash'),
       request = require('../../lib/server/request'),
       i18n = require('node-i18n-util'),
-      securityMW = require('security-middleware')
+      securityMW = require('security-middleware'),
+      log4js = require('log4js'),
+      logger = log4js.getLogger('status')
 
 let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to reduce startup time seen on k8s
 
 // gets logout endpoint, then fetches login to clear session
-router.get('/logout', securityMW.logout, securityMW.redirectLogin)
+router.get('/logout', securityMW.logout, (req) => {
+  logger.info('logout browser callback')
+  logger.info(req.user)
+  const form = document.createElement('form')
+  form.method = 'POST'
+  form.action = 'https://oauth-openshift.apps.straits.os.fyre.ibm.com/logout'
+  // const input = document.createElement('input')
+  // input.type = 'hidden'
+  // input.name = 'then'
+  // input.value =
+  document.body.appendChild(form)
+  form.submit()
+}, securityMW.redirectLogin)
 
 router.get('*', (req, res) => {
   reducers = reducers === undefined ? require('../../src-web/reducers') : reducers
