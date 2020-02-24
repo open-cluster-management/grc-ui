@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -28,56 +29,18 @@ const MAX_INFORMATION_THRESHOLD = 4
 export default class RecentActivityModule extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      threshold: 4,
-      topViolationsNum: 0,
-      topFindingsNum: 0,
-    }
   }
 
-  setThreshold = (numFindings, numViolations) => {
+  setThreshold = () => {
     //if max(Top violations, Top security findings) < 4, set information_threshold to max
-    const newMax = Math.max(numFindings, numViolations)
+    const moduleData = this.getModuleData()
+    const numPolicies = moduleData.violations[0].count
+    const numClusters = moduleData.violations[1].count
+    const newMax = Math.max(numPolicies, numClusters)
     if (newMax > MAX_INFORMATION_THRESHOLD) {
       return MAX_INFORMATION_THRESHOLD
     }
     return newMax
-  }
-
-  thresholdCallback = (cardsLength, cardType) => {
-    //updates module lengths and changes threshold if needed
-    if (cardType === 'policies' && cardsLength != this.state.topViolationsNum) {
-      this.setState(
-        { topViolationsNum: cardsLength },
-        () => {
-          const findingsN = this.state.topFindingsNum
-          const violationsN = this.state.topViolationsNum
-          this.setState(
-            // need at least one threshold for top violations empty card
-            { threshold: Math.max(1, this.setThreshold(findingsN, violationsN)) },
-            () => {
-              return
-            }
-          )
-        }
-      )
-    }
-    else if (cardType === 'findings' && cardsLength != this.state.topFindingsNum) {
-      this.setState(
-        { topFindingsNum: cardsLength },
-        () => {
-          const findingsN = this.state.topFindingsNum
-          const violationsN = this.state.topViolationsNum
-          this.setState(
-            // need at least one threshold for top finding empty card
-            { threshold: Math.max(1, this.setThreshold(findingsN, violationsN)) },
-            () => {
-              return
-            }
-          )
-        }
-      )
-    }
   }
 
   render() {
@@ -103,8 +66,8 @@ export default class RecentActivityModule extends React.Component {
               updateViewState={updateViewState}
               items={policies}
               applications={applications}
-              threshold={this.state.threshold}
-              updateThreshold={this.thresholdCallback}
+              staticInfo={true}
+              threshold={this.setThreshold()}
               handleDrillDownClick={handleDrillDownClick}
             />
             <TopInformationModule
@@ -116,8 +79,8 @@ export default class RecentActivityModule extends React.Component {
               updateViewState={updateViewState}
               items={policies}
               applications={applications}
-              threshold={this.state.threshold}
-              updateThreshold={this.thresholdCallback}
+              staticInfo={true}
+              threshold={this.setThreshold()}
               handleDrillDownClick={handleDrillDownClick}
             />
           </div>

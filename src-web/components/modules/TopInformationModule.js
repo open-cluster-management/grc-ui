@@ -54,7 +54,9 @@ export default class TopInformationModule extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const { staticInfo } = this.props
     //next items, type when update filter on current page
+    if(staticInfo === true) return
     const { items, applications, type } = nextProps
     this.setCardData(items, applications, type)
   }
@@ -324,7 +326,10 @@ export default class TopInformationModule extends React.Component {
     })
 
     //send number of cards up to parent to calculate new card threshold
-    this.props.updateThreshold(cards.length, type)
+    const { staticInfo } = this.props
+    if( !staticInfo ){
+      this.props.updateThreshold(cards.length, type)
+    }
 
     // if less informations than threshold, add an empty card
     if (cards.length<this.props.threshold) {
@@ -569,6 +574,7 @@ TopInformationModule.propTypes = {
   hideFindings: PropTypes.bool,
   hideTabs: PropTypes.bool,
   items: PropTypes.array,
+  staticInfo: PropTypes.bool,
   threshold: PropTypes.number,
   type: PropTypes.string,
   updateThreshold: PropTypes.func,
