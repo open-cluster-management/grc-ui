@@ -124,7 +124,16 @@ if (process.env.NODE_ENV === 'development') {
     changeOrigin: true,
     secure: false,
   }))
-  app.use(`${appConfig.get('contextPath')}/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), proxy({
+  app.use(`${appConfig.get('contextPath')}/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), (req, res, next) => {
+    res.setHeader('Cache-Control', 'no-store')
+    res.setHeader('Pragma', 'no-cache')
+    const accessToken = req.cookies['acm-access-token-cookie']
+    if (req.headers.authorization)
+      req.headers.authorization = `Bearer ${accessToken}`
+    else
+      req.headers.Authorization = `Bearer ${accessToken}`
+    next()
+  }, proxy({
     target: appConfig.get('headerUrl'),
     changeOrigin: true,
     pathRewrite: {

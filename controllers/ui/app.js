@@ -66,13 +66,15 @@ function fetchHeader(req, res, store, context) {
       'Accept-Language': i18n.locale(req)
     }
   }
+  // eslint-disable-next-line no-console
+  console.log(options.headers)
   request(options, null, [200], (err, headerRes) => {
     if (err) {
       return res.status(500).send(err)
     }
 
     const { headerHtml: header, props: propsH, state: stateH, files: filesH } = headerRes.body
-
+    
     uiConfig = uiConfig === undefined ? require('../../src-web/actions/uiconfig') : uiConfig
     if (stateH.uiconfig) {
       store.dispatch(uiConfig.uiConfigReceiveSucess(stateH.uiconfig.uiConfiguration))}
