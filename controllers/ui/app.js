@@ -44,8 +44,8 @@ router.get('/logout', securityMW.logout, (req) => {
   // // input.name = 'then'
   // // input.value =
   // window.document.body.appendChild(form)
-  const form = logoutRef.current
-  form.submit()
+  // const form = logoutRef.current
+  // form.submit()
 }, securityMW.redirectLogin)
 
 router.get('*', (req, res) => {
