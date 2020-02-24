@@ -74,7 +74,7 @@ function fetchHeader(req, res, store, context) {
     }
 
     const { headerHtml: header, props: propsH, state: stateH, files: filesH } = headerRes.body
-    
+
     uiConfig = uiConfig === undefined ? require('../../src-web/actions/uiconfig') : uiConfig
     if (stateH.uiconfig) {
       store.dispatch(uiConfig.uiConfigReceiveSucess(stateH.uiconfig.uiConfiguration))}
