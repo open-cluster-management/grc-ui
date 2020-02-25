@@ -46,7 +46,7 @@ router.get('/logout', securityMW.logout, (req) => {
   // window.document.body.appendChild(form)
   // const form = logoutRef.current
   // form.submit()
-}, securityMW.redirectLogin)
+})
 
 router.get('*', (req, res) => {
   reducers = reducers === undefined ? require('../../src-web/reducers') : reducers
