@@ -34,7 +34,7 @@ let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to
 router.get('/logout', securityMW.logout, (req, res) => {
   logger.info('logout browser callback')
   logger.info(req.user)
-  res.status(200).send('test')
+  res.status(200).json({username: 'test'})
 })
 
 router.get('*', (req, res) => {
