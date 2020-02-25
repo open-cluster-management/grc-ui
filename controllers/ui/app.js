@@ -34,7 +34,6 @@ let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to
 router.get('/logout', securityMW.logout, (req, res) => {
   logger.info('logout browser callback')
   logger.info(req.user)
-  // return username to check if kubeadmin logout needs to be done
   res.status(200).json({username: 'test'})
 })
 
