@@ -30,23 +30,11 @@ const ReactDOMServer = require('react-dom/server'),
 
 let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to reduce startup time seen on k8s
 
-const logoutRef = React.createRef()
-
 // gets logout endpoint, then fetches login to clear session
 router.get('/logout', securityMW.logout, (req, res) => {
   logger.info('logout browser callback')
   logger.info(req.user)
-  // const form = window.document.createElement('form')
-  // form.method = 'POST'
-  // form.action = 'https://oauth-openshift.apps.straits.os.fyre.ibm.com/logout'
-  // // const input = document.createElement('input')
-  // // input.type = 'hidden'
-  // // input.name = 'then'
-  // // input.value =
-  // window.document.body.appendChild(form)
-  // const form = logoutRef.current
-  // form.submit()
-  res.status(200).send(req.user)
+  res.status(200).send('test')
 })
 
 router.get('*', (req, res) => {
@@ -106,7 +94,6 @@ function fetchHeader(req, res, store, context) {
               location={req.originalUrl}
               context={context}>
               <App>
-                <form method='POST' action='https://oauth-openshift.apps.straits.os.fyre.ibm.com/logout' ref={logoutRef}></form>
               </App>
             </StaticRouter>
           </Provider>
