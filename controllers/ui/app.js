@@ -33,7 +33,7 @@ let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to
 const logoutRef = React.createRef()
 
 // gets logout endpoint, then fetches login to clear session
-router.get('/logout', securityMW.logout, (req) => {
+router.get('/logout', securityMW.logout, (req, res) => {
   logger.info('logout browser callback')
   logger.info(req.user)
   // const form = window.document.createElement('form')
@@ -46,6 +46,7 @@ router.get('/logout', securityMW.logout, (req) => {
   // window.document.body.appendChild(form)
   // const form = logoutRef.current
   // form.submit()
+  res.status(200).send(req.user)
 })
 
 router.get('*', (req, res) => {
