@@ -19,7 +19,6 @@ import LinesEllipsis from 'react-lines-ellipsis'
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC'
 import NoResource from '../common/NoResource'
 
-
 resources(() => {
   require('../../../scss/module-top-information.scss')
 })

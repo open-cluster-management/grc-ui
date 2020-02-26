@@ -107,7 +107,7 @@ export class OverviewView extends React.Component {
     }
     showResourceToolbar()
     const { viewState } = this.state
-    const showApplications = config['feature_applications']
+    const showApplications = this.props.showApplications
     const availableFilters =  getAvailableGrcFilters(policies, findings, locale)
     const filteredPolicies = filterPolicies(policies, activeFilters, locale, 'metadata.annotations')
     const filteredFindings = filterFindings(findings, activeFilters, locale)
@@ -245,6 +245,7 @@ OverviewView.propTypes = {
   location: PropTypes.object,
   policies: PropTypes.array,
   refreshControl: PropTypes.object,
+  showApplications: PropTypes.bool,
   updateActiveFilters: PropTypes.func,
   updateResourceToolbar: PropTypes.func,
 }
