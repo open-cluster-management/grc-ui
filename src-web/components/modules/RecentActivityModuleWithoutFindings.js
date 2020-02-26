@@ -49,7 +49,7 @@ export default class RecentActivityModule extends React.Component {
     const { handleDrillDownClick, policies, applications, updateViewState } = this.props
     const moduleData = this.getModuleData()
     return  (
-      <div className='module-recent-activity' style={{marginLeft:'-10px'}}>
+      <div className='module-recent-activity' >
         <div className='card-container-container'>
           <div className='card-title-container'>
             <div className='card-title'>
