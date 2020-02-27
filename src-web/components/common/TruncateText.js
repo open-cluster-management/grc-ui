@@ -11,7 +11,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Tooltip } from 'carbon-components-react'
 import resources from '../../../lib/shared/resources'
-import truncate from '../../util/truncate-middle'
+import truncate from '../../util/truncate'
 
 resources(() => {
   require('../../../scss/textWithTruncation.scss')

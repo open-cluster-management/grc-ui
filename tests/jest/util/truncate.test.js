@@ -7,7 +7,7 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 'use strict'
-import truncate from'../../../src-web/util/truncate-middle'
+import truncate from'../../../src-web/util/truncate'
 
 describe('truncate middle', () => {
   it('should truncate string as expected', () => {

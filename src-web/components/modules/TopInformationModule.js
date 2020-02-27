@@ -352,12 +352,12 @@ export default class TopInformationModule extends React.Component {
     switch(type) {
     case 'findings':
       switch(index) {
-      case 1:
-        value = 'clusters'
-        break
       case 0:
-      default:
         value = 'findings'
+        break
+      case 1:
+      default:
+        value = 'clusters'
         break
       }
       // here is updating OverviewView view states, we still need to keep two kinds of view states there
@@ -372,15 +372,15 @@ export default class TopInformationModule extends React.Component {
     case 'policies':
     default:
       switch(index) {
+      case 0:
+        value = 'policies'
+        break
       case 1:
         value = 'clusters'
         break
       case 2:
-        value = 'applications'
-        break
-      case 0:
       default:
-        value = 'policies'
+        value = 'applications'
         break
       }
       // here is updating OverviewView view states, we still need to keep two kinds of view states there

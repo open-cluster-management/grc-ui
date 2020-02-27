@@ -242,36 +242,11 @@ exports[`TopInformationModule clusters view with application renders as expected
 exports[`TopInformationModule clusters view with application renders as expected 2`] = `
 Array [
   Object {
-    "choice": "policies",
-    "count": 2,
+    "choice": "EMPTY_CHOICE",
     "description": Array [
-      "cluster1",
-      "clusterhub",
+      "We will continue to monitor and display any policy violations so you can easily find them here.",
     ],
-    "itemName": "policy-comp",
-    "name": "compliance-all",
-    "nameSpace": "mcm",
-  },
-  Object {
-    "choice": "policies",
-    "count": 2,
-    "description": Array [
-      "cluster1",
-      "clusterhub",
-    ],
-    "itemName": "policy-pod",
-    "name": "policy-pod",
-    "nameSpace": "mcm",
-  },
-  Object {
-    "choice": "policies",
-    "count": 1,
-    "description": Array [
-      "cluster1",
-    ],
-    "itemName": "policy-ma",
-    "name": "policy-ma",
-    "nameSpace": "mcm",
+    "name": "No other policy violations",
   },
 ]
 `;
@@ -534,36 +509,11 @@ exports[`TopInformationModule clusters view without application renders as expec
 exports[`TopInformationModule clusters view without application renders as expected 2`] = `
 Array [
   Object {
-    "choice": "policies",
-    "count": 2,
+    "choice": "EMPTY_CHOICE",
     "description": Array [
-      "cluster1",
-      "clusterhub",
+      "We will continue to monitor and display any policy violations so you can easily find them here.",
     ],
-    "itemName": "policy-comp",
-    "name": "compliance-all",
-    "nameSpace": "mcm",
-  },
-  Object {
-    "choice": "policies",
-    "count": 2,
-    "description": Array [
-      "cluster1",
-      "clusterhub",
-    ],
-    "itemName": "policy-pod",
-    "name": "policy-pod",
-    "nameSpace": "mcm",
-  },
-  Object {
-    "choice": "policies",
-    "count": 1,
-    "description": Array [
-      "cluster1",
-    ],
-    "itemName": "policy-ma",
-    "name": "policy-ma",
-    "nameSpace": "mcm",
+    "name": "No other policy violations",
   },
 ]
 `;
@@ -1320,11 +1270,7 @@ exports[`TopInformationModule policies view with application renders as expected
     >
       <div>
         <div
-          className="information-card-container single-strip"
-          onClick={[Function]}
-          onKeyPress={[Function]}
-          role="button"
-          tabIndex={0}
+          className="information-card-container single-strip empty-strip"
         >
           <div
             className="information-card-content"
@@ -1333,121 +1279,29 @@ exports[`TopInformationModule policies view with application renders as expected
               className="card-inner-content"
             >
               <div
-                className="card-informations"
+                className="card-informations empty"
               >
-                <div
-                  className="card-information-count"
-                >
-                  2
-                </div>
+                <img
+                  alt="No resource"
+                  className="empty-icon"
+                  src="undefined/graphics/no-other-violations.svg"
+                />
               </div>
               <div
                 className="card-name-description"
               >
                 <div
-                  className="card-name name-clickable"
+                  className="card-name name-empty"
                 >
-                  1558374675051-policy-pod
+                  No other policy violations
                 </div>
                 <div
-                  className="card-description description-clickable"
+                  className="card-description description-empty"
                 >
                   <div
                     className="LinesEllipsis  "
                   >
-                    cluster1, clusterhub
-                    <wbr />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div
-          className="information-card-container single-strip"
-          onClick={[Function]}
-          onKeyPress={[Function]}
-          role="button"
-          tabIndex={0}
-        >
-          <div
-            className="information-card-content"
-          >
-            <div
-              className="card-inner-content"
-            >
-              <div
-                className="card-informations"
-              >
-                <div
-                  className="card-information-count"
-                >
-                  2
-                </div>
-              </div>
-              <div
-                className="card-name-description"
-              >
-                <div
-                  className="card-name name-clickable"
-                >
-                  1558382034240-policy-pod
-                </div>
-                <div
-                  className="card-description description-clickable"
-                >
-                  <div
-                    className="LinesEllipsis  "
-                  >
-                    cluster1, clusterhub
-                    <wbr />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div
-          className="information-card-container single-strip"
-          onClick={[Function]}
-          onKeyPress={[Function]}
-          role="button"
-          tabIndex={0}
-        >
-          <div
-            className="information-card-content"
-          >
-            <div
-              className="card-inner-content"
-            >
-              <div
-                className="card-informations"
-              >
-                <div
-                  className="card-information-count"
-                >
-                  2
-                </div>
-              </div>
-              <div
-                className="card-name-description"
-              >
-                <div
-                  className="card-name name-clickable"
-                >
-                  policy-pod
-                </div>
-                <div
-                  className="card-description description-clickable"
-                >
-                  <div
-                    className="LinesEllipsis  "
-                  >
-                    cluster1, clusterhub
+                    We will continue to monitor and display any policy violations so you can easily find them here.
                     <wbr />
                   </div>
                 </div>
@@ -1464,37 +1318,11 @@ exports[`TopInformationModule policies view with application renders as expected
 exports[`TopInformationModule policies view with application renders as expected 2`] = `
 Array [
   Object {
-    "choice": "policies",
-    "count": 2,
+    "choice": "EMPTY_CHOICE",
     "description": Array [
-      "cluster1",
-      "clusterhub",
+      "We will continue to monitor and display any policy violations so you can easily find them here.",
     ],
-    "itemName": "1558374675051-policy-pod",
-    "name": "1558374675051-policy-pod",
-    "nameSpace": "mcm",
-  },
-  Object {
-    "choice": "policies",
-    "count": 2,
-    "description": Array [
-      "cluster1",
-      "clusterhub",
-    ],
-    "itemName": "1558382034240-policy-pod",
-    "name": "1558382034240-policy-pod",
-    "nameSpace": "mcm",
-  },
-  Object {
-    "choice": "policies",
-    "count": 2,
-    "description": Array [
-      "cluster1",
-      "clusterhub",
-    ],
-    "itemName": "policy-pod",
-    "name": "policy-pod",
-    "nameSpace": "mcm",
+    "name": "No other policy violations",
   },
 ]
 `;
@@ -1660,11 +1488,7 @@ exports[`TopInformationModule policies view without application renders as expec
     >
       <div>
         <div
-          className="information-card-container single-strip"
-          onClick={[Function]}
-          onKeyPress={[Function]}
-          role="button"
-          tabIndex={0}
+          className="information-card-container single-strip empty-strip"
         >
           <div
             className="information-card-content"
@@ -1673,121 +1497,29 @@ exports[`TopInformationModule policies view without application renders as expec
               className="card-inner-content"
             >
               <div
-                className="card-informations"
+                className="card-informations empty"
               >
-                <div
-                  className="card-information-count"
-                >
-                  2
-                </div>
+                <img
+                  alt="No resource"
+                  className="empty-icon"
+                  src="undefined/graphics/no-other-violations.svg"
+                />
               </div>
               <div
                 className="card-name-description"
               >
                 <div
-                  className="card-name name-clickable"
+                  className="card-name name-empty"
                 >
-                  1558374675051-policy-pod
+                  No other policy violations
                 </div>
                 <div
-                  className="card-description description-clickable"
+                  className="card-description description-empty"
                 >
                   <div
                     className="LinesEllipsis  "
                   >
-                    cluster1, clusterhub
-                    <wbr />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div
-          className="information-card-container single-strip"
-          onClick={[Function]}
-          onKeyPress={[Function]}
-          role="button"
-          tabIndex={0}
-        >
-          <div
-            className="information-card-content"
-          >
-            <div
-              className="card-inner-content"
-            >
-              <div
-                className="card-informations"
-              >
-                <div
-                  className="card-information-count"
-                >
-                  2
-                </div>
-              </div>
-              <div
-                className="card-name-description"
-              >
-                <div
-                  className="card-name name-clickable"
-                >
-                  1558382034240-policy-pod
-                </div>
-                <div
-                  className="card-description description-clickable"
-                >
-                  <div
-                    className="LinesEllipsis  "
-                  >
-                    cluster1, clusterhub
-                    <wbr />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div
-          className="information-card-container single-strip"
-          onClick={[Function]}
-          onKeyPress={[Function]}
-          role="button"
-          tabIndex={0}
-        >
-          <div
-            className="information-card-content"
-          >
-            <div
-              className="card-inner-content"
-            >
-              <div
-                className="card-informations"
-              >
-                <div
-                  className="card-information-count"
-                >
-                  2
-                </div>
-              </div>
-              <div
-                className="card-name-description"
-              >
-                <div
-                  className="card-name name-clickable"
-                >
-                  policy-pod
-                </div>
-                <div
-                  className="card-description description-clickable"
-                >
-                  <div
-                    className="LinesEllipsis  "
-                  >
-                    cluster1, clusterhub
+                    We will continue to monitor and display any policy violations so you can easily find them here.
                     <wbr />
                   </div>
                 </div>
@@ -1804,37 +1536,11 @@ exports[`TopInformationModule policies view without application renders as expec
 exports[`TopInformationModule policies view without application renders as expected 2`] = `
 Array [
   Object {
-    "choice": "policies",
-    "count": 2,
+    "choice": "EMPTY_CHOICE",
     "description": Array [
-      "cluster1",
-      "clusterhub",
+      "We will continue to monitor and display any policy violations so you can easily find them here.",
     ],
-    "itemName": "1558374675051-policy-pod",
-    "name": "1558374675051-policy-pod",
-    "nameSpace": "mcm",
-  },
-  Object {
-    "choice": "policies",
-    "count": 2,
-    "description": Array [
-      "cluster1",
-      "clusterhub",
-    ],
-    "itemName": "1558382034240-policy-pod",
-    "name": "1558382034240-policy-pod",
-    "nameSpace": "mcm",
-  },
-  Object {
-    "choice": "policies",
-    "count": 2,
-    "description": Array [
-      "cluster1",
-      "clusterhub",
-    ],
-    "itemName": "policy-pod",
-    "name": "policy-pod",
-    "nameSpace": "mcm",
+    "name": "No other policy violations",
   },
 ]
 `;
