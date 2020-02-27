@@ -3171,7 +3171,7 @@ exports[`GrcView component 7 renders as expected 1`] = `
           <a
             aria-describedby="launchWindow"
             className="doc-link"
-            href="https://www.ibm.com/support/knowledgecenter/SSBS6K_undefined/mcm/compliance/compliance_intro.html"
+            href="https://www-03preprod.ibm.com/support/knowledgecenter/SSBS6K_undefined/mcm/compliance/compliance_intro.html"
             target="doc"
           >
             View documentation
@@ -3215,7 +3215,7 @@ exports[`GrcView component 8 renders as expected 1`] = `
           <a
             aria-describedby="launchWindow"
             className="doc-link"
-            href="https://www.ibm.com/support/knowledgecenter/SSBS6K_undefined/mcm/compliance/compliance_intro.html"
+            href="https://www-03preprod.ibm.com/support/knowledgecenter/SSBS6K_undefined/mcm/compliance/compliance_intro.html"
             target="doc"
           >
             View documentation

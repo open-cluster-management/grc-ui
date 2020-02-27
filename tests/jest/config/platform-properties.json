@@ -160,6 +160,7 @@
   "overview.top.informations.title.policies.clusters": "Clusters",
   "overview.recent.activity.title": "Recent activity",
   "overview.recent.activity.title.nofinding": "Recent top violation",
+  "overview.top": "informations.title.count = {0} total violations",
   "overview.top.findings.title": "Top 3 security findings",
   "overview.impacted.controls.all": "All",
   "overview.impacted.controls.filtered": "All filtered",
