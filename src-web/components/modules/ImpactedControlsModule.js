@@ -597,7 +597,7 @@ class ImpactedControlsModule extends React.Component {
   }
 
   getCardData = () => {
-    const { policies, findings } = this.props
+    const { policies, findings, showFindings } = this.props
     const { activeFilters: {standards:filteredStandards=new Set()} } = this.props
     const { availableFilters: {standards: {availableSet:availableStandards}} } = this.props
     let {viewState: {standardsChoice='ALL'}} = this.props
@@ -693,7 +693,12 @@ class ImpactedControlsModule extends React.Component {
     // only show controls that have both violations and findings
     variables = _.uniqWith(variables, _.isEqual)
       .filter(({key})=>{
-        return violationsByControls[key] && findingsByControls[key]
+        if( showFindings === false){
+          return violationsByControls[key]
+        }
+        else{
+          return violationsByControls[key] && findingsByControls[key]
+        }
       })
 
     // create radar data
