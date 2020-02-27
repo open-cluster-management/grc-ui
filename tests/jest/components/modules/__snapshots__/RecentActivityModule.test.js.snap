@@ -1214,7 +1214,7 @@ exports[`RecentActivityModule view without applications renders as expected 1`] 
                       <img
                         alt="No resource"
                         className="empty-icon"
-                        src="undefined/policies/graphics/no-other-violations.svg"
+                        src="undefined/graphics/no-other-violations.svg"
                       />
                     </div>
                     <div
