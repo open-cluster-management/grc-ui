@@ -528,11 +528,6 @@ class ImpactedControlsModule extends React.Component {
           {tooltipList.map(({count, findingType}) => {
             let label, className = ''
             switch (findingType) {
-            case SECURITY_TYPES.HIGH:
-            default:
-              label = msgs.get('overview.recent.activity.severity.high', locale)
-              className = 'high'
-              break
             case SECURITY_TYPES.MEDIUM:
               label = msgs.get('overview.recent.activity.severity.medium', locale)
               className = 'medium'
@@ -545,21 +540,26 @@ class ImpactedControlsModule extends React.Component {
               label = msgs.get('overview.recent.activity.finding.type.violations', locale)
               className = 'high'
               break
+            case SECURITY_TYPES.HIGH:
+            default:
+              label = msgs.get('overview.recent.activity.severity.high', locale)
+              className = 'high'
+              break
             }
             let page = ''
             const paraURL = {}
             switch(setMap[setKey].label.toUpperCase()) {
-            case 'POLICY VIOLATIONS':
-            default:
-              page = 'all'
-              paraURL.index = 0
-              break
             case 'SECURITY FINDINGS':
               page = 'findings'
               paraURL.index = 0
               //Here we can't directly set GRC_FILTER_STATE_COOKIE, 'severity', if so then loop will store
               //all possible severity level rather than the clicked one. URL para seems the only solution
               paraURL.severity = _.startCase(className.toLowerCase())
+              break
+            case 'POLICY VIOLATIONS':
+            default:
+              page = 'all'
+              paraURL.index = 0
               break
             }
             if(variableMap[variableKey].label){

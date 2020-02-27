@@ -40,19 +40,32 @@ export class GrcToggleModule extends React.Component {
     const grcTabSwitcher = showGrcTabToggle ? this.renderTabSwitcher(displayType, grcTabToggleIndex) : []
     let detailsTabs, resourceType, listData, staticResourceData, getVisibleResources, placeHolderText, autoAction
     switch (displayType) {
+    case 'findings':
+      switch (grcTabToggleIndex){
+      case 1:
+        detailsTabs = ['cluster-findings']
+        resourceType = RESOURCE_TYPES.HCM_CLUSTER_FINDINGS
+        listData = formatFindingsToClustersTableData(grcItems)
+        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_CLUSTER_FINDINGS)
+        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_CLUSTER_FINDINGS)
+        placeHolderText = msgs.get('tabs.grc.toggle.clusterFindings.placeHolderText', locale)
+        autoAction = 'table.actions.finding.sidepanel'
+        break
+      case 0:
+      default:
+        detailsTabs = ['findings']
+        resourceType = RESOURCE_TYPES.HCM_SECURITY_FINDINGS
+        listData = grcItems
+        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_SECURITY_FINDINGS)
+        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_SECURITY_FINDINGS)
+        placeHolderText = msgs.get('tabs.grc.toggle.securityFindings.placeHolderText', locale)
+        autoAction = 'table.actions.finding.sidepanel'
+        break
+      }
+      break
     case 'all':
     default:
       switch (grcTabToggleIndex){
-      case 0:
-      default:
-        detailsTabs = ['policies']
-        resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_POLICY
-        listData = formatExpandablePolicies(grcItems)
-        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
-        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
-        placeHolderText = msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)
-        autoAction = 'table.actions.policy.sidepanel'
-        break
       case 1:
         detailsTabs = ['clusters']
         resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER
@@ -71,28 +84,15 @@ export class GrcToggleModule extends React.Component {
         placeHolderText = msgs.get('tabs.grc.toggle.applications.placeHolderText', locale)
         autoAction = 'table.actions.policy.sidepanel'
         break
-      }
-      break
-    case 'findings':
-      switch (grcTabToggleIndex){
       case 0:
       default:
-        detailsTabs = ['findings']
-        resourceType = RESOURCE_TYPES.HCM_SECURITY_FINDINGS
-        listData = grcItems
-        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_SECURITY_FINDINGS)
-        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_SECURITY_FINDINGS)
-        placeHolderText = msgs.get('tabs.grc.toggle.securityFindings.placeHolderText', locale)
-        autoAction = 'table.actions.finding.sidepanel'
-        break
-      case 1:
-        detailsTabs = ['cluster-findings']
-        resourceType = RESOURCE_TYPES.HCM_CLUSTER_FINDINGS
-        listData = formatFindingsToClustersTableData(grcItems)
-        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_CLUSTER_FINDINGS)
-        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_CLUSTER_FINDINGS)
-        placeHolderText = msgs.get('tabs.grc.toggle.clusterFindings.placeHolderText', locale)
-        autoAction = 'table.actions.finding.sidepanel'
+        detailsTabs = ['policies']
+        resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_POLICY
+        listData = formatExpandablePolicies(grcItems)
+        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
+        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
+        placeHolderText = msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)
+        autoAction = 'table.actions.policy.sidepanel'
         break
       }
       break
@@ -129,15 +129,15 @@ export class GrcToggleModule extends React.Component {
     const { showApplications } = this.props
     let toggleText1, toggleText2, toggleText3
     switch(displayType) {
+    case 'findings':
+      toggleText1 = msgs.get('tabs.grc.toggle.securityFindings', locale)
+      toggleText2 = msgs.get('tabs.grc.toggle.clusterFindings', locale)
+      break
     case 'all':
     default:
       toggleText1 = msgs.get('tabs.grc.toggle.allPolicies', locale)
       toggleText2 = msgs.get('tabs.grc.toggle.clusterViolations', locale)
       toggleText3 = msgs.get('tabs.grc.toggle.policiesApplications', locale)
-      break
-    case 'findings':
-      toggleText1 = msgs.get('tabs.grc.toggle.securityFindings', locale)
-      toggleText2 = msgs.get('tabs.grc.toggle.clusterFindings', locale)
       break
     }
     return (

@@ -35,12 +35,12 @@ export class SecondaryHeader extends React.Component {
     const displayType = location.pathname.split('/').pop()
     let showCreationLink
     switch(displayType) {
+    case 'findings':
+      showCreationLink = false
+      break
     case 'all':
     default:
       showCreationLink = true
-      break
-    case 'findings':
-      showCreationLink = false
       break
     }
     if ((tabs && tabs.length > 0) || (breadcrumbItems && breadcrumbItems.length > 0)) {

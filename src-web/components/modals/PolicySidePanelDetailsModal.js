@@ -34,21 +34,6 @@ function getHeader(data, locale) {
   const kind = _.get(data, 'kind', '')
   let header = '', descr = '', percent = 0, violation = '0/0', query, queryPara, hubNamespace
   switch (kind) {
-  case 'HCMPolicyPolicy':
-  default: {
-    header = _.get(data, 'raw.metadata.name', '')
-    descr = _.get(data, 'raw.metadata.description', '')
-    violation = _.get(data, 'clusterCompliant', '0/0')
-    hubNamespace = _.get(data, 'namespace')
-    const [vioNum, totalNum] = violation.split('/')
-    if (!isNaN(vioNum) && !isNaN(totalNum)) {
-      percent = +vioNum / +totalNum
-    }
-    violation += ' ' + msgs.get('overview.top.informations.clusters', locale)
-    queryPara = {policy:data.name, hubNamespace:hubNamespace}
-    query = AllClustersInPolicy
-    break
-  }
   case 'HCMPolicyCluster': {
     header = _.get(data, 'cluster', '')
     descr = _.get(data, '', '')
@@ -71,7 +56,23 @@ function getHeader(data, locale) {
     queryPara = {violatedPolicies:data.violatedPolicies}
     query = AllPoliciesInApplication
     break
-  }}
+  }
+  case 'HCMPolicyPolicy':
+  default: {
+    header = _.get(data, 'raw.metadata.name', '')
+    descr = _.get(data, 'raw.metadata.description', '')
+    violation = _.get(data, 'clusterCompliant', '0/0')
+    hubNamespace = _.get(data, 'namespace')
+    const [vioNum, totalNum] = violation.split('/')
+    if (!isNaN(vioNum) && !isNaN(totalNum)) {
+      percent = +vioNum / +totalNum
+    }
+    violation += ' ' + msgs.get('overview.top.informations.clusters', locale)
+    queryPara = {policy:data.name, hubNamespace:hubNamespace}
+    query = AllClustersInPolicy
+    break
+  }
+  }
   return {header, kind, descr, percent, violation, query, queryPara}
 }
 
@@ -153,15 +154,6 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
                   let filterSidePanelItems = []
                   const staticResourceData = getResourceDefinitions(resourceType)
                   switch (kind) {
-                  case 'HCMPolicyPolicy':
-                  default: {
-                    if (showFilterInfo) {
-                      filterSidePanelItems = filterPolicies(items, activeFilters, locale, 'policy.metadata.annotations')}
-                    else { filterSidePanelItems = items }
-                    return (
-                      <PoliciesTable items={filterSidePanelItems} staticResourceData={staticResourceData.policyViolatedSidePanel} inapplicable={inapplicable} />
-                    )
-                  }
                   case 'HCMPolicyCluster': {
                     if (showFilterInfo) {
                       filterSidePanelItems = filterPolicies(items, activeFilters, locale, 'metadata.annotations')}
@@ -175,7 +167,17 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
                     return (
                       <ClustersOrApplicationsTable items={items} staticResourceData={staticResourceData.applicationViolatedSidePanel} inapplicable={inapplicable} />
                     )
-                  }}
+                  }
+                  case 'HCMPolicyPolicy':
+                  default: {
+                    if (showFilterInfo) {
+                      filterSidePanelItems = filterPolicies(items, activeFilters, locale, 'policy.metadata.annotations')}
+                    else { filterSidePanelItems = items }
+                    return (
+                      <PoliciesTable items={filterSidePanelItems} staticResourceData={staticResourceData.policyViolatedSidePanel} inapplicable={inapplicable} />
+                    )
+                  }
+                  }
                 }
                 }
               </Query>

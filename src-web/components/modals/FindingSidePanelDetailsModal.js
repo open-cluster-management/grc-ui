@@ -101,6 +101,15 @@ class FindingSidePanelDetailsModal extends React.PureComponent {
 
   renderTable = (activeFilters, showFilterInfo, kind, data, resourceType, inapplicable, locale) => {
     switch (kind.toLowerCase()) {
+    case 'hcmclusterfindings': {
+      if (showFilterInfo && data.findingsUnderCluster) {
+        data.findingsUnderCluster = filterFindings(data.findingsUnderCluster, activeFilters, locale)}
+      return (
+        <div className={'bx--modal-content-body'}>
+          <ClusterFindingsTable items={data} type={resourceType} inapplicable={inapplicable} locale={locale} />
+        </div>
+      )
+    }
     case 'hcmsecurityfindings':
     default: {
       if (showFilterInfo) {
@@ -114,15 +123,7 @@ class FindingSidePanelDetailsModal extends React.PureComponent {
         </div>
       )
     }
-    case 'hcmclusterfindings': {
-      if (showFilterInfo && data.findingsUnderCluster) {
-        data.findingsUnderCluster = filterFindings(data.findingsUnderCluster, activeFilters, locale)}
-      return (
-        <div className={'bx--modal-content-body'}>
-          <ClusterFindingsTable items={data} type={resourceType} inapplicable={inapplicable} locale={locale} />
-        </div>
-      )
-    }}
+    }
   }
 
   onClose = () => {
