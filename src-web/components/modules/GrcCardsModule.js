@@ -134,6 +134,7 @@ export class GrcCardsModule extends React.Component {
       const annotations = _.get(policy, 'metadata.annotations', {}) || {}
       switch (grcCardChoice) {
       case GrcCardsSelections.categories:
+      default:
         types = annotations['policy.mcm.ibm.com/categories'] || ''
         key = 'categories'
         break
@@ -262,6 +263,7 @@ export class GrcCardsModule extends React.Component {
       const securityClassification = _.get(finding, 'securityClassification', {}) || {}
       switch (grcCardChoice) {
       case GrcCardsSelections.categories:
+      default:
         types = securityClassification['securityCategories'] || ''
         key = 'categories'
         break
