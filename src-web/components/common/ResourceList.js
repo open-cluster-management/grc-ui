@@ -34,7 +34,7 @@ class ResourceList extends React.Component {
   }
 
   componentWillMount() {
-    const { updateSecondaryHeader, tabs, title, links, information, fetchResources, listData } = this.props
+    const { tabs, title, links, information, fetchResources, listData } = this.props
     updateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
     fetchResources(listData)
   }
@@ -298,7 +298,6 @@ ResourceList.propTypes = {
   topButton: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   totalFilteredItems: PropTypes.number,
   updateBrowserURL: PropTypes.func,
-  updateSecondaryHeader: PropTypes.func,
 }
 
 //diff than original updateBrowserURL in mcm-ui pageWithUrlQuery

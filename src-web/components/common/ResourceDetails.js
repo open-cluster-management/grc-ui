@@ -120,14 +120,14 @@ class ResourceDetails extends React.Component {
   }
 
   componentWillMount() {
-    const { updateSecondaryHeader, tabs, launch_links, match, refreshControl } = this.props, params = match && match.params
+    const { tabs, launch_links, match, refreshControl } = this.props, params = match && match.params
     updateSecondaryHeader(params.name, getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(), launch_links)
     refreshControl.stopPolling()
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location !== this.props.location) {
-      const { updateSecondaryHeader, tabs, launch_links, match } = this.props, params = match && match.params
+      const { tabs, launch_links, match } = this.props, params = match && match.params
       updateSecondaryHeader(params.name, getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(nextProps.location), launch_links)
     }
   }
@@ -218,7 +218,6 @@ ResourceDetails.propTypes = {
   routes: PropTypes.array,
   staticResourceData: PropTypes.object,
   tabs: PropTypes.array,
-  updateSecondaryHeader: PropTypes.func,
 }
 
 const mapDispatchToProps = dispatch => {

@@ -227,7 +227,7 @@ export default class ResourceFilterView extends React.Component {
     return <div className={'filter-sections-scrollbar'} style={finalStyle} {...props} />
   }
 
-  getSectionData(key, availableFilters, activeSet=new Set(), locale) {
+  getSectionData(key, availableFilters, locale, activeSet=new Set()) {
     const {name, availableSet} = availableFilters
     const multipleChoices = availableSet.size>1
     const other=msgs.get('overview.grc.overview.other', locale)

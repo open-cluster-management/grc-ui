@@ -35,7 +35,6 @@ class PolicyClusterDetail extends React.Component {
     location: PropTypes.object,
     params: PropTypes.object,
     resourceType: PropTypes.object,
-    updateSecondaryHeader: PropTypes.func,
   }
 
   static defaultProps = {
@@ -51,7 +50,6 @@ class PolicyClusterDetail extends React.Component {
   }
 
   componentWillMount() {
-    const { updateSecondaryHeader} = this.props
     updateSecondaryHeader(this.getPolicyName(true), null, this.getBreadcrumb())
   }
 
