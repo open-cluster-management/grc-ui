@@ -157,8 +157,9 @@ export class GrcCardsModule extends React.Component {
           }
           const filtered = activeFilters[key] &&  activeFilters[key].size>0 && !activeFilters[key].has(name)
           if (!filtered) {
-            if (!dataMap[name]) {
-              dataMap[name] = {
+            let data = dataMap[name]
+            if (!data) {
+              dataMap[name] = data = {
                 name,
                 rawName: type,
                 choice: grcCardChoice,
@@ -293,8 +294,9 @@ export class GrcCardsModule extends React.Component {
           }
           const filtered = activeFilters[key] &&  activeFilters[key].size>0 && !activeFilters[key].has(name)
           if (!filtered) {
-            if (!dataMap[name]) {
-              dataMap[name] = {
+            let data = dataMap[name]
+            if (!data) {
+              dataMap[name] = data = {
                 name,
                 rawName: type,
                 choice: grcCardChoice,
