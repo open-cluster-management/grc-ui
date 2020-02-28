@@ -266,12 +266,12 @@ export default class TemplateEditor extends React.Component {
     let placeholder = ph
     if (active.length>0) {
       const activeKeys = []
-      active.forEach(activeKey=>{
-        if (typeof availableMap ==='object' && availableMap[activeKey]) {
-          const {availableName} = availableMap[activeKey]
-          activeKeys.push(availableName||activeKey)
+      active.forEach(key=>{
+        if (typeof availableMap ==='object' && availableMap[key]) {
+          const {name} = availableMap[key]
+          activeKeys.push(name||key)
         } else {
-          activeKeys.push(activeKey)
+          activeKeys.push(key)
         }
       })
       placeholder = activeKeys.join(', ')

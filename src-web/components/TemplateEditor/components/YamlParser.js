@@ -100,7 +100,6 @@ class YamlParser {
         } else {
           if (this.isDefined(values.leadspaces) &&
                       ' ' == values.leadspaces &&
-                      // I got the meaning of this line but I hate this way, I will write it later after mo
                       (matches = new RegExp('^(' + YamlInline.REGEX_QUOTED_STRING + '|[^ \'"{[].*?) *:(\\s+(.+?))?\\s*$').exec(values.value))) {
             matches = {
               key: matches[1],
@@ -1217,7 +1216,6 @@ class YamlInline {
     }
     var a = function(i) {
       var o = (i[2] && i[2] === 'ago')
-      // what is the hell of this line meaning? Anyone who got it please rewrite
       var n = (n = i[0] === 'last' ? -1 : 1) * (o ? -1 : 1)
       switch (i[0]) {
       case 'last':
