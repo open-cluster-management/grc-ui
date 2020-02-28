@@ -64,7 +64,7 @@ class PolicyTemplates extends React.Component {
   }
 
   handleSubmitClick() {
-    const { editResource, resourceType, resourceData, resourcePath } = this.props
+    const {resourceType, resourceData, resourcePath } = this.props
     const { yaml }  = this.state
     let resource
     try {
@@ -146,7 +146,6 @@ PolicyTemplates.contextTypes = {
 
 PolicyTemplates.propTypes = {
   className: PropTypes.string,
-  editResource: PropTypes.func,
   editable: PropTypes.bool,
   headerKey: PropTypes.string,
   reqErrorMsg: PropTypes.string,

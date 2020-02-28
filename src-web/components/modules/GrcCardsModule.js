@@ -159,7 +159,7 @@ export class GrcCardsModule extends React.Component {
           if (!filtered) {
             let data = dataMap[name]
             if (!data) {
-              data = dataMap[name]= {
+              dataMap[name] = data = {
                 name,
                 rawName: type,
                 choice: grcCardChoice,
@@ -296,7 +296,7 @@ export class GrcCardsModule extends React.Component {
           if (!filtered) {
             let data = dataMap[name]
             if (!data) {
-              data = dataMap[name]= {
+              dataMap[name] = data = {
                 name,
                 rawName: type,
                 choice: grcCardChoice,

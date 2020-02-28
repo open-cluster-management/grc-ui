@@ -12,10 +12,8 @@
 import React from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { ROLES } from '../../lib/shared/constants'
 import loadable from 'loadable-components'
 import config from '../../lib/shared/config'
-import withAccess from '../components/common/withAccess'
 
 export const OverviewTab = loadable(() => import(/* webpackChunkName: "overview" */ './OverviewTab'))
 export const PoliciesTab = loadable(() => import(/* webpackChunkName: "policies" */ './PoliciesTab'))

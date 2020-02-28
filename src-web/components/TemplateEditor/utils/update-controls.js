@@ -19,6 +19,7 @@ export const initializeControlData = (template, initialControlData) =>{
 
     // if checkbox, convert active from an item name to a boolean
     if (type==='checkbox') {
+      // why > rather than >=, need to confirm with John later
       control.active = available.indexOf(active)>0
     }
 
@@ -37,6 +38,7 @@ export const initializeControlData = (template, initialControlData) =>{
       const { available } = control
       control.availableMap = {}
       let labelSort = false
+      // where is this available defined? Line 18 or Line 38?
       control.available = available.map(choice=>{
         let availableKey
         const {key, value, name, description} = choice
@@ -116,9 +118,11 @@ const updateTextControl = (control, reverse, newParsed) => {
 const updateCheckboxControl = (control, reverse, newParsed) => {
   const newActive = _.get(newParsed, reverse[0])
   if (typeof newActive == 'boolean') {
+    // why > rather than >=, need to confirm with John later
     control.active = control.available.indexOf(newActive.toString())>0
   }
   else {
+    // why > rather than >=, need to confirm with John later
     control.active = control.available.indexOf(newActive)>0
   }
 }
