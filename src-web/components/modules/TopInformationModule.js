@@ -190,9 +190,9 @@ export default class TopInformationModule extends React.Component {
               itemName= _.get(item, 'raw.spec.runtime-rules[0].metadata.name', name)
               break
             }
-            let data = dataMap[name]
-            if (!data) {
-              dataMap[name] = data = {
+
+            if (!dataMap[name]) {
+              dataMap[name] = {
                 name,
                 description: [],
                 count: 0,
@@ -201,8 +201,8 @@ export default class TopInformationModule extends React.Component {
                 itemName
               }
             }
-            data.description.push(description)
-            data.count++
+            dataMap[name].description.push(description)
+            dataMap[name].count++
           }
         })
       })
@@ -218,9 +218,8 @@ export default class TopInformationModule extends React.Component {
           const nameSpace = _.get(application, 'namespace', 'unknown')
           const itemName = name
 
-          let data = dataMap[name]
-          if (!data) {
-            dataMap[name] = data = {
+          if (!dataMap[name]) {
+            dataMap[name] = {
               name,
               description: [],
               count: 0,
@@ -234,8 +233,8 @@ export default class TopInformationModule extends React.Component {
           if (violatedPolicies) {
             violatedPolicies.map(violatedPolicy=>{
               if (violatedPolicy.name) {
-                data.description.push(violatedPolicy.name)
-                data.count++
+                dataMap[name].description.push(violatedPolicy.name)
+                dataMap[name].count++
               }
             })
           }
@@ -278,9 +277,9 @@ export default class TopInformationModule extends React.Component {
           nameSpace = _.get(item, 'context.namespaceName', 'unknown')
           break
         }
-        let data = dataMap[name]
-        if (!data) {
-          dataMap[name] = data = {
+
+        if (!dataMap[name]) {
+          dataMap[name] = {
             name,
             description: [],
             count: 0,
@@ -289,8 +288,8 @@ export default class TopInformationModule extends React.Component {
             itemName
           }
         }
-        data.description.push(description)
-        data.count++
+        dataMap[name].description.push(description)
+        dataMap[name].count++
       })
       break
     }
