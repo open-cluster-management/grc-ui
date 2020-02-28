@@ -104,12 +104,12 @@ export class GrcCardsModule extends React.Component {
         {cardData.map((data) => {
           let renderCard
           switch(displayType) {
+          case 'findings':
+            renderCard = <FindingCard key={data.name} data={data} locale={locale} handleClick={handleDrillDownClick} />
+            break
           case 'all':
           default:
             renderCard = <PolicyCard key={data.name} data={data} locale={locale} handleClick={handleDrillDownClick} />
-            break
-          case 'findings':
-            renderCard = <FindingCard key={data.name} data={data} locale={locale} handleClick={handleDrillDownClick} />
             break
           }
           return renderCard
@@ -262,14 +262,14 @@ export class GrcCardsModule extends React.Component {
       let types, key
       const securityClassification = _.get(finding, 'securityClassification', {}) || {}
       switch (grcCardChoice) {
+      case GrcCardsSelections.standards:
+        types = securityClassification['securityStandards'] || ''
+        key = 'standards'
+        break
       case GrcCardsSelections.categories:
       default:
         types = securityClassification['securityCategories'] || ''
         key = 'categories'
-        break
-      case GrcCardsSelections.standards:
-        types = securityClassification['securityStandards'] || ''
-        key = 'standards'
         break
       }
       // backward compatible and if user doesn't supply securityClassification
