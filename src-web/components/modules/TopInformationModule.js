@@ -251,12 +251,12 @@ export default class TopInformationModule extends React.Component {
     case 'policies':
       switch (topInfoChoice) {
       case TopInformationSelections.policies:
-      case TopInformationSelections.applications:
-        this.getApplicationsDataMap(dataMap, applications)
-        break
       case TopInformationSelections.clusters:
       default:
         this.getPoliciesAndClustersDataMap(dataMap, items, topInfoChoice)
+        break
+      case TopInformationSelections.applications:
+        this.getApplicationsDataMap(dataMap, applications)
         break
       }
       break
@@ -264,17 +264,17 @@ export default class TopInformationModule extends React.Component {
       items.map(item=>{
         let name, description, choice, nameSpace, itemName
         switch (topInfoChoice) {
-        case TopInformationSelections.clusters:
-          name = _.get(item, 'context.clusterName', 'unknown')
-          description = _.get(item, 'shortDescription', 'unknown')
-          choice = msgs.get('overview.top.informations.finding.clusters').toLowerCase()
-          nameSpace = _.get(item, 'context.namespaceName', 'unknown')
-          break
         case TopInformationSelections.findings:
         default:
           name = _.get(item, 'shortDescription', 'unknown')
           description = _.get(item, 'context.clusterName', 'unknown')
           choice = msgs.get('overview.top.informations.findings').toLowerCase()
+          nameSpace = _.get(item, 'context.namespaceName', 'unknown')
+          break
+        case TopInformationSelections.clusters:
+          name = _.get(item, 'context.clusterName', 'unknown')
+          description = _.get(item, 'shortDescription', 'unknown')
+          choice = msgs.get('overview.top.informations.finding.clusters').toLowerCase()
           nameSpace = _.get(item, 'context.namespaceName', 'unknown')
           break
         }
@@ -350,37 +350,18 @@ export default class TopInformationModule extends React.Component {
     const { items, applications, type } = this.props
     let value = ''
     switch(type) {
-    case 'findings':
-      switch(index) {
-      case 1:
-        value = 'clusters'
-        break
-      case 0:
-      default:
-        value = 'findings'
-        break
-      }
-      // here is updating OverviewView view states, we still need to keep two kinds of view states there
-      this.props.updateViewState({topFindingChoice: value})
-      this.setState(()=>{
-        // here is updating local TopInformationModule view states
-        return {topInfoChoice: value}
-      }, () => {
-        this.setCardData(items, null, type)
-      })
-      break
     case 'policies':
     default:
       switch(index) {
+      case 0:
+      default:
+        value = 'policies'
+        break
       case 1:
         value = 'clusters'
         break
       case 2:
         value = 'applications'
-        break
-      case 0:
-      default:
-        value = 'policies'
         break
       }
       // here is updating OverviewView view states, we still need to keep two kinds of view states there
@@ -390,6 +371,25 @@ export default class TopInformationModule extends React.Component {
         return {topInfoChoice: value}
       }, () => {
         this.setCardData(items, applications, type)
+      })
+      break
+    case 'findings':
+      switch(index) {
+      case 0:
+      default:
+        value = 'findings'
+        break
+      case 1:
+        value = 'clusters'
+        break
+      }
+      // here is updating OverviewView view states, we still need to keep two kinds of view states there
+      this.props.updateViewState({topFindingChoice: value})
+      this.setState(()=>{
+        // here is updating local TopInformationModule view states
+        return {topInfoChoice: value}
+      }, () => {
+        this.setCardData(items, null, type)
       })
       break
     }

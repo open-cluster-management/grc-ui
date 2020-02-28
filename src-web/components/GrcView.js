@@ -76,12 +76,12 @@ export class GrcView extends React.Component {
 
       let availableGrcFilters
       switch(displayType) {
-      case 'findings':
-        availableGrcFilters = getAvailableGrcFilters([], grcItems, locale)
-        break
       case 'all':
       default:
         availableGrcFilters = getAvailableGrcFilters(grcItems, [], locale)
+        break
+      case 'findings':
+        availableGrcFilters = getAvailableGrcFilters([], grcItems, locale)
         break
       }
       updateResourceToolbar(refreshControl, availableGrcFilters)
@@ -130,23 +130,6 @@ export class GrcView extends React.Component {
     const displayType = location.pathname.split('/').pop()
     let filterGrcItems, filterToEmpty = false
     switch(displayType) {
-    case 'findings':
-      if ((!grcItems || grcItems.length === 0) && !loading) {
-        return (
-          <NoResource
-            title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
-            detail={msgs.get('no-resource.detail.item', locale)}>
-            {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
-          </NoResource>
-        )
-      }
-      else {
-        filterGrcItems = filterFindings(grcItems, activeFilters, locale)
-        if (grcItems.length > 0 && filterGrcItems.length == 0) {
-          filterToEmpty = true
-        }
-      }
-      break
     case 'all':
     default:
       if ((!grcItems || grcItems.length === 0) && !loading) {
@@ -160,6 +143,23 @@ export class GrcView extends React.Component {
       }
       else {
         filterGrcItems = filterPolicies(grcItems, activeFilters, locale, 'metadata.annotations')
+        if (grcItems.length > 0 && filterGrcItems.length == 0) {
+          filterToEmpty = true
+        }
+      }
+      break
+    case 'findings':
+      if ((!grcItems || grcItems.length === 0) && !loading) {
+        return (
+          <NoResource
+            title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
+            detail={msgs.get('no-resource.detail.item', locale)}>
+            {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+          </NoResource>
+        )
+      }
+      else {
+        filterGrcItems = filterFindings(grcItems, activeFilters, locale)
         if (grcItems.length > 0 && filterGrcItems.length == 0) {
           filterToEmpty = true
         }
