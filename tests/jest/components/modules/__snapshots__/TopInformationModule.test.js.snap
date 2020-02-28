@@ -874,33 +874,15 @@ Array [
 exports[`TopInformationModule findings clusters view renders as expected 4`] = `
 Array [
   Object {
-    "choice": "finding clusters",
-    "count": 1,
+    "choice": "security findings",
+    "count": 3,
     "description": Array [
-      "Policy that is not compliant",
+      "mycluster_name",
+      "cluster1",
+      "clusterhub",
     ],
     "itemName": undefined,
-    "name": "mycluster_name",
-    "nameSpace": "kube-system",
-  },
-  Object {
-    "choice": "finding clusters",
-    "count": 1,
-    "description": Array [
-      "Policy that is not compliant",
-    ],
-    "itemName": undefined,
-    "name": "cluster1",
-    "nameSpace": "kube-system",
-  },
-  Object {
-    "choice": "finding clusters",
-    "count": 1,
-    "description": Array [
-      "Policy that is not compliant",
-    ],
-    "itemName": undefined,
-    "name": "clusterhub",
+    "name": "Policy that is not compliant",
     "nameSpace": "kube-system",
   },
 ]
@@ -1130,33 +1112,15 @@ Array [
 exports[`TopInformationModule findings view renders as expected 4`] = `
 Array [
   Object {
-    "choice": "finding clusters",
-    "count": 1,
+    "choice": "security findings",
+    "count": 3,
     "description": Array [
-      "Policy that is not compliant",
+      "mycluster_name",
+      "cluster1",
+      "clusterhub",
     ],
     "itemName": undefined,
-    "name": "mycluster_name",
-    "nameSpace": "kube-system",
-  },
-  Object {
-    "choice": "finding clusters",
-    "count": 1,
-    "description": Array [
-      "Policy that is not compliant",
-    ],
-    "itemName": undefined,
-    "name": "cluster1",
-    "nameSpace": "kube-system",
-  },
-  Object {
-    "choice": "finding clusters",
-    "count": 1,
-    "description": Array [
-      "Policy that is not compliant",
-    ],
-    "itemName": undefined,
-    "name": "clusterhub",
+    "name": "Policy that is not compliant",
     "nameSpace": "kube-system",
   },
 ]
