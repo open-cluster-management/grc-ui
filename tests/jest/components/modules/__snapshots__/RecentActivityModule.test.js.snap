@@ -284,7 +284,11 @@ exports[`RecentActivityModule view with applications renders as expected 1`] = `
           >
             <div>
               <div
-                className="information-card-container single-strip empty-strip"
+                className="information-card-container single-strip"
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                role="button"
+                tabIndex={0}
               >
                 <div
                   className="information-card-content"
@@ -293,29 +297,121 @@ exports[`RecentActivityModule view with applications renders as expected 1`] = `
                     className="card-inner-content"
                   >
                     <div
-                      className="card-informations empty"
+                      className="card-informations"
                     >
-                      <img
-                        alt="No resource"
-                        className="empty-icon"
-                        src="undefined/graphics/no-other-violations.svg"
-                      />
+                      <div
+                        className="card-information-count"
+                      >
+                        2
+                      </div>
                     </div>
                     <div
                       className="card-name-description"
                     >
                       <div
-                        className="card-name name-empty"
+                        className="card-name name-clickable"
                       >
-                        No other policy violations
+                        compliance-all
                       </div>
                       <div
-                        className="card-description description-empty"
+                        className="card-description description-clickable"
                       >
                         <div
                           className="LinesEllipsis  "
                         >
-                          We will continue to monitor and display any policy violations so you can easily find them here.
+                          cluster1, clusterhub
+                          <wbr />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                className="information-card-container single-strip"
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                role="button"
+                tabIndex={0}
+              >
+                <div
+                  className="information-card-content"
+                >
+                  <div
+                    className="card-inner-content"
+                  >
+                    <div
+                      className="card-informations"
+                    >
+                      <div
+                        className="card-information-count"
+                      >
+                        2
+                      </div>
+                    </div>
+                    <div
+                      className="card-name-description"
+                    >
+                      <div
+                        className="card-name name-clickable"
+                      >
+                        policy-pod
+                      </div>
+                      <div
+                        className="card-description description-clickable"
+                      >
+                        <div
+                          className="LinesEllipsis  "
+                        >
+                          cluster1, clusterhub
+                          <wbr />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                className="information-card-container single-strip"
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                role="button"
+                tabIndex={0}
+              >
+                <div
+                  className="information-card-content"
+                >
+                  <div
+                    className="card-inner-content"
+                  >
+                    <div
+                      className="card-informations"
+                    >
+                      <div
+                        className="card-information-count"
+                      >
+                        1
+                      </div>
+                    </div>
+                    <div
+                      className="card-name-description"
+                    >
+                      <div
+                        className="card-name name-clickable"
+                      >
+                        policy-ma
+                      </div>
+                      <div
+                        className="card-description description-clickable"
+                      >
+                        <div
+                          className="LinesEllipsis  "
+                        >
+                          cluster1
                           <wbr />
                         </div>
                       </div>
@@ -482,6 +578,48 @@ exports[`RecentActivityModule view with applications renders as expected 1`] = `
                           className="LinesEllipsis  "
                         >
                           mycluster_name, cluster1, clusterhub
+                          <wbr />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                className="information-card-container single-strip empty-strip"
+              >
+                <div
+                  className="information-card-content"
+                >
+                  <div
+                    className="card-inner-content"
+                  >
+                    <div
+                      className="card-informations empty"
+                    >
+                      <img
+                        alt="No resource"
+                        className="empty-icon"
+                        src="undefined/graphics/no-other-violations.svg"
+                      />
+                    </div>
+                    <div
+                      className="card-name-description"
+                    >
+                      <div
+                        className="card-name name-empty"
+                      >
+                        No other security findings
+                      </div>
+                      <div
+                        className="card-description description-empty"
+                      >
+                        <div
+                          className="LinesEllipsis  "
+                        >
+                          We will continue to monitor and display any security findings so you can easily find them here.
                           <wbr />
                         </div>
                       </div>
@@ -758,7 +896,11 @@ exports[`RecentActivityModule view without applications renders as expected 1`] 
           >
             <div>
               <div
-                className="information-card-container single-strip empty-strip"
+                className="information-card-container single-strip"
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                role="button"
+                tabIndex={0}
               >
                 <div
                   className="information-card-content"
@@ -767,29 +909,121 @@ exports[`RecentActivityModule view without applications renders as expected 1`] 
                     className="card-inner-content"
                   >
                     <div
-                      className="card-informations empty"
+                      className="card-informations"
                     >
-                      <img
-                        alt="No resource"
-                        className="empty-icon"
-                        src="undefined/graphics/no-other-violations.svg"
-                      />
+                      <div
+                        className="card-information-count"
+                      >
+                        2
+                      </div>
                     </div>
                     <div
                       className="card-name-description"
                     >
                       <div
-                        className="card-name name-empty"
+                        className="card-name name-clickable"
                       >
-                        No other policy violations
+                        compliance-all
                       </div>
                       <div
-                        className="card-description description-empty"
+                        className="card-description description-clickable"
                       >
                         <div
                           className="LinesEllipsis  "
                         >
-                          We will continue to monitor and display any policy violations so you can easily find them here.
+                          cluster1, clusterhub
+                          <wbr />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                className="information-card-container single-strip"
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                role="button"
+                tabIndex={0}
+              >
+                <div
+                  className="information-card-content"
+                >
+                  <div
+                    className="card-inner-content"
+                  >
+                    <div
+                      className="card-informations"
+                    >
+                      <div
+                        className="card-information-count"
+                      >
+                        2
+                      </div>
+                    </div>
+                    <div
+                      className="card-name-description"
+                    >
+                      <div
+                        className="card-name name-clickable"
+                      >
+                        policy-pod
+                      </div>
+                      <div
+                        className="card-description description-clickable"
+                      >
+                        <div
+                          className="LinesEllipsis  "
+                        >
+                          cluster1, clusterhub
+                          <wbr />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                className="information-card-container single-strip"
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                role="button"
+                tabIndex={0}
+              >
+                <div
+                  className="information-card-content"
+                >
+                  <div
+                    className="card-inner-content"
+                  >
+                    <div
+                      className="card-informations"
+                    >
+                      <div
+                        className="card-information-count"
+                      >
+                        1
+                      </div>
+                    </div>
+                    <div
+                      className="card-name-description"
+                    >
+                      <div
+                        className="card-name name-clickable"
+                      >
+                        policy-ma
+                      </div>
+                      <div
+                        className="card-description description-clickable"
+                      >
+                        <div
+                          className="LinesEllipsis  "
+                        >
+                          cluster1
                           <wbr />
                         </div>
                       </div>
@@ -956,6 +1190,48 @@ exports[`RecentActivityModule view without applications renders as expected 1`] 
                           className="LinesEllipsis  "
                         >
                           mycluster_name, cluster1, clusterhub
+                          <wbr />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                className="information-card-container single-strip empty-strip"
+              >
+                <div
+                  className="information-card-content"
+                >
+                  <div
+                    className="card-inner-content"
+                  >
+                    <div
+                      className="card-informations empty"
+                    >
+                      <img
+                        alt="No resource"
+                        className="empty-icon"
+                        src="undefined/graphics/no-other-violations.svg"
+                      />
+                    </div>
+                    <div
+                      className="card-name-description"
+                    >
+                      <div
+                        className="card-name name-empty"
+                      >
+                        No other security findings
+                      </div>
+                      <div
+                        className="card-description description-empty"
+                      >
+                        <div
+                          className="LinesEllipsis  "
+                        >
+                          We will continue to monitor and display any security findings so you can easily find them here.
                           <wbr />
                         </div>
                       </div>

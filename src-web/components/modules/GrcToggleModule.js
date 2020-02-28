@@ -42,17 +42,7 @@ export class GrcToggleModule extends React.Component {
     switch (displayType) {
     case 'findings':
       switch (grcTabToggleIndex){
-      case 0:
-        detailsTabs = ['findings']
-        resourceType = RESOURCE_TYPES.HCM_SECURITY_FINDINGS
-        listData = grcItems
-        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_SECURITY_FINDINGS)
-        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_SECURITY_FINDINGS)
-        placeHolderText = msgs.get('tabs.grc.toggle.securityFindings.placeHolderText', locale)
-        autoAction = 'table.actions.finding.sidepanel'
-        break
       case 1:
-      default:
         detailsTabs = ['cluster-findings']
         resourceType = RESOURCE_TYPES.HCM_CLUSTER_FINDINGS
         listData = formatFindingsToClustersTableData(grcItems)
@@ -61,20 +51,21 @@ export class GrcToggleModule extends React.Component {
         placeHolderText = msgs.get('tabs.grc.toggle.clusterFindings.placeHolderText', locale)
         autoAction = 'table.actions.finding.sidepanel'
         break
+      case 0:
+      default:
+        detailsTabs = ['findings']
+        resourceType = RESOURCE_TYPES.HCM_SECURITY_FINDINGS
+        listData = grcItems
+        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_SECURITY_FINDINGS)
+        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_SECURITY_FINDINGS)
+        placeHolderText = msgs.get('tabs.grc.toggle.securityFindings.placeHolderText', locale)
+        autoAction = 'table.actions.finding.sidepanel'
+        break
       }
       break
     case 'all':
     default:
       switch (grcTabToggleIndex){
-      case 0:
-        detailsTabs = ['policies']
-        resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_POLICY
-        listData = formatExpandablePolicies(grcItems)
-        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
-        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
-        placeHolderText = msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)
-        autoAction = 'table.actions.policy.sidepanel'
-        break
       case 1:
         detailsTabs = ['clusters']
         resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER
@@ -85,13 +76,22 @@ export class GrcToggleModule extends React.Component {
         autoAction = 'table.actions.policy.sidepanel'
         break
       case 2:
-      default:
         detailsTabs = ['applications']
         resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_APPLICATION
         listData = formatApplicationTableData(applications)
         staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_APPLICATION)
         getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_APPLICATION)
         placeHolderText = msgs.get('tabs.grc.toggle.applications.placeHolderText', locale)
+        autoAction = 'table.actions.policy.sidepanel'
+        break
+      case 0:
+      default:
+        detailsTabs = ['policies']
+        resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_POLICY
+        listData = formatExpandablePolicies(grcItems)
+        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
+        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
+        placeHolderText = msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)
         autoAction = 'table.actions.policy.sidepanel'
         break
       }

@@ -63,7 +63,7 @@ export class GrcView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {refreshControl, grcItems} = nextProps
+    const {refreshControl, grcItems, updateActiveFilters, updateResourceToolbar} = nextProps
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(grcItems, this.props.grcItems)) {
       const { locale } = this.context
@@ -227,6 +227,7 @@ export class GrcView extends React.Component {
     //step 1 add activeFilters when click GrcCardsModule
     //here for severity level, will not update filter here but just update url
     //then acutally update it in componentWillReceiveProps()
+    const {updateActiveFilters} = this.props
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})//loadash recursively deep clone
     let activeSet
     if (value) { //add non-null grc-card filter
@@ -275,6 +276,8 @@ GrcView.propTypes = {
   refreshControl: PropTypes.object,
   secondaryHeaderProps: PropTypes.object,
   showApplications: PropTypes.bool,
+  updateActiveFilters: PropTypes.func,
+  updateResourceToolbar: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {

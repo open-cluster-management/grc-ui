@@ -68,7 +68,7 @@ export class OverviewView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {refreshControl, policies, findings} = nextProps
+    const {refreshControl, policies, findings, updateActiveFilters, updateResourceToolbar} = nextProps
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(policies, this.props.policies)) {
       const { locale } = this.context
@@ -246,6 +246,8 @@ OverviewView.propTypes = {
   policies: PropTypes.array,
   refreshControl: PropTypes.object,
   showApplications: PropTypes.bool,
+  updateActiveFilters: PropTypes.func,
+  updateResourceToolbar: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {

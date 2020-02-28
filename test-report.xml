@@ -523,7 +523,7 @@
     <testCase name="uiconfig reducer should return undefined state" duration="0"/>
     <testCase name="uiconfig reducer should return undefined state" duration="0"/>
   </file>
-  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/util/truncate.test.js">
+  <file path="/Users/ycao/dev/open-cluster-management/grc-ui/tests/jest/util/truncate-middle.test.js">
     <testCase name="truncate middle should truncate string as expected" duration="2"/>
     <testCase name="truncate middle should truncate string as expected" duration="0"/>
     <testCase name="truncate middle should truncate string as expected" duration="4"/>

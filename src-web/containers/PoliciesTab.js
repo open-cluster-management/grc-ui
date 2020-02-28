@@ -30,6 +30,7 @@ class PoliciesTab extends React.Component {
   static propTypes = {
     secondaryHeaderProps: PropTypes.object,
     showApplications: PropTypes.bool,
+    updateSecondaryHeader: PropTypes.func,
   }
 
   constructor (props) {
@@ -38,7 +39,7 @@ class PoliciesTab extends React.Component {
   }
 
   componentWillMount() {
-    const { secondaryHeaderProps } = this.props
+    const { updateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, links, information } = secondaryHeaderProps
     updateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
   }
@@ -50,10 +51,10 @@ class PoliciesTab extends React.Component {
     return (
       <Page>
         <Query query={HCMComplianceList} pollInterval={pollInterval} notifyOnNetworkStatusChange >
-          {( complianceResult ) => {
-            const {complianceData={}, loading, startPolling, stopPolling, refetch} = complianceResult
-            const { items } = complianceData
-            const error = items ? null : complianceResult.error
+          {( result ) => {
+            const {data={}, loading, startPolling, stopPolling, refetch} = result
+            const { items } = data
+            const error = items ? null : result.error
             const firstLoad = this.firstLoad
             this.firstLoad = false
             const reloading = !firstLoad && loading
@@ -70,10 +71,10 @@ class PoliciesTab extends React.Component {
             return (
               showApplications ?
                 <Query query={HCMApplicationList} pollInterval={pollInterval} client={apolloClient.getSearchClient()} notifyOnNetworkStatusChange >
-                  {( applicationResult ) => {
-                    const {applicationData={}} = applicationResult
-                    const { applications } = applicationData
-                    const searchError = applications ? null : applicationResult.error
+                  {( result ) => {
+                    const {data={}} = result
+                    const { applications } = data
+                    const searchError = applications ? null : result.error
                     return (
                       <GrcView
                         showApplications={showApplications}
