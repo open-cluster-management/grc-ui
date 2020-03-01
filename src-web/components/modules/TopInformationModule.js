@@ -143,7 +143,7 @@ export default class TopInformationModule extends React.Component {
 
   renderHeader() {
     const { locale } = this.context
-    const { type } = this.props
+    const { type, showApplications } = this.props
     const choice = this.state.topInfoChoice
     let choices = []
     switch(type) {
@@ -165,7 +165,7 @@ export default class TopInformationModule extends React.Component {
           <Tabs selected={idx} onSelectionChange={this.onChange} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
             <Tab label={msgs.get(`overview.top.informations.${type}`, locale)} />
             <Tab label={msgs.get('overview.top.informations.clusters', locale)} />
-            {type==='policies' && <Tab label={msgs.get('overview.top.informations.applications', locale)} />}
+            {type==='policies' && showApplications && <Tab label={msgs.get('overview.top.informations.applications', locale)} />}
           </Tabs>
         </div>
       </div>

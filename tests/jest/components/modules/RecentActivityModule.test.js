@@ -14,7 +14,7 @@ import renderer from 'react-test-renderer'
 import { policiesTestingDataSet1, findingsTestingDataSet1 } from './ModuleTestingData'
 import RecentActivityModule from '../../../../src-web/components/modules/RecentActivityModule'
 
-describe('RecentActivityModule view with Security Findings', () => {
+describe('RecentActivityModule view with Security Findings and applications', () => {
   jest
     .spyOn(window, 'getComputedStyle')
     .mockImplementation(() => ({display: 'block', 'padding-right': '0.625rem'}))
@@ -27,6 +27,7 @@ describe('RecentActivityModule view with Security Findings', () => {
   it('renders as expected', () => {
     const component = renderer.create(<BrowserRouter><RecentActivityModule
       showFindings={showFindings}
+      showApplications={showApplications}
       policies={filteredPolicies}
       findings={filteredFindings}
       viewState={viewState}
@@ -36,7 +37,7 @@ describe('RecentActivityModule view with Security Findings', () => {
   })
 })
 
-describe('RecentActivityModule view without Security Findings', () => {
+describe('RecentActivityModule view without Security Findings and applications', () => {
   jest
     .spyOn(window, 'getComputedStyle')
     .mockImplementation(() => ({display: 'block', 'padding-right': '0.625rem'}))
@@ -49,6 +50,7 @@ describe('RecentActivityModule view without Security Findings', () => {
   it('renders as expected', () => {
     const component = renderer.create(<BrowserRouter><RecentActivityModule
       showFindings={showFindings}
+      showApplications={showApplications}
       policies={filteredPolicies}
       findings={filteredFindings}
       viewState={viewState}

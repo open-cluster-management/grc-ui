@@ -23,11 +23,13 @@ import GrcView from '../components/GrcView'
 import { updateSecondaryHeader } from '../actions/common'
 import { HCMComplianceList, HCMApplicationList } from '../../lib/client/queries'
 import msgs from '../../nls/platform.properties'
+import config from '../../lib/shared/config'
 
 class PoliciesTab extends React.Component {
 
   static propTypes = {
     secondaryHeaderProps: PropTypes.object,
+    showApplications: PropTypes.bool,
     updateSecondaryHeader: PropTypes.func,
   }
 
@@ -45,6 +47,7 @@ class PoliciesTab extends React.Component {
   render () {
     const { secondaryHeaderProps } = this.props
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
+    const showApplications = this.props.showApplications === undefined ? config['feature_applications'] : this.props.showApplications
     return (
       <Page>
         <Query query={HCMComplianceList} pollInterval={pollInterval} notifyOnNetworkStatusChange >
@@ -66,14 +69,15 @@ class PoliciesTab extends React.Component {
             }
 
             return (
-              <Query query={HCMApplicationList} pollInterval={pollInterval} client={apolloClient.getSearchClient()} notifyOnNetworkStatusChange >
-                {( result ) => {
-                  const {data={}} = result
-                  const { applications } = data
-                  const searchError = applications ? null : result.error
-                  return (
-                    <div>
+              showApplications ?
+                <Query query={HCMApplicationList} pollInterval={pollInterval} client={apolloClient.getSearchClient()} notifyOnNetworkStatusChange >
+                  {( result ) => {
+                    const {data={}} = result
+                    const { applications } = data
+                    const searchError = applications ? null : result.error
+                    return (
                       <GrcView
+                        showApplications={showApplications}
                         loading={!items && loading}
                         error={error}
                         searchError={searchError}
@@ -82,11 +86,19 @@ class PoliciesTab extends React.Component {
                         refreshControl={refreshControl}
                         secondaryHeaderProps={secondaryHeaderProps}
                       />
-                    </div>
-                  )
-                }
-                }
-              </Query>
+                    )
+                  }
+                  }
+                </Query>
+                :
+                <GrcView
+                  showApplications={showApplications}
+                  loading={!items && loading}
+                  error={error}
+                  grcItems={items}
+                  refreshControl={refreshControl}
+                  secondaryHeaderProps={secondaryHeaderProps}
+                />
             )
           }
           }

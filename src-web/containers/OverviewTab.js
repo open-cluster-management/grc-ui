@@ -30,6 +30,7 @@ class OverviewTab extends React.Component {
   static propTypes = {
     openDesModal: PropTypes.func,
     secondaryHeaderProps: PropTypes.object,
+    showApplications: PropTypes.bool,
     updateSecondaryHeader: PropTypes.func,
   }
 
@@ -54,6 +55,7 @@ class OverviewTab extends React.Component {
     const showFindings = config['feature_security-findings']
     const activeAccountId = (userpreferences && userpreferences.userPreferences) ? userpreferences.userPreferences.activeAccountId : ''
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
+    const showApplications = this.props.showApplications === undefined ? config['feature_applications'] : this.props.showApplications
     return (
       <Page>
         <Query query={showFindings ? GRCList : GRCListNoSA} variables={showFindings ? {userAccountID: activeAccountId} : null} pollInterval={pollInterval} notifyOnNetworkStatusChange >
@@ -78,29 +80,36 @@ class OverviewTab extends React.Component {
             }
 
             return (
-              <div>
+              showApplications ?
                 <Query query={HCMApplicationList} pollInterval={pollInterval} client={apolloClient.getSearchClient()} notifyOnNetworkStatusChange >
                   {( result ) => {
                     const {data={}} = result
                     const { applications } = data
                     const searchError = applications ? null : result.error
                     return (
-                      <div>
-                        <OverviewView
-                          loading={!policies && loading}
-                          error={error}
-                          searchError={searchError}
-                          applications = {applications}
-                          policies={policies}
-                          findings={findings}
-                          refreshControl={refreshControl}
-                        />
-                      </div>
+                      <OverviewView
+                        showApplications={showApplications}
+                        loading={!policies && loading}
+                        error={error}
+                        searchError={searchError}
+                        applications = {applications}
+                        policies={policies}
+                        findings={findings}
+                        refreshControl={refreshControl}
+                      />
                     )
                   }
                   }
                 </Query>
-              </div>
+                :
+                <OverviewView
+                  showApplications={showApplications}
+                  loading={!policies && loading}
+                  error={error}
+                  policies={policies}
+                  findings={findings}
+                  refreshControl={refreshControl}
+                />
             )
           }
           }

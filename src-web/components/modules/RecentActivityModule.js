@@ -89,7 +89,7 @@ export default class RecentActivityModule extends React.Component {
   render() {
     const { locale } = this.context
     const title = msgs.get('overview.recent.activity.title', locale)
-    const { handleDrillDownClick, viewState, policies, showFindings, findings, applications, updateViewState } = this.props
+    const { handleDrillDownClick, viewState, policies, showFindings, findings, applications, updateViewState, showApplications } = this.props
     const moduleData = this.getModuleData()
     return (
       <div className='module-recent-activity'>
@@ -115,6 +115,7 @@ export default class RecentActivityModule extends React.Component {
               threshold={this.state.threshold}
               updateThreshold={this.thresholdCallback}
               handleDrillDownClick={handleDrillDownClick}
+              showApplications={showApplications}
             />
             {showFindings ? <TopInformationModule
               type={'findings'}
@@ -331,6 +332,7 @@ RecentActivityModule.propTypes = {
   handleDrillDownClick: PropTypes.func,
   policies: PropTypes.array,
   showFindings: PropTypes.bool,
+  showApplications: PropTypes.bool,
   updateViewState: PropTypes.func,
   viewState: PropTypes.object,
 }

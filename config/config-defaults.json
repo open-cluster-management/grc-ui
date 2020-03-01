@@ -9,6 +9,7 @@
     "feature_searchRelated": false,
     "feature_search-api": true,
     "feature_security-findings": false,
+    "feature_applications": false,
     "featureFlags": {},
     "OAUTH2_CLIENT_ID": "",
     "OAUTH2_CLIENT_SECRET": "",

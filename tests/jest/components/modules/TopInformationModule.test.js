@@ -15,7 +15,7 @@ import { shallow } from 'enzyme'
 import { policiesTestingDataSet1, policiesTestingDataSet2, findingsTestingDataSet1 } from './ModuleTestingData'
 import TopInformationModule from '../../../../src-web/components/modules/TopInformationModule'
 
-describe('TopInformationModule clusters view', () => {
+describe('TopInformationModule clusters view without application', () => {
   jest
     .spyOn(window, 'getComputedStyle')
     .mockImplementation(() => ({display: 'block', 'padding-right': '0.625rem'}))
@@ -42,6 +42,7 @@ describe('TopInformationModule clusters view', () => {
       <TopInformationModule
         viewState={'clusters'}
         type='policies'
+        showApplications={false}
         updateViewState={updateViewState}
         updateThreshold={updateThreshold}
         items={filteredPolicies}
@@ -53,7 +54,47 @@ describe('TopInformationModule clusters view', () => {
   })
 })
 
-describe('TopInformationModule policies view', () => {
+describe('TopInformationModule clusters view with application', () => {
+  jest
+    .spyOn(window, 'getComputedStyle')
+    .mockImplementation(() => ({display: 'block', 'padding-right': '0.625rem'}))
+  const activeFilters = {activeFilters:{}}
+  const updateThreshold = jest.fn()
+  const updateViewState = jest.fn()
+  const handleDrillDownClick = jest.fn()
+  const filteredPolicies = policiesTestingDataSet1
+  it('renders as expected', () => {
+    const component = renderer.create(
+      <BrowserRouter>
+        <TopInformationModule
+          viewState={'clusters'}
+          type='policies'
+          showApplications={true}
+          updateViewState={updateViewState}
+          updateThreshold={updateThreshold}
+          items={filteredPolicies}
+          activeFilters={activeFilters}
+          handleDrillDownClick={handleDrillDownClick} />
+      </BrowserRouter>)
+    expect(component.toJSON()).toMatchSnapshot()
+
+    const wrapper = shallow(
+      <TopInformationModule
+        viewState={'clusters'}
+        type='policies'
+        showApplications={true}
+        updateViewState={updateViewState}
+        updateThreshold={updateThreshold}
+        items={filteredPolicies}
+        activeFilters={activeFilters}
+        handleDrillDownClick={handleDrillDownClick} />)
+    expect(wrapper.instance().onChange(0)).toMatchSnapshot()
+    expect(wrapper.instance().onChange(1)).toMatchSnapshot()
+    expect(wrapper.instance().onChange(2)).toMatchSnapshot()
+  })
+})
+
+describe('TopInformationModule policies view without application', () => {
   jest
     .spyOn(window, 'getComputedStyle')
     .mockImplementation(() => ({display: 'block', 'padding-right': '0.625rem'}))
@@ -80,6 +121,46 @@ describe('TopInformationModule policies view', () => {
       <TopInformationModule
         viewState={'policies'}
         type='policies'
+        updateThreshold={updateThreshold}
+        updateViewState={updateViewState}
+        items={filteredPolicies}
+        activeFilters={activeFilters}
+        handleDrillDownClick={handleDrillDownClick} />)
+    expect(wrapper.instance().onChange(0)).toMatchSnapshot()
+    expect(wrapper.instance().onChange(1)).toMatchSnapshot()
+    expect(wrapper.instance().onChange(2)).toMatchSnapshot()
+  })
+})
+
+describe('TopInformationModule policies view with application', () => {
+  jest
+    .spyOn(window, 'getComputedStyle')
+    .mockImplementation(() => ({display: 'block', 'padding-right': '0.625rem'}))
+  const activeFilters = {activeFilters:{}}
+  const updateThreshold = jest.fn()
+  const updateViewState = jest.fn()
+  const handleDrillDownClick = jest.fn()
+  const filteredPolicies = policiesTestingDataSet2
+  it('renders as expected', () => {
+    const component = renderer.create(
+      <BrowserRouter>
+        <TopInformationModule
+          viewState={'policies'}
+          type='policies'
+          showApplications={true}
+          updateThreshold={updateThreshold}
+          updateViewState={updateViewState}
+          items={filteredPolicies}
+          activeFilters={activeFilters}
+          handleDrillDownClick={handleDrillDownClick} />
+      </BrowserRouter>)
+    expect(component.toJSON()).toMatchSnapshot()
+
+    const wrapper = shallow(
+      <TopInformationModule
+        viewState={'policies'}
+        type='policies'
+        showApplications={true}
         updateThreshold={updateThreshold}
         updateViewState={updateViewState}
         items={filteredPolicies}
