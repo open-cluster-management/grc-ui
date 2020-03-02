@@ -19,6 +19,7 @@ describe('RecentActivityModule view with Security Findings and applications', ()
     .spyOn(window, 'getComputedStyle')
     .mockImplementation(() => ({display: 'block', 'padding-right': '0.625rem'}))
   const showFindings = true
+  const showApplications = true
   const handleDrillDownClick = jest.fn()
   const filteredPolicies = policiesTestingDataSet1
   const filteredFindings = findingsTestingDataSet1
@@ -42,6 +43,7 @@ describe('RecentActivityModule view without Security Findings and applications',
     .spyOn(window, 'getComputedStyle')
     .mockImplementation(() => ({display: 'block', 'padding-right': '0.625rem'}))
   const showFindings = false
+  const showApplications = false
   const handleDrillDownClick = jest.fn()
   const filteredPolicies = policiesTestingDataSet1
   const filteredFindings = findingsTestingDataSet1

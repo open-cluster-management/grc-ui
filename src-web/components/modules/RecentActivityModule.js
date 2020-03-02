@@ -331,8 +331,8 @@ RecentActivityModule.propTypes = {
   findings: PropTypes.array,
   handleDrillDownClick: PropTypes.func,
   policies: PropTypes.array,
-  showFindings: PropTypes.bool,
   showApplications: PropTypes.bool,
+  showFindings: PropTypes.bool,
   updateViewState: PropTypes.func,
   viewState: PropTypes.object,
 }

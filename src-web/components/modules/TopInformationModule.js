@@ -574,6 +574,7 @@ TopInformationModule.propTypes = {
   hideFindings: PropTypes.bool,
   hideTabs: PropTypes.bool,
   items: PropTypes.array,
+  showApplications: PropTypes.bool,
   staticInfo: PropTypes.bool,
   threshold: PropTypes.number,
   type: PropTypes.string,
