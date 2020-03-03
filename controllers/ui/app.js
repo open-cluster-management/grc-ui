@@ -87,8 +87,7 @@ function fetchHeader(req, res, store, context) {
             <StaticRouter
               location={req.originalUrl}
               context={context}>
-              <App>
-              </App>
+              <App />
             </StaticRouter>
           </Provider>
         ),
