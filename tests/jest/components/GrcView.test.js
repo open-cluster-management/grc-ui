@@ -43,6 +43,7 @@ describe('GrcView component 1', () => {
             grcItems={GrcViewPolicyCluster}
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
+            showApplications={true}
           />
         </BrowserRouter>
       </Provider>

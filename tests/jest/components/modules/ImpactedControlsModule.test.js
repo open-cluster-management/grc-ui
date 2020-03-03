@@ -14,7 +14,8 @@ import renderer from 'react-test-renderer'
 import { policiesTestingDataSet1, findingsTestingDataSet1 } from './ModuleTestingData'
 import ImpactedControlsModule from '../../../../src-web/components/modules/ImpactedControlsModule'
 
-describe('ImpactedControlsModule view', () => {
+describe('ImpactedControlsModule view with Security Findings', () => {
+  const showFindings = true
   const viewState = {}
   const updateViewState = jest.fn()
   const handleDrillDownClick = jest.fn()
@@ -24,6 +25,30 @@ describe('ImpactedControlsModule view', () => {
   const availableFilters = {standards:{availableSet:{}}}
   it('renders as expected', () => {
     const component = renderer.create(<BrowserRouter><ImpactedControlsModule
+      showFindings={showFindings}
+      viewState={viewState}
+      updateViewState={updateViewState}
+      policies={filteredPolicies}
+      findings={filteredFindings}
+      activeFilters={activeFilters}
+      availableFilters={availableFilters}
+      handleDrillDownClick={handleDrillDownClick} /></BrowserRouter>)
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
+
+describe('ImpactedControlsModule view without Security Findings', () => {
+  const showFindings = false
+  const viewState = {}
+  const updateViewState = jest.fn()
+  const handleDrillDownClick = jest.fn()
+  const filteredPolicies = policiesTestingDataSet1
+  const filteredFindings = findingsTestingDataSet1
+  const activeFilters = {}
+  const availableFilters = {standards:{availableSet:{}}}
+  it('renders as expected', () => {
+    const component = renderer.create(<BrowserRouter><ImpactedControlsModule
+      showFindings={showFindings}
       viewState={viewState}
       updateViewState={updateViewState}
       policies={filteredPolicies}

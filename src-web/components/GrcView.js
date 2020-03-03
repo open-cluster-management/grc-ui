@@ -116,6 +116,7 @@ export class GrcView extends React.Component {
 
   render() {
     const { locale } = this.context
+    const showApplications = this.props.showApplications
     const { viewState } = this.state
     const { loading, error, grcItems, applications, activeFilters={}, secondaryHeaderProps, refreshControl, location } = this.props
     hideResourceToolbar()
@@ -192,6 +193,7 @@ export class GrcView extends React.Component {
           applications={applications}
           secondaryHeaderProps={secondaryHeaderProps}
           locale={locale}
+          showApplications={showApplications}
           grcTabToggleIndex={grcTabToggleIndex}
           showGrcTabToggle={showGrcTabToggle}
           highLightRowName={highLightRowName}
@@ -273,6 +275,7 @@ GrcView.propTypes = {
   location: PropTypes.object,
   refreshControl: PropTypes.object,
   secondaryHeaderProps: PropTypes.object,
+  showApplications: PropTypes.bool,
   updateActiveFilters: PropTypes.func,
   updateResourceToolbar: PropTypes.func,
 }

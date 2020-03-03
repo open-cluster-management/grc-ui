@@ -51,6 +51,11 @@
     padding: 0 1.25rem;
     height: 2.5rem;
 
+    .tag-fake-red {
+      background-color: $grc_fake_red_background;
+      color: $grc_fake_red;
+    }
+
     .header-title {
       width: 50%;
       font-size: 0.875rem;
@@ -170,6 +175,7 @@
        .card-inner-content {
          display: flex;
          width: 100%;
+         justify-content: flex-start;
 
           .card-informations {
             display: flex;

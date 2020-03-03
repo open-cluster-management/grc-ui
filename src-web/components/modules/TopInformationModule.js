@@ -14,7 +14,7 @@ import classNames from 'classnames'
 import resources from '../../../lib/shared/resources'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
-import { Tabs, Tab } from 'carbon-components-react'
+import { Tabs, Tab, Tag } from 'carbon-components-react'
 import LinesEllipsis from 'react-lines-ellipsis'
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC'
 import NoResource from '../common/NoResource'
@@ -54,12 +54,15 @@ export default class TopInformationModule extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const { staticInfo } = this.props
     //next items, type when update filter on current page
+    if(staticInfo === true) return
     const { items, applications, type } = nextProps
     this.setCardData(items, applications, type)
   }
 
   render() {
+    const { hideFindings, hideTabs } = this.props
     let cardData = this.state.cardData
     if (cardData.length > 0) {
       if (cardData.length > this.props.threshold) {
@@ -72,12 +75,22 @@ export default class TopInformationModule extends React.Component {
       cardData.push(this.getEmptyCardStatements())
     }
 
-    return (
-      <div className='module-top-information'>
-        {this.renderHeader()}
-        {this.renderCards(cardData)}
-      </div>
-    )
+    if( hideFindings === true) {
+      return (
+        <div className='module-top-information' style={{width:48+'%'}}>
+          { hideTabs ? this.renderHeaderWithoutTabs() : this.renderHeader() }
+          {this.renderCards(cardData)}
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className='module-top-information'>
+          {this.renderHeader()}
+          {this.renderCards(cardData)}
+        </div>
+      )
+    }
   }
 
   getEmptyCardStatements() {
@@ -130,7 +143,7 @@ export default class TopInformationModule extends React.Component {
 
   renderHeader() {
     const { locale } = this.context
-    const { type } = this.props
+    const { type, showApplications } = this.props
     const choice = this.state.topInfoChoice
     let choices = []
     switch(type) {
@@ -152,9 +165,21 @@ export default class TopInformationModule extends React.Component {
           <Tabs selected={idx} onSelectionChange={this.onChange} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
             <Tab label={msgs.get(`overview.top.informations.${type}`, locale)} />
             <Tab label={msgs.get('overview.top.informations.clusters', locale)} />
-            {type==='policies' && <Tab label={msgs.get('overview.top.informations.applications', locale)} />}
+            {type==='policies' && showApplications && <Tab label={msgs.get('overview.top.informations.applications', locale)} />}
           </Tabs>
         </div>
+      </div>
+    )
+  }
+
+  renderHeaderWithoutTabs() {
+    const { locale } = this.context
+    const { type, viewState, count } = this.props
+    const title = msgs.get(`overview.top.informations.title.${type}.${viewState}`, locale)
+    return (
+      <div className='header-container'>
+        <div className={'header-title'} style={{width:'auto', marginRight:'1rem'}}>{title}</div>
+        <Tag className='tag-fake-red' type={'community'}>{msgs.get('overview.top.informations.title.count', [count], locale)}</Tag>
       </div>
     )
   }
@@ -301,7 +326,10 @@ export default class TopInformationModule extends React.Component {
     })
 
     //send number of cards up to parent to calculate new card threshold
-    this.props.updateThreshold(cards.length, type)
+    const { staticInfo } = this.props
+    if( !staticInfo ){
+      this.props.updateThreshold(cards.length, type)
+    }
 
     // if less informations than threshold, add an empty card
     if (cards.length<this.props.threshold) {
@@ -541,8 +569,13 @@ TopInformations.propTypes = {
 
 TopInformationModule.propTypes = {
   applications: PropTypes.array,
+  count: PropTypes.number,
   handleDrillDownClick: PropTypes.func,
+  hideFindings: PropTypes.bool,
+  hideTabs: PropTypes.bool,
   items: PropTypes.array,
+  showApplications: PropTypes.bool,
+  staticInfo: PropTypes.bool,
   threshold: PropTypes.number,
   type: PropTypes.string,
   updateThreshold: PropTypes.func,

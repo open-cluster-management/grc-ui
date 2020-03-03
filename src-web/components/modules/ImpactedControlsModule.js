@@ -143,10 +143,14 @@ class ImpactedControlsModule extends React.Component {
 
   renderLegend() {
     const { locale } = this.context
-    const legend = [
+    const { showFindings } = this.props
+    const legend = showFindings ? [
       {title: msgs.get('overview.impacted.controls.legend.policies', locale), className: 'policies'},
       {title: msgs.get('overview.impacted.controls.legend.findings', locale), className: 'findings'},
+    ] : [
+      {title: msgs.get('overview.impacted.controls.legend.policies', locale), className: 'policies'},
     ]
+
     return (
       <div className='card-legend'>
         <div key={'key'} className='key' >{msgs.get('overview.impacted.controls.legend.key', locale)}</div>
@@ -593,7 +597,7 @@ class ImpactedControlsModule extends React.Component {
   }
 
   getCardData = () => {
-    const { policies, findings } = this.props
+    const { policies, findings, showFindings } = this.props
     const { activeFilters: {standards:filteredStandards=new Set()} } = this.props
     const { availableFilters: {standards: {availableSet:availableStandards}} } = this.props
     let {viewState: {standardsChoice='ALL'}} = this.props
@@ -689,7 +693,12 @@ class ImpactedControlsModule extends React.Component {
     // only show controls that have both violations and findings
     variables = _.uniqWith(variables, _.isEqual)
       .filter(({key})=>{
-        return violationsByControls[key] && findingsByControls[key]
+        if( showFindings === false){
+          return violationsByControls[key]
+        }
+        else{
+          return violationsByControls[key] && findingsByControls[key]
+        }
       })
 
     // create radar data
@@ -753,6 +762,7 @@ ImpactedControlsModule.propTypes = {
   history: PropTypes.object.isRequired,
   location: PropTypes.object,
   policies: PropTypes.array,
+  showFindings: PropTypes.bool,
   updateViewState: PropTypes.func,
   viewState: PropTypes.object,
 }

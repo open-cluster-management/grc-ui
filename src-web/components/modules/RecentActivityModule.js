@@ -89,7 +89,7 @@ export default class RecentActivityModule extends React.Component {
   render() {
     const { locale } = this.context
     const title = msgs.get('overview.recent.activity.title', locale)
-    const { handleDrillDownClick, viewState, policies, findings, applications, updateViewState } = this.props
+    const { handleDrillDownClick, viewState, policies, showFindings, findings, applications, updateViewState, showApplications } = this.props
     const moduleData = this.getModuleData()
     return (
       <div className='module-recent-activity'>
@@ -101,7 +101,7 @@ export default class RecentActivityModule extends React.Component {
             <div className='card-content'>
               <div className='card-inner-content'>
                 <Violations moduleData={moduleData} handleDrillDownClick={handleDrillDownClick} locale={locale} />
-                <Findings moduleData={moduleData} handleDrillDownClick={handleDrillDownClick} locale={locale} />
+                {showFindings ? <Findings moduleData={moduleData} handleDrillDownClick={handleDrillDownClick} locale={locale} /> : null}
               </div>
             </div>
           </div>
@@ -115,8 +115,9 @@ export default class RecentActivityModule extends React.Component {
               threshold={this.state.threshold}
               updateThreshold={this.thresholdCallback}
               handleDrillDownClick={handleDrillDownClick}
+              showApplications={showApplications}
             />
-            <TopInformationModule
+            {showFindings ? <TopInformationModule
               type={'findings'}
               viewState={viewState.topFindingChoice ? viewState.topFindingChoice : 'findings'}
               updateViewState={updateViewState}
@@ -124,7 +125,7 @@ export default class RecentActivityModule extends React.Component {
               threshold={this.state.threshold}
               updateThreshold={this.thresholdCallback}
               handleDrillDownClick={handleDrillDownClick}
-            />
+            /> : null}
           </div>
         </div>
       </div>
@@ -330,6 +331,8 @@ RecentActivityModule.propTypes = {
   findings: PropTypes.array,
   handleDrillDownClick: PropTypes.func,
   policies: PropTypes.array,
+  showApplications: PropTypes.bool,
+  showFindings: PropTypes.bool,
   updateViewState: PropTypes.func,
   viewState: PropTypes.object,
 }

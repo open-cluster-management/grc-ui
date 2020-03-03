@@ -18,6 +18,7 @@ import { filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcStat
 import { showResourceToolbar, hideResourceToolbar } from '../../lib/client/resource-helper'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
 import RecentActivityModule from './modules/RecentActivityModule'
+import RecentActivityModuleWithoutFindings from './modules/RecentActivityModuleWithoutFindings'
 import ImpactedControlsModule from './modules/ImpactedControlsModule'
 import PolicySummaryModule from './modules/PolicySummaryModule'
 import config from '../../lib/shared/config'
@@ -86,6 +87,7 @@ export class OverviewView extends React.Component {
 
   render() {
     const { locale } = this.context
+    const showFindings = config['feature_security-findings']
     const { loading, error, policies, findings, applications, activeFilters={} } = this.props
     hideResourceToolbar()
 
@@ -107,33 +109,67 @@ export class OverviewView extends React.Component {
     }
     showResourceToolbar()
     const { viewState } = this.state
+    const showApplications = this.props.showApplications
     const availableFilters =  getAvailableGrcFilters(policies, findings, locale)
     const filteredPolicies = filterPolicies(policies, activeFilters, locale, 'metadata.annotations')
     const filteredFindings = filterFindings(findings, activeFilters, locale)
     //need to filteredapplications later?
-    return (
-      <div className='overview-view'>
-        <ResourceFilterBar />
-        <RecentActivityModule
-          policies={filteredPolicies}
-          findings={filteredFindings}
-          applications={applications}
-          handleDrillDownClick={this.handleDrillDownClickOverview}
-          viewState={viewState}
-          updateViewState={this.updateViewState} />
-        <ImpactedControlsModule
-          viewState={viewState}
-          updateViewState={this.updateViewState}
-          policies={filteredPolicies}
-          findings={filteredFindings}
-          activeFilters={activeFilters}
-          availableFilters={availableFilters}
-          handleDrillDownClick={this.handleDrillDownClickOverview} />
-        <PolicySummaryModule
-          policies={filteredPolicies}
-          findings={filteredFindings} />
-      </div>
-    )
+    if(showFindings === false) {
+      return (
+        <div className='overview-view'>
+          <ResourceFilterBar />
+          <RecentActivityModuleWithoutFindings
+            showApplications={showApplications}
+            policies={filteredPolicies}
+            showFindings={showFindings}
+            findings={filteredFindings}
+            applications={applications}
+            handleDrillDownClick={this.handleDrillDownClickOverview}
+            viewState={viewState}
+            updateViewState={this.updateViewState} />
+          <ImpactedControlsModule
+            viewState={viewState}
+            updateViewState={this.updateViewState}
+            policies={filteredPolicies}
+            showFindings={showFindings}
+            findings={filteredFindings}
+            activeFilters={activeFilters}
+            availableFilters={availableFilters}
+            handleDrillDownClick={this.handleDrillDownClickOverview} />
+          <PolicySummaryModule
+            policies={filteredPolicies}
+            findings={filteredFindings} />
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className='overview-view'>
+          <ResourceFilterBar />
+          <RecentActivityModule
+            showApplications={showApplications}
+            policies={filteredPolicies}
+            showFindings={showFindings}
+            findings={filteredFindings}
+            applications={applications}
+            handleDrillDownClick={this.handleDrillDownClickOverview}
+            viewState={viewState}
+            updateViewState={this.updateViewState} />
+          <ImpactedControlsModule
+            viewState={viewState}
+            updateViewState={this.updateViewState}
+            policies={filteredPolicies}
+            showFindings={showFindings}
+            findings={filteredFindings}
+            activeFilters={activeFilters}
+            availableFilters={availableFilters}
+            handleDrillDownClick={this.handleDrillDownClickOverview} />
+          <PolicySummaryModule
+            policies={filteredPolicies}
+            findings={filteredFindings} />
+        </div>
+      )
+    }
   }
 
   updateViewState(states) {
@@ -243,6 +279,7 @@ OverviewView.propTypes = {
   location: PropTypes.object,
   policies: PropTypes.array,
   refreshControl: PropTypes.object,
+  showApplications: PropTypes.bool,
   updateActiveFilters: PropTypes.func,
   updateResourceToolbar: PropTypes.func,
 }

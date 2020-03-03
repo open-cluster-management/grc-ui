@@ -27,7 +27,7 @@ const location2 = {
   search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
 }
 
-describe('GrcToggle view', () => {
+describe('GrcToggle view without application', () => {
   it('renders expand as expected', () => {
     const component = shallow(
       <GrcToggleModule
@@ -35,6 +35,7 @@ describe('GrcToggle view', () => {
         grcItems={policiesTabModuleFilteredPolicies}
         secondaryHeaderProps={policiesTabModuleSecondaryHeaderProps}
         locale = {'en-US'}
+        showApplications={false}
         grcTabToggleIndex={0}
         showGrcTabToggle={true}
         highLightRowName={''}
@@ -49,6 +50,40 @@ describe('GrcToggle view', () => {
         grcItems={policiesTabModuleFilteredPolicies}
         secondaryHeaderProps={policiesTabModuleSecondaryHeaderProps}
         locale = {'en-US'}
+        showApplications={false}
+        grcTabToggleIndex={0}
+        showGrcTabToggle={false}
+        highLightRowName={''}
+        showSidePanel={false}
+      />)
+    expect(component).toMatchSnapshot()
+  })
+})
+
+describe('GrcToggle view with application', () => {
+  it('renders expand as expected', () => {
+    const component = shallow(
+      <GrcToggleModule
+        refreshControl = {policiesTabModuleRefreshControl}
+        grcItems={policiesTabModuleFilteredPolicies}
+        secondaryHeaderProps={policiesTabModuleSecondaryHeaderProps}
+        locale = {'en-US'}
+        showApplications={true}
+        grcTabToggleIndex={0}
+        showGrcTabToggle={true}
+        highLightRowName={''}
+        showSidePanel={false}
+      />)
+    expect(component).toMatchSnapshot()
+  })
+  it('renders expand as expected', () => {
+    const component = shallow(
+      <GrcToggleModule
+        refreshControl = {policiesTabModuleRefreshControl}
+        grcItems={policiesTabModuleFilteredPolicies}
+        secondaryHeaderProps={policiesTabModuleSecondaryHeaderProps}
+        locale = {'en-US'}
+        showApplications={true}
         grcTabToggleIndex={0}
         showGrcTabToggle={false}
         highLightRowName={''}
@@ -67,6 +102,7 @@ describe('GrcToggle view', () => {
         secondaryHeaderProps={policiesTabModuleSecondaryHeaderProps}
         locale = {'en-US'}
         grcTabToggleIndex={0}
+        showApplications={true}
         showGrcTabToggle={true}
         highLightRowName={''}
         showSidePanel={false}
@@ -80,6 +116,7 @@ describe('GrcToggle view', () => {
       secondaryHeaderProps={policiesTabModuleSecondaryHeaderProps}
       locale = {'en-US'}
       grcTabToggleIndex={0}
+      showApplications={true}
       showGrcTabToggle={false}
       highLightRowName={''}
       showSidePanel={false}
@@ -121,6 +158,7 @@ describe('GrcView toggleClick', () => {
         secondaryHeaderProps={policiesTabModuleSecondaryHeaderProps}
         locale = {'en-US'}
         grcTabToggleIndex={0}
+        showApplications={true}
         showGrcTabToggle={true}
         highLightRowName={''}
         showSidePanel={false}

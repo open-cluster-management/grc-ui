@@ -21,14 +21,16 @@ import OverviewView from '../components/OverviewView'
 import { GRC_REFRESH_INTERVAL_COOKIE}  from '../../lib/shared/constants'
 import { updateModal, updateSecondaryHeader } from '../actions/common'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
-import { GRCList, HCMApplicationList } from '../../lib/client/queries'
+import { GRCList, HCMApplicationList, GRCListNoSA } from '../../lib/client/queries'
 import msgs from '../../nls/platform.properties'
+import config from '../../lib/shared/config'
 
 class OverviewTab extends React.Component {
 
   static propTypes = {
     openDesModal: PropTypes.func,
     secondaryHeaderProps: PropTypes.object,
+    showApplications: PropTypes.bool,
     updateSecondaryHeader: PropTypes.func,
   }
 
@@ -50,11 +52,13 @@ class OverviewTab extends React.Component {
 
   render () {
     const { userpreferences } = this.props
+    const showFindings = config['feature_security-findings']
     const activeAccountId = (userpreferences && userpreferences.userPreferences) ? userpreferences.userPreferences.activeAccountId : ''
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
+    const showApplications = this.props.showApplications === undefined ? config['feature_applications'] : this.props.showApplications
     return (
       <Page>
-        <Query query={GRCList} variables={{userAccountID: activeAccountId}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+        <Query query={showFindings ? GRCList : GRCListNoSA} variables={showFindings ? {userAccountID: activeAccountId} : null} pollInterval={pollInterval} notifyOnNetworkStatusChange >
           {( result ) => {
             const {loading, startPolling, stopPolling, refetch} = result
             const {data={}} = result
@@ -76,29 +80,36 @@ class OverviewTab extends React.Component {
             }
 
             return (
-              <div>
+              showApplications ?
                 <Query query={HCMApplicationList} pollInterval={pollInterval} client={apolloClient.getSearchClient()} notifyOnNetworkStatusChange >
                   {( result ) => {
                     const {data={}} = result
                     const { applications } = data
                     const searchError = applications ? null : result.error
                     return (
-                      <div>
-                        <OverviewView
-                          loading={!policies && loading}
-                          error={error}
-                          searchError={searchError}
-                          applications = {applications}
-                          policies={policies}
-                          findings={findings}
-                          refreshControl={refreshControl}
-                        />
-                      </div>
+                      <OverviewView
+                        showApplications={showApplications}
+                        loading={!policies && loading}
+                        error={error}
+                        searchError={searchError}
+                        applications = {applications}
+                        policies={policies}
+                        findings={findings}
+                        refreshControl={refreshControl}
+                      />
                     )
                   }
                   }
                 </Query>
-              </div>
+                :
+                <OverviewView
+                  showApplications={showApplications}
+                  loading={!policies && loading}
+                  error={error}
+                  policies={policies}
+                  findings={findings}
+                  refreshControl={refreshControl}
+                />
             )
           }
           }
