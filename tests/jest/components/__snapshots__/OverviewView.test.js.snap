@@ -150,22 +150,6 @@ exports[`OverviewView component 3 renders as expected 1`] = `
           />
         </svg>
       </button>
-      <div
-        className="buttons"
-      >
-        <button
-          className="bx--btn bx--btn--sm bx--btn--secondary"
-        >
-          <a
-            aria-describedby="launchWindow"
-            className="doc-link"
-            href="https://www.ibm.com/support/knowledgecenter/SSBS6K_undefined/mcm/compliance/compliance_intro.html"
-            target="doc"
-          >
-            View documentation
-          </a>
-        </button>
-      </div>
     </div>
   </div>
 </div>

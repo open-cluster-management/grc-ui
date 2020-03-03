@@ -17,22 +17,6 @@ exports[`createDocLink view renders does not show create link as expected 1`] = 
   >
     does not show create link
   </UNDEFINED>
-  <div
-    className="buttons"
-  >
-    <button
-      className="bx--btn bx--btn--sm bx--btn--secondary"
-    >
-      <a
-        aria-describedby="launchWindow"
-        className="doc-link"
-        href="https://www.ibm.com/support/knowledgecenter/SSBS6K_undefined/mcm/compliance/compliance_intro.html"
-        target="doc"
-      >
-        View documentation
-      </a>
-    </button>
-  </div>
 </div>
 `;
 
@@ -53,21 +37,5 @@ exports[`createDocLink view renders show create link as expected 1`] = `
   >
     show create link
   </UNDEFINED>
-  <div
-    className="buttons"
-  >
-    <button
-      className="bx--btn bx--btn--sm bx--btn--secondary"
-    >
-      <a
-        aria-describedby="launchWindow"
-        className="doc-link"
-        href="https://www.ibm.com/support/knowledgecenter/SSBS6K_undefined/mcm/compliance/compliance_intro.html"
-        target="doc"
-      >
-        View documentation
-      </a>
-    </button>
-  </div>
 </div>
 `;
