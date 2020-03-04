@@ -68,6 +68,8 @@ function fetchHeader(req, res, store, context) {
   }
   // eslint-disable-next-line
   console.log(req.headers)
+  // eslint-disable-next-line
+  console.log(options)
   request(options, null, [200], (err, headerRes) => {
     if (err) {
       return res.status(500).send(err)
