@@ -66,6 +66,8 @@ function fetchHeader(req, res, store, context) {
       'Accept-Language': i18n.locale(req)
     }
   }
+  // eslint-disable-next-line
+  console.log(req.headers)
   request(options, null, [200], (err, headerRes) => {
     if (err) {
       return res.status(500).send(err)
