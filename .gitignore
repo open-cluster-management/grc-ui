@@ -14,3 +14,4 @@ storybook-static
 build-harness-extensions/
 build-harness/
 .build-harness-bootstrap
+test-report.xml
