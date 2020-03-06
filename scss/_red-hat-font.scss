@@ -4,7 +4,7 @@
 
 @mixin redhat-font-face{
   @include printRedHatFont(400, "Regular", $familyName: "RedHatText");
-  @include printRedHatFont(700, "Medium", $familyName: "RedHatText");
+  @include printRedHatFont(700, "Medium", $familyName: "RedHatText-Medium");
 }
 
 @mixin printRedHatFont(
