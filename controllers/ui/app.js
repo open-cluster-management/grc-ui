@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -71,6 +72,8 @@ function fetchHeader(req, res, store, context) {
       return res.status(500).send(err)
     }
 
+    console.log(headerRes)
+    console.log(headerRes.body)
     const { headerHtml: header, props: propsH, state: stateH, files: filesH } = headerRes.body
 
     uiConfig = uiConfig === undefined ? require('../../src-web/actions/uiconfig') : uiConfig
