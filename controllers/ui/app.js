@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -29,7 +28,7 @@ const ReactDOMServer = require('react-dom/server'),
 var log4js = require('log4js'),
     logger = log4js.getLogger('app')
 
-let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to reduce startup time seen on k8s
+let App, Login, reducers, role, userPreferences  //laziy initialize to reduce startup time seen on k8s
 router.get('/logout', (req, res) => {
   var LOGOUT_API = '/v1/auth/logout'
   var callbackUrl = req.headers['host']
@@ -72,13 +71,11 @@ function fetchHeader(req, res, store, context) {
       return res.status(500).send(err)
     }
 
-    console.log(headerRes)
-    console.log(headerRes.body)
     const { headerHtml: header, props: propsH, state: stateH, files: filesH } = headerRes.body
-
-    uiConfig = uiConfig === undefined ? require('../../src-web/actions/uiconfig') : uiConfig
-    if (stateH.uiconfig) {
-      store.dispatch(uiConfig.uiConfigReceiveSucess(stateH.uiconfig.uiConfiguration))}
+    if (!header || !propsH || !stateH || !filesH) {
+      logger.err(headerRes.body)
+      return res.status(500).send(headerRes.body)
+    }
     role = role === undefined ? require('../../src-web/actions/role') : role
     if (stateH.role) {
       store.dispatch(role.roleReceiveSuccess(stateH.role.role))}
