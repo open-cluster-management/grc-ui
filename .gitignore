@@ -13,3 +13,8 @@ storybook-static
 build-harness-extensions/
 build-harness/
 .build-harness-bootstrap
+
+# override build harness vendoring
+!vbh/.build-harness-bootstrap
+!vbh/build-harness
+!vbh/build-harness-extensions
