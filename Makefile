@@ -19,7 +19,7 @@ install:
 	npm install
 
 copyright-check:
-	./copyright-check.sh
+	./build/copyright-check.sh
 
 lint:
 	npm run lint
