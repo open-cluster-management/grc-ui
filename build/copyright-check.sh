@@ -80,7 +80,7 @@ for f in `find .. -type f ! -path "../.eslintrc.js" ! -path "../build-harness/*"
   if [[ $year_line_count != 1 ]]; then
     printf "Missing copyright\n  >>Could not find correct copyright year in the file $f\n"
     ERROR=1
-    break
+    break 
   fi
 
   #Check for rest copyright lines
@@ -90,7 +90,7 @@ for f in `find .. -type f ! -path "../.eslintrc.js" ! -path "../build-harness/*"
     if [[ "$header" != *"${lic_rest[$i]}"* ]]; then
       printf "Missing copyright\n  >>Could not find [${lic_rest[$i]}] in the file $f\n"
       ERROR=1
-      break
+      break 2
     fi
   done
 
