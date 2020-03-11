@@ -14,8 +14,9 @@ back_up_year=2019
 #Currrent year
 current_year=$(date +"%Y")
 
-CHANGED_FILES = $1
-echo "$CHANGED_FILES"
+CHANGED_FILES=$1
+echo "s1= $1"
+echo "changed file= $CHANGED_FILES"
 
 if [ -z "$current_year" ] || [ $current_year -lt $origin_year ]; then
   echo "Can't get correct system time\n  >>Use back_up_year=$back_up_year as current_year to check copyright in the file $f\n"
