@@ -53,7 +53,7 @@ jobs:
     - stage: unit-test
       name: "Build and run unit tests"
       script:
-        - make copyright-check CHANGED_FILES=$(CHANGED_FILES)
+        - make copyright-check CHANGED_FILES=${CHANGED_FILES}
         - make sonar/js/jest-init
         - make component/test/unit
         - make sonar/js
