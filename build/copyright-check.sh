@@ -14,8 +14,11 @@ back_up_year=2019
 #Currrent year
 current_year=$(date +"%Y")
 
-CHANGED_FILES=$1
-echo "changed file= $CHANGED_FILES"
+TRAVIS_BRANCH=$1
+echo "TRAVIS_BRANCH= $TRAVIS_BRANCH"
+
+CHANGED_FILES=`git diff --name-only --diff-filter=AM master...${TRAVIS_BRANCH}`
+echo "CHANGED_FILES= $CHANGED_FILES"
 
 if [ -z "$current_year" ] || [ $current_year -lt $origin_year ]; then
   echo "Can't get correct system time\n  >>Use back_up_year=$back_up_year as current_year to check copyright in the file $f\n"

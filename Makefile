@@ -19,7 +19,7 @@ install:
 	npm install
 
 copyright-check:
-	./build/copyright-check.sh $(CHANGED_FILES)
+	./build/copyright-check.sh $(TRAVIS_BRANCH)
 
 lint:
 	npm run lint
