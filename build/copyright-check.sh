@@ -17,13 +17,10 @@ current_year=$(date +"%Y")
 TRAVIS_BRANCH=$1
 echo "TRAVIS_BRANCH= $TRAVIS_BRANCH"
 
-TRAVIS_COMMIT_RANGE=$2
-echo "TRAVIS_COMMIT_RANGE= $TRAVIS_COMMIT_RANGE"
-
-TRAVIS_PULL_REQUEST_BRANCH=$3
+TRAVIS_PULL_REQUEST_BRANCH=$2
 echo "TRAVIS_PULL_REQUEST_BRANCH= $TRAVIS_PULL_REQUEST_BRANCH"
 
-CHANGED_FILES=`git diff --name-only --diff-filter=AM master...${TRAVIS_BRANCH}`
+CHANGED_FILES=`git diff --name-only --diff-filter=AM ${TRAVIS_BRANCH}...${TRAVIS_PULL_REQUEST_BRANCH}`
 echo "CHANGED_FILES= $CHANGED_FILES"
 
 if [ -z "$current_year" ] || [ $current_year -lt $origin_year ]; then
