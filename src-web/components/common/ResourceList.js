@@ -167,8 +167,8 @@ class ResourceList extends React.Component {
         <NoResource
           title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
           detail={msgs.get('no-resource.filter', locale)}
-          svgName={'emptymoon.svg'}>
-          {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+          svgName={'emptymoon.svg'}
+        >
         </NoResource>
       )
     }
