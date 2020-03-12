@@ -1,6 +1,5 @@
 # Licensed Materials - Property of IBM
 # (c) Copyright IBM Corporation 2018, 2019. All Rights Reserved.
-# Copyright (c) 2020 Red Hat, Inc.
 # Note to U.S. Government Users Restricted Rights:
 # Use, duplication or disclosure restricted by GSA ADP Schedule
 # Contract with IBM Corp.
@@ -19,9 +18,6 @@ echo "TRAVIS_BRANCH= $TRAVIS_BRANCH"
 
 TRAVIS_PULL_REQUEST_BRANCH=$2
 echo "TRAVIS_PULL_REQUEST_BRANCH= $TRAVIS_PULL_REQUEST_BRANCH"
-
-GIT_BRANCH=`git branch`
-echo "$GIT_BRANCH"
 
 CHANGED_FILES=`git diff --name-only --diff-filter=AM ${TRAVIS_BRANCH}...HEAD`
 echo "CHANGED_FILES= $CHANGED_FILES"
@@ -60,7 +56,8 @@ ERROR=0
 
 echo "##### Copyright check #####"
 #Loop through all files. Ignore .FILENAME types
-for f in `find .. -type f ! -path "../.eslintrc.js" ! -path "../build-harness/*" ! -path "../auth-setup/*" ! -path "../sslcert/*" ! -path "../node_modules/*" ! -path "../coverage/*" ! -path "../test-output/*" ! -path "../build/*" ! -path "../nls/*" ! -path "../public/*"`; do
+#for f in `find .. -type f ! -path "../.eslintrc.js" ! -path "../build-harness/*" ! -path "../auth-setup/*" ! -path "../sslcert/*" ! -path "../node_modules/*" ! -path "../coverage/*" ! -path "../test-output/*" ! -path "../build/*" ! -path "../nls/*" ! -path "../public/*"`; do
+for f in CHANGED_FILES
   if [ ! -f "$f" ] || [ "$f" = "./copyright-check.sh" ]; then
     continue
   fi
