@@ -5,8 +5,6 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
 'use strict'
 
@@ -35,7 +33,7 @@ describe('Grc Router container test', () => {
       'path': '/multicloud',
       'url': '/multicloud',
       'isExact': false,
-      'params': {},
+      'params': {}
     }
     const component = shallow(
       <ApolloProvider client={apolloClient.getGrcClient()}>
