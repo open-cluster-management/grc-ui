@@ -14,10 +14,7 @@ back_up_year=2019
 current_year=$(date +"%Y")
 
 TRAVIS_BRANCH=$1
-echo "TRAVIS_BRANCH= $TRAVIS_BRANCH"
-
 TRAVIS_PULL_REQUEST_BRANCH=$2
-echo "TRAVIS_PULL_REQUEST_BRANCH= $TRAVIS_PULL_REQUEST_BRANCH"
 
 CHANGED_FILES=`git diff --name-only --diff-filter=AM ${TRAVIS_BRANCH}...HEAD`
 echo "CHANGED_FILES= $CHANGED_FILES"
@@ -43,11 +40,11 @@ lic_year_size=${#lic_year[@]}
 
 #lic_rest to scan for rest copyright format's correctness
 lic_rest=()
-lic_rest+=(" Copyright (c) 2020 Red Hat, Inc.")
 lic_rest+=(" Licensed Materials - Property of IBM")
 lic_rest+=(" Note to U.S. Government Users Restricted Rights:")
 lic_rest+=(" Use, duplication or disclosure restricted by GSA ADP Schedule")
 lic_rest+=(" Contract with IBM Corp.")
+lic_rest+=(" Copyright (c) 2020 Red Hat, Inc.")
 lic_rest_size=${#lic_rest[@]}
 
 #Used to signal an exit
@@ -57,22 +54,22 @@ ERROR=0
 echo "##### Copyright check #####"
 #Loop through all files. Ignore .FILENAME types
 #for f in `find .. -type f ! -path "../.eslintrc.js" ! -path "../build-harness/*" ! -path "../auth-setup/*" ! -path "../sslcert/*" ! -path "../node_modules/*" ! -path "../coverage/*" ! -path "../test-output/*" ! -path "../build/*" ! -path "../nls/*" ! -path "../public/*"`; do
-for f in CHANGED_FILES
-  if [ ! -f "$f" ] || [ "$f" = "./copyright-check.sh" ]; then
+for f in $CHANGED_FILES; do
+  if [ ! -f "$f" ]; then
     continue
   fi
 
   FILETYPE=$(basename ${f##*.})
   case "${FILETYPE}" in
-  	js | sh | go | java | rb)
+  	js | go | scss | properties | java | rb)
   		COMMENT_PREFIX=""
   		;;
   	*)
       continue
   esac
 
-  #Read the first 10 lines, most Copyright headers use the first 6 lines.
-  header=`head -10 $f`
+  #Read the first 15 lines, most Copyright headers use the first 10 lines.
+  header=`head -15 $f`
   printf " Scanning $f . . . "
 
   #Check for year copyright single line
