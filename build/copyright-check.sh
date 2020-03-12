@@ -17,6 +17,9 @@ current_year=$(date +"%Y")
 TRAVIS_BRANCH=$1
 echo "TRAVIS_BRANCH= $TRAVIS_BRANCH"
 
+TRAVIS_COMMIT_RANGE=$2
+echo "TRAVIS_COMMIT_RANGE= $TRAVIS_COMMIT_RANGE"
+
 CHANGED_FILES=`git diff --name-only --diff-filter=AM master...${TRAVIS_BRANCH}`
 echo "CHANGED_FILES= $CHANGED_FILES"
 
