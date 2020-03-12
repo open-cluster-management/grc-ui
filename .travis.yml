@@ -25,7 +25,7 @@ env:
     # Required
     - OS=linux
     - COMPONENT_TAG_EXTENSION="-${TRAVIS_COMMIT}"
-    - CHANGED_FILES=$(git diff --name-only --diff-filter=AM master...${TRAVIS_BRANCH})
+    - CHANGED_FILES=${git diff --name-only --diff-filter=AM master...${TRAVIS_BRANCH}}
     # Component Specific
     - COMPONENT_INIT_COMMAND=${TRAVIS_BUILD_DIR}/build/install-dependencies.sh
     - COMPONENT_BUILD_COMMAND=${TRAVIS_BUILD_DIR}/build/build.sh
