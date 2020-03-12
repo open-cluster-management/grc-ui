@@ -23,7 +23,7 @@ echo "TRAVIS_PULL_REQUEST_BRANCH= $TRAVIS_PULL_REQUEST_BRANCH"
 GIT_BRANCH=`git branch`
 echo "$GIT_BRANCH"
 
-CHANGED_FILES=`git diff --name-only --diff-filter=AM ${TRAVIS_BRANCH}...${TRAVIS_PULL_REQUEST_BRANCH}`
+CHANGED_FILES=`git diff --name-only --diff-filter=AM ${TRAVIS_BRANCH}...HEAD`
 echo "CHANGED_FILES= $CHANGED_FILES"
 
 if [ -z "$current_year" ] || [ $current_year -lt $origin_year ]; then
