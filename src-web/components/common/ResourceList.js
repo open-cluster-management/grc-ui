@@ -165,7 +165,6 @@ class ResourceList extends React.Component {
     if (filterToEmpty) {
       return (
         <NoResource
-          title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
           detail={msgs.get('no-resource.filter', locale)}
           svgName={'emptymoon.svg'}
         >
