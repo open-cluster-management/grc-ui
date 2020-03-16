@@ -810,7 +810,7 @@ metadata:
   name: placement-policy-grc
   namespace: mcm
 spec:
-  clusterLabels:
+  clusterSelector:
     matchExpressions:
 "
 `;
