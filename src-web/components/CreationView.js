@@ -72,7 +72,7 @@ const controlData = [
     id: 'clusters',
     type: 'multiselect',
     available: [],
-    reverse: 'PlacementPolicy[0].spec.clusterLabels', // automatically does matchLabels && matchExpressions
+    reverse: 'PlacementRule[0].spec.clusterLabels', // automatically does matchLabels && matchExpressions
     mustExist: true,
   },
   {

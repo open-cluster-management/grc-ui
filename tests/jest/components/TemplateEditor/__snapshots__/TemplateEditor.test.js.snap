@@ -797,15 +797,15 @@ metadata:
   namespace: mcm
 placementRef:
   name: placement-policy-grc
-  kind: PlacementPolicy
-  apiGroup: mcm.ibm.com
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
 subjects:
 - name: policy-grc
   kind: Policy
   apiGroup: policy.mcm.ibm.com
 ---
-apiVersion: mcm.ibm.com/v1alpha1
-kind: PlacementPolicy
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
 metadata:
   name: placement-policy-grc
   namespace: mcm
