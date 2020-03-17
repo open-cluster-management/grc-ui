@@ -23,6 +23,7 @@ import specCertmgmtexp from './spec-certmgmtexp.yaml'
 // import specAudit from './spec-audit.yaml'
 import specCis from './spec-cis.yaml'
 import specCisOcp from './spec-cis-ocp.yaml'
+import specScc from './spec-scc.yaml'
 
 export {
   specPodRole,
@@ -40,4 +41,5 @@ export {
   // specAudit,
   specCis,
   specCisOcp,
+  specScc,
 }
