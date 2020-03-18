@@ -48,17 +48,17 @@ module.exports = {
     page.verifyPagination(browser)
   },
 
-  'All policy page: Run Accessibility Scan': (browser) => {
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-    // a11yScan.runAccessibilityScan(browser, 'allPolicy')
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-    // a11yScan.runAccessibilityScan(browser, 'policyDetail')
-  },
-
-  // 'All policy page: Delete test policy': (browser) => {
-  //   const time = browser.globals.time
-  //   page.deletePolicy(`${time}-policy-test`, browser)
+  // 'All policy page: Run Accessibility Scan': (browser) => {
+  //   page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
+  //   a11yScan.runAccessibilityScan(browser, 'allPolicy')
+  //   page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
+  //   a11yScan.runAccessibilityScan(browser, 'policyDetail')
   // },
+
+  'All policy page: Delete test policy': (browser) => {
+    const time = browser.globals.time
+    page.deletePolicy(`${time}-policy-test`, browser)
+  },
 
   after: function (browser, done) {
     setTimeout(() => {

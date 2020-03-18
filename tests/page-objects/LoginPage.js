@@ -14,12 +14,12 @@ module.exports = {
     return `${this.api.launchUrl}${config.get('contextPath')}`
   },
   elements: {
-    username: '#username',
-    password: '#password',
-    submit: 'button[name="loginButton"]',
+    username: '#inputUsername',
+    password: '#inputPassword',
+    submit: 'button[type="submit"]',
     error: '.bx--inline-notification--error',
     header: '.app-header',
-    loginPage: '.login-container'
+    loginPage: 'form[action="/login"]'
   },
   commands: [{
     inputUsername,
