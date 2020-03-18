@@ -62,4 +62,6 @@ spec:
     matchExpressions:
       {{#each clusters}}
       - {key: {{@key}}, operator: In, values: [{{#each this}}{{#if @index}}, {{/if}}"{{this}}"{{/each}}]}
+      {{else}}
+      []
       {{/each}}
