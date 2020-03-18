@@ -5,7 +5,9 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************/
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.
+ */
 'use strict'
 
 import specPodRole from './spec-rolebinding.yaml'
@@ -23,6 +25,7 @@ import specCertmgmtexp from './spec-certmgmtexp.yaml'
 // import specAudit from './spec-audit.yaml'
 import specCis from './spec-cis.yaml'
 import specCisOcp from './spec-cis-ocp.yaml'
+import specScc from './spec-scc.yaml'
 
 export {
   specPodRole,
@@ -40,4 +43,5 @@ export {
   // specAudit,
   specCis,
   specCisOcp,
+  specScc,
 }
