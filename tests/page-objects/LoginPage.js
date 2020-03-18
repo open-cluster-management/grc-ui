@@ -41,13 +41,15 @@ function authenticate(user, password) {
 }
 
 function inputUsername(user) {
+  // eslint-disable-next-line no-console
+  console.log('Please export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD')
   this.waitForElementVisible('@username')
-    .setValue('@username', user || config.get('selenium_user'))
+    .setValue('@username', user || process.env.SELENIUM_USER )
 }
 
 function inputPassword(password) {
   this.waitForElementVisible('@password')
-    .setValue('@password', password || config.get('selenium_password'))
+    .setValue('@password', password || process.env.SELENIUM_PASSWORD )
 }
 
 function submit() {
