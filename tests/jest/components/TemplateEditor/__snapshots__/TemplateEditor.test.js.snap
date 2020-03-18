@@ -812,5 +812,6 @@ metadata:
 spec:
   clusterSelector:
     matchExpressions:
+      []
 "
 `;
