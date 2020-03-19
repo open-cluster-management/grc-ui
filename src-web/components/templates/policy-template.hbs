@@ -58,8 +58,12 @@ metadata:
   name: placement-{{name}}
   namespace: {{namespace}}
 spec:
+  clusterConditions:
+  - type: OK
   clusterSelector:
     matchExpressions:
       {{#each clusters}}
       - {key: {{@key}}, operator: In, values: [{{#each this}}{{#if @index}}, {{/if}}"{{this}}"{{/each}}]}
+      {{else}}
+      []
       {{/each}}
