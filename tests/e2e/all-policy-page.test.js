@@ -18,6 +18,12 @@ module.exports = {
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
+    if(process.env.SELENIUM_USER === undefined || process.env.SELENIUM_PASSWORD === undefined){
+      // eslint-disable-next-line no-console
+      console.log('Env Variable NOT Set.\nPlease export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD')
+      browser.end()
+      return
+    }
     loginPage.navigate()
     loginPage.authenticate()
 

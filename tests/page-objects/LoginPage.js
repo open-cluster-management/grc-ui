@@ -43,8 +43,6 @@ function authenticate(user, password) {
 }
 
 function inputUsername(user) {
-  // eslint-disable-next-line no-console
-  console.log('Please export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD')
   this.waitForElementVisible('@username')
     .setValue('@username', user || process.env.SELENIUM_USER )
 }
