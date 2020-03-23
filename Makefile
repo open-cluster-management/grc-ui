@@ -38,7 +38,7 @@ unit-test:
 e2e-test:
 	docker network create --subnet 10.10.0.0/16 test-network
 	docker pull quay.io/open-cluster-management/grc-ui-api:3.6.0-PR10-0f126ba12cb0b059f37b54e418225fa0e27ffd5d
-	docker run --network mcm-network -d -e NODE_ENV=development -e SERVICEACCT_TOKEN=eyMt4tP69ZGIh9f120Tw4VdHJIM82twVq-nx4BiFgbw -e API_SERVER_URL=https://api.clustertest.dev08.red-chesterfield.com:6443 --name grcuiapi --ip 10.10.0.5 -t -i -p 4000:4000 quay.io/open-cluster-management/grc-ui-api:3.6.0-PR10-0f126ba12cb0b059f37b54e418225fa0e27ffd5d
+	docker run --network test-network -d -e NODE_ENV=development -e SERVICEACCT_TOKEN=eyMt4tP69ZGIh9f120Tw4VdHJIM82twVq-nx4BiFgbw -e API_SERVER_URL=https://api.clustertest.dev08.red-chesterfield.com:6443 --name grcuiapi --ip 10.10.0.5 -t -i -p 4000:4000 quay.io/open-cluster-management/grc-ui-api:3.6.0-PR10-0f126ba12cb0b059f37b54e418225fa0e27ffd5d
 	export SERVICEACCT_TOKEN=eyMt4tP69ZGIh9f120Tw4VdHJIM82twVq-nx4BiFgbw
 	export grcUiApiUrl=10.10.0.5:4000/grcuiapi
 	npm run test:install-selenium
