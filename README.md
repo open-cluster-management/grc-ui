@@ -128,7 +128,7 @@ View the full list of npm scripts are described in the following table:
 | `npm run shrinkwrap:clean`       | Regenerates a clean `npm-shrinkwrap.json` - THIS COMMAND SHOULD ONLY BE USED IN EXTREME CIRCUMSTANCES.                           |
 | `npm run storybook`              | Start the storybook.  |
 
-> Note: The build process leverages the Dll and DllReference plugins to extract vendor plugins for faster build times and improve browser caching.  A separate bundle is created for 3rd-party client-side libraries.  The generated bundle is sourced (_public/dll.vendor.js_) along with its manifest (_vendor-manifest.json_).  If new client dependencies are added or existing versions of dependencies are updated, this module needs to be regenerated and recommitted back into source control. Run the following command  `npm run build:dll`.
+  **Note**: The build process leverages the Dll and DllReference plugins to extract vendor plugins for faster build times and improve browser caching.  A separate bundle is created for 3rd-party client-side libraries.  The generated bundle is sourced (_public/dll.vendor.js_) along with its manifest (_vendor-manifest.json_).  If new client dependencies are added or existing versions of dependencies are updated, this module needs to be regenerated and recommitted back into source control. Run the following command  `npm run build:dll`.
 
 ## Links
 
