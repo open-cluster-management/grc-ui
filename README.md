@@ -77,11 +77,11 @@ npm run test:unit
 
 Before running any e2e test, set env selenium_user and selenium_password by
 <pre>
-export selenium_user=UI_USERNAME
-export selenium_password=UI_PASSWORD
+export SELENIUM_USER=UI_USERNAME
+export SELENIUM_PASSWORD=UI_PASSWORD
 </pre>
-By default, e2e test is run against https://localhost:3000. In order to run e2e test against a specific remote cluster, set env selenium_cluster by
-<pre>export selenium_cluster=https://target.base.url</pre>
+By default, e2e test runs against https://localhost:3000. In order to run e2e test against a specific remote cluster, set env SELENIUM_CLUSTER by
+<pre>export SELENIUM_CLUSTER=https://target.base.url</pre>
 then run
 <pre>
 npm run test:e2e
