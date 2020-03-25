@@ -73,12 +73,22 @@ The following will run all unit tests and selenium based tests.  The selenium ba
 
 <pre>
 npm run test:unit
+</pre>
+
+Before running any e2e test, set env selenium_user and selenium_password by
+<pre>
+export selenium_user=UI_USERNAME
+export selenium_password=UI_PASSWORD
+</pre>
+and then run
+<pre>
 npm run test:e2e
 </pre>
 
-To run a e2e test against a specific remote cluster, set env selenium_cluster by
-<pre>export selenium_cluster=https://target.base.url</pre> ,
-and the <pre>npm run test:e2e</pre>
+In order to run a e2e test against a specific remote cluster, set env selenium_cluster by
+<pre>export selenium_cluster=https://target.base.url</pre>
+and then run 
+<pre>npm run test:e2e</pre>
 
 ## NPM Commands
 
