@@ -76,6 +76,10 @@ npm run test:unit
 npm run test:e2e
 </pre>
 
+To run a e2e test against a specific remote cluster, set env selenium_cluster by
+<pre>export selenium_cluster=https://target.base.url</pre> ,
+and the <pre>npm run test:e2e</pre>
+
 ## NPM Commands
 
 The full list of npm scripts are described below.
