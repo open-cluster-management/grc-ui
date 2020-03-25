@@ -39,11 +39,10 @@ e2e-test:
 	docker network create --subnet 10.10.0.0/16 test-network
 	docker pull quay.io/open-cluster-management/grc-ui:3.6.0-PR36-fcc3b830b0c0cf89cb26f5d04da254aca2261c10
 	docker pull quay.io/open-cluster-management/grc-ui-api:3.6.0-PR10-0f126ba12cb0b059f37b54e418225fa0e27ffd5d
-	containerapi=`docker run --network test-network -d -e NODE_ENV=development -e SERVICEACCT_TOKEN=e7qQFEWk5VfXCvGhI1ZRA6_iBjZpbEJsgN0D6EMt-sg -e API_SERVER_URL=https://api.clustertest.dev08.red-chesterfield.com:6443 --name grcuiapi --ip 10.10.0.5 -t -i -p 4000:4000 quay.io/open-cluster-management/grc-ui-api:3.6.0-PR10-0f126ba12cb0b059f37b54e418225fa0e27ffd5d`
-	containerui=`docker run --network test-network -d -e NODE_ENV=development -e SERVICEACCT_TOKEN=e7qQFEWk5VfXCvGhI1ZRA6_iBjZpbEJsgN0D6EMt-sg -e headerUrl=$(headerUrl) -e OAUTH2_REDIRECT_URL=$(OAUTH2_REDIRECT_URL) -e grcUiApiUrl=https://10.10.0.5:4000/grcuiapi -e OAUTH2_CLIENT_ID=$(OAUTH2_CLIENT_ID) -e OAUTH2_CLIENT_SECRET=$(OAUTH2_CLIENT_SECRET) -e API_SERVER_URL=$(API_SERVER_URL) --name grcui -p 3000:3000 -t -i quay.io/open-cluster-management/grc-ui:3.6.0-PR36-fcc3b830b0c0cf89cb26f5d04da254aca2261c10`
-	echo $(containerui)
-	echo $(containerapi)
+	docker run --network test-network -d -e NODE_ENV=development -e SERVICEACCT_TOKEN=e7qQFEWk5VfXCvGhI1ZRA6_iBjZpbEJsgN0D6EMt-sg -e API_SERVER_URL=https://api.clustertest.dev08.red-chesterfield.com:6443 --name grcuiapi --ip 10.10.0.5 -t -i -p 4000:4000 quay.io/open-cluster-management/grc-ui-api:3.6.0-PR10-0f126ba12cb0b059f37b54e418225fa0e27ffd5d
+	docker run --network test-network -d -e NODE_ENV=development -e SERVICEACCT_TOKEN=e7qQFEWk5VfXCvGhI1ZRA6_iBjZpbEJsgN0D6EMt-sg -e headerUrl=$(headerUrl) -e OAUTH2_REDIRECT_URL=$(OAUTH2_REDIRECT_URL) -e grcUiApiUrl=https://10.10.0.5:4000/grcuiapi -e OAUTH2_CLIENT_ID=$(OAUTH2_CLIENT_ID) -e OAUTH2_CLIENT_SECRET=$(OAUTH2_CLIENT_SECRET) -e API_SERVER_URL=$(API_SERVER_URL) --name grcui -p 3000:3000 -t -i quay.io/open-cluster-management/grc-ui:3.6.0-PR36-fcc3b830b0c0cf89cb26f5d04da254aca2261c10
 	npm run test:install-selenium
 	npm run test:e2e
-	docker logs $(containerui)
-	docker logs $(containerapi)
+
+e2e-logs:
+	docker ps -q | xargs -L 1 docker logs
