@@ -40,7 +40,7 @@
         }
       },
       "globals": {
-        "waitForConditionTimeout": 30000,
+        "waitForConditionTimeout": 60000,
         "disable_a11y": false
       }
     },
