@@ -30,7 +30,7 @@ module.exports = (settings => {
     defaultUrl = process.env.SELENIUM_CLUSTER
   }
   settings.test_settings.default.launch_url = defaultUrl
-  settings.selenium.server_path += fs.readdirSync('node_modules/selenium-standalone/.selenium/selenium-server/')
+  // settings.selenium.server_path += fs.readdirSync('node_modules/selenium-standalone/.selenium/selenium-server/')
   return settings
 
 })(require('./nightwatch.json'))
