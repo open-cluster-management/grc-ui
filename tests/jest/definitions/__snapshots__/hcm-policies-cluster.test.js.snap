@@ -10,7 +10,7 @@ exports[`createClusterLink Should return cluster name 1`] = `"tiny-remote"`;
 
 exports[`createClusterLink Should return createClusterLink 1`] = `
 <a
-  href="undefined/clusters/ibm/tiny-remote"
+  href="undefined/redhat/tiny-remote"
 >
   tiny-remote
 </a>
