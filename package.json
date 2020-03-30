@@ -22,7 +22,6 @@
     "test:e2e-headless": "nightwatch ./tests/e2e -e chrome.headless",
     "test:update-snapshot": "jest --updateSnapshot",
     "test:update-a11ySnap": "find ./test-output/a11y -name '*.json' -not -name 'summary*' -exec cp {} ./tests/utils/A11y-snapshot/ \\;",
-    "test:install-selenium": "selenium-standalone install --version=3.141.59  --drivers.chrome.version=2.36"
   },
   "repository": {
     "type": "git",
