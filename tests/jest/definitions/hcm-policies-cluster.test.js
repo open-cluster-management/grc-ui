@@ -29,7 +29,7 @@ describe('createClusterLink', () => {
   it('Should return createClusterLink', () => {
     const item = {
       cluster: 'tiny-remote',
-      namespace: 'ibm',
+      namespace: 'redhat',
     }
     expect(createClusterLink(item)).toMatchSnapshot()
   })
@@ -41,7 +41,7 @@ describe('createClusterLink', () => {
   })
   it('Should return -', () => {
     const item = {
-      namnespace: 'ibm',
+      namnespace: 'redhat',
     }
     expect(createClusterLink(item)).toMatchSnapshot()
   })
