@@ -70,7 +70,7 @@ export function getTruncatedText(item){
 
 export function createClusterLink(item){
   if (item && item.cluster && item.namespace) {
-    return <a href={`${config.contextPath}/clusters/${item.namespace}/${item.cluster}`}>{item.cluster}</a>
+    return <a href={`${config.clusterContextPath}/${item.namespace}/${item.cluster}`}>{item.cluster}</a>
   }
   else if (item && item.cluster) {
     return item.cluster
