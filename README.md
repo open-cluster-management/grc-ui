@@ -28,10 +28,9 @@ or npm run build:watch
 or npm run build:production
 </pre>
 
-## Running
+## Run installation
 
-<!--for consistency purposes, I suggest that you change the section title from Running to Installation-->
-1. You must configure an existing cluster to support local development. Complete the following steps: <!--The localhost redirect ui registration URL was removed by the auth team.  < is this statement needed?-->
+1. You must configure an existing cluster to support local development. Complete the following steps:
 
    1. SSH into your existing cluster with the following command: `make ssh`
    2. Install `jq` if it is not already installed by running the following command: `sudo apt-get install jq -y`
@@ -107,7 +106,7 @@ npm run test:e2e
 
 ## NPM Commands
 
-View the full list of npm scripts are described in the following table:
+View the full list of npm scripts that are described in the following table:
 
 | Command                          | Description                                                                                                                      |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
