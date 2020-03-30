@@ -8,29 +8,16 @@
  *******************************************************************************
  * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
-var fs = require('fs'),
-    config = require('./config')
+var config = require('./config')
 
-const argv = require('minimist')(process.argv.slice(2))
 
 module.exports = (settings => {
-
-  if (!fs.existsSync('node_modules/selenium-standalone/.selenium')) {
-    // eslint-disable-next-line no-console
-    console.log('Selenium server not installed.  Installing...')
-    const execSync = require('child_process').execSync
-    execSync('npm run test:install-selenium', {stdio:[0,1,2]})
-  }
-
-  if (argv.env === 'phantom' || argv.env === 'local')
-    settings.selenium.start_process = true
 
   var defaultUrl = `https://localhost:${config.get('httpPort')}`
   if(process.env.SELENIUM_CLUSTER){
     defaultUrl = process.env.SELENIUM_CLUSTER
   }
   settings.test_settings.default.launch_url = defaultUrl
-  // settings.selenium.server_path += fs.readdirSync('node_modules/selenium-standalone/.selenium/selenium-server/')
   return settings
 
 })(require('./nightwatch.json'))
