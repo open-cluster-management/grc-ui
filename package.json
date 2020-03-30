@@ -21,7 +21,7 @@
     "test:e2e": "nightwatch ./tests/e2e -e chrome",
     "test:e2e-headless": "nightwatch ./tests/e2e -e chrome.headless",
     "test:update-snapshot": "jest --updateSnapshot",
-    "test:update-a11ySnap": "find ./test-output/a11y -name '*.json' -not -name 'summary*' -exec cp {} ./tests/utils/A11y-snapshot/ \\;",
+    "test:update-a11ySnap": "find ./test-output/a11y -name '*.json' -not -name 'summary*' -exec cp {} ./tests/utils/A11y-snapshot/ \\;"
   },
   "repository": {
     "type": "git",
