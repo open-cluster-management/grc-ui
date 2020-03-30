@@ -5,6 +5,7 @@
     "searchApiUrl": "",
     "headerUrl":"https://management-ingress",
     "headerContextPath": "/multicloud/header",
+    "clusterContextPath": "/multicloud/clusters",
     "feature_searchRelated": false,
     "feature_search-api": true,
     "feature_security-findings": false,

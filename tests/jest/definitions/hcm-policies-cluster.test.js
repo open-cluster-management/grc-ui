@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+ */
+
 'use strict'
 import { getClusterViolationLabels, getTruncatedText, createClusterLink } from '../../../src-web/definitions/hcm-policies-cluster'
 
@@ -29,7 +32,7 @@ describe('createClusterLink', () => {
   it('Should return createClusterLink', () => {
     const item = {
       cluster: 'tiny-remote',
-      namespace: 'ibm',
+      namespace: 'redhat',
     }
     expect(createClusterLink(item)).toMatchSnapshot()
   })
@@ -41,7 +44,7 @@ describe('createClusterLink', () => {
   })
   it('Should return -', () => {
     const item = {
-      namnespace: 'ibm',
+      namnespace: 'redhat',
     }
     expect(createClusterLink(item)).toMatchSnapshot()
   })
