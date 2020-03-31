@@ -35,8 +35,8 @@ ENV BABEL_DISABLE_CACHE=1 \
     NODE_ENV=production \
     USER_UID=1001
 
-RUN mkdir -p /licenses
 RUN mkdir -p /opt/app-root/src/grc-ui
+RUN mkdir -p /opt/app-root/src/grc-ui/licenses
 WORKDIR /opt/app-root/src/grc-ui
 
 COPY . /opt/app-root/src/grc-ui
