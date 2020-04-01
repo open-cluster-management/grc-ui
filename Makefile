@@ -36,6 +36,7 @@ unit-test:
 	npm test
 
 e2e-test:
+	npm install
 	docker network create --subnet 10.10.0.0/16 test-network
 	docker pull quay.io/open-cluster-management/grc-ui:3.6.0-PR36-fcc3b830b0c0cf89cb26f5d04da254aca2261c10
 	docker pull quay.io/open-cluster-management/grc-ui-api:3.6.0-PR10-0f126ba12cb0b059f37b54e418225fa0e27ffd5d
