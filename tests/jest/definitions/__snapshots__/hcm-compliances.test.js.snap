@@ -36,6 +36,24 @@ exports[`hcm-compliances - createPolicyLink should return valid policy link 1`] 
 />
 `;
 
+exports[`hcm-compliances - formLinkToCISControllerDoc should get -  1`] = `"-"`;
+
+exports[`hcm-compliances - formLinkToCISControllerDoc should get -  2`] = `"-"`;
+
+exports[`hcm-compliances - formLinkToCISControllerDoc should get message with doc link 1`] = `
+<div>
+  Testing CisPolicy 
+  <a
+    href="undefined/blob/doc_stage/about/known_issues.md#1087/"
+    target="_blank"
+  >
+    View documentation
+  </a>
+</div>
+`;
+
+exports[`hcm-compliances - formLinkToCISControllerDoc should get message without doc link 1`] = `"Testing Policy"`;
+
 exports[`hcm-compliances - formLinkToCluster should get formLinkToCluster 1`] = `
 <a
   href="/multicloud/clusters"

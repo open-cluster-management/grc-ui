@@ -649,6 +649,7 @@ export default {
         msgKey: 'table.header.message',
         resourceKey: 'message',
         key: 'message',
+        transformFunction: formLinkToCISControllerDoc,
       },
       {
         msgKey: 'table.header.reason',
@@ -1110,4 +1111,16 @@ export function formLinkToCluster(item){
   if(item && item.clusterURL){
     return <a target='_blank' href={`${item.clusterURL}`}>{item.cluster}</a>
   }
+}
+
+export function formLinkToCISControllerDoc(item, locale){
+  if(item && item.message){
+    if (item.message.toLowerCase().includes('cispolicy')) {
+      return <div>{`${item.message} `}<a target='_blank' href={`${config.docUrl}/blob/doc_stage/about/known_issues.md#1087/`}>{msgs.get('button.view.doc', locale)}</a></div>
+    }
+    else {
+      return item.message
+    }
+  }
+  return '-'
 }

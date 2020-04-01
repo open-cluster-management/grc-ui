@@ -25,6 +25,7 @@ import {
   getSubjects,
   convertToStartCase,
   formLinkToCluster,
+  formLinkToCISControllerDoc,
 } from '../../../src-web/definitions/hcm-compliances'
 
 describe('hcm-compliances - createComplianceLink', () => {
@@ -306,5 +307,24 @@ describe('hcm-compliances - formLinkToCluster', () => {
   it('should get null ', () => {
     const item = null
     expect(formLinkToCluster(item)).toMatchSnapshot()
+  })
+})
+
+describe('hcm-compliances - formLinkToCISControllerDoc', () => {
+  it('should get message with doc link', () => {
+    const item = {message:'Testing CisPolicy'}
+    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
+  })
+  it('should get message without doc link', () => {
+    const item = {message:'Testing Policy'}
+    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
+  })
+  it('should get - ', () => {
+    const item = {message:''}
+    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
+  })
+  it('should get - ', () => {
+    const item = null
+    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
   })
 })
