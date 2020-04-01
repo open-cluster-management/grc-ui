@@ -14,14 +14,14 @@ addons:
     - openjdk-8-jdk
 addons:
   chrome: stable
-addons:
-  apt:
-    update: true
-    sources:
-      - google-chrome
-    packages:
-      - dpkg
-      - google-chrome-stable
+# addons:
+#   apt:
+#     update: true
+#     sources:
+#       - google-chrome
+#     packages:
+#       - dpkg
+#       - google-chrome-stable
 
 addons:
   sonarcloud:
@@ -69,7 +69,7 @@ jobs:
       name: "Run e2e tests"
       if: type = pull_request
       script:
-        - sudo apt-get -y install google-chrome-stable
+        # - sudo apt-get -y install google-chrome-stable
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make component/pull
         - make component/test/e2e
