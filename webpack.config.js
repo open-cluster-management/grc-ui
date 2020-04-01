@@ -14,8 +14,6 @@ var path = require('path'),
     AssetsPlugin = require('assets-webpack-plugin'),
     WebpackMd5Hash = require('webpack-md5-hash'),
     FileManagerPlugin = require('filemanager-webpack-plugin'),
-    GitRevisionPlugin = require('git-revision-webpack-plugin'),
-    VersionFile = require('webpack-version-file'),
     config = require('./config'),
     CompressionPlugin = require('compression-webpack-plugin')
 
@@ -181,15 +179,6 @@ module.exports = {
           { source: 'graphics/*.png', destination: 'public/graphics'},
           { source: 'fonts', destination: 'public/fonts' },
         ]
-      }
-    }),
-    new VersionFile({
-      output: './public/version.txt',
-      package: './package.json',
-      template: './version.ejs',
-      data: {
-        date: new Date(),
-        revision: (new GitRevisionPlugin()).commithash()
       }
     })
   ],
