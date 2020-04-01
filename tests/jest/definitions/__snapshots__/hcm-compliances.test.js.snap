@@ -42,7 +42,7 @@ exports[`hcm-compliances - formLinkToCISControllerDoc should get -  2`] = `"-"`;
 
 exports[`hcm-compliances - formLinkToCISControllerDoc should get message with doc link 1`] = `
 <div>
-  Testing CisPolicy 
+  couldn't find mapping resource with kind CisPolicy, please check if you have corresponding policy controller deployed 
   <a
     href="undefined/blob/doc_stage/about/known_issues.md#1087/"
     target="_blank"
@@ -52,7 +52,9 @@ exports[`hcm-compliances - formLinkToCISControllerDoc should get message with do
 </div>
 `;
 
-exports[`hcm-compliances - formLinkToCISControllerDoc should get message without doc link 1`] = `"Testing Policy"`;
+exports[`hcm-compliances - formLinkToCISControllerDoc should get message without doc link 1`] = `"mapping resource with kind CisPolicy"`;
+
+exports[`hcm-compliances - formLinkToCISControllerDoc should get message without doc link 2`] = `"Testing Policy"`;
 
 exports[`hcm-compliances - formLinkToCluster should get formLinkToCluster 1`] = `
 <a

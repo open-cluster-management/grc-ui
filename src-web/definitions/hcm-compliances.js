@@ -1117,7 +1117,8 @@ export function formLinkToCluster(item){
 
 export function formLinkToCISControllerDoc(item, locale){
   if(item && item.message){
-    if (item.message.toLowerCase().includes('cispolicy')) {
+    const lMessage = item.message.toLowerCase()
+    if (lMessage.includes('cispolicy') && (lMessage.includes('couldn\'t') || lMessage.includes('deployed'))) {
       return <div>{`${item.message} `}<a target='_blank' href={`${config.docUrl}/blob/doc_stage/about/known_issues.md#1087/`}>{msgs.get('button.view.doc', locale)}</a></div>
     }
     else {
