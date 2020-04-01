@@ -13,6 +13,13 @@ addons:
   packages:
     - openjdk-8-jdk
   chrome: stable
+  apt:
+    update: true
+    sources:
+      - google-chrome
+    packages:
+      - dpkg
+      - google-chrome-stable
 
 addons:
   sonarcloud:
