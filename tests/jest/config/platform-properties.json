@@ -159,7 +159,7 @@
   "overview.top.informations.title.policies.policies": "Policies",
   "overview.top.informations.title.policies.clusters": "Clusters",
   "overview.recent.activity.title": "Recent activity",
-  "overview.recent.activity.title.nofinding": "Top violation",
+  "overview.recent.activity.title.nofinding": "Top violations",
   "overview.top.informations.title.policies.policies.count": "{0} total policies violations",
   "overview.top.informations.title.policies.clusters.count": "{0} total cluster violations",
   "overview.top.findings.title": "Top 3 security findings",
