@@ -280,6 +280,10 @@ export class ResourceTable extends React.Component {
           }
         }
 
+        if(item.consoleURL && item.consoleURL === '-'){
+          fliteredActions[fliteredActions.indexOf('table.actions.launch.cluster')] = 'table.actions.launch.cluster.unavailable'
+        }
+
         //changes menu item based on whether policy is enabled or disabled
         row.disabled = false
         if (fliteredActions != null && fliteredActions.length == 4 && this.checkPolicyDisabled(item)) {
