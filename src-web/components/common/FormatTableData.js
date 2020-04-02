@@ -6,16 +6,24 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 import _ from 'lodash'
 
 const formatPolicyClusterView = (clusterName, policiesUnderCluster) => {
   let validNum = 0
   let nameSpace = '-'
+  let consoleURL = '-'
   const nonCompliant = []
   policiesUnderCluster.forEach(policy => {
     if (policy.clusterNS && typeof policy.clusterNS === 'object' && policy.clusterNS[clusterName]) {
       nameSpace = policy.clusterNS[clusterName]
+    }
+
+    if (policy.clusterConsoleURL && typeof policy.clusterConsoleURL === 'object' && policy.clusterConsoleURL[clusterName]) {
+      consoleURL = policy.clusterConsoleURL[clusterName]
     }
 
     const status = _.get(policy, `raw.status.status.${clusterName}`, '')
@@ -39,6 +47,7 @@ const formatPolicyClusterView = (clusterName, policiesUnderCluster) => {
     namespace: nameSpace,
     violation: `${policiesUnderCluster.length-validNum}/${policiesUnderCluster.length}`,
     nonCompliant: nonCompliant,
+    consoleURL: consoleURL,
   }
   return result
 }
