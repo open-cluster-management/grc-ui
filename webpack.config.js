@@ -5,8 +5,9 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************/
-
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.
+ */
 var path = require('path'),
     webpack = require('webpack'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
