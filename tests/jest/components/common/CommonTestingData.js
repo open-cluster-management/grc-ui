@@ -4329,7 +4329,7 @@ export const items3 = {
     'nonCompliant': [
       'policy-imagemanifestvulnpolicy'
     ],
-    'consoleURL': '',
+    'consoleURL': '-',
     'custom': {
       'cluster': {
         'type': 'a',
