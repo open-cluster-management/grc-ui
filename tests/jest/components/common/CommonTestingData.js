@@ -4369,6 +4369,8 @@ export const itemIds = [
   'policy-pod-edge-mcm'
 ]
 
+export const itemIds2 = ['calamari-undefined']
+
 export const resourceType = {
   'name': 'HCMCompliance',
   'list': 'HCMComplianceList'

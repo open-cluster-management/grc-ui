@@ -21,7 +21,7 @@ import thunkMiddleware from 'redux-thunk'
 import apolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
-import { resourceType, resourceType2, itemIds, items, items2, items3, staticResourceData, staticResourceData2 } from './CommonTestingData'
+import { resourceType, resourceType2, itemIds, itemIds2, items, items2, items3, staticResourceData, staticResourceData2 } from './CommonTestingData'
 
 describe('ResourceTable no search with console url', () => {
   it('renders as expected', () => {
@@ -57,7 +57,7 @@ describe('ResourceTable no search with console url', () => {
               handleSearch={fn}
               searchValue={''}
               items={items2}
-              itemIds={itemIds}
+              itemIds={itemIds2}
               expandableTable={true}
               listSubItems={true}
               placeHolderText={'Find clusters'}
@@ -107,7 +107,7 @@ describe('ResourceTable no search with empty console url', () => {
               handleSearch={fn}
               searchValue={''}
               items={items3}
-              itemIds={itemIds}
+              itemIds={itemIds2}
               expandableTable={true}
               listSubItems={true}
               placeHolderText={'Find clusters'}
