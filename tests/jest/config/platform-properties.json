@@ -311,7 +311,6 @@
   "table.actions.share": "Share",
   "table.actions.launch": "launch",
   "table.actions.launch.cluster": "Launch cluster",
-  "table.actions.launch.cluster.unavailable": "Launch cluster unavailable",
   "table.actions.launch.grafana": "Launch health view",
   "table.actions.pod.logs": "View logs",
   "table.actions.policy.remove": "Remove policy",

@@ -283,8 +283,11 @@ export class ResourceTable extends React.Component {
           }
         }
 
-        if(item.consoleURL && item.consoleURL === '-' && Array.isArray(fliteredActions)){
-          fliteredActions[fliteredActions.indexOf('table.actions.launch.cluster')] = 'table.actions.launch.cluster.unavailable'
+        if (item.consoleURL && item.consoleURL === '-' && Array.isArray(fliteredActions)){
+          const removeIndex = fliteredActions.indexOf('table.actions.launch.cluster')
+          if (removeIndex > -1) {
+            fliteredActions.splice(removeIndex, 1)
+          }
         }
 
         //changes menu item based on whether policy is enabled or disabled
