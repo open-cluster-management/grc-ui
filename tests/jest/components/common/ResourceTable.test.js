@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -18,7 +21,57 @@ import thunkMiddleware from 'redux-thunk'
 import apolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
-import { resourceType, itemIds, items, staticResourceData } from './CommonTestingData'
+import { resourceType, itemIds, items, items2, staticResourceData } from './CommonTestingData'
+
+describe('ResourceTable no search with console url', () => {
+  it('renders as expected', () => {
+    const fn = jest.fn()
+    const preloadedState = window.__PRELOADED_STATE__
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    const middleware = [thunkMiddleware]
+    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+      applyMiddleware(...middleware)
+    ))
+    const history = {
+      'length': 50,
+      'action': 'POP',
+      'location': {
+        'pathname': '/multicloud/policies/all',
+        'search': '',
+        'hash': '',
+        'key': 's4wxvc'
+      }
+    }
+    const component = renderer.create(
+      <ApolloProvider client={apolloClient.getGrcClient()}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <ResourceTable
+              staticResourceData={staticResourceData}
+              page={1}
+              pageSize={10}
+              sortDirection={'asc'}
+              handleSort={fn}
+              totalFilteredItems={13}
+              changeTablePage={fn}
+              handleSearch={fn}
+              searchValue={''}
+              items={items2}
+              itemIds={itemIds}
+              expandableTable={true}
+              listSubItems={true}
+              placeHolderText={'Search policies'}
+              highLightRowName={''}
+              history={history}
+              resourceType={resourceType}
+            />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
 
 describe('ResourceTable no search', () => {
   it('renders as expected', () => {
@@ -104,6 +157,56 @@ describe('ResourceTable no search', () => {
               handleSearch={fn}
               searchValue={''}
               items={items}
+              itemIds={itemIds}
+              expandableTable={true}
+              listSubItems={true}
+              placeHolderText={'Search policies'}
+              highLightRowName={''}
+              history={history}
+              resourceType={resourceType}
+            />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
+
+describe('ResourceTable no search with console url', () => {
+  it('renders as expected', () => {
+    const fn = jest.fn()
+    const preloadedState = window.__PRELOADED_STATE__
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    const middleware = [thunkMiddleware]
+    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+      applyMiddleware(...middleware)
+    ))
+    const history = {
+      'length': 50,
+      'action': 'POP',
+      'location': {
+        'pathname': '/multicloud/policies/all',
+        'search': '',
+        'hash': '',
+        'key': 's4wxvc'
+      }
+    }
+    const component = renderer.create(
+      <ApolloProvider client={apolloClient.getGrcClient()}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <ResourceTable
+              staticResourceData={staticResourceData}
+              page={1}
+              pageSize={10}
+              sortDirection={'asc'}
+              handleSort={fn}
+              totalFilteredItems={13}
+              changeTablePage={fn}
+              handleSearch={fn}
+              searchValue={''}
+              items={items2}
               itemIds={itemIds}
               expandableTable={true}
               listSubItems={true}
