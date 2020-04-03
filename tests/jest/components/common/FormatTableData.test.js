@@ -6,9 +6,12 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
-import { policies, policies2, findings } from './CommonTestingData'
+import { policies, policies2, policies3, findings } from './CommonTestingData'
 import { formatPoliciesToClustersTableData, formatFindingsToClustersTableData, formatExpandablePolicies } from '../../../../src-web/components/common/FormatTableData'
 
 describe('formatPoliciesToClustersTableData', () => {
@@ -20,6 +23,12 @@ describe('formatPoliciesToClustersTableData', () => {
 describe('formatPoliciesToClustersTableData', () => {
   it('should correctly format', () => {
     expect(formatPoliciesToClustersTableData(policies2)).toMatchSnapshot()
+  })
+})
+
+describe('formatPoliciesToClustersTableData', () => {
+  it('should correctly format', () => {
+    expect(formatPoliciesToClustersTableData(policies3)).toMatchSnapshot()
   })
 })
 

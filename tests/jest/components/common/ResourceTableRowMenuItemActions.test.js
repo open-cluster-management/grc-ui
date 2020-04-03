@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import { resourceActions } from '../../../../src-web/components/common/ResourceTableRowMenuItemActions'
@@ -19,6 +22,20 @@ describe('ResourceTableRowMenuItemActions component table.actions.policy.edit', 
     }
     const dispatch = jest.fn()
     expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toMatchSnapshot()
+  })
+})
+
+describe('ResourceTableRowMenuItemActions component table.actions.launch.cluster', () => {
+  it('renders as expected', () => {
+    const action = 'table.actions.launch.cluster'
+    const resourceType = {
+      'name': 'HCMPolicyCluster',
+      'list': 'HCMPolicyClusterList'
+    }
+    window.open = jest.fn()
+    const dispatch = jest.fn()
+    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toMatchSnapshot()
+    window.open.mockClear()
   })
 })
 
