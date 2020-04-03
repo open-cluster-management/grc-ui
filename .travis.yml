@@ -64,6 +64,7 @@ jobs:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make oc/install
         - make oc/login
+        - make component/pull
         - make e2e-test
         - make e2e-logs
     - stage: publish
