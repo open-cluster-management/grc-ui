@@ -29,8 +29,8 @@ describe('ResourceTableRowMenuItemActions component table.actions.launch.cluster
   it('renders as expected', () => {
     const action = 'table.actions.launch.cluster'
     const resourceType = {
-      'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
+      'name': 'HCMPolicyCluster',
+      'list': 'HCMPolicyClusterList'
     }
     window.open = jest.fn()
     const dispatch = jest.fn()
