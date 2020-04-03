@@ -22,6 +22,20 @@ describe('ResourceTableRowMenuItemActions component table.actions.policy.edit', 
   })
 })
 
+describe('ResourceTableRowMenuItemActions component table.actions.launch.cluster', () => {
+  it('renders as expected', () => {
+    const action = 'table.actions.launch.cluster'
+    const resourceType = {
+      'name': 'HCMCompliance',
+      'list': 'HCMComplianceList'
+    }
+    window.open = jest.fn()
+    const dispatch = jest.fn()
+    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toMatchSnapshot()
+    window.open.mockClear()
+  })
+})
+
 describe('ResourceTableRowMenuItemActions component table.actions.policy.edit', () => {
   it('renders as expected', () => {
     const action = 'table.actions.policy.sidepanel'

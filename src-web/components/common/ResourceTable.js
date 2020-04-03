@@ -283,7 +283,7 @@ export class ResourceTable extends React.Component {
           }
         }
 
-        if(item.consoleURL && item.consoleURL === '-'){
+        if(item.consoleURL && item.consoleURL === '-' && Array.isArray(fliteredActions)){
           fliteredActions[fliteredActions.indexOf('table.actions.launch.cluster')] = 'table.actions.launch.cluster.unavailable'
         }
 
