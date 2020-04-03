@@ -6317,6 +6317,7 @@
         "debug": {
           "version": "2.6.9",
           "bundled": true,
+          "optional": true,
           "requires": {
             "ms": "2.0.0"
           }
