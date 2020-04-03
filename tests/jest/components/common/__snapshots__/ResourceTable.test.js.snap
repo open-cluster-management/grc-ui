@@ -2607,7 +2607,7 @@ Array [
             className="bx--search-input"
             id="search"
             onChange={[Function]}
-            placeholder="Search policies"
+            placeholder="Find clusters"
             type="text"
             value=""
           />
@@ -2661,15 +2661,15 @@ Array [
           >
             <button
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="metadata.name"
+              data-default-key="cluster"
+              data-key="cluster"
               onClick={[MockFunction]}
               title="Sort rows by this header in ascending order."
             >
               <span
                 className="bx--table-header-label"
               >
-                Policy name
+                Cluster name
               </span>
               <svg
                 alt="Sort rows by this header in ascending order."
@@ -2698,15 +2698,15 @@ Array [
           >
             <button
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="remediation"
+              data-default-key="cluster"
+              data-key="namespace"
               onClick={[MockFunction]}
               title="Sort rows by this header in ascending order."
             >
               <span
                 className="bx--table-header-label"
               >
-                Remediation
+                Cluster namespace
               </span>
               <svg
                 alt="Sort rows by this header in ascending order."
@@ -2735,15 +2735,15 @@ Array [
           >
             <button
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="clusterCompliant"
+              data-default-key="cluster"
+              data-key="violation"
               onClick={[MockFunction]}
               title="Sort rows by this header in ascending order."
             >
               <span
                 className="bx--table-header-label"
               >
-                Cluster violations
+                Violations
               </span>
               <svg
                 alt="Sort rows by this header in ascending order."
@@ -2772,89 +2772,15 @@ Array [
           >
             <button
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
+              data-default-key="cluster"
+              data-key="nonCompliant"
               onClick={[MockFunction]}
               title="Sort rows by this header in ascending order."
             >
               <span
                 className="bx--table-header-label"
               >
-                Standards
-              </span>
-              <svg
-                alt="Sort rows by this header in ascending order."
-                aria-label="Sort rows by this header in ascending order."
-                className="bx--table-sort-v2__icon"
-                fill={undefined}
-                fillRule="evenodd"
-                height="5"
-                name="caret--down"
-                role="img"
-                style={undefined}
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Sort rows by this header in ascending order.
-                </title>
-                <path
-                  d="M0 0l5 4.998L10 0z"
-                />
-              </svg>
-            </button>
-          </th>
-          <th
-            scope="col"
-          >
-            <button
-              className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
-              onClick={[MockFunction]}
-              title="Sort rows by this header in ascending order."
-            >
-              <span
-                className="bx--table-header-label"
-              >
-                Controls
-              </span>
-              <svg
-                alt="Sort rows by this header in ascending order."
-                aria-label="Sort rows by this header in ascending order."
-                className="bx--table-sort-v2__icon"
-                fill={undefined}
-                fillRule="evenodd"
-                height="5"
-                name="caret--down"
-                role="img"
-                style={undefined}
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Sort rows by this header in ascending order.
-                </title>
-                <path
-                  d="M0 0l5 4.998L10 0z"
-                />
-              </svg>
-            </button>
-          </th>
-          <th
-            scope="col"
-          >
-            <button
-              className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
-              onClick={[MockFunction]}
-              title="Sort rows by this header in ascending order."
-            >
-              <span
-                className="bx--table-header-label"
-              >
-                Categories
+                Policy violations
               </span>
               <svg
                 alt="Sort rows by this header in ascending order."
@@ -2930,7 +2856,60 @@ Array [
           </td>
           <td
             className={undefined}
-          />
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+        </tr>
+        <tr
+          aria-hidden={undefined}
+          className="bx--parent-row-v2"
+          data-parent-row={true}
+          data-row-name={undefined}
+          disabled={false}
+        >
+          <td
+            className="bx--table-expand-v2"
+            data-previous-value={undefined}
+            headers="expand"
+          >
+            <button
+              aria-label="TableExpandRow"
+              className="bx--table-expand-v2__button"
+              onClick={[Function]}
+              title={undefined}
+            >
+              <svg
+                alt="Provide a description that will be used as the title"
+                aria-label="Provide a description that will be used as the title"
+                className="bx--table-expand-v2__svg"
+                fill={undefined}
+                fillRule="evenodd"
+                height="12"
+                name={undefined}
+                role="img"
+                style={undefined}
+                viewBox="0 0 7 12"
+                width="7"
+              >
+                <title>
+                  Provide a description that will be used as the title
+                </title>
+                <path
+                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                />
+              </svg>
+            </button>
+          </td>
           <td
             className={undefined}
           >
@@ -2999,7 +2978,60 @@ Array [
           </td>
           <td
             className={undefined}
-          />
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+        </tr>
+        <tr
+          aria-hidden={undefined}
+          className="bx--parent-row-v2"
+          data-parent-row={true}
+          data-row-name={undefined}
+          disabled={false}
+        >
+          <td
+            className="bx--table-expand-v2"
+            data-previous-value={undefined}
+            headers="expand"
+          >
+            <button
+              aria-label="TableExpandRow"
+              className="bx--table-expand-v2__button"
+              onClick={[Function]}
+              title={undefined}
+            >
+              <svg
+                alt="Provide a description that will be used as the title"
+                aria-label="Provide a description that will be used as the title"
+                className="bx--table-expand-v2__svg"
+                fill={undefined}
+                fillRule="evenodd"
+                height="12"
+                name={undefined}
+                role="img"
+                style={undefined}
+                viewBox="0 0 7 12"
+                width="7"
+              >
+                <title>
+                  Provide a description that will be used as the title
+                </title>
+                <path
+                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                />
+              </svg>
+            </button>
+          </td>
           <td
             className={undefined}
           >
@@ -3068,7 +3100,60 @@ Array [
           </td>
           <td
             className={undefined}
-          />
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+        </tr>
+        <tr
+          aria-hidden={undefined}
+          className="bx--parent-row-v2"
+          data-parent-row={true}
+          data-row-name={undefined}
+          disabled={false}
+        >
+          <td
+            className="bx--table-expand-v2"
+            data-previous-value={undefined}
+            headers="expand"
+          >
+            <button
+              aria-label="TableExpandRow"
+              className="bx--table-expand-v2__button"
+              onClick={[Function]}
+              title={undefined}
+            >
+              <svg
+                alt="Provide a description that will be used as the title"
+                aria-label="Provide a description that will be used as the title"
+                className="bx--table-expand-v2__svg"
+                fill={undefined}
+                fillRule="evenodd"
+                height="12"
+                name={undefined}
+                role="img"
+                style={undefined}
+                viewBox="0 0 7 12"
+                width="7"
+              >
+                <title>
+                  Provide a description that will be used as the title
+                </title>
+                <path
+                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                />
+              </svg>
+            </button>
+          </td>
           <td
             className={undefined}
           >
@@ -3137,7 +3222,60 @@ Array [
           </td>
           <td
             className={undefined}
-          />
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+        </tr>
+        <tr
+          aria-hidden={undefined}
+          className="bx--parent-row-v2"
+          data-parent-row={true}
+          data-row-name={undefined}
+          disabled={false}
+        >
+          <td
+            className="bx--table-expand-v2"
+            data-previous-value={undefined}
+            headers="expand"
+          >
+            <button
+              aria-label="TableExpandRow"
+              className="bx--table-expand-v2__button"
+              onClick={[Function]}
+              title={undefined}
+            >
+              <svg
+                alt="Provide a description that will be used as the title"
+                aria-label="Provide a description that will be used as the title"
+                className="bx--table-expand-v2__svg"
+                fill={undefined}
+                fillRule="evenodd"
+                height="12"
+                name={undefined}
+                role="img"
+                style={undefined}
+                viewBox="0 0 7 12"
+                width="7"
+              >
+                <title>
+                  Provide a description that will be used as the title
+                </title>
+                <path
+                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                />
+              </svg>
+            </button>
+          </td>
           <td
             className={undefined}
           >
@@ -3206,83 +3344,6 @@ Array [
           </td>
           <td
             className={undefined}
-          />
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-        </tr>
-        <tr
-          aria-hidden={undefined}
-          className="bx--parent-row-v2"
-          data-parent-row={true}
-          data-row-name={undefined}
-          disabled={false}
-        >
-          <td
-            className="bx--table-expand-v2"
-            data-previous-value={undefined}
-            headers="expand"
-          >
-            <button
-              aria-label="TableExpandRow"
-              className="bx--table-expand-v2__button"
-              onClick={[Function]}
-              title={undefined}
-            >
-              <svg
-                alt="Provide a description that will be used as the title"
-                aria-label="Provide a description that will be used as the title"
-                className="bx--table-expand-v2__svg"
-                fill={undefined}
-                fillRule="evenodd"
-                height="12"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 7 12"
-                width="7"
-              >
-                <title>
-                  Provide a description that will be used as the title
-                </title>
-                <path
-                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
-                />
-              </svg>
-            </button>
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          />
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
           >
             -
           </td>
@@ -3337,221 +3398,6 @@ Array [
               </svg>
             </button>
           </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          />
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-        </tr>
-        <tr
-          aria-hidden={undefined}
-          className="bx--parent-row-v2"
-          data-parent-row={true}
-          data-row-name={undefined}
-          disabled={false}
-        >
-          <td
-            className="bx--table-expand-v2"
-            data-previous-value={undefined}
-            headers="expand"
-          >
-            <button
-              aria-label="TableExpandRow"
-              className="bx--table-expand-v2__button"
-              onClick={[Function]}
-              title={undefined}
-            >
-              <svg
-                alt="Provide a description that will be used as the title"
-                aria-label="Provide a description that will be used as the title"
-                className="bx--table-expand-v2__svg"
-                fill={undefined}
-                fillRule="evenodd"
-                height="12"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 7 12"
-                width="7"
-              >
-                <title>
-                  Provide a description that will be used as the title
-                </title>
-                <path
-                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
-                />
-              </svg>
-            </button>
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          />
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-        </tr>
-        <tr
-          aria-hidden={undefined}
-          className="bx--parent-row-v2"
-          data-parent-row={true}
-          data-row-name={undefined}
-          disabled={false}
-        >
-          <td
-            className="bx--table-expand-v2"
-            data-previous-value={undefined}
-            headers="expand"
-          >
-            <button
-              aria-label="TableExpandRow"
-              className="bx--table-expand-v2__button"
-              onClick={[Function]}
-              title={undefined}
-            >
-              <svg
-                alt="Provide a description that will be used as the title"
-                aria-label="Provide a description that will be used as the title"
-                className="bx--table-expand-v2__svg"
-                fill={undefined}
-                fillRule="evenodd"
-                height="12"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 7 12"
-                width="7"
-              >
-                <title>
-                  Provide a description that will be used as the title
-                </title>
-                <path
-                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
-                />
-              </svg>
-            </button>
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          />
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-        </tr>
-        <tr
-          aria-hidden={undefined}
-          className="bx--parent-row-v2"
-          data-parent-row={true}
-          data-row-name={undefined}
-          disabled={false}
-        >
-          <td
-            className="bx--table-expand-v2"
-            data-previous-value={undefined}
-            headers="expand"
-          >
-            <button
-              aria-label="TableExpandRow"
-              className="bx--table-expand-v2__button"
-              onClick={[Function]}
-              title={undefined}
-            >
-              <svg
-                alt="Provide a description that will be used as the title"
-                aria-label="Provide a description that will be used as the title"
-                className="bx--table-expand-v2__svg"
-                fill={undefined}
-                fillRule="evenodd"
-                height="12"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 7 12"
-                width="7"
-              >
-                <title>
-                  Provide a description that will be used as the title
-                </title>
-                <path
-                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
-                />
-              </svg>
-            </button>
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          />
           <td
             className={undefined}
           >
@@ -3814,7 +3660,7 @@ Array [
 ]
 `;
 
-exports[`ResourceTable no search with console url renders as expected 2`] = `
+exports[`ResourceTable no search with empty console url renders as expected 1`] = `
 Array [
   <div
     className="bx--data-table-v2-container"
@@ -3865,7 +3711,7 @@ Array [
             className="bx--search-input"
             id="search"
             onChange={[Function]}
-            placeholder="Search policies"
+            placeholder="Find clusters"
             type="text"
             value=""
           />
@@ -3919,15 +3765,15 @@ Array [
           >
             <button
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="metadata.name"
+              data-default-key="cluster"
+              data-key="cluster"
               onClick={[MockFunction]}
               title="Sort rows by this header in ascending order."
             >
               <span
                 className="bx--table-header-label"
               >
-                Policy name
+                Cluster name
               </span>
               <svg
                 alt="Sort rows by this header in ascending order."
@@ -3956,15 +3802,15 @@ Array [
           >
             <button
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="remediation"
+              data-default-key="cluster"
+              data-key="namespace"
               onClick={[MockFunction]}
               title="Sort rows by this header in ascending order."
             >
               <span
                 className="bx--table-header-label"
               >
-                Remediation
+                Cluster namespace
               </span>
               <svg
                 alt="Sort rows by this header in ascending order."
@@ -3993,15 +3839,15 @@ Array [
           >
             <button
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="clusterCompliant"
+              data-default-key="cluster"
+              data-key="violation"
               onClick={[MockFunction]}
               title="Sort rows by this header in ascending order."
             >
               <span
                 className="bx--table-header-label"
               >
-                Cluster violations
+                Violations
               </span>
               <svg
                 alt="Sort rows by this header in ascending order."
@@ -4030,89 +3876,15 @@ Array [
           >
             <button
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
+              data-default-key="cluster"
+              data-key="nonCompliant"
               onClick={[MockFunction]}
               title="Sort rows by this header in ascending order."
             >
               <span
                 className="bx--table-header-label"
               >
-                Standards
-              </span>
-              <svg
-                alt="Sort rows by this header in ascending order."
-                aria-label="Sort rows by this header in ascending order."
-                className="bx--table-sort-v2__icon"
-                fill={undefined}
-                fillRule="evenodd"
-                height="5"
-                name="caret--down"
-                role="img"
-                style={undefined}
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Sort rows by this header in ascending order.
-                </title>
-                <path
-                  d="M0 0l5 4.998L10 0z"
-                />
-              </svg>
-            </button>
-          </th>
-          <th
-            scope="col"
-          >
-            <button
-              className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
-              onClick={[MockFunction]}
-              title="Sort rows by this header in ascending order."
-            >
-              <span
-                className="bx--table-header-label"
-              >
-                Controls
-              </span>
-              <svg
-                alt="Sort rows by this header in ascending order."
-                aria-label="Sort rows by this header in ascending order."
-                className="bx--table-sort-v2__icon"
-                fill={undefined}
-                fillRule="evenodd"
-                height="5"
-                name="caret--down"
-                role="img"
-                style={undefined}
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Sort rows by this header in ascending order.
-                </title>
-                <path
-                  d="M0 0l5 4.998L10 0z"
-                />
-              </svg>
-            </button>
-          </th>
-          <th
-            scope="col"
-          >
-            <button
-              className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-              data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
-              onClick={[MockFunction]}
-              title="Sort rows by this header in ascending order."
-            >
-              <span
-                className="bx--table-header-label"
-              >
-                Categories
+                Policy violations
               </span>
               <svg
                 alt="Sort rows by this header in ascending order."
@@ -4188,7 +3960,60 @@ Array [
           </td>
           <td
             className={undefined}
-          />
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+        </tr>
+        <tr
+          aria-hidden={undefined}
+          className="bx--parent-row-v2"
+          data-parent-row={true}
+          data-row-name={undefined}
+          disabled={false}
+        >
+          <td
+            className="bx--table-expand-v2"
+            data-previous-value={undefined}
+            headers="expand"
+          >
+            <button
+              aria-label="TableExpandRow"
+              className="bx--table-expand-v2__button"
+              onClick={[Function]}
+              title={undefined}
+            >
+              <svg
+                alt="Provide a description that will be used as the title"
+                aria-label="Provide a description that will be used as the title"
+                className="bx--table-expand-v2__svg"
+                fill={undefined}
+                fillRule="evenodd"
+                height="12"
+                name={undefined}
+                role="img"
+                style={undefined}
+                viewBox="0 0 7 12"
+                width="7"
+              >
+                <title>
+                  Provide a description that will be used as the title
+                </title>
+                <path
+                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                />
+              </svg>
+            </button>
+          </td>
           <td
             className={undefined}
           >
@@ -4257,7 +4082,60 @@ Array [
           </td>
           <td
             className={undefined}
-          />
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+        </tr>
+        <tr
+          aria-hidden={undefined}
+          className="bx--parent-row-v2"
+          data-parent-row={true}
+          data-row-name={undefined}
+          disabled={false}
+        >
+          <td
+            className="bx--table-expand-v2"
+            data-previous-value={undefined}
+            headers="expand"
+          >
+            <button
+              aria-label="TableExpandRow"
+              className="bx--table-expand-v2__button"
+              onClick={[Function]}
+              title={undefined}
+            >
+              <svg
+                alt="Provide a description that will be used as the title"
+                aria-label="Provide a description that will be used as the title"
+                className="bx--table-expand-v2__svg"
+                fill={undefined}
+                fillRule="evenodd"
+                height="12"
+                name={undefined}
+                role="img"
+                style={undefined}
+                viewBox="0 0 7 12"
+                width="7"
+              >
+                <title>
+                  Provide a description that will be used as the title
+                </title>
+                <path
+                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                />
+              </svg>
+            </button>
+          </td>
           <td
             className={undefined}
           >
@@ -4326,7 +4204,60 @@ Array [
           </td>
           <td
             className={undefined}
-          />
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+        </tr>
+        <tr
+          aria-hidden={undefined}
+          className="bx--parent-row-v2"
+          data-parent-row={true}
+          data-row-name={undefined}
+          disabled={false}
+        >
+          <td
+            className="bx--table-expand-v2"
+            data-previous-value={undefined}
+            headers="expand"
+          >
+            <button
+              aria-label="TableExpandRow"
+              className="bx--table-expand-v2__button"
+              onClick={[Function]}
+              title={undefined}
+            >
+              <svg
+                alt="Provide a description that will be used as the title"
+                aria-label="Provide a description that will be used as the title"
+                className="bx--table-expand-v2__svg"
+                fill={undefined}
+                fillRule="evenodd"
+                height="12"
+                name={undefined}
+                role="img"
+                style={undefined}
+                viewBox="0 0 7 12"
+                width="7"
+              >
+                <title>
+                  Provide a description that will be used as the title
+                </title>
+                <path
+                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                />
+              </svg>
+            </button>
+          </td>
           <td
             className={undefined}
           >
@@ -4395,7 +4326,60 @@ Array [
           </td>
           <td
             className={undefined}
-          />
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+          <td
+            className={undefined}
+          >
+            -
+          </td>
+        </tr>
+        <tr
+          aria-hidden={undefined}
+          className="bx--parent-row-v2"
+          data-parent-row={true}
+          data-row-name={undefined}
+          disabled={false}
+        >
+          <td
+            className="bx--table-expand-v2"
+            data-previous-value={undefined}
+            headers="expand"
+          >
+            <button
+              aria-label="TableExpandRow"
+              className="bx--table-expand-v2__button"
+              onClick={[Function]}
+              title={undefined}
+            >
+              <svg
+                alt="Provide a description that will be used as the title"
+                aria-label="Provide a description that will be used as the title"
+                className="bx--table-expand-v2__svg"
+                fill={undefined}
+                fillRule="evenodd"
+                height="12"
+                name={undefined}
+                role="img"
+                style={undefined}
+                viewBox="0 0 7 12"
+                width="7"
+              >
+                <title>
+                  Provide a description that will be used as the title
+                </title>
+                <path
+                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                />
+              </svg>
+            </button>
+          </td>
           <td
             className={undefined}
           >
@@ -4464,83 +4448,6 @@ Array [
           </td>
           <td
             className={undefined}
-          />
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-        </tr>
-        <tr
-          aria-hidden={undefined}
-          className="bx--parent-row-v2"
-          data-parent-row={true}
-          data-row-name={undefined}
-          disabled={false}
-        >
-          <td
-            className="bx--table-expand-v2"
-            data-previous-value={undefined}
-            headers="expand"
-          >
-            <button
-              aria-label="TableExpandRow"
-              className="bx--table-expand-v2__button"
-              onClick={[Function]}
-              title={undefined}
-            >
-              <svg
-                alt="Provide a description that will be used as the title"
-                aria-label="Provide a description that will be used as the title"
-                className="bx--table-expand-v2__svg"
-                fill={undefined}
-                fillRule="evenodd"
-                height="12"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 7 12"
-                width="7"
-              >
-                <title>
-                  Provide a description that will be used as the title
-                </title>
-                <path
-                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
-                />
-              </svg>
-            </button>
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          />
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
           >
             -
           </td>
@@ -4595,221 +4502,6 @@ Array [
               </svg>
             </button>
           </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          />
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-        </tr>
-        <tr
-          aria-hidden={undefined}
-          className="bx--parent-row-v2"
-          data-parent-row={true}
-          data-row-name={undefined}
-          disabled={false}
-        >
-          <td
-            className="bx--table-expand-v2"
-            data-previous-value={undefined}
-            headers="expand"
-          >
-            <button
-              aria-label="TableExpandRow"
-              className="bx--table-expand-v2__button"
-              onClick={[Function]}
-              title={undefined}
-            >
-              <svg
-                alt="Provide a description that will be used as the title"
-                aria-label="Provide a description that will be used as the title"
-                className="bx--table-expand-v2__svg"
-                fill={undefined}
-                fillRule="evenodd"
-                height="12"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 7 12"
-                width="7"
-              >
-                <title>
-                  Provide a description that will be used as the title
-                </title>
-                <path
-                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
-                />
-              </svg>
-            </button>
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          />
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-        </tr>
-        <tr
-          aria-hidden={undefined}
-          className="bx--parent-row-v2"
-          data-parent-row={true}
-          data-row-name={undefined}
-          disabled={false}
-        >
-          <td
-            className="bx--table-expand-v2"
-            data-previous-value={undefined}
-            headers="expand"
-          >
-            <button
-              aria-label="TableExpandRow"
-              className="bx--table-expand-v2__button"
-              onClick={[Function]}
-              title={undefined}
-            >
-              <svg
-                alt="Provide a description that will be used as the title"
-                aria-label="Provide a description that will be used as the title"
-                className="bx--table-expand-v2__svg"
-                fill={undefined}
-                fillRule="evenodd"
-                height="12"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 7 12"
-                width="7"
-              >
-                <title>
-                  Provide a description that will be used as the title
-                </title>
-                <path
-                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
-                />
-              </svg>
-            </button>
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          />
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-        </tr>
-        <tr
-          aria-hidden={undefined}
-          className="bx--parent-row-v2"
-          data-parent-row={true}
-          data-row-name={undefined}
-          disabled={false}
-        >
-          <td
-            className="bx--table-expand-v2"
-            data-previous-value={undefined}
-            headers="expand"
-          >
-            <button
-              aria-label="TableExpandRow"
-              className="bx--table-expand-v2__button"
-              onClick={[Function]}
-              title={undefined}
-            >
-              <svg
-                alt="Provide a description that will be used as the title"
-                aria-label="Provide a description that will be used as the title"
-                className="bx--table-expand-v2__svg"
-                fill={undefined}
-                fillRule="evenodd"
-                height="12"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 7 12"
-                width="7"
-              >
-                <title>
-                  Provide a description that will be used as the title
-                </title>
-                <path
-                  d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
-                />
-              </svg>
-            </button>
-          </td>
-          <td
-            className={undefined}
-          >
-            -
-          </td>
-          <td
-            className={undefined}
-          />
           <td
             className={undefined}
           >
