@@ -26,6 +26,7 @@ import specCertmgmtexp from './spec-certmgmtexp.yaml'
 import specCis from './spec-cis.yaml'
 import specCisOcp from './spec-cis-ocp.yaml'
 import specScc from './spec-scc.yaml'
+import specImv from './spec-imagemanifestvuln.yaml'
 
 export {
   specPodRole,
@@ -44,4 +45,5 @@ export {
   specCis,
   specCisOcp,
   specScc,
+  specImv,
 }

@@ -1,1 +1,0 @@
-kubectl apply -f ./auth-setup/grc-ui-app.yaml -n default --validate=false

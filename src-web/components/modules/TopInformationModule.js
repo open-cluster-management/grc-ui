@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+ */
+
 'use strict'
 
 import React from 'react'
@@ -179,7 +182,7 @@ export default class TopInformationModule extends React.Component {
     return (
       <div className='header-container'>
         <div className={'header-title'} style={{width:'auto', marginRight:'1rem'}}>{title}</div>
-        <Tag className='tag-fake-red' type={'community'}>{msgs.get('overview.top.informations.title.count', [count], locale)}</Tag>
+        <Tag className='tag-fake-red' type={'community'}>{msgs.get(`overview.top.informations.title.${type}.${viewState}.count`, [count], locale)}</Tag>
       </div>
     )
   }
