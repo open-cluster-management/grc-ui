@@ -10,6 +10,8 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import SplitPane from 'react-split-pane'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {
   Button,
@@ -20,7 +22,8 @@ import {
   DropdownV2,
   TooltipIcon,
   MultiSelect,
-  InlineNotification} from 'carbon-components-react'
+  InlineNotification,
+  ToggleSmall} from 'carbon-components-react'
 import { initializeControlData, cacheUserData, updateControls, parseYAML } from './utils/update-controls'
 import { generateYAML, highlightChanges, getUniqueName } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
@@ -28,6 +31,7 @@ import EditorBar from './components/EditorBar'
 import YamlEditor from './components/YamlEditor'
 import './scss/template-editor.scss'
 import msgs from '../../../nls/platform.properties'
+import '../../../graphics/diagramIcons.svg'
 import _ from 'lodash'
 
 export default class TemplateEditor extends React.Component {
@@ -47,6 +51,7 @@ export default class TemplateEditor extends React.Component {
     locale: PropTypes.string,
     portals: PropTypes.object.isRequired,
     template: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired,
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -90,27 +95,61 @@ export default class TemplateEditor extends React.Component {
     super(props)
     this.state = {
       isCustomName: false,
+      showEditor: !!localStorage.getItem('template-editor-open-cookie'),
       exceptions: [],
       updateMessage: '',
       hasUndo: false,
       hasRedo: false,
     }
     this.multiSelectCmpMap = {}
+    this.layoutEditorsDebounced = _.debounce(() => {
+      this.layoutEditors()
+    }, 150)
     this.parseDebounced = _.debounce(()=>{
       this.handleParse()
     }, 500)
     this.handleEditorCommand = this.handleEditorCommand.bind(this)
     this.handleSearchChange = this.handleSearchChange.bind(this)
     this.gotoEditorLine = this.gotoEditorLine.bind(this)
+    const { type='unknown' } = this.props
+    this.splitterSizeCookie = `TEMPLATE-EDITOR-SPLITTER-SIZE-${type.toUpperCase()}`
   }
 
   componentWillMount() {
     this.resetEditor()
   }
 
+  setSplitPaneRef = splitPane => (this.splitPane = splitPane);
+
+  handleSplitterDefault = () => {
+    const cookie = localStorage.getItem(this.splitterSizeCookie)
+    let size = cookie ? parseInt(cookie) : 1000
+    const page = document.getElementById('page')
+    if (page) {
+      const width = page.getBoundingClientRect().width
+      if (!cookie) {
+        size = width*.4
+      } else if (size > (width*7/10)) {
+        size = width * 7 / 10
+      }
+    }
+    return size
+  }
+
+  handleSplitterChange = size => {
+    localStorage.setItem(this.splitterSizeCookie, size)
+    this.layoutEditorsDebounced()
+  };
+
+  setContainerRef = container => {
+    this.containerRef = container
+    this.layoutEditors()
+  };
+
   render() {
     const {fetchControl, locale} = this.props
     const {isLoaded, isFailed} = fetchControl || {isLoaded:true}
+    const { showEditor, resetInx } = this.state
 
     if (!isLoaded)
       return <Loading withOverlay={false} className='content-spinner' />
@@ -119,12 +158,50 @@ export default class TemplateEditor extends React.Component {
       return <Notification title='' className='overview-notification' kind='error'
         subtitle={msgs.get('overview.error.default', locale)} />
 
+    const viewClasses = classNames({
+      'creation-view': true,
+      showEditor
+    })
     return (
-      <div className='creation-view'>
+      <div key={`key${resetInx}`} className={viewClasses} ref={this.setContainerRef}>
+        {this.renderEditButton()}
         {this.renderCreateButton()}
         {this.renderCancelButton()}
-        {this.renderControls()}
-        {this.renderEditor()}
+        {this.renderSplitEditor()}
+      </div>
+    )
+  }
+
+  renderSplitEditor() {
+    const { showEditor } = this.state
+    const editorClasses = classNames({
+      'creation-view-split-container': true,
+      showEditor
+    })
+    let maxSize
+    const page = document.getElementById('page')
+    if (page) {
+      maxSize = page.getBoundingClientRect().width*8/10
+    }
+    return (
+      <div className={editorClasses}>
+        {showEditor ? (
+          <SplitPane
+            split="vertical"
+            minSize={50}
+            maxSize={maxSize}
+            ref={this.setSplitPaneRef}
+            defaultSize={this.handleSplitterDefault()}
+            onChange={this.handleSplitterChange}
+          >
+            {this.renderControls()}
+            {this.renderEditor()}
+          </SplitPane>
+        ) : (
+          <div className='creation-view-split-controls-help-container'>
+            {this.renderControls()}
+          </div>
+        )}
       </div>
     )
   }
@@ -519,9 +596,18 @@ export default class TemplateEditor extends React.Component {
       //where is defined?
       this.updateResources()
       break
+    case 'close':
+      this.closeEdit()
+      break
     }
     return command
   }
+
+  closeEdit()  {
+    localStorage.removeItem('template-editor-open-cookie')
+    this.setState({showEditor: false})
+  }
+
 
   handleSearchChange(searchName) {
     if (searchName.length>1 || this.nameSearchMode) {
@@ -601,6 +687,40 @@ export default class TemplateEditor extends React.Component {
         })
       })
       return payload
+    }
+    return null
+  }
+
+  renderEditButton() {
+    const { portals={}, locale } = this.props
+    const { editBtn } = portals
+    if (editBtn) {
+      var portal = document.getElementById(editBtn)
+      if (portal) {
+        const { showEditor } = this.state
+        const handleToggle = () => {
+          if (showEditor) {
+            localStorage.removeItem('template-editor-open-cookie')
+          } else {
+            localStorage.setItem('template-editor-open-cookie', 'true')
+          }
+          this.setState({showEditor: !showEditor})
+        }
+        this.renderedPortals = true
+        return ReactDOM.createPortal(
+          <div className='edit-template-switch'>
+            <ToggleSmall
+              id='edit-yaml'
+              defaultToggled={showEditor}
+              onChange={()=>{}}
+              onToggle={handleToggle}
+            />
+            <div className='switch-label'>
+              {showEditor ? msgs.get('edit.yaml.on', locale) : msgs.get('edit.yaml.off', locale)}
+            </div>
+          </div>, portal
+        )
+      }
     }
     return null
   }

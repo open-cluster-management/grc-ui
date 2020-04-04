@@ -37,6 +37,11 @@ export class CreationTab extends React.Component {
     const { title, tabs, breadcrumbItems, information } = secondaryHeaderProps
     const portals = [
       {
+        id: 'edit-button-portal-id',
+        kind: 'portal',
+        title: true,
+      },
+      {
         id: 'cancel-button-portal-id',
         kind: 'portal',
       },
