@@ -22,7 +22,6 @@ import {
   DropdownV2,
   TooltipIcon,
   MultiSelect,
-  InlineNotification,
   ToggleSmall} from 'carbon-components-react'
 import { initializeControlData, cacheUserData, updateControls, parseYAML } from './utils/update-controls'
 import { generateYAML, highlightChanges, getUniqueName } from './utils/update-editor'
@@ -211,6 +210,7 @@ export default class TemplateEditor extends React.Component {
     const {controlData} = this.state
     return (
       <div className='creation-view-controls-container' >
+        {this.renderNotifications()}
         <div className='creation-view-controls-note'>{msgs.get('creation.view.required.mark', locale)}</div>
         <div className='creation-view-controls' >
           {controlData.map(control => {
@@ -238,6 +238,43 @@ export default class TemplateEditor extends React.Component {
         </div>
       </div>
     )
+  }
+
+  renderNotifications() {
+    const { locale } = this.props
+    const { updateMessage, updateMsgKind } = this.state
+    if (updateMessage) {
+
+      const handleClick = () => {
+      }
+      const handleKeyPress = (e) => {
+        if ( e.key === 'Enter') {
+          handleClick()
+        }
+      }
+
+
+
+
+
+      return <div role='button' onClick={handleClick}
+        tabIndex="0" aria-label={updateMessage} onKeyDown={handleKeyPress}>
+        <div  >
+          <Notification
+            key={updateMessage}
+            kind={updateMsgKind}
+            title={updateMsgKind==='error' ?
+              msgs.get('error.create.policy', locale) :
+              msgs.get('success.create.policy', locale) }
+            iconDescription=''
+            subtitle={updateMessage}
+            className='persistent notification'
+            onCloseButtonClick={this.handleUpdateMessageClosed}
+          />
+        </div>
+      </div>
+    }
+    return null
   }
 
   renderTextInput(control) {
@@ -383,7 +420,7 @@ export default class TemplateEditor extends React.Component {
 
   renderEditor() {
     const { locale } = this.context
-    const { templateYAML, hasUndo, hasRedo, exceptions, updateMessage, updateMsgKind } = this.state
+    const { templateYAML, hasUndo, hasRedo, exceptions } = this.state
     const editorToolbarTitle = msgs.get('editor.toolbar', this.context.locale)
 
     return (
@@ -403,19 +440,6 @@ export default class TemplateEditor extends React.Component {
             />
           </div>
         </div>
-        {updateMessage &&
-          <div className='creation-view-yaml-notification' >
-            <InlineNotification
-              key={updateMessage}
-              kind={updateMsgKind}
-              title={updateMsgKind==='error' ?
-                msgs.get('error.create.policy', locale) :
-                msgs.get('success.create.policy', locale) }
-              iconDescription=''
-              subtitle={updateMessage}
-              onCloseButtonClick={this.handleUpdateMessageClosed}
-            />
-          </div>}
         <YamlEditor
           width={'100%'}
           height={'100%'}
