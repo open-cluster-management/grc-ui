@@ -15,7 +15,7 @@ import renderer from 'react-test-renderer'
 describe('EditorBar component', () => {
   it('renders as expected', () => {
     const fn = jest.fn()
-    const exceptions = [{msg:'bad'}]
+    const exceptions = [{text:'bad', row:0}]
     const component = renderer.create(
       <EditorBar
         hasUndo={false}

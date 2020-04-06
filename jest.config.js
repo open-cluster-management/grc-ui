@@ -38,13 +38,14 @@ const jestConfig = {
     global: {
       branches: 45,
       functions: 50,
-      lines: 59,
-      statements: 58,
+      lines: 60,
+      statements: 59,
     },
   },
   testMatch: [
     '<rootDir>/tests/jest/*/*.test.js?(x)',
-    '<rootDir>/tests/jest/*/*/*.test.js?(x)'
+    '<rootDir>/tests/jest/*/*/*.test.js?(x)',
+    '<rootDir>/tests/jest/*/*/*/*.test.js?(x)',
   ],
   transform: {
     '^.+\\.js$': 'babel-jest',
