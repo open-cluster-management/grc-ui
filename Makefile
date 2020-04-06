@@ -42,6 +42,7 @@ e2e-test:
 	export SELENIUM_USER=$(OC_CLUSTER_USER)
 	export SELENIUM_PASSWORD=$(OC_CLUSTER_PASS)
 	echo $(OC)
+	$(OC) whoami --show-token
 	# export SERVICEACCT_TOKEN="$(/home/travis/build/open-cluster-management/grc-ui/build-harness/vendor/oc whoami --show-token)"
 	$(OC) whoami --show-token | (read token; export SERVICEACCT_TOKEN=$token;)
 	echo $(SERVICEACCT_TOKEN)
