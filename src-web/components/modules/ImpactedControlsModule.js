@@ -635,6 +635,7 @@ class ImpactedControlsModule extends React.Component {
     const controlLabels = {}
     const violationsByControls = {}
     const policyTooltips = {}
+    const regexAllSpaces = / +/g
     violations.forEach(policy=>{
       const annotations = _.get(policy, 'metadata.annotations', {})
       const controls = _.get(annotations, 'policy.mcm.ibm.com/controls', 'other')
@@ -642,7 +643,7 @@ class ImpactedControlsModule extends React.Component {
         const label = _.startCase(control.trim())
         const ctrl = control.toLowerCase().trim()
         controlLabels[ctrl] = label
-        if (ctrl && (standardsChoice === 'ALL' || _.get(annotations, 'policy.mcm.ibm.com/standards', 'other').toLowerCase().includes(standardsChoice.toLowerCase()))) {
+        if (ctrl && (standardsChoice === 'ALL' || _.get(annotations, 'policy.mcm.ibm.com/standards', 'other').trim().toLowerCase() === standardsChoice.trim().toLowerCase().replace(regexAllSpaces, '-'))) {
           violationsByControls[ctrl] = _.get(violationsByControls, ctrl, 0)+1
           policyTooltips[ctrl] = _.get(policyTooltips, ctrl, [{count: 0, findingType: SECURITY_TYPES.VIOLATIONS},])
           policyTooltips[ctrl][0].count = policyTooltips[ctrl][0].count+1
