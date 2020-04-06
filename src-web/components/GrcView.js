@@ -123,9 +123,14 @@ export class GrcView extends React.Component {
     if (loading)
       return <Loading withOverlay={false} className='content-spinner' />
 
-    if (error)
+    if (error) {
+      if (error.message.startsWith('GraphQL error: policies.policy.mcm.ibm.com is forbidden:')) {
+        return <Notification title='' className='overview-notification' kind='error'
+          subtitle={msgs.get('error.permission.denied', locale)} />
+      }
       return <Notification title='' className='overview-notification' kind='error'
         subtitle={msgs.get('overview.error.default', locale)} />
+    }
 
     const displayType = location.pathname.split('/').pop()
     let filterGrcItems, filterToEmpty = false
