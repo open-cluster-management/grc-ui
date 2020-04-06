@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -32,6 +35,8 @@ import './scss/template-editor.scss'
 import msgs from '../../../nls/platform.properties'
 import '../../../graphics/diagramIcons.svg'
 import _ from 'lodash'
+
+const tempCookie= 'template-editor-open-cookie'
 
 export default class TemplateEditor extends React.Component {
 
@@ -94,7 +99,7 @@ export default class TemplateEditor extends React.Component {
     super(props)
     this.state = {
       isCustomName: false,
-      showEditor: !!localStorage.getItem('template-editor-open-cookie'),
+      showEditor: !!localStorage.getItem(tempCookie),
       exceptions: [],
       updateMessage: '',
       hasUndo: false,
@@ -628,7 +633,7 @@ export default class TemplateEditor extends React.Component {
   }
 
   closeEdit()  {
-    localStorage.removeItem('template-editor-open-cookie')
+    localStorage.removeItem(tempCookie)
     this.setState({showEditor: false})
   }
 
@@ -724,9 +729,9 @@ export default class TemplateEditor extends React.Component {
         const { showEditor } = this.state
         const handleToggle = () => {
           if (showEditor) {
-            localStorage.removeItem('template-editor-open-cookie')
+            localStorage.removeItem(tempCookie)
           } else {
-            localStorage.setItem('template-editor-open-cookie', 'true')
+            localStorage.setItem(tempCookie, 'true')
           }
           this.setState({showEditor: !showEditor})
         }
