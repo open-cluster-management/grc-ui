@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -58,6 +61,7 @@ class EditorBar extends React.Component {
       {command: 'redo', tooltip: msgs.get('editor.bar.redo', locale), icon:'redo', disabled:!hasRedo},
       {command: 'restore', tooltip: msgs.get('editor.bar.restore', locale), icon:'restore', disabled:!hasUndo},
       {command: 'spacer2', spacer: true},
+      {command: 'close', tooltip: msgs.get('editor.bar.close', locale), icon:'close'},
     ]
     const menuItems=[]
     if (exceptions.length!==0) {

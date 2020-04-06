@@ -19,6 +19,11 @@ ShallowWrapper {
             undefined,
             Array [
               Object {
+                "id": "edit-button-portal-id",
+                "kind": "portal",
+                "title": true,
+              },
+              Object {
                 "id": "cancel-button-portal-id",
                 "kind": "portal",
               },
@@ -105,6 +110,11 @@ ShallowWrapper {
             undefined,
             undefined,
             Array [
+              Object {
+                "id": "edit-button-portal-id",
+                "kind": "portal",
+                "title": true,
+              },
               Object {
                 "id": "cancel-button-portal-id",
                 "kind": "portal",
