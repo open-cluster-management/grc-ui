@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -18,7 +21,160 @@ import thunkMiddleware from 'redux-thunk'
 import apolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
-import { resourceType, itemIds, items, staticResourceData } from './CommonTestingData'
+import { resourceType, resourceType2, itemIds, itemIds2, items, items2, items3, staticResourceData, staticResourceData2 } from './CommonTestingData'
+
+describe('ResourceTable no search with console url', () => {
+  it('renders as expected', () => {
+    const fn = jest.fn()
+    const preloadedState = window.__PRELOADED_STATE__
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    const middleware = [thunkMiddleware]
+    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+      applyMiddleware(...middleware)
+    ))
+    const history = {
+      'length': 50,
+      'action': 'POP',
+      'location': {
+        'pathname': '/multicloud/policies/all?index=1',
+        'search': '',
+        'hash': '',
+        'key': 's4wxvc'
+      }
+    }
+    const component = renderer.create(
+      <ApolloProvider client={apolloClient.getGrcClient()}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <ResourceTable
+              staticResourceData={staticResourceData2}
+              tableActions={staticResourceData2.tableActions}
+              page={1}
+              pageSize={10}
+              sortDirection={'asc'}
+              handleSort={fn}
+              totalFilteredItems={13}
+              changeTablePage={fn}
+              handleSearch={fn}
+              searchValue={''}
+              items={items2}
+              itemIds={itemIds2}
+              expandableTable={true}
+              listSubItems={true}
+              placeHolderText={'Find clusters'}
+              highLightRowName={''}
+              history={history}
+              resourceType={resourceType2}
+            />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
+
+describe('ResourceTable no search with empty console url', () => {
+  it('renders as expected', () => {
+    const fn = jest.fn()
+    const preloadedState = window.__PRELOADED_STATE__
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    const middleware = [thunkMiddleware]
+    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+      applyMiddleware(...middleware)
+    ))
+    const history = {
+      'length': 50,
+      'action': 'POP',
+      'location': {
+        'pathname': '/multicloud/policies/all?index=1',
+        'search': '',
+        'hash': '',
+        'key': 's4wxvc'
+      }
+    }
+    const component = renderer.create(
+      <ApolloProvider client={apolloClient.getGrcClient()}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <ResourceTable
+              staticResourceData={staticResourceData2}
+              tableActions={staticResourceData2.tableActions}
+              page={1}
+              pageSize={10}
+              sortDirection={'asc'}
+              handleSort={fn}
+              totalFilteredItems={13}
+              changeTablePage={fn}
+              handleSearch={fn}
+              searchValue={''}
+              items={items3}
+              itemIds={itemIds2}
+              expandableTable={true}
+              listSubItems={true}
+              placeHolderText={'Find clusters'}
+              highLightRowName={''}
+              history={history}
+              resourceType={resourceType2}
+            />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
+
+describe('ResourceTable no search with empty console url', () => {
+  it('renders as expected', () => {
+    const fn = jest.fn()
+    const preloadedState = window.__PRELOADED_STATE__
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    const middleware = [thunkMiddleware]
+    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+      applyMiddleware(...middleware)
+    ))
+    const history = {
+      'length': 50,
+      'action': 'POP',
+      'location': {
+        'pathname': '/multicloud/policies/all?index=1',
+        'search': '',
+        'hash': '',
+        'key': 's4wxvc'
+      }
+    }
+    const component = renderer.create(
+      <ApolloProvider client={apolloClient.getGrcClient()}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <ResourceTable
+              staticResourceData={staticResourceData2}
+              tableActions={['table.actions.policy.clusters.sidepanel']}
+              page={1}
+              pageSize={10}
+              sortDirection={'asc'}
+              handleSort={fn}
+              totalFilteredItems={13}
+              changeTablePage={fn}
+              handleSearch={fn}
+              searchValue={''}
+              items={items3}
+              itemIds={itemIds2}
+              expandableTable={true}
+              listSubItems={true}
+              placeHolderText={'Find clusters'}
+              highLightRowName={''}
+              history={history}
+              resourceType={resourceType2}
+            />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
 
 describe('ResourceTable no search', () => {
   it('renders as expected', () => {
@@ -45,6 +201,7 @@ describe('ResourceTable no search', () => {
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData}
+              tableActions={staticResourceData.tableActions}
               page={1}
               pageSize={10}
               sortDirection={'asc'}
@@ -95,6 +252,7 @@ describe('ResourceTable no search', () => {
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData}
+              tableActions={staticResourceData.tableActions}
               page={1}
               pageSize={10}
               sortDirection={'asc'}
@@ -119,6 +277,7 @@ describe('ResourceTable no search', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })
 })
+
 
 describe('ResourceTable with search', () => {
   it('renders as expected', () => {
@@ -145,6 +304,7 @@ describe('ResourceTable with search', () => {
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData}
+              tableActions={staticResourceData.tableActions}
               page={1}
               pageSize={10}
               sortDirection={'asc'}
@@ -195,6 +355,7 @@ describe('ResourceTable not expandable', () => {
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData}
+              tableActions={staticResourceData.tableActions}
               page={1}
               pageSize={20}
               sortDirection={'asc'}

@@ -21,6 +21,7 @@ export default {
   secondaryKey: 'metadata.namespace',
   tableActions: [
     'table.actions.policy.clusters.sidepanel',
+    'table.actions.launch.cluster'
   ],
   tableKeys: [
     {
