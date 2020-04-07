@@ -22,6 +22,7 @@ import _ from 'lodash'
 
 // where to put Create/Cancel buttons
 const Portals = Object.freeze({
+  editBtn: 'edit-button-portal-id',
   createBtn: 'create-button-portal-id',
   cancelBtn: 'cancel-button-portal-id',
 })
@@ -156,6 +157,7 @@ export default class CreationView extends React.Component {
         portals={Portals}
         fetchControl={fetchControl}
         createControl={createControl}
+        type={'policy'}
         locale={locale}
       />
     )

@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -36,6 +39,11 @@ export class CreationTab extends React.Component {
     const { updateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, breadcrumbItems, information } = secondaryHeaderProps
     const portals = [
+      {
+        id: 'edit-button-portal-id',
+        kind: 'portal',
+        title: true,
+      },
       {
         id: 'cancel-button-portal-id',
         kind: 'portal',
