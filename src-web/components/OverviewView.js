@@ -97,7 +97,7 @@ export class OverviewView extends React.Component {
       return <Loading withOverlay={false} className='content-spinner' />
 
     if (error) {
-      if (error.name == 'PermissionError') {
+      if (error.name === 'PermissionError') {
         return <Notification title='' className='overview-notification' kind='error'
           subtitle={msgs.get('error.permission.denied', locale)} />
       }
