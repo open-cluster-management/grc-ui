@@ -6,6 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
 
 const tapReporter = [
   'jest-tap-reporter',
@@ -42,7 +44,8 @@ const jestConfig = {
   },
   testMatch: [
     '<rootDir>/tests/jest/*/*.test.js?(x)',
-    '<rootDir>/tests/jest/*/*/*.test.js?(x)'
+    '<rootDir>/tests/jest/*/*/*.test.js?(x)',
+    '<rootDir>/tests/jest/*/*/*/*.test.js?(x)',
   ],
   transform: {
     '^.+\\.js$': 'babel-jest',

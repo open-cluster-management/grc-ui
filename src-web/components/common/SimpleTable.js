@@ -6,6 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
 'use strict'
 
 import React from 'react'
@@ -95,7 +97,7 @@ class StructuredListModule extends React.Component {
                           {Array.isArray(rows) && rows[0].cells.map((cell, index) =>
                             <td key={cell.resourceKey+'Cell'}>
                               <p>{
-                                (linkFixedName && (index in linkFixedName))
+                                (linkFixedName && (index in linkFixedName) && transform(row, cell, this.context.locale) !== '-')
                                   ? <Link to={transform(row, cell, this.context.locale)} target={linkFixedName[index].urlTarget} className='bx--link'>{msgs.get(linkFixedName[index].fixedName, this.context.locale)}</Link>
                                   : cell.link && url ? <Link to={url} className='bx--link'>{transform(row, cell, this.context.locale)}</Link> : transform(row, cell, this.context.locale)
                               }</p>

@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -277,6 +280,13 @@ export class ResourceTable extends React.Component {
         if(showSidePanel && highLightRowName && autoAction){
           if((item.metadata && item.metadata.name && item.metadata.name === highLightRowName) || (item.cluster && item.cluster === highLightRowName)){
             getResourceAction(autoAction, item, null, history, locale)
+          }
+        }
+
+        if (item.consoleURL && item.consoleURL === '-' && Array.isArray(fliteredActions)){
+          const removeIndex = fliteredActions.indexOf('table.actions.launch.cluster')
+          if (removeIndex > -1) {
+            fliteredActions.splice(removeIndex, 1)
           }
         }
 
