@@ -642,13 +642,14 @@ class ImpactedControlsModule extends React.Component {
     violations.forEach(policy=>{
       const annotations = _.get(policy, 'metadata.annotations', {})
       const controls = _.get(annotations, 'policy.mcm.ibm.com/controls', 'other')
+      const standards = _.get(annotations, 'policy.mcm.ibm.com/standards', 'other').trim().toLowerCase()
+      const standardsSet = new Set(standards.split(','))//deal with multi standards separated by comma
       controls.split(',').forEach(control => {
         const label = _.startCase(control.trim())
         const ctrl = control.toLowerCase().trim()
         controlLabels[ctrl] = label
-        const annotationsStr = _.get(annotations, 'policy.mcm.ibm.com/standards', 'other').trim().toLowerCase()
         const standardsChoiceStr = standardsChoice.trim().toLowerCase().replace(regexAllSpaces, '-')
-        if (ctrl && (standardsChoice === 'ALL' || annotationsStr === standardsChoiceStr)) {
+        if (ctrl && (standardsChoice === 'ALL' || standardsSet.has(standardsChoiceStr))) {
           violationsByControls[ctrl] = _.get(violationsByControls, ctrl, 0)+1
           policyTooltips[ctrl] = _.get(policyTooltips, ctrl, [{count: 0, findingType: SECURITY_TYPES.VIOLATIONS},])
           policyTooltips[ctrl][0].count = policyTooltips[ctrl][0].count+1
