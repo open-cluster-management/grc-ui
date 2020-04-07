@@ -6,12 +6,104 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+ /* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
 @import 'variables';
 
 .creation-view {
   display: flex;
-  margin: 0 -3% -3.125rem 0;
+  position: relative;
+
+  &.showEditor {
+    margin: 0 0 -3.125rem 0;
+  }
+
+  .creation-view-split-container {
+    width: 100%;
+
+    div.SplitPane {
+      div.Pane1 {
+        position: unset !important;
+      }
+    }
+
+    &.showEditor {
+      height: calc(100vh - 15rem);
+
+      .creation-view-controls-container {
+        height: calc(100vh - 19rem);
+        margin-top: 0.5rem;
+      }
+
+      .creation-view-yaml {
+        height: calc(100% - 3rem);
+        position: relative;
+
+        &-header {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          align-items: center;
+          padding-bottom: 0.5rem;
+
+          &-title {
+            font-weight: bold;
+            font-size: 0.875rem;
+
+            .bx--tabs {
+              min-height: 16px;
+
+              .bx--tabs__nav-item {
+                padding: 0 0 6px 0;
+              }
+            }
+          }
+
+          &-toolbar {
+            display: flex;
+            align-items: center;
+          }
+        }
+
+        .yamlEditorContainer {
+          width: 100%;
+          height: 100%;
+          font-family: monospace;
+
+          html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            font-family: monospace;
+          }
+
+          div > * {
+            font-family: monospace;
+          }
+
+          #brace-editor {
+            min-width: unset;
+            min-height: unset;
+          }
+
+          .ace-vibrant-ink {
+            .ace_marker-layer {
+              .ace_selection {
+                background: #042d57;
+              }
+              .ace_selected-word {
+                border: none;
+                background: #042d57;
+              }
+
+              .ace_active-line {
+                background: #33333370;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
   .bx--tooltip--icon__top:focus {
     box-shadow: none;
@@ -31,11 +123,6 @@
     margin-left: 5.8rem;
   }
 
-  &-controls-container {
-    width: 30%;
-    height: calc(100vh - 14.375rem);
-    margin-top: 0.5rem;
-  }
 
   &-controls {
     height: 100%;
@@ -75,6 +162,7 @@
     }
 
     &-textbox, &-multiselect, &-singleselect, &-select {
+      max-width: 600px;
       padding: 0 0.3125rem 1.5625rem 0;
 
       &-title {
@@ -139,68 +227,43 @@
         flex: 0;
       }
     }
+
   }
 
-  &-yaml {
-    width: 70%;
-    margin-left: 0.9375rem;
-    position: relative;
-
-    &-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 0.5rem;
-
-      &-title {
-        font-weight: bold;
-        font-size: 0.875rem;
-      }
-
-      &-toolbar {
-        display: flex;
-        align-items: center;
-      }
-    }
-
-    &-notification {
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 1000;
-
-      .bx--inline-notification {
-        background-color: white;
-      }
-    }
-
-    .yamlEditorContainer {
-      // overwrite common.scss -> "font-family: RedHatText" effect on yamlEditor
-      html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-        font-family: monospace;
-      }
-
-      height: calc(100vh - 16.25rem);
-      #brace-editor {
-        min-width: unset;
-        min-height: unset;
-      }
-
-      .ace-vibrant-ink {
-        .ace_marker-layer {
-          .ace_selection {
-            background: #459cf540;
-          }
-          .ace_selected-word {
-            border: none;
-            background: #459cf548;
-          }
-
-          .ace_active-line {
-            background: #33333370;
-          }
-        }
-      }
-    }
+  .Resizer {
+    width: 0;
+    opacity: .2;
+    z-index: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+    border-left: 3px solid rgba(255, 255, 255, 0);
+    border-right: 3px solid rgba(255, 255, 255, 0);
+    cursor: col-resize;
+    margin: 0 5px;
   }
+
+   .Resizer:hover {
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+  }
+
+  .Resizer.vertical:hover {
+      background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.edit-template-switch {
+  display: flex;
+  margin: -5px 0 0 26px;
+  align-items: center;
+
+  .switch-label {
+    margin-left: 8px;
+    font-size: 12px;
+  }
+
 }
