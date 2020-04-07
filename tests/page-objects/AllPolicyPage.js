@@ -146,7 +146,6 @@ function createTestPolicy(browser, time) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   this.waitForElementNotPresent('@spinner')
-  this.refresh()
   this.waitForElementPresent('@yamlInputField')
   this.click('@yamlTextField')
   this.clearValue('@policyNameInput')
