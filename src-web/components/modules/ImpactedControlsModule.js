@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+ */
+
 'use strict'
 
 import React from 'react'
@@ -635,14 +638,18 @@ class ImpactedControlsModule extends React.Component {
     const controlLabels = {}
     const violationsByControls = {}
     const policyTooltips = {}
+    const regexAllSpaces = / +/g
     violations.forEach(policy=>{
       const annotations = _.get(policy, 'metadata.annotations', {})
       const controls = _.get(annotations, 'policy.mcm.ibm.com/controls', 'other')
+      const standards = _.get(annotations, 'policy.mcm.ibm.com/standards', 'other').trim().toLowerCase()
+      const standardsSet = new Set(standards.split(','))//deal with multi standards separated by comma
       controls.split(',').forEach(control => {
         const label = _.startCase(control.trim())
         const ctrl = control.toLowerCase().trim()
         controlLabels[ctrl] = label
-        if (ctrl && (standardsChoice === 'ALL' || _.get(annotations, 'policy.mcm.ibm.com/standards', 'other').toLowerCase().includes(standardsChoice.toLowerCase()))) {
+        const standardsChoiceStr = standardsChoice.trim().toLowerCase().replace(regexAllSpaces, '-')
+        if (ctrl && (standardsChoice === 'ALL' || standardsSet.has(standardsChoiceStr))) {
           violationsByControls[ctrl] = _.get(violationsByControls, ctrl, 0)+1
           policyTooltips[ctrl] = _.get(policyTooltips, ctrl, [{count: 0, findingType: SECURITY_TYPES.VIOLATIONS},])
           policyTooltips[ctrl][0].count = policyTooltips[ctrl][0].count+1
