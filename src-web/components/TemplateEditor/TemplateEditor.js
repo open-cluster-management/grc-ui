@@ -97,9 +97,11 @@ export default class TemplateEditor extends React.Component {
 
   constructor (props) {
     super(props)
+    let showEditor = localStorage.getItem(tempCookie)
+    showEditor = showEditor===null || showEditor==='true' ? true : false
     this.state = {
       isCustomName: false,
-      showEditor: !!localStorage.getItem(tempCookie),
+      showEditor,
       exceptions: [],
       updateMessage: '',
       hasUndo: false,
@@ -633,7 +635,7 @@ export default class TemplateEditor extends React.Component {
   }
 
   closeEdit()  {
-    localStorage.removeItem(tempCookie)
+    localStorage.setItem(tempCookie, false)
     this.setState({showEditor: false})
   }
 
@@ -729,7 +731,7 @@ export default class TemplateEditor extends React.Component {
         const { showEditor } = this.state
         const handleToggle = () => {
           if (showEditor) {
-            localStorage.removeItem(tempCookie)
+            localStorage.setItem(tempCookie, 'false')
           } else {
             localStorage.setItem(tempCookie, 'true')
           }
