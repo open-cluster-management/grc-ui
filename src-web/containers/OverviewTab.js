@@ -5,7 +5,9 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************/
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.
+ */
 'use strict'
 
 import React from 'react'
@@ -63,8 +65,11 @@ class OverviewTab extends React.Component {
             const {loading, startPolling, stopPolling, refetch} = result
             const {data={}} = result
             const { policies, findings } = data
-
             const error = policies ? null : result.error
+            if (error) {
+              const errorName = result.error.graphQLErrors[0].name ? result.error.graphQLErrors[0].name : error.name
+              error.name = errorName
+            }
             const firstLoad = this.firstLoad
             this.firstLoad = false
             const reloading = !firstLoad && loading
