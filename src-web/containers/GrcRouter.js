@@ -5,17 +5,15 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc. */
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-// import { ROLES } from '../../lib/shared/constants'
 import loadable from 'loadable-components'
 import config from '../../lib/shared/config'
-// import withAccess from '../components/common/withAccess'
 
 // export const OverviewTab = loadable(() => import(/* webpackChunkName: "overview" */ './OverviewTab'))
 export const PoliciesTab = loadable(() => import(/* webpackChunkName: "policies" */ './PoliciesTab'))
