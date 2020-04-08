@@ -69,7 +69,6 @@
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            padding: 0 1.5rem;
             .new-structured-list-table{
               width: 30%;
               flex: 1;
@@ -78,6 +77,7 @@
               word-break: break-all;
               .structured-list-table-item{
                 min-width: max-content;
+                font-size: .875rem;
               }
             }
           }
