@@ -58,6 +58,8 @@ exports[`hcm-compliances - formLinkToCISControllerDoc should get message without
 
 exports[`hcm-compliances - formLinkToCluster should get -  1`] = `"-"`;
 
+exports[`hcm-compliances - formLinkToCluster should get -  2`] = `"-"`;
+
 exports[`hcm-compliances - formLinkToCluster should get RedHat  1`] = `"RedHat"`;
 
 exports[`hcm-compliances - formLinkToCluster should get formLinkToCluster 1`] = `

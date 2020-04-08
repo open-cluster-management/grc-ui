@@ -307,6 +307,10 @@ describe('hcm-compliances - formLinkToCluster', () => {
     expect(formLinkToCluster(item)).toMatchSnapshot()
   })
   it('should get - ', () => {
+    const item = {cluster:'', clusterURL:'/multicloud/clusters'}
+    expect(formLinkToCluster(item)).toMatchSnapshot()
+  })
+  it('should get - ', () => {
     const item = null
     expect(formLinkToCluster(item)).toMatchSnapshot()
   })

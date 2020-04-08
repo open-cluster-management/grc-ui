@@ -1110,10 +1110,10 @@ export function getDecisions(item = {}){
 }
 
 export function formLinkToCluster(item){
-  if(item && item.clusterURL){
+  if(item && item.cluster && item.clusterURL){
     return <a target='_blank' href={`${item.clusterURL}`}>{item.cluster}</a>
   }
-  else if (item) {
+  else if (item && item.cluster) {
     return item.cluster
   }
   return '-'
