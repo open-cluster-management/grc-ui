@@ -742,6 +742,7 @@ export default class TemplateEditor extends React.Component {
           <div className='edit-template-switch'>
             <ToggleSmall
               id='edit-yaml'
+              ariaLabel={showEditor ? msgs.get('edit.yaml.on', locale) : msgs.get('edit.yaml.off', locale)}
               defaultToggled={showEditor}
               onChange={()=>{}}
               onToggle={handleToggle}

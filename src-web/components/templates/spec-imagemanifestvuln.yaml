@@ -12,6 +12,10 @@ replacements: # if user select this choice, the template variable names and valu
     PR.IP Information Protection Processes and Procedures
   controls: |
     DE.CM-8 Vulnerability scans
+  namespaceSelector: |
+    namespaces:
+      exclude: ["kube-*"]
+      include: ["*"]
   objectTemplates: |
     - complianceType: musthave
       objectDefinition:
