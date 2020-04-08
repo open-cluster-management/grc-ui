@@ -1113,6 +1113,10 @@ export function formLinkToCluster(item){
   if(item && item.clusterURL){
     return <a target='_blank' href={`${item.clusterURL}`}>{item.cluster}</a>
   }
+  else if (item) {
+    return item.cluster
+  }
+  return '-'
 }
 
 export function formLinkToCISControllerDoc(item, locale){
