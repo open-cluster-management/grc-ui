@@ -6,8 +6,10 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
- @import 'node_modules/carbon-components/scss/globals/scss/_colors';
- @import 'variables';
+/* Copyright (c) 2020 Red Hat, Inc.*/
+
+@import 'node_modules/carbon-components/scss/globals/scss/_colors';
+@import 'variables';
  
  .overview-content {
    display: flex;
@@ -69,7 +71,6 @@
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            padding: 0 1.5rem;
             .new-structured-list-table{
               width: 30%;
               flex: 1;
@@ -78,6 +79,7 @@
               word-break: break-all;
               .structured-list-table-item{
                 min-width: max-content;
+                font-size: .875rem;
               }
             }
           }
