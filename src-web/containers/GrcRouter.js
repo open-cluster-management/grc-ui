@@ -92,7 +92,7 @@ const GrcRouter = ({ match }) =>
     <Route path={`${match.url}/all`} render={() => <PoliciesTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     {showFindings ? <Route path={`${match.url}/findings`} render={() => <FindingsTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} /> : null}
     <Route path={`${match.url}/create`} render={() => <CreationTab secondaryHeaderProps={CREATION_HEADER_PROPS} />} />
-    <Redirect to={`${match.url}/all`} />
+    <Redirect to={`${match.url.endsWith('/') ? match.url.substring(0, match.url.length-1) : match.url}/all`} />
   </Switch>
 
 GrcRouter.propTypes = {
