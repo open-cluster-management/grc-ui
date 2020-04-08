@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -7,17 +6,18 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { ROLES } from '../../lib/shared/constants'
+// import { ROLES } from '../../lib/shared/constants'
 import loadable from 'loadable-components'
 import config from '../../lib/shared/config'
-import withAccess from '../components/common/withAccess'
+// import withAccess from '../components/common/withAccess'
 
-export const OverviewTab = loadable(() => import(/* webpackChunkName: "overview" */ './OverviewTab'))
+// export const OverviewTab = loadable(() => import(/* webpackChunkName: "overview" */ './OverviewTab'))
 export const PoliciesTab = loadable(() => import(/* webpackChunkName: "policies" */ './PoliciesTab'))
 export const FindingsTab = loadable(() => import(/* webpackChunkName: "findings" */ './FindingsTab'))
 export const CreationTab = loadable(() => import(/* webpackChunkName: "creation" */ './CreationTab'))
@@ -38,11 +38,11 @@ const SECONDARY_HEADER_PROPS = {
     }
   ],
   tabs: showFindings ? [
-    {
-      id: 'grc-overview',
-      label: 'tabs.grc.overview',
-      url: `${BASE_PAGE_PATH}`
-    },
+    // {
+    //   id: 'grc-overview',
+    //   label: 'tabs.grc.overview',
+    //   url: `${BASE_PAGE_PATH}`
+    // },
     {
       id: 'grc-all',
       label: 'tabs.grc.all',
@@ -54,11 +54,11 @@ const SECONDARY_HEADER_PROPS = {
       url: `${BASE_PAGE_PATH}/findings`
     },
   ] : [
-    {
-      id: 'grc-overview',
-      label: 'tabs.grc.overview',
-      url: `${BASE_PAGE_PATH}`
-    },
+    // {
+    //   id: 'grc-overview',
+    //   label: 'tabs.grc.overview',
+    //   url: `${BASE_PAGE_PATH}`
+    // },
     {
       id: 'grc-all',
       label: 'tabs.grc.all',
@@ -86,12 +86,13 @@ const CREATION_HEADER_PROPS = {
 
 const GrcRouter = ({ match }) =>
   <Switch>
-    <Route exact path={`${match.url}`} render={() => <OverviewTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
+    {/* <Route exact path={`${match.url}`} render={() => <OverviewTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} /> */}
     <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <PolicyClusterDetail secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/all/:name`} render={() => <PolicyDetail secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/all`} render={() => <PoliciesTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     {showFindings ? <Route path={`${match.url}/findings`} render={() => <FindingsTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} /> : null}
     <Route path={`${match.url}/create`} render={() => <CreationTab secondaryHeaderProps={CREATION_HEADER_PROPS} />} />
+    <Redirect to={`${match.url}/all`} />
   </Switch>
 
 GrcRouter.propTypes = {
