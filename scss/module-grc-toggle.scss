@@ -12,6 +12,12 @@
 .module-toggle-tab {
   .bx--data-table-v2-container {
       overflow: hidden;
+
+      .bx--table-sort-v2 {
+        .bx--table-header-label {
+          text-align: left;
+        }
+      }
   }
 
   .bx--table-toolbar {
