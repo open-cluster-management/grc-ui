@@ -56,16 +56,18 @@ exports[`hcm-compliances - formLinkToCISControllerDoc should get message without
 
 exports[`hcm-compliances - formLinkToCISControllerDoc should get message without doc link 2`] = `"Testing Policy"`;
 
+exports[`hcm-compliances - formLinkToCluster should get -  1`] = `"-"`;
+
+exports[`hcm-compliances - formLinkToCluster should get RedHat  1`] = `"RedHat"`;
+
 exports[`hcm-compliances - formLinkToCluster should get formLinkToCluster 1`] = `
 <a
   href="/multicloud/clusters"
   target="_blank"
-/>
+>
+  RedHat
+</a>
 `;
-
-exports[`hcm-compliances - formLinkToCluster should get null  1`] = `undefined`;
-
-exports[`hcm-compliances - formLinkToCluster should get null  2`] = `undefined`;
 
 exports[`hcm-compliances - getCategories should return categories status 1`] = `"11, 12, 13, 14, 15"`;
 
