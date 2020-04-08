@@ -98,6 +98,7 @@
   "error.create.policy.name.exists": "Name already exists: '{0}'",
   "error.create.policy.novalidation": "Must add at least one policy specification",
   "error.create.policy.nobinding": "Missing cluster binding",
+  "error.permission.denied": "You do not have permission to show policies for this namespace",
   "success.create.policy": "Success:",
   "success.create.policy.check": "Redirecting to policy list",
   "filter.view.close": "Close filter view",
