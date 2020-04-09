@@ -180,7 +180,7 @@ function createTestPolicy(browser, time) {
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
-  this.waitForElementVisible('@table')
+  this.expect.element('@table').to.be.present
   this.waitForElementVisible('@searchInput')
   this.setValue('@searchInput',`${time}-policy-test`)
 }
