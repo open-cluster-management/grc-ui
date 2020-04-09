@@ -62,10 +62,7 @@ jobs:
       if: type = pull_request
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
-        - make oc/install
-        - make oc/login
-        - make component/pull
-        - make e2e-test
+        - make component/test/e2e
         - make e2e-logs
     - stage: publish
       name: "Publish the image to quay with an official version/sha tag and publish entry to integration pipeline stage"

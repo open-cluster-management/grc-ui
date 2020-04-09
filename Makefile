@@ -35,9 +35,6 @@ unit-test:
 	fi
 	npm test
 
-e2e-test:
-	./build/run-e2e-tests.sh
-
 e2e-logs:
 	docker ps -a --no-trunc
 	docker ps -aq | xargs -L 1 docker logs
