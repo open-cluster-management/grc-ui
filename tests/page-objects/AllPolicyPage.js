@@ -146,8 +146,8 @@ function createTestPolicy(browser, time) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   this.waitForElementNotPresent('@spinner')
-  browser.pause(100000)
-  // this.waitForElementVisible('@yamlInputField')
+  // browser.pause(100000)
+  this.expect.element('@yamlInputField').to.be.present
   this.click('@yamlTextField')
   this.clearValue('@policyNameInput')
   this.setValue('@policyNameInput',`${time}-policy-test`)
