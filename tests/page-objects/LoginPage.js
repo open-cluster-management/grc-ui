@@ -62,5 +62,7 @@ function waitForLoginSuccess() {
 }
 
 function waitForLoginPageLoad() {
-  this.waitForElementVisible('@loginPage')
+  //this.waitForElementVisible('@loginPage')
+  this.waitForElementVisible('.row > div > a')
+  this.click('.row > div > a')
 }
