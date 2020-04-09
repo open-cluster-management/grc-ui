@@ -6,7 +6,8 @@ make oc/login
 
 docker network create --subnet 10.10.0.0/16 test-network
 
-docker pull UI_CURRENT_IMAGE
+make docker/login
+docker pull $UI_CURRENT_IMAGE
 docker pull quay.io/open-cluster-management/grc-ui-api:dev
 
 export SELENIUM_USER=$OC_CLUSTER_USER
