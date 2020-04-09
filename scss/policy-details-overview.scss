@@ -5,8 +5,8 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.*/
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.*/
 
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
 @import 'variables';
@@ -109,6 +109,9 @@
         height: 100%;
         .simple-table{
           height: 100%;
+          p {
+            font-size: .875rem;
+          }
           .resource-table-expandable-cell{
             table{
               border-style: hidden;
@@ -122,14 +125,17 @@
               }
               border: 0.0625rem solid $color__gray-1;
               border-left: hidden;
-              font-size: smaller;
+              font-size: .75rem;
               padding-left: 0;
             }
             td{
               border: 0.0625rem solid $color__gray-1;
               border-left: hidden;
-              font-size: smaller;
+              font-size: .75rem;
               padding-left: 0;
+              .textWithTruncation {
+                font-size: .75rem;
+              }
             }
           }
         }
