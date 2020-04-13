@@ -342,7 +342,7 @@ export default class TemplateEditor extends React.Component {
     const {locale} = this.props
     const {id, name, available, description, isOneSelection, mustExist} = control
     let { active } = control
-    // for DropdownV2, empty initialSelectedItem means nothing pre-selected
+    // for DropdownV2, empty initialSelectedItem means no pre-selected
     active = (active && typeof active === 'string') ? active : ''
     const key = `${id}-${active}`
     return (

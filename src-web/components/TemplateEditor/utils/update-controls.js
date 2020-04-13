@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import jsYaml from 'js-yaml'
@@ -128,6 +131,7 @@ const updateCheckboxControl = (control, reverse, newParsed) => {
 
 const updateSingleSelectControl = (control, reverse, newParsed) => {
   const newActive = _.get(newParsed, reverse[0])
+  //single select can only have one string as active, otherwise no pre-selected
   if (typeof newActive === 'string') {
     control.active = newActive
   }
