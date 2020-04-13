@@ -59,11 +59,19 @@ function submit() {
 }
 
 function waitForLoginSuccess() {
-  this.waitForElementPresent('@header', 20000)
+  this.waitForElementPresent('@header')
 }
 
 function waitForUserSelectLoad() {
-  this.waitForElementPresent('@userSelect')
-    .click('@userSelect')
-    .waitForElementNotPresent('@userSelect')
+  const specialSelect = 'a.idp'
+  this.api.elements('css selector', specialSelect, res => {
+    if (res.status < 0 || res.value.length < 1) {
+      return
+    }
+    else{
+      const userSelector = `a.idp[title="Log in with ${process.env.SELENIUM_USER_SELECT}"]`
+      this.waitForElementPresent(userSelector)
+      this.click(userSelector)
+    }
+  })
 }

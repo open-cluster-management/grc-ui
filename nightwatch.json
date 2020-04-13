@@ -33,6 +33,7 @@
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
+        "acceptInsecureCerts": true,
         "chromeOptions": {
           "w3c": false,
           "args" : [
@@ -72,6 +73,7 @@
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
+        "acceptInsecureCerts": true,
         "chromeOptions": {
           "w3c": false,
           "args" : [
