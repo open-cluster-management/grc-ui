@@ -67,6 +67,53 @@ module.exports = {
     page.deletePolicy('policy-pod-single-mustnothave-enforce')
   },
 
+  'Policy controller: all objects of kind / exists': (browser) => {
+    //const time = browser.globals.time
+    const kindMustNotHaveNC = fs.readFileSync(path.join(__dirname, 'yaml/kind_mustnothave_noncompliant.yaml'))
+    var yaml = kindMustNotHaveNC.toString()
+    page.createPolicy(browser, 'policy-ns-mustnothave', yaml, process.env.CLUSTER_NAME)
+    browser.pause(20000)
+    page.checkViolations('policy-ns-mustnothave', true)
+    page.deletePolicy('policy-ns-mustnothave')
+    browser.pause(1000)
+    const kindMustHave = fs.readFileSync(path.join(__dirname, 'yaml/kind_musthave_compliant.yaml'))
+    yaml = kindMustHave.toString()
+    page.createPolicy(browser, 'policy-ns-musthave', yaml, process.env.CLUSTER_NAME)
+    browser.pause(20000)
+    page.checkViolations('policy-ns-musthave', false)
+    page.deletePolicy('policy-ns-musthave')
+  },
+
+  'Policy controller: all objects of kind / does not exist': (browser) => {
+    const createNS = fs.readFileSync(path.join(__dirname, 'yaml/create_test_ns.yaml'))
+    var yaml = createNS.toString()
+    page.createPolicy(browser, 'policy-namespace-create', yaml, process.env.CLUSTER_NAME)
+    browser.pause(30000)
+    page.deletePolicy('policy-namespace-create')
+    browser.pause(1000)
+    //do checks
+    const kindMustHave = fs.readFileSync(path.join(__dirname, 'yaml/kind_musthave_noncompliant.yaml'))
+    yaml = kindMustHave.toString()
+    page.createPolicy(browser, 'policy-pod-musthave-all', yaml, process.env.CLUSTER_NAME)
+    browser.pause(20000)
+    page.checkViolations('policy-pod-musthave-all', true)
+    page.deletePolicy('policy-pod-musthave-all')
+    browser.pause(1000)
+    const kindMustNotHave = fs.readFileSync(path.join(__dirname, 'yaml/kind_mustnothave_compliant.yaml'))
+    yaml = kindMustNotHave.toString()
+    page.createPolicy(browser, 'policy-pod-mustnothave-all', yaml, process.env.CLUSTER_NAME)
+    browser.pause(20000)
+    page.checkViolations('policy-pod-mustnothave-all', false)
+    page.deletePolicy('policy-pod-mustnothave-all')
+    //delete ns
+    const deleteNS = fs.readFileSync(path.join(__dirname, 'yaml/delete_test_ns.yaml'))
+    yaml = deleteNS.toString()
+    page.createPolicy(browser, 'policy-namespace-delete', yaml, process.env.CLUSTER_NAME)
+    browser.pause(15000)
+    page.deletePolicy('policy-namespace-delete')
+    browser.pause(1000)
+  },
+
   after: function (browser, done) {
     setTimeout(() => {
       browser.end()
