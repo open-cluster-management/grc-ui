@@ -133,7 +133,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     className="bx--list-box__label"
                     htmlFor="downshift-0-input"
                   >
-                    The namespace of your security policy.
+                    mcm
                   </span>
                   <div
                     className="bx--list-box__menu-icon"
@@ -938,7 +938,7 @@ exports[`on editor change function renders as expected 1`] = `
 kind: Policy
 metadata:
   name: policy-grc
-  namespace: default1,default2,mcm
+  namespace: mcm
   annotations:
     policy.mcm.ibm.com/standards: 
     policy.mcm.ibm.com/categories: 
@@ -955,7 +955,7 @@ apiVersion: mcm.ibm.com/v1alpha1
 kind: PlacementBinding
 metadata:
   name: binding-policy-grc
-  namespace: default1,default2,mcm
+  namespace: mcm
 placementRef:
   name: placement-policy-grc
   kind: PlacementRule
@@ -969,7 +969,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: placement-policy-grc
-  namespace: default1,default2,mcm
+  namespace: mcm
 spec:
   clusterConditions:
   - type: OK
@@ -984,14 +984,14 @@ exports[`on editor change function renders as expected 2`] = `
 kind: Policy
 metadata:
   name: policy-grc
-  namespace: default1,default2,mcm
+  namespace: 
   annotations:
     policy.mcm.ibm.com/standards: 
     policy.mcm.ibm.com/categories: 
     policy.mcm.ibm.com/controls: 
 spec:
   complianceType: musthave
-  remediationAction: inform
+  remediationAction: enforce
   disabled: false
   namespaces:
     exclude: [\\"kube-*\\"]
@@ -1001,7 +1001,7 @@ apiVersion: mcm.ibm.com/v1alpha1
 kind: PlacementBinding
 metadata:
   name: binding-policy-grc
-  namespace: default1,default2,mcm
+  namespace: 
 placementRef:
   name: placement-policy-grc
   kind: PlacementRule
@@ -1015,7 +1015,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: placement-policy-grc
-  namespace: default1,default2,mcm
+  namespace: 
 spec:
   clusterConditions:
   - type: OK

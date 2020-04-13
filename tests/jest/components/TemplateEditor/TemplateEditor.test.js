@@ -16,6 +16,7 @@ import {TemplateEditor} from '../../../../src-web/components/TemplateEditor'
 import renderer from 'react-test-renderer'
 import policyTemplate from '../../../../src-web/components/templates/policy-template.hbs'
 import { shallow } from 'enzyme'
+import _ from 'lodash'
 //import { existing } from '../ComponentsTestingData'
 
 
@@ -146,12 +147,13 @@ describe('on control change function', () => {
 })
 
 describe('on control change function', () => {
-  controlData[1].active = null
+  const deepCopy = _.cloneDeep(controlData)
+  deepCopy[1].active = null
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
         template={policyTemplate}
-        controlData={controlData}
+        controlData={deepCopy}
         portals={Portals}
       />
     )
@@ -173,7 +175,6 @@ describe('on control change function', () => {
 })
 
 describe('on editor change function', () => {
-  controlData[1].active = null
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
@@ -187,13 +188,15 @@ describe('on editor change function', () => {
 })
 
 describe('on editor change function', () => {
-  controlData[1].active = [['default1', 'default2'], 'mcm']
-  controlData[controlData.length-1].active = false
+  const deepCopy = _.cloneDeep(controlData)
+  deepCopy[1].active = null
+  deepCopy[deepCopy.length-1].active = false
+  deepCopy[deepCopy.length-1].available = [true, false]
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
         template={policyTemplate}
-        controlData={controlData}
+        controlData={deepCopy}
         portals={Portals}
       />
     )
@@ -202,11 +205,15 @@ describe('on editor change function', () => {
 })
 
 describe('on editor change function', () => {
+  const deepCopy = _.cloneDeep(controlData)
+  deepCopy[1].active = [['default1', 'default2'], 'mcm']
+  deepCopy[deepCopy.length-1].active = true
+  deepCopy[deepCopy.length-1].available = [true, false]
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
         template={policyTemplate}
-        controlData={controlData}
+        controlData={deepCopy}
         portals={Portals}
       />
     )
