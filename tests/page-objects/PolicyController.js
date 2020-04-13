@@ -55,7 +55,7 @@ module.exports = {
   }]
 }
 
-function enterTextInYamlEditor(el, browser, yaml){
+function enterTextInYamlEditor(el, browser, yaml, cluster){
   el.click('@aceEditorTextInput')
   const keystrokes = []
   keystrokes.push(browser.Keys.COMMAND)
@@ -66,7 +66,7 @@ function enterTextInYamlEditor(el, browser, yaml){
   yaml.split(/\r?\n/).forEach(line => {
     const indentation = line.search(/\S|$/)
     if (line == '[insert]') {
-      keystrokes.push('\t\t- {key: name, operator: In, values: ["calamari"]}')
+      keystrokes.push('\t\t- {key: name, operator: In, values: ["' + cluster + '"]}')
     } else {
       keystrokes.push(line)
     }
@@ -77,7 +77,7 @@ function enterTextInYamlEditor(el, browser, yaml){
   el.api.keys(keystrokes)
 }
 
-function createPolicy(browser, name, yaml) {
+function createPolicy(browser, name, yaml, cluster) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   //this.click('.bx--toggle__appearance')
@@ -86,7 +86,7 @@ function createPolicy(browser, name, yaml) {
   this.click('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.waitForElementPresent('@yamlInputField')
   this.click('@yamlTextField')
-  enterTextInYamlEditor(this, browser, yaml)
+  enterTextInYamlEditor(this, browser, yaml, cluster)
   // this.clearValue('@policyNameInput')
   // this.setValue('@policyNameInput',`${time}-policy-test`)
   this.waitForElementNotPresent('@spinner')

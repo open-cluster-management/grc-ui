@@ -37,17 +37,34 @@ module.exports = {
     //const time = browser.globals.time
     const singleMustHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/single_musthave_inform.yaml'))
     var yaml = singleMustHaveInform.toString()
-    page.createPolicy(browser, 'policy-pod-single-musthave-inform', yaml)
+    page.createPolicy(browser, 'policy-pod-single-musthave-inform', yaml, process.env.CLUSTER_NAME)
     browser.pause(15000)
     page.checkViolations('policy-pod-single-musthave-inform', true)
     page.deletePolicy('policy-pod-single-musthave-inform')
     browser.pause(1000)
     const singleMustHaveEnforce = fs.readFileSync(path.join(__dirname, 'yaml/single_musthave_enforce.yaml'))
     yaml = singleMustHaveEnforce.toString()
-    page.createPolicy(browser, 'policy-pod-single-musthave-enforce', yaml)
-    browser.pause(15000)
+    page.createPolicy(browser, 'policy-pod-single-musthave-enforce', yaml, process.env.CLUSTER_NAME)
+    browser.pause(30000)
     page.checkViolations('policy-pod-single-musthave-enforce', false)
     page.deletePolicy('policy-pod-single-musthave-enforce')
+  },
+
+  'Policy controller: single object / mustnothave': (browser) => {
+    //const time = browser.globals.time
+    const singleMustNotHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/single_mustnothave_inform.yaml'))
+    var yaml = singleMustNotHaveInform.toString()
+    page.createPolicy(browser, 'policy-pod-single-mustnothave-inform', yaml, process.env.CLUSTER_NAME)
+    browser.pause(15000)
+    page.checkViolations('policy-pod-single-mustnothave-inform', true)
+    page.deletePolicy('policy-pod-single-mustnothave-inform')
+    browser.pause(1000)
+    const singleMustNotHaveEnforce = fs.readFileSync(path.join(__dirname, 'yaml/single_mustnothave_enforce.yaml'))
+    yaml = singleMustNotHaveEnforce.toString()
+    page.createPolicy(browser, 'policy-pod-single-mustnothave-enforce', yaml, process.env.CLUSTER_NAME)
+    browser.pause(30000)
+    page.checkViolations('policy-pod-single-mustnothave-enforce', false)
+    page.deletePolicy('policy-pod-single-mustnothave-enforce')
   },
 
   after: function (browser, done) {
