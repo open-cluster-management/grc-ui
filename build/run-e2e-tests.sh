@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-
 UI_CURRENT_IMAGE=$1
 
 make oc/install
