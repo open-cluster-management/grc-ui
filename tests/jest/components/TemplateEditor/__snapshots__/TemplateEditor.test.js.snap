@@ -78,6 +78,92 @@ exports[`TemplateEditor component renders as expected 1`] = `
               </div>
             </div>
             <div
+              className="creation-view-controls-singleselect"
+            >
+              <div
+                className="creation-view-controls-multiselect-title"
+              >
+                <div
+                  className="creation-view-controls-must-exist"
+                >
+                  *
+                </div>
+                <div
+                  className="bx--tooltip-icon"
+                >
+                  <button
+                    aria-label={undefined}
+                    className="bx--tooltip__trigger bx--tooltip--icon__top"
+                  >
+                    <svg
+                      className="info-icon"
+                    >
+                      <use
+                        href="#diagramIcons_info"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div
+                aria-invalid={undefined}
+                aria-label="Choose an item"
+                className="bx--dropdown bx--list-box"
+                data-invalid={undefined}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="listbox"
+                tabIndex={null}
+              >
+                <div
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  aria-label="open menu"
+                  className="bx--list-box__field"
+                  data-toggle={true}
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  role="button"
+                  tabIndex="0"
+                  type="button"
+                >
+                  <span
+                    className="bx--list-box__label"
+                    htmlFor="downshift-0-input"
+                  >
+                    The namespace of your security policy.
+                  </span>
+                  <div
+                    className="bx--list-box__menu-icon"
+                  >
+                    <svg
+                      alt="Open menu"
+                      aria-label="Open menu"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Open menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
               className="creation-view-controls-multiselect"
             >
               <div
@@ -137,7 +223,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     autoComplete="off"
                     className="bx--text-input"
                     disabled={false}
-                    id="downshift-0-input"
+                    id="downshift-1-input"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
@@ -234,7 +320,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     autoComplete="off"
                     className="bx--text-input"
                     disabled={false}
-                    id="downshift-1-input"
+                    id="downshift-2-input"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
@@ -326,7 +412,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     autoComplete="off"
                     className="bx--text-input"
                     disabled={false}
-                    id="downshift-2-input"
+                    id="downshift-3-input"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
@@ -418,7 +504,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     autoComplete="off"
                     className="bx--text-input"
                     disabled={false}
-                    id="downshift-3-input"
+                    id="downshift-4-input"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
@@ -510,7 +596,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     autoComplete="off"
                     className="bx--text-input"
                     disabled={false}
-                    id="downshift-4-input"
+                    id="downshift-5-input"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
@@ -852,7 +938,7 @@ exports[`on editor change function renders as expected 1`] = `
 kind: Policy
 metadata:
   name: policy-grc
-  namespace: mcm
+  namespace: default,mcm
   annotations:
     policy.mcm.ibm.com/standards: 
     policy.mcm.ibm.com/categories: 
@@ -869,7 +955,7 @@ apiVersion: mcm.ibm.com/v1alpha1
 kind: PlacementBinding
 metadata:
   name: binding-policy-grc
-  namespace: mcm
+  namespace: default,mcm
 placementRef:
   name: placement-policy-grc
   kind: PlacementRule
@@ -883,7 +969,53 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: placement-policy-grc
-  namespace: mcm
+  namespace: default,mcm
+spec:
+  clusterConditions:
+  - type: OK
+  clusterSelector:
+    matchExpressions:
+      []
+"
+`;
+
+exports[`on editor change function renders as expected 2`] = `
+"apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-grc
+  namespace: default,mcm
+  annotations:
+    policy.mcm.ibm.com/standards: 
+    policy.mcm.ibm.com/categories: 
+    policy.mcm.ibm.com/controls: 
+spec:
+  complianceType: musthave
+  remediationAction: inform
+  disabled: false
+  namespaces:
+    exclude: [\\"kube-*\\"]
+    include: [\\"default\\"]
+---
+apiVersion: mcm.ibm.com/v1alpha1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-grc
+  namespace: default,mcm
+placementRef:
+  name: placement-policy-grc
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: policy-grc
+  kind: Policy
+  apiGroup: policy.mcm.ibm.com
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-grc
+  namespace: default,mcm
 spec:
   clusterConditions:
   - type: OK
