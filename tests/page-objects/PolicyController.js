@@ -9,6 +9,8 @@
  * Copyright (c) 2020 Red Hat, Inc.
  */
 
+const parser = require('../utils/yamlHelper')
+
 module.exports = {
   elements: {
     aceEditor: '.ace_layer.ace_text-layer',
@@ -55,28 +57,6 @@ module.exports = {
   }]
 }
 
-function enterTextInYamlEditor(el, browser, yaml, cluster){
-  el.click('@aceEditorTextInput')
-  const keystrokes = []
-  keystrokes.push(browser.Keys.COMMAND)
-  keystrokes.push('a')
-  keystrokes.push(browser.Keys.NULL)
-  keystrokes.push(browser.Keys.BACK_SPACE)
-  el.click('@aceEditorTextInput')
-  yaml.split(/\r?\n/).forEach(line => {
-    const indentation = line.search(/\S|$/)
-    if (line == '[insert]') {
-      keystrokes.push('\t\t- {key: name, operator: In, values: ["' + cluster + '"]}')
-    } else {
-      keystrokes.push(line)
-    }
-    keystrokes.push(browser.Keys.RETURN)
-    for (let i = 0; i < indentation / 2; i++ )
-      keystrokes.push(browser.Keys.BACK_SPACE)
-  })
-  el.api.keys(keystrokes)
-}
-
 function createPolicy(browser, name, yaml, cluster) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
@@ -86,7 +66,7 @@ function createPolicy(browser, name, yaml, cluster) {
   this.click('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.waitForElementPresent('@yamlInputField')
   this.click('@yamlTextField')
-  enterTextInYamlEditor(this, browser, yaml, cluster)
+  parser.enterTextInYamlEditor(this, browser, yaml, cluster)
   // this.clearValue('@policyNameInput')
   // this.setValue('@policyNameInput',`${time}-policy-test`)
   this.waitForElementNotPresent('@spinner')
