@@ -341,7 +341,10 @@ export default class TemplateEditor extends React.Component {
   renderSingleSelect(control) {
     const {locale} = this.props
     const {id, name, available, description, isOneSelection, mustExist} = control
-    const key = `${id}-${name}`
+    let { active } = control
+    // for DropdownV2, empty initialSelectedItem means no pre-selected
+    active = (active && typeof active === 'string') ? active : ''
+    const key = `${id}-${active}`
     return (
       <React.Fragment>
         <div className='creation-view-controls-singleselect'
@@ -359,7 +362,8 @@ export default class TemplateEditor extends React.Component {
             key={key}
             label={msgs.get('policy.create.namespace.tooltip', locale)}
             items={available}
-            onChange={this.handleChange.bind(this, id)} />
+            onChange={this.handleChange.bind(this, id)}
+            initialSelectedItem={active} />
         </div>
       </React.Fragment>
     )

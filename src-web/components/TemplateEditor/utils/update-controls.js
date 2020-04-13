@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import jsYaml from 'js-yaml'
@@ -98,6 +101,9 @@ export const updateControls = (controlData, oldParsed, newParsed) => {
     case 'checkbox':
       updateCheckboxControl(control, reverse, newParsed)
       break
+    case 'singleselect':
+      updateSingleSelectControl(control, reverse, newParsed)
+      break
     case 'multiselect':
       updateMultiSelectControl(control, reverse, oldParsed, newParsed)
       break
@@ -115,11 +121,22 @@ const updateTextControl = (control, reverse, newParsed) => {
 
 const updateCheckboxControl = (control, reverse, newParsed) => {
   const newActive = _.get(newParsed, reverse[0])
-  if (typeof newActive == 'boolean') {
+  if (typeof newActive === 'boolean') {
     control.active = control.available.indexOf(newActive.toString())>0
   }
   else {
     control.active = control.available.indexOf(newActive)>0
+  }
+}
+
+const updateSingleSelectControl = (control, reverse, newParsed) => {
+  const newActive = _.get(newParsed, reverse[0])
+  //single select can only have one string as active, otherwise no pre-selected
+  if (typeof newActive === 'string') {
+    control.active = newActive
+  }
+  else {
+    control.active = ''
   }
 }
 
