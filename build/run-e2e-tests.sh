@@ -12,7 +12,7 @@ make docker/pull
 
 export SELENIUM_USER=$OC_CLUSTER_USER
 export SELENIUM_PASSWORD=$OC_CLUSTER_PASS
-export SERVICEACCT_TOKEN=`${OC} whoami --show-token`
+export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vender/oc whoami --show-token`
 echo "SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN"
 
 docker run --network test-network -d --ip 10.10.0.5 -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$API_SERVER_URL quay.io/open-cluster-management/grc-ui-api:dev
