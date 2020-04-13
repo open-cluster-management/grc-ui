@@ -173,8 +173,22 @@ describe('on control change function', () => {
 })
 
 describe('on editor change function', () => {
+  controlData[1].active = null
+  it('renders as expected', () => {
+    const wrapper = shallow(
+      <TemplateEditor
+        template={policyTemplate}
+        controlData={controlData}
+        portals={Portals}
+      />
+    )
+    expect(wrapper.instance().handleParse()).toMatchSnapshot()
+  })
+})
+
+describe('on editor change function', () => {
   controlData[1].active = [['default1', 'default2'], 'mcm']
-  controlData[controlData.length-1].active = true
+  controlData[controlData.length-1].active = false
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
