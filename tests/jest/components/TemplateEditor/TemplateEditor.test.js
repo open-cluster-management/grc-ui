@@ -173,7 +173,8 @@ describe('on control change function', () => {
 })
 
 describe('on editor change function', () => {
-  controlData[1].active = ['default', 'mcm']
+  controlData[1].active = [['default1', 'default2'], 'mcm']
+  controlData[controlData.length-1].active = true
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor

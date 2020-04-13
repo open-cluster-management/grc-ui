@@ -938,7 +938,7 @@ exports[`on editor change function renders as expected 1`] = `
 kind: Policy
 metadata:
   name: policy-grc
-  namespace: default,mcm
+  namespace: default1,default2,mcm
   annotations:
     policy.mcm.ibm.com/standards: 
     policy.mcm.ibm.com/categories: 
@@ -955,7 +955,7 @@ apiVersion: mcm.ibm.com/v1alpha1
 kind: PlacementBinding
 metadata:
   name: binding-policy-grc
-  namespace: default,mcm
+  namespace: default1,default2,mcm
 placementRef:
   name: placement-policy-grc
   kind: PlacementRule
@@ -969,7 +969,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: placement-policy-grc
-  namespace: default,mcm
+  namespace: default1,default2,mcm
 spec:
   clusterConditions:
   - type: OK
@@ -984,7 +984,7 @@ exports[`on editor change function renders as expected 2`] = `
 kind: Policy
 metadata:
   name: policy-grc
-  namespace: default,mcm
+  namespace: default1,default2,mcm
   annotations:
     policy.mcm.ibm.com/standards: 
     policy.mcm.ibm.com/categories: 
@@ -1001,7 +1001,7 @@ apiVersion: mcm.ibm.com/v1alpha1
 kind: PlacementBinding
 metadata:
   name: binding-policy-grc
-  namespace: default,mcm
+  namespace: default1,default2,mcm
 placementRef:
   name: placement-policy-grc
   kind: PlacementRule
@@ -1015,7 +1015,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: placement-policy-grc
-  namespace: default,mcm
+  namespace: default1,default2,mcm
 spec:
   clusterConditions:
   - type: OK
