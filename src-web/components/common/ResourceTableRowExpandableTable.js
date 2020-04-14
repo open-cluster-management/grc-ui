@@ -44,7 +44,7 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
       </TableRow>
     </TableHead>
     <TableBody>
-      {items && items.map((row) => {//check undefined row.id to avoid whole page crush
+      {items && items.map(row => {//check undefined row.id to avoid whole page crush
         if(row && row.cells){//single sub row for policy/cluster violation side panel
           return (
             <TableRow key={row.id ? row.id : _uniqueId('sidePanelTableRow')}>
@@ -55,7 +55,7 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
           )
         }
         else if (row && row.subRowsArray) {//mulit sub rows for cluster finding side panel
-          return row.subRowsArray.map((subRow) => {
+          return row.subRowsArray.map(subRow => {
             if(subRow && subRow.id && subRow.cells) {
               return (
                 <TableRow key={subRow.id}>
