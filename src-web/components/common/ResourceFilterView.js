@@ -131,7 +131,7 @@ export default class ResourceFilterView extends React.Component {
     // unless they click a link and nothing is filtered
     if (this.filterViewRef && !this.filterViewRef.contains(event.target)) {
       const clickedTab = event.target.href!==undefined || (event.target.firstChild && event.target.firstChild.href!==undefined)
-      if (!clickedTab || Object.keys(this.props.activeFilters).length==0) {
+      if (!clickedTab || Object.keys(this.props.activeFilters).length === 0) {
         this.handleFilterClose()
       }
     }
