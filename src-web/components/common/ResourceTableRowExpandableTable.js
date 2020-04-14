@@ -44,10 +44,10 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
       {(() => {
         if(items) {
           return items.map((row) => {//check undefined row.id to avoid whole page crush
-            if(row && row.id && row.cells){//single sub row for policy/cluster violation side panel
+            if(row && row.cells){//single sub row for policy/cluster violation side panel
               return (
-                <TableRow key={row.id}>
-                  {row.cells.map(cell => <TableCell key={cell.substring(0, 21)}><TruncateText text={cell} /></TableCell>)}
+                <TableRow key={row.id ? row.id : 'sidePanelTableRow'}>
+                  {row.cells.map(cell => (cell && typeof cell === 'string') ? <TableCell key={cell.substring(0, 21)}><TruncateText text={cell} /></TableCell> : <TableCell key='sidePanelTableCell'><TruncateText text='-' /></TableCell>)}
                 </TableRow>
               )
             }
