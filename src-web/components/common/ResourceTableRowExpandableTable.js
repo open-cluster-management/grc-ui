@@ -56,13 +56,15 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
         }
         else if (row && row.subRowsArray) {//mulit sub rows for cluster finding side panel
           return row.subRowsArray.map(subRow => {
-            if(subRow && subRow.id && subRow.cells) {
+            if(subRow && subRow.cells) {
               return (
-                <TableRow key={subRow.id}>
-                  {subRow.cells.map((cell, index)=> <TableCell key={cell.substring(0, 21)} className={'bx--table-subRowsArray-subRow-index-'+index}><TruncateText text={cell} /></TableCell>)}
+                <TableRow key={subRow.id ? subRow.id : _uniqueId('sidePanelTableRow')}>
+                  {subRow.cells.map((cell, index) => (cell && typeof cell === 'string') ?
+                    <TableCell key={cell.substring(0, 21)} className={'bx--table-subRowsArray-subRow-index-'+index}><TruncateText text={cell} /></TableCell> : <TableCell key={_uniqueId('sidePanelTableCell')}><TruncateText text='-' /></TableCell>)}
                 </TableRow>
               )
             }
+            return ''
           })
         }
         return ''
