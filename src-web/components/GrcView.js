@@ -8,6 +8,7 @@
  *******************************************************************************
  * Copyright (c) 2020 Red Hat, Inc.
  */
+
 'use strict'
 
 import React from 'react'
@@ -150,7 +151,7 @@ export class GrcView extends React.Component {
       }
       else {
         filterGrcItems = filterPolicies(grcItems, activeFilters, locale, 'metadata.annotations')
-        if (grcItems.length > 0 && filterGrcItems.length == 0) {
+        if (grcItems.length > 0 && filterGrcItems.length === 0) {
           filterToEmpty = true
         }
       }
@@ -167,7 +168,7 @@ export class GrcView extends React.Component {
       }
       else {
         filterGrcItems = filterFindings(grcItems, activeFilters, locale)
-        if (grcItems.length > 0 && filterGrcItems.length == 0) {
+        if (grcItems.length > 0 && filterGrcItems.length === 0) {
           filterToEmpty = true
         }
       }

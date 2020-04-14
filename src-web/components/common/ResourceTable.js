@@ -177,7 +177,7 @@ export class ResourceTable extends React.Component {
                               </TableCell>
                             }
                             {row.cells.map(cell => {
-                              if (cell.id.split(':')[1] == 'metadata.name' && row.disabled) {
+                              if (cell.id.split(':')[1] === 'metadata.name' && row.disabled) {
                                 return <TableCell key={cell.id} className='policy-table-name-ctr'>
                                   <div className='policy-table-name-link'>{cell.value}</div>
                                   <div className='disabled-label'>{msgs.get('policy.disabled.label', locale)}</div>
@@ -292,7 +292,7 @@ export class ResourceTable extends React.Component {
 
         //changes menu item based on whether policy is enabled or disabled
         row.disabled = false
-        if (fliteredActions != null && fliteredActions.length == 4 && this.checkPolicyDisabled(item)) {
+        if (fliteredActions !== null && fliteredActions.length === 4 && this.checkPolicyDisabled(item)) {
           fliteredActions[fliteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
           row.disabled = true
         }
@@ -317,10 +317,10 @@ export class ResourceTable extends React.Component {
           row[key.resourceKey] = (key.link) ?
             <Link to={`${match.url}${getLink(key.link, item)}`}>{transform(item, key, locale)}</Link> :
             transform(item, key, locale)
-          if (key.resourceKey == 'metadata.name' && row.disabled) {
+          if (key.resourceKey === 'metadata.name' && row.disabled) {
             row[key.resourceKey] = lodash.get(item, key.resourceKey)
           }
-          if (key.resourceKey == 'remediation') {
+          if (key.resourceKey === 'remediation') {
             row[key.resourceKey] = msgs.get('policy.remediation.' + row[key.resourceKey], locale)
           }
         })
