@@ -83,11 +83,11 @@ function checkPolicySummaryCards(browser) {
         const cardInfo = `div.module-grc-cards > div:nth-child(2) > div:nth-child(${cardNum}) > div > div > div:nth-child(2)`
         this.waitForElementVisible(cardInfo)
         browser.element('css selector', cardInfo + ' > .empty-violations-strip', function(result){
-          if(result.value == false) {
+          if(result.value === false) {
             this.click(cardInfo + ` > div:nth-child(${i})`)
             browser.pause(1000)
             browser.element('css selector', '.resource-filter-bar > span.button', function(result2){
-              if(result2.status != -1) {
+              if(result2.status !== -1) {
                 //first card of each category is cluster (no drop-down), second is policy
                 verifyTable(browser)
                 this.waitForElementVisible('div.resource-filter-bar > span.button')
@@ -116,7 +116,7 @@ function verifyPagination() {
 function verifyTable(browser) {
   browser.pause(3000)
   browser.element('css selector', 'div.no-resource', function(result){
-    if(result.status != -1){
+    if(result.status !== -1){
       this.waitForElementVisible('div.no-resource')
     }
     else{

@@ -52,7 +52,7 @@ export default class RecentActivityModule extends React.Component {
 
   thresholdCallback = (cardsLength, cardType) => {
     //updates module lengths and changes threshold if needed
-    if (cardType === 'policies' && cardsLength != this.state.topViolationsNum) {
+    if (cardType === 'policies' && cardsLength !== this.state.topViolationsNum) {
       this.setState(
         { topViolationsNum: cardsLength },
         () => {
@@ -68,7 +68,7 @@ export default class RecentActivityModule extends React.Component {
         }
       )
     }
-    else if (cardType === 'findings' && cardsLength != this.state.topFindingsNum) {
+    else if (cardType === 'findings' && cardsLength !== this.state.topFindingsNum) {
       this.setState(
         { topFindingsNum: cardsLength },
         () => {
