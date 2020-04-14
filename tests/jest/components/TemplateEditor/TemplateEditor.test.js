@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -13,6 +16,7 @@ import {TemplateEditor} from '../../../../src-web/components/TemplateEditor'
 import renderer from 'react-test-renderer'
 import policyTemplate from '../../../../src-web/components/templates/policy-template.hbs'
 import { shallow } from 'enzyme'
+import _ from 'lodash'
 //import { existing } from '../ComponentsTestingData'
 
 
@@ -32,7 +36,7 @@ const controlData = [
   },
   {
     id: 'namespace',
-    type: 'hidden',   // don't prompt for namespace--use configuration
+    type: 'singleselect',   // don't prompt for namespace--use configuration
     active: 'mcm',
     reverse: 'Policy[0].metadata.namespace',
     mustExist: true,
@@ -132,6 +136,35 @@ describe('on control change function', () => {
       selectedItems: ['selectedItems-testing-1', 'selectedItems-testing-2'],
     }
     expect(wrapper.instance().onChange('name', evt)).toEqual('name')
+    expect(wrapper.instance().onChange('namespace', evt)).toEqual('namespace')
+    expect(wrapper.instance().onChange('standards', evt)).toEqual('standards')
+    expect(wrapper.instance().onChange('categories', evt)).toEqual('categories')
+    expect(wrapper.instance().onChange('controls', evt)).toEqual('controls')
+    expect(wrapper.instance().onChange('clusters', evt)).toEqual('clusters')
+    //expect(wrapper.instance().onChange('enforce', evt)).toEqual('enforce')
+    // expect(wrapper.instance().onChange('specs', evt)).toEqual('specs')
+  })
+})
+
+describe('on control change function', () => {
+  const deepCopy = _.cloneDeep(controlData)
+  deepCopy[1].active = null
+  it('renders as expected', () => {
+    const wrapper = shallow(
+      <TemplateEditor
+        template={policyTemplate}
+        controlData={deepCopy}
+        portals={Portals}
+      />
+    )
+    const evt = {
+      target: {
+        value: 'value-testing'
+      },
+      selectedItems: ['selectedItems-testing-1', 'selectedItems-testing-2'],
+    }
+    expect(wrapper.instance().onChange('name', evt)).toEqual('name')
+    expect(wrapper.instance().onChange('namespace', evt)).toEqual('namespace')
     expect(wrapper.instance().onChange('standards', evt)).toEqual('standards')
     expect(wrapper.instance().onChange('categories', evt)).toEqual('categories')
     expect(wrapper.instance().onChange('controls', evt)).toEqual('controls')
@@ -147,6 +180,40 @@ describe('on editor change function', () => {
       <TemplateEditor
         template={policyTemplate}
         controlData={controlData}
+        portals={Portals}
+      />
+    )
+    expect(wrapper.instance().handleParse()).toMatchSnapshot()
+  })
+})
+
+describe('on editor change function', () => {
+  const deepCopy = _.cloneDeep(controlData)
+  deepCopy[1].active = null
+  deepCopy[deepCopy.length-1].active = false
+  deepCopy[deepCopy.length-1].available = [true, false]
+  it('renders as expected', () => {
+    const wrapper = shallow(
+      <TemplateEditor
+        template={policyTemplate}
+        controlData={deepCopy}
+        portals={Portals}
+      />
+    )
+    expect(wrapper.instance().handleParse()).toMatchSnapshot()
+  })
+})
+
+describe('on editor change function', () => {
+  const deepCopy = _.cloneDeep(controlData)
+  deepCopy[1].active = [['default1', 'default2'], 'mcm']
+  deepCopy[deepCopy.length-1].active = true
+  deepCopy[deepCopy.length-1].available = [true, false]
+  it('renders as expected', () => {
+    const wrapper = shallow(
+      <TemplateEditor
+        template={policyTemplate}
+        controlData={deepCopy}
         portals={Portals}
       />
     )
