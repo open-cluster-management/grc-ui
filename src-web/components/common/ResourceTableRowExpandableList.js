@@ -6,19 +6,22 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StructuredListWrapper, StructuredListRow, StructuredListCell, StructuredListBody } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
+import _uniqueId from 'lodash/uniqueId'
 
 const ResourceTableRowExpandableContent = ({ items }, context) =>
   <StructuredListWrapper>
     <StructuredListBody>
-      {items.map((item, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <StructuredListRow className={'nested-expandable-row'} key={`${item.name}-${index}`} data-row-name={item.name} >
+      {items.map(item => (
+        <StructuredListRow className={'nested-expandable-row'} key={_uniqueId(item.name)} data-row-name={item.name} >
           <StructuredListCell className={'nested-expandable-row-header'} noWrap>{msgs.get(item.name, context.locale)}</StructuredListCell>
           <StructuredListCell className={'nested-expandable-row-content'} noWrap>{item.items.join(', ')}</StructuredListCell>
         </StructuredListRow>

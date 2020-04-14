@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -13,6 +16,7 @@ import PropTypes from 'prop-types'
 import { StructuredListWrapper, StructuredListHead, StructuredListRow, StructuredListCell, StructuredListBody } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import { getResourceType } from '../../../lib/client/resource-helper'
+import _uniqueId from 'lodash/uniqueId'
 
 const ResourceTableRowExpandableContent = ({ items }, context) =>
   <StructuredListWrapper>
@@ -27,9 +31,8 @@ const ResourceTableRowExpandableContent = ({ items }, context) =>
       </StructuredListRow>
     </StructuredListHead>
     <StructuredListBody>
-      {items.map((item, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <StructuredListRow key={`${item.resource}-${index}`} data-row-name={item.resource} >
+      {items.map(item => (
+        <StructuredListRow key={_uniqueId(item.resource)} data-row-name={item.resource} >
           <StructuredListCell noWrap>{item.resource}</StructuredListCell>
           <StructuredListCell noWrap>{getResourceType(item, context.locale)}</StructuredListCell>
         </StructuredListRow>
