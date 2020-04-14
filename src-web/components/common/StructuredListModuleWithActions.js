@@ -67,9 +67,10 @@ const StructuredListModule = ({
           <StructuredListBody>
             {rows.map(row =>{
               if(row.cells[0].resourceKey === 'policy.pp.details.decisions'){
+                const formatDecisions = StructuredListModule.formatDecisionsWithLinkAndIcon(row.cells[1].resourceKey, data, clusterStatus, location)
                 return (<StructuredListRow>
                   <StructuredListCell key={_uniqueId('key')}><p>{msgs.get('policy.pp.details.decisions', context.locale)}</p></StructuredListCell>
-                  <StructuredListCell key={_uniqueId('val')}>{StructuredListModule.formatDecisionsWithLinkAndIcon(row.cells[1].resourceKey, data, clusterStatus, location)}</StructuredListCell>
+                  <StructuredListCell key={_uniqueId('val')}>{formatDecisions}</StructuredListCell>
                 </StructuredListRow>)
               }
               else{

@@ -32,12 +32,12 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
         {headers && headers.map((header, index) => {
           if (header) {
             return (
-              <th className={'bx--table-header-index-'+index} scope={'col'} key={header}>
+              <th className={`bx--table-header-index-${index}`} scope={'col'} key={header}>
                 <span className='bx--table-header-label'>{msgs.get(header, context.locale)}</span>
               </th>
             )
           } else {
-            return <th className={'bx--table-header-index-'+index} scope={'col'} key={_uniqueId('bx--table-header')} />
+            return <th className={`bx--table-header-index-${index}`} scope={'col'} key={_uniqueId('bx--table-header')} />
           }
         }
         )}
@@ -65,6 +65,7 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
             }
           })
         }
+        return ''
       })
       }
     </TableBody>
