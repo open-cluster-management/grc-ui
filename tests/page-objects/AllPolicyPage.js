@@ -88,13 +88,13 @@ function checkPolicySummaryCards(browser) {
         const cardInfo = `div.module-grc-cards > div:nth-child(2) > div:nth-child(${cardNum}) > div > div > div:nth-child(2)`
         this.waitForElementVisible(cardInfo)
         browser.element('css selector', cardInfo + ' > .empty-violations-strip', function(result){
-          if(result.value == false) {
+          if(result.value === false) {
             this.click(cardInfo + ` > div:nth-child(${i})`)
             browser.pause(1000)
             browser.element('css selector', '.resource-filter-bar > span.button', function(result2){
-              if(result2.value != false) {
+              if(result2.value !== false) {
                 //first card of each category is cluster (no drop-down), second is policy
-                verifyTable(browser, (i % 2 != 0))
+                verifyTable(browser, (i % 2 !== 0))
                 this.click('div.resource-filter-bar > span.button')
                 browser.pause(1000)//wait 1s for cleaning resource filters
               }
@@ -107,7 +107,7 @@ function checkPolicySummaryCards(browser) {
 }
 function verifyTable(browser, cluster) {
   browser.element('css selector', 'div.no-resource', function(result){
-    if(result.status != -1){
+    if(result.status !== -1){
       this.waitForElementVisible('div.no-resource')
     }
     else{
@@ -215,7 +215,7 @@ function testDetailsPage(browser, name) {
   this.waitForElementNotPresent('#spinner')
   // Temp disable violation table test - Adam Kang 11Nov19
   // this.waitForElementVisible('.policy-violation-tab > .section-title', 15000, false, (result) => {
-  //   if(result.value == false){
+  //   if(result.value === false){
   //     browser.expect.element('.no-resource').to.be.present
   //   }
   //   else{

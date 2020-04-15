@@ -309,7 +309,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { updateBrowserURL, resourceType } = ownProps
   return {
     fetchResources: (listData, nextPropsResourceType) => {
-      if(nextPropsResourceType == undefined){
+      if(nextPropsResourceType === undefined){
         nextPropsResourceType = resourceType
       }
       dispatch(receiveResourceSuccess({items: lodash.cloneDeep(listData)}, nextPropsResourceType))

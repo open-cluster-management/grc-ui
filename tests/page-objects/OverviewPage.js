@@ -6,6 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
 
 //import verifyTable from '../page-objects/AllPolicyPage'
 
@@ -102,7 +104,7 @@ function verifyPolicySummary() {
 function followRecentActivityButton(browser, cluster) {
   browser.pause(3000)
   browser.element('css selector', 'div.no-resource', function(result){
-    if(result.value != false){
+    if(result.value !== false){
       this.expect.element('div.no-resource').to.be.present
     }
     else{
