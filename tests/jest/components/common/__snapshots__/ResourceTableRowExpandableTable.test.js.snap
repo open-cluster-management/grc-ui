@@ -218,7 +218,6 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 4`] 
   <tbody
     className={undefined}
   >
-    
     <tr
       className={undefined}
     >
@@ -237,7 +236,7 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 4`] 
             aria-expanded={false}
             aria-haspopup="true"
             className="bx--tooltip__label textWithTruncation"
-            id="Tooltip-9"
+            id="mockLodashID-9"
             onBlur={[Function]}
             onClick={[Function]}
             onFocus={[Function]}

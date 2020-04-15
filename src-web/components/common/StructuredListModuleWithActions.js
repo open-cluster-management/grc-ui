@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom'
 import { resourceActions } from './ResourceTableRowMenuItemActions'
 import { connect } from 'react-redux'
 import StatusField from '../../components/common/StatusField'
-import uuidv4 from 'uuid/v4'
+import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/structured-list-with-actions.scss')
@@ -69,14 +69,14 @@ const StructuredListModule = ({
               if(row.cells[0].resourceKey === 'policy.pp.details.decisions'){
                 const formatDecisions = StructuredListModule.formatDecisionsWithLinkAndIcon(row.cells[1].resourceKey, data, clusterStatus, location)
                 return (<StructuredListRow>
-                  <StructuredListCell key={`${uuidv4()}-key`}><p>{msgs.get('policy.pp.details.decisions', context.locale)}</p></StructuredListCell>
-                  <StructuredListCell key={`${uuidv4()}-key`}>{formatDecisions}</StructuredListCell>
+                  <StructuredListCell key={_uniqueId('key')}><p>{msgs.get('policy.pp.details.decisions', context.locale)}</p></StructuredListCell>
+                  <StructuredListCell key={_uniqueId('key')}>{formatDecisions}</StructuredListCell>
                 </StructuredListRow>)
               }
               else{
                 return (<StructuredListRow>
                   {row.cells.map((cell, index) =>
-                    <StructuredListCell key={`${uuidv4()}-key`}>
+                    <StructuredListCell key={_uniqueId('key')}>
                       { index === 0 ? <p>{transform(data, cell, context.locale)}</p> : transform(data, cell, context.locale)}
                     </StructuredListCell>
                   )}

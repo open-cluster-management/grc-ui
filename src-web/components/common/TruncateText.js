@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 import { Tooltip } from 'carbon-components-react'
 import resources from '../../../lib/shared/resources'
 import truncate from '../../util/truncate-middle'
-import uuidv4 from 'uuid/v4'
+import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/textWithTruncation.scss')
@@ -39,7 +39,7 @@ class TruncateText extends React.PureComponent {
         <Tooltip
           triggerClassName="textWithTruncation"
           showIcon={false}
-          triggerId={`Tooltip-${uuidv4()}`}
+          triggerId={_uniqueId('Tooltip')}
           text={this.props.text}
           triggerText={truncate(this.props.text, this.props.maxCharacters)} >
           {this.props.text}

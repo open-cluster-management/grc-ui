@@ -14,7 +14,7 @@
 import { configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import 'cross-fetch/polyfill'
-import uuidv4 from 'uuid/v4'
+import _uniqueId from 'lodash/uniqueId'
 
 configure({ adapter: new Adapter() })
 
@@ -25,9 +25,9 @@ jest.mock('../../../nls/platform.properties', () => ({
   })
 }))
 
-// this mock uuid for all unit testing
+// this mock lodash uniqueId for all unit testing
 // will return fixed incremental id number rather than real random id number
 // so unit test snapshot will not failed
-jest.mock('uuid/v4')
+jest.mock('lodash/uniqueId')
 let mockId = 1
-uuidv4.mockImplementation(() => mockId++)
+_uniqueId.mockImplementation(() => `mockLodashID-${mockId++}`)
