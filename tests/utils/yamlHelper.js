@@ -20,7 +20,7 @@ module.exports = {
     el.click('#brace-editor')
     yaml.split(/\r?\n/).forEach(line => {
       const indentation = line.search(/\S|$/)
-      line.replace('[TIME]', time)
+      line = line.replace('[TIME]', time)
       keystrokes.push(line)
       keystrokes.push(browser.Keys.RETURN)
       for (let i = 0; i < indentation / 2; i++ )
