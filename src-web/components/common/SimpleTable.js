@@ -21,6 +21,7 @@ import ResourceTableRowExpandableTable from './ResourceTableRowExpandableTable'
 import { Module, ModuleHeader, ModuleBody } from 'carbon-addons-cloud-react'
 import msgs from '../../../nls/platform.properties'
 import TruncateText from './TruncateText'
+import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/structured-list.scss')
@@ -77,8 +78,7 @@ class StructuredListModule extends React.Component {
                       </th>
                     )
                   } else {
-                    // eslint-disable-next-line react/no-array-index-key
-                    return <th className={'bx--header-index-'+index} scope={'col'} key={'bx--header-' + index} />
+                    return <th className={'bx--header-index-'+index} scope={'col'} key={_uniqueId('bx--header')} />
                   }
                 }
                 )}
