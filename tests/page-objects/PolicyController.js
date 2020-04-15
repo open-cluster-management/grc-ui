@@ -57,7 +57,7 @@ module.exports = {
   }]
 }
 
-function createPolicy(browser, name, yaml, cluster) {
+function createPolicy(browser, name, yaml, time) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   //this.click('.bx--toggle__appearance')
@@ -66,7 +66,7 @@ function createPolicy(browser, name, yaml, cluster) {
   this.click('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.waitForElementPresent('@yamlInputField')
   this.click('@yamlTextField')
-  parser.enterTextInYamlEditor(this, browser, yaml, cluster)
+  parser.enterTextInYamlEditor(this, browser, yaml, time)
   // this.clearValue('@policyNameInput')
   // this.setValue('@policyNameInput',`${time}-policy-test`)
   this.waitForElementNotPresent('@spinner')

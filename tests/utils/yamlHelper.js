@@ -10,7 +10,7 @@
  *******************************************************************************/
 
 module.exports = {
-  enterTextInYamlEditor: (el, browser, yaml, cluster) => {
+  enterTextInYamlEditor: (el, browser, yaml, time) => {
     el.click('#brace-editor')
     const keystrokes = []
     keystrokes.push(browser.Keys.COMMAND)
@@ -20,11 +20,8 @@ module.exports = {
     el.click('#brace-editor')
     yaml.split(/\r?\n/).forEach(line => {
       const indentation = line.search(/\S|$/)
-      if (line == '[insert]') {
-        keystrokes.push('\t\t- {key: name, operator: In, values: ["' + cluster + '"]}')
-      } else {
-        keystrokes.push(line)
-      }
+      line.replace('[TIME]', time)
+      keystrokes.push(line)
       keystrokes.push(browser.Keys.RETURN)
       for (let i = 0; i < indentation / 2; i++ )
         keystrokes.push(browser.Keys.BACK_SPACE)

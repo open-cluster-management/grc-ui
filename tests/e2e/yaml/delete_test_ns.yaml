@@ -1,7 +1,7 @@
 apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
 metadata:
-  name: policy-namespace-delete
+  name: policy-namespace-delete-[TIME]
   namespace: default
   annotations:
     policy.mcm.ibm.com/standards: NIST-CSF
@@ -25,25 +25,25 @@ spec:
 apiVersion: mcm.ibm.com/v1alpha1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-namespace-delete
+  name: binding-policy-namespace-delete-[TIME]
   namespace: default
 placementRef:
-  name: placement-policy-namespace-delete
+  name: placement-policy-namespace-delete-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-namespace-delete
+- name: policy-namespace-delete-[TIME]
   kind: Policy
   apiGroup: policy.mcm.ibm.com
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-namespace-delete
+  name: placement-policy-namespace-delete-[TIME]
   namespace: default
 spec:
   clusterConditions:
   - type: OK
   clusterSelector:
     matchExpressions:
-[insert]
+      []
