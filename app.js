@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 var log4js = require('log4js'),
@@ -170,7 +173,7 @@ app.use(cookieParser(), csrfMiddleware, (req, res, next) => {
   }
   res.append('Content-Encoding', 'gzip')
   var type = mime.lookup(path.join('public', req.path))
-  if (typeof type != 'undefined') {
+  if (typeof type !== 'undefined') {
     var charset = mime && mime.charsets.lookup(type)
     res.append('Content-Type', type + (charset ? '; charset=' + charset : ''))
   }

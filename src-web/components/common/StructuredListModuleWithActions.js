@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -20,6 +23,7 @@ import { Link } from 'react-router-dom'
 import { resourceActions } from './ResourceTableRowMenuItemActions'
 import { connect } from 'react-redux'
 import StatusField from '../../components/common/StatusField'
+import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/structured-list-with-actions.scss')
@@ -40,7 +44,6 @@ const StructuredListModule = ({
     return <Module className='structured-list-module'><StructuredListSkeleton className='content-spinner' /></Module>
   }
   else{
-    /* eslint-disable react/no-array-index-key*/
     return <Module className='structured-list-module' id={id}>
       <div className='bx--module__header' style={{justifyContent: 'space-between'}} >
         <h1 className='bx--module__title'>{msgs.get(title, context.locale)}</h1>
@@ -62,18 +65,19 @@ const StructuredListModule = ({
       <ModuleBody>
         <StructuredListWrapper className='bx--structured-list--condensed' ariaLabel={msgs.get(title, context.locale)}>
           <StructuredListBody>
-            {rows.map((row, index) =>{
+            {rows.map(row =>{
               if(row.cells[0].resourceKey === 'policy.pp.details.decisions'){
-                return (<StructuredListRow key={index}>
-                  <StructuredListCell key={`${index}-key`}><p>{msgs.get('policy.pp.details.decisions', context.locale)}</p></StructuredListCell>
-                  <StructuredListCell key={`${index}-val`}>{StructuredListModule.formatDecisionsWithLinkAndIcon(row.cells[1].resourceKey, data, clusterStatus, location)}</StructuredListCell>
+                const formatDecisions = StructuredListModule.formatDecisionsWithLinkAndIcon(row.cells[1].resourceKey, data, clusterStatus, location)
+                return (<StructuredListRow>
+                  <StructuredListCell key={_uniqueId('key')}><p>{msgs.get('policy.pp.details.decisions', context.locale)}</p></StructuredListCell>
+                  <StructuredListCell key={_uniqueId('key')}>{formatDecisions}</StructuredListCell>
                 </StructuredListRow>)
               }
               else{
-                return (<StructuredListRow key={index}>
-                  {row.cells.map((cell, index2) =>
-                    <StructuredListCell key={`${index}-${index2}`}>
-                      { index2 === 0 ? <p>{transform(data, cell, context.locale)}</p> : transform(data, cell, context.locale)}
+                return (<StructuredListRow>
+                  {row.cells.map((cell, index) =>
+                    <StructuredListCell key={_uniqueId('key')}>
+                      { index === 0 ? <p>{transform(data, cell, context.locale)}</p> : transform(data, cell, context.locale)}
                     </StructuredListCell>
                   )}
                 </StructuredListRow>)

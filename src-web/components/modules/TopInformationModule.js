@@ -490,7 +490,9 @@ const TopInformations = ({cardData, handleClick}) => {
               }
               var sortedKeys = []
               for(var key in descDict) {
-                sortedKeys.push([ key, descDict[key] ])
+                if (descDict.hasOwnProperty(key)) {
+                  sortedKeys.push([ key, descDict[key] ])
+                }
               }
               sortedKeys.sort((kv1, kv2) => {
                 return kv2[1] - kv1[1]
