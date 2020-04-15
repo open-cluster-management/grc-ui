@@ -16,7 +16,7 @@ import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import { DataTable,  } from 'carbon-components-react'
 import TruncateText from './TruncateText'
-import _uniqueId from 'lodash/uniqueId'
+import uuidv4 from 'uuid/v4'
 
 const {
   Table,
@@ -37,7 +37,7 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
               </th>
             )
           } else {
-            return <th className={`bx--table-header-index-${index}`} scope={'col'} key={_uniqueId('bx--table-header')} />
+            return <th className={`bx--table-header-index-${index}`} scope={'col'} key={`bx--table-header-${uuidv4()}`} />
           }
         }
         )}
@@ -47,10 +47,10 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
       {items && items.map(row => {//check undefined row.id to avoid whole page crush
         if(row && row.cells){//single sub row for policy/cluster violation side panel
           return (
-            <TableRow key={row.id ? row.id : _uniqueId('sidePanelTableRow')}>
+            <TableRow key={row.id ? row.id : `sidePanelTableRow-${uuidv4()}`}>
               {row.cells.map(cell => (cell && typeof cell === 'string') ?
                 <TableCell key={cell.substring(0, 21)}><TruncateText text={cell} /></TableCell>
-                : <TableCell key={_uniqueId('sidePanelTableCell')}><TruncateText text='-' /></TableCell>)}
+                : <TableCell key={`sidePanelTableCell-${uuidv4()}`}><TruncateText text='-' /></TableCell>)}
             </TableRow>
           )
         }
@@ -58,9 +58,11 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
           return row.subRowsArray.map(subRow => {
             if(subRow && subRow.cells) {
               return (
-                <TableRow key={subRow.id ? subRow.id : _uniqueId('sidePanelTableRow')}>
+                <TableRow key={subRow.id ? subRow.id : `sidePanelTableRow-${uuidv4()}`}>
                   {subRow.cells.map((cell, index) => (cell && typeof cell === 'string') ?
-                    <TableCell key={cell.substring(0, 21)} className={'bx--table-subRowsArray-subRow-index-'+index}><TruncateText text={cell} /></TableCell> : <TableCell key={_uniqueId('sidePanelTableCell')}><TruncateText text='-' /></TableCell>)}
+                    <TableCell key={cell.substring(0, 21)} className={`bx--table-subRowsArray-subRow-index-${index}`}>
+                      <TruncateText text={cell} /></TableCell> :
+                    <TableCell key={`sidePanelTableCell-${uuidv4()}`}><TruncateText text='-' /></TableCell>)}
                 </TableRow>
               )
             }

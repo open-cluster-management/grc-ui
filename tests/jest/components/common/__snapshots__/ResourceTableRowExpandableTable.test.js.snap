@@ -237,7 +237,7 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 4`] 
             aria-expanded={false}
             aria-haspopup="true"
             className="bx--tooltip__label textWithTruncation"
-            id="__carbon-tooltip-trigger_7ntiq61bj6o"
+            id="Tooltip-9"
             onBlur={[Function]}
             onClick={[Function]}
             onFocus={[Function]}

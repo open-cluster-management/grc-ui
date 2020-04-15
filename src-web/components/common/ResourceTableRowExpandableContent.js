@@ -16,7 +16,7 @@ import PropTypes from 'prop-types'
 import { StructuredListWrapper, StructuredListHead, StructuredListRow, StructuredListCell, StructuredListBody } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import { getResourceType } from '../../../lib/client/resource-helper'
-import _uniqueId from 'lodash/uniqueId'
+import uuidv4 from 'uuid/v4'
 
 const ResourceTableRowExpandableContent = ({ items }, context) =>
   <StructuredListWrapper>
@@ -32,7 +32,7 @@ const ResourceTableRowExpandableContent = ({ items }, context) =>
     </StructuredListHead>
     <StructuredListBody>
       {items.map(item => (
-        <StructuredListRow key={_uniqueId(item.resource)} data-row-name={item.resource} >
+        <StructuredListRow key={`${item.resource}-${uuidv4()}`} data-row-name={item.resource} >
           <StructuredListCell noWrap>{item.resource}</StructuredListCell>
           <StructuredListCell noWrap>{getResourceType(item, context.locale)}</StructuredListCell>
         </StructuredListRow>
