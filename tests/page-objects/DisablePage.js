@@ -9,6 +9,8 @@
 * Copyright (c) 2020 Red Hat, Inc.
 */
 
+const parser = require('../utils/yamlHelper')
+
 module.exports = {
   elements: {
     spinner: '.content-spinner',
@@ -49,12 +51,41 @@ module.exports = {
     createPolicy,
     deletePolicy,
     tryEnable,
-    tryDisable
+    tryDisable,
+    checkViolations
   }]
 }
 
-function createPolicy(name) {
-  //todo - add create from yaml after merge
+function createPolicy(browser, name, yaml, time) {
+  this.waitForElementVisible('@createPolicyButton')
+  this.click('@createPolicyButton')
+  //this.click('.bx--toggle__appearance')
+  this.click('@namespaceDropdown')
+  this.waitForElementPresent('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
+  this.click('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
+  this.waitForElementPresent('@yamlInputField')
+  this.click('@yamlTextField')
+  parser.enterTextInYamlEditor(this, browser, yaml, time)
+  // this.clearValue('@policyNameInput')
+  // this.setValue('@policyNameInput',`${time}-policy-test`)
+  this.waitForElementNotPresent('@spinner')
+  this.waitForElementVisible('@submitCreatePolicyButton')
+  this.click('@submitCreatePolicyButton')
+  this.waitForElementVisible('@table')
+}
+
+function checkViolations(name, violationExpected) {
+  this.waitForElementVisible('@searchInput')
+  this.setValue('@searchInput', name)
+  this.click('tbody>tr>td>a')
+  this.waitForElementPresent('#violation-tab')
+  this.click('#violation-tab')
+  if (violationExpected) {
+    this.waitForElementPresent('#violations-table-container')
+  } else {
+    this.waitForElementPresent('.no-resource')
+  }
+  this.click('.bx--breadcrumb > div:nth-child(1)')
 }
 
 function deletePolicy(name){
