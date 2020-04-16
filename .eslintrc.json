@@ -25,7 +25,8 @@
         "react",
         "html",
         "import",
-        "jsx-a11y"
+        "jsx-a11y",
+        "optimize-regex"
     ],
     "settings": {
         "html/html-extensions": [
@@ -40,6 +41,7 @@
         "prefer-arrow-callback": ["error"],
         "no-trailing-spaces": "error",
         "no-unused-vars": "error",
+        "optimize-regex/optimize-regex": 2,
         "prefer-const": "error",
         "react/jsx-tag-spacing": "error",
         "react/display-name": "error",

@@ -623,7 +623,7 @@ class YamlParser {
 
     // strip YAML header
     var count = 0
-    var regex = /^%YAML[: ][\d.]+.*\n/
+    var regex = /^%YAML[ :][\d.]+.*\n/
     while (regex.test(value)) {
       value = value.replace(regex, '')
       count++
@@ -650,7 +650,7 @@ class YamlParser {
       value = trimmedValue
 
       // remove end of the document marker (...)
-      value = value.replace(/\.\.\.\s*$/g, '')
+      value = value.replace(/\.{3}\s*$/g, '')
     }
 
     return value
@@ -1128,7 +1128,7 @@ class YamlInline {
     if (scalar.toLowerCase() === '.inf') return Infinity
     if (scalar.toLowerCase() === '.nan') return NaN
     if (scalar.toLowerCase() === '-.inf') return -Infinity
-    if (/^(-|\+)?[0-9,]+(\.[0-9]+)?$/.test(scalar)) return parseFloat(scalar.split(',').join(''))
+    if (/^([+-])?[\d,]+(\.\d+)?$/.test(scalar)) return parseFloat(scalar.split(',').join(''))
     if (this.getTimestampRegex().test(scalar)) return new Date(this.strtotime(scalar))
     //else
     return '' + scalar
@@ -1185,12 +1185,12 @@ class YamlInline {
   hexdec(input) {
     input = this.trim(input)
     if ((input + '').substr(0, 2) === '0x') input = (input + '').substring(2)
-    return parseInt((input + '').replace(/[^a-f0-9]/gi, ''), 16)
+    return parseInt((input + '').replace(/[^\da-f]/gi, ''), 16)
   }
 
   strtotime(h, b) {
     var f, c, g, k, d = ''
-    h = (h + '').replace(/\s{2,}|^\s|\s$/g, ' ').replace(/[\t\r\n]/g, '')
+    h = (h + '').replace(/\s{2,}|^\s|\s$/g, ' ').replace(/[\t\n\r]/g, '')
     if (h === 'now') {
       return b === null || isNaN(b) ? new Date().getTime() || 0 : b || 0
     } else {
