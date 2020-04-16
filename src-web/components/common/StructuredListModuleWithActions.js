@@ -67,7 +67,7 @@ const StructuredListModule = ({
           <StructuredListBody>
             {rows.map(row =>{
               if(row.cells[0].resourceKey === 'policy.pp.details.decisions'){
-                const formatDecisions = StructuredListModule.formatDecisionsWithLinkAndIcon(row.cells[1].resourceKey, data, clusterStatus, location)
+                const formatDecisions = StructuredListModule.formatDecisionsWithLinkAndIcon(row.cells[1].resourceKey, data, clusterStatus, location, context)
                 return (<StructuredListRow>
                   <StructuredListCell key={_uniqueId('key')}><p>{msgs.get('policy.pp.details.decisions', context.locale)}</p></StructuredListCell>
                   <StructuredListCell key={_uniqueId('key')}>{formatDecisions}</StructuredListCell>
@@ -95,7 +95,7 @@ StructuredListModule.contextTypes = {
 }
 
 // eslint-disable-next-line react/display-name
-StructuredListModule.formatDecisionsWithLinkAndIcon = (resourceKey, data, clusterStatus, location) => {
+StructuredListModule.formatDecisionsWithLinkAndIcon = (resourceKey, data, clusterStatus, location, context) => {
   const decisions = _.get(data[resourceKey], 'decisions')
   const hubNamespace = _.get(data,'metadata.namespace')
   const urlSegments = location.pathname.replace(/\/$/, '').split('/')
@@ -107,10 +107,10 @@ StructuredListModule.formatDecisionsWithLinkAndIcon = (resourceKey, data, cluste
     const status = clusterStatus[cluster] ? clusterStatus[cluster].toLowerCase() : 'undefined'
     let statusIcon
     if(status === 'compliant'){
-      statusIcon = <StatusField status='ok' />
+      statusIcon = <StatusField status='ok' text={msgs.get('policy.status.compliant',context.locale)} />
     }
     else {
-      statusIcon = <StatusField status='critical' />
+      statusIcon = <StatusField status='critical' text={msgs.get('policy.status.noncompliant',context.locale)} />
     }
     links.push(<div className='one-cluster-status' key={`${cluster}-container`}>
       <Link to= {`${baseUrl}/policy/${cluster}/${hubNamespace}.${policyName}`} >{cluster}</Link>
