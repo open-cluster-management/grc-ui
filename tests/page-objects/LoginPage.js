@@ -16,12 +16,12 @@ module.exports = {
     return `${this.api.launchUrl}${config.get('contextPath')}`
   },
   elements: {
+    userSelect: 'a.idp:nth-of-type(1)',
     username: '#inputUsername',
     password: '#inputPassword',
     submit: 'button[type="submit"]',
     error: '.bx--inline-notification--error',
     header: '.app-header',
-    loginPage: 'form[action="/login"]'
   },
   commands: [{
     inputUsername,
@@ -29,13 +29,14 @@ module.exports = {
     submit,
     authenticate,
     waitForLoginSuccess,
-    waitForLoginPageLoad
+    waitForUserSelectLoad
   }]
 }
 
 //helper for other pages to use for authentication in before() their suit
 function authenticate(user, password) {
-  this.waitForLoginPageLoad()
+  this.waitForUserSelectLoad()
+  this.waitForElementPresent('@username')
   this.inputUsername(user)
   this.inputPassword(password)
   this.submit()
@@ -43,24 +44,37 @@ function authenticate(user, password) {
 }
 
 function inputUsername(user) {
-  this.waitForElementVisible('@username')
+  this.waitForElementPresent('@username')
     .setValue('@username', user || process.env.SELENIUM_USER )
 }
 
 function inputPassword(password) {
-  this.waitForElementVisible('@password')
+  this.waitForElementPresent('@password')
     .setValue('@password', password || process.env.SELENIUM_PASSWORD )
 }
 
 function submit() {
-  this.waitForElementVisible('@submit')
+  this.waitForElementPresent('@submit')
     .click('@submit')
 }
 
 function waitForLoginSuccess() {
-  this.waitForElementVisible('@header', 20000)
+  this.waitForElementPresent('@header')
 }
 
-function waitForLoginPageLoad() {
-  this.waitForElementVisible('@loginPage')
+function waitForUserSelectLoad() {
+  const specialSelect = 'a.idp'
+  this.api.elements('css selector', specialSelect, res => {
+    if (res.status < 0 || res.value.length < 1) {
+      return
+    }
+    else{
+      if(process.env.SELENIUM_USER_SELECT === undefined){
+        throw new Error('export UI user to be selected as SELENIUM_USER_SELECT')
+      }
+      const userSelector = `a.idp[title="Log in with ${process.env.SELENIUM_USER_SELECT}"]`
+      this.waitForElementPresent(userSelector)
+      this.click(userSelector)
+    }
+  })
 }

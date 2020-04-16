@@ -145,7 +145,9 @@ function verifyPagination() {
 function createTestPolicy(browser, time) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
-  this.waitForElementPresent('@yamlInputField')
+  this.waitForElementNotPresent('@spinner')
+  // browser.pause(100000)
+  this.expect.element('@yamlInputField').to.be.present
   this.click('@yamlTextField')
   this.clearValue('@policyNameInput')
   this.setValue('@policyNameInput',`${time}-policy-test`)
@@ -160,7 +162,7 @@ function createTestPolicy(browser, time) {
   this.click('@clusterSelectorDropdown')
   this.waitForElementVisible('@clusterSelectorDropdownBox')
   // this.setValue('div.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > .bx--list-box__field > input', 'cloud: "IBM')
-  this.click('div.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
+  this.click('div.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div:nth-child(3)')
   this.click('@clusterSelectorDropdown')
   this.waitForElementNotPresent('@clusterSelectorDropdownBox')
   // this.click('@standardsDropdown').expect.element('@standardsDropdownBox').to.be.present
@@ -178,7 +180,7 @@ function createTestPolicy(browser, time) {
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
-  this.waitForElementVisible('@table')
+  this.expect.element('@table').to.be.present
   this.waitForElementVisible('@searchInput')
   this.setValue('@searchInput',`${time}-policy-test`)
 }
@@ -200,9 +202,9 @@ function testDetailsPage(browser, name) {
   this.expect.element('.section-title:nth-of-type(1)').text.to.equal('Policy details')
   this.expect.element('.new-structured-list > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(name)
   this.expect.element('.overview-content > div:nth-child(2) > .section-title').text.to.equal('Placement')
-  this.waitForElementVisible('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title')
-  this.expect.element('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement rule')
-  this.expect.element('.overview-content-second > div:nth-child(1) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('placement-' + name)
+  // this.waitForElementVisible('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title')
+  // this.expect.element('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement rule')
+  // this.expect.element('.overview-content-second > div:nth-child(1) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('placement-' + name)
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement binding')
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
   this.expect.element('.overview-content > div:nth-child(3) > .section-title').text.to.equal('Object templates')
