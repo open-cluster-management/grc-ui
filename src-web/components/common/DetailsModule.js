@@ -17,7 +17,7 @@ import _ from 'lodash'
 import { Module, ModuleBody, ModuleHeader } from 'carbon-addons-cloud-react'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
-
+import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/structured-list.scss')
@@ -72,9 +72,7 @@ class DetailsModule extends React.PureComponent {
     for( let i=0; i<tables.length; i++){
       moduleBody.push(tables[i])
       if(i !== tables.length -1 ) {
-        const crypto = window.crypto || window.msCrypto
-        const array = new Uint32Array(1)
-        moduleBody.push(<VerticalDivider key={crypto.getRandomValues(array)} />)
+        moduleBody.push(<VerticalDivider key={_uniqueId('VerticalDivider')} />)
       }
     }
     return React.createElement('div',{className: 'new-structured-list'}, moduleBody)
