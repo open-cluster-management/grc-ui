@@ -77,7 +77,6 @@ function waitForLoginForm() {
       // select first option kube:admin
       this.waitForElementVisible('.row > div > a')
       this.click('.row > div > a')
-      
     }
   })
   this.waitForElementVisible('@loginForm')
