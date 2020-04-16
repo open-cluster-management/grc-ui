@@ -68,13 +68,13 @@ const StructuredListModule = ({
             {rows.map(row =>{
               if(row.cells[0].resourceKey === 'policy.pp.details.decisions'){
                 const formatDecisions = StructuredListModule.formatDecisionsWithLinkAndIcon(row.cells[1].resourceKey, data, clusterStatus, location)
-                return (<StructuredListRow>
+                return (<StructuredListRow key={_uniqueId('SLRow')}>
                   <StructuredListCell key={_uniqueId('key')}><p>{msgs.get('policy.pp.details.decisions', context.locale)}</p></StructuredListCell>
                   <StructuredListCell key={_uniqueId('key')}>{formatDecisions}</StructuredListCell>
                 </StructuredListRow>)
               }
               else{
-                return (<StructuredListRow>
+                return (<StructuredListRow key={_uniqueId('SLRow')}>
                   {row.cells.map((cell, index) =>
                     <StructuredListCell key={_uniqueId('key')}>
                       { index === 0 ? <p>{transform(data, cell, context.locale)}</p> : transform(data, cell, context.locale)}

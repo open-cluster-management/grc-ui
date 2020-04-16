@@ -69,7 +69,9 @@ class DetailsModule extends React.PureComponent {
     for( let i=0; i<tables.length; i++){
       moduleBody.push(tables[i])
       if(i !== tables.length -1 ) {
-        moduleBody.push(<VerticalDivider key={Math.random()} />)
+        const crypto = window.crypto || window.msCrypto
+        const array = new Uint32Array(1)
+        moduleBody.push(<VerticalDivider key={crypto.getRandomValues(array)} />)
       }
     }
     return React.createElement('div',{className: 'new-structured-list'}, moduleBody)
