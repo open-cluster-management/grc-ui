@@ -18,9 +18,9 @@ module.exports = {
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
-    if(process.env.SELENIUM_USER === undefined || process.env.SELENIUM_PASSWORD === undefined || process.env.SELENIUM_USER_SELECT === undefined){
+    if(process.env.SELENIUM_USER === undefined || process.env.SELENIUM_PASSWORD === undefined){
       browser.end()
-      throw new Error('Env variable NOT set.\nPlease export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD, export UI user to be selected as SELENIUM_USER_SELECT')
+      throw new Error('Env variable NOT set.\nPlease export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD')
     }
     loginPage.navigate()
     loginPage.authenticate()

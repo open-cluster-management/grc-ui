@@ -69,6 +69,9 @@ function waitForUserSelectLoad() {
       return
     }
     else{
+      if(process.env.SELENIUM_USER_SELECT === undefined){
+        throw new Error('export UI user to be selected as SELENIUM_USER_SELECT')
+      }
       const userSelector = `a.idp[title="Log in with ${process.env.SELENIUM_USER_SELECT}"]`
       this.waitForElementPresent(userSelector)
       this.click(userSelector)
