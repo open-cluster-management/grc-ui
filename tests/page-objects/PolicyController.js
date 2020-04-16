@@ -72,7 +72,7 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
-  this.waitForElementVisible('@table')
+  this.expect.element('@table').to.be.present
 }
 
 function checkViolations(name, violationExpected) {
