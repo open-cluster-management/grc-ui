@@ -22,4 +22,4 @@ docker container ls -a
 
 if [ "$TRAVIS" == "true" ]; then npm i chromedriver@73; fi;
 
-npm run test:e2e
+npm run test:e2e-headless
