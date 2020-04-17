@@ -22,6 +22,6 @@ replacements: # if user select this choice, the template variable names and valu
           severity: medium
           namespaceSelector:
             include: ["*"]
-            exclude: ["kube-*"]
+            exclude: ["kube-*", "openshift-*"]
           remediationAction: inform
           maxClusterRoleBindingUsers: 5
