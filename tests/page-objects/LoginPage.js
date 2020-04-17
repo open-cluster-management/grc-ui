@@ -74,9 +74,10 @@ function waitForLoginForm() {
       // do nothing
     }
     else{
-      // select first option kube:admin
-      this.waitForElementVisible('.row > div > a')
-      this.click('.row > div > a')
+      // select kube:admin if env SELENIUM_USER_SELECT not specified
+      const userSelector = `a.idp[title="Log in with ${process.env.SELENIUM_USER_SELECT || 'kube:admin'}"]`
+      this.waitForElementPresent(userSelector)
+      this.click(userSelector)
     }
   })
   this.waitForElementVisible('@loginForm')
