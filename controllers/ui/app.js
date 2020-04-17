@@ -101,6 +101,7 @@ function fetchHeader(req, res, store, context) {
           </Provider>
         ),
         contextPath: config.get('contextPath'),
+        headerContextPath: config.get('headerContextPath'),
         state: store.getState(),
         props: context,
         header: header,

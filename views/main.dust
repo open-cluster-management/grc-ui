@@ -5,11 +5,14 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
+ * Copyright (c) 2020 Red Hat, Inc.
 !}
+
 
 {>"page" title="{title}" id="grc-ui" trackAnalytics="true"/}
 {<head}
     <link rel='stylesheet' href="{contextPath}/{manifest.main.css}">
+    <link rel='icon' href="{headerContextPath}/graphics/RHACM-Favicon.svg">
 {/head}
 {<script}
     <script src="{@properties href="nls/platform.properties" locale=context.locale/}"></script>
