@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2017, 2019. All Rights Reserved.
@@ -220,10 +219,6 @@ export class ResourceTable extends React.Component {
                         </React.Fragment>
                       )
                     } else {
-                      // eslint-disable-next-line no-console
-                      console.log('---- row -----')
-                      // eslint-disable-next-line no-console
-                      console.log(row)
                       if(row && row.id){
                         return (
                           <TableRow key={row.id} data-row-name={lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey'))} className={lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')) === highLightRowName ? 'high-light' : ''}>
