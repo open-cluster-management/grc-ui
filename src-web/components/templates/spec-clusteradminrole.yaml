@@ -2,7 +2,7 @@
 name:
   IamPolicy
 description:
-  limit clusteradminrole and report violation in IAM RBAC
+  limit clusteradminrole and report violation
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use
