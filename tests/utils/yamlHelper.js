@@ -13,7 +13,11 @@ module.exports = {
   enterTextInYamlEditor: (el, browser, yaml, time) => {
     el.click('#brace-editor')
     const keystrokes = []
-    keystrokes.push(browser.Keys.COMMAND)
+    if (process.platform == 'darwin') {
+      keystrokes.push(browser.Keys.COMMAND)
+    } else {
+      keystrokes.push(browser.Keys.CONTROL)
+    }
     keystrokes.push('a')
     keystrokes.push(browser.Keys.NULL)
     keystrokes.push(browser.Keys.BACK_SPACE)
