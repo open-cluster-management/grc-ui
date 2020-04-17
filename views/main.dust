@@ -8,7 +8,6 @@
  * Copyright (c) 2020 Red Hat, Inc.
 !}
 
-
 {>"page" title="{title}" id="grc-ui" trackAnalytics="true"/}
 {<head}
     <link rel='stylesheet' href="{contextPath}/{manifest.main.css}">
