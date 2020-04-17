@@ -22,6 +22,7 @@ module.exports = {
     submit: 'button[type="submit"]',
     error: '.bx--inline-notification--error',
     header: '.app-header',
+    loginForm: 'form[role="form"]'
   },
   commands: [{
     inputUsername,
@@ -29,13 +30,17 @@ module.exports = {
     submit,
     authenticate,
     waitForLoginSuccess,
-    waitForUserSelectLoad
+    waitForLoginForm
   }]
 }
 
 //helper for other pages to use for authentication in before() their suit
 function authenticate(user, password) {
-  this.waitForUserSelectLoad()
+  if(process.env.SELENIUM_USER === undefined || process.env.SELENIUM_PASSWORD === undefined){
+    this.api.end()
+    throw new Error('Env variable NOT set.\nPlease export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD')
+  }
+  this.waitForLoginForm()
   this.waitForElementPresent('@username')
   this.inputUsername(user)
   this.inputPassword(password)
@@ -62,19 +67,18 @@ function waitForLoginSuccess() {
   this.waitForElementPresent('@header')
 }
 
-function waitForUserSelectLoad() {
+function waitForLoginForm() {
   const specialSelect = 'a.idp'
   this.api.elements('css selector', specialSelect, res => {
     if (res.status < 0 || res.value.length < 1) {
-      return
+      // do nothing
     }
     else{
-      if(process.env.SELENIUM_USER_SELECT === undefined){
-        throw new Error('export UI user to be selected as SELENIUM_USER_SELECT')
-      }
-      const userSelector = `a.idp[title="Log in with ${process.env.SELENIUM_USER_SELECT}"]`
+      // select kube:admin if env SELENIUM_USER_SELECT not specified
+      const userSelector = `a.idp[title="Log in with ${process.env.SELENIUM_USER_SELECT || 'kube:admin'}"]`
       this.waitForElementPresent(userSelector)
       this.click(userSelector)
     }
   })
+  this.waitForElementVisible('@loginForm')
 }
