@@ -51,6 +51,7 @@ export default class TemplateEditor extends React.Component {
     fetchControl: PropTypes.shape({
       isLoaded: PropTypes.bool,
       isFailed: PropTypes.bool,
+      error: PropTypes.object
     }),
     locale: PropTypes.string,
     portals: PropTypes.object.isRequired,
@@ -154,15 +155,20 @@ export default class TemplateEditor extends React.Component {
 
   render() {
     const {fetchControl, locale} = this.props
-    const {isLoaded, isFailed} = fetchControl || {isLoaded:true}
+    const {isLoaded, isFailed, error} = fetchControl || {isLoaded:true}
     const { showEditor, resetInx } = this.state
 
     if (!isLoaded)
       return <Loading withOverlay={false} className='content-spinner' />
 
-    if (isFailed)
+    if (isFailed) {
+      if (error.name === 'PermissionError') {
+        return <Notification title='' className='overview-notification' kind='error'
+          subtitle={msgs.get('error.permission.denied.create', locale)} />
+      }
       return <Notification title='' className='overview-notification' kind='error'
         subtitle={msgs.get('overview.error.default', locale)} />
+    }
 
     const viewClasses = classNames({
       'creation-view': true,
