@@ -287,23 +287,35 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
         id,
         ...objectTemplates.map(item => {
           if (_.get(item, 'status.Compliant','').toLowerCase() !== 'compliant') {
+            let name = _.get(item, 'objectDefinition.metadata.name')
+            if (name === undefined) {
+              name = _.get(item, 'objectDefinition.kind')
+            }
             return {
               id: _.get(item, 'objectDefinition.metadata.name'),
-              cells: [_.get(item, 'objectDefinition.metadata.name'), _.get(item, 'status.conditions[0].message', '-'), _.get(item, 'status.conditions[0].reason', '-')]
+              cells: [name, _.get(item, 'status.conditions[0].message', '-'), _.get(item, 'status.conditions[0].reason', '-')]
             }}}
         ),
         ...roleTemplates.map(item => {
           if (_.get(item, 'status.Compliant','').toLowerCase() !== 'compliant') {
+            let name = _.get(item, 'objectDefinition.metadata.name')
+            if (name === undefined) {
+              name = _.get(item, 'objectDefinition.kind')
+            }
             return {
               id: _.get(item, 'objectDefinition.metadata.name'),
-              cells: [_.get(item, 'objectDefinition.metadata.name'), _.get(item, 'status.conditions[0].message', '-'), _.get(item, 'status.conditions[0].reason', '-')]
+              cells: [name, _.get(item, 'status.conditions[0].message', '-'), _.get(item, 'status.conditions[0].reason', '-')]
             }}}
         ),
         ...policyTemplates.map(item => {
           if (_.get(item, 'status.Compliant','').toLowerCase() !== 'compliant') {
+            let name = _.get(item, 'objectDefinition.metadata.name')
+            if (name === undefined) {
+              name = _.get(item, 'objectDefinition.kind')
+            }
             return {
               id: _.get(item, 'objectDefinition.metadata.name'),
-              cells: [_.get(item, 'objectDefinition.metadata.name'), _.get(item, 'status.conditions[0].message', '-'), _.get(item, 'status.conditions[0].reason', '-')]
+              cells: [name, _.get(item, 'status.conditions[0].message', '-'), _.get(item, 'status.conditions[0].reason', '-')]
             }}}
         )
       ], undefined, null)

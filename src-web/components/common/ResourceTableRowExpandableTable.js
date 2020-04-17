@@ -46,6 +46,10 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
     <TableBody>
       {items && items.map(row => {//check undefined row.id to avoid whole page crush
         if(row && row.cells){//single sub row for policy/cluster violation side panel
+          // eslint-disable-next-line no-console
+          console.log('/// exp table')
+          // eslint-disable-next-line no-console
+          console.log(row)
           return (
             <TableRow key={row.id ? row.id : _uniqueId('sidePanelTableRow')}>
               {row.cells.map(cell => (cell && typeof cell === 'string') ?

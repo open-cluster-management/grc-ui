@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2017, 2019. All Rights Reserved.
@@ -219,6 +220,10 @@ export class ResourceTable extends React.Component {
                         </React.Fragment>
                       )
                     } else {
+                      // eslint-disable-next-line no-console
+                      console.log('---- row -----')
+                      // eslint-disable-next-line no-console
+                      console.log(row)
                       if(row && row.id){
                         return (
                           <TableRow key={row.id} data-row-name={lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey'))} className={lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')) === highLightRowName ? 'high-light' : ''}>
@@ -266,7 +271,6 @@ export class ResourceTable extends React.Component {
     if (resources && resources.length > 0) {
       return resources.map((item, index) => {
         const row = {}
-
         if (normalizedKey) {
           row.id = `${lodash.get(item, normalizedKey)}${lodash.get(item, 'cluster', '')}`
         } else {
@@ -319,6 +323,9 @@ export class ResourceTable extends React.Component {
             transform(item, key, locale)
           if (key.resourceKey === 'metadata.name' && row.disabled) {
             row[key.resourceKey] = lodash.get(item, key.resourceKey)
+          }
+          if (key.resourceKey === 'objectDefinition.metadata.name' && row[key.resourceKey] === '-') {
+            row[key.resourceKey] = lodash.get(item, 'objectDefinition.kind')
           }
           if (key.resourceKey === 'remediation') {
             row[key.resourceKey] = msgs.get('policy.remediation.' + row[key.resourceKey], locale)
