@@ -33,7 +33,7 @@ module.exports = {
     page.navigate(url)
   },
 
-  'Policy controller: single object / musthave': (browser) => {
+  'Policy controller: single object / musthave + mustnothave': (browser) => {
     const time = browser.globals.time
     const singleMustHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/single_musthave_inform.yaml'))
     var yaml = singleMustHaveInform.toString()
@@ -48,12 +48,8 @@ module.exports = {
     browser.pause(30000)
     page.checkViolations('policy-pod-single-musthave-enforce-' + time, false)
     page.deletePolicy('policy-pod-single-musthave-enforce-' + time)
-  },
-
-  'Policy controller: single object / mustnothave': (browser) => {
-    const time = browser.globals.time
     const singleMustNotHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/single_mustnothave_inform.yaml'))
-    var yaml = singleMustNotHaveInform.toString()
+    yaml = singleMustNotHaveInform.toString()
     page.createPolicy(browser, 'policy-pod-single-mustnothave-inform', yaml, time)
     browser.pause(15000)
     page.checkViolations('policy-pod-single-mustnothave-inform-' + time, true)

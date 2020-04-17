@@ -20,7 +20,7 @@ spec:
         apiVersion: v1
         kind: Pod # nginx pod must exist
         metadata:
-          name: nginx-pod-dne
+          name: nginx-pod-[TIME]
         spec:
           containers:
           - image: nginx:1.7.9
