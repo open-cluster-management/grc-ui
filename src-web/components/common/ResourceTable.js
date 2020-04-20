@@ -266,7 +266,6 @@ export class ResourceTable extends React.Component {
     if (resources && resources.length > 0) {
       return resources.map((item, index) => {
         const row = {}
-
         if (normalizedKey) {
           row.id = `${lodash.get(item, normalizedKey)}${lodash.get(item, 'cluster', '')}`
         } else {
@@ -319,6 +318,9 @@ export class ResourceTable extends React.Component {
             transform(item, key, locale)
           if (key.resourceKey === 'metadata.name' && row.disabled) {
             row[key.resourceKey] = lodash.get(item, key.resourceKey)
+          }
+          if (key.resourceKey === 'objectDefinition.metadata.name' && row[key.resourceKey] === '-') {
+            row[key.resourceKey] = lodash.get(item, 'objectDefinition.kind')
           }
           if (key.resourceKey === 'remediation') {
             row[key.resourceKey] = msgs.get('policy.remediation.' + row[key.resourceKey], locale)
