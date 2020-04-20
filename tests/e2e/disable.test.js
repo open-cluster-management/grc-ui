@@ -39,6 +39,7 @@ module.exports = {
     page.checkViolations('policy-pod-inform-' + time, false)
 
     page.tryDisable('policy-pod-' + time)
+    browser.pause(5000)
     const createPod = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_create.yaml'))
     yaml = createPod.toString()
     page.createPolicy(browser, yaml, time)
