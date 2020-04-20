@@ -7,6 +7,9 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 
+var fs = require('fs')
+const path = require('path')
+
 const config = require('../../config')
 let page
 
@@ -23,16 +26,30 @@ module.exports = {
     page.navigate(url)
   },
 
-  'Disable policy: test policy disable': (browser) => {
+  'Disable policy: test policy disable + enable': (browser) => {
     const time = browser.globals.time
-    page.createPolicy()
-    page.tryDisable()
-    page.createPolicy()
-    page.verifyDisable()
-    page.tryEnable()
-    page.verifyEnable()
-    page.deletePolicy()
-    page.deletePolicy()
+
+    const enforce = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_mustnothave.yaml'))
+    var yaml = enforce.toString()
+    page.createPolicy(browser, yaml, time)
+    const inform = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_mustnothave_info.yaml'))
+    yaml = inform.toString()
+    page.createPolicy(browser, yaml, time)
+    page.checkViolations('policy-pod-inform-' + time, false)
+
+    page.tryDisable('policy-pod-' + time)
+    const createPod = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_create.yaml'))
+    yaml = createPod.toString()
+    page.createPolicy(browser, yaml, time)
+    page.checkViolations('policy-pod-create-' + time, false)
+    page.checkViolations('policy-pod-inform-' + time, true)
+
+    page.tryEnable('policy-pod-' + time)
+    page.checkViolations('policy-pod-inform-' + time, false)
+
+    page.deletePolicy('policy-pod-create-' + time)
+    page.deletePolicy('policy-pod-inform-' + time)
+    page.deletePolicy('policy-pod-' + time)
   },
 
   after: function (browser, done) {

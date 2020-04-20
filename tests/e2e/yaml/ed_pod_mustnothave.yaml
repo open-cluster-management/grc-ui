@@ -1,7 +1,7 @@
 apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
 metadata:
-  name: policy-pod
+  name: policy-pod-[TIME]
   namespace: default
   annotations:
     policy.mcm.ibm.com/standards: NIST-CSF
@@ -9,18 +9,18 @@ metadata:
     policy.mcm.ibm.com/controls: PR.PT-3 Least Functionality
 spec:
   complianceType: musthave
-  remediationAction: inform
+  remediationAction: enforce
   disabled: false
   namespaces:
     exclude: ["kube-*"]
     include: ["default"]
   object-templates:
-    - complianceType: musthave
+    - complianceType: mustnothave
       objectDefinition:
         apiVersion: v1
-        kind: Pod # nginx pod must exist
+        kind: Pod # nginx pod must not exist
         metadata:
-          name: nginx-pod
+          name: pod-ed-[TIME]
         spec:
           containers:
           - image: nginx:1.7.9
@@ -31,21 +31,21 @@ spec:
 apiVersion: mcm.ibm.com/v1alpha1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-pod
+  name: binding-policy-pod-[TIME]
   namespace: default
 placementRef:
-  name: placement-policy-pod
+  name: placement-policy-pod-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-pod
+- name: policy-pod-[TIME]
   kind: Policy
   apiGroup: policy.mcm.ibm.com
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-pod
+  name: placement-policy-pod-[TIME]
   namespace: default
 spec:
   clusterConditions:

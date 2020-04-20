@@ -56,7 +56,7 @@ module.exports = {
   }]
 }
 
-function createPolicy(browser, name, yaml, time) {
+function createPolicy(browser, yaml, time) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   //this.click('.bx--toggle__appearance')
