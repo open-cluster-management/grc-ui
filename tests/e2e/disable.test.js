@@ -14,7 +14,6 @@ const config = require('../../config')
 let page
 
 module.exports = {
-  '@disabled': true,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
@@ -32,7 +31,7 @@ module.exports = {
     const enforce = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_mustnothave.yaml'))
     var yaml = enforce.toString()
     page.createPolicy(browser, yaml, time)
-    const inform = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_mustnothave_info.yaml'))
+    const inform = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_mustnothave_inform.yaml'))
     yaml = inform.toString()
     page.createPolicy(browser, yaml, time)
     page.checkViolations('policy-pod-inform-' + time, false)
@@ -45,6 +44,7 @@ module.exports = {
     page.checkViolations('policy-pod-inform-' + time, true)
 
     page.tryEnable('policy-pod-' + time)
+    browser.pause(5000)
     page.checkViolations('policy-pod-inform-' + time, false)
 
     page.deletePolicy('policy-pod-create-' + time)

@@ -76,6 +76,7 @@ function createPolicy(browser, yaml, time) {
 
 function checkViolations(name, violationExpected) {
   this.waitForElementVisible('@searchInput')
+  this.clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.click('tbody>tr>td>a')
   this.waitForElementPresent('#violation-tab')
@@ -91,6 +92,7 @@ function checkViolations(name, violationExpected) {
 function deletePolicy(name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
+  this.clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
@@ -103,6 +105,7 @@ function deletePolicy(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
+  this.click('button.bx--search-close')
   this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
 }
 
@@ -113,10 +116,10 @@ function tryEnable(name){
   this.clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > div:nth-child(1)').text.to.equal(name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
   //enable policy
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
+  this.waitForElementPresent('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
   this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
   this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
   this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3)')
@@ -124,10 +127,7 @@ function tryEnable(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#enable-resource-modal')
   this.click('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
-  //re-check menu
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Disable')
+  this.clearValue('@searchInput')
 }
 
 function tryDisable(name){
@@ -147,4 +147,5 @@ function tryDisable(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#disable-resource-modal')
   this.click('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
+  this.clearValue('@searchInput')
 }
