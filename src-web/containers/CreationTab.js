@@ -79,10 +79,16 @@ export class CreationTab extends React.Component {
             const { loading } = result
             const { data={} } = result
             const { discoveries } = data
+            const errored = discoveries ? false : true
             const error = discoveries ? null : result.error
+            if (!loading && error) {
+              const errorName = result.error.graphQLErrors[0].name ? result.error.graphQLErrors[0].name : error.name
+              error.name = errorName
+            }
             const fetchControl = {
-              isLoaded: !!discoveries && !loading,
-              isFailed: error,
+              isLoaded: !loading,
+              isFailed: errored,
+              error: error
             }
             const createControl = {
               createResource: this.handleCreate.bind(this),

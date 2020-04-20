@@ -145,7 +145,9 @@ function verifyPagination() {
 function createTestPolicy(browser, time) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
-  this.waitForElementPresent('@yamlInputField')
+  this.waitForElementNotPresent('@spinner')
+  // browser.pause(100000)
+  this.expect.element('@yamlInputField').to.be.present
   this.click('@yamlTextField')
   this.clearValue('@policyNameInput')
   this.setValue('@policyNameInput',`${time}-policy-test`)
@@ -160,7 +162,7 @@ function createTestPolicy(browser, time) {
   this.click('@clusterSelectorDropdown')
   this.waitForElementVisible('@clusterSelectorDropdownBox')
   // this.setValue('div.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > .bx--list-box__field > input', 'cloud: "IBM')
-  this.click('div.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
+  this.click('div.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div:nth-child(3)')
   this.click('@clusterSelectorDropdown')
   this.waitForElementNotPresent('@clusterSelectorDropdownBox')
   // this.click('@standardsDropdown').expect.element('@standardsDropdownBox').to.be.present
@@ -178,7 +180,7 @@ function createTestPolicy(browser, time) {
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
-  this.waitForElementVisible('@table')
+  this.expect.element('@table').to.be.present
   this.waitForElementVisible('@searchInput')
   this.setValue('@searchInput',`${time}-policy-test`)
 }

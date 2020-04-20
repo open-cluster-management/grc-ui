@@ -3,16 +3,17 @@ language: node_js
 
 services:
   - docker
-  # - xvfb
+  - xvfb
 
 branches:
   only:
     - master
     - /^release-[0-9]+\..*$/
-# addons:
-#   packages:
-#     - openjdk-8-jdk
-#   chrome: stable
+addons:
+  packages:
+    - openjdk-8-jdk
+addons:
+  chrome: stable
 
 addons:
   sonarcloud:
