@@ -5,6 +5,8 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
 
 const config = require('../../config')
@@ -48,17 +50,17 @@ module.exports = {
     page.verifyPagination(browser)
   },
 
-  'All policy page: Run Accessibility Scan': (browser) => {
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-    // a11yScan.runAccessibilityScan(browser, 'allPolicy')
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-    // a11yScan.runAccessibilityScan(browser, 'policyDetail')
-  },
-
-  // 'All policy page: Delete test policy': (browser) => {
-  //   const time = browser.globals.time
-  //   page.deletePolicy(`${time}-policy-test`, browser)
+  // 'All policy page: Run Accessibility Scan': (browser) => {
+  //   page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
+  //   a11yScan.runAccessibilityScan(browser, 'allPolicy')
+  //   page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
+  //   a11yScan.runAccessibilityScan(browser, 'policyDetail')
   // },
+
+  'All policy page: Delete test policy': (browser) => {
+    const time = browser.globals.time
+    page.deletePolicy(`${time}-policy-test`, browser)
+  },
 
   after: function (browser, done) {
     setTimeout(() => {

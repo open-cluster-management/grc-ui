@@ -14,7 +14,7 @@
   $style: "normal",
   ) {
     
-  $filePath: $font-path +  "/" + $familyName +  "/" + $familyName + "-" + $weightName;
+  $filePath: $font-path +  "/RedHatText/" + $familyName + "-" + $weightName;
  
   @font-face {
     font-family: $familyName;

@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+ /* Copyright (c) 2020 Red Hat, Inc.
+ */
+ 
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
 @import 'variables';
 
@@ -79,7 +82,7 @@
       position: fixed;
       height: 100%;
       max-height: 100%;
-      top: 3.3rem;
+      top: 4.75rem;
       right: 0.3125rem;
       z-index: 2000;
       color: white;

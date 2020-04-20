@@ -1621,6 +1621,7 @@ exports[`formatPoliciesToClustersTableData should correctly format 1`] = `
 Array [
   Object {
     "cluster": "cluster1",
+    "consoleURL": "-",
     "namespace": "-",
     "nonCompliant": Array [
       "policy-ma",
@@ -1629,6 +1630,7 @@ Array [
   },
   Object {
     "cluster": "clusterhub",
+    "consoleURL": "-",
     "namespace": "-",
     "nonCompliant": Array [],
     "violation": "0/4",
@@ -1640,12 +1642,14 @@ exports[`formatPoliciesToClustersTableData should correctly format 2`] = `
 Array [
   Object {
     "cluster": "cluster1",
+    "consoleURL": "-",
     "namespace": "-",
     "nonCompliant": Array [],
     "violation": "0/1",
   },
   Object {
     "cluster": "clusterhub",
+    "consoleURL": "-",
     "namespace": "-",
     "nonCompliant": Array [],
     "violation": "0/1",
@@ -1653,4 +1657,18 @@ Array [
 ]
 `;
 
-exports[`formatPoliciesToClustersTableData should correctly format 3`] = `Array []`;
+exports[`formatPoliciesToClustersTableData should correctly format 3`] = `
+Array [
+  Object {
+    "cluster": "calamari",
+    "consoleURL": "https://console-openshift-console.apps.calamari.dev08.red-chesterfield.com",
+    "namespace": "calamari",
+    "nonCompliant": Array [
+      "policy-imagemanifestvulnpolicy",
+    ],
+    "violation": "1/5",
+  },
+]
+`;
+
+exports[`formatPoliciesToClustersTableData should correctly format 4`] = `Array []`;

@@ -6,6 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  ****************************************************************************** */
+/* Copyright (c) 2020 Red Hat, Inc.
+ */
 
 export const findingsTestingDataSet1 = [
   {
@@ -610,7 +612,7 @@ export const policiesTestingDataSet1 = [
       'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-pod',
       'annotations':{
         'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls':'MutationAdvisor,VA',
+        'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
         'policy.mcm.ibm.com/standards':'NIST,HIPAA',
         'seed-generation':'1'
       },
@@ -625,7 +627,7 @@ export const policiesTestingDataSet1 = [
       'metadata':{
         'annotations':{
           'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls':'MutationAdvisor,VA',
+          'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
           'policy.mcm.ibm.com/standards':'NIST,HIPAA',
           'seed-generation':'1'
         },
@@ -746,8 +748,8 @@ export const policiesTestingDataSet2 = [
       'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1558374675051-policy-pod',
       'annotations':{
         'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls':'MutationAdvisor,VA',
-        'policy.mcm.ibm.com/standards':'NIST',
+        'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
+        'policy.mcm.ibm.com/standards':'NIST CSF',
         'seed-generation':'2'
       },
       'resourceVersion':'6281988',
@@ -761,8 +763,8 @@ export const policiesTestingDataSet2 = [
       'metadata':{
         'annotations':{
           'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls':'MutationAdvisor,VA',
-          'policy.mcm.ibm.com/standards':'NIST',
+          'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
+          'policy.mcm.ibm.com/standards':'NIST CSF',
           'seed-generation':'2'
         },
         'creationTimestamp':'2019-05-20T17:51:38Z',
@@ -884,8 +886,8 @@ export const policiesTestingDataSet2 = [
       'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1558382034240-policy-pod',
       'annotations':{
         'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls':'MutationAdvisor,VA',
-        'policy.mcm.ibm.com/standards':'NIST',
+        'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
+        'policy.mcm.ibm.com/standards':'NIST CSF, NIST',
         'seed-generation':'2'
       },
       'resourceVersion':'6975805',
@@ -899,8 +901,8 @@ export const policiesTestingDataSet2 = [
       'metadata':{
         'annotations':{
           'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls':'MutationAdvisor,VA',
-          'policy.mcm.ibm.com/standards':'NIST',
+          'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
+          'policy.mcm.ibm.com/standards':'NIST CSF, NIST',
           'seed-generation':'2'
         },
         'creationTimestamp':'2019-05-20T19:54:18Z',
@@ -1018,7 +1020,7 @@ export const policiesTestingDataSet2 = [
       'annotations':{
         'policy.mcm.ibm.com/categories':'SystemAndInformationIntegrity',
         'policy.mcm.ibm.com/controls':'MutationAdvisor',
-        'policy.mcm.ibm.com/standards':'NIST',
+        'policy.mcm.ibm.com/standards':'NIST CSF, NIST',
         'seed-generation':'1'
       },
       'resourceVersion':'6975864',
@@ -1033,7 +1035,7 @@ export const policiesTestingDataSet2 = [
         'annotations':{
           'policy.mcm.ibm.com/categories':'SystemAndInformationIntegrity',
           'policy.mcm.ibm.com/controls':'MutationAdvisor',
-          'policy.mcm.ibm.com/standards':'NIST',
+          'policy.mcm.ibm.com/standards':'NIST CSF, NIST',
           'seed-generation':'1'
         },
         'creationTimestamp':'2019-05-16T15:21:53Z',
@@ -1153,7 +1155,7 @@ export const policiesTestingDataSet2 = [
       'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-pod',
       'annotations':{
         'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls':'MutationAdvisor,VA',
+        'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
         'policy.mcm.ibm.com/standards':'NIST,HIPAA',
         'seed-generation':'1'
       },
@@ -1168,7 +1170,7 @@ export const policiesTestingDataSet2 = [
       'metadata':{
         'annotations':{
           'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls':'MutationAdvisor,VA',
+          'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
           'policy.mcm.ibm.com/standards':'NIST,HIPAA',
           'seed-generation':'1'
         },

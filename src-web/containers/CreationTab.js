@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -36,6 +39,11 @@ export class CreationTab extends React.Component {
     const { updateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, breadcrumbItems, information } = secondaryHeaderProps
     const portals = [
+      {
+        id: 'edit-button-portal-id',
+        kind: 'portal',
+        title: true,
+      },
       {
         id: 'cancel-button-portal-id',
         kind: 'portal',
@@ -71,10 +79,16 @@ export class CreationTab extends React.Component {
             const { loading } = result
             const { data={} } = result
             const { discoveries } = data
+            const errored = discoveries ? false : true
             const error = discoveries ? null : result.error
+            if (!loading && error) {
+              const errorName = result.error.graphQLErrors[0].name ? result.error.graphQLErrors[0].name : error.name
+              error.name = errorName
+            }
             const fetchControl = {
-              isLoaded: !!discoveries && !loading,
-              isFailed: error,
+              isLoaded: !loading,
+              isFailed: errored,
+              error: error
             }
             const createControl = {
               createResource: this.handleCreate.bind(this),

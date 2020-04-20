@@ -5,7 +5,9 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************/
+ ******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.
+ */
 'use strict'
 
 import React from 'react'
@@ -20,6 +22,7 @@ import _ from 'lodash'
 
 // where to put Create/Cancel buttons
 const Portals = Object.freeze({
+  editBtn: 'edit-button-portal-id',
   createBtn: 'create-button-portal-id',
   cancelBtn: 'cancel-button-portal-id',
 })
@@ -72,8 +75,8 @@ const controlData = [
     id: 'clusters',
     type: 'multiselect',
     available: [],
-    reverse: 'PlacementPolicy[0].spec.clusterLabels', // automatically does matchLabels && matchExpressions
-    mustExist: true,
+    reverse: 'PlacementRule[0].spec.clusterSelector', // automatically does matchLabels && matchExpressions
+    mustExist: false,
   },
   {
     name: 'creation.view.policy.standards',
@@ -91,7 +94,7 @@ const controlData = [
     placeholder: 'creation.view.policy.select.categories',
     id: 'categories',
     type: 'multiselect',
-    available: ['SystemAndCommunicationsProtections','SystemAndInformationIntegrity'],
+    available: ['PR.PT Protective Technology','PR.DS DataSecurity', 'PR.AC Identity Management Authentication and Access Control', 'PR.IP Information Protection Processes and Procedures', 'DE.CM Security Continuous Monitoring'],
     reverse: 'Policy[0].metadata.annotations["policy.mcm.ibm.com/categories"]',
     cacheUserValueKey: 'create.policy.categories',
   },
@@ -101,7 +104,7 @@ const controlData = [
     placeholder: 'creation.view.policy.select.controls',
     id: 'controls',
     type: 'multiselect',
-    available: ['MutationAdvisor','VulnerbilityAdvisor','SecretEncryption'],
+    available: ['PR.PT-1 Audit Logging','PR.PT-3 Least Functionality','PR.DS-2 Data-in-transit','PR.DS-2 Data-at-rest','PR.AC-4 Access Control', 'PR.AC-5 Network Integrity', 'PR.IP-1 Baseline configuration', 'DE.CM-7 Monitoring for unauthorized activity','DE.CM-8 Vulnerability scans'],
     reverse: 'Policy[0].metadata.annotations["policy.mcm.ibm.com/controls"]',
     cacheUserValueKey: 'create.policy.controls',
   },
@@ -154,6 +157,7 @@ export default class CreationView extends React.Component {
         portals={Portals}
         fetchControl={fetchControl}
         createControl={createControl}
+        type={'policy'}
         locale={locale}
       />
     )

@@ -5,6 +5,8 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
 
 const config = require('../../config')
@@ -14,12 +16,13 @@ module.exports = {
     return `${this.api.launchUrl}${config.get('contextPath')}`
   },
   elements: {
-    username: '#username',
-    password: '#password',
-    submit: 'button[name="loginButton"]',
+    userSelect: 'a.idp:nth-of-type(1)',
+    username: '#inputUsername',
+    password: '#inputPassword',
+    submit: 'button[type="submit"]',
     error: '.bx--inline-notification--error',
     header: '.app-header',
-    loginPage: '.login-container'
+    loginForm: 'form[role="form"]'
   },
   commands: [{
     inputUsername,
@@ -27,13 +30,18 @@ module.exports = {
     submit,
     authenticate,
     waitForLoginSuccess,
-    waitForLoginPageLoad
+    waitForLoginForm
   }]
 }
 
 //helper for other pages to use for authentication in before() their suit
 function authenticate(user, password) {
-  this.waitForLoginPageLoad()
+  if(process.env.SELENIUM_USER === undefined || process.env.SELENIUM_PASSWORD === undefined){
+    this.api.end()
+    throw new Error('Env variable NOT set.\nPlease export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD')
+  }
+  this.waitForLoginForm()
+  this.waitForElementPresent('@username')
   this.inputUsername(user)
   this.inputPassword(password)
   this.submit()
@@ -41,24 +49,36 @@ function authenticate(user, password) {
 }
 
 function inputUsername(user) {
-  this.waitForElementVisible('@username')
-    .setValue('@username', user || config.get('selenium_user'))
+  this.waitForElementPresent('@username')
+    .setValue('@username', user || process.env.SELENIUM_USER )
 }
 
 function inputPassword(password) {
-  this.waitForElementVisible('@password')
-    .setValue('@password', password || config.get('selenium_password'))
+  this.waitForElementPresent('@password')
+    .setValue('@password', password || process.env.SELENIUM_PASSWORD )
 }
 
 function submit() {
-  this.waitForElementVisible('@submit')
+  this.waitForElementPresent('@submit')
     .click('@submit')
 }
 
 function waitForLoginSuccess() {
-  this.waitForElementVisible('@header', 20000)
+  this.waitForElementPresent('@header')
 }
 
-function waitForLoginPageLoad() {
-  this.waitForElementVisible('@loginPage')
+function waitForLoginForm() {
+  const specialSelect = 'a.idp'
+  this.api.elements('css selector', specialSelect, res => {
+    if (res.status < 0 || res.value.length < 1) {
+      // do nothing
+    }
+    else{
+      // select kube:admin if env SELENIUM_USER_SELECT not specified
+      const userSelector = `a.idp[title="Log in with ${process.env.SELENIUM_USER_SELECT || 'kube:admin'}"]`
+      this.waitForElementPresent(userSelector)
+      this.click(userSelector)
+    }
+  })
+  this.waitForElementVisible('@loginForm')
 }

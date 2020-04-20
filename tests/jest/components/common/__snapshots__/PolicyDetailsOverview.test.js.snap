@@ -229,7 +229,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
               <h1
                 className="bx--module__title"
               >
-                Placement policy
+                Placement rule
               </h1>
               <button
                 className="text-edit-button bx--btn bx--btn--sm bx--btn--primary"
@@ -245,7 +245,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
               className="bx--module__content"
             >
               <section
-                aria-label="Placement policy"
+                aria-label="Placement rule"
                 className="bx--structured-list bx--structured-list--condensed"
               >
                 <div
@@ -461,7 +461,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                       className="bx--structured-list-td"
                     >
                       <p>
-                        Placement policy
+                        Placement rule
                       </p>
                     </div>
                     <div

@@ -54,6 +54,527 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 1`] 
   </thead>
   <tbody
     className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <td
+        className={undefined}
+      >
+        -
+      </td>
+      <td
+        className={undefined}
+      >
+        -
+      </td>
+      <td
+        className={undefined}
+      >
+        -
+      </td>
+      <td
+        className={undefined}
+      >
+        -
+      </td>
+      <td
+        className={undefined}
+      >
+        -
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`ResourceTableRowExpandableTable component test renders as expected 2`] = `
+<table
+  className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
+>
+  <thead
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    />
+  </thead>
+  <tbody
+    className={undefined}
   />
+</table>
+`;
+
+exports[`ResourceTableRowExpandableTable component test renders as expected 3`] = `
+<table
+  className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
+>
+  <thead
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    />
+  </thead>
+  <tbody
+    className={undefined}
+  />
+</table>
+`;
+
+exports[`ResourceTableRowExpandableTable component test renders as expected 4`] = `
+<table
+  className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
+>
+  <thead
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <th
+        className="bx--table-header-index-0"
+        scope="col"
+      />
+      <th
+        className="bx--table-header-index-1"
+        scope="col"
+      />
+      <th
+        className="bx--table-header-index-2"
+        scope="col"
+      />
+    </tr>
+  </thead>
+  <tbody
+    className={undefined}
+  />
+</table>
+`;
+
+exports[`ResourceTableRowExpandableTable component test renders as expected 5`] = `
+<table
+  className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
+>
+  <thead
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <th
+        className="bx--table-header-index-0"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Compliance Type
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-1"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          API groups
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-2"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Resources
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-3"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Verbs
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <td
+        className={undefined}
+      >
+        -
+      </td>
+      <td
+        className={undefined}
+      >
+        <div
+          className="policyViolations"
+        >
+          <div
+            aria-expanded={false}
+            aria-haspopup="true"
+            className="bx--tooltip__label textWithTruncation"
+            id="mockLodashID-12"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            imagemanifestvul...cluster-endpoint
+          </div>
+        </div>
+      </td>
+      <td
+        className={undefined}
+      >
+        K8s has a must \`not\` have object
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`ResourceTableRowExpandableTable component test renders as expected 6`] = `
+<table
+  className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
+>
+  <thead
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <th
+        className="bx--table-header-index-0"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Compliance Type
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-1"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          API groups
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-2"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Resources
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-3"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Verbs
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <td
+        className={undefined}
+      >
+        testItem2
+      </td>
+      <td
+        className={undefined}
+      >
+        <div
+          className="policyViolations"
+        >
+          <div
+            aria-expanded={false}
+            aria-haspopup="true"
+            className="bx--tooltip__label textWithTruncation"
+            id="mockLodashID-14"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            imagemanifestvul...cluster-endpoint
+          </div>
+        </div>
+      </td>
+      <td
+        className={undefined}
+      >
+        K8s has a must \`not\` have object
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`ResourceTableRowExpandableTable component test renders as expected 7`] = `
+<table
+  className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
+>
+  <thead
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <th
+        className="bx--table-header-index-0"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Compliance Type
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-1"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          API groups
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-2"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Resources
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-3"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Verbs
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    className={undefined}
+  />
+</table>
+`;
+
+exports[`ResourceTableRowExpandableTable component test renders as expected 8`] = `
+<table
+  className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
+>
+  <thead
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <th
+        className="bx--table-header-index-0"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Compliance Type
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-1"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          API groups
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-2"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Resources
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-3"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Verbs
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <td
+        className="bx--table-subRowsArray-subRow-index-0"
+      >
+        testItem2
+      </td>
+      <td
+        className="bx--table-subRowsArray-subRow-index-1"
+      >
+        <div
+          className="policyViolations"
+        >
+          <div
+            aria-expanded={false}
+            aria-haspopup="true"
+            className="bx--tooltip__label textWithTruncation"
+            id="mockLodashID-16"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            imagemanifestvul...cluster-endpoint
+          </div>
+        </div>
+      </td>
+      <td
+        className="bx--table-subRowsArray-subRow-index-2"
+      >
+        K8s has a must \`not\` have object
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`ResourceTableRowExpandableTable component test renders as expected 9`] = `
+<table
+  className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
+>
+  <thead
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <th
+        className="bx--table-header-index-0"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Compliance Type
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-1"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          API groups
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-2"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Resources
+        </span>
+      </th>
+      <th
+        className="bx--table-header-index-3"
+        scope="col"
+      >
+        <span
+          className="bx--table-header-label"
+        >
+          Verbs
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    className={undefined}
+  >
+    <tr
+      className={undefined}
+    >
+      <td
+        className={undefined}
+      >
+        -
+      </td>
+      <td
+        className={undefined}
+      >
+        -
+      </td>
+      <td
+        className={undefined}
+      >
+        -
+      </td>
+    </tr>
+  </tbody>
 </table>
 `;

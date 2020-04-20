@@ -3,16 +3,17 @@ language: node_js
 
 services:
   - docker
-  # - xvfb
+  - xvfb
 
 branches:
   only:
     - master
     - /^release-[0-9]+\..*$/
-# addons:
-#   packages:
-#     - openjdk-8-jdk
-#   chrome: stable
+addons:
+  packages:
+    - openjdk-8-jdk
+addons:
+  chrome: stable
 
 addons:
   sonarcloud:
@@ -48,10 +49,11 @@ jobs:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make component/build
         - make component/push
-        - make security/scans
+        - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
     - stage: unit-test
       name: "Build and run unit tests"
       script:
+        - make copyright-check TRAVIS_BRANCH=${TRAVIS_BRANCH} TRAVIS_PULL_REQUEST_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH}
         - make sonar/js/jest-init
         - make component/test/unit
         - make sonar/js

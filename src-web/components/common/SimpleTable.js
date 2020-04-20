@@ -6,6 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
 'use strict'
 
 import React from 'react'
@@ -19,6 +21,7 @@ import ResourceTableRowExpandableTable from './ResourceTableRowExpandableTable'
 import { Module, ModuleHeader, ModuleBody } from 'carbon-addons-cloud-react'
 import msgs from '../../../nls/platform.properties'
 import TruncateText from './TruncateText'
+import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/structured-list.scss')
@@ -75,8 +78,7 @@ class StructuredListModule extends React.Component {
                       </th>
                     )
                   } else {
-                    // eslint-disable-next-line react/no-array-index-key
-                    return <th className={'bx--header-index-'+index} scope={'col'} key={'bx--header-' + index} />
+                    return <th className={'bx--header-index-'+index} scope={'col'} key={_uniqueId('bx--header')} />
                   }
                 }
                 )}
@@ -95,7 +97,7 @@ class StructuredListModule extends React.Component {
                           {Array.isArray(rows) && rows[0].cells.map((cell, index) =>
                             <td key={cell.resourceKey+'Cell'}>
                               <p>{
-                                (linkFixedName && (index in linkFixedName))
+                                (linkFixedName && (index in linkFixedName) && transform(row, cell, this.context.locale) !== '-')
                                   ? <Link to={transform(row, cell, this.context.locale)} target={linkFixedName[index].urlTarget} className='bx--link'>{msgs.get(linkFixedName[index].fixedName, this.context.locale)}</Link>
                                   : cell.link && url ? <Link to={url} className='bx--link'>{transform(row, cell, this.context.locale)}</Link> : transform(row, cell, this.context.locale)
                               }</p>

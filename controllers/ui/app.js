@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 const ReactDOMServer = require('react-dom/server'),
@@ -28,7 +31,7 @@ const ReactDOMServer = require('react-dom/server'),
 var log4js = require('log4js'),
     logger = log4js.getLogger('app')
 
-let App, Login, reducers, role, userPreferences, uiConfig  //laziy initialize to reduce startup time seen on k8s
+let App, Login, reducers, role, userPreferences  //laziy initialize to reduce startup time seen on k8s
 router.get('/logout', (req, res) => {
   var LOGOUT_API = '/v1/auth/logout'
   var callbackUrl = req.headers['host']
@@ -58,7 +61,7 @@ router.get('*', (req, res) => {
 function fetchHeader(req, res, store, context) {
   const options = {
     method: 'GET',
-    url: `${config.get('headerUrl')}${config.get('headerContextPath')}/api/v1/header/${config.get('leftNav')}?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}`,
+    url: `${config.get('headerUrl')}${config.get('headerContextPath')}/api/v1/header?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}`,
     json: true,
     headers: {
       Cookie: req.headers.cookie,
@@ -72,10 +75,10 @@ function fetchHeader(req, res, store, context) {
     }
 
     const { headerHtml: header, props: propsH, state: stateH, files: filesH } = headerRes.body
-
-    uiConfig = uiConfig === undefined ? require('../../src-web/actions/uiconfig') : uiConfig
-    if (stateH.uiconfig) {
-      store.dispatch(uiConfig.uiConfigReceiveSucess(stateH.uiconfig.uiConfiguration))}
+    if (!header || !propsH || !stateH || !filesH) {
+      logger.err(headerRes.body)
+      return res.status(500).send(headerRes.body)
+    }
     role = role === undefined ? require('../../src-web/actions/role') : role
     if (stateH.role) {
       store.dispatch(role.roleReceiveSuccess(stateH.role.role))}
@@ -101,6 +104,7 @@ function fetchHeader(req, res, store, context) {
           </Provider>
         ),
         contextPath: config.get('contextPath'),
+        headerContextPath: config.get('headerContextPath'),
         state: store.getState(),
         props: context,
         header: header,

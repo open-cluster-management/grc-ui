@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -85,7 +88,7 @@ export function createComplianceLink(item = {}, ...param){
     return item.metadata.name
   } else if (item && item.metadata)
   {
-    if (item.raw.kind == 'Compliance')
+    if (item.raw.kind === 'Compliance')
       return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name} (Deprecated)</Link>
     else
       return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>

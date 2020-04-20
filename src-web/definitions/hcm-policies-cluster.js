@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+ */
+
 'use strict'
 
 import React from 'react'
@@ -18,6 +21,7 @@ export default {
   secondaryKey: 'metadata.namespace',
   tableActions: [
     'table.actions.policy.clusters.sidepanel',
+    'table.actions.launch.cluster'
   ],
   tableKeys: [
     {
@@ -70,7 +74,7 @@ export function getTruncatedText(item){
 
 export function createClusterLink(item){
   if (item && item.cluster && item.namespace) {
-    return <a href={`${config.contextPath}/clusters/${item.namespace}/${item.cluster}`}>{item.cluster}</a>
+    return <a href={`${config.clusterContextPath}/${item.namespace}/${item.cluster}`}>{item.cluster}</a>
   }
   else if (item && item.cluster) {
     return item.cluster

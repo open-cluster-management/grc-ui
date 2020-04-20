@@ -5,6 +5,8 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
 'use strict'
 
@@ -175,7 +177,7 @@ class ResourceList extends React.Component {
         title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
         detail={msgs.get('no-resource.detail.application', locale)}
         topButton={topButton}>
-        {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+        {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
       </NoResource>
     case RESOURCE_TYPES.HCM_POLICIES_PER_POLICY.name:
       return (
@@ -190,7 +192,7 @@ class ResourceList extends React.Component {
         title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
         detail={msgs.get('no-resource.detail.item', locale)}
         topButton={topButton}>
-        {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+        {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
       </NoResource>
     case RESOURCE_TYPES.HCM_SECURITY_FINDINGS.name:
     case RESOURCE_TYPES.HCM_CLUSTER_FINDINGS.name:
@@ -198,7 +200,7 @@ class ResourceList extends React.Component {
         title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
         detail={msgs.get('no-resource.detail.item', locale)}
         topButton={topButton}>
-        {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+        {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
       </NoResource>
     }
     const resourceName = msgs.get('no-resource.' + resourceType.name.toLowerCase(), locale)
@@ -307,7 +309,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { updateBrowserURL, resourceType } = ownProps
   return {
     fetchResources: (listData, nextPropsResourceType) => {
-      if(nextPropsResourceType == undefined){
+      if(nextPropsResourceType === undefined){
         nextPropsResourceType = resourceType
       }
       dispatch(receiveResourceSuccess({items: lodash.cloneDeep(listData)}, nextPropsResourceType))

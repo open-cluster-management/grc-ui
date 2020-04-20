@@ -2,771 +2,932 @@
 
 exports[`TemplateEditor component renders as expected 1`] = `
 <div
-  className="creation-view"
+  className="creation-view showEditor"
 >
   <div
-    className="creation-view-controls-container"
+    className="creation-view-split-container showEditor"
   >
     <div
-      className="creation-view-controls-note"
-    >
-      All fields marked with an asterisk (*) are mandatory.
-    </div>
-    <div
-      className="creation-view-controls"
-    >
-      <div
-        className="creation-view-controls-textbox"
-      >
-        <div
-          className="creation-view-controls-textbox-title"
-        >
-          creation.view.policy.name
-          <div
-            className="creation-view-controls-must-exist"
-          >
-            *
-          </div>
-        </div>
-        <div
-          className="bx--form-item"
-        >
-          <input
-            className="bx--text-input bx--text__input"
-            disabled={false}
-            id="name"
-            onChange={[Function]}
-            onClick={[Function]}
-            placeholder={undefined}
-            type="text"
-            value="policy-grc"
-          />
-        </div>
-      </div>
-      <div
-        className="creation-view-controls-multiselect"
-      >
-        <div
-          className="creation-view-controls-multiselect-title"
-        >
-          creation.view.policy.specs
-          <div
-            className="creation-view-controls-must-exist"
-          >
-            *
-          </div>
-          <div
-            className="bx--tooltip-icon"
-          >
-            <button
-              aria-label="policy.create.specs.tooltip"
-              className="bx--tooltip__trigger bx--tooltip--icon__top"
-            >
-              <svg
-                className="info-icon"
-              >
-                <use
-                  href="#diagramIcons_info"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div
-          aria-invalid={undefined}
-          aria-label="Choose an item"
-          className="bx--multi-select bx--combo-box bx--list-box"
-          data-invalid={undefined}
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          role="listbox"
-          tabIndex="-1"
-        >
-          <div
-            aria-expanded={false}
-            aria-haspopup={true}
-            aria-label="open menu"
-            className="bx--list-box__field"
-            data-toggle={true}
-            disabled={false}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex="0"
-            type="button"
-          >
-            <input
-              aria-activedescendant={null}
-              aria-autocomplete="list"
-              aria-expanded={false}
-              autoComplete="off"
-              className="bx--text-input"
-              disabled={false}
-              id="downshift-0-input"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder={undefined}
-              role="combobox"
-              value=""
-            />
-            
-            <div
-              className="bx--list-box__menu-icon"
-            >
-              <svg
-                alt="Open menu"
-                aria-label="Open menu"
-                className={undefined}
-                fill={undefined}
-                fillRule="evenodd"
-                focusable="false"
-                height="5"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Open menu
-                </title>
-                <path
-                  d="M0 0l5 4.998L10 0z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="creation-view-controls-multiselect"
-      >
-        <div
-          className="creation-view-controls-multiselect-title"
-        >
-          creation.view.policy.binding
-          <div
-            className="creation-view-controls-must-exist"
-          >
-            *
-          </div>
-          <div
-            className="bx--tooltip-icon"
-          >
-            <button
-              aria-label="policy.create.selectors.tooltip"
-              className="bx--tooltip__trigger bx--tooltip--icon__top"
-            >
-              <svg
-                className="info-icon"
-              >
-                <use
-                  href="#diagramIcons_info"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div
-          aria-invalid={undefined}
-          aria-label="Choose an item"
-          className="bx--multi-select bx--combo-box bx--list-box"
-          data-invalid={undefined}
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          role="listbox"
-          tabIndex="-1"
-        >
-          <div
-            aria-expanded={false}
-            aria-haspopup={true}
-            aria-label="open menu"
-            className="bx--list-box__field"
-            data-toggle={true}
-            disabled={false}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex="0"
-            type="button"
-          >
-            <input
-              aria-activedescendant={null}
-              aria-autocomplete="list"
-              aria-expanded={false}
-              autoComplete="off"
-              className="bx--text-input"
-              disabled={false}
-              id="downshift-1-input"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder={undefined}
-              role="combobox"
-              value=""
-            />
-            
-            <div
-              className="bx--list-box__menu-icon"
-            >
-              <svg
-                alt="Open menu"
-                aria-label="Open menu"
-                className={undefined}
-                fill={undefined}
-                fillRule="evenodd"
-                focusable="false"
-                height="5"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Open menu
-                </title>
-                <path
-                  d="M0 0l5 4.998L10 0z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="creation-view-controls-multiselect"
-      >
-        <div
-          className="creation-view-controls-multiselect-title"
-        >
-          creation.view.policy.standards
-          <div
-            className="bx--tooltip-icon"
-          >
-            <button
-              aria-label="policy.create.standards.tooltip"
-              className="bx--tooltip__trigger bx--tooltip--icon__top"
-            >
-              <svg
-                className="info-icon"
-              >
-                <use
-                  href="#diagramIcons_info"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div
-          aria-invalid={undefined}
-          aria-label="Choose an item"
-          className="bx--multi-select bx--combo-box bx--list-box"
-          data-invalid={undefined}
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          role="listbox"
-          tabIndex="-1"
-        >
-          <div
-            aria-expanded={false}
-            aria-haspopup={true}
-            aria-label="open menu"
-            className="bx--list-box__field"
-            data-toggle={true}
-            disabled={false}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex="0"
-            type="button"
-          >
-            <input
-              aria-activedescendant={null}
-              aria-autocomplete="list"
-              aria-expanded={false}
-              autoComplete="off"
-              className="bx--text-input"
-              disabled={false}
-              id="downshift-2-input"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder={undefined}
-              role="combobox"
-              value=""
-            />
-            
-            <div
-              className="bx--list-box__menu-icon"
-            >
-              <svg
-                alt="Open menu"
-                aria-label="Open menu"
-                className={undefined}
-                fill={undefined}
-                fillRule="evenodd"
-                focusable="false"
-                height="5"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Open menu
-                </title>
-                <path
-                  d="M0 0l5 4.998L10 0z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="creation-view-controls-multiselect"
-      >
-        <div
-          className="creation-view-controls-multiselect-title"
-        >
-          creation.view.policy.categories
-          <div
-            className="bx--tooltip-icon"
-          >
-            <button
-              aria-label="policy.create.categories.tooltip"
-              className="bx--tooltip__trigger bx--tooltip--icon__top"
-            >
-              <svg
-                className="info-icon"
-              >
-                <use
-                  href="#diagramIcons_info"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div
-          aria-invalid={undefined}
-          aria-label="Choose an item"
-          className="bx--multi-select bx--combo-box bx--list-box"
-          data-invalid={undefined}
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          role="listbox"
-          tabIndex="-1"
-        >
-          <div
-            aria-expanded={false}
-            aria-haspopup={true}
-            aria-label="open menu"
-            className="bx--list-box__field"
-            data-toggle={true}
-            disabled={false}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex="0"
-            type="button"
-          >
-            <input
-              aria-activedescendant={null}
-              aria-autocomplete="list"
-              aria-expanded={false}
-              autoComplete="off"
-              className="bx--text-input"
-              disabled={false}
-              id="downshift-3-input"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder={undefined}
-              role="combobox"
-              value=""
-            />
-            
-            <div
-              className="bx--list-box__menu-icon"
-            >
-              <svg
-                alt="Open menu"
-                aria-label="Open menu"
-                className={undefined}
-                fill={undefined}
-                fillRule="evenodd"
-                focusable="false"
-                height="5"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Open menu
-                </title>
-                <path
-                  d="M0 0l5 4.998L10 0z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="creation-view-controls-multiselect"
-      >
-        <div
-          className="creation-view-controls-multiselect-title"
-        >
-          creation.view.policy.controls
-          <div
-            className="bx--tooltip-icon"
-          >
-            <button
-              aria-label="policy.create.controls.tooltip"
-              className="bx--tooltip__trigger bx--tooltip--icon__top"
-            >
-              <svg
-                className="info-icon"
-              >
-                <use
-                  href="#diagramIcons_info"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div
-          aria-invalid={undefined}
-          aria-label="Choose an item"
-          className="bx--multi-select bx--combo-box bx--list-box"
-          data-invalid={undefined}
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          role="listbox"
-          tabIndex="-1"
-        >
-          <div
-            aria-expanded={false}
-            aria-haspopup={true}
-            aria-label="open menu"
-            className="bx--list-box__field"
-            data-toggle={true}
-            disabled={false}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex="0"
-            type="button"
-          >
-            <input
-              aria-activedescendant={null}
-              aria-autocomplete="list"
-              aria-expanded={false}
-              autoComplete="off"
-              className="bx--text-input"
-              disabled={false}
-              id="downshift-4-input"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder={undefined}
-              role="combobox"
-              value=""
-            />
-            
-            <div
-              className="bx--list-box__menu-icon"
-            >
-              <svg
-                alt="Open menu"
-                aria-label="Open menu"
-                className={undefined}
-                fill={undefined}
-                fillRule="evenodd"
-                focusable="false"
-                height="5"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 10 5"
-                width="10"
-              >
-                <title>
-                  Open menu
-                </title>
-                <path
-                  d="M0 0l5 4.998L10 0z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="creation-view-controls-checkbox"
-      >
-        <div
-          className="bx--form-item bx--checkbox-wrapper"
-        >
-          <input
-            checked={false}
-            className="bx--checkbox"
-            id="enforce"
-            onChange={[Function]}
-            type="checkbox"
-          />
-          <label
-            className="bx--checkbox-label checkbox"
-            htmlFor="enforce"
-            title={null}
-          >
-            <span
-              className="bx--visually-hidden"
-            >
-              
-            </span>
-          </label>
-        </div>
-        <div>
-          creation.view.policy.enforce
-        </div>
-        <div
-          className="bx--tooltip-icon"
-        >
-          <button
-            aria-label="policy.create.enforce.tooltip"
-            className="bx--tooltip__trigger bx--tooltip--icon__top"
-          >
-            <svg
-              className="info-icon"
-            >
-              <use
-                href="#diagramIcons_info"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    className="creation-view-yaml"
-  >
-    <div
-      className="creation-view-yaml-header"
+      className="SplitPane  vertical "
+      style={
+        Object {
+          "MozUserSelect": "text",
+          "WebkitUserSelect": "text",
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "row",
+          "height": "100%",
+          "left": 0,
+          "msUserSelect": "text",
+          "outline": "none",
+          "overflow": "hidden",
+          "position": "absolute",
+          "right": 0,
+          "userSelect": "text",
+        }
+      }
     >
       <div
-        className="creation-view-yaml-header-title"
-      >
-        Policy YAML
-      </div>
-      <div
-        aria-label={undefined}
-        className="creation-view-yaml-header-toolbar"
-        id={undefined}
-        role="region"
-      >
-        <div
-          className="editor-bar"
-        >
-          <div
-            aria-label="Search"
-            className="editor-bar-search"
-            id="Search"
-            role="region"
-          >
-            <div
-              aria-labelledby="search-name-label"
-              className="bx--search bx--search--sm"
-              role="search"
-            >
-              <svg
-                alt=""
-                aria-label=""
-                className="bx--search-magnifier"
-                fill={undefined}
-                fillRule="evenodd"
-                height="16"
-                name={undefined}
-                role="img"
-                style={undefined}
-                viewBox="0 0 16 16"
-                width="16"
-              >
-                <title>
-                  
-                </title>
-                <path
-                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
-                />
-              </svg>
-              <label
-                className="bx--label"
-                htmlFor="search-name"
-                id="search-name-label"
-              >
-                
-              </label>
-              <input
-                aria-label="Search"
-                className="bx--search-input"
-                id="search-name"
-                onChange={[Function]}
-                placeholder="Search"
-                type="text"
-              />
-              <button
-                aria-label={undefined}
-                className="bx--search-close bx--search-close--hidden"
-                onClick={[Function]}
-                type="button"
-              >
-                <svg
-                  alt="Provide a description that will be used as the title"
-                  aria-label="Provide a description that will be used as the title"
-                  className={undefined}
-                  fill={undefined}
-                  fillRule="evenodd"
-                  height="16"
-                  name={undefined}
-                  role="img"
-                  style={undefined}
-                  viewBox="0 0 16 16"
-                  width="16"
-                >
-                  <title>
-                    Provide a description that will be used as the title
-                  </title>
-                  <path
-                    d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div
-            aria-label="Previous"
-            className="editor-bar-button  disabled"
-            onClick={[Function]}
-            onKeyPress={[Function]}
-            role="button"
-            tabIndex={0}
-            title="Previous"
-          >
-            <svg
-              height="1rem"
-              width="1rem"
-            >
-              <use
-                href="#diagramIcons_previous"
-              />
-            </svg>
-          </div>
-          <div
-            aria-label="Next"
-            className="editor-bar-button  disabled"
-            onClick={[Function]}
-            onKeyPress={[Function]}
-            role="button"
-            tabIndex={0}
-            title="Next"
-          >
-            <svg
-              height="1rem"
-              width="1rem"
-            >
-              <use
-                href="#diagramIcons_next"
-              />
-            </svg>
-          </div>
-          <div
-            className="editor-bar-spacer"
-          />
-          <div
-            aria-label="Undo"
-            className="editor-bar-button  disabled"
-            onClick={[Function]}
-            onKeyPress={[Function]}
-            role="button"
-            tabIndex={0}
-            title="Undo"
-          >
-            <svg
-              height="1rem"
-              width="1rem"
-            >
-              <use
-                href="#diagramIcons_undo"
-              />
-            </svg>
-          </div>
-          <div
-            aria-label="Redo"
-            className="editor-bar-button  disabled"
-            onClick={[Function]}
-            onKeyPress={[Function]}
-            role="button"
-            tabIndex={0}
-            title="Redo"
-          >
-            <svg
-              height="1rem"
-              width="1rem"
-            >
-              <use
-                href="#diagramIcons_redo"
-              />
-            </svg>
-          </div>
-          <div
-            aria-label="Restore"
-            className="editor-bar-button  disabled"
-            onClick={[Function]}
-            onKeyPress={[Function]}
-            role="button"
-            tabIndex={0}
-            title="Restore"
-          >
-            <svg
-              height="1rem"
-              width="1rem"
-            >
-              <use
-                href="#diagramIcons_restore"
-              />
-            </svg>
-          </div>
-          <div
-            className="editor-bar-spacer"
-          />
-        </div>
-      </div>
-    </div>
-    
-    <div
-      className="yamlEditorContainer"
-    >
-      <div
-        id="brace-editor"
+        className="Pane vertical Pane1  "
         style={
           Object {
-            "height": "100%",
-            "width": "100%",
+            "flex": "none",
+            "outline": "none",
+            "position": "relative",
+            "width": 1000,
           }
         }
+      >
+        <div
+          className="creation-view-controls-container"
+        >
+          <div
+            className="creation-view-controls-note"
+          >
+            All fields marked with an asterisk (*) are mandatory.
+          </div>
+          <div
+            className="creation-view-controls"
+          >
+            <div
+              className="creation-view-controls-textbox"
+            >
+              <div
+                className="creation-view-controls-textbox-title"
+              >
+                creation.view.policy.name
+                <div
+                  className="creation-view-controls-must-exist"
+                >
+                  *
+                </div>
+              </div>
+              <div
+                className="bx--form-item"
+              >
+                <input
+                  className="bx--text-input bx--text__input"
+                  disabled={false}
+                  id="name"
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  placeholder={undefined}
+                  type="text"
+                  value="policy-grc"
+                />
+              </div>
+            </div>
+            <div
+              className="creation-view-controls-singleselect"
+            >
+              <div
+                className="creation-view-controls-multiselect-title"
+              >
+                <div
+                  className="creation-view-controls-must-exist"
+                >
+                  *
+                </div>
+                <div
+                  className="bx--tooltip-icon"
+                >
+                  <button
+                    aria-label={undefined}
+                    className="bx--tooltip__trigger bx--tooltip--icon__top"
+                  >
+                    <svg
+                      className="info-icon"
+                    >
+                      <use
+                        href="#diagramIcons_info"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div
+                aria-invalid={undefined}
+                aria-label="Choose an item"
+                className="bx--dropdown bx--list-box"
+                data-invalid={undefined}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="listbox"
+                tabIndex={null}
+              >
+                <div
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  aria-label="open menu"
+                  className="bx--list-box__field"
+                  data-toggle={true}
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  role="button"
+                  tabIndex="0"
+                  type="button"
+                >
+                  <span
+                    className="bx--list-box__label"
+                    htmlFor="downshift-0-input"
+                  >
+                    mcm
+                  </span>
+                  <div
+                    className="bx--list-box__menu-icon"
+                  >
+                    <svg
+                      alt="Open menu"
+                      aria-label="Open menu"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Open menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="creation-view-controls-multiselect"
+            >
+              <div
+                className="creation-view-controls-multiselect-title"
+              >
+                creation.view.policy.specs
+                <div
+                  className="creation-view-controls-must-exist"
+                >
+                  *
+                </div>
+                <div
+                  className="bx--tooltip-icon"
+                >
+                  <button
+                    aria-label="policy.create.specs.tooltip"
+                    className="bx--tooltip__trigger bx--tooltip--icon__top"
+                  >
+                    <svg
+                      className="info-icon"
+                    >
+                      <use
+                        href="#diagramIcons_info"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div
+                aria-invalid={undefined}
+                aria-label="Choose an item"
+                className="bx--multi-select bx--combo-box bx--list-box"
+                data-invalid={undefined}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="listbox"
+                tabIndex="-1"
+              >
+                <div
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  aria-label="open menu"
+                  className="bx--list-box__field"
+                  data-toggle={true}
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  role="button"
+                  tabIndex="0"
+                  type="button"
+                >
+                  <input
+                    aria-activedescendant={null}
+                    aria-autocomplete="list"
+                    aria-expanded={false}
+                    autoComplete="off"
+                    className="bx--text-input"
+                    disabled={false}
+                    id="downshift-1-input"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    placeholder={undefined}
+                    role="combobox"
+                    value=""
+                  />
+                  
+                  <div
+                    className="bx--list-box__menu-icon"
+                  >
+                    <svg
+                      alt="Open menu"
+                      aria-label="Open menu"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Open menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="creation-view-controls-multiselect"
+            >
+              <div
+                className="creation-view-controls-multiselect-title"
+              >
+                creation.view.policy.binding
+                <div
+                  className="creation-view-controls-must-exist"
+                >
+                  *
+                </div>
+                <div
+                  className="bx--tooltip-icon"
+                >
+                  <button
+                    aria-label="policy.create.selectors.tooltip"
+                    className="bx--tooltip__trigger bx--tooltip--icon__top"
+                  >
+                    <svg
+                      className="info-icon"
+                    >
+                      <use
+                        href="#diagramIcons_info"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div
+                aria-invalid={undefined}
+                aria-label="Choose an item"
+                className="bx--multi-select bx--combo-box bx--list-box"
+                data-invalid={undefined}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="listbox"
+                tabIndex="-1"
+              >
+                <div
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  aria-label="open menu"
+                  className="bx--list-box__field"
+                  data-toggle={true}
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  role="button"
+                  tabIndex="0"
+                  type="button"
+                >
+                  <input
+                    aria-activedescendant={null}
+                    aria-autocomplete="list"
+                    aria-expanded={false}
+                    autoComplete="off"
+                    className="bx--text-input"
+                    disabled={false}
+                    id="downshift-2-input"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    placeholder={undefined}
+                    role="combobox"
+                    value=""
+                  />
+                  
+                  <div
+                    className="bx--list-box__menu-icon"
+                  >
+                    <svg
+                      alt="Open menu"
+                      aria-label="Open menu"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Open menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="creation-view-controls-multiselect"
+            >
+              <div
+                className="creation-view-controls-multiselect-title"
+              >
+                creation.view.policy.standards
+                <div
+                  className="bx--tooltip-icon"
+                >
+                  <button
+                    aria-label="policy.create.standards.tooltip"
+                    className="bx--tooltip__trigger bx--tooltip--icon__top"
+                  >
+                    <svg
+                      className="info-icon"
+                    >
+                      <use
+                        href="#diagramIcons_info"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div
+                aria-invalid={undefined}
+                aria-label="Choose an item"
+                className="bx--multi-select bx--combo-box bx--list-box"
+                data-invalid={undefined}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="listbox"
+                tabIndex="-1"
+              >
+                <div
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  aria-label="open menu"
+                  className="bx--list-box__field"
+                  data-toggle={true}
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  role="button"
+                  tabIndex="0"
+                  type="button"
+                >
+                  <input
+                    aria-activedescendant={null}
+                    aria-autocomplete="list"
+                    aria-expanded={false}
+                    autoComplete="off"
+                    className="bx--text-input"
+                    disabled={false}
+                    id="downshift-3-input"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    placeholder={undefined}
+                    role="combobox"
+                    value=""
+                  />
+                  
+                  <div
+                    className="bx--list-box__menu-icon"
+                  >
+                    <svg
+                      alt="Open menu"
+                      aria-label="Open menu"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Open menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="creation-view-controls-multiselect"
+            >
+              <div
+                className="creation-view-controls-multiselect-title"
+              >
+                creation.view.policy.categories
+                <div
+                  className="bx--tooltip-icon"
+                >
+                  <button
+                    aria-label="policy.create.categories.tooltip"
+                    className="bx--tooltip__trigger bx--tooltip--icon__top"
+                  >
+                    <svg
+                      className="info-icon"
+                    >
+                      <use
+                        href="#diagramIcons_info"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div
+                aria-invalid={undefined}
+                aria-label="Choose an item"
+                className="bx--multi-select bx--combo-box bx--list-box"
+                data-invalid={undefined}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="listbox"
+                tabIndex="-1"
+              >
+                <div
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  aria-label="open menu"
+                  className="bx--list-box__field"
+                  data-toggle={true}
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  role="button"
+                  tabIndex="0"
+                  type="button"
+                >
+                  <input
+                    aria-activedescendant={null}
+                    aria-autocomplete="list"
+                    aria-expanded={false}
+                    autoComplete="off"
+                    className="bx--text-input"
+                    disabled={false}
+                    id="downshift-4-input"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    placeholder={undefined}
+                    role="combobox"
+                    value=""
+                  />
+                  
+                  <div
+                    className="bx--list-box__menu-icon"
+                  >
+                    <svg
+                      alt="Open menu"
+                      aria-label="Open menu"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Open menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="creation-view-controls-multiselect"
+            >
+              <div
+                className="creation-view-controls-multiselect-title"
+              >
+                creation.view.policy.controls
+                <div
+                  className="bx--tooltip-icon"
+                >
+                  <button
+                    aria-label="policy.create.controls.tooltip"
+                    className="bx--tooltip__trigger bx--tooltip--icon__top"
+                  >
+                    <svg
+                      className="info-icon"
+                    >
+                      <use
+                        href="#diagramIcons_info"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div
+                aria-invalid={undefined}
+                aria-label="Choose an item"
+                className="bx--multi-select bx--combo-box bx--list-box"
+                data-invalid={undefined}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="listbox"
+                tabIndex="-1"
+              >
+                <div
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  aria-label="open menu"
+                  className="bx--list-box__field"
+                  data-toggle={true}
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  role="button"
+                  tabIndex="0"
+                  type="button"
+                >
+                  <input
+                    aria-activedescendant={null}
+                    aria-autocomplete="list"
+                    aria-expanded={false}
+                    autoComplete="off"
+                    className="bx--text-input"
+                    disabled={false}
+                    id="downshift-5-input"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    placeholder={undefined}
+                    role="combobox"
+                    value=""
+                  />
+                  
+                  <div
+                    className="bx--list-box__menu-icon"
+                  >
+                    <svg
+                      alt="Open menu"
+                      aria-label="Open menu"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="5"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 5"
+                      width="10"
+                    >
+                      <title>
+                        Open menu
+                      </title>
+                      <path
+                        d="M0 0l5 4.998L10 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="creation-view-controls-checkbox"
+            >
+              <div
+                className="bx--form-item bx--checkbox-wrapper"
+              >
+                <input
+                  checked={false}
+                  className="bx--checkbox"
+                  id="enforce"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <label
+                  className="bx--checkbox-label checkbox"
+                  htmlFor="enforce"
+                  title={null}
+                >
+                  <span
+                    className="bx--visually-hidden"
+                  >
+                    
+                  </span>
+                </label>
+              </div>
+              <div>
+                creation.view.policy.enforce
+              </div>
+              <div
+                className="bx--tooltip-icon"
+              >
+                <button
+                  aria-label="policy.create.enforce.tooltip"
+                  className="bx--tooltip__trigger bx--tooltip--icon__top"
+                >
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span
+        className="Resizer vertical "
+        onClick={[Function]}
+        onDoubleClick={[Function]}
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        role="presentation"
+        style={Object {}}
       />
+      <div
+        className="Pane vertical Pane2  "
+        style={
+          Object {
+            "flex": 1,
+            "outline": "none",
+            "position": "relative",
+          }
+        }
+      >
+        <div
+          className="creation-view-yaml"
+        >
+          <div
+            className="creation-view-yaml-header"
+          >
+            <div
+              className="creation-view-yaml-header-title"
+            >
+              Policy YAML
+            </div>
+            <div
+              aria-label={undefined}
+              className="creation-view-yaml-header-toolbar"
+              id={undefined}
+              role="region"
+            >
+              <div
+                className="editor-bar"
+              >
+                <div
+                  aria-label="Search"
+                  className="editor-bar-search"
+                  id="Search"
+                  role="region"
+                >
+                  <div
+                    aria-labelledby="search-name-label"
+                    className="bx--search bx--search--sm"
+                    role="search"
+                  >
+                    <svg
+                      alt=""
+                      aria-label=""
+                      className="bx--search-magnifier"
+                      fill={undefined}
+                      fillRule="evenodd"
+                      height="16"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 16 16"
+                      width="16"
+                    >
+                      <title>
+                        
+                      </title>
+                      <path
+                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
+                      />
+                    </svg>
+                    <label
+                      className="bx--label"
+                      htmlFor="search-name"
+                      id="search-name-label"
+                    >
+                      
+                    </label>
+                    <input
+                      aria-label="Search"
+                      className="bx--search-input"
+                      id="search-name"
+                      onChange={[Function]}
+                      placeholder="Search"
+                      type="text"
+                    />
+                    <button
+                      aria-label={undefined}
+                      className="bx--search-close bx--search-close--hidden"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      <svg
+                        alt="Provide a description that will be used as the title"
+                        aria-label="Provide a description that will be used as the title"
+                        className={undefined}
+                        fill={undefined}
+                        fillRule="evenodd"
+                        height="16"
+                        name={undefined}
+                        role="img"
+                        style={undefined}
+                        viewBox="0 0 16 16"
+                        width="16"
+                      >
+                        <title>
+                          Provide a description that will be used as the title
+                        </title>
+                        <path
+                          d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div
+                  aria-label="Previous"
+                  className="editor-bar-button  disabled"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  title="Previous"
+                >
+                  <svg
+                    height="1rem"
+                    width="1rem"
+                  >
+                    <use
+                      href="#diagramIcons_previous"
+                    />
+                  </svg>
+                </div>
+                <div
+                  aria-label="Next"
+                  className="editor-bar-button  disabled"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  title="Next"
+                >
+                  <svg
+                    height="1rem"
+                    width="1rem"
+                  >
+                    <use
+                      href="#diagramIcons_next"
+                    />
+                  </svg>
+                </div>
+                <div
+                  className="editor-bar-spacer"
+                />
+                <div
+                  aria-label="Undo"
+                  className="editor-bar-button  disabled"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  title="Undo"
+                >
+                  <svg
+                    height="1rem"
+                    width="1rem"
+                  >
+                    <use
+                      href="#diagramIcons_undo"
+                    />
+                  </svg>
+                </div>
+                <div
+                  aria-label="Redo"
+                  className="editor-bar-button  disabled"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  title="Redo"
+                >
+                  <svg
+                    height="1rem"
+                    width="1rem"
+                  >
+                    <use
+                      href="#diagramIcons_redo"
+                    />
+                  </svg>
+                </div>
+                <div
+                  aria-label="Restore"
+                  className="editor-bar-button  disabled"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  title="Restore"
+                >
+                  <svg
+                    height="1rem"
+                    width="1rem"
+                  >
+                    <use
+                      href="#diagramIcons_restore"
+                    />
+                  </svg>
+                </div>
+                <div
+                  className="editor-bar-spacer"
+                />
+                <div
+                  aria-label="Close"
+                  className="editor-bar-button "
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  title="Close"
+                >
+                  <svg
+                    height="1rem"
+                    width="1rem"
+                  >
+                    <use
+                      href="#diagramIcons_close"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="yamlEditorContainer"
+          >
+            <div
+              id="brace-editor"
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -797,20 +958,115 @@ metadata:
   namespace: mcm
 placementRef:
   name: placement-policy-grc
-  kind: PlacementPolicy
-  apiGroup: mcm.ibm.com
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
 subjects:
 - name: policy-grc
   kind: Policy
   apiGroup: policy.mcm.ibm.com
 ---
-apiVersion: mcm.ibm.com/v1alpha1
-kind: PlacementPolicy
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
 metadata:
   name: placement-policy-grc
   namespace: mcm
 spec:
-  clusterLabels:
+  clusterConditions:
+  - type: OK
+  clusterSelector:
     matchExpressions:
+      []
+"
+`;
+
+exports[`on editor change function renders as expected 2`] = `
+"apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-grc
+  namespace: 
+  annotations:
+    policy.mcm.ibm.com/standards: 
+    policy.mcm.ibm.com/categories: 
+    policy.mcm.ibm.com/controls: 
+spec:
+  complianceType: musthave
+  remediationAction: enforce
+  disabled: false
+  namespaces:
+    exclude: [\\"kube-*\\"]
+    include: [\\"default\\"]
+---
+apiVersion: mcm.ibm.com/v1alpha1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-grc
+  namespace: 
+placementRef:
+  name: placement-policy-grc
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: policy-grc
+  kind: Policy
+  apiGroup: policy.mcm.ibm.com
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-grc
+  namespace: 
+spec:
+  clusterConditions:
+  - type: OK
+  clusterSelector:
+    matchExpressions:
+      []
+"
+`;
+
+exports[`on editor change function renders as expected 3`] = `
+"apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-grc
+  namespace: default1,default2,mcm
+  annotations:
+    policy.mcm.ibm.com/standards: 
+    policy.mcm.ibm.com/categories: 
+    policy.mcm.ibm.com/controls: 
+spec:
+  complianceType: musthave
+  remediationAction: inform
+  disabled: false
+  namespaces:
+    exclude: [\\"kube-*\\"]
+    include: [\\"default\\"]
+---
+apiVersion: mcm.ibm.com/v1alpha1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-grc
+  namespace: default1,default2,mcm
+placementRef:
+  name: placement-policy-grc
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: policy-grc
+  kind: Policy
+  apiGroup: policy.mcm.ibm.com
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-grc
+  namespace: default1,default2,mcm
+spec:
+  clusterConditions:
+  - type: OK
+  clusterSelector:
+    matchExpressions:
+      []
 "
 `;

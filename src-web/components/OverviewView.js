@@ -5,7 +5,9 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************/
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.
+ */
 'use strict'
 
 import React from 'react'
@@ -94,9 +96,14 @@ export class OverviewView extends React.Component {
     if (loading)
       return <Loading withOverlay={false} className='content-spinner' />
 
-    if (error)
+    if (error) {
+      if (error.name === 'PermissionError') {
+        return <Notification title='' className='overview-notification' kind='error'
+          subtitle={msgs.get('error.permission.denied', locale)} />
+      }
       return <Notification title='' className='overview-notification' kind='error'
         subtitle={msgs.get('overview.error.default', locale)} />
+    }
 
     if ((!policies || policies.length === 0) && !loading) {
       return (

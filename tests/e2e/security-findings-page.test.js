@@ -5,6 +5,8 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
 
 const config = require('../../config')
@@ -12,7 +14,7 @@ const config = require('../../config')
 let page
 
 module.exports = {
-  '@disabled': false,
+  '@disabled': true,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()

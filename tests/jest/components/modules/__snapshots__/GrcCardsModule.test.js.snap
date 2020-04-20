@@ -3689,7 +3689,7 @@ ShallowWrapper {
             "__typename": "Metadata",
             "annotations": Object {
               "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-              "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
+              "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
               "policy.mcm.ibm.com/standards": "NIST,HIPAA",
               "seed-generation": "1",
             },
@@ -3727,7 +3727,7 @@ ShallowWrapper {
             "metadata": Object {
               "annotations": Object {
                 "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-                "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
+                "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
                 "policy.mcm.ibm.com/standards": "NIST,HIPAA",
                 "seed-generation": "1",
               },
@@ -4623,7 +4623,7 @@ ShallowWrapper {
             "__typename": "Metadata",
             "annotations": Object {
               "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-              "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
+              "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
               "policy.mcm.ibm.com/standards": "NIST,HIPAA",
               "seed-generation": "1",
             },
@@ -4661,7 +4661,7 @@ ShallowWrapper {
             "metadata": Object {
               "annotations": Object {
                 "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-                "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
+                "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
                 "policy.mcm.ibm.com/standards": "NIST,HIPAA",
                 "seed-generation": "1",
               },
@@ -5730,8 +5730,8 @@ ShallowWrapper {
             "__typename": "Metadata",
             "annotations": Object {
               "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-              "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
-              "policy.mcm.ibm.com/standards": "NIST",
+              "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
+              "policy.mcm.ibm.com/standards": "NIST CSF",
               "seed-generation": "2",
             },
             "name": "1558374675051-policy-pod",
@@ -5768,8 +5768,8 @@ ShallowWrapper {
             "metadata": Object {
               "annotations": Object {
                 "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-                "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
-                "policy.mcm.ibm.com/standards": "NIST",
+                "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
+                "policy.mcm.ibm.com/standards": "NIST CSF",
                 "seed-generation": "2",
               },
               "creationTimestamp": "2019-05-20T17:51:38Z",
@@ -5861,8 +5861,8 @@ ShallowWrapper {
             "__typename": "Metadata",
             "annotations": Object {
               "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-              "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
-              "policy.mcm.ibm.com/standards": "NIST",
+              "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
+              "policy.mcm.ibm.com/standards": "NIST CSF, NIST",
               "seed-generation": "2",
             },
             "name": "1558382034240-policy-pod",
@@ -5899,8 +5899,8 @@ ShallowWrapper {
             "metadata": Object {
               "annotations": Object {
                 "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-                "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
-                "policy.mcm.ibm.com/standards": "NIST",
+                "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
+                "policy.mcm.ibm.com/standards": "NIST CSF, NIST",
                 "seed-generation": "2",
               },
               "creationTimestamp": "2019-05-20T19:54:18Z",
@@ -5993,7 +5993,7 @@ ShallowWrapper {
             "annotations": Object {
               "policy.mcm.ibm.com/categories": "SystemAndInformationIntegrity",
               "policy.mcm.ibm.com/controls": "MutationAdvisor",
-              "policy.mcm.ibm.com/standards": "NIST",
+              "policy.mcm.ibm.com/standards": "NIST CSF, NIST",
               "seed-generation": "1",
             },
             "name": "policy-ma",
@@ -6031,7 +6031,7 @@ ShallowWrapper {
               "annotations": Object {
                 "policy.mcm.ibm.com/categories": "SystemAndInformationIntegrity",
                 "policy.mcm.ibm.com/controls": "MutationAdvisor",
-                "policy.mcm.ibm.com/standards": "NIST",
+                "policy.mcm.ibm.com/standards": "NIST CSF, NIST",
                 "seed-generation": "1",
               },
               "creationTimestamp": "2019-05-16T15:21:53Z",
@@ -6129,7 +6129,7 @@ ShallowWrapper {
             "__typename": "Metadata",
             "annotations": Object {
               "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-              "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
+              "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
               "policy.mcm.ibm.com/standards": "NIST,HIPAA",
               "seed-generation": "1",
             },
@@ -6167,7 +6167,7 @@ ShallowWrapper {
             "metadata": Object {
               "annotations": Object {
                 "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-                "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
+                "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
                 "policy.mcm.ibm.com/standards": "NIST,HIPAA",
                 "seed-generation": "1",
               },
@@ -6626,8 +6626,8 @@ ShallowWrapper {
             "__typename": "Metadata",
             "annotations": Object {
               "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-              "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
-              "policy.mcm.ibm.com/standards": "NIST",
+              "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
+              "policy.mcm.ibm.com/standards": "NIST CSF",
               "seed-generation": "2",
             },
             "name": "1558374675051-policy-pod",
@@ -6664,8 +6664,8 @@ ShallowWrapper {
             "metadata": Object {
               "annotations": Object {
                 "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-                "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
-                "policy.mcm.ibm.com/standards": "NIST",
+                "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
+                "policy.mcm.ibm.com/standards": "NIST CSF",
                 "seed-generation": "2",
               },
               "creationTimestamp": "2019-05-20T17:51:38Z",
@@ -6757,8 +6757,8 @@ ShallowWrapper {
             "__typename": "Metadata",
             "annotations": Object {
               "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-              "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
-              "policy.mcm.ibm.com/standards": "NIST",
+              "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
+              "policy.mcm.ibm.com/standards": "NIST CSF, NIST",
               "seed-generation": "2",
             },
             "name": "1558382034240-policy-pod",
@@ -6795,8 +6795,8 @@ ShallowWrapper {
             "metadata": Object {
               "annotations": Object {
                 "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-                "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
-                "policy.mcm.ibm.com/standards": "NIST",
+                "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
+                "policy.mcm.ibm.com/standards": "NIST CSF, NIST",
                 "seed-generation": "2",
               },
               "creationTimestamp": "2019-05-20T19:54:18Z",
@@ -6889,7 +6889,7 @@ ShallowWrapper {
             "annotations": Object {
               "policy.mcm.ibm.com/categories": "SystemAndInformationIntegrity",
               "policy.mcm.ibm.com/controls": "MutationAdvisor",
-              "policy.mcm.ibm.com/standards": "NIST",
+              "policy.mcm.ibm.com/standards": "NIST CSF, NIST",
               "seed-generation": "1",
             },
             "name": "policy-ma",
@@ -6927,7 +6927,7 @@ ShallowWrapper {
               "annotations": Object {
                 "policy.mcm.ibm.com/categories": "SystemAndInformationIntegrity",
                 "policy.mcm.ibm.com/controls": "MutationAdvisor",
-                "policy.mcm.ibm.com/standards": "NIST",
+                "policy.mcm.ibm.com/standards": "NIST CSF, NIST",
                 "seed-generation": "1",
               },
               "creationTimestamp": "2019-05-16T15:21:53Z",
@@ -7025,7 +7025,7 @@ ShallowWrapper {
             "__typename": "Metadata",
             "annotations": Object {
               "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-              "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
+              "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
               "policy.mcm.ibm.com/standards": "NIST,HIPAA",
               "seed-generation": "1",
             },
@@ -7063,7 +7063,7 @@ ShallowWrapper {
             "metadata": Object {
               "annotations": Object {
                 "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-                "policy.mcm.ibm.com/controls": "MutationAdvisor,VA",
+                "policy.mcm.ibm.com/controls": "MutationAdvisor,,VA",
                 "policy.mcm.ibm.com/standards": "NIST,HIPAA",
                 "seed-generation": "1",
               },
@@ -7249,13 +7249,35 @@ ShallowWrapper {
                     "violations": 2,
                   },
                   "policy": Object {
-                    "total": 4,
-                    "violations": 3,
+                    "total": 3,
+                    "violations": 2,
                   },
                 },
                 "name": "NIST",
                 "rawName": "NIST",
-                "violations": 5,
+                "violations": 4,
+              }
+            }
+            handleClick={[MockFunction]}
+            locale={undefined}
+          />
+          <PolicyCard
+            data={
+              Object {
+                "choice": "standards",
+                "counts": Object {
+                  "cluster": Object {
+                    "total": 2,
+                    "violations": 2,
+                  },
+                  "policy": Object {
+                    "total": 3,
+                    "violations": 2,
+                  },
+                },
+                "name": "NIST CSF",
+                "rawName": "NIST CSF",
+                "violations": 4,
               }
             }
             handleClick={[MockFunction]}
@@ -7527,13 +7549,35 @@ ShallowWrapper {
                       "violations": 2,
                     },
                     "policy": Object {
-                      "total": 4,
-                      "violations": 3,
+                      "total": 3,
+                      "violations": 2,
                     },
                   },
                   "name": "NIST",
                   "rawName": "NIST",
-                  "violations": 5,
+                  "violations": 4,
+                }
+              }
+              handleClick={[MockFunction]}
+              locale={undefined}
+            />,
+            <PolicyCard
+              data={
+                Object {
+                  "choice": "standards",
+                  "counts": Object {
+                    "cluster": Object {
+                      "total": 2,
+                      "violations": 2,
+                    },
+                    "policy": Object {
+                      "total": 3,
+                      "violations": 2,
+                    },
+                  },
+                  "name": "NIST CSF",
+                  "rawName": "NIST CSF",
+                  "violations": 4,
                 }
               }
               handleClick={[MockFunction]}
@@ -7579,13 +7623,41 @@ ShallowWrapper {
                     "violations": 2,
                   },
                   "policy": Object {
-                    "total": 4,
-                    "violations": 3,
+                    "total": 3,
+                    "violations": 2,
                   },
                 },
                 "name": "NIST",
                 "rawName": "NIST",
-                "violations": 5,
+                "violations": 4,
+              },
+              "handleClick": [MockFunction],
+              "locale": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "NIST CSF",
+            "nodeType": "function",
+            "props": Object {
+              "data": Object {
+                "choice": "standards",
+                "counts": Object {
+                  "cluster": Object {
+                    "total": 2,
+                    "violations": 2,
+                  },
+                  "policy": Object {
+                    "total": 3,
+                    "violations": 2,
+                  },
+                },
+                "name": "NIST CSF",
+                "rawName": "NIST CSF",
+                "violations": 4,
               },
               "handleClick": [MockFunction],
               "locale": undefined,
@@ -7708,13 +7780,35 @@ ShallowWrapper {
                       "violations": 2,
                     },
                     "policy": Object {
-                      "total": 4,
-                      "violations": 3,
+                      "total": 3,
+                      "violations": 2,
                     },
                   },
                   "name": "NIST",
                   "rawName": "NIST",
-                  "violations": 5,
+                  "violations": 4,
+                }
+              }
+              handleClick={[MockFunction]}
+              locale={undefined}
+            />
+            <PolicyCard
+              data={
+                Object {
+                  "choice": "standards",
+                  "counts": Object {
+                    "cluster": Object {
+                      "total": 2,
+                      "violations": 2,
+                    },
+                    "policy": Object {
+                      "total": 3,
+                      "violations": 2,
+                    },
+                  },
+                  "name": "NIST CSF",
+                  "rawName": "NIST CSF",
+                  "violations": 4,
                 }
               }
               handleClick={[MockFunction]}
@@ -7986,13 +8080,35 @@ ShallowWrapper {
                         "violations": 2,
                       },
                       "policy": Object {
-                        "total": 4,
-                        "violations": 3,
+                        "total": 3,
+                        "violations": 2,
                       },
                     },
                     "name": "NIST",
                     "rawName": "NIST",
-                    "violations": 5,
+                    "violations": 4,
+                  }
+                }
+                handleClick={[MockFunction]}
+                locale={undefined}
+              />,
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": "standards",
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 3,
+                        "violations": 2,
+                      },
+                    },
+                    "name": "NIST CSF",
+                    "rawName": "NIST CSF",
+                    "violations": 4,
                   }
                 }
                 handleClick={[MockFunction]}
@@ -8038,13 +8154,41 @@ ShallowWrapper {
                       "violations": 2,
                     },
                     "policy": Object {
-                      "total": 4,
-                      "violations": 3,
+                      "total": 3,
+                      "violations": 2,
                     },
                   },
                   "name": "NIST",
                   "rawName": "NIST",
-                  "violations": 5,
+                  "violations": 4,
+                },
+                "handleClick": [MockFunction],
+                "locale": undefined,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "NIST CSF",
+              "nodeType": "function",
+              "props": Object {
+                "data": Object {
+                  "choice": "standards",
+                  "counts": Object {
+                    "cluster": Object {
+                      "total": 2,
+                      "violations": 2,
+                    },
+                    "policy": Object {
+                      "total": 3,
+                      "violations": 2,
+                    },
+                  },
+                  "name": "NIST CSF",
+                  "rawName": "NIST CSF",
+                  "violations": 4,
                 },
                 "handleClick": [MockFunction],
                 "locale": undefined,

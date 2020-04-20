@@ -6,6 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+ */
 'use strict'
 import {
   createComplianceLink,
@@ -25,6 +27,7 @@ import {
   getSubjects,
   convertToStartCase,
   formLinkToCluster,
+  formLinkToCISControllerDoc,
 } from '../../../src-web/definitions/hcm-compliances'
 
 describe('hcm-compliances - createComplianceLink', () => {
@@ -296,15 +299,42 @@ describe('hcm-compliances - convertToStartCase', () => {
 
 describe('hcm-compliances - formLinkToCluster', () => {
   it('should get formLinkToCluster', () => {
-    const item = {clusterURL:'/multicloud/clusters'}
+    const item = {cluster:'RedHat', clusterURL:'/multicloud/clusters'}
     expect(formLinkToCluster(item)).toMatchSnapshot()
   })
-  it('should get null ', () => {
-    const item = {clusterURL:''}
+  it('should get RedHat ', () => {
+    const item = {cluster:'RedHat', clusterURL:''}
     expect(formLinkToCluster(item)).toMatchSnapshot()
   })
-  it('should get null ', () => {
+  it('should get - ', () => {
+    const item = {cluster:'', clusterURL:'/multicloud/clusters'}
+    expect(formLinkToCluster(item)).toMatchSnapshot()
+  })
+  it('should get - ', () => {
     const item = null
     expect(formLinkToCluster(item)).toMatchSnapshot()
+  })
+})
+
+describe('hcm-compliances - formLinkToCISControllerDoc', () => {
+  it('should get message with doc link', () => {
+    const item = {message:'couldn\'t find mapping resource with kind CisPolicy, please check if you have corresponding policy controller deployed'}
+    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
+  })
+  it('should get message without doc link', () => {
+    const item = {message:'mapping resource with kind CisPolicy'}
+    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
+  })
+  it('should get message without doc link', () => {
+    const item = {message:'Testing Policy'}
+    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
+  })
+  it('should get - ', () => {
+    const item = {message:''}
+    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
+  })
+  it('should get - ', () => {
+    const item = null
+    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
   })
 })

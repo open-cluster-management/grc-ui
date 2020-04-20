@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import { updateModal } from '../../actions/common'
@@ -18,6 +21,10 @@ export const resourceActions = (action, dispatch, resourceType, data, hasService
       { open: true, type: 'resource-edit', action: 'put', resourceType, editorMode: 'json',
         label: { primaryBtn: 'modal.button.submit', label: `modal.edit-${resourceType.name.toLowerCase()}.label`, heading: `modal.edit-${resourceType.name.toLowerCase()}.heading` },
         data: { kind: resourceType.name, ...data }}))
+  }
+  case 'table.actions.launch.cluster':{
+    window.open(`${data.consoleURL}`, '_blank')
+    return
   }
   case 'table.actions.policy.applications.sidepanel':
   case 'table.actions.policy.policies.sidepanel':

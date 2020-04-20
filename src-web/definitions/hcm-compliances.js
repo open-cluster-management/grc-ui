@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+ */
+
 'use strict'
 
 import React from 'react'
@@ -649,6 +652,7 @@ export default {
         msgKey: 'table.header.message',
         resourceKey: 'message',
         key: 'message',
+        transformFunction: formLinkToCISControllerDoc,
       },
       {
         msgKey: 'table.header.reason',
@@ -963,7 +967,7 @@ export function createComplianceLink(item = {}, ...param){
   if (param[2]) {
     return item.metadata.name
   } else {
-    if (item.raw.kind == 'Compliance')
+    if (item.raw.kind === 'Compliance')
       return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name} (Deprecated)</Link>
     else
       return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
@@ -1107,7 +1111,24 @@ export function getDecisions(item = {}){
 }
 
 export function formLinkToCluster(item){
-  if(item && item.clusterURL){
+  if(item && item.cluster && item.clusterURL){
     return <a target='_blank' href={`${item.clusterURL}`}>{item.cluster}</a>
   }
+  else if (item && item.cluster) {
+    return item.cluster
+  }
+  return '-'
+}
+
+export function formLinkToCISControllerDoc(item, locale){
+  if(item && item.message){
+    const lMessage = item.message.toLowerCase()
+    if (lMessage.includes('cispolicy') && (lMessage.includes('couldn\'t') || lMessage.includes('deployed'))) {
+      return <div>{`${item.message} `}<a target='_blank' href={`${config.docUrl}/blob/doc_stage/about/known_issues.md#1087/`}>{msgs.get('button.view.doc', locale)}</a></div>
+    }
+    else {
+      return item.message
+    }
+  }
+  return '-'
 }
