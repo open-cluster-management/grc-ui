@@ -46,13 +46,13 @@ module.exports = {
     page.checkViolations('policy-pod-create-' + time, false)
     page.checkViolations('policy-pod-inform-' + time, true)
 
+    page.deletePolicy(browser, 'policy-pod-create-' + time)
     page.tryEnable('policy-pod-' + time)
     browser.pause(5000)
     page.checkViolations('policy-pod-inform-' + time, false)
 
-    page.deletePolicy('policy-pod-create-' + time)
-    page.deletePolicy('policy-pod-inform-' + time)
-    page.deletePolicy('policy-pod-' + time)
+    page.deletePolicy(browser, 'policy-pod-inform-' + time)
+    page.deletePolicy(browser, 'policy-pod-' + time)
   },
 
   after: function (browser, done) {

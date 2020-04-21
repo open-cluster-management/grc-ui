@@ -106,6 +106,7 @@ function deletePolicy(browser, name){
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementVisible('button.bx--search-close')
+  browser.pause(2000)
   this.click('button.bx--search-close')
   this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
 }
