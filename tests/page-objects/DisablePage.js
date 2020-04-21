@@ -89,7 +89,7 @@ function checkViolations(name, violationExpected) {
   this.click('.bx--breadcrumb > div:nth-child(1)')
 }
 
-function deletePolicy(name){
+function deletePolicy(browser, name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
   this.clearValue('@searchInput')
@@ -105,6 +105,7 @@ function deletePolicy(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
+  this.waitForElementVisible('button.bx--search-close')
   this.click('button.bx--search-close')
   this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
 }
