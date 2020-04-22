@@ -60,6 +60,7 @@ module.exports = {
 function createPolicy(browser, name, yaml, time) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
+  this.waitForElementNotPresent('@spinner')
   //this.click('.bx--toggle__appearance')
   this.click('@namespaceDropdown')
   this.waitForElementPresent('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
@@ -72,7 +73,22 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
+  //verify placementrule + placementbinding
   this.expect.element('@table').to.be.present
+  this.waitForElementVisible('@searchInput')
+  this.setValue('@searchInput', name)
+  this.click('tbody>tr>td>a')
+  this.expect.element('.bx--detail-page-header-title').text.to.equal(name)
+  this.expect.element('.section-title:nth-of-type(1)').text.to.equal('Policy details')
+  this.expect.element('.new-structured-list > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(name)
+  this.expect.element('.overview-content > div:nth-child(2) > .section-title').text.to.equal('Placement')
+  browser.pause(20000)
+  this.waitForElementVisible('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title')
+  this.expect.element('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement rule')
+  this.expect.element('.overview-content-second > div:nth-child(1) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('placement-' + name)
+  this.expect.element('.overview-content-second > div:nth-child(2) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement binding')
+  this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
+  this.click('.bx--breadcrumb > div:nth-child(1)')
 }
 
 function checkViolations(name, violationExpected) {
