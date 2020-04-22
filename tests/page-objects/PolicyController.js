@@ -60,6 +60,7 @@ module.exports = {
 function createPolicy(browser, name, yaml, time) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
+  this.waitForElementNotPresent('@spinner')
   //this.click('.bx--toggle__appearance')
   this.click('@namespaceDropdown')
   this.waitForElementPresent('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
