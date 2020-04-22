@@ -285,14 +285,14 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
       const objectTemplates = _.get(spec, 'object-templates', [])
       const roleTemplates = _.get(spec, 'role-templates', [])
       const policyTemplates = _.get(spec, 'policy-templates', [])
+      const obName = 'objectDefinition.metadata.name'
+      const obKind = 'objectDefinition.kind'
+      const metaName = 'metadata.name'
       const subItems = _.without([
         id,
         ...objectTemplates.map(item => {
           if (_.get(item, 'status.Compliant','').toLowerCase() !== 'compliant') {
-            let name = _.get(item, 'objectDefinition.metadata.name')
-            if (name === undefined) {
-              name = _.get(item, 'objectDefinition.kind')
-            }
+            const name = _.get(item, obName) ? _.get(item, obName) : (_.get(item, obKind)?_.get(item, obKind):_.get(item, metaName))
             return {
               id: _.get(item, 'objectDefinition.metadata.name'),
               cells: [name, _.get(item, 'status.conditions[0].message', '-'), _.get(item, 'status.conditions[0].reason', '-')]
@@ -300,10 +300,7 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
         ),
         ...roleTemplates.map(item => {
           if (_.get(item, 'status.Compliant','').toLowerCase() !== 'compliant') {
-            let name = _.get(item, 'objectDefinition.metadata.name')
-            if (name === undefined) {
-              name = _.get(item, 'objectDefinition.kind')
-            }
+            const name = _.get(item, obName) ? _.get(item, obName) : (_.get(item, obKind)?_.get(item, obKind):_.get(item, metaName))
             return {
               id: _.get(item, 'objectDefinition.metadata.name'),
               cells: [name, _.get(item, 'status.conditions[0].message', '-'), _.get(item, 'status.conditions[0].reason', '-')]
@@ -311,10 +308,7 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
         ),
         ...policyTemplates.map(item => {
           if (_.get(item, 'status.Compliant','').toLowerCase() !== 'compliant') {
-            let name = _.get(item, 'objectDefinition.metadata.name')
-            if (name === undefined) {
-              name = _.get(item, 'objectDefinition.kind')
-            }
+            const name = _.get(item, obName) ? _.get(item, obName) : (_.get(item, obKind)?_.get(item, obKind):_.get(item, metaName))
             return {
               id: _.get(item, 'objectDefinition.metadata.name'),
               cells: [name, _.get(item, 'status.conditions[0].message', '-'), _.get(item, 'status.conditions[0].reason', '-')]
