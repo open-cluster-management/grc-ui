@@ -7,7 +7,10 @@ make clean
 make init
 make vendorize
 npm ci
-echo '\n!/node_modules \n!vbh/.build-harness-bootstrap\n!vbh/build-harness\n!vbh/build-harness-extensions' >> .gitignore
+echo '!/node_modules' >> .gitignore
+echo '!vbh/.build-harness-bootstrap' >> .gitignore
+echo '!vbh/build-harness' >> .gitignore
+echo '!vbh/build-harness-extensions' >> .gitignore
 git add -A
 git commit -m "vendorize"
-# git push --force
+git push --force
