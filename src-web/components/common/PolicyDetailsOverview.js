@@ -163,10 +163,10 @@ export class PolicyDetailsOverview extends React.PureComponent{
             subItems.push({
               id: _.get(rule, 'complianceType','-'),
               cells: [
-                JSON.stringify(_.get(rule, 'complianceType','-')).replace(/["[]]/g, ''),
-                JSON.stringify(_.get(rule, 'policyRule.apiGroups','-')).replace(/["[]]/g, ''),
-                JSON.stringify(_.get(rule, 'policyRule.resources','-')).replace(/["[]]/g, ''),
-                JSON.stringify(_.get(rule, 'policyRule.verbs','-')).replace(/["[]]/g, ''),
+                JSON.stringify(_.get(rule, 'complianceType','-')).replace(/\[|\]|"/g, ''),
+                JSON.stringify(_.get(rule, 'policyRule.apiGroups','-')).replace(/\[|\]|"/g, ''),
+                JSON.stringify(_.get(rule, 'policyRule.resources','-')).replace(/\[|\]|"/g, ''),
+                JSON.stringify(_.get(rule, 'policyRule.verbs','-')).replace(/\[|\]|"/g, ''),
               ]
             })
           })

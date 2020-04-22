@@ -42,7 +42,7 @@ class DetailsModule extends React.PureComponent {
         const entry = []
         entry[0] = item.cells[0].resourceKey
         const entryData = _.get(listData, item.cells[1].resourceKey, '-')
-        const replacedData = JSON.stringify(entryData).replace(/["[]]/g, ' ')
+        const replacedData = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
         entry[1] = typeof(entryData) === 'object'? replacedData : entryData
         oneTableData.push(entry)
       })
