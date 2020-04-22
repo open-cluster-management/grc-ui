@@ -64,6 +64,11 @@ jobs:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make component/pull
         - make component/test/e2e
+    # - stage: vendorize
+    #   name: "Vendorize for downstream build"
+    #   if: type = push AND branch =~ /^release-[0-9]+\..*$/
+    #   script:
+    #     - ./build/vendorize.sh 
     - stage: publish
       name: "Publish the image to quay with an official version/sha tag and publish entry to integration pipeline stage"
       if: type = push AND branch =~ /^release-[0-9]+\..*$/
