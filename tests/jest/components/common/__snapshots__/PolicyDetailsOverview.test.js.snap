@@ -98,7 +98,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-data"
                   >
-                    ["kube-* 
+                      kube-*  
                   </td>
                 </tr>
                 <tr
@@ -114,7 +114,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-data"
                   >
-                    ["default 
+                      default  
                   </td>
                 </tr>
                 <tr
