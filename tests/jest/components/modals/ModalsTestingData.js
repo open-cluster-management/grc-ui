@@ -6,6 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  ****************************************************************************** */
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
 export const sidePanelPolicies = [
   {
     'name': 'cluster1',
@@ -82,10 +84,6 @@ export const sidePanelPolicies = [
             'complianceType': 'musthave',
             'objectDefinition': {
               'apiVersion': 'v1',
-              'kind': 'LimitRange',
-              'metadata': {
-                'name': 'mem-limit-range'
-              },
               'spec': {
                 'limits': [
                   {
@@ -101,7 +99,75 @@ export const sidePanelPolicies = [
               }
             },
             'status': {
-              'Compliant': 'NonCompliant',
+              'Compliant': 'Compliant',
+              'Validity': {},
+              'conditions': [
+                {
+                  'lastTransitionTime': '2019-09-15T08:12:49Z',
+                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'reason': 'K8s missing a must have object',
+                  'status': 'True',
+                  'type': 'violation'
+                }
+              ]
+            }
+          }
+        ],
+        'role-templates': [
+          {
+            'complianceType': 'musthave',
+            'objectDefinition': {
+              'apiVersion': 'v1',
+              'spec': {
+                'limits': [
+                  {
+                    'default': {
+                      'memory': '512Mi'
+                    },
+                    'defaultRequest': {
+                      'memory': '256Mi'
+                    },
+                    'type': 'Container'
+                  }
+                ]
+              }
+            },
+            'status': {
+              'Compliant': 'Compliant',
+              'Validity': {},
+              'conditions': [
+                {
+                  'lastTransitionTime': '2019-09-15T08:12:49Z',
+                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'reason': 'K8s missing a must have object',
+                  'status': 'True',
+                  'type': 'violation'
+                }
+              ]
+            }
+          }
+        ],
+        'policy-templates': [
+          {
+            'complianceType': 'musthave',
+            'objectDefinition': {
+              'apiVersion': 'v1',
+              'spec': {
+                'limits': [
+                  {
+                    'default': {
+                      'memory': '512Mi'
+                    },
+                    'defaultRequest': {
+                      'memory': '256Mi'
+                    },
+                    'type': 'Container'
+                  }
+                ]
+              }
+            },
+            'status': {
+              'Compliant': 'Compliant',
               'Validity': {},
               'conditions': [
                 {
@@ -213,10 +279,74 @@ export const sidePanelPolicies = [
             'complianceType': 'musthave',
             'objectDefinition': {
               'apiVersion': 'v1',
-              'kind': 'LimitRange',
-              'metadata': {
-                'name': 'mem-limit-range'
-              },
+              'spec': {
+                'limits': [
+                  {
+                    'default': {
+                      'memory': '512Mi'
+                    },
+                    'defaultRequest': {
+                      'memory': '256Mi'
+                    },
+                    'type': 'Container'
+                  }
+                ]
+              }
+            },
+            'status': {
+              'Compliant': 'NonCompliant',
+              'Validity': {},
+              'conditions': [
+                {
+                  'lastTransitionTime': '2019-09-15T08:12:54Z',
+                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'reason': 'K8s missing a must have object',
+                  'status': 'True',
+                  'type': 'violation'
+                }
+              ]
+            }
+          }
+        ],
+        'role-templates': [
+          {
+            'complianceType': 'musthave',
+            'objectDefinition': {
+              'apiVersion': 'v1',
+              'spec': {
+                'limits': [
+                  {
+                    'default': {
+                      'memory': '512Mi'
+                    },
+                    'defaultRequest': {
+                      'memory': '256Mi'
+                    },
+                    'type': 'Container'
+                  }
+                ]
+              }
+            },
+            'status': {
+              'Compliant': 'NonCompliant',
+              'Validity': {},
+              'conditions': [
+                {
+                  'lastTransitionTime': '2019-09-15T08:12:54Z',
+                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'reason': 'K8s missing a must have object',
+                  'status': 'True',
+                  'type': 'violation'
+                }
+              ]
+            }
+          }
+        ],
+        'policy-templates': [
+          {
+            'complianceType': 'musthave',
+            'objectDefinition': {
+              'apiVersion': 'v1',
               'spec': {
                 'limits': [
                   {

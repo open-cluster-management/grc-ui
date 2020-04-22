@@ -1730,10 +1730,6 @@ ShallowWrapper {
                   "complianceType": "musthave",
                   "objectDefinition": Object {
                     "apiVersion": "v1",
-                    "kind": "LimitRange",
-                    "metadata": Object {
-                      "name": "mem-limit-range",
-                    },
                     "spec": Object {
                       "limits": Array [
                         Object {
@@ -1749,7 +1745,41 @@ ShallowWrapper {
                     },
                   },
                   "status": Object {
-                    "Compliant": "NonCompliant",
+                    "Compliant": "Compliant",
+                    "Validity": Object {},
+                    "conditions": Array [
+                      Object {
+                        "lastTransitionTime": "2019-09-15T08:12:49Z",
+                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
+                        "reason": "K8s missing a must have object",
+                        "status": "True",
+                        "type": "violation",
+                      },
+                    ],
+                  },
+                },
+              ],
+              "policy-templates": Array [
+                Object {
+                  "complianceType": "musthave",
+                  "objectDefinition": Object {
+                    "apiVersion": "v1",
+                    "spec": Object {
+                      "limits": Array [
+                        Object {
+                          "default": Object {
+                            "memory": "512Mi",
+                          },
+                          "defaultRequest": Object {
+                            "memory": "256Mi",
+                          },
+                          "type": "Container",
+                        },
+                      ],
+                    },
+                  },
+                  "status": Object {
+                    "Compliant": "Compliant",
                     "Validity": Object {},
                     "conditions": Array [
                       Object {
@@ -1764,6 +1794,40 @@ ShallowWrapper {
                 },
               ],
               "remediationAction": "inform",
+              "role-templates": Array [
+                Object {
+                  "complianceType": "musthave",
+                  "objectDefinition": Object {
+                    "apiVersion": "v1",
+                    "spec": Object {
+                      "limits": Array [
+                        Object {
+                          "default": Object {
+                            "memory": "512Mi",
+                          },
+                          "defaultRequest": Object {
+                            "memory": "256Mi",
+                          },
+                          "type": "Container",
+                        },
+                      ],
+                    },
+                  },
+                  "status": Object {
+                    "Compliant": "Compliant",
+                    "Validity": Object {},
+                    "conditions": Array [
+                      Object {
+                        "lastTransitionTime": "2019-09-15T08:12:49Z",
+                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
+                        "reason": "K8s missing a must have object",
+                        "status": "True",
+                        "type": "violation",
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             "status": Object {
               "compliant": "NonCompliant",
@@ -1861,10 +1925,40 @@ ShallowWrapper {
                   "complianceType": "musthave",
                   "objectDefinition": Object {
                     "apiVersion": "v1",
-                    "kind": "LimitRange",
-                    "metadata": Object {
-                      "name": "mem-limit-range",
+                    "spec": Object {
+                      "limits": Array [
+                        Object {
+                          "default": Object {
+                            "memory": "512Mi",
+                          },
+                          "defaultRequest": Object {
+                            "memory": "256Mi",
+                          },
+                          "type": "Container",
+                        },
+                      ],
                     },
+                  },
+                  "status": Object {
+                    "Compliant": "NonCompliant",
+                    "Validity": Object {},
+                    "conditions": Array [
+                      Object {
+                        "lastTransitionTime": "2019-09-15T08:12:54Z",
+                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
+                        "reason": "K8s missing a must have object",
+                        "status": "True",
+                        "type": "violation",
+                      },
+                    ],
+                  },
+                },
+              ],
+              "policy-templates": Array [
+                Object {
+                  "complianceType": "musthave",
+                  "objectDefinition": Object {
+                    "apiVersion": "v1",
                     "spec": Object {
                       "limits": Array [
                         Object {
@@ -1895,6 +1989,40 @@ ShallowWrapper {
                 },
               ],
               "remediationAction": "inform",
+              "role-templates": Array [
+                Object {
+                  "complianceType": "musthave",
+                  "objectDefinition": Object {
+                    "apiVersion": "v1",
+                    "spec": Object {
+                      "limits": Array [
+                        Object {
+                          "default": Object {
+                            "memory": "512Mi",
+                          },
+                          "defaultRequest": Object {
+                            "memory": "256Mi",
+                          },
+                          "type": "Container",
+                        },
+                      ],
+                    },
+                  },
+                  "status": Object {
+                    "Compliant": "NonCompliant",
+                    "Validity": Object {},
+                    "conditions": Array [
+                      Object {
+                        "lastTransitionTime": "2019-09-15T08:12:54Z",
+                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
+                        "reason": "K8s missing a must have object",
+                        "status": "True",
+                        "type": "violation",
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             "status": Object {
               "compliant": "NonCompliant",
