@@ -45,6 +45,7 @@ exports[`hcm-compliances - formLinkToCISControllerDoc should get message with do
   couldn't find mapping resource with kind CisPolicy, please check if you have corresponding policy controller deployed 
   <a
     href="undefined/blob/doc_stage/about/known_issues.md#1087/"
+    rel="noopener noreferrer"
     target="_blank"
   >
     View documentation
@@ -65,6 +66,7 @@ exports[`hcm-compliances - formLinkToCluster should get RedHat  1`] = `"RedHat"`
 exports[`hcm-compliances - formLinkToCluster should get formLinkToCluster 1`] = `
 <a
   href="/multicloud/clusters"
+  rel="noopener noreferrer"
   target="_blank"
 >
   RedHat

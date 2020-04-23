@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import _ from 'lodash'
@@ -162,13 +165,19 @@ class RemoveResourceModal extends React.Component {
 
 RemoveResourceModal.propTypes = {
   data: PropTypes.shape({
-    name: PropTypes.string
+    deployables: PropTypes.object,
+    name: PropTypes.string,
+    placementBindings: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    placementPolicie: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    applicationRelationships: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    selected: PropTypes.array,
   }),
   handleClose: PropTypes.func,
   handleSubmit: PropTypes.func,
   label: PropTypes.shape({
     heading: PropTypes.string,
     label: PropTypes.string,
+    primaryBtn: PropTypes.string,
   }),
   locale: PropTypes.string,
   open:  PropTypes.bool,

@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -17,7 +20,7 @@ import resources from '../../../lib/shared/resources'
 import { transform } from '../../../lib/client/resource-helper'
 import { Link } from 'react-router-dom'
 import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
-
+import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/structured-list.scss')
@@ -56,7 +59,7 @@ class StructuredListModule extends React.Component {
         <ModuleBody>
           <StructuredListWrapper className='bx--structured-list--condensed' role='region' ariaLabel={msgs.get(title, this.context.locale)}>
             <StructuredListHead>
-              <StructuredListRow head>
+              <StructuredListRow head key={_uniqueId('SLRowHeader')}>
                 {listSubItems &&
                 <StructuredListCell head key={'empty-header'}>
                 </StructuredListCell>}
