@@ -105,12 +105,13 @@ function checkViolations(name, violationExpected) {
   this.click('.bx--breadcrumb > div:nth-child(1)')
 }
 
-function searchPolicy(expectToDisplay, time) {
+function searchPolicy(name, expectToDisplay) {
   this.waitForElementVisible('@searchInput')
-  this.setValue('@searchInput',`${time}-policy-test`)
+  this.setValue('@searchInput', name)
   this.waitForElementVisible('@searchInput')
   if(expectToDisplay){
-    this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(`${time}-policy-test`)
+    this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(name)
+    this.clearValue('@searchInput')
   } else{
     this.waitForElementNotPresent('tbody>tr')
     this.clearValue('@searchInput')
