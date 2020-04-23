@@ -46,7 +46,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-policy-create-certificate-[TIME]
+- name: policy-create-certificate-[TIME]
   kind: Policy
   apiGroup: policy.mcm.ibm.com
 ---

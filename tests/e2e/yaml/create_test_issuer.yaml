@@ -37,7 +37,7 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-policy-create-issuer-[TIME]
+- name: policy-create-issuer-[TIME]
   kind: Policy
   apiGroup: policy.mcm.ibm.com
 ---

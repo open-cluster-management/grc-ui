@@ -38,14 +38,14 @@ module.exports = {
     const testIssuer = fs.readFileSync(path.join(__dirname, 'yaml/create_test_issuer.yaml'))
     var yaml = testIssuer.toString()
     page.createPolicy(browser, 'policy-create-issuer-' + time, yaml, time)
-    browser.pause(60000) // Wait for policy to create issuer
+    browser.pause(20000) // Wait for policy to create issuer 20s
     page.checkViolations('policy-create-issuer-' + time, false)
     browser.pause(1000)
 
     const testCertificate = fs.readFileSync(path.join(__dirname, 'yaml/create_test_certificate.yaml'))
     yaml = testCertificate.toString()
     page.createPolicy(browser, 'policy-create-certificate-' + time, yaml, time)
-    browser.pause(60000) // Wait for policy to create certificate
+    browser.pause(20000) // Wait for policy to create certificate 20s
     page.checkViolations('policy-create-certificate-' + time, false)
     page.deletePolicy('policy-create-certificate-' + time)
   },
@@ -55,7 +55,7 @@ module.exports = {
     const certPolicy = fs.readFileSync(path.join(__dirname, 'yaml/create_test_certpolicy.yaml'))
     var yaml = certPolicy.toString()
     page.createPolicy(browser, 'policy-certificatepolicy-' + time, yaml, time)
-    browser.pause(120000) // Wait for cert policy to detect violation
+    browser.pause(30000) // Wait for cert policy to detect violation 30s
     page.checkViolations('policy-certificatepolicy-' + time, true)
   },
 
@@ -64,22 +64,23 @@ module.exports = {
     const deleteCertificate = fs.readFileSync(path.join(__dirname, 'yaml/delete_test_certificate.yaml'))
     var yaml = deleteCertificate.toString()
     page.createPolicy(browser, 'policy-delete-certificate-' + time, yaml, time)
-    browser.pause(60000) // Wait for policy to delete certificate
+    browser.pause(30000) // Wait for policy to delete certificate 30s
     page.checkViolations('policy-delete-certificate-' + time, false)
     page.deletePolicy('policy-delete-certificate-' + time)
 
     const deleteSecret = fs.readFileSync(path.join(__dirname, 'yaml/delete_test_secret.yaml'))
     yaml = deleteSecret.toString()
     page.createPolicy(browser, 'policy-delete-secret-' + time, yaml, time)
-    browser.pause(60000) // Wait for policy to delete secret
+    browser.pause(30000) // Wait for policy to delete secret 30s
     page.checkViolations('policy-delete-secret-' + time, false)
     page.deletePolicy('policy-delete-secret-' + time)
   },
 
   'Cert policy: cert policy should show compliant and clean up': (browser) => {
     const time = browser.globals.time
-    browser.pause(300000) // Wait for cert policy to detect compliant
-    page.checkViolations('policy-certificatepolicy-' + time, true)
+    page.searchPolicy('policy-certificatepolicy-' + time, true)
+    browser.pause(60000) // Wait for cert policy to detect compliant 60s
+    page.checkViolations('policy-certificatepolicy-' + time, false)
 
     page.deletePolicy('policy-create-issuer-' + time)
     page.deletePolicy('policy-certificatepolicy-' + time)
@@ -87,9 +88,9 @@ module.exports = {
     const deleteIssuer = fs.readFileSync(path.join(__dirname, 'yaml/delete_test_issuer.yaml'))
     var yaml = deleteIssuer.toString()
     page.createPolicy(browser, 'policy-delete-issuer-' + time, yaml, time)
-    browser.pause(60000) // Wait for policy to delete issuer
+    browser.pause(30000) // Wait for policy to delete issuer 30s
     page.checkViolations('policy-delete-issuer-' + time, false)
-    page.deletePolicy('policy-delete-issuer-' + time)    
+    page.deletePolicy('policy-delete-issuer-' + time)
 
     page.searchPolicy('policy-create-issuer-' + time, false)
     page.searchPolicy('policy-create-certificate-' + time, false)
