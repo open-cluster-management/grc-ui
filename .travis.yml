@@ -3,7 +3,6 @@ language: node_js
 
 services:
   - docker
-  - xvfb
 
 branches:
   only:
@@ -12,10 +11,7 @@ branches:
 addons:
   packages:
     - openjdk-8-jdk
-addons:
   chrome: stable
-
-addons:
   sonarcloud:
     organization: "open-cluster-management"
     token:
