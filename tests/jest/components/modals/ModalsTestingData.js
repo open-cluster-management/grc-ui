@@ -386,6 +386,384 @@ export const sidePanelPolicies = [
   }
 ]
 
+export const sidePanelPoliciesAllCompliant = [
+  {
+    'name': 'cluster1',
+    'metadata': {
+      'labels': {
+        'cloud': 'IBM',
+        'environment': 'Dev',
+        'name': 'cluster1',
+        'region': 'US'
+      },
+      'name': 'cluster1',
+      'namespace': 'cluster1',
+      'annotations': {
+        'mcm.ibm.com/deployer-prefix': 'md',
+        'mcm.ibm.com/secretRef': 'cluster1-federation-secret',
+        'mcm.ibm.com/user-group': 'aGNtOmNsdXN0ZXJzLHN5c3RlbTphdXRoZW50aWNhdGVk',
+        'mcm.ibm.com/user-identity': 'aGNtOmNsdXN0ZXJzOmNsdXN0ZXIxOmNsdXN0ZXIx'
+      },
+      'uid': '24694bf8-ce79-11e9-bbf4-26cb3fc6476c',
+      'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/cluster1/clusterstatuses/cluster1',
+      '__typename': 'Metadata'
+    },
+    'kind': 'Cluster',
+    'apiVersion': 'clusterregistry.k8s.io/v1alpha1',
+    'spec': {
+      'consoleURL': 'https://9.42.82.160:8443'
+    },
+    'status': {
+      'conditions': [
+        {
+          'type': 'OK',
+          'status': '',
+          'lastHeartbeatTime': '2019-09-16T15:10:15Z',
+          'lastTransitionTime': '2019-09-16T14:25:40Z'
+        }
+      ]
+    },
+    'total': '1',
+    'violated': '1',
+    'policy': {
+      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'kind': 'Policy',
+      'metadata': {
+        'annotations': {
+          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
+          'policy.mcm.ibm.com/controls': 'CertManager',
+          'policy.mcm.ibm.com/standards': 'HIPAA',
+          'seed-generation': '2'
+        },
+        'creationTimestamp': '2019-09-15T08:12:48Z',
+        'finalizers': [
+          'policy.finalizer.mcm.ibm.com',
+          'sync.finalizer.mcm.ibm.com'
+        ],
+        'generation': 2,
+        'name': 'policy-limitrange',
+        'namespace': 'cluster1',
+        'resourceVersion': '8412735',
+        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/cluster1/policies/policy-limitrange',
+        'uid': '9aa50808-d790-11e9-8a74-005056a04901'
+      },
+      'spec': {
+        'complianceType': 'musthave',
+        'namespaces': {
+          'exclude': [
+            'kube-*'
+          ],
+          'include': [
+            'default'
+          ]
+        },
+        'object-templates': [
+          {
+            'complianceType': 'musthave',
+            'objectDefinition': {
+              'apiVersion': 'v1',
+              'spec': {
+                'limits': [
+                  {
+                    'default': {
+                      'memory': '512Mi'
+                    },
+                    'defaultRequest': {
+                      'memory': '256Mi'
+                    },
+                    'type': 'Container'
+                  }
+                ]
+              }
+            },
+            'status': {
+              'Compliant': 'Compliant',
+              'Validity': {},
+              'conditions': [
+                {
+                  'lastTransitionTime': '2019-09-15T08:12:49Z',
+                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'reason': 'K8s missing a must have object',
+                  'status': 'True',
+                  'type': 'violation'
+                }
+              ]
+            }
+          }
+        ],
+        'role-templates': [
+          {
+            'complianceType': 'musthave',
+            'objectDefinition': {
+              'apiVersion': 'v1',
+              'spec': {
+                'limits': [
+                  {
+                    'default': {
+                      'memory': '512Mi'
+                    },
+                    'defaultRequest': {
+                      'memory': '256Mi'
+                    },
+                    'type': 'Container'
+                  }
+                ]
+              }
+            },
+            'status': {
+              'Compliant': 'Compliant',
+              'Validity': {},
+              'conditions': [
+                {
+                  'lastTransitionTime': '2019-09-15T08:12:49Z',
+                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'reason': 'K8s missing a must have object',
+                  'status': 'True',
+                  'type': 'violation'
+                }
+              ]
+            }
+          }
+        ],
+        'policy-templates': [
+          {
+            'complianceType': 'musthave',
+            'objectDefinition': {
+              'apiVersion': 'v1',
+              'spec': {
+                'limits': [
+                  {
+                    'default': {
+                      'memory': '512Mi'
+                    },
+                    'defaultRequest': {
+                      'memory': '256Mi'
+                    },
+                    'type': 'Container'
+                  }
+                ]
+              }
+            },
+            'status': {
+              'Compliant': 'Compliant',
+              'Validity': {},
+              'conditions': [
+                {
+                  'lastTransitionTime': '2019-09-15T08:12:49Z',
+                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'reason': 'K8s missing a must have object',
+                  'status': 'True',
+                  'type': 'violation'
+                }
+              ]
+            }
+          }
+        ],
+        'remediationAction': 'inform'
+      },
+      'status': {
+        'compliant': 'Compliant'
+      }
+    },
+    '__typename': 'ClusterInfo'
+  },
+  {
+    'name': 'clusterhub',
+    'metadata': {
+      'labels': {
+        'cloud': 'IBM',
+        'datacenter': 'toronto',
+        'environment': 'Dev',
+        'name': 'clusterhub',
+        'owner': 'marketing',
+        'region': 'US',
+        'vendor': 'ICP'
+      },
+      'name': 'clusterhub',
+      'namespace': 'clusterhub',
+      'annotations': {
+        'mcm.ibm.com/deployer-prefix': 'md',
+        'mcm.ibm.com/secretRef': 'clusterhub-federation-secret',
+        'mcm.ibm.com/user-group': 'aGNtOmNsdXN0ZXJzLHN5c3RlbTphdXRoZW50aWNhdGVk',
+        'mcm.ibm.com/user-identity': 'aGNtOmNsdXN0ZXJzOmNsdXN0ZXJodWI6Y2x1c3Rlcmh1Yg=='
+      },
+      'uid': '3fb19cc2-ca8b-11e9-bbf4-26cb3fc6476c',
+      'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/clusterhub/clusterstatuses/clusterhub',
+      '__typename': 'Metadata'
+    },
+    'kind': 'Cluster',
+    'apiVersion': 'clusterregistry.k8s.io/v1alpha1',
+    'spec': {
+      'consoleURL': 'https://9.42.82.240:8443'
+    },
+    'status': {
+      'conditions': [
+        {
+          'type': 'OK',
+          'status': '',
+          'lastHeartbeatTime': '2019-09-16T15:10:37Z',
+          'lastTransitionTime': '2019-09-16T14:25:41Z'
+        }
+      ]
+    },
+    'total': '1',
+    'violated': '1',
+    'policy': {
+      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'kind': 'Policy',
+      'metadata': {
+        'annotations': {
+          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
+          'policy.mcm.ibm.com/controls': 'CertManager',
+          'policy.mcm.ibm.com/standards': 'HIPAA',
+          'seed-generation': '2'
+        },
+        'creationTimestamp': '2019-09-15T08:12:48Z',
+        'finalizers': [
+          'propagator.finalizer.mcm.ibm.com',
+          'finalizer.policies.ibm.com',
+          'policy.finalizer.mcm.ibm.com',
+          'sync.finalizer.mcm.ibm.com'
+        ],
+        'generation': 2,
+        'name': 'policy-limitrange',
+        'namespace': 'clusterhub',
+        'ownerReferences': [
+          {
+            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'blockOwnerDeletion': true,
+            'controller': true,
+            'kind': 'Policy',
+            'name': 'policy-limitrange',
+            'uid': 'd358638d-cf30-11e9-a1ed-005056a0b88e'
+          }
+        ],
+        'resourceVersion': '5854341',
+        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-limitrange',
+        'uid': '9aa3d1ac-d790-11e9-a1ed-005056a0b88e'
+      },
+      'spec': {
+        'complianceType': 'musthave',
+        'namespaces': {
+          'exclude': [
+            'kube-*'
+          ],
+          'include': [
+            'default'
+          ]
+        },
+        'object-templates': [
+          {
+            'complianceType': 'musthave',
+            'objectDefinition': {
+              'apiVersion': 'v1',
+              'spec': {
+                'limits': [
+                  {
+                    'default': {
+                      'memory': '512Mi'
+                    },
+                    'defaultRequest': {
+                      'memory': '256Mi'
+                    },
+                    'type': 'Container'
+                  }
+                ]
+              }
+            },
+            'status': {
+              'Compliant': 'Compliant',
+              'Validity': {},
+              'conditions': [
+                {
+                  'lastTransitionTime': '2019-09-15T08:12:54Z',
+                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'reason': 'K8s missing a must have object',
+                  'status': 'True',
+                  'type': 'violation'
+                }
+              ]
+            }
+          }
+        ],
+        'role-templates': [
+          {
+            'complianceType': 'musthave',
+            'objectDefinition': {
+              'apiVersion': 'v1',
+              'spec': {
+                'limits': [
+                  {
+                    'default': {
+                      'memory': '512Mi'
+                    },
+                    'defaultRequest': {
+                      'memory': '256Mi'
+                    },
+                    'type': 'Container'
+                  }
+                ]
+              }
+            },
+            'status': {
+              'Compliant': 'Compliant',
+              'Validity': {},
+              'conditions': [
+                {
+                  'lastTransitionTime': '2019-09-15T08:12:54Z',
+                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'reason': 'K8s missing a must have object',
+                  'status': 'True',
+                  'type': 'violation'
+                }
+              ]
+            }
+          }
+        ],
+        'policy-templates': [
+          {
+            'complianceType': 'musthave',
+            'objectDefinition': {
+              'apiVersion': 'v1',
+              'spec': {
+                'limits': [
+                  {
+                    'default': {
+                      'memory': '512Mi'
+                    },
+                    'defaultRequest': {
+                      'memory': '256Mi'
+                    },
+                    'type': 'Container'
+                  }
+                ]
+              }
+            },
+            'status': {
+              'Compliant': 'Compliant',
+              'Validity': {},
+              'conditions': [
+                {
+                  'lastTransitionTime': '2019-09-15T08:12:54Z',
+                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'reason': 'K8s missing a must have object',
+                  'status': 'True',
+                  'type': 'violation'
+                }
+              ]
+            }
+          }
+        ],
+        'remediationAction': 'inform'
+      },
+      'status': {
+        'compliant': 'Compliant'
+      }
+    },
+    '__typename': 'ClusterInfo'
+  }
+]
+
 export const sidePanelResourceTypePolicies = {
   'name': 'HCMPolicyPolicy',
   'list': 'HCMPolicyPolicyList'

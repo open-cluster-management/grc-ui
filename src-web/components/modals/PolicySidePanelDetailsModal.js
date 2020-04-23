@@ -270,7 +270,7 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
       return {...policy, id, violatedNum, subItems}
     }
     else {
-      const subItems = [{ id: `inapplicable${index}`, cells: [inapplicable, inapplicable+' ', inapplicable+'  '] }]
+      const subItems = [{ id: `inapplicable${index}`, cells: [inapplicable, `${inapplicable} `, `${inapplicable} `] }]
       return {...policy, id, violatedNum, subItems}
     }
   })

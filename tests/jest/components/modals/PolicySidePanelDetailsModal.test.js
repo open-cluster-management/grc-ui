@@ -10,7 +10,7 @@
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import { sidePanelPolicies, sidePanelResourceTypePolicies, sidePanelClusters, sidePanelResourceTypeClusters } from './ModalsTestingData'
+import { sidePanelPolicies, sidePanelPoliciesAllCompliant, sidePanelResourceTypePolicies, sidePanelClusters, sidePanelResourceTypeClusters } from './ModalsTestingData'
 import PolicySidePanelDetailsModal, { PoliciesTable, ClustersOrApplicationsTable } from '../../../../src-web/components/modals/PolicySidePanelDetailsModal'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
@@ -21,6 +21,21 @@ describe('PoliciesView view', () => {
     const component = shallow(<PolicySidePanelDetailsModal
       title = {''}
       data = {sidePanelPolicies}
+      resourceType = {sidePanelResourceTypePolicies}
+      locale = {'en-US'}
+      open = {true}
+      updateModal = {updateModal}
+    />)
+    expect(component).toMatchSnapshot()
+  })
+})
+
+describe('PoliciesView view', () => {
+  const updateModal = jest.fn()
+  it('renders expand as expected', () => {
+    const component = shallow(<PolicySidePanelDetailsModal
+      title = {''}
+      data = {sidePanelPoliciesAllCompliant}
       resourceType = {sidePanelResourceTypePolicies}
       locale = {'en-US'}
       open = {true}
