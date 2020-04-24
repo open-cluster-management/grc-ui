@@ -62,7 +62,7 @@ module.exports = {
   'Cert policy: update certificate and secret': (browser) => {
     const time = browser.globals.time
     const updateCertificate = fs.readFileSync(path.join(__dirname, 'yaml/update_test_certificate.yaml'))
-    yaml = updateCertificate.toString()
+    var yaml = updateCertificate.toString()
     page.createPolicy(browser, 'policy-update-certificate-' + time, yaml, time)
     browser.pause(60000) // Wait for policy to update certificate 30s
     page.checkViolations('policy-update-certificate-' + time, false)
@@ -96,7 +96,7 @@ module.exports = {
     page.deletePolicy('policy-delete-secret-' + time)
 
     const deleteIssuer = fs.readFileSync(path.join(__dirname, 'yaml/delete_test_issuer.yaml'))
-    var yaml = deleteIssuer.toString()
+    yaml = deleteIssuer.toString()
     page.createPolicy(browser, 'policy-delete-issuer-' + time, yaml, time)
     browser.pause(30000) // Wait for policy to delete issuer 30s
     page.checkViolations('policy-delete-issuer-' + time, false)
