@@ -94,6 +94,21 @@ describe('PoliciesTable 2', () => {
   })
 })
 
+describe('PoliciesTable 3', () => {
+  it('renders expand as expected', () => {
+    const component = renderer.create(
+      <BrowserRouter>
+        <PoliciesTable
+          items = {sidePanelPoliciesAllCompliant}
+          staticResourceData = {sidePanelResourceTypePolicies}
+          inapplicable = {'N/A'}
+        />
+      </BrowserRouter>
+    )
+    expect(component).toMatchSnapshot()
+  })
+})
+
 describe('ClustersOrApplicationsTable 1', () => {
   it('renders expand as expected', () => {
     const component = renderer.create(

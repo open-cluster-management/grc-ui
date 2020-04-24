@@ -424,7 +424,7 @@ export const sidePanelPoliciesAllCompliant = [
       ]
     },
     'total': '1',
-    'violated': '1',
+    'violated': '0',
     'policy': {
       'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
       'kind': 'Policy',
@@ -607,7 +607,7 @@ export const sidePanelPoliciesAllCompliant = [
       ]
     },
     'total': '1',
-    'violated': '1',
+    'violated': '0',
     'policy': {
       'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
       'kind': 'Policy',

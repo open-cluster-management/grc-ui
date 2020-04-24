@@ -1663,6 +1663,116 @@ exports[`PoliciesTable 2 renders expand as expected 1`] = `
 </div>
 `;
 
+exports[`PoliciesTable 3 renders expand as expected 1`] = `
+<div
+  className="overview-content"
+>
+  <div
+    className="bx--module bx--module--double structured-list-module"
+  >
+    <div
+      className="bx--module__inner"
+    >
+      <div
+        className="bx--module__content"
+      >
+        <table
+          className="bx--data-table-v2 resource-table-main simple-table bx--data-table-v2--zebra"
+        >
+          <thead
+            className={undefined}
+          >
+            <tr
+              className={undefined}
+            />
+          </thead>
+          <tbody
+            className={undefined}
+          >
+            <tr
+              className="bx--parent-row-v2"
+              data-parent-row={true}
+            >
+              <td
+                className="bx--table-expand-v2"
+                data-previous-value={undefined}
+                headers="expand"
+              >
+                <button
+                  aria-label="Overflow-menu"
+                  className="bx--table-expand-v2__button"
+                  onClick={[Function]}
+                  title={undefined}
+                >
+                  <svg
+                    alt="Provide a description that will be used as the title"
+                    aria-label="Provide a description that will be used as the title"
+                    className="bx--table-expand-v2__svg"
+                    fill={undefined}
+                    fillRule="evenodd"
+                    height="12"
+                    name={undefined}
+                    role="img"
+                    style={undefined}
+                    viewBox="0 0 7 12"
+                    width="7"
+                  >
+                    <title>
+                      Provide a description that will be used as the title
+                    </title>
+                    <path
+                      d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+            <tr
+              className="bx--parent-row-v2"
+              data-parent-row={true}
+            >
+              <td
+                className="bx--table-expand-v2"
+                data-previous-value={undefined}
+                headers="expand"
+              >
+                <button
+                  aria-label="Overflow-menu"
+                  className="bx--table-expand-v2__button"
+                  onClick={[Function]}
+                  title={undefined}
+                >
+                  <svg
+                    alt="Provide a description that will be used as the title"
+                    aria-label="Provide a description that will be used as the title"
+                    className="bx--table-expand-v2__svg"
+                    fill={undefined}
+                    fillRule="evenodd"
+                    height="12"
+                    name={undefined}
+                    role="img"
+                    style={undefined}
+                    viewBox="0 0 7 12"
+                    width="7"
+                  >
+                    <title>
+                      Provide a description that will be used as the title
+                    </title>
+                    <path
+                      d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`PoliciesView view renders expand as expected 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
@@ -2293,7 +2403,7 @@ ShallowWrapper {
             ],
           },
           "total": "1",
-          "violated": "1",
+          "violated": "0",
         },
         Object {
           "__typename": "ClusterInfo",
@@ -2488,7 +2598,7 @@ ShallowWrapper {
             ],
           },
           "total": "1",
-          "violated": "1",
+          "violated": "0",
         },
       ]
     }
