@@ -309,7 +309,7 @@ Array [
   Object {
     "choice": "EMPTY_CHOICE",
     "description": Array [
-      "We will continue to monitor and display any application policy violations so you can easily find them here.",
+      "We will continue to monitor and display any application policy violations.",
     ],
     "name": "No other application policy violations.",
   },
@@ -601,7 +601,7 @@ Array [
   Object {
     "choice": "EMPTY_CHOICE",
     "description": Array [
-      "We will continue to monitor and display any application policy violations so you can easily find them here.",
+      "We will continue to monitor and display any application policy violations.",
     ],
     "name": "No other application policy violations.",
   },
@@ -1533,7 +1533,7 @@ Array [
   Object {
     "choice": "EMPTY_CHOICE",
     "description": Array [
-      "We will continue to monitor and display any application policy violations so you can easily find them here.",
+      "We will continue to monitor and display any application policy violations.",
     ],
     "name": "No other application policy violations.",
   },
@@ -1873,7 +1873,7 @@ Array [
   Object {
     "choice": "EMPTY_CHOICE",
     "description": Array [
-      "We will continue to monitor and display any application policy violations so you can easily find them here.",
+      "We will continue to monitor and display any application policy violations.",
     ],
     "name": "No other application policy violations.",
   },

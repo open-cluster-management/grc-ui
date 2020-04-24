@@ -6,6 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
 'use strict'
 
 import {diff} from 'deep-diff'
@@ -104,6 +106,7 @@ export const generateYAML = (template, controlData) => {
   })
 
   let yaml = template(templateData) || ''
+  yaml = yaml.replace(/[\r\n]+/g, '\n')
 
   // find indent of key and indent the whole snippet
   Object.entries(snippetMap).forEach(([key, replace]) => {
@@ -111,7 +114,7 @@ export const generateYAML = (template, controlData) => {
     yaml = yaml.replace(regex, (str) => {
       const inx = str.indexOf(key)
       const indent = (inx !== -1) ? str.substring(0, inx) : '    '
-      return indent + replace.replace(/\n/g, '\n' + indent)
+      return indent + replace.replace(/[\r\n]+/g, '\n' + indent)
     })
   })
   if (!yaml.endsWith('\n')) {
@@ -166,7 +169,9 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
             case 'N':
               // convert new array item to new range
               kind = 'N'
-              obj = obj.$v[index]
+              if (obj.$l<=1) {
+                obj = obj.$v[index]
+              }
               break
             case 'D':
               // if array delete, ignore any other edits within array
@@ -202,7 +207,9 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
         switch (kind) {
         case 'E': {// edited
           if (obj.$v || obj.$v===false) { // if no value ignore--all values removed from a key
-            const col = newYAMLLines[obj.$r].indexOf(obj.$v)
+            const line = newYAMLLines[obj.$r].replace(/\./g, '_')
+            const value = (obj.$v+'').replace(/\./g, '_')
+            const col = line.indexOf(value)
             r.start = {row: obj.$r, column: col}
             r.end = {row: obj.$r, column: col+obj.$v.toString().length}
             ranges.push(r)

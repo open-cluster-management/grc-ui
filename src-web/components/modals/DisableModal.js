@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -70,6 +73,7 @@ DisableModal.propTypes = {
   label: PropTypes.shape({
     heading: PropTypes.string,
     label: PropTypes.string,
+    primaryBtn: PropTypes.string,
   }),
   locale: PropTypes.string,
   open:  PropTypes.bool,

@@ -21,7 +21,7 @@ import _uniqueId from 'lodash/uniqueId'
 const ResourceTableRowExpandableContent = ({ items }, context) =>
   <StructuredListWrapper>
     <StructuredListHead>
-      <StructuredListRow head>
+      <StructuredListRow head key={_uniqueId('SLRowHeader')}>
         <StructuredListCell head>
           <div>{msgs.get('formfield.name', context.locale)}</div>
         </StructuredListCell>

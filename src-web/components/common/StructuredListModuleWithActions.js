@@ -74,7 +74,7 @@ const StructuredListModule = ({
                 </StructuredListRow>)
               }
               else{
-                return (<StructuredListRow>
+                return (<StructuredListRow key={_uniqueId('SLRow')}>
                   {row.cells.map((cell, index) =>
                     <StructuredListCell key={_uniqueId('key')}>
                       { index === 0 ? <p>{transform(data, cell, context.locale)}</p> : transform(data, cell, context.locale)}

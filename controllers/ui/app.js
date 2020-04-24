@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 const ReactDOMServer = require('react-dom/server'),
@@ -101,6 +104,7 @@ function fetchHeader(req, res, store, context) {
           </Provider>
         ),
         contextPath: config.get('contextPath'),
+        headerContextPath: config.get('headerContextPath'),
         state: store.getState(),
         props: context,
         header: header,

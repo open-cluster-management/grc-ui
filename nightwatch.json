@@ -16,7 +16,7 @@
         "on_failure": true
       },
       "globals": {
-        "waitForConditionTimeout": 60000
+        "waitForConditionTimeout": 100000
       }
     },
     "remote": {
@@ -33,6 +33,7 @@
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
+        "acceptInsecureCerts": true,
         "chromeOptions": {
           "w3c": false,
           "args" : [
@@ -72,6 +73,7 @@
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
+        "acceptInsecureCerts": true,
         "chromeOptions": {
           "w3c": false,
           "args" : [

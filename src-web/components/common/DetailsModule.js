@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -14,7 +17,7 @@ import _ from 'lodash'
 import { Module, ModuleBody, ModuleHeader } from 'carbon-addons-cloud-react'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
-
+import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/structured-list.scss')
@@ -39,7 +42,8 @@ class DetailsModule extends React.PureComponent {
         const entry = []
         entry[0] = item.cells[0].resourceKey
         const entryData = _.get(listData, item.cells[1].resourceKey, '-')
-        typeof(entryData) === 'object'? entry[1] = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ') : entry[1] = entryData
+        const replacedData = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
+        entry[1] = typeof(entryData) === 'object'? replacedData : entryData
         oneTableData.push(entry)
       })
       tablesData.push(oneTableData)
@@ -69,7 +73,7 @@ class DetailsModule extends React.PureComponent {
     for( let i=0; i<tables.length; i++){
       moduleBody.push(tables[i])
       if(i !== tables.length -1 ) {
-        moduleBody.push(<VerticalDivider key={Math.random()} />)
+        moduleBody.push(<VerticalDivider key={_uniqueId('VerticalDivider')} />)
       }
     }
     return React.createElement('div',{className: 'new-structured-list'}, moduleBody)
