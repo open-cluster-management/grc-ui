@@ -6,11 +6,13 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
 'use strict'
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import { sidePanelPolicies, sidePanelResourceTypePolicies, sidePanelClusters, sidePanelResourceTypeClusters } from './ModalsTestingData'
+import { sidePanelPolicies, sidePanelPoliciesAllCompliant, sidePanelResourceTypePolicies, sidePanelClusters, sidePanelResourceTypeClusters } from './ModalsTestingData'
 import PolicySidePanelDetailsModal, { PoliciesTable, ClustersOrApplicationsTable } from '../../../../src-web/components/modals/PolicySidePanelDetailsModal'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
@@ -21,6 +23,21 @@ describe('PoliciesView view', () => {
     const component = shallow(<PolicySidePanelDetailsModal
       title = {''}
       data = {sidePanelPolicies}
+      resourceType = {sidePanelResourceTypePolicies}
+      locale = {'en-US'}
+      open = {true}
+      updateModal = {updateModal}
+    />)
+    expect(component).toMatchSnapshot()
+  })
+})
+
+describe('PoliciesView view', () => {
+  const updateModal = jest.fn()
+  it('renders expand as expected', () => {
+    const component = shallow(<PolicySidePanelDetailsModal
+      title = {''}
+      data = {sidePanelPoliciesAllCompliant}
       resourceType = {sidePanelResourceTypePolicies}
       locale = {'en-US'}
       open = {true}
@@ -68,6 +85,21 @@ describe('PoliciesTable 2', () => {
       <BrowserRouter>
         <PoliciesTable
           items = {[]}
+          staticResourceData = {sidePanelResourceTypePolicies}
+          inapplicable = {'N/A'}
+        />
+      </BrowserRouter>
+    )
+    expect(component).toMatchSnapshot()
+  })
+})
+
+describe('PoliciesTable 3', () => {
+  it('renders expand as expected', () => {
+    const component = renderer.create(
+      <BrowserRouter>
+        <PoliciesTable
+          items = {sidePanelPoliciesAllCompliant}
           staticResourceData = {sidePanelResourceTypePolicies}
           inapplicable = {'N/A'}
         />

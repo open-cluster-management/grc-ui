@@ -91,7 +91,7 @@ function createPolicy(browser, name, yaml, time) {
   this.click('.bx--breadcrumb > div:nth-child(1)')
 }
 
-function checkViolations(name, violationExpected) {
+function checkViolations(name, violationExpected, violationText) {
   this.waitForElementVisible('@searchInput')
   this.clearValue('@searchInput')
   this.setValue('@searchInput', name)
@@ -100,6 +100,9 @@ function checkViolations(name, violationExpected) {
   this.click('#violation-tab')
   if (violationExpected) {
     this.waitForElementPresent('#violations-table-container')
+    if (violationText) {
+      this.expect.element('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(violationText)
+    }
   } else {
     this.waitForElementPresent('.no-resource')
   }

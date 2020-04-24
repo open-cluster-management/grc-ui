@@ -226,7 +226,7 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
     const objectTemplates = _.get(spec, 'object-templates', [])
     const roleTemplates = _.get(spec, 'role-templates', [])
     const policyTemplates = _.get(spec, 'policy-templates', [])
-    const id = _.get(policy, metaNameStr, 'policy'+index)
+    const id = _.get(policy, metaNameStr, `policy${index}`)
     for (const template of objectTemplates) {
       if (_.get(template, sCompliantStr,'').toLowerCase() !== 'compliant') {
         violatedNum += 1
@@ -270,7 +270,7 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
       return {...policy, id, violatedNum, subItems}
     }
     else {
-      const subItems = [{ id: 'inapplicable'+index, cells: [inapplicable, inapplicable+' ', inapplicable+'  '] }]
+      const subItems = [{ id: `inapplicable${index}`, cells: [inapplicable, `${inapplicable} `, `${inapplicable} `] }]
       return {...policy, id, violatedNum, subItems}
     }
   })
@@ -290,7 +290,7 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
   items = items.map((cluster, index) => {
     const policy = _.get(cluster, 'policy', [])
     const violatedNum = _.get(cluster, 'violated', 0)
-    const id = _.get(cluster, metaNameStr, 'cluster'+index)
+    const id = _.get(cluster, metaNameStr, `cluster${index}`)
 
     if(violatedNum > 0) {
       const spec = _.get(policy, 'spec', '')
@@ -329,7 +329,7 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
       return {...cluster, id, subItems}
     }
     else {
-      const subItems = [{ id: 'inapplicable'+index, cells: [inapplicable, inapplicable+' ', inapplicable+'  '] }]
+      const subItems = [{ id: `inapplicable${index}`, cells: [inapplicable, inapplicable+' ', inapplicable+'  '] }]
       return {...cluster, id, subItems}
     }
   })
