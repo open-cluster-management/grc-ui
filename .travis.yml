@@ -3,7 +3,6 @@ language: node_js
 
 services:
   - docker
-  - xvfb
 
 branches:
   only:
@@ -12,10 +11,7 @@ branches:
 addons:
   packages:
     - openjdk-8-jdk
-addons:
   chrome: stable
-
-addons:
   sonarcloud:
     organization: "open-cluster-management"
     token:
@@ -53,7 +49,7 @@ jobs:
     - stage: unit-test
       name: "Build and run unit tests"
       script:
-        - make copyright-check TRAVIS_BRANCH=${TRAVIS_BRANCH} TRAVIS_PULL_REQUEST_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH}
+        - make copyright-check TRAVIS_BRANCH=${TRAVIS_BRANCH}
         - make sonar/js/jest-init
         - make component/test/unit
         - make sonar/js
