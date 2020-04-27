@@ -39,6 +39,7 @@ export default {
     },
     {
       msgKey: 'table.header.remediation',
+      information: 'grc.header.tooltip',
       resourceKey: 'remediation',
     },
     {

@@ -14,7 +14,7 @@
 import React from 'react'
 import resources from '../../../lib/shared/resources'
 import { PAGE_SIZES } from '../../actions/index'
-import { PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox } from 'carbon-components-react'
+import { PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox, TooltipIcon } from 'carbon-components-react'
 import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import { transform } from '../../../lib/client/resource-helper'
@@ -143,6 +143,13 @@ export class ResourceTable extends React.Component {
                             data-key={header.key}
                             data-default-key={staticResourceData.defaultSortField}>
                             <span className='bx--table-header-label'>{header.header}</span>
+                            { header.information &&
+                            <TooltipIcon align='end' tooltipText={header.information}>
+                              <svg className='info-icon'>
+                                <use href={'#diagramIcons_info'} ></use>
+                              </svg>
+                            </TooltipIcon>
+                            }
                             <Icon
                               className='bx--table-sort-v2__icon'
                               name='caret--down'
@@ -244,7 +251,11 @@ export class ResourceTable extends React.Component {
     let headers = staticResourceData.tableKeys.filter(tableKey => {
       return tableKey.disabled ? typeof tableKey.disabled === 'function' ? tableKey.disabled(itemIds && itemIds.map(id => items[id])) : !tableKey.disabled : tableKey
     })
-    headers = headers.map(tableKey => ({ key: tableKey.resourceKey, header: tableKey.dropdown ? '' : msgs.get(tableKey.msgKey, locale) }))
+    headers = headers.map(tableKey => ({
+      key: tableKey.resourceKey,
+      header: tableKey.dropdown ? '' : msgs.get(tableKey.msgKey, locale),
+      information: tableKey.information ? msgs.get(tableKey.information, locale) : ''
+    }))
     tableActions && !lodash.isEmpty(tableActions) && headers.push({ key: 'action', header: ''})
     return headers
   }
