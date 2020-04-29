@@ -34,9 +34,15 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Name
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Name
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -50,9 +56,15 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Namespace
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Namespace
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -66,9 +78,15 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Enforcement
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Enforcement
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -91,9 +109,15 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Exclude namespaces
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Exclude namespaces
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -107,9 +131,15 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Include namespaces
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Include namespaces
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -123,9 +153,15 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Cluster violations
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Cluster violations
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -148,9 +184,15 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Categories
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Categories
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -164,9 +206,15 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Controls
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Controls
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -180,9 +228,15 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Standards
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Standards
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -559,6 +613,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           Name
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -596,6 +651,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           Compliance Type
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -633,6 +689,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           API version
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -670,6 +727,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           Kind
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -707,6 +765,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           Last transition
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -744,6 +803,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           Status
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."

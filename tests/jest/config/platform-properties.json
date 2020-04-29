@@ -243,6 +243,7 @@
   "policy.template.roleRef": "Role reference",
   "policy.template.roleSubjects": "Role subjects",
   "grc.header.tooltip": "A core service that enables operators to define multicluster policies needed to meet enterprise requirements and standards.",
+  "grc.remediation.tooltip": "Depending on the type of controller you are using, the enforce capability may not be available. In those cases, auto-remediation is not executed. Manual remediation actions are recommended.",
   "product.copyright": "© 2018 IBM. All rights reserved.",
   "policy.create.tooltip": "Creates a resource that generates reports and validates cluster compliance based on your specified security standards, categories, and controls.",
   "policy.create.name.tooltip": "The name of your security policy.",

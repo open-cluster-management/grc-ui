@@ -71,15 +71,12 @@ class DetailsModule extends React.PureComponent {
             <td className='structured-list-table-item' key={`list-item-${tableData[row][0]}`} >
               <div className='structured-list-table-item-header'>
                 <div className='structured-list-table-item-name'>{msgs.get(tableData[row][0], this.context.locale)}</div>
-                {tableData[row][2] ? // no third column no tooltip
+                {tableData[row][2] && // no third column no tooltip
                   <TooltipIcon align='end' tooltipText={msgs.get(tableData[row][2], this.context.locale)}>
                     <svg className='info-icon'>
                       <use href={'#diagramIcons_info'} ></use>
                     </svg>
-                  </TooltipIcon>
-                  :
-                  ''
-                }
+                  </TooltipIcon>}
               </div>
             </td>
           )
