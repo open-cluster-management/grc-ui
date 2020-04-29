@@ -74,8 +74,30 @@ export const initializeControlData = (template, initialControlData) =>{
       return path.replace('.', '.$raw.')
     })
 
+    control = removeCisPolicyTemplate(control)
+
     return control
   })
+}
+
+// don't show Cis policy related if featureFlags_cisPolicyTemplate is true
+export const removeCisPolicyTemplate = (control) => {
+  // remove Cis from available item
+  if (Array.isArray(control.available)) {
+    _.remove(control.available, (availableItem) => {
+      return availableItem.toLowerCase().includes('cispolicy')
+    })
+  }
+  // remove Cis from available map
+  if (control.availableMap && typeof control.availableMap === 'object') {
+    Object.keys(control.availableMap).forEach((mapItem) => {
+      if (mapItem.toLowerCase().includes('cispolicy')) {
+        delete control.availableMap[mapItem]
+      }
+    })
+  }
+
+  return control
 }
 
 // don't save user data until they create
