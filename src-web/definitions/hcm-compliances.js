@@ -496,6 +496,7 @@ export default {
         cells: [
           {
             resourceKey: 'description.title.enforcement',
+            information: 'grc.remediation.tooltip',
             type: 'i18n'
           },
           {
