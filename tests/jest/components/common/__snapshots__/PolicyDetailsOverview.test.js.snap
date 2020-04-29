@@ -489,7 +489,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                     <div
                       className="bx--structured-list-td"
                     >
-                      placement-1569249226915-policy-test
+                      binding-1569249226915-policy-test
                     </div>
                   </div>
                   <div
@@ -521,7 +521,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                     <div
                       className="bx--structured-list-td"
                     >
-                      -
+                      placement-1569249226915-policy-test
                     </div>
                   </div>
                   <div

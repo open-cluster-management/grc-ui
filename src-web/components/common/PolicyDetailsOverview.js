@@ -228,9 +228,12 @@ export class PolicyDetailsOverview extends React.PureComponent{
       }
     }
 
-    let itemPP = '-'
+    let itemPP = '-', itemPB = '-'
     if (item.placementPolicies && Array.isArray(item.placementPolicies)) {
       itemPP = item.placementPolicies[0]
+    }
+    if (item.placementBindings && Array.isArray(item.placementBindings)) {
+      itemPB = item.placementBindings[0]
     }
     return (
       <div className='overview-content'>
@@ -254,7 +257,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
               {React.cloneElement(modulesSecond[0], { ...staticResourceData.placementPolicyKeys.detailKeys, data:itemPP })}
             </div>
             <div className='overview-content-second-left'>
-              {React.cloneElement(modulesSecond[1], { ...staticResourceData.placementBindingKeys.detailKeys, data:itemPP })}
+              {React.cloneElement(modulesSecond[1], { ...staticResourceData.placementBindingKeys.detailKeys, data:itemPB })}
             </div>
           </div>}
         </div>
