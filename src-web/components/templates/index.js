@@ -10,6 +10,7 @@
  */
 'use strict'
 
+import config from '../../../lib/shared/config'
 import specPodRole from './spec-rolebinding.yaml'
 import specPodSecurity from './spec-psp.yaml'
 // import specPodNetwork from './spec-network.yaml'
@@ -28,7 +29,7 @@ import specCisOcp from './spec-cis-ocp.yaml'
 import specScc from './spec-scc.yaml'
 import specImv from './spec-imagemanifestvuln.yaml'
 
-export {
+const Choices = {
   specPodRole,
   specPodSecurity,
   // specPodNetwork,
@@ -42,8 +43,17 @@ export {
   // specVAsecurity,
   // specKubeEncryption,
   // specAudit,
-  specCis,
-  specCisOcp,
   specScc,
   specImv,
 }
+
+// don't show Cis policy related if featureFlags_cisPolicyTemplate is false
+if (config.featureFlags_cisPolicyTemplate) {
+  Choices.specCis = specCis
+  Choices.specCisOcp = specCisOcp
+}
+
+// eslint-disable-next-line no-console
+console.log(JSON.stringify(Choices))
+
+export default Choices
