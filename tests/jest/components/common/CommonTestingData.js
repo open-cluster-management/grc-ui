@@ -5060,12 +5060,16 @@ export const staticResourceDataPolicyOverview = {
         'cells': [
           {
             'resourceKey': 'description.title.enforcement',
+            'information': 'grc.remediation.tooltip',
             'type': 'i18n'
           },
           {
             'resourceKey': 'enforcement'
           }
         ]
+      },
+      {
+        'cells': null
       },
       {
         'cells': [
