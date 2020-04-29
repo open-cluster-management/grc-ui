@@ -53,7 +53,4 @@ if (config.featureFlags_cisPolicyTemplate) {
   Choices.specCisOcp = specCisOcp
 }
 
-// eslint-disable-next-line no-console
-console.log(JSON.stringify(Choices))
-
 export default Choices
