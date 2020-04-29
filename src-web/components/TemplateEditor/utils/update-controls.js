@@ -14,6 +14,7 @@
 import jsYaml from 'js-yaml'
 import YamlParser from '../components/YamlParser'
 import _ from 'lodash'
+import config from '../../../../lib/shared/config'
 
 export const initializeControlData = (template, initialControlData) =>{
   return initialControlData.map(control=>{
@@ -74,13 +75,15 @@ export const initializeControlData = (template, initialControlData) =>{
       return path.replace('.', '.$raw.')
     })
 
-    control = removeCisPolicyTemplate(control)
+    // don't show Cis policy related if featureFlags_cisPolicyTemplate is false
+    if (!config.featureFlags_cisPolicyTemplate) {
+      control = removeCisPolicyTemplate(control)
+    }
 
     return control
   })
 }
 
-// don't show Cis policy related if featureFlags_cisPolicyTemplate is true
 export const removeCisPolicyTemplate = (control) => {
   // remove Cis from available item
   if (Array.isArray(control.available)) {
