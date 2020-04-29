@@ -506,7 +506,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     className="bx--tooltip-icon"
                   >
                     <button
-                      aria-label="Depending on the type of controller you are using, the enforce capability may not be available. In those cases, auto-remediation is not executed. Manual remediation actions are recommended."
+                      aria-label="Some policy controllers might not support the enforce feature. If the enforce feature is not supported by the controller, you must remediate it manually."
                       className="bx--tooltip__trigger bx--tooltip--icon__bottom"
                     >
                       <svg
