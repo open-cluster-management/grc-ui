@@ -40,10 +40,10 @@ class DetailsModule extends React.PureComponent {
     _.forEach(itemsForEachTable, (items) => {
       const oneTableData = []
       _.forEach(items, (item) => {
-        if (item.cells && Array.isArray(item.cells)) {
+        if (Array.isArray(item.cells) && item.cells[0]) {
           const entry = []
-          entry[0] = item.cells[0].resourceKey
-          const entryData = _.get(listData, item.cells[1].resourceKey, '-')
+          entry[0] = item.cells[0].resourceKey ? item.cells[0].resourceKey : '-'
+          const entryData = item.cells[1] ? _.get(listData, item.cells[1].resourceKey, '-') : '-'
           const replacedData = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
           entry[1] = typeof(entryData) === 'object' ? replacedData : entryData
           // third column entry[2] is tooltip inforamtion, if not exist then no tooltip

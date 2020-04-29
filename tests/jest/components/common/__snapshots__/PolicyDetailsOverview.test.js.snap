@@ -72,6 +72,44 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                     mcm
                   </td>
                 </tr>
+              </tbody>
+            </table>
+            <span
+              className="vertical-divider"
+            />
+            <table
+              className="new-structured-list-table"
+            >
+              <tbody>
+                <tr
+                  className="new-structured-list-table-row"
+                >
+                  <td
+                    className="structured-list-table-item"
+                  >
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      />
+                    </div>
+                  </td>
+                  <td
+                    className="structured-list-table-data"
+                  >
+                    -
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <span
+              className="vertical-divider"
+            />
+            <table
+              className="new-structured-list-table"
+            >
+              <tbody>
                 <tr
                   className="new-structured-list-table-row"
                 >
@@ -86,6 +124,23 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                       >
                         Enforcement
                       </div>
+                      <div
+                        align="end"
+                        className="bx--tooltip-icon"
+                      >
+                        <button
+                          aria-label="Depending on the type of controller you are using, the enforce capability may not be available. In those cases, auto-remediation is not executed. Manual remediation actions are recommended."
+                          className="bx--tooltip__trigger bx--tooltip--icon__bottom"
+                        >
+                          <svg
+                            className="info-icon"
+                          >
+                            <use
+                              href="#diagramIcons_info"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </td>
                   <td
@@ -94,15 +149,6 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                     inform
                   </td>
                 </tr>
-              </tbody>
-            </table>
-            <span
-              className="vertical-divider"
-            />
-            <table
-              className="new-structured-list-table"
-            >
-              <tbody>
                 <tr
                   className="new-structured-list-table-row"
                 >
@@ -145,103 +191,6 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                     className="structured-list-table-data"
                   >
                       default  
-                  </td>
-                </tr>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <div
-                      className="structured-list-table-item-header"
-                    >
-                      <div
-                        className="structured-list-table-item-name"
-                      >
-                        Cluster violations
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    2/2
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <span
-              className="vertical-divider"
-            />
-            <table
-              className="new-structured-list-table"
-            >
-              <tbody>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <div
-                      className="structured-list-table-item-header"
-                    >
-                      <div
-                        className="structured-list-table-item-name"
-                      >
-                        Categories
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    SystemAndInformationIntegrity
-                  </td>
-                </tr>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <div
-                      className="structured-list-table-item-header"
-                    >
-                      <div
-                        className="structured-list-table-item-name"
-                      >
-                        Controls
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    VA
-                  </td>
-                </tr>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <div
-                      className="structured-list-table-item-header"
-                    >
-                      <div
-                        className="structured-list-table-item-name"
-                      >
-                        Standards
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    NIST
                   </td>
                 </tr>
               </tbody>
@@ -971,6 +920,15 @@ exports[`PolicyDetailsOverview component renders as expected 3`] = `
                     -
                   </td>
                 </tr>
+              </tbody>
+            </table>
+            <span
+              className="vertical-divider"
+            />
+            <table
+              className="new-structured-list-table"
+            >
+              <tbody>
                 <tr
                   className="new-structured-list-table-row"
                 >
@@ -982,9 +940,7 @@ exports[`PolicyDetailsOverview component renders as expected 3`] = `
                     >
                       <div
                         className="structured-list-table-item-name"
-                      >
-                        Enforcement
-                      </div>
+                      />
                     </div>
                   </td>
                   <td
@@ -1002,6 +958,45 @@ exports[`PolicyDetailsOverview component renders as expected 3`] = `
               className="new-structured-list-table"
             >
               <tbody>
+                <tr
+                  className="new-structured-list-table-row"
+                >
+                  <td
+                    className="structured-list-table-item"
+                  >
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Enforcement
+                      </div>
+                      <div
+                        align="end"
+                        className="bx--tooltip-icon"
+                      >
+                        <button
+                          aria-label="Depending on the type of controller you are using, the enforce capability may not be available. In those cases, auto-remediation is not executed. Manual remediation actions are recommended."
+                          className="bx--tooltip__trigger bx--tooltip--icon__bottom"
+                        >
+                          <svg
+                            className="info-icon"
+                          >
+                            <use
+                              href="#diagramIcons_info"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    className="structured-list-table-data"
+                  >
+                    -
+                  </td>
+                </tr>
                 <tr
                   className="new-structured-list-table-row"
                 >
@@ -1037,103 +1032,6 @@ exports[`PolicyDetailsOverview component renders as expected 3`] = `
                         className="structured-list-table-item-name"
                       >
                         Include namespaces
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    -
-                  </td>
-                </tr>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <div
-                      className="structured-list-table-item-header"
-                    >
-                      <div
-                        className="structured-list-table-item-name"
-                      >
-                        Cluster violations
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    -
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <span
-              className="vertical-divider"
-            />
-            <table
-              className="new-structured-list-table"
-            >
-              <tbody>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <div
-                      className="structured-list-table-item-header"
-                    >
-                      <div
-                        className="structured-list-table-item-name"
-                      >
-                        Categories
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    -
-                  </td>
-                </tr>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <div
-                      className="structured-list-table-item-header"
-                    >
-                      <div
-                        className="structured-list-table-item-name"
-                      >
-                        Controls
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    -
-                  </td>
-                </tr>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <div
-                      className="structured-list-table-item-header"
-                    >
-                      <div
-                        className="structured-list-table-item-name"
-                      >
-                        Standards
                       </div>
                     </div>
                   </td>
