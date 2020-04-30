@@ -33,15 +33,15 @@ module.exports = {
     page.navigate(url)
   },
 
-//   'IAM policy: create namespace ': (browser) => {
-//     const time = browser.globals.time
-//     const createNS = fs.readFileSync(path.join(__dirname, 'yaml/create_test_ns.yaml'))
-//     var yaml = createNS.toString()
-//     page.createPolicy(browser, 'policy-namespace-create-' + time, yaml, time)
-//     browser.pause(20000) // Wait for policy to create namespace 20s
-//     page.checkViolations('policy-namespace-create-' + time, false)
-//     page.deletePolicy('policy-namespace-create-' + time)
-//   },
+  //   'IAM policy: create namespace ': (browser) => {
+  //     const time = browser.globals.time
+  //     const createNS = fs.readFileSync(path.join(__dirname, 'yaml/create_test_ns.yaml'))
+  //     var yaml = createNS.toString()
+  //     page.createPolicy(browser, 'policy-namespace-create-' + time, yaml, time)
+  //     browser.pause(20000) // Wait for policy to create namespace 20s
+  //     page.checkViolations('policy-namespace-create-' + time, false)
+  //     page.deletePolicy('policy-namespace-create-' + time)
+  //   },
 
   'IAM policy: create iam-policy ': (browser) => {
     const time = browser.globals.time
