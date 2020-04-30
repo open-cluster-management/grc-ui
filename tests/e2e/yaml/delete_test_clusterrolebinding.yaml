@@ -20,13 +20,13 @@ spec:
         apiVersion: rbac.authorization.k8s.io/v1
         kind: ClusterRoleBinding
         metadata:
-          name: operate-pods-clusterrolebinding
+          name: e2e-test-crb-[TIME]
         roleRef:
           name: cluster-admin
           apiGroup: rbac.authorization.k8s.io
           kind: ClusterRole
         subjects:
-          - name: e2e-test
+          - name: e2e-user-1
             apiGroup: rbac.authorization.k8s.io
             kind: User
 ---

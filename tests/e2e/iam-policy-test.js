@@ -48,7 +48,7 @@ module.exports = {
     const createIamPolicy = fs.readFileSync(path.join(__dirname, 'yaml/create_test_iam_policy.yaml'))
     var yaml = createIamPolicy.toString()
     page.createPolicy(browser, 'policy-iampolicy-' + time, yaml, time)
-    browser.pause(20000) // Wait for policy to create iam-policy 20s
+    browser.pause(60000) // Wait for policy to create iam-policy 20s
     page.checkViolations('policy-iampolicy-' + time, false)
   },
 
@@ -61,7 +61,7 @@ module.exports = {
     page.checkViolations('policy-clusterrolebinding-test-' + time, false)
     page.deletePolicy('policy-clusterrolebinding-test-' + time)
 
-    browser.pause(300000) // Wait for iam policy to detect change 300s
+    browser.pause(60000) // Wait for iam policy to detect change 60s
     page.checkViolations('policy-iampolicy-' + time, true)
   },
 
@@ -74,7 +74,7 @@ module.exports = {
     page.checkViolations('policy-clusterrolebinding-delete-' + time, false)
     page.deletePolicy('policy-clusterrolebinding-delete-' + time)
 
-    browser.pause(300000) // Wait for iam policy to detect change 300s
+    browser.pause(120000) // Wait for iam policy to detect change 120s
     page.checkViolations('policy-iampolicy-' + time, false)
   },
 
