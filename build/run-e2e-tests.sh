@@ -29,4 +29,4 @@ docker container ls -a
 # wait for container to fully started
 sleep 10
 
-npm run test:e2e-headless
+npm run test:e2e
