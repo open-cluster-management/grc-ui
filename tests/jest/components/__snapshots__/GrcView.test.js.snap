@@ -425,6 +425,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   >
                     Policy name
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -462,6 +463,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   >
                     Namespace
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -499,6 +501,23 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   >
                     Remediation
                   </span>
+                  <div
+                    align="end"
+                    className="bx--tooltip-icon"
+                  >
+                    <button
+                      aria-label="Some policy controllers might not support the enforce feature. If the enforce feature is not supported by the controller, you must remediate it manually."
+                      className="bx--tooltip__trigger bx--tooltip--icon__bottom"
+                    >
+                      <svg
+                        className="info-icon"
+                      >
+                        <use
+                          href="#diagramIcons_info"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -536,6 +555,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   >
                     Cluster violations
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -573,6 +593,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   >
                     Standards
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -610,6 +631,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   >
                     Controls
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -647,6 +669,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   >
                     Categories
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -1617,6 +1640,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                   >
                     Description
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -1654,6 +1678,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                   >
                     Resources
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -1691,6 +1716,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                   >
                     Severity
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -1728,6 +1754,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                   >
                     Cluster
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -1765,6 +1792,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                   >
                     Standards
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -1802,6 +1830,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                   >
                     Controls
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -1839,6 +1868,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                   >
                     Categories
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
@@ -1876,6 +1906,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                   >
                     Update time
                   </span>
+                  
                   <svg
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."

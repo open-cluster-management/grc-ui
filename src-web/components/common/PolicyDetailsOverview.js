@@ -6,6 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc.
+*/
+
 'use strict'
 
 import React from 'react'
@@ -93,7 +96,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
         className='persistent'
         subtitle={msgs.get(error, locale)}
         kind='error' />
-    } else if (loading) {
+    } else if (loading || !item || !Array.isArray(item)) {
       return <Loading withOverlay={false} className='content-spinner' />
     } else {
       item = item[0]
@@ -124,7 +127,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
       />,
     ]
     const modulesBottom = []
-    const templates = this.getTemplates(item.raw.spec)
+    const templates = (item.raw && item.raw.spec) ? this.getTemplates(item.raw.spec) : []
     let templateType
 
     if (templates){
@@ -228,6 +231,13 @@ export class PolicyDetailsOverview extends React.PureComponent{
       }
     }
 
+    let itemPP = '-', itemPB = '-'
+    if (item.placementPolicies && Array.isArray(item.placementPolicies)) {
+      itemPP = item.placementPolicies[0]
+    }
+    if (item.placementBindings && Array.isArray(item.placementBindings)) {
+      itemPB = item.placementBindings[0]
+    }
     return (
       <div className='overview-content'>
         <div className='vertical-expend'>
@@ -247,10 +257,10 @@ export class PolicyDetailsOverview extends React.PureComponent{
           {modulesSecond.length > 0 &&
           <div className='overview-content-second'>
             <div className='overview-content-second-left'>
-              {React.cloneElement(modulesSecond[0], { ...staticResourceData.placementPolicyKeys.detailKeys, data:item.placementPolicies[0] })}
+              {React.cloneElement(modulesSecond[0], { ...staticResourceData.placementPolicyKeys.detailKeys, data:itemPP })}
             </div>
             <div className='overview-content-second-left'>
-              {React.cloneElement(modulesSecond[1], { ...staticResourceData.placementBindingKeys.detailKeys, data:item.placementBindings[0] })}
+              {React.cloneElement(modulesSecond[1], { ...staticResourceData.placementBindingKeys.detailKeys, data:itemPB })}
             </div>
           </div>}
         </div>

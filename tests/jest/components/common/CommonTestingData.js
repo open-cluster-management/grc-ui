@@ -4839,9 +4839,22 @@ export const staticResourceDataPolicyOverview = {
         ]
       },
       {
+        'cells': null
+      },
+      {
+        'cells': [null]
+      },
+      {
+        'cells': 'testing'
+      },
+      {
+        'cells': ['testing']
+      },
+      {
         'cells': [
           {
             'resourceKey': 'description.title.enforcement',
+            'information': 'grc.remediation.tooltip',
             'type': 'i18n'
           },
           {
@@ -5057,9 +5070,22 @@ export const staticResourceDataPolicyOverview = {
         ]
       },
       {
+        'cells': null
+      },
+      {
+        'cells': [null]
+      },
+      {
+        'cells': 'testing'
+      },
+      {
+        'cells': ['testing']
+      },
+      {
         'cells': [
           {
             'resourceKey': 'description.title.enforcement',
+            'information': 'grc.remediation.tooltip',
             'type': 'i18n'
           },
           {
@@ -5143,9 +5169,22 @@ export const staticResourceDataPolicyOverview = {
         ]
       },
       {
+        'cells': null
+      },
+      {
+        'cells': [null]
+      },
+      {
+        'cells': 'testing'
+      },
+      {
+        'cells': ['testing']
+      },
+      {
         'cells': [
           {
             'resourceKey': 'description.title.enforcement',
+            'information': 'grc.remediation.tooltip',
             'type': 'i18n'
           },
           {
