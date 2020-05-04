@@ -57,7 +57,9 @@ export const formatPoliciesToClustersTableData = (policies) => {
     policies.forEach((policy) => {
       const statuses = _.get(policy, 'raw.status.status', {})
       Object.entries(statuses).forEach(([cluster]) => {
-        if (!map.has(cluster)) map.set(cluster, [])
+        if (!map.has(cluster)) {
+          map.set(cluster, [])
+        }
         map.get(cluster).push(policy)
       })
     })
@@ -99,7 +101,9 @@ export const formatFindingsToClustersTableData = (findings) => {
   if (findings) {
     findings.forEach((finding) => {
       const cluster = _.get(finding, 'context.clusterName', '-')
-      if (!map.has(cluster)) map.set(cluster, [])
+      if (!map.has(cluster)) {
+        map.set(cluster, [])
+      }
       map.get(cluster).push(finding)
     })
     for (const [key, value] of map.entries()) {
@@ -153,7 +157,9 @@ export const formatApplicationTableData = (applications) => {
   //convert result object to array for definition
   const resultArray = []
   Object.entries(resultMap).forEach(result => {
-    if (result[1]) resultArray.push(result[1])
+    if (result[1]) {
+      resultArray.push(result[1])
+    }
   })
 
   return Array.from(resultArray)

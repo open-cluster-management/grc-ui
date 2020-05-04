@@ -92,8 +92,9 @@ export class OverviewView extends React.Component {
     const { loading, error, policies, findings, applications, activeFilters={} } = this.props
     hideResourceToolbar()
 
-    if (loading)
+    if (loading) {
       return <Loading withOverlay={false} className='content-spinner' />
+    }
 
     if (error) {
       if (error.name === 'PermissionError') {

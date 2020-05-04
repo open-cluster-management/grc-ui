@@ -156,8 +156,9 @@ export default class TemplateEditor extends React.Component {
     const {isLoaded, isFailed, error} = fetchControl || {isLoaded:true}
     const { showEditor, resetInx } = this.state
 
-    if (!isLoaded)
+    if (!isLoaded) {
       return <Loading withOverlay={false} className='content-spinner' />
+    }
 
     if (isFailed) {
       if (error.name === 'PermissionError') {
@@ -621,12 +622,14 @@ export default class TemplateEditor extends React.Component {
       }
       break
     case 'undo':
-      if (this.editor)
+      if (this.editor) {
         this.editor.undo()
+      }
       break
     case 'redo':
-      if (this.editor)
+      if (this.editor) {
         this.editor.redo()
+      }
       break
     case 'restore':
       this.resetEditor()

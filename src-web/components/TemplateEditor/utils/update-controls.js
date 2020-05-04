@@ -282,7 +282,9 @@ export const parseYAML = (yaml) => {
       $synced.$l = snip.split(/[\r\n]+/g).length
       values.push({$raw: obj, $yml: snip, $synced})
       absLine += $synced.$l
-      if (post) absLine++
+      if (post) {
+        absLine++
+      }
     })
   } catch (e) {
     const {mark={}, reason, message} = e

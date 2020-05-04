@@ -65,7 +65,9 @@ class TagInput extends React.Component {
     tags.forEach((item, index) => {
       if (!item.type) {
         const suggestion = suggestions.find(element => element.name === item.name)
-        if (suggestion) tags[index] = suggestion
+        if (suggestion) {
+          tags[index] = suggestion
+        }
       }
     })
     this.setState({ tags: tags })
@@ -101,7 +103,9 @@ class TagInput extends React.Component {
         input = suggestions.find(element => element.name === input.name)
       }
       if (!tags.find(n => n.name === input.name)) {
-        if (input && !tags.find(n => n.name === input.name)) this.updateSelectedTags([...tags, input], input)
+        if (input && !tags.find(n => n.name === input.name)) {
+          this.updateSelectedTags([...tags, input], input)
+        }
       }
     }
   }

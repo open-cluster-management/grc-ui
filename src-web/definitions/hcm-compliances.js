@@ -967,10 +967,12 @@ export function createComplianceLink(item = {}, ...param){
   if (param[2]) {
     return item.metadata.name
   } else {
-    if (item.raw.kind === 'Compliance')
+    if (item.raw.kind === 'Compliance') {
       return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name} (Deprecated)</Link>
-    else
+    }
+    else {
       return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
+    }
   }
 }
 

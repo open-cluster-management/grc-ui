@@ -46,7 +46,9 @@ export const HCMClusterFindingsList = createResourceReducer(resourceReducerFunct
 export { resourceFilters } from './filter'
 
 export function predicate(resourceType, action) {
-  if (lodash.isEqual(resourceType, action.resourceType)) return true
+  if (lodash.isEqual(resourceType, action.resourceType)) {
+    return true
+  }
   const result = lodash.find(lodash.values(resourceType), type => {
     if (typeof type === 'string') {
       return type.indexOf(action.resourceType) > -1

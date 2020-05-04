@@ -93,14 +93,17 @@ function searchTableCellHelper(search, tableKeys, item, context) {
       let found = false
       const searchKeys = searchField.replace(/[{}]/g, '').split(',')
       if (searchKeys && tableKey) searchKeys.forEach(searchKey => {
-        if (searchTableCell(item, tableKey, context, searchKey)) found = true
+        if (searchTableCell(item, tableKey, context, searchKey)) {
+          found = true
+        }
       })
       return found
     }
   }
   // return all results when user types cluster=
-  if (searchField === '')
+  if (searchField === '') {
     return true
+  }
 
   // by default, search all fields
   return tableKeys.find(tableKey => searchTableCell(item, tableKey, context, search))
@@ -110,8 +113,9 @@ const makeGetFilteredItemsSelector = (resourceType) => {
   return createSelector(
     [getItems, getSearch],
     (items, search) => items.filter((item) => {
-      if (lodash.isEmpty(search))
+      if (lodash.isEmpty(search)) {
         return true
+      }
 
       const tableKeys = ResourceDefinitions.getTableKeys(resourceType)
       if(document.getElementById('context')) {

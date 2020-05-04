@@ -64,7 +64,9 @@ class EditorBar extends React.Component {
     const menuItems=[]
     if (exceptions.length!==0) {
       exceptions.forEach(({text, row})=>{
-        if (text.length>64) text=text.substr(0,64)+'...'
+        if (text.length>64) {
+          text=text.substr(0,64)+'...'
+        }
         menuItems.push({
           text,
           row,

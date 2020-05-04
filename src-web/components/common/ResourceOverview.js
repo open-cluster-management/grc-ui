@@ -30,8 +30,9 @@ const ResourceOverview = ({
   resourceType
 }) => {
   localStorage.removeItem(MCM_OPEN_DIAGRAM_TAB_COOKIE)
-  if (!item)
+  if (!item) {
     return <Loading withOverlay={false} className='content-spinner' />
+  }
   const modulesRight = []
   const modulesBottom = []
   React.Children.map(modules, module => {

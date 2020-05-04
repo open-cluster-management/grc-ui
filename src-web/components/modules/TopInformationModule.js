@@ -57,7 +57,9 @@ export default class TopInformationModule extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { staticInfo } = this.props
     //next items, type when update filter on current page
-    if(staticInfo === true) return
+    if(staticInfo === true) {
+      return
+    }
     const { items, applications, type } = nextProps
     this.setCardData(items, applications, type)
   }

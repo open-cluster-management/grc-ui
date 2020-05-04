@@ -9,9 +9,13 @@
 'use strict'
 
 const truncate = function (fullStr, strLen, separator) {
-  if (fullStr === null || typeof fullStr === 'undefined') return fullStr
+  if (fullStr === null || typeof fullStr === 'undefined') {
+    return fullStr
+  }
 
-  if (fullStr.length <= strLen) return fullStr
+  if (fullStr.length <= strLen) {
+    return fullStr
+  }
 
   separator = separator || '...'
 

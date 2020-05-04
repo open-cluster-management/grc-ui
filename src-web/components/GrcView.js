@@ -121,8 +121,9 @@ export class GrcView extends React.Component {
     const { viewState } = this.state
     const { loading, error, grcItems, applications, activeFilters={}, secondaryHeaderProps, refreshControl, location } = this.props
     hideResourceToolbar()
-    if (loading)
+    if (loading) {
       return <Loading withOverlay={false} className='content-spinner' />
+    }
 
     if (error) {
       if (error.name === 'PermissionError') {
