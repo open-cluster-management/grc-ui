@@ -15,6 +15,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { Module, ModuleBody, ModuleHeader } from 'carbon-addons-cloud-react'
+import { TooltipIcon } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 import _uniqueId from 'lodash/uniqueId'
@@ -39,12 +40,18 @@ class DetailsModule extends React.PureComponent {
     _.forEach(itemsForEachTable, (items) => {
       const oneTableData = []
       _.forEach(items, (item) => {
-        const entry = []
-        entry[0] = item.cells[0].resourceKey
-        const entryData = _.get(listData, item.cells[1].resourceKey, '-')
-        const replacedData = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
-        entry[1] = typeof(entryData) === 'object'? replacedData : entryData
-        oneTableData.push(entry)
+        if (Array.isArray(item.cells) && item.cells[0]) {
+          const entry = []
+          entry[0] = item.cells[0].resourceKey ? item.cells[0].resourceKey : '-'
+          const entryData = item.cells[1] ? _.get(listData, item.cells[1].resourceKey, '-') : '-'
+          const replacedData = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
+          entry[1] = typeof(entryData) === 'object' ? replacedData : entryData
+          // third column entry[2] is tooltip inforamtion, if not exist then no tooltip
+          if (item.cells[0].information) {
+            entry[2] = item.cells[0].information
+          }
+          oneTableData.push(entry)
+        }
       })
       tablesData.push(oneTableData)
     })
@@ -60,13 +67,35 @@ class DetailsModule extends React.PureComponent {
       for( let row=0; row < numRows; row++){
         if(tableData[row]){
           const tableCells = []
-          tableCells.push(<td className='structured-list-table-item' key={`list-item-${tableData[row][0]}`} ><b>{msgs.get(tableData[row][0], this.context.locale)}</b></td>)
-          tableCells.push(<td className='structured-list-table-data' key={`list-item-${tableData[row][1]}`} >{tableData[row][1]}</td>)
-          const tableRow = <tr className = 'new-structured-list-table-row' key={`list-line-${row}-${tableData[row][0]}`} >{tableCells}</tr>
+          tableCells.push(
+            <td className='structured-list-table-item' key={`list-item-${tableData[row][0]}`} >
+              <div className='structured-list-table-item-header'>
+                <div className='structured-list-table-item-name'>{msgs.get(tableData[row][0], this.context.locale)}</div>
+                {tableData[row][2] && // no third column no tooltip
+                  <TooltipIcon align='end' tooltipText={msgs.get(tableData[row][2], this.context.locale)}>
+                    <svg className='info-icon'>
+                      <use href={'#diagramIcons_info'} ></use>
+                    </svg>
+                  </TooltipIcon>}
+              </div>
+            </td>
+          )
+          tableCells.push(
+            <td className='structured-list-table-data' key={`list-item-${tableData[row][1]}`} >
+              {tableData[row][1]}
+            </td>
+          )
+          const tableRow =
+            <tr className = 'new-structured-list-table-row' key={`list-line-${row}-${tableData[row][0]}`} >
+              {tableCells}
+            </tr>
           tableRows.push(tableRow)
         }
       }
-      const table = <table className = 'new-structured-list-table' key={`new-structured-list-${tableData[0][1]}`}><tbody>{tableRows}</tbody></table>
+      const table =
+        <table className = 'new-structured-list-table' key={`new-structured-list-${tableData[0][1]}`}>
+          <tbody>{tableRows}</tbody>
+        </table>
       tables.push(table)
     }
     const moduleBody = []
