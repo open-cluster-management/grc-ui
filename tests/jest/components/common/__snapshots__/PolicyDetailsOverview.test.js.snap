@@ -34,9 +34,15 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Name
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Name
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -50,30 +56,20 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Namespace
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Namespace
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
                   >
                     mcm
-                  </td>
-                </tr>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <b>
-                      Enforcement
-                    </b>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    inform
                   </td>
                 </tr>
               </tbody>
@@ -91,9 +87,83 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Exclude namespaces
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      />
+                    </div>
+                  </td>
+                  <td
+                    className="structured-list-table-data"
+                  >
+                    -
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <span
+              className="vertical-divider"
+            />
+            <table
+              className="new-structured-list-table"
+            >
+              <tbody>
+                <tr
+                  className="new-structured-list-table-row"
+                >
+                  <td
+                    className="structured-list-table-item"
+                  >
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Enforcement
+                      </div>
+                      <div
+                        align="end"
+                        className="bx--tooltip-icon"
+                      >
+                        <button
+                          aria-label="Some policy controllers might not support the enforce feature. If the enforce feature is not supported by the controller, you must remediate it manually."
+                          className="bx--tooltip__trigger bx--tooltip--icon__bottom"
+                        >
+                          <svg
+                            className="info-icon"
+                          >
+                            <use
+                              href="#diagramIcons_info"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    className="structured-list-table-data"
+                  >
+                    inform
+                  </td>
+                </tr>
+                <tr
+                  className="new-structured-list-table-row"
+                >
+                  <td
+                    className="structured-list-table-item"
+                  >
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Exclude namespaces
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
@@ -107,87 +177,20 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   <td
                     className="structured-list-table-item"
                   >
-                    <b>
-                      Include namespaces
-                    </b>
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Include namespaces
+                      </div>
+                    </div>
                   </td>
                   <td
                     className="structured-list-table-data"
                   >
                       default  
-                  </td>
-                </tr>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <b>
-                      Cluster violations
-                    </b>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    2/2
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <span
-              className="vertical-divider"
-            />
-            <table
-              className="new-structured-list-table"
-            >
-              <tbody>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <b>
-                      Categories
-                    </b>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    SystemAndInformationIntegrity
-                  </td>
-                </tr>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <b>
-                      Controls
-                    </b>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    VA
-                  </td>
-                </tr>
-                <tr
-                  className="new-structured-list-table-row"
-                >
-                  <td
-                    className="structured-list-table-item"
-                  >
-                    <b>
-                      Standards
-                    </b>
-                  </td>
-                  <td
-                    className="structured-list-table-data"
-                  >
-                    NIST
                   </td>
                 </tr>
               </tbody>
@@ -561,6 +564,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           Name
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -598,6 +602,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           Compliance Type
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -635,6 +640,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           API version
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -672,6 +678,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           Kind
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -709,6 +716,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           Last transition
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -746,6 +754,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                         >
                           Status
                         </span>
+                        
                         <svg
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
@@ -810,6 +819,506 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PolicyDetailsOverview component renders as expected 2`] = `
+<div
+  aria-live="assertive"
+  className="bx--loading content-spinner"
+>
+  <svg
+    className="bx--loading__svg"
+    viewBox="-75 -75 150 150"
+  >
+    <title>
+      Loading
+    </title>
+    <circle
+      className={null}
+      cx="0"
+      cy="0"
+      r="37.5"
+    />
+  </svg>
+</div>
+`;
+
+exports[`PolicyDetailsOverview component renders as expected 3`] = `
+<div
+  className="overview-content"
+>
+  <div
+    className="vertical-expend"
+  >
+    <h5
+      className="section-title"
+    >
+      Policy details
+    </h5>
+    <div
+      className="bx--module bx--module--double new-structured-list-container"
+    >
+      <div
+        className="bx--module__inner"
+      >
+        <div
+          className="bx--module__content"
+        >
+          <div
+            className="new-structured-list"
+          >
+            <table
+              className="new-structured-list-table"
+            >
+              <tbody>
+                <tr
+                  className="new-structured-list-table-row"
+                >
+                  <td
+                    className="structured-list-table-item"
+                  >
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Name
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    className="structured-list-table-data"
+                  >
+                    -
+                  </td>
+                </tr>
+                <tr
+                  className="new-structured-list-table-row"
+                >
+                  <td
+                    className="structured-list-table-item"
+                  >
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Namespace
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    className="structured-list-table-data"
+                  >
+                    -
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <span
+              className="vertical-divider"
+            />
+            <table
+              className="new-structured-list-table"
+            >
+              <tbody>
+                <tr
+                  className="new-structured-list-table-row"
+                >
+                  <td
+                    className="structured-list-table-item"
+                  >
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      />
+                    </div>
+                  </td>
+                  <td
+                    className="structured-list-table-data"
+                  >
+                    -
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <span
+              className="vertical-divider"
+            />
+            <table
+              className="new-structured-list-table"
+            >
+              <tbody>
+                <tr
+                  className="new-structured-list-table-row"
+                >
+                  <td
+                    className="structured-list-table-item"
+                  >
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Enforcement
+                      </div>
+                      <div
+                        align="end"
+                        className="bx--tooltip-icon"
+                      >
+                        <button
+                          aria-label="Some policy controllers might not support the enforce feature. If the enforce feature is not supported by the controller, you must remediate it manually."
+                          className="bx--tooltip__trigger bx--tooltip--icon__bottom"
+                        >
+                          <svg
+                            className="info-icon"
+                          >
+                            <use
+                              href="#diagramIcons_info"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    className="structured-list-table-data"
+                  >
+                    -
+                  </td>
+                </tr>
+                <tr
+                  className="new-structured-list-table-row"
+                >
+                  <td
+                    className="structured-list-table-item"
+                  >
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Exclude namespaces
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    className="structured-list-table-data"
+                  >
+                    -
+                  </td>
+                </tr>
+                <tr
+                  className="new-structured-list-table-row"
+                >
+                  <td
+                    className="structured-list-table-item"
+                  >
+                    <div
+                      className="structured-list-table-item-header"
+                    >
+                      <div
+                        className="structured-list-table-item-name"
+                      >
+                        Include namespaces
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    className="structured-list-table-data"
+                  >
+                    -
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="vertical-expend"
+  >
+    <h5
+      className="section-title"
+    >
+      Placement
+    </h5>
+    <div
+      className="overview-content-second"
+    >
+      <div
+        className="overview-content-second-left"
+      >
+        <div
+          className="bx--module bx--module--double structured-list-module"
+          id={undefined}
+        >
+          <div
+            className="bx--module__inner"
+          >
+            <div
+              className="bx--module__header"
+              style={
+                Object {
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <h1
+                className="bx--module__title"
+              >
+                Placement rule
+              </h1>
+              <button
+                className="text-edit-button bx--btn bx--btn--sm bx--btn--primary"
+                disabled={false}
+                onClick={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                Edit
+              </button>
+            </div>
+            <div
+              className="bx--module__content"
+            >
+              <section
+                aria-label="Placement rule"
+                className="bx--structured-list bx--structured-list--condensed"
+              >
+                <div
+                  className="bx--structured-list-tbody"
+                  onKeyDown={[Function]}
+                >
+                  <div
+                    className="bx--structured-list-row"
+                  >
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <p>
+                        Name
+                      </p>
+                    </div>
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      -
+                    </div>
+                  </div>
+                  <div
+                    className="bx--structured-list-row"
+                  >
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <p>
+                        Namespace
+                      </p>
+                    </div>
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      -
+                    </div>
+                  </div>
+                  <div
+                    className="bx--structured-list-row"
+                  >
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <p>
+                        Cluster selector
+                      </p>
+                    </div>
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      -
+                    </div>
+                  </div>
+                  <div
+                    className="bx--structured-list-row"
+                  >
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <p>
+                        Decisions
+                      </p>
+                    </div>
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <div
+                        className="cluster-status-container"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="bx--structured-list-row"
+                  >
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <p>
+                        Timestamp
+                      </p>
+                    </div>
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      -
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="overview-content-second-left"
+      >
+        <div
+          className="bx--module bx--module--double structured-list-module"
+          id={undefined}
+        >
+          <div
+            className="bx--module__inner"
+          >
+            <div
+              className="bx--module__header"
+              style={
+                Object {
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <h1
+                className="bx--module__title"
+              >
+                Placement binding
+              </h1>
+              <button
+                className="text-edit-button bx--btn bx--btn--sm bx--btn--primary"
+                disabled={false}
+                onClick={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                Edit
+              </button>
+            </div>
+            <div
+              className="bx--module__content"
+            >
+              <section
+                aria-label="Placement binding"
+                className="bx--structured-list bx--structured-list--condensed"
+              >
+                <div
+                  className="bx--structured-list-tbody"
+                  onKeyDown={[Function]}
+                >
+                  <div
+                    className="bx--structured-list-row"
+                  >
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <p>
+                        Name
+                      </p>
+                    </div>
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      -
+                    </div>
+                  </div>
+                  <div
+                    className="bx--structured-list-row"
+                  >
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <p>
+                        Namespace
+                      </p>
+                    </div>
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      -
+                    </div>
+                  </div>
+                  <div
+                    className="bx--structured-list-row"
+                  >
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <p>
+                        Placement rule
+                      </p>
+                    </div>
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      -
+                    </div>
+                  </div>
+                  <div
+                    className="bx--structured-list-row"
+                  >
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <p>
+                        Subjects
+                      </p>
+                    </div>
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      -
+                    </div>
+                  </div>
+                  <div
+                    className="bx--structured-list-row"
+                  >
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      <p>
+                        Timestamp
+                      </p>
+                    </div>
+                    <div
+                      className="bx--structured-list-td"
+                    >
+                      -
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
           </div>
         </div>

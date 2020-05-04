@@ -580,26 +580,32 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                 Array [
                                   Object {
                                     "header": "Policy name",
+                                    "information": "",
                                     "key": "metadata.name",
                                   },
                                   Object {
                                     "header": "Remediation",
+                                    "information": "",
                                     "key": "remediation",
                                   },
                                   Object {
                                     "header": "Cluster violations",
+                                    "information": "",
                                     "key": "clusterCompliant",
                                   },
                                   Object {
                                     "header": "Standards",
+                                    "information": "",
                                     "key": "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]",
                                   },
                                   Object {
                                     "header": "Controls",
+                                    "information": "",
                                     "key": "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]",
                                   },
                                   Object {
                                     "header": "Categories",
+                                    "information": "",
                                     "key": "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]",
                                   },
                                 ]
