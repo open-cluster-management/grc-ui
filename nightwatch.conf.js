@@ -6,14 +6,13 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
- *******************************************************************************/
+ /* Copyright (c) 2020 Red Hat, Inc. */
 const config = require('./config')
 
 
 module.exports = (settings => {
 
-  const defaultUrl = `https://localhost:${config.get('httpPort')}`
+  let defaultUrl = `https://localhost:${config.get('httpPort')}`
   if(process.env.SELENIUM_CLUSTER){
     defaultUrl = process.env.SELENIUM_CLUSTER
   }

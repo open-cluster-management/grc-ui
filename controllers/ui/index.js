@@ -6,12 +6,13 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 const express = require('express'),
-    router = express.Router(),
-    app = require('./app'),
-    inspect = require('security-middleware')
+      router = express.Router(),
+      app = require('./app'),
+      inspect = require('security-middleware')
 
 router.all(['/', '/*'], inspect.ui(), app)
 
