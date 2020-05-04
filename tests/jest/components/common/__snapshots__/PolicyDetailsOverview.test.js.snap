@@ -350,7 +350,9 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                                 />
                               </svg>
                             </div>
-                            <p />
+                            <p>
+                              not compliant
+                            </p>
                           </div>
                         </div>
                       </div>
