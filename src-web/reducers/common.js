@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 /*
 Since these selectors are common (i.e used across different components and different parts of the store)
 we have to create unique selectors each invocation and the selectors need additional metata data sent
