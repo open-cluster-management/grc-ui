@@ -32,7 +32,7 @@ try{
   process.exit(0)  // Ignoring for now, once we get the right process in place we should fail the build.
 }
 
-var result = ''
+let result = ''
 if(currReport.total.lines.pct < prevReport.total.lines.pct){
   result += '\n  - Lines covered declined by: ' + (prevReport.total.lines.pct - currReport.total.lines.pct) + '%'
 }

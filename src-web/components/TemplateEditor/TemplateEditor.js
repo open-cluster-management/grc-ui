@@ -736,7 +736,7 @@ export default class TemplateEditor extends React.Component {
     const { portals={}, locale } = this.props
     const { editBtn } = portals
     if (editBtn) {
-      var portal = document.getElementById(editBtn)
+      const portal = document.getElementById(editBtn)
       if (portal) {
         const { showEditor } = this.state
         const handleToggle = () => {
@@ -771,7 +771,7 @@ export default class TemplateEditor extends React.Component {
     const { portals={}, createControl, locale } = this.props
     const { createBtn } = portals
     if (createControl && createBtn) {
-      var portal = document.getElementById(createBtn)
+      const portal = document.getElementById(createBtn)
       if (portal) {
         return ReactDOM.createPortal(
           <Button id={createBtn}
@@ -799,7 +799,7 @@ export default class TemplateEditor extends React.Component {
     const { portals={}, createControl, locale } = this.props
     const { cancelBtn } = portals
     if (createControl && cancelBtn) {
-      var portal = document.getElementById(cancelBtn)
+      const portal = document.getElementById(cancelBtn)
       if (portal) {
         const {cancelCreate} = createControl
         return ReactDOM.createPortal(

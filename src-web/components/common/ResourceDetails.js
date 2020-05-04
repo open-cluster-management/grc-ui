@@ -61,7 +61,7 @@ const withResource = (Component) => {
     componentWillMount() {
       const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
       if (pollInterval) {
-        var intervalId = setInterval(this.reload.bind(this), pollInterval)
+        const intervalId = setInterval(this.reload.bind(this), pollInterval)
         this.setState({ intervalId: intervalId })
       }
       this.props.fetchResource()

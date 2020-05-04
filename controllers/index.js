@@ -7,12 +7,12 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 'use strict'
-var express = require('express'),
+const express = require('express'),
     router = express.Router(),
     config = require('../config')
 
 //controllers
-var status = require('./status'),
+const status = require('./status'),
     ui = require('./ui')
 
 router.all(['/', '/status', '/livenessProbe', '/readinessProbe'], status)

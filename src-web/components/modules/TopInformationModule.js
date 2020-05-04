@@ -488,8 +488,8 @@ const TopInformations = ({cardData, handleClick}) => {
                   descDict[description[i]] = 1
                 }
               }
-              var sortedKeys = []
-              for(var key in descDict) {
+              const sortedKeys = []
+              for(const key in descDict) {
                 if (descDict.hasOwnProperty(key)) {
                   sortedKeys.push([ key, descDict[key] ])
                 }

@@ -8,22 +8,22 @@
  *******************************************************************************
  * Copyright (c) 2020 Red Hat, Inc.
  */
-var path = require('path'),
-    webpack = require('webpack'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
-    AssetsPlugin = require('assets-webpack-plugin'),
-    WebpackMd5Hash = require('webpack-md5-hash'),
-    FileManagerPlugin = require('filemanager-webpack-plugin'),
-    config = require('./config'),
-    CompressionPlugin = require('compression-webpack-plugin')
+const path = require('path'),
+      webpack = require('webpack'),
+      ExtractTextPlugin = require('extract-text-webpack-plugin'),
+      UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
+      AssetsPlugin = require('assets-webpack-plugin'),
+      WebpackMd5Hash = require('webpack-md5-hash'),
+      FileManagerPlugin = require('filemanager-webpack-plugin'),
+      config = require('./config'),
+      CompressionPlugin = require('compression-webpack-plugin')
 
-var NO_OP = () => { },
-    PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
+const NO_OP = () => { },
+      PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
 process.env.BABEL_ENV = 'client'
 
-var prodExternals = {}
+const prodExternals = {}
 
 module.exports = {
   context: __dirname,

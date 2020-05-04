@@ -135,7 +135,7 @@ export default class RefreshTimeSelect extends React.Component {
   // tooltip on dropdown is hardcoded
   fixTooltip = () => {
     if (this.refreshRef) {
-      var title = this.refreshRef.querySelector('title')
+      const title = this.refreshRef.querySelector('title')
       if (title) {
         title.innerHTML = msgs.get('choose.refresh', this.context.locale)
       }

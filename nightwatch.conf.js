@@ -8,12 +8,12 @@
  *******************************************************************************
  * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
-var config = require('./config')
+const config = require('./config')
 
 
 module.exports = (settings => {
 
-  var defaultUrl = `https://localhost:${config.get('httpPort')}`
+  const defaultUrl = `https://localhost:${config.get('httpPort')}`
   if(process.env.SELENIUM_CLUSTER){
     defaultUrl = process.env.SELENIUM_CLUSTER
   }

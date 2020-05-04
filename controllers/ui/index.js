@@ -8,7 +8,7 @@
  *******************************************************************************/
 'use strict'
 
-var express = require('express'),
+const express = require('express'),
     router = express.Router(),
     app = require('./app'),
     inspect = require('security-middleware')

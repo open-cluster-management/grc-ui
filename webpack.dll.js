@@ -7,15 +7,15 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 
-var path = require('path'),
-    webpack = require('webpack'),
-    UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
-    AssetsPlugin = require('assets-webpack-plugin'),
-    WebpackMd5Hash = require('webpack-md5-hash'),
-    CompressionPlugin = require('compression-webpack-plugin')
+const path = require('path'),
+      webpack = require('webpack'),
+      UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
+      AssetsPlugin = require('assets-webpack-plugin'),
+      WebpackMd5Hash = require('webpack-md5-hash'),
+      CompressionPlugin = require('compression-webpack-plugin')
 
-var NO_OP = () => { },
-    PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
+const NO_OP = () => { },
+      PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
 process.env.BABEL_ENV = 'client'
 

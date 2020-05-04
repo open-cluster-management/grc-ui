@@ -235,7 +235,7 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
       if (ranges.length) {
         const selection = editor.multiSelect
         selection.toSingleRange(ranges[0])
-        for (var i = ranges.length; i--; ) {
+        for (let i = ranges.length; i--; ) {
           selection.addRange(ranges[i], true)
         }
       } else {

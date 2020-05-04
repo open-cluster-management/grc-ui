@@ -83,7 +83,7 @@ function verifySummary(browser, url) {
 }
 function checkPolicySummaryCards(browser) {
   browser.elements('css selector','div.module-grc-cards > div:nth-child(2) > div', (cards) => {
-    for (var cardNum = 1; cardNum < cards.value.length + 1; cardNum++) {
+    for (let cardNum = 1; cardNum < cards.value.length + 1; cardNum++) {
       for (let i = 1; i <= 2; i++) {
         const cardInfo = `div.module-grc-cards > div:nth-child(2) > div:nth-child(${cardNum}) > div > div > div:nth-child(2)`
         this.waitForElementVisible(cardInfo)

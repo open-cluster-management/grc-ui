@@ -8,7 +8,7 @@
  *******************************************************************************/
 'use strict'
 
-var log4js = require('log4js'),
+const log4js = require('log4js'),
     logger = log4js.getLogger('request')
 
 module.exports = log4js.connectLogger(logger, {

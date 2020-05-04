@@ -15,9 +15,9 @@ const fs = require('fs')
 
 
 module.exports = async function () {
-  var content = fs.readFileSync(platformFilePath, { encoding: 'utf-8' })
+  const content = fs.readFileSync(platformFilePath, { encoding: 'utf-8' })
   if (content) {
-    var jsonObject = propertiesParser.parse(content)
+    const jsonObject = propertiesParser.parse(content)
     if (jsonObject) {
       const file = path.join(__dirname, '../../../tests/jest/config/platform-properties.json')
       jsonfile.writeFileSync(file, jsonObject, {spaces: 2, EOL: '\r\n'})
