@@ -15,7 +15,7 @@ import PropTypes from 'prop-types'
 import { hideResourceToolbar } from '../../lib/client/resource-helper'
 import { TemplateEditor } from './TemplateEditor'
 import policyTemplate from './templates/policy-template.hbs'
-import * as Choices from './templates'
+import Choices from './templates'
 import msgs from '../../nls/platform.properties'
 import _ from 'lodash'
 

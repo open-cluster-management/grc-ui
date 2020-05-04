@@ -38,14 +38,14 @@ module.exports = {
     const testIssuer = fs.readFileSync(path.join(__dirname, 'yaml/create_test_issuer.yaml'))
     let yaml = testIssuer.toString()
     page.createPolicy(browser, 'policy-create-issuer-' + time, yaml, time)
-    browser.pause(20000) // Wait for policy to create issuer 20s
+    browser.pause(30000) // Wait for policy to create issuer 20s
     page.checkViolations('policy-create-issuer-' + time, false)
     browser.pause(1000)
 
     const testCertificate = fs.readFileSync(path.join(__dirname, 'yaml/create_test_certificate.yaml'))
     yaml = testCertificate.toString()
     page.createPolicy(browser, 'policy-create-certificate-' + time, yaml, time)
-    browser.pause(20000) // Wait for policy to create certificate 20s
+    browser.pause(30000) // Wait for policy to create certificate 20s
     page.checkViolations('policy-create-certificate-' + time, false)
     page.deletePolicy('policy-create-certificate-' + time)
   },
@@ -55,7 +55,7 @@ module.exports = {
     const certPolicy = fs.readFileSync(path.join(__dirname, 'yaml/create_test_certpolicy.yaml'))
     const yaml = certPolicy.toString()
     page.createPolicy(browser, 'policy-certificatepolicy-' + time, yaml, time)
-    browser.pause(30000) // Wait for cert policy to detect violation 30s
+    browser.pause(40000) // Wait for cert policy to detect violation 30s
     page.checkViolations('policy-certificatepolicy-' + time, true)
   },
 
@@ -72,7 +72,7 @@ module.exports = {
   'Cert policy: cert policy should show compliant': (browser) => {
     const time = browser.globals.time
     page.searchPolicy('policy-certificatepolicy-' + time, true)
-    browser.pause(60000) // Wait for cert policy to detect compliant 60s
+    browser.pause(100000) // Wait for cert policy to detect compliant 60s
     page.checkViolations('policy-certificatepolicy-' + time, false)
   },
 

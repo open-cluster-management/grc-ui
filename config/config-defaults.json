@@ -7,6 +7,7 @@
     "headerUrl":"https://management-ingress",
     "headerContextPath": "/multicloud/header",
     "clusterContextPath": "/multicloud/clusters",
+    "featureFlags_cisPolicyTemplate": false,
     "feature_searchRelated": false,
     "feature_search-api": true,
     "feature_security-findings": false,

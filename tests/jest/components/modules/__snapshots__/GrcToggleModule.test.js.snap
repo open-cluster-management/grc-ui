@@ -625,6 +625,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -1124,6 +1125,7 @@ ShallowWrapper {
               "resourceKey": "namespace",
             },
             Object {
+              "information": "grc.remediation.tooltip",
               "msgKey": "table.header.remediation",
               "resourceKey": "remediation",
             },
@@ -1667,6 +1669,7 @@ ShallowWrapper {
                   "resourceKey": "namespace",
                 },
                 Object {
+                  "information": "grc.remediation.tooltip",
                   "msgKey": "table.header.remediation",
                   "resourceKey": "remediation",
                 },
@@ -2166,6 +2169,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -2924,6 +2928,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -3392,6 +3397,7 @@ ShallowWrapper {
               "resourceKey": "namespace",
             },
             Object {
+              "information": "grc.remediation.tooltip",
               "msgKey": "table.header.remediation",
               "resourceKey": "remediation",
             },
@@ -3876,6 +3882,7 @@ ShallowWrapper {
                   "resourceKey": "namespace",
                 },
                 Object {
+                  "information": "grc.remediation.tooltip",
                   "msgKey": "table.header.remediation",
                   "resourceKey": "remediation",
                 },
@@ -4344,6 +4351,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -6302,6 +6310,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -7649,6 +7658,7 @@ ShallowWrapper {
               "resourceKey": "namespace",
             },
             Object {
+              "information": "grc.remediation.tooltip",
               "msgKey": "table.header.remediation",
               "resourceKey": "remediation",
             },
@@ -9040,6 +9050,7 @@ ShallowWrapper {
                   "resourceKey": "namespace",
                 },
                 Object {
+                  "information": "grc.remediation.tooltip",
                   "msgKey": "table.header.remediation",
                   "resourceKey": "remediation",
                 },
@@ -10387,6 +10398,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -12404,6 +12416,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -13720,6 +13733,7 @@ ShallowWrapper {
               "resourceKey": "namespace",
             },
             Object {
+              "information": "grc.remediation.tooltip",
               "msgKey": "table.header.remediation",
               "resourceKey": "remediation",
             },
@@ -15052,6 +15066,7 @@ ShallowWrapper {
                   "resourceKey": "namespace",
                 },
                 Object {
+                  "information": "grc.remediation.tooltip",
                   "msgKey": "table.header.remediation",
                   "resourceKey": "remediation",
                 },
@@ -16368,6 +16383,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -18326,6 +18342,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -19673,6 +19690,7 @@ ShallowWrapper {
               "resourceKey": "namespace",
             },
             Object {
+              "information": "grc.remediation.tooltip",
               "msgKey": "table.header.remediation",
               "resourceKey": "remediation",
             },
@@ -21064,6 +21082,7 @@ ShallowWrapper {
                   "resourceKey": "namespace",
                 },
                 Object {
+                  "information": "grc.remediation.tooltip",
                   "msgKey": "table.header.remediation",
                   "resourceKey": "remediation",
                 },
@@ -22411,6 +22430,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -24428,6 +24448,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },
@@ -25744,6 +25765,7 @@ ShallowWrapper {
               "resourceKey": "namespace",
             },
             Object {
+              "information": "grc.remediation.tooltip",
               "msgKey": "table.header.remediation",
               "resourceKey": "remediation",
             },
@@ -27076,6 +27098,7 @@ ShallowWrapper {
                   "resourceKey": "namespace",
                 },
                 Object {
+                  "information": "grc.remediation.tooltip",
                   "msgKey": "table.header.remediation",
                   "resourceKey": "remediation",
                 },
@@ -28392,6 +28415,7 @@ ShallowWrapper {
                 "resourceKey": "namespace",
               },
               Object {
+                "information": "grc.remediation.tooltip",
                 "msgKey": "table.header.remediation",
                 "resourceKey": "remediation",
               },

@@ -105,10 +105,12 @@ function deletePolicy(browser, name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
-  this.waitForElementVisible('button.bx--search-close')
-  browser.pause(2000)
-  this.click('button.bx--search-close')
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
+  this.waitForElementNotPresent('@spinner')
+  this.waitForElementVisible('@searchInput')
+  browser.pause(5000)
+  this.clearValue('@searchInput')
+  this.setValue('@searchInput', name)
+  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').not.to.be.present
 }
 
 function tryEnable(name){
