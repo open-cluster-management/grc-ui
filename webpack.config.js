@@ -17,7 +17,7 @@ const path = require('path'),
       config = require('./config'),
       CompressionPlugin = require('compression-webpack-plugin')
 
-const NO_OP = () => { },
+const noOP = () => { /*This is intentional*/},
       PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
 process.env.BABEL_ENV = 'client'
@@ -143,7 +143,7 @@ module.exports = {
     }),
     PRODUCTION ? new UglifyJSPlugin({
       sourceMap: true
-    }) : NO_OP,
+    }) : noOP,
     new webpack.LoaderOptionsPlugin({
       options: {
         eslint: {

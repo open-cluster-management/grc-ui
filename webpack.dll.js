@@ -14,7 +14,7 @@ const path = require('path'),
       WebpackMd5Hash = require('webpack-md5-hash'),
       CompressionPlugin = require('compression-webpack-plugin')
 
-const NO_OP = () => { },
+const noOP = () => { /*This is intentional*/},
       PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
 process.env.BABEL_ENV = 'client'
@@ -61,7 +61,7 @@ module.exports = {
     }),
     PRODUCTION ? new UglifyJSPlugin({
       sourceMap: true
-    }) : NO_OP,
+    }) : noOP,
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
