@@ -25,10 +25,10 @@ resources(() => {
   require('../../../scss/module-recent-activity.scss')
 })
 
-const $grc_color_finding_high = '#E62325'
-const $grc_color_finding_medium = '#FEC233'
-const $grc_color_finding_low = '#A0A0A0'
-const $grc_color_finding_ring = '#DFE3E6'
+const $grcColorFindingHigh = '#E62325'
+const $grcColorFindingMedium = '#FEC233'
+const $grcColorFindingLow = '#A0A0A0'
+const $grcColorFindingRing = '#DFE3E6'
 
 const MAX_INFORMATION_THRESHOLD = 4
 
@@ -253,15 +253,15 @@ const Findings = ({moduleData: {findings}, handleDrillDownClick, locale}) => {
         switch (findingType) {
         case SECURITY_TYPES.HIGH:
           label = msgs.get('overview.recent.activity.finding.severity.high', locale)
-          color = $grc_color_finding_high
+          color = $grcColorFindingHigh
           break
         case SECURITY_TYPES.MEDIUM:
           label = msgs.get('overview.recent.activity.finding.severity.medium', locale)
-          color = $grc_color_finding_medium
+          color = $grcColorFindingMedium
           break
         case SECURITY_TYPES.LOW:
           label = msgs.get('overview.recent.activity.finding.severity.low', locale)
-          color = $grc_color_finding_low
+          color = $grcColorFindingLow
           break
         }
 
@@ -302,7 +302,7 @@ const Findings = ({moduleData: {findings}, handleDrillDownClick, locale}) => {
               <svg className='card-count-pie'>
                 <g>
                   <path fill={color} d={pathData1} />
-                  <path fill={$grc_color_finding_ring} d={pathData2} />
+                  <path fill={$grcColorFindingRing} d={pathData2} />
                 </g>
               </svg>
               <div className={countClasses}>

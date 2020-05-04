@@ -10,7 +10,7 @@
 import lodash from 'lodash'
 
 import * as Actions from './index'
-import apolloClient from '../../lib/client/apollo-client'
+import GrcApolloClient from '../../lib/client/apollo-client'
 import { formatExpandablePolicies } from '../components/common/FormatTableData'
 
 export const changeTablePage = ({page, pageSize}, resourceType) => ({
@@ -95,7 +95,7 @@ export const mutateResourceFailure = (resourceType, error) => ({
 export const fetchResources = (resourceType, vars) => {
   return (dispatch) => {
     dispatch(requestResource(resourceType))
-    return apolloClient.get(resourceType, vars)
+    return GrcApolloClient.get(resourceType, vars)
       .then(response => {
         if (response.errors) {
           return dispatch(receiveResourceError(response.errors[0], resourceType))
@@ -109,7 +109,7 @@ export const fetchResources = (resourceType, vars) => {
 export const fetchResource = (resourceType, namespace, name) => {
   return (dispatch) => {
     dispatch(requestResource(resourceType))
-    return apolloClient.getResource(resourceType, {namespace, name})
+    return GrcApolloClient.getResource(resourceType, {namespace, name})
       .then(response => {
         if (response.errors) {
           return dispatch(receiveResourceError(response.errors[0], resourceType))
@@ -123,7 +123,7 @@ export const fetchResource = (resourceType, namespace, name) => {
 export const updateResourceLabels = (resourceType, namespace, name, labels, selfLink) => {
   return (dispatch) => {
     dispatch(putResource(resourceType))
-    return apolloClient.updateResourceLabels(resourceType.name, namespace, name, labels, selfLink, '/metadata/labels')
+    return GrcApolloClient.updateResourceLabels(resourceType.name, namespace, name, labels, selfLink, '/metadata/labels')
       .then(response => {
         if (response.errors) {
           return dispatch(receivePutError(response.errors[0], resourceType))
@@ -138,7 +138,7 @@ export const updateResourceLabels = (resourceType, namespace, name, labels, self
 
 export const editResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(putResource(resourceType))
-  return apolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
+  return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
         return dispatch(receivePutError(response.errors[0], resourceType))
@@ -152,7 +152,7 @@ export const editResource = (resourceType, namespace, name, body, selfLink, reso
 
 export const disableResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(patchResource(resourceType))
-  return apolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
+  return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
         return dispatch(receivePatchError(response.errors[0], resourceType))
@@ -167,7 +167,7 @@ export const disableResource = (resourceType, namespace, name, body, selfLink, r
 export const removeResource = (resourceType, vars) => async dispatch => {
   dispatch(delResource(resourceType))
   try {
-    const response = await apolloClient.remove(vars)
+    const response = await GrcApolloClient.remove(vars)
     if (response.errors) {
       return dispatch(receiveDelError(response.errors, resourceType))
     }
@@ -301,7 +301,7 @@ export const resetResource = (resourceType) => ({
 export const createResources = (resourceType, resourceJson) => {
   return (dispatch) => {
     dispatch(mutateResource(resourceType))
-    return apolloClient.createResources(resourceJson)
+    return GrcApolloClient.createResources(resourceJson)
       .then(result => {
         if (result.data.createResources.errors && result.data.createResources.errors.length > 0){
           dispatch(mutateResourceFailure(resourceType, result.data.createResources.errors[0]))
@@ -316,7 +316,7 @@ export const createResources = (resourceType, resourceJson) => {
 export const createResource = (resourceType, variables) => {
   return (dispatch) => {
     dispatch(postResource(resourceType))
-    return apolloClient.createResource(resourceType, variables)
+    return GrcApolloClient.createResource(resourceType, variables)
       .then(response => {
         if (response.errors) {
           return dispatch(receivePostError(response.errors[0], resourceType))
@@ -331,7 +331,7 @@ export const createResource = (resourceType, variables) => {
 export const createPolicy = (resourceType, resourceJson) => {
   return (dispatch) => {
     dispatch(mutateResource(resourceType))
-    return apolloClient.createPolicy(resourceJson)
+    return GrcApolloClient.createPolicy(resourceJson)
       .then(result => {
         if (result.errors && result.errors.length > 0){
           dispatch(mutateResourceFailure(resourceType, result.errors[0]))
@@ -346,7 +346,7 @@ export const createPolicy = (resourceType, resourceJson) => {
 export const createCompliance = (resourceType, resourceJson) => {
   return (dispatch) => {
     dispatch(mutateResource(resourceType))
-    return apolloClient.createCompliance(resourceJson)
+    return GrcApolloClient.createCompliance(resourceJson)
       .then(result => {
         if (result.errors && result.errors.length > 0){
           dispatch(mutateResourceFailure(resourceType, result.errors[0]))

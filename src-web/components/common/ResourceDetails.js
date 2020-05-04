@@ -27,7 +27,7 @@ import { getPollInterval } from './RefreshTimeSelect'
 import PolicyTemplateTab from '../../containers/PolicyTemplateTab'
 import PolicyViolationTab from '../../containers/PolicyViolationTab'
 
-const withResource = (Component) => {
+const withResource = () => {
   const mapDispatchToProps = (dispatch, ownProps) => {
     const { resourceType, params } = ownProps
     return {

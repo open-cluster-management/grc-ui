@@ -40,14 +40,13 @@ const formatPolicyClusterView = (clusterName, policiesUnderCluster) => {
       nonCompliant.push(_.get(policy, 'metadata.name', '-'))
     }
   })
-  const result = {
+  return {
     cluster: clusterName,
     namespace: nameSpace,
     violation: `${policiesUnderCluster.length-validNum}/${policiesUnderCluster.length}`,
     nonCompliant: nonCompliant,
     consoleURL: consoleURL,
   }
-  return result
 }
 
 export const formatPoliciesToClustersTableData = (policies) => {
@@ -85,14 +84,13 @@ const formatFindingClusterView = (clusterName, findingsUnderCluster) => {
       validNum += 1
     }
   })
-  const result = {
+  return {
     cluster: clusterName,
     // namespace: nameSpace,
     severity: `${findingsUnderCluster.length-validNum}/${findingsUnderCluster.length}`,
     highSeverity: highSeverity,
     findingsUnderCluster: findingsUnderCluster,
   }
-  return result
 }
 
 export const formatFindingsToClustersTableData = (findings) => {

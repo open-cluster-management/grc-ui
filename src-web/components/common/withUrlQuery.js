@@ -38,8 +38,7 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
             }
           }
         })
-        const query = JSON.stringify(result)
-        return query
+        return JSON.stringify(result)
       } else {
         return false
       }

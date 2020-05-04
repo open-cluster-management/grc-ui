@@ -10,7 +10,7 @@
 import lodash from 'lodash'
 
 import * as Actions from './index'
-import apolloClient from '../../lib/client/apollo-client'
+import GrcApolloClient from '../../lib/client/apollo-client'
 import { receiveResourceError, requestResource}  from './common'
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
 
@@ -36,7 +36,7 @@ export const fetchFilters = (inputType) => {
   return (dispatch) => {
     if (inputType && inputType.filter) {
       dispatch(requestResource(resourceType))
-      return apolloClient.get(resourceType)
+      return GrcApolloClient.get(resourceType)
         .then(response => {
           if (response.errors) {
             return dispatch(receiveResourceError(response.errors[0], resourceType))

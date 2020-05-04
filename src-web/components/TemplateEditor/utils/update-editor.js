@@ -142,8 +142,8 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
   const newRaw = getInside('$raw', newParse)
   const newSynced = getInside('$synced', newParse)
   const newYAMLLines = newYAML.split('\n')
-  let firstModRow=undefined
-  let firstNewRow=undefined
+  let firstModRow = null
+  let firstNewRow = null
   const ignorePaths = []
   const diffs = diff(oldRaw, newRaw)
   if (diffs) {

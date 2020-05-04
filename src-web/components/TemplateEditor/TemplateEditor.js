@@ -388,7 +388,7 @@ export default class TemplateEditor extends React.Component {
       } else {
         // if user edited the source, we can't automatically update it
         active = available = [msgs.get('creation.view.policy.custom', locale)]
-        availableMap = undefined
+        availableMap = null
       }
     }
 
