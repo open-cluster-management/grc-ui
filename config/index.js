@@ -6,10 +6,11 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 const nconf = require('nconf'),
-    log4js = require('log4js'),
-    logger = log4js.getLogger('server'),
-    path = require('path')
+      log4js = require('log4js'),
+      logger = log4js.getLogger('server'),
+      path = require('path')
 
 const configDir = path.resolve(__dirname)
 
