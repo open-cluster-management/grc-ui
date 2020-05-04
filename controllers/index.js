@@ -8,12 +8,12 @@
  *******************************************************************************/
 'use strict'
 const express = require('express'),
-    router = express.Router(),
-    config = require('../config')
+      router = express.Router(),
+      config = require('../config')
 
 //controllers
 const status = require('./status'),
-    ui = require('./ui')
+      ui = require('./ui')
 
 router.all(['/', '/status', '/livenessProbe', '/readinessProbe'], status)
 router.use(config.get('contextPath'), ui)

@@ -11,9 +11,9 @@
 'use strict'
 
 const express = require('express'),
-    router = express.Router(),
-    log4js = require('log4js'),
-    logger = log4js.getLogger('status')
+      router = express.Router(),
+      log4js = require('log4js'),
+      logger = log4js.getLogger('status')
 
 const readinessProbeStr = '/readinessProbe'
 router.get('/', (req, res) => {

@@ -6,7 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 if(!process.env.PREV_COVERAGE_REPORT
   || process.env.PREV_COVERAGE_REPORT === ''
   || process.env.PREV_COVERAGE_REPORT === '404: Not Found'){
