@@ -289,18 +289,6 @@ export default {
         msgKey: 'table.header.role.template.apiVersion',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
-      },
-      {
-        msgKey: 'table.header.role.template.lastTransition',
-        resourceKey: 'status.conditions[0].lastTransitionTime',
-        key: 'lastTransition',
-        transformFunction: getAge,
-      },
-      {
-        msgKey: 'table.header.role.template.status',
-        resourceKey: 'status.Compliant',
-        key:'status',
-        transformFunction: getStatus,
       }
     ],
     rows: [{
@@ -313,12 +301,6 @@ export default {
         },
         {
           resourceKey: 'apiVersion',
-        },
-        {
-          resourceKey: 'status.conditions[0].lastTransitionTime',
-        },
-        {
-          resourceKey: 'status.Compliant',
         }
       ]
     }],
@@ -354,19 +336,7 @@ export default {
         msgKey: 'table.header.object.template.kind',
         resourceKey: 'objectDefinition.kind',
         key: 'kind',
-      },
-      {
-        msgKey: 'table.header.object.template.lastTransition',
-        resourceKey: 'status.conditions[0].lastTransitionTime',
-        key: 'lastTransition',
-        transformFunction: getAge,
-      },
-      {
-        msgKey: 'table.header.object.template.status',
-        resourceKey: 'status.Compliant',
-        key:'status',
-        transformFunction: getStatus,
-      },
+      }
     ],
   },
   policyTemplates:{
@@ -389,19 +359,7 @@ export default {
         msgKey: 'table.header.object.template.kind',
         resourceKey: 'objectDefinition.kind',
         key: 'kind',
-      },
-      {
-        msgKey: 'table.header.object.template.lastTransition',
-        resourceKey: 'status.conditions[0].lastTransitionTime',
-        key: 'lastTransition',
-        transformFunction: getAge,
-      },
-      {
-        msgKey: 'table.header.object.template.status',
-        resourceKey: 'status.Compliant',
-        key:'status',
-        transformFunction: getStatus,
-      },
+      }
     ],
   },
   complianceStatus: {
