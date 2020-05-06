@@ -265,10 +265,6 @@ export default class TemplateEditor extends React.Component {
         }
       }
 
-
-
-
-
       return <div role='button' onClick={handleClick}
         tabIndex="0" aria-label={updateMessage} onKeyDown={handleKeyPress}>
         <div  >
@@ -397,7 +393,7 @@ export default class TemplateEditor extends React.Component {
     if (active.length>0) {
       const activeKeys = []
       active.forEach(key=>{
-        if (typeof availableMap ==='object' && availableMap[key]) {
+        if (availableMap && typeof availableMap === 'object' && availableMap[key]) {
           const {name} = availableMap[key]
           activeKeys.push(name||key)
         } else {
