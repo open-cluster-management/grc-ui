@@ -30,3 +30,5 @@ docker container ls -a
 sleep 10
 
 npm run test:e2e
+
+docker ps -q | xargs -L 1 docker logs
