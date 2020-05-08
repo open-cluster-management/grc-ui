@@ -45,7 +45,7 @@
         "block-spacing": ["error"],
         "comma-spacing": ["error"],
         "computed-property-spacing": ["error"],
-        "camelcase": ["error", { "properties": "never", "ignoreDestructuring": false }],
+        "camelcase": ["warn", { "properties": "never", "ignoreDestructuring": false }],
         "capitalized-comments": ["off", "never", {
             "line": {
               "ignorePattern": ".*",
@@ -66,9 +66,9 @@
         "implicit-arrow-linebreak": ["error"],
         "key-spacing": ["error"],
         "keyword-spacing": ["error"],
-        "line-comment-position": ["error"],
+        "line-comment-position": ["warn"],
         "linebreak-style": ["error"],
-        "multiline-ternary": ["error"],
+        "multiline-ternary": ["warn"],
         "newline-per-chained-call": ["error"],
         "no-irregular-whitespace": ["error"],
         "no-mixed-spaces-and-tabs": ["error"],
