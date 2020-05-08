@@ -6,9 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
-*/
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -18,7 +16,7 @@ import { BrowserRouter } from 'react-router-dom'
 import * as reducers from '../../../../src-web/reducers'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import apolloClient from '../../../../lib/client/apollo-client'
+import GrcApolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
 import { resourceType, resourceType2, itemIds, itemIds2, items, items2, items3, staticResourceData, staticResourceData2 } from './CommonTestingData'
@@ -43,7 +41,7 @@ describe('ResourceTable no search with console url', () => {
       }
     }
     const component = renderer.create(
-      <ApolloProvider client={apolloClient.getGrcClient()}>
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
             <ResourceTable
@@ -94,7 +92,7 @@ describe('ResourceTable no search with empty console url', () => {
       }
     }
     const component = renderer.create(
-      <ApolloProvider client={apolloClient.getGrcClient()}>
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
             <ResourceTable
@@ -145,7 +143,7 @@ describe('ResourceTable no search with empty console url', () => {
       }
     }
     const component = renderer.create(
-      <ApolloProvider client={apolloClient.getGrcClient()}>
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
             <ResourceTable
@@ -196,7 +194,7 @@ describe('ResourceTable no search', () => {
       }
     }
     const component = renderer.create(
-      <ApolloProvider client={apolloClient.getGrcClient()}>
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
             <ResourceTable
@@ -247,7 +245,7 @@ describe('ResourceTable no search', () => {
       }
     }
     const component = renderer.create(
-      <ApolloProvider client={apolloClient.getGrcClient()}>
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
             <ResourceTable
@@ -299,7 +297,7 @@ describe('ResourceTable with search', () => {
       }
     }
     const component = renderer.create(
-      <ApolloProvider client={apolloClient.getGrcClient()}>
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
             <ResourceTable
@@ -350,7 +348,7 @@ describe('ResourceTable not expandable', () => {
       }
     }
     const component = renderer.create(
-      <ApolloProvider client={apolloClient.getGrcClient()}>
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
             <ResourceTable

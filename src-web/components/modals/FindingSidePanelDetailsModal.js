@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -106,7 +107,9 @@ class FindingSidePanelDetailsModal extends React.PureComponent {
       if (showFilterInfo) {
         //filterFindings need array type so wrap and unwrap here
         data = filterFindings([data], activeFilters, locale)
-        if (Array.isArray(data) && data.length > 0) { data = data[0] }
+        if (Array.isArray(data) && data.length > 0) {
+          data = data[0]
+        }
       }
       return (
         <div className={'bx--modal-content-body'}>

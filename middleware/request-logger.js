@@ -6,10 +6,11 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-var log4js = require('log4js'),
-    logger = log4js.getLogger('request')
+const log4js = require('log4js'),
+      logger = log4js.getLogger('request')
 
 module.exports = log4js.connectLogger(logger, {
   level: 'auto',

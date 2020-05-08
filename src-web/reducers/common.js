@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 /*
 Since these selectors are common (i.e used across different components and different parts of the store)
 we have to create unique selectors each invocation and the selectors need additional metata data sent
@@ -93,14 +94,17 @@ function searchTableCellHelper(search, tableKeys, item, context) {
       let found = false
       const searchKeys = searchField.replace(/[{}]/g, '').split(',')
       if (searchKeys && tableKey) searchKeys.forEach(searchKey => {
-        if (searchTableCell(item, tableKey, context, searchKey)) found = true
+        if (searchTableCell(item, tableKey, context, searchKey)) {
+          found = true
+        }
       })
       return found
     }
   }
   // return all results when user types cluster=
-  if (searchField === '')
+  if (searchField === '') {
     return true
+  }
 
   // by default, search all fields
   return tableKeys.find(tableKey => searchTableCell(item, tableKey, context, search))
@@ -110,8 +114,9 @@ const makeGetFilteredItemsSelector = (resourceType) => {
   return createSelector(
     [getItems, getSearch],
     (items, search) => items.filter((item) => {
-      if (lodash.isEmpty(search))
+      if (lodash.isEmpty(search)) {
         return true
+      }
 
       const tableKeys = ResourceDefinitions.getTableKeys(resourceType)
       if(document.getElementById('context')) {

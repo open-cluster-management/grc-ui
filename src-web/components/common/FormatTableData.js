@@ -6,9 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
-*/
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 import _ from 'lodash'
 
@@ -42,14 +40,13 @@ const formatPolicyClusterView = (clusterName, policiesUnderCluster) => {
       nonCompliant.push(_.get(policy, 'metadata.name', '-'))
     }
   })
-  const result = {
+  return {
     cluster: clusterName,
     namespace: nameSpace,
     violation: `${policiesUnderCluster.length-validNum}/${policiesUnderCluster.length}`,
     nonCompliant: nonCompliant,
     consoleURL: consoleURL,
   }
-  return result
 }
 
 export const formatPoliciesToClustersTableData = (policies) => {
@@ -59,7 +56,9 @@ export const formatPoliciesToClustersTableData = (policies) => {
     policies.forEach((policy) => {
       const statuses = _.get(policy, 'raw.status.status', {})
       Object.entries(statuses).forEach(([cluster]) => {
-        if (!map.has(cluster)) map.set(cluster, [])
+        if (!map.has(cluster)) {
+          map.set(cluster, [])
+        }
         map.get(cluster).push(policy)
       })
     })
@@ -85,14 +84,13 @@ const formatFindingClusterView = (clusterName, findingsUnderCluster) => {
       validNum += 1
     }
   })
-  const result = {
+  return {
     cluster: clusterName,
     // namespace: nameSpace,
     severity: `${findingsUnderCluster.length-validNum}/${findingsUnderCluster.length}`,
     highSeverity: highSeverity,
     findingsUnderCluster: findingsUnderCluster,
   }
-  return result
 }
 
 export const formatFindingsToClustersTableData = (findings) => {
@@ -101,7 +99,9 @@ export const formatFindingsToClustersTableData = (findings) => {
   if (findings) {
     findings.forEach((finding) => {
       const cluster = _.get(finding, 'context.clusterName', '-')
-      if (!map.has(cluster)) map.set(cluster, [])
+      if (!map.has(cluster)) {
+        map.set(cluster, [])
+      }
       map.get(cluster).push(finding)
     })
     for (const [key, value] of map.entries()) {
@@ -155,7 +155,9 @@ export const formatApplicationTableData = (applications) => {
   //convert result object to array for definition
   const resultArray = []
   Object.entries(resultMap).forEach(result => {
-    if (result[1]) resultArray.push(result[1])
+    if (result[1]) {
+      resultArray.push(result[1])
+    }
   })
 
   return Array.from(resultArray)

@@ -13,7 +13,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
-import apolloClient from '../../lib/client/apollo-client'
+import GrcApolloClient from '../../lib/client/apollo-client'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
@@ -76,7 +76,7 @@ class PoliciesTab extends React.Component {
 
             return (
               showApplications ?
-                <Query query={HCMApplicationList} pollInterval={pollInterval} client={apolloClient.getSearchClient()} notifyOnNetworkStatusChange >
+                <Query query={HCMApplicationList} pollInterval={pollInterval} client={GrcApolloClient.getSearchClient()} notifyOnNetworkStatusChange >
                   {( result ) => {
                     const {data={}} = result
                     const { applications } = data

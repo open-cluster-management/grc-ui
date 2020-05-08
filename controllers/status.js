@@ -6,13 +6,15 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-var express = require('express'),
-    router = express.Router(),
-    log4js = require('log4js'),
-    logger = log4js.getLogger('status')
+const express = require('express'),
+      router = express.Router(),
+      log4js = require('log4js'),
+      logger = log4js.getLogger('status')
 
+const readinessProbeStr = '/readinessProbe'
 router.get('/', (req, res) => {
   logger.debug('/')
   res.sendStatus(200)
@@ -21,12 +23,12 @@ router.get('/', (req, res) => {
 router.get('/status', (req, res) => res.sendStatus(200) )
 
 router.get('/livenessProbe', (req, res) => {
-  logger.debug('/readinessProbe')
+  logger.debug(readinessProbeStr)
   res.send(`Testing livenessProbe --> ${new Date().toLocaleString()}`)
 })
 
-router.get('/readinessProbe', (req, res) => {
-  logger.debug('/readinessProbe')
+router.get(readinessProbeStr, (req, res) => {
+  logger.debug(readinessProbeStr)
   res.send(`Testing readinessProbe --> ${new Date().toLocaleString()}`)
 })
 

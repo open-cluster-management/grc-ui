@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 import React from 'react'
 import { hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
@@ -17,7 +18,7 @@ import { ApolloProvider } from 'react-apollo'
 import App from './containers/App'
 import * as reducers from './reducers'
 import config from '../lib/shared/config'
-import apolloClient from '../lib/client/apollo-client'
+import GrcApolloClient from '../lib/client/apollo-client'
 import ScrollToTop from './components/common/ScrollToTop'
 
 
@@ -41,7 +42,7 @@ const store = createStore(combineReducers(reducers), preloadedState, composeEnha
 ))
 
 hydrate(
-  <ApolloProvider client={apolloClient.getGrcClient()}>
+  <ApolloProvider client={GrcApolloClient.getGrcClient()}>
     <Provider store={store}>
       <BrowserRouter>
         <ScrollToTop>

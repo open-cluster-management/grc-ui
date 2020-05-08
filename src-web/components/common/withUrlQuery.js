@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -38,8 +39,7 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
             }
           }
         })
-        const query = JSON.stringify(result)
-        return query
+        return JSON.stringify(result)
       } else {
         return false
       }
@@ -57,10 +57,14 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
           result += `"${searchKey}":[`
           searchKeys.forEach((searchKey, index) => {
             result += `"${searchKey}"`
-            if (index !== searchKeys.length-1) result += ','
+            if (index !== searchKeys.length-1) {
+              result += ','
+            }
           })
           result += ']}'
-          if (i !== searchFields.length-1) result += ','
+          if (i !== searchFields.length-1) {
+            result += ','
+          }
         })
       } else {
         result += '{"textsearch":['
@@ -165,7 +169,9 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
         const filterJson = JSON.parse(input)
         if (!filterJson.textsearch) {
           Object.entries(filterJson).forEach(([key,value]) => {
-            if (result !== '') result += ','
+            if (result !== '') {
+              result += ','
+            }
             if (Array.isArray(value)) {
               result += (key + '={')
               value.forEach((item, index) => result += (item.replace(':', '=') + (index !== value.length-1 ? ',' : '')))
@@ -176,7 +182,9 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
           result += filterJson.textsearch
         }
       } catch(err) {
-        if (!input.includes('{') && !input.includes('}')) return input
+        if (!input.includes('{') && !input.includes('}')) {
+          return input
+        }
       }
       return result
     }

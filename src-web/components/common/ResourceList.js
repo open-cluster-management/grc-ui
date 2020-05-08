@@ -234,8 +234,9 @@ const mapStateToProps = (state, ownProps) => {
   const items = visibleResources.normalizedItems
   if (items && pendingActions){
     Object.keys(items).forEach((key) => {
-      if (pendingActions.find(pending => pending.name === items[key].Name))
+      if (pendingActions.find(pending => pending.name === items[key].Name)) {
         items[key].hasPendingActions = true
+      }
     })
   }
   const userRole = state.role && state.role.role
@@ -316,7 +317,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changeTablePage: page => dispatch(changeTablePage(page, resourceType)),
     searchTable: (search, updateURL) => {
-      if (updateURL !== false) updateBrowserURL && updateBrowserURL(search)
+      if (updateURL !== false) {
+        updateBrowserURL && updateBrowserURL(search)
+      }
       dispatch(searchTable(search, resourceType))
     },
     sortTable: (sortDirection, sortColumn) => dispatch(sortTable(sortDirection, sortColumn, resourceType)),

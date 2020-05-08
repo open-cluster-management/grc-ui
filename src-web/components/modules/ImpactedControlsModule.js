@@ -6,8 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
- */
+/* Copyright (c) 2020 Red Hat, Inc. */
 
 'use strict'
 
@@ -30,7 +29,7 @@ resources(() => {
   require('../../../scss/module-impacted-controls.scss')
 })
 
-const $grc_color_radar_blue = '#0082C1'
+const $grcColorRadarBlue = '#0082C1'
 const $grc_color_radar_green = '#13B9B9'
 const $grc_color_radar_ring = '#979797'
 
@@ -217,7 +216,7 @@ class ImpactedControlsModule extends React.Component {
             style={{
               ringColor: $grc_color_radar_ring,
               customColors: [
-                $grc_color_radar_blue,
+                $grcColorRadarBlue,
                 $grc_color_radar_green,
               ]
             }}
@@ -725,7 +724,7 @@ class ImpactedControlsModule extends React.Component {
         },
         {
           key: 'findings',
-          color: $grc_color_radar_blue,
+          color: $grcColorRadarBlue,
           className: 'findings',
           label: 'Security findings',
           values: findingsByControls,

@@ -6,9 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
-*/
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -18,7 +16,7 @@ import { BrowserRouter } from 'react-router-dom'
 import * as reducers from '../../../../src-web/reducers'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import apolloClient from '../../../../lib/client/apollo-client'
+import GrcApolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
 import { staticResourceDataPolicyOverview, itemPolicyOverview } from './CommonTestingData'
@@ -47,7 +45,7 @@ describe('PolicyDetailsOverview component', () => {
       'timestamp': 'Tue Sep 24 2019 09:56:26 GMT-0400 (Eastern Daylight Time)'
     }
     const component = renderer.create(
-      <ApolloProvider client={apolloClient.getGrcClient()}>
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
             <PolicyDetailsOverview
@@ -92,7 +90,7 @@ describe('PolicyDetailsOverview component', () => {
       'timestamp': 'Tue Sep 24 2019 09:56:26 GMT-0400 (Eastern Daylight Time)'
     }
     const component = renderer.create(
-      <ApolloProvider client={apolloClient.getGrcClient()}>
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
             <PolicyDetailsOverview
@@ -137,7 +135,7 @@ describe('PolicyDetailsOverview component', () => {
       'timestamp': 'Tue Sep 24 2019 09:56:26 GMT-0400 (Eastern Daylight Time)'
     }
     const component = renderer.create(
-      <ApolloProvider client={apolloClient.getGrcClient()}>
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
             <PolicyDetailsOverview
