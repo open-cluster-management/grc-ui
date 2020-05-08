@@ -88,11 +88,12 @@ export class FindingsTab extends React.Component {
     if(findings){
       findings.forEach((finding) => {
         if(!_.get(finding, 'securityClassification', null)) {
-          return finding['securityClassification'] = {
+          finding['securityClassification'] = {
             'securityStandards': [''],
             'securityCategories': [''],
             'securityControl': ''
           }
+          return finding['securityClassification']
         }
       })
     }

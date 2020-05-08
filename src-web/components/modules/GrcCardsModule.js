@@ -280,7 +280,8 @@ export class GrcCardsModule extends React.Component {
       else if (Array.isArray(types)) {
         types.forEach((type, index)=>{
           if(type.length===0) {
-            return types[index]=other
+            types[index]=other
+            return types[index]
           }
         })
       }

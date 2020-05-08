@@ -94,7 +94,8 @@ class YamlParser {
           value: values[3]
         }
 
-        if (this.isDefined(values.value) && (matches = /^&([^ ]+) *(.*)/.exec(values.value))) {
+        matches = /^&([^ ]+) *(.*)/.exec(values.value)
+        if (this.isDefined(values.value) && (matches)) {
           matches = {
             ref: matches[1],
             value: matches[2]
@@ -104,6 +105,7 @@ class YamlParser {
         }
 
         // array
+        matches = new RegExp('^(' + YamlInline.REGEX_QUOTED_STRING + '|[^ \'"{[].*?) *:(\\s+(.+?))?\\s*$').exec(values.value)
         if (!this.isDefined(values.value) || '' === this.trim(values.value) || values.value.replace(/^ +/, '').charAt(0) === '#') {
           c = this.getRealCurrentLineNb() + 1
           parser = new YamlParser(c, this.lined)
@@ -116,7 +118,7 @@ class YamlParser {
         } else {
           if (this.isDefined(values.leadspaces) &&
                       ' ' === values.leadspaces &&
-                      (matches = new RegExp('^(' + YamlInline.REGEX_QUOTED_STRING + '|[^ \'"{[].*?) *:(\\s+(.+?))?\\s*$').exec(values.value))) {
+                      (matches)) {
             matches = {
               key: matches[1],
               value: matches[3]
@@ -168,6 +170,7 @@ class YamlParser {
           throw e
         }
 
+        matches = /^&([^ ]+) *(.*)/.exec(values.value)
         if ('<<' === key) {
           if (this.isDefined(values.value) && '*' === (values.value + '').charAt(0)) {
             isInPlace = values.value.substr(1)
@@ -208,7 +211,7 @@ class YamlParser {
 
             isProcessed = merged
           }
-        } else if (this.isDefined(values.value) && (matches = /^&([^ ]+) *(.*)/.exec(values.value))) {
+        } else if (this.isDefined(values.value) && (matches)) {
           matches = {
             ref: matches[1],
             value: matches[2]
@@ -541,8 +544,8 @@ class YamlParser {
       return ''
     }
 
-    let matches = null
-    if (!(matches = new RegExp('^(' + (indentation ? this.strRepeat(' ', indentation) : ' +') + ')(.*)$').exec(this.currentLineRaw))) {
+    let matches = new RegExp('^(' + (indentation ? this.strRepeat(' ', indentation) : ' +') + ')(.*)$').exec(this.currentLineRaw)
+    if (!matches) {
       this.moveToPreviousLine()
 
       return ''
@@ -1015,10 +1018,10 @@ class YamlInline {
   }
 
   parseQuotedScalar(scalar, i) {
-    let matches = null
+    const matches = new RegExp('^' + YamlInline.REGEX_QUOTED_STRING).exec((scalar + '').substring(i))
     //const item = /^(.*?)['"]\s*(?:[,:]|[}\]]\s*,)/.exec((scalar+'').substring(i))[1];
 
-    if (!(matches = new RegExp('^' + YamlInline.REGEX_QUOTED_STRING).exec((scalar + '').substring(i)))) {
+    if (!matches) {
       throw new YamlParseException(`Malformed inline YAML string (${(scalar + '').substring(i)}).`)
     }
 
@@ -1279,7 +1282,8 @@ class YamlInline {
     if (h === 'now') {
       return b === null || isNaN(b) ? new Date().getTime() || 0 : b || 0
     } else {
-      if (!isNaN(d = Date.parse(h))) {
+      d = Date.parse(h)
+      if (!isNaN(d)) {
         return d || 0
       } else {
         if (b) {

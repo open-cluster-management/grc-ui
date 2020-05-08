@@ -242,11 +242,17 @@ export class GrcView extends React.Component {
     let activeSet
     if (value) { //add non-null grc-card filter
       value = _.startCase(value.replace(' ', '-'))//covert filter name on policy card to start case to match
-      activeFilters[key] ? activeSet = activeFilters[key] : activeSet = activeFilters[key] = new Set()
+      if (!activeFilters[key]) {
+        activeFilters[key] = new Set()
+      }
+      activeSet = activeFilters[key]
       activeSet.add(value)
     }
     if (level) { //add non-null severity level filter
-      activeFilters[type] ? activeSet = activeFilters[type] : activeSet = activeFilters[type] = new Set()
+      if (!activeFilters[type]) {
+        activeFilters[type] = new Set()
+      }
+      activeSet = activeFilters[type]
       activeSet.add(level)
     }
     if (activeSet && activeSet.size > 0) {
