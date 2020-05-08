@@ -136,7 +136,12 @@ export class ResourceTable extends React.Component {
                         onChange={onSelectAll}
                         data-selected={itemIds && itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length}
                         labelText={''}
-                        aria-label={msgs.get(itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length ? 'unselect' : 'select', this.context.locale)} />
+                        aria-label={msgs.get(itemIds.filter(item =>
+                          items[item] &&
+                          items[item].selected).length === itemIds.length
+                          ? 'unselect'
+                          : 'select', this.context.locale
+                        )} />
                     </th>
                   }
                   {headers.map(header => {
@@ -181,7 +186,19 @@ export class ResourceTable extends React.Component {
                     if (expandableTable && row && row.id) {//check undefined row.id to avoid whole page crush
                       return (
                         <React.Fragment key={row.id}>
-                          <TableExpandRow {...getRowProps({ row, 'data-row-name': lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')), 'aria-hidden': expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0), className: (lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')) === highLightRowName) ? 'high-light': expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0) ? 'row-not-expanded' : '' })} ariaLabel={tableExpandRowAriaLabel ? tableExpandRowAriaLabel : 'TableExpandRow'}>
+                          <TableExpandRow {
+                            ...getRowProps(
+                              { row,
+                                'data-row-name': lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')),
+                                'aria-hidden': expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0),
+                                className:
+                                  (lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')) === highLightRowName)
+                                    ? 'high-light'
+                                    : expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0)
+                                      ? 'row-not-expanded'
+                                      : ''
+                              })} ariaLabel={tableExpandRowAriaLabel ? tableExpandRowAriaLabel : 'TableExpandRow'
+                          }>
                             {selectableTable &&
                               <TableCell key={`select-checkbox-${row.id}`}>
                                 <Checkbox
