@@ -664,7 +664,9 @@ class ImpactedControlsModule extends React.Component {
         const label = _.startCase(control.trim())
         const ctrl = control.toLowerCase().trim()
         controlLabels[ctrl] = label
-        if (ctrl && (standardsChoice === 'ALL' || _.get(finding, 'securityClassification.securityStandards', ['other']).join(',').toLowerCase().includes(standardsChoice.toLowerCase()))) {
+        if (ctrl && (standardsChoice === 'ALL' ||
+            _.get(finding, 'securityClassification.securityStandards', ['other']).join(',').toLowerCase().includes(standardsChoice.toLowerCase()))
+        ) {
           findingsByControls[ctrl] = _.get(findingsByControls, ctrl, 0)+1
           findingsTooltips[ctrl] = _.get(findingsTooltips, ctrl, [
             {count: 0, findingType: SECURITY_TYPES.HIGH},

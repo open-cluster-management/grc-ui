@@ -60,7 +60,12 @@ class OverviewTab extends React.Component {
     const showApplications = this.props.showApplications === undefined ? config['feature_applications'] : this.props.showApplications
     return (
       <Page>
-        <Query query={showFindings ? GRCList : GRCListNoSA} variables={showFindings ? {userAccountID: activeAccountId} : null} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+        <Query
+          query={showFindings ? GRCList : GRCListNoSA}
+          variables={showFindings ? {userAccountID: activeAccountId} : null}
+          pollInterval={pollInterval}
+          notifyOnNetworkStatusChange
+        >
           {( result ) => {
             const {loading, startPolling, stopPolling, refetch} = result
             const {data={}} = result

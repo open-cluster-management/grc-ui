@@ -76,7 +76,12 @@ class StructuredListModule extends React.Component {
                     onExpand={this.onSelect(index)}>
                     {rows[0].cells.map(cell =>
                       <StructuredListCell key={cell.resourceKey+'Cell'}>
-                        <p>{cell.link && url ? <Link to={url} className='bx--link'>{transform(item, cell, this.context.locale)}</Link> : transform(item, cell, this.context.locale)}</p>
+                        <p>
+                          {cell.link && url
+                            ? <Link to={url} className='bx--link'>{transform(item, cell, this.context.locale)}</Link>
+                            : transform(item, cell, this.context.locale)
+                          }
+                        </p>
                       </StructuredListCell>
                     )}
                   </TableExpandRow>
@@ -96,7 +101,12 @@ class StructuredListModule extends React.Component {
                   <StructuredListRow key={cells[0].resourceKey+'Row'}>
                     {cells.map(cell =>
                       <StructuredListCell key={cell.resourceKey+'Cell'}>
-                        <div>{cell.link && url ? <Link to={url} className='bx--link'>{transform(data, cell, this.context.locale)}</Link> : transform(data, cell, this.context.locale)}</div>
+                        <div>
+                          {cell.link && url
+                            ? <Link to={url} className='bx--link'>{transform(data, cell, this.context.locale)}</Link>
+                            : transform(data, cell, this.context.locale)
+                          }
+                        </div>
                       </StructuredListCell>
                     )}
                   </StructuredListRow>

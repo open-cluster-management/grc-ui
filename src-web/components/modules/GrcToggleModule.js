@@ -17,7 +17,8 @@ import { ContentSwitcher, Switch } from 'carbon-components-react'
 import getResourceDefinitions from '../../definitions'
 import { makeGetVisibleTableItemsSelector } from '../../reducers/common'
 import ResourceList from '../common/ResourceList'
-import { formatPoliciesToClustersTableData, formatFindingsToClustersTableData, formatExpandablePolicies, formatApplicationTableData } from '../common/FormatTableData'
+import { formatPoliciesToClustersTableData, formatFindingsToClustersTableData,
+  formatExpandablePolicies, formatApplicationTableData } from '../common/FormatTableData'
 import pageWithUrlQuery from '../common/withUrlQuery'
 import queryString from 'query-string'
 import resources from '../../../lib/shared/resources'
@@ -36,7 +37,8 @@ export class GrcToggleModule extends React.Component {
 
   render() {
     const { locale } = this.context
-    const { displayType, grcItems, applications, secondaryHeaderProps, showGrcTabToggle, grcTabToggleIndex, highLightRowName, showSidePanel, handleCreatePolicy, filterToEmpty } = this.props
+    const { displayType, grcItems, applications, secondaryHeaderProps, showGrcTabToggle, grcTabToggleIndex,
+      highLightRowName, showSidePanel, handleCreatePolicy, filterToEmpty } = this.props
     const grcTabSwitcher = showGrcTabToggle ? this.renderTabSwitcher(displayType, grcTabToggleIndex) : []
     let detailsTabs, resourceType, listData, staticResourceData, getVisibleResources, placeHolderText, autoAction
     switch (displayType) {

@@ -11,7 +11,8 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StructuredListWrapper, StructuredListRow, StructuredListCell, StructuredListBody, OverflowMenu, OverflowMenuItem, StructuredListSkeleton, Button } from 'carbon-components-react'
+import { StructuredListWrapper, StructuredListRow, StructuredListCell, StructuredListBody,
+  OverflowMenu, OverflowMenuItem, StructuredListSkeleton, Button } from 'carbon-components-react'
 import { Module, ModuleBody } from 'carbon-addons-cloud-react'
 import _ from 'lodash'
 import msgs from '../../../nls/platform.properties'
@@ -45,20 +46,34 @@ const StructuredListModule = ({
     return <Module className='structured-list-module' id={id}>
       <div className='bx--module__header' style={{justifyContent: 'space-between'}} >
         <h1 className='bx--module__title'>{msgs.get(title, context.locale)}</h1>
-        {actions && actions.length > 0 &&
-        (actions.length === 1 && actions[0] === 'table.actions.edit' && textEditButton) ?
-          (<Button small className='text-edit-button' onClick={() => getResourceAction(actions[0], data, null, history, context.locale)}>{msgs.get('table.actions.edit', context.locale)}</Button>) :
-          (<OverflowMenu floatingMenu flipped iconDescription={msgs.get('svg.description.overflowMenu', context.locale)}>
-            {actions.map((action) => (
-              <OverflowMenuItem
-                data-table-action={action}
-                isDelete={action ==='table.actions.remove' || action ==='table.actions.policy.remove' || action ==='table.actions.applications.remove' || action ==='table.actions.compliance.remove' || action ==='table.actions.finding.remove'}
-                onClick={() => getResourceAction(action, data, null, history, context.locale)}
-                key={action}
-                itemText={msgs.get(action, context.locale)}
-              />
-            ))}
-          </OverflowMenu>)}
+        {
+          actions && actions.length > 0 && (actions.length === 1 && actions[0] === 'table.actions.edit' && textEditButton)
+            ?
+            (<Button small
+              className='text-edit-button'
+              onClick={() => getResourceAction(actions[0], data, null, history, context.locale)}>
+              {msgs.get('table.actions.edit', context.locale)}
+            </Button>
+            )
+            :
+            (<OverflowMenu floatingMenu flipped iconDescription={msgs.get('svg.description.overflowMenu', context.locale)}>
+              {actions.map((action) => (
+                <OverflowMenuItem
+                  data-table-action={action}
+                  isDelete={
+                    action ==='table.actions.remove' ||
+                    action ==='table.actions.policy.remove' ||
+                    action ==='table.actions.applications.remove' ||
+                    action ==='table.actions.compliance.remove' ||
+                    action ==='table.actions.finding.remove'
+                  }
+                  onClick={() => getResourceAction(action, data, null, history, context.locale)}
+                  key={action}
+                  itemText={msgs.get(action, context.locale)}
+                />
+              ))}
+            </OverflowMenu>)
+        }
       </div>
       <ModuleBody>
         <StructuredListWrapper className='bx--structured-list--condensed' ariaLabel={msgs.get(title, context.locale)}>

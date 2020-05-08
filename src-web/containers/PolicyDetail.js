@@ -56,7 +56,11 @@ class PolicyDetail extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.location !== this.props.location) {
       const { updateSecondaryHeader, tabs, launch_links, match } = this.props
-      updateSecondaryHeader(this.getPolicyName(nextProps.location), getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(nextProps.location), launch_links)
+      updateSecondaryHeader(
+        this.getPolicyName(nextProps.location),
+        getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`),
+        this.getBreadcrumb(nextProps.location), launch_links
+      )
     }
   }
 

@@ -39,7 +39,15 @@ class PolicyTemplateTab extends React.Component{
       return <Loading className='resource-detail-content-spinner' />
     } else{
       const item = items[0]
-      return <PolicyTemplates resourceType={resourceType} params={params} staticResourceData={staticResourceData} resourceData={item} className='compliance-templates' headerKey={'table.header.complianceTemplate'} editable={true} />
+      return <PolicyTemplates
+        resourceType={resourceType}
+        params={params}
+        staticResourceData={staticResourceData}
+        resourceData={item}
+        className='compliance-templates'
+        headerKey={'table.header.complianceTemplate'}
+        editable={true}
+      />
     }
   }
 

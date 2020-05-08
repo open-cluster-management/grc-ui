@@ -59,7 +59,14 @@ class PolicyViolationTab extends React.Component{
           if( data.violations && data.violations.length > 0){
             return (<div className='policy-violation-tab'>
               <h5 className='section-title'>Violations</h5>
-              <ResourceTableModule definitionsKey='policyViolations' staticResourceData={staticResourceData} resourceData={data} showModuleHeader={false} showSearch={false} showPagination={false} />
+              <ResourceTableModule
+                definitionsKey='policyViolations'
+                staticResourceData={staticResourceData}
+                resourceData={data}
+                showModuleHeader={false}
+                showSearch={false}
+                showPagination={false}
+              />
             </div>)
           }
           else {

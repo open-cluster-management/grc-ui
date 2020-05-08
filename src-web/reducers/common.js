@@ -172,7 +172,11 @@ const makeGetSortedItemsSelector = (resourceType) => {
     (items, sortColumn, sortDirection) => {
       const initialSortField = sortColumn ? sortColumn : ResourceDefinitions.getDefaultSortField(resourceType)
       const sortField = initialSortField === 'custom.age' ? 'metadata.creationTimestamp' : initialSortField // sort by the actual date, not formatted value
-      const sortDir = sortField === 'metadata.creationTimestamp' ? (sortDirection === Actions.SORT_DIRECTION_ASCENDING ? Actions.SORT_DIRECTION_DESCENDING : Actions.SORT_DIRECTION_ASCENDING) : sortDirection // date fields should initially sort from latest to oldest
+      const sortDir = sortField === 'metadata.creationTimestamp'
+        ? (sortDirection === Actions.SORT_DIRECTION_ASCENDING
+          ? Actions.SORT_DIRECTION_DESCENDING
+          : Actions.SORT_DIRECTION_ASCENDING)
+        : sortDirection // date fields should initially sort from latest to oldest
       return lodash.orderBy(items, item => lodash.get(item, sortField), [sortDir])
     }
   )
@@ -203,7 +207,8 @@ export const makeGetVisibleTableItemsSelector = (resourceType) => {
       const normalizedItems = normalize(result.items, [createResourcesSchema(pk, sk)]).entities.items
       return Object.assign(result, {
         normalizedItems: normalizedItems,
-        items: result.items.map(item => sk ? `${lodash.get(item, pk)}-${lodash.get(item, sk)}`:`${lodash.get(item, pk)}`) // to support multi cluster, use ${name}-${cluster} as unique id
+        // to support multi cluster, use ${name}-${cluster} as unique id
+        items: result.items.map(item => sk ? `${lodash.get(item, pk)}-${lodash.get(item, sk)}`:`${lodash.get(item, pk)}`)
       })
     }
   )

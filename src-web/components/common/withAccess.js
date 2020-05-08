@@ -27,7 +27,9 @@ const withAccess = (ChildComponent, lowestRole) => {
       const { role } = this.props
       const roleKey = lodash.findKey(ROLES, value => value.toLowerCase() === role.toLowerCase())
       const lowestRoleKey = lodash.findKey(ROLES, value => value.toLowerCase() === lowestRole.toLowerCase())
-      return Object.keys(ROLES).indexOf(roleKey) >= Object.keys(ROLES).indexOf(lowestRoleKey) ? <ChildComponent {...this.props} /> : <Redirect to={`${config.contextPath}/welcome`} />
+      return Object.keys(ROLES).indexOf(roleKey) >= Object.keys(ROLES).indexOf(lowestRoleKey)
+        ? <ChildComponent {...this.props} />
+        : <Redirect to={`${config.contextPath}/welcome`} />
     }
   }
 
