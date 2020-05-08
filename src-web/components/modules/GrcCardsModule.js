@@ -283,6 +283,7 @@ export class GrcCardsModule extends React.Component {
             types[index]=other
             return types[index]
           }
+          return undefined
         })
       }
       //for findings, multi categories/standards is an array, rather than a string split with ','

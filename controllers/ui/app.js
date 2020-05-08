@@ -114,6 +114,7 @@ function fetchHeader(req, res, store, context) {
       //eslint-disable-next-line no-console
       console.error(e)
     }
+    return undefined
   })
 }
 
