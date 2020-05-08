@@ -259,6 +259,7 @@ export default class TemplateEditor extends React.Component {
     if (updateMessage) {
 
       const handleClick = () => {
+        //This is intentional
       }
       const handleKeyPress = (e) => {
         if ( e.key === 'Enter') {
@@ -350,7 +351,7 @@ export default class TemplateEditor extends React.Component {
     return (
       <React.Fragment>
         <div className='creation-view-controls-singleselect'
-          ref={isOneSelection ? ()=>{} : this.setMultiSelectCmp.bind(this, id)} >
+          ref={isOneSelection ? ()=>{/*This is intentional*/} : this.setMultiSelectCmp.bind(this, id)} >
           <div className="creation-view-controls-multiselect-title">
             {name}
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
@@ -409,7 +410,7 @@ export default class TemplateEditor extends React.Component {
     return (
       <React.Fragment>
         <div className='creation-view-controls-multiselect'
-          ref={isOneSelection ? ()=>{} : this.setMultiSelectCmp.bind(this, id)} >
+          ref={isOneSelection ? ()=>{/*This is intentional*/} : this.setMultiSelectCmp.bind(this, id)} >
           <div className="creation-view-controls-multiselect-title">
             {name}
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
@@ -752,7 +753,7 @@ export default class TemplateEditor extends React.Component {
               id='edit-yaml'
               ariaLabel={showEditor ? msgs.get('edit.yaml.on', locale) : msgs.get('edit.yaml.off', locale)}
               defaultToggled={showEditor}
-              onChange={()=>{}}
+              onChange={()=>{/*This is intentional*/}}
               onToggle={handleToggle}
             />
             <div className='switch-label'>

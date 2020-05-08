@@ -253,7 +253,8 @@ export const getUniqueName = (name, nameSet) => {
     let count=1
     const baseName = name.replace(/-*\d+$/, '')
     do {
-      name = `${baseName}-${count++}`
+      name = `${baseName}-${count}`
+      count++
     } while (nameSet.has(name))
   }
   return name

@@ -239,8 +239,8 @@ export default class ResourceFilterView extends React.Component {
         label: value,
         isOther: value===other,
         checked: !multipleChoices || activeSet.has(value),
-        onChange: !multipleChoices ? ()=>{} : this.onChange.bind(this, key, value),
-        onKeyPress: !multipleChoices ? ()=>{} : this.onKeyPress.bind(this, key, value, !multipleChoices || activeSet.has(value)),
+        onChange: !multipleChoices ? ()=>{/*This is intentional*/} : this.onChange.bind(this, key, value),
+        onKeyPress: !multipleChoices ? ()=>{/*This is intentional*/} : this.onKeyPress.bind(this, key, value, !multipleChoices || activeSet.has(value)),
       }
     })
     if (multipleChoices) {

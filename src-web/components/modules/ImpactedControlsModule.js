@@ -439,7 +439,8 @@ class ImpactedControlsModule extends React.Component {
               line.pop()
               tspan.text(line.join(' '))
               line = [word]
-              tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', ++lineNumber * lineHeight + dy + 'em').text(word)
+              ++lineNumber
+              tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', lineNumber * lineHeight + dy + 'em').text(word)
               isMultiLined = true
             }
           }
