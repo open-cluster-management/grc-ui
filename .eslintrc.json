@@ -7,7 +7,7 @@
         "jest": true
     },
     "extends": [
-        "airbnb-base/whitespace",
+        "airbnb-base",
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:import/errors",
