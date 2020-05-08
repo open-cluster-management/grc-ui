@@ -145,7 +145,9 @@ class YamlParser {
           }
         }
       } else if (isMapping) {
-        if (!this.isDefined(data)) data = {}
+        if (!this.isDefined(data)) {
+          data = {}
+        }
         if (context && 'sequence' === context) {
           throw new YamlParseException('You cannot define a mapping item when in a sequence', this.getRealCurrentLineNb() + 1, this.currentLine)
         }
@@ -285,7 +287,9 @@ class YamlParser {
       }
 
       if (isRef) {
-        if (data instanceof Array) this.refs[isRef] = data[data.length - 1]
+        if (data instanceof Array) {
+          this.refs[isRef] = data[data.length - 1]
+        }
         else {
           let lastKey = null
           for (const k in data) {
