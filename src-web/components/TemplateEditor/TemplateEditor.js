@@ -6,9 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
-*/
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -158,8 +156,9 @@ export default class TemplateEditor extends React.Component {
     const {isLoaded, isFailed, error} = fetchControl || {isLoaded:true}
     const { showEditor, resetInx } = this.state
 
-    if (!isLoaded)
+    if (!isLoaded) {
       return <Loading withOverlay={false} className='content-spinner' />
+    }
 
     if (isFailed) {
       if (error.name === 'PermissionError') {
@@ -265,10 +264,6 @@ export default class TemplateEditor extends React.Component {
           handleClick()
         }
       }
-
-
-
-
 
       return <div role='button' onClick={handleClick}
         tabIndex="0" aria-label={updateMessage} onKeyDown={handleKeyPress}>
@@ -389,7 +384,7 @@ export default class TemplateEditor extends React.Component {
       } else {
         // if user edited the source, we can't automatically update it
         active = available = [msgs.get('creation.view.policy.custom', locale)]
-        availableMap = undefined
+        availableMap = null
       }
     }
 
@@ -398,7 +393,7 @@ export default class TemplateEditor extends React.Component {
     if (active.length>0) {
       const activeKeys = []
       active.forEach(key=>{
-        if (typeof availableMap ==='object' && availableMap[key]) {
+        if (availableMap && typeof availableMap === 'object' && availableMap[key]) {
           const {name} = availableMap[key]
           activeKeys.push(name||key)
         } else {
@@ -623,12 +618,14 @@ export default class TemplateEditor extends React.Component {
       }
       break
     case 'undo':
-      if (this.editor)
+      if (this.editor) {
         this.editor.undo()
+      }
       break
     case 'redo':
-      if (this.editor)
+      if (this.editor) {
         this.editor.redo()
+      }
       break
     case 'restore':
       this.resetEditor()
@@ -736,7 +733,7 @@ export default class TemplateEditor extends React.Component {
     const { portals={}, locale } = this.props
     const { editBtn } = portals
     if (editBtn) {
-      var portal = document.getElementById(editBtn)
+      const portal = document.getElementById(editBtn)
       if (portal) {
         const { showEditor } = this.state
         const handleToggle = () => {
@@ -771,7 +768,7 @@ export default class TemplateEditor extends React.Component {
     const { portals={}, createControl, locale } = this.props
     const { createBtn } = portals
     if (createControl && createBtn) {
-      var portal = document.getElementById(createBtn)
+      const portal = document.getElementById(createBtn)
       if (portal) {
         return ReactDOM.createPortal(
           <Button id={createBtn}
@@ -799,7 +796,7 @@ export default class TemplateEditor extends React.Component {
     const { portals={}, createControl, locale } = this.props
     const { cancelBtn } = portals
     if (createControl && cancelBtn) {
-      var portal = document.getElementById(cancelBtn)
+      const portal = document.getElementById(cancelBtn)
       if (portal) {
         const {cancelCreate} = createControl
         return ReactDOM.createPortal(

@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -135,7 +136,7 @@ export default class RefreshTimeSelect extends React.Component {
   // tooltip on dropdown is hardcoded
   fixTooltip = () => {
     if (this.refreshRef) {
-      var title = this.refreshRef.querySelector('title')
+      const title = this.refreshRef.querySelector('title')
       if (title) {
         title.innerHTML = msgs.get('choose.refresh', this.context.locale)
       }

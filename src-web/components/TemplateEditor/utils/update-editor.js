@@ -6,8 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
-*/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import {diff} from 'deep-diff'
@@ -143,8 +142,8 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
   const newRaw = getInside('$raw', newParse)
   const newSynced = getInside('$synced', newParse)
   const newYAMLLines = newYAML.split('\n')
-  let firstModRow=undefined
-  let firstNewRow=undefined
+  let firstModRow = null
+  let firstNewRow = null
   const ignorePaths = []
   const diffs = diff(oldRaw, newRaw)
   if (diffs) {
@@ -235,7 +234,7 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
       if (ranges.length) {
         const selection = editor.multiSelect
         selection.toSingleRange(ranges[0])
-        for (var i = ranges.length; i--; ) {
+        for (let i = ranges.length; i >= 0; i--) {
           selection.addRange(ranges[i], true)
         }
       } else {

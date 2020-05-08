@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -83,7 +84,9 @@ export class ResourceTableModule extends React.Component {
   formatResourceData(inputData) {
     let { tableResources } = this.props
     const { normalizedKey } = this.props
-    if (inputData) tableResources = inputData
+    if (inputData) {
+      tableResources = inputData
+    }
     const { searchValue } = this.state
     let normalizedItems = tableResources && lodash.keyBy(tableResources, repo => normalizedKey? lodash.get(repo, normalizedKey) + (repo.cluster ? repo.cluster : '') : repo.name)
     let itemIds = normalizedItems && Object.keys(normalizedItems)

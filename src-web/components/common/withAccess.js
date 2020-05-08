@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -17,7 +18,7 @@ import { ROLES } from '../../../lib/shared/constants'
 import config from '../../../lib/shared/config'
 
 const withAccess = (ChildComponent, lowestRole) => {
-  class checkAccess extends React.PureComponent {
+  class CheckAccess extends React.PureComponent {
     static propTypes = {
       role: PropTypes.string.isRequired,
     }
@@ -36,7 +37,7 @@ const withAccess = (ChildComponent, lowestRole) => {
     return { role }
   }
 
-  return connect(mapStateToProps)(checkAccess)
+  return connect(mapStateToProps)(CheckAccess)
 }
 
 

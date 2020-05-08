@@ -9,7 +9,7 @@
  * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
 
-var fs = require('fs')
+const fs = require('fs')
 const path = require('path')
 
 const config = require('../../config')
@@ -36,7 +36,7 @@ module.exports = {
   'Policy controller: single object / musthave + mustnothave': (browser) => {
     const time = browser.globals.time
     const singleMustHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/single_musthave_inform.yaml'))
-    var yaml = singleMustHaveInform.toString()
+    let yaml = singleMustHaveInform.toString()
     page.createPolicy(browser, 'policy-pod-single-musthave-inform-' + time, yaml, time)
     page.checkViolations('policy-pod-single-musthave-inform-' + time, true, 'pods `nginx-pod-' + time + '` is missing, and should be created')
     page.deletePolicy('policy-pod-single-musthave-inform-' + time)
@@ -62,7 +62,7 @@ module.exports = {
   'Policy controller: all objects of kind / exists': (browser) => {
     const time = browser.globals.time
     const kindMustNotHaveNC = fs.readFileSync(path.join(__dirname, 'yaml/kind_mustnothave_noncompliant.yaml'))
-    var yaml = kindMustNotHaveNC.toString()
+    let yaml = kindMustNotHaveNC.toString()
     page.createPolicy(browser, 'policy-ns-mustnothave-' + time, yaml, time)
     page.checkViolations('policy-ns-mustnothave-' + time, true)
     page.deletePolicy('policy-ns-mustnothave-' + time)
@@ -77,7 +77,7 @@ module.exports = {
   'Policy controller: all objects of kind / does not exist': (browser) => {
     const time = browser.globals.time
     const createNS = fs.readFileSync(path.join(__dirname, 'yaml/create_test_ns.yaml'))
-    var yaml = createNS.toString()
+    let yaml = createNS.toString()
     page.createPolicy(browser, 'policy-namespace-create-' + time, yaml, time)
     browser.pause(30000) //Wait until policy acted
     page.deletePolicy('policy-namespace-create-' + time)

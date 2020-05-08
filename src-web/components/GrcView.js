@@ -6,9 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
- */
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -123,8 +121,9 @@ export class GrcView extends React.Component {
     const { viewState } = this.state
     const { loading, error, grcItems, applications, activeFilters={}, secondaryHeaderProps, refreshControl, location } = this.props
     hideResourceToolbar()
-    if (loading)
+    if (loading) {
       return <Loading withOverlay={false} className='content-spinner' />
+    }
 
     if (error) {
       if (error.name === 'PermissionError') {
@@ -254,9 +253,10 @@ export class GrcView extends React.Component {
     }
 
     //step 2 update url when click GrcCardsModule
-    const paraURL = {}
-    paraURL.card=false
-    paraURL.toggle=false
+    const paraURL = {
+      card: false,
+      toggle: false,
+    }
     type && type.toLowerCase()==='cluster' ? paraURL.index=1 : paraURL.index=0
     let urlString = queryString.stringify(paraURL)
     //also append GrcToggleModule search input filter to the end of url if existing

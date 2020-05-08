@@ -6,9 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
-*/
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -66,7 +64,9 @@ class EditorBar extends React.Component {
     const menuItems=[]
     if (exceptions.length!==0) {
       exceptions.forEach(({text, row})=>{
-        if (text.length>64) text=text.substr(0,64)+'...'
+        if (text.length>64) {
+          text=text.substr(0,64)+'...'
+        }
         menuItems.push({
           text,
           row,

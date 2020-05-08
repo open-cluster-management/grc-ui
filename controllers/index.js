@@ -6,14 +6,15 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
-var express = require('express'),
-    router = express.Router(),
-    config = require('../config')
+const express = require('express'),
+      router = express.Router(),
+      config = require('../config')
 
 //controllers
-var status = require('./status'),
-    ui = require('./ui')
+const status = require('./status'),
+      ui = require('./ui')
 
 router.all(['/', '/status', '/livenessProbe', '/readinessProbe'], status)
 router.use(config.get('contextPath'), ui)

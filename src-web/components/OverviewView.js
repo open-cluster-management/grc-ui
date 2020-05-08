@@ -6,8 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
- */
+ /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -93,8 +92,9 @@ export class OverviewView extends React.Component {
     const { loading, error, policies, findings, applications, activeFilters={} } = this.props
     hideResourceToolbar()
 
-    if (loading)
+    if (loading) {
       return <Loading withOverlay={false} className='content-spinner' />
+    }
 
     if (error) {
       if (error.name === 'PermissionError') {

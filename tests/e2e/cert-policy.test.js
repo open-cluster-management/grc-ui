@@ -6,10 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
- *******************************************************************************/
-
-var fs = require('fs')
+ /* Copyright (c) 2020 Red Hat, Inc. */
+const fs = require('fs')
 const path = require('path')
 
 const config = require('../../config')
@@ -36,7 +34,7 @@ module.exports = {
   'Cert policy: create issuer and certificate ': (browser) => {
     const time = browser.globals.time
     const testIssuer = fs.readFileSync(path.join(__dirname, 'yaml/create_test_issuer.yaml'))
-    var yaml = testIssuer.toString()
+    let yaml = testIssuer.toString()
     page.createPolicy(browser, 'policy-create-issuer-' + time, yaml, time)
     browser.pause(30000) // Wait for policy to create issuer 20s
     page.checkViolations('policy-create-issuer-' + time, false)
@@ -53,7 +51,7 @@ module.exports = {
   'Cert policy: create cert policy and should show violation': (browser) => {
     const time = browser.globals.time
     const certPolicy = fs.readFileSync(path.join(__dirname, 'yaml/create_test_certpolicy.yaml'))
-    var yaml = certPolicy.toString()
+    const yaml = certPolicy.toString()
     page.createPolicy(browser, 'policy-certificatepolicy-' + time, yaml, time)
     browser.pause(40000) // Wait for cert policy to detect violation 30s
     page.checkViolations('policy-certificatepolicy-' + time, true)
@@ -62,7 +60,7 @@ module.exports = {
   'Cert policy: update certificate and secret': (browser) => {
     const time = browser.globals.time
     const updateCertificate = fs.readFileSync(path.join(__dirname, 'yaml/update_test_certificate.yaml'))
-    var yaml = updateCertificate.toString()
+    const yaml = updateCertificate.toString()
     page.createPolicy(browser, 'policy-update-certificate-' + time, yaml, time)
     browser.pause(60000) // Wait for policy to update certificate 30s
     page.checkViolations('policy-update-certificate-' + time, false)
@@ -82,7 +80,7 @@ module.exports = {
     page.deletePolicy('policy-certificatepolicy-' + time)
 
     const deleteCertificate = fs.readFileSync(path.join(__dirname, 'yaml/delete_test_certificate.yaml'))
-    var yaml = deleteCertificate.toString()
+    let yaml = deleteCertificate.toString()
     page.createPolicy(browser, 'policy-delete-certificate-' + time, yaml, time)
     browser.pause(30000) // Wait for policy to delete certificate 30s
     page.checkViolations('policy-delete-certificate-' + time, false)

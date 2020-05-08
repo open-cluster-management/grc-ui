@@ -6,9 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
- */
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -59,7 +57,9 @@ export default class TopInformationModule extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { staticInfo } = this.props
     //next items, type when update filter on current page
-    if(staticInfo === true) return
+    if(staticInfo === true) {
+      return
+    }
     const { items, applications, type } = nextProps
     this.setCardData(items, applications, type)
   }
@@ -488,8 +488,8 @@ const TopInformations = ({cardData, handleClick}) => {
                   descDict[description[i]] = 1
                 }
               }
-              var sortedKeys = []
-              for(var key in descDict) {
+              const sortedKeys = []
+              for(const key in descDict) {
                 if (descDict.hasOwnProperty(key)) {
                   sortedKeys.push([ key, descDict[key] ])
                 }

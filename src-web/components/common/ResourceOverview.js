@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -30,8 +31,9 @@ const ResourceOverview = ({
   resourceType
 }) => {
   localStorage.removeItem(MCM_OPEN_DIAGRAM_TAB_COOKIE)
-  if (!item)
+  if (!item) {
     return <Loading withOverlay={false} className='content-spinner' />
+  }
   const modulesRight = []
   const modulesBottom = []
   React.Children.map(modules, module => {
