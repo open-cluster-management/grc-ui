@@ -518,8 +518,12 @@ class YamlParser {
   }
 
   parseFoldedScalar(separator, indicator, indentation) {
-    if (indicator === undefined) indicator = ''
-    if (indentation === undefined) indentation = 0
+    if (indicator === undefined) {
+      indicator = ''
+    }
+    if (indentation === undefined) {
+      indentation = 0
+    }
 
     separator = '|' === separator ? '\n' : ' '
     let text = ''
@@ -731,12 +735,24 @@ class YamlParser {
     let i
 
     for (i in a) {
-      if (a.hasOwnProperty(i)) if (/^\d+$/.test(i)) c.push(a)
-      else c[i] = a[i]
+      if (a.hasOwnProperty(i)) {
+        if (/^\d+$/.test(i)) {
+          c.push(a)
+        }
+      }
+      else {
+        c[i] = a[i]
+      }
     }
     for (i in b) {
-      if (b.hasOwnProperty(i)) if (/^\d+$/.test(i)) c.push(b)
-      else c[i] = b[i]
+      if (b.hasOwnProperty(i)) {
+        if (/^\d+$/.test(i)) {
+          c.push(b)
+        }
+      }
+      else {
+        c[i] = b[i]
+      }
     }
 
     return c
@@ -745,7 +761,9 @@ class YamlParser {
   strRepeat(str, count) {
     let i
     let result = ''
-    for (i = 0; i < count; i++) result += str
+    for (i = 0; i < count; i++) {
+      result += str
+    }
     return result
   }
 
@@ -755,8 +773,12 @@ class YamlParser {
     string = '' + string
     subString = '' + subString
 
-    if (start !== undefined) string = string.substr(start)
-    if (length !== undefined) string = string.substr(0, length)
+    if (start !== undefined) {
+      string = string.substr(start)
+    }
+    if (length !== undefined) {
+      string = string.substr(0, length)
+    }
 
     const len = string.length
     const sublen = subString.length
@@ -930,10 +952,18 @@ class YamlInline {
   }
 
   parseScalar(scalar, delimiters, stringDelimiters, i, evaluate) {
-    if (delimiters === undefined) delimiters = null
-    if (stringDelimiters === undefined) stringDelimiters = ['"', '\'']
-    if (i === undefined) i = 0
-    if (evaluate === undefined) evaluate = true
+    if (delimiters === undefined) {
+      delimiters = null
+    }
+    if (stringDelimiters === undefined) {
+      stringDelimiters = ['"', '\'']
+    }
+    if (i === undefined) {
+      i = 0
+    }
+    if (evaluate === undefined) {
+      evaluate = true
+    }
 
     let output = null
     let pos = null
@@ -1009,7 +1039,9 @@ class YamlInline {
   }
 
   parseSequence(sequence, i) {
-    if (i === undefined) i = 0
+    if (i === undefined) {
+      i = 0
+    }
 
     const output = []
     const len = sequence.length
@@ -1044,8 +1076,9 @@ class YamlInline {
           try {
             value = this.parseMapping('{' + value + '}')
           } catch (e) {
-            if (!(e instanceof YamlParseException)) throw e
-            // no, it's not
+            if (!(e instanceof YamlParseException)) {
+              throw e
+            } // no, it's not
           }
         }
 
@@ -1062,7 +1095,9 @@ class YamlInline {
   }
 
   parseMapping(mapping, i) {
-    if (i === undefined) i = 0
+    if (i === undefined) {
+      i = 0
+    }
     const output = {}
     const len = mapping.length
     i += 1
@@ -1084,7 +1119,9 @@ class YamlInline {
         return output
       }
 
-      if (doContinue) continue
+      if (doContinue) {
+        continue
+      }
 
       // key
       const key = this.parseScalar(mapping, [':', ' '], ['"', '\''], i, false)
@@ -1126,7 +1163,9 @@ class YamlInline {
         }
       }
 
-      if (doContinue) continue
+      if (doContinue) {
+        continue
+      }
     }
 
     throw new YamlParseException(`('Malformed inline YAML string "${mapping}"`)
@@ -1138,22 +1177,44 @@ class YamlInline {
     let raw = null
     let cast = null
 
-    if (('null' === scalar.toLowerCase()) || ('' === scalar) || ('~' === scalar)) return null
-    if ((scalar + '').indexOf('!str ') === 0) return ('' + scalar).substring(5)
-    if ((scalar + '').indexOf('! ') === 0) return parseInt(this.parseScalar((scalar + '').substr(2)), 10)
+    if (('null' === scalar.toLowerCase()) || ('' === scalar) || ('~' === scalar)) {
+      return null
+    }
+    if ((scalar + '').indexOf('!str ') === 0) {
+      return ('' + scalar).substring(5)
+    }
+    if ((scalar + '').indexOf('! ') === 0) {
+      return parseInt(this.parseScalar((scalar + '').substr(2)), 10)
+    }
     if (/^\d+$/.test(scalar)) {
       raw = scalar
       cast = parseInt(scalar, 10)
       return '0' === scalar.charAt(0) ? this.octdec(scalar) : (('' + raw === '' + cast) ? cast : raw)
     }
-    if ('true' === (scalar + '').toLowerCase()) return true
-    if ('false' === (scalar + '').toLowerCase()) return false
-    if (this.isNumeric(scalar)) return '0x' === (scalar + '').substr(0, 2) ? this.hexdec(scalar) : parseFloat(scalar)
-    if (scalar.toLowerCase() === '.inf') return Infinity
-    if (scalar.toLowerCase() === '.nan') return NaN
-    if (scalar.toLowerCase() === '-.inf') return -Infinity
-    if (/^(-|\+)?[0-9,]+(\.[0-9]+)?$/.test(scalar)) return parseFloat(scalar.split(',').join(''))
-    if (this.getTimestampRegex().test(scalar)) return new Date(this.strtotime(scalar))
+    if ('true' === (scalar + '').toLowerCase()) {
+      return true
+    }
+    if ('false' === (scalar + '').toLowerCase()) {
+      return false
+    }
+    if (this.isNumeric(scalar)) {
+      return '0x' === (scalar + '').substr(0, 2) ? this.hexdec(scalar) : parseFloat(scalar)
+    }
+    if (scalar.toLowerCase() === '.inf') {
+      return Infinity
+    }
+    if (scalar.toLowerCase() === '.nan') {
+      return NaN
+    }
+    if (scalar.toLowerCase() === '-.inf') {
+      return -Infinity
+    }
+    if (/^(-|\+)?[0-9,]+(\.[0-9]+)?$/.test(scalar)) {
+      return parseFloat(scalar.split(',').join(''))
+    }
+    if (this.getTimestampRegex().test(scalar)){
+      return new Date(this.strtotime(scalar))
+    }
     //else
     return '' + scalar
   }
