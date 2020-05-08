@@ -21,7 +21,10 @@ import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared
 import GrcCardsModule from './modules/GrcCardsModule'
 // eslint-disable-next-line import/no-named-as-default
 import GrcToggleModule from './modules/GrcToggleModule'
-import { filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState, replaceGrcState, combineResourceFilters, saveGrcStatePair } from '../../lib/client/filter-helper'
+import {
+  filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState,
+  replaceGrcState, combineResourceFilters, saveGrcStatePair
+} from '../../lib/client/filter-helper'
 import { showResourceToolbar, hideResourceToolbar } from '../../lib/client/resource-helper'
 import NoResource from './common/NoResource'
 import createDocLink from './common/CreateDocLink'

@@ -9,6 +9,17 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
+YamlInline.REGEX_QUOTED_STRING = '(?:"(?:[^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'(?:[^\']*(?:\'\'[^\']*)*)\')'
+
+class YamlParseException {
+  constructor(message, parsedLine, snippet, parsedFile) {
+    this.rawMessage = message
+    this.parsedLine = (parsedLine !== undefined) ? parsedLine : -1
+    this.snippet = (snippet !== undefined) ? snippet : null
+    this.parsedFile = (parsedFile !== undefined) ? parsedFile : null
+    this.message = message
+  }
+}
 class YamlParser {
 
   constructor(offset, lined) {
@@ -291,7 +302,7 @@ class YamlParser {
   getRealCurrentLineNb(obj) {
     const inxNb = this.currentLine.lastIndexOf('#')
     if (inxNb !== -1) {
-      const row = parseInt(this.currentLine.substr(inxNb + 1))
+      const row = parseInt(this.currentLine.substr(inxNb + 1), 10)
       if (obj) {
         obj.$r = row
         obj.$l = 1
@@ -487,7 +498,7 @@ class YamlParser {
       }
       const modifiers = this.isDefined(matches.modifiers) ? matches.modifiers : ''
 
-      return this.parseFoldedScalar(matches.separator, modifiers.replace(/\d+/g, ''), Math.abs(parseInt(modifiers)))
+      return this.parseFoldedScalar(matches.separator, modifiers.replace(/\d+/g, ''), Math.abs(parseInt(modifiers, 10)))
     }
     try {
       return new YamlInline().parse(value)
@@ -1123,10 +1134,10 @@ class YamlInline {
 
     if (('null' === scalar.toLowerCase()) || ('' === scalar) || ('~' === scalar)) return null
     if ((scalar + '').indexOf('!str ') === 0) return ('' + scalar).substring(5)
-    if ((scalar + '').indexOf('! ') === 0) return parseInt(this.parseScalar((scalar + '').substr(2)))
+    if ((scalar + '').indexOf('! ') === 0) return parseInt(this.parseScalar((scalar + '').substr(2)), 10)
     if (/^\d+$/.test(scalar)) {
       raw = scalar
-      cast = parseInt(scalar)
+      cast = parseInt(scalar, 10)
       return '0' === scalar.charAt(0) ? this.octdec(scalar) : (('' + raw === '' + cast) ? cast : raw)
     }
     if ('true' === (scalar + '').toLowerCase()) return true
@@ -1226,7 +1237,8 @@ class YamlInline {
     }
     const a = function(i) {
       const o = (i[2] && i[2] === 'ago')
-      let n = (n = i[0] === 'last' ? -1 : 1) * (o ? -1 : 1)
+      const m = i[0] === 'last' ? -1 : 1
+      let n = m * (o ? -1 : 1)
       switch (i[0]) {
       case 'last':
       case 'next':
@@ -1337,19 +1349,5 @@ class YamlInline {
   }
 
 }
-YamlInline.REGEX_QUOTED_STRING = '(?:"(?:[^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'(?:[^\']*(?:\'\'[^\']*)*)\')'
-
-
-class YamlParseException {
-  constructor(message, parsedLine, snippet, parsedFile) {
-    this.rawMessage = message
-    this.parsedLine = (parsedLine !== undefined) ? parsedLine : -1
-    this.snippet = (snippet !== undefined) ? snippet : null
-    this.parsedFile = (parsedFile !== undefined) ? parsedFile : null
-    this.message = message
-  }
-}
-
 
 export default YamlParser
-

@@ -42,37 +42,51 @@ const Modal = ({ type, open, ...rest }) => {
 }
 
 const getDisableModal = props => {
-  DisableModal = DisableModal === undefined ? loadable(() => import(/* webpackChunkName: "disable-modal" */ '../modals/DisableModal')) : DisableModal
+  DisableModal = DisableModal === undefined
+    ? loadable(() => import(/* webpackChunkName: "disable-modal" */ '../modals/DisableModal'))
+    : DisableModal
   return getModal(DisableModal, props)
 }
 
 const getEnableModal = props => {
-  EnableModal = EnableModal === undefined ? loadable(() => import(/* webpackChunkName: "enable-modal" */ '../modals/EnableModal')) : EnableModal
+  EnableModal = EnableModal === undefined
+    ? loadable(() => import(/* webpackChunkName: "enable-modal" */ '../modals/EnableModal'))
+    : EnableModal
   return getModal(EnableModal, props)
 }
 
 const getDescriptionModal = props => {
-  DescriptionModal = DescriptionModal === undefined ? loadable(() => import(/* webpackChunkName: "description-modal" */ '../modals/DescriptionModal')) : DescriptionModal
+  DescriptionModal = DescriptionModal === undefined
+    ? loadable(() => import(/* webpackChunkName: "description-modal" */ '../modals/DescriptionModal'))
+    : DescriptionModal
   return getModal(DescriptionModal, props)
 }
 
 const getResourceModal = props => {
-  ResourceModal = ResourceModal === undefined ? loadable(() => import(/* webpackChunkName: "edit-resource-modal" */ '../modals/ResourceModal')) : ResourceModal
+  ResourceModal = ResourceModal === undefined
+    ? loadable(() => import(/* webpackChunkName: "edit-resource-modal" */ '../modals/ResourceModal'))
+    : ResourceModal
   return getModal(ResourceModal, props)
 }
 
 const getRemoveResourceModal = props => {
-  RemoveResourceModal = RemoveResourceModal === undefined ? loadable(() => import(/* webpackChunkName: "remove-resource-modal" */ '../modals/RemoveResourceModal')) : RemoveResourceModal
+  RemoveResourceModal = RemoveResourceModal === undefined
+    ? loadable(() => import(/* webpackChunkName: "remove-resource-modal" */ '../modals/RemoveResourceModal'))
+    : RemoveResourceModal
   return getModal(RemoveResourceModal, props)
 }
 
 const getPolicySidePanelDetailsModal = props => {
-  PolicySidePanelDetailsModal = PolicySidePanelDetailsModal === undefined ? loadable(() => import(/* webpackChunkName: "details-policy-side-panel-modal" */ '../modals/PolicySidePanelDetailsModal')) : PolicySidePanelDetailsModal
+  PolicySidePanelDetailsModal = PolicySidePanelDetailsModal === undefined
+    ? loadable(() => import(/* webpackChunkName: "details-policy-side-panel-modal" */ '../modals/PolicySidePanelDetailsModal'))
+    : PolicySidePanelDetailsModal
   return getModal(PolicySidePanelDetailsModal, props)
 }
 
 const getFindingSidePanelDetailsModal = props => {
-  FindingSidePanelDetailsModal = FindingSidePanelDetailsModal === undefined ? loadable(() => import(/* webpackChunkName: "details-finding-side-panel-modal" */ '../modals/FindingSidePanelDetailsModal')) : FindingSidePanelDetailsModal
+  FindingSidePanelDetailsModal = FindingSidePanelDetailsModal === undefined
+    ? loadable(() => import(/* webpackChunkName: "details-finding-side-panel-modal" */ '../modals/FindingSidePanelDetailsModal'))
+    : FindingSidePanelDetailsModal
   return getModal(FindingSidePanelDetailsModal, props)
 }
 

@@ -128,7 +128,7 @@ export default class TemplateEditor extends React.Component {
 
   handleSplitterDefault = () => {
     const cookie = localStorage.getItem(this.splitterSizeCookie)
-    let size = cookie ? parseInt(cookie) : 1000
+    let size = cookie ? parseInt(cookie, 10) : 1000
     const page = document.getElementById('page')
     if (page) {
       const width = page.getBoundingClientRect().width

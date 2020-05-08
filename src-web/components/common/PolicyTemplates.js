@@ -98,13 +98,24 @@ class PolicyTemplates extends React.Component {
       // <Module className='structured-list-module' id={`yaml-template-${headerKey}`}>
       <Module className={className ? className :'structured-list-module'} id='yaml-template'>
         <div>
-          <ModuleHeader>{`${msgs.get(headerKey, this.context.locale)}${this.state.updated? ' -  updated' : ''}`}</ModuleHeader>
+          <ModuleHeader>
+            {`${msgs.get(headerKey, this.context.locale)}${this.state.updated? ' -  updated' : ''}`}
+          </ModuleHeader>
           {editable &&
           <div className='yaml-editor-button'>
-            <Button icon="add--glyph" className={this.state.readOnly ? 'read-only-button' : 'editing-button'} small id={'edit-button'} key='edit-resource' onClick={this.handleEditBtnClick}>
+            <Button
+              icon="add--glyph"
+              className={this.state.readOnly ? 'read-only-button' : 'editing-button'}
+              small id={'edit-button'}
+              key='edit-resource'
+              onClick={this.handleEditBtnClick}>
               {msgs.get('table.actions.edit', this.context.locale)}
             </Button>
-            <Button icon="add--glyph" small id={'edit-button'} key='submit-resource-change' onClick={this.handleSubmitClick}>
+            <Button
+              icon="add--glyph" small
+              id={'edit-button'}
+              key='submit-resource-change'
+              onClick={this.handleSubmitClick}>
               {msgs.get('modal.button.submit', this.context.locale)}
             </Button>
           </div>

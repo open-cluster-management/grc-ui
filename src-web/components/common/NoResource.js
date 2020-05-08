@@ -33,14 +33,20 @@ const NoResource = ({
     <div>
       {topButton}
       <div className={className ? className : 'no-resource'}>
-        <img className={imgClassName ? imgClassName : 'no-resource-icon'} src={`${config.contextPath}/graphics/${svgName ? svgName : 'no-policy.svg'}`} alt={alt ? alt : msgs.get('svg.description.noresource', context.locale)} />
+        <img
+          className={imgClassName ? imgClassName : 'no-resource-icon'}
+          src={`${config.contextPath}/graphics/${svgName ? svgName : 'no-policy.svg'}`}
+          alt={alt ? alt : msgs.get('svg.description.noresource', context.locale)} />
         <div className={titleClassName ? titleClassName : 'no-resource-title'}>{title}</div>
         {detail && <div className='no-resource-detail'>{detail}</div>}
         {children}
       </div>
     </div> :
     <div className={className ? className : 'no-resource'}>
-      <img	className={imgClassName ? imgClassName : 'no-resource-icon'} src={`${config.contextPath}/graphics/${svgName ? svgName : 'no-policy.svg'}`} alt={alt ? alt : msgs.get('svg.description.noresource', context.locale)} />
+      <img
+        className={imgClassName ? imgClassName : 'no-resource-icon'}
+        src={`${config.contextPath}/graphics/${svgName ? svgName : 'no-policy.svg'}`}
+        alt={alt ? alt : msgs.get('svg.description.noresource', context.locale)} />
     </div>
 }
 
