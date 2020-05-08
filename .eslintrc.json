@@ -45,7 +45,21 @@
         "block-spacing": ["error"],
         "comma-spacing": ["error"],
         "computed-property-spacing": ["error"],
+        "camelcase": ["error", { "properties": "never", "ignoreDestructuring": false }],
+        "capitalized-comments": ["off", "never", {
+            "line": {
+              "ignorePattern": ".*",
+              "ignoreInlineComments": true,
+              "ignoreConsecutiveComments": true
+            },
+            "block": {
+              "ignorePattern": ".*",
+              "ignoreInlineComments": true,
+              "ignoreConsecutiveComments": true
+            }
+          }],
         "dot-location": ["error"],
+        "function-call-argument-newline": ["off", "consistent"],
         "func-call-spacing": ["error"],
         "function-paren-newline": ["error"],
         "generator-star-spacing": ["error"],
@@ -83,8 +97,15 @@
         "switch-colon-spacing": ["error"],
         "template-tag-spacing": ["error"],
         "import/newline-after-import": ["error"],
-        "no-unused-vars": "error",
+        "no-delete-var": "error",
+        "no-undef-init": "error",
+        "no-label-var": "error",
+        "no-undefined": "off",
+        "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }],
+        "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": true }],
+        "no-invalid-this": "off",
         "prefer-const": "error",
+        "radix": "error",
         "react/jsx-tag-spacing": "error",
         "react/display-name": "error",
         "react/no-access-state-in-setstate": "error",
