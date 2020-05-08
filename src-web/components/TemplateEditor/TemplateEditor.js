@@ -34,7 +34,8 @@ import msgs from '../../../nls/platform.properties'
 import '../../../graphics/diagramIcons.svg'
 import _ from 'lodash'
 
-const tempCookie= 'template-editor-open-cookie'
+const tempCookie = 'template-editor-open-cookie'
+const diagramIconsInfoStr = '#diagramIcons_info'
 
 export default class TemplateEditor extends React.Component {
 
@@ -331,7 +332,7 @@ export default class TemplateEditor extends React.Component {
           <div>{name}</div>
           <TooltipIcon direction='top' tooltipText={description}>
             <svg className='info-icon'>
-              <use href={'#diagramIcons_info'} ></use>
+              <use href={diagramIconsInfoStr} ></use>
             </svg>
           </TooltipIcon>
         </div>
@@ -355,7 +356,7 @@ export default class TemplateEditor extends React.Component {
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
             <TooltipIcon direction='top' tooltipText={description}>
               <svg className='info-icon'>
-                <use href={'#diagramIcons_info'} ></use>
+                <use href={diagramIconsInfoStr} ></use>
               </svg>
             </TooltipIcon>
           </div>
@@ -414,7 +415,7 @@ export default class TemplateEditor extends React.Component {
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
             <TooltipIcon direction='top' tooltipText={description}>
               <svg className='info-icon'>
-                <use href={'#diagramIcons_info'} ></use>
+                <use href={diagramIconsInfoStr} ></use>
               </svg>
             </TooltipIcon>
           </div>

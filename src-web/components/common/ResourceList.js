@@ -29,6 +29,10 @@ import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 import createDocLink from '../../components/common/CreateDocLink'
 import PropTypes from 'prop-types'
 
+const noResourceStr = 'no-resource.title'
+const routesGrcStr = 'routes.grc'
+const routesCreatePolicy = 'routes.create.policy'
+
 class ResourceList extends React.Component {
   constructor() {
     super()
@@ -174,39 +178,39 @@ class ResourceList extends React.Component {
     switch(resourceType.name) {
     case RESOURCE_TYPES.HCM_POLICIES_PER_APPLICATION.name:
       return <NoResource
-        title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
+        title={msgs.get(noResourceStr, [msgs.get(routesGrcStr, locale)], locale)}
         detail={msgs.get('no-resource.detail.application', locale)}
         topButton={topButton}>
-        {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+        {createDocLink(locale, handleCreatePolicy, msgs.get(routesCreatePolicy, locale), false)}
       </NoResource>
     case RESOURCE_TYPES.HCM_POLICIES_PER_POLICY.name:
       return (
         <NoResource
-          title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
+          title={msgs.get(noResourceStr, [msgs.get(routesGrcStr, locale)], locale)}
           detail={msgs.get('no-resource.detail.policy', locale)}>
-          {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale))}
+          {createDocLink(locale, handleCreatePolicy, msgs.get(routesCreatePolicy, locale))}
         </NoResource>
       )
     case RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER.name:
       return <NoResource
-        title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
+        title={msgs.get(noResourceStr, [msgs.get(routesGrcStr, locale)], locale)}
         detail={msgs.get('no-resource.detail.item', locale)}
         topButton={topButton}>
-        {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+        {createDocLink(locale, handleCreatePolicy, msgs.get(routesCreatePolicy, locale), false)}
       </NoResource>
     case RESOURCE_TYPES.HCM_SECURITY_FINDINGS.name:
     case RESOURCE_TYPES.HCM_CLUSTER_FINDINGS.name:
       return <NoResource
-        title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
+        title={msgs.get(noResourceStr, [msgs.get(routesGrcStr, locale)], locale)}
         detail={msgs.get('no-resource.detail.item', locale)}
         topButton={topButton}>
-        {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+        {createDocLink(locale, handleCreatePolicy, msgs.get(routesCreatePolicy, locale), false)}
       </NoResource>
     }
     const resourceName = msgs.get('no-resource.' + resourceType.name.toLowerCase(), locale)
     return (
       <NoResource
-        title={msgs.get('no-resource.title', [resourceName], locale)}
+        title={msgs.get(noResourceStr, [resourceName], locale)}
         detail={msgs.get('no-resource.detail', [resourceName], locale)}>
         {actions}
       </NoResource>

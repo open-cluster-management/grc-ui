@@ -9,6 +9,8 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
+const warnPackTypeStr = 'Warning:  pack() Type '
+
 YamlInline.REGEX_QUOTED_STRING = '(?:"(?:[^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'(?:[^\']*(?:\'\'[^\']*)*)\')'
 
 class YamlParseException {
@@ -858,7 +860,7 @@ class YamlUnescaper {
           s = arguments.length - o
         }
         if (s > (arguments.length - o)) {
-          throw new Error('Warning:  pack() Type ' + E + ': too few arguments')
+          throw new Error(warnPackTypeStr + E + ': too few arguments')
         }
         for (z = 0; z < s; z++) {
           m += String.fromCharCode(arguments[o] >> 8 & 255)
@@ -871,7 +873,7 @@ class YamlUnescaper {
           s = arguments.length - o
         }
         if (s > (arguments.length - o)) {
-          throw new Error('Warning:  pack() Type ' + E + ': too few arguments')
+          throw new Error(warnPackTypeStr + E + ': too few arguments')
         }
         for (z = 0; z < s; z++) {
           m += String.fromCharCode(arguments[o] >> 24 & 255)
@@ -882,7 +884,7 @@ class YamlUnescaper {
         }
         break
       default:
-        throw new Error('Warning:  pack() Type ' + E + ': unknown format code')
+        throw new Error(warnPackTypeStr + E + ': unknown format code')
       }
     }
     if (o < arguments.length) {

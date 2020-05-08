@@ -80,6 +80,7 @@ export class ResourceTable extends React.Component {
     const showSearch = lodash.get(this.props, 'showSearch', true)
     const showPagination = lodash.get(this.props, 'showPagination', true)
     const id = (staticResourceData && staticResourceData.resourceKey) ? `${staticResourceData.resourceKey}-` : ''
+    const firstResKeyStr = 'tableKeys[0].resourceKey'
 
     const PagenationComponent = showPagination ?
       (<PaginationV2
@@ -189,10 +190,10 @@ export class ResourceTable extends React.Component {
                           <TableExpandRow {
                             ...getRowProps(
                               { row,
-                                'data-row-name': lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')),
+                                'data-row-name': lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)),
                                 'aria-hidden': expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0),
                                 className:
-                                  (lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')) === highLightRowName)
+                                  (lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)) === highLightRowName)
                                     ? 'high-light'
                                     : expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0)
                                       ? 'row-not-expanded'
@@ -261,9 +262,9 @@ export class ResourceTable extends React.Component {
                         return (
                           <TableRow
                             key={row.id}
-                            data-row-name={lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey'))}
+                            data-row-name={lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr))}
                             className={
-                              lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')) === highLightRowName
+                              lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)) === highLightRowName
                                 ? 'high-light'
                                 : ''
                             }

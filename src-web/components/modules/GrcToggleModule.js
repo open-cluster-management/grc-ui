@@ -27,6 +27,8 @@ resources(() => {
   require('../../../scss/module-grc-toggle.scss')
 })
 
+const policySidepanelActionStr = 'table.actions.policy.sidepanel'
+
 export class GrcToggleModule extends React.Component {
 
   constructor (props) {
@@ -53,7 +55,7 @@ export class GrcToggleModule extends React.Component {
         staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
         getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
         placeHolderText = msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)
-        autoAction = 'table.actions.policy.sidepanel'
+        autoAction = policySidepanelActionStr
         break
       case 1:
         detailsTabs = ['clusters']
@@ -62,7 +64,7 @@ export class GrcToggleModule extends React.Component {
         staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER)
         getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER)
         placeHolderText = msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)
-        autoAction = 'table.actions.policy.sidepanel'
+        autoAction = policySidepanelActionStr
         break
       case 2:
         detailsTabs = ['applications']
@@ -71,7 +73,7 @@ export class GrcToggleModule extends React.Component {
         staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_APPLICATION)
         getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_APPLICATION)
         placeHolderText = msgs.get('tabs.grc.toggle.applications.placeHolderText', locale)
-        autoAction = 'table.actions.policy.sidepanel'
+        autoAction = policySidepanelActionStr
         break
       }
       break
