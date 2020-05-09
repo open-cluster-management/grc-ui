@@ -6,9 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
- /* Copyright (c) 2020 Red Hat, Inc.
-*/
-
+ /* Copyright (c) 2020 Red Hat, Inc. */
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
 @import 'variables';
 
@@ -22,12 +20,6 @@
 
   .creation-view-split-container {
     width: 100%;
-
-    div.SplitPane {
-      div.Pane1 {
-        position: unset !important;
-      }
-    }
 
     &.showEditor {
       height: calc(100vh - 15rem);
@@ -222,6 +214,7 @@
       align-items: center;
       font-weight: bold;
       font-size: 0.875rem;
+      position: relative;
 
       .bx--form-item {
         flex: 0;

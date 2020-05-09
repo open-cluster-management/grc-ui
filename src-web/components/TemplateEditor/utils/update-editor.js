@@ -70,7 +70,7 @@ export const generateYAML = (template, controlData) => {
 
             // need to make sure yaml indents line up
             // see below for more
-            if (snippet.indexOf('\n')!==-1) {
+            if (new RegExp(/[\r\n]/).test(snippet)) {
               const snippetKey = `____${id}-${idx}____`
               snippetMap[snippetKey] = snippet
               arr.push(snippetKey)
