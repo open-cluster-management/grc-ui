@@ -95,9 +95,11 @@ export class ResourceTable extends React.Component {
         isLastPage={pageSize >= totalFilteredItems}
         itemsPerPageText={msgs.get('pagination.itemsPerPage', this.context.locale)}
         pageRangeText={(current, total) => msgs.get('pagination.pageRange', [current, total], this.context.locale)}
-        itemRangeText={(min, max, total) =>
-          `${msgs.get('pagination.itemRange', [min, max], this.context.locale)}
-          ${msgs.get('pagination.itemRangeDescription', [total], this.context.locale)}`
+        itemRangeText={(min, max, total) => {
+          const itemRange = msgs.get('pagination.itemRange', [min, max], this.context.locale)
+          const itemRangeDescription = msgs.get('pagination.itemRangeDescription', [total], this.context.locale)
+          return `${itemRange} ${itemRangeDescription}`
+        }
         }
         pageInputDisabled={pageSize >= totalFilteredItems} />) : null
 
