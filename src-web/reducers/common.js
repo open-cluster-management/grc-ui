@@ -94,8 +94,8 @@ function searchTableCellHelper(search, tableKeys, item, context) {
       let found = false
       const searchKeys = searchField.replace(/[{}]/g, '').split(',')
       if (searchKeys && tableKey) {
-        searchKeys.forEach(searchKey => {
-          if (searchTableCell(item, tableKey, context, searchKey)) {
+        searchKeys.forEach(singleSearchKey => {
+          if (searchTableCell(item, tableKey, context, singleSearchKey)) {
             found = true
           }
         })

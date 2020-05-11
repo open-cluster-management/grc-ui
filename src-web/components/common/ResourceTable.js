@@ -96,7 +96,7 @@ export class ResourceTable extends React.Component {
         itemsPerPageText={msgs.get('pagination.itemsPerPage', this.context.locale)}
         pageRangeText={(current, total) => msgs.get('pagination.pageRange', [current, total], this.context.locale)}
         itemRangeText={(min, max, total) =>
-          `${msgs.get('pagination.itemRange', [min, max], this.context.locale)} 
+          `${msgs.get('pagination.itemRange', [min, max], this.context.locale)}
           ${msgs.get('pagination.itemRangeDescription', [total], this.context.locale)}`
         }
         pageInputDisabled={pageSize >= totalFilteredItems} />) : null
@@ -318,13 +318,13 @@ export class ResourceTable extends React.Component {
       getResourceAction, userRole, highLightRowName, autoAction, showSidePanel } = this.props
     const { locale } = this.context
     const { normalizedKey } = staticResourceData
-    const resources = itemIds &&
+    const localResources = itemIds &&
       itemIds.map(
         id => items[id] || (Array.isArray(items)
         && items.find(target =>  (normalizedKey && lodash.get(target, normalizedKey) === id) || (target.name === id)))
       )
-    if (resources && resources.length > 0) {
-      return resources.map((item, index) => {
+    if (localResources && localResources.length > 0) {
+      return localResources.map((item, index) => {
         const row = {}
         if (normalizedKey) {
           row.id = `${lodash.get(item, normalizedKey)}${lodash.get(item, 'cluster', '')}`

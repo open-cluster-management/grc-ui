@@ -288,19 +288,16 @@ class YamlParser {
         throw new YamlParseException('Unable to parse.', this.getRealCurrentLineNb() + 1, this.currentLine)
       }
 
-      if (isRef) {
-        if (data instanceof Array) {
-          this.refs[isRef] = data[data.length - 1]
-        }
-        else {
-          let lastKey = null
-          for (const k in data) {
-            if (Object.prototype.hasOwnProperty.call(data, k)) {
-              lastKey = k
-            }
+      if (isRef && (data instanceof Array)) {
+        this.refs[isRef] = data[data.length - 1]
+      } else if (isRef) {
+        let lastKey = null
+        for (const k in data) {
+          if (Object.prototype.hasOwnProperty.call(data, k)) {
+            lastKey = k
           }
-          this.refs[isRef] = data[lastKey]
         }
+        this.refs[isRef] = data[lastKey]
       }
     }
 
@@ -1040,6 +1037,21 @@ class YamlInline {
     return output
   }
 
+  embeddedMapping(isQuoted, value) {
+    if (!isQuoted && (value + '').indexOf(': ') !== -1) {
+      // embedded mapping?
+      try {
+        value = this.parseMapping('{' + value + '}')
+      } catch (e) {
+        if (!(e instanceof YamlParseException)) {
+          throw e
+        } // no, it's not
+      }
+    }
+
+    return value
+  }
+
   parseSequence(sequence, i) {
     if (i === undefined) {
       i = 0
@@ -1073,16 +1085,7 @@ class YamlInline {
         let value = this.parseScalar(sequence, [',', ']'], ['"', '\''], i)
         i = this.i
 
-        if (!isQuoted && (value + '').indexOf(': ') !== -1) {
-          // embedded mapping?
-          try {
-            value = this.parseMapping('{' + value + '}')
-          } catch (e) {
-            if (!(e instanceof YamlParseException)) {
-              throw e
-            } // no, it's not
-          }
-        }
+        value = this.embeddedMapping(isQuoted, value)
 
         output.push(value)
 
