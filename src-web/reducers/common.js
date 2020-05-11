@@ -398,12 +398,12 @@ export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
       mutateStatus: REQUEST_STATUS.ERROR,
       mutateErrorMsg: action.err.message || action.err.error && (action.err.error.message ||
         (action.err.error.data && action.err.error.data.Message)),
-      pendingActions: state.pendingfilter(r => r && r.name !== action.resourceName),
+      pendingActions: state.pendingActions.filter(r => r && r.name !== action.resourceName),
     })
   case RESOURCE_MUTATE_SUCCESS:
     return Object.assign({}, state, {
       mutateStatus: REQUEST_STATUS.DONE,
-      pendingActions: state.pendingfilter(r => r && r.name !== action.resourceName),
+      pendingActions: state.pendingActions.filter(r => r && r.name !== action.resourceName),
     })
   case RESOURCE_DELETE:
     items = [...state.items]
