@@ -145,9 +145,21 @@ body {
   }
 }
 
-.yamlEditorContainer {
-  #brace-editor {
-    min-width: 31.25rem;
-    min-height: 31.25rem
+.bx--modal-content {
+  .yamlEditorContainerContainer {
+    height: calc(100vh - 380px);
+    overflow: hidden;
+    
+    .yamlEditorContainer {
+      // overwrite common.scss -> "font-family: RedHatText" effect on yamlEditor
+      html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+        font-family: Consolas, "Courier New", monospace;
+      }
+      height: 100%;
+    }
   }
+}
+
+.codicon[class*='codicon-'] {
+  font-family: codicon !important;
 }

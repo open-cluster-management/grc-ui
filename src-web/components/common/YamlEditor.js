@@ -19,6 +19,7 @@ import {
 } from '@patternfly/react-tokens'
 
 import 'monaco-editor/esm/vs/editor/editor.all.js'
+import 'monaco-editor/esm/vs/editor/standalone/browser/quickOpen/quickCommand.js'
 import 'monaco-editor/esm/vs/basic-languages/yaml/yaml.contribution.js'
 
 
@@ -101,6 +102,15 @@ class IsomorphicEditor extends React.Component {
     }
 
     monaco.editor.setModelLanguage(editor.getModel(), 'yaml')
+
+    editor.changeViewZones((changeAccessor) => {
+      const domNode = document.createElement('div')
+      const viewZoneId = changeAccessor.addZone({
+        afterLineNumber: 0,
+        heightInLines: 1,
+        domNode: domNode
+      })
+    })
   }
 
   render = () => <MonacoEditor
