@@ -29,7 +29,6 @@ class YamlParser {
     this.refs = {}
     this.offset = (offset !== undefined) ? offset : 0
     this.lined = lined
-    this.REGEX_QUOTED_STRING = '(?:"(?:[^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'(?:[^\']*(?:\'\'[^\']*)*)\')'
   }
 
   parse(value, row) {
@@ -1422,5 +1421,7 @@ class YamlInline {
   }
 
 }
+
+YamlInline.REGEX_QUOTED_STRING = '(?:"(?:[^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'(?:[^\']*(?:\'\'[^\']*)*)\')'
 
 export default YamlParser

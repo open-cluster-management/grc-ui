@@ -45,12 +45,10 @@ export class SecondaryHeader extends React.Component {
       break
     }
     if ((tabs && tabs.length > 0) || (breadcrumbItems && breadcrumbItems.length > 0)) {
+      const midName = (!location.pathname.startsWith('/multicloud/policies/all/') ? 'secondary-header-grc-overview' : '')
       return (
         <div className='secondary-header-wrapper' role='region' aria-label={title}>
-          <div className={
-            `secondary-header
-            ${!location.pathname.startsWith('/multicloud/policies/all/') ? 'secondary-header-grc-overview' : ''}
-            simple-header${description ? ' special-layout': ''}`
+          <div className={`secondary-header  ${midName} simple-header${description ? ' special-layout': ''}`
           }>
             <header aria-label={`Heading: ${title}`}>
               <div className="bx--detail-page-header-content">
