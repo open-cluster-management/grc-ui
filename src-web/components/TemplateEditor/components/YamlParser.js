@@ -296,7 +296,7 @@ class YamlParser {
         else {
           let lastKey = null
           for (const k in data) {
-            if (data.hasOwnProperty(k)) {
+            if (Object.prototype.hasOwnProperty.call(data, k)) {
               lastKey = k
             }
           }
@@ -738,7 +738,7 @@ class YamlParser {
     let i
 
     for (i in a) {
-      if (a.hasOwnProperty(i)) {
+      if (Object.prototype.hasOwnProperty.call(a, i)) {
         if (/^\d+$/.test(i)) {
           c.push(a)
         }
@@ -748,7 +748,7 @@ class YamlParser {
       }
     }
     for (i in b) {
-      if (b.hasOwnProperty(i)) {
+      if (Object.prototype.hasOwnProperty.call(b, i)) {
         if (/^\d+$/.test(i)) {
           c.push(b)
         }
@@ -1258,7 +1258,7 @@ class YamlInline {
     const ret = []
 
     for (const name in tab) {
-      if (tab.hasOwnProperty(name)) {
+      if (Object.prototype.hasOwnProperty.call(tab, name)) {
         ret.push(name)
       }
     }

@@ -492,7 +492,7 @@ const TopInformations = ({cardData, handleClick}) => {
               }
               const sortedKeys = []
               for(const key in descDict) {
-                if (descDict.hasOwnProperty(key)) {
+                if (Object.prototype.hasOwnProperty.call(descDict, key)) {
                   sortedKeys.push([ key, descDict[key] ])
                 }
               }
