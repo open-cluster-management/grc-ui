@@ -65,7 +65,7 @@ class PolicyTemplates extends React.Component {
   }
 
   handleSubmitClick() {
-    const { editResource, resourceType, resourceData, resourcePath } = this.props
+    const { editResource:localEditResource, resourceType, resourceData, resourcePath } = this.props
     const { yaml }  = this.state
     let resource
     try {
@@ -78,12 +78,12 @@ class PolicyTemplates extends React.Component {
       const namespace = lodash.get(resourceData, 'metadata.namespace')
       const name = lodash.get(resourceData, 'metadata.name')
       const selfLink = lodash.get(resourceData, 'metadata.selfLink')
-      editResource(resourceType, namespace, name, resource, selfLink)
+      localEditResource(resourceType, namespace, name, resource, selfLink)
     } else if (resourceData.__typename === 'PolicyClusterDetail') {
       const namespace = lodash.get(resourceData, 'complianceNamespace')
       const name = lodash.get(resourceData, 'complianceName')
       const selfLink = lodash.get(resourceData, 'complianceSelfLink')
-      editResource(resourceType, namespace, name, resource, selfLink, resourcePath)
+      localEditResource(resourceType, namespace, name, resource, selfLink, resourcePath)
     }
   }
 

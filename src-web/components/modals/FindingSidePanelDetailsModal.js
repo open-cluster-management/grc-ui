@@ -52,8 +52,8 @@ class FindingSidePanelDetailsModal extends React.PureComponent {
   }
 
   handleModalClose = () => {
-    const { updateModal, location, history } = this.props
-    updateModal()
+    const { updateModal:localUpdateModal, location, history } = this.props
+    localUpdateModal()
 
     //update url and refresh finding page after closing sidepanel
     //text search input filter will not be removed, which is controled by itself

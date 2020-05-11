@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -48,17 +49,17 @@ export class CreateResourceModal extends React.PureComponent {
     this.setState(initialState)
   }
   handleModalSubmit = () => {
-    let resources
+    let localResources
     try {
       // the next line code will split the yaml content into multi-parts
       // if '---' found in the content
-      resources = jsYaml.safeLoadAll(this.state.yaml)
+      localResources = jsYaml.safeLoadAll(this.state.yaml)
     } catch (e) {
       this.setState({ yamlParsingError: e })
       return
     }
     this.setState({ yamlParsingError: null, processing: true })
-    this.props.onCreateResource && this.props.onCreateResource(resources)
+    this.props.onCreateResource && this.props.onCreateResource(localResources)
       .then((data) => {
         const error = _.get(data, 'data.createResources.errors[0].message')
         if (error) {

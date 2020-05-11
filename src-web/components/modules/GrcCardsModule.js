@@ -420,7 +420,7 @@ const PolicyCard = ({data, locale, handleClick}) => {
           </div>
           <div className='card-count-content'>
             { //normal policy card with at least one policy or cluster violation
-              validItemsCount > 0 && countData.map(({violations, total, grcType, choice, type }) => {
+              validItemsCount > 0 && countData.map(({violations, total, grcType, choice:localChoice, type }) => {
                 const violated = violations > 0
                 const containerClasses = classNames({
                   'card-count-container': true,
@@ -428,7 +428,7 @@ const PolicyCard = ({data, locale, handleClick}) => {
                 })
                 const onClick = () =>{
                   if (violated) {
-                    handleClick(choice, name, type)
+                    handleClick(localChoice, name, type)
                   }
                 }
                 const onKeyPress = (e) =>{
@@ -497,7 +497,7 @@ const FindingCard = ({data, locale, handleClick}) => {
           <div className='card-count-content'>
             { //normal finding card with at least one finding or high severity
               validItemsCount > 0 &&
-              countData.map(({currentFindings, totalFindings, highSeverity, totalSeverity, grcType, choice, type }) => {
+              countData.map(({currentFindings, totalFindings, highSeverity, totalSeverity, grcType, choice:localChoice, type }) => {
                 const found = currentFindings > 0
                 const high = highSeverity > 0
                 const containerClasses = classNames({
@@ -507,10 +507,10 @@ const FindingCard = ({data, locale, handleClick}) => {
                 })
                 const onClick = () =>{
                   if (found) {
-                    handleClick(choice, name, type)
+                    handleClick(localChoice, name, type)
                   }
                   if (high) {
-                    handleClick(choice, name, type, 'High')
+                    handleClick(localChoice, name, type, 'High')
                   }
                 }
                 const onKeyPress = (e) =>{

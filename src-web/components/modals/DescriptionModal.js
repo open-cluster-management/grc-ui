@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -17,8 +18,8 @@ import {connect} from 'react-redux'
 class DescriptionModal extends React.PureComponent {
 
   handleModalClose = () => {
-    const { updateModal } = this.props
-    updateModal()
+    const { updateModal:localUpdateModal } = this.props
+    localUpdateModal()
   }
 
   render(){

@@ -51,10 +51,10 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
         const searchFields = inputs.replace('},', '}},').toLowerCase().split('},')
         result += '{'
         searchFields.forEach((search, i) => {
-          const searchKey = search.substring(0, search.indexOf('='))
+          const localSearchKey = search.substring(0, search.indexOf('='))
           const searchField = search.substring(search.indexOf('=')+1)
           const searchKeys = searchField.replace(/[{}]/g, '').split(',')
-          result += `"${searchKey}":[`
+          result += `"${localSearchKey}":[`
           searchKeys.forEach((searchKey, index) => {
             result += `"${searchKey}"`
             if (index !== searchKeys.length-1) {

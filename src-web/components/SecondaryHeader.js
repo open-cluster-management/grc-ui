@@ -89,19 +89,19 @@ export class SecondaryHeader extends React.Component {
   }
 
   renderHeader() {
-    const { title, description, information, links=[] } = this.props
+    const { title:headerTitle, description, information, links=[] } = this.props
     if (description) {
       /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
       return (
         <div className="bx--detail-page-header-title-container">
-          <h1 className="bx--detail-page-header-title">{title}</h1>
+          <h1 className="bx--detail-page-header-title">{headerTitle}</h1>
           <div className="detail-page-header-title-button" onClick={description.action}><p>{description.display}</p></div>
         </div>
       )
     } else {
       return (
         <div className="bx--detail-page-header-title-container">
-          <h1 className="bx--detail-page-header-title">{title}</h1>
+          <h1 className="bx--detail-page-header-title">{headerTitle}</h1>
           {information &&
             <TooltipIcon align='end' tooltipText={information}>
               <svg className='info-icon'>
@@ -110,9 +110,9 @@ export class SecondaryHeader extends React.Component {
             </TooltipIcon>
           }
           {links && links.map(link => {
-            const {id, kind, title } = link
+            const {id, kind, title:linkTitle } = link
             // if portal, react component will create the button using a portal
-            if (kind==='portal' && title) {
+            if (kind==='portal' && linkTitle) {
               return <div key={id} id={id} className='portal' />
             } else {
               return null

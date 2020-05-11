@@ -40,15 +40,23 @@ class ResourceList extends React.Component {
   }
 
   componentWillMount() {
-    const { updateSecondaryHeader, tabs, title, links, information, fetchResources, listData } = this.props
-    updateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
+    const {
+      updateSecondaryHeader:localUpdateSecondaryHeader,
+      tabs,
+      title,
+      links,
+      information,
+      fetchResources,
+      listData,
+    } = this.props
+    localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
     fetchResources(listData)
   }
 
   componentWillUnmount() {
-    const { searchTable } = this.props
+    const { searchTable:localSearchTable } = this.props
     //clean up current page search text before leaving
-    searchTable('', false)
+    localSearchTable('', false)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -68,10 +76,10 @@ class ResourceList extends React.Component {
       sortDirection,
       totalFilteredItems,
       status,
-      sortTable,
+      sortTable:localSortTable,
       sortColumn,
-      changeTablePage,
-      searchTable,
+      changeTablePage:localChangeTablePage,
+      searchTable:localSearchTable,
       staticResourceData,
       searchValue,
       resourceType,
@@ -120,7 +128,7 @@ class ResourceList extends React.Component {
     })
     if (items || searchValue || clientSideFilters) {
       if (searchValue !== clientSideFilters && clientSideFilters) {
-        searchTable(clientSideFilters, false)
+        localSearchTable(clientSideFilters, false)
       }
       return <div>
         { mutateStatus === REQUEST_STATUS.ERROR &&
@@ -152,9 +160,9 @@ class ResourceList extends React.Component {
           expandableTable={resourceType.name === RESOURCE_TYPES.HCM_POLICIES_PER_POLICY.name}
           totalFilteredItems={totalFilteredItems}
           resourceType={resourceType}
-          changeTablePage={changeTablePage}
-          handleSort={TableHelper.handleSort.bind(this, sortDirection, sortColumn, sortTable)}
-          handleSearch={TableHelper.handleInputValue.bind(this, searchTable)}
+          changeTablePage={localChangeTablePage}
+          handleSort={TableHelper.handleSort.bind(this, sortDirection, sortColumn, localSortTable)}
+          handleSearch={TableHelper.handleInputValue.bind(this, localSearchTable)}
           searchValue={searchValue}
           defaultSearchValue={clientSideFilters}
           tableActions={staticResourceData.tableActions}

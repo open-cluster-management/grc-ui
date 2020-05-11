@@ -72,19 +72,26 @@ export class OverviewView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {refreshControl, policies, findings, updateActiveFilters, updateResourceToolbar} = nextProps
+    const {
+      refreshControl,
+      policies,
+      findings,
+      updateActiveFilters:localUpdateActiveFilters,
+      updateResourceToolbar:localUpdateResourceToolbar
+    } = nextProps
+
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(policies, this.props.policies)) {
       const { locale } = this.context
       const availableGrcFilters = getAvailableGrcFilters(policies, findings, locale)
-      updateResourceToolbar(refreshControl, availableGrcFilters)
+      localUpdateResourceToolbar(refreshControl, availableGrcFilters)
       const activeFilters = _.cloneDeep(nextProps.activeFilters||{})
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
       //update sessionStorage
       replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
       //update active filters
-      updateActiveFilters(combinedFilters)
+      localUpdateActiveFilters(combinedFilters)
     }
   }
 

@@ -67,7 +67,13 @@ export class GrcView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {refreshControl, grcItems, updateActiveFilters, updateResourceToolbar} = nextProps
+    const {
+      refreshControl,
+      grcItems,
+      updateActiveFilters:localUpdateActiveFilters,
+      updateResourceToolbar:localUpdateResourceToolbar
+    } = nextProps
+
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(grcItems, this.props.grcItems)) {
       const { locale } = this.context
@@ -88,14 +94,14 @@ export class GrcView extends React.Component {
         availableGrcFilters = getAvailableGrcFilters([], grcItems, locale)
         break
       }
-      updateResourceToolbar(refreshControl, availableGrcFilters)
+      localUpdateResourceToolbar(refreshControl, availableGrcFilters)
       const activeFilters = _.cloneDeep(nextProps.activeFilters||{})
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
       //update sessionStorage
       replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
       //update active filters
-      updateActiveFilters(combinedFilters)
+      localUpdateActiveFilters(combinedFilters)
     }
   }
   componentDidMount() {
@@ -237,7 +243,7 @@ export class GrcView extends React.Component {
     //step 1 add activeFilters when click GrcCardsModule
     //here for severity level, will not update filter here but just update url
     //then acutally update it in componentWillReceiveProps()
-    const {updateActiveFilters} = this.props
+    const {updateActiveFilters:localUpdateActiveFilters} = this.props
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})//loadash recursively deep clone
     let activeSet
     if (value) { //add non-null grc-card filter
@@ -256,9 +262,9 @@ export class GrcView extends React.Component {
       activeSet.add(level)
     }
     if (activeSet && activeSet.size > 0) {
-      if(replaceGrcState && updateActiveFilters) {
+      if(replaceGrcState && localUpdateActiveFilters) {
         replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
-        updateActiveFilters(activeFilters)}
+        localUpdateActiveFilters(activeFilters)}
     }
 
     //step 2 update url when click GrcCardsModule

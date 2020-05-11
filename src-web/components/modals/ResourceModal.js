@@ -45,10 +45,10 @@ export class ResourceModal extends React.PureComponent {
       let namespace = this.props.namespace
       let name = this.props.name
       let selfLink = this.props.data.metadata.selfLink
-      let resources
+      let localResources
       try {
-        resources = lodash.compact(saveLoad(this.state.data))
-        resources.forEach(resource => {
+        localResources = lodash.compact(saveLoad(this.state.data))
+        localResources.forEach(resource => {
           if (resource.metadata && resource.metadata.namespace) {
             namespace = resource.metadata.namespace
           }

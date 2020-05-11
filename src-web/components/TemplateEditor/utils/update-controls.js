@@ -35,10 +35,10 @@ export const initializeControlData = (template, initialControlData) =>{
 
     // if available choices are objects, convert to keys
     if (typeof _.get(control, 'available[0]') === 'object') {
-      const { available } = control
+      const {available:localAvailable} = control
       control.availableMap = {}
       let labelSort = false
-      control.available = available.map(choice=>{
+      control.available = localAvailable.map(choice=>{
         let availableKey
         const {key, value, name, description} = choice
         if (key) {

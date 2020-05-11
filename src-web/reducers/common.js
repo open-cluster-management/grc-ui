@@ -73,7 +73,8 @@ function searchTableCell(item, tableKey, context, searchText){
   if (typeof renderedElement === 'string') {
     return renderedElement.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
   } else {
-    return ReactDOMServer.renderToString(transform(item, tableKey, context.locale, true)).toString().toLowerCase().indexOf(searchText.toLowerCase()) !== -1
+    return ReactDOMServer.renderToString(transform(item, tableKey, context.locale, true))
+      .toString().toLowerCase().indexOf(searchText.toLowerCase()) !== -1
   }
 }
 
@@ -82,9 +83,15 @@ function searchTableCellHelper(search, tableKeys, item, context) {
   const searchField = search.substring(search.indexOf('=')+1)
 
   if (searchKey === 'textsearch') {
-    return tableKeys.find(tableKey => searchTableCell(item, tableKey, context, searchField.replace(/[{}]/g, '')))
+    return tableKeys.find(
+      localTableKey =>
+        searchTableCell(item, localTableKey, context, searchField.replace(/[{}]/g, ''))
+    )
   }
-  const tableKey = tableKeys.find(tableKey => msgs.get(tableKey.msgKey, context.locale).toLowerCase() === searchKey.toLowerCase())
+  const tableKey = tableKeys.find(
+    localTableKey =>
+      msgs.get(localTableKey.msgKey, context.locale).toLowerCase() === searchKey.toLowerCase()
+  )
   if (!lodash.isEmpty(searchField)) {
     if (!searchField.includes('{')) {
       if (tableKey) {
@@ -94,8 +101,8 @@ function searchTableCellHelper(search, tableKeys, item, context) {
       let found = false
       const searchKeys = searchField.replace(/[{}]/g, '').split(',')
       if (searchKeys && tableKey) {
-        searchKeys.forEach(singleSearchKey => {
-          if (searchTableCell(item, tableKey, context, singleSearchKey)) {
+        searchKeys.forEach(localSearchKey => {
+          if (searchTableCell(item, tableKey, context, localSearchKey)) {
             found = true
           }
         })
@@ -109,7 +116,7 @@ function searchTableCellHelper(search, tableKeys, item, context) {
   }
 
   // by default, search all fields
-  return tableKeys.find(tableKey => searchTableCell(item, tableKey, context, search))
+  return tableKeys.find(localTableKey => searchTableCell(item, localTableKey, context, search))
 }
 
 const makeGetFilteredItemsSelector = (resourceType) => {

@@ -76,13 +76,13 @@ class ImpactedControlsModule extends React.Component {
     this.cardData = this.getCardData()
     const { locale } = this.context
     const title = msgs.get('overview.impacted.controls.title', locale)
-    const tooltip = msgs.get('overview.impacted.controls.tooltip', locale)
+    const localTooltip = msgs.get('overview.impacted.controls.tooltip', locale)
     return (
       <div className='module-impacted-controls'>
         <div className='card-container-container'>
           <div className='card-title-container'>
             <div className='card-title'>{title}</div>
-            <TooltipIcon direction='top' align='end' tooltipText={tooltip}>
+            <TooltipIcon direction='top' align='end' tooltipText={localTooltip}>
               <svg className='info-icon'>
                 <use href={'#diagramIcons_info'} ></use>
               </svg>

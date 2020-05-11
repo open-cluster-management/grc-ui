@@ -132,7 +132,7 @@ export class ResourceToolbar extends React.Component {
   }
 
   updateActiveFilter = (key, value, checked) => {
-    const {updateActiveFilters} = this.props
+    const {updateActiveFilters:localUpdateActiveFilters} = this.props
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})
     let activeSet = activeFilters[key]
     if (!activeSet) {
@@ -148,7 +148,7 @@ export class ResourceToolbar extends React.Component {
       }
     }
     replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
-    updateActiveFilters(activeFilters)
+    localUpdateActiveFilters(activeFilters)
   }
 }
 
