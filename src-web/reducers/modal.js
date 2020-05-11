@@ -6,7 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 import {
   MODAL_UPDATE, CLEAR_REQUEST_STATUS, POST_REQUEST, PUT_REQUEST,
   PATCH_REQUEST, DEL_REQUEST, REQUEST_STATUS, POST_RECEIVE_SUCCESS,
