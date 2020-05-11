@@ -15,7 +15,7 @@ import ReactDOMServer from 'react-dom/server'
 import PropTypes from 'prop-types'
 import { DropdownV2, Slider, TooltipIcon } from 'carbon-components-react'
 import Radar from 'react-d3-radar'
-import * as d3 from 'd3'
+import { select } from 'd3'
 import 'd3-selection-multi'
 import { SECURITY_TYPES } from '../../../lib/shared/constants'
 import resources from '../../../lib/shared/resources'
@@ -33,7 +33,7 @@ const $grcColorRadarBlue = '#0082C1'
 const $grc_color_radar_green = '#13B9B9'
 const $grc_color_radar_ring = '#979797'
 
-const tooltip = d3.select('body').append('div')
+const tooltip = select('body').append('div')
   .attr('class', 'tooltip')
   .attr('tabindex', '-1') //tooltip only accessible when keyboard focused and press enter key
   .styles(()=>{
@@ -418,7 +418,7 @@ class ImpactedControlsModule extends React.Component {
           // save unwrapped text
           const textContent = text.__textContent || text.textContent
           text.__textContent = textContent
-          text = d3.select(text)
+          text = select(text)
           text.text(null)
 
           // wrap text into tspans

@@ -16,10 +16,10 @@ import { SECURITY_TYPES } from '../../../lib/shared/constants'
 import resources from '../../../lib/shared/resources'
 import msgs from '../../../nls/platform.properties'
 import TopInformationModule from './TopInformationModule'
-import * as d3 from 'd3'
+import { arc, pie } from 'd3'
 import _ from 'lodash'
 
-const arcGenerator = d3.arc()
+const arcGenerator = arc()
 
 resources(() => {
   require('../../../scss/module-recent-activity.scss')
@@ -266,7 +266,7 @@ const Findings = ({moduleData: {findings}, handleDrillDownClick, locale}) => {
         }
 
         // Generate the arc strings
-        const arcs = d3.pie().sort(null)([count, Math.max(total-count, 1)])
+        const arcs = pie().sort(null)([count, Math.max(total-count, 1)])
         const pathData1 = arcGenerator(Object.assign(arcs[0], {
           innerRadius: 9,
           outerRadius: 15

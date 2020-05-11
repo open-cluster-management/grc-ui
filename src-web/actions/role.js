@@ -6,12 +6,15 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
+import {
+  ROLE_RECEIVE_SUCCESS, ROLE_RECEIVE_FAILURE,
+} from './index'
 
-import * as Actions from './index'
 
 export const roleReceiveSuccess = role => ({
-  type: Actions.ROLE_RECEIVE_SUCCESS,
+  type: ROLE_RECEIVE_SUCCESS,
   role
 })
 
-export const roleReceiveFailure = err => ({ type: Actions.ROLE_RECEIVE_FAILURE, err })
+export const roleReceiveFailure = err => ({ type: ROLE_RECEIVE_FAILURE, err })

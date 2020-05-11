@@ -24,12 +24,24 @@ import { createSelector } from 'reselect'
 import lodash from 'lodash'
 import { normalize } from 'normalizr'
 import ReactDOMServer from 'react-dom/server'
-import * as Actions from '../actions'
 import { createResourcesSchema } from '../../lib/client/resource-schema'
 import { transform } from '../../lib/client/resource-helper'
-import getResourceDefinitions, * as ResourceDefinitions from '../definitions'
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
+import getResourceDefinitions, {
+  getTableKeys, getDefaultSortField, getPrimaryKey, getSecondaryKey, getURIKey,
+} from '../definitions'
+import {
+  PAGE_SIZES, CLEAR_REQUEST_STATUS, POST_REQUEST, PUT_REQUEST,
+  PATCH_REQUEST, ACTIVE_FILTER_UPDATE, REQUEST_STATUS, POST_RECEIVE_SUCCESS,
+  PUT_RECEIVE_SUCCESS, PATCH_RECEIVE_SUCCESS, DEL_RECEIVE_SUCCESS,
+  POST_RECEIVE_FAILURE, PUT_RECEIVE_FAILURE, PATCH_RECEIVE_FAILURE,
+  SORT_DIRECTION_ASCENDING, SORT_DIRECTION_DESCENDING, RESOURCE_TOOLBAR_UPDATE,
+  SECONDARY_HEADER_UPDATE, RESOURCE_REQUEST, RESOURCE_RECEIVE_SUCCESS,
+  RESOURCE_RECEIVE_FAILURE, TABLE_SEARCH, TABLE_SORT, TABLE_PAGE_CHANGE,
+  RESOURCE_ADD, RESOURCE_MODIFY, RESOURCE_MUTATE, RESOURCE_MUTATE_FAILURE,
+  RESOURCE_MUTATE_SUCCESS, RESOURCE_DELETE
+} from '../actions'
 
 function getFromState(state, root, attribute) {
   if(root && state) {
@@ -51,12 +63,12 @@ export const getSortDirection = (state, props) => getFromState(state,props.store
 
 export const INITIAL_STATE = {
   items: [],
-  itemsPerPage: Actions.PAGE_SIZES.DEFAULT,
+  itemsPerPage: PAGE_SIZES.DEFAULT,
   page: 1,
   search: '',
   sortColumn: undefined,
-  sortDirection: Actions.SORT_DIRECTION_ASCENDING,
-  status: Actions.REQUEST_STATUS.INCEPTION,
+  sortDirection: SORT_DIRECTION_ASCENDING,
+  status: REQUEST_STATUS.INCEPTION,
   patchStatus: undefined,
   patchErrorMsg: '',
   putStatus: undefined,
@@ -127,7 +139,7 @@ const makeGetFilteredItemsSelector = (resourceType) => {
         return true
       }
 
-      const tableKeys = ResourceDefinitions.getTableKeys(resourceType)
+      const tableKeys = getTableKeys(resourceType)
       if(document.getElementById('context')) {
         const context = JSON.parse(document.getElementById('context').textContent)
 
@@ -179,12 +191,12 @@ const makeGetSortedItemsSelector = (resourceType) => {
   return createSelector(
     [makeGetTransformedItemsSelector(resourceType), getSortColumn, getSortDirection],
     (items, sortColumn, sortDirection) => {
-      const initialSortField = sortColumn ? sortColumn : ResourceDefinitions.getDefaultSortField(resourceType)
+      const initialSortField = sortColumn ? sortColumn : getDefaultSortField(resourceType)
       const sortField = initialSortField === 'custom.age' ? 'metadata.creationTimestamp' : initialSortField // sort by the actual date, not formatted value
       const sortDir = sortField === 'metadata.creationTimestamp'
-        ? (sortDirection === Actions.SORT_DIRECTION_ASCENDING
-          ? Actions.SORT_DIRECTION_DESCENDING
-          : Actions.SORT_DIRECTION_ASCENDING)
+        ? (sortDirection === SORT_DIRECTION_ASCENDING
+          ? SORT_DIRECTION_DESCENDING
+          : SORT_DIRECTION_ASCENDING)
         : sortDirection // date fields should initially sort from latest to oldest
       return lodash.orderBy(items, item => lodash.get(item, sortField), [sortDir])
     }
@@ -208,8 +220,8 @@ const makeGetPagedItemsSelector = (resourceType) => {
 }
 
 export const makeGetVisibleTableItemsSelector = (resourceType) => {
-  const pk = ResourceDefinitions.getPrimaryKey(resourceType)
-  const sk = ResourceDefinitions.getSecondaryKey(resourceType)
+  const pk = getPrimaryKey(resourceType)
+  const sk = getSecondaryKey(resourceType)
   return createSelector(
     [makeGetPagedItemsSelector(resourceType)],
     result => {
@@ -231,7 +243,7 @@ export const getSingleResourceItem = createSelector(
 )
 
 export const resourceItemByName = (items, props) => {
-  const key = ResourceDefinitions.getURIKey(props.resourceType)
+  const key = getURIKey(props.resourceType)
   return lodash.find(items, item =>
     lodash.get(item, key) === props.name
   )
@@ -239,11 +251,11 @@ export const resourceItemByName = (items, props) => {
 
 export const resourceToolbar = (state = {}, action) => {
   switch (action.type) {
-  case Actions.ACTIVE_FILTER_UPDATE:
+  case ACTIVE_FILTER_UPDATE:
     return Object.assign({}, state, {
       activeFilters: action.activeFilters,
     })
-  case Actions.RESOURCE_TOOLBAR_UPDATE:
+  case RESOURCE_TOOLBAR_UPDATE:
     return Object.assign({}, state, {
       refreshControl: action.refreshControl,
       availableFilters: action.availableFilters,
@@ -255,7 +267,7 @@ export const resourceToolbar = (state = {}, action) => {
 
 export const secondaryHeader = (state = {title: '', tabs: [], breadcrumbItems: [], links: [], description: {}, information:{}}, action) => {
   switch (action.type) {
-  case Actions.SECONDARY_HEADER_UPDATE:
+  case SECONDARY_HEADER_UPDATE:
     return Object.assign({}, state, {
       title: action.title,
       tabs: action.tabs,
@@ -273,27 +285,27 @@ export const secondaryHeader = (state = {title: '', tabs: [], breadcrumbItems: [
 export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
   let items,index
   switch (action.type) {
-  case Actions.RESOURCE_REQUEST:
+  case RESOURCE_REQUEST:
     return Object.assign({}, state, {
-      status: Actions.REQUEST_STATUS.IN_PROGRESS
+      status: REQUEST_STATUS.IN_PROGRESS
     })
-  case Actions.RESOURCE_RECEIVE_SUCCESS:
+  case RESOURCE_RECEIVE_SUCCESS:
     return Object.assign({}, state, {
-      status: Actions.REQUEST_STATUS.DONE,
+      status: REQUEST_STATUS.DONE,
       items: action.items,
       page: action.items.length === 0 ? 1 : action.items.length > state.itemsPerPage * (state.page - 1) ? state.page : state.page - 1,
       resourceVersion: action.resourceVersion
     })
-  case Actions.RESOURCE_RECEIVE_FAILURE:
+  case RESOURCE_RECEIVE_FAILURE:
     return Object.assign({}, state, {
-      status: Actions.REQUEST_STATUS.ERROR,
+      status: REQUEST_STATUS.ERROR,
       err: action.err
     })
-  case Actions.POST_REQUEST:
+  case POST_REQUEST:
     return Object.assign({}, state, {
-      postStatus: Actions.REQUEST_STATUS.IN_PROGRESS
+      postStatus: REQUEST_STATUS.IN_PROGRESS
     })
-  case Actions.POST_RECEIVE_SUCCESS:
+  case POST_RECEIVE_SUCCESS:
     items = state.items.slice(0)
     if (action.item.length > 0) { // if returned as an array due to making async calls, push action.item elements to the items array
       action.item.forEach(el => {
@@ -304,41 +316,41 @@ export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
     }
     return Object.assign({}, state, {
       items: items,
-      postStatus: Actions.REQUEST_STATUS.DONE
+      postStatus: REQUEST_STATUS.DONE
     })
-  case Actions.POST_RECEIVE_FAILURE:
+  case POST_RECEIVE_FAILURE:
     return Object.assign({}, state, {
-      postStatus: Actions.REQUEST_STATUS.ERROR,
+      postStatus: REQUEST_STATUS.ERROR,
       postStatusCode: action.err.error && action.err.error.response && action.err.error.response.status,
       postErrorMsg: action.err.error && action.err.error.message
     })
-  case Actions.PUT_REQUEST:
+  case PUT_REQUEST:
     return Object.assign({}, state, {
-      putStatus: Actions.REQUEST_STATUS.IN_PROGRESS
+      putStatus: REQUEST_STATUS.IN_PROGRESS
     })
-  case Actions.PUT_RECEIVE_SUCCESS:
+  case PUT_RECEIVE_SUCCESS:
     return Object.assign({}, state, {
-      putStatus: Actions.REQUEST_STATUS.DONE,
+      putStatus: REQUEST_STATUS.DONE,
     })
-  case Actions.PUT_RECEIVE_FAILURE:
+  case PUT_RECEIVE_FAILURE:
     return Object.assign({}, state, {
-      putStatus: Actions.REQUEST_STATUS.ERROR,
+      putStatus: REQUEST_STATUS.ERROR,
       putErrorMsg: action.err.error ? action.err.error.message : action.err.message
     })
-  case Actions.PATCH_REQUEST:
+  case PATCH_REQUEST:
     return Object.assign({}, state, {
-      patchStatus: Actions.REQUEST_STATUS.IN_PROGRESS
+      patchStatus: REQUEST_STATUS.IN_PROGRESS
     })
-  case Actions.PATCH_RECEIVE_SUCCESS:
+  case PATCH_RECEIVE_SUCCESS:
     return Object.assign({}, state, {
-      patchStatus: Actions.REQUEST_STATUS.DONE,
+      patchStatus: REQUEST_STATUS.DONE,
     })
-  case Actions.PATCH_RECEIVE_FAILURE:
+  case PATCH_RECEIVE_FAILURE:
     return Object.assign({}, state, {
-      patchStatus: Actions.REQUEST_STATUS.ERROR,
+      patchStatus: REQUEST_STATUS.ERROR,
       patchErrorMsg: action.err.error ? action.err.error.message : action.err.message
     })
-  case Actions.CLEAR_REQUEST_STATUS:
+  case CLEAR_REQUEST_STATUS:
     return Object.assign({}, state, {
       mutateStatus: undefined,
       mutateErrorMsg: undefined,
@@ -350,50 +362,50 @@ export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
       patchStatus: undefined,
       patchErrorMsg: undefined
     })
-  case Actions.TABLE_SEARCH:
+  case TABLE_SEARCH:
     return Object.assign({}, state, {
       search: action.search,
       page: 1
     })
-  case Actions.TABLE_SORT:
+  case TABLE_SORT:
     return Object.assign({}, state, {
       sortDirection: action.sortDirection,
       sortColumn: action.sortColumn
     })
-  case Actions.TABLE_PAGE_CHANGE:
+  case TABLE_PAGE_CHANGE:
     return Object.assign({}, state, {
       page: action.page,
       itemsPerPage: action.pageSize
     })
-  case Actions.RESOURCE_ADD: /* eslint-disable no-case-declarations */
-  case Actions.RESOURCE_MODIFY:
+  case RESOURCE_ADD: /* eslint-disable no-case-declarations */
+  case RESOURCE_MODIFY:
     const resourceTypeObj = !lodash.isObject(action.resourceType) ? RESOURCE_TYPES[lodash.findKey(RESOURCE_TYPES, { name: action.resourceType })] : action.resourceType
-    const primaryKey = ResourceDefinitions.getPrimaryKey(resourceTypeObj)
+    const primaryKey = getPrimaryKey(resourceTypeObj)
     items = state.items.slice(0)
     index = lodash.findIndex(items, o => (lodash.get(o, primaryKey) === lodash.get(action.item, primaryKey)))
     index > -1 ? items.splice(index, 1, action.item) : items.push(action.item)
     return Object.assign({}, state, {
       items: items
     })
-  case Actions.RESOURCE_MUTATE:
+  case RESOURCE_MUTATE:
     return Object.assign({}, state, {
-      mutateStatus: Actions.REQUEST_STATUS.IN_PROGRESS,
+      mutateStatus: REQUEST_STATUS.IN_PROGRESS,
       mutateErrorMsg: null,
-      pendingActions: [...state.pendingActions, { name: action.resourceName, action: Actions.RESOURCE_MUTATE }]
+      pendingActions: [...state.pendingActions, { name: action.resourceName, action: RESOURCE_MUTATE }]
     })
-  case Actions.RESOURCE_MUTATE_FAILURE:
+  case RESOURCE_MUTATE_FAILURE:
     return Object.assign({}, state, {
-      mutateStatus: Actions.REQUEST_STATUS.ERROR,
+      mutateStatus: REQUEST_STATUS.ERROR,
       mutateErrorMsg: action.err.message || action.err.error && (action.err.error.message ||
         (action.err.error.data && action.err.error.data.Message)),
-      pendingActions: state.pendingActions.filter(r => r && r.name !== action.resourceName),
+      pendingActions: state.pendingfilter(r => r && r.name !== action.resourceName),
     })
-  case Actions.RESOURCE_MUTATE_SUCCESS:
+  case RESOURCE_MUTATE_SUCCESS:
     return Object.assign({}, state, {
-      mutateStatus: Actions.REQUEST_STATUS.DONE,
-      pendingActions: state.pendingActions.filter(r => r && r.name !== action.resourceName),
+      mutateStatus: REQUEST_STATUS.DONE,
+      pendingActions: state.pendingfilter(r => r && r.name !== action.resourceName),
     })
-  case Actions.RESOURCE_DELETE:
+  case RESOURCE_DELETE:
     items = [...state.items]
     index = lodash.findIndex(items, o => lodash.get(o, 'metadata.uid') === lodash.get(action, 'item.metadata.uid'))
     if(index > -1) {
@@ -403,7 +415,7 @@ export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
       })
     }
     return state
-  case Actions.DEL_RECEIVE_SUCCESS:
+  case DEL_RECEIVE_SUCCESS:
     items = [...state.items]
     switch (action.resourceType) {
     case RESOURCE_TYPES.HCM_COMPLIANCES:
