@@ -28,7 +28,7 @@ const overpassTest = /overpass-.*\.(woff2?|ttf|eot|otf)(\?.*$|$)/
 
 module.exports = {
   context: __dirname,
-  devtool: PRODUCTION ? 'source-map' : 'cheap-module-source-map',
+  devtool: PRODUCTION ? 'source-map' : 'source-map',
   stats: { children: false },
   entry: {
     'main': ['babel-polyfill', './src-web/index.js']

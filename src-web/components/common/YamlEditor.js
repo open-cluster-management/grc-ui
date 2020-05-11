@@ -102,15 +102,6 @@ class IsomorphicEditor extends React.Component {
     }
 
     monaco.editor.setModelLanguage(editor.getModel(), 'yaml')
-
-    editor.changeViewZones((changeAccessor) => {
-      const domNode = document.createElement('div')
-      const viewZoneId = changeAccessor.addZone({
-        afterLineNumber: 0,
-        heightInLines: 1,
-        domNode: domNode
-      })
-    })
   }
 
   render = () => <MonacoEditor
