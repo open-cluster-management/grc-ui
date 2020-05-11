@@ -20,7 +20,7 @@ export const PoliciesTab = loadable(() => import(/* webpackChunkName: "policies"
 export const FindingsTab = loadable(() => import(/* webpackChunkName: "findings" */ './FindingsTab'))
 export const CreationTab = loadable(() => import(/* webpackChunkName: "creation" */ './CreationTab'))
 export const PolicyDetail = loadable(() => import(/* webpackChunkName: "policy" */ './PolicyDetail'))
-export const PolicyClusterDetail = loadable(() => import(/* webpackChunkName: "policyCluster" */ '../components/common/PolicyClusterDetail'))
+export const ClusterPolicy = loadable(() => import(/* webpackChunkName: "policyCluster" */ './ClusterPolicy'))
 
 const BASE_PAGE_PATH = `${config.contextPath}`
 const showFindings = config['feature_security-findings']
@@ -85,7 +85,7 @@ const CREATION_HEADER_PROPS = {
 const GrcRouter = ({ match }) =>
   <Switch>
     {/* <Route exact path={`${match.url}`} render={() => <OverviewTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} /> */}
-    <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <PolicyClusterDetail secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
+    <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <ClusterPolicy secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/all/:name`} render={() => <PolicyDetail secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/all`} render={() => <PoliciesTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     {showFindings ? <Route path={`${match.url}/findings`} render={() => <FindingsTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} /> : null}
