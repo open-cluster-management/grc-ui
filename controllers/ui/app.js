@@ -52,11 +52,11 @@ router.get('*', (req, res) => {
 
   App = App === undefined ? require('../../src-web/containers/App').default : App
 
-  const context = getContext(req)
-  fetchHeader(req, res, store, context)
+  const fetchHeaderContext = getContext(req)
+  fetchHeader(req, res, store, fetchHeaderContext)
 })
 
-function fetchHeader(req, res, store, context) {
+function fetchHeader(req, res, store, fetchHeaderContext) {
   const options = {
     method: 'GET',
     url: `${config.get('headerUrl')}${config.get('headerContextPath')}/api/v1/header?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}`,
@@ -96,7 +96,7 @@ function fetchHeader(req, res, store, context) {
           <Provider store={store}>
             <StaticRouter
               location={req.originalUrl}
-              context={context}>
+              context={fetchHeaderContext}>
               <App />
             </StaticRouter>
           </Provider>
@@ -104,12 +104,12 @@ function fetchHeader(req, res, store, context) {
         contextPath: config.get('contextPath'),
         headerContextPath: config.get('headerContextPath'),
         state: store.getState(),
-        props: context,
+        props: fetchHeaderContext,
         header: header,
         propsH: propsH,
         stateH: stateH,
         filesH: filesH
-      }, context))
+      }, fetchHeaderContext))
     } catch(e) {
       //eslint-disable-next-line no-console
       console.error(e)

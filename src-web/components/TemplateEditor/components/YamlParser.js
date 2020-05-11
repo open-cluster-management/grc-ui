@@ -11,8 +11,6 @@
 
 const warnPackTypeStr = 'Warning:  pack() Type '
 
-YamlInline.REGEX_QUOTED_STRING = '(?:"(?:[^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'(?:[^\']*(?:\'\'[^\']*)*)\')'
-
 class YamlParseException {
   constructor(message, parsedLine, snippet, parsedFile) {
     this.rawMessage = message
@@ -31,6 +29,7 @@ class YamlParser {
     this.refs = {}
     this.offset = (offset !== undefined) ? offset : 0
     this.lined = lined
+    this.REGEX_QUOTED_STRING = '(?:"(?:[^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'(?:[^\']*(?:\'\'[^\']*)*)\')'
   }
 
   parse(value, row) {
