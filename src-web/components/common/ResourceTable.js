@@ -187,8 +187,8 @@ export class ResourceTable extends React.Component {
                     if (expandableTable && row && row.id) {//check undefined row.id to avoid whole page crush
                       return (
                         <React.Fragment key={row.id}>
-                          <TableExpandRow {
-                            ...getRowProps(
+                          <TableExpandRow
+                            {...getRowProps(
                               { row,
                                 'data-row-name': lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)),
                                 'aria-hidden': expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0),
@@ -199,7 +199,7 @@ export class ResourceTable extends React.Component {
                                       ? 'row-not-expanded'
                                       : ''
                               })} ariaLabel={tableExpandRowAriaLabel ? tableExpandRowAriaLabel : 'TableExpandRow'
-                          }>
+                            }>
                             {selectableTable &&
                               <TableCell key={`select-checkbox-${row.id}`}>
                                 <Checkbox
