@@ -53,6 +53,7 @@ const jestConfig = {
     '.+\\.(handlebars)$': 'jest-handlebars',
     '.+\\.(yaml)$': 'jest-yaml-transform'
   },
+  modulePathIgnorePatterns: ['<rootDir>/vendor'],
   globalSetup: '<rootDir>/tests/jest/config/properties-to-json.js',
   setupFiles: [
     '<rootDir>/tests/jest/config/setup.js'
