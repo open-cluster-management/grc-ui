@@ -720,7 +720,7 @@ class ImpactedControlsModule extends React.Component {
       sets: [
         {
           key: 'policy',
-          color: $grc_color_radar_green,
+          color: $grcColorRadarGreen,
           className: 'policies',
           label: 'Policy violations',
           values: violationsByControls,
