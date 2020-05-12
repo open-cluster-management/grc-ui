@@ -67,12 +67,12 @@ module.exports = {
     page.deletePolicy('policy-update-certificate-' + time)
   },
 
-  'Cert policy: cert policy should show compliant': (browser) => {
-    const time = browser.globals.time
-    page.searchPolicy('policy-certificatepolicy-' + time, true)
-    browser.pause(100000) // Wait for cert policy to detect compliant 60s
-    page.checkViolations('policy-certificatepolicy-' + time, false)
-  },
+  // 'Cert policy: cert policy should show compliant': (browser) => {
+  //   const time = browser.globals.time
+  //   page.searchPolicy('policy-certificatepolicy-' + time, true)
+  //   browser.pause(100000) // Wait for cert policy to detect compliant 60s
+  //   page.checkViolations('policy-certificatepolicy-' + time, false)
+  // },
 
   'Cert policy: clean up': (browser) => {
     const time = browser.globals.time
