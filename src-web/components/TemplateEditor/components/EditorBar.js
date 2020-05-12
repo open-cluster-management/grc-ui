@@ -53,7 +53,7 @@ class EditorButton extends React.Component {
       return (
         <div className={classes} tabIndex={0} role={'button'} aria-label={tooltip} title={tooltip}
           onClick={this.handleClick} onKeyPress={this.handleKeyPress} >
-          <svg width="1rem" height="1rem">
+          <svg>
             <use href={`#diagramIcons_${icon}`} ></use>
           </svg>
         </div>
