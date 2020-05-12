@@ -49,8 +49,7 @@ export const generateYAML = (template, controlData) => {
   // add replacements
   const snippetMap = {}
   replacements.forEach(replacement=>{
-    const replacementID = replacement.id
-    const {active, availableMap, hasCapturedUserSource, userData} = replacement
+    const {active, availableMap, hasCapturedUserSource, id:replacementID, userData} = replacement
     if (active.length>0) {
       if (hasCapturedUserSource) {
         // restore snippet that user edited
@@ -61,7 +60,7 @@ export const generateYAML = (template, controlData) => {
       } else {
         // add predefined snippets
         active.forEach((key, idx)=>{
-          const newReplacements = availableMap[key].replacements
+          const {replacements:newReplacements} = availableMap[key]
           Object.entries(newReplacements).forEach(([id, partial]) => {
             const snippet = Handlebars.compile(partial)(templateData).trim()
             let arr = templateData[id]
