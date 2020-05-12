@@ -134,7 +134,7 @@ const getRow = (path, parsed) => {
     synced = _.get(parsed, path.join('.'))
     path.pop()
   } while (path.length>0 && (synced===undefined || synced.$r===undefined))
-  return synced ? synced.$r : 0
+  return synced ? synced.$r+1 : 0
 }
 
 
