@@ -119,10 +119,10 @@ function fetchHeader(req, res, store, fetchHeaderContext) {
 }
 
 function getContext(req) {
-  const req_context = context(req)
+  const reqContext = context(req)
   return {
-    title: msgs.get('common.app.name', req_context.locale),
-    context: req_context,
+    title: msgs.get('common.app.name', reqContext.locale),
+    context: reqContext,
     xsrfToken: req.csrfToken()
   }
 }

@@ -244,10 +244,12 @@ export class GrcView extends React.Component {
     //here for severity level, will not update filter here but just update url
     //then acutally update it in componentWillReceiveProps()
     const {updateActiveFilters:localUpdateActiveFilters} = this.props
-    const activeFilters = _.cloneDeep(this.props.activeFilters||{})//loadash recursively deep clone
+    //lodash recursively deep clone
+    const activeFilters = _.cloneDeep(this.props.activeFilters||{})
     let activeSet
     if (value) { //add non-null grc-card filter
-      value = _.startCase(value.replace(' ', '-'))//covert filter name on policy card to start case to match
+      //covert filter name on policy card to start case to match
+      value = _.startCase(value.replace(' ', '-'))
       if (!activeFilters[key]) {
         activeFilters[key] = new Set()
       }

@@ -30,8 +30,8 @@ resources(() => {
 })
 
 const $grcColorRadarBlue = '#0082C1'
-const $grc_color_radar_green = '#13B9B9'
-const $grc_color_radar_ring = '#979797'
+const $grcColorRadarGreen = '#13B9B9'
+const $grcColorRadarRing = '#979797'
 
 const tooltip = select('body').append('div')
   .attr('class', 'tooltip')
@@ -214,10 +214,10 @@ class ImpactedControlsModule extends React.Component {
             domainMax={domainMax}
             highlighted={null}
             style={{
-              ringColor: $grc_color_radar_ring,
+              ringColor: $grcColorRadarRing,
               customColors: [
                 $grcColorRadarBlue,
-                $grc_color_radar_green,
+                $grcColorRadarGreen,
               ]
             }}
             axisLabelTextStyle={{
