@@ -53,15 +53,15 @@ export const generateYAML = (template, controlData) => {
     if (active.length>0) {
       if (hasCapturedUserSource) {
         // restore snippet that user edited
-        //const snippetKey = `____${id}____`
+        //const snippetKey = `____${replacementID}____`
         //snippetMap[snippetKey] = userData
-        //templateData[`${id}Capture`] = snippetKey
+        //templateData[`${replacementID}Capture`] = snippetKey
         templateData[`${replacementID}Capture`] = userData
       } else {
         // add predefined snippets
         active.forEach((key, idx)=>{
-          const {replacements:localReplacements} = availableMap[key]
-          Object.entries(localReplacements).forEach(([id, partial]) => {
+          const {replacements:newReplacements} = availableMap[key]
+          Object.entries(newReplacements).forEach(([id, partial]) => {
             const snippet = Handlebars.compile(partial)(templateData).trim()
             let arr = templateData[id]
             if (!arr) {
@@ -70,7 +70,7 @@ export const generateYAML = (template, controlData) => {
 
             // need to make sure yaml indents line up
             // see below for more
-            if (snippet.indexOf('\n')!==-1) {
+            if (new RegExp(/[\r\n]/).test(snippet)) {
               const snippetKey = `____${id}-${idx}____`
               snippetMap[snippetKey] = snippet
               arr.push(snippetKey)

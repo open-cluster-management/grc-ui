@@ -805,10 +805,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex={0}
                   title="Previous"
                 >
-                  <svg
-                    height="1rem"
-                    width="1rem"
-                  >
+                  <svg>
                     <use
                       href="#diagramIcons_previous"
                     />
@@ -823,10 +820,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex={0}
                   title="Next"
                 >
-                  <svg
-                    height="1rem"
-                    width="1rem"
-                  >
+                  <svg>
                     <use
                       href="#diagramIcons_next"
                     />
@@ -844,10 +838,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex={0}
                   title="Undo"
                 >
-                  <svg
-                    height="1rem"
-                    width="1rem"
-                  >
+                  <svg>
                     <use
                       href="#diagramIcons_undo"
                     />
@@ -862,10 +853,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex={0}
                   title="Redo"
                 >
-                  <svg
-                    height="1rem"
-                    width="1rem"
-                  >
+                  <svg>
                     <use
                       href="#diagramIcons_redo"
                     />
@@ -880,10 +868,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex={0}
                   title="Restore"
                 >
-                  <svg
-                    height="1rem"
-                    width="1rem"
-                  >
+                  <svg>
                     <use
                       href="#diagramIcons_restore"
                     />
@@ -901,10 +886,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex={0}
                   title="Close"
                 >
-                  <svg
-                    height="1rem"
-                    width="1rem"
-                  >
+                  <svg>
                     <use
                       href="#diagramIcons_close"
                     />
