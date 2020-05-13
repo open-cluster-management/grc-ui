@@ -340,10 +340,10 @@ export class ResourceTable extends React.Component {
         const fliteredActions = menuActions ? fliterTableAction(menuActions,userRole,resourceType).slice(0) : null
 
         //This is for grc policy page highlight item auto open side panel
-        if(showSidePanel && highLightRowName && autoAction){
-          if((item.metadata && item.metadata.name && item.metadata.name === highLightRowName) || (item.cluster && item.cluster === highLightRowName)){
-            getResourceAction(autoAction, item, null, history, locale)
-          }
+        if(showSidePanel && highLightRowName && autoAction
+          && (item.metadata && item.metadata.name && item.metadata.name === highLightRowName)
+          || (item.cluster && item.cluster === highLightRowName)){
+          getResourceAction(autoAction, item, null, history, locale)
         }
 
         if (item.consoleURL && item.consoleURL === '-' && Array.isArray(fliteredActions)){

@@ -574,13 +574,11 @@ export default class TemplateEditor extends React.Component {
 
   // select text editor line associated with selected node/link
   selectTextLine() {
-    if (this.editor) {
-      if (this.selectAfterRender) {
-        this.editor.scrollToLine(0)
-        this.editor.selection.moveCursorToPosition({row: 0, column: 0})
-        this.editor.renderer.off('afterRender', this.selectTextLine)
-        delete this.selectAfterRender
-      }
+    if (this.editor && this.selectAfterRende) {
+      this.editor.scrollToLine(0)
+      this.editor.selection.moveCursorToPosition({row: 0, column: 0})
+      this.editor.renderer.off('afterRender', this.selectTextLine)
+      delete this.selectAfterRender
     }
   }
 
@@ -597,26 +595,24 @@ export default class TemplateEditor extends React.Component {
     switch (command) {
     case 'next':
     case 'previous':
-      if (this.selectionIndex!==-1) {
-        if (this.selectionRanges && this.selectionRanges.length>1) {
-          switch (command) {
-          case 'next':
-            this.selectionIndex++
-            if (this.selectionIndex>=this.selectionRanges.length) {
-              this.selectionIndex = 0
-            }
-            break
-          case 'previous':
-            this.selectionIndex--
-            if (this.selectionIndex<0) {
-              this.selectionIndex = this.selectionRanges.length-1
-            }
-            break
+      if (this.selectionIndex !== -1 && this.selectionRanges && this.selectionRanges.length > 1) {
+        switch (command) {
+        case 'next':
+          this.selectionIndex++
+          if (this.selectionIndex>=this.selectionRanges.length) {
+            this.selectionIndex = 0
           }
-          const range = this.selectionRanges[this.selectionIndex]
-          this.editor.selection.setRange(range, true)
-          this.editor.scrollToLine(range.start.row, true)
+          break
+        case 'previous':
+          this.selectionIndex--
+          if (this.selectionIndex<0) {
+            this.selectionIndex = this.selectionRanges.length-1
+          }
+          break
         }
+        const range = this.selectionRanges[this.selectionIndex]
+        this.editor.selection.setRange(range, true)
+        this.editor.scrollToLine(range.start.row, true)
       }
       break
     case 'undo':
