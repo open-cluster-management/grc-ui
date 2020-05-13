@@ -564,24 +564,22 @@ export default class TemplateEditor extends React.Component {
     switch (command) {
     case 'next':
     case 'previous':
-      if (this.selectionIndex!==-1) {
-        if (this.selection && this.selection.length>1) {
-          switch (command) {
-          case 'next':
-            this.selectionIndex++
-            if (this.selectionIndex>=this.selection.length) {
-              this.selectionIndex = 0
-            }
-            break
-          case 'previous':
-            this.selectionIndex--
-            if (this.selectionIndex<0) {
-              this.selectionIndex = this.selection.length-1
-            }
-            break
+      if (this.selectionIndex !== -1 && this.selection && this.selection.length > 1) {
+        switch (command) {
+        case 'next':
+          this.selectionIndex++
+          if (this.selectionIndex>=this.selection.length) {
+            this.selectionIndex = 0
           }
-          this.editor.revealLineInCenter(this.selections[this.selectionIndex].selectionStartLineNumber, 0)
+          break
+        case 'previous':
+          this.selectionIndex--
+          if (this.selectionIndex<0) {
+            this.selectionIndex = this.selection.length-1
+          }
+          break
         }
+        this.editor.revealLineInCenter(this.selections[this.selectionIndex].selectionStartLineNumber, 0)
       }
       break
     case 'undo':

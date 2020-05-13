@@ -19,7 +19,7 @@ const noOP = () => { /*This is intentional*/},
 
 process.env.BABEL_ENV = 'client'
 
-var overpassTest = /overpass-.*\.(woff2?|ttf|eot|otf)(\?.*$|$)/
+const overpassTest = /overpass-.*\.(woff2?|ttf|eot|otf)(\?.*$|$)/
 
 module.exports = {
   entry: {
