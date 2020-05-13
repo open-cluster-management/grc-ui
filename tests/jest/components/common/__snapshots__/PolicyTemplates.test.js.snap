@@ -86,17 +86,21 @@ exports[`PolicyTemplates component renders as expected 1`] = `
       </div>
     </div>
     <div
-      className="yamlEditorContainer"
+      className="yamlEditorContainerContainer"
     >
       <div
-        id="brace-editor"
-        style={
-          Object {
-            "height": "100%",
-            "width": "100%",
+        className="yamlEditorContainer"
+      >
+        <div
+          className="react-monaco-editor-container"
+          style={
+            Object {
+              "height": "100%",
+              "width": "100%",
+            }
           }
-        }
-      />
+        />
+      </div>
     </div>
   </div>
 </div>

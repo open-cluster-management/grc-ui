@@ -411,330 +411,14 @@ ShallowWrapper {
           selectorPrimaryFocus="[data-modal-primary-focus]"
         >
           <div>
-            <YamlEditor
-              height="40vh"
-              onYamlChange={[Function]}
-              readOnly={false}
-              width="50vw"
-              yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
-kind: Policy
-metadata:
-  name: policy-auditpolicy-will-sev
-  namespace: mcm
-  annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
-    seed-generation: '2'
-  finalizers:
-    - finalizer.policies.ibm.com
-    - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
-spec:
-  complianceType: musthave
-  namespaces:
-    exclude:
-      - kube-*
-    include:
-      - default
-  policy-templates:
-    - objectDefinition:
-        apiVersion: audit.policies.ibm.com/v1alpha1
-        kind: AuditPolicy
-        metadata:
-          name: policy-auditpolicy-will-sev
-          label:
-            category: System-Integrity
-        spec:
-          clusterAuditPolicy:
-            auditPolicyRules:
-              auth-idp: ignore
-              helmapi: ignore
-              kubernetes: ignore
-              platform-api: ignore
-              platform-identity-manager: ignore
-              platform-identity-provider: ignore
-              vulnerability-advisor: ignore
-          namespaceSelector:
-            exclude:
-              - kube-system
-            include:
-              - default
-              - kube-*
-          remediationAction: inform
-          severity: low
-  remediationAction: inform
-"
-            />
-          </div>
-        </Modal>,
-      ],
-      "id": "resource-modal-container",
-      "onKeyDown": [Function],
-      "role": "region",
-      "tabIndex": -1,
-    },
-    "ref": [Function],
-    "rendered": Array [
-      " ",
-      undefined,
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "aria-label": "Edit policy",
-          "children": <div>
-            <YamlEditor
-              height="40vh"
-              onYamlChange={[Function]}
-              readOnly={false}
-              width="50vw"
-              yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
-kind: Policy
-metadata:
-  name: policy-auditpolicy-will-sev
-  namespace: mcm
-  annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
-    seed-generation: '2'
-  finalizers:
-    - finalizer.policies.ibm.com
-    - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
-spec:
-  complianceType: musthave
-  namespaces:
-    exclude:
-      - kube-*
-    include:
-      - default
-  policy-templates:
-    - objectDefinition:
-        apiVersion: audit.policies.ibm.com/v1alpha1
-        kind: AuditPolicy
-        metadata:
-          name: policy-auditpolicy-will-sev
-          label:
-            category: System-Integrity
-        spec:
-          clusterAuditPolicy:
-            auditPolicyRules:
-              auth-idp: ignore
-              helmapi: ignore
-              kubernetes: ignore
-              platform-api: ignore
-              platform-identity-manager: ignore
-              platform-identity-provider: ignore
-              vulnerability-advisor: ignore
-          namespaceSelector:
-            exclude:
-              - kube-system
-            include:
-              - default
-              - kube-*
-          remediationAction: inform
-          severity: low
-  remediationAction: inform
-"
-            />
-          </div>,
-          "className": "resource-modal",
-          "focusTrap": true,
-          "iconDescription": "close the modal",
-          "id": "resource-modal-HCMPolicyPolicy",
-          "modalHeading": "Edit policy",
-          "modalLabel": "Edit policy",
-          "onKeyDown": [Function],
-          "onRequestClose": [Function],
-          "onRequestSubmit": [Function],
-          "open": true,
-          "passiveModal": false,
-          "primaryButtonDisabled": false,
-          "primaryButtonText": "Submit",
-          "role": "region",
-          "secondaryButtonText": "Cancel",
-          "selectorPrimaryFocus": "[data-modal-primary-focus]",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              undefined,
+            <div
+              className="yamlEditorContainerContainer"
+            >
               <YamlEditor
                 height="40vh"
                 onYamlChange={[Function]}
                 readOnly={false}
-                width="50vw"
-                yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
-kind: Policy
-metadata:
-  name: policy-auditpolicy-will-sev
-  namespace: mcm
-  annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
-    seed-generation: '2'
-  finalizers:
-    - finalizer.policies.ibm.com
-    - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
-spec:
-  complianceType: musthave
-  namespaces:
-    exclude:
-      - kube-*
-    include:
-      - default
-  policy-templates:
-    - objectDefinition:
-        apiVersion: audit.policies.ibm.com/v1alpha1
-        kind: AuditPolicy
-        metadata:
-          name: policy-auditpolicy-will-sev
-          label:
-            category: System-Integrity
-        spec:
-          clusterAuditPolicy:
-            auditPolicyRules:
-              auth-idp: ignore
-              helmapi: ignore
-              kubernetes: ignore
-              platform-api: ignore
-              platform-identity-manager: ignore
-              platform-identity-provider: ignore
-              vulnerability-advisor: ignore
-          namespaceSelector:
-            exclude:
-              - kube-system
-            include:
-              - default
-              - kube-*
-          remediationAction: inform
-          severity: low
-  remediationAction: inform
-"
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            undefined,
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "height": "40vh",
-                "onYamlChange": [Function],
-                "readOnly": false,
-                "width": "50vw",
-                "yaml": "apiVersion: policy.mcm.ibm.com/v1alpha1
-kind: Policy
-metadata:
-  name: policy-auditpolicy-will-sev
-  namespace: mcm
-  annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
-    seed-generation: '2'
-  finalizers:
-    - finalizer.policies.ibm.com
-    - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
-spec:
-  complianceType: musthave
-  namespaces:
-    exclude:
-      - kube-*
-    include:
-      - default
-  policy-templates:
-    - objectDefinition:
-        apiVersion: audit.policies.ibm.com/v1alpha1
-        kind: AuditPolicy
-        metadata:
-          name: policy-auditpolicy-will-sev
-          label:
-            category: System-Integrity
-        spec:
-          clusterAuditPolicy:
-            auditPolicyRules:
-              auth-idp: ignore
-              helmapi: ignore
-              kubernetes: ignore
-              platform-api: ignore
-              platform-identity-manager: ignore
-              platform-identity-provider: ignore
-              vulnerability-advisor: ignore
-          namespaceSelector:
-            exclude:
-              - kube-system
-            include:
-              - default
-              - kube-*
-          remediationAction: inform
-          severity: low
-  remediationAction: inform
-",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": "div",
-        },
-        "type": [Function],
-      },
-    ],
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "aria-label": undefined,
-        "children": Array [
-          " ",
-          undefined,
-          <Modal
-            aria-label="Edit policy"
-            className="resource-modal"
-            focusTrap={true}
-            iconDescription="close the modal"
-            id="resource-modal-HCMPolicyPolicy"
-            modalHeading="Edit policy"
-            modalLabel="Edit policy"
-            onKeyDown={[Function]}
-            onRequestClose={[Function]}
-            onRequestSubmit={[Function]}
-            open={true}
-            passiveModal={false}
-            primaryButtonDisabled={false}
-            primaryButtonText="Submit"
-            role="region"
-            secondaryButtonText="Cancel"
-            selectorPrimaryFocus="[data-modal-primary-focus]"
-          >
-            <div>
-              <YamlEditor
-                height="40vh"
-                onYamlChange={[Function]}
-                readOnly={false}
+                setEditor={[Function]}
                 width="50vw"
                 yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
@@ -788,28 +472,33 @@ spec:
 "
               />
             </div>
-          </Modal>,
-        ],
-        "id": "resource-modal-container",
-        "onKeyDown": [Function],
-        "role": "region",
-        "tabIndex": -1,
-      },
-      "ref": [Function],
-      "rendered": Array [
-        " ",
-        undefined,
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "aria-label": "Edit policy",
-            "children": <div>
+          </div>
+        </Modal>,
+      ],
+      "id": "resource-modal-container",
+      "onKeyDown": [Function],
+      "role": "region",
+      "tabIndex": -1,
+    },
+    "ref": [Function],
+    "rendered": Array [
+      " ",
+      undefined,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "aria-label": "Edit policy",
+          "children": <div>
+            <div
+              className="yamlEditorContainerContainer"
+            >
               <YamlEditor
                 height="40vh"
                 onYamlChange={[Function]}
                 readOnly={false}
+                setEditor={[Function]}
                 width="50vw"
                 yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
@@ -862,36 +551,109 @@ spec:
   remediationAction: inform
 "
               />
-            </div>,
-            "className": "resource-modal",
-            "focusTrap": true,
-            "iconDescription": "close the modal",
-            "id": "resource-modal-HCMPolicyPolicy",
-            "modalHeading": "Edit policy",
-            "modalLabel": "Edit policy",
-            "onKeyDown": [Function],
-            "onRequestClose": [Function],
-            "onRequestSubmit": [Function],
-            "open": true,
-            "passiveModal": false,
-            "primaryButtonDisabled": false,
-            "primaryButtonText": "Submit",
-            "role": "region",
-            "secondaryButtonText": "Cancel",
-            "selectorPrimaryFocus": "[data-modal-primary-focus]",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                undefined,
+            </div>
+          </div>,
+          "className": "resource-modal",
+          "focusTrap": true,
+          "iconDescription": "close the modal",
+          "id": "resource-modal-HCMPolicyPolicy",
+          "modalHeading": "Edit policy",
+          "modalLabel": "Edit policy",
+          "onKeyDown": [Function],
+          "onRequestClose": [Function],
+          "onRequestSubmit": [Function],
+          "open": true,
+          "passiveModal": false,
+          "primaryButtonDisabled": false,
+          "primaryButtonText": "Submit",
+          "role": "region",
+          "secondaryButtonText": "Cancel",
+          "selectorPrimaryFocus": "[data-modal-primary-focus]",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              undefined,
+              <div
+                className="yamlEditorContainerContainer"
+              >
                 <YamlEditor
                   height="40vh"
                   onYamlChange={[Function]}
                   readOnly={false}
+                  setEditor={[Function]}
+                  width="50vw"
+                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+"
+                />
+              </div>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <YamlEditor
+                  height="40vh"
+                  onYamlChange={[Function]}
+                  readOnly={false}
+                  setEditor={[Function]}
                   width="50vw"
                   yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
@@ -944,12 +706,10 @@ spec:
   remediationAction: inform
 "
                 />,
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              undefined,
-              Object {
+                "className": "yamlEditorContainerContainer",
+              },
+              "ref": [Function],
+              "rendered": Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "function",
@@ -957,6 +717,7 @@ spec:
                   "height": "40vh",
                   "onYamlChange": [Function],
                   "readOnly": false,
+                  "setEditor": [Function],
                   "width": "50vw",
                   "yaml": "apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
@@ -1012,6 +773,411 @@ spec:
                 "ref": null,
                 "rendered": null,
                 "type": [Function],
+              },
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "aria-label": undefined,
+        "children": Array [
+          " ",
+          undefined,
+          <Modal
+            aria-label="Edit policy"
+            className="resource-modal"
+            focusTrap={true}
+            iconDescription="close the modal"
+            id="resource-modal-HCMPolicyPolicy"
+            modalHeading="Edit policy"
+            modalLabel="Edit policy"
+            onKeyDown={[Function]}
+            onRequestClose={[Function]}
+            onRequestSubmit={[Function]}
+            open={true}
+            passiveModal={false}
+            primaryButtonDisabled={false}
+            primaryButtonText="Submit"
+            role="region"
+            secondaryButtonText="Cancel"
+            selectorPrimaryFocus="[data-modal-primary-focus]"
+          >
+            <div>
+              <div
+                className="yamlEditorContainerContainer"
+              >
+                <YamlEditor
+                  height="40vh"
+                  onYamlChange={[Function]}
+                  readOnly={false}
+                  setEditor={[Function]}
+                  width="50vw"
+                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+"
+                />
+              </div>
+            </div>
+          </Modal>,
+        ],
+        "id": "resource-modal-container",
+        "onKeyDown": [Function],
+        "role": "region",
+        "tabIndex": -1,
+      },
+      "ref": [Function],
+      "rendered": Array [
+        " ",
+        undefined,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "aria-label": "Edit policy",
+            "children": <div>
+              <div
+                className="yamlEditorContainerContainer"
+              >
+                <YamlEditor
+                  height="40vh"
+                  onYamlChange={[Function]}
+                  readOnly={false}
+                  setEditor={[Function]}
+                  width="50vw"
+                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+"
+                />
+              </div>
+            </div>,
+            "className": "resource-modal",
+            "focusTrap": true,
+            "iconDescription": "close the modal",
+            "id": "resource-modal-HCMPolicyPolicy",
+            "modalHeading": "Edit policy",
+            "modalLabel": "Edit policy",
+            "onKeyDown": [Function],
+            "onRequestClose": [Function],
+            "onRequestSubmit": [Function],
+            "open": true,
+            "passiveModal": false,
+            "primaryButtonDisabled": false,
+            "primaryButtonText": "Submit",
+            "role": "region",
+            "secondaryButtonText": "Cancel",
+            "selectorPrimaryFocus": "[data-modal-primary-focus]",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                undefined,
+                <div
+                  className="yamlEditorContainerContainer"
+                >
+                  <YamlEditor
+                    height="40vh"
+                    onYamlChange={[Function]}
+                    readOnly={false}
+                    setEditor={[Function]}
+                    width="50vw"
+                    yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+"
+                  />
+                </div>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              undefined,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <YamlEditor
+                    height="40vh"
+                    onYamlChange={[Function]}
+                    readOnly={false}
+                    setEditor={[Function]}
+                    width="50vw"
+                    yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+"
+                  />,
+                  "className": "yamlEditorContainerContainer",
+                },
+                "ref": [Function],
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "height": "40vh",
+                    "onYamlChange": [Function],
+                    "readOnly": false,
+                    "setEditor": [Function],
+                    "width": "50vw",
+                    "yaml": "apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "div",
               },
             ],
             "type": "div",
@@ -1279,346 +1445,14 @@ ShallowWrapper {
           selectorPrimaryFocus="[data-modal-primary-focus]"
         >
           <div>
-            <YamlEditor
-              height="40vh"
-              onYamlChange={[Function]}
-              readOnly={false}
-              width="50vw"
-              yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
-kind: Policy
-metadata:
-  name: policy-auditpolicy-will-sev
-  namespace: mcm
-  annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
-    seed-generation: '2'
-  finalizers:
-    - finalizer.policies.ibm.com
-    - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
-spec:
-  complianceType: musthave
-  namespaces:
-    exclude:
-      - kube-*
-    include:
-      - default
-  policy-templates:
-    - objectDefinition:
-        apiVersion: audit.policies.ibm.com/v1alpha1
-        kind: AuditPolicy
-        metadata:
-          name: policy-auditpolicy-will-sev
-          label:
-            category: System-Integrity
-        spec:
-          clusterAuditPolicy:
-            auditPolicyRules:
-              auth-idp: ignore
-              helmapi: ignore
-              kubernetes: ignore
-              platform-api: ignore
-              platform-identity-manager: ignore
-              platform-identity-provider: ignore
-              vulnerability-advisor: ignore
-          namespaceSelector:
-            exclude:
-              - kube-system
-            include:
-              - default
-              - kube-*
-          remediationAction: inform
-          severity: low
-  remediationAction: inform
-"
-            />
-          </div>
-        </Modal>,
-      ],
-      "id": "resource-modal-container",
-      "onKeyDown": [Function],
-      "role": "region",
-      "tabIndex": -1,
-    },
-    "ref": [Function],
-    "rendered": Array [
-      " ",
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "active": true,
-          "small": false,
-          "withOverlay": true,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "aria-label": "Edit policy",
-          "children": <div>
-            <YamlEditor
-              height="40vh"
-              onYamlChange={[Function]}
-              readOnly={false}
-              width="50vw"
-              yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
-kind: Policy
-metadata:
-  name: policy-auditpolicy-will-sev
-  namespace: mcm
-  annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
-    seed-generation: '2'
-  finalizers:
-    - finalizer.policies.ibm.com
-    - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
-spec:
-  complianceType: musthave
-  namespaces:
-    exclude:
-      - kube-*
-    include:
-      - default
-  policy-templates:
-    - objectDefinition:
-        apiVersion: audit.policies.ibm.com/v1alpha1
-        kind: AuditPolicy
-        metadata:
-          name: policy-auditpolicy-will-sev
-          label:
-            category: System-Integrity
-        spec:
-          clusterAuditPolicy:
-            auditPolicyRules:
-              auth-idp: ignore
-              helmapi: ignore
-              kubernetes: ignore
-              platform-api: ignore
-              platform-identity-manager: ignore
-              platform-identity-provider: ignore
-              vulnerability-advisor: ignore
-          namespaceSelector:
-            exclude:
-              - kube-system
-            include:
-              - default
-              - kube-*
-          remediationAction: inform
-          severity: low
-  remediationAction: inform
-"
-            />
-          </div>,
-          "className": "resource-modal",
-          "focusTrap": true,
-          "iconDescription": "close the modal",
-          "id": "resource-modal-HCMPolicyPolicy",
-          "modalHeading": "Edit policy",
-          "modalLabel": "Edit policy",
-          "onKeyDown": [Function],
-          "onRequestClose": [Function],
-          "onRequestSubmit": [Function],
-          "open": true,
-          "passiveModal": false,
-          "primaryButtonDisabled": false,
-          "primaryButtonText": "Submit",
-          "role": "region",
-          "secondaryButtonText": "Cancel",
-          "selectorPrimaryFocus": "[data-modal-primary-focus]",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              undefined,
+            <div
+              className="yamlEditorContainerContainer"
+            >
               <YamlEditor
                 height="40vh"
                 onYamlChange={[Function]}
                 readOnly={false}
-                width="50vw"
-                yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
-kind: Policy
-metadata:
-  name: policy-auditpolicy-will-sev
-  namespace: mcm
-  annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
-    seed-generation: '2'
-  finalizers:
-    - finalizer.policies.ibm.com
-    - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
-spec:
-  complianceType: musthave
-  namespaces:
-    exclude:
-      - kube-*
-    include:
-      - default
-  policy-templates:
-    - objectDefinition:
-        apiVersion: audit.policies.ibm.com/v1alpha1
-        kind: AuditPolicy
-        metadata:
-          name: policy-auditpolicy-will-sev
-          label:
-            category: System-Integrity
-        spec:
-          clusterAuditPolicy:
-            auditPolicyRules:
-              auth-idp: ignore
-              helmapi: ignore
-              kubernetes: ignore
-              platform-api: ignore
-              platform-identity-manager: ignore
-              platform-identity-provider: ignore
-              vulnerability-advisor: ignore
-          namespaceSelector:
-            exclude:
-              - kube-system
-            include:
-              - default
-              - kube-*
-          remediationAction: inform
-          severity: low
-  remediationAction: inform
-"
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            undefined,
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "height": "40vh",
-                "onYamlChange": [Function],
-                "readOnly": false,
-                "width": "50vw",
-                "yaml": "apiVersion: policy.mcm.ibm.com/v1alpha1
-kind: Policy
-metadata:
-  name: policy-auditpolicy-will-sev
-  namespace: mcm
-  annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
-    seed-generation: '2'
-  finalizers:
-    - finalizer.policies.ibm.com
-    - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
-spec:
-  complianceType: musthave
-  namespaces:
-    exclude:
-      - kube-*
-    include:
-      - default
-  policy-templates:
-    - objectDefinition:
-        apiVersion: audit.policies.ibm.com/v1alpha1
-        kind: AuditPolicy
-        metadata:
-          name: policy-auditpolicy-will-sev
-          label:
-            category: System-Integrity
-        spec:
-          clusterAuditPolicy:
-            auditPolicyRules:
-              auth-idp: ignore
-              helmapi: ignore
-              kubernetes: ignore
-              platform-api: ignore
-              platform-identity-manager: ignore
-              platform-identity-provider: ignore
-              vulnerability-advisor: ignore
-          namespaceSelector:
-            exclude:
-              - kube-system
-            include:
-              - default
-              - kube-*
-          remediationAction: inform
-          severity: low
-  remediationAction: inform
-",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": "div",
-        },
-        "type": [Function],
-      },
-    ],
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "aria-label": undefined,
-        "children": Array [
-          " ",
-          <Loading
-            active={true}
-            small={false}
-            withOverlay={true}
-          />,
-          <Modal
-            aria-label="Edit policy"
-            className="resource-modal"
-            focusTrap={true}
-            iconDescription="close the modal"
-            id="resource-modal-HCMPolicyPolicy"
-            modalHeading="Edit policy"
-            modalLabel="Edit policy"
-            onKeyDown={[Function]}
-            onRequestClose={[Function]}
-            onRequestSubmit={[Function]}
-            open={true}
-            passiveModal={false}
-            primaryButtonDisabled={false}
-            primaryButtonText="Submit"
-            role="region"
-            secondaryButtonText="Cancel"
-            selectorPrimaryFocus="[data-modal-primary-focus]"
-          >
-            <div>
-              <YamlEditor
-                height="40vh"
-                onYamlChange={[Function]}
-                readOnly={false}
+                setEditor={[Function]}
                 width="50vw"
                 yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
@@ -1672,40 +1506,45 @@ spec:
 "
               />
             </div>
-          </Modal>,
-        ],
-        "id": "resource-modal-container",
-        "onKeyDown": [Function],
-        "role": "region",
-        "tabIndex": -1,
-      },
-      "ref": [Function],
-      "rendered": Array [
-        " ",
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "active": true,
-            "small": false,
-            "withOverlay": true,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
+          </div>
+        </Modal>,
+      ],
+      "id": "resource-modal-container",
+      "onKeyDown": [Function],
+      "role": "region",
+      "tabIndex": -1,
+    },
+    "ref": [Function],
+    "rendered": Array [
+      " ",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "active": true,
+          "small": false,
+          "withOverlay": true,
         },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "aria-label": "Edit policy",
-            "children": <div>
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "aria-label": "Edit policy",
+          "children": <div>
+            <div
+              className="yamlEditorContainerContainer"
+            >
               <YamlEditor
                 height="40vh"
                 onYamlChange={[Function]}
                 readOnly={false}
+                setEditor={[Function]}
                 width="50vw"
                 yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
@@ -1758,36 +1597,109 @@ spec:
   remediationAction: inform
 "
               />
-            </div>,
-            "className": "resource-modal",
-            "focusTrap": true,
-            "iconDescription": "close the modal",
-            "id": "resource-modal-HCMPolicyPolicy",
-            "modalHeading": "Edit policy",
-            "modalLabel": "Edit policy",
-            "onKeyDown": [Function],
-            "onRequestClose": [Function],
-            "onRequestSubmit": [Function],
-            "open": true,
-            "passiveModal": false,
-            "primaryButtonDisabled": false,
-            "primaryButtonText": "Submit",
-            "role": "region",
-            "secondaryButtonText": "Cancel",
-            "selectorPrimaryFocus": "[data-modal-primary-focus]",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                undefined,
+            </div>
+          </div>,
+          "className": "resource-modal",
+          "focusTrap": true,
+          "iconDescription": "close the modal",
+          "id": "resource-modal-HCMPolicyPolicy",
+          "modalHeading": "Edit policy",
+          "modalLabel": "Edit policy",
+          "onKeyDown": [Function],
+          "onRequestClose": [Function],
+          "onRequestSubmit": [Function],
+          "open": true,
+          "passiveModal": false,
+          "primaryButtonDisabled": false,
+          "primaryButtonText": "Submit",
+          "role": "region",
+          "secondaryButtonText": "Cancel",
+          "selectorPrimaryFocus": "[data-modal-primary-focus]",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              undefined,
+              <div
+                className="yamlEditorContainerContainer"
+              >
                 <YamlEditor
                   height="40vh"
                   onYamlChange={[Function]}
                   readOnly={false}
+                  setEditor={[Function]}
+                  width="50vw"
+                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+"
+                />
+              </div>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <YamlEditor
+                  height="40vh"
+                  onYamlChange={[Function]}
+                  readOnly={false}
+                  setEditor={[Function]}
                   width="50vw"
                   yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
@@ -1840,12 +1752,10 @@ spec:
   remediationAction: inform
 "
                 />,
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              undefined,
-              Object {
+                "className": "yamlEditorContainerContainer",
+              },
+              "ref": [Function],
+              "rendered": Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "function",
@@ -1853,6 +1763,7 @@ spec:
                   "height": "40vh",
                   "onYamlChange": [Function],
                   "readOnly": false,
+                  "setEditor": [Function],
                   "width": "50vw",
                   "yaml": "apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
@@ -1908,6 +1819,427 @@ spec:
                 "ref": null,
                 "rendered": null,
                 "type": [Function],
+              },
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "aria-label": undefined,
+        "children": Array [
+          " ",
+          <Loading
+            active={true}
+            small={false}
+            withOverlay={true}
+          />,
+          <Modal
+            aria-label="Edit policy"
+            className="resource-modal"
+            focusTrap={true}
+            iconDescription="close the modal"
+            id="resource-modal-HCMPolicyPolicy"
+            modalHeading="Edit policy"
+            modalLabel="Edit policy"
+            onKeyDown={[Function]}
+            onRequestClose={[Function]}
+            onRequestSubmit={[Function]}
+            open={true}
+            passiveModal={false}
+            primaryButtonDisabled={false}
+            primaryButtonText="Submit"
+            role="region"
+            secondaryButtonText="Cancel"
+            selectorPrimaryFocus="[data-modal-primary-focus]"
+          >
+            <div>
+              <div
+                className="yamlEditorContainerContainer"
+              >
+                <YamlEditor
+                  height="40vh"
+                  onYamlChange={[Function]}
+                  readOnly={false}
+                  setEditor={[Function]}
+                  width="50vw"
+                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+"
+                />
+              </div>
+            </div>
+          </Modal>,
+        ],
+        "id": "resource-modal-container",
+        "onKeyDown": [Function],
+        "role": "region",
+        "tabIndex": -1,
+      },
+      "ref": [Function],
+      "rendered": Array [
+        " ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "active": true,
+            "small": false,
+            "withOverlay": true,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "aria-label": "Edit policy",
+            "children": <div>
+              <div
+                className="yamlEditorContainerContainer"
+              >
+                <YamlEditor
+                  height="40vh"
+                  onYamlChange={[Function]}
+                  readOnly={false}
+                  setEditor={[Function]}
+                  width="50vw"
+                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+"
+                />
+              </div>
+            </div>,
+            "className": "resource-modal",
+            "focusTrap": true,
+            "iconDescription": "close the modal",
+            "id": "resource-modal-HCMPolicyPolicy",
+            "modalHeading": "Edit policy",
+            "modalLabel": "Edit policy",
+            "onKeyDown": [Function],
+            "onRequestClose": [Function],
+            "onRequestSubmit": [Function],
+            "open": true,
+            "passiveModal": false,
+            "primaryButtonDisabled": false,
+            "primaryButtonText": "Submit",
+            "role": "region",
+            "secondaryButtonText": "Cancel",
+            "selectorPrimaryFocus": "[data-modal-primary-focus]",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                undefined,
+                <div
+                  className="yamlEditorContainerContainer"
+                >
+                  <YamlEditor
+                    height="40vh"
+                    onYamlChange={[Function]}
+                    readOnly={false}
+                    setEditor={[Function]}
+                    width="50vw"
+                    yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+"
+                  />
+                </div>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              undefined,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <YamlEditor
+                    height="40vh"
+                    onYamlChange={[Function]}
+                    readOnly={false}
+                    setEditor={[Function]}
+                    width="50vw"
+                    yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+"
+                  />,
+                  "className": "yamlEditorContainerContainer",
+                },
+                "ref": [Function],
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "height": "40vh",
+                    "onYamlChange": [Function],
+                    "readOnly": false,
+                    "setEditor": [Function],
+                    "width": "50vw",
+                    "yaml": "apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-auditpolicy-will-sev
+  namespace: mcm
+  annotations:
+    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
+    policy.mcm.ibm.com/controls: IAM
+    policy.mcm.ibm.com/standards: FISMA
+    seed-generation: '2'
+  finalizers:
+    - finalizer.policies.ibm.com
+    - propagator.finalizer.mcm.ibm.com
+  generation: 27
+  resourceVersion: '5300122'
+spec:
+  complianceType: musthave
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - default
+  policy-templates:
+    - objectDefinition:
+        apiVersion: audit.policies.ibm.com/v1alpha1
+        kind: AuditPolicy
+        metadata:
+          name: policy-auditpolicy-will-sev
+          label:
+            category: System-Integrity
+        spec:
+          clusterAuditPolicy:
+            auditPolicyRules:
+              auth-idp: ignore
+              helmapi: ignore
+              kubernetes: ignore
+              platform-api: ignore
+              platform-identity-manager: ignore
+              platform-identity-provider: ignore
+              vulnerability-advisor: ignore
+          namespaceSelector:
+            exclude:
+              - kube-system
+            include:
+              - default
+              - kube-*
+          remediationAction: inform
+          severity: low
+  remediationAction: inform
+",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "div",
               },
             ],
             "type": "div",

@@ -3,13 +3,19 @@
 exports[`YamlEditor renders as expected 1`] = `
 <div
   className="yamlEditorContainer"
+  style={
+    Object {
+      "display": "block",
+      "minHeight": "100px",
+    }
+  }
 >
   <div
-    id="brace-editor"
+    className="react-monaco-editor-container"
     style={
       Object {
-        "height": "41vh",
-        "width": "50vw",
+        "height": "100%",
+        "width": "100%",
       }
     }
   />
@@ -19,13 +25,19 @@ exports[`YamlEditor renders as expected 1`] = `
 exports[`YamlEditor renders as expected 2`] = `
 <div
   className="yamlEditorContainer"
+  style={
+    Object {
+      "display": "block",
+      "minHeight": "100px",
+    }
+  }
 >
   <div
-    id="brace-editor"
+    className="react-monaco-editor-container"
     style={
       Object {
-        "height": "40vh",
-        "width": "49.5vw",
+        "height": "100%",
+        "width": "100%",
       }
     }
   />
