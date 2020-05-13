@@ -36,7 +36,7 @@ export const generateYAML = (template, controlData) => {
             if (!arr) {
               arr = map[key] = []
             }
-            arr.push(value)            
+            arr.push(value)
           }
         })
         templateData[id] = map
