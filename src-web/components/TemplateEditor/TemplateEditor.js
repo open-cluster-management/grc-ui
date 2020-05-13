@@ -106,6 +106,7 @@ export default class TemplateEditor extends React.Component {
       updateMessage: '',
       hasUndo: false,
       hasRedo: false,
+      resetInx: 0,
     }
     this.multiSelectCmpMap = {}
     this.parseDebounced = _.debounce(()=>{
@@ -548,9 +549,9 @@ export default class TemplateEditor extends React.Component {
 
   layoutEditors() {
     if (this.containerRef && this.editor) {
-      const controlsSize = localStorage.getItem(this.splitterSizeCookie)
+      const controlsSize = this.handleSplitterDefault()
       const rect = this.containerRef.getBoundingClientRect()
-      const width = rect.width - controlsSize - 16
+      const width = rect.width - controlsSize - 15
       const height = rect.height - 80
       this.editor.layout({width, height})
     }
@@ -593,10 +594,6 @@ export default class TemplateEditor extends React.Component {
       break
     case 'restore':
       this.resetEditor()
-      break
-    case 'update':
-      //where is defined?
-      this.updateResources()
       break
     case 'close':
       this.closeEdit()
@@ -806,11 +803,11 @@ export default class TemplateEditor extends React.Component {
   }
 
   resetEditor() {
+    const {resetInx} = this.state
     const { template, controlData: initialControlData } = this.props
     const controlData = initializeControlData(template, initialControlData)
     const templateYAML = generateYAML(template, controlData)
     const templateObject = parseYAML(templateYAML).parsed
-    this.setState({ controlData, templateYAML, templateObject, exceptions:[], hasUndo: false, hasRedo: false})
-    this.resetUndoManager = true
+    this.setState({ controlData, templateYAML, templateObject, exceptions:[], hasUndo: false, hasRedo: false, resetInx:resetInx+1})
   }
 }
