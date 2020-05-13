@@ -27,6 +27,7 @@ import {
 import { initializeControlData, cacheUserData, updateControls, parseYAML } from './utils/update-controls'
 import { generateYAML, highlightChanges, getUniqueName } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
+import EditorHeader from './components/EditorHeader'
 import EditorBar from './components/EditorBar'
 import YamlEditor from './components/YamlEditor'
 import './scss/template-editor.scss'
@@ -430,25 +431,20 @@ export default class TemplateEditor extends React.Component {
   renderEditor() {
     const { locale } = this.context
     const { templateYAML, hasUndo, hasRedo, exceptions } = this.state
-    const editorToolbarTitle = msgs.get('editor.toolbar', this.context.locale)
-
     return (
       <div className='creation-view-yaml' >
-        <div className='creation-view-yaml-header' >
-          <div className='creation-view-yaml-header-title'>
-            {msgs.get('creation.view.yaml', locale)}
-          </div>
-          <div className='creation-view-yaml-header-toolbar' role='region' aria-label={editorToolbarTitle} id={editorToolbarTitle}>
-            <EditorBar
-              hasUndo={hasUndo}
-              hasRedo={hasRedo}
-              exceptions={exceptions}
-              gotoEditorLine={this.gotoEditorLine}
-              handleEditorCommand={this.handleEditorCommand}
-              handleSearchChange={this.handleSearchChange}
-            />
-          </div>
-        </div>
+        <EditorHeader
+          locale={locale}
+        >
+          <EditorBar
+            hasUndo={hasUndo}
+            hasRedo={hasRedo}
+            exceptions={exceptions}
+            gotoEditorLine={this.gotoEditorLine}
+            handleEditorCommand={this.handleEditorCommand}
+            handleSearchChange={this.handleSearchChange}
+          />
+        </EditorHeader>
         <YamlEditor
           width={'100%'}
           height={'100%'}

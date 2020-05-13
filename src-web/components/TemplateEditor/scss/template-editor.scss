@@ -15,9 +15,10 @@
 .creation-view {
   display: flex;
   position: relative;
+  margin-top: -10px;
 
   &.showEditor {
-    margin: 0 0 -3.125rem 0;
+    margin: -22px 0 -3.125rem 0;
   }
 
   .creation-view-split-container {
@@ -30,15 +31,15 @@
     }
 
     &.showEditor {
-      height: calc(100vh - 15rem);
+      height: calc(100vh - 190px);
 
       .creation-view-controls-container {
         height: calc(100vh - 19rem);
-        margin-top: 0.5rem;
+        margin-top: 40px;
       }
 
       .creation-view-yaml {
-        height: calc(100% - 3rem);
+        height: calc(100% - 30px);
         position: relative;
 
         &-header {
@@ -46,7 +47,6 @@
           justify-content: space-between;
           flex-wrap: wrap;
           align-items: center;
-          padding-bottom: 0.5rem;
 
           &-title {
             font-weight: bold;
