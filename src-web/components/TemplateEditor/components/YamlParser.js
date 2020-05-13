@@ -20,6 +20,514 @@ class YamlParseException {
     this.message = message
   }
 }
+
+class YamlInline {
+
+  parse(value) {
+    let result = null
+    value = this.trim(value)
+
+    if (0 === value.length) {
+      return ''
+    }
+
+    switch (value.charAt(0)) {
+    case '[':
+      result = this.parseSequence(value)
+      break
+    case '{':
+      result = this.parseMapping(value)
+      break
+    default:
+      result = this.parseScalar(value)
+    }
+
+    // some comment can end the scalar
+    if (value.substr(this.i + 1).replace(/^\s*#.*$/, '') !== '') {
+      throw new YamlParseException(`Unexpected characters near ${value.substr(this.i)}.`)
+    }
+
+    return result
+  }
+
+  parseScalar(scalar, delimiters, stringDelimiters, i, evaluate) {
+    if (delimiters === undefined) {
+      delimiters = null
+    }
+    if (stringDelimiters === undefined) {
+      stringDelimiters = ['"', '\'']
+    }
+    if (i === undefined) {
+      i = 0
+    }
+    if (evaluate === undefined) {
+      evaluate = true
+    }
+
+    let output = null
+    let pos = null
+    let matches = null
+
+    if (this.inArray(scalar[i], stringDelimiters)) {
+      // quoted scalar
+      output = this.parseQuotedScalar(scalar, i)
+      i = this.i
+      if (null !== delimiters) {
+        const tmp = scalar.substr(i).replace(/^\s+/, '')
+        if (!this.inArray(tmp.charAt(0), delimiters)) {
+          throw new YamlParseException(`Unexpected characters (${scalar.substr(i)}).`)
+        }
+      }
+    } else {
+      // "normal" string
+      if (delimiters) {
+        matches = new RegExp('^(.+?)(' + delimiters.join('|') + ')').exec((scalar + '').substring(i))
+      }
+      if (!delimiters) {
+        output = (scalar + '').substring(i)
+
+        i += output.length
+
+        // remove comments
+        pos = output.indexOf(' #')
+        if (pos !== -1) {
+          output = output.substr(0, pos).replace(/\s+$/g, '')
+        }
+      } else if (matches) {
+        output = matches[1]
+        i += output.length
+      } else {
+        throw new YamlParseException(`Malformed inline YAML string (${scalar}).`)
+      }
+
+      // unended inline string
+      const end = output.slice(-1)
+      if (end === '}' || end === ']') {
+        throw new YamlParseException(`Malformed inline YAML string (${scalar}).`)
+      }
+      output = evaluate ? this.evaluateScalar(output) : output
+    }
+
+    this.i = i
+
+    return output
+  }
+
+  parseQuotedScalar(scalar, i) {
+    const matches = new RegExp('^' + YamlInline.REGEX_QUOTED_STRING).exec((scalar + '').substring(i))
+    //const item = /^(.*?)['"]\s*(?:[,:]|[}\]]\s*,)/.exec((scalar+'').substring(i))[1];
+
+    if (!matches) {
+      throw new YamlParseException(`Malformed inline YAML string (${(scalar + '').substring(i)}).`)
+    }
+
+    let output = matches[0].substr(1, matches[0].length - 2)
+
+    const unescaper = new YamlUnescaper()
+
+    if ('"' === (scalar + '').charAt(i)) {
+      output = unescaper.unescapeDoubleQuotedString(output)
+    } else {
+      output = unescaper.unescapeSingleQuotedString(output)
+    }
+
+    i += matches[0].length
+
+    this.i = i
+    return output
+  }
+
+  embeddedMapping(isQuoted, value) {
+    if (!isQuoted && (value + '').indexOf(': ') !== -1) {
+      // embedded mapping?
+      try {
+        value = this.parseMapping('{' + value + '}')
+      } catch (e) {
+        if (!(e instanceof YamlParseException)) {
+          throw e
+        } // no, it's not
+      }
+    }
+
+    return value
+  }
+
+  parseSequence(sequence, i) {
+    if (i === undefined) {
+      i = 0
+    }
+
+    const output = []
+    const len = sequence.length
+    i += 1
+
+    // [foo, bar, ...]
+    while (i < len) {
+      switch (sequence.charAt(i)) {
+      case '[':
+        // nested sequence
+        output.push(this.parseSequence(sequence, i))
+        i = this.i
+        break
+      case '{':
+        // nested mapping
+        output.push(this.parseMapping(sequence, i))
+        i = this.i
+        break
+      case ']':
+        this.i = i
+        return output
+      case ',':
+      case ' ':
+        break
+      default: {
+        const isQuoted = this.inArray(sequence.charAt(i), ['"', '\''])
+        let value = this.parseScalar(sequence, [',', ']'], ['"', '\''], i)
+        i = this.i
+
+        value = this.embeddedMapping(isQuoted, value)
+
+        output.push(value)
+
+        i--
+      }
+      }
+
+      i++
+    }
+
+    throw new YamlParseException(`Malformed inline YAML string "${sequence}"`)
+  }
+
+  parseMapping(mapping, i) {
+    if (i === undefined) {
+      i = 0
+    }
+    const output = {}
+    const len = mapping.length
+    i += 1
+    let done = false
+    let doContinue = false
+
+    // {foo: bar, bar:foo, ...}
+    while (i < len) {
+      doContinue = false
+
+      switch (mapping.charAt(i)) {
+      case ' ':
+      case ',':
+        i++
+        doContinue = true
+        break
+      case '}':
+        this.i = i
+        return output
+      }
+
+      if (doContinue) {
+        continue
+      }
+
+      // key
+      const key = this.parseScalar(mapping, [':', ' '], ['"', '\''], i, false)
+      i = this.i
+
+      // value
+      done = false
+      while (i < len) {
+        switch (mapping.charAt(i)) {
+        case '[':
+          // nested sequence
+          output[key] = this.parseSequence(mapping, i)
+          i = this.i
+          done = true
+          break
+        case '{':
+          // nested mapping
+          output[key] = {
+            $v: this.parseMapping(mapping, i)
+          }
+          i = this.i
+          done = true
+          break
+        case ':':
+        case ' ':
+          break
+        default:
+          output[key] = this.parseScalar(mapping, [',', '}'], ['"', '\''], i)
+          i = this.i
+          done = true
+          i--
+        }
+
+        ++i
+
+        if (done) {
+          doContinue = true
+          break
+        }
+      }
+
+      if (doContinue) {
+        continue
+      }
+    }
+
+    throw new YamlParseException(`('Malformed inline YAML string "${mapping}"`)
+  }
+
+  evaluateScalar(scalar) {
+    scalar = this.trim(scalar)
+
+    let raw = null
+    let cast = null
+
+    if (('null' === scalar.toLowerCase()) || ('' === scalar) || ('~' === scalar)) {
+      return null
+    }
+    if ((scalar + '').indexOf('!str ') === 0) {
+      return ('' + scalar).substring(5)
+    }
+    if ((scalar + '').indexOf('! ') === 0) {
+      return parseInt(this.parseScalar((scalar + '').substr(2)), 10)
+    }
+    if (/^\d+$/.test(scalar)) {
+      raw = scalar
+      cast = parseInt(scalar, 10)
+      return '0' === scalar.charAt(0) ? this.octdec(scalar) : (('' + raw === '' + cast) ? cast : raw)
+    }
+    if ('true' === (scalar + '').toLowerCase()) {
+      return true
+    }
+    if ('false' === (scalar + '').toLowerCase()) {
+      return false
+    }
+    if (this.isNumeric(scalar)) {
+      return '0x' === (scalar + '').substr(0, 2) ? this.hexdec(scalar) : parseFloat(scalar)
+    }
+    if (scalar.toLowerCase() === '.inf') {
+      return Infinity
+    }
+    if (scalar.toLowerCase() === '.nan') {
+      return NaN
+    }
+    if (scalar.toLowerCase() === '-.inf') {
+      return -Infinity
+    }
+    if (/^(-|\+)?[0-9,]+(\.[0-9]+)?$/.test(scalar)) {
+      return parseFloat(scalar.split(',').join(''))
+    }
+    if (this.getTimestampRegex().test(scalar)){
+      return new Date(this.strtotime(scalar))
+    }
+    //else
+    return '' + scalar
+  }
+
+  getTimestampRegex() {
+    return new RegExp('^' +
+                '([0-9][0-9][0-9][0-9])' +
+                '-([0-9][0-9]?)' +
+                '-([0-9][0-9]?)' +
+                '(?:(?:[Tt]|[ \t]+)' +
+                '([0-9][0-9]?)' +
+                ':([0-9][0-9])' +
+                ':([0-9][0-9])' +
+                '(?:.([0-9]*))?' +
+                '(?:[ \t]*(Z|([-+])([0-9][0-9]?)' +
+                '(?::([0-9][0-9]))?))?)?' +
+                '$', 'gi')
+  }
+
+  trim(str) {
+    return (str + '').replace(/^\s+/, '').replace(/\s+$/, '')
+  }
+
+  isNumeric(input) {
+    return (input - 0) === input && input.length > 0 && input.replace(/\s+/g, '') !== ''
+  }
+
+  inArray(key, tab) {
+    let i
+    const len = tab.length
+    for (i = 0; i < len; i++) {
+      if (key === tab[i]) {
+        return true
+      }
+    }
+    return false
+  }
+
+  getKeys(tab) {
+    const ret = []
+
+    for (const name in tab) {
+      if (Object.prototype.hasOwnProperty.call(tab, name)) {
+        ret.push(name)
+      }
+    }
+
+    return ret
+  }
+
+  octdec(input) {
+    return parseInt((input + '').replace(/[^0-7]/gi, ''), 8)
+  }
+
+  hexdec(input) {
+    input = this.trim(input)
+    if ((input + '').substr(0, 2) === '0x') {
+      input = (input + '').substring(2)
+    }
+    return parseInt((input + '').replace(/[^a-f0-9]/gi, ''), 16)
+  }
+
+  strtotime(h, b) {
+    let f, c, g, k, d = ''
+    h = (h + '').replace(/\s{2,}|^\s|\s$/g, ' ').replace(/[\t\r\n]/g, '')
+    if (h === 'now') {
+      return b === null || isNaN(b) ? new Date().getTime() || 0 : b || 0
+    } else {
+      d = Date.parse(h)
+      if (!isNaN(d)) {
+        return d || 0
+      } else {
+        if (b) {
+          b = new Date(b)
+        } else {
+          b = new Date()
+        }
+      }
+    }
+    h = h.toLowerCase()
+    const e = {
+      day: {
+        sun: 0,
+        mon: 1,
+        tue: 2,
+        wed: 3,
+        thu: 4,
+        fri: 5,
+        sat: 6
+      },
+      mon: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+    }
+    const a = function(i) {
+      const o = (i[2] && i[2] === 'ago')
+      const m = i[0] === 'last' ? -1 : 1
+      let n = m * (o ? -1 : 1)
+      switch (i[0]) {
+      case 'last':
+      case 'next':
+        switch (i[1].substring(0, 3)) {
+        case 'yea':
+          b.setFullYear(b.getFullYear() + n)
+          break
+        case 'wee':
+          b.setDate(b.getDate() + (n * 7))
+          break
+        case 'day':
+          b.setDate(b.getDate() + n)
+          break
+        case 'hou':
+          b.setHours(b.getHours() + n)
+          break
+        case 'min':
+          b.setMinutes(b.getMinutes() + n)
+          break
+        case 'sec':
+          b.setSeconds(b.getSeconds() + n)
+          break
+        default:
+          if (i[0]==='mon' && i[1] === 'month') {
+            b.setMonth(b.getMonth() + n)
+          } else {
+            const l = e.day[i[1].substring(0, 3)]
+            if (typeof l !== 'undefined') {
+              let p = l - b.getDay()
+              if (p === 0) {
+                p = 7 * n
+              } else {
+                if (p > 0) {
+                  if (i[0] === 'last') {
+                    p -= 7
+                  }
+                } else {
+                  if (i[0] === 'next') {
+                    p += 7
+                  }
+                }
+              }
+              b.setDate(b.getDate() + p)
+              b.setHours(0, 0, 0, 0)
+            }
+          }
+        }
+        break
+      default:
+        if (/\d+/.test(i[0])) {
+          n *= parseInt(i[0], 10)
+          switch (i[1].substring(0, 3)) {
+          case 'yea':
+            b.setFullYear(b.getFullYear() + n)
+            break
+          case 'mon':
+            b.setMonth(b.getMonth() + n)
+            break
+          case 'wee':
+            b.setDate(b.getDate() + (n * 7))
+            break
+          case 'day':
+            b.setDate(b.getDate() + n)
+            break
+          case 'hou':
+            b.setHours(b.getHours() + n)
+            break
+          case 'min':
+            b.setMinutes(b.getMinutes() + n)
+            break
+          case 'sec':
+            b.setSeconds(b.getSeconds() + n)
+            break
+          }
+        } else {
+          return false
+        }
+        break
+      }
+      return true
+    }
+    g = h.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/)
+    if (g !== null) {
+      if (!g[2]) {
+        g[2] = '00:00:00'
+      } else {
+        if (!g[3]) {
+          g[2] += ':00'
+        }
+      }
+      k = g[1].split(/-/g)
+      k[1] = e.mon[k[1] - 1] || k[1]
+      k[0] = +k[0]
+      k[0] = (k[0] >= 0 && k[0] <= 69) ? '20' + (k[0] < 10 ? '0' + k[0] : k[0] + '') : (k[0] >= 70 && k[0] <= 99) ? '19' + k[0] : k[0] + ''
+      return parseInt(this.strtotime(k[2] + ' ' + k[1] + ' ' + k[0] + ' ' + g[2]) + (g[4] ? g[4] : ''), 10)
+    }
+    const j = '([+-]?\\d+\\s(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday)|(last|next)\\s(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday))(\\sago)?'
+    g = h.match(new RegExp(j, 'gi'))
+    if (g === null) {
+      return false
+    }
+    for (f = 0, c = g.length; f < c; f++) {
+      if (!a(g[f].split(' '))) {
+        return false
+      }
+    }
+    return b.getTime() || 0
+  }
+
+}
+
+YamlInline.REGEX_QUOTED_STRING = '(?:"(?:[^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'(?:[^\']*(?:\'\'[^\']*)*)\')'
 class YamlParser {
 
   constructor(offset, lined) {
@@ -765,29 +1273,18 @@ class YamlParser {
     return result
   }
 
-  subStrCount(string, subString, start, length) {
-    let c = 0
-
-    string = '' + string
-    subString = '' + subString
-
+  subStrCount(str, subStr, start, length) {
+    if (str === undefined || typeof str !== 'string'
+      || subStr === undefined || typeof subStr !== 'string') {
+      return 0
+    }
     if (start !== undefined) {
-      string = string.substr(start)
+      str = str.substr(start)
     }
     if (length !== undefined) {
-      string = string.substr(0, length)
+      str = str.substr(0, length)
     }
-
-    const len = string.length
-    const sublen = subString.length
-    for (let i = 0; i < len; i++) {
-      if (subString === string.substr(i, sublen)) {
-        c++
-      }
-      i += sublen - 1
-    }
-
-    return c
+    return str.split(subStr).length - 1
   }
 
   trim(str) {
@@ -919,509 +1416,5 @@ class YamlUnescaper {
 }
 
 YamlUnescaper.REGEX_ESCAPED_CHARACTER = '\\\\([0abt\tnvfre "\\/\\\\N_LP]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})'
-
-class YamlInline {
-
-  parse(value) {
-    let result = null
-    value = this.trim(value)
-
-    if (0 === value.length) {
-      return ''
-    }
-
-    switch (value.charAt(0)) {
-    case '[':
-      result = this.parseSequence(value)
-      break
-    case '{':
-      result = this.parseMapping(value)
-      break
-    default:
-      result = this.parseScalar(value)
-    }
-
-    // some comment can end the scalar
-    if (value.substr(this.i + 1).replace(/^\s*#.*$/, '') !== '') {
-      throw new YamlParseException(`Unexpected characters near ${value.substr(this.i)}.`)
-    }
-
-    return result
-  }
-
-  parseScalar(scalar, delimiters, stringDelimiters, i, evaluate) {
-    if (delimiters === undefined) {
-      delimiters = null
-    }
-    if (stringDelimiters === undefined) {
-      stringDelimiters = ['"', '\'']
-    }
-    if (i === undefined) {
-      i = 0
-    }
-    if (evaluate === undefined) {
-      evaluate = true
-    }
-
-    let output = null
-    let pos = null
-    let matches = null
-
-    if (this.inArray(scalar[i], stringDelimiters)) {
-      // quoted scalar
-      output = this.parseQuotedScalar(scalar, i)
-      i = this.i
-      if (null !== delimiters) {
-        const tmp = scalar.substr(i).replace(/^\s+/, '')
-        if (!this.inArray(tmp.charAt(0), delimiters)) {
-          throw new YamlParseException(`Unexpected characters (${scalar.substr(i)}).`)
-        }
-      }
-    } else {
-      // "normal" string
-      if (delimiters) {
-        matches = new RegExp('^(.+?)(' + delimiters.join('|') + ')').exec((scalar + '').substring(i))
-      }
-      if (!delimiters) {
-        output = (scalar + '').substring(i)
-
-        i += output.length
-
-        // remove comments
-        pos = output.indexOf(' #')
-        if (pos !== -1) {
-          output = output.substr(0, pos).replace(/\s+$/g, '')
-        }
-      } else if (matches) {
-        output = matches[1]
-        i += output.length
-      } else {
-        throw new YamlParseException(`Malformed inline YAML string (${scalar}).`)
-      }
-
-      // unended inline string
-      const end = output.slice(-1)
-      if (end === '}' || end === ']') {
-        throw new YamlParseException(`Malformed inline YAML string (${scalar}).`)
-      }
-      output = evaluate ? this.evaluateScalar(output) : output
-    }
-
-    this.i = i
-
-    return output
-  }
-
-  parseQuotedScalar(scalar, i) {
-    const matches = new RegExp('^' + YamlInline.REGEX_QUOTED_STRING).exec((scalar + '').substring(i))
-    //const item = /^(.*?)['"]\s*(?:[,:]|[}\]]\s*,)/.exec((scalar+'').substring(i))[1];
-
-    if (!matches) {
-      throw new YamlParseException(`Malformed inline YAML string (${(scalar + '').substring(i)}).`)
-    }
-
-    let output = matches[0].substr(1, matches[0].length - 2)
-
-    const unescaper = new YamlUnescaper()
-
-    if ('"' === (scalar + '').charAt(i)) {
-      output = unescaper.unescapeDoubleQuotedString(output)
-    } else {
-      output = unescaper.unescapeSingleQuotedString(output)
-    }
-
-    i += matches[0].length
-
-    this.i = i
-    return output
-  }
-
-  embeddedMapping(isQuoted, value) {
-    if (!isQuoted && (value + '').indexOf(': ') !== -1) {
-      // embedded mapping?
-      try {
-        value = this.parseMapping('{' + value + '}')
-      } catch (e) {
-        if (!(e instanceof YamlParseException)) {
-          throw e
-        } // no, it's not
-      }
-    }
-
-    return value
-  }
-
-  parseSequence(sequence, i) {
-    if (i === undefined) {
-      i = 0
-    }
-
-    const output = []
-    const len = sequence.length
-    i += 1
-
-    // [foo, bar, ...]
-    while (i < len) {
-      switch (sequence.charAt(i)) {
-      case '[':
-        // nested sequence
-        output.push(this.parseSequence(sequence, i))
-        i = this.i
-        break
-      case '{':
-        // nested mapping
-        output.push(this.parseMapping(sequence, i))
-        i = this.i
-        break
-      case ']':
-        this.i = i
-        return output
-      case ',':
-      case ' ':
-        break
-      default: {
-        const isQuoted = this.inArray(sequence.charAt(i), ['"', '\''])
-        let value = this.parseScalar(sequence, [',', ']'], ['"', '\''], i)
-        i = this.i
-
-        value = this.embeddedMapping(isQuoted, value)
-
-        output.push(value)
-
-        i--
-      }
-      }
-
-      i++
-    }
-
-    throw new YamlParseException(`Malformed inline YAML string "${sequence}"`)
-  }
-
-  parseMapping(mapping, i) {
-    if (i === undefined) {
-      i = 0
-    }
-    const output = {}
-    const len = mapping.length
-    i += 1
-    let done = false
-    let doContinue = false
-
-    // {foo: bar, bar:foo, ...}
-    while (i < len) {
-      doContinue = false
-
-      switch (mapping.charAt(i)) {
-      case ' ':
-      case ',':
-        i++
-        doContinue = true
-        break
-      case '}':
-        this.i = i
-        return output
-      }
-
-      if (doContinue) {
-        continue
-      }
-
-      // key
-      const key = this.parseScalar(mapping, [':', ' '], ['"', '\''], i, false)
-      i = this.i
-
-      // value
-      done = false
-      while (i < len) {
-        switch (mapping.charAt(i)) {
-        case '[':
-          // nested sequence
-          output[key] = this.parseSequence(mapping, i)
-          i = this.i
-          done = true
-          break
-        case '{':
-          // nested mapping
-          output[key] = {
-            $v: this.parseMapping(mapping, i)
-          }
-          i = this.i
-          done = true
-          break
-        case ':':
-        case ' ':
-          break
-        default:
-          output[key] = this.parseScalar(mapping, [',', '}'], ['"', '\''], i)
-          i = this.i
-          done = true
-          i--
-        }
-
-        ++i
-
-        if (done) {
-          doContinue = true
-          break
-        }
-      }
-
-      if (doContinue) {
-        continue
-      }
-    }
-
-    throw new YamlParseException(`('Malformed inline YAML string "${mapping}"`)
-  }
-
-  evaluateScalar(scalar) {
-    scalar = this.trim(scalar)
-
-    let raw = null
-    let cast = null
-
-    if (('null' === scalar.toLowerCase()) || ('' === scalar) || ('~' === scalar)) {
-      return null
-    }
-    if ((scalar + '').indexOf('!str ') === 0) {
-      return ('' + scalar).substring(5)
-    }
-    if ((scalar + '').indexOf('! ') === 0) {
-      return parseInt(this.parseScalar((scalar + '').substr(2)), 10)
-    }
-    if (/^\d+$/.test(scalar)) {
-      raw = scalar
-      cast = parseInt(scalar, 10)
-      return '0' === scalar.charAt(0) ? this.octdec(scalar) : (('' + raw === '' + cast) ? cast : raw)
-    }
-    if ('true' === (scalar + '').toLowerCase()) {
-      return true
-    }
-    if ('false' === (scalar + '').toLowerCase()) {
-      return false
-    }
-    if (this.isNumeric(scalar)) {
-      return '0x' === (scalar + '').substr(0, 2) ? this.hexdec(scalar) : parseFloat(scalar)
-    }
-    if (scalar.toLowerCase() === '.inf') {
-      return Infinity
-    }
-    if (scalar.toLowerCase() === '.nan') {
-      return NaN
-    }
-    if (scalar.toLowerCase() === '-.inf') {
-      return -Infinity
-    }
-    if (/^(-|\+)?[0-9,]+(\.[0-9]+)?$/.test(scalar)) {
-      return parseFloat(scalar.split(',').join(''))
-    }
-    if (this.getTimestampRegex().test(scalar)){
-      return new Date(this.strtotime(scalar))
-    }
-    //else
-    return '' + scalar
-  }
-
-  getTimestampRegex() {
-    return new RegExp('^' +
-                '([0-9][0-9][0-9][0-9])' +
-                '-([0-9][0-9]?)' +
-                '-([0-9][0-9]?)' +
-                '(?:(?:[Tt]|[ \t]+)' +
-                '([0-9][0-9]?)' +
-                ':([0-9][0-9])' +
-                ':([0-9][0-9])' +
-                '(?:.([0-9]*))?' +
-                '(?:[ \t]*(Z|([-+])([0-9][0-9]?)' +
-                '(?::([0-9][0-9]))?))?)?' +
-                '$', 'gi')
-  }
-
-  trim(str) {
-    return (str + '').replace(/^\s+/, '').replace(/\s+$/, '')
-  }
-
-  isNumeric(input) {
-    return (input - 0) === input && input.length > 0 && input.replace(/\s+/g, '') !== ''
-  }
-
-  inArray(key, tab) {
-    let i
-    const len = tab.length
-    for (i = 0; i < len; i++) {
-      if (key === tab[i]) return true
-    }
-    return false
-  }
-
-  getKeys(tab) {
-    const ret = []
-
-    for (const name in tab) {
-      if (Object.prototype.hasOwnProperty.call(tab, name)) {
-        ret.push(name)
-      }
-    }
-
-    return ret
-  }
-
-  octdec(input) {
-    return parseInt((input + '').replace(/[^0-7]/gi, ''), 8)
-  }
-
-  hexdec(input) {
-    input = this.trim(input)
-    if ((input + '').substr(0, 2) === '0x') input = (input + '').substring(2)
-    return parseInt((input + '').replace(/[^a-f0-9]/gi, ''), 16)
-  }
-
-  strtotime(h, b) {
-    let f, c, g, k, d = ''
-    h = (h + '').replace(/\s{2,}|^\s|\s$/g, ' ').replace(/[\t\r\n]/g, '')
-    if (h === 'now') {
-      return b === null || isNaN(b) ? new Date().getTime() || 0 : b || 0
-    } else {
-      d = Date.parse(h)
-      if (!isNaN(d)) {
-        return d || 0
-      } else {
-        if (b) {
-          b = new Date(b)
-        } else {
-          b = new Date()
-        }
-      }
-    }
-    h = h.toLowerCase()
-    const e = {
-      day: {
-        sun: 0,
-        mon: 1,
-        tue: 2,
-        wed: 3,
-        thu: 4,
-        fri: 5,
-        sat: 6
-      },
-      mon: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
-    }
-    const a = function(i) {
-      const o = (i[2] && i[2] === 'ago')
-      const m = i[0] === 'last' ? -1 : 1
-      let n = m * (o ? -1 : 1)
-      switch (i[0]) {
-      case 'last':
-      case 'next':
-        switch (i[1].substring(0, 3)) {
-        case 'yea':
-          b.setFullYear(b.getFullYear() + n)
-          break
-        case 'wee':
-          b.setDate(b.getDate() + (n * 7))
-          break
-        case 'day':
-          b.setDate(b.getDate() + n)
-          break
-        case 'hou':
-          b.setHours(b.getHours() + n)
-          break
-        case 'min':
-          b.setMinutes(b.getMinutes() + n)
-          break
-        case 'sec':
-          b.setSeconds(b.getSeconds() + n)
-          break
-        default:
-          if (i[0]==='mon' && i[1] === 'month') {
-            b.setMonth(b.getMonth() + n)
-          } else {
-            const l = e.day[i[1].substring(0, 3)]
-            if (typeof l !== 'undefined') {
-              let p = l - b.getDay()
-              if (p === 0) {
-                p = 7 * n
-              } else {
-                if (p > 0) {
-                  if (i[0] === 'last') {
-                    p -= 7
-                  }
-                } else {
-                  if (i[0] === 'next') {
-                    p += 7
-                  }
-                }
-              }
-              b.setDate(b.getDate() + p)
-              b.setHours(0, 0, 0, 0)
-            }
-          }
-        }
-        break
-      default:
-        if (/\d+/.test(i[0])) {
-          n *= parseInt(i[0], 10)
-          switch (i[1].substring(0, 3)) {
-          case 'yea':
-            b.setFullYear(b.getFullYear() + n)
-            break
-          case 'mon':
-            b.setMonth(b.getMonth() + n)
-            break
-          case 'wee':
-            b.setDate(b.getDate() + (n * 7))
-            break
-          case 'day':
-            b.setDate(b.getDate() + n)
-            break
-          case 'hou':
-            b.setHours(b.getHours() + n)
-            break
-          case 'min':
-            b.setMinutes(b.getMinutes() + n)
-            break
-          case 'sec':
-            b.setSeconds(b.getSeconds() + n)
-            break
-          }
-        } else {
-          return false
-        }
-        break
-      }
-      return true
-    }
-    g = h.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/)
-    if (g !== null) {
-      if (!g[2]) {
-        g[2] = '00:00:00'
-      } else {
-        if (!g[3]) {
-          g[2] += ':00'
-        }
-      }
-      k = g[1].split(/-/g)
-      k[1] = e.mon[k[1] - 1] || k[1]
-      k[0] = +k[0]
-      k[0] = (k[0] >= 0 && k[0] <= 69) ? '20' + (k[0] < 10 ? '0' + k[0] : k[0] + '') : (k[0] >= 70 && k[0] <= 99) ? '19' + k[0] : k[0] + ''
-      return parseInt(this.strtotime(k[2] + ' ' + k[1] + ' ' + k[0] + ' ' + g[2]) + (g[4] ? g[4] : ''), 10)
-    }
-    const j = '([+-]?\\d+\\s(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday)|(last|next)\\s(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday))(\\sago)?'
-    g = h.match(new RegExp(j, 'gi'))
-    if (g === null) {
-      return false
-    }
-    for (f = 0, c = g.length; f < c; f++) {
-      if (!a(g[f].split(' '))) {
-        return false
-      }
-    }
-    return b.getTime() || 0
-  }
-
-}
-
-YamlInline.REGEX_QUOTED_STRING = '(?:"(?:[^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'(?:[^\']*(?:\'\'[^\']*)*)\')'
 
 export default YamlParser

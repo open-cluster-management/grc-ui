@@ -26,4 +26,5 @@ export const role = (state = null, action) => {
       return state
     }
   }
+  return 'undefined-action'
 }
