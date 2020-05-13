@@ -41,9 +41,9 @@ class PoliciesTab extends React.Component {
   }
 
   componentWillMount() {
-    const { updateSecondaryHeader, secondaryHeaderProps } = this.props
+    const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, links, information } = secondaryHeaderProps
-    updateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
+    localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
   }
 
   render () {
@@ -78,8 +78,8 @@ class PoliciesTab extends React.Component {
               showApplications ?
                 <Query query={HCMApplicationList} pollInterval={pollInterval} client={GrcApolloClient.getSearchClient()} notifyOnNetworkStatusChange >
                   {( result ) => {
-                    const {data={}} = result
-                    const { applications } = data
+                    const {applicationsData={}} = result
+                    const { applications } = applicationsData
                     const searchError = applications ? null : result.error
                     return (
                       <GrcView

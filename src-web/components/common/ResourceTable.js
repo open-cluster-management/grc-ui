@@ -80,6 +80,7 @@ export class ResourceTable extends React.Component {
     const showSearch = lodash.get(this.props, 'showSearch', true)
     const showPagination = lodash.get(this.props, 'showPagination', true)
     const id = (staticResourceData && staticResourceData.resourceKey) ? `${staticResourceData.resourceKey}-` : ''
+    const firstResKeyStr = 'tableKeys[0].resourceKey'
 
     const PagenationComponent = showPagination ?
       (<PaginationV2
@@ -94,7 +95,12 @@ export class ResourceTable extends React.Component {
         isLastPage={pageSize >= totalFilteredItems}
         itemsPerPageText={msgs.get('pagination.itemsPerPage', this.context.locale)}
         pageRangeText={(current, total) => msgs.get('pagination.pageRange', [current, total], this.context.locale)}
-        itemRangeText={(min, max, total) => `${msgs.get('pagination.itemRange', [min, max], this.context.locale)} ${msgs.get('pagination.itemRangeDescription', [total], this.context.locale)}`}
+        itemRangeText={(min, max, total) => {
+          const itemRange = msgs.get('pagination.itemRange', [min, max], this.context.locale)
+          const itemRangeDescription = msgs.get('pagination.itemRangeDescription', [total], this.context.locale)
+          return `${itemRange} ${itemRangeDescription}`
+        }
+        }
         pageInputDisabled={pageSize >= totalFilteredItems} />) : null
 
     return [
@@ -107,7 +113,13 @@ export class ResourceTable extends React.Component {
           <TableContainer id={`${id}table-container`}>
             {showSearch ?
               (<TableToolbar aria-label={`${id}search`} role='region'>
-                <TableToolbarSearch onChange={handleSearch} value={searchValue} aria-label={`${id}search`} id={`${id}search`} light={!darkSearchBox} placeHolderText={placeHolderText} />
+                <TableToolbarSearch
+                  onChange={handleSearch}
+                  value={searchValue}
+                  aria-label={`${id}search`}
+                  id={`${id}search`}
+                  light={!darkSearchBox}
+                  placeHolderText={placeHolderText} />
                 <TableToolbarContent>
                   {actions}
                 </TableToolbarContent>
@@ -127,7 +139,12 @@ export class ResourceTable extends React.Component {
                         onChange={onSelectAll}
                         data-selected={itemIds && itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length}
                         labelText={''}
-                        aria-label={msgs.get(itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length ? 'unselect' : 'select', this.context.locale)} />
+                        aria-label={msgs.get(itemIds.filter(item =>
+                          items[item] &&
+                          items[item].selected).length === itemIds.length
+                          ? 'unselect'
+                          : 'select', this.context.locale
+                        )} />
                     </th>
                   }
                   {headers.map(header => {
@@ -137,7 +154,11 @@ export class ResourceTable extends React.Component {
                           <button
                             title={msgs.get(`svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`, this.context.locale)}
                             onClick={handleSort}
-                            className={`bx--table-sort-v2${sortDirection === 'asc' ? ' bx--table-sort-v2--ascending' : ''}${sortColumn === header.key ? ' bx--table-sort-v2--active' : ''}`}
+                            className={
+                              `bx--table-sort-v2${sortDirection === 'asc'
+                                ? ' bx--table-sort-v2--ascending'
+                                : ''}${sortColumn === header.key ? ' bx--table-sort-v2--active' : ''}`
+                            }
                             data-key={header.key}
                             data-default-key={staticResourceData.defaultSortField}>
                             <span className='bx--table-header-label'>{header.header}</span>
@@ -168,12 +189,27 @@ export class ResourceTable extends React.Component {
                     if (expandableTable && row && row.id) {//check undefined row.id to avoid whole page crush
                       return (
                         <React.Fragment key={row.id}>
-                          <TableExpandRow {...getRowProps({ row, 'data-row-name': lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')), 'aria-hidden': expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0), className: (lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')) === highLightRowName) ? 'high-light': expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0) ? 'row-not-expanded' : '' })} ariaLabel={tableExpandRowAriaLabel ? tableExpandRowAriaLabel : 'TableExpandRow'}>
+                          <TableExpandRow
+                            {...getRowProps(
+                              { row,
+                                'data-row-name': lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)),
+                                'aria-hidden': expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0),
+                                className:
+                                  (lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)) === highLightRowName)
+                                    ? 'high-light'
+                                    : expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0)
+                                      ? 'row-not-expanded'
+                                      : ''
+                              })} ariaLabel={tableExpandRowAriaLabel ? tableExpandRowAriaLabel : 'TableExpandRow'
+                            }>
                             {selectableTable &&
                               <TableCell key={`select-checkbox-${row.id}`}>
                                 <Checkbox
                                   checked={items[row.id] && !!items[row.id].selected}
-                                  indeterminate={items[row.id] && items[row.id].subItems && items[row.id].subItems.length > 1 && items[row.id].subItems.filter(subItem => subItem.selected).length < items[row.id].subItems.length && items[row.id].subItems.filter(subItem => subItem.selected).length !== 0}
+                                  indeterminate={
+                                    items[row.id] && items[row.id].subItems && items[row.id].subItems.length > 1
+                                    && items[row.id].subItems.filter(subItem => subItem.selected).length < items[row.id].subItems.length
+                                    && items[row.id].subItems.filter(subItem => subItem.selected).length !== 0}
                                   id={row.id}
                                   name={`select-checkbox-row-${row.id}`}
                                   onChange={onSelect}
@@ -226,7 +262,15 @@ export class ResourceTable extends React.Component {
                     } else {
                       if(row && row.id){
                         return (
-                          <TableRow key={row.id} data-row-name={lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey'))} className={lodash.get(items[row.id], lodash.get(staticResourceData, 'tableKeys[0].resourceKey')) === highLightRowName ? 'high-light' : ''}>
+                          <TableRow
+                            key={row.id}
+                            data-row-name={lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr))}
+                            className={
+                              lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)) === highLightRowName
+                                ? 'high-light'
+                                : ''
+                            }
+                          >
                             {row.cells.map(cell => <TableCell key={cell.id}>{cell.value}</TableCell>)}
                           </TableRow>
                         )
@@ -247,7 +291,11 @@ export class ResourceTable extends React.Component {
     const { locale } = this.context
     const { staticResourceData, tableActions, items, itemIds } = this.props
     let headers = staticResourceData.tableKeys.filter(tableKey => {
-      return tableKey.disabled ? typeof tableKey.disabled === 'function' ? tableKey.disabled(itemIds && itemIds.map(id => items[id])) : !tableKey.disabled : tableKey
+      return tableKey.disabled
+        ? typeof tableKey.disabled === 'function'
+          ? tableKey.disabled(itemIds && itemIds.map(id => items[id]))
+          : !tableKey.disabled
+        : tableKey
     })
     headers = headers.map(tableKey => ({
       key: tableKey.resourceKey,
@@ -268,17 +316,24 @@ export class ResourceTable extends React.Component {
   }
 
   getRows() {
-    const { history, items, itemIds, tableActions, resourceType, staticResourceData, match, getResourceAction, userRole, highLightRowName, autoAction, showSidePanel } = this.props
+    const { history, items, itemIds, tableActions, resourceType, staticResourceData, match,
+      getResourceAction, userRole, highLightRowName, autoAction, showSidePanel } = this.props
     const { locale } = this.context
     const { normalizedKey } = staticResourceData
-    const resources = itemIds && itemIds.map(id => items[id] || (Array.isArray(items) && items.find(target =>  (normalizedKey && lodash.get(target, normalizedKey) === id) || (target.name === id))))
-    if (resources && resources.length > 0) {
-      return resources.map((item, index) => {
+    const localResources = itemIds &&
+      itemIds.map(
+        id => items[id] || (Array.isArray(items)
+        && items.find(target =>  (normalizedKey && lodash.get(target, normalizedKey) === id) || (target.name === id)))
+      )
+    if (localResources && localResources.length > 0) {
+      return localResources.map((item, index) => {
         const row = {}
         if (normalizedKey) {
           row.id = `${lodash.get(item, normalizedKey)}${lodash.get(item, 'cluster', '')}`
         } else {
-          row.id = getSecondaryKey(resourceType) ? `${lodash.get(item, getPrimaryKey(resourceType))}-${lodash.get(item, getSecondaryKey(resourceType))}` : lodash.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
+          row.id = getSecondaryKey(resourceType)
+            ? `${lodash.get(item, getPrimaryKey(resourceType))}-${lodash.get(item, getSecondaryKey(resourceType))}`
+            : lodash.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
         }
         const menuActions = item.metadata && tableActions && tableActions[item.metadata.namespace] || tableActions
 
@@ -311,7 +366,13 @@ export class ResourceTable extends React.Component {
               {fliteredActions.map((action) =>
                 <OverflowMenuItem
                   data-table-action={action}
-                  isDelete={action ==='table.actions.remove' || action ==='table.actions.policy.remove' || action ==='table.actions.applications.remove' || action ==='table.actions.compliance.remove' || action ==='table.actions.finding.remove'}
+                  isDelete={
+                    action ==='table.actions.remove' ||
+                    action ==='table.actions.policy.remove' ||
+                    action ==='table.actions.applications.remove' ||
+                    action ==='table.actions.compliance.remove' ||
+                    action ==='table.actions.finding.remove'
+                  }
                   onClick={() => getResourceAction(action, item, null, history, locale)}
                   primaryFocus={true}
                   key={action}

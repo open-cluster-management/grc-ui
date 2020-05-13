@@ -27,6 +27,8 @@ resources(() => {
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis)
 
 const EMPTY_CHOICE = 'EMPTY_CHOICE'
+const overviewTopInfoClustersStr = 'overview.top.informations.clusters'
+const overviewTopInfoAppStr = 'overview.top.informations.applications'
 
 const TopInformationSelections = Object.freeze({
   clusters: 'clusters',
@@ -167,8 +169,8 @@ export default class TopInformationModule extends React.Component {
         <div className={'header-tab'}>
           <Tabs selected={idx} onSelectionChange={this.onChange} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
             <Tab label={msgs.get(`overview.top.informations.${type}`, locale)} />
-            <Tab label={msgs.get('overview.top.informations.clusters', locale)} />
-            {type==='policies' && showApplications && <Tab label={msgs.get('overview.top.informations.applications', locale)} />}
+            <Tab label={msgs.get(overviewTopInfoClustersStr, locale)} />
+            {type==='policies' && showApplications && <Tab label={msgs.get(overviewTopInfoAppStr, locale)} />}
           </Tabs>
         </div>
       </div>
@@ -213,7 +215,7 @@ export default class TopInformationModule extends React.Component {
               // case TopInformationSelections.applications:
               name = key
               description = _.get(item, 'metadata.name', 'unknown')
-              choice = msgs.get('overview.top.informations.clusters').toLowerCase()
+              choice = msgs.get(overviewTopInfoClustersStr).toLowerCase()
               nameSpace = _.get(item, 'metadata.namespace', 'unknown')
               itemName= _.get(item, 'raw.spec.runtime-rules[0].metadata.name', name)
               break
@@ -242,7 +244,7 @@ export default class TopInformationModule extends React.Component {
       applications.forEach((application) =>{
         if (application.policies && application.policies.length > 0) {
           const name = _.get(application, 'name', 'unknown')
-          const choice = msgs.get('overview.top.informations.applications').toLowerCase()
+          const choice = msgs.get(overviewTopInfoAppStr).toLowerCase()
           const nameSpace = _.get(application, 'namespace', 'unknown')
           const itemName = name
 
@@ -350,11 +352,11 @@ export default class TopInformationModule extends React.Component {
         },
         {
           value: TopInformationSelections.clusters,
-          label: msgs.get('overview.top.informations.clusters', locale),
+          label: msgs.get(overviewTopInfoClustersStr, locale),
         },
         {
           value: TopInformationSelections.applications,
-          label: msgs.get('overview.top.informations.applications', locale),
+          label: msgs.get(overviewTopInfoAppStr, locale),
         },
       ]
     }
@@ -370,7 +372,7 @@ export default class TopInformationModule extends React.Component {
         },
         {
           value: TopInformationSelections.clusters,
-          label: msgs.get('overview.top.informations.clusters', locale),
+          label: msgs.get(overviewTopInfoClustersStr, locale),
         }
       ]
     }
@@ -490,7 +492,7 @@ const TopInformations = ({cardData, handleClick}) => {
               }
               const sortedKeys = []
               for(const key in descDict) {
-                if (descDict.hasOwnProperty(key)) {
+                if (Object.prototype.hasOwnProperty.call(descDict, key)) {
                   sortedKeys.push([ key, descDict[key] ])
                 }
               }

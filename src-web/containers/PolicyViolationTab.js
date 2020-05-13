@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 // seems to be an issue with this rule and redux connect method in SecondaryHeader
@@ -59,7 +60,14 @@ class PolicyViolationTab extends React.Component{
           if( data.violations && data.violations.length > 0){
             return (<div className='policy-violation-tab'>
               <h5 className='section-title'>Violations</h5>
-              <ResourceTableModule definitionsKey='policyViolations' staticResourceData={staticResourceData} resourceData={data} showModuleHeader={false} showSearch={false} showPagination={false} />
+              <ResourceTableModule
+                definitionsKey='policyViolations'
+                staticResourceData={staticResourceData}
+                resourceData={data}
+                showModuleHeader={false}
+                showSearch={false}
+                showPagination={false}
+              />
             </div>)
           }
           else {

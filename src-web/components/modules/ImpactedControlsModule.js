@@ -15,7 +15,7 @@ import ReactDOMServer from 'react-dom/server'
 import PropTypes from 'prop-types'
 import { DropdownV2, Slider, TooltipIcon } from 'carbon-components-react'
 import Radar from 'react-d3-radar'
-import * as d3 from 'd3'
+import { select } from 'd3'
 import 'd3-selection-multi'
 import { SECURITY_TYPES } from '../../../lib/shared/constants'
 import resources from '../../../lib/shared/resources'
@@ -30,10 +30,10 @@ resources(() => {
 })
 
 const $grcColorRadarBlue = '#0082C1'
-const $grc_color_radar_green = '#13B9B9'
-const $grc_color_radar_ring = '#979797'
+const $grcColorRadarGreen = '#13B9B9'
+const $grcColorRadarRing = '#979797'
 
-const tooltip = d3.select('body').append('div')
+const tooltip = select('body').append('div')
   .attr('class', 'tooltip')
   .attr('tabindex', '-1') //tooltip only accessible when keyboard focused and press enter key
   .styles(()=>{
@@ -76,13 +76,13 @@ class ImpactedControlsModule extends React.Component {
     this.cardData = this.getCardData()
     const { locale } = this.context
     const title = msgs.get('overview.impacted.controls.title', locale)
-    const tooltip = msgs.get('overview.impacted.controls.tooltip', locale)
+    const localTooltip = msgs.get('overview.impacted.controls.tooltip', locale)
     return (
       <div className='module-impacted-controls'>
         <div className='card-container-container'>
           <div className='card-title-container'>
             <div className='card-title'>{title}</div>
-            <TooltipIcon direction='top' align='end' tooltipText={tooltip}>
+            <TooltipIcon direction='top' align='end' tooltipText={localTooltip}>
               <svg className='info-icon'>
                 <use href={'#diagramIcons_info'} ></use>
               </svg>
@@ -214,10 +214,10 @@ class ImpactedControlsModule extends React.Component {
             domainMax={domainMax}
             highlighted={null}
             style={{
-              ringColor: $grc_color_radar_ring,
+              ringColor: $grcColorRadarRing,
               customColors: [
                 $grcColorRadarBlue,
-                $grc_color_radar_green,
+                $grcColorRadarGreen,
               ]
             }}
             axisLabelTextStyle={{
@@ -418,7 +418,7 @@ class ImpactedControlsModule extends React.Component {
           // save unwrapped text
           const textContent = text.__textContent || text.textContent
           text.__textContent = textContent
-          text = d3.select(text)
+          text = select(text)
           text.text(null)
 
           // wrap text into tspans
@@ -439,7 +439,8 @@ class ImpactedControlsModule extends React.Component {
               line.pop()
               tspan.text(line.join(' '))
               line = [word]
-              tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', ++lineNumber * lineHeight + dy + 'em').text(word)
+              ++lineNumber
+              tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', lineNumber * lineHeight + dy + 'em').text(word)
               isMultiLined = true
             }
           }
@@ -664,7 +665,9 @@ class ImpactedControlsModule extends React.Component {
         const label = _.startCase(control.trim())
         const ctrl = control.toLowerCase().trim()
         controlLabels[ctrl] = label
-        if (ctrl && (standardsChoice === 'ALL' || _.get(finding, 'securityClassification.securityStandards', ['other']).join(',').toLowerCase().includes(standardsChoice.toLowerCase()))) {
+        if (ctrl && (standardsChoice === 'ALL' ||
+            _.get(finding, 'securityClassification.securityStandards', ['other']).join(',').toLowerCase().includes(standardsChoice.toLowerCase()))
+        ) {
           findingsByControls[ctrl] = _.get(findingsByControls, ctrl, 0)+1
           findingsTooltips[ctrl] = _.get(findingsTooltips, ctrl, [
             {count: 0, findingType: SECURITY_TYPES.HIGH},
@@ -717,7 +720,7 @@ class ImpactedControlsModule extends React.Component {
       sets: [
         {
           key: 'policy',
-          color: $grc_color_radar_green,
+          color: $grcColorRadarGreen,
           className: 'policies',
           label: 'Policy violations',
           values: violationsByControls,

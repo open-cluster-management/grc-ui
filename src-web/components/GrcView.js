@@ -21,7 +21,10 @@ import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared
 import GrcCardsModule from './modules/GrcCardsModule'
 // eslint-disable-next-line import/no-named-as-default
 import GrcToggleModule from './modules/GrcToggleModule'
-import { filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState, replaceGrcState, combineResourceFilters, saveGrcStatePair } from '../../lib/client/filter-helper'
+import {
+  filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState,
+  replaceGrcState, combineResourceFilters, saveGrcStatePair
+} from '../../lib/client/filter-helper'
 import { showResourceToolbar, hideResourceToolbar } from '../../lib/client/resource-helper'
 import NoResource from './common/NoResource'
 import createDocLink from './common/CreateDocLink'
@@ -64,7 +67,13 @@ export class GrcView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {refreshControl, grcItems, updateActiveFilters, updateResourceToolbar} = nextProps
+    const {
+      refreshControl,
+      grcItems,
+      updateActiveFilters:localUpdateActiveFilters,
+      updateResourceToolbar:localUpdateResourceToolbar
+    } = nextProps
+
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(grcItems, this.props.grcItems)) {
       const { locale } = this.context
@@ -85,14 +94,14 @@ export class GrcView extends React.Component {
         availableGrcFilters = getAvailableGrcFilters([], grcItems, locale)
         break
       }
-      updateResourceToolbar(refreshControl, availableGrcFilters)
+      localUpdateResourceToolbar(refreshControl, availableGrcFilters)
       const activeFilters = _.cloneDeep(nextProps.activeFilters||{})
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
       //update sessionStorage
       replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
       //update active filters
-      updateActiveFilters(combinedFilters)
+      localUpdateActiveFilters(combinedFilters)
     }
   }
   componentDidMount() {
@@ -234,22 +243,30 @@ export class GrcView extends React.Component {
     //step 1 add activeFilters when click GrcCardsModule
     //here for severity level, will not update filter here but just update url
     //then acutally update it in componentWillReceiveProps()
-    const {updateActiveFilters} = this.props
-    const activeFilters = _.cloneDeep(this.props.activeFilters||{})//loadash recursively deep clone
+    const {updateActiveFilters:localUpdateActiveFilters} = this.props
+    //lodash recursively deep clone
+    const activeFilters = _.cloneDeep(this.props.activeFilters||{})
     let activeSet
     if (value) { //add non-null grc-card filter
-      value = _.startCase(value.replace(' ', '-'))//covert filter name on policy card to start case to match
-      activeFilters[key] ? activeSet = activeFilters[key] : activeSet = activeFilters[key] = new Set()
+      //covert filter name on policy card to start case to match
+      value = _.startCase(value.replace(' ', '-'))
+      if (!activeFilters[key]) {
+        activeFilters[key] = new Set()
+      }
+      activeSet = activeFilters[key]
       activeSet.add(value)
     }
     if (level) { //add non-null severity level filter
-      activeFilters[type] ? activeSet = activeFilters[type] : activeSet = activeFilters[type] = new Set()
+      if (!activeFilters[type]) {
+        activeFilters[type] = new Set()
+      }
+      activeSet = activeFilters[type]
       activeSet.add(level)
     }
     if (activeSet && activeSet.size > 0) {
-      if(replaceGrcState && updateActiveFilters) {
+      if(replaceGrcState && localUpdateActiveFilters) {
         replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
-        updateActiveFilters(activeFilters)}
+        localUpdateActiveFilters(activeFilters)}
     }
 
     //step 2 update url when click GrcCardsModule

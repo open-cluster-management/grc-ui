@@ -23,11 +23,19 @@ const createDocLink = (locale, handleCreateResource, submitBtnTextKey, createFla
         { submitBtnTextKey }
       </Button>}
       { //Remove doc link temporarily, to be reverted.
-      /* <div className={'buttons'}>
-        <button className={'bx--btn bx--btn--sm bx--btn--secondary'}>
-          <a href={`https://www${config['env']==='development' ? '-03preprod': ''}.ibm.com/support/knowledgecenter/SSBS6K_${vNumber}/mcm/compliance/compliance_intro.html`} className={'doc-link'} target='doc' aria-describedby='launchWindow'>{msgs.get('button.view.doc', locale)}</a>
-        </button>
-      </div> */}
+        /*<div className={'buttons'}>
+          <button className={'bx--btn bx--btn--sm bx--btn--secondary'}>
+            <a href={
+              `https://www${config['env']==='development' ? '-03preprod': ''}.ibm.com
+              /support/knowledgecenter/SSBS6K_${vNumber}/mcm/compliance/compliance_intro.html`}
+              className={'doc-link'}
+              target='doc'
+              aria-describedby='launchWindow'>
+              {msgs.get('button.view.doc', locale)
+              }
+            </a>
+          </button>
+            </div>*/}
     </div>
   )
 }

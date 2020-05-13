@@ -23,7 +23,13 @@ class TableHelper {
     if (target) {
       const newSortColumn = target && target.getAttribute('data-key')
       const defaultSortColumn = target && target.getAttribute('data-default-key')
-      const newSortDirection = !prevSortColumn ? defaultSortColumn === newSortColumn ? SORT_DIRECTION_DESCENDING : SORT_DIRECTION_ASCENDING : prevSortColumn !== newSortColumn ? SORT_DIRECTION_ASCENDING: prevSortDirection === SORT_DIRECTION_ASCENDING ? SORT_DIRECTION_DESCENDING : SORT_DIRECTION_ASCENDING
+      const newSortDirection = !prevSortColumn
+        ? defaultSortColumn === newSortColumn
+          ? SORT_DIRECTION_DESCENDING
+          : SORT_DIRECTION_ASCENDING
+        : prevSortColumn !== newSortColumn
+          ? SORT_DIRECTION_ASCENDING: prevSortDirection === SORT_DIRECTION_ASCENDING ? SORT_DIRECTION_DESCENDING
+            : SORT_DIRECTION_ASCENDING
       cb(newSortDirection, newSortColumn)
     }
   }

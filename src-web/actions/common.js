@@ -9,84 +9,93 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 import lodash from 'lodash'
 
-import * as Actions from './index'
 import GrcApolloClient from '../../lib/client/apollo-client'
 import { formatExpandablePolicies } from '../components/common/FormatTableData'
+import {
+  TABLE_PAGE_CHANGE, TABLE_SEARCH, TABLE_SORT, RESOURCE_RECEIVE_SUCCESS,
+  REQUEST_STATUS, RESOURCE_RECEIVE_FAILURE, RESOURCE_REQUEST, RESOURCE_ADD,
+  RESOURCE_MODIFY, RESOURCE_DELETE, RESOURCE_MUTATE, RESOURCE_MUTATE_SUCCESS,
+  RESOURCE_MUTATE_FAILURE, ACTIVE_FILTER_UPDATE, RESOURCE_TOOLBAR_UPDATE,
+  SECONDARY_HEADER_UPDATE, MODAL_UPDATE, POST_REQUEST, POST_RECEIVE_SUCCESS,
+  POST_RECEIVE_FAILURE, PUT_REQUEST, PUT_RECEIVE_SUCCESS, PUT_RECEIVE_FAILURE,
+  PATCH_REQUEST, PATCH_RECEIVE_SUCCESS, PATCH_RECEIVE_FAILURE, DEL_REQUEST,
+  DEL_RECEIVE_SUCCESS, DEL_RECEIVE_FAILURE, CLEAR_REQUEST_STATUS, RESOURCE_RESET,
+} from './index'
 
 export const changeTablePage = ({page, pageSize}, resourceType) => ({
-  type: Actions.TABLE_PAGE_CHANGE,
+  type: TABLE_PAGE_CHANGE,
   page,
   pageSize,
   resourceType
 })
 
 export const searchTable = (search, resourceType) => ({
-  type: Actions.TABLE_SEARCH,
+  type: TABLE_SEARCH,
   search,
   resourceType
 })
 
 export const sortTable = (sortDirection, sortColumn, resourceType) => ({
-  type: Actions.TABLE_SORT,
+  type: TABLE_SORT,
   sortDirection,
   sortColumn,
   resourceType
 })
 
 export const receiveResourceSuccess = (response, resourceType) => ({
-  type: Actions.RESOURCE_RECEIVE_SUCCESS,
-  status: Actions.REQUEST_STATUS.DONE,
+  type: RESOURCE_RECEIVE_SUCCESS,
+  status: REQUEST_STATUS.DONE,
   items: response.items,
   resourceVersion: lodash.get(response, 'metadata.resourceVersion'), //only supported on k8s resoruces
   resourceType
 })
 
 export const receiveResourceError = (err, resourceType) => ({
-  type: Actions.RESOURCE_RECEIVE_FAILURE,
-  status: Actions.REQUEST_STATUS.ERROR,
+  type: RESOURCE_RECEIVE_FAILURE,
+  status: REQUEST_STATUS.ERROR,
   err,
   resourceType
 })
 
 export const requestResource = (resourceType) => ({
-  type: Actions.RESOURCE_REQUEST,
-  status: Actions.REQUEST_STATUS.IN_PROGRESS,
+  type: RESOURCE_REQUEST,
+  status: REQUEST_STATUS.IN_PROGRESS,
   resourceType
 })
 
 export const addResource = (item, resourceType) => ({
-  type: Actions.RESOURCE_ADD,
+  type: RESOURCE_ADD,
   resourceType: item.kind || resourceType,
   item
 })
 
 export const modifyResource = (item, resourceType) => ({
-  type: Actions.RESOURCE_MODIFY,
+  type: RESOURCE_MODIFY,
   resourceType: item.kind || resourceType,
   item
 })
 
 export const deleteResource = (item, resourceType) => ({
-  type: Actions.RESOURCE_DELETE,
+  type: RESOURCE_DELETE,
   resourceType: item.kind || resourceType,
   item
 })
 
 export const mutateResource = (resourceType, resourceName) => ({
-  type: Actions.RESOURCE_MUTATE,
+  type: RESOURCE_MUTATE,
   resourceName,
   resourceType,
 })
 
 export const mutateResourceSuccess = (resourceType, resourceName) => ({
-  type: Actions.RESOURCE_MUTATE_SUCCESS,
+  type: RESOURCE_MUTATE_SUCCESS,
   resourceName,
   resourceType,
 })
 
 export const mutateResourceFailure = (resourceType, error) => ({
-  type: Actions.RESOURCE_MUTATE_FAILURE,
-  postStatus: Actions.REQUEST_STATUS.ERROR,
+  type: RESOURCE_MUTATE_FAILURE,
+  postStatus: REQUEST_STATUS.ERROR,
   err: { error },
   resourceType,
 })
@@ -178,18 +187,18 @@ export const removeResource = (resourceType, vars) => async dispatch => {
 }
 
 export const updateActiveFilters = (activeFilters) => ({
-  type: Actions.ACTIVE_FILTER_UPDATE,
+  type: ACTIVE_FILTER_UPDATE,
   activeFilters,
 })
 
 export const updateResourceToolbar = (refreshControl, availableFilters) => ({
-  type: Actions.RESOURCE_TOOLBAR_UPDATE,
+  type: RESOURCE_TOOLBAR_UPDATE,
   refreshControl,
   availableFilters
 })
 
 export const updateSecondaryHeader = (title, tabs, breadcrumbItems, links, description, information) => ({
-  type: Actions.SECONDARY_HEADER_UPDATE,
+  type: SECONDARY_HEADER_UPDATE,
   title,
   tabs,
   breadcrumbItems,
@@ -199,102 +208,102 @@ export const updateSecondaryHeader = (title, tabs, breadcrumbItems, links, descr
 })
 
 export const updateModal = (data) => ({
-  type: Actions.MODAL_UPDATE,
+  type: MODAL_UPDATE,
   data
 })
 
 export const postResource = (resourceType) => ({ // TODO: Consider renaming
-  type: Actions.POST_REQUEST,
-  postStatus: Actions.REQUEST_STATUS.IN_PROGRESS,
+  type: POST_REQUEST,
+  postStatus: REQUEST_STATUS.IN_PROGRESS,
   resourceType
 })
 
 export const receivePostResource = (item, resourceType) => ({
-  type: Actions.POST_RECEIVE_SUCCESS,
-  postStatus: Actions.REQUEST_STATUS.DONE,
+  type: POST_RECEIVE_SUCCESS,
+  postStatus: REQUEST_STATUS.DONE,
   resourceType: item.kind || resourceType,
   item
 })
 
 export const receivePostError = (err, resourceType) => ({
-  type: Actions.POST_RECEIVE_FAILURE,
-  postStatus: Actions.REQUEST_STATUS.ERROR,
+  type: POST_RECEIVE_FAILURE,
+  postStatus: REQUEST_STATUS.ERROR,
   err,
   resourceType
 })
 
 export const putResource = (resourceType) => ({ // TODO: Consider renaming
-  type: Actions.PUT_REQUEST,
-  putStatus: Actions.REQUEST_STATUS.IN_PROGRESS,
+  type: PUT_REQUEST,
+  putStatus: REQUEST_STATUS.IN_PROGRESS,
   resourceType
 })
 
 export const receivePutResource = (item, resourceType) => {
   return ({
-    type: Actions.PUT_RECEIVE_SUCCESS,
-    putStatus: Actions.REQUEST_STATUS.DONE,
+    type: PUT_RECEIVE_SUCCESS,
+    putStatus: REQUEST_STATUS.DONE,
     resourceType: item.kind || resourceType,
     item
   })
 }
 
 export const receivePutError = (err, resourceType) => ({
-  type: Actions.PUT_RECEIVE_FAILURE,
-  putStatus: Actions.REQUEST_STATUS.ERROR,
+  type: PUT_RECEIVE_FAILURE,
+  putStatus: REQUEST_STATUS.ERROR,
   err,
   resourceType
 })
 
 export const patchResource = (resourceType) => ({ // TODO: Consider renaming
-  type: Actions.PATCH_REQUEST,
-  patchStatus: Actions.REQUEST_STATUS.IN_PROGRESS,
+  type: PATCH_REQUEST,
+  patchStatus: REQUEST_STATUS.IN_PROGRESS,
   resourceType
 })
 
 export const receivePatchResource = (item, resourceType) => {
   return ({
-    type: Actions.PATCH_RECEIVE_SUCCESS,
-    patchStatus: Actions.REQUEST_STATUS.DONE,
+    type: PATCH_RECEIVE_SUCCESS,
+    patchStatus: REQUEST_STATUS.DONE,
     resourceType: item.kind || resourceType,
     item
   })
 }
 
 export const receivePatchError = (err, resourceType) => ({
-  type: Actions.PATCH_RECEIVE_FAILURE,
-  patchStatus: Actions.REQUEST_STATUS.ERROR,
+  type: PATCH_RECEIVE_FAILURE,
+  patchStatus: REQUEST_STATUS.ERROR,
   err,
   resourceType
 })
 
 export const delResource = (resourceType) => ({ // TODO: Consider renaming
-  type: Actions.DEL_REQUEST,
-  delStatus: Actions.REQUEST_STATUS.IN_PROGRESS,
+  type: DEL_REQUEST,
+  delStatus: REQUEST_STATUS.IN_PROGRESS,
   resourceType
 })
 
 export const receiveDelResource = (item, resourceType, resource) => ({
-  type: Actions.DEL_RECEIVE_SUCCESS,
-  delStatus: Actions.REQUEST_STATUS.DONE,
+  type: DEL_RECEIVE_SUCCESS,
+  delStatus: REQUEST_STATUS.DONE,
   resourceType: item.kind || resourceType,
   item,
   resource
 })
 
 export const receiveDelError = (err, resourceType) => ({
-  type: Actions.DEL_RECEIVE_FAILURE,
-  delStatus: Actions.REQUEST_STATUS.ERROR,
+  type: DEL_RECEIVE_FAILURE,
+  delStatus: REQUEST_STATUS.ERROR,
   err,
   resourceType
 })
 
 export const clearRequestStatus = (resourceType) => ({
-  type: Actions.CLEAR_REQUEST_STATUS,
+  type: CLEAR_REQUEST_STATUS,
   resourceType: resourceType
 })
 
 export const resetResource = (resourceType) => ({
-  type: Actions.RESOURCE_RESET,
+  type: RESOURCE_RESET,
   resourceType: resourceType
 })
 

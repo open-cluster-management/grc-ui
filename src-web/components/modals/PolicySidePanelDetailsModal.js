@@ -95,8 +95,8 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
   }
 
   handleModalClose = () => {
-    const { updateModal, location, history } = this.props
-    updateModal()
+    const { updateModal:localUpdateModal, location, history } = this.props
+    localUpdateModal()
 
     //update url and refresh policy page after closing sidepanel
     //text search input filter will not be removed, which is controled by itself
@@ -143,7 +143,7 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
             {showFilterInfo && this.renderFilterWarning(kind, locale)}
             <div className={'bx--modal-content-body'}>
               <Query query={query} variables={queryPara} pollInterval={pollInterval}>
-                {( {data, loading, error} ) => {
+                {( {data:PolicySidePanelData, loading, error} ) => {
                   if (loading) {
                     // spinner if loading
                     return <Loading withOverlay={false} />
@@ -157,7 +157,7 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
                         iconDescription={'inline-error'} />
                     )
                   }
-                  const { items } = data
+                  const { items } = PolicySidePanelData
                   let filterSidePanelItems = []
                   const staticResourceData = getResourceDefinitions(resourceType)
                   switch (kind) {
@@ -215,7 +215,7 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
 
 const getFirstMatch = (item, targetList) => {
   //find first not null item in target list and return
-  const target = targetList.find(target => _.get(item, target))
+  const target = targetList.find(eachTarget => _.get(item, eachTarget))
   return target ? _.get(item, target) : '-'
 }
 

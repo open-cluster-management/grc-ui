@@ -17,6 +17,50 @@ import '../scss/editor-bar.scss'
 import '../../../../graphics/diagramIcons.svg'
 import msgs from '../../../../nls/platform.properties'
 
+class EditorButton extends React.Component {
+  static propTypes = {
+    button: PropTypes.object,
+    command: PropTypes.string,
+    handleClick: PropTypes.func,
+  }
+
+  handleClick = () => {
+    const {command, button: {disabled}} = this.props
+    if (!disabled) {
+      document.activeElement.blur()
+      this.props.handleClick(command)
+    }
+  }
+
+  handleKeyPress = (e) => {
+    if ( e.key === 'Enter') {
+      this.props.handleClick(this.props.command)
+    }
+  }
+
+  render() {
+    const {button: {disabled, tooltip, icon, className='', spacer}} = this.props
+    if (spacer) {
+      return (
+        <div className='editor-bar-spacer'></div>
+      )
+    } else {
+      const classes = classNames({
+        'editor-bar-button': true,
+        [`${className}`]: true,
+        disabled
+      })
+      return (
+        <div className={classes} tabIndex={0} role={'button'} aria-label={tooltip} title={tooltip}
+          onClick={this.handleClick} onKeyPress={this.handleKeyPress} >
+          <svg>
+            <use href={`#diagramIcons_${icon}`} ></use>
+          </svg>
+        </div>
+      )
+    }
+  }
+}
 class EditorBar extends React.Component {
 
   static propTypes = {
@@ -138,54 +182,6 @@ class EditorBar extends React.Component {
         </div>
       </div>
     )
-  }
-}
-
-class EditorButton extends React.Component {
-  static propTypes = {
-    button: PropTypes.object,
-    command: PropTypes.string,
-    handleClick: PropTypes.func,
-  }
-
-  handleClick = () => {
-    const {command, button: {disabled}} = this.props
-    if (!disabled) {
-      document.activeElement.blur()
-      this.props.handleClick(command)
-    }
-  }
-
-  handleKeyPress = (e) => {
-    if ( e.key === 'Enter') {
-      this.props.handleClick(this.props.command)
-    }
-  }
-
-  render() {
-    const {button: {disabled, tooltip, icon, className='', spacer}} = this.props
-    if (spacer) {
-      return (
-        <div className='editor-bar-spacer'></div>
-      )
-    } else {
-      const classes = classNames({
-        'editor-bar-button': true,
-        [`${className}`]: true,
-        disabled
-      })
-      return (
-        <div className={classes} tabIndex={0} role={'button'} aria-label={tooltip} title={tooltip}
-          onClick={this.handleClick} onKeyPress={this.handleKeyPress} >
-          {icon?
-            <svg>
-              <use href={`#diagramIcons_${icon}`} ></use>
-            </svg> :
-            <div>{tooltip}</div>
-          }
-        </div>
-      )
-    }
   }
 }
 

@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -101,7 +102,7 @@ class ResourceFilterBar extends React.Component {
   }
 
   removeActiveFilter = (key, value) => {
-    const {updateActiveFilters} = this.props
+    const {updateActiveFilters:localUpdateActiveFilters} = this.props
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})
     let activeSet = activeFilters[key]
     if (!activeSet) {
@@ -109,7 +110,7 @@ class ResourceFilterBar extends React.Component {
     }
     activeSet.delete(value)
     replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
-    updateActiveFilters(activeFilters)
+    localUpdateActiveFilters(activeFilters)
   }
 
   handleClearClick = (clearFilters) => {
@@ -123,7 +124,7 @@ class ResourceFilterBar extends React.Component {
   removeAllActiveFilter = (clearFilters) => {
     //step 1 clear up stored active filters in sessionStorage
     //step 2 clear up active filters in resource filter
-    const {updateActiveFilters, location, history } = this.props
+    const {updateActiveFilters:localUpdateActiveFilters, location, history } = this.props
     if (clearFilters) {
       const activeFilters = _.cloneDeep(this.props.activeFilters||{})
       clearFilters.forEach(key=> {
@@ -134,7 +135,7 @@ class ResourceFilterBar extends React.Component {
         activeSet.clear()
       })
       replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
-      updateActiveFilters(activeFilters)
+      localUpdateActiveFilters(activeFilters)
     }
     //step 3 update current url after removing all active filters
     //text search input filter will not be removed, which is controled by itself

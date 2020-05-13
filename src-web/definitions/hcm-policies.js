@@ -380,7 +380,12 @@ export function createPolicyLink(item = {}, ...param){
   if (param[2]) {
     return item.metadata.name
   }
-  return (item && item.metadata) ? <Link to={`${config.contextPath}/local/${encodeURIComponent(item.metadata.namespace)}/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link> : <Link to={`${config.contextPath}/local/`}>{JSON.stringify(item)}</Link>
+  return (item && item.metadata)
+    ? <Link
+      to={`${config.contextPath}/local/${encodeURIComponent(item.metadata.namespace)}/${encodeURIComponent(item.metadata.name)}`}>
+      {item.metadata.name}
+    </Link>
+    : <Link to={`${config.contextPath}/local/`}>{JSON.stringify(item)}</Link>
 }
 
 export function getStatus(item= {}, locale) {

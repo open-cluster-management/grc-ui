@@ -76,16 +76,16 @@ export class PolicyDetailsOverview extends React.PureComponent{
   }
 
   componentWillReceiveProps(nextProps) {
-    const {refreshControl, item, updateResourceToolbar} = nextProps
+    const {refreshControl, item, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(item, this.props.item)) {
-      updateResourceToolbar(refreshControl, {})
+      localUpdateResourceToolbar(refreshControl, {})
     }
   }
 
   render() {
     const {staticResourceData, resourceType, error, loading, location} = this.props
-    let { item } = this.props
+    let { item:localItem } = this.props
     const { locale } = this.context
 
     if(error) {
@@ -94,13 +94,13 @@ export class PolicyDetailsOverview extends React.PureComponent{
         className='persistent'
         subtitle={msgs.get(error, locale)}
         kind='error' />
-    } else if (loading || !item || !Array.isArray(item)) {
+    } else if (loading || !localItem || !Array.isArray(localItem)) {
       return <Loading withOverlay={false} className='content-spinner' />
     } else {
-      item = item[0]
+      localItem = localItem[0]
     }
 
-    const clusterStatus = this.getClusterStatus(item)
+    const clusterStatus = this.getClusterStatus(localItem)
 
     const modulesSecond = [
       <StructuredListModule
@@ -125,7 +125,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
       />,
     ]
     const modulesBottom = []
-    const templates = (item.raw && item.raw.spec) ? this.getTemplates(item.raw.spec) : []
+    const templates = (localItem.raw && localItem.raw.spec) ? this.getTemplates(localItem.raw.spec) : []
     let templateType
 
     if (templates){
@@ -230,11 +230,11 @@ export class PolicyDetailsOverview extends React.PureComponent{
     }
 
     let itemPP = '-', itemPB = '-'
-    if (item.placementPolicies && Array.isArray(item.placementPolicies)) {
-      itemPP = item.placementPolicies[0]
+    if (localItem.placementPolicies && Array.isArray(localItem.placementPolicies)) {
+      itemPP = localItem.placementPolicies[0]
     }
-    if (item.placementBindings && Array.isArray(item.placementBindings)) {
-      itemPB = item.placementBindings[0]
+    if (localItem.placementBindings && Array.isArray(localItem.placementBindings)) {
+      itemPB = localItem.placementBindings[0]
     }
     return (
       <div className='overview-content'>
@@ -243,7 +243,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
           <DetailsModule
             numRows = {3}
             numColumns = {3}
-            listData = {item}
+            listData = {localItem}
             listItem = {staticResourceData.detailKeys.rows}
             title = {staticResourceData.detailKeys.title}
             showHeader={false}

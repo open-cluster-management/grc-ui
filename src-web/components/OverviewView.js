@@ -30,6 +30,8 @@ import ResourceFilterBar from '../components/common/ResourceFilterBar'
 import createDocLink from '../components/common/CreateDocLink'
 import queryString from 'query-string'
 
+const toggleTabStr = 'module-toggle-tab'
+
 export class OverviewView extends React.Component {
 
   constructor (props) {
@@ -70,19 +72,26 @@ export class OverviewView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {refreshControl, policies, findings, updateActiveFilters, updateResourceToolbar} = nextProps
+    const {
+      refreshControl,
+      policies,
+      findings,
+      updateActiveFilters:localUpdateActiveFilters,
+      updateResourceToolbar:localUpdateResourceToolbar
+    } = nextProps
+
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(policies, this.props.policies)) {
       const { locale } = this.context
       const availableGrcFilters = getAvailableGrcFilters(policies, findings, locale)
-      updateResourceToolbar(refreshControl, availableGrcFilters)
+      localUpdateResourceToolbar(refreshControl, availableGrcFilters)
       const activeFilters = _.cloneDeep(nextProps.activeFilters||{})
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
       //update sessionStorage
       replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
       //update active filters
-      updateActiveFilters(combinedFilters)
+      localUpdateActiveFilters(combinedFilters)
     }
   }
 
@@ -209,23 +218,23 @@ export class OverviewView extends React.Component {
       switch(parentType.toLowerCase()){
       case 'policy violations'://RecentActivityModule to policies page, all policy violations
         paraURL.index = 0
-        paraURL.autoFocus = 'module-toggle-tab'
+        paraURL.autoFocus = toggleTabStr
         break
       case 'cluster violations'://RecentActivityModule to policies page, all cluster violations
         paraURL.index = 1
-        paraURL.autoFocus = 'module-toggle-tab'
+        paraURL.autoFocus = toggleTabStr
         break
       case 'high'://RecentActivityModule to security findings page, all high severity findings
       case 'medium'://all medium severity findings
       case 'low'://all low severity findings
         page = 'findings'
         paraURL.index = 0
-        paraURL.autoFocus = 'module-toggle-tab'
+        paraURL.autoFocus = toggleTabStr
         paraURL.severity = _.startCase(parentType.toLowerCase())
         break
       case 'policies'://TopInformationModule to policies page with specific policy violation name
         paraURL.index = 0
-        paraURL.autoFocus = 'module-toggle-tab'
+        paraURL.autoFocus = toggleTabStr
         if(parentName){
           // paraURL.name = parentName //highlight this policy violation name
           // paraURL.side = true //auto open side panel under this highlight name
@@ -234,7 +243,7 @@ export class OverviewView extends React.Component {
         break
       case 'clusters'://TopInformationModule to policies page with specific cluster violation name
         paraURL.index = 1
-        paraURL.autoFocus = 'module-toggle-tab'
+        paraURL.autoFocus = toggleTabStr
         if(parentName){
           // paraURL.name = parentName //highlight this cluster violation name
           // paraURL.side = true //auto open side panel under this highlight name
@@ -243,7 +252,7 @@ export class OverviewView extends React.Component {
         break
       case 'applications':
         paraURL.index = 2
-        paraURL.autoFocus = 'module-toggle-tab'
+        paraURL.autoFocus = toggleTabStr
         if(parentName){
           paraURL.filters = `{"textsearch":["${parentName}"]}`
         }
@@ -251,7 +260,7 @@ export class OverviewView extends React.Component {
       case 'security findings'://TopInformationModule to security findings page with specific security finding name
         page = 'findings'
         paraURL.index = 0
-        paraURL.autoFocus = 'module-toggle-tab'
+        paraURL.autoFocus = toggleTabStr
         if(parentName){
           paraURL.filters = `{"textsearch":["${parentName}"]}` //current no highlight and side panel for security findings page, just filter name
         }
@@ -259,7 +268,7 @@ export class OverviewView extends React.Component {
       case 'finding clusters'://TopInformationModule to security findings page with specific finding cluster name
         page = 'findings'
         paraURL.index = 1
-        paraURL.autoFocus = 'module-toggle-tab'
+        paraURL.autoFocus = toggleTabStr
         if(parentName){
           paraURL.filters = `{"textsearch":["${parentName}"]}` //current no highlight and side panel for finding clusters page, just filter name
         }

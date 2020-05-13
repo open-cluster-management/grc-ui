@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -49,14 +50,29 @@ class PolicyDetail extends React.Component {
   }
 
   componentWillMount() {
-    const { updateSecondaryHeader, tabs, launch_links, match, location } = this.props
-    updateSecondaryHeader(this.getPolicyName(location), getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(), launch_links)
+    const {
+      updateSecondaryHeader:localUpdateSecondaryHeader,
+      tabs,
+      launch_links,
+      match,
+      location
+    } = this.props
+    localUpdateSecondaryHeader(this.getPolicyName(location), getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(), launch_links)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location !== this.props.location) {
-      const { updateSecondaryHeader, tabs, launch_links, match } = this.props
-      updateSecondaryHeader(this.getPolicyName(nextProps.location), getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(nextProps.location), launch_links)
+      const {
+        updateSecondaryHeader:localUpdateSecondaryHeader,
+        tabs,
+        launch_links,
+        match
+      } = this.props
+      localUpdateSecondaryHeader(
+        this.getPolicyName(nextProps.location),
+        getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`),
+        this.getBreadcrumb(nextProps.location), launch_links
+      )
     }
   }
 

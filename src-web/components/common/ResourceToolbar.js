@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -77,15 +78,19 @@ export class ResourceToolbar extends React.Component {
               refreshControl = {refreshControl}
             />
             {/* filter results button, not dispalyed in details page */}
-            { (location.pathname.startsWith('/multicloud/policies/all/') || location.pathname.startsWith('/multicloud/policies/policy/') ) ? null : <div className='resource-filter-button' tabIndex={0} role={'button'}
-              onClick={this.toggleFilterModel} onKeyPress={this.toggleFilterModelPress}>
-              <svg className='button-icon'>
-                <use href={'#diagramIcons_filter'} ></use>
-              </svg>
-              <div className='button-label'>
-                {msgs.get('overview.menu.filter', locale)}
-              </div>
-            </div>}
+            {
+              (location.pathname.startsWith('/multicloud/policies/all/') || location.pathname.startsWith('/multicloud/policies/policy/'))
+                ? null
+                : <div className='resource-filter-button' tabIndex={0} role={'button'}
+                  onClick={this.toggleFilterModel} onKeyPress={this.toggleFilterModelPress}>
+                  <svg className='button-icon'>
+                    <use href={'#diagramIcons_filter'} ></use>
+                  </svg>
+                  <div className='button-label'>
+                    {msgs.get('overview.menu.filter', locale)}
+                  </div>
+                </div>
+            }
           </div>
           {timestamp&&<RefreshTime timestamp={timestamp} reloading={reloading} />}
         </div>
@@ -127,7 +132,7 @@ export class ResourceToolbar extends React.Component {
   }
 
   updateActiveFilter = (key, value, checked) => {
-    const {updateActiveFilters} = this.props
+    const {updateActiveFilters:localUpdateActiveFilters} = this.props
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})
     let activeSet = activeFilters[key]
     if (!activeSet) {
@@ -143,7 +148,7 @@ export class ResourceToolbar extends React.Component {
       }
     }
     replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
-    updateActiveFilters(activeFilters)
+    localUpdateActiveFilters(activeFilters)
   }
 }
 

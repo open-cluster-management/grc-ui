@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -87,7 +88,7 @@ class PolicyTemplates extends React.Component {
   }
 
   handleSubmitClick() {
-    const { editResource, resourceType, resourceData, resourcePath } = this.props
+    const { editResource:localEditResource, resourceType, resourceData, resourcePath } = this.props
     const { yaml }  = this.state
     let resource
     try {
@@ -100,12 +101,12 @@ class PolicyTemplates extends React.Component {
       const namespace = lodash.get(resourceData, 'metadata.namespace')
       const name = lodash.get(resourceData, 'metadata.name')
       const selfLink = lodash.get(resourceData, 'metadata.selfLink')
-      editResource(resourceType, namespace, name, resource, selfLink)
+      localEditResource(resourceType, namespace, name, resource, selfLink)
     } else if (resourceData.__typename === 'PolicyClusterDetail') {
       const namespace = lodash.get(resourceData, 'complianceNamespace')
       const name = lodash.get(resourceData, 'complianceName')
       const selfLink = lodash.get(resourceData, 'complianceSelfLink')
-      editResource(resourceType, namespace, name, resource, selfLink, resourcePath)
+      localEditResource(resourceType, namespace, name, resource, selfLink, resourcePath)
     }
   }
 
@@ -121,13 +122,24 @@ class PolicyTemplates extends React.Component {
       // <Module className='structured-list-module' id={`yaml-template-${headerKey}`}>
       <Module className={className ? className :'structured-list-module'} id='yaml-template'>
         <div>
-          <ModuleHeader>{`${msgs.get(headerKey, this.context.locale)}${this.state.updated? ' -  updated' : ''}`}</ModuleHeader>
+          <ModuleHeader>
+            {`${msgs.get(headerKey, this.context.locale)}${this.state.updated? ' -  updated' : ''}`}
+          </ModuleHeader>
           {editable &&
           <div className='yaml-editor-button'>
-            <Button icon="add--glyph" className={this.state.readOnly ? 'read-only-button' : 'editing-button'} small id={'edit-button'} key='edit-resource' onClick={this.handleEditBtnClick}>
+            <Button
+              icon="add--glyph"
+              className={this.state.readOnly ? 'read-only-button' : 'editing-button'}
+              small id={'edit-button'}
+              key='edit-resource'
+              onClick={this.handleEditBtnClick}>
               {msgs.get('table.actions.edit', this.context.locale)}
             </Button>
-            <Button icon="add--glyph" small id={'edit-button'} key='submit-resource-change' onClick={this.handleSubmitClick}>
+            <Button
+              icon="add--glyph" small
+              id={'edit-button'}
+              key='submit-resource-change'
+              onClick={this.handleSubmitClick}>
               {msgs.get('modal.button.submit', this.context.locale)}
             </Button>
           </div>

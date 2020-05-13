@@ -96,7 +96,9 @@ class TagInput extends React.Component {
           tempArray.push({name: value, id:value})
         }
       })
-      if (tempArray.length > 0) this.updateSelectedTags([...tags, ...tempArray])
+      if (tempArray.length > 0) {
+        this.updateSelectedTags([...tags, ...tempArray])
+      }
     } else {
       if (!input.type) {
         // user can only add a tag which exists in suggestions

@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -37,9 +38,9 @@ export class FindingsTab extends React.Component {
   }
 
   componentWillMount() {
-    const { updateSecondaryHeader, secondaryHeaderProps } = this.props
+    const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, links, information } = secondaryHeaderProps
-    updateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
+    localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
   }
 
   render () {
@@ -88,11 +89,12 @@ export class FindingsTab extends React.Component {
     if(findings){
       findings.forEach((finding) => {
         if(!_.get(finding, 'securityClassification', null)) {
-          return finding['securityClassification'] = {
+          finding['securityClassification'] = {
             'securityStandards': [''],
             'securityCategories': [''],
             'securityControl': ''
           }
+          return finding['securityClassification']
         }
       })
     }

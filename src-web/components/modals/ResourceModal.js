@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -44,10 +45,10 @@ export class ResourceModal extends React.PureComponent {
       let namespace = this.props.namespace
       let name = this.props.name
       let selfLink = this.props.data.metadata.selfLink
-      let resources
+      let localResources
       try {
-        resources = lodash.compact(saveLoad(this.state.data))
-        resources.forEach(resource => {
+        localResources = lodash.compact(saveLoad(this.state.data))
+        localResources.forEach(resource => {
           if (resource.metadata && resource.metadata.namespace) {
             namespace = resource.metadata.namespace
           }
@@ -125,7 +126,15 @@ export class ResourceModal extends React.PureComponent {
   render() {
     const { reqCount, open, label, locale, resourceType } = this.props
     return (
-      <div id='resource-modal-container' ref={div => this.resourceModal = div} tabIndex={-1} role='region' onKeyDown={this.escapeEditor} aria-label={msgs.get('a11y.editor.escape', locale)}> {/* eslint-disable-line jsx-a11y/no-noninteractive-element-interactions */}
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+      <div
+        id='resource-modal-container'
+        ref={div => this.resourceModal = div}
+        tabIndex={-1}
+        role='region'
+        onKeyDown={this.escapeEditor}
+        aria-label={msgs.get('a11y.editor.escape', locale)}
+      >
         {reqCount && reqCount > 0 && <Loading />}
         <Modal
           id={`resource-modal-${resourceType.name}`}
@@ -141,9 +150,21 @@ export class ResourceModal extends React.PureComponent {
           aria-label={msgs.get(label.heading, locale)}>
           <div>
             {this.state.reqErrorMsg && this.state.reqErrorMsg.length > 0 &&
-              this.state.reqErrorMsg.map((err) => <InlineNotification key={`inline-notification-${err}`} kind='error' title='' subtitle={err} iconDescription={msgs.get('svg.description.error', locale)} />)
+              this.state.reqErrorMsg.map((err) =>
+                <InlineNotification
+                  key={`inline-notification-${err}`}
+                  kind='error'
+                  title=''
+                  subtitle={err}
+                  iconDescription={msgs.get('svg.description.error', locale)}
+                />)
             }
-            {/*{reqErrorMsg && reqErrorMsg.length > 0 && <InlineNotification key={`inline-notification-${reqErrorMsg}`} kind='error' title='' subtitle={reqErrorMsg} iconDescription={msgs.get('svg.description.error', locale)} />}*/}
+            {/*{reqErrorMsg && reqErrorMsg.length > 0 &&
+              <InlineNotification
+              key={`inline-notification-${reqErrorMsg}`}
+              kind='error' title=''
+              subtitle={reqErrorMsg}
+              iconDescription={msgs.get('svg.description.error', locale)} />}*/}
             <div className='yamlEditorContainerContainer' ref={this.setContainerRef} >
               <YamlEditor
                 width={'50vw'}

@@ -6,15 +6,17 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-
-import * as Actions from '../actions'
+/* Copyright (c) 2020 Red Hat, Inc. */
+import {
+  REQUEST_STATUS, RESOURCE_FILTERS_RECEIVE_SUCCESS, RESOURCE_FILTERS_UPDATE
+} from '../actions'
 
 export const resourceFilters = (state = {}, action) => {
   if (action) {
     switch (action.type) {
-    case Actions.RESOURCE_FILTERS_RECEIVE_SUCCESS:
+    case RESOURCE_FILTERS_RECEIVE_SUCCESS:
       return Object.assign({}, state, {
-        status: Actions.REQUEST_STATUS.DONE,
+        status: REQUEST_STATUS.DONE,
         filters: {
           // disable cluster name filtering until server side fixes the issue
           // https://github.ibm.com/IBMPrivateCloud/roadmap/issues/10981
@@ -22,7 +24,7 @@ export const resourceFilters = (state = {}, action) => {
           clusterLabels: action.filters.clusterLabels,
         },
       })
-    case Actions.RESOURCE_FILTERS_UPDATE: {
+    case RESOURCE_FILTERS_UPDATE: {
       const selectedFilters = state.selectedFilters ? {...state.selectedFilters} : {}
       selectedFilters[action.resourceName] = action.selectedFilters
       return {...state, selectedFilters}

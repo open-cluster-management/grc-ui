@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -17,7 +18,8 @@ import { ContentSwitcher, Switch } from 'carbon-components-react'
 import getResourceDefinitions from '../../definitions'
 import { makeGetVisibleTableItemsSelector } from '../../reducers/common'
 import ResourceList from '../common/ResourceList'
-import { formatPoliciesToClustersTableData, formatFindingsToClustersTableData, formatExpandablePolicies, formatApplicationTableData } from '../common/FormatTableData'
+import { formatPoliciesToClustersTableData, formatFindingsToClustersTableData,
+  formatExpandablePolicies, formatApplicationTableData } from '../common/FormatTableData'
 import pageWithUrlQuery from '../common/withUrlQuery'
 import queryString from 'query-string'
 import resources from '../../../lib/shared/resources'
@@ -25,6 +27,8 @@ import resources from '../../../lib/shared/resources'
 resources(() => {
   require('../../../scss/module-grc-toggle.scss')
 })
+
+const policySidepanelActionStr = 'table.actions.policy.sidepanel'
 
 export class GrcToggleModule extends React.Component {
 
@@ -36,7 +40,8 @@ export class GrcToggleModule extends React.Component {
 
   render() {
     const { locale } = this.context
-    const { displayType, grcItems, applications, secondaryHeaderProps, showGrcTabToggle, grcTabToggleIndex, highLightRowName, showSidePanel, handleCreatePolicy, filterToEmpty } = this.props
+    const { displayType, grcItems, applications, secondaryHeaderProps, showGrcTabToggle, grcTabToggleIndex,
+      highLightRowName, showSidePanel, handleCreatePolicy, filterToEmpty } = this.props
     const grcTabSwitcher = showGrcTabToggle ? this.renderTabSwitcher(displayType, grcTabToggleIndex) : []
     let detailsTabs, resourceType, listData, staticResourceData, getVisibleResources, placeHolderText, autoAction
     switch (displayType) {
@@ -51,7 +56,7 @@ export class GrcToggleModule extends React.Component {
         staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
         getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
         placeHolderText = msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)
-        autoAction = 'table.actions.policy.sidepanel'
+        autoAction = policySidepanelActionStr
         break
       case 1:
         detailsTabs = ['clusters']
@@ -60,7 +65,7 @@ export class GrcToggleModule extends React.Component {
         staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER)
         getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER)
         placeHolderText = msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)
-        autoAction = 'table.actions.policy.sidepanel'
+        autoAction = policySidepanelActionStr
         break
       case 2:
         detailsTabs = ['applications']
@@ -69,7 +74,7 @@ export class GrcToggleModule extends React.Component {
         staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_APPLICATION)
         getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_APPLICATION)
         placeHolderText = msgs.get('tabs.grc.toggle.applications.placeHolderText', locale)
-        autoAction = 'table.actions.policy.sidepanel'
+        autoAction = policySidepanelActionStr
         break
       }
       break

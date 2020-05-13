@@ -42,9 +42,9 @@ class OverviewTab extends React.Component {
   }
 
   componentWillMount() {
-    const { updateSecondaryHeader, secondaryHeaderProps } = this.props
+    const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, links, information } = secondaryHeaderProps
-    updateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
+    localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
   }
 
   handleDescription = (title, content = 'placeholder') => () => {
@@ -60,7 +60,12 @@ class OverviewTab extends React.Component {
     const showApplications = this.props.showApplications === undefined ? config['feature_applications'] : this.props.showApplications
     return (
       <Page>
-        <Query query={showFindings ? GRCList : GRCListNoSA} variables={showFindings ? {userAccountID: activeAccountId} : null} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+        <Query
+          query={showFindings ? GRCList : GRCListNoSA}
+          variables={showFindings ? {userAccountID: activeAccountId} : null}
+          pollInterval={pollInterval}
+          notifyOnNetworkStatusChange
+        >
           {( result ) => {
             const {loading, startPolling, stopPolling, refetch} = result
             const {data={}} = result
@@ -88,8 +93,8 @@ class OverviewTab extends React.Component {
               showApplications ?
                 <Query query={HCMApplicationList} pollInterval={pollInterval} client={GrcApolloClient.getSearchClient()} notifyOnNetworkStatusChange >
                   {( result ) => {
-                    const {data={}} = result
-                    const { applications } = data
+                    const {applicationsData={}} = result
+                    const { applications } = applicationsData
                     const searchError = applications ? null : result.error
                     return (
                       <OverviewView

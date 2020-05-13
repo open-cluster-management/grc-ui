@@ -6,12 +6,14 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-
-import * as Actions from './index'
+/* Copyright (c) 2020 Red Hat, Inc. */
+import {
+  USERPREFERENCES_RECEIVE_SUCCESS, USERPREFERENCES_RECEIVE_FAILURE,
+} from './index'
 
 export const userPreferencesReceiveSuccess = userPreferences => ({
-  type: Actions.USERPREFERENCES_RECEIVE_SUCCESS,
+  type: USERPREFERENCES_RECEIVE_SUCCESS,
   userPreferences
 })
 
-export const userPreferencesReceiveFailure = err => ({ type: Actions.USERPREFERENCES_RECEIVE_FAILURE, err })
+export const userPreferencesReceiveFailure = err => ({ type: USERPREFERENCES_RECEIVE_FAILURE, err })

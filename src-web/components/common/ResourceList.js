@@ -29,6 +29,10 @@ import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 import createDocLink from '../../components/common/CreateDocLink'
 import PropTypes from 'prop-types'
 
+const noResourceStr = 'no-resource.title'
+const routesGrcStr = 'routes.grc'
+const routesCreatePolicy = 'routes.create.policy'
+
 class ResourceList extends React.Component {
   constructor() {
     super()
@@ -36,15 +40,23 @@ class ResourceList extends React.Component {
   }
 
   componentWillMount() {
-    const { updateSecondaryHeader, tabs, title, links, information, fetchResources, listData } = this.props
-    updateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
+    const {
+      updateSecondaryHeader:localUpdateSecondaryHeader,
+      tabs,
+      title,
+      links,
+      information,
+      fetchResources,
+      listData,
+    } = this.props
+    localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
     fetchResources(listData)
   }
 
   componentWillUnmount() {
-    const { searchTable } = this.props
+    const { searchTable:localSearchTable } = this.props
     //clean up current page search text before leaving
-    searchTable('', false)
+    localSearchTable('', false)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -64,10 +76,10 @@ class ResourceList extends React.Component {
       sortDirection,
       totalFilteredItems,
       status,
-      sortTable,
+      sortTable:localSortTable,
       sortColumn,
-      changeTablePage,
-      searchTable,
+      changeTablePage:localChangeTablePage,
+      searchTable:localSearchTable,
       staticResourceData,
       searchValue,
       resourceType,
@@ -116,7 +128,7 @@ class ResourceList extends React.Component {
     })
     if (items || searchValue || clientSideFilters) {
       if (searchValue !== clientSideFilters && clientSideFilters) {
-        searchTable(clientSideFilters, false)
+        localSearchTable(clientSideFilters, false)
       }
       return <div>
         { mutateStatus === REQUEST_STATUS.ERROR &&
@@ -148,9 +160,9 @@ class ResourceList extends React.Component {
           expandableTable={resourceType.name === RESOURCE_TYPES.HCM_POLICIES_PER_POLICY.name}
           totalFilteredItems={totalFilteredItems}
           resourceType={resourceType}
-          changeTablePage={changeTablePage}
-          handleSort={TableHelper.handleSort.bind(this, sortDirection, sortColumn, sortTable)}
-          handleSearch={TableHelper.handleInputValue.bind(this, searchTable)}
+          changeTablePage={localChangeTablePage}
+          handleSort={TableHelper.handleSort.bind(this, sortDirection, sortColumn, localSortTable)}
+          handleSearch={TableHelper.handleInputValue.bind(this, localSearchTable)}
           searchValue={searchValue}
           defaultSearchValue={clientSideFilters}
           tableActions={staticResourceData.tableActions}
@@ -174,39 +186,39 @@ class ResourceList extends React.Component {
     switch(resourceType.name) {
     case RESOURCE_TYPES.HCM_POLICIES_PER_APPLICATION.name:
       return <NoResource
-        title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
+        title={msgs.get(noResourceStr, [msgs.get(routesGrcStr, locale)], locale)}
         detail={msgs.get('no-resource.detail.application', locale)}
         topButton={topButton}>
-        {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+        {createDocLink(locale, handleCreatePolicy, msgs.get(routesCreatePolicy, locale), false)}
       </NoResource>
     case RESOURCE_TYPES.HCM_POLICIES_PER_POLICY.name:
       return (
         <NoResource
-          title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
+          title={msgs.get(noResourceStr, [msgs.get(routesGrcStr, locale)], locale)}
           detail={msgs.get('no-resource.detail.policy', locale)}>
-          {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale))}
+          {createDocLink(locale, handleCreatePolicy, msgs.get(routesCreatePolicy, locale))}
         </NoResource>
       )
     case RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER.name:
       return <NoResource
-        title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
+        title={msgs.get(noResourceStr, [msgs.get(routesGrcStr, locale)], locale)}
         detail={msgs.get('no-resource.detail.item', locale)}
         topButton={topButton}>
-        {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+        {createDocLink(locale, handleCreatePolicy, msgs.get(routesCreatePolicy, locale), false)}
       </NoResource>
     case RESOURCE_TYPES.HCM_SECURITY_FINDINGS.name:
     case RESOURCE_TYPES.HCM_CLUSTER_FINDINGS.name:
       return <NoResource
-        title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
+        title={msgs.get(noResourceStr, [msgs.get(routesGrcStr, locale)], locale)}
         detail={msgs.get('no-resource.detail.item', locale)}
         topButton={topButton}>
-        {createDocLink(locale, handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
+        {createDocLink(locale, handleCreatePolicy, msgs.get(routesCreatePolicy, locale), false)}
       </NoResource>
     }
     const resourceName = msgs.get('no-resource.' + resourceType.name.toLowerCase(), locale)
     return (
       <NoResource
-        title={msgs.get('no-resource.title', [resourceName], locale)}
+        title={msgs.get(noResourceStr, [resourceName], locale)}
         detail={msgs.get('no-resource.detail', [resourceName], locale)}>
         {actions}
       </NoResource>

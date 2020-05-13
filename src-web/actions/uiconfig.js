@@ -6,7 +6,9 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
+import {
+  UICONFIG_RECEIVE_SUCCESS,
+} from './index'
 
-import * as Actions from './index'
-
-export const uiConfigReceiveSucess = uiConfig => ({ type: Actions.UICONFIG_RECEIVE_SUCCESS, data: uiConfig })
+export const uiConfigReceiveSucess = uiConfig => ({ type: UICONFIG_RECEIVE_SUCCESS, data: uiConfig })

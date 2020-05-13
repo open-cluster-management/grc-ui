@@ -98,8 +98,18 @@ class StructuredListModule extends React.Component {
                             <td key={cell.resourceKey+'Cell'}>
                               <p>{
                                 (linkFixedName && (index in linkFixedName) && transform(row, cell, this.context.locale) !== '-')
-                                  ? <Link to={transform(row, cell, this.context.locale)} target={linkFixedName[index].urlTarget} className='bx--link'>{msgs.get(linkFixedName[index].fixedName, this.context.locale)}</Link>
-                                  : cell.link && url ? <Link to={url} className='bx--link'>{transform(row, cell, this.context.locale)}</Link> : transform(row, cell, this.context.locale)
+                                  ? <Link
+                                    to={transform(row, cell, this.context.locale)}
+                                    target={linkFixedName[index].urlTarget}
+                                    className='bx--link'>{msgs.get(linkFixedName[index].fixedName, this.context.locale)}
+                                  </Link>
+                                  : cell.link && url
+                                    ? <Link
+                                      to={url}
+                                      className='bx--link'>
+                                      {transform(row, cell, this.context.locale)}
+                                    </Link>
+                                    : transform(row, cell, this.context.locale)
                               }</p>
                             </td>
                           )}
@@ -122,7 +132,14 @@ class StructuredListModule extends React.Component {
                     if(row && row.id){
                       return (
                         <TableRow key={row.id}>
-                          {Array.isArray(rows) && rows[0].cells && rows[0].cells.map((cell, index)=> <TableCell key={cell.resourceKey.substring(0, 21)+'Cell'} className={row.id.includes('S_F_S_P')?'S_F_S_P_'+index:''}><TruncateText text={transform(row, cell, this.context.locale)} /></TableCell>)}
+                          {Array.isArray(rows) && rows[0].cells &&
+                            rows[0].cells.map((cell, index)=>
+                              <TableCell
+                                key={cell.resourceKey.substring(0, 21)+'Cell'}
+                                className={row.id.includes('S_F_S_P')?'S_F_S_P_'+index:''}>
+                                <TruncateText text={transform(row, cell, this.context.locale)} />
+                              </TableCell>
+                            )}
                         </TableRow>
                       )
                     }

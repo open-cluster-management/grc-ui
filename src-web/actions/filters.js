@@ -9,10 +9,12 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 import lodash from 'lodash'
 
-import * as Actions from './index'
 import GrcApolloClient from '../../lib/client/apollo-client'
 import { receiveResourceError, requestResource}  from './common'
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
+import {
+  REQUEST_STATUS, RESOURCE_FILTERS_RECEIVE_SUCCESS, RESOURCE_FILTERS_UPDATE,
+} from './index'
 
 export const STRING_SPLITTER = '='
 
@@ -52,8 +54,8 @@ export const fetchFilters = (inputType) => {
 }
 
 export const receiveFiltersSuccess = (response, resourceType) => ({
-  type: Actions.RESOURCE_FILTERS_RECEIVE_SUCCESS,
-  status: Actions.REQUEST_STATUS.DONE,
+  type: RESOURCE_FILTERS_RECEIVE_SUCCESS,
+  status: REQUEST_STATUS.DONE,
   filters: {
     clusterLabels: response.clusterLabels || [],
     clusterNames: response.clusterNames || [],
@@ -62,7 +64,7 @@ export const receiveFiltersSuccess = (response, resourceType) => ({
 })
 
 export const updateResourceFilters = (resourceType, selectedFilters) => ({
-  type: Actions.RESOURCE_FILTERS_UPDATE,
+  type: RESOURCE_FILTERS_UPDATE,
   resourceName: resourceType.name,
   selectedFilters,
 })
