@@ -53,9 +53,12 @@ class EditorButton extends React.Component {
       return (
         <div className={classes} tabIndex={0} role={'button'} aria-label={tooltip} title={tooltip}
           onClick={this.handleClick} onKeyPress={this.handleKeyPress} >
-          <svg>
-            <use href={`#diagramIcons_${icon}`} ></use>
-          </svg>
+          {icon?
+            <svg>
+              <use href={`#diagramIcons_${icon}`} ></use>
+            </svg> :
+            <div>{tooltip}</div>
+          }
         </div>
       )
     }
@@ -149,6 +152,7 @@ class EditorBar extends React.Component {
               <Search
                 id={`template-editor-search-${type}`}
                 labelText=''
+                spellCheck={false}
                 aria-label={searchTitle}
                 placeHolderText={searchTitle}
                 small={true} onChange={this.handleSearch}
