@@ -30,12 +30,14 @@ export const generateYAML = (template, controlData) => {
       if (hasLabels) {
         const map = {}
         active.forEach(pair=>{
-          const {key, value} = availableMap[pair]
-          let arr = map[key]
-          if (!arr) {
-            arr = map[key] = []
+          if (availableMap[pair]) {
+            const {key, value} = availableMap[pair]
+            let arr = map[key]
+            if (!arr) {
+              arr = map[key] = []
+            }
+            arr.push(value)            
           }
-          arr.push(value)
         })
         templateData[id] = map
       } else if (hasReplacements) {
@@ -81,7 +83,7 @@ export const generateYAML = (template, controlData) => {
               }
               // if this control has already been set by this selection
               // don't do it again in case user unselected it
-              if (!wasSet.has(key)) {
+              if (typeof wasSet.has === 'function' && !wasSet.has(key)) {
                 arr.push(snippet)
                 controlMap[id].active = arr
                 wasSet.add(key)

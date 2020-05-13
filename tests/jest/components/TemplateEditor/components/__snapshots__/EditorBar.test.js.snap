@@ -24,11 +24,9 @@ exports[`EditorBar component renders as expected 1`] = `
         tabIndex={0}
         title="Reset"
       >
-        <svg>
-          <use
-            href="#diagramIcons_undefined"
-          />
-        </svg>
+        <div>
+          Reset
+        </div>
       </div>
     </div>
     <div
@@ -112,6 +110,7 @@ exports[`EditorBar component renders as expected 1`] = `
             id="template-editor-search-undefined"
             onChange={[Function]}
             placeholder="Find"
+            spellCheck={false}
             type="text"
           />
           <button
