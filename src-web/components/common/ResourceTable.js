@@ -276,6 +276,7 @@ export class ResourceTable extends React.Component {
                         )
                       }
                     }
+                    return undefined
                   })
                 })()}
               </TableBody>
@@ -414,6 +415,7 @@ export class ResourceTable extends React.Component {
           return indeterminateStatus
         }
       }
+      return undefined
     })
     return indeterminateStatus
   }

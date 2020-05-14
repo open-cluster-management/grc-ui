@@ -129,48 +129,31 @@ export class OverviewView extends React.Component {
     const availableFilters =  getAvailableGrcFilters(policies, findings, locale)
     const filteredPolicies = filterPolicies(policies, activeFilters, locale, 'metadata.annotations')
     const filteredFindings = filterFindings(findings, activeFilters, locale)
-    //need to filteredapplications later?
-    if(showFindings === false) {
+    //need to filtered applications later?
       return (
         <div className='overview-view'>
           <ResourceFilterBar />
-          <RecentActivityModuleWithoutFindings
-            showApplications={showApplications}
-            policies={filteredPolicies}
-            showFindings={showFindings}
-            findings={filteredFindings}
-            applications={applications}
-            handleDrillDownClick={this.handleDrillDownClickOverview}
-            viewState={viewState}
-            updateViewState={this.updateViewState} />
-          <ImpactedControlsModule
-            viewState={viewState}
-            updateViewState={this.updateViewState}
-            policies={filteredPolicies}
-            showFindings={showFindings}
-            findings={filteredFindings}
-            activeFilters={activeFilters}
-            availableFilters={availableFilters}
-            handleDrillDownClick={this.handleDrillDownClickOverview} />
-          <PolicySummaryModule
-            policies={filteredPolicies}
-            findings={filteredFindings} />
-        </div>
-      )
-    }
-    else {
-      return (
-        <div className='overview-view'>
-          <ResourceFilterBar />
-          <RecentActivityModule
-            showApplications={showApplications}
-            policies={filteredPolicies}
-            showFindings={showFindings}
-            findings={filteredFindings}
-            applications={applications}
-            handleDrillDownClick={this.handleDrillDownClickOverview}
-            viewState={viewState}
-            updateViewState={this.updateViewState} />
+          {showFindings ?
+            <RecentActivityModule
+              showApplications={showApplications}
+              policies={filteredPolicies}
+              showFindings={showFindings}
+              findings={filteredFindings}
+              applications={applications}
+              handleDrillDownClick={this.handleDrillDownClickOverview}
+              viewState={viewState}
+              updateViewState={this.updateViewState} />
+            :
+            <RecentActivityModuleWithoutFindings
+              showApplications={showApplications}
+              policies={filteredPolicies}
+              showFindings={showFindings}
+              findings={filteredFindings}
+              applications={applications}
+              handleDrillDownClick={this.handleDrillDownClickOverview}
+              viewState={viewState}
+              updateViewState={this.updateViewState} />
+          }
           <ImpactedControlsModule
             viewState={viewState}
             updateViewState={this.updateViewState}
@@ -282,6 +265,7 @@ export class OverviewView extends React.Component {
       }
       return `${slash}${page}?${queryString.stringify(paraURL)}`
     }
+    return 'parentType is undefined'
   }
 }
 

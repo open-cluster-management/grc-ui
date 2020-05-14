@@ -18,5 +18,5 @@ export const uiconfig = (state = null, action) => {
       return state
     }
   }
-  return 'undefined-action'
+  return undefined
 }

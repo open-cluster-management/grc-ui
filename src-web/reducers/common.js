@@ -157,6 +157,7 @@ const makeGetFilteredItemsSelector = (resourceType) => {
           return searchTableCellHelper(search, tableKeys, item, context)
         }
       }
+      return undefined
     })
   )
 }

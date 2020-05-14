@@ -50,6 +50,7 @@ export const fetchFilters = (inputType) => {
         })
         .catch(err => dispatch(receiveResourceError(err, resourceType)))
     }
+    return undefined
   }
 }
 

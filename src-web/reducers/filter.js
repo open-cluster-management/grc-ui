@@ -33,5 +33,5 @@ export const resourceFilters = (state = {}, action) => {
       return state
     }
   }
-  return 'undefined-action'
+  return undefined
 }

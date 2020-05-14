@@ -249,21 +249,27 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
           return {
             id: _.get(item, obNameStr),
             cells: [_.get(item, obNameStr), _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-          }}}
+          }}
+        return undefined
+      }
       )
       const roleStatus = roleTemplates.map(item => {
         if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
           return {
             id: _.get(item, metaNameStr),
             cells: [_.get(item, metaNameStr), _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-          }}}
+          }}
+        return undefined
+      }
       )
       const policyStatus = policyTemplates.map(item => {
         if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
           return {
             id: _.get(item, obNameStr),
             cells: [_.get(item, obNameStr), _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-          }}}
+          }}
+        return undefined
+      }
       )
       //add id and remove null/undefined
       const subItems = _.without([id, ...objectStatus, ...roleStatus, ...policyStatus], undefined, null)
@@ -306,7 +312,9 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
             return {
               id: _.get(item, obNameStr),
               cells: [name, _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-            }}}
+            }}
+          return undefined
+        }
         ),
         ...roleTemplates.map(item => {
           if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
@@ -314,7 +322,9 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
             return {
               id: _.get(item, obNameStr),
               cells: [name, _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-            }}}
+            }}
+          return undefined
+        }
         ),
         ...policyTemplates.map(item => {
           if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
@@ -322,7 +332,9 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
             return {
               id: _.get(item, obNameStr),
               cells: [name, _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-            }}}
+            }}
+          return undefined
+        }
         )
       ], undefined, null)
 
