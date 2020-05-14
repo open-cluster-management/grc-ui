@@ -40,3 +40,7 @@ unit-test:
 		mkdir test-output; \
 	fi
 	npm test
+
+e2e-test:
+    npm i -D nightwatch-coverage
+	npm run test:e2e
