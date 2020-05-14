@@ -417,7 +417,7 @@ const PolicyCard = ({data, locale, handleClick}) => {
       <div className='card-container'>
         <div className='card-content'>
           <div className='card-name'>
-            <TruncateText maxCharacters={55} text={name} />
+            <TruncateText maxCharacters={50} text={name} />
           </div>
           <div className='card-count-content'>
             { //normal policy card with at least one policy or cluster violation
@@ -493,7 +493,7 @@ const FindingCard = ({data, locale, handleClick}) => {
       <div className='card-container'>
         <div className='card-content'>
           <div className='card-name'>
-            {name}
+            <TruncateText maxCharacters={50} text={name} />
           </div>
           <div className='card-count-content'>
             { //normal finding card with at least one finding or high severity
