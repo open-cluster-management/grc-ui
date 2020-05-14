@@ -59,7 +59,10 @@ const jestConfig = {
   ],
   moduleNameMapper: {
     '\\.(css|scss|svg)$': '<rootDir>/tests/jest/config/styleMock.js'
-  }
+  },
+  modulePathIgnorePatterns: [
+    'node_modules',
+  ],
 }
 
 jestConfig.reporters = process.env.TRAVIS ? [ 'default', tapReporter ] : [ 'default']
