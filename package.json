@@ -21,7 +21,8 @@
     "test:e2e": "nightwatch ./tests/e2e -e chrome",
     "test:e2e-headless": "nightwatch ./tests/e2e -e chrome.headless",
     "test:update-snapshot": "jest --updateSnapshot",
-    "test:update-a11ySnap": "find ./test-output/a11y -name '*.json' -not -name 'summary*' -exec cp {} ./tests/utils/A11y-snapshot/ \\;"
+    "test:update-a11ySnap": "find ./test-output/a11y -name '*.json' -not -name 'summary*' -exec cp {} ./tests/utils/A11y-snapshot/ \\;",
+    "merge:coverage": "lcov-result-merger test-output/**/lcov.info ./lcov-merged.info"
   },
   "repository": {
     "type": "git",
@@ -148,6 +149,7 @@
     "jest-yaml-transform": "^0.2.0",
     "js-yaml-loader": "^1.2.2",
     "jsonfile": "^4.0.0",
+    "lcov-result-merger": "^3.1.0",
     "nightwatch": "^1.3.4",
     "nightwatch-coverage": "^1.0.2",
     "node-sass": "^4.13.1",
