@@ -19,7 +19,8 @@ const time = new Date().getTime()
 const { createCoverageReporter } = require('nightwatch-coverage')
 
 const coverageReporter = createCoverageReporter({
-  coverageDirectory: `${reportFolder}/coverage`
+  coverageDirectory: `${reportFolder}/coverage`,
+  coverageReporters: ['html', 'json', 'lcov'],
 })
 
 module.exports = {
