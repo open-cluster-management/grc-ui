@@ -327,8 +327,7 @@ exports[`PolicieSubResourceList view renders as expected 1`] = `
               <p>
                 <a
                   className="bx--link"
-                  href="/https://9.42.78.148:8443"
-                  onClick={[Function]}
+                  href="https://9.42.78.148:8443"
                   target="_blank"
                 >
                   Launch cluster
@@ -387,8 +386,7 @@ exports[`PolicieSubResourceList view renders as expected 1`] = `
               <p>
                 <a
                   className="bx--link"
-                  href="/https://9.42.81.137:8443"
-                  onClick={[Function]}
+                  href="https://9.42.81.137:8443"
                   target="_blank"
                 >
                   Launch cluster
