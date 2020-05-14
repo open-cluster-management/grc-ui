@@ -37,7 +37,7 @@ export class FindingsTab extends React.Component {
     this.firstLoad = true
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, links, information } = secondaryHeaderProps
     localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))

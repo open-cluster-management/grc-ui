@@ -116,9 +116,11 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 tabIndex={null}
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
-                  aria-label="open menu"
+                  aria-label={undefined}
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -203,9 +205,11 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 tabIndex="-1"
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -300,9 +304,11 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 tabIndex="-1"
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -392,9 +398,11 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 tabIndex="-1"
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -484,9 +492,11 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 tabIndex="-1"
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -576,9 +586,11 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 tabIndex="-1"
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}

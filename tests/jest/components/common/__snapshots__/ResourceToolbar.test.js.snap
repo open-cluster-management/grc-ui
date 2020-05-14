@@ -44,9 +44,11 @@ exports[`ResourceToolbar component renders as expected 1`] = `
           tabIndex={null}
         >
           <div
+            aria-controls={null}
             aria-expanded={false}
             aria-haspopup={true}
-            aria-label="open menu"
+            aria-label="Choose refresh"
+            aria-owns={null}
             className="bx--list-box__field"
             data-toggle={true}
             disabled={false}

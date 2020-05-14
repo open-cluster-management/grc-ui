@@ -1,38 +1,271 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Grc Router container test renders as expected 1`] = `
-<Provider
-  store={
+<ContextProvider
+  value={
     Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
+      "client": ApolloClient {
+        "__operations_cache__": Map {},
+        "cache": InMemoryCache {
+          "addTypename": true,
+          "cacheKeyRoot": KeyTrie {
+            "weakness": true,
+          },
+          "config": Object {
+            "addTypename": true,
+            "dataIdFromObject": [Function],
+            "fragmentMatcher": HeuristicFragmentMatcher {},
+            "freezeResults": false,
+            "resultCaching": true,
+          },
+          "data": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
+          "maybeBroadcastWatch": [Function],
+          "optimisticData": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
+          "silenceBroadcast": false,
+          "storeReader": StoreReader {
+            "executeSelectionSet": [Function],
+            "executeStoreQuery": [Function],
+            "executeSubSelectedArray": [Function],
+            "freezeResults": false,
+          },
+          "storeWriter": StoreWriter {},
+          "typenameDocumentCache": Map {},
+          "watches": Set {},
+        },
+        "clearStoreCallbacks": Array [],
+        "defaultOptions": Object {
+          "mutate": Object {
+            "errorPolicy": "all",
+          },
+          "query": Object {
+            "errorPolicy": "all",
+            "fetchPolicy": "network-only",
+          },
+          "watchQuery": Object {
+            "errorPolicy": "all",
+            "fetchPolicy": "network-only",
+          },
+        },
+        "disableNetworkFetches": false,
+        "link": ApolloLink {
+          "request": [Function],
+        },
+        "localState": LocalState {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "cacheKeyRoot": KeyTrie {
+              "weakness": true,
+            },
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "freezeResults": false,
+              "resultCaching": true,
+            },
+            "data": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "maybeBroadcastWatch": [Function],
+            "optimisticData": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "silenceBroadcast": false,
+            "storeReader": StoreReader {
+              "executeSelectionSet": [Function],
+              "executeStoreQuery": [Function],
+              "executeSubSelectedArray": [Function],
+              "freezeResults": false,
+            },
+            "storeWriter": StoreWriter {},
+            "typenameDocumentCache": Map {},
+            "watches": Set {},
+          },
+          "client": [Circular],
+        },
+        "mutate": [Function],
+        "query": [Function],
+        "queryDeduplication": true,
+        "queryManager": QueryManager {
+          "assumeImmutableResults": false,
+          "clientAwareness": Object {
+            "name": undefined,
+            "version": undefined,
+          },
+          "dataStore": DataStore {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "cacheKeyRoot": KeyTrie {
+                "weakness": true,
+              },
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "freezeResults": false,
+                "resultCaching": true,
+              },
+              "data": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "maybeBroadcastWatch": [Function],
+              "optimisticData": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "silenceBroadcast": false,
+              "storeReader": StoreReader {
+                "executeSelectionSet": [Function],
+                "executeStoreQuery": [Function],
+                "executeSubSelectedArray": [Function],
+                "freezeResults": false,
+              },
+              "storeWriter": StoreWriter {},
+              "typenameDocumentCache": Map {},
+              "watches": Set {},
+            },
+          },
+          "fetchQueryRejectFns": Map {},
+          "idCounter": 1,
+          "inFlightLinkObservables": Map {},
+          "link": ApolloLink {
+            "request": [Function],
+          },
+          "localState": LocalState {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "cacheKeyRoot": KeyTrie {
+                "weakness": true,
+              },
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "freezeResults": false,
+                "resultCaching": true,
+              },
+              "data": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "maybeBroadcastWatch": [Function],
+              "optimisticData": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "silenceBroadcast": false,
+              "storeReader": StoreReader {
+                "executeSelectionSet": [Function],
+                "executeStoreQuery": [Function],
+                "executeSubSelectedArray": [Function],
+                "freezeResults": false,
+              },
+              "storeWriter": StoreWriter {},
+              "typenameDocumentCache": Map {},
+              "watches": Set {},
+            },
+            "client": [Circular],
+          },
+          "mutationStore": MutationStore {
+            "store": Object {},
+          },
+          "onBroadcast": [Function],
+          "pollingInfoByQueryId": Map {},
+          "queries": Map {},
+          "queryDeduplication": true,
+          "queryStore": QueryStore {
+            "store": Object {},
+          },
+          "ssrMode": false,
+          "transformCache": WeakMap {},
+        },
+        "reFetchObservableQueries": [Function],
+        "resetStore": [Function],
+        "resetStoreCallbacks": Array [],
+        "store": DataStore {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "cacheKeyRoot": KeyTrie {
+              "weakness": true,
+            },
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "freezeResults": false,
+              "resultCaching": true,
+            },
+            "data": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "maybeBroadcastWatch": [Function],
+            "optimisticData": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "silenceBroadcast": false,
+            "storeReader": StoreReader {
+              "executeSelectionSet": [Function],
+              "executeStoreQuery": [Function],
+              "executeSubSelectedArray": [Function],
+              "freezeResults": false,
+            },
+            "storeWriter": StoreWriter {},
+            "typenameDocumentCache": Map {},
+            "watches": Set {},
+          },
+        },
+        "typeDefs": undefined,
+        "version": "2.6.10",
+        "watchQuery": [Function],
+      },
+      "operations": Map {},
     }
   }
 >
-  <BrowserRouter>
-    <withRouter(GrcRouter)
-      ROLES={
-        Object {
-          "ACCOUNT_ADMIN": "AccountAdministrator",
-          "ADMIN": "Administrator",
-          "CLUSTER_ADMIN": "ClusterAdministrator",
-          "EDITOR": "Editor",
-          "OPERATOR": "Operator",
-          "VIEWER": "Viewer",
-        }
+  <Provider
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
       }
-      match={
-        Object {
-          "isExact": false,
-          "params": Object {},
-          "path": "/multicloud",
-          "url": "/multicloud",
+    }
+  >
+    <BrowserRouter>
+      <withRouter(GrcRouter)
+        ROLES={
+          Object {
+            "ACCOUNT_ADMIN": "AccountAdministrator",
+            "ADMIN": "Administrator",
+            "CLUSTER_ADMIN": "ClusterAdministrator",
+            "EDITOR": "Editor",
+            "OPERATOR": "Operator",
+            "VIEWER": "Viewer",
+          }
         }
-      }
-    />
-  </BrowserRouter>
-</Provider>
+        match={
+          Object {
+            "isExact": false,
+            "params": Object {},
+            "path": "/multicloud",
+            "url": "/multicloud",
+          }
+        }
+      />
+    </BrowserRouter>
+  </Provider>
+</ContextProvider>
 `;

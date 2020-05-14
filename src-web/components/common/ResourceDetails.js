@@ -59,7 +59,7 @@ const withResource = (Component) => {
       }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
       const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
       if (pollInterval) {
         const intervalId = setInterval(this.reload.bind(this), pollInterval)
@@ -120,7 +120,7 @@ class ResourceDetails extends React.Component {
     })
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const {
             updateSecondaryHeader:localUpdateSecondaryHeader,
             tabs,
@@ -132,7 +132,7 @@ class ResourceDetails extends React.Component {
     refreshControl.stopPolling()
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.location !== this.props.location) {
       const {
               updateSecondaryHeader:localUpdateSecondaryHeader,

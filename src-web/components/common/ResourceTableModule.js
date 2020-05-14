@@ -50,7 +50,7 @@ export class ResourceTableModule extends React.Component {
     this.props.fetchResources()
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { tableResources } = this.props
     if (nextProps.tableResources !== tableResources) {
       this.formatResourceData()

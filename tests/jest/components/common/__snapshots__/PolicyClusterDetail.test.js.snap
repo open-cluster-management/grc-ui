@@ -10,7 +10,7 @@ exports[`PolicyClusterDetail component renders as expected 1`] = `
     viewBox="-75 -75 150 150"
   >
     <title>
-      Loading
+      Active loading indicator
     </title>
     <circle
       className={null}

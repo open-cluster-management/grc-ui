@@ -838,7 +838,7 @@ exports[`PolicyDetailsOverview component renders as expected 2`] = `
     viewBox="-75 -75 150 150"
   >
     <title>
-      Loading
+      Active loading indicator
     </title>
     <circle
       className={null}

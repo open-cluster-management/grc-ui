@@ -75,7 +75,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
     return status
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {refreshControl, item, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(item, this.props.item)) {

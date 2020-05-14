@@ -28,7 +28,7 @@ class RemoveResourceModal extends React.Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { data } = this.props
     const children = []
     // Create object specifying Application resources that can be deleted
@@ -166,7 +166,7 @@ RemoveResourceModal.propTypes = {
     deployables: PropTypes.object,
     name: PropTypes.string,
     placementBindings: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    placementPolicie: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    placementPolicies: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     applicationRelationships: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     selected: PropTypes.array,
   }),

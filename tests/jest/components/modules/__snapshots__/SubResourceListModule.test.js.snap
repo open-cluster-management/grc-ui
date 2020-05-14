@@ -327,7 +327,7 @@ exports[`PolicieSubResourceList view renders as expected 1`] = `
               <p>
                 <a
                   className="bx--link"
-                  href="https://9.42.78.148:8443"
+                  href="/https://9.42.78.148:8443"
                   onClick={[Function]}
                   target="_blank"
                 >
@@ -387,7 +387,7 @@ exports[`PolicieSubResourceList view renders as expected 1`] = `
               <p>
                 <a
                   className="bx--link"
-                  href="https://9.42.81.137:8443"
+                  href="/https://9.42.81.137:8443"
                   onClick={[Function]}
                   target="_blank"
                 >

@@ -121,7 +121,7 @@ export default class TemplateEditor extends React.Component {
     this.splitterSizeCookie = `TEMPLATE-EDITOR-SPLITTER-SIZE-${type.toUpperCase()}`
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.resetEditor()
   }
 
