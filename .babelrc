@@ -12,7 +12,7 @@
     ],
     "env": {
         "client": {
-            "plugins": ["syntax-dynamic-import"]
+            "plugins": ["syntax-dynamic-import", "istanbul"]
         },
         "server": {
             "plugins": ["dynamic-import-node", "transform-object-rest-spread"]

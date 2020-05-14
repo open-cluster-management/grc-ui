@@ -29,9 +29,11 @@ module.exports = {
   'All policy page: Add, search, disable/enable test policy': (browser) => {
     const time = browser.globals.time
     page.createTestPolicy(browser, time)
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-    page.searchPolicy(true, time)
-    page.testDetailsPage(browser, `${time}-policy-test`)
+    browser.collectCoverage(() => {
+      page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
+      page.searchPolicy(true, time)
+      page.testDetailsPage(browser, `${time}-policy-test`)
+    })
     // page.verifyDisableEnable(`${time}-policy-test`, browser)
   },
 
@@ -41,13 +43,17 @@ module.exports = {
   // },
 
   'All policy page: Verify summary table': (browser) => {
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-    page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
+    browser.collectCoverage(() => {
+      page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
+      page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
+    })
   },
 
   'All policy page: Test pagination': (browser) => {
-    page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-    page.verifyPagination(browser)
+    browser.collectCoverage(() => {
+      page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
+      page.verifyPagination(browser)
+    })
   },
 
   // 'All policy page: Run Accessibility Scan': (browser) => {
@@ -63,8 +69,7 @@ module.exports = {
   },
 
   after: function (browser, done) {
-    setTimeout(() => {
-      browser.end()
+    browser.collectCoverage(() => {
       done()
     })
   }
