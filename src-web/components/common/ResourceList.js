@@ -5,8 +5,9 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
+ *******************************************************************************
+ * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -199,6 +200,12 @@ class ResourceList extends React.Component {
         </NoResource>
       )
     case RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER.name:
+      return <NoResource
+        title={msgs.get(noResourceStr, [msgs.get(routesGrcStr, locale)], locale)}
+        detail={msgs.get('no-resource.detail.item', locale)}
+        topButton={topButton}>
+        {createDocLink(locale, handleCreatePolicy, msgs.get(routesCreatePolicy, locale), false)}
+      </NoResource>
     case RESOURCE_TYPES.HCM_SECURITY_FINDINGS.name:
     case RESOURCE_TYPES.HCM_CLUSTER_FINDINGS.name:
       return <NoResource
