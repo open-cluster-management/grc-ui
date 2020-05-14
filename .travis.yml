@@ -59,10 +59,10 @@ jobs:
       if: type = pull_request
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
-        - make component/pull
-        - make component/test/e2e
         - make sonar/js/jest-init
         - make component/test/unit
+        - make component/pull
+        - make component/test/e2e
         - npm run merge:coverage
         - make sonar/js
     - stage: publish
