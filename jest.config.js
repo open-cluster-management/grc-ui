@@ -14,7 +14,7 @@ const tapReporter = [
   {
     logLevel: 'ERROR',
     showInternalStackTraces: true,
-    filePath: 'test-output/jestTestLogs.tap'
+    filePath: 'test-output/unit/jestTestLogs.tap'
   }
 ]
 
@@ -23,7 +23,7 @@ const jestConfig = {
   collectCoverageFrom: [
     'src-web/**/*.{js,jsx}'
   ],
-  coverageDirectory: './test-output/coverage',
+  coverageDirectory: './test-output/unit/coverage',
   coverageReporters: [
     'json-summary',
     'json',
