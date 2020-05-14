@@ -204,14 +204,12 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
 
         switch (kind) {
         case 'E': {// edited
-          if (obj.$v || obj.$v===false) { // if no value ignore--all values removed from a key
-            if (editor) {
-              decorationList.push({
-                range: new editor.monaco.Range(obj.$r+1, 0, obj.$r+1, 0),
-                options: {isWholeLine: true, linesDecorationsClassName: 'insertedLineDecoration',
-                  minimap: {color: '#c0c0ff' , position:2}}
-              })
-            }
+          if ((obj.$v || obj.$v===false) && editor) { // if no value ignore--all values removed from a key
+            decorationList.push({
+              range: new editor.monaco.Range(obj.$r+1, 0, obj.$r+1, 0),
+              options: {isWholeLine: true, linesDecorationsClassName: 'insertedLineDecoration',
+                minimap: {color: '#c0c0ff' , position:2}}
+            })
             if (!firstModRow) {
               firstModRow = obj.$r
             }
