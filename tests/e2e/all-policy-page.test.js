@@ -67,10 +67,4 @@ module.exports = {
     const time = browser.globals.time
     page.deletePolicy(`${time}-policy-test`, browser)
   },
-
-  after: function (browser, done) {
-    browser.collectCoverage(() => {
-      done()
-    })
-  }
 }

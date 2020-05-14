@@ -16,7 +16,7 @@ const config = require('../../config')
 let page
 
 module.exports = {
-  '@disabled': true,
+  '@disabled': false,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
@@ -58,10 +58,10 @@ module.exports = {
     page.deletePolicy(browser, 'policy-pod-' + time)
   },
 
-  after: function (browser, done) {
-    setTimeout(() => {
-      browser.end()
-      done()
-    })
-  }
+  // after: function (browser, done) {
+  //   setTimeout(() => {
+  //     browser.end()
+  //     done()
+  //   })
+  // }
 }

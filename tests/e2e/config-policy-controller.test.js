@@ -105,10 +105,10 @@ module.exports = {
     browser.pause(1000)
   },
 
-  after: function (browser, done) {
-    setTimeout(() => {
-      browser.end()
-      done()
-    })
-  }
+  // after: function (browser, done) {
+  //   setTimeout(() => {
+  //     browser.end()
+  //     done()
+  //   })
+  // }
 }
