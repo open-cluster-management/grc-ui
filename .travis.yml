@@ -48,12 +48,12 @@ jobs:
         - make component/build
         - make component/push
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
-    # - stage: unit-test
-    #   name: "Build and run unit tests"
-    #   script:
-    #     - make sonar/js/jest-init
-    #     - make component/test/unit
-    #     - make sonar/js
+    - stage: unit-test
+      name: "Build and run unit tests"
+      script:
+        - make sonar/js/jest-init
+        - make component/test/unit
+        - make sonar/js
     - stage: test-e2e
       name: "Run e2e tests"
       if: type = pull_request
