@@ -42,5 +42,5 @@ unit-test:
 	npm test
 
 e2e-test:
-    npm i -D nightwatch-coverage
+	npm i -D nightwatch-coverage
 	npm run test:e2e
