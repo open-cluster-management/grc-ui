@@ -102,4 +102,5 @@ export const resourceActions = (action, dispatch, resourceType, data, hasService
   default:
 
   }
+  return undefined
 }

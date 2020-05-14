@@ -69,7 +69,7 @@ class RemoveResourceModal extends React.Component {
     }
   }
 
-  toggleSelected = (i, target) => {
+  toggleSelectedSetState = (target) => {
     this.setState((prevState) => {
       const currState = prevState.selected
       const index = currState.findIndex(item => item.id === target)
@@ -78,13 +78,12 @@ class RemoveResourceModal extends React.Component {
     })
   }
 
+  toggleSelected = (i, target) => {
+    this.toggleSelectedSetState(target)
+  }
+
   toggleSelectedKeyboard = (target) => {
-    this.setState((prevState) => {
-      const currState = prevState.selected
-      const index = currState.findIndex(item => item.id === target)
-      currState[index].selected = !currState[index].selected
-      return currState
-    })
+    this.toggleSelectedSetState(target)
   }
 
   handleSubmitClick() {
