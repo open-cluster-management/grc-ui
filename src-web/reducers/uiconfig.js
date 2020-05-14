@@ -6,7 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 import { UICONFIG_RECEIVE_SUCCESS } from '../actions'
 
 export const uiconfig = (state = null, action) => {
