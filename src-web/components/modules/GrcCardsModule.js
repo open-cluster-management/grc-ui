@@ -19,6 +19,7 @@ import _ from 'lodash'
 import { withRouter } from 'react-router-dom'
 import queryString from 'query-string'
 import NoResource from '../common/NoResource'
+import TruncateText from '../common/TruncateText'
 
 resources(() => {
   require('../../../scss/module-grc-cards.scss')
@@ -416,7 +417,7 @@ const PolicyCard = ({data, locale, handleClick}) => {
       <div className='card-container'>
         <div className='card-content'>
           <div className='card-name'>
-            {name}
+            <TruncateText maxCharacters={55} text={name} />
           </div>
           <div className='card-count-content'>
             { //normal policy card with at least one policy or cluster violation
