@@ -130,45 +130,44 @@ export class OverviewView extends React.Component {
     const filteredPolicies = filterPolicies(policies, activeFilters, locale, 'metadata.annotations')
     const filteredFindings = filterFindings(findings, activeFilters, locale)
     //need to filtered applications later?
-      return (
-        <div className='overview-view'>
-          <ResourceFilterBar />
-          {showFindings ?
-            <RecentActivityModule
-              showApplications={showApplications}
-              policies={filteredPolicies}
-              showFindings={showFindings}
-              findings={filteredFindings}
-              applications={applications}
-              handleDrillDownClick={this.handleDrillDownClickOverview}
-              viewState={viewState}
-              updateViewState={this.updateViewState} />
-            :
-            <RecentActivityModuleWithoutFindings
-              showApplications={showApplications}
-              policies={filteredPolicies}
-              showFindings={showFindings}
-              findings={filteredFindings}
-              applications={applications}
-              handleDrillDownClick={this.handleDrillDownClickOverview}
-              viewState={viewState}
-              updateViewState={this.updateViewState} />
-          }
-          <ImpactedControlsModule
-            viewState={viewState}
-            updateViewState={this.updateViewState}
+    return (
+      <div className='overview-view'>
+        <ResourceFilterBar />
+        {showFindings ?
+          <RecentActivityModule
+            showApplications={showApplications}
             policies={filteredPolicies}
             showFindings={showFindings}
             findings={filteredFindings}
-            activeFilters={activeFilters}
-            availableFilters={availableFilters}
-            handleDrillDownClick={this.handleDrillDownClickOverview} />
-          <PolicySummaryModule
+            applications={applications}
+            handleDrillDownClick={this.handleDrillDownClickOverview}
+            viewState={viewState}
+            updateViewState={this.updateViewState} />
+          :
+          <RecentActivityModuleWithoutFindings
+            showApplications={showApplications}
             policies={filteredPolicies}
-            findings={filteredFindings} />
-        </div>
-      )
-    }
+            showFindings={showFindings}
+            findings={filteredFindings}
+            applications={applications}
+            handleDrillDownClick={this.handleDrillDownClickOverview}
+            viewState={viewState}
+            updateViewState={this.updateViewState} />
+        }
+        <ImpactedControlsModule
+          viewState={viewState}
+          updateViewState={this.updateViewState}
+          policies={filteredPolicies}
+          showFindings={showFindings}
+          findings={filteredFindings}
+          activeFilters={activeFilters}
+          availableFilters={availableFilters}
+          handleDrillDownClick={this.handleDrillDownClickOverview} />
+        <PolicySummaryModule
+          policies={filteredPolicies}
+          findings={filteredFindings} />
+      </div>
+    )
   }
 
   updateViewState(states) {
