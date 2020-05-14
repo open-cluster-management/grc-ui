@@ -17,7 +17,7 @@ const config = require('../../config')
 let page
 
 module.exports = {
-  '@disabled': false,
+  '@disabled': true,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
@@ -105,10 +105,10 @@ module.exports = {
     browser.pause(1000)
   },
 
-  after: function (browser, done) {
-    setTimeout(() => {
-      browser.end()
-      done()
-    })
-  }
+  // after: function (browser, done) {
+  //   setTimeout(() => {
+  //     browser.end()
+  //     done()
+  //   })
+  // }
 }
