@@ -223,7 +223,7 @@ function testDetailsPage(browser, name) {
   //policy yaml page test
   this.waitForElementVisible('#yaml-tab')
   this.click('#yaml-tab')
-  this.waitForElementVisible('.monaco_editor')
+  this.waitForElementVisible('.monaco-editor')
   this.waitForElementVisible('.yaml-editor-button > button:nth-child(1)')
   this.waitForElementVisible('.yaml-editor-button > button:nth-child(2)')
   this.click('.bx--breadcrumb > div:nth-child(1)')
