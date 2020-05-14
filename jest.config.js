@@ -14,7 +14,7 @@ const tapReporter = [
   {
     logLevel: 'ERROR',
     showInternalStackTraces: true,
-    filePath: 'test-output/unit/jestTestLogs.tap'
+    filePath: 'test-output/jestTestLogs.tap'
   }
 ]
 
