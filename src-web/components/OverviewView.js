@@ -264,7 +264,7 @@ export class OverviewView extends React.Component {
       }
       return `${slash}${page}?${queryString.stringify(paraURL)}`
     }
-    return 'parentType is undefined'
+    return undefined
   }
 }
 

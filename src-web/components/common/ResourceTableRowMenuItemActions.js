@@ -12,7 +12,7 @@
 import { updateModal } from '../../actions/common'
 import config from '../../../lib/shared/config'
 
-export const resourceActions = (action, dispatch, resourceType, data, history) => {
+export const resourceActions = (action, dispatch, resourceType, data, hasService, history) => {
   switch (action) {
   case 'table.actions.edit': {
     return dispatch(updateModal(
