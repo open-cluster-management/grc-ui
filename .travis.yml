@@ -5,14 +5,17 @@ services:
   - docker
   - xvfb
 
+cache:
+  npm: false
+
 branches:
   only:
     - master
     - /^release-[0-9]+\..*$/
 addons:
-  packages:
-    - openjdk-8-jdk
-  chrome: stable
+  # packages:
+  #   - openjdk-8-jdk
+  # chrome: stable
   sonarcloud:
     organization: "open-cluster-management"
     token:
@@ -57,6 +60,10 @@ jobs:
     - stage: test-e2e
       name: "Run e2e tests"
       if: type = pull_request
+      addons:
+        packages:
+          - openjdk-8-jdk
+        chrome: stable
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make sonar/js/jest-init
