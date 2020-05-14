@@ -9,6 +9,7 @@ set -e
 
 export DOCKER_IMAGE_AND_TAG=${1}
 make build-prod
+npm i -D nightwatch-coverage
 make lint
 make prune
 make docker/build
