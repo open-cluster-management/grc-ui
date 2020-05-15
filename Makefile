@@ -40,3 +40,16 @@ unit-test:
 		mkdir -p test-output/unit; \
 	fi
 	npm test
+
+e2e-clean-up:
+	@echo "Clean up hub"
+	make oc/login
+	oc project default
+	oc delete policy.policy.mcm.ibm.com --all
+	oc delete placementbinding.mcm.ibm.com --all
+	oc delete placementrule --all
+	@echo "Clean up managed"
+	export OC_CLUSTER_URL=$(OC_MANAGED_CLUSTER_URL)
+	export OC_CLUSTER_PASS=$(OC_MANAGED_CLUSTER_PASS)
+	make oc/login
+	oc delete pod --all -n default

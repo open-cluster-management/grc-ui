@@ -17,7 +17,7 @@
         "on_failure": true
       },
       "globals": {
-        "waitForConditionTimeout": 60000
+        "waitForConditionTimeout": 120000
       }
     },
     "remote": {
