@@ -75,8 +75,11 @@ function createPolicy(browser, yaml, time) {
 
 function checkViolations(browser, name, violationExpected) {
   this.waitForElementVisible('@searchInput')
+  browser.pause(1000)
   this.clearValue('@searchInput')
+  browser.pause(1000)
   this.setValue('@searchInput', name)
+  browser.pause(1000)
   this.click('tbody>tr>td>a')
   this.waitForElementPresent('#violation-tab')
   this.click('#violation-tab')
