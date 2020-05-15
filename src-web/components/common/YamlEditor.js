@@ -43,6 +43,12 @@ if (window.monaco) {
   })
 }
 
+window.MonacoEnvironment = {
+  getWorkerUrl: function () {
+    return '/multicloud/editor.worker.js'
+  }
+}
+
 class IsomorphicEditor extends React.Component {
 
   static propTypes = {

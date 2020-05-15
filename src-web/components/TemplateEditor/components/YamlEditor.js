@@ -43,6 +43,12 @@ if (window.monaco) {
   })
 }
 
+window.MonacoEnvironment = {
+  getWorkerUrl: function () {
+    return '/multicloud/editor.worker.js'
+  }
+}
+
 class MonacoEditorEx extends MonacoEditor {
   constructor(props) {
     super(props)
