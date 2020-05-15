@@ -36,7 +36,7 @@ build-prod:
 	npm run build:production
 
 unit-test:
-	if [ ! -d "test-output" ]; then \
-		mkdir test-output; \
+	if [ ! -d "test-output/unit" ]; then \
+		mkdir -p test-output/unit; \
 	fi
 	npm test

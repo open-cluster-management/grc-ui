@@ -31,8 +31,8 @@ env:
 
 stages:
   - build
-  - unit-test
-  - test-e2e
+  # - unit-test
+  - test
   - publish
  
 before_script:
@@ -48,19 +48,23 @@ jobs:
         - make component/build
         - make component/push
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
-    - stage: unit-test
-      name: "Build and run unit tests"
-      script:
-        - make sonar/js/jest-init
-        - make component/test/unit
-        - make sonar/js
-    - stage: test-e2e
-      name: "Run e2e tests"
-      if: type = pull_request
+    # - stage: unit-test
+    #   name: "Build and run unit tests"
+    #   script:
+    #     - make sonar/js/jest-init
+    #     - make component/test/unit
+    #     - make sonar/js
+    - stage: test
+      name: "Run unit tests and e2e tests"
+      if: branch = master OR type = pull_request
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
+        - make sonar/js/jest-init
+        - make component/test/unit
         - make component/pull
         - make component/test/e2e
+        - npm run merge:coverage
+        - make sonar/js
     - stage: publish
       name: "Publish the image to quay with an official version/sha tag and publish entry to integration pipeline stage"
       if: type = push AND branch =~ /^release-[0-9]+\..*$/
