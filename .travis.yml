@@ -57,9 +57,6 @@ jobs:
     - stage: test
       name: "Run unit tests and e2e tests"
       if: branch = master OR type = pull_request
-      before_script:
-        - make init
-        - make e2e-clean-up
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make sonar/js/jest-init

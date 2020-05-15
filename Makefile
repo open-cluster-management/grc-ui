@@ -40,20 +40,3 @@ unit-test:
 		mkdir -p test-output/unit; \
 	fi
 	npm test
-
-e2e-clean-up:
-	@echo "Clean up managed"
-	export OC_CLUSTER_URL=$(OC_MANAGED_CLUSTER_URL)
-	export OC_CLUSTER_PASS=$(OC_MANAGED_CLUSTER_PASS)
-	make oc/login
-	oc delete pod --all -n default
-	@echo "Clean up hub"
-	export OC_CLUSTER_URL=$(OC_HUB_CLUSTER_URL)
-	export OC_CLUSTER_PASS=$(OC_HUB_CLUSTER_PASS)
-	make oc/login
-	oc project default
-	oc delete policy.policy.mcm.ibm.com --all
-	# placementbindings.mcm.ibm.com throws error when doesn't exist
-	oc delete placementbindings.mcm.ibm.com --all || true
-	oc delete placementrule --all
-	
