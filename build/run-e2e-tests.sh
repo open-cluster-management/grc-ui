@@ -8,9 +8,6 @@
 set -e
 UI_CURRENT_IMAGE=$1
 
-export OC_CLUSTER_URL=$(OC_HUB_CLUSTER_URL)
-export OC_CLUSTER_PASS=$(OC_HUB_CLUSTER_PASS)
-
 make oc/install
 
 @echo "Clean up managed"
