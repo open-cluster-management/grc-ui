@@ -26,6 +26,7 @@ export OC_CLUSTER_URL=$OC_MANAGED_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_MANAGED_CLUSTER_PASS
 make oc/login
 oc delete pod --all -n default || true
+oc delete clusterrolebinding -l e2e=true
 
 echo "Logout"
 export OC_COMMAND=logout
