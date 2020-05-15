@@ -20,8 +20,9 @@ import { Button, InlineNotification, Loading } from 'carbon-components-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Module, ModuleHeader } from 'carbon-addons-cloud-react'
-import { editResource } from '../../actions/common'
+import { editResource, updateModal } from '../../actions/common'
 import {REQUEST_STATUS} from '../../actions'
+import constants from '../../../lib/shared/constants'
 
 class PolicyTemplates extends React.Component {
 
@@ -65,7 +66,11 @@ class PolicyTemplates extends React.Component {
   }
 
   handleSubmitClick() {
-    const { editResource:localEditResource, resourceType, resourceData, resourcePath } = this.props
+    const { editResource:localEditResource, resourceType, resourceData, resourcePath, userRole, openDesModal } = this.props
+    if(!userRole || userRole === constants.ROLES.VIEWER) {
+      openDesModal('content', 'title')
+      return
+    }
     const { yaml }  = this.state
     let resource
     try {
@@ -161,18 +166,22 @@ PolicyTemplates.propTypes = {
   editResource: PropTypes.func,
   editable: PropTypes.bool,
   headerKey: PropTypes.string,
+  openDesModal: PropTypes.func,
   reqErrorMsg: PropTypes.string,
   reqStatus: PropTypes.string,
   resourceData: PropTypes.any,
   resourcePath: PropTypes.string,
   resourceType: PropTypes.object,
+  userRole: PropTypes.string,
 }
 
 const mapStateToProps = (state, ownProps) => {
   const { list: typeListName } = ownProps.resourceType
+  const userRole = state.role ? state.role.role : state.role
   return {
     reqStatus: state[typeListName].putStatus,
     reqErrorMsg: state[typeListName].putErrorMsg,
+    userRole
   }
 }
 
@@ -181,6 +190,7 @@ const mapDispatchToProps = dispatch => {
     editResource: (resourceType, namespace, name, data, selfLink, resourcePath) => {
       dispatch(editResource(resourceType, namespace, name, data, selfLink, resourcePath))
     },
+    openDesModal: (content, title) => dispatch(updateModal({ open: true, type: 'description', content: content, title: title})),
   }
 }
 
