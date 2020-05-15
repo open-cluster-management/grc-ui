@@ -32,7 +32,7 @@ env:
 stages:
   - build
   # - unit-test
-  - test-e2e
+  - test
   - publish
  
 before_script:
