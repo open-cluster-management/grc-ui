@@ -100,7 +100,6 @@ export const resourceActions = (action, dispatch, resourceType, data, hasService
     return dispatch(updateModal({ open: true, type: 'view-logs', resourceType, data }))
   }
   default:
-
+    return undefined
   }
-  return undefined
 }
