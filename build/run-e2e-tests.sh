@@ -15,8 +15,8 @@ make oc/install
 make oc/login
 oc delete pod --all -n default
 echo "Logout"
-make oc/command
 export OC_COMMAND=logout
+make oc/command
 echo "Clean up hub"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
