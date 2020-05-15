@@ -8,12 +8,12 @@
 set -e
 UI_CURRENT_IMAGE=$1
 
-@echo "Clean up managed"
+echo "Clean up managed"
 export OC_CLUSTER_URL=$(OC_MANAGED_CLUSTER_URL)
 export OC_CLUSTER_PASS=$(OC_MANAGED_CLUSTER_PASS)
 make oc/login
 oc delete pod --all -n default
-@echo "Clean up hub"
+echo "Clean up hub"
 export OC_CLUSTER_URL=$(OC_HUB_CLUSTER_URL)
 export OC_CLUSTER_PASS=$(OC_HUB_CLUSTER_PASS)
 make oc/login
