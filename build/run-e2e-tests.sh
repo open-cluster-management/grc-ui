@@ -17,12 +17,14 @@ oc delete pod --all -n default
 echo "Clean up hub"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
+echo $OC_CLUSTER_URL
+echo $OC_HUB_CLUSTER_URL
 make oc/login
 oc project default
 oc delete policy.policy.mcm.ibm.com --all
 # placementbindings.mcm.ibm.com throws error when doesn't exist
 oc delete placementbindings.mcm.ibm.com --all || true
-oc delete placementrule --all
+oc delete placementrule --all || true
 
 
 docker network create --subnet 10.10.0.0/16 test-network
