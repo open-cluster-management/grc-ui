@@ -5,9 +5,8 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************
-* Copyright (c) 2020 Red Hat, Inc.
-*/
+ *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 
 const parser = require('../utils/yamlHelper')
 
@@ -74,10 +73,13 @@ function createPolicy(browser, yaml, time) {
   this.waitForElementVisible('@table')
 }
 
-function checkViolations(name, violationExpected) {
+function checkViolations(browser, name, violationExpected) {
   this.waitForElementVisible('@searchInput')
+  browser.pause(3000)
   this.clearValue('@searchInput')
+  browser.pause(3000)
   this.setValue('@searchInput', name)
+  browser.pause(3000)
   this.click('tbody>tr>td>a')
   this.waitForElementPresent('#violation-tab')
   this.click('#violation-tab')
@@ -92,7 +94,9 @@ function checkViolations(name, violationExpected) {
 function deletePolicy(browser, name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
+  browser.pause(3000)
   this.clearValue('@searchInput')
+  browser.pause(3000)
   this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
@@ -107,18 +111,23 @@ function deletePolicy(browser, name){
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@searchInput')
-  browser.pause(5000)
+  browser.pause(3000)
   this.clearValue('@searchInput')
+  browser.pause(3000)
   this.setValue('@searchInput', name)
+  browser.pause(3000)
   this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').not.to.be.present
 }
 
-function tryEnable(name){
+function tryEnable(browser, name){
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
+  browser.pause(3000)
   this.clearValue('@searchInput')
+  browser.pause(3000)
   this.setValue('@searchInput', name)
+  browser.pause(3000)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > div:nth-child(1)').text.to.equal(name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
@@ -134,12 +143,15 @@ function tryEnable(name){
   this.clearValue('@searchInput')
 }
 
-function tryDisable(name){
+function tryDisable(browser, name){
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
+  browser.pause(3000)
   this.clearValue('@searchInput')
+  browser.pause(3000)
   this.setValue('@searchInput', name)
+  browser.pause(3000)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
@@ -151,5 +163,6 @@ function tryDisable(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#disable-resource-modal')
   this.click('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
+  browser.pause(3000)
   this.clearValue('@searchInput')
 }
