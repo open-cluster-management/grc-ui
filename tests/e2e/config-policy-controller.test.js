@@ -86,7 +86,7 @@ module.exports = {
     const kindMustHave = fs.readFileSync(path.join(__dirname, 'yaml/kind_musthave_noncompliant.yaml'))
     yaml = kindMustHave.toString()
     page.createPolicy(browser, 'policy-pod-musthave-all-' + time, yaml, time)
-    browser.pause(300000) //Wait until policy acted
+    browser.pause(120000) //Wait until policy acted
     page.checkViolations('policy-pod-musthave-all-' + time, true, 'No instances of `pods` exist as specified, and one should be created')
     page.deletePolicy('policy-pod-musthave-all-' + time)
     browser.pause(1000)
