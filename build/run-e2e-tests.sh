@@ -11,9 +11,9 @@ UI_CURRENT_IMAGE=$1
 echo "Login hub to clean up"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
+make oc/login
 export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vendor/oc whoami --show-token`
 echo "SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN"
-make oc/login
 oc delete policy.policy.mcm.ibm.com -n default --all || true
 # placementbindings.mcm.ibm.com throws error when doesn't exist
 oc delete placementbindings.mcm.ibm.com  -n default --all || true
@@ -28,14 +28,6 @@ export OC_CLUSTER_URL=$OC_MANAGED_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_MANAGED_CLUSTER_PASS
 make oc/login
 oc delete pod --all -n default || true
-# echo "Logout"
-# export OC_COMMAND=logout
-# make oc/command
-
-# echo "Login hub for e2e test"
-# export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
-# export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
-# make oc/login
 
 docker network create --subnet 10.10.0.0/16 test-network
 
