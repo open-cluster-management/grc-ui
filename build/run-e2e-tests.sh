@@ -14,11 +14,12 @@ export OC_CLUSTER_PASS=$OC_MANAGED_CLUSTER_PASS
 make oc/install
 make oc/login
 oc delete pod --all -n default
+echo "Logout"
+make oc/command
+export OC_COMMAND=logout
 echo "Clean up hub"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
-echo $OC_CLUSTER_URL
-echo $OC_HUB_CLUSTER_URL
 make oc/login
 oc project default
 oc delete policy.policy.mcm.ibm.com --all
