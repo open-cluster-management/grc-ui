@@ -17,7 +17,7 @@ const config = require('../../config')
 let page
 
 module.exports = {
-  '@disabled': true,
+  '@disabled': false,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
@@ -96,12 +96,4 @@ module.exports = {
     page.searchPolicy('policy-clusterrolebinding-delete-' + time, false)
     // page.searchPolicy('policy-namespace-delete-' + time, false)
   },
-
-
-  after: function (browser, done) {
-    setTimeout(() => {
-      browser.end()
-      done()
-    })
-  }
 }

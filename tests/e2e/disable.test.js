@@ -57,11 +57,4 @@ module.exports = {
     page.deletePolicy(browser, 'policy-pod-inform-' + time)
     page.deletePolicy(browser, 'policy-pod-' + time)
   },
-
-  // after: function (browser, done) {
-  //   setTimeout(() => {
-  //     browser.end()
-  //     done()
-  //   })
-  // }
 }
