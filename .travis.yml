@@ -57,6 +57,8 @@ jobs:
     - stage: test
       name: "Run unit tests and e2e tests"
       if: branch = master OR type = pull_request
+      before_script:
+        - make e2e-clean-up
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make sonar/js/jest-init
@@ -65,8 +67,6 @@ jobs:
         - make component/test/e2e
         - npm run merge:coverage
         - make sonar/js
-      after_script:
-        - make e2e-clean-up
     - stage: publish
       name: "Publish the image to quay with an official version/sha tag and publish entry to integration pipeline stage"
       if: type = push AND branch =~ /^release-[0-9]+\..*$/

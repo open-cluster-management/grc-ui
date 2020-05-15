@@ -46,7 +46,8 @@ e2e-clean-up:
 	make oc/login
 	oc project default
 	oc delete policy.policy.mcm.ibm.com --all
-	# oc delete placementbindings.mcm.ibm.com --all
+	# placementbindings.mcm.ibm.com throws error when doesn't exist
+	oc delete placementbindings.mcm.ibm.com --all || true
 	oc delete placementrule --all
 	@echo "Clean up managed"
 	export OC_CLUSTER_URL=$(OC_MANAGED_CLUSTER_URL)
