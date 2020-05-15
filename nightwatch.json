@@ -4,6 +4,7 @@
   ],
   "output_folder": "test-output/e2e",
   "custom_assertions_path": "",
+  "custom_commands_path": "node_modules/nightwatch-coverage/commands",
   "page_objects_path": "tests/page-objects",
   "globals_path": "tests/utils/globals.js",
   "test_settings": {
@@ -16,7 +17,7 @@
         "on_failure": true
       },
       "globals": {
-        "waitForConditionTimeout": 200000
+        "waitForConditionTimeout": 120000
       }
     },
     "remote": {

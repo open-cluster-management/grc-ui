@@ -43,7 +43,6 @@ export const HCMPolicyClusterList = createResourceReducer(resourceReducerFunctio
 export const HCMSecurityFindingsList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.HCM_SECURITY_FINDINGS))
 export const HCMClusterFindingsList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.HCM_CLUSTER_FINDINGS))
 
-// export { default as catalog } from './catalog'
 export { resourceFilters } from './filter'
 
 export function predicate(resourceType, action) {
