@@ -37,6 +37,7 @@ module.exports = {
     const inform = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_mustnothave_inform.yaml'))
     yaml = inform.toString()
     page.createPolicy(browser, yaml, time)
+    browser.pause(5000)
     page.checkViolations('policy-pod-inform-' + time, false)
 
     page.tryDisable('policy-pod-' + time)
