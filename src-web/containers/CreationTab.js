@@ -82,7 +82,10 @@ export class CreationTab extends React.Component {
             const errored = discoveries ? false : true
             const error = discoveries ? null : result.error
             if (!loading && error) {
-              const errorName = result.error.graphQLErrors[0].name ? result.error.graphQLErrors[0].name : error.name
+              const errorName =
+              (Array.isArray(result.error.graphQLErrors) && result.error.graphQLErrors[0] && result.error.graphQLErrors[0].name)
+                ? result.error.graphQLErrors[0].name
+                : error.name
               error.name = errorName
             }
             const fetchControl = {

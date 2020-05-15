@@ -58,7 +58,10 @@ class PoliciesTab extends React.Component {
             const { items } = data
             const error = items ? null : result.error
             if (error) {
-              const errorName = result.error.graphQLErrors[0].name ? result.error.graphQLErrors[0].name : error.name
+              const errorName =
+              (Array.isArray(result.error.graphQLErrors) && result.error.graphQLErrors[0] && result.error.graphQLErrors[0].name)
+                ? result.error.graphQLErrors[0].name
+                : error.name
               error.name = errorName
             }
             const firstLoad = this.firstLoad
