@@ -969,7 +969,6 @@ export function getStatusIconForPolicy(item) {
         </div>
       )
     }
-    // return msgs.get(`policy.status.${item.status.toLowerCase()}`, locale)
   }
   return '-'
 }

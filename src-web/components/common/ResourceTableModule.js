@@ -108,6 +108,7 @@ export class ResourceTableModule extends React.Component {
       resItems = lodash.pick(resItems, resIds)
       return { resourceItems: resItems, resourceIds: resIds, searchValue }
     })
+    return undefined
   }
 
   handleSort(key) {

@@ -84,10 +84,13 @@ const csrfMiddleware = csurf({
   }
 })
 
-const proxy = require('http-proxy-middleware')
-app.use(`${appConfig.get('contextPath')}/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
+function setRes(res) {
   res.setHeader(cacheControlStr, 'no-store')
   res.setHeader('Pragma', 'no-cache')
+  return res
+}
+
+function setReq(req) {
   const accessToken = req.cookies[acmAccessTokenCookieStr]
   if (req.headers.authorization) {
     req.headers.authorization = `Bearer ${accessToken}`
@@ -95,6 +98,13 @@ app.use(`${appConfig.get('contextPath')}/graphql`, cookieParser(), csrfMiddlewar
   else {
     req.headers.Authorization = `Bearer ${accessToken}`
   }
+  return req
+}
+
+const proxy = require('http-proxy-middleware')
+app.use(`${appConfig.get('contextPath')}/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
+  res = setRes(res)
+  req = setReq(req)
   next()
 }, proxy({
   target: appConfig.get('grcUiApiUrl') || 'https://localhost:4000/grcuiapi',
@@ -106,15 +116,8 @@ app.use(`${appConfig.get('contextPath')}/graphql`, cookieParser(), csrfMiddlewar
 }))
 
 app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
-  res.setHeader(cacheControlStr, 'no-store')
-  res.setHeader('Pragma', 'no-cache')
-  const accessToken = req.cookies[acmAccessTokenCookieStr]
-  if (req.headers.authorization) {
-    req.headers.authorization = `Bearer ${accessToken}`
-  }
-  else {
-    req.headers.Authorization = `Bearer ${accessToken}`
-  }
+  res = setRes(res)
+  req = setReq(req)
   next()
 }, proxy({
   // TODO - use flag while ironing out the chart changes

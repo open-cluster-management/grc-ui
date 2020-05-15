@@ -62,10 +62,8 @@ const FilterSection = ({ section: {name, filters, isExpanded, onExpand}, locale 
   // show more/or less
   const count = filters.length-SHOW_MORE-2
   const showMoreOrLess = count>0
-  if (showMoreOrLess) {
-    if (!isExpanded) {
-      filters = filters.slice(0, SHOW_MORE)
-    }
+  if (showMoreOrLess && !isExpanded) {
+    filters = filters.slice(0, SHOW_MORE)
   }
 
   return (

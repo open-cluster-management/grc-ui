@@ -263,10 +263,9 @@ export class GrcView extends React.Component {
       activeSet = activeFilters[type]
       activeSet.add(level)
     }
-    if (activeSet && activeSet.size > 0) {
-      if(replaceGrcState && localUpdateActiveFilters) {
-        replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
-        localUpdateActiveFilters(activeFilters)}
+    if (activeSet && activeSet.size > 0 && replaceGrcState && localUpdateActiveFilters) {
+      replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
+      localUpdateActiveFilters(activeFilters)
     }
 
     //step 2 update url when click GrcCardsModule
