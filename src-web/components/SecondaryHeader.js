@@ -169,6 +169,7 @@ export class SecondaryHeader extends React.Component {
       if (index !== 0) {
         return location.pathname.startsWith(tab.url)
       }
+      return undefined
     })
     return selectedTab[0] && selectedTab[0].index
   }

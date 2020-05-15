@@ -108,9 +108,8 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
           else {
             finalURL = `${finalURL}?tags=${paramString}`
           }
-        } else if (history) {
-          if(otherFilters && otherFilters !== ''){
-            finalURL = `${finalURL}?${otherFilters}`}
+        } else if (history && otherFilters && otherFilters !== '') {
+          finalURL = `${finalURL}?${otherFilters}`
         }
       } else if (typeof inputs === 'string') {
         if (inputs !== '') {

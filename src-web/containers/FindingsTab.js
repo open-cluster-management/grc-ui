@@ -96,6 +96,7 @@ export class FindingsTab extends React.Component {
           }
           return finding['securityClassification']
         }
+        return undefined
       })
     }
     return findings

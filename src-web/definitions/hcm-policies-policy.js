@@ -94,5 +94,6 @@ export function createComplianceLink(item = {}, ...param){
       return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
     }
   }
+  return undefined
 }
 

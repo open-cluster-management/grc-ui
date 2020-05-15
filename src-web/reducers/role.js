@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 import {
   ROLE_RECEIVE_SUCCESS,
   ROLE_RECEIVE_FAILURE,
@@ -26,4 +27,5 @@ export const role = (state = null, action) => {
       return state
     }
   }
+  return undefined
 }

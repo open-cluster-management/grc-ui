@@ -144,6 +144,7 @@ class StructuredListModule extends React.Component {
                       )
                     }
                   }
+                  return undefined
                 })
               })()}
             </TableBody>

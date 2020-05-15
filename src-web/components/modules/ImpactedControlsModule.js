@@ -323,10 +323,8 @@ class ImpactedControlsModule extends React.Component {
           window.removeEventListener('keydown', openedTooltipLink)
           openedTooltipLink.addEventListener('keydown', (e)=>{
             const evt = e || window.event
-            if (evt.key === 'Enter' || evt.keyCode === 13) {
-              if (this.props.history && this.props.location) {
-                this.openTooltipLink(openedTooltipLink.getAttribute('link'))
-              }
+            if ((evt.key === 'Enter' || evt.keyCode === 13) && this.props.history && this.props.location) {
+              this.openTooltipLink(openedTooltipLink.getAttribute('link'))
             }
           })
           //open drill down link by mouse click
@@ -622,16 +620,14 @@ class ImpactedControlsModule extends React.Component {
 
     // adjust selections based on filter bar
     const selectionData = ['ALL', ...Array.from(availableStandards)]
-    if (filteredStandards.size!==0) {
-      // if current choice isn't available, change to first avaiable choice
-      if (!filteredStandards.has(standardsChoice)) {
-        // if only one choice, make that the selection
-        if (filteredStandards.size===1) {
-          standardsChoice = Array.from(filteredStandards)[0]
-        } else {
-          // else use all
-          standardsChoice = 'ALL'
-        }
+    // if current choice isn't available, change to first avaiable choice
+    if (filteredStandards.size!==0 && !filteredStandards.has(standardsChoice)) {
+      // if only one choice, make that the selection
+      if (filteredStandards.size===1) {
+        standardsChoice = Array.from(filteredStandards)[0]
+      } else {
+        // else use all
+        standardsChoice = 'ALL'
       }
     }
 

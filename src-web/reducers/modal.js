@@ -68,4 +68,5 @@ export const modal = (state = {}, action) => {
       return state
     }
   }
+  return undefined
 }

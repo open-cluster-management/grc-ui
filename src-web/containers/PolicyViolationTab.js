@@ -26,7 +26,6 @@ import resources from '../../lib/shared/resources'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
 import { HCMPolicyViolations } from '../../lib/client/queries'
-// import { getTabs } from '../../lib/client/resource-helper'
 import NoResource from '../components/common/NoResource'
 
 resources(() => {
