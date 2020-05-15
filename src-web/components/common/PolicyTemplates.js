@@ -67,8 +67,9 @@ class PolicyTemplates extends React.Component {
 
   handleSubmitClick() {
     const { editResource:localEditResource, resourceType, resourceData, resourcePath, userRole, openDesModal } = this.props
+    // prevent undefined/viewer userRole to update policies
     if(!userRole || userRole === constants.ROLES.VIEWER) {
-      openDesModal('content', 'title')
+      openDesModal(msgs.get('error.permission.denied.edit', this.context.locale))
       return
     }
     const { yaml }  = this.state
