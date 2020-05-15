@@ -74,7 +74,7 @@ module.exports = {
     page.checkViolations('policy-clusterrolebinding-delete-' + time, false)
     page.deletePolicy('policy-clusterrolebinding-delete-' + time)
 
-    browser.pause(120000) // Wait for iam policy to detect change 120s
+    browser.pause(60000) // Wait for iam policy to detect change 120s
     page.checkViolations('policy-iampolicy-' + time, false)
   },
 
@@ -91,9 +91,9 @@ module.exports = {
     // browser.pause(1000)
 
     // page.searchPolicy('policy-namespace-create-' + time, false)
-    page.searchPolicy('policy-iampolicy-' + time, false)
-    page.searchPolicy('policy-clusterrolebinding-test-' + time, false)
-    page.searchPolicy('policy-clusterrolebinding-delete-' + time, false)
+    // page.searchPolicy('policy-iampolicy-' + time, false)
+    // page.searchPolicy('policy-clusterrolebinding-test-' + time, false)
+    // page.searchPolicy('policy-clusterrolebinding-delete-' + time, false)
     // page.searchPolicy('policy-namespace-delete-' + time, false)
   },
 }
