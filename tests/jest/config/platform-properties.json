@@ -94,7 +94,6 @@
   "error.load.topology": "Load topology failure",
   "error.permission.denied": "You do not have permission to show policies for this namespace",
   "error.permission.denied.create": "You do not have permission to create policies in this namespace",
-  "error.permission.denied.edit": "You do not have permission to edit policies",
   "error.create.policy": "Create error:",
   "error.create.policy.exceptions": "The policy yaml has exceptions",
   "error.create.policy.noname": "Missing name",
