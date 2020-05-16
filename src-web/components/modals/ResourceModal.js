@@ -100,7 +100,28 @@ export class ResourceModal extends React.PureComponent {
 
   componentDidMount() {
     this.resourceModal && this.resourceModal.focus()
+    window.addEventListener('resize',  this.layoutEditors.bind(this))
   }
+
+  setContainerRef = container => {
+    this.containerRef = container
+    this.layoutEditors()
+  }
+
+  setEditor = (editor) => {
+    this.editor=editor
+    this.layoutEditors()
+  }
+
+  layoutEditors() {
+    if (this.containerRef && this.editor) {
+      const rect = this.containerRef.getBoundingClientRect()
+      const width = rect.width
+      const height = rect.height
+      this.editor.layout({width, height})
+    }
+  }
+
 
   render() {
     const { reqCount, open, label, locale, resourceType } = this.props
@@ -144,13 +165,16 @@ export class ResourceModal extends React.PureComponent {
               kind='error' title=''
               subtitle={reqErrorMsg}
               iconDescription={msgs.get('svg.description.error', locale)} />}*/}
-            <YamlEditor
-              width={'50vw'}
-              height={'40vh'}
-              readOnly={false}
-              onYamlChange={this.onChange}
-              yaml={this.state && this.state.data}
-            />
+            <div className='yamlEditorContainerContainer' ref={this.setContainerRef} >
+              <YamlEditor
+                width={'50vw'}
+                height={'40vh'}
+                readOnly={false}
+                setEditor={this.setEditor}
+                onYamlChange={this.onChange}
+                yaml={this.state && this.state.data}
+              />
+            </div>
           </div>
         </Modal>
       </div>

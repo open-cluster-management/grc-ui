@@ -27,6 +27,7 @@ import {
 import { initializeControlData, cacheUserData, updateControls, parseYAML } from './utils/update-controls'
 import { generateYAML, highlightChanges, getUniqueName } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
+import EditorHeader from './components/EditorHeader'
 import EditorBar from './components/EditorBar'
 import YamlEditor from './components/YamlEditor'
 import './scss/template-editor.scss'
@@ -106,23 +107,20 @@ export default class TemplateEditor extends React.Component {
       updateMessage: '',
       hasUndo: false,
       hasRedo: false,
+      resetInx: 0,
     }
     this.multiSelectCmpMap = {}
-    this.layoutEditorsDebounced = _.debounce(() => {
-      this.layoutEditors()
-    }, 150)
     this.parseDebounced = _.debounce(()=>{
       this.handleParse()
     }, 500)
     this.handleEditorCommand = this.handleEditorCommand.bind(this)
     this.handleSearchChange = this.handleSearchChange.bind(this)
-    this.gotoEditorLine = this.gotoEditorLine.bind(this)
     const { type='unknown' } = this.props
     this.splitterSizeCookie = `TEMPLATE-EDITOR-SPLITTER-SIZE-${type.toUpperCase()}`
   }
 
-  componentWillMount() {
-    this.resetEditor()
+  componentDidMount() {
+    window.addEventListener('resize',  this.layoutEditors.bind(this))
   }
 
   setSplitPaneRef = splitPane => (this.splitPane = splitPane);
@@ -144,7 +142,7 @@ export default class TemplateEditor extends React.Component {
 
   handleSplitterChange = size => {
     localStorage.setItem(this.splitterSizeCookie, size)
-    this.layoutEditorsDebounced()
+    this.layoutEditors()
   };
 
   setContainerRef = container => {
@@ -311,6 +309,7 @@ export default class TemplateEditor extends React.Component {
             invalid={invalid}
             hideLabel
             labelText=''
+            spellCheck={false}
             value={value}
             onChange={this.onChange.bind(this, id)} />
         </div>
@@ -435,25 +434,20 @@ export default class TemplateEditor extends React.Component {
   renderEditor() {
     const { locale } = this.context
     const { templateYAML, hasUndo, hasRedo, exceptions } = this.state
-    const editorToolbarTitle = msgs.get('editor.toolbar', this.context.locale)
-
     return (
       <div className='creation-view-yaml' >
-        <div className='creation-view-yaml-header' >
-          <div className='creation-view-yaml-header-title'>
-            {msgs.get('creation.view.yaml', locale)}
-          </div>
-          <div className='creation-view-yaml-header-toolbar' role='region' aria-label={editorToolbarTitle} id={editorToolbarTitle}>
-            <EditorBar
-              hasUndo={hasUndo}
-              hasRedo={hasRedo}
-              exceptions={exceptions}
-              gotoEditorLine={this.gotoEditorLine}
-              handleEditorCommand={this.handleEditorCommand}
-              handleSearchChange={this.handleSearchChange}
-            />
-          </div>
-        </div>
+        <EditorHeader
+          locale={locale}
+        >
+          <EditorBar
+            hasUndo={hasUndo}
+            hasRedo={hasRedo}
+            exceptions={exceptions}
+            gotoEditorLine={this.gotoEditorLine}
+            handleEditorCommand={this.handleEditorCommand}
+            handleSearchChange={this.handleSearchChange}
+          />
+        </EditorHeader>
         <YamlEditor
           width={'100%'}
           height={'100%'}
@@ -547,47 +541,22 @@ export default class TemplateEditor extends React.Component {
   setEditor = (editor) => {
     this.editor = editor
     this.layoutEditors()
-    this.selectTextLine = this.selectTextLine.bind(this)
-    this.selectAfterRender = true
-    this.editor.renderer.on('afterRender', this.selectTextLine)
-    this.editor.on('input', () => {
-      const undoManager = this.editor.session.getUndoManager()
-      if (this.resetUndoManager) {
-        delete this.resetUndoManager
-        undoManager.reset()
-      }
-      const hasUndo = undoManager.hasUndo()
-      const hasRedo = undoManager.hasRedo()
+    editor.onDidChangeModelContent(() => {
+      const model = editor.getModel()
+      const hasUndo = model.canUndo()
+      const hasRedo = model.canRedo()
       this.setState({hasUndo, hasRedo})
     })
   }
 
   layoutEditors() {
-    if (this.editor) {
-      this.editor.resize()
-      this.editor.setAnimatedScroll(false)
-      const cursor = this.editor.selection.getCursor()
-      this.editor.scrollToLine(cursor.row, true)
+    if (this.containerRef && this.editor) {
+      const controlsSize = this.handleSplitterDefault()
+      const rect = this.containerRef.getBoundingClientRect()
+      const width = rect.width - controlsSize - 15
+      const height = rect.height - 80
+      this.editor.layout({width, height})
     }
-  }
-
-
-  // select text editor line associated with selected node/link
-  selectTextLine() {
-    if (this.editor && this.selectAfterRende) {
-      this.editor.scrollToLine(0)
-      this.editor.selection.moveCursorToPosition({row: 0, column: 0})
-      this.editor.renderer.off('afterRender', this.selectTextLine)
-      delete this.selectAfterRender
-    }
-  }
-
-  gotoEditorLine(line) {
-    this.editor.renderer.STEPS = 25
-    this.editor.setAnimatedScroll(true)
-    this.editor.scrollToLine(line, true)
-    this.editor.selection.moveCursorToPosition({row: line, column: 0})
-    this.editor.selection.selectLine()
   }
 
   // text editor commands
@@ -595,42 +564,36 @@ export default class TemplateEditor extends React.Component {
     switch (command) {
     case 'next':
     case 'previous':
-      if (this.selectionIndex !== -1 && this.selectionRanges && this.selectionRanges.length > 1) {
+      if (this.selectionIndex !== -1 && this.selection && this.selection.length > 1) {
         switch (command) {
         case 'next':
           this.selectionIndex++
-          if (this.selectionIndex>=this.selectionRanges.length) {
+          if (this.selectionIndex>=this.selection.length) {
             this.selectionIndex = 0
           }
           break
         case 'previous':
           this.selectionIndex--
           if (this.selectionIndex<0) {
-            this.selectionIndex = this.selectionRanges.length-1
+            this.selectionIndex = this.selection.length-1
           }
           break
         }
-        const range = this.selectionRanges[this.selectionIndex]
-        this.editor.selection.setRange(range, true)
-        this.editor.scrollToLine(range.start.row, true)
+        this.editor.revealLineInCenter(this.selections[this.selectionIndex].selectionStartLineNumber, 0)
       }
       break
     case 'undo':
       if (this.editor) {
-        this.editor.undo()
+        this.editor.trigger('api', 'undo')
       }
       break
     case 'redo':
       if (this.editor) {
-        this.editor.redo()
+        this.editor.trigger('api', 'redo')
       }
       break
     case 'restore':
       this.resetEditor()
-      break
-    case 'update':
-      //where is defined?
-      this.updateResources()
       break
     case 'close':
       this.closeEdit()
@@ -647,17 +610,27 @@ export default class TemplateEditor extends React.Component {
 
   handleSearchChange(searchName) {
     if (searchName.length>1 || this.nameSearchMode) {
-      this.editor.exitMultiSelectMode()
       if (searchName) {
-        const found = this.editor.findAll(searchName)
-        if (found>0) {
-          const {start: {row}} = this.editor.getSelectionRange()
-          this.editor.setAnimatedScroll(true)
-          this.editor.scrollToLine(row, true)
-          this.selectionRanges = this.editor.selection.getAllRanges()
-          this.selectionIndex = 0
+        const found = this.editor.getModel().findMatches(searchName)
+        if (found.length>0) {
+          this.selections = found.map(({range})=>{
+            const {endColumn, endLineNumber, startColumn, startLineNumber} = range
+            return  {
+              positionColumn:endColumn,
+              positionLineNumber:endLineNumber,
+              selectionStartColumn:startColumn,
+              selectionStartLineNumber:startLineNumber
+            }
+          })
+          this.editor.setSelections(this.selections)
+          this.editor.revealLineInCenter(this.selections[0].selectionStartLineNumber, 0)
+          this.selectionIndex = 1
+        } else {
+          this.selections = null
+          this.selectionIndex = -1
         }
       } else {
+        this.selections = null
         this.selectionIndex = -1
       }
       this.nameSearch = searchName
@@ -667,7 +640,6 @@ export default class TemplateEditor extends React.Component {
 
   handleEditorChange = (templateYAML) => {
     this.setState({templateYAML})
-    delete this.resetUndoManager
     this.parseDebounced()
   }
 
@@ -681,7 +653,27 @@ export default class TemplateEditor extends React.Component {
 
     // update editor annotations
     if (this.editor) {
-      this.editor.session.setAnnotations(exceptions)
+      const decorationList = []
+      exceptions.forEach(({row, text})=>{
+        decorationList.push({
+          range: new this.editor.monaco.Range(row, 0, row, 132),
+          options: {
+            isWholeLine: true,
+            glyphMarginClassName: 'errorDecoration',
+            glyphMarginHoverMessage: {value: text},
+            minimap: {color: 'red' , position:1}
+          }
+        })
+      })
+      exceptions.forEach(({row, column})=>{
+        decorationList.push({
+          range: new this.editor.monaco.Range(row, column-6, row, column+6),
+          options: {
+            className: 'squiggly-error',
+          }
+        })
+      })
+      this.editor.decorations = this.editor.deltaDecorations(this.editor.decorations, decorationList)
     }
 
     // if no exceptions, update controlData based on custom editing
@@ -811,11 +803,11 @@ export default class TemplateEditor extends React.Component {
   }
 
   resetEditor() {
+    const {resetInx} = this.state
     const { template, controlData: initialControlData } = this.props
     const controlData = initializeControlData(template, initialControlData)
     const templateYAML = generateYAML(template, controlData)
     const templateObject = parseYAML(templateYAML).parsed
-    this.setState({ controlData, templateYAML, templateObject, exceptions:[], hasUndo: false, hasRedo: false})
-    this.resetUndoManager = true
+    this.setState({ controlData, templateYAML, templateObject, exceptions:[], hasUndo: false, hasRedo: false, resetInx:resetInx+1})
   }
 }

@@ -44,6 +44,29 @@ class PolicyTemplates extends React.Component {
     }
   }
 
+  componentDidMount() {
+    window.addEventListener('resize',  this.layoutEditors.bind(this))
+  }
+
+  setContainerRef = container => {
+    this.containerRef = container
+    this.layoutEditors()
+  }
+
+  setEditor = (editor) => {
+    this.editor=editor
+    this.layoutEditors()
+  }
+
+  layoutEditors() {
+    if (this.containerRef && this.editor) {
+      const rect = this.containerRef.getBoundingClientRect()
+      const width = rect.width
+      const height = rect.height
+      this.editor.layout({width, height})
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.ERROR && (this.state.reqStatus !== nextProps.reqStatus)) {
       this.setState({
@@ -146,12 +169,15 @@ class PolicyTemplates extends React.Component {
           onCloseButtonClick={this.handleRequestNotificationClosed}
         />
         }
-        <YamlEditor
-          width={'100%'}
-          height={'100%'}
-          readOnly={this.state.readOnly}
-          onYamlChange={this.handleEditorChange}
-          yaml={this.state.yaml} />
+        <div className='yamlEditorContainerContainer' ref={this.setContainerRef} >
+          <YamlEditor
+            width={'100%'}
+            height={'100%'}
+            setEditor={this.setEditor}
+            readOnly={this.state.readOnly}
+            onYamlChange={this.handleEditorChange}
+            yaml={this.state.yaml} />
+        </div>
         {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading />}
       </Module>
     )

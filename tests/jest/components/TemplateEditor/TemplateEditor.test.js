@@ -25,83 +25,224 @@ const Portals = Object.freeze({
 
 const controlData = [
   {
-    name: 'creation.view.policy.name',
-    id: 'name',
-    type: 'text',
-    active: 'policy-grc',
-    reverse: 'Policy[0].metadata.name',
-    mustExist: true,
-  },
-  {
-    id: 'namespace',
-    type: 'singleselect',   // don't prompt for namespace--use configuration
-    active: 'mcm',
-    reverse: 'Policy[0].metadata.namespace',
-    mustExist: true,
-  },
-  {
-    name: 'creation.view.policy.specs',
-    description: 'policy.create.specs.tooltip',
-    prompt: 'creation.view.policy.select.specs',
-    id: 'specs',
-    type: 'multiselect',
-    available: [],
-    isOneSelection: true, // close dropdown on one selection--otherwise dropdown stays open
-    updateNamePrefix: 'policy-', // if user hasn't typed in a custom name, update name using this selection
-    reverse: [
-      'Policy[0].spec.role-templates',
-      'Policy[0].spec.object-templates',
-      'Policy[0].spec.policy-templates'
+    'name': 'Name',
+    'id': 'name',
+    'type': 'text',
+    'active': 'policy-certificatepolicy-1',
+    'reverse': [
+      'Policy[0].$raw.metadata.name'
     ],
-    mustExist: true,
+    'mustExist': true,
+    'existing': [
+      'policy-certificatepolicy',
+      'policy-grc-rbactest',
+      'policy-iampolicy',
+      'policy-iampolicy-1',
+      'policy-pod',
+      'policy-rolebinding-test',
+      'policy-trustednode'
+    ]
   },
   {
-    name: 'creation.view.policy.binding',
-    description: 'policy.create.selectors.tooltip',
-    prompt: 'creation.view.policy.select.selectors',
-    id: 'clusters',
-    type: 'multiselect',
-    available: [],
-    reverse: 'PlacementPolicy[0].spec.clusterLabels', // automatically does matchLabels && matchExpressions
-    mustExist: true,
+    'name': 'Namespace',
+    'id': 'namespace',
+    'type': 'singleselect',
+    'description': 'The namespace to create and store the policy on the hub cluster.',
+    'available': [
+      'blah',
+      'default',
+      'governance',
+      'hive'
+    ],
+    'reverse': [
+      'Policy[0].$raw.metadata.namespace'
+    ],
+    'mustExist': true,
+    'active': 'governance'
   },
   {
-    name: 'creation.view.policy.standards',
-    description: 'policy.create.standards.tooltip',
-    prompt: 'creation.view.policy.select.standards',
-    id: 'standards',
-    type: 'multiselect',
-    available: ['NIST', 'PCI', 'FISMA', 'HIPAA'],
-    reverse: 'Policy[0].metadata.annotations["policy.mcm.ibm.com/standards"]'
+    'name': 'Specifications',
+    'description': 'The parameter section that describes which set of rules will validate a cluster.',
+    'placeholder': 'Begin typing to search for label to select',
+    'id': 'specs',
+    'type': 'multiselect',
+    'available': [
+      'CertificatePolicy - cert management expiration',
+      'IamPolicy - limit clusteradminrole and report violation',
+      'ImageManifestVulnPolicy - detect image vulnerabilities',
+      'LimitRange - limit memory usage',
+      'Namespace - must have namespace \'prod\'',
+      'Pod - nginx pod must exist',
+      'PodSecurityPolicy - no privileged pods',
+      'Role - role must follow defined permissions',
+      'RoleBinding - role binding must exist',
+      'SecurityContextConstraints - restricted scc'
+    ],
+    'isOneSelection': true,
+    'updateNamePrefix': 'policy-',
+    'reverse': [
+      'Policy[0].$raw.spec.role-templates',
+      'Policy[0].$raw.spec.object-templates',
+      'Policy[0].$raw.spec.policy-templates'
+    ],
+    'mustExist': true,
+    'availableMap': {
+      'CertificatePolicy - cert management expiration': {
+        'name': 'CertificatePolicy',
+        'description': 'cert management expiration',
+        'multiselect': 'specs',
+        'replacements': {
+          'standards': 'NIST-CSF\n',
+          'categories': 'PR.DS DataSecurity\n',
+          'controls': 'PR.DS-2 Data-in-transit\n',
+          'policyTemplates': '- objectDefinition:\n    apiVersion: policies.ibm.com/v1alpha1\n    kind: CertificatePolicy # cert management expiration\n    metadata:\n      name: {{name}}-example\n    spec:\n      namespaceSelector:\n        include: ["default"]\n        exclude: []\n      remediationAction: inform\n      severity: low\n      minimumDuration: 300h\n'
+        }
+      }
+    },
+    'hasReplacements': true,
+    'active': [
+      'CertificatePolicy - cert management expiration'
+    ]
   },
   {
-    name: 'creation.view.policy.categories',
-    description: 'policy.create.categories.tooltip',
-    prompt: 'creation.view.policy.select.categories',
-    id: 'categories',
-    type: 'multiselect',
-    available: ['SystemAndCommunicationsProtections','SystemAndInformationIntegrity'],
-    reverse: 'Policy[0].metadata.annotations["policy.mcm.ibm.com/categories"]'
+    'name': 'Cluster binding',
+    'description': 'Fill the required parameter field to select the cluster where your policy is applied. The placement policy and placement binding are required, and added into the YAML file.',
+    'placeholder': 'Begin typing to search for label to select',
+    'id': 'clusters',
+    'type': 'multiselect',
+    'available': [
+      'cloud: "Amazon"',
+      'vendor: "OpenShift"',
+      'name: "calamari"'
+    ],
+    'reverse': [
+      'PlacementRule[0].$raw.spec.clusterSelector'
+    ],
+    'mustExist': false,
+    'availableMap': {
+      'cloud: "Amazon"': {
+        'key': 'cloud',
+        'value': 'Amazon'
+      },
+      'name: "calamari"': {
+        'key': 'name',
+        'value': 'calamari'
+      },
+      'vendor: "OpenShift"': {
+        'key': 'vendor',
+        'value': 'OpenShift'
+      }
+    },
+    'hasLabels': true,
+    'active': [
+      'cloud: "Amazon"'
+    ]
   },
   {
-    name: 'creation.view.policy.controls',
-    description: 'policy.create.controls.tooltip',
-    prompt: 'creation.view.policy.select.controls',
-    id: 'controls',
-    type: 'multiselect',
-    available: ['MutationAdvisor','VulnerbilityAdvisor','SecretEncryption'],
-    reverse: 'Policy[0].metadata.annotations["policy.mcm.ibm.com/controls"]'
+    'name': 'Standards',
+    'description': 'The name or names of security standards your policy should validate. You can only create a new label by adding it directly into the YAML file.',
+    'placeholder': 'Begin typing to search for label to select',
+    'id': 'standards',
+    'type': 'multiselect',
+    'available': [
+      'NIST',
+      'PCI',
+      'FISMA',
+      'HIPAA',
+      'NIST-CSF'
+    ],
+    'reverse': [
+      'Policy[0].$raw.metadata.annotations["policy.mcm.ibm.com/standards"]'
+    ],
+    'cacheUserValueKey': 'create.policy.standards',
+    'wasSet': [
+      'CertificatePolicy - cert management expiration'
+    ],
+    'active': [
+      'NIST-CSF'
+    ]
   },
   {
-    name: 'creation.view.policy.enforce',
-    description: 'policy.create.enforce.tooltip',
-    id: 'enforce',
-    type: 'checkbox',
-    active: 'inform',
-    available: ['inform', 'enforce'],  // in template, 'inform'===checkbox unchecked
-    reverse: 'Policy[0].spec.remediationAction',
-    mustExist: true,
+    'name': 'Categories',
+    'description': 'A security control category represent specific requirements for one or more standards. You can only create a new label by adding it directly into the YAML file.',
+    'placeholder': 'Begin typing to search for label to select',
+    'id': 'categories',
+    'type': 'multiselect',
+    'available': [
+      'PR.PT Protective Technology',
+      'PR.DS DataSecurity',
+      'PR.AC Identity Management Authentication and Access Control',
+      'PR.IP Information Protection Processes and Procedures',
+      'DE.CM Security Continuous Monitoring'
+    ],
+    'reverse': [
+      'Policy[0].$raw.metadata.annotations["policy.mcm.ibm.com/categories"]'
+    ],
+    'cacheUserValueKey': 'create.policy.categories',
+    'wasSet': [
+      'CertificatePolicy - cert management expiration'
+    ],
+    'active': [
+      'PR.DS DataSecurity'
+    ]
   },
+  {
+    'name': 'Controls',
+    'description': 'The control contains the instructions for ensuring that a policy meets the security requirements for one or more standards. You can only create a new label by adding it directly into the YAML file.',
+    'placeholder': 'Begin typing to search for label to select',
+    'id': 'controls',
+    'type': 'multiselect',
+    'available': [
+      'PR.PT-1 Audit Logging',
+      'PR.PT-3 Least Functionality',
+      'PR.DS-2 Data-in-transit',
+      'PR.DS-2 Data-at-rest',
+      'PR.AC-4 Access Control',
+      'PR.AC-5 Network Integrity',
+      'PR.IP-1 Baseline configuration',
+      'DE.CM-7 Monitoring for unauthorized activity',
+      'DE.CM-8 Vulnerability scans'
+    ],
+    'reverse': [
+      'Policy[0].$raw.metadata.annotations["policy.mcm.ibm.com/controls"]'
+    ],
+    'cacheUserValueKey': 'create.policy.controls',
+    'wasSet': [
+      'CertificatePolicy - cert management expiration'
+    ],
+    'active': [
+      'PR.DS-2 Data-in-transit'
+    ]
+  },
+  {
+    'name': 'Enforce if supported',
+    'description': 'Select Enforce, if the feature is supported for your policy, to update remediationAction. When Enforce is not selected, the parameter value for remediationAction is inform.',
+    'id': 'enforce',
+    'type': 'checkbox',
+    'active': false,
+    'available': [
+      'inform',
+      'enforce'
+    ],
+    'reverse': [
+      'Policy[0].$raw.spec.remediationAction'
+    ],
+    'mustExist': true
+  },
+  {
+    'name': 'Disable policy',
+    'description': 'Select to disable the policy from being propagated to the managed cluster. If selected, the policy can be re-enabled from the dropdown menu in the policies table.',
+    'id': 'disabled',
+    'type': 'checkbox',
+    'active': false,
+    'available': [
+      'false',
+      'true'
+    ],
+    'reverse': [
+      'Policy[0].$raw.spec.disabled'
+    ]
+  }
 ]
 
 

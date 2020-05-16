@@ -55,7 +55,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
               <div
                 className="creation-view-controls-textbox-title"
               >
-                creation.view.policy.name
+                Name
                 <div
                   className="creation-view-controls-must-exist"
                 >
@@ -72,8 +72,9 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   onChange={[Function]}
                   onClick={[Function]}
                   placeholder={undefined}
+                  spellCheck={false}
                   type="text"
-                  value="policy-grc"
+                  value="policy-certificatepolicy-1"
                 />
               </div>
             </div>
@@ -83,6 +84,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
               <div
                 className="creation-view-controls-multiselect-title"
               >
+                Namespace
                 <div
                   className="creation-view-controls-must-exist"
                 >
@@ -92,7 +94,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   className="bx--tooltip-icon"
                 >
                   <button
-                    aria-label={undefined}
+                    aria-label="The namespace to create and store the policy on the hub cluster."
                     className="bx--tooltip__trigger bx--tooltip--icon__top"
                   >
                     <svg
@@ -133,7 +135,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     className="bx--list-box__label"
                     htmlFor="downshift-0-input"
                   >
-                    mcm
+                    governance
                   </span>
                   <div
                     className="bx--list-box__menu-icon"
@@ -169,7 +171,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
               <div
                 className="creation-view-controls-multiselect-title"
               >
-                creation.view.policy.specs
+                Specifications
                 <div
                   className="creation-view-controls-must-exist"
                 >
@@ -179,7 +181,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   className="bx--tooltip-icon"
                 >
                   <button
-                    aria-label="policy.create.specs.tooltip"
+                    aria-label="The parameter section that describes which set of rules will validate a cluster."
                     className="bx--tooltip__trigger bx--tooltip--icon__top"
                   >
                     <svg
@@ -216,6 +218,37 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex="0"
                   type="button"
                 >
+                  <div
+                    className="bx--list-box__selection bx--list-box__selection--multi"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex="0"
+                    title="Clear all selected items"
+                  >
+                    1
+                    <svg
+                      alt="Clear all selected items"
+                      aria-label="Clear all selected items"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="10"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 10"
+                      width="10"
+                    >
+                      <title>
+                        Clear all selected items
+                      </title>
+                      <path
+                        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                      />
+                    </svg>
+                  </div>
                   <input
                     aria-activedescendant={null}
                     aria-autocomplete="list"
@@ -227,7 +260,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
-                    placeholder={undefined}
+                    placeholder="CertificatePolicy"
                     role="combobox"
                     value=""
                   />
@@ -266,17 +299,12 @@ exports[`TemplateEditor component renders as expected 1`] = `
               <div
                 className="creation-view-controls-multiselect-title"
               >
-                creation.view.policy.binding
-                <div
-                  className="creation-view-controls-must-exist"
-                >
-                  *
-                </div>
+                Cluster binding
                 <div
                   className="bx--tooltip-icon"
                 >
                   <button
-                    aria-label="policy.create.selectors.tooltip"
+                    aria-label="Fill the required parameter field to select the cluster where your policy is applied. The placement policy and placement binding are required, and added into the YAML file."
                     className="bx--tooltip__trigger bx--tooltip--icon__top"
                   >
                     <svg
@@ -313,6 +341,37 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex="0"
                   type="button"
                 >
+                  <div
+                    className="bx--list-box__selection bx--list-box__selection--multi"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex="0"
+                    title="Clear all selected items"
+                  >
+                    1
+                    <svg
+                      alt="Clear all selected items"
+                      aria-label="Clear all selected items"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="10"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 10"
+                      width="10"
+                    >
+                      <title>
+                        Clear all selected items
+                      </title>
+                      <path
+                        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                      />
+                    </svg>
+                  </div>
                   <input
                     aria-activedescendant={null}
                     aria-autocomplete="list"
@@ -324,7 +383,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
-                    placeholder={undefined}
+                    placeholder="cloud: \\"Amazon\\""
                     role="combobox"
                     value=""
                   />
@@ -363,12 +422,12 @@ exports[`TemplateEditor component renders as expected 1`] = `
               <div
                 className="creation-view-controls-multiselect-title"
               >
-                creation.view.policy.standards
+                Standards
                 <div
                   className="bx--tooltip-icon"
                 >
                   <button
-                    aria-label="policy.create.standards.tooltip"
+                    aria-label="The name or names of security standards your policy should validate. You can only create a new label by adding it directly into the YAML file."
                     className="bx--tooltip__trigger bx--tooltip--icon__top"
                   >
                     <svg
@@ -405,6 +464,37 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex="0"
                   type="button"
                 >
+                  <div
+                    className="bx--list-box__selection bx--list-box__selection--multi"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex="0"
+                    title="Clear all selected items"
+                  >
+                    1
+                    <svg
+                      alt="Clear all selected items"
+                      aria-label="Clear all selected items"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="10"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 10"
+                      width="10"
+                    >
+                      <title>
+                        Clear all selected items
+                      </title>
+                      <path
+                        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                      />
+                    </svg>
+                  </div>
                   <input
                     aria-activedescendant={null}
                     aria-autocomplete="list"
@@ -416,7 +506,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
-                    placeholder={undefined}
+                    placeholder="NIST-CSF"
                     role="combobox"
                     value=""
                   />
@@ -455,12 +545,12 @@ exports[`TemplateEditor component renders as expected 1`] = `
               <div
                 className="creation-view-controls-multiselect-title"
               >
-                creation.view.policy.categories
+                Categories
                 <div
                   className="bx--tooltip-icon"
                 >
                   <button
-                    aria-label="policy.create.categories.tooltip"
+                    aria-label="A security control category represent specific requirements for one or more standards. You can only create a new label by adding it directly into the YAML file."
                     className="bx--tooltip__trigger bx--tooltip--icon__top"
                   >
                     <svg
@@ -497,6 +587,37 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex="0"
                   type="button"
                 >
+                  <div
+                    className="bx--list-box__selection bx--list-box__selection--multi"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex="0"
+                    title="Clear all selected items"
+                  >
+                    1
+                    <svg
+                      alt="Clear all selected items"
+                      aria-label="Clear all selected items"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="10"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 10"
+                      width="10"
+                    >
+                      <title>
+                        Clear all selected items
+                      </title>
+                      <path
+                        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                      />
+                    </svg>
+                  </div>
                   <input
                     aria-activedescendant={null}
                     aria-autocomplete="list"
@@ -508,7 +629,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
-                    placeholder={undefined}
+                    placeholder="PR.DS DataSecurity"
                     role="combobox"
                     value=""
                   />
@@ -547,12 +668,12 @@ exports[`TemplateEditor component renders as expected 1`] = `
               <div
                 className="creation-view-controls-multiselect-title"
               >
-                creation.view.policy.controls
+                Controls
                 <div
                   className="bx--tooltip-icon"
                 >
                   <button
-                    aria-label="policy.create.controls.tooltip"
+                    aria-label="The control contains the instructions for ensuring that a policy meets the security requirements for one or more standards. You can only create a new label by adding it directly into the YAML file."
                     className="bx--tooltip__trigger bx--tooltip--icon__top"
                   >
                     <svg
@@ -589,6 +710,37 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   tabIndex="0"
                   type="button"
                 >
+                  <div
+                    className="bx--list-box__selection bx--list-box__selection--multi"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    tabIndex="0"
+                    title="Clear all selected items"
+                  >
+                    1
+                    <svg
+                      alt="Clear all selected items"
+                      aria-label="Clear all selected items"
+                      className={undefined}
+                      fill={undefined}
+                      fillRule="evenodd"
+                      focusable="false"
+                      height="10"
+                      name={undefined}
+                      role="img"
+                      style={undefined}
+                      viewBox="0 0 10 10"
+                      width="10"
+                    >
+                      <title>
+                        Clear all selected items
+                      </title>
+                      <path
+                        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                      />
+                    </svg>
+                  </div>
                   <input
                     aria-activedescendant={null}
                     aria-autocomplete="list"
@@ -600,7 +752,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
-                    placeholder={undefined}
+                    placeholder="PR.DS-2 Data-in-transit"
                     role="combobox"
                     value=""
                   />
@@ -659,13 +811,58 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </label>
               </div>
               <div>
-                creation.view.policy.enforce
+                Enforce if supported
               </div>
               <div
                 className="bx--tooltip-icon"
               >
                 <button
-                  aria-label="policy.create.enforce.tooltip"
+                  aria-label="Select Enforce, if the feature is supported for your policy, to update remediationAction. When Enforce is not selected, the parameter value for remediationAction is inform."
+                  className="bx--tooltip__trigger bx--tooltip--icon__top"
+                >
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div
+              className="creation-view-controls-checkbox"
+            >
+              <div
+                className="bx--form-item bx--checkbox-wrapper"
+              >
+                <input
+                  checked={false}
+                  className="bx--checkbox"
+                  id="disabled"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <label
+                  className="bx--checkbox-label checkbox"
+                  htmlFor="disabled"
+                  title={null}
+                >
+                  <span
+                    className="bx--visually-hidden"
+                  >
+                    
+                  </span>
+                </label>
+              </div>
+              <div>
+                Disable policy
+              </div>
+              <div
+                className="bx--tooltip-icon"
+              >
+                <button
+                  aria-label="Select to disable the policy from being propagated to the managed cluster. If selected, the policy can be re-enabled from the dropdown menu in the policies table."
                   className="bx--tooltip__trigger bx--tooltip--icon__top"
                 >
                   <svg
@@ -708,11 +905,6 @@ exports[`TemplateEditor component renders as expected 1`] = `
             className="creation-view-yaml-header"
           >
             <div
-              className="creation-view-yaml-header-title"
-            >
-              Policy YAML
-            </div>
-            <div
               aria-label={undefined}
               className="creation-view-yaml-header-toolbar"
               id={undefined}
@@ -722,184 +914,208 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="editor-bar"
               >
                 <div
-                  aria-label="Search"
-                  className="editor-bar-search"
-                  id="Search"
-                  role="region"
+                  className="editor-bar-title"
+                >
+                  Policy YAML
+                </div>
+                <div
+                  className="editor-bar-toolbar"
                 >
                   <div
-                    aria-labelledby="search-name-label"
-                    className="bx--search bx--search--sm"
-                    role="search"
+                    className="editor-bar-section"
                   >
-                    <svg
-                      alt=""
-                      aria-label=""
-                      className="bx--search-magnifier"
-                      fill={undefined}
-                      fillRule="evenodd"
-                      height="16"
-                      name={undefined}
-                      role="img"
-                      style={undefined}
-                      viewBox="0 0 16 16"
-                      width="16"
-                    >
-                      <title>
-                        
-                      </title>
-                      <path
-                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
-                      />
-                    </svg>
-                    <label
-                      className="bx--label"
-                      htmlFor="search-name"
-                      id="search-name-label"
-                    >
-                      
-                    </label>
-                    <input
-                      aria-label="Search"
-                      className="bx--search-input"
-                      id="search-name"
-                      onChange={[Function]}
-                      placeholder="Search"
-                      type="text"
-                    />
-                    <button
-                      aria-label={undefined}
-                      className="bx--search-close bx--search-close--hidden"
+                    <div
+                      aria-label="Reset"
+                      className="editor-bar-button  disabled"
                       onClick={[Function]}
-                      type="button"
+                      onKeyPress={[Function]}
+                      role="button"
+                      tabIndex={0}
+                      title="Reset"
                     >
-                      <svg
-                        alt="Provide a description that will be used as the title"
-                        aria-label="Provide a description that will be used as the title"
-                        className={undefined}
-                        fill={undefined}
-                        fillRule="evenodd"
-                        height="16"
-                        name={undefined}
-                        role="img"
-                        style={undefined}
-                        viewBox="0 0 16 16"
-                        width="16"
-                      >
-                        <title>
-                          Provide a description that will be used as the title
-                        </title>
-                        <path
-                          d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
+                      <div>
+                        Reset
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="editor-bar-section"
+                  >
+                    <div
+                      aria-label="Undo"
+                      className="editor-bar-button  disabled"
+                      onClick={[Function]}
+                      onKeyPress={[Function]}
+                      role="button"
+                      tabIndex={0}
+                      title="Undo"
+                    >
+                      <svg>
+                        <use
+                          href="#diagramIcons_undo"
                         />
                       </svg>
-                    </button>
+                    </div>
+                    <div
+                      aria-label="Redo"
+                      className="editor-bar-button  disabled"
+                      onClick={[Function]}
+                      onKeyPress={[Function]}
+                      role="button"
+                      tabIndex={0}
+                      title="Redo"
+                    >
+                      <svg>
+                        <use
+                          href="#diagramIcons_redo"
+                        />
+                      </svg>
+                    </div>
                   </div>
-                </div>
-                <div
-                  aria-label="Previous"
-                  className="editor-bar-button  disabled"
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  role="button"
-                  tabIndex={0}
-                  title="Previous"
-                >
-                  <svg>
-                    <use
-                      href="#diagramIcons_previous"
-                    />
-                  </svg>
-                </div>
-                <div
-                  aria-label="Next"
-                  className="editor-bar-button  disabled"
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  role="button"
-                  tabIndex={0}
-                  title="Next"
-                >
-                  <svg>
-                    <use
-                      href="#diagramIcons_next"
-                    />
-                  </svg>
-                </div>
-                <div
-                  className="editor-bar-spacer"
-                />
-                <div
-                  aria-label="Undo"
-                  className="editor-bar-button  disabled"
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  role="button"
-                  tabIndex={0}
-                  title="Undo"
-                >
-                  <svg>
-                    <use
-                      href="#diagramIcons_undo"
-                    />
-                  </svg>
-                </div>
-                <div
-                  aria-label="Redo"
-                  className="editor-bar-button  disabled"
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  role="button"
-                  tabIndex={0}
-                  title="Redo"
-                >
-                  <svg>
-                    <use
-                      href="#diagramIcons_redo"
-                    />
-                  </svg>
-                </div>
-                <div
-                  aria-label="Restore"
-                  className="editor-bar-button  disabled"
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  role="button"
-                  tabIndex={0}
-                  title="Restore"
-                >
-                  <svg>
-                    <use
-                      href="#diagramIcons_restore"
-                    />
-                  </svg>
-                </div>
-                <div
-                  className="editor-bar-spacer"
-                />
-                <div
-                  aria-label="Close"
-                  className="editor-bar-button "
-                  onClick={[Function]}
-                  onKeyPress={[Function]}
-                  role="button"
-                  tabIndex={0}
-                  title="Close"
-                >
-                  <svg>
-                    <use
-                      href="#diagramIcons_close"
-                    />
-                  </svg>
+                  <div
+                    className="editor-bar-section"
+                  >
+                    <div
+                      aria-label="Find"
+                      className="editor-bar-search"
+                      id="Find"
+                      role="region"
+                    >
+                      <div
+                        aria-labelledby="template-editor-search-undefined-label"
+                        className="bx--search bx--search--sm"
+                        role="search"
+                      >
+                        <svg
+                          alt=""
+                          aria-label=""
+                          className="bx--search-magnifier"
+                          fill={undefined}
+                          fillRule="evenodd"
+                          height="16"
+                          name={undefined}
+                          role="img"
+                          style={undefined}
+                          viewBox="0 0 16 16"
+                          width="16"
+                        >
+                          <title>
+                            
+                          </title>
+                          <path
+                            d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
+                          />
+                        </svg>
+                        <label
+                          className="bx--label"
+                          htmlFor="template-editor-search-undefined"
+                          id="template-editor-search-undefined-label"
+                        >
+                          
+                        </label>
+                        <input
+                          aria-label="Find"
+                          className="bx--search-input"
+                          id="template-editor-search-undefined"
+                          onChange={[Function]}
+                          placeholder="Find"
+                          spellCheck={false}
+                          type="text"
+                        />
+                        <button
+                          aria-label={undefined}
+                          className="bx--search-close bx--search-close--hidden"
+                          onClick={[Function]}
+                          type="button"
+                        >
+                          <svg
+                            alt="Provide a description that will be used as the title"
+                            aria-label="Provide a description that will be used as the title"
+                            className={undefined}
+                            fill={undefined}
+                            fillRule="evenodd"
+                            height="16"
+                            name={undefined}
+                            role="img"
+                            style={undefined}
+                            viewBox="0 0 16 16"
+                            width="16"
+                          >
+                            <title>
+                              Provide a description that will be used as the title
+                            </title>
+                            <path
+                              d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                      <div
+                        aria-label="Previous"
+                        className="editor-bar-button  disabled"
+                        onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="button"
+                        tabIndex={0}
+                        title="Previous"
+                      >
+                        <svg>
+                          <use
+                            href="#diagramIcons_previous"
+                          />
+                        </svg>
+                      </div>
+                      <div
+                        aria-label="Next"
+                        className="editor-bar-button  disabled"
+                        onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="button"
+                        tabIndex={0}
+                        title="Next"
+                      >
+                        <svg>
+                          <use
+                            href="#diagramIcons_next"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="editor-bar-section"
+                  >
+                    <div
+                      aria-label="Close"
+                      className="editor-bar-button "
+                      onClick={[Function]}
+                      onKeyPress={[Function]}
+                      role="button"
+                      tabIndex={0}
+                      title="Close"
+                    >
+                      <svg>
+                        <use
+                          href="#diagramIcons_close"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div
             className="yamlEditorContainer"
+            style={
+              Object {
+                "display": "block",
+                "minHeight": "100px",
+              }
+            }
           >
             <div
-              id="brace-editor"
+              className="react-monaco-editor-container"
               style={
                 Object {
                   "height": "100%",
@@ -919,12 +1135,12 @@ exports[`on editor change function renders as expected 1`] = `
 "apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
 metadata:
-  name: policy-grc
-  namespace: mcm
+  name: policy-certificatepolicy-1
+  namespace: governance
   annotations:
-    policy.mcm.ibm.com/standards: 
-    policy.mcm.ibm.com/categories: 
-    policy.mcm.ibm.com/controls: 
+    policy.mcm.ibm.com/standards: NIST-CSF
+    policy.mcm.ibm.com/categories: PR.DS DataSecurity
+    policy.mcm.ibm.com/controls: PR.DS-2 Data-in-transit
 spec:
   complianceType: musthave
   remediationAction: inform
@@ -932,32 +1148,45 @@ spec:
   namespaces:
     exclude: [\\"kube-*\\"]
     include: [\\"default\\"]
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policies.ibm.com/v1alpha1
+        kind: CertificatePolicy # cert management expiration
+        metadata:
+          name: policy-certificatepolicy-1-example
+        spec:
+          namespaceSelector:
+            include: [\\"default\\"]
+            exclude: []
+          remediationAction: inform
+          severity: low
+          minimumDuration: 300h
 ---
 apiVersion: mcm.ibm.com/v1alpha1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-grc
-  namespace: mcm
+  name: binding-policy-certificatepolicy-1
+  namespace: governance
 placementRef:
-  name: placement-policy-grc
+  name: placement-policy-certificatepolicy-1
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-grc
+- name: policy-certificatepolicy-1
   kind: Policy
   apiGroup: policy.mcm.ibm.com
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-grc
-  namespace: mcm
+  name: placement-policy-certificatepolicy-1
+  namespace: governance
 spec:
   clusterConditions:
   - type: OK
   clusterSelector:
     matchExpressions:
-      []
+      - {key: cloud, operator: In, values: [\\"Amazon\\"]}
 "
 `;
 
@@ -965,45 +1194,58 @@ exports[`on editor change function renders as expected 2`] = `
 "apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
 metadata:
-  name: policy-grc
+  name: policy-certificatepolicy-1
   namespace: 
   annotations:
-    policy.mcm.ibm.com/standards: 
-    policy.mcm.ibm.com/categories: 
-    policy.mcm.ibm.com/controls: 
+    policy.mcm.ibm.com/standards: NIST-CSF
+    policy.mcm.ibm.com/categories: PR.DS DataSecurity
+    policy.mcm.ibm.com/controls: PR.DS-2 Data-in-transit
 spec:
   complianceType: musthave
-  remediationAction: enforce
-  disabled: false
+  remediationAction: inform
+  disabled: true
   namespaces:
     exclude: [\\"kube-*\\"]
     include: [\\"default\\"]
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policies.ibm.com/v1alpha1
+        kind: CertificatePolicy # cert management expiration
+        metadata:
+          name: policy-certificatepolicy-1-example
+        spec:
+          namespaceSelector:
+            include: [\\"default\\"]
+            exclude: []
+          remediationAction: inform
+          severity: low
+          minimumDuration: 300h
 ---
 apiVersion: mcm.ibm.com/v1alpha1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-grc
+  name: binding-policy-certificatepolicy-1
   namespace: 
 placementRef:
-  name: placement-policy-grc
+  name: placement-policy-certificatepolicy-1
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-grc
+- name: policy-certificatepolicy-1
   kind: Policy
   apiGroup: policy.mcm.ibm.com
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-grc
+  name: placement-policy-certificatepolicy-1
   namespace: 
 spec:
   clusterConditions:
   - type: OK
   clusterSelector:
     matchExpressions:
-      []
+      - {key: cloud, operator: In, values: [\\"Amazon\\"]}
 "
 `;
 
@@ -1011,12 +1253,12 @@ exports[`on editor change function renders as expected 3`] = `
 "apiVersion: policy.mcm.ibm.com/v1alpha1
 kind: Policy
 metadata:
-  name: policy-grc
+  name: policy-certificatepolicy-1
   namespace: default1,default2,mcm
   annotations:
-    policy.mcm.ibm.com/standards: 
-    policy.mcm.ibm.com/categories: 
-    policy.mcm.ibm.com/controls: 
+    policy.mcm.ibm.com/standards: NIST-CSF
+    policy.mcm.ibm.com/categories: PR.DS DataSecurity
+    policy.mcm.ibm.com/controls: PR.DS-2 Data-in-transit
 spec:
   complianceType: musthave
   remediationAction: inform
@@ -1024,31 +1266,44 @@ spec:
   namespaces:
     exclude: [\\"kube-*\\"]
     include: [\\"default\\"]
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policies.ibm.com/v1alpha1
+        kind: CertificatePolicy # cert management expiration
+        metadata:
+          name: policy-certificatepolicy-1-example
+        spec:
+          namespaceSelector:
+            include: [\\"default\\"]
+            exclude: []
+          remediationAction: inform
+          severity: low
+          minimumDuration: 300h
 ---
 apiVersion: mcm.ibm.com/v1alpha1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-grc
+  name: binding-policy-certificatepolicy-1
   namespace: default1,default2,mcm
 placementRef:
-  name: placement-policy-grc
+  name: placement-policy-certificatepolicy-1
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-grc
+- name: policy-certificatepolicy-1
   kind: Policy
   apiGroup: policy.mcm.ibm.com
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-grc
+  name: placement-policy-certificatepolicy-1
   namespace: default1,default2,mcm
 spec:
   clusterConditions:
   - type: OK
   clusterSelector:
     matchExpressions:
-      []
+      - {key: cloud, operator: In, values: [\\"Amazon\\"]}
 "
 `;

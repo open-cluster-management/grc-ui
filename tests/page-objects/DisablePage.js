@@ -18,8 +18,7 @@ module.exports = {
     expandTable: '.bx--expandable-row-v2:nth-of-type(2)',
     createPolicyButton: '.bx--btn--primary:nth-of-type(1)',
     submitCreatePolicyButton: '#create-button-portal-id',
-    yamlInputField: '.ace_text-input',
-    yamlTextField: '.ace_editor',
+    yamlMonacoEditor: '.monaco-editor',
     searchInput: 'input.bx--search-input',
     overflowButton: '.bx--overflow-menu:nth-of-type(1)',
     deleteButton: '.bx--overflow-menu-options__option--danger',
@@ -62,8 +61,8 @@ function createPolicy(browser, yaml, time) {
   this.click('@namespaceDropdown')
   this.waitForElementPresent('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.click('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
-  this.waitForElementPresent('@yamlInputField')
-  this.click('@yamlTextField')
+  this.waitForElementPresent('@yamlMonacoEditor')
+  this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
   // this.clearValue('@policyNameInput')
   // this.setValue('@policyNameInput',`${time}-policy-test`)

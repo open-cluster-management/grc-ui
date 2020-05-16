@@ -16,8 +16,7 @@ module.exports = {
     expandTable: '.bx--expandable-row-v2:nth-of-type(2)',
     createPolicyButton: '.bx--btn--primary:nth-of-type(1)',
     submitCreatePolicyButton: '#create-button-portal-id',
-    yamlInputField: '.ace_text-input',
-    yamlTextField: '.ace_editor',
+    yamlMonacoEditor: '.monaco-editor',
     searchInput: 'input.bx--search-input',
     overflowButton: '.bx--overflow-menu:nth-of-type(1)',
     deleteButton: '.bx--overflow-menu-options__option--danger',
@@ -146,8 +145,8 @@ function createTestPolicy(browser, time) {
   this.click('@createPolicyButton')
   this.waitForElementNotPresent('@spinner')
   // browser.pause(100000)
-  this.expect.element('@yamlInputField').to.be.present
-  this.click('@yamlTextField')
+  this.expect.element('@yamlMonacoEditor').to.be.present
+  this.click('@yamlMonacoEditor')
   this.clearValue('@policyNameInput')
   this.setValue('@policyNameInput',`${time}-policy-test`)
   this.click('@namespaceDropdown')
@@ -224,7 +223,7 @@ function testDetailsPage(browser, name) {
   //policy yaml page test
   this.waitForElementVisible('#yaml-tab')
   this.click('#yaml-tab')
-  this.waitForElementVisible('.ace_editor')
+  this.waitForElementVisible('.monaco-editor')
   this.waitForElementVisible('.yaml-editor-button > button:nth-child(1)')
   this.waitForElementVisible('.yaml-editor-button > button:nth-child(2)')
   this.click('.bx--breadcrumb > div:nth-child(1)')

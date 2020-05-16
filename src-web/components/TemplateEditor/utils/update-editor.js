@@ -30,12 +30,14 @@ export const generateYAML = (template, controlData) => {
       if (hasLabels) {
         const map = {}
         active.forEach(pair=>{
-          const {key, value} = availableMap[pair]
-          let arr = map[key]
-          if (!arr) {
-            arr = map[key] = []
+          if (availableMap[pair]) {
+            const {key, value} = availableMap[pair]
+            let arr = map[key]
+            if (!arr) {
+              arr = map[key] = []
+            }
+            arr.push(value)
           }
-          arr.push(value)
         })
         templateData[id] = map
       } else if (hasReplacements) {
@@ -81,7 +83,7 @@ export const generateYAML = (template, controlData) => {
               }
               // if this control has already been set by this selection
               // don't do it again in case user unselected it
-              if (!wasSet.has(key)) {
+              if (typeof wasSet.has === 'function' && !wasSet.has(key)) {
                 arr.push(snippet)
                 controlMap[id].active = arr
                 wasSet.add(key)
@@ -124,8 +126,7 @@ export const generateYAML = (template, controlData) => {
 
 export const highlightChanges = (editor, oldYAML, newYAML) => {
   // mark any modified/added lines in editor
-  const ranges=[]
-  const range = editor ? editor.getSelectionRange() : {}
+  const decorationList = []
 
   const getInside = (ikey, {parsed}) =>{
     const ret = {}
@@ -141,7 +142,6 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
   const oldRaw = getInside('$raw', oldParse)
   const newRaw = getInside('$raw', newParse)
   const newSynced = getInside('$synced', newParse)
-  const newYAMLLines = newYAML.split('\n')
   let firstModRow = null
   let firstNewRow = null
   const ignorePaths = []
@@ -202,16 +202,14 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
           }
         }
 
-        const r = Object.create(range)
         switch (kind) {
         case 'E': {// edited
-          if (obj.$v || obj.$v===false) { // if no value ignore--all values removed from a key
-            const line = newYAMLLines[obj.$r].replace(/\./g, '_')
-            const value = (obj.$v+'').replace(/\./g, '_')
-            const col = line.indexOf(value)
-            r.start = {row: obj.$r, column: col}
-            r.end = {row: obj.$r, column: col+obj.$v.toString().length}
-            ranges.push(r)
+          if ((obj.$v || obj.$v===false) && editor) { // if no value ignore--all values removed from a key
+            decorationList.push({
+              range: new editor.monaco.Range(obj.$r+1, 0, obj.$r+1, 0),
+              options: {isWholeLine: true, linesDecorationsClassName: 'insertedLineDecoration',
+                minimap: {color: '#c0c0ff' , position:2}}
+            })
             if (!firstModRow) {
               firstModRow = obj.$r
             }
@@ -219,9 +217,13 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
           break
         }
         case 'N': // new
-          r.start = {row: obj.$r, column: 0}
-          r.end = {row: obj.$r + obj.$l, column: 0}
-          ranges.push(r)
+          if (editor) {
+            decorationList.push({
+              range: new editor.monaco.Range(obj.$r+1, 0, obj.$r+obj.$l, 0),
+              options: {isWholeLine: true, linesDecorationsClassName: 'insertedLineDecoration',
+                minimap: {color: '#c0c0ff' , position:2}}
+            })
+          }
           if (!firstNewRow) {
             firstNewRow = obj.$r
           }
@@ -231,19 +233,12 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
     })
     // wait until editor has content before highlighting
     setTimeout(() => {
-      if (ranges.length) {
-        const selection = editor.multiSelect
-        selection.toSingleRange(ranges[0])
-        for (let i = ranges.length; i >= 0; i--) {
-          selection.addRange(ranges[i], true)
-        }
-      } else {
-        editor.selection.clearSelection()
-      }
+      editor.decorations = editor.deltaDecorations(editor.decorations, decorationList)
     }, 0)
     if (editor && (firstNewRow || firstModRow)) {
-      editor.setAnimatedScroll(true)
-      editor.scrollToLine(firstNewRow || firstModRow || 0, true)
+      const lineNumber = firstNewRow || firstModRow || 0
+      editor.revealLinesInCenter(lineNumber, lineNumber+10, 0)
+
     }
   }
 }

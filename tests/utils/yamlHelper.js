@@ -10,7 +10,7 @@
 
 module.exports = {
   enterTextInYamlEditor: (el, browser, yaml, time) => {
-    el.click('#brace-editor')
+    el.click('.monaco-editor')
     const keystrokes = []
     if (process.platform == 'darwin') {
       keystrokes.push(browser.Keys.COMMAND)
@@ -20,7 +20,7 @@ module.exports = {
     keystrokes.push('a')
     keystrokes.push(browser.Keys.NULL)
     keystrokes.push(browser.Keys.BACK_SPACE)
-    el.click('#brace-editor')
+    el.click('.monaco-editor')
     yaml.split(/\r?\n/).forEach(line => {
       const indentation = line.search(/\S|$/)
       line = line.replace('[TIME]', time)

@@ -145,9 +145,21 @@ body {
   }
 }
 
-.yamlEditorContainer {
-  #brace-editor {
-    min-width: 31.25rem;
-    min-height: 31.25rem
+.bx--modal-content {
+  .yamlEditorContainerContainer {
+    height: calc(100vh - 380px);
+    overflow: hidden;
+    
+    .yamlEditorContainer {
+      height: 100%;
+      
+      & * {
+        font-family: unset;
+      }
+    }
   }
+}
+
+.codicon[class*='codicon-'] {
+  font-family: codicon !important;
 }
