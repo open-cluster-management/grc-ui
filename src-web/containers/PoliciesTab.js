@@ -57,7 +57,7 @@ class PoliciesTab extends React.Component {
             const {data={}, loading, startPolling, stopPolling, refetch} = result
             const { items } = data
             const error = items ? null : result.error
-            if (error) {
+            if (!loading && error) {
               const errorName =
               (Array.isArray(result.error.graphQLErrors) && result.error.graphQLErrors[0] && result.error.graphQLErrors[0].name)
                 ? result.error.graphQLErrors[0].name

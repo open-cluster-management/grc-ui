@@ -71,7 +71,7 @@ class OverviewTab extends React.Component {
             const {data={}} = result
             const { policies, findings } = data
             const error = policies ? null : result.error
-            if (error) {
+            if (!loading && error) {
               const errorName =
               (Array.isArray(result.error.graphQLErrors) && result.error.graphQLErrors[0] && result.error.graphQLErrors[0].name)
                 ? result.error.graphQLErrors[0].name
