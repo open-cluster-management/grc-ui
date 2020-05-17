@@ -53,12 +53,9 @@ export class GrcView extends React.Component {
     this.handleCreatePolicy = this.handleCreatePolicy.bind(this)
     this.updateViewState = this.updateViewState.bind(this)
     this.handleDrillDownClickGrcView = this.handleDrillDownClickGrcView.bind(this)
-  }
-
-  componentWillMount() {
     const { activeFilters={} } = this.props
     //get (activeFilters ∪ storedFilters) only since availableGrcFilters is uninitialized at this stage
-    //later when availableGrcFilters initialized, will do further filtering in componentWillReceiveProps
+    //later when availableGrcFilters initialized, will do further filtering in static getDerivedStateFromProps
     const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
     //update sessionStorage
     replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
@@ -66,7 +63,7 @@ export class GrcView extends React.Component {
     updateActiveFilters(combinedFilters)
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     const {
       refreshControl,
       grcItems,
@@ -74,8 +71,8 @@ export class GrcView extends React.Component {
       updateResourceToolbar:localUpdateResourceToolbar
     } = nextProps
 
-    if (!_.isEqual(refreshControl, this.props.refreshControl) ||
-        !_.isEqual(grcItems, this.props.grcItems)) {
+    if (!_.isEqual(refreshControl, prevState.refreshControl) ||
+        !_.isEqual(grcItems, prevState.grcItems)) {
       const { locale } = this.context
       const displayType = location.pathname.split('/').pop()
       //if url has severity special para, store it into sessionStorage before updating active filters
@@ -104,6 +101,7 @@ export class GrcView extends React.Component {
       localUpdateActiveFilters(combinedFilters)
     }
   }
+
   componentDidMount() {
     window.addEventListener('scroll', this.scroll)
   }
@@ -242,7 +240,7 @@ export class GrcView extends React.Component {
   handleDrillDownClickGrcView(key, value, type, level){
     //step 1 add activeFilters when click GrcCardsModule
     //here for severity level, will not update filter here but just update url
-    //then acutally update it in componentWillReceiveProps()
+    //then acutally update it in static getDerivedStateFromProps()
     const {updateActiveFilters:localUpdateActiveFilters} = this.props
     //lodash recursively deep clone
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})

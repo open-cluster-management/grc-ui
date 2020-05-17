@@ -30,7 +30,11 @@
     "settings": {
         "html/html-extensions": [
             ".dust"
-        ]
+        ],
+        "react": {
+            "pragma": "React",                                                          
+            "version": "16.13.1"  
+          }
     },
     "rules": {
         "indent": ["error", 2, {"VariableDeclarator": { "var": 2, "let": 2, "const": 3 }, "MemberExpression": 1 }],

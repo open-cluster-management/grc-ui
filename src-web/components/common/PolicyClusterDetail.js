@@ -56,10 +56,10 @@ class PolicyClusterDetail extends React.Component {
     super(props)
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     const {refreshControl, policies, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
-    if (!_.isEqual(refreshControl, this.props.refreshControl) ||
-        !_.isEqual(policies, this.props.policies)) {
+    if (!_.isEqual(refreshControl, prevState.refreshControl) ||
+        !_.isEqual(policies, prevState.policies)) {
       localUpdateResourceToolbar(refreshControl, {})
     }
   }

@@ -56,9 +56,6 @@ const withResource = (Component) => {
       this.state = {
         xhrPoll: false,
       }
-    }
-
-    componentWillMount() {
       const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
       if (pollInterval) {
         const intervalId = setInterval(this.reload.bind(this), pollInterval)
@@ -119,7 +116,7 @@ class ResourceDetails extends React.Component {
     })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const {
             updateSecondaryHeader:localUpdateSecondaryHeader,
             tabs,
@@ -131,14 +128,15 @@ class ResourceDetails extends React.Component {
     refreshControl.stopPolling()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.location !== this.props.location) {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.location !== prevState.location) {
       const {
               updateSecondaryHeader:localUpdateSecondaryHeader,
               tabs,
               launch_links,
               match
-            } = this.props, params = match && match.params
+            } = prevState,
+            params = match && match.params
       localUpdateSecondaryHeader(params.name, getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(nextProps.location), launch_links)
     }
   }

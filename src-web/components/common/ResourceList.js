@@ -38,7 +38,7 @@ class ResourceList extends React.Component {
     this.state = {}
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const {
       updateSecondaryHeader:localUpdateSecondaryHeader,
       tabs,
@@ -58,9 +58,10 @@ class ResourceList extends React.Component {
     localSearchTable('', false)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if ((!lodash.isEqual(this.props.listData, nextProps.listData)) ||(!lodash.isEqual(this.props.resourceType, nextProps.resourceType))) {
-      this.props.fetchResources(nextProps.listData, nextProps.resourceType)
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if ((!lodash.isEqual(prevState.listData, nextProps.listData))
+    || (!lodash.isEqual(prevState.resourceType, nextProps.resourceType))) {
+      prevState.fetchResources(nextProps.listData, nextProps.resourceType)
     }
   }
 

@@ -83,10 +83,10 @@ export class ResourceModal extends React.PureComponent {
     this.setState({data: value})
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.data && this.props.data !== nextProps.data) {
-      // this.setState({data: JSON.stringify(this.props.data, null, 2)})
-      this.setState({data: dumpAndParse(this.props.data).yaml})
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.data && prevState.data !== nextProps.data) {
+      // this.setState({data: JSON.stringify(prevState.data, null, 2)})
+      this.setState({data: dumpAndParse(prevState.data).yaml})
     }
     if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.ERROR) {
       this.setState(preState => {
@@ -189,6 +189,7 @@ ResourceModal.propTypes = {
   label: PropTypes.shape({
     heading: PropTypes.string,
     label: PropTypes.string,
+    primaryBtn: PropTypes.string,
   }),
   locale: PropTypes.string,
   name: PropTypes.string,

@@ -46,12 +46,12 @@ export class ResourceTableModule extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.formatResourceData()
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { tableResources } = this.props
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { tableResources } = prevState
     if (nextProps.tableResources !== tableResources) {
       this.formatResourceData(nextProps.tableResources)
     }

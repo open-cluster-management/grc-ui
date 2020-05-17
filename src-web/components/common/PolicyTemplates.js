@@ -33,9 +33,6 @@ class PolicyTemplates extends React.Component {
       readOnly: true,
       yamlParsingError: null,
     }
-  }
-
-  componentWillMount() {
     const { resourceData } = this.props
     const { yaml } = dumpAndParse(resourceData)
     if (yaml && !this.state.yaml) {
@@ -66,7 +63,7 @@ class PolicyTemplates extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.ERROR && (this.state.reqStatus !== nextProps.reqStatus)) {
       this.setState({
         reqStatus: nextProps.reqStatus,

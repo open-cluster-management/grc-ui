@@ -47,12 +47,9 @@ export class OverviewView extends React.Component {
     this.updateViewState = this.updateViewState.bind(this)
     this.handleCreatePolicy = this.handleCreatePolicy.bind(this)
     this.handleDrillDownClickOverview = this.handleDrillDownClickOverview.bind(this)
-  }
-
-  componentWillMount() {
     const { activeFilters={} } = this.props
     //get (activeFilters ∪ storedFilters) only since availableGrcFilters is uninitialized at this stage
-    //later when availableGrcFilters initialized, will do further filtering in componentWillReceiveProps
+    //later when availableGrcFilters initialized, will do further filtering in static getDerivedStateFromProps
     const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
     delete combinedFilters.severity//remove severity filter set during first time render
     //update sessionStorage
@@ -71,7 +68,7 @@ export class OverviewView extends React.Component {
     this.onUnload()
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProp(nextProps, prevState) {
     const {
       refreshControl,
       policies,
@@ -80,8 +77,8 @@ export class OverviewView extends React.Component {
       updateResourceToolbar:localUpdateResourceToolbar
     } = nextProps
 
-    if (!_.isEqual(refreshControl, this.props.refreshControl) ||
-        !_.isEqual(policies, this.props.policies)) {
+    if (!_.isEqual(refreshControl, prevState.refreshControl) ||
+        !_.isEqual(policies, prevState.policies)) {
       const { locale } = this.context
       const availableGrcFilters = getAvailableGrcFilters(policies, findings, locale)
       localUpdateResourceToolbar(refreshControl, availableGrcFilters)
@@ -277,10 +274,7 @@ OverviewView.propTypes = {
   loading: PropTypes.bool,
   location: PropTypes.object,
   policies: PropTypes.array,
-  refreshControl: PropTypes.object,
   showApplications: PropTypes.bool,
-  updateActiveFilters: PropTypes.func,
-  updateResourceToolbar: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {

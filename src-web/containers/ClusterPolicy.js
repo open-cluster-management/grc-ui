@@ -43,7 +43,7 @@ class ClusterPolicy extends React.Component {
     super(props)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { updateSecondaryHeader:localUpdateSecondaryHeader } = this.props
     localUpdateSecondaryHeader(this.getPolicyName(true), null, this.getBreadcrumb())
   }

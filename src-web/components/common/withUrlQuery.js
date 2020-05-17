@@ -137,7 +137,7 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
       }
     }
 
-    componentWillReceiveProps() {
+    static getDerivedStateFromProps() {
       this.setState({firstTimeLoad: false})
     }
 

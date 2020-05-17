@@ -50,14 +50,14 @@ export default class TopInformationModule extends React.Component {
     this.onChange = this.onChange.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     //current items, type when page first loading
     const { items, applications, type } = this.props
     this.setCardData(items, applications, type)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { staticInfo } = this.props
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { staticInfo } = prevState
     //next items, type when update filter on current page
     if(staticInfo === true) {
       return

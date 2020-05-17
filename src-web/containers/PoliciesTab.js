@@ -40,7 +40,7 @@ class PoliciesTab extends React.Component {
     this.firstLoad = true
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, links, information } = secondaryHeaderProps
     localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
@@ -124,4 +124,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter(connect(null, mapDispatchToProps)(PoliciesTab))
-
