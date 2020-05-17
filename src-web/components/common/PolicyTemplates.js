@@ -64,7 +64,10 @@ class PolicyTemplates extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps) {
-    if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.ERROR && (this.state.reqStatus !== nextProps.reqStatus)) {
+    if (nextProps.reqStatus
+      && nextProps.reqStatus === REQUEST_STATUS.ERROR
+      && (this.state.reqStatus !== nextProps.reqStatus)
+    ) {
       this.setState({
         reqStatus: nextProps.reqStatus,
         reqErrorMsg: nextProps.reqErrorMsg
