@@ -564,18 +564,18 @@ export default class TemplateEditor extends React.Component {
     switch (command) {
     case 'next':
     case 'previous':
-      if (this.selectionIndex !== -1 && this.selection && this.selection.length > 1) {
+      if (this.selectionIndex !== -1 && this.selections && this.selections.length > 1) {
         switch (command) {
         case 'next':
           this.selectionIndex++
-          if (this.selectionIndex>=this.selection.length) {
+          if (this.selectionIndex>=this.selections.length) {
             this.selectionIndex = 0
           }
           break
         case 'previous':
           this.selectionIndex--
           if (this.selectionIndex<0) {
-            this.selectionIndex = this.selection.length-1
+            this.selectionIndex = this.selections.length-1
           }
           break
         }
