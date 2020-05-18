@@ -21,6 +21,7 @@ import {
 import 'monaco-editor/esm/vs/editor/editor.all.js'
 import 'monaco-editor/esm/vs/editor/standalone/browser/quickOpen/quickCommand.js'
 import 'monaco-editor/esm/vs/basic-languages/yaml/yaml.contribution.js'
+import config from '../../../../lib/shared/config'
 
 
 if (window.monaco) {
@@ -45,7 +46,7 @@ if (window.monaco) {
 
 window.MonacoEnvironment = {
   getWorkerUrl: function () {
-    return '/multicloud/policies/editor.worker.js'
+    return `${config.contextPath}/editor.worker.js`
   }
 }
 
