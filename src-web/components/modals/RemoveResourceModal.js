@@ -165,7 +165,7 @@ RemoveResourceModal.propTypes = {
     deployables: PropTypes.object,
     name: PropTypes.string,
     placementBindings: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    placementPolicie: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    placementPolicies: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     applicationRelationships: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     selected: PropTypes.array,
   }),
