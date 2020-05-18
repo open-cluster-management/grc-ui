@@ -77,6 +77,7 @@
     "loadable-components": "^1.4.0",
     "lodash": "^4.17.15",
     "log4js": "^2.11.0",
+    "memoize-one": "^5.1.1",
     "mime-types": "^2.1.18",
     "minimist": "^1.2.0",
     "moment": "^2.22.1",
