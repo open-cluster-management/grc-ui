@@ -744,7 +744,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 className={undefined}
               >
                 <a
-                  href="undefined/all/policy-limitrange"
+                  href="undefined/all/mcm/policy-limitrange"
                   onClick={[Function]}
                 >
                   policy-limitrange
@@ -867,7 +867,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 className={undefined}
               >
                 <a
-                  href="undefined/all/policy-namespace"
+                  href="undefined/all/mcm/policy-namespace"
                   onClick={[Function]}
                 >
                   policy-namespace
