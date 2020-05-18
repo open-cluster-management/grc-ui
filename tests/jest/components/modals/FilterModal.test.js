@@ -6,7 +6,6 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -23,14 +22,14 @@ describe('CreateResourceModal modal', () => {
     />)
     expect(component).toMatchSnapshot()
   })
-  it('getSnapshotBeforeUpdate as expected', () => {
+  it('componentDidMount as expected', () => {
     const component = shallow(<FilterModal
       availableFilters = {availableFilters}
       handleModalClose = {handleModalClose}
     />)
-    component.getSnapshotBeforeUpdate()
+    component.instance().componentDidMount()
     expect(component.state().tags).toEqual([])
-    component.getSnapshotBeforeUpdate({selected:['test']})
+    component.instance().componentDidMount({selected:['test']})
     expect(component.state().tags).toEqual(['test'])
   })
   it('convertFilterArray as expected', () => {

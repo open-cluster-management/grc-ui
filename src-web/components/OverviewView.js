@@ -49,7 +49,7 @@ export class OverviewView extends React.Component {
     this.handleDrillDownClickOverview = this.handleDrillDownClickOverview.bind(this)
     const { activeFilters={} } = this.props
     //get (activeFilters ∪ storedFilters) only since availableGrcFilters is uninitialized at this stage
-    //later when availableGrcFilters initialized, will do further filtering in static getDerivedStateFromProps
+    //later when availableGrcFilters initialized, will do further filtering in componentDidMount
     const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
     delete combinedFilters.severity//remove severity filter set during first time render
     //update sessionStorage
@@ -58,31 +58,22 @@ export class OverviewView extends React.Component {
     updateActiveFilters(combinedFilters)
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.scroll)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('beforeunload', this.onUnload)
-    window.removeEventListener('scroll', this.scroll)
-    this.onUnload()
-  }
-
-  static getDerivedStateFromProp(nextProps, prevState) {
+  componentDidMount(prevProps) {
     const {
+      activeFilters:localActiveFilters,
       refreshControl,
       policies,
       findings,
       updateActiveFilters:localUpdateActiveFilters,
       updateResourceToolbar:localUpdateResourceToolbar
-    } = nextProps
+    } = this.props
 
-    if (!_.isEqual(refreshControl, prevState.refreshControl) ||
-        !_.isEqual(policies, prevState.policies)) {
+    if (!_.isEqual(refreshControl, prevProps.refreshControl) ||
+        !_.isEqual(policies, prevProps.policies)) {
       const { locale } = this.context
       const availableGrcFilters = getAvailableGrcFilters(policies, findings, locale)
       localUpdateResourceToolbar(refreshControl, availableGrcFilters)
-      const activeFilters = _.cloneDeep(nextProps.activeFilters||{})
+      const activeFilters = _.cloneDeep(localActiveFilters||{})
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
       //update sessionStorage
@@ -90,6 +81,13 @@ export class OverviewView extends React.Component {
       //update active filters
       localUpdateActiveFilters(combinedFilters)
     }
+    window.addEventListener('scroll', this.scroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.onUnload)
+    window.removeEventListener('scroll', this.scroll)
+    this.onUnload()
   }
 
   render() {
@@ -274,7 +272,10 @@ OverviewView.propTypes = {
   loading: PropTypes.bool,
   location: PropTypes.object,
   policies: PropTypes.array,
+  refreshControl: PropTypes.object,
   showApplications: PropTypes.bool,
+  updateActiveFilters: PropTypes.func,
+  updateResourceToolbar: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {

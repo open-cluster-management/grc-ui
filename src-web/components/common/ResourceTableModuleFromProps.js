@@ -44,16 +44,13 @@ export class ResourceTableModule extends React.Component {
       sortDirection: 'asc',
       searchValue: ''
     }
-  }
-
-  componentDidMount() {
     this.formatResourceData()
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { tableResources } = prevState
-    if (nextProps.tableResources !== tableResources) {
-      this.formatResourceData(nextProps.tableResources)
+  componentDidMount(prevProps) {
+    const { tableResources } = prevProps
+    if (this.props.tableResources !== tableResources) {
+      this.formatResourceData(this.props.tableResources)
     }
   }
 

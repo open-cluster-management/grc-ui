@@ -41,6 +41,25 @@ class PolicyTemplates extends React.Component {
   }
 
   componentDidMount() {
+    const {
+      reqStatus,
+      reqErrorMsg,
+    } = this.props
+    if (reqStatus && reqStatus === REQUEST_STATUS.ERROR && (this.state.reqStatus !== reqStatus)
+    ) {
+      // eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({
+        reqStatus: reqStatus,
+        reqErrorMsg: reqErrorMsg
+      })
+    }
+    if (reqStatus && reqStatus === REQUEST_STATUS.DONE) {
+      // eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({
+        readOnly: true,
+        updated: true
+      })
+    }
     window.addEventListener('resize',  this.layoutEditors.bind(this))
   }
 
@@ -60,24 +79,6 @@ class PolicyTemplates extends React.Component {
       const width = rect.width
       const height = rect.height
       this.editor.layout({width, height})
-    }
-  }
-
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.reqStatus
-      && nextProps.reqStatus === REQUEST_STATUS.ERROR
-      && (this.state.reqStatus !== nextProps.reqStatus)
-    ) {
-      this.setState({
-        reqStatus: nextProps.reqStatus,
-        reqErrorMsg: nextProps.reqErrorMsg
-      })
-    }
-    if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.DONE) {
-      this.setState({
-        readOnly: true,
-        updated: true
-      })
     }
   }
 

@@ -36,9 +36,6 @@ class ResourceList extends React.Component {
   constructor() {
     super()
     this.state = {}
-  }
-
-  componentDidMount() {
     const {
       updateSecondaryHeader:localUpdateSecondaryHeader,
       tabs,
@@ -52,17 +49,18 @@ class ResourceList extends React.Component {
     fetchResources(listData)
   }
 
+  componentDidMount(prevProps) {
+    const { listData, resourceType, } = this.props
+    if ((!lodash.isEqual(prevProps.listData, listData))
+    || (!lodash.isEqual(prevProps.resourceType, resourceType))) {
+      prevProps.fetchResources(listData, resourceType)
+    }
+  }
+
   componentWillUnmount() {
     const { searchTable:localSearchTable } = this.props
     //clean up current page search text before leaving
     localSearchTable('', false)
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if ((!lodash.isEqual(prevState.listData, nextProps.listData))
-    || (!lodash.isEqual(prevState.resourceType, nextProps.resourceType))) {
-      prevState.fetchResources(nextProps.listData, nextProps.resourceType)
-    }
   }
 
   render() {

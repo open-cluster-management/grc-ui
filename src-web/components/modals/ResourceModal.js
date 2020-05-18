@@ -83,22 +83,22 @@ export class ResourceModal extends React.PureComponent {
     this.setState({data: value})
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.data && prevState.data !== nextProps.data) {
+  componentDidMount(prevProps) {
+    const { data, reqStatus, reqCount, reqErrCount } = this.props
+    if (data && prevProps.data !== data) {
       // this.setState({data: JSON.stringify(prevState.data, null, 2)})
-      this.setState({data: dumpAndParse(prevState.data).yaml})
+      // eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({data: dumpAndParse(prevProps.data).yaml})
     }
-    if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.ERROR) {
+    if (reqStatus && reqStatus === REQUEST_STATUS.ERROR) {
+      // eslint-disable-next-line react/no-did-mount-set-state
       this.setState(preState => {
-        return {reqErrorMsg: [...preState.reqErrorMsg, nextProps.reqErrorMsg]}
+        return {reqErrorMsg: [...preState.reqErrorMsg, reqStatus]}
       })
     }
-    if (nextProps.reqCount === 0 && !nextProps.reqErrCount) {
+    if (reqCount === 0 && !reqErrCount) {
       this.handleClose()
     }
-  }
-
-  componentDidMount() {
     this.resourceModal && this.resourceModal.focus()
     window.addEventListener('resize',  this.layoutEditors.bind(this))
   }
@@ -198,7 +198,6 @@ ResourceModal.propTypes = {
   putResource: PropTypes.func,
   reqCount: PropTypes.number,
   reqErrCount: PropTypes.number,
-  reqErrorMsg: PropTypes.string,
   reqStatus: PropTypes.string,
   resourceType: PropTypes.object,
 }

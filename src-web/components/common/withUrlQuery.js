@@ -137,7 +137,8 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
       }
     }
 
-    static getDerivedStateFromProps() {
+    componentDidMount() {
+      // eslint-disable-next-line react/no-did-mount-set-state
       this.setState({firstTimeLoad: false})
     }
 

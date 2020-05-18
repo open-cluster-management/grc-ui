@@ -31,9 +31,11 @@ class FilterModal extends React.PureComponent {
     }
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps && nextProps.selected !== prevState.selected) {
-      this.setState({tags: nextProps.selected})
+  componentDidMount(prevProps) {
+    const { selected } = this.props
+    if (selected && selected !== prevProps.selected) {
+      // eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({tags: selected})
     }
   }
 

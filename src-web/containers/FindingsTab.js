@@ -35,12 +35,14 @@ export class FindingsTab extends React.Component {
   constructor (props) {
     super(props)
     this.firstLoad = true
-  }
-
-  componentDidMount() {
     const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, links, information } = secondaryHeaderProps
-    localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
+    localUpdateSecondaryHeader(
+      msgs.get(title, this.context.locale),
+      tabs,
+      links,
+      msgs.get(information, this.context.locale)
+    )
   }
 
   render () {

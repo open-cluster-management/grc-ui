@@ -75,10 +75,10 @@ export class PolicyDetailsOverview extends React.PureComponent{
     return status
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const {refreshControl, item, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
-    if (!_.isEqual(refreshControl, prevState.refreshControl) ||
-        !_.isEqual(item, prevState.item)) {
+  componentDidMount(prevProps) {
+    const {refreshControl, item, updateResourceToolbar:localUpdateResourceToolbar} = this.props
+    if (!_.isEqual(refreshControl, prevProps.refreshControl) ||
+        !_.isEqual(item, prevProps.item)) {
       localUpdateResourceToolbar(refreshControl, {})
     }
   }

@@ -55,7 +55,7 @@ export class GrcView extends React.Component {
     this.handleDrillDownClickGrcView = this.handleDrillDownClickGrcView.bind(this)
     const { activeFilters={} } = this.props
     //get (activeFilters ∪ storedFilters) only since availableGrcFilters is uninitialized at this stage
-    //later when availableGrcFilters initialized, will do further filtering in static getDerivedStateFromProps
+    //later when availableGrcFilters initialized, will do further filtering in componentDidMount
     const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
     //update sessionStorage
     replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
@@ -63,16 +63,17 @@ export class GrcView extends React.Component {
     updateActiveFilters(combinedFilters)
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  componentDidMount(prevProps) {
     const {
+      activeFilters:localActiveFilters,
       refreshControl,
       grcItems,
       updateActiveFilters:localUpdateActiveFilters,
       updateResourceToolbar:localUpdateResourceToolbar
-    } = nextProps
+    } = this.props
 
-    if (!_.isEqual(refreshControl, prevState.refreshControl) ||
-        !_.isEqual(grcItems, prevState.grcItems)) {
+    if (!_.isEqual(refreshControl, prevProps.refreshControl) ||
+        !_.isEqual(grcItems, prevProps.grcItems)) {
       const { locale } = this.context
       const displayType = location.pathname.split('/').pop()
       //if url has severity special para, store it into sessionStorage before updating active filters
@@ -92,7 +93,7 @@ export class GrcView extends React.Component {
         break
       }
       localUpdateResourceToolbar(refreshControl, availableGrcFilters)
-      const activeFilters = _.cloneDeep(nextProps.activeFilters||{})
+      const activeFilters = _.cloneDeep(localActiveFilters||{})
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
       //update sessionStorage
@@ -100,9 +101,6 @@ export class GrcView extends React.Component {
       //update active filters
       localUpdateActiveFilters(combinedFilters)
     }
-  }
-
-  componentDidMount() {
     window.addEventListener('scroll', this.scroll)
   }
 
@@ -240,7 +238,7 @@ export class GrcView extends React.Component {
   handleDrillDownClickGrcView(key, value, type, level){
     //step 1 add activeFilters when click GrcCardsModule
     //here for severity level, will not update filter here but just update url
-    //then acutally update it in static getDerivedStateFromProps()
+    //then acutally update it in componentDidMount()
     const {updateActiveFilters:localUpdateActiveFilters} = this.props
     //lodash recursively deep clone
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})

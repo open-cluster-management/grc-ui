@@ -43,13 +43,20 @@ class PoliciesTab extends React.Component {
   componentDidMount() {
     const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, links, information } = secondaryHeaderProps
-    localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
+    localUpdateSecondaryHeader(
+      msgs.get(title, this.context.locale),
+      tabs,
+      links,
+      msgs.get(information, this.context.locale)
+    )
   }
 
   render () {
     const { secondaryHeaderProps } = this.props
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
-    const showApplications = this.props.showApplications === undefined ? config['feature_applications'] : this.props.showApplications
+    const showApplications = this.props.showApplications === undefined
+      ? config['feature_applications']
+      : this.props.showApplications
     return (
       <Page>
         <Query query={HCMComplianceList} pollInterval={pollInterval} notifyOnNetworkStatusChange >

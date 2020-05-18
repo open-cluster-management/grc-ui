@@ -35,7 +35,8 @@ export class CreationTab extends React.Component {
     updateSecondaryHeader: PropTypes.func,
   }
 
-  componentDidMount() {
+  constructor (props) {
+    super(props)
     const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, breadcrumbItems, information } = secondaryHeaderProps
     const portals = [
@@ -52,7 +53,13 @@ export class CreationTab extends React.Component {
         id: 'create-button-portal-id',
         kind: 'portal',
       }]
-    localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, breadcrumbItems, portals, msgs.get(information, this.context.locale))
+    localUpdateSecondaryHeader(
+      msgs.get(title, this.context.locale),
+      tabs,
+      breadcrumbItems,
+      portals,
+      msgs.get(information, this.context.locale)
+    )
   }
 
   handleCreate = (resourceJSON) => {

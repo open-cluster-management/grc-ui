@@ -114,9 +114,6 @@ class ResourceDetails extends React.Component {
     routes.forEach(route=>{
       this.otherBinding[route] = this.renderOther.bind(this, route)
     })
-  }
-
-  componentDidMount() {
     const {
             updateSecondaryHeader:localUpdateSecondaryHeader,
             tabs,
@@ -128,16 +125,19 @@ class ResourceDetails extends React.Component {
     refreshControl.stopPolling()
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.location !== prevState.location) {
+  componentDidMount(prevProps) {
+    const { location:localLocation } = this.props
+    if (prevProps.location !== localLocation) {
       const {
               updateSecondaryHeader:localUpdateSecondaryHeader,
               tabs,
               launch_links,
-              match
-            } = prevState,
+              match,
+              refreshControl
+            } = this.props,
             params = match && match.params
-      localUpdateSecondaryHeader(params.name, getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(nextProps.location), launch_links)
+      localUpdateSecondaryHeader(params.name, getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(localLocation), launch_links)
+      refreshControl.stopPolling()
     }
   }
 

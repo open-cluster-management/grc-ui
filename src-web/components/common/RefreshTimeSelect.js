@@ -38,9 +38,6 @@ export default class RefreshTimeSelect extends React.Component {
     }
     this.setRefresh = this.setRefresh.bind(this)
     this.handleChange = this.handleChange.bind(this)
-  }
-
-  componentDidMount() {
     const { locale } = this.context
     const { refreshValues=[] } = this.props
     this.autoRefreshChoices = refreshValues.map(pollInterval=>{
@@ -54,6 +51,14 @@ export default class RefreshTimeSelect extends React.Component {
       }
       pollInterval*=1000
       return {label, pollInterval}
+    })
+  }
+
+  componentDidMount() {
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState((prevState, props) => {
+      const {refreshControl: {refreshCookie}} = props
+      return {pollInterval: getPollInterval(refreshCookie)}
     })
   }
 
@@ -80,13 +85,6 @@ export default class RefreshTimeSelect extends React.Component {
     }
     savePollInterval(refreshCookie, pollInterval)
     this.setState({ pollInterval })
-  }
-
-  static getDerivedStateFromProps(){
-    this.setState((prevState, props) => {
-      const {refreshControl: {refreshCookie}} = props
-      return {pollInterval: getPollInterval(refreshCookie)}
-    })
   }
 
   render() {

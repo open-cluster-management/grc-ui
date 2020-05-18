@@ -39,12 +39,14 @@ class OverviewTab extends React.Component {
   constructor (props) {
     super(props)
     this.firstLoad = true
-  }
-
-  componentDidMount() {
     const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, links, information } = secondaryHeaderProps
-    localUpdateSecondaryHeader(msgs.get(title, this.context.locale), tabs, links, msgs.get(information, this.context.locale))
+    localUpdateSecondaryHeader(
+      msgs.get(title, this.context.locale),
+      tabs,
+      links,
+      msgs.get(information, this.context.locale)
+    )
   }
 
   handleDescription = (title, content = 'placeholder') => () => {
@@ -55,9 +57,13 @@ class OverviewTab extends React.Component {
   render () {
     const { userpreferences } = this.props
     const showFindings = config['feature_security-findings']
-    const activeAccountId = (userpreferences && userpreferences.userPreferences) ? userpreferences.userPreferences.activeAccountId : ''
+    const activeAccountId = (userpreferences && userpreferences.userPreferences)
+      ? userpreferences.userPreferences.activeAccountId
+      : ''
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
-    const showApplications = this.props.showApplications === undefined ? config['feature_applications'] : this.props.showApplications
+    const showApplications = this.props.showApplications === undefined
+      ? config['feature_applications']
+      : this.props.showApplications
     return (
       <Page>
         <Query
