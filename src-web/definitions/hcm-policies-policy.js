@@ -46,17 +46,17 @@ export default {
     },
     {
       msgKey: 'table.header.standards',
-      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
+      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/standards"]',
       transformFunction: getStandards,
     },
     {
       msgKey: 'table.header.controls',
-      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
+      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/controls"]',
       transformFunction: getControls,
     },
     {
       msgKey: 'table.header.categories',
-      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/categories"]',
+      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/categories"]',
       transformFunction: getCategories
     },
   ],
