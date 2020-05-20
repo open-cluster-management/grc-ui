@@ -56,8 +56,15 @@ class ClusterPolicy extends React.Component {
     }
     else{
       const nameSegments = urlSegments[urlSegments.length - 1].split('.')
-      return nameSegments.slice(1).join('.')
+      return nameSegments[1]
     }
+  }
+
+  getRootPolicyNamespace() {
+    const { location } = this.props,
+          urlSegments = location.pathname.split('/'),
+          nameSegments = urlSegments[urlSegments.length - 1].split('.')
+    return nameSegments[0]
   }
 
   getClusterName() {
@@ -82,7 +89,7 @@ class ClusterPolicy extends React.Component {
       {
         label: this.getPolicyName(false),
         noLocale: true,
-        url: `${urlSegments.slice(0, 3).join('/')}/all/${this.getPolicyName(false)}`
+        url: `${urlSegments.slice(0, 3).join('/')}/all/${this.RootPolicyNamespace()}/${this.getPolicyName(false)}`
       },
       {
         label: this.getClusterName(),
