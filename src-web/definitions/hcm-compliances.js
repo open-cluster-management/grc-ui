@@ -405,17 +405,17 @@ export default {
     },
     {
       msgKey: 'table.header.controls',
-      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/controls"]',
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
       transformFunction: getControls,
     },
     {
       msgKey: 'table.header.standards',
-      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/standards"]',
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
       transformFunction: getStandards,
     },
     {
       msgKey: 'table.header.categories',
-      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/categories"]',
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/categories"]',
       transformFunction: getCategories
     },
   ],
@@ -501,7 +501,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'annotations.categories',
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/categories"]',
           }
         ]
       },
@@ -512,7 +512,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'annotations.controls',
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
           }
         ]
       },
@@ -523,7 +523,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'annotations.standards',
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
           }
         ]
       },
@@ -1047,17 +1047,17 @@ export function getSubjects(item) {
 
 export function getControls(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations['policy.mcm.ibm.com/controls'])
+  return convertToStartCase(annotations['policies.open-cluster-management.io/controls'])
 }
 
 export function getStandards(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations['policy.mcm.ibm.com/standards'])
+  return convertToStartCase(annotations['policies.open-cluster-management.io/standards'])
 }
 
 export function getCategories(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations['policy.mcm.ibm.com/categories'])
+  return convertToStartCase(annotations['policies.open-cluster-management.io/categories'])
 }
 
 export function convertToStartCase(items){
