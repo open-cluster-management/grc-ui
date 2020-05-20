@@ -15,7 +15,8 @@ const path = require('path'),
       WebpackMd5Hash = require('webpack-md5-hash'),
       FileManagerPlugin = require('filemanager-webpack-plugin'),
       config = require('./config'),
-      CompressionPlugin = require('compression-webpack-plugin')
+      CompressionPlugin = require('compression-webpack-plugin'),
+      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 const noOP = () => { /*This is intentional*/},
       PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
@@ -185,6 +186,9 @@ module.exports = {
       algorithm: 'gzip',
       test: /\.js$|\.css$/,
       minRatio: 1,
+    }),
+    new MonacoWebpackPlugin({
+      languages: ['yaml'],
     }),
     new AssetsPlugin({
       path: path.join(__dirname, 'public'),
