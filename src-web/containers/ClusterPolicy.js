@@ -89,7 +89,7 @@ class ClusterPolicy extends React.Component {
       {
         label: this.getPolicyName(false),
         noLocale: true,
-        url: `${urlSegments.slice(0, 3).join('/')}/all/${this.RootPolicyNamespace()}/${this.getPolicyName(false)}`
+        url: `${urlSegments.slice(0, 3).join('/')}/all/${this.getRootPolicyNamespace()}/${this.getPolicyName(false)}`
       },
       {
         label: this.getClusterName(),

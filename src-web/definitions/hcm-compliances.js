@@ -405,17 +405,17 @@ export default {
     },
     {
       msgKey: 'table.header.controls',
-      resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/controls"]`,
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
       transformFunction: getControls,
     },
     {
       msgKey: 'table.header.standards',
-      resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/standards"]`,
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
       transformFunction: getStandards,
     },
     {
       msgKey: 'table.header.categories',
-      resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/categories"]`,
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/categories"]',
       transformFunction: getCategories
     },
   ],
@@ -501,7 +501,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/categories"]`,
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/categories"]',
           }
         ]
       },
@@ -512,7 +512,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/controls"]`,
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
           }
         ]
       },
@@ -523,7 +523,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/standards"]`,
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
           }
         ]
       },
@@ -726,7 +726,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'message'
+            resourceKey: 'status.details[0].history[0].message'
           }
         ]
       },
@@ -737,7 +737,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'status'
+            resourceKey: 'status.compliant'
           }
         ]
       },
@@ -936,12 +936,14 @@ export function createComplianceLink(item = {}, ...param){
 
 export function getStatus(item, locale) {
   const status = _.get(item, 'status', '-')
+  // eslint-disable-next-line no-console
+  console.log('item', JSON.stringify(item))
   const expectedStatuses = [ 'compliant', 'notcompliant', 'noncompliant', 'invalid', 'unknown']
-  if (status.Compliant&&expectedStatuses.indexOf(status.Compliant.toLowerCase()) > -1){
-    if (status.Compliant.toLowerCase() === 'compliant') {
+  if (status.compliant&&expectedStatuses.indexOf(status.compliant.toLowerCase()) > -1){
+    if (status.compliant.toLowerCase() === 'compliant') {
       return <StatusField status='ok' text={msgs.get('policy.status.compliant', locale)} />
     } else {
-      return <StatusField status='critical' text={msgs.get(`policy.status.${status.Compliant.toLowerCase()}`, locale)} />
+      return <StatusField status='critical' text={msgs.get(`policy.status.${status.compliant.toLowerCase()}`, locale)} />
     }
   } else if (status&&typeof(status)==='string'&&expectedStatuses.indexOf(status.toLowerCase()) > -1){
     if (status.toLowerCase() === 'compliant') {
@@ -1047,17 +1049,17 @@ export function getSubjects(item) {
 
 export function getControls(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations[`${config.ocmPoliciesPrefix}/controls`])
+  return convertToStartCase(annotations['policies.open-cluster-management.io/controls'])
 }
 
 export function getStandards(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations[`${config.ocmPoliciesPrefix}/standards`])
+  return convertToStartCase(annotations['policies.open-cluster-management.io/standards'])
 }
 
 export function getCategories(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations[`${config.ocmPoliciesPrefix}/categories`])
+  return convertToStartCase(annotations['policies.open-cluster-management.io/categories'])
 }
 
 export function convertToStartCase(items){
