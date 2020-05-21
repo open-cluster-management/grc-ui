@@ -20,6 +20,7 @@ import { withRouter } from 'react-router-dom'
 import queryString from 'query-string'
 import NoResource from '../common/NoResource'
 import TruncateText from '../common/TruncateText'
+import config from '../../../lib/shared/config'
 
 resources(() => {
   require('../../../scss/module-grc-cards.scss')
@@ -137,11 +138,11 @@ export class GrcCardsModule extends React.Component {
       switch (grcCardChoice) {
       case GrcCardsSelections.categories:
       default:
-        types = annotations['policy.mcm.ibm.com/categories'] || ''
+        types = annotations[`${config.mcmPolicyPrefix}/categories`] || ''
         key = 'categories'
         break
       case GrcCardsSelections.standards:
-        types = annotations['policy.mcm.ibm.com/standards'] || ''
+        types = annotations[`${config.mcmPolicyPrefix}/standards`] || ''
         key = 'standards'
         break
       }

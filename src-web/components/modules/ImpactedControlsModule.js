@@ -24,6 +24,7 @@ import _ from 'lodash'
 import { withRouter } from 'react-router-dom'
 import queryString from 'query-string'
 import NoResource from '../common/NoResource'
+import config from '../../../lib/shared/config'
 
 resources(() => {
   require('../../../scss/module-impacted-controls.scss')
@@ -637,8 +638,8 @@ class ImpactedControlsModule extends React.Component {
     const regexAllSpaces = / +/g
     violations.forEach(policy=>{
       const annotations = _.get(policy, 'metadata.annotations', {})
-      const controls = _.get(annotations, 'policy.mcm.ibm.com/controls', 'other')
-      const standards = _.get(annotations, 'policy.mcm.ibm.com/standards', 'other').trim().toLowerCase()
+      const controls = _.get(annotations, `${config.mcmPolicyPrefix}/controls`, 'other')
+      const standards = _.get(annotations, `${config.mcmPolicyPrefix}/standards`, 'other').trim().toLowerCase()
       const standardsSet = new Set(standards.split(','))//deal with multi standards separated by comma
       controls.split(',').forEach(control => {
         const label = _.startCase(control.trim())

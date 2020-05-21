@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -52,7 +53,7 @@ export default {
             resourceKey: 'violatedNum',
           },
           {
-            resourceKey: 'metadata.annotations["policy.mcm.ibm.com/controls"]',
+            resourceKey: `metadata.annotations["${config.mcmPolicyPrefix}/controls"]`,
           },
           {
             resourceKey: 'cluster',

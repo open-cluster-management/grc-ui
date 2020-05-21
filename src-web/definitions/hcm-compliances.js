@@ -405,17 +405,17 @@ export default {
     },
     {
       msgKey: 'table.header.controls',
-      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
+      resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/controls"]`,
       transformFunction: getControls,
     },
     {
       msgKey: 'table.header.standards',
-      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
+      resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/standards"]`,
       transformFunction: getStandards,
     },
     {
       msgKey: 'table.header.categories',
-      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/categories"]',
+      resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/categories"]`,
       transformFunction: getCategories
     },
   ],
@@ -501,7 +501,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/categories"]',
+            resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/categories"]`,
           }
         ]
       },
@@ -512,7 +512,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
+            resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/controls"]`,
           }
         ]
       },
@@ -523,7 +523,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
+            resourceKey: `metadata.annotations["${config.ocmPoliciesPrefix}/standards"]`,
           }
         ]
       },
@@ -1047,17 +1047,17 @@ export function getSubjects(item) {
 
 export function getControls(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations['policies.open-cluster-management.io/controls'])
+  return convertToStartCase(annotations[`${config.ocmPoliciesPrefix}/controls`])
 }
 
 export function getStandards(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations['policies.open-cluster-management.io/standards'])
+  return convertToStartCase(annotations[`${config.ocmPoliciesPrefix}/standards`])
 }
 
 export function getCategories(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations['policies.open-cluster-management.io/categories'])
+  return convertToStartCase(annotations[`${config.ocmPoliciesPrefix}/categories`])
 }
 
 export function convertToStartCase(items){

@@ -12,7 +12,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import config from '../../lib/shared/config'
-
 import {getCategories, getControls, getStandards} from './hcm-compliances'
 
 export default {
@@ -46,17 +45,17 @@ export default {
     },
     {
       msgKey: 'table.header.standards',
-      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/standards"]',
+      resourceKey: `metadata.annotations["${config.mcmPolicyPrefix}/standards"]`,
       transformFunction: getStandards,
     },
     {
       msgKey: 'table.header.controls',
-      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/controls"]',
+      resourceKey: `metadata.annotations["${config.mcmPolicyPrefix}/controls"]`,
       transformFunction: getControls,
     },
     {
       msgKey: 'table.header.categories',
-      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/categories"]',
+      resourceKey: `metadata.annotations["${config.mcmPolicyPrefix}/categories"]`,
       transformFunction: getCategories
     },
   ],

@@ -17,7 +17,7 @@ import policyTemplate from './templates/policy-template.hbs'
 import Choices from './templates'
 import msgs from '../../nls/platform.properties'
 import _ from 'lodash'
-
+import config from '../../lib/shared/client'
 
 // where to put Create/Cancel buttons
 const Portals = Object.freeze({
@@ -84,7 +84,7 @@ const controlData = [
     id: 'standards',
     type: 'multiselect',
     available: ['NIST', 'PCI', 'FISMA', 'HIPAA'],
-    reverse: 'Policy[0].metadata.annotations["policy.mcm.ibm.com/standards"]',
+    reverse: `Policy[0].metadata.annotations["${config.mcmPolicyPrefix}/standards"]`,
     cacheUserValueKey: 'create.policy.standards',
   },
   {
@@ -94,7 +94,7 @@ const controlData = [
     id: 'categories',
     type: 'multiselect',
     available: ['PR.PT Protective Technology','PR.DS DataSecurity', 'PR.AC Identity Management Authentication and Access Control', 'PR.IP Information Protection Processes and Procedures', 'DE.CM Security Continuous Monitoring'],
-    reverse: 'Policy[0].metadata.annotations["policy.mcm.ibm.com/categories"]',
+    reverse: `Policy[0].metadata.annotations["${config.mcmPolicyPrefix}/categories"]`,
     cacheUserValueKey: 'create.policy.categories',
   },
   {
@@ -104,7 +104,7 @@ const controlData = [
     id: 'controls',
     type: 'multiselect',
     available: ['PR.PT-1 Audit Logging','PR.PT-3 Least Functionality','PR.DS-2 Data-in-transit','PR.DS-2 Data-at-rest','PR.AC-4 Access Control', 'PR.AC-5 Network Integrity', 'PR.IP-1 Baseline configuration', 'DE.CM-7 Monitoring for unauthorized activity','DE.CM-8 Vulnerability scans'],
-    reverse: 'Policy[0].metadata.annotations["policy.mcm.ibm.com/controls"]',
+    reverse: `Policy[0].metadata.annotations["${config.mcmPolicyPrefix}/controls"]`,
     cacheUserValueKey: 'create.policy.controls',
   },
   {
