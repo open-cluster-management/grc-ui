@@ -58,8 +58,8 @@ sleep 10
 
 npm run test:e2e-headless
 
-# need to stop the container to let nyc generate coverage report
-docker stop grcui
+# kill the node process to let nyc generate coverage report
+docker exec -it grcui pkill node
 
 docker ps -a
 
