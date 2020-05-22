@@ -129,7 +129,7 @@
     "babel-plugin-istanbul": "^4.1.6",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
-    "chromedriver": "^81.0.0",
+    "chromedriver": "^83.0.0",
     "compression-webpack-plugin": "^1.1.11",
     "cross-fetch": "^3.0.4",
     "css-loader": "^0.28.11",
