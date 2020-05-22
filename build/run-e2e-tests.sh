@@ -6,8 +6,7 @@
 # Contract with IBM Corp.
 # Copyright (c) 2020 Red Hat, Inc.
 set -e
-# UI_CURRENT_IMAGE=$1
-UI_CURRENT_IMAGE=quay.io/open-cluster-management/grc-ui:3.6.0-PR100-62fdde333effce1145f71f12f4c8799367ebe59e
+UI_CURRENT_IMAGE=$1
 
 echo "Login hub to clean up"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
