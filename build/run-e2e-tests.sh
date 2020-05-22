@@ -69,8 +69,8 @@ sleep 10
 # kill the node process to let nyc generate coverage report
 docker stop grcui
 sleep 10
-docker exec -it grcui pkill node
-sleep 10
+# docker exec -it grcui pkill node
+# sleep 10
 docker ps -a
 
 ls $(pwd)/test-output -al
