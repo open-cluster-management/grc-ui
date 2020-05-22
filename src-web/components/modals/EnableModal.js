@@ -69,6 +69,7 @@ EnableModal.propTypes = {
   label: PropTypes.shape({
     heading: PropTypes.string,
     label: PropTypes.string,
+    primaryBtn: PropTypes.string,
   }),
   locale: PropTypes.string,
   open:  PropTypes.bool,

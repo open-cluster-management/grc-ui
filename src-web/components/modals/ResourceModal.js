@@ -189,6 +189,7 @@ ResourceModal.propTypes = {
   label: PropTypes.shape({
     heading: PropTypes.string,
     label: PropTypes.string,
+    primaryBtn: PropTypes.string,
   }),
   locale: PropTypes.string,
   name: PropTypes.string,
