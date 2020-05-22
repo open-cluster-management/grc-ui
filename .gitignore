@@ -8,6 +8,7 @@ dll
 test-reports
 coverage
 jestTestLogs.tap
+/tests/jest/config/platform-properties.json
 config/config-development.json
 test-output
 storybook-static
