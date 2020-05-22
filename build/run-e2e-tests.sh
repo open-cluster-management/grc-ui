@@ -49,10 +49,14 @@ export SELENIUM_USER=$OC_CLUSTER_USER
 export SELENIUM_PASSWORD=$OC_HUB_CLUSTER_PASS
 
 docker run --network test-network -d --ip 10.10.0.5 -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$OC_HUB_CLUSTER_URL $DOCKER_URI
-docker run --network test-network -d --ip 10.10.0.6 -t -i -p 3000:3000 --name grcui -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e headerUrl=$headerUrl -e OAUTH2_REDIRECT_URL=$OAUTH2_REDIRECT_URL -e grcUiApiUrl=https://10.10.0.5:4000/grcuiapi -e OAUTH2_CLIENT_ID=$OAUTH2_CLIENT_ID -e OAUTH2_CLIENT_SECRET=$OAUTH2_CLIENT_SECRET -e API_SERVER_URL=$OC_HUB_CLUSTER_URL $UI_CURRENT_IMAGE
-docker container ls -a
+docker run --network test-network -d --ip 10.10.0.6 -t -i -p 3000:3000 --name grcui -v $(PWD)/test-output/server:/opt/app-root/src/grc-ui/test-output/server -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e headerUrl=$headerUrl -e OAUTH2_REDIRECT_URL=$OAUTH2_REDIRECT_URL -e grcUiApiUrl=https://10.10.0.5:4000/grcuiapi -e OAUTH2_CLIENT_ID=$OAUTH2_CLIENT_ID -e OAUTH2_CLIENT_SECRET=$OAUTH2_CLIENT_SECRET -e API_SERVER_URL=$OC_HUB_CLUSTER_URL $UI_CURRENT_IMAGE npm run start:instrument
+docker ps -a
 
 # wait for container to fully started
 sleep 10
 
 npm run test:e2e-headless
+
+docker stop grcui
+
+ls $(PWD)/test-output/server
