@@ -55,10 +55,12 @@ docker inspect grcui
 
 # wait for container to fully started
 sleep 10
-docker logs grcui
 
 npm run test:e2e-headless
 
+# need to stop the container to let nyc generate coverage report
 docker stop grcui
 
-ls $(pwd)/test-output/server
+docker ps -a
+
+ls $(pwd)/test-output -al

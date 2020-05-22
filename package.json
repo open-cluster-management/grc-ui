@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.ibm.com:IBMPrivateCloud/grc-ui.git"
+    "url": "git@github.com:open-cluster-management/grc-ui.git"
   },
   "author": "",
   "license": "SEE LICENSE IN LICENSE",
