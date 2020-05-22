@@ -31,7 +31,7 @@ env:
 
 stages:
   - build
-  # - unit-test
+  - unit-test
   - test
   - publish
  
@@ -55,10 +55,10 @@ jobs:
             make component/push;
           fi;
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
-    # - stage: unit-test
-    #   name: "Build and run unit tests"
-    #   script:
-    #     - make component/test/unit
+    - stage: unit-test
+      name: "Build and run unit tests"
+      script:
+        - make component/test/unit
     - stage: test
       name: "Run unit tests and e2e tests"
       if: branch = master OR type = pull_request
