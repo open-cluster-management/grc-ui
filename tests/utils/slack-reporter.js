@@ -7,7 +7,7 @@
 const fs = require('fs')
 const path = require('path')
 const { WebClient } = require('@slack/web-api')
-const { SLACK_TOKEN, USER, TRAVIS_BUILD_WEB_URL } = process.env
+const { SLACK_TOKEN, /*USER,*/ TRAVIS_BUILD_WEB_URL } = process.env
 
 const web = new WebClient(SLACK_TOKEN)
 
