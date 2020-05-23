@@ -5,7 +5,6 @@
 # Use, duplication or disclosure restricted by GSA ADP Schedule
 # Contract with IBM Corp.
 # Copyright (c) 2020 Red Hat, Inc.
-set -e
 UI_CURRENT_IMAGE=$1
 
 echo "Login hub to clean up"
