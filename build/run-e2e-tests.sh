@@ -60,7 +60,7 @@ export NODE_ENV=development
 # export OAUTH2_CLIENT_ID=$OAUTH2_CLIENT_ID 
 # export OAUTH2_CLIENT_SECRET=$OAUTH2_CLIENT_SECRET 
 export API_SERVER_URL=$OC_HUB_CLUSTER_URL 
-docker ps -a
+npm run build
 npm run start:instrument
 sleep 10
 npm run test:e2e-headless
