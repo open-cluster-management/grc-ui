@@ -69,6 +69,7 @@ jobs:
         - make component/pull
         - make component/test/e2e
         - npm run merge:coverage
+        - sleep 10
         - cat lcov-merged.info
         - make sonar/js
       after_failure:

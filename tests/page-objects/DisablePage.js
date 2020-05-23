@@ -57,7 +57,7 @@ module.exports = {
 }
 
 function createPolicy(browser, yaml, time) {
-  this.log(`creating policy:\n${yaml}`)
+  this.log(`Creating policy:\n${yaml}`)
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   //this.click('.bx--toggle__appearance')
@@ -76,7 +76,7 @@ function createPolicy(browser, yaml, time) {
 }
 
 function checkViolations(name, violationExpected, violationText) {
-  this.log(`checking policy: ${name} violationExpected: ${violationExpected}`)
+  this.log(`Checking policy: ${name} violationExpected: ${violationExpected}`)
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
   this.click('tbody>tr>td>a')
@@ -94,7 +94,7 @@ function checkViolations(name, violationExpected, violationText) {
 }
 
 function deletePolicy(name){
-  this.log(`deleting policy: ${name}`)
+  this.log(`Deleting policy: ${name}`)
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
@@ -113,7 +113,7 @@ function deletePolicy(name){
 }
 
 function tryEnable(name){
-  this.log(`enabling policy: ${name}`)
+  this.log(`Enabling policy: ${name}`)
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
@@ -135,7 +135,7 @@ function tryEnable(name){
 }
 
 function tryDisable(name){
-  this.log(`disabling policy: ${name}`)
+  this.log(`Disabling policy: ${name}`)
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
@@ -157,7 +157,7 @@ function tryDisable(name){
 }
 
 function setSearchValue(value){
-  this.log(`setSearchValue: ${value}`)
+  this.log(`Searching for policy: ${value}`)
   const searchClose = '.bx--search-close.bx--search-close--hidden'
   this.api.elements('css selector', searchClose, res => {
     if (res.status < 0 || res.value.length < 1) {

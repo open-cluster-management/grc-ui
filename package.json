@@ -10,6 +10,7 @@
     "clean": "del-cli dll public/*",
     "build:watch": "webpack --progress --watch",
     "build": "npm run clean && webpack --config webpack.dll.js --progress && webpack --progress",
+    "build:instrument": "npm run clean && cross-env BABEL_ENV=test webpack --config webpack.dll.js && cross-env BABEL_ENV=test webpack",
     "build:production": "npm run build:dll:production && cross-env BUILD_ENV=production webpack",
     "build:dll:production": "cross-env BUILD_ENV=production webpack --config webpack.dll.js",
     "build:dll": "webpack --config webpack.dll.js --progress",
