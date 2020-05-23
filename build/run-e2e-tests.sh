@@ -66,7 +66,7 @@ sleep 10
 npm run test:e2e-headless
 
 # kill the node process to let nyc generate coverage report
-pkill node
+ps -ef | grep 'node' | grep -v grep | awk '{print $$2}' | xargs kill
 sleep 10
 
 ls $(pwd)/test-output/server -al
