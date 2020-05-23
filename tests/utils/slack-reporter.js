@@ -57,10 +57,6 @@ function buildComment(fileName) {
 // }
 
 async function postScreenshot(fileName, filePath, comment, userId) {
-  console.log(fileName)
-  console.log(filePath)
-  console.log(comment)
-  console.log(userId)
   await web.files.upload({
     channels: userId,
     filename: fileName,
