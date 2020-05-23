@@ -40,3 +40,6 @@ unit-test:
 		mkdir -p test-output/unit; \
 	fi
 	npm test
+
+travis-slack-reporter:
+	node ./tests/utils/slack-reporter.js
