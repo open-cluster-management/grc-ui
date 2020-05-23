@@ -18,26 +18,42 @@ async function reportFailure() {
 
   try {
     const screenshotDir = path.join(process.cwd(), 'test-output', 'e2e', 'screenshots')
-    const folders = fs.readdirSync(screenshotDir)
     // const userId = await mapSlackUserByGitEmail()
     const userId = 'GUS1VB8P3'
-    folders.forEach(folder => {
-      const folderDir = path.join(screenshotDir, folder)
-      const subFoldders = fs.readdirSync(folderDir, { withFileTypes: false })
-      console.log(subFoldders)
-      subFoldders.forEach(subfolder => {
-        const subfolderDir = path.join(folderDir, subfolder)
-        const screenshots = fs.readdirSync(subfolderDir, { withFileTypes: true })
-        screenshots.forEach(({ name }) => {
-          const ssPath = path.join(subfolderDir, name)
-          const comment = buildComment(name)
-          postScreenshot(name, ssPath, comment, userId)
-        })
-      })
+    const screenshots = recFindByExt(screenshotDir, 'png')
+    screenshots.forEach(screenshot => {
+      const pathArray = screenshot.split('/')
+      const filename = pathArray[pathArray.length-1]
+      const comment = buildComment(filename)
+      postScreenshot(filename, screenshot, comment, userId)
     })
   } catch(e) {
     console.error(e)
   }
+}
+
+
+function recFindByExt(base,ext,files,result) {
+  files = files || fs.readdirSync(base)
+  result = result || []
+
+  files.forEach(
+    (file) => {
+      var newbase = path.join(base,file)
+      if ( fs.statSync(newbase).isDirectory() )
+      {
+        result = recFindByExt(newbase,ext,fs.readdirSync(newbase),result)
+      }
+      else
+      {
+        if ( file.substr(-1*(ext.length+1)) == '.' + ext )
+        {
+          result.push(newbase)
+        }
+      }
+    }
+  )
+  return result
 }
 
 function buildComment(fileName) {
