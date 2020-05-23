@@ -1,6 +1,7 @@
 # These files contain credential tokens. do not ship
 .aat.yaml
 .npmrc
+package.json
 .travis.yml
 
 # contains facebook copyright code. do not ship
