@@ -47,11 +47,4 @@ module.exports = {
   'Overview: Run accessibility scan': () => {
     // a11yScan.runAccessibilityScan(browser, 'overview')
   },
-
-  after: function (browser, done) {
-    setTimeout(() => {
-      browser.end()
-      done()
-    })
-  }
 }
