@@ -17,7 +17,7 @@ async function reportFailure() {
   }
 
   try {
-    const screenshotDir = path.join(__dirname, '../..', 'test-output', 'e2e', 'screenshots')
+    const screenshotDir = path.join(process.cwd(), 'test-output', 'e2e', 'screenshots')
     const folders = fs.readdirSync(screenshotDir)
     // const userId = await mapSlackUserByGitEmail()
     const userId = 'GUS1VB8P3'
