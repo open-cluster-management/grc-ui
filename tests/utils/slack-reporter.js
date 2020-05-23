@@ -23,11 +23,16 @@ async function reportFailure() {
     const userId = 'GUS1VB8P3'
     folders.forEach(folder => {
       const folderDir = path.join(screenshotDir, folder)
-      const screenshots = fs.readdirSync(folderDir, { withFileTypes: true })
-      screenshots.forEach(({ name }) => {
-        const ssPath = path.join(folderDir, name)
-        const comment = buildComment(name)
-        postScreenshot(name, ssPath, comment, userId)
+      const subFoldders = fs.readdirSync(folderDir, { withFileTypes: false })
+      console.log(subFoldders)
+      subFoldders.forEach(subfolder => {
+        const subfolderDir = path.join(folderDir, subfolder)
+        const screenshots = fs.readdirSync(subfolderDir, { withFileTypes: true })
+        screenshots.forEach(({ name }) => {
+          const ssPath = path.join(subfolderDir, name)
+          const comment = buildComment(name)
+          postScreenshot(name, ssPath, comment, userId)
+        })
       })
     })
   } catch(e) {
@@ -52,6 +57,10 @@ function buildComment(fileName) {
 // }
 
 async function postScreenshot(fileName, filePath, comment, userId) {
+  console.log(fileName)
+  console.log(filePath)
+  console.log(comment)
+  console.log(userId)
   await web.files.upload({
     channels: userId,
     filename: fileName,
