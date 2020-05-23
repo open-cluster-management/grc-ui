@@ -19,3 +19,4 @@ test-report.xml
 !vbh/build-harness
 !vbh/build-harness-extensions
 .nyc_output
+lcov-merged.info

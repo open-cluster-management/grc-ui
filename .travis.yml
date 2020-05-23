@@ -69,6 +69,7 @@ jobs:
         - make component/pull
         - make component/test/e2e
         - npm run merge:coverage
+        - cat lcov-merged.info
         - make sonar/js
       after_failure:
         - make travis-slack-reporter

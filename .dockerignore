@@ -1,7 +1,6 @@
 # These files contain credential tokens. do not ship
 .aat.yaml
 .npmrc
-package.json
 .travis.yml
 
 # contains facebook copyright code. do not ship
@@ -31,6 +30,7 @@ travis-env.sh
 .dockerignore
 .eslint*
 .nvmrc
+package.json
 travis-scripts
 copy.sh
 nightwatch*
