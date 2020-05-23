@@ -69,4 +69,4 @@ npm run test:e2e-headless
 pkill node
 sleep 10
 
-ls $(pwd)/test-output -al
+ls $(pwd)/test-output/server -al

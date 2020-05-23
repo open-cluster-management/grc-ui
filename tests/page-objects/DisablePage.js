@@ -72,7 +72,7 @@ function createPolicy(browser, yaml, time) {
   this.waitForElementVisible('@table')
 }
 
-function checkViolations(browser, name, violationExpected) {
+function checkViolations(name, violationExpected, violationText) {
   this.waitForElementVisible('@searchInput')
   this.clearValue('@searchInput')
   this.setValue('@searchInput', name)
@@ -81,6 +81,9 @@ function checkViolations(browser, name, violationExpected) {
   this.click('#violation-tab')
   if (violationExpected) {
     this.waitForElementPresent('#violations-table-container')
+    if (violationText) {
+      this.expect.element('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(violationText)
+    }
   } else {
     this.waitForElementPresent('.no-resource')
   }
