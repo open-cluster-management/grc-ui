@@ -68,6 +68,5 @@ npm run test:e2e-headless
 # kill the node process to let nyc generate coverage report
 pkill node
 sleep 10
-# docker exec -it grcui pkill node
-# sleep 10
+
 ls $(pwd)/test-output -al
