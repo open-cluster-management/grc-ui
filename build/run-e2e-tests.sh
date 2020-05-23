@@ -69,4 +69,7 @@ ps -ef | grep 'node app.js' | grep -v grep
 ps -ef | grep 'node app.js' | grep -v grep | awk '{print $2}' | xargs kill
 sleep 10
 
-ls $(pwd)/test-output/server -al
+ls $(pwd)/test-output/server/coverage -al
+
+sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/server/coverage/lcov.info
+cat test-output/server/coverage/lcov.info
