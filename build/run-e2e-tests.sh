@@ -59,9 +59,9 @@ export NODE_ENV=development
 # export grcUiApiUrl=https://10.10.0.5:4000/grcuiapi 
 # export OAUTH2_CLIENT_ID=$OAUTH2_CLIENT_ID 
 # export OAUTH2_CLIENT_SECRET=$OAUTH2_CLIENT_SECRET 
-export API_SERVER_URL=$OC_HUB_CLUSTER_URL 
+export API_SERVER_URL=$OC_HUB_CLUSTER_URL
 npm run build
-npm run start:instrument
+npm run start:instrument &>/dev/null &
 sleep 10
 npm run test:e2e-headless
 
