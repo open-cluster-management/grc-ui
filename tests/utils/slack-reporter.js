@@ -42,14 +42,14 @@ function buildComment(fileName) {
   return `:failed: *FAILED: ${testName}.* \n ${TRAVIS_BUILD_WEB_URL}`
 }
 
-async function mapSlackUserByGitEmail() {
-  try {
-    const userProfile = await web.users.lookupByEmail({ email: USER })
-    return userProfile.user.id
-  } catch (e) {
-    console.log('Failed to map user\'s git e-mail to Slack')
-  }
-}
+// async function mapSlackUserByGitEmail() {
+//   try {
+//     const userProfile = await web.users.lookupByEmail({ email: USER })
+//     return userProfile.user.id
+//   } catch (e) {
+//     console.log('Failed to map user\'s git e-mail to Slack')
+//   }
+// }
 
 async function postScreenshot(fileName, filePath, comment, userId) {
   await web.files.upload({
