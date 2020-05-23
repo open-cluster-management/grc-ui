@@ -50,11 +50,14 @@ module.exports = {
     deletePolicy,
     tryEnable,
     tryDisable,
-    checkViolations
+    checkViolations,
+    setSearchValue,
+    log
   }]
 }
 
 function createPolicy(browser, yaml, time) {
+  this.log(`creating policy:\n${yaml}`)
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   //this.click('.bx--toggle__appearance')
@@ -73,9 +76,9 @@ function createPolicy(browser, yaml, time) {
 }
 
 function checkViolations(name, violationExpected, violationText) {
+  this.log(`checking policy: ${name} violationExpected: ${violationExpected}`)
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
-  this.setValue('@searchInput', name)
+  this.setSearchValue(name)
   this.click('tbody>tr>td>a')
   this.waitForElementPresent('#violation-tab')
   this.click('#violation-tab')
@@ -90,11 +93,11 @@ function checkViolations(name, violationExpected, violationText) {
   this.click('.bx--breadcrumb > div:nth-child(1)')
 }
 
-function deletePolicy(browser, name){
+function deletePolicy(name){
+  this.log(`deleting policy: ${name}`)
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
-  this.setValue('@searchInput', name)
+  this.setSearchValue(name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
   this.waitForElementNotPresent('bx--overflow-menu-options__option.bx--overflow-menu-options__option--danger')
@@ -107,15 +110,15 @@ function deletePolicy(browser, name){
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
-  // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').not.to.be.present
 }
 
 function tryEnable(name){
+  this.log(`enabling policy: ${name}`)
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
-  this.setValue('@searchInput', name)
+  this.setSearchValue(name)
+  // this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > div:nth-child(1)').text.to.equal(name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
@@ -128,15 +131,17 @@ function tryEnable(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#enable-resource-modal')
   this.click('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
-  this.clearValue('@searchInput')
+  // this.clearValue('@searchInput')
 }
 
 function tryDisable(name){
+  this.log(`disabling policy: ${name}`)
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
-  this.setValue('@searchInput', name)
+  this.setSearchValue(name)
+  // this.click('button.bx--search-close')
+  // this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
@@ -148,5 +153,28 @@ function tryDisable(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#disable-resource-modal')
   this.click('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
-  this.clearValue('@searchInput')
+  // this.clearValue('@searchInput')
+}
+
+function setSearchValue(value){
+  this.log(`setSearchValue: ${value}`)
+  const searchClose = '.bx--search-close.bx--search-close--hidden'
+  this.api.elements('css selector', searchClose, res => {
+    if (res.status < 0 || res.value.length < 1) {
+      // clear first
+      this.click('button.bx--search-close')
+      this.setValue('@searchInput', value)
+    }
+    else {
+      // do nothing already cleared
+      this.setValue('@searchInput', value)
+    }
+  })
+}
+
+function log(message) {
+  return this.perform(() => {
+    // eslint-disable-next-line no-console
+    console.log(message)
+  })
 }
