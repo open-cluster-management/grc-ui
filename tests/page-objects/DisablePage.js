@@ -113,7 +113,7 @@ function deletePolicy(browser, name){
   this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').not.to.be.present
 }
 
-function tryEnable(browser, name){
+function tryEnable(name){
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
@@ -134,7 +134,7 @@ function tryEnable(browser, name){
   this.clearValue('@searchInput')
 }
 
-function tryDisable(browser, name){
+function tryDisable(name){
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')

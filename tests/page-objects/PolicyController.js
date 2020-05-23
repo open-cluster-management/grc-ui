@@ -90,6 +90,7 @@ function checkViolations(name, violationExpected, violationText) {
   this.waitForElementVisible('@searchInput')
   this.clearValue('@searchInput')
   this.setValue('@searchInput', name)
+  this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
   this.click('tbody>tr>td>a')
   this.waitForElementPresent('#violation-tab')
   this.click('#violation-tab')
