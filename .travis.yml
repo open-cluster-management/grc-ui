@@ -32,7 +32,7 @@ env:
 stages:
   - build
   - unit-test
-  - test
+  - e2e-test
   - publish
  
 before_script:
@@ -59,7 +59,7 @@ jobs:
       name: "Build and run unit tests"
       script:
         - make component/test/unit
-    - stage: test
+    - stage: e2e-test
       name: "Run unit tests and e2e tests"
       if: branch = master OR type = pull_request
       script:
@@ -69,7 +69,6 @@ jobs:
         - make component/pull
         - make component/test/e2e
         - npm run merge:coverage
-        - cat test-output/server/coverage/lcov.info
         - make sonar/js
       after_failure:
         - make travis-slack-reporter
