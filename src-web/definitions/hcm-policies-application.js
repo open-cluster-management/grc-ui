@@ -52,7 +52,7 @@ export default {
             resourceKey: 'violatedNum',
           },
           {
-            resourceKey: 'metadata.annotations["policy.mcm.ibm.com/controls"]',
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
           },
           {
             resourceKey: 'cluster',
