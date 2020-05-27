@@ -12,10 +12,22 @@ replacements: # if user select this choice, the template variable names and valu
     PR.IP Information Protection Processes and Procedures
   controls: |
     PR.IP-1 Baseline configuration
-  objectTemplates: |
-    - complianceType: musthave
-      objectDefinition:
-        kind: Namespace # must have namespace 'prod'
-        apiVersion: v1
+  policyTemplates: |
+    - objectDefinition:
+        apiVersion: policies.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
         metadata:
-          name: prod
+          name: {{name}}-example
+        spec:
+          remediationAction: inform # will be overridden by remediationAction in parent policy
+          severity: low
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                kind: Namespace # must have namespace 'prod'
+                apiVersion: v1
+                metadata:
+                  name: prod

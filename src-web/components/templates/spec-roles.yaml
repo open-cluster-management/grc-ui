@@ -30,7 +30,7 @@ replacements: # if user select this choice, the template variable names and valu
                 apiVersion: rbac.authorization.k8s.io/v1
                 kind: Role
                 metadata:
-                  name: {{name}}-example
+                  name: sample-role
                 rules:
                   - apiGroups: ["extensions", "apps"]
                     resources: ["deployments"]

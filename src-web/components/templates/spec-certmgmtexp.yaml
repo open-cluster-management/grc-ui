@@ -22,6 +22,6 @@ replacements: # if user select this choice, the template variable names and valu
           namespaceSelector:
             include: ["default"]
             exclude: []
-          remediationAction: inform
+          remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: low
           minimumDuration: 300h

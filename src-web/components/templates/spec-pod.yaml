@@ -12,16 +12,28 @@ replacements: # if user select this choice, the template variable names and valu
     PR.PT Protective Technology
   controls: |
     PR.PT-3 Least Functionality
-  objectTemplates: |
-    - complianceType: musthave
-      objectDefinition:
-        apiVersion: v1
-        kind: Pod # nginx pod must exist
+  policyTemplates: |
+    - objectDefinition:
+        apiVersion: policies.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
         metadata:
-          name: nginx-pod
+          name: {{name}}-example
         spec:
-          containers:
-          - image: nginx:1.7.9
-            name: nginx
-            ports:
-            - containerPort: 80
+          remediationAction: inform # will be overridden by remediationAction in parent policy
+          severity: low
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: Pod # nginx pod must exist
+                metadata:
+                  name: sample-nginx-pod
+                spec:
+                  containers:
+                  - image: nginx:1.7.9
+                    name: nginx
+                    ports:
+                    - containerPort: 80
