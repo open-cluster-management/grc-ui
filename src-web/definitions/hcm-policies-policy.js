@@ -45,17 +45,17 @@ export default {
     },
     {
       msgKey: 'table.header.standards',
-      resourceKey: `metadata.annotations["${config.mcmPolicyPrefix}/standards"]`,
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
       transformFunction: getStandards,
     },
     {
       msgKey: 'table.header.controls',
-      resourceKey: `metadata.annotations["${config.mcmPolicyPrefix}/controls"]`,
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
       transformFunction: getControls,
     },
     {
       msgKey: 'table.header.categories',
-      resourceKey: `metadata.annotations["${config.mcmPolicyPrefix}/categories"]`,
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/categories"]',
       transformFunction: getCategories
     },
   ],
