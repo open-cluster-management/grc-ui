@@ -12,24 +12,27 @@ replacements: # if user select this choice, the template variable names and valu
     PR.AC Identity Management Authentication and Access Control
   controls: |
     PR.AC-4 Access Control
-  roleTemplates: |
-    - apiVersion: roletemplate.policies.open-cluster-management.io/v1 # role must follow defined permissions
-      metadata:
-        namespace: "" # will be inferred
-        name: operator-role-policy
-      selector:
-        matchLabels:
-          dev: "true"
-      complianceType: musthave # at this level, it means the role must exist with the rules that it musthave below
-      rules:
-        - complianceType: musthave # at this level, it means if the role exists the rule is a musthave
-          policyRule:
-            apiGroups: ["extensions", "apps"]
-            resources: ["deployments"]
-            verbs: ["get", "list", "watch", "create", "delete","patch"]
-        - complianceType: "mustnothave" # at this level, it means if the role exists the rule is a mustnothave
-          policyRule:
-            apiGroups: ["core"]
-            resources: ["secrets"]
-            verbs: ["get", "list", "watch","delete", "create", "update", "patch"]
+  policyTemplates: |
+    - objectDefinition:
+        apiVersion: policies.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: {{name}}-example
+        spec:
+          remediationAction: inform # will be overridden by remediationAction in parent policy
+          severity: high
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]
+          object-templates:
+            - complianceType: mustonlyhave # role definition should exact match
+              objectDefinition:
+                apiVersion: rbac.authorization.k8s.io/v1
+                kind: Role
+                metadata:
+                  name: {{name}}-example
+                rules:
+                  - apiGroups: ["extensions", "apps"]
+                    resources: ["deployments"]
+                    verbs: ["get", "list", "watch", "delete","patch"]
 
