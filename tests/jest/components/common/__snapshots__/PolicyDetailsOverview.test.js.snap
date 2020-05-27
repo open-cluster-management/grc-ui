@@ -321,7 +321,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                           className="one-cluster-status"
                         >
                           <a
-                            href="/multicloud/policies/policy/policy/cluster1/mcm.1569249226915-policy-test"
+                            href="/multicloud/policies/policy/cluster1/mcm.1569249226915-policy-test"
                             onClick={[Function]}
                           >
                             cluster1
