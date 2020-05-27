@@ -12,13 +12,16 @@
     ],
     "env": {
         "client": {
-            "plugins": ["syntax-dynamic-import", "istanbul"]
+            "plugins": ["syntax-dynamic-import"]
         },
         "server": {
             "plugins": ["dynamic-import-node", "transform-object-rest-spread"]
         },
         "test": {
             "plugins": ["dynamic-import-node"]
-          }
+        },
+        "e2e": {
+            "plugins": ["syntax-dynamic-import", "istanbul"]
+        }
     }
 }

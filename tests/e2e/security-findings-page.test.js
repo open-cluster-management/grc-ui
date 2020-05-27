@@ -42,11 +42,4 @@ module.exports = {
     page.navigate(`${browser.launch_url}${config.get('contextPath')}/findings`)
     // a11yScan.runAccessibilityScan(browser, 'securityFindings')
   },
-
-  after: function (browser, done) {
-    setTimeout(() => {
-      browser.end()
-      done()
-    })
-  }
 }
