@@ -726,7 +726,8 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'status.details[0].history[0].message'
+            resourceKey: 'status.details',
+            transformFunction: getAggregatedMessage,
           }
         ]
       },
@@ -1097,4 +1098,19 @@ export function formLinkToCISControllerDoc(item, locale){
     }
   }
   return '-'
+}
+
+export function getAggregatedMessage(item) {
+  const details = _.get(item, 'status.details', [])
+  const message = []
+  details.forEach((detail) => {
+    const policyName = _.get(detail, 'templateMeta.name','-')
+    if(_.get(detail, 'compliant') === 'Compliant') {
+      message.push(`${policyName}: Compliant`)
+    } else {
+      const policyMessage = _.get(detail, 'history[0].message','-')
+      message.push(`${policyName}: ${policyMessage}`)
+    }
+  })
+  return JSON.stringify(message)
 }
