@@ -1,12 +1,12 @@
-apiVersion: policy.mcm.ibm.com/v1alpha1
+apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: {{name}}
   namespace: {{namespace}}
   annotations:
-    policy.mcm.ibm.com/standards: {{#each standards}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
-    policy.mcm.ibm.com/categories: {{#each categories}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
-    policy.mcm.ibm.com/controls: {{#each controls}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
+    policies.open-cluster-management.io/standards: {{#each standards}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
+    policies.open-cluster-management.io/categories: {{#each categories}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
+    policies.open-cluster-management.io/controls: {{#each controls}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
 spec:
   complianceType: musthave
   remediationAction: {{#if enforce}}enforce{{else}}inform{{/if}}
@@ -22,18 +22,6 @@ spec:
   {{#if specsCapture}}
 {{{specsCapture}}}
   {{else}}
-  {{#if roleTemplates.length}}
-  role-templates:
-    {{#each roleTemplates}}
-    {{{ this }}}
-    {{/each}}
-  {{/if}}
-  {{#if objectTemplates.length}}
-  object-templates:
-    {{#each objectTemplates}}
-    {{{ this }}}
-    {{/each}}
-  {{/if}}
   {{#if policyTemplates.length}}
   policy-templates:
     {{#each policyTemplates}}
@@ -42,7 +30,7 @@ spec:
   {{/if}}
   {{/if}}
 ---
-apiVersion: mcm.ibm.com/v1alpha1
+apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-{{name}}
@@ -54,7 +42,7 @@ placementRef:
 subjects:
 - name: {{name}}
   kind: Policy
-  apiGroup: policy.mcm.ibm.com
+  apiGroup: policies.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule

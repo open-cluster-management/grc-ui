@@ -13,7 +13,7 @@ replacements: # if user select this choice, the template variable names and valu
   controls: |
     PR.AC-4 Access Control
   roleTemplates: |
-    - apiVersion: roletemplate.mcm.ibm.com/v1alpha1 # role must follow defined permissions
+    - apiVersion: roletemplate.policies.open-cluster-management.io/v1 # role must follow defined permissions
       metadata:
         namespace: "" # will be inferred
         name: operator-role-policy
