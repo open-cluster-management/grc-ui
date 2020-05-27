@@ -936,8 +936,6 @@ export function createComplianceLink(item = {}, ...param){
 
 export function getStatus(item, locale) {
   const status = _.get(item, 'status', '-')
-  // eslint-disable-next-line no-console
-  console.log('item', JSON.stringify(item))
   const expectedStatuses = [ 'compliant', 'notcompliant', 'noncompliant', 'invalid', 'unknown']
   if (status.compliant&&expectedStatuses.indexOf(status.compliant.toLowerCase()) > -1){
     if (status.compliant.toLowerCase() === 'compliant') {

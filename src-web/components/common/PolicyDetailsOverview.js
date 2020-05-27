@@ -65,11 +65,11 @@ export class PolicyDetailsOverview extends React.PureComponent{
   }
 
   getClusterStatus = (item) => {
-    const rawStatus =  _.get(item, 'complianceStatus', '-')
+    const rawStatus = _.get(item, 'raw.status.status', '-')
     const status = {}
     _.forEach(rawStatus, (value) => {
-      const clusterNamespace = _.get(value, 'clusterNamespace')
-      const compliant = _.get(value, 'compliant', '-')
+      const clusterNamespace = _.get(value, 'clusternamespace')
+      const compliant = _.get(value, 'compliant', 'unknown')
       status[clusterNamespace] = compliant
     })
     return status
