@@ -432,8 +432,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -511,8 +509,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -598,8 +594,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -666,8 +660,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -730,8 +722,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -833,8 +823,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -912,8 +900,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -999,8 +985,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -1067,8 +1051,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -1131,8 +1113,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -1462,8 +1442,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -1553,8 +1531,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -1640,8 +1616,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -1708,8 +1682,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -1772,8 +1744,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -1879,8 +1849,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -1970,8 +1938,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -2057,8 +2023,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -2125,8 +2089,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
@@ -2189,8 +2151,6 @@ metadata:
   finalizers:
     - finalizer.policies.ibm.com
     - propagator.finalizer.mcm.ibm.com
-  generation: 27
-  resourceVersion: '5300122'
 spec:
   complianceType: musthave
   namespaces:
