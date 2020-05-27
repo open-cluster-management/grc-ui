@@ -314,12 +314,12 @@ export default {
   objectTemplates:{
     resourceKey: 'object-templates',
     title: 'table.header.object.template',
-    defaultSortField: 'objectDefinition.metadata.name',
-    normalizedKey: 'objectDefinition.metadata.name',
+    defaultSortField: 'metadata.name',
+    normalizedKey: 'metadata.name',
     tableKeys: [
       {
         msgKey: 'table.header.object.template.name',
-        resourceKey: 'objectDefinition.metadata.name',
+        resourceKey: 'metadata.name',
         key: 'name',
       },
       {
@@ -329,12 +329,12 @@ export default {
       },
       {
         msgKey: 'table.header.object.template.apiVersion',
-        resourceKey: 'objectDefinition.apiVersion',
+        resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
       {
         msgKey: 'table.header.object.template.kind',
-        resourceKey: 'objectDefinition.kind',
+        resourceKey: 'kind',
         key: 'kind',
       }
     ],
@@ -342,22 +342,22 @@ export default {
   policyTemplates:{
     resourceKey: 'policy-templates',
     title: 'table.header.policy.template',
-    defaultSortField: 'objectDefinition.metadata.name',
+    defaultSortField: 'metadata.name',
     normalizedKey: 'metadata.name',
     tableKeys: [
       {
         msgKey: 'table.header.object.template.name',
-        resourceKey: 'objectDefinition.metadata.name',
+        resourceKey: 'metadata.name',
         key: 'name',
       },
       {
         msgKey: 'table.header.object.template.apiVersion',
-        resourceKey: 'objectDefinition.apiVersion',
+        resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
       {
         msgKey: 'table.header.object.template.kind',
-        resourceKey: 'objectDefinition.kind',
+        resourceKey: 'kind',
         key: 'kind',
       }
     ],

@@ -24,7 +24,6 @@ import SimpleTable from './SimpleTable'
 import ResourceTableModule from './ResourceTableModuleFromProps'
 import StructuredListModule from '../../components/common/StructuredListModuleWithActions'
 
-
 resources(() => {
   require('../../../scss/policy-details-overview.scss')
 })
@@ -58,7 +57,9 @@ export class PolicyDetailsOverview extends React.PureComponent{
     const templates = []
     Object.entries(spec || []).forEach(([key, value]) => {
       if (key.endsWith(`${templateType}-templates`)) {
-        value.forEach(item => templates.push({ ...item, templateType: key }))
+        value.forEach((item) => {
+          templates.push({ ...item.objectDefinition, templateType: key })
+        })
       }
     })
     return templates
