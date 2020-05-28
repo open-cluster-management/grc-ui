@@ -6,6 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  ****************************************************************************** */
+/* Copyright (c) 2020 Red Hat, Inc. */
+
 import moment from 'moment'
 
 const currentTime = moment().format('YYYY-MM-DDTHH:mm:ssZ').toString()
