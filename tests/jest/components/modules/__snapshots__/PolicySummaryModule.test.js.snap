@@ -27,7 +27,7 @@ exports[`PolicySummaryModule view renders as expected 1`] = `
             <div
               className="card-count"
             >
-              3
+              1
             </div>
             <div
               className="card-type"
@@ -43,7 +43,7 @@ exports[`PolicySummaryModule view renders as expected 1`] = `
             <div
               className="card-count"
             >
-              3
+              1
             </div>
             <div
               className="card-type"
@@ -75,7 +75,7 @@ exports[`PolicySummaryModule view renders as expected 1`] = `
             <div
               className="card-count"
             >
-              3
+              1
             </div>
             <div
               className="card-type"

@@ -783,28 +783,26 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   className={undefined}
                 >
                   <tr
-                    className={undefined}
-                    data-row-name="prod"
+                    className="high-light"
+                    data-row-name={undefined}
                   >
                     <td
                       className={undefined}
+                    />
+                    <td
+                      className={undefined}
                     >
-                      prod
+                      -
                     </td>
                     <td
                       className={undefined}
                     >
-                      musthave
+                      -
                     </td>
                     <td
                       className={undefined}
                     >
-                      v1
-                    </td>
-                    <td
-                      className={undefined}
-                    >
-                      Namespace
+                      -
                     </td>
                     <td
                       className={undefined}
