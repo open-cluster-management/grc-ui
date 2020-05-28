@@ -112,154 +112,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
     </div>
     <div
       className="card-container-container"
-    >
-      <div>
-        <div
-          className="card-container"
-        >
-          <div
-            className="card-content"
-          >
-            <div
-              className="card-name"
-            >
-              NIST
-            </div>
-            <div
-              className="card-count-content"
-            >
-              <div
-                className="card-count-container violated"
-                onClick={[Function]}
-                onKeyPress={[Function]}
-                role="button"
-                tabIndex={0}
-              >
-                <div
-                  className="card-count"
-                >
-                  <div
-                    className="card-count-informations"
-                  >
-                    2
-                  </div>
-                  <div
-                    className="card-count-total"
-                  >
-                    /2
-                  </div>
-                </div>
-                <div
-                  className="card-grc-type"
-                >
-                  Cluster violations
-                </div>
-              </div>
-              <div
-                className="card-count-container violated"
-                onClick={[Function]}
-                onKeyPress={[Function]}
-                role="button"
-                tabIndex={0}
-              >
-                <div
-                  className="card-count"
-                >
-                  <div
-                    className="card-count-informations"
-                  >
-                    3
-                  </div>
-                  <div
-                    className="card-count-total"
-                  >
-                    /3
-                  </div>
-                </div>
-                <div
-                  className="card-grc-type"
-                >
-                  Policy violations
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div
-          className="card-container"
-        >
-          <div
-            className="card-content"
-          >
-            <div
-              className="card-name"
-            >
-              HIPAA
-            </div>
-            <div
-              className="card-count-content"
-            >
-              <div
-                className="card-count-container violated"
-                onClick={[Function]}
-                onKeyPress={[Function]}
-                role="button"
-                tabIndex={0}
-              >
-                <div
-                  className="card-count"
-                >
-                  <div
-                    className="card-count-informations"
-                  >
-                    1
-                  </div>
-                  <div
-                    className="card-count-total"
-                  >
-                    /2
-                  </div>
-                </div>
-                <div
-                  className="card-grc-type"
-                >
-                  Cluster violations
-                </div>
-              </div>
-              <div
-                className="card-count-container violated"
-                onClick={[Function]}
-                onKeyPress={[Function]}
-                role="button"
-                tabIndex={0}
-              >
-                <div
-                  className="card-count"
-                >
-                  <div
-                    className="card-count-informations"
-                  >
-                    2
-                  </div>
-                  <div
-                    className="card-count-total"
-                  >
-                    /2
-                  </div>
-                </div>
-                <div
-                  className="card-grc-type"
-                >
-                  Policy violations
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    />
   </div>
   <div
     className="module-toggle-tab"
@@ -584,7 +437,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 <button
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
-                  data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
+                  data-key="metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]"
                   onClick={[Function]}
                   title="Sort rows by this header in ascending order."
                 >
@@ -622,7 +475,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 <button
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
-                  data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
+                  data-key="metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]"
                   onClick={[Function]}
                   title="Sort rows by this header in ascending order."
                 >
@@ -660,7 +513,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 <button
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
-                  data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
+                  data-key="metadata.annotations[\\"policies.open-cluster-management.io/categories\\"]"
                   onClick={[Function]}
                   title="Sort rows by this header in ascending order."
                 >
@@ -768,17 +621,17 @@ exports[`GrcView component 1 renders as expected 1`] = `
               <td
                 className={undefined}
               >
-                HIPAA
+                -
               </td>
               <td
                 className={undefined}
               >
-                Cert Manager
+                -
               </td>
               <td
                 className={undefined}
               >
-                System And Communications Protections
+                -
               </td>
               <td
                 className={undefined}
@@ -891,17 +744,17 @@ exports[`GrcView component 1 renders as expected 1`] = `
               <td
                 className={undefined}
               >
-                NIST, HIPAA
+                -
               </td>
               <td
                 className={undefined}
               >
-                Mutation Advisor
+                -
               </td>
               <td
                 className={undefined}
               >
-                System And Communications Protections, System And Information Integrity
+                -
               </td>
               <td
                 className={undefined}
