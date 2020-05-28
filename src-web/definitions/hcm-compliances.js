@@ -1102,15 +1102,15 @@ export function formLinkToCISControllerDoc(item, locale){
 
 export function getAggregatedMessage(item) {
   const details = _.get(item, 'status.details', [])
-  const message = []
+  let message = ''
   details.forEach((detail) => {
     const policyName = _.get(detail, 'templateMeta.name','-')
     if(_.get(detail, 'compliant') === 'Compliant') {
-      message.push(`${policyName}: Compliant`)
+      message += `${policyName}: Compliant, `
     } else {
       const policyMessage = _.get(detail, 'history[0].message','-')
-      message.push(`${policyName}: ${policyMessage}`)
+      message += `${policyName}: ${policyMessage} `
     }
   })
-  return JSON.stringify(message)
+  return message
 }
