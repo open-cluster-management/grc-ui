@@ -591,7 +591,7 @@ export default {
   },
   policyViolations: {
     resourceKey: 'violations',
-    title: 'table.header.violation',
+    title: 'table.header.violation.detail',
     defaultSortField: 'name',
     normalizedKey: 'name',
     tableKeys: [
@@ -613,9 +613,10 @@ export default {
         transformFunction: formLinkToCISControllerDoc,
       },
       {
-        msgKey: 'table.header.reason',
-        resourceKey: 'reason',
-        key: 'reason',
+        msgKey: 'table.header.timestamp',
+        resourceKey: 'timestamp',
+        key: 'timestamp',
+        transformFunction: getAge,
       },
     ],
   },
@@ -753,30 +754,6 @@ export default {
           }
         ]
       },
-      {
-        cells: [
-          {
-            resourceKey: 'description.title.exclude_namespace',
-            type: 'i18n'
-          },
-          {
-            resourceKey: 'detail.exclude_namespace',
-            transformFunction: getExcludeNamespace
-          }
-        ]
-      },
-      {
-        cells: [
-          {
-            resourceKey: 'description.title.include_namespace',
-            type: 'i18n'
-          },
-          {
-            resourceKey: 'detail.include_namespace',
-            transformFunction: getIncludeNamespace
-          }
-        ]
-      },
     ]
   },
   policyRoleTemplates: {
@@ -799,11 +776,6 @@ export default {
         msgKey: 'description.title.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
-      },
-      {
-        msgKey: 'description.title.last.transition',
-        resourceKey: 'lastTransition',
-        key: 'lastTransition',
       },
       {
         msgKey: 'table.header.compliant',
@@ -833,11 +805,6 @@ export default {
         msgKey: 'description.title.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
-      },
-      {
-        msgKey: 'description.title.last.transition',
-        resourceKey: 'lastTransition',
-        key: 'lastTransition',
       },
       {
         msgKey: 'table.header.compliant',
@@ -874,11 +841,6 @@ export default {
         key: 'kind',
       },
       {
-        msgKey: 'description.title.last.transition',
-        resourceKey: 'lastTransition',
-        key: 'lastTransition',
-      },
-      {
         msgKey: 'table.header.compliant',
         resourceKey: 'compliant',
         key: 'compliant',
@@ -906,11 +868,6 @@ export default {
         msgKey: 'table.header.kind',
         resourceKey: 'kind',
         key: 'kind',
-      },
-      {
-        msgKey: 'description.title.last.transition',
-        resourceKey: 'lastTransition',
-        key: 'lastTransition',
       },
       {
         msgKey: 'table.header.compliant',
