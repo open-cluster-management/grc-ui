@@ -209,7 +209,7 @@ describe('hcm-compliances - getControls', () => {
       metadata: {
         name: 'testGetControls',
         annotations: {
-          'policy.mcm.ibm.com/controls': '1,2,3,4,5'
+          'policies.open-cluster-management.io/controls': '1,2,3,4,5'
         }
       },
     }
@@ -223,7 +223,7 @@ describe('hcm-compliances - getStandards', () => {
       metadata: {
         name: 'testGetStandards',
         annotations: {
-          'policy.mcm.ibm.com/standards': '6,7,8,9,10'
+          'policies.open-cluster-management.io/standards': '6,7,8,9,10'
         }
       },
     }
@@ -237,7 +237,7 @@ describe('hcm-compliances - getCategories', () => {
       metadata: {
         name: 'testGetCategories',
         annotations: {
-          'policy.mcm.ibm.com/categories': '11,12,13,14,15'
+          'policies.open-cluster-management.io/categories': '11,12,13,14,15'
         }
       },
     }
