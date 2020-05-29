@@ -1,12 +1,12 @@
-apiVersion: policy.mcm.ibm.com/v1alpha1
+apiVersion: policies.open-cluster-management.io/1
 kind: Policy
 metadata:
   name: policy-pod-create-[TIME]
   namespace: default
   annotations:
-    policy.mcm.ibm.com/standards: NIST-CSF
-    policy.mcm.ibm.com/categories: PR.PT Protective Technology
-    policy.mcm.ibm.com/controls: PR.PT-3 Least Functionality
+    policies.open-cluster-management.io/standards: NIST-CSF
+    policies.open-cluster-management.io/categories: PR.PT Protective Technology
+    policies.open-cluster-management.io/controls: PR.PT-3 Least Functionality
 spec:
   complianceType: musthave
   remediationAction: enforce
@@ -28,7 +28,7 @@ spec:
             ports:
             - containerPort: 80
 ---
-apiVersion: mcm.ibm.com/v1alpha1
+apiVersion: policies.open-cluster-management.io/1
 kind: PlacementBinding
 metadata:
   name: binding-policy-pod-create-[TIME]
@@ -40,7 +40,7 @@ placementRef:
 subjects:
 - name: policy-pod-create-[TIME]
   kind: Policy
-  apiGroup: policy.mcm.ibm.com
+  apiGroup: policies.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule

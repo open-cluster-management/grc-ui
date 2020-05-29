@@ -1,12 +1,12 @@
-apiVersion: policy.mcm.ibm.com/v1alpha1
+apiVersion: policies.open-cluster-management.io/1
 kind: Policy
 metadata:
   name: policy-namespace-delete-[TIME]
   namespace: default
   annotations:
-    policy.mcm.ibm.com/standards: NIST-CSF
-    policy.mcm.ibm.com/categories: PR.IP Information Protection Processes and Procedures
-    policy.mcm.ibm.com/controls: PR.IP-1 Baseline configuration
+    policies.open-cluster-management.io/standards: NIST-CSF
+    policies.open-cluster-management.io/categories: PR.IP Information Protection Processes and Procedures
+    policies.open-cluster-management.io/controls: PR.IP-1 Baseline configuration
 spec:
   complianceType: musthave
   remediationAction: enforce
@@ -22,7 +22,7 @@ spec:
         metadata:
           name: e2etest
 ---
-apiVersion: mcm.ibm.com/v1alpha1
+apiVersion: policies.open-cluster-management.io/1
 kind: PlacementBinding
 metadata:
   name: binding-policy-namespace-delete-[TIME]
@@ -34,7 +34,7 @@ placementRef:
 subjects:
 - name: policy-namespace-delete-[TIME]
   kind: Policy
-  apiGroup: policy.mcm.ibm.com
+  apiGroup: policies.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
