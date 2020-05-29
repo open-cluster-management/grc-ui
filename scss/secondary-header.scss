@@ -103,6 +103,7 @@
 
       .bx--tooltip--icon__top:after, .bx--tooltip--icon__bottom:after {
         white-space: normal;
+        word-break: keep-all;
         width: 22rem;
         max-width: 22rem;
         transform: translate(-0.625rem, calc(100% + 0.625rem));
