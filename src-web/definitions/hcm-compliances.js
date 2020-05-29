@@ -314,12 +314,12 @@ export default {
   objectTemplates:{
     resourceKey: 'object-templates',
     title: 'table.header.object.template',
-    defaultSortField: 'objectDefinition.metadata.name',
-    normalizedKey: 'objectDefinition.metadata.name',
+    defaultSortField: 'metadata.name',
+    normalizedKey: 'metadata.name',
     tableKeys: [
       {
         msgKey: 'table.header.object.template.name',
-        resourceKey: 'objectDefinition.metadata.name',
+        resourceKey: 'metadata.name',
         key: 'name',
       },
       {
@@ -329,12 +329,12 @@ export default {
       },
       {
         msgKey: 'table.header.object.template.apiVersion',
-        resourceKey: 'objectDefinition.apiVersion',
+        resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
       {
         msgKey: 'table.header.object.template.kind',
-        resourceKey: 'objectDefinition.kind',
+        resourceKey: 'kind',
         key: 'kind',
       }
     ],
@@ -342,22 +342,22 @@ export default {
   policyTemplates:{
     resourceKey: 'policy-templates',
     title: 'table.header.policy.template',
-    defaultSortField: 'objectDefinition.metadata.name',
+    defaultSortField: 'metadata.name',
     normalizedKey: 'metadata.name',
     tableKeys: [
       {
         msgKey: 'table.header.object.template.name',
-        resourceKey: 'objectDefinition.metadata.name',
+        resourceKey: 'metadata.name',
         key: 'name',
       },
       {
         msgKey: 'table.header.object.template.apiVersion',
-        resourceKey: 'objectDefinition.apiVersion',
+        resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
       {
         msgKey: 'table.header.object.template.kind',
-        resourceKey: 'objectDefinition.kind',
+        resourceKey: 'kind',
         key: 'kind',
       }
     ],
@@ -501,7 +501,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'annotations.categories',
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/categories"]',
           }
         ]
       },
@@ -512,7 +512,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'annotations.controls',
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
           }
         ]
       },
@@ -523,7 +523,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'annotations.standards',
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
           }
         ]
       },
@@ -591,7 +591,7 @@ export default {
   },
   policyViolations: {
     resourceKey: 'violations',
-    title: 'table.header.violation',
+    title: 'table.header.violation.detail',
     defaultSortField: 'name',
     normalizedKey: 'name',
     tableKeys: [
@@ -613,9 +613,10 @@ export default {
         transformFunction: formLinkToCISControllerDoc,
       },
       {
-        msgKey: 'table.header.reason',
-        resourceKey: 'reason',
-        key: 'reason',
+        msgKey: 'table.header.timestamp',
+        resourceKey: 'timestamp',
+        key: 'timestamp',
+        transformFunction: getAge,
       },
     ],
   },
@@ -726,7 +727,8 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'message'
+            resourceKey: 'status.details',
+            transformFunction: getAggregatedMessage,
           }
         ]
       },
@@ -737,7 +739,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'status'
+            resourceKey: 'status.compliant'
           }
         ]
       },
@@ -749,30 +751,6 @@ export default {
           },
           {
             resourceKey: 'enforcement'
-          }
-        ]
-      },
-      {
-        cells: [
-          {
-            resourceKey: 'description.title.exclude_namespace',
-            type: 'i18n'
-          },
-          {
-            resourceKey: 'detail.exclude_namespace',
-            transformFunction: getExcludeNamespace
-          }
-        ]
-      },
-      {
-        cells: [
-          {
-            resourceKey: 'description.title.include_namespace',
-            type: 'i18n'
-          },
-          {
-            resourceKey: 'detail.include_namespace',
-            transformFunction: getIncludeNamespace
           }
         ]
       },
@@ -798,11 +776,6 @@ export default {
         msgKey: 'description.title.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
-      },
-      {
-        msgKey: 'description.title.last.transition',
-        resourceKey: 'lastTransition',
-        key: 'lastTransition',
       },
       {
         msgKey: 'table.header.compliant',
@@ -832,11 +805,6 @@ export default {
         msgKey: 'description.title.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
-      },
-      {
-        msgKey: 'description.title.last.transition',
-        resourceKey: 'lastTransition',
-        key: 'lastTransition',
       },
       {
         msgKey: 'table.header.compliant',
@@ -873,11 +841,6 @@ export default {
         key: 'kind',
       },
       {
-        msgKey: 'description.title.last.transition',
-        resourceKey: 'lastTransition',
-        key: 'lastTransition',
-      },
-      {
         msgKey: 'table.header.compliant',
         resourceKey: 'compliant',
         key: 'compliant',
@@ -907,11 +870,6 @@ export default {
         key: 'kind',
       },
       {
-        msgKey: 'description.title.last.transition',
-        resourceKey: 'lastTransition',
-        key: 'lastTransition',
-      },
-      {
         msgKey: 'table.header.compliant',
         resourceKey: 'compliant',
         key: 'compliant',
@@ -937,11 +895,11 @@ export function createComplianceLink(item = {}, ...param){
 export function getStatus(item, locale) {
   const status = _.get(item, 'status', '-')
   const expectedStatuses = [ 'compliant', 'notcompliant', 'noncompliant', 'invalid', 'unknown']
-  if (status.Compliant&&expectedStatuses.indexOf(status.Compliant.toLowerCase()) > -1){
-    if (status.Compliant.toLowerCase() === 'compliant') {
+  if (status.compliant&&expectedStatuses.indexOf(status.compliant.toLowerCase()) > -1){
+    if (status.compliant.toLowerCase() === 'compliant') {
       return <StatusField status='ok' text={msgs.get('policy.status.compliant', locale)} />
     } else {
-      return <StatusField status='critical' text={msgs.get(`policy.status.${status.Compliant.toLowerCase()}`, locale)} />
+      return <StatusField status='critical' text={msgs.get(`policy.status.${status.compliant.toLowerCase()}`, locale)} />
     }
   } else if (status&&typeof(status)==='string'&&expectedStatuses.indexOf(status.toLowerCase()) > -1){
     if (status.toLowerCase() === 'compliant') {
@@ -1076,8 +1034,8 @@ export function getDecisions(item = {}){
 }
 
 export function formLinkToCluster(item){
-  if(item && item.cluster && item.clusterURL){
-    return <a target='_blank' rel='noopener noreferrer' href={`${item.clusterURL}`}>{item.cluster}</a>
+  if(item && item.cluster && item.consoleURL){
+    return <a target='_blank' rel='noopener noreferrer' href={`${item.consoleURL}`}>{item.cluster}</a>
   }
   else if (item && item.cluster) {
     return item.cluster
@@ -1097,4 +1055,19 @@ export function formLinkToCISControllerDoc(item, locale){
     }
   }
   return '-'
+}
+
+export function getAggregatedMessage(item) {
+  const details = _.get(item, 'status.details', [])
+  let message = ''
+  details.forEach((detail) => {
+    const policyName = _.get(detail, 'templateMeta.name','-')
+    if(_.get(detail, 'compliant') === 'Compliant') {
+      message += `${policyName}: Compliant, `
+    } else {
+      const policyMessage = _.get(detail, 'history[0].message','-')
+      message += `${policyName}: ${policyMessage} `
+    }
+  })
+  return message
 }

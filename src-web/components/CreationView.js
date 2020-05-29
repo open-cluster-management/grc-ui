@@ -17,7 +17,7 @@ import policyTemplate from './templates/policy-template.hbs'
 import Choices from './templates'
 import msgs from '../../nls/platform.properties'
 import _ from 'lodash'
-
+import config from '../../lib/shared/client'
 
 // where to put Create/Cancel buttons
 const Portals = Object.freeze({
@@ -93,7 +93,7 @@ const controlData = [
     placeholder: 'creation.view.policy.select.categories',
     id: 'categories',
     type: 'multiselect',
-    available: ['PR.PT Protective Technology','PR.DS DataSecurity', 'PR.AC Identity Management Authentication and Access Control', 'PR.IP Information Protection Processes and Procedures', 'DE.CM Security Continuous Monitoring'],
+    available: ['PR.PT Protective Technology','PR.DS DataSecurity', 'PR.AC Identity Management Authentication and Access Control', 'PR.IP Information Protection Processes and Procedures', 'DE.CM Security Continuous Monitoring']
     reverse: 'Policy[0].metadata.annotations["policies.open-cluster-management.io/categories"]',
     cacheUserValueKey: 'create.policy.categories',
   },
