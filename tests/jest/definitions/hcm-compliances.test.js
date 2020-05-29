@@ -298,15 +298,15 @@ describe('hcm-compliances - convertToStartCase', () => {
 
 describe('hcm-compliances - formLinkToCluster', () => {
   it('should get formLinkToCluster', () => {
-    const item = {cluster:'RedHat', clusterURL:'/multicloud/clusters'}
+    const item = {cluster:'RedHat', consoleURL:'/multicloud/clusters'}
     expect(formLinkToCluster(item)).toMatchSnapshot()
   })
   it('should get RedHat ', () => {
-    const item = {cluster:'RedHat', clusterURL:''}
+    const item = {cluster:'RedHat', consoleURL:''}
     expect(formLinkToCluster(item)).toMatchSnapshot()
   })
   it('should get - ', () => {
-    const item = {cluster:'', clusterURL:'/multicloud/clusters'}
+    const item = {cluster:'', consoleURL:'/multicloud/clusters'}
     expect(formLinkToCluster(item)).toMatchSnapshot()
   })
   it('should get - ', () => {
