@@ -6,10 +6,12 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
+
 'use strict'
 
 import React from 'react'
-import { GrcViewPolicyCluster, GrcViewFindingCluster, GrcViewRefreshControl, GrcViewSecondaryHeaderProps, reduxStorePolicyCluster, reduxStoreFindingCluster } from './ComponentsTestingData'
+import { GrcViewPolicyCluster, GrcViewPolicyCluster2, GrcViewFindingCluster, GrcViewRefreshControl, GrcViewSecondaryHeaderProps, reduxStorePolicyCluster, reduxStoreFindingCluster } from './ComponentsTestingData'
 //curly braces means pure component without redux
 //which is what we want in unit test
 import { GrcView } from '../../../src-web/components/GrcView'
@@ -40,7 +42,7 @@ describe('GrcView component 1', () => {
             loading={false}
             error={null}
             activeFilters={{}}
-            grcItems={GrcViewPolicyCluster}
+            grcItems={GrcViewPolicyCluster2}
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
             showApplications={true}

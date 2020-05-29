@@ -321,7 +321,7 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                           className="one-cluster-status"
                         >
                           <a
-                            href="/multicloud/policies/policy/policy/cluster1/mcm.1569249226915-policy-test"
+                            href="/multicloud/policies/policy/cluster1/mcm.1569249226915-policy-test"
                             onClick={[Function]}
                           >
                             cluster1
@@ -783,28 +783,26 @@ exports[`PolicyDetailsOverview component renders as expected 1`] = `
                   className={undefined}
                 >
                   <tr
-                    className={undefined}
-                    data-row-name="prod"
+                    className="high-light"
+                    data-row-name={undefined}
                   >
                     <td
                       className={undefined}
+                    />
+                    <td
+                      className={undefined}
                     >
-                      prod
+                      -
                     </td>
                     <td
                       className={undefined}
                     >
-                      musthave
+                      -
                     </td>
                     <td
                       className={undefined}
                     >
-                      v1
-                    </td>
-                    <td
-                      className={undefined}
-                    >
-                      Namespace
+                      -
                     </td>
                     <td
                       className={undefined}

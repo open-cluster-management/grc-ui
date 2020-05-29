@@ -81,11 +81,12 @@ class PolicyDetail extends React.Component {
     const url = _.get(this.props, 'match.url')
     const urlSegments = url.split('/')
     const policyName = urlSegments[urlSegments.length - 1]
+    const policyNamespace = this.getPolicyNamespace(location)
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
 
     return (
       <Page>
-        <Query query={HCMCompliance} variables={{name: policyName}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+        <Query query={HCMCompliance} variables={{name: policyName, namespace: policyNamespace}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
           {( result ) => {
             const {data={}, loading, startPolling, stopPolling, refetch} = result
             const { items } = data
@@ -150,7 +151,7 @@ class PolicyDetail extends React.Component {
           currentTab = tabs.find(tab => tab === lastSegment)
 
     // The base path, calculated by the current location minus params
-    const paramsLength = 1
+    const paramsLength = 2
 
     breadcrumbItems.push({
       label: msgs.get('tabs.grc.all', locale),
@@ -173,6 +174,15 @@ class PolicyDetail extends React.Component {
       return urlSegments[urlSegments.length - 2]
     }
     return lastSegment
+  }
+
+  getPolicyNamespace(location) {
+    const urlSegments = location.pathname.split('/')
+    const lastSegment = urlSegments[urlSegments.length - 1]
+    if( lastSegment === 'violation'|| lastSegment === 'yaml' ){
+      return urlSegments[urlSegments.length - 3]
+    }
+    return urlSegments[urlSegments.length - 2]
   }
 }
 
