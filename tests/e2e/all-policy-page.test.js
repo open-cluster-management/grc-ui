@@ -42,12 +42,12 @@ module.exports = {
   //   page.verifyTable(browser, false)
   // },
 
-  // 'All policy page: Verify summary table': (browser) => {
-  //   browser.collectCoverage(() => {
-  //     page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-  //     page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
-  //   })
-  // },
+  'All policy page: Verify summary table': (browser) => {
+    browser.collectCoverage(() => {
+      page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
+      page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
+    })
+  },
 
   'All policy page: Test pagination': (browser) => {
     browser.collectCoverage(() => {
