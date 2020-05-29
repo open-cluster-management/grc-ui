@@ -96,7 +96,7 @@ function checkViolations(name, violationExpected, violationText) {
   if (violationExpected) {
     this.waitForElementPresent('#violations-table-container')
     if (violationText) {
-      this.expect.element('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.startWith(violationText)
+      this.expect.element('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(violationText)
     }
   } else {
     this.waitForElementPresent('.no-resource')
