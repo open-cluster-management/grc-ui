@@ -1,4 +1,4 @@
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-pod-create-[TIME]
@@ -8,27 +8,35 @@ metadata:
     policies.open-cluster-management.io/categories: PR.PT Protective Technology
     policies.open-cluster-management.io/controls: PR.PT-3 Least Functionality
 spec:
-  complianceType: musthave
   remediationAction: enforce
   disabled: false
-  namespaces:
-    exclude: ["kube-*"]
-    include: ["default"]
-  object-templates:
-    - complianceType: musthave
-      objectDefinition:
-        apiVersion: v1
-        kind: Pod # nginx pod must exist
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policies.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
         metadata:
-          name: pod-ed-[TIME]
+          name: policy-pod-create-[TIME]
         spec:
-          containers:
-          - image: nginx:1.7.9
-            name: nginx
-            ports:
-            - containerPort: 80
+          remediationAction: enforce
+          severity: low
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: Pod # nginx pod must exist
+                metadata:
+                  name: pod-ed-[TIME]
+                spec:
+                  containers:
+                  - image: nginx:1.7.9
+                    name: nginx
+                    ports:
+                    - containerPort: 80
 ---
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-pod-create-[TIME]

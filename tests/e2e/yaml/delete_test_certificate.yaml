@@ -1,4 +1,4 @@
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-delete-certificate-[TIME]
@@ -36,7 +36,7 @@ spec:
           secretName: rsa-ca-sample-secret-[TIME]
   remediationAction: enforce
 ---
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-delete-certificate-[TIME]

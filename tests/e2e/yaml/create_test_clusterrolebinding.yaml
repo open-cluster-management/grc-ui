@@ -1,4 +1,4 @@
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-clusterrolebinding-test-[TIME]
@@ -32,7 +32,7 @@ spec:
             apiGroup: rbac.authorization.k8s.io
             kind: User
 ---
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-clusterrolebinding-test-[TIME]

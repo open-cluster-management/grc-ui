@@ -1,4 +1,4 @@
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-delete-issuer-[TIME]
@@ -27,7 +27,7 @@ spec:
           selfSigned: {}
   remediationAction: enforce
 ---
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-delete-issuer-[TIME]

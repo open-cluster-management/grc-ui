@@ -1,4 +1,4 @@
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-iampolicy-[TIME]
@@ -28,7 +28,7 @@ spec:
           remediationAction: inform
           maxClusterRoleBindingUsers: 4
 ---
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-iampolicy-[TIME]

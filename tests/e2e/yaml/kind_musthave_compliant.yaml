@@ -1,4 +1,4 @@
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-ns-musthave-[TIME]
@@ -20,7 +20,7 @@ spec:
         kind: Namespace # must have namespace 'prod'
         apiVersion: v1
 ---
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-ns-musthave-[TIME]

@@ -28,7 +28,7 @@ spec:
             ports:
             - containerPort: 80
 ---
-apiVersion: policies.open-cluster-management.io/1
+apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-pod-single-musthave-enforce-[TIME]

@@ -16,7 +16,7 @@ const config = require('../../config')
 let page
 
 module.exports = {
-  '@disabled': true,
+  '@disabled': false,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
@@ -31,10 +31,10 @@ module.exports = {
   'Disable policy: test policy disable + enable': (browser) => {
     const time = browser.globals.time
 
-    const enforce = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_mustnothave.yaml'))
+    const enforce = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_mustnothave.yaml'))
     var yaml = enforce.toString()
     page.createPolicy(browser, yaml, time)
-    const inform = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_mustnothave_inform.yaml'))
+    const inform = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_mustnothave_inform.yaml'))
     yaml = inform.toString()
     page.createPolicy(browser, yaml, time)
     browser.pause(20000)
@@ -42,16 +42,16 @@ module.exports = {
 
     page.tryDisable('policy-pod-' + time)
     browser.pause(5000)
-    const createPod = fs.readFileSync(path.join(__dirname, 'yaml/ed_pod_create.yaml'))
+    const createPod = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_create.yaml'))
     yaml = createPod.toString()
     page.createPolicy(browser, yaml, time)
-    browser.pause(60000) //Wait for pod to be created
+    browser.pause(30000) //Wait for pod to be created
     page.checkViolations('policy-pod-create-' + time, false)
     page.checkViolations('policy-pod-inform-' + time, true)
 
     page.deletePolicy('policy-pod-create-' + time)
     page.tryEnable('policy-pod-' + time)
-    browser.pause(60000) //Wait for pod to be deleted
+    browser.pause(30000) //Wait for pod to be deleted
     page.checkViolations('policy-pod-' + time, false)
     page.checkViolations('policy-pod-inform-' + time, false)
 
