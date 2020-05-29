@@ -151,7 +151,7 @@ class PolicyDetail extends React.Component {
           currentTab = tabs.find(tab => tab === lastSegment)
 
     // The base path, calculated by the current location minus params
-    const paramsLength = 1
+    const paramsLength = 2
 
     breadcrumbItems.push({
       label: msgs.get('tabs.grc.all', locale),
