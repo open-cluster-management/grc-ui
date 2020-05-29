@@ -1034,8 +1034,8 @@ export function getDecisions(item = {}){
 }
 
 export function formLinkToCluster(item){
-  if(item && item.cluster && item.clusterURL){
-    return <a target='_blank' rel='noopener noreferrer' href={`${item.clusterURL}`}>{item.cluster}</a>
+  if(item && item.cluster && item.consoleURL){
+    return <a target='_blank' rel='noopener noreferrer' href={`${item.consoleURL}`}>{item.cluster}</a>
   }
   else if (item && item.cluster) {
     return item.cluster
