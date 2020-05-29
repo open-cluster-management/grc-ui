@@ -76,7 +76,7 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
       return result
     }
 
-    //diff than original updateBrowserURL in mcm-ui pageWithUrlQuery
+    //diff than original updateBrowserURL in console-ui pageWithUrlQuery
     //this modified updateBrowserURL will keep flags other than text input filters
     updateBrowserURL(inputs) {
       const {history, location} = this.props
@@ -88,10 +88,10 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
       otherFilters = queryString.stringify(paraURL)
       if (inputs.query !== undefined) {
         if (inputs.query === '') {
-          if(otherFilters && otherFilters !== ''){
+          if(otherFilters){
             finalURL = `${finalURL}?${otherFilters}`}
         } else {
-          if (otherFilters && otherFilters !== ''){
+          if (otherFilters){
             finalURL = `${finalURL}?${otherFilters}&filters={"textsearch":${encodeURIComponent(JSON.stringify(inputs.query))}}`
           }
           else {
@@ -102,26 +102,26 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
         const paramString = this.createLocationSearch(inputs)
         if (history && paramString) {
           // update the URL with filter tags
-          if (otherFilters && otherFilters !== ''){
+          if (otherFilters){
             finalURL = `${finalURL}?${otherFilters}&tags=${paramString}`
           }
           else {
             finalURL = `${finalURL}?tags=${paramString}`
           }
-        } else if (history && otherFilters && otherFilters !== '') {
+        } else if (history && otherFilters) {
           finalURL = `${finalURL}?${otherFilters}`
         }
       } else if (typeof inputs === 'string') {
         if (inputs !== '') {
           const filters = this.createURLFilters(inputs)
-          if (otherFilters && otherFilters !== ''){
+          if (otherFilters){
             finalURL = `${finalURL}?${otherFilters}&filters=${filters}`
           }
           else {
             finalURL = `${finalURL}?filters=${filters}`
           }
         } else {
-          if(otherFilters && otherFilters !== ''){
+          if(otherFilters){
             finalURL = `${finalURL}?${otherFilters}`}
         }
       }

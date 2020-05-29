@@ -55,7 +55,7 @@ export default {
             resourceKey: 'violatedNum',
           },
           {
-            resourceKey: `metadata.annotations["${config.mcmPolicyPrefix}/controls"]`,
+            resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
           }
         ]
       }

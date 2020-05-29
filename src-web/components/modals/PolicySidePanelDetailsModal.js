@@ -40,7 +40,7 @@ const sReasonStr = 'status.conditions[0].reason'
 
 function getHeader(data, locale) {
   const kind = _.get(data, 'kind', '')
-  let header = '', descr = '', percent = 0, violation = '0/0', query, queryPara, hubNamespace
+  let header = '', descr = '', percent = 0, violation, query, queryPara, hubNamespace
   switch (kind) {
   case 'HCMPolicyPolicy':
   default: {

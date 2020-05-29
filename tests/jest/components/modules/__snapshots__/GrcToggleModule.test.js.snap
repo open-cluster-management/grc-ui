@@ -635,12 +635,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -1135,12 +1135,12 @@ ShallowWrapper {
             },
             Object {
               "msgKey": "table.header.standards",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
               "msgKey": "table.header.controls",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
@@ -1679,12 +1679,12 @@ ShallowWrapper {
                 },
                 Object {
                   "msgKey": "table.header.standards",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
                   "msgKey": "table.header.controls",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
@@ -2179,12 +2179,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -2938,12 +2938,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -3407,12 +3407,12 @@ ShallowWrapper {
             },
             Object {
               "msgKey": "table.header.standards",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
               "msgKey": "table.header.controls",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
@@ -3892,12 +3892,12 @@ ShallowWrapper {
                 },
                 Object {
                   "msgKey": "table.header.standards",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
                   "msgKey": "table.header.controls",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
@@ -4361,12 +4361,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -6320,12 +6320,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -7668,12 +7668,12 @@ ShallowWrapper {
             },
             Object {
               "msgKey": "table.header.standards",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
               "msgKey": "table.header.controls",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
@@ -9060,12 +9060,12 @@ ShallowWrapper {
                 },
                 Object {
                   "msgKey": "table.header.standards",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
                   "msgKey": "table.header.controls",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
@@ -10408,12 +10408,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -12426,12 +12426,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -13743,12 +13743,12 @@ ShallowWrapper {
             },
             Object {
               "msgKey": "table.header.standards",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
               "msgKey": "table.header.controls",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
@@ -15076,12 +15076,12 @@ ShallowWrapper {
                 },
                 Object {
                   "msgKey": "table.header.standards",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
                   "msgKey": "table.header.controls",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
@@ -16393,12 +16393,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -18352,12 +18352,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -19700,12 +19700,12 @@ ShallowWrapper {
             },
             Object {
               "msgKey": "table.header.standards",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
               "msgKey": "table.header.controls",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
@@ -21092,12 +21092,12 @@ ShallowWrapper {
                 },
                 Object {
                   "msgKey": "table.header.standards",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
                   "msgKey": "table.header.controls",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
@@ -22440,12 +22440,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -24458,12 +24458,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
@@ -25775,12 +25775,12 @@ ShallowWrapper {
             },
             Object {
               "msgKey": "table.header.standards",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
               "msgKey": "table.header.controls",
-              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+              "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
@@ -27108,12 +27108,12 @@ ShallowWrapper {
                 },
                 Object {
                   "msgKey": "table.header.standards",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
                   "msgKey": "table.header.controls",
-                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                  "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
@@ -28425,12 +28425,12 @@ ShallowWrapper {
               },
               Object {
                 "msgKey": "table.header.standards",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
                 "msgKey": "table.header.controls",
-                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]",
+                "resourceKey": "metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {

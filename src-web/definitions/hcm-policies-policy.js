@@ -45,12 +45,12 @@ export default {
     },
     {
       msgKey: 'table.header.standards',
-      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
       transformFunction: getStandards,
     },
     {
       msgKey: 'table.header.controls',
-      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
       transformFunction: getControls,
     },
     {
