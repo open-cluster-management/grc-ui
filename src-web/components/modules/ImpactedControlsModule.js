@@ -24,7 +24,6 @@ import _ from 'lodash'
 import { withRouter } from 'react-router-dom'
 import queryString from 'query-string'
 import NoResource from '../common/NoResource'
-import config from '../../../lib/shared/config'
 
 resources(() => {
   require('../../../scss/module-impacted-controls.scss')
