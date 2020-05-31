@@ -14,7 +14,7 @@ replacements: # if user select this choice, the template variable names and valu
     PR.PT-3 Least Functionality
   policyTemplates: |
     - objectDefinition:
-        apiVersion: policies.ibm.com/v1alpha1
+        apiVersion: policies.open-cluster-management.io/v1
         kind: CisPolicy # cis compliance
         metadata:
           labels:

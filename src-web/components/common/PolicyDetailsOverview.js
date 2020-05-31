@@ -24,7 +24,6 @@ import SimpleTable from './SimpleTable'
 import ResourceTableModule from './ResourceTableModuleFromProps'
 import StructuredListModule from '../../components/common/StructuredListModuleWithActions'
 
-
 resources(() => {
   require('../../../scss/policy-details-overview.scss')
 })
@@ -58,18 +57,20 @@ export class PolicyDetailsOverview extends React.PureComponent{
     const templates = []
     Object.entries(spec || []).forEach(([key, value]) => {
       if (key.endsWith(`${templateType}-templates`)) {
-        value.forEach(item => templates.push({ ...item, templateType: key }))
+        value.forEach((item) => {
+          templates.push({ ...item.objectDefinition, templateType: key })
+        })
       }
     })
     return templates
   }
 
   getClusterStatus = (item) => {
-    const rawStatus =  _.get(item, 'complianceStatus', '-')
+    const rawStatus = _.get(item, 'raw.status.status', '-')
     const status = {}
     _.forEach(rawStatus, (value) => {
-      const clusterNamespace = _.get(value, 'clusterNamespace')
-      const compliant = _.get(value, 'compliant', '-')
+      const clusterNamespace = _.get(value, 'clusternamespace')
+      const compliant = _.get(value, 'compliant', 'unknown')
       status[clusterNamespace] = compliant
     })
     return status

@@ -55,13 +55,15 @@ export const formatPoliciesToClustersTableData = (policies) => {
   if (policies) {
     policies.forEach((policy) => {
       const statuses = _.get(policy, 'raw.status.status', {})
-      Object.entries(statuses).forEach(([cluster]) => {
-        if (!map.has(cluster)) {
-          map.set(cluster, [])
+      Array.isArray(statuses) && statuses.forEach((cluster) =>
+      {
+        if (!map.has(cluster.clustername)) {
+          map.set(cluster.clustername, [])
         }
-        map.get(cluster).push(policy)
+        map.get(cluster.clustername).push(policy)
       })
     })
+
     for (const [key, value] of map.entries()) {
       result.push(formatPolicyClusterView(key, value))
     }

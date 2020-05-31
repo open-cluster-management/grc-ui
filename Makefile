@@ -40,3 +40,8 @@ unit-test:
 		mkdir -p test-output/unit; \
 	fi
 	npm test
+
+travis-slack-reporter:
+	if [ -d "test-output/e2e/screenshots" ]; then \
+		node ./tests/utils/slack-reporter.js; \
+	fi

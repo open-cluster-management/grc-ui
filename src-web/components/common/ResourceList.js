@@ -309,7 +309,7 @@ ResourceList.propTypes = {
   updateSecondaryHeader: PropTypes.func,
 }
 
-//diff than original updateBrowserURL in mcm-ui pageWithUrlQuery
+//diff than original updateBrowserURL in console-ui pageWithUrlQuery
 //this modified updateBrowserURL will keep flags other than text input filters
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { updateBrowserURL, resourceType } = ownProps

@@ -77,7 +77,6 @@ function createPolicy(browser, name, yaml, time) {
   this.expect.element('.section-title:nth-of-type(1)').text.to.equal('Policy details')
   this.expect.element('.new-structured-list > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(name)
   this.expect.element('.overview-content > div:nth-child(2) > .section-title').text.to.equal('Placement')
-  browser.pause(35000)
   this.waitForElementVisible('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title')
   this.expect.element('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement rule')
   this.expect.element('.overview-content-second > div:nth-child(1) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('placement-' + name)
@@ -90,6 +89,7 @@ function checkViolations(name, violationExpected, violationText) {
   this.waitForElementVisible('@searchInput')
   this.clearValue('@searchInput')
   this.setValue('@searchInput', name)
+  this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
   this.click('tbody>tr>td>a')
   this.waitForElementPresent('#violation-tab')
   this.click('#violation-tab')
@@ -134,5 +134,6 @@ function deletePolicy(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
+  this.waitForElementNotPresent('@spinner')
   // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
 }

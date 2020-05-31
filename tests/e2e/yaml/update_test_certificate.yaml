@@ -1,12 +1,12 @@
-apiVersion: policy.mcm.ibm.com/v1alpha1
+apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-update-certificate-[TIME]
   namespace: default
   annotations:
-    policy.mcm.ibm.com/categories: PR.PT Protective Technology
-    policy.mcm.ibm.com/controls: PR.PT-3 Least Functionality
-    policy.mcm.ibm.com/standards: NIST-CSF
+    policies.open-cluster-management.io/categories: PR.PT Protective Technology
+    policies.open-cluster-management.io/controls: PR.PT-3 Least Functionality
+    policies.open-cluster-management.io/standards: NIST-CSF
 spec:
   complianceType: musthave
   disabled: false
@@ -36,7 +36,7 @@ spec:
           secretName: rsa-ca-sample-secret-[TIME]
   remediationAction: enforce
 ---
-apiVersion: mcm.ibm.com/v1alpha1
+apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-update-certificate-[TIME]
@@ -48,7 +48,7 @@ placementRef:
 subjects:
 - name: policy-update-certificate-[TIME]
   kind: Policy
-  apiGroup: policy.mcm.ibm.com
+  apiGroup: policies.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule

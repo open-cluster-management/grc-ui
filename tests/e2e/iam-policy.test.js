@@ -17,14 +17,10 @@ const config = require('../../config')
 let page
 
 module.exports = {
-  '@disabled': false,
+  '@disabled': true,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
-    if(process.env.SELENIUM_USER === undefined || process.env.SELENIUM_PASSWORD === undefined){
-      browser.end()
-      throw new Error('Env variable NOT set.\nPlease export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD')
-    }
     loginPage.navigate()
     loginPage.authenticate()
 

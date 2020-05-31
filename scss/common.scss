@@ -156,10 +156,10 @@ body {
       & * {
         font-family: unset;
       }
+    
+      .codicon[class*='codicon-'] {
+        font-family: codicon;
+      }
     }
   }
-}
-
-.codicon[class*='codicon-'] {
-  font-family: codicon !important;
 }

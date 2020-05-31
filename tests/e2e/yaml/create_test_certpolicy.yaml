@@ -1,12 +1,12 @@
-apiVersion: policy.mcm.ibm.com/v1alpha1
+apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-certificatepolicy-[TIME]
   namespace: default
   annotations:
-    policy.mcm.ibm.com/standards: NIST-CSF
-    policy.mcm.ibm.com/categories: PR.DS DataSecurity
-    policy.mcm.ibm.com/controls: PR.DS-2 Data-in-transit
+    policies.open-cluster-management.io/standards: NIST-CSF
+    policies.open-cluster-management.io/categories: PR.DS DataSecurity
+    policies.open-cluster-management.io/controls: PR.DS-2 Data-in-transit
 spec:
   complianceType: musthave
   remediationAction: inform
@@ -28,7 +28,7 @@ spec:
           severity: low
           minimumDuration: 300h
 ---
-apiVersion: mcm.ibm.com/v1alpha1
+apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-certificatepolicy-[TIME]
@@ -40,7 +40,7 @@ placementRef:
 subjects:
 - name: policy-certificatepolicy-[TIME]
   kind: Policy
-  apiGroup: policy.mcm.ibm.com
+  apiGroup: policies.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule

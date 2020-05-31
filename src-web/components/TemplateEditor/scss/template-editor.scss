@@ -76,25 +76,8 @@
             font-family: unset;
           }
 
-          #brace-editor {
-            min-width: unset;
-            min-height: unset;
-          }
-
-          .ace-vibrant-ink {
-            .ace_marker-layer {
-              .ace_selection {
-                background: #042d57;
-              }
-              .ace_selected-word {
-                border: none;
-                background: #042d57;
-              }
-
-              .ace_active-line {
-                background: #33333370;
-              }
-            }
+         .codicon[class*='codicon-'] {
+           font-family: codicon;
           }
         }
       }

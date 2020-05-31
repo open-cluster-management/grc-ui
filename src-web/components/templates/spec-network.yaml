@@ -12,16 +12,28 @@ replacements: # if user select this choice, the template variable names and valu
     PR.AC Identity Management Authentication and Access Control
   controls: |
     PR.AC-5 Network Integrity
-  objectTemplates: |
-    - complianceType: musthave
-      objectDefinition:
-        kind: NetworkPolicy # deny network request
-        apiVersion: networking.k8s.io/v1
+  policyTemplates: |
+    - objectDefinition:
+        apiVersion: policies.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
         metadata:
-          name: deny-from-other-namespaces
+          name: {{name}}-example
         spec:
-          podSelector:
-            matchLabels:
-          ingress:
-          - from:
-            - podSelector: {} # accept ingress from all pods within this namespace only
+          remediationAction: inform # will be overridden by remediationAction in parent policy
+          severity: high
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                kind: NetworkPolicy # deny network request
+                apiVersion: networking.k8s.io/v1
+                metadata:
+                  name: deny-from-other-namespaces
+                spec:
+                  podSelector:
+                    matchLabels:
+                  ingress:
+                  - from:
+                    - podSelector: {} # accept ingress from all pods within this namespace only

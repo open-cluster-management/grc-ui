@@ -13,7 +13,7 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import renderer from 'react-test-renderer'
-import { policiesTestingDataSet1, policiesTestingDataSet2, findingsTestingDataSet1 } from './ModuleTestingData'
+import { policiesTestingDataSet1, policiesTestingDataSet2, policiesTestingDataSet3, findingsTestingDataSet1 } from './ModuleTestingData'
 import ImpactedControlsModule from '../../../../src-web/components/modules/ImpactedControlsModule'
 
 describe('ImpactedControlsModule view with Security Findings', () => {
@@ -75,7 +75,7 @@ describe('ImpactedControlsModule view without Security Findings', () => {
   }
   const updateViewState = jest.fn()
   const handleDrillDownClick = jest.fn()
-  const filteredPolicies = policiesTestingDataSet2
+  const filteredPolicies = policiesTestingDataSet3
   const filteredFindings = findingsTestingDataSet1
   const activeFilters = {}
   const availableFilters = {standards:{availableSet:{}}}

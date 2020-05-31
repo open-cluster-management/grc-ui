@@ -205,7 +205,7 @@ function testDetailsPage(browser, name) {
   this.expect.element('.overview-content-second > div:nth-child(1) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('placement-' + name)
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement binding')
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
-  this.expect.element('.overview-content > div:nth-child(3) > .section-title').text.to.equal('Object templates')
+  this.expect.element('.overview-content > div:nth-child(3) > .section-title').text.to.equal('Policy templates')
   //violation tab test
   this.waitForElementVisible('#violation-tab')
   this.click('#violation-tab')
@@ -243,6 +243,7 @@ function deletePolicy(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
+  this.waitForElementNotPresent('@spinner')
   // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').not.to.be.present
 }
 function verifyDisableEnable(name){

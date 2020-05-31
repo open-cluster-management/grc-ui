@@ -13,7 +13,7 @@ exports[`createComplianceLink Should create compliance link 1`] = `
 exports[`createComplianceLink Should create policy link 1`] = `
 <Link
   replace={false}
-  to="undefined/all/policy1"
+  to="undefined/all/mcm/policy1"
 >
   policy1
 </Link>

@@ -12,7 +12,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import config from '../../lib/shared/config'
-
 import {getCategories, getControls, getStandards} from './hcm-compliances'
 
 export default {
@@ -46,17 +45,17 @@ export default {
     },
     {
       msgKey: 'table.header.standards',
-      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/standards"]',
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/standards"]',
       transformFunction: getStandards,
     },
     {
       msgKey: 'table.header.controls',
-      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/controls"]',
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/controls"]',
       transformFunction: getControls,
     },
     {
       msgKey: 'table.header.categories',
-      resourceKey: 'metadata.annotations["policy.mcm.ibm.com/categories"]',
+      resourceKey: 'metadata.annotations["policies.open-cluster-management.io/categories"]',
       transformFunction: getCategories
     },
   ],
@@ -91,7 +90,7 @@ export function createComplianceLink(item = {}, ...param){
       return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name} (Deprecated)</Link>
     }
     else {
-      return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
+      return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.namespace)}/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
     }
   }
   return undefined

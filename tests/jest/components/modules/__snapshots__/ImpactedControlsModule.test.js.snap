@@ -642,12 +642,12 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                     onKeyPress={[Function]}
                     role="presentation"
                     tabIndex={-1}
-                    value={2}
+                    value={0}
                   >
                     <div
-                      aria-valuemax={2}
+                      aria-valuemax={0}
                       aria-valuemin={1}
-                      aria-valuenow={2}
+                      aria-valuenow={0}
                       className="bx--slider__thumb"
                       id="slider"
                       onKeyDown={[Function]}
@@ -674,14 +674,14 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                     />
                     <input
                       className="bx--slider__input"
-                      max={2}
+                      max={0}
                       min={1}
                       name="Show more or less controls"
                       onChange={[Function]}
                       required={undefined}
                       step={1}
                       type="hidden"
-                      value={2}
+                      value={0}
                     />
                   </div>
                   <span
@@ -692,7 +692,7 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                   <span
                     className="bx--slider__range-label"
                   >
-                    2
+                    0
                   </span>
                 </div>
               </div>
@@ -705,209 +705,27 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
           <div
             className="card-radar"
           >
-            <svg
-              height={500}
-              width={500}
-            >
-              <g
-                transform="translate(70, 70)"
+            <div>
+              <div
+                className="no-resource"
               >
-                <rect
-                  fill="transparent"
-                  height={360}
-                  transform="translate(0, 0)"
-                  width={360}
+                <img
+                  alt="Your data visualizations cannot be displayed"
+                  className="no-resource-icon"
+                  src="undefined/graphics/no-impacted-controls-overlap.svg"
                 />
-                <g
-                  transform="translate(180, 180)"
+                <div
+                  className="no-resource-title"
                 >
-                  <g>
-                    <circle
-                      fill="#979797"
-                      fillOpacity={0.1}
-                      r={180}
-                      stroke="#979797"
-                    />
-                    <circle
-                      fill="#979797"
-                      fillOpacity={0.1}
-                      r={144}
-                      stroke="#979797"
-                    />
-                    <circle
-                      fill="#979797"
-                      fillOpacity={0.1}
-                      r={108}
-                      stroke="#979797"
-                    />
-                    <circle
-                      fill="#979797"
-                      fillOpacity={0.1}
-                      r={72}
-                      stroke="#979797"
-                    />
-                    <circle
-                      fill="#979797"
-                      fillOpacity={0.1}
-                      r={36}
-                      stroke="#979797"
-                    />
-                    <text
-                      dx="0.4em"
-                      dy="0.4em"
-                      fill="black"
-                      fontFamily="sans-serif"
-                      fontSize={10}
-                      textAnchor="left"
-                      x={0}
-                      y={-180}
-                    >
-                      10
-                    </text>
-                    <text
-                      dx="0.4em"
-                      dy="0.4em"
-                      fill="black"
-                      fontFamily="sans-serif"
-                      fontSize={10}
-                      textAnchor="left"
-                      x={0}
-                      y={-144}
-                    >
-                      8
-                    </text>
-                    <text
-                      dx="0.4em"
-                      dy="0.4em"
-                      fill="black"
-                      fontFamily="sans-serif"
-                      fontSize={10}
-                      textAnchor="left"
-                      x={0}
-                      y={-108}
-                    >
-                      6
-                    </text>
-                    <text
-                      dx="0.4em"
-                      dy="0.4em"
-                      fill="black"
-                      fontFamily="sans-serif"
-                      fontSize={10}
-                      textAnchor="left"
-                      x={0}
-                      y={-72}
-                    >
-                      4
-                    </text>
-                    <text
-                      dx="0.4em"
-                      dy="0.4em"
-                      fill="black"
-                      fontFamily="sans-serif"
-                      fontSize={10}
-                      textAnchor="left"
-                      x={0}
-                      y={-36}
-                    >
-                      2
-                    </text>
-                  </g>
-                  <g>
-                    <line
-                      stroke="#cdcdcd"
-                      strokeWidth={2}
-                      x1={0}
-                      x2={1.2124003311558799e-14}
-                      y1={0}
-                      y2={-198.00000000000003}
-                    />
-                    <text
-                      dy="0.35em"
-                      fill="black"
-                      fontFamily="sans-serif"
-                      fontSize={10}
-                      textAnchor="middle"
-                      x={1.3226185430791415e-14}
-                      y={-216}
-                    >
-                      Mutation Advisor
-                    </text>
-                  </g>
-                  <g>
-                    <line
-                      stroke="#cdcdcd"
-                      strokeWidth={2}
-                      x1={0}
-                      x2={1.2124003311558799e-14}
-                      y1={0}
-                      y2={198.00000000000003}
-                    />
-                    <text
-                      dy="0.35em"
-                      fill="black"
-                      fontFamily="sans-serif"
-                      fontSize={10}
-                      textAnchor="middle"
-                      x={1.3226185430791415e-14}
-                      y={216}
-                    >
-                      VA
-                    </text>
-                  </g>
-                  <g>
-                    <path
-                      d="M-0.000012470767438298165,35.99999999999784L0,-36Z"
-                      fill="#0082C1"
-                      fillOpacity={0.2}
-                      stroke="#0082C1"
-                      strokeOpacity={0.7}
-                    />
-                    <circle
-                      cx={2.204364238465236e-15}
-                      cy={-36}
-                      fill="#0082C1"
-                      opacity={0.7}
-                      r={3}
-                      stroke="#0082C1"
-                    />
-                    <circle
-                      cx={2.204364238465236e-15}
-                      cy={36}
-                      fill="#0082C1"
-                      opacity={0.7}
-                      r={3}
-                      stroke="#0082C1"
-                    />
-                  </g>
-                  <g>
-                    <path
-                      d="M0,0L0,0Z"
-                      fill="#13B9B9"
-                      fillOpacity={0.2}
-                      stroke="#13B9B9"
-                      strokeOpacity={0.7}
-                    />
-                    <circle
-                      cx={0}
-                      cy={-0}
-                      fill="#13B9B9"
-                      opacity={0.7}
-                      r={3}
-                      stroke="#13B9B9"
-                    />
-                    <circle
-                      cx={0}
-                      cy={0}
-                      fill="#13B9B9"
-                      opacity={0.7}
-                      r={3}
-                      stroke="#13B9B9"
-                    />
-                  </g>
-                </g>
-              </g>
-            </svg>
+                  Your data visualizations cannot be displayed
+                </div>
+                <div
+                  className="no-resource-detail"
+                >
+                  There are no controls that have both policy violations and security findings. You can try selecting different filters or clearing the current filters. The system will continue to monitor and display the visualization here.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
