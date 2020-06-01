@@ -126,7 +126,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
       />,
     ]
     const modulesBottom = []
-    const templates = (localItem.raw && localItem.raw.spec) ? this.getTemplates(localItem.raw.spec) : []
+    const templates = (localItem && localItem.raw && localItem.raw.spec) ? this.getTemplates(localItem.raw.spec) : []
     let templateType
 
     if (templates){
@@ -231,10 +231,10 @@ export class PolicyDetailsOverview extends React.PureComponent{
     }
 
     let itemPP = '-', itemPB = '-'
-    if (localItem.placementPolicies && Array.isArray(localItem.placementPolicies)) {
+    if (localItem && localItem.placementPolicies && Array.isArray(localItem.placementPolicies)) {
       itemPP = localItem.placementPolicies[0]
     }
-    if (localItem.placementBindings && Array.isArray(localItem.placementBindings)) {
+    if (localItem && localItem.placementBindings && Array.isArray(localItem.placementBindings)) {
       itemPB = localItem.placementBindings[0]
     }
     return (
