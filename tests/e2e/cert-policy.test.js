@@ -66,7 +66,7 @@ module.exports = {
   'Cert policy: cert policy should show compliant': (browser) => {
     const time = browser.globals.time
     page.searchPolicy('policy-certificatepolicy-' + time, true)
-    browser.pause(40000) // Wait for cert policy to detect compliant 60s
+    browser.pause(20000) // Wait for cert policy to detect compliant 60s
     page.checkViolations('policy-certificatepolicy-' + time, false)
   },
 
