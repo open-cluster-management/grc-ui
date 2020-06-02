@@ -12,7 +12,7 @@ spec:
   remediationAction: enforce
   policy-templates:
     - objectDefinition:
-        apiVersion: policies.open-cluster-management.io/v1
+        apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
           name: policy-delete-issuer-[TIME]
