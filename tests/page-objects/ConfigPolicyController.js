@@ -106,15 +106,15 @@ function checkViolations(name, violationExpected, violationText) {
 
 function searchPolicy(name, expectToDisplay) {
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
+  this.click('@searchInput').clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.waitForElementVisible('@searchInput')
   if(expectToDisplay){
     this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(name)
-    this.clearValue('@searchInput')
+    this.click('@searchInput').clearValue('@searchInput')
   } else{
     this.waitForElementNotPresent('tbody>tr')
-    this.clearValue('@searchInput')
+    this.click('@searchInput').clearValue('@searchInput')
   }
 }
 
