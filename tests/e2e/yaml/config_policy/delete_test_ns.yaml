@@ -1,45 +1,53 @@
 apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: policy-namespace-create-[TIME]
+  name: policy-namespace-delete-[TIME]
   namespace: default
   annotations:
     policies.open-cluster-management.io/standards: NIST-CSF
     policies.open-cluster-management.io/categories: PR.IP Information Protection Processes and Procedures
     policies.open-cluster-management.io/controls: PR.IP-1 Baseline configuration
 spec:
-  complianceType: musthave
   remediationAction: enforce
   disabled: false
-  namespaces:
-    exclude: ["kube-*"]
-    include: ["default"]
-  object-templates:
-    - complianceType: musthave
-      objectDefinition:
-        kind: Namespace # must have namespace 'prod'
-        apiVersion: v1
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policies.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
         metadata:
-          name: e2etest
+          name: policy-namespace-delete-[TIME]
+        spec:
+          remediationAction: enforce
+          severity: low
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]
+          object-templates:
+            - complianceType: mustnothave
+              objectDefinition:
+                kind: Namespace # must have namespace 'prod'
+                apiVersion: v1
+                metadata:
+                  name: e2etest
 ---
 apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-namespace-create-[TIME]
+  name: binding-policy-namespace-delete-[TIME]
   namespace: default
 placementRef:
-  name: placement-policy-namespace-create-[TIME]
+  name: placement-policy-namespace-delete-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-namespace-create-[TIME]
+- name: policy-namespace-delete-[TIME]
   kind: Policy
   apiGroup: policies.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-namespace-create-[TIME]
+  name: placement-policy-namespace-delete-[TIME]
   namespace: default
 spec:
   clusterConditions:

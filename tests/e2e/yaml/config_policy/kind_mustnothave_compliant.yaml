@@ -8,17 +8,25 @@ metadata:
     policies.open-cluster-management.io/categories: PR.PT Protective Technology
     policies.open-cluster-management.io/controls: PR.PT-3 Least Functionality
 spec:
-  complianceType: musthave
   remediationAction: inform
   disabled: false
-  namespaces:
-    exclude: ["kube-*"]
-    include: ["e2etest"]
-  object-templates:
-    - complianceType: mustnothave
-      objectDefinition:
-        apiVersion: v1
-        kind: Pod # nginx pod must exist
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policies.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: policy-pod-mustnothave-all-[TIME]
+        spec:
+          remediationAction: inform
+          severity: low
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["e2etest"]
+          object-templates:
+            - complianceType: mustnothave
+              objectDefinition:
+                apiVersion: v1
+                kind: Pod # nginx pod must exist
 ---
 apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding

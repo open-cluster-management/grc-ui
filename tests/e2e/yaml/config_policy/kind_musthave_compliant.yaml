@@ -1,43 +1,51 @@
 apiVersion: policies.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: policy-ns-mustnothave-[TIME]
+  name: policy-ns-musthave-[TIME]
   namespace: default
   annotations:
     policies.open-cluster-management.io/standards: NIST-CSF
     policies.open-cluster-management.io/categories: PR.IP Information Protection Processes and Procedures
     policies.open-cluster-management.io/controls: PR.IP-1 Baseline configuration
 spec:
-  complianceType: musthave
   remediationAction: inform
   disabled: false
-  namespaces:
-    exclude: ["kube-*"]
-    include: ["default"]
-  object-templates:
-    - complianceType: mustnothave
-      objectDefinition:
-        kind: Namespace # must have namespace 'prod'
-        apiVersion: v1
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policies.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: policy-ns-musthave-[TIME]
+        spec:
+          remediationAction: inform
+          severity: low
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                kind: Namespace # must have namespace 'prod'
+                apiVersion: v1
 ---
 apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-ns-mustnothave-[TIME]
+  name: binding-policy-ns-musthave-[TIME]
   namespace: default
 placementRef:
-  name: placement-policy-ns-mustnothave-[TIME]
+  name: placement-policy-ns-musthave-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-ns-mustnothave-[TIME]
+- name: policy-ns-musthave-[TIME]
   kind: Policy
   apiGroup: policies.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-ns-mustnothave-[TIME]
+  name: placement-policy-ns-musthave-[TIME]
   namespace: default
 spec:
   clusterConditions:
