@@ -23,7 +23,7 @@ module.exports = {
     loginPage.authenticate()
 
     const url = `${browser.launch_url}${config.get('contextPath')}/all`
-    page = browser.page.PolicyController()
+    page = browser.page.ConfigPolicyController()
     page.navigate(url)
   },
 

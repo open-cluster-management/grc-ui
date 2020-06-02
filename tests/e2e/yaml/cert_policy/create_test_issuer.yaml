@@ -30,6 +30,8 @@ spec:
                 metadata:
                   name: ss-sample-issuer-[TIME]
                   namespace: default
+                  labels:
+                    e2e: "true"
                 spec:
                   selfSigned: {}
 ---

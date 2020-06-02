@@ -30,6 +30,8 @@ spec:
                 metadata:
                   name: rsa-ca-sample-cert-[TIME]
                   namespace: default
+                  labels:
+                    e2e: "true"
                 spec:
                   commonName: wap-master.fyre.test.com
                   dnsNames:
