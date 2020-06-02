@@ -3120,6 +3120,22 @@ exports[`GrcView component 7 renders as expected 1`] = `
           />
         </svg>
       </button>
+      <div
+        className="buttons"
+      >
+        <button
+          className="bx--btn bx--btn--sm bx--btn--secondary"
+        >
+          <a
+            aria-describedby="launchWindow"
+            className="doc-link"
+            href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
+            target="doc"
+          >
+            View documentation
+          </a>
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -3147,7 +3163,24 @@ exports[`GrcView component 8 renders as expected 1`] = `
     </div>
     <div
       className="button-group"
-    />
+    >
+      <div
+        className="buttons"
+      >
+        <button
+          className="bx--btn bx--btn--sm bx--btn--secondary"
+        >
+          <a
+            aria-describedby="launchWindow"
+            className="doc-link"
+            href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
+            target="doc"
+          >
+            View documentation
+          </a>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 `;
