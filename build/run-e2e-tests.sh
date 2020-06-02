@@ -32,6 +32,9 @@ oc delete certificate -l e2e=true -n default
 oc delete secret -n default $secrets || true # in case secrets are empty
 oc delete clusterrolebinding -l e2e=true
 
+echo "Install cert manager on managed"
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.15.1/cert-manager.yaml
+
 echo "Logout"
 export OC_COMMAND=logout
 make oc/command
