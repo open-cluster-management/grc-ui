@@ -1132,15 +1132,15 @@ exports[`TemplateEditor component renders as expected 1`] = `
 `;
 
 exports[`on editor change function renders as expected 1`] = `
-"apiVersion: policies.open-cluster-management.io/v1
+"apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-certificatepolicy-1
   namespace: governance
   annotations:
-    policies.open-cluster-management.io/standards: NIST-CSF
-    policies.open-cluster-management.io/categories: PR.DS DataSecurity
-    policies.open-cluster-management.io/controls: PR.DS-2 Data-in-transit
+    policy.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: PR.DS DataSecurity
+    policy.open-cluster-management.io/controls: PR.DS-2 Data-in-transit
 spec:
   remediationAction: inform
   disabled: false
@@ -1158,7 +1158,7 @@ spec:
           severity: low
           minimumDuration: 300h
 ---
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-certificatepolicy-1
@@ -1170,7 +1170,7 @@ placementRef:
 subjects:
 - name: policy-certificatepolicy-1
   kind: Policy
-  apiGroup: policies.open-cluster-management.io
+  apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -1187,15 +1187,15 @@ spec:
 `;
 
 exports[`on editor change function renders as expected 2`] = `
-"apiVersion: policies.open-cluster-management.io/v1
+"apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-certificatepolicy-1
   namespace: 
   annotations:
-    policies.open-cluster-management.io/standards: NIST-CSF
-    policies.open-cluster-management.io/categories: PR.DS DataSecurity
-    policies.open-cluster-management.io/controls: PR.DS-2 Data-in-transit
+    policy.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: PR.DS DataSecurity
+    policy.open-cluster-management.io/controls: PR.DS-2 Data-in-transit
 spec:
   remediationAction: inform
   disabled: true
@@ -1213,7 +1213,7 @@ spec:
           severity: low
           minimumDuration: 300h
 ---
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-certificatepolicy-1
@@ -1225,7 +1225,7 @@ placementRef:
 subjects:
 - name: policy-certificatepolicy-1
   kind: Policy
-  apiGroup: policies.open-cluster-management.io
+  apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -1242,15 +1242,15 @@ spec:
 `;
 
 exports[`on editor change function renders as expected 3`] = `
-"apiVersion: policies.open-cluster-management.io/v1
+"apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-certificatepolicy-1
   namespace: default1,default2,mcm
   annotations:
-    policies.open-cluster-management.io/standards: NIST-CSF
-    policies.open-cluster-management.io/categories: PR.DS DataSecurity
-    policies.open-cluster-management.io/controls: PR.DS-2 Data-in-transit
+    policy.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: PR.DS DataSecurity
+    policy.open-cluster-management.io/controls: PR.DS-2 Data-in-transit
 spec:
   remediationAction: inform
   disabled: false
@@ -1268,7 +1268,7 @@ spec:
           severity: low
           minimumDuration: 300h
 ---
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-certificatepolicy-1
@@ -1280,7 +1280,7 @@ placementRef:
 subjects:
 - name: policy-certificatepolicy-1
   kind: Policy
-  apiGroup: policies.open-cluster-management.io
+  apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule

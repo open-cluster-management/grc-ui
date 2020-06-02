@@ -14,7 +14,7 @@ replacements: # if user select this choice, the template variable names and valu
     PR.AC-4 Access Control
   policyTemplates: |
     - objectDefinition:
-        apiVersion: policies.open-cluster-management.io/v1
+        apiVersion: policy.open-cluster-management.io/v1
         kind: IamPolicy # limit clusteradminrole and report violation
         metadata:
           name: {{name}}-example

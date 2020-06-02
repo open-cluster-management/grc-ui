@@ -1,12 +1,12 @@
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: {{name}}
   namespace: {{namespace}}
   annotations:
-    policies.open-cluster-management.io/standards: {{#each standards}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
-    policies.open-cluster-management.io/categories: {{#each categories}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
-    policies.open-cluster-management.io/controls: {{#each controls}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
+    policy.open-cluster-management.io/standards: {{#each standards}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
+    policy.open-cluster-management.io/categories: {{#each categories}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
+    policy.open-cluster-management.io/controls: {{#each controls}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
 spec:
   remediationAction: {{#if enforce}}enforce{{else}}inform{{/if}}
   disabled: {{#if disabled}}true{{else}}false{{/if}}
@@ -22,7 +22,7 @@ spec:
   {{/if}}
   {{/if}}
 ---
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-{{name}}
@@ -34,7 +34,7 @@ placementRef:
 subjects:
 - name: {{name}}
   kind: Policy
-  apiGroup: policies.open-cluster-management.io
+  apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule

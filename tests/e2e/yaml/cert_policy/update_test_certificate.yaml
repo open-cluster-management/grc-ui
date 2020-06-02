@@ -1,12 +1,12 @@
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-update-certificate-[TIME]
   namespace: default
   annotations:
-    policies.open-cluster-management.io/categories: PR.PT Protective Technology
-    policies.open-cluster-management.io/controls: PR.PT-3 Least Functionality
-    policies.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: PR.PT Protective Technology
+    policy.open-cluster-management.io/controls: PR.PT-3 Least Functionality
+    policy.open-cluster-management.io/standards: NIST-CSF
 spec:
   remediationAction: enforce
   disabled: false
@@ -42,7 +42,7 @@ spec:
                   renewBefore: 70h
                   secretName: rsa-ca-sample-secret-[TIME]
 ---
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-update-certificate-[TIME]
@@ -54,7 +54,7 @@ placementRef:
 subjects:
 - name: policy-update-certificate-[TIME]
   kind: Policy
-  apiGroup: policies.open-cluster-management.io
+  apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule

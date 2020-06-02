@@ -137,11 +137,11 @@ export class GrcCardsModule extends React.Component {
       switch (grcCardChoice) {
       case GrcCardsSelections.categories:
       default:
-        types = annotations['policies.open-cluster-management.io/categories'] || ''
+        types = annotations['policy.open-cluster-management.io/categories'] || ''
         key = 'categories'
         break
       case GrcCardsSelections.standards:
-        types = annotations['policies.open-cluster-management.io/standards'] || ''
+        types = annotations['policy.open-cluster-management.io/standards'] || ''
         key = 'standards'
         break
       }

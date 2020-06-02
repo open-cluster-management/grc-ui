@@ -12,9 +12,9 @@ echo "Login hub to clean up"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
-oc delete policy.policy.mcm.ibm.com -n default --all || true
+oc delete policies.policy.open-cluster-management.io -n default --all || true
 # placementbindings.mcm.ibm.com throws error when doesn't exist
-oc delete placementbindings.mcm.ibm.com  -n default --all || true
+oc delete placementbindings.policy.open-cluster-management.io  -n default --all || true
 oc delete placementrule  -n default --all || true
 
 echo "Logout"
