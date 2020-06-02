@@ -16,7 +16,7 @@ import config from '../../../lib/shared/config'
 
 const createDocLink = (locale, handleCreateResource, submitBtnTextKey, createFlag=true) => {
   const vNumber = config['ACM_VERSION']
-  const rhPath = `https://access${config['env']==='development' ? '-03preprod': ''}.redhat.com/`
+  const rhPath = 'https://access.redhat.com/'
   const acmPath = 'documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/'
   const grcPath = `${vNumber}/html/security/security#manage-security-policies`
   const docURL = `${rhPath}${acmPath}${grcPath}`
