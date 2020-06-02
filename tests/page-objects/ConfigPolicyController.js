@@ -87,7 +87,7 @@ function createPolicy(browser, name, yaml, time) {
 
 function checkViolations(name, violationExpected, violationText) {
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
+  this.click('@searchInput').clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
   this.click('tbody>tr>td>a')
@@ -121,7 +121,7 @@ function searchPolicy(name, expectToDisplay) {
 function deletePolicy(name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
+  this.click('@searchInput').clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
