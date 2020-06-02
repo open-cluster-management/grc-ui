@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+ /* Copyright (c) 2020 Red Hat, Inc. */
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
 @import './dashboard-card';
 @import 'variables';
@@ -74,7 +75,9 @@
     margin-left: -.5rem;
     .table-status-icon {
       height: 1rem;
+      margin-left: 0.2rem;
       margin-right: 0.4rem;
+      margin-top: 0.2rem;
       &__healthy {
         fill: $healthy
       }

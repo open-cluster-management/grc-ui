@@ -97,6 +97,7 @@
 
   .bx--tooltip--icon__top:after, .bx--tooltip--icon__bottom:after {
     white-space: normal;
+    word-break: keep-all;
     width: 22rem;
     z-index: 2000;
     margin-left: 5.8rem;
