@@ -23,7 +23,7 @@ spec:
             exclude: ["kube-*"]
             include: ["default"]
           object-templates:
-            - complianceType: musthave
+            - complianceType: mustonlyhave
               objectDefinition:
                 apiVersion: cert-manager.io/v1alpha3
                 kind: Certificate
