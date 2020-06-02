@@ -63,7 +63,7 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementPresent('@yamlMonacoEditor')
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
-  // this.clearValue('@policyNameInput')
+  // this.click('@policyNameInput').clearValue('@policyNameInput')
   // this.setValue('@policyNameInput',`${time}-policy-test`)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')

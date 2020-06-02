@@ -67,7 +67,7 @@ function createPolicy(browser, yaml, time) {
   this.waitForElementPresent('@yamlMonacoEditor')
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
-  // this.clearValue('@policyNameInput')
+  // this.click('@policyNameInput').clearValue('@policyNameInput')
   // this.setValue('@policyNameInput',`${time}-policy-test`)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
@@ -131,7 +131,7 @@ function tryEnable(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#enable-resource-modal')
   this.click('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
-  // this.clearValue('@searchInput')
+  // this.click('@searchInput').clearValue('@searchInput')
 }
 
 function tryDisable(name){
@@ -153,7 +153,7 @@ function tryDisable(name){
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#disable-resource-modal')
   this.click('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
-  // this.clearValue('@searchInput')
+  // this.click('@searchInput').clearValue('@searchInput')
 }
 
 function setSearchValue(value){
