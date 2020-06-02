@@ -33,13 +33,13 @@ spec:
                 spec:
                   commonName: wap-master.fyre.test.com
                   dnsNames:
-                    - compliance-master.fyre.test.com
-                  duration: 400h
+                    - wap-master2.fyre.test.com
+                  duration: 40h
                   isCA: true
                   issuerRef:
                     name: ss-sample-issuer-[TIME]
                     kind: Issuer
-                  renewBefore: 70h
+                  renewBefore: 10h
                   secretName: rsa-ca-sample-secret-[TIME]
 ---
 apiVersion: policy.open-cluster-management.io/v1
