@@ -11,31 +11,28 @@
 
 import React from 'react'
 import { Button } from 'carbon-components-react'
-// import msgs from '../../../nls/platform.properties'
-// import config from '../../../lib/shared/config'
+import msgs from '../../../nls/platform.properties'
+import config from '../../../lib/shared/config'
 
 const createDocLink = (locale, handleCreateResource, submitBtnTextKey, createFlag=true) => {
-  // const vNumber = config['ICP_VERSION']
-
+  const vNumber = config['ACM_VERSION']
+  const rhPath = `https://access${config['env']==='development' ? '-03preprod': ''}.redhat.com/`
+  const acmPath = 'documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/'
+  const grcPath = `${vNumber}/html/security/security#manage-security-policies`
+  const docURL = `${rhPath}${acmPath}${grcPath}`
   return (
     <div className={'button-group'}>
       {createFlag && <Button icon="add--glyph" small id='create-resource' onClick={handleCreateResource}>
         { submitBtnTextKey }
       </Button>}
-      { //Remove doc link temporarily, to be reverted.
-        /*<div className={'buttons'}>
-          <button className={'bx--btn bx--btn--sm bx--btn--secondary'}>
-            <a href={
-              `https://www${config['env']==='development' ? '-03preprod': ''}.ibm.com
-              /support/knowledgecenter/SSBS6K_${vNumber}/mcm/compliance/compliance_intro.html`}
-              className={'doc-link'}
-              target='doc'
-              aria-describedby='launchWindow'>
-              {msgs.get('button.view.doc', locale)
-              }
-            </a>
-          </button>
-            </div>*/}
+      {<div className={'buttons'}>
+        <button className={'bx--btn bx--btn--sm bx--btn--secondary'}>
+          <a href={docURL} className={'doc-link'} target='doc' aria-describedby='launchWindow'>
+            {msgs.get('button.view.doc', locale)
+            }
+          </a>
+        </button>
+      </div>}
     </div>
   )
 }

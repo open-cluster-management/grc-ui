@@ -17,6 +17,22 @@ exports[`createDocLink view renders does not show create link as expected 1`] = 
   >
     does not show create link
   </UNDEFINED>
+  <div
+    className="buttons"
+  >
+    <button
+      className="bx--btn bx--btn--sm bx--btn--secondary"
+    >
+      <a
+        aria-describedby="launchWindow"
+        className="doc-link"
+        href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
+        target="doc"
+      >
+        View documentation
+      </a>
+    </button>
+  </div>
 </div>
 `;
 
@@ -37,5 +53,21 @@ exports[`createDocLink view renders show create link as expected 1`] = `
   >
     show create link
   </UNDEFINED>
+  <div
+    className="buttons"
+  >
+    <button
+      className="bx--btn bx--btn--sm bx--btn--secondary"
+    >
+      <a
+        aria-describedby="launchWindow"
+        className="doc-link"
+        href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
+        target="doc"
+      >
+        View documentation
+      </a>
+    </button>
+  </div>
 </div>
 `;
