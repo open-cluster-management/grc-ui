@@ -64,7 +64,7 @@ module.exports = {
             {
               loader: 'css-loader?sourceMap',
               options: {
-                minimize: PRODUCTION ? true : false
+                // minimize: PRODUCTION ? true : false
               }
             },
             {
