@@ -1,0 +1,69 @@
+apiVersion: policies.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-delete-certificate-[TIME]
+  namespace: default
+  annotations:
+    policies.open-cluster-management.io/categories: PR.PT Protective Technology
+    policies.open-cluster-management.io/controls: PR.PT-3 Least Functionality
+    policies.open-cluster-management.io/standards: NIST-CSF
+spec:
+  disabled: false
+  remediationAction: enforce
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policies.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: policy-delete-certificate-[TIME]
+        spec:
+          remediationAction: enforce
+          severity: low
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]   
+          object-templates:
+            - complianceType: mustnothave
+              objectDefinition:
+                apiVersion: cert-manager.io/v1alpha3
+                kind: Certificate
+                metadata:
+                  name: rsa-ca-sample-cert-[TIME]
+                  namespace: default
+                spec:
+                  commonName: wap-master.fyre.test.com
+                  dnsNames:
+                    - compliance-master.fyre.test.com
+                  duration: 400h
+                  isCA: true
+                  issuerRef:
+                    name: ss-sample-issuer-[TIME]
+                    kind: Issuer
+                  renewBefore: 70h
+                  secretName: rsa-ca-sample-secret-[TIME]
+---
+apiVersion: policies.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-delete-certificate-[TIME]
+  namespace: default
+placementRef:
+  name: placement-policy-delete-certificate-[TIME]
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: policy-delete-certificate-[TIME]
+  kind: Policy
+  apiGroup: policies.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-delete-certificate-[TIME]
+  namespace: default
+spec:
+  clusterConditions:
+  - type: OK
+  clusterSelector:
+    matchExpressions:
+      []
