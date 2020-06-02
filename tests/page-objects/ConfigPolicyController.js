@@ -121,8 +121,20 @@ function searchPolicy(name, expectToDisplay) {
 function deletePolicy(name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput')
-  this.setValue('@searchInput', name)
+  const searchClose = '.bx--search-close.bx--search-close--hidden'
+  this.api.elements('css selector', searchClose, res => {
+    if (res.status < 0 || res.value.length < 1) {
+      // clear first
+      this.click('button.bx--search-close')
+      this.setValue('@searchInput', name)
+    }
+    else {
+      // do nothing already cleared
+      this.setValue('@searchInput', name)
+    }
+  })
+  // this.click('@searchInput').clearValue('@searchInput')
+  // this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
   this.waitForElementNotPresent('bx--overflow-menu-options__option.bx--overflow-menu-options__option--danger')
