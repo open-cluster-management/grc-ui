@@ -137,7 +137,7 @@ export class GrcView extends React.Component {
     switch(displayType) {
     case 'all':
     default:
-      if ((!grcItems || grcItems.length === 0) && !loading) {
+      if (!grcItems || grcItems.length === 0) {
         return (
           <NoResource
             title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
@@ -154,7 +154,7 @@ export class GrcView extends React.Component {
       }
       break
     case 'findings':
-      if ((!grcItems || grcItems.length === 0) && !loading) {
+      if (!grcItems || grcItems.length === 0) {
         return (
           <NoResource
             title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}

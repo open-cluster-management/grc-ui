@@ -114,7 +114,7 @@ export class OverviewView extends React.Component {
         subtitle={msgs.get('overview.error.default', locale)} />
     }
 
-    if ((!policies || policies.length === 0) && !loading) {
+    if (!policies || policies.length === 0) {
       return (
         <NoResource
           title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
