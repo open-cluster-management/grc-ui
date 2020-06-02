@@ -96,12 +96,12 @@ module.exports = {
     page.checkViolations('policy-delete-issuer-' + time, false)
     page.deletePolicy('policy-delete-issuer-' + time)
 
-    page.searchPolicy('policy-create-issuer-' + time, false)
-    page.searchPolicy('policy-create-certificate-' + time, false)
-    page.searchPolicy('policy-certificatepolicy-' + time, false)
-    page.searchPolicy('policy-update-certificate-' + time, false)
-    page.searchPolicy('policy-delete-certificate-' + time, false)
-    page.searchPolicy('policy-delete-secret-' + time, false)
-    page.searchPolicy('policy-delete-issuer-' + time, false)
+    // page.searchPolicy('policy-create-issuer-' + time, false)
+    // page.searchPolicy('policy-create-certificate-' + time, false)
+    // page.searchPolicy('policy-certificatepolicy-' + time, false)
+    // page.searchPolicy('policy-update-certificate-' + time, false)
+    // page.searchPolicy('policy-delete-certificate-' + time, false)
+    // page.searchPolicy('policy-delete-secret-' + time, false)
+    // page.searchPolicy('policy-delete-issuer-' + time, false)
   },
 }
