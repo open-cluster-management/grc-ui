@@ -43,7 +43,6 @@ spec:
                     kind: Issuer
                   renewBefore: 10h
                   secretName: rsa-ca-sample-secret-[TIME]
-  
 ---
 apiVersion: policies.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -70,4 +69,3 @@ spec:
   clusterSelector:
     matchExpressions:
       []
-
