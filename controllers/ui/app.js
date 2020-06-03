@@ -29,7 +29,7 @@ const ReactDOMServer = require('react-dom/server'),
 const log4js = require('log4js'),
       logger = log4js.getLogger('app')
 
-let App, Login, reducers, role, userPreferences  //laziy initialize to reduce startup time seen on k8s
+let App, Login, reducers, role  //laziy initialize to reduce startup time seen on k8s
 router.get('/logout', (req, res) => {
   const LOGOUT_API = '/v1/auth/logout'
   const callbackUrl = req.headers['host']
@@ -80,9 +80,6 @@ function fetchHeader(req, res, store, fetchHeaderContext) {
     role = role === undefined ? require('../../src-web/actions/role') : role
     if (stateH.role) {
       store.dispatch(role.roleReceiveSuccess(stateH.role.role))}
-    userPreferences = userPreferences === undefined ? require('../../src-web/actions/userpreferences') : userPreferences
-    if (stateH.userpreferences) {
-      store.dispatch(userPreferences.userPreferencesReceiveSuccess(stateH.userpreferences.userPreferences))}
 
     if(process.env.NODE_ENV === 'development') {
       lodash.forOwn(filesH, value => {
