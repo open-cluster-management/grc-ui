@@ -83,17 +83,17 @@ export class ResourceModal extends React.PureComponent {
     this.setState({data: value})
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.data && this.props.data !== nextProps.data) {
+  componentDidUpdate(prevProps) {
+    if (this.props.data && this.props.data !== prevProps.data) {
       // this.setState({data: JSON.stringify(this.props.data, null, 2)})
-      this.setState({data: dumpAndParse(this.props.data).yaml})
+      this.setState({data: dumpAndParse(prevProps.data).yaml})
     }
-    if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.ERROR) {
+    if (this.props.reqStatus && this.props.reqStatus === REQUEST_STATUS.ERROR) {
       this.setState(preState => {
-        return {reqErrorMsg: [...preState.reqErrorMsg, nextProps.reqErrorMsg]}
+        return {reqErrorMsg: [...preState.reqErrorMsg, this.props.reqErrorMsg]}
       })
     }
-    if (nextProps.reqCount === 0 && !nextProps.reqErrCount) {
+    if (this.props.reqCount === 0 && !this.props.reqErrCount) {
       this.handleClose()
     }
   }

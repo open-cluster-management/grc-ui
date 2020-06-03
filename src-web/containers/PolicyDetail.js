@@ -60,8 +60,8 @@ class PolicyDetail extends React.Component {
     localUpdateSecondaryHeader(this.getPolicyName(location), getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(), launch_links)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.location !== this.props.location) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.location !== this.props.location) {
       const {
         updateSecondaryHeader:localUpdateSecondaryHeader,
         tabs,
@@ -69,9 +69,9 @@ class PolicyDetail extends React.Component {
         match
       } = this.props
       localUpdateSecondaryHeader(
-        this.getPolicyName(nextProps.location),
+        this.getPolicyName(this.props.location),
         getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`),
-        this.getBreadcrumb(nextProps.location), launch_links
+        this.getBreadcrumb(this.props.location), launch_links
       )
     }
   }

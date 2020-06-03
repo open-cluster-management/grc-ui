@@ -131,15 +131,15 @@ class ResourceDetails extends React.Component {
     refreshControl.stopPolling()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.location !== this.props.location) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.location !== this.props.location) {
       const {
               updateSecondaryHeader:localUpdateSecondaryHeader,
               tabs,
               launch_links,
               match
-            } = this.props, params = match && match.params
-      localUpdateSecondaryHeader(params.name, getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(nextProps.location), launch_links)
+            } = prevProps.props, params = match && match.params
+      localUpdateSecondaryHeader(params.name, getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(this.props.location), launch_links)
     }
   }
 

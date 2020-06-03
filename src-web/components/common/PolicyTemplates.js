@@ -63,10 +63,11 @@ class PolicyTemplates extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     const {reqStatus:latestReqStatus, reqErrorMsg: latestReqErrorMsg } = this.props
     if (latestReqStatus && latestReqStatus === REQUEST_STATUS.ERROR && (prevState.reqStatus !== latestReqStatus)) {
       this.setState({
+        // eslint-disable-next-line react/no-unused-state
         reqStatus: latestReqStatus,
         reqErrorMsg: latestReqErrorMsg
       })

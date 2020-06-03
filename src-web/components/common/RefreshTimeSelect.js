@@ -17,7 +17,7 @@ import '../../../graphics/diagramIcons.svg'
 import { DEFAULT_REFRESH_TIME, DEFAULT_SIDE_PANEL_REFRESH_TIME } from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
 import moment from 'moment'
-
+import _ from 'lodash'
 
 resources(() => {
   require('../../../scss/refresh-time-select.scss')
@@ -80,11 +80,15 @@ export default class RefreshTimeSelect extends React.Component {
     this.setState({ pollInterval })
   }
 
-  componentWillReceiveProps(){
-    this.setState((prevState, props) => {
-      const {refreshControl: {refreshCookie}} = props
-      return {pollInterval: getPollInterval(refreshCookie)}
-    })
+  componentDidUpdate(prevProps){
+    const {refreshControl: {preRefreshCookie}} = prevProps
+    const {refreshControl: {latestRefreshCookie}} = this.props
+    if (!_.isEqual(preRefreshCookie, latestRefreshCookie)) {
+      this.setState(() => {
+        return {pollInterval: getPollInterval(latestRefreshCookie)}
+      })
+    }
+    this.fixTooltip()
   }
 
   render() {
@@ -124,10 +128,6 @@ export default class RefreshTimeSelect extends React.Component {
 
   setRefresh = ref => {
     this.refreshRef = ref
-    this.fixTooltip()
-  }
-
-  componentDidUpdate() {
     this.fixTooltip()
   }
 

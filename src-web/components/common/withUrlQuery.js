@@ -137,8 +137,10 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
       }
     }
 
-    componentWillReceiveProps() {
-      this.setState({firstTimeLoad: false})
+    componentDidUpdate() {
+      if(this.state.firstTimeLoad) {
+        this.setState({firstTimeLoad: false})
+      }
     }
 
     convertObjectToFilterArray(object) {

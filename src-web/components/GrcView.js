@@ -300,7 +300,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateResourceToolbar: (refreshControl, availableFilters) => dispatch(updateResourceToolbar(refreshControl, availableFilters)),
+    updateResourceToolbar: (refreshControl, availableFilters) =>
+      dispatch(updateResourceToolbar(refreshControl, availableFilters)),
     updateActiveFilters: (activeFilters) => dispatch(updateActiveFilters(activeFilters))
   }
 }

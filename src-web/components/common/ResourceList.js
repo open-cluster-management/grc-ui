@@ -58,9 +58,9 @@ class ResourceList extends React.Component {
     localSearchTable('', false)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if ((!lodash.isEqual(this.props.listData, nextProps.listData)) ||(!lodash.isEqual(this.props.resourceType, nextProps.resourceType))) {
-      this.props.fetchResources(nextProps.listData, nextProps.resourceType)
+  componentDidUpdate(prevProps) {
+    if ((!lodash.isEqual(this.props.listData, prevProps.listData)) ||(!lodash.isEqual(this.props.resourceType, prevProps.resourceType))) {
+      this.props.fetchResources(this.props.listData, this.props.resourceType)
     }
   }
 
