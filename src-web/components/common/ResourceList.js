@@ -33,8 +33,8 @@ const routesGrcStr = 'routes.grc'
 const routesCreatePolicy = 'routes.create.policy'
 
 class ResourceList extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {}
   }
 
