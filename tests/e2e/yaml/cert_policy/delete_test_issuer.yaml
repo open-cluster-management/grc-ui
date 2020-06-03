@@ -32,7 +32,6 @@ spec:
                   namespace: default
                 spec:
                   selfSigned: {}
-
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding

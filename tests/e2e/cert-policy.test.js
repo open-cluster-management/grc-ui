@@ -65,8 +65,8 @@ module.exports = {
 
   'Cert policy: cert policy should show compliant': (browser) => {
     const time = browser.globals.time
-    page.searchPolicy('policy-certificatepolicy-' + time, true)
-    browser.pause(20000) // Wait for cert policy to detect compliant 60s
+    // page.searchPolicy('policy-certificatepolicy-' + time, true)
+    // browser.pause(20000) // Wait for cert policy to detect compliant 60s
     page.checkViolations('policy-certificatepolicy-' + time, false)
   },
 
@@ -75,26 +75,12 @@ module.exports = {
     page.deletePolicy('policy-create-issuer-' + time)
     page.deletePolicy('policy-certificatepolicy-' + time)
 
-    const deleteCertificate = fs.readFileSync(path.join(__dirname, 'yaml/cert_policy/delete_test_certificate.yaml'))
-    let yaml = deleteCertificate.toString()
-    page.createPolicy(browser, 'policy-delete-certificate-' + time, yaml, time)
-    browser.pause(20000) // Wait for policy to delete certificate 30s
-    page.checkViolations('policy-delete-certificate-' + time, false)
-    page.deletePolicy('policy-delete-certificate-' + time)
-
-    const deleteSecret = fs.readFileSync(path.join(__dirname, 'yaml/cert_policy/delete_test_secret.yaml'))
-    yaml = deleteSecret.toString()
-    page.createPolicy(browser, 'policy-delete-secret-' + time, yaml, time)
-    browser.pause(20000) // Wait for policy to delete secret 30s
-    page.checkViolations('policy-delete-secret-' + time, false)
-    page.deletePolicy('policy-delete-secret-' + time)
-
-    const deleteIssuer = fs.readFileSync(path.join(__dirname, 'yaml/cert_policy/delete_test_issuer.yaml'))
-    yaml = deleteIssuer.toString()
-    page.createPolicy(browser, 'policy-delete-issuer-' + time, yaml, time)
-    browser.pause(20000) // Wait for policy to delete issuer 30s
-    page.checkViolations('policy-delete-issuer-' + time, false)
-    page.deletePolicy('policy-delete-issuer-' + time)
+    const deleteAll = fs.readFileSync(path.join(__dirname, 'yaml/cert_policy/delete_test_all.yaml'))
+    const yaml = deleteAll.toString()
+    page.createPolicy(browser, 'policy-delete-all-' + time, yaml, time)
+    browser.pause(20000) // Wait for policy to delete
+    page.checkViolations('policy-delete-all-' + time, false)
+    page.deletePolicy('policy-delete-all-' + time)
 
     // page.searchPolicy('policy-create-issuer-' + time, false)
     // page.searchPolicy('policy-create-certificate-' + time, false)

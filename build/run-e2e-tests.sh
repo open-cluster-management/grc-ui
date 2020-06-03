@@ -26,10 +26,10 @@ export OC_CLUSTER_URL=$OC_MANAGED_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_MANAGED_CLUSTER_PASS
 make oc/login
 oc delete pod --all -n default || true
-secrets=`oc get certificate -l e2e=true -o=jsonpath='{.items[*].spec.secretName}'`
+# secrets=`oc get certificate -l e2e=true -o=jsonpath='{.items[*].spec.secretName}'`
 oc delete issuer -l e2e=true -n default
 oc delete certificate -l e2e=true -n default
-oc delete secret -n default $secrets || true # in case secrets are empty
+oc delete secret -n default rsa-ca-sample-secret || true # in case secrets are empty
 oc delete clusterrolebinding -l e2e=true
 
 echo "Install cert manager on managed"

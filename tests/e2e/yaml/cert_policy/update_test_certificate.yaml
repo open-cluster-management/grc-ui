@@ -42,7 +42,7 @@ spec:
                     name: ss-sample-issuer-[TIME]
                     kind: Issuer
                   renewBefore: 10h
-                  secretName: rsa-ca-sample-secret-[TIME]
+                  secretName: rsa-ca-sample-secret
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
