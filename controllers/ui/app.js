@@ -18,7 +18,6 @@ const ReactDOMServer = require('react-dom/server'),
       context = require('../../lib/shared/context'),
       msgs = require('../../nls/platform.properties'),
       config = require('../../config'),
-      cookieUtil = require('../../lib/server/cookie-util'),
       appUtil = require('../../lib/server/app-util'),
       Provider = require('react-redux').Provider,
       router = express.Router({ mergeParams: true }),
@@ -30,15 +29,6 @@ const log4js = require('log4js'),
       logger = log4js.getLogger('app')
 
 let App, Login, reducers, role  //laziy initialize to reduce startup time seen on k8s
-router.get('/logout', (req, res) => {
-  const LOGOUT_API = '/v1/auth/logout'
-  const callbackUrl = req.headers['host']
-  cookieUtil.deleteAuthCookies(res)
-  logger.debug(`headers host:${callbackUrl}`)
-  const redirectUrl = process.env.NODE_ENV !== 'development' && callbackUrl ? `https://${callbackUrl}${LOGOUT_API}` : `${config.get('cfcRouterUrl')}${LOGOUT_API}`
-  logger.debug(`Final logout url:${redirectUrl}`)
-  return res.send({ redirectUrl })
-})
 
 router.get('*', (req, res) => {
   reducers = reducers === undefined ? require('../../src-web/reducers') : reducers
