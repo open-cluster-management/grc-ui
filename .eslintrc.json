@@ -45,7 +45,6 @@
         "react/display-name": "error",
         "react/no-access-state-in-setstate": "error",
         "react/no-array-index-key": "error",
-        "react/no-did-update-set-state": "error",
         "react/no-render-return-value": "error",
         "react/no-unused-prop-types": "error",
         "react/no-unused-state": "error",

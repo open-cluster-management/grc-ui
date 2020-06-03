@@ -231,7 +231,7 @@ export class GrcView extends React.Component {
   handleDrillDownClickGrcView(key, value, type, level){
     //step 1 add activeFilters when click GrcCardsModule
     //here for severity level, will not update filter here but just update url
-    //then acutally update it in componentWillReceiveProps()
+    //then acutally update it in componentDidUpdate()
     const {updateActiveFilters:localUpdateActiveFilters} = this.props
     //lodash recursively deep clone
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})

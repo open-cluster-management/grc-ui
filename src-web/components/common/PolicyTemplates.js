@@ -63,14 +63,15 @@ class PolicyTemplates extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.ERROR && (this.state.reqStatus !== nextProps.reqStatus)) {
+  componentDidUpdate(prevProps, prevState) {
+    const {reqStatus:latestReqStatus, reqErrorMsg: latestReqErrorMsg } = this.props
+    if (latestReqStatus && latestReqStatus === REQUEST_STATUS.ERROR && (prevState.reqStatus !== latestReqStatus)) {
       this.setState({
-        reqStatus: nextProps.reqStatus,
-        reqErrorMsg: nextProps.reqErrorMsg
+        reqStatus: latestReqStatus,
+        reqErrorMsg: latestReqErrorMsg
       })
     }
-    if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.DONE) {
+    if (latestReqStatus && latestReqStatus === REQUEST_STATUS.DONE) {
       this.setState({
         readOnly: true,
         updated: true

@@ -49,7 +49,7 @@ class PolicyDetail extends React.Component {
     this.firstLoad = true
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const {
       updateSecondaryHeader:localUpdateSecondaryHeader,
       tabs,

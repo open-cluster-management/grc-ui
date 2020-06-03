@@ -58,7 +58,7 @@ const withResource = (Component) => {
       }
     }
 
-    componentWillMount() {
+    componentDidMount() {
       const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
       if (pollInterval) {
         const intervalId = setInterval(this.reload.bind(this), pollInterval)
@@ -119,7 +119,7 @@ class ResourceDetails extends React.Component {
     })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const {
             updateSecondaryHeader:localUpdateSecondaryHeader,
             tabs,

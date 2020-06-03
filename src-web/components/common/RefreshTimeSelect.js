@@ -30,18 +30,16 @@ export default class RefreshTimeSelect extends React.Component {
     refreshValues: PropTypes.array,
   }
 
-  constructor (props) {
-    super(props)
+  constructor (props, context) {
+    super(props, context)
     const { refreshControl: {refreshCookie} } = props
     this.state = {
       pollInterval: getPollInterval(refreshCookie),
     }
     this.setRefresh = this.setRefresh.bind(this)
     this.handleChange = this.handleChange.bind(this)
-  }
 
-  componentWillMount() {
-    const { locale } = this.context
+    const { locale } = context
     const { refreshValues=[] } = this.props
     this.autoRefreshChoices = refreshValues.map(pollInterval=>{
       let label

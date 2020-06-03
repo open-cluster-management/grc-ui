@@ -35,7 +35,7 @@ export class CreationTab extends React.Component {
     updateSecondaryHeader: PropTypes.func,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, breadcrumbItems, information } = secondaryHeaderProps
     const portals = [

@@ -38,7 +38,7 @@ class ResourceList extends React.Component {
     this.state = {}
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const {
       updateSecondaryHeader:localUpdateSecondaryHeader,
       tabs,
