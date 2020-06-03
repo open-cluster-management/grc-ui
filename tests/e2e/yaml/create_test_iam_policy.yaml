@@ -1,12 +1,12 @@
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-iampolicy-[TIME]
   namespace: default
   annotations:
-    policies.open-cluster-management.io/standards: NIST-CSF
-    policies.open-cluster-management.io/categories: PR.AC Identity Management Authentication and Access Control
-    policies.open-cluster-management.io/controls: PR.AC-4 Access Control
+    policy.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: PR.AC Identity Management Authentication and Access Control
+    policy.open-cluster-management.io/controls: PR.AC-4 Access Control
 spec:
   complianceType: musthave
   remediationAction: inform
@@ -28,7 +28,7 @@ spec:
           remediationAction: inform
           maxClusterRoleBindingUsers: 4
 ---
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-iampolicy-[TIME]
@@ -40,7 +40,7 @@ placementRef:
 subjects:
 - name: policy-iampolicy-[TIME]
   kind: Policy
-  apiGroup: policies.open-cluster-management.io
+  apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule

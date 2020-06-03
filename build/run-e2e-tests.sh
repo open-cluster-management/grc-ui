@@ -12,9 +12,9 @@ echo "Login hub to clean up"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
-oc delete policy.policy.mcm.ibm.com -n default --all || true
+oc delete policies.policy.open-cluster-management.io -n default --all || true
 # placementbindings.mcm.ibm.com throws error when doesn't exist
-oc delete placementbindings.mcm.ibm.com  -n default --all || true
+oc delete placementbindings.policy.open-cluster-management.io  -n default --all || true
 oc delete placementrule  -n default --all || true
 
 echo "Logout"
@@ -26,7 +26,14 @@ export OC_CLUSTER_URL=$OC_MANAGED_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_MANAGED_CLUSTER_PASS
 make oc/login
 oc delete pod --all -n default || true
+# secrets=`oc get certificate -l e2e=true -o=jsonpath='{.items[*].spec.secretName}'`
+oc delete issuer -l e2e=true -n default
+oc delete certificate -l e2e=true -n default
+oc delete secret -n default rsa-ca-sample-secret || true # in case secrets are empty
 oc delete clusterrolebinding -l e2e=true
+
+echo "Install cert manager on managed"
+oc apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.15.1/cert-manager.yaml
 
 echo "Logout"
 export OC_COMMAND=logout

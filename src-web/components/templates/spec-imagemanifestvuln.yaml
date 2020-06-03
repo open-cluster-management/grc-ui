@@ -18,7 +18,7 @@ replacements: # if user select this choice, the template variable names and valu
       include: ["*"]
   policyTemplates: |
     - objectDefinition:
-        apiVersion: policies.open-cluster-management.io/v1
+        apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
           name: {{name}}-example-csv
@@ -160,7 +160,7 @@ replacements: # if user select this choice, the template variable names and valu
                   version: 1.0.1
                   replaces: container-security-operator.v1.0.0
     - objectDefinition:
-        apiVersion: policies.open-cluster-management.io/v1
+        apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
           name: {{name}}-example-sub
@@ -186,7 +186,7 @@ replacements: # if user select this choice, the template variable names and valu
                   sourceNamespace: openshift-marketplace
                   startingCSV: container-security-operator.v1.0.1
     - objectDefinition:
-        apiVersion: policies.open-cluster-management.io/v1
+        apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
           name: {{name}}-example-imv
