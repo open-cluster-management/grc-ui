@@ -15,7 +15,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateResourceToolbar, updateActiveFilters } from '../actions/common'
 import { Loading, Notification } from 'carbon-components-react'
-import { filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState, combineResourceFilters,replaceGrcState } from '../../lib/client/filter-helper'
+import {
+  filterPolicies, filterFindings, getSavedGrcState, saveGrcState,
+  saveGrcStatePair, updateWholeFilters, getAvailableGrcFilters
+} from '../../lib/client/filter-helper'
 import { showResourceToolbar, hideResourceToolbar } from '../../lib/client/resource-helper'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
 import RecentActivityModule from './modules/RecentActivityModule'
@@ -29,6 +32,7 @@ import NoResource from '../components/common/NoResource'
 import ResourceFilterBar from '../components/common/ResourceFilterBar'
 import createDocLink from '../components/common/CreateDocLink'
 import queryString from 'query-string'
+import memoizeOne from 'memoize-one'
 
 const toggleTabStr = 'module-toggle-tab'
 
@@ -49,50 +53,61 @@ export class OverviewView extends React.Component {
     this.handleDrillDownClickOverview = this.handleDrillDownClickOverview.bind(this)
   }
 
-  componentWillMount() {
-    const { activeFilters={} } = this.props
-    //get (activeFilters ∪ storedFilters) only since availableGrcFilters is uninitialized at this stage
-    //later when availableGrcFilters initialized, will do further filtering in componentWillReceiveProps
-    const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
-    delete combinedFilters.severity//remove severity filter set during first time render
-    //update sessionStorage
-    replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
-    //update active filters
-    updateActiveFilters(combinedFilters)
-  }
-
   componentDidMount() {
+    const {
+      activeFilters={},
+      grcItems,
+      refreshControl,
+      updateActiveFilters:localUpdateActiveFilters,
+      updateResourceToolbar:localUpdateResourceToolbar
+    } = this.props
+    const { locale } = this.context
+    const displayType = location.pathname.split('/').pop()
+    const memoizedUpdateWholeFilters = memoizeOne(updateWholeFilters)
+    memoizedUpdateWholeFilters(activeFilters, grcItems, displayType, locale,
+      localUpdateResourceToolbar, localUpdateActiveFilters, refreshControl)
     window.addEventListener('scroll', this.scroll)
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('beforeunload', this.onUnload)
-    window.removeEventListener('scroll', this.scroll)
-    this.onUnload()
+  searchFocus = (locationSearch) => {
+    const urlParams = queryString.parse(locationSearch)
+    if (urlParams.autoFocus && document.getElementsByClassName(urlParams.autoFocus)[0]) {
+      const ref = document.getElementsByClassName(urlParams.autoFocus)[0].offsetTop
+      window.scrollTo({
+        top: ref,
+      })
+    }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const {
+      activeFilters,
       refreshControl,
-      policies,
-      findings,
+      grcItems,
       updateActiveFilters:localUpdateActiveFilters,
       updateResourceToolbar:localUpdateResourceToolbar
-    } = nextProps
-
-    if (!_.isEqual(refreshControl, this.props.refreshControl) ||
-        !_.isEqual(policies, this.props.policies)) {
+    } = this.props
+    if (!_.isEqual(refreshControl, prevProps.refreshControl) ||
+        !_.isEqual(grcItems, prevProps.grcItems)) {
       const { locale } = this.context
-      const availableGrcFilters = getAvailableGrcFilters(policies, findings, locale)
-      localUpdateResourceToolbar(refreshControl, availableGrcFilters)
-      const activeFilters = _.cloneDeep(nextProps.activeFilters||{})
-      //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
-      const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
-      //update sessionStorage
-      replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
-      //update active filters
-      localUpdateActiveFilters(combinedFilters)
+      const displayType = location.pathname.split('/').pop()
+      //if url has severity special para, store it into sessionStorage before updating active filters
+      const urlParams = queryString.parse(location.search)
+      if (urlParams.severity) {
+        saveGrcStatePair(GRC_FILTER_STATE_COOKIE, 'severity', urlParams.severity)
+      }
+      const memoizedUpdateWholeFilters = memoizeOne(updateWholeFilters)
+      memoizedUpdateWholeFilters(activeFilters, grcItems, displayType, locale,
+        localUpdateResourceToolbar, localUpdateActiveFilters, refreshControl)
     }
+    const memoizedSearchFocus = memoizeOne(this.searchFocus)
+    memoizedSearchFocus(location.search)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.scroll)
+    window.removeEventListener('beforeunload', this.onUnload)
+    this.onUnload()
   }
 
   render() {
@@ -273,6 +288,7 @@ OverviewView.propTypes = {
   applications: PropTypes.array,
   error: PropTypes.object,
   findings: PropTypes.array,
+  grcItems: PropTypes.array,
   history: PropTypes.object.isRequired,
   loading: PropTypes.bool,
   location: PropTypes.object,
