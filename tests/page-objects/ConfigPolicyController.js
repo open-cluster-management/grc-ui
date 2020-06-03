@@ -87,6 +87,7 @@ function createPolicy(browser, name, yaml, time) {
 
 function checkViolations(name, violationExpected, violationText) {
   this.waitForElementVisible('@searchInput')
+  this.pause(1000)
   this.click('@searchInput').clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
