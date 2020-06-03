@@ -35,15 +35,12 @@ class PolicyTemplates extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { resourceData } = this.props
     const { yaml } = dumpAndParse(resourceData)
     if (yaml && !this.state.yaml) {
       this.setState({ yaml })
     }
-  }
-
-  componentDidMount() {
     window.addEventListener('resize',  this.layoutEditors.bind(this))
   }
 
