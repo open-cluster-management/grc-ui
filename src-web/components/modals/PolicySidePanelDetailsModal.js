@@ -35,7 +35,7 @@ resources(() => {
 const obNameStr = 'objectDefinition.metadata.name'
 const sCompliantStr = 'status.Compliant'
 const metaNameStr = 'metadata.name'
-const sMessageStr = 'status.conditions[0].message'
+const sMessageStr = 'status.history[0].message'
 const sReasonStr = 'status.conditions[0].reason'
 
 function getHeader(data, locale) {
@@ -222,57 +222,25 @@ const getFirstMatch = (item, targetList) => {
 export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplicable}) => {
   items = items.map((policy, index) => {
     let violatedNum = 0
-    const spec = _.get(policy, 'raw.spec', '')
-    const objectTemplates = _.get(spec, 'object-templates', [])
-    const roleTemplates = _.get(spec, 'role-templates', [])
-    const policyTemplates = _.get(spec, 'policy-templates', [])
     const id = _.get(policy, metaNameStr, `policy${index}`)
-    for (const template of objectTemplates) {
-      if (_.get(template, sCompliantStr,'').toLowerCase() !== 'compliant') {
-        violatedNum += 1
-      }
-    }
-    for (const template of roleTemplates) {
-      if (_.get(template, sCompliantStr,'').toLowerCase() !== 'compliant') {
-        violatedNum += 1
-      }
-    }
-    for (const template of policyTemplates) {
-      if (_.get(template, sCompliantStr,'').toLowerCase() !== 'compliant') {
-        violatedNum += 1
-      }
+    const details = _.get(policy, 'raw.status.details', '')
+    if (Array.isArray(details) && details.length > 0) {
+      details.forEach((detail) => {
+        if (_.get(detail, 'compliant','').toLowerCase() !== 'compliant') {
+          violatedNum += 1
+        }
+      })
     }
 
     if(violatedNum > 0) {
-      const objectStatus = objectTemplates.map(item => {
-        if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-          return {
-            id: _.get(item, obNameStr),
-            cells: [_.get(item, obNameStr), _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-          }}
-        return undefined
-      }
-      )
-      const roleStatus = roleTemplates.map(item => {
-        if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-          return {
-            id: _.get(item, metaNameStr),
-            cells: [_.get(item, metaNameStr), _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-          }}
-        return undefined
-      }
-      )
-      const policyStatus = policyTemplates.map(item => {
-        if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-          return {
-            id: _.get(item, obNameStr),
-            cells: [_.get(item, obNameStr), _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-          }}
-        return undefined
-      }
-      )
+      const templateStatus = details.map(detail => {
+        return {
+          id: _.get(detail, 'templateMeta.name', '-'),
+          cells: [_.get(detail, 'templateMeta.name', '-'), _.get(detail, 'history[0].message', '-'), _.get(detail, 'history[0].lastTimestamp', '-'),]
+        }
+      })
       //add id and remove null/undefined
-      const subItems = _.without([id, ...objectStatus, ...roleStatus, ...policyStatus], undefined, null)
+      const subItems = _.without([id, ...templateStatus], undefined, null)
       return {...policy, id, violatedNum, subItems}
     }
     else {
