@@ -63,7 +63,7 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementPresent('@yamlMonacoEditor')
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
-  // this.clearValue('@policyNameInput')
+  // this.click('@policyNameInput').clearValue('@policyNameInput')
   // this.setValue('@policyNameInput',`${time}-policy-test`)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
@@ -87,7 +87,7 @@ function createPolicy(browser, name, yaml, time) {
 
 function checkViolations(name, violationExpected, violationText) {
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
+  this.click('@searchInput').clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
   this.click('tbody>tr>td>a')
@@ -106,23 +106,35 @@ function checkViolations(name, violationExpected, violationText) {
 
 function searchPolicy(name, expectToDisplay) {
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
+  this.click('@searchInput').clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.waitForElementVisible('@searchInput')
   if(expectToDisplay){
     this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(name)
-    this.clearValue('@searchInput')
+    this.click('@searchInput').clearValue('@searchInput')
   } else{
     this.waitForElementNotPresent('tbody>tr')
-    this.clearValue('@searchInput')
+    this.click('@searchInput').clearValue('@searchInput')
   }
 }
 
 function deletePolicy(name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
-  this.setValue('@searchInput', name)
+  const searchClose = '.bx--search-close.bx--search-close--hidden'
+  this.api.elements('css selector', searchClose, res => {
+    if (res.status < 0 || res.value.length < 1) {
+      // clear first
+      this.click('button.bx--search-close')
+      this.setValue('@searchInput', name)
+    }
+    else {
+      // do nothing already cleared
+      this.setValue('@searchInput', name)
+    }
+  })
+  // this.click('@searchInput').clearValue('@searchInput')
+  // this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
   this.waitForElementNotPresent('bx--overflow-menu-options__option.bx--overflow-menu-options__option--danger')

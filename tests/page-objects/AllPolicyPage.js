@@ -147,7 +147,7 @@ function createTestPolicy(browser, time) {
   // browser.pause(100000)
   this.expect.element('@yamlMonacoEditor').to.be.present
   this.click('@yamlMonacoEditor')
-  this.clearValue('@policyNameInput')
+  this.click('@policyNameInput').clearValue('@policyNameInput')
   this.setValue('@policyNameInput',`${time}-policy-test`)
   this.click('@namespaceDropdown')
   this.waitForElementVisible('@namespaceDropdownBox')
@@ -190,7 +190,7 @@ function searchPolicy(expectToDisplay, time) {
     this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(`${time}-policy-test`)
   } else{
     this.waitForElementNotPresent('tbody>tr')
-    this.clearValue('@searchInput')
+    this.click('@searchInput').clearValue('@searchInput')
   }
 }
 function testDetailsPage(browser, name) {
@@ -250,7 +250,7 @@ function verifyDisableEnable(name){
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.clearValue('@searchInput')
+  this.click('@searchInput').clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)

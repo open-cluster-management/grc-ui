@@ -1,12 +1,12 @@
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-clusterrolebinding-test-[TIME]
   namespace: default
   annotations:
-    policies.open-cluster-management.io/standards: NIST-CSF
-    policies.open-cluster-management.io/categories: PR.AC Identity Management Authentication and Access Control
-    policies.open-cluster-management.io/controls: PR.AC-4 Access Control
+    policy.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: PR.AC Identity Management Authentication and Access Control
+    policy.open-cluster-management.io/controls: PR.AC-4 Access Control
 spec:
   complianceType: musthave
   remediationAction: enforce
@@ -32,7 +32,7 @@ spec:
             apiGroup: rbac.authorization.k8s.io
             kind: User
 ---
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-clusterrolebinding-test-[TIME]
@@ -44,7 +44,7 @@ placementRef:
 subjects:
 - name: policy-clusterrolebinding-test-[TIME]
   kind: Policy
-  apiGroup: policies.open-cluster-management.io
+  apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule

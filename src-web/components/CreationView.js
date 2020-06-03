@@ -83,7 +83,7 @@ const controlData = [
     id: 'standards',
     type: 'multiselect',
     available: ['NIST', 'PCI', 'FISMA', 'HIPAA'],
-    reverse: 'Policy[0].metadata.annotations["policies.open-cluster-management.io/standards"]',
+    reverse: 'Policy[0].metadata.annotations["policy.open-cluster-management.io/standards"]',
     cacheUserValueKey: 'create.policy.standards',
   },
   {
@@ -93,7 +93,7 @@ const controlData = [
     id: 'categories',
     type: 'multiselect',
     available: ['PR.PT Protective Technology','PR.DS DataSecurity', 'PR.AC Identity Management Authentication and Access Control', 'PR.IP Information Protection Processes and Procedures', 'DE.CM Security Continuous Monitoring'],
-    reverse: 'Policy[0].metadata.annotations["policies.open-cluster-management.io/categories"]',
+    reverse: 'Policy[0].metadata.annotations["policy.open-cluster-management.io/categories"]',
     cacheUserValueKey: 'create.policy.categories',
   },
   {
@@ -103,7 +103,7 @@ const controlData = [
     id: 'controls',
     type: 'multiselect',
     available: ['PR.PT-1 Audit Logging','PR.PT-3 Least Functionality','PR.DS-2 Data-in-transit','PR.DS-2 Data-at-rest','PR.AC-4 Access Control', 'PR.AC-5 Network Integrity', 'PR.IP-1 Baseline configuration', 'DE.CM-7 Monitoring for unauthorized activity','DE.CM-8 Vulnerability scans'],
-    reverse: 'Policy[0].metadata.annotations["policies.open-cluster-management.io/controls"]',
+    reverse: 'Policy[0].metadata.annotations["policy.open-cluster-management.io/controls"]',
     cacheUserValueKey: 'create.policy.controls',
   },
   {

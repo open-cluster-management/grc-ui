@@ -511,7 +511,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 <button
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
-                  data-key="metadata.annotations[\\"policies.open-cluster-management.io/standards\\"]"
+                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
                   onClick={[Function]}
                   title="Sort rows by this header in ascending order."
                 >
@@ -549,7 +549,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 <button
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
-                  data-key="metadata.annotations[\\"policies.open-cluster-management.io/controls\\"]"
+                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
                   onClick={[Function]}
                   title="Sort rows by this header in ascending order."
                 >
@@ -587,7 +587,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 <button
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
-                  data-key="metadata.annotations[\\"policies.open-cluster-management.io/categories\\"]"
+                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
                   onClick={[Function]}
                   title="Sort rows by this header in ascending order."
                 >

@@ -1,59 +1,67 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: policy-pod-single-mustnothave-inform-[TIME]
+  name: policy-delete-all-[TIME]
   namespace: default
   annotations:
-    policy.open-cluster-management.io/standards: NIST-CSF
     policy.open-cluster-management.io/categories: PR.PT Protective Technology
     policy.open-cluster-management.io/controls: PR.PT-3 Least Functionality
+    policy.open-cluster-management.io/standards: NIST-CSF
 spec:
-  remediationAction: inform
+  remediationAction: enforce
   disabled: false
   policy-templates:
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: policy-pod-single-mustnothave-inform-[TIME]
+          name: policy-delete-all-[TIME]
         spec:
-          remediationAction: inform
+          remediationAction: enforce
           severity: low
           namespaceSelector:
             exclude: ["kube-*"]
-            include: ["default"]
+            include: ["default"]  
           object-templates:
             - complianceType: mustnothave
               objectDefinition:
-                apiVersion: v1
-                kind: Pod # nginx pod must exist
+                kind: Secret
                 metadata:
-                  name: nginx-pod-[TIME]
-                spec:
-                  containers:
-                  - image: nginx:1.7.9
-                    name: nginx
-                    ports:
-                    - containerPort: 80
+                  name: rsa-ca-sample-secret
+                  namespace: default
+            - complianceType: mustnothave
+              objectDefinition:
+                apiVersion: cert-manager.io/v1alpha3
+                kind: Certificate
+                metadata:
+                  name: rsa-ca-sample-cert-[TIME]
+                  namespace: default
+            - complianceType: mustnothave
+              objectDefinition:
+                apiVersion: cert-manager.io/v1alpha3
+                kind: Issuer
+                metadata:
+                  name: ss-sample-issuer-[TIME]
+                  namespace: default
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-pod-single-mustnothave-inform-[TIME]
+  name: binding-policy-delete-all-[TIME]
   namespace: default
 placementRef:
-  name: placement-policy-pod-single-mustnothave-inform-[TIME]
+  name: placement-policy-delete-all-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-pod-single-mustnothave-inform-[TIME]
+- name: policy-delete-all-[TIME]
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-pod-single-mustnothave-inform-[TIME]
+  name: placement-policy-delete-all-[TIME]
   namespace: default
 spec:
   clusterConditions:

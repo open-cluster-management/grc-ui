@@ -1,22 +1,18 @@
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-certificatepolicy-[TIME]
   namespace: default
   annotations:
-    policies.open-cluster-management.io/standards: NIST-CSF
-    policies.open-cluster-management.io/categories: PR.DS DataSecurity
-    policies.open-cluster-management.io/controls: PR.DS-2 Data-in-transit
+    policy.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: PR.DS DataSecurity
+    policy.open-cluster-management.io/controls: PR.DS-2 Data-in-transit
 spec:
-  complianceType: musthave
   remediationAction: inform
   disabled: false
-  namespaces:
-    exclude: ["kube-*"]
-    include: ["default"]
   policy-templates:
     - objectDefinition:
-        apiVersion: policies.ibm.com/v1alpha1
+        apiVersion: policy.open-cluster-management.io/v1
         kind: CertificatePolicy # cert management expiration
         metadata:
           name: policy-certificatepolicy-[TIME]
@@ -26,9 +22,9 @@ spec:
             exclude: []
           remediationAction: inform
           severity: low
-          minimumDuration: 300h
+          minimumDuration: 30h
 ---
-apiVersion: policies.open-cluster-management.io/v1
+apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: binding-policy-certificatepolicy-[TIME]
@@ -40,7 +36,7 @@ placementRef:
 subjects:
 - name: policy-certificatepolicy-[TIME]
   kind: Policy
-  apiGroup: policies.open-cluster-management.io
+  apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
