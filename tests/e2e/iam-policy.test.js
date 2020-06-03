@@ -57,9 +57,9 @@ module.exports = {
     page.createPolicy(browser, 'policy-clusterrolebinding-delete-' + time, yaml, time)
     browser.pause(20000) // Wait for policy to delete clusterrolebinding 20s
     page.checkViolations('policy-clusterrolebinding-delete-' + time, false)
-    page.deletePolicy('policy-clusterrolebinding-delete-' + time)
     browser.pause(20000) // Wait for iam policy to detect change 120s
     page.checkViolations('policy-iampolicy-' + time, false)
+    page.deletePolicy('policy-clusterrolebinding-delete-' + time)
   },
 
   'IAM policy: clean up': (browser) => {
