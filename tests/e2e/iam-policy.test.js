@@ -17,7 +17,7 @@ const config = require('../../config')
 let page
 
 module.exports = {
-  '@disabled': true,
+  '@disabled': false,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
@@ -29,67 +29,41 @@ module.exports = {
     page.navigate(url)
   },
 
-  //   'IAM policy: create namespace ': (browser) => {
-  //     const time = browser.globals.time
-  //     const createNS = fs.readFileSync(path.join(__dirname, 'yaml/create_test_ns.yaml'))
-  //     var yaml = createNS.toString()
-  //     page.createPolicy(browser, 'policy-namespace-create-' + time, yaml, time)
-  //     browser.pause(20000) // Wait for policy to create namespace 20s
-  //     page.checkViolations('policy-namespace-create-' + time, false)
-  //     page.deletePolicy('policy-namespace-create-' + time)
-  //   },
-
-  'IAM policy: create iam-policy ': (browser) => {
+  'IAM policy: create iam-policy': (browser) => {
     const time = browser.globals.time
-    const createIamPolicy = fs.readFileSync(path.join(__dirname, 'yaml/create_test_iam_policy.yaml'))
+    const createIamPolicy = fs.readFileSync(path.join(__dirname, 'yaml/iam_policy/create_test_iam_policy.yaml'))
     var yaml = createIamPolicy.toString()
     page.createPolicy(browser, 'policy-iampolicy-' + time, yaml, time)
-    browser.pause(60000) // Wait for policy to create iam-policy 20s
+    browser.pause(30000) // Wait for policy to create iam-policy 20s
     page.checkViolations('policy-iampolicy-' + time, false)
   },
 
-  'IAM policy: create clusterrolebinding as should show violation ': (browser) => {
+  'IAM policy: create clusterrolebinding as should show violation': (browser) => {
     const time = browser.globals.time
-    const createCRB = fs.readFileSync(path.join(__dirname, 'yaml/create_test_clusterrolebinding.yaml'))
+    const createCRB = fs.readFileSync(path.join(__dirname, 'yaml/iam_policy/create_test_clusterrolebinding.yaml'))
     var yaml = createCRB.toString()
     page.createPolicy(browser, 'policy-clusterrolebinding-test-' + time, yaml, time)
     browser.pause(20000) // Wait for policy to create clusterrolebinding 20s
     page.checkViolations('policy-clusterrolebinding-test-' + time, false)
-    page.deletePolicy('policy-clusterrolebinding-test-' + time)
-
-    browser.pause(60000) // Wait for iam policy to detect change 60s
+    browser.pause(10000) // Wait for iam policy to detect change 60s
     page.checkViolations('policy-iampolicy-' + time, true)
+    page.deletePolicy('policy-clusterrolebinding-test-' + time)
   },
 
-  'IAM policy: delete clusterrolebinding as should show compliant ': (browser) => {
+  'IAM policy: delete clusterrolebinding as should show compliant': (browser) => {
     const time = browser.globals.time
-    const deleteCRB = fs.readFileSync(path.join(__dirname, 'yaml/delete_test_clusterrolebinding.yaml'))
+    const deleteCRB = fs.readFileSync(path.join(__dirname, 'yaml/iam_policy/delete_test_clusterrolebinding.yaml'))
     var yaml = deleteCRB.toString()
     page.createPolicy(browser, 'policy-clusterrolebinding-delete-' + time, yaml, time)
     browser.pause(20000) // Wait for policy to delete clusterrolebinding 20s
     page.checkViolations('policy-clusterrolebinding-delete-' + time, false)
-    page.deletePolicy('policy-clusterrolebinding-delete-' + time)
-
-    browser.pause(60000) // Wait for iam policy to detect change 120s
+    browser.pause(10000) // Wait for iam policy to detect change 120s
     page.checkViolations('policy-iampolicy-' + time, false)
+    page.deletePolicy('policy-clusterrolebinding-delete-' + time)
   },
 
-  'IAM policy: clean up ': (browser) => {
+  'IAM policy: clean up': (browser) => {
     const time = browser.globals.time
     page.deletePolicy('policy-iampolicy-' + time)
-
-    // const deleteNS = fs.readFileSync(path.join(__dirname, 'yaml/delete_test_ns.yaml'))
-    // var yaml = deleteNS.toString()
-    // page.createPolicy(browser, 'policy-namespace-delete-' + time, yaml, time)
-    // browser.pause(20000) // Wait for policy to delete namespace 20s
-    // page.checkViolations('policy-namespace-delete-' + time, false)
-    // page.deletePolicy('policy-namespace-delete-' + time)
-    // browser.pause(1000)
-
-    // page.searchPolicy('policy-namespace-create-' + time, false)
-    // page.searchPolicy('policy-iampolicy-' + time, false)
-    // page.searchPolicy('policy-clusterrolebinding-test-' + time, false)
-    // page.searchPolicy('policy-clusterrolebinding-delete-' + time, false)
-    // page.searchPolicy('policy-namespace-delete-' + time, false)
   },
 }
