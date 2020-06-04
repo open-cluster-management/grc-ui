@@ -27,16 +27,11 @@ import queryString from 'query-string'
 import {GRC_SIDE_PANEL_REFRESH_INTERVAL_COOKIE} from '../../../lib/shared/constants'
 import {getPollInterval} from '../../components/common/RefreshTimeSelect'
 import { filterPolicies } from '../../../lib/client/filter-helper'
+import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/side-panel-modal.scss')
 })
-
-const obNameStr = 'objectDefinition.metadata.name'
-const sCompliantStr = 'status.Compliant'
-const metaNameStr = 'metadata.name'
-const sMessageStr = 'status.history[0].message'
-const sReasonStr = 'status.conditions[0].reason'
 
 function getHeader(data, locale) {
   const kind = _.get(data, 'kind', '')
@@ -222,11 +217,11 @@ const getFirstMatch = (item, targetList) => {
 export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplicable}) => {
   items = items.map((policy, index) => {
     let violatedNum = 0
-    const id = _.get(policy, metaNameStr, `policy${index}`)
+    const id = _.get(policy, 'metadata.name', `policy${index}`)
     const details = _.get(policy, 'raw.status.details', '')
     if (Array.isArray(details) && details.length > 0) {
       details.forEach((detail) => {
-        if (_.get(detail, 'compliant','').toLowerCase() !== 'compliant') {
+        if (_.get(detail, 'compliant').trim().toLowerCase() !== 'compliant') {
           violatedNum += 1
         }
       })
@@ -261,49 +256,25 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
 }
 
 export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
+  // eslint-disable-next-line no-console
+  console.log(JSON.stringify(items))
   items = items.map((cluster, index) => {
-    const policy = _.get(cluster, 'policy', [])
     const violatedNum = _.get(cluster, 'violated', 0)
-    const id = _.get(cluster, metaNameStr, `cluster${index}`)
+    const id = _.get(cluster, 'metadata.name', `cluster${index}`)
 
     if(violatedNum > 0) {
-      const spec = _.get(policy, 'spec', '')
-      const objectTemplates = _.get(spec, 'object-templates', [])
-      const roleTemplates = _.get(spec, 'role-templates', [])
-      const policyTemplates = _.get(spec, 'policy-templates', [])
-      const targetList = [obNameStr, 'objectDefinition.kind', metaNameStr]
+      const policyListStatuses = _.get(cluster, 'policyListStatuses', [])
       const subItems = _.without([
         id,
-        ...objectTemplates.map(item => {
-          if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-            const name = getFirstMatch(item, targetList)
+        ...policyListStatuses.map(status => {
+          if (_.get(status, 'compliant','').trim().toLowerCase() !== 'compliant') {
+            const name = _.get(status, 'name', '-')
             return {
-              id: _.get(item, obNameStr),
-              cells: [name, _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
+              id: _uniqueId(name),
+              cells: [name, _.get(status, 'message', '-'), _.get(status, 'timestamp', '-')]
             }}
           return undefined
-        }
-        ),
-        ...roleTemplates.map(item => {
-          if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-            const name = getFirstMatch(item, targetList)
-            return {
-              id: _.get(item, obNameStr),
-              cells: [name, _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-            }}
-          return undefined
-        }
-        ),
-        ...policyTemplates.map(item => {
-          if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-            const name = getFirstMatch(item, targetList)
-            return {
-              id: _.get(item, obNameStr),
-              cells: [name, _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-            }}
-          return undefined
-        }
-        )
+        })
       ], undefined, null)
 
       return {...cluster, id, subItems}
