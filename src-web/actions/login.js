@@ -7,7 +7,6 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
-import loginClient from '../../lib/client/login-client'
 import {
   REQUEST_STATUS, USER_LOGIN_RECEIVE_SUCCESS, USER_LOGIN_STATUS,
   USER_LOGOUT_REQUEST, USER_LOGOUT_RECEIVE_SUCCESS, USER_LOGOUT_RECEIVE_FAILURE,
@@ -33,17 +32,3 @@ export const receiveLogoutError = () => ({
   type: USER_LOGOUT_RECEIVE_FAILURE,
   loggedIn: USER_LOGIN_STATUS.LOGGED_IN
 })
-
-export const requestLogout = () => {
-  return function (dispatch) {
-    dispatch(logoutStart())
-
-    loginClient.logout(
-      (res) => {
-        dispatch(receiveLogoutSuccess())
-        window.location.replace(res.redirectUrl)
-      },
-      () => dispatch(receiveLogoutError())
-    )
-  }
-}
