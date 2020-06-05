@@ -40,7 +40,7 @@ exports[`ClusterSubResourceList view renders as expected 1`] = `
               <span
                 className="bx--table-header-label"
               >
-                Rule violations
+                Violations
               </span>
             </th>
             <th
@@ -264,7 +264,7 @@ exports[`PolicieSubResourceList view renders as expected 1`] = `
               <span
                 className="bx--table-header-label"
               >
-                Rule violations
+                Violations
               </span>
             </th>
             <th

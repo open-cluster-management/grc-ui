@@ -397,7 +397,7 @@
   "table.header.timestamp": "Last Report",
   "table.header.violation": "Violations",
   "table.header.violation.detail": "Details",
-  "table.header.rule.violation": "Rule violations",
+  "table.header.rule.violation": "Violations",
   "table.header.violated": "Policy violations",
   "table.header.role.template": "Role templates",
   "table.header.object.template": "Object Templates",
