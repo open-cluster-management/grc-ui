@@ -28,6 +28,7 @@ import {GRC_SIDE_PANEL_REFRESH_INTERVAL_COOKIE} from '../../../lib/shared/consta
 import {getPollInterval} from '../../components/common/RefreshTimeSelect'
 import { filterPolicies } from '../../../lib/client/filter-helper'
 import _uniqueId from 'lodash/uniqueId'
+import { getAge } from '../../../lib/client/resource-helper'
 
 resources(() => {
   require('../../../scss/side-panel-modal.scss')
@@ -211,9 +212,9 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
   items = items.map((item) => {
     let violatedNum = 0
     const id = _.get(items, 'metadata.name', _uniqueId('items'))
-    const details = _.get(item, 'policiesStatusDetails')
-    if (Array.isArray(details) && details.length > 0) {
-      details.forEach((detail) => {
+    const policiesStatusDetails = _.get(item, 'policiesStatusDetails')
+    if (Array.isArray(policiesStatusDetails) && policiesStatusDetails.length > 0) {
+      policiesStatusDetails.forEach((detail) => {
         if (_.get(detail, 'compliant').trim().toLowerCase() !== 'compliant') {
           violatedNum += 1
         }
@@ -221,10 +222,10 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
     }
 
     if(violatedNum > 0) {
-      const templateStatus = details.map(detail => {
+      const templateStatus = policiesStatusDetails.map(detail => {
         return {
           id: _.get(detail, 'name', '-'),
-          cells: [_.get(detail, 'name', '-'), _.get(detail, 'message', '-'), _.get(detail, 'lastTimestamp', '-'),]
+          cells: [_.get(detail, 'name', '-'), _.get(detail, 'message', '-'), getAge(detail, 'lastTimestamp')]
         }
       })
       const subItems = [id, ...templateStatus]
@@ -261,7 +262,7 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
             const name = _.get(status, 'name', _uniqueId('name'))
             return {
               id: name,
-              cells: [name, _.get(status, 'message', '-'), _.get(status, 'lastTimestamp', '-')]
+              cells: [name, _.get(status, 'message', '-'), getAge(status, 'lastTimestamp')]
             }}
           return undefined
         })

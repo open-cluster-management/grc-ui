@@ -225,7 +225,7 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 5`] 
             aria-expanded={false}
             aria-haspopup="true"
             className="bx--tooltip__label textWithTruncation"
-            id="mockLodashID-12"
+            id="mockLodashID-14"
             onBlur={[Function]}
             onClick={[Function]}
             onFocus={[Function]}
@@ -322,7 +322,7 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 6`] 
             aria-expanded={false}
             aria-haspopup="true"
             className="bx--tooltip__label textWithTruncation"
-            id="mockLodashID-14"
+            id="mockLodashID-19"
             onBlur={[Function]}
             onClick={[Function]}
             onFocus={[Function]}
@@ -477,7 +477,7 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 8`] 
             aria-expanded={false}
             aria-haspopup="true"
             className="bx--tooltip__label textWithTruncation"
-            id="mockLodashID-16"
+            id="mockLodashID-24"
             onBlur={[Function]}
             onClick={[Function]}
             onFocus={[Function]}
