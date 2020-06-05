@@ -77,7 +77,6 @@ function getHeader(data, locale) {
   }}
   return {header, kind, descr, percent, violation, query, queryPara}
 }
-
 class PolicySidePanelDetailsModal extends React.PureComponent {
 
   constructor (props) {
@@ -206,12 +205,6 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
       hideCloseButton={true}
     />
   }
-}
-
-const getFirstMatch = (item, targetList) => {
-  //find first not null item in target list and return
-  const target = targetList.find(eachTarget => _.get(item, eachTarget))
-  return target ? _.get(item, target) : '-'
 }
 
 export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplicable}) => {
