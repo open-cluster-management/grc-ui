@@ -225,7 +225,7 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
       const templateStatus = policiesStatusDetails.map(detail => {
         return {
           id: _.get(detail, 'name', '-'),
-          cells: [_.get(detail, 'name', '-'), _.get(detail, 'message', '-'), getAge(detail, 'lastTimestamp')]
+          cells: [_.get(detail, 'name', '-'), _.get(detail, 'message', '-'), getAge(detail, '', 'lastTimestamp')]
         }
       })
       const subItems = [id, ...templateStatus]
@@ -262,7 +262,7 @@ export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
             const name = _.get(status, 'name', _uniqueId('name'))
             return {
               id: name,
-              cells: [name, _.get(status, 'message', '-'), getAge(status, 'lastTimestamp')]
+              cells: [name, _.get(status, 'message', '-'), getAge(status, '', 'lastTimestamp')]
             }}
           return undefined
         })
