@@ -158,7 +158,7 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
                   case 'HCMPolicyPolicy':
                   default: {
                     if (showFilterInfo) {
-                      filterSidePanelItems = filterPolicies(items, activeFilters, locale, 'policy.metadata.annotations')}
+                      filterSidePanelItems = filterPolicies(items, activeFilters, locale, 'metadata.annotation')}
                     else { filterSidePanelItems = items }
                     return (
                       <PoliciesTable items={filterSidePanelItems} staticResourceData={staticResourceData.policyViolatedSidePanel} inapplicable={inapplicable} />
@@ -208,10 +208,10 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
 }
 
 export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplicable}) => {
-  items = items.map((policy, index) => {
+  items = items.map((item) => {
     let violatedNum = 0
-    const id = _.get(policy, 'metadata.name', `policy${index}`)
-    const details = _.get(policy, 'raw.status.details', '')
+    const id = _.get(items, 'metadata.name', _uniqueId('items'))
+    const details = _.get(item, 'policiesStatusDetails')
     if (Array.isArray(details) && details.length > 0) {
       details.forEach((detail) => {
         if (_.get(detail, 'compliant').trim().toLowerCase() !== 'compliant') {
@@ -223,17 +223,16 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
     if(violatedNum > 0) {
       const templateStatus = details.map(detail => {
         return {
-          id: _.get(detail, 'templateMeta.name', '-'),
-          cells: [_.get(detail, 'templateMeta.name', '-'), _.get(detail, 'history[0].message', '-'), _.get(detail, 'history[0].lastTimestamp', '-'),]
+          id: _.get(detail, 'name', '-'),
+          cells: [_.get(detail, 'name', '-'), _.get(detail, 'message', '-'), _.get(detail, 'lastTimestamp', '-'),]
         }
       })
-      //add id and remove null/undefined
-      const subItems = _.without([id, ...templateStatus], undefined, null)
-      return {...policy, id, violatedNum, subItems}
+      const subItems = [id, ...templateStatus]
+      return {...item, id, violatedNum, subItems}
     }
     else {
-      const subItems = [{ id: `inapplicable${index}`, cells: [inapplicable, `${inapplicable} `, `${inapplicable} `] }]
-      return {...policy, id, violatedNum, subItems}
+      const subItems = [{ id: _uniqueId('inapplicable'), cells: [inapplicable, `${inapplicable} `, `${inapplicable} `] }]
+      return {...item, id, violatedNum, subItems}
     }
   })
 
@@ -249,32 +248,30 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
 }
 
 export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
-  // eslint-disable-next-line no-console
-  console.log(JSON.stringify(items))
-  items = items.map((cluster, index) => {
-    const violatedNum = _.get(cluster, 'violated', 0)
-    const id = _.get(cluster, 'metadata.name', `cluster${index}`)
+  items = items.map((item) => {
+    const violatedNum = _.get(item, 'violated', 0)
+    const id = _.get(item, 'metadata.name', _uniqueId('item'))
 
     if(violatedNum > 0) {
-      const policyListStatuses = _.get(cluster, 'policyListStatuses', [])
+      const policyListStatuses = _.get(item, 'policyListStatuses', [])
       const subItems = _.without([
         id,
         ...policyListStatuses.map(status => {
           if (_.get(status, 'compliant','').trim().toLowerCase() !== 'compliant') {
-            const name = _.get(status, 'name', '-')
+            const name = _.get(status, 'name', _uniqueId('name'))
             return {
-              id: _uniqueId(name),
-              cells: [name, _.get(status, 'message', '-'), _.get(status, 'timestamp', '-')]
+              id: name,
+              cells: [name, _.get(status, 'message', '-'), _.get(status, 'lastTimestamp', '-')]
             }}
           return undefined
         })
       ], undefined, null)
 
-      return {...cluster, id, subItems}
+      return {...item, id, subItems}
     }
     else {
-      const subItems = [{ id: `inapplicable${index}`, cells: [inapplicable, inapplicable+' ', inapplicable+'  '] }]
-      return {...cluster, id, subItems}
+      const subItems = [{ id: _uniqueId('inapplicable'), cells: [inapplicable, inapplicable+' ', inapplicable+'  '] }]
+      return {...item, id, subItems}
     }
   })
 
