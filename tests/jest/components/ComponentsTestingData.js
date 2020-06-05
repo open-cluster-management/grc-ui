@@ -10,7 +10,7 @@
 
 import moment from 'moment'
 
-const currentTime = moment().format('YYYY-MM-DDTHH:mm:ssZ').toString()
+const currentTime = moment().add(1, 'hours').format('YYYY-MM-DDTHH:mm:ssZ').toString()
 // eslint-disable-next-line no-console
 console.log('Current time used to unit test GrcView ; ' + JSON.stringify(currentTime))
 
