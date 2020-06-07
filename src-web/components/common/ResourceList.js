@@ -22,8 +22,6 @@ import TableHelper from '../../util/table-helper'
 import { Loading, Notification } from 'carbon-components-react'
 import { withRouter } from 'react-router-dom'
 import msgs from '../../../nls/platform.properties'
-import config from '../../../lib/shared/config'
-import TagInput from './TagInput'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 import createDocLink from '../../components/common/CreateDocLink'
 import PropTypes from 'prop-types'
@@ -84,10 +82,6 @@ class ResourceList extends React.Component {
       resourceType,
       err,
       children,
-      resourceFilters,
-      onSelectedFilterChange,
-      selectedFilters,
-      updateBrowserURL,
       clientSideFilters,
       placeHolderText,
       autoAction,
@@ -135,16 +129,6 @@ class ResourceList extends React.Component {
             title=''
             subtitle={mutateErrorMsg || msgs.get('error.default.description', locale)}
             kind='error' />
-        }
-        { (config['featureFlags:filters']) && resourceType.filter &&
-          <div className='resource-list-filter'>
-            <TagInput
-              tags={selectedFilters}
-              availableFilters={resourceFilters}
-              onSelectedFilterChange={onSelectedFilterChange}
-              updateBrowserURL={updateBrowserURL}
-            />
-          </div>
         }
         <ResourceTable
           actions={actions}
@@ -286,15 +270,12 @@ ResourceList.propTypes = {
   modifyResource: PropTypes.func,
   mutateErrorMsg: PropTypes.string,
   mutateStatus: PropTypes.string,
-  onSelectedFilterChange: PropTypes.func,
   page: PropTypes.number,
   pageSize: PropTypes.number,
   placeHolderText: PropTypes.string,
-  resourceFilters: PropTypes.object,
   resourceType: PropTypes.object,
   searchTable: PropTypes.func,
   searchValue: PropTypes.string,
-  selectedFilters: PropTypes.object,
   showSidePanel: PropTypes.bool,
   sortColumn: PropTypes.string,
   sortDirection: PropTypes.string,
@@ -305,7 +286,6 @@ ResourceList.propTypes = {
   title: PropTypes.string,
   topButton: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   totalFilteredItems: PropTypes.number,
-  updateBrowserURL: PropTypes.func,
   updateSecondaryHeader: PropTypes.func,
 }
 

@@ -27,16 +27,12 @@ import queryString from 'query-string'
 import {GRC_SIDE_PANEL_REFRESH_INTERVAL_COOKIE} from '../../../lib/shared/constants'
 import {getPollInterval} from '../../components/common/RefreshTimeSelect'
 import { filterPolicies } from '../../../lib/client/filter-helper'
+import _uniqueId from 'lodash/uniqueId'
+import { getAge } from '../../../lib/client/resource-helper'
 
 resources(() => {
   require('../../../scss/side-panel-modal.scss')
 })
-
-const obNameStr = 'objectDefinition.metadata.name'
-const sCompliantStr = 'status.Compliant'
-const metaNameStr = 'metadata.name'
-const sMessageStr = 'status.conditions[0].message'
-const sReasonStr = 'status.conditions[0].reason'
 
 function getHeader(data, locale) {
   const kind = _.get(data, 'kind', '')
@@ -82,7 +78,6 @@ function getHeader(data, locale) {
   }}
   return {header, kind, descr, percent, violation, query, queryPara}
 }
-
 class PolicySidePanelDetailsModal extends React.PureComponent {
 
   constructor (props) {
@@ -164,7 +159,7 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
                   case 'HCMPolicyPolicy':
                   default: {
                     if (showFilterInfo) {
-                      filterSidePanelItems = filterPolicies(items, activeFilters, locale, 'policy.metadata.annotations')}
+                      filterSidePanelItems = filterPolicies(items, activeFilters, locale, 'metadata.annotation')}
                     else { filterSidePanelItems = items }
                     return (
                       <PoliciesTable items={filterSidePanelItems} staticResourceData={staticResourceData.policyViolatedSidePanel} inapplicable={inapplicable} />
@@ -213,71 +208,32 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
   }
 }
 
-const getFirstMatch = (item, targetList) => {
-  //find first not null item in target list and return
-  const target = targetList.find(eachTarget => _.get(item, eachTarget))
-  return target ? _.get(item, target) : '-'
-}
-
 export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplicable}) => {
-  items = items.map((policy, index) => {
+  items = items.map((item) => {
     let violatedNum = 0
-    const spec = _.get(policy, 'raw.spec', '')
-    const objectTemplates = _.get(spec, 'object-templates', [])
-    const roleTemplates = _.get(spec, 'role-templates', [])
-    const policyTemplates = _.get(spec, 'policy-templates', [])
-    const id = _.get(policy, metaNameStr, `policy${index}`)
-    for (const template of objectTemplates) {
-      if (_.get(template, sCompliantStr,'').toLowerCase() !== 'compliant') {
-        violatedNum += 1
-      }
-    }
-    for (const template of roleTemplates) {
-      if (_.get(template, sCompliantStr,'').toLowerCase() !== 'compliant') {
-        violatedNum += 1
-      }
-    }
-    for (const template of policyTemplates) {
-      if (_.get(template, sCompliantStr,'').toLowerCase() !== 'compliant') {
-        violatedNum += 1
-      }
+    const id = _.get(items, 'metadata.name', _uniqueId('items'))
+    const policiesStatusDetails = _.get(item, 'policiesStatusDetails')
+    if (Array.isArray(policiesStatusDetails) && policiesStatusDetails.length > 0) {
+      policiesStatusDetails.forEach((detail) => {
+        if (_.get(detail, 'compliant').trim().toLowerCase() !== 'compliant') {
+          violatedNum += 1
+        }
+      })
     }
 
     if(violatedNum > 0) {
-      const objectStatus = objectTemplates.map(item => {
-        if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-          return {
-            id: _.get(item, obNameStr),
-            cells: [_.get(item, obNameStr), _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-          }}
-        return undefined
-      }
-      )
-      const roleStatus = roleTemplates.map(item => {
-        if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-          return {
-            id: _.get(item, metaNameStr),
-            cells: [_.get(item, metaNameStr), _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-          }}
-        return undefined
-      }
-      )
-      const policyStatus = policyTemplates.map(item => {
-        if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-          return {
-            id: _.get(item, obNameStr),
-            cells: [_.get(item, obNameStr), _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-          }}
-        return undefined
-      }
-      )
-      //add id and remove null/undefined
-      const subItems = _.without([id, ...objectStatus, ...roleStatus, ...policyStatus], undefined, null)
-      return {...policy, id, violatedNum, subItems}
+      const templateStatus = policiesStatusDetails.map(detail => {
+        return {
+          id: _.get(detail, 'name', '-'),
+          cells: [_.get(detail, 'name', '-'), _.get(detail, 'message', '-'), getAge(detail, '', 'lastTimestamp')]
+        }
+      })
+      const subItems = [id, ...templateStatus]
+      return {...item, id, violatedNum, subItems}
     }
     else {
-      const subItems = [{ id: `inapplicable${index}`, cells: [inapplicable, `${inapplicable} `, `${inapplicable} `] }]
-      return {...policy, id, violatedNum, subItems}
+      const subItems = [{ id: _uniqueId('inapplicable'), cells: [inapplicable, `${inapplicable} `, `${inapplicable} `] }]
+      return {...item, id, violatedNum, subItems}
     }
   })
 
@@ -293,56 +249,30 @@ export const ClustersOrApplicationsTable = ({items, staticResourceData, inapplic
 }
 
 export const PoliciesTable = ({items, staticResourceData, inapplicable}) => {
-  items = items.map((cluster, index) => {
-    const policy = _.get(cluster, 'policy', [])
-    const violatedNum = _.get(cluster, 'violated', 0)
-    const id = _.get(cluster, metaNameStr, `cluster${index}`)
+  items = items.map((item) => {
+    const violatedNum = _.get(item, 'violated', 0)
+    const id = _.get(item, 'metadata.name', _uniqueId('item'))
 
     if(violatedNum > 0) {
-      const spec = _.get(policy, 'spec', '')
-      const objectTemplates = _.get(spec, 'object-templates', [])
-      const roleTemplates = _.get(spec, 'role-templates', [])
-      const policyTemplates = _.get(spec, 'policy-templates', [])
-      const targetList = [obNameStr, 'objectDefinition.kind', metaNameStr]
+      const policyListStatuses = _.get(item, 'policyListStatuses', [])
       const subItems = _.without([
         id,
-        ...objectTemplates.map(item => {
-          if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-            const name = getFirstMatch(item, targetList)
+        ...policyListStatuses.map(status => {
+          if (_.get(status, 'compliant','').trim().toLowerCase() !== 'compliant') {
+            const name = _.get(status, 'name', _uniqueId('name'))
             return {
-              id: _.get(item, obNameStr),
-              cells: [name, _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
+              id: name,
+              cells: [name, _.get(status, 'message', '-'), getAge(status, '', 'lastTimestamp')]
             }}
           return undefined
-        }
-        ),
-        ...roleTemplates.map(item => {
-          if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-            const name = getFirstMatch(item, targetList)
-            return {
-              id: _.get(item, obNameStr),
-              cells: [name, _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-            }}
-          return undefined
-        }
-        ),
-        ...policyTemplates.map(item => {
-          if (_.get(item, sCompliantStr,'').toLowerCase() !== 'compliant') {
-            const name = getFirstMatch(item, targetList)
-            return {
-              id: _.get(item, obNameStr),
-              cells: [name, _.get(item, sMessageStr, '-'), _.get(item, sReasonStr, '-')]
-            }}
-          return undefined
-        }
-        )
+        })
       ], undefined, null)
 
-      return {...cluster, id, subItems}
+      return {...item, id, subItems}
     }
     else {
-      const subItems = [{ id: `inapplicable${index}`, cells: [inapplicable, inapplicable+' ', inapplicable+'  '] }]
-      return {...cluster, id, subItems}
+      const subItems = [{ id: _uniqueId('inapplicable'), cells: [inapplicable, inapplicable+' ', inapplicable+'  '] }]
+      return {...item, id, subItems}
     }
   })
 

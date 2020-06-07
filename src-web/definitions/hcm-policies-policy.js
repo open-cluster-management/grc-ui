@@ -62,7 +62,7 @@ export default {
   policyViolatedSidePanel: {
     // title: 'policy.violated.cluster',
     headerRows: ['', 'table.header.cluster.name', 'table.header.rule.violation', ''],
-    subHeaders: ['table.header.name', 'table.header.message', 'table.header.reason'],
+    subHeaders: ['table.header.name', 'table.header.message', 'table.header.timestamp'],
     rows: [
       {
         cells: [

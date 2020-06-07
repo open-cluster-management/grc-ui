@@ -24,22 +24,22 @@ const formatPolicyClusterView = (clusterName, policiesUnderCluster) => {
       consoleURL = policy.clusterConsoleURL[clusterName]
     }
 
-    const status = _.get(policy, `raw.status.status.${clusterName}`, '')
-    let compliant = false
-    switch (typeof status) {
-    case 'string':
-      compliant = (status.toLowerCase() === 'compliant')
-      break
-    case 'object':
-      compliant = (status['compliant'] && status['compliant'].toLowerCase() === 'compliant')
-      break
-    }
-    if (compliant) {
-      validNum += 1
-    } else {
-      nonCompliant.push(_.get(policy, 'metadata.name', '-'))
+    const statuses = _.get(policy, 'raw.status.status')
+    if (Array.isArray(statuses) && statuses.length > 0) {
+      statuses.forEach(status => {
+        const clusterNameTemp = _.get(status, 'clustername', '')
+        const compliantTemp = _.get(status, 'compliant', '')
+        if (clusterNameTemp.trim().toLowerCase() === clusterName.trim().toLowerCase()) {
+          if (compliantTemp.trim().toLowerCase() === 'compliant') {
+            validNum += 1
+          } else {
+            nonCompliant.push(_.get(policy, 'metadata.name', '-'))
+          }
+        }
+      })
     }
   })
+
   return {
     cluster: clusterName,
     namespace: nameSpace,
