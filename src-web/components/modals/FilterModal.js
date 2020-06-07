@@ -30,7 +30,7 @@ class FilterModal extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.selected !== this.props.selected) {
       this.setState({tags: nextProps.selected})
     }

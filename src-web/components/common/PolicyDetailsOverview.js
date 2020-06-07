@@ -20,7 +20,6 @@ import resources from '../../../lib/shared/resources'
 import _ from 'lodash'
 import DetailsModule from './DetailsModule'
 import SimpleTable from './SimpleTable'
-// eslint-disable-next-line import/no-named-as-default
 import ResourceTableModule from './ResourceTableModuleFromProps'
 import StructuredListModule from '../../components/common/StructuredListModuleWithActions'
 
@@ -76,7 +75,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
     return status
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {refreshControl, item, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(item, this.props.item)) {

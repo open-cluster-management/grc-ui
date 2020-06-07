@@ -11,7 +11,6 @@
 
 import React from 'react'
 import lodash from 'lodash'
-// eslint-disable-next-line import/no-named-as-default
 import ResourceTable from './ResourceTable'
 import { REQUEST_STATUS } from '../../actions/index'
 import NoResource from './NoResource'
@@ -36,7 +35,7 @@ class ResourceList extends React.Component {
     this.state = {}
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const {
       updateSecondaryHeader:localUpdateSecondaryHeader,
       tabs,
@@ -56,7 +55,7 @@ class ResourceList extends React.Component {
     localSearchTable('', false)
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if ((!lodash.isEqual(this.props.listData, nextProps.listData)) ||(!lodash.isEqual(this.props.resourceType, nextProps.resourceType))) {
       this.props.fetchResources(nextProps.listData, nextProps.resourceType)
     }

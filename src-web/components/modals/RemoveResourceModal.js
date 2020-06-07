@@ -28,7 +28,7 @@ class RemoveResourceModal extends React.Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { data } = this.props
     const children = []
     // Create object specifying Application resources that can be deleted

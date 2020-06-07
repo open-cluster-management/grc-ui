@@ -28,6 +28,10 @@
         "jsx-a11y"
     ],
     "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "detect"
+          },
         "html/html-extensions": [
             ".dust"
         ]

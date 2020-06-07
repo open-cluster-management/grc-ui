@@ -21,7 +21,6 @@ import msgs from '../../nls/platform.properties'
 resources(() => {
   require('../../scss/secondary-header.scss')
 })
-
 export class SecondaryHeader extends React.Component {
   constructor(props) {
     super(props)

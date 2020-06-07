@@ -137,7 +137,7 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
       }
     }
 
-    componentWillReceiveProps() {
+    UNSAFE_componentWillReceiveProps() {
       this.setState({firstTimeLoad: false})
     }
 
@@ -207,8 +207,7 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
             filters = {...filters, clientSideFilters}
           }
         }
-      // eslint-disable-next-line no-empty
-      } catch(e) {}
+      } catch(e) {return e}
       return filters
     }
 

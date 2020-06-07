@@ -16,7 +16,6 @@ import { connect } from 'react-redux'
 import { Module, ModuleHeader, ModuleBody } from 'carbon-addons-cloud-react'
 import lodash from 'lodash'
 import msgs from '../../../nls/platform.properties'
-// eslint-disable-next-line import/no-named-as-default
 import ResourceTable from '../../components/common/ResourceTable'
 import TableHelper from '../../util/table-helper'
 
@@ -46,11 +45,11 @@ export class ResourceTableModule extends React.Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.formatResourceData()
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { tableResources } = this.props
     if (nextProps.tableResources !== tableResources) {
       this.formatResourceData(nextProps.tableResources)
@@ -157,6 +156,5 @@ const mapStateToProps = (state, ownProps) => {
     tableResources
   }
 }
-
 
 export default withRouter(connect(mapStateToProps)(ResourceTableModule))

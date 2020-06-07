@@ -17,7 +17,6 @@ import { connect } from 'react-redux'
 import StructuredListModule from './StructuredListModule'
 import resources from '../../../lib/shared/resources'
 import PolicyTemplates from './PolicyTemplates'
-// eslint-disable-next-line import/no-named-as-default
 import ResourceTableModule from './ResourceTableModuleFromProps'
 import { updateResourceToolbar} from '../../actions/common'
 import _ from 'lodash'
@@ -56,7 +55,7 @@ class PolicyClusterDetail extends React.Component {
     super(props)
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {refreshControl, policies, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(policies, this.props.policies)) {

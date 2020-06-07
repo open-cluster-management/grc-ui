@@ -17,9 +17,7 @@ import { withRouter } from 'react-router-dom'
 import { updateResourceToolbar, updateActiveFilters } from '../actions/common'
 import { Loading, Notification } from 'carbon-components-react'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
-// eslint-disable-next-line import/no-named-as-default
 import GrcCardsModule from './modules/GrcCardsModule'
-// eslint-disable-next-line import/no-named-as-default
 import GrcToggleModule from './modules/GrcToggleModule'
 import {
   filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState,
@@ -37,7 +35,6 @@ import config from '../../lib/shared/config'
 resources(() => {
   require('../../scss/grc-view.scss')
 })
-
 export class GrcView extends React.Component {
 
   constructor (props) {
@@ -55,10 +52,10 @@ export class GrcView extends React.Component {
     this.handleDrillDownClickGrcView = this.handleDrillDownClickGrcView.bind(this)
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { activeFilters={} } = this.props
     //get (activeFilters ∪ storedFilters) only since availableGrcFilters is uninitialized at this stage
-    //later when availableGrcFilters initialized, will do further filtering in componentWillReceiveProps
+    //later when availableGrcFilters initialized, will do further filtering in UNSAFE_componentWillReceiveProps
     const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
     //update sessionStorage
     replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
@@ -66,7 +63,7 @@ export class GrcView extends React.Component {
     updateActiveFilters(combinedFilters)
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {
       refreshControl,
       grcItems,
@@ -242,7 +239,7 @@ export class GrcView extends React.Component {
   handleDrillDownClickGrcView(key, value, type, level){
     //step 1 add activeFilters when click GrcCardsModule
     //here for severity level, will not update filter here but just update url
-    //then acutally update it in componentWillReceiveProps()
+    //then acutally update it in UNSAFE_componentWillReceiveProps()
     const {updateActiveFilters:localUpdateActiveFilters} = this.props
     //lodash recursively deep clone
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})

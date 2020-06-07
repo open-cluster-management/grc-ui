@@ -107,8 +107,7 @@ StructuredListModule.contextTypes = {
   locale: PropTypes.string
 }
 
-// eslint-disable-next-line react/display-name
-StructuredListModule.formatDecisionsWithLinkAndIcon = (resourceKey, data, clusterStatus, location, context) => {
+const decisionsWithLinkAndIconTemp = (resourceKey, data, clusterStatus, location, context) => {
   const decisions = _.get(data[resourceKey], 'decisions')
   const hubNamespace = _.get(data,'metadata.namespace')
   const urlSegments = location.pathname.replace(/\/$/, '').split('/')
@@ -132,6 +131,10 @@ StructuredListModule.formatDecisionsWithLinkAndIcon = (resourceKey, data, cluste
   })
   return <div className='cluster-status-container'>{links}</div>
 }
+
+decisionsWithLinkAndIconTemp.displayName = 'DecisionsWithLinkAndIconComponent'
+
+StructuredListModule.formatDecisionsWithLinkAndIcon = decisionsWithLinkAndIconTemp
 
 const mapStateToProps = state => ({
   navRoutes: state.nav && state.nav.navItems

@@ -8,7 +8,7 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 import React from 'react'
-import { hydrate } from 'react-dom'
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
@@ -20,7 +20,6 @@ import * as reducers from './reducers'
 import config from '../lib/shared/config'
 import GrcApolloClient from '../lib/client/apollo-client'
 import ScrollToTop from './components/common/ScrollToTop'
-
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -41,7 +40,7 @@ const store = createStore(combineReducers(reducers), preloadedState, composeEnha
   applyMiddleware(...middleware)
 ))
 
-hydrate(
+ReactDOM.hydrate(
   <ApolloProvider client={GrcApolloClient.getGrcClient()}>
     <Provider store={store}>
       <BrowserRouter>
