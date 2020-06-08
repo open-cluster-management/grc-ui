@@ -17,6 +17,7 @@ import { TooltipIcon } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 import _uniqueId from 'lodash/uniqueId'
+import moment from 'moment'
 
 resources(() => {
   require('../../../scss/structured-list.scss')
@@ -43,7 +44,10 @@ class DetailsModule extends React.PureComponent {
           entry[0] = item.cells[0].resourceKey ? item.cells[0].resourceKey : '-'
           const entryData = item.cells[1] ? _.get(listData, item.cells[1].resourceKey, '-') : '-'
           const replacedData = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
-          entry[1] = typeof(entryData) === 'object' ? replacedData : entryData
+          entry[1] = (typeof(entryData) === 'object'||typeof(entryData) === 'boolean') ? replacedData : entryData
+          if(item && item.cells[0] && item.cells[0].resourceKey && item.cells[0].type === 'timestamp') {
+            entry[1] = moment(entry[1], 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
+          }
           // third column entry[2] is tooltip inforamtion, if not exist then no tooltip
           if (item.cells[0].information) {
             entry[2] = item.cells[0].information

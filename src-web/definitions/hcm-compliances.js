@@ -452,6 +452,28 @@ export default {
       {
         cells: [
           {
+            resourceKey: 'description.title.createdAt',
+            type: 'timestamp'
+          },
+          {
+            resourceKey: 'metadata.creationTimestamp'
+          }
+        ]
+      },
+      {
+        cells: [
+          {
+            resourceKey: 'table.header.cluster.violation',
+            type: 'i18n'
+          },
+          {
+            resourceKey: 'clusterCompliant',
+          }
+        ]
+      },
+      {
+        cells: [
+          {
             resourceKey: 'description.title.enforcement',
             information: 'grc.remediation.tooltip',
             type: 'i18n'
@@ -464,33 +486,11 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.exclude_namespace',
+            resourceKey: 'description.title.disabled',
             type: 'i18n'
           },
           {
-            resourceKey: 'raw.spec.namespaces.exclude'
-          }
-        ]
-      },
-      {
-        cells: [
-          {
-            resourceKey: 'description.title.include_namespace',
-            type: 'i18n'
-          },
-          {
-            resourceKey: 'raw.spec.namespaces.include'
-          }
-        ]
-      },
-      {
-        cells: [
-          {
-            resourceKey: 'table.header.cluster.violation',
-            type: 'i18n'
-          },
-          {
-            resourceKey: 'clusterCompliant',
+            resourceKey: 'raw.spec.disabled'
           }
         ]
       },
