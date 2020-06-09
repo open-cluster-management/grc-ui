@@ -9,10 +9,6 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 
 const del = require('del')
-// const fs = require('fs')
-// const path = require('path')
-// const jsonfile = require('jsonfile')
-// const parser = require('xml2json')
 const BASE_DIR = `${__dirname}/../..`
 const reportFolder = `${BASE_DIR}/test-output/e2e`
 const time = new Date().getTime()
