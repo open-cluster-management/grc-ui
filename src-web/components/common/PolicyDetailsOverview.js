@@ -12,7 +12,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Notification, Loading } from 'carbon-components-react'
+import { InlineNotification, Loading } from 'carbon-components-react'
 import { connect } from 'react-redux'
 import { updateResourceToolbar } from '../../actions/common'
 import msgs from '../../../nls/platform.properties'
@@ -90,7 +90,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
     const { locale } = this.context
 
     if(error) {
-      return <Notification
+      return <InlineNotification
         title=''
         className='persistent'
         subtitle={msgs.get(error, locale)}

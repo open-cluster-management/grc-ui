@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateResourceToolbar, updateActiveFilters } from '../actions/common'
-import { Loading, Notification } from 'carbon-components-react'
+import { Loading, InlineNotification } from 'carbon-components-react'
 import { filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState, combineResourceFilters,replaceGrcState } from '../../lib/client/filter-helper'
 import { showResourceToolbar, hideResourceToolbar } from '../../lib/client/resource-helper'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
@@ -107,10 +107,10 @@ export class OverviewView extends React.Component {
 
     if (error) {
       if (error.name === 'PermissionError') {
-        return <Notification title='' className='overview-notification' kind='error'
+        return <InlineNotification title='' className='overview-notification' kind='error'
           subtitle={msgs.get('error.permission.denied', locale)} />
       }
-      return <Notification title='' className='overview-notification' kind='error'
+      return <InlineNotification title='' className='overview-notification' kind='error'
         subtitle={msgs.get('overview.error.default', locale)} />
     }
 

@@ -12,7 +12,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Notification, Loading } from 'carbon-components-react'
+import { InlineNotification, Loading } from 'carbon-components-react'
 import { connect } from 'react-redux'
 import StructuredListModule from './StructuredListModule'
 import resources from '../../../lib/shared/resources'
@@ -69,7 +69,7 @@ class PolicyClusterDetail extends React.Component {
     const { locale } = this.context
     const modulesRight = [], modulesBottom = []
     if(error) {
-      return <Notification
+      return <InlineNotification
         title=''
         className='persistent'
         subtitle={msgs.get(error, locale)}

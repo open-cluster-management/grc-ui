@@ -11,7 +11,7 @@
 
 import React from 'react'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
-import { Notification, Loading } from 'carbon-components-react'
+import { InlineNotification, Loading } from 'carbon-components-react'
 import { REQUEST_STATUS } from '../../actions/index'
 import { getTabs } from '../../../lib/client/resource-helper'
 import { updateSecondaryHeader, fetchResource } from '../../actions/common'
@@ -81,7 +81,7 @@ const withResource = (Component) => {
     render() {
       const { status, statusCode } = this.props
       if (status === REQUEST_STATUS.ERROR) {
-        return <Notification
+        return <InlineNotification
           title=''
           className='persistent'
           subtitle={msgs.get(`error.${(statusCode === 401 || statusCode === 403) ? 'unauthorized' : 'default'}.description`, this.context.locale)}

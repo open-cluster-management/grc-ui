@@ -17,10 +17,10 @@ import PropTypes from 'prop-types'
 import {
   Button,
   Loading,
-  Notification,
+  InlineNotification,
   TextInput,
   Checkbox,
-  DropdownV2,
+  Dropdown,
   TooltipIcon,
   MultiSelect,
   ToggleSmall} from 'carbon-components-react'
@@ -161,10 +161,10 @@ export default class TemplateEditor extends React.Component {
 
     if (isFailed) {
       if (error.name === 'PermissionError') {
-        return <Notification title='' className='overview-notification' kind='error'
+        return <InlineNotification title='' className='overview-notification' kind='error'
           subtitle={msgs.get('error.permission.denied.create', locale)} />
       }
-      return <Notification title='' className='overview-notification' kind='error'
+      return <InlineNotification title='' className='overview-notification' kind='error'
         subtitle={msgs.get('overview.error.default', locale)} />
     }
 
@@ -268,7 +268,7 @@ export default class TemplateEditor extends React.Component {
       return <div role='button' onClick={handleClick}
         tabIndex="0" aria-label={updateMessage} onKeyDown={handleKeyPress}>
         <div  >
-          <Notification
+          <InlineNotification
             key={updateMessage}
             kind={updateMsgKind}
             title={updateMsgKind==='error' ?
@@ -344,7 +344,7 @@ export default class TemplateEditor extends React.Component {
     const {locale} = this.props
     const {id, name, available, description, isOneSelection, mustExist} = control
     let { active } = control
-    // for DropdownV2, empty initialSelectedItem means no pre-selected
+    // for Dropdown, empty initialSelectedItem means no pre-selected
     active = (active && typeof active === 'string') ? active : ''
     const key = `${id}-${active}`
     return (
@@ -360,7 +360,7 @@ export default class TemplateEditor extends React.Component {
               </svg>
             </TooltipIcon>
           </div>
-          <DropdownV2
+          <Dropdown
             key={key}
             label={msgs.get('policy.create.namespace.tooltip', locale)}
             items={available}

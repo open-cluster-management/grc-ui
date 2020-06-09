@@ -15,7 +15,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import resources from '../../lib/shared/resources'
 import PolicyTemplates from '../components/common/PolicyTemplates'
-import { Notification, Loading } from 'carbon-components-react'
+import { InlineNotification, Loading } from 'carbon-components-react'
 import msgs from '../../nls/platform.properties'
 
 resources(() => {
@@ -30,7 +30,7 @@ class PolicyTemplateTab extends React.Component{
   render() {
     const { loading, error, resourceType, params, staticResourceData, items } = this.props
     if (error) {
-      return <Notification
+      return <InlineNotification
         title=''
         className='persistent'
         subtitle={msgs.get(error, this.context.locale)}
