@@ -40,6 +40,7 @@ jobs:
     - stage: build
       name: "Build the image"
       script:
+        - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make copyright-check TRAVIS_BRANCH=${TRAVIS_BRANCH}
         - make component/build
@@ -55,11 +56,13 @@ jobs:
     - stage: unit-test
       name: "Build and run unit tests"
       script:
+        - set -e
         - make component/test/unit
     - stage: e2e-test
       name: "Run unit tests and e2e tests"
       if: branch = master OR type = pull_request
       script:
+        - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make sonar/js/jest-init
         - make component/test/unit
