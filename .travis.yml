@@ -3,15 +3,12 @@ language: node_js
 
 services:
   - docker
-  - xvfb
 
 branches:
   only:
     - master
     - /^release-[0-9]+\..*$/
 addons:
-  packages:
-    - openjdk-8-jdk
   chrome: stable
   sonarcloud:
     organization: "open-cluster-management"

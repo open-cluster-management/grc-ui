@@ -228,7 +228,6 @@ server.listen(port, () => {
 
 process.on('SIGTERM', () => {
   logger.info('SIGTERM received.  Shutting down express server.')
-  stalker.close()
   server.close(err => {
     if (err) {
       logger.error(err)
