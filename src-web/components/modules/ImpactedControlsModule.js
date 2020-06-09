@@ -13,7 +13,7 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import PropTypes from 'prop-types'
-import { DropdownV2, Slider, TooltipIcon } from 'carbon-components-react'
+import { Dropdown, Slider, TooltipIcon } from 'carbon-components-react'
 import Radar from 'react-d3-radar'
 import { select } from 'd3'
 import 'd3-selection-multi'
@@ -132,7 +132,7 @@ class ImpactedControlsModule extends React.Component {
         <div className='card-selection-title'>
           {msgs.get('overview.impacted.controls.standard', locale)}
         </div>
-        <DropdownV2 className='selection'
+        <Dropdown className='selection'
           label={title}
           ariaLabel={title}
           onChange={this.onSelectionChange}

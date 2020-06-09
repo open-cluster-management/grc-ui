@@ -709,7 +709,7 @@ ShallowWrapper {
             Summary
           </div>
           <div>
-            <DropdownV2
+            <Dropdown
               ariaLabel="Summary"
               className="selection"
               disabled={false}
@@ -825,7 +825,7 @@ ShallowWrapper {
               Summary
             </div>,
             <div>
-              <DropdownV2
+              <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -897,7 +897,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <DropdownV2
+              "children": <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -1168,7 +1168,7 @@ ShallowWrapper {
               Summary
             </div>
             <div>
-              <DropdownV2
+              <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -1284,7 +1284,7 @@ ShallowWrapper {
                 Summary
               </div>,
               <div>
-                <DropdownV2
+                <Dropdown
                   ariaLabel="Summary"
                   className="selection"
                   disabled={false}
@@ -1356,7 +1356,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <DropdownV2
+                "children": <Dropdown
                   ariaLabel="Summary"
                   className="selection"
                   disabled={false}
@@ -2305,7 +2305,7 @@ ShallowWrapper {
             Summary
           </div>
           <div>
-            <DropdownV2
+            <Dropdown
               ariaLabel="Summary"
               className="selection"
               disabled={false}
@@ -2421,7 +2421,7 @@ ShallowWrapper {
               Summary
             </div>,
             <div>
-              <DropdownV2
+              <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -2493,7 +2493,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <DropdownV2
+              "children": <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -2764,7 +2764,7 @@ ShallowWrapper {
               Summary
             </div>
             <div>
-              <DropdownV2
+              <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -2880,7 +2880,7 @@ ShallowWrapper {
                 Summary
               </div>,
               <div>
-                <DropdownV2
+                <Dropdown
                   ariaLabel="Summary"
                   className="selection"
                   disabled={false}
@@ -2952,7 +2952,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <DropdownV2
+                "children": <Dropdown
                   ariaLabel="Summary"
                   className="selection"
                   disabled={false}
@@ -4783,7 +4783,7 @@ ShallowWrapper {
             Summary
           </div>
           <div>
-            <DropdownV2
+            <Dropdown
               ariaLabel="Summary"
               className="selection"
               disabled={false}
@@ -4854,7 +4854,7 @@ ShallowWrapper {
               Summary
             </div>,
             <div>
-              <DropdownV2
+              <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -4926,7 +4926,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <DropdownV2
+              "children": <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -5095,7 +5095,7 @@ ShallowWrapper {
               Summary
             </div>
             <div>
-              <DropdownV2
+              <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -5166,7 +5166,7 @@ ShallowWrapper {
                 Summary
               </div>,
               <div>
-                <DropdownV2
+                <Dropdown
                   ariaLabel="Summary"
                   className="selection"
                   disabled={false}
@@ -5238,7 +5238,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <DropdownV2
+                "children": <Dropdown
                   ariaLabel="Summary"
                   className="selection"
                   disabled={false}
@@ -6891,7 +6891,7 @@ ShallowWrapper {
             Summary
           </div>
           <div>
-            <DropdownV2
+            <Dropdown
               ariaLabel="Summary"
               className="selection"
               disabled={false}
@@ -6962,7 +6962,7 @@ ShallowWrapper {
               Summary
             </div>,
             <div>
-              <DropdownV2
+              <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -7034,7 +7034,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <DropdownV2
+              "children": <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -7203,7 +7203,7 @@ ShallowWrapper {
               Summary
             </div>
             <div>
-              <DropdownV2
+              <Dropdown
                 ariaLabel="Summary"
                 className="selection"
                 disabled={false}
@@ -7274,7 +7274,7 @@ ShallowWrapper {
                 Summary
               </div>,
               <div>
-                <DropdownV2
+                <Dropdown
                   ariaLabel="Summary"
                   className="selection"
                   disabled={false}
@@ -7346,7 +7346,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <DropdownV2
+                "children": <Dropdown
                   ariaLabel="Summary"
                   className="selection"
                   disabled={false}
