@@ -11,7 +11,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import loadable from 'loadable-components'
+import loadable from '@loadable/component'
 
 let RemoveResourceModal
 let ResourceModal

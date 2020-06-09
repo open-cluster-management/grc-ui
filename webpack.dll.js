@@ -26,7 +26,7 @@ module.exports = {
     'vendorhcm': [
       'carbon-components-react',
       'd3',
-      'loadable-components',
+      '@loadable/component',
       'lodash',
       'moment',
       'normalizr',
@@ -53,7 +53,7 @@ module.exports = {
         test: /\.css$/,
         include: path.resolve(__dirname, './node_modules/monaco-editor'),
         use: [{ loader: 'style-loader', options: { base: 2000 } },
-          { loader: 'css-loader', options: { base: 3000 } }],
+          'css-loader',],
       },
       {
         test: /\.(woff2?|ttf|eot|otf)(\?.*$|$)/,
@@ -94,7 +94,7 @@ module.exports = {
       sourceMap: true
     }) : noOP,
     new CompressionPlugin({
-      asset: '[path].gz[query]',
+      filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
     }),

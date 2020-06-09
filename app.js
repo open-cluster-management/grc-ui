@@ -44,7 +44,7 @@ const express = require('express'),
 require('node-i18n-util')
 
 process.env.BABEL_ENV = 'server'
-require('babel-register')
+require('@babel/register')
 
 const bodyParser = require('body-parser'),
       cookieParser = require('cookie-parser'),

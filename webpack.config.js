@@ -32,7 +32,7 @@ module.exports = {
   devtool: PRODUCTION ? 'source-map' : 'cheap-module-source-map',
   stats: { children: false },
   entry: {
-    'main': ['babel-polyfill', './src-web/index.js']
+    'main': ['@babel/polyfill', './src-web/index.js']
   },
 
   externals: Object.assign(PRODUCTION ? prodExternals : {}, {
@@ -55,6 +55,10 @@ module.exports = {
         test: [/\.jsx$/, /\.js$/],
         exclude: /node_modules|\.scss/,
         loader: 'babel-loader?cacheDirectory',
+        query: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: ['@babel/plugin-proposal-class-properties']
+        }
       },
       {
         test: [/\.scss$/],
@@ -64,7 +68,7 @@ module.exports = {
             {
               loader: 'css-loader?sourceMap',
               options: {
-                minimize: PRODUCTION ? true : false
+                // minimize: PRODUCTION ? true : false
               }
             },
             {
@@ -182,7 +186,7 @@ module.exports = {
       }
     }),
     new CompressionPlugin({
-      asset: '[path].gz[query]',
+      filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.css$/,
       minRatio: 1,

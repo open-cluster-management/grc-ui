@@ -12,7 +12,7 @@
 import React from 'react'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import loadable from 'loadable-components'
+import loadable from '@loadable/component'
 import config from '../../lib/shared/config'
 
 // export const OverviewTab = loadable(() => import(/* webpackChunkName: "overview" */ './OverviewTab'))
