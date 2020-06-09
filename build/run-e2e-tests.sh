@@ -71,7 +71,7 @@ sleep 10
 npm run test:e2e-headless
 
 # kill the node process to let nyc generate coverage report
-ps -ef | grep 'node app.js' | grep -v grep | awk '{print $2}' | xargs kill -SIGTERM
+ps -ef | grep 'node app.js' | grep -v grep | awk '{print $2}' | xargs kill
 sleep 10
 
 sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/server/coverage/lcov.info
