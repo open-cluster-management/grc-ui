@@ -42,8 +42,6 @@ module.exports = {
       'redux-thunk',
       'redux',
       'reselect',
-      'svg.js',
-      'svg-loader'
     ]
   },
 

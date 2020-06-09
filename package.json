@@ -52,7 +52,6 @@
     "body-parser": "^1.18.2",
     "carbon-addons-cloud": "^3.4.0",
     "carbon-addons-cloud-react": "^1.8.0",
-    "carbon-addons-data-viz-react": "^1.20.3",
     "carbon-components": "^9.87.2",
     "carbon-components-react": "^6.115.5",
     "carbon-icons": "^7.0.7",
@@ -79,7 +78,6 @@
     "log4js": "^2.11.0",
     "mime-types": "^2.1.18",
     "moment": "^2.22.1",
-    "monaco-languageclient": "^0.13.0",
     "morgan": "^1.9.1",
     "nconf": "^0.10.0",
     "node-i18n-util": "^1.0.2",
@@ -104,10 +102,7 @@
     "requestretry": "^1.13.0",
     "reselect": "^3.0.1",
     "security-middleware": "github:open-cluster-management/security-middleware",
-    "svg-loader": "0.0.2",
-    "svg-react-loader": "^0.4.6",
-    "svg-sprite-loader": "^3.2.3",
-    "svg.js": "^2.6.5"
+    "svg-sprite-loader": "^3.2.3"
   },
   "devDependencies": {
     "@slack/web-api": "^5.9.0",
