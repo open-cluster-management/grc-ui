@@ -12,7 +12,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Modal, Loading, InlineNotification } from 'carbon-components-react'
+import { Modal, Loading, Notification } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import { withRouter } from 'react-router-dom'
 import { REQUEST_STATUS } from '../../actions/index'
@@ -48,7 +48,7 @@ export class DisableModal extends React.Component {
           aria-label={msgs.get(label.heading, locale)}>
           <div>
             {reqStatus === REQUEST_STATUS.ERROR &&
-              <InlineNotification
+              <Notification
                 kind='error'
                 title=''
                 subtitle={reqErrorMsg || msgs.get('error.default.description', locale)} />}

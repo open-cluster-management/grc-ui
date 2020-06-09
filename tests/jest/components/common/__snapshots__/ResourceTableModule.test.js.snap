@@ -1079,7 +1079,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                 </div>
                               </TableContainer>
                             </DataTable>
-                            <Pagination
+                            <PaginationV2
                               backwardText="Previous page"
                               disabled={false}
                               forwardText="Next page"
@@ -1529,7 +1529,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                   </button>
                                 </div>
                               </div>
-                            </Pagination>
+                            </PaginationV2>
                           </ResourceTable>
                         </Connect(ResourceTable)>
                       </Route>

@@ -1073,7 +1073,7 @@ ShallowWrapper {
           selectorPrimaryFocus="[data-modal-primary-focus]"
         >
           <div>
-            <InlineNotification
+            <Notification
               hideCloseButton={false}
               iconDescription="closes notification"
               kind="error"
@@ -1099,7 +1099,7 @@ ShallowWrapper {
           "aria-label": "Disable policy",
           "children": Array [
             <div>
-              <InlineNotification
+              <Notification
                 hideCloseButton={false}
                 iconDescription="closes notification"
                 kind="error"
@@ -1135,7 +1135,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <InlineNotification
+              "children": <Notification
                 hideCloseButton={false}
                 iconDescription="closes notification"
                 kind="error"
@@ -1207,7 +1207,7 @@ ShallowWrapper {
             selectorPrimaryFocus="[data-modal-primary-focus]"
           >
             <div>
-              <InlineNotification
+              <Notification
                 hideCloseButton={false}
                 iconDescription="closes notification"
                 kind="error"
@@ -1233,7 +1233,7 @@ ShallowWrapper {
             "aria-label": "Disable policy",
             "children": Array [
               <div>
-                <InlineNotification
+                <Notification
                   hideCloseButton={false}
                   iconDescription="closes notification"
                   kind="error"
@@ -1269,7 +1269,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <InlineNotification
+                "children": <Notification
                   hideCloseButton={false}
                   iconDescription="closes notification"
                   kind="error"

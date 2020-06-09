@@ -12,7 +12,7 @@
 import React from 'react'
 import resources from '../../../lib/shared/resources'
 import { PAGE_SIZES } from '../../actions/index'
-import { Pagination, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox, TooltipIcon } from 'carbon-components-react'
+import { PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox, TooltipIcon } from 'carbon-components-react'
 import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import { transform } from '../../../lib/client/resource-helper'
@@ -83,7 +83,7 @@ export class ResourceTable extends React.Component {
     const firstResKeyStr = 'tableKeys[0].resourceKey'
 
     const PagenationComponent = showPagination ?
-      (<Pagination
+      (<PaginationV2
         key='pagination'
         id={`${id}resource-table-pagination`}
         onChange={changeTablePage}

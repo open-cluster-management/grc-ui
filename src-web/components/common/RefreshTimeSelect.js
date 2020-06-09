@@ -12,7 +12,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import resources from '../../../lib/shared/resources'
-import { Dropdown, Loading } from 'carbon-components-react'
+import { DropdownV2, Loading } from 'carbon-components-react'
 import '../../../graphics/diagramIcons.svg'
 import { DEFAULT_REFRESH_TIME, DEFAULT_SIDE_PANEL_REFRESH_TIME } from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
@@ -111,7 +111,7 @@ export default class RefreshTimeSelect extends React.Component {
                 <use href={'#diagramIcons_autoRefresh'} ></use>
               </svg>
             </div>}
-          <Dropdown className='selection'
+          <DropdownV2 className='selection'
             label={label}
             ariaLabel={label}
             onChange={this.handleChange}

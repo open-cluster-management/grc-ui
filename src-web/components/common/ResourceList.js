@@ -19,7 +19,7 @@ import { connect } from 'react-redux'
 import { changeTablePage, searchTable, sortTable, receiveResourceSuccess, updateSecondaryHeader } from '../../actions/common'
 import { updateResourceFilters } from '../../actions/filters'
 import TableHelper from '../../util/table-helper'
-import { Loading, InlineNotification } from 'carbon-components-react'
+import { Loading, Notification } from 'carbon-components-react'
 import { withRouter } from 'react-router-dom'
 import msgs from '../../../nls/platform.properties'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
@@ -104,7 +104,7 @@ class ResourceList extends React.Component {
       }
       //eslint-disable-next-line no-console
       console.error(err)
-      return <InlineNotification
+      return <Notification
         title=''
         className='persistent'
         subtitle={msgs.get('error.default.description', locale)}
@@ -125,7 +125,7 @@ class ResourceList extends React.Component {
       }
       return <div>
         { mutateStatus === REQUEST_STATUS.ERROR &&
-          <InlineNotification
+          <Notification
             title=''
             subtitle={mutateErrorMsg || msgs.get('error.default.description', locale)}
             kind='error' />

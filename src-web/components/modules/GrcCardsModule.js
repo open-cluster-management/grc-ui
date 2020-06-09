@@ -12,7 +12,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Dropdown, Icon } from 'carbon-components-react'
+import { DropdownV2, Icon } from 'carbon-components-react'
 import resources from '../../../lib/shared/resources'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
@@ -81,7 +81,7 @@ export class GrcCardsModule extends React.Component {
         {showGrcCard && <div className='header-title'>{title}</div>}
         {showGrcCard &&
         <div>
-          <Dropdown className='selection'
+          <DropdownV2 className='selection'
             label={title}
             ariaLabel={title}
             onChange={this.onChange}
