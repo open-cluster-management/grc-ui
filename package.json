@@ -116,12 +116,10 @@
     "svg-loader": "0.0.2",
     "svg-react-loader": "^0.4.6",
     "svg-sprite-loader": "^3.2.3",
-    "svg.js": "^2.6.5",
-    "watchr": "^4.0.1"
+    "svg.js": "^2.6.5"
   },
   "devDependencies": {
     "@slack/web-api": "^5.9.0",
-    "@storybook/addon-centered": "^3.4.6",
     "assets-webpack-plugin": "^3.0.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",

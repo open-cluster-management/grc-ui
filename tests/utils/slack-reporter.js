@@ -60,7 +60,7 @@ function buildComment(fileName) {
   const searchIndex = fileName.indexOf('_')
   const string = fileName.slice(0, searchIndex)
   const testName = string.replace(/-/g, ' ')
-  return `:failed: *FAILED: ${testName}.* \n ${TRAVIS_BUILD_WEB_URL}`
+  return `:failed: *FAILED: ${process.env.TRAVIS_REPO_SLUG} ${process.env.TRAVIS_BRANCH} ${testName}.* \n ${TRAVIS_BUILD_WEB_URL}`
 }
 
 // async function mapSlackUserByGitEmail() {
