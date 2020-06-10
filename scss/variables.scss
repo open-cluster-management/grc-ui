@@ -18,6 +18,8 @@ $secondary-header-top: 4.082rem !default;
 $secondary-header-min-height: 4.125rem !default;
 $secondary-header-max-height: 8.5rem !default;
 
+//acm background color - currently carbon $ui02
+$acm-background-color: #f4f7fb !default;
 // acm overview cards
 $overview-column-width: 0.625rem !default; /* card width must be multiple of this */
 // also change CARD_SPACING in constants.js
