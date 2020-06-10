@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -491,8 +492,13 @@ export default class TemplateEditor extends React.Component {
     let { isCustomName } = this.state
     const { controlData, templateYAML } = this.state
     const control = controlData.find(({id})=>id===field)
+    console.log('......... controlData ..........')
+    console.log(controlData)
     switch (control.type) {
     case 'text':
+      console.log('--------text case --------')
+      console.log(field)
+      console.log(evt.target.value)
       control.active = evt.target.value
       isCustomName = field==='name'
       break
@@ -500,7 +506,11 @@ export default class TemplateEditor extends React.Component {
       control.active = evt.selectedItem
       break
     case 'multiselect':
+      console.log('--------multiselect case --------')
+      console.log(field)
+      console.log(evt.selectedItems)
       control.active = evt.selectedItems
+      console.log(control)
       // if user was able to select something that automatically
       // generates the name, blow away the user name
       updateName = !isCustomName && control.updateNamePrefix
@@ -526,7 +536,10 @@ export default class TemplateEditor extends React.Component {
     }
 
     const {template} = this.props
+    console.log('--------------onchange-------------')
+
     const newYAML = generateYAML(template, controlData)
+    console.log(newYAML)
     const templateObject = parseYAML(newYAML).parsed
     this.setState({controlData, isCustomName, templateYAML: newYAML, templateObject, exceptions:[]})
     highlightChanges(this.editor, templateYAML, newYAML)

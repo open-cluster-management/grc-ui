@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -140,6 +141,8 @@ const updateSingleSelectControl = (control, reverse, newParsed) => {
 
 const updateMultiSelectControl = (control, reverse, oldParsed, newParsed) => {
   const {hasLabels, hasReplacements} = control
+  console.log('00000000 updatemultiselectcontrol')
+  console.log(control)
   if (hasLabels) {
     updateMultiSelectLabelControl(control, reverse, newParsed)
   } else if (hasReplacements) {
@@ -225,6 +228,7 @@ const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newPar
   // if user has manually changed the objects, save their changes to stuff back into template
   if (control.hasCapturedUserSource) {
     control.userData = getTemplateSource(reverse, newParsed)
+    control.active = control.userData
   } else {
     delete control.userData
   }

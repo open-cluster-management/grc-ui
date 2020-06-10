@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -21,11 +22,14 @@ export const generateYAML = (template, controlData) => {
   const templateData = {}
   const replacements = []
   const controlMap = {}
+  //console.log('// controls //')
+  //console.log(controlData)
   controlData.forEach(control=>{
     const {active, userMap, id, hasLabels, hasReplacements} = control
     let {availableMap} = control
     availableMap = {...userMap, ...availableMap}
     controlMap[id] = control
+    console.log(control)
     if (active) {
       if (hasLabels) {
         const map = {}
@@ -105,8 +109,12 @@ export const generateYAML = (template, controlData) => {
       delete replacement.userData
     }
   })
-
+  console.log(template)
+  console.log('templateData')
+  console.log(templateData)
   let yaml = template(templateData) || ''
+  console.log('yaml')
+  console.log(yaml)
   yaml = yaml.replace(/[\r\n]+/g, '\n')
 
   // find indent of key and indent the whole snippet
