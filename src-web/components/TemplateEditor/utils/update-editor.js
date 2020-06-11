@@ -22,8 +22,6 @@ export const generateYAML = (template, controlData) => {
   const templateData = {}
   const replacements = []
   const controlMap = {}
-  //console.log('// controls //')
-  //console.log(controlData)
   controlData.forEach(control=>{
     const {active, userMap, id, hasLabels, hasReplacements} = control
     let {availableMap} = control
