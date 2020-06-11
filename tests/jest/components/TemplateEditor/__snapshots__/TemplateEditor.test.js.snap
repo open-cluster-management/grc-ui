@@ -1179,7 +1179,7 @@ metadata:
   namespace: governance
 spec:
   clusterConditions:
-  - status: "True"
+  - status: \\"True\\"
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
@@ -1235,7 +1235,7 @@ metadata:
   namespace: 
 spec:
   clusterConditions:
-  - status: "True"
+  - status: \\"True\\"
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
@@ -1291,7 +1291,7 @@ metadata:
   namespace: default1,default2,mcm
 spec:
   clusterConditions:
-  - status: "True"
+  - status: \\"True\\"
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
