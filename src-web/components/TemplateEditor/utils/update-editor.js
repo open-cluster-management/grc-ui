@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -30,7 +29,6 @@ export const generateYAML = (template, controlData) => {
     let {availableMap} = control
     availableMap = {...userMap, ...availableMap}
     controlMap[id] = control
-    console.log(control)
     if (active) {
       if (hasLabels) {
         const map = {}
@@ -49,9 +47,6 @@ export const generateYAML = (template, controlData) => {
         replacements.push(control)
       } else {
         templateData[id] = active
-        console.log('1111 DEFAULT')
-        console.log(id)
-        console.log(active)
       }
     } else {
       if (id == 'enforce' || id == 'disabled') {
@@ -122,10 +117,7 @@ export const generateYAML = (template, controlData) => {
   Object.keys(templateData).forEach((k) => {
     if (templateData['specsCapture'] && (k == 'enforce' || k == 'disabled')) {
       const parsed = parseYAML(templateData['specsCapture'])
-      console.log('PARSED')
-      console.log(parsed)
       const raw = parsed['parsed']['unknown'][0]['$raw']
-      console.log(raw)
       let key = 'disabled'
       let val = templateData[k]
       if (k == 'enforce') {
@@ -134,21 +126,16 @@ export const generateYAML = (template, controlData) => {
       }
       raw.spec[key] = val
       templateData['specsCapture'] = jsYaml.safeDump(raw)
-      console.log(templateData['specsCapture'])
     }
   })
 
-  console.log(template)
-  console.log('templateData')
-  console.log(templateData)
+  //format yaml
   if (templateData['specsCapture']) {
     const parsed = parseYAML(templateData['specsCapture'])
     const raw = parsed['parsed']['unknown'][0]['$raw']
     templateData['specsCapture'] = jsYaml.safeDump(raw)
   }
   let yaml = template(templateData) || ''
-  console.log('yaml')
-  console.log(yaml)
   yaml = yaml.replace(/[\r\n]+/g, '\n')
 
   // find indent of key and indent the whole snippet

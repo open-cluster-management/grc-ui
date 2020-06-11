@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -141,8 +140,6 @@ const updateSingleSelectControl = (control, reverse, newParsed) => {
 
 const updateMultiSelectControl = (control, reverse, oldParsed, newParsed) => {
   const {hasLabels, hasReplacements} = control
-  console.log('00000000 updatemultiselectcontrol')
-  console.log(control)
   if (hasLabels) {
     updateMultiSelectLabelControl(control, reverse, newParsed)
   } else if (hasReplacements) {
@@ -253,8 +250,6 @@ export const getTemplateSource = (reverse, parsed) => {
 
     // dig out the yaml and the object that points to it
     const yaml = _.get(parsed, `${pathBase}.$yml`)
-    console.log(pathBase)
-    console.log(yaml)
     path = path.length>0 ? pathBase + `.$synced.${path.join('.$v.')}` : pathBase
     const synced = _.get(parsed, path)
     if (yaml && synced) {
