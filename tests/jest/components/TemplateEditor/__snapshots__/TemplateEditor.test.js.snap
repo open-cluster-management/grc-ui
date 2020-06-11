@@ -1179,7 +1179,8 @@ metadata:
   namespace: governance
 spec:
   clusterConditions:
-  - type: OK
+  - status: "True"
+    type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
       - {key: cloud, operator: In, values: [\\"Amazon\\"]}
@@ -1234,7 +1235,8 @@ metadata:
   namespace: 
 spec:
   clusterConditions:
-  - type: OK
+  - status: "True"
+    type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
       - {key: cloud, operator: In, values: [\\"Amazon\\"]}
@@ -1289,7 +1291,8 @@ metadata:
   namespace: default1,default2,mcm
 spec:
   clusterConditions:
-  - type: OK
+  - status: "True"
+    type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
       - {key: cloud, operator: In, values: [\\"Amazon\\"]}
