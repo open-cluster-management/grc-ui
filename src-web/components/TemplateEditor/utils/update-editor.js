@@ -53,6 +53,10 @@ export const generateYAML = (template, controlData) => {
         console.log(id)
         console.log(active)
       }
+    } else {
+      if (id == 'enforce' || id == 'disabled') {
+        templateData[id] = active
+      }
     }
   })
 
@@ -137,6 +141,11 @@ export const generateYAML = (template, controlData) => {
   console.log(template)
   console.log('templateData')
   console.log(templateData)
+  if (templateData['specsCapture']) {
+    const parsed = parseYAML(templateData['specsCapture'])
+    const raw = parsed['parsed']['unknown'][0]['$raw']
+    templateData['specsCapture'] = jsYaml.safeDump(raw)
+  }
   let yaml = template(templateData) || ''
   console.log('yaml')
   console.log(yaml)
