@@ -13,6 +13,7 @@
 import {diff} from 'deep-diff'
 import Handlebars from 'handlebars'
 import { parseYAML } from './update-controls'
+import jsYaml from 'js-yaml'
 import _ from 'lodash'
 
 export const generateYAML = (template, controlData) => {
@@ -48,6 +49,9 @@ export const generateYAML = (template, controlData) => {
         replacements.push(control)
       } else {
         templateData[id] = active
+        console.log('1111 DEFAULT')
+        console.log(id)
+        console.log(active)
       }
     }
   })
@@ -109,6 +113,27 @@ export const generateYAML = (template, controlData) => {
       delete replacement.userData
     }
   })
+
+  //handle checkboxes if spec has been captured
+  Object.keys(templateData).forEach((k) => {
+    if (templateData['specsCapture'] && (k == 'enforce' || k == 'disabled')) {
+      const parsed = parseYAML(templateData['specsCapture'])
+      console.log('PARSED')
+      console.log(parsed)
+      const raw = parsed['parsed']['unknown'][0]['$raw']
+      console.log(raw)
+      let key = 'disabled'
+      let val = templateData[k]
+      if (k == 'enforce') {
+        key = 'remediationAction'
+        val = templateData[k] ? 'enforce' : 'inform'
+      }
+      raw.spec[key] = val
+      templateData['specsCapture'] = jsYaml.safeDump(raw)
+      console.log(templateData['specsCapture'])
+    }
+  })
+
   console.log(template)
   console.log('templateData')
   console.log(templateData)

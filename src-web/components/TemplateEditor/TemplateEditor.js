@@ -516,6 +516,9 @@ export default class TemplateEditor extends React.Component {
       updateName = !isCustomName && control.updateNamePrefix
       break
     case 'checkbox':
+      console.log('------- checkbox ------')
+      console.log(control)
+      console.log(evt)
       control.active = evt
       break
     }

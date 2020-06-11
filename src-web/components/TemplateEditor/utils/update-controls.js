@@ -244,7 +244,7 @@ const getTemplateObjects = (reverse, parsed) => {
   return objects.length>0 ? objects : undefined
 }
 
-const getTemplateSource = (reverse, parsed) => {
+export const getTemplateSource = (reverse, parsed) => {
   let ret = []
   reverse.forEach(path=>{
     path = path.split('.')
@@ -253,6 +253,8 @@ const getTemplateSource = (reverse, parsed) => {
 
     // dig out the yaml and the object that points to it
     const yaml = _.get(parsed, `${pathBase}.$yml`)
+    console.log(pathBase)
+    console.log(yaml)
     path = path.length>0 ? pathBase + `.$synced.${path.join('.$v.')}` : pathBase
     const synced = _.get(parsed, path)
     if (yaml && synced) {
