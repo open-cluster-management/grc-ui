@@ -12,6 +12,12 @@
 
 .overview-content{
   .vertical-expend{
+
+    tr.new-structured-list-table-row{
+      td{
+        vertical-align: middle;
+      }
+    }
     .structured-list-module {
 
       .cluster-status-container{
