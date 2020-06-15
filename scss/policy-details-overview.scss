@@ -81,6 +81,9 @@
               margin: 0 1.5rem auto 1.5rem;
               height: 100%;
               word-break: break-all;
+              tr.new-structured-list-table-row{                
+                height: 33%;
+              }
               .structured-list-table-item{
                 min-width: max-content;
                 font-size: .875rem;
