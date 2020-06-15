@@ -92,7 +92,7 @@ class PolicyClusterDetail extends React.Component {
       }
     })
     return (
-      <div className='page-content-container' role='main'>
+      <div className='page-content-container policy-cluster-detail' role='main'>
         <div className='overview-content'>
           <StructuredListModule
             title={staticResourceData.policyDetailKeys.title}
