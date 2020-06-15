@@ -46,3 +46,29 @@ describe('PolicyDetail container test', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })
 })
+
+describe('PolicyDetail container test', () => {
+  it('renders as loading', () => {
+    const preloadedState = window.__PRELOADED_STATE__
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    const middleware = [thunkMiddleware]
+    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+      applyMiddleware(...middleware)
+    ))
+    const component = renderer.create(
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <PolicyTemplateTab
+              loading={true}
+              resourceType={resourceType}
+              staticResourceData={staticResourceData}
+            />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
+
