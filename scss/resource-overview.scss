@@ -116,6 +116,9 @@
           background-color: $acm-background-color;
           padding-left: 0rem;
           border-bottom: none;
+          .bx--module__title{
+            font-size: 1rem;
+          }
         }
       }
     }
