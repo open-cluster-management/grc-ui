@@ -47,7 +47,7 @@ export const generateYAML = (template, controlData) => {
         templateData[id] = active
       }
     } else {
-      if (id == 'enforce' || id == 'disabled') {
+      if (id === 'enforce' || id === 'disabled') {
         templateData[id] = active
       }
     }
@@ -113,12 +113,12 @@ export const generateYAML = (template, controlData) => {
 
   //handle checkboxes if spec has been captured
   Object.keys(templateData).forEach((k) => {
-    if (templateData['specsCapture'] && (k == 'enforce' || k == 'disabled')) {
+    if (templateData['specsCapture'] && (k === 'enforce' || k === 'disabled')) {
       const parsed = parseYAML(templateData['specsCapture'])
       const raw = parsed['parsed']['unknown'][0]['$raw']
       let key = 'disabled'
       let val = templateData[k]
-      if (k == 'enforce') {
+      if (k === 'enforce') {
         key = 'remediationAction'
         val = templateData[k] ? 'enforce' : 'inform'
       }
