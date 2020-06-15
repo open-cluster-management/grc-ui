@@ -24,9 +24,12 @@
   max-width: 100%;
   margin-bottom: -3.375rem;
   .bx--module__inner{
-
+    border: none;
+    box-shadow: none;
     .bx--module__header{
+      padding-left: 0rem;
       border: unset;
+      background-color: $acm-background-color;
       .bx--module__title{
         font-size: 1rem;
       }
@@ -35,7 +38,7 @@
     .yaml-editor-button {
       position: relative;
       float: right;
-      margin: -2.5rem 1rem 0.4rem 0;
+      margin: -2.5rem -0.25rem 0.4rem 0;
       button {
         margin: 0 0.3rem;
         width: 5.5rem;
