@@ -105,3 +105,22 @@
 
   .bx--snippet.bx--snippet--code { margin-bottom: .3rem; }
 }
+
+.policy-cluster-detail{
+  .overview-content{
+    .bx--module{
+      .bx--module__inner{
+        border: none;
+        box-shadow: none;
+        .bx--module__header{
+          background-color: $acm-background-color;
+          padding-left: 0rem;
+          border-bottom: none;
+          .bx--module__title{
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}

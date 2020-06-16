@@ -5357,522 +5357,1785 @@ export const staticResourceDataPolicyOverview = {
 
 export const itemPolicyOverview = [
   {
-    'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
-      'kind': 'Policy',
-      'metadata': {
-        'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'VA',
-          'policy.mcm.ibm.com/standards': 'NIST',
-          'seed-generation': '1'
+    'raw':{
+      'apiVersion':'policies.open-cluster-management.io/v1',
+      'kind':'Policy',
+      'metadata':{
+        'annotations':{
+          'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS DataSecurity","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
+          'policies.open-cluster-management.io/categories':'PR.DS DataSecurity',
+          'policies.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
+          'policies.open-cluster-management.io/standards':'NIST-CSF'
         },
-        'creationTimestamp': '2019-09-23T14:34:25Z',
-        'finalizers': [
-          'propagator.finalizer.mcm.ibm.com',
-          'finalizer.policies.ibm.com'
-        ],
-        'generation': 7,
-        'name': '1569249226915-policy-test',
-        'namespace': 'mcm',
-        'resourceVersion': '7688204',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
-        'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e'
+        'creationTimestamp':'2020-06-02T10:43:48Z',
+        'generation':1,
+        'name':'case6-test-policy',
+        'namespace':'default',
+        'resourceVersion':'42637093',
+        'selfLink':'/apis/policies.open-cluster-management.io/v1/namespaces/default/policies/case6-test-policy',
+        'uid':'c1aea785-0af3-4829-87eb-cf4298d0d213'
       },
-      'spec': {
-        'complianceType': 'musthave',
-        'namespaces': {
-          'exclude': [
-            'kube-*'
-          ],
-          'include': [
-            'default'
-          ]
-        },
-        'object-templates': [
+      'spec':{
+        'disabled':false,
+        'policy-templates':[
           {
-            'complianceType': 'musthave',
-            'objectDefinition': {
-              'apiVersion': 'v1',
-              'kind': 'Namespace',
-              'metadata': {
-                'name': 'prod'
+            'objectDefinition':{
+              'apiVersion':'policies.ibm.com/v1alpha1',
+              'kind':'TrustedContainerPolicy',
+              'metadata':{
+                'name':'case6-test-policy-trustedcontainerpolicy'
+              },
+              'spec':{
+                'imageRegistry':'quay.io',
+                'namespaceSelector':{
+                  'exclude':[
+                    'kube-system',
+                    'default'
+                  ],
+                  'include':[
+                    'e2e-test'
+                  ]
+                },
+                'remediationAction':'inform',
+                'severity':'low'
               }
-            },
-            'status': {
-              'Validity': {}
+            }
+          },
+          {
+            'objectDefinition':{
+              'apiVersion':'policies.open-cluster-management.io/v1',
+              'kind':'ConfigurationPolicy',
+              'metadata':{
+                'name':'case6-policy-role-example'
+              },
+              'spec':{
+                'namespaceSelector':{
+                  'exclude':[
+                    'kube-*'
+                  ],
+                  'include':[
+                    'default'
+                  ]
+                },
+                'object-templates':[
+                  {
+                    'complianceType':'mustonlyhave',
+                    'objectDefinition':{
+                      'apiVersion':'rbac.authorization.k8s.io/v1',
+                      'kind':'Role',
+                      'metadata':{
+                        'name':'policy-role-example'
+                      },
+                      'rules':[
+                        {
+                          'apiGroups':[
+                            'extensions',
+                            'apps'
+                          ],
+                          'resources':[
+                            'deployments'
+                          ],
+                          'verbs':[
+                            'get',
+                            'list',
+                            'watch',
+                            'delete',
+                            'patch'
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ],
+                'remediationAction':'inform',
+                'severity':'high'
+              }
             }
           }
         ],
-        'remediationAction': 'inform'
+        'remediationAction':'inform'
       },
-      'status': {
-        'placementBindings': [
-          'binding-1569249226915-policy-test'
-        ],
-        'placementPolicies': [
-          'placement-1569249226915-policy-test'
-        ],
-        'status': {
-          'cluster1': {
-            'aggregatePoliciesStatus': {
-              '1569249226915-policy-test': {
-                'compliant': 'NonCompliant'
-              }
-            },
-            'clustername': 'cluster1',
-            'compliant': 'NonCompliant'
-          },
-          'clusterhub': {
-            'aggregatePoliciesStatus': {
-              '1569249226915-policy-test': {
-                'compliant': 'NonCompliant'
-              }
-            },
-            'clustername': 'clusterhub',
-            'compliant': 'NonCompliant'
+      'status':{
+        'placement':[
+          {
+            'placementBinding':'case6-test-policy-pb',
+            'placementRule':'case6-test-policy-plr'
           }
+        ],
+      }
+    },
+    'metadata':{
+      'creationTimestamp':'2020-06-02T10:43:48Z',
+      'name':'case6-test-policy',
+      'namespace':'default',
+      'resourceVersion':'42637093',
+      'selfLink':'/apis/policies.open-cluster-management.io/v1/namespaces/default/policies/case6-test-policy',
+      'uid':'c1aea785-0af3-4829-87eb-cf4298d0d213',
+      'annotations':{
+        'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS DataSecurity","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
+        'policies.open-cluster-management.io/categories':'PR.DS DataSecurity',
+        'policies.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
+        'policies.open-cluster-management.io/standards':'NIST-CSF'
+      },
+      '__typename':'Metadata'
+    },
+    'annotations':{
+      'categories':'PR.DS DataSecurity',
+      'controls':'PR.DS-2 Data-in-transit',
+      'standards':'NIST-CSF'
+    },
+    'placementPolicies':[
+      {
+        'metadata':{
+          'annotations':{
+            'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"apps.open-cluster-management.io/v1","kind":"PlacementRule","metadata":{"annotations":{},"name":"case6-test-policy-plr","namespace":"default"},"spec":{"clusterConditions":[{"type":"OK"}],"clusterSelector":{"matchExpressions":[]}}}\n'
+          },
+          'name':'case6-test-policy-plr',
+          'namespace':'default',
+          'creationTimestamp':'2020-06-02T10:43:49Z',
+          'selfLink':'/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/case6-test-policy-plr',
+          '__typename':'Metadata'
+        },
+        'clusterReplicas':null,
+        'resourceSelector':null,
+        'status':{
+          'decisions':[
+            {
+              'clusterName':'calamari',
+              'clusterNamespace':'calamari'
+            }
+          ]
+        },
+        'raw':{
+          'apiVersion':'apps.open-cluster-management.io/v1',
+          'kind':'PlacementRule',
+          'metadata':{
+            'annotations':{
+              'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"apps.open-cluster-management.io/v1","kind":"PlacementRule","metadata":{"annotations":{},"name":"case6-test-policy-plr","namespace":"default"},"spec":{"clusterConditions":[{"type":"OK"}],"clusterSelector":{"matchExpressions":[]}}}\n'
+            },
+            'creationTimestamp':'2020-06-02T10:43:49Z',
+            'generation':1,
+            'name':'case6-test-policy-plr',
+            'namespace':'default',
+            'resourceVersion':'42637074',
+            'selfLink':'/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/case6-test-policy-plr',
+            'uid':'d35180d5-75a4-4576-90b5-9eba2a4da875'
+          },
+          'spec':{
+            'clusterConditions':[
+              {
+                'type':'OK'
+              }
+            ],
+            'clusterSelector':{
+              'matchExpressions':[
+
+              ]
+            }
+          },
+          'status':{
+            'decisions':[
+              {
+                'clusterName':'calamari',
+                'clusterNamespace':'calamari'
+              }
+            ]
+          }
+        },
+        '__typename':'PlacementPolicy'
+      }
+    ],
+    'placementBindings':[
+      {
+        'metadata':{
+          'name':'case6-test-policy-pb',
+          'namespace':'default',
+          'creationTimestamp':'2020-06-02T10:43:48Z',
+          'selfLink':'/apis/policies.open-cluster-management.io/v1/namespaces/default/placementbindings/case6-test-policy-pb',
+          '__typename':'Metadata'
+        },
+        'placementRef':{
+          'name':'case6-test-policy-plr',
+          'kind':'PlacementRule',
+          '__typename':'Subject'
+        },
+        'raw':{
+          'apiVersion':'policies.open-cluster-management.io/v1',
+          'kind':'PlacementBinding',
+          'metadata':{
+            'annotations':{
+              'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"PlacementBinding","metadata":{"annotations":{},"name":"case6-test-policy-pb","namespace":"default"},"placementRef":{"apiGroup":"apps.open-cluster-management.io","kind":"PlacementRule","name":"case6-test-policy-plr"},"subjects":[{"apiGroup":"policies.open-cluster-management.io","kind":"Policy","name":"case6-test-policy"}]}\n'
+            },
+            'creationTimestamp':'2020-06-02T10:43:48Z',
+            'generation':1,
+            'name':'case6-test-policy-pb',
+            'namespace':'default',
+            'resourceVersion':'42637066',
+            'selfLink':'/apis/policies.open-cluster-management.io/v1/namespaces/default/placementbindings/case6-test-policy-pb',
+            'uid':'923b854e-637d-4a91-9242-04eb936c0f9b'
+          },
+          'placementRef':{
+            'apiGroup':'apps.open-cluster-management.io',
+            'kind':'PlacementRule',
+            'name':'case6-test-policy-plr'
+          },
+          'subjects':[
+            {
+              'apiGroup':'policies.open-cluster-management.io',
+              'kind':'Policy',
+              'name':'case6-test-policy'
+            }
+          ]
+        },
+        '__typename':'PlacementBinding'
+      }
+    ],
+    'complianceStatus':[
+      {
+        'clusterNamespace':'0',
+        'localCompliantStatus':'0/0',
+        'localValidStatus':'0/0',
+        'compliant':'NonCompliant',
+        '__typename':'CompliantStatus'
+      }
+    ],
+    'compliancePolicy':[
+      {
+        'name':'case6-test-policy',
+        'status':null,
+        'complianceName':'case6-test-policy',
+        'complianceNamespace':'default',
+        'complianceSelfLink':'/apis/policies.open-cluster-management.io/v1/namespaces/default/policies/case6-test-policy',
+        'roleTemplates':[
+
+        ],
+        'roleBindingTemplates':[
+
+        ],
+        'objectTemplates':[
+
+        ],
+        'policyTemplates':[
+          {
+            'apiVersion':'policies.ibm.com/v1alpha1',
+            'complianceType':'',
+            'compliant':'Compliant',
+            'lastTransition':'',
+            'name':'case6-test-policy-trustedcontainerpolicy',
+            'kind':'TrustedContainerPolicy',
+            'validity':'',
+            'raw':{
+              'objectDefinition':{
+                'apiVersion':'policies.ibm.com/v1alpha1',
+                'kind':'TrustedContainerPolicy',
+                'metadata':{
+                  'name':'case6-test-policy-trustedcontainerpolicy'
+                },
+                'spec':{
+                  'imageRegistry':'quay.io',
+                  'namespaceSelector':{
+                    'exclude':[
+                      'kube-system',
+                      'default'
+                    ],
+                    'include':[
+                      'e2e-test'
+                    ]
+                  },
+                  'remediationAction':'inform',
+                  'severity':'low'
+                }
+              },
+              'templateType':'policy-templates'
+            },
+            '__typename':'PolicyTemplate'
+          },
+          {
+            'apiVersion':'policies.open-cluster-management.io/v1',
+            'complianceType':'',
+            'compliant':'Compliant',
+            'lastTransition':'',
+            'name':'case6-policy-role-example',
+            'kind':'ConfigurationPolicy',
+            'validity':'',
+            'raw':{
+              'objectDefinition':{
+                'apiVersion':'policies.open-cluster-management.io/v1',
+                'kind':'ConfigurationPolicy',
+                'metadata':{
+                  'name':'case6-policy-role-example'
+                },
+                'spec':{
+                  'namespaceSelector':{
+                    'exclude':[
+                      'kube-*'
+                    ],
+                    'include':[
+                      'default'
+                    ]
+                  },
+                  'object-templates':[
+                    {
+                      'complianceType':'mustonlyhave',
+                      'objectDefinition':{
+                        'apiVersion':'rbac.authorization.k8s.io/v1',
+                        'kind':'Role',
+                        'metadata':{
+                          'name':'policy-role-example'
+                        },
+                        'rules':[
+                          {
+                            'apiGroups':[
+                              'extensions',
+                              'apps'
+                            ],
+                            'resources':[
+                              'deployments'
+                            ],
+                            'verbs':[
+                              'get',
+                              'list',
+                              'watch',
+                              'delete',
+                              'patch'
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  'remediationAction':'inform',
+                  'severity':'high'
+                }
+              },
+              'templateType':'policy-templates'
+            },
+            '__typename':'PolicyTemplate'
+          }
+        ],
+        'detail':{
+          'exclude_namespace':[
+            '*'
+          ],
+          'include_namespace':[
+            '*'
+          ]
+        },
+        'raw':{
+          'apiVersion':'policies.open-cluster-management.io/v1',
+          'kind':'Policy',
+          'metadata':{
+            'annotations':{
+              'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS DataSecurity","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
+              'policies.open-cluster-management.io/categories':'PR.DS DataSecurity',
+              'policies.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
+              'policies.open-cluster-management.io/standards':'NIST-CSF'
+            },
+            'creationTimestamp':'2020-06-02T10:43:48Z',
+            'generation':1,
+            'name':'case6-test-policy',
+            'namespace':'default',
+            'resourceVersion':'42637093',
+            'selfLink':'/apis/policies.open-cluster-management.io/v1/namespaces/default/policies/case6-test-policy',
+            'uid':'c1aea785-0af3-4829-87eb-cf4298d0d213'
+          },
+          'spec':{
+            'disabled':false,
+            'policy-templates':[
+              {
+                'objectDefinition':{
+                  'apiVersion':'policies.ibm.com/v1alpha1',
+                  'kind':'TrustedContainerPolicy',
+                  'metadata':{
+                    'name':'case6-test-policy-trustedcontainerpolicy'
+                  },
+                  'spec':{
+                    'imageRegistry':'quay.io',
+                    'namespaceSelector':{
+                      'exclude':[
+                        'kube-system',
+                        'default'
+                      ],
+                      'include':[
+                        'e2e-test'
+                      ]
+                    },
+                    'remediationAction':'inform',
+                    'severity':'low'
+                  }
+                }
+              },
+              {
+                'objectDefinition':{
+                  'apiVersion':'policies.open-cluster-management.io/v1',
+                  'kind':'ConfigurationPolicy',
+                  'metadata':{
+                    'name':'case6-policy-role-example'
+                  },
+                  'spec':{
+                    'namespaceSelector':{
+                      'exclude':[
+                        'kube-*'
+                      ],
+                      'include':[
+                        'default'
+                      ]
+                    },
+                    'object-templates':[
+                      {
+                        'complianceType':'mustonlyhave',
+                        'objectDefinition':{
+                          'apiVersion':'rbac.authorization.k8s.io/v1',
+                          'kind':'Role',
+                          'metadata':{
+                            'name':'policy-role-example'
+                          },
+                          'rules':[
+                            {
+                              'apiGroups':[
+                                'extensions',
+                                'apps'
+                              ],
+                              'resources':[
+                                'deployments'
+                              ],
+                              'verbs':[
+                                'get',
+                                'list',
+                                'watch',
+                                'delete',
+                                'patch'
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    'remediationAction':'inform',
+                    'severity':'high'
+                  }
+                }
+              }
+            ],
+            'remediationAction':'inform'
+          },
+          'status':{
+            'placement':[
+              {
+                'placementBinding':'case6-test-policy-pb',
+                'placementRule':'case6-test-policy-plr'
+              }
+            ],
+            'status':[
+              {
+                'clustername':'calamari',
+                'clusternamespace':'calamari',
+                'compliant':'NonCompliant'
+              }
+            ]
+          },
+          'raw':{
+            'apiVersion':'policies.open-cluster-management.io/v1',
+            'kind':'Policy',
+            'metadata':{
+              'annotations':{
+                'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS DataSecurity","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
+                'policies.open-cluster-management.io/categories':'PR.DS DataSecurity',
+                'policies.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
+                'policies.open-cluster-management.io/standards':'NIST-CSF'
+              },
+              'creationTimestamp':'2020-06-02T10:43:48Z',
+              'generation':1,
+              'name':'case6-test-policy',
+              'namespace':'default',
+              'resourceVersion':'42637093',
+              'selfLink':'/apis/policies.open-cluster-management.io/v1/namespaces/default/policies/case6-test-policy',
+              'uid':'c1aea785-0af3-4829-87eb-cf4298d0d213'
+            },
+            'spec':{
+              'disabled':false,
+              'policy-templates':[
+                {
+                  'objectDefinition':{
+                    'apiVersion':'policies.ibm.com/v1alpha1',
+                    'kind':'TrustedContainerPolicy',
+                    'metadata':{
+                      'name':'case6-test-policy-trustedcontainerpolicy'
+                    },
+                    'spec':{
+                      'imageRegistry':'quay.io',
+                      'namespaceSelector':{
+                        'exclude':[
+                          'kube-system',
+                          'default'
+                        ],
+                        'include':[
+                          'e2e-test'
+                        ]
+                      },
+                      'remediationAction':'inform',
+                      'severity':'low'
+                    }
+                  }
+                },
+                {
+                  'objectDefinition':{
+                    'apiVersion':'policies.open-cluster-management.io/v1',
+                    'kind':'ConfigurationPolicy',
+                    'metadata':{
+                      'name':'case6-policy-role-example'
+                    },
+                    'spec':{
+                      'namespaceSelector':{
+                        'exclude':[
+                          'kube-*'
+                        ],
+                        'include':[
+                          'default'
+                        ]
+                      },
+                      'object-templates':[
+                        {
+                          'complianceType':'mustonlyhave',
+                          'objectDefinition':{
+                            'apiVersion':'rbac.authorization.k8s.io/v1',
+                            'kind':'Role',
+                            'metadata':{
+                              'name':'policy-role-example'
+                            },
+                            'rules':[
+                              {
+                                'apiGroups':[
+                                  'extensions',
+                                  'apps'
+                                ],
+                                'resources':[
+                                  'deployments'
+                                ],
+                                'verbs':[
+                                  'get',
+                                  'list',
+                                  'watch',
+                                  'delete',
+                                  'patch'
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      'remediationAction':'inform',
+                      'severity':'high'
+                    }
+                  }
+                }
+              ],
+              'remediationAction':'inform'
+            },
+            'status':{
+              'placement':[
+                {
+                  'placementBinding':'case6-test-policy-pb',
+                  'placementRule':'case6-test-policy-plr'
+                }
+              ],
+              'status':[
+                {
+                  'clustername':'calamari',
+                  'clusternamespace':'calamari',
+                  'compliant':'NonCompliant'
+                }
+              ]
+            }
+          },
+          'name':'case6-test-policy',
+          'namespace':'default',
+          'remediation':'inform',
+          'clusters':[
+            '0'
+          ],
+          'clusterNS':{
+
+          },
+          'clusterConsoleURL':{
+
+          }
+        },
+        '__typename':'CompliancePolicyDetail'
+      }
+    ],
+    'compliancePolicies':[
+
+    ],
+    'policyCompliant':'0/0',
+    'clusterCompliant':'1/1',
+    'clusters':[
+      '0'
+    ],
+    '__typename':'Compliance'
+  }
+]
+
+export const itemPolicyOverviewError = {
+  'graphQLErrors':[
+
+  ],
+  'networkError':{
+    'response':{
+
+    },
+    'statusCode':504,
+    'bodyText':'Error occured while trying to proxy to: localhost:3000/graphql'
+  },
+  'message':'Network error: JSON.parse: unexpected character at line 1 column 1 of the JSON data'
+}
+
+export const itemSpec = {
+  'disabled':false,
+  'policy-templates':[
+    {
+      'objectDefinition':{
+        'apiVersion':'policies.ibm.com/v1alpha1',
+        'kind':'TrustedContainerPolicy',
+        'metadata':{
+          'name':'case6-test-policy-trustedcontainerpolicy'
+        },
+        'spec':{
+          'imageRegistry':'quay.io',
+          'namespaceSelector':{
+            'exclude':[
+              'kube-system',
+              'default'
+            ],
+            'include':[
+              'e2e-test'
+            ]
+          },
+          'remediationAction':'inform',
+          'severity':'low'
         }
       }
     },
-    'metadata': {
-      'creationTimestamp': '2019-09-23T14:34:25Z',
-      'name': '1569249226915-policy-test',
-      'namespace': 'mcm',
-      'resourceVersion': '7688204',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
-      'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e',
-      'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls': 'VA',
-        'policy.mcm.ibm.com/standards': 'NIST',
-        'seed-generation': '1'
-      },
-      '__typename': 'Metadata'
-    },
-    'annotations': {
-      'categories': 'SystemAndInformationIntegrity',
-      'controls': 'VA',
-      'standards': 'NIST'
-    },
-    'placementPolicies': [
-      {
-        'metadata': {
-          'annotations': {
-            'mcm.ibm.com/user-group': 'c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOmt1YmUtc3lzdGVtLHN5c3RlbTphdXRoZW50aWNhdGVk',
-            'mcm.ibm.com/user-identity': 'c3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmRlZmF1bHQ='
-          },
-          'name': 'placement-1569249226915-policy-test',
-          'namespace': 'mcm',
-          'creationTimestamp': '2019-09-23T14:34:25Z',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
-          '__typename': 'Metadata'
+    {
+      'objectDefinition':{
+        'apiVersion':'policies.open-cluster-management.io/v1',
+        'kind':'ConfigurationPolicy',
+        'metadata':{
+          'name':'case6-policy-role-example'
         },
-        'clusterLabels': [],
-        'clusterReplicas': null,
-        'resourceSelector': {},
-        'status': {
-          'decisions': [
+        'spec':{
+          'namespaceSelector':{
+            'exclude':[
+              'kube-*'
+            ],
+            'include':[
+              'default'
+            ]
+          },
+          'object-templates':[
             {
-              'clusterName': 'cluster1',
-              'clusterNamespace': 'cluster1'
+              'complianceType':'mustonlyhave',
+              'objectDefinition':{
+                'apiVersion':'rbac.authorization.k8s.io/v1',
+                'kind':'Role',
+                'metadata':{
+                  'name':'policy-role-example'
+                },
+                'rules':[
+                  {
+                    'apiGroups':[
+                      'extensions',
+                      'apps'
+                    ],
+                    'resources':[
+                      'deployments'
+                    ],
+                    'verbs':[
+                      'get',
+                      'list',
+                      'watch',
+                      'delete',
+                      'patch'
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          'remediationAction':'inform',
+          'severity':'high'
+        }
+      }
+    }
+  ],
+  'remediationAction':'inform'
+}
+
+export const staticResourceDataPolicyCluster = {
+  'defaultSortField':'metadata.name',
+  'primaryKey':'metadata.name',
+  'secondaryKey':'metadata.namespace',
+  'compliancePolicies':{
+    'resourceKey':'compliancePolicies',
+    'title':'table.header.compliance.policies',
+    'defaultSortField':'name',
+    'normalizedKey':'name',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.compliant',
+        'resourceKey':'policyCompliantStatus',
+        'key':'policyCompliantStatus'
+      },
+      {
+        'msgKey':'table.header.name',
+        'resourceKey':'name',
+        'key':'name'
+      },
+      {
+        'msgKey':'table.header.cluster.compliant',
+        'resourceKey':'clusterCompliant',
+        'key':'clusterCompliant'
+      },
+      {
+        'msgKey':'table.header.cluster.not.compliant',
+        'resourceKey':'clusterNotCompliant',
+        'key':'clusterNotCompliant'
+      }
+    ]
+  },
+  'placementBindingKeys':{
+    'title':'application.placement.bindings',
+    'defaultSortField':'name',
+    'resourceKey':'placementBindings',
+    'tableKeys':[
+      {
+        'key':'name',
+        'resourceKey':'metadata.name',
+        'msgKey':'table.header.name'
+      },
+      {
+        'key':'namespace',
+        'resourceKey':'metadata.namespace',
+        'msgKey':'table.header.namespace'
+      },
+      {
+        'key':'placementpolicy',
+        'resourceKey':'placementRef.name',
+        'msgKey':'table.header.placementpolicy'
+      },
+      {
+        'key':'subjects',
+        'resourceKey':'subjects',
+        'msgKey':'table.header.subjects'
+      },
+      {
+        'key':'timestamp',
+        'resourceKey':'metadata.creationTimestamp',
+        'msgKey':'table.header.created'
+      }
+    ],
+    'detailKeys':{
+      'title':'policy.pb.details.title',
+      'headerRows':[
+        'type',
+        'detail'
+      ],
+      'rows':[
+        {
+          'cells':[
+            {
+              'resourceKey':'policy.pb.details.name',
+              'type':'i18n'
+            },
+            {
+              'resourceKey':'metadata.name'
             }
           ]
         },
-        'raw': {
-          'apiVersion': 'mcm.ibm.com/v1alpha1',
-          'kind': 'PlacementPolicy',
-          'metadata': {
-            'name': 'placement-1569249226915-policy-test',
-            'namespace': 'mcm',
-            'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
-            'uid': '3de387ad-de0f-11e9-a6d8-02e847915a0f',
-            'resourceVersion': '188032',
-            'creationTimestamp': '2019-09-23T14:34:25Z',
-            'annotations': {
-              'mcm.ibm.com/user-group': 'c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOmt1YmUtc3lzdGVtLHN5c3RlbTphdXRoZW50aWNhdGVk',
-              'mcm.ibm.com/user-identity': 'c3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmRlZmF1bHQ='
-            }
-          },
-          'spec': {
-            'resourceSelector': {},
-            'clusterLabels': [],
-            'resourceHint': {}
-          },
-          'status': {
-            'decisions': [
-              {
-                'clusterName': 'cluster1',
-                'clusterNamespace': 'cluster1'
-              }
-            ]
-          }
-        },
-        '__typename': 'PlacementPolicy'
-      }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-1569249226915-policy-test',
-          'namespace': 'mcm',
-          'creationTimestamp': '2019-09-23T14:34:25Z',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
-          '__typename': 'Metadata'
-        },
-        'placementRef': {
-          'name': 'placement-1569249226915-policy-test',
-          'kind': 'PlacementPolicy',
-          '__typename': 'Subject'
-        },
-        'subjects': [],
-        'raw': {
-          'apiVersion': 'mcm.ibm.com/v1alpha1',
-          'kind': 'PlacementBinding',
-          'metadata': {
-            'name': 'binding-1569249226915-policy-test',
-            'namespace': 'mcm',
-            'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
-            'uid': '3de3a5b6-de0f-11e9-a6d8-02e847915a0f',
-            'resourceVersion': '185883',
-            'creationTimestamp': '2019-09-23T14:34:25Z',
-            'labels': {
-              'name': 'binding-1569249226915-policy-test',
-              'placementPolicy': 'placement-1569249226915-policy-test'
-            },
-            'annotations': {
-              'mcm.ibm.com/user-group': 'c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOmt1YmUtc3lzdGVtLHN5c3RlbTphdXRoZW50aWNhdGVk',
-              'mcm.ibm.com/user-identity': 'c3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmRlZmF1bHQ='
-            },
-            'finalizers': [
-              'propagator.finalizer.mcm.ibm.com'
-            ]
-          },
-          'subjects': [
+        {
+          'cells':[
             {
-              'kind': 'Policy',
-              'apiGroup': 'policy.mcm.ibm.com',
-              'name': '1569249226915-policy-test'
+              'resourceKey':'policy.pb.details.namespace',
+              'type':'i18n'
+            },
+            {
+              'resourceKey':'metadata.namespace'
             }
-          ],
-          'placementRef': {
-            'name': 'placement-1569249226915-policy-test',
-            'kind': 'PlacementPolicy',
-            'apiGroup': 'mcm.ibm.com'
-          }
+          ]
         },
-        '__typename': 'PlacementBinding'
-      }
-    ],
-    'complianceStatus': [
+        {
+          'cells':[
+            {
+              'resourceKey':'policy.pb.details.pp',
+              'type':'i18n'
+            },
+            {
+              'resourceKey':'placementRef.name'
+            }
+          ]
+        },
+        {
+          'cells':[
+            {
+              'resourceKey':'policy.pb.details.subjects',
+              'type':'i18n'
+            },
+            {
+              'resourceKey':'subjects[0]'
+            }
+          ]
+        },
+        {
+          'cells':[
+            {
+              'resourceKey':'policy.pb.details.timestamp',
+              'type':'i18n'
+            },
+            {
+              'resourceKey':'metadata.creationTimestamp'
+            }
+          ]
+        }
+      ]
+    },
+    'tableActions':[
+      'table.actions.edit'
+    ]
+  },
+  'placementPolicyKeys':{
+    'title':'application.placement.policies',
+    'defaultSortField':'name',
+    'resourceKey':'placementPolicies',
+    'tableKeys':[
       {
-        'clusterNamespace': 'cluster1',
-        'localCompliantStatus': '0/1',
-        'localValidStatus': '1/1',
-        'compliant': 'NonCompliant',
-        '__typename': 'CompliantStatus'
+        'key':'name',
+        'resourceKey':'metadata.name',
+        'msgKey':'table.header.name'
       },
       {
-        'clusterNamespace': 'clusterhub',
-        'localCompliantStatus': '0/1',
-        'localValidStatus': '1/1',
-        'compliant': 'NonCompliant',
-        '__typename': 'CompliantStatus'
+        'key':'namespace',
+        'resourceKey':'metadata.namespace',
+        'msgKey':'table.header.namespace'
+      },
+      {
+        'key':'replicas',
+        'resourceKey':'clusterReplicas',
+        'msgKey':'table.header.replicas'
+      },
+      {
+        'key':'clusterSelector',
+        'resourceKey':'clusterLabels',
+        'msgKey':'table.header.cluster.selector'
+      },
+      {
+        'key':'resourceSelector',
+        'resourceKey':'resourceSelector',
+        'msgKey':'table.header.resource.selector'
+      },
+      {
+        'key':'decisions',
+        'resourceKey':'status',
+        'msgKey':'table.header.decisions'
+      },
+      {
+        'key':'timestamp',
+        'resourceKey':'metadata.creationTimestamp',
+        'msgKey':'table.header.created'
       }
     ],
-    'compliancePolicy': [
-      {
-        'name': '1569249226915-policy-test',
-        'status': 'NonCompliant',
-        'complianceName': '1569249226915-policy-test',
-        'complianceNamespace': 'mcm',
-        'complianceSelfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
-        'roleTemplates': [],
-        'roleBindingTemplates': [],
-        'objectTemplates': [
-          {
-            'apiVersion': 'v1',
-            'complianceType': 'musthave',
-            'compliant': '',
-            'lastTransition': '',
-            'name': 'prod',
-            'kind': 'Namespace',
-            'validity': '[object Object]',
-            'raw': {
-              'complianceType': 'musthave',
-              'objectDefinition': {
-                'apiVersion': 'v1',
-                'kind': 'Namespace',
-                'metadata': {
-                  'name': 'prod'
-                }
-              },
-              'status': {
-                'Validity': {}
-              },
-              'templateType': 'object-templates'
+    'detailKeys':{
+      'title':'policy.pp.details.title',
+      'headerRows':[
+        'type',
+        'detail'
+      ],
+      'rows':[
+        {
+          'cells':[
+            {
+              'resourceKey':'policy.pp.details.name',
+              'type':'i18n'
             },
-            '__typename': 'PolicyTemplate'
+            {
+              'resourceKey':'metadata.name'
+            }
+          ]
+        },
+        {
+          'cells':[
+            {
+              'resourceKey':'policy.pp.details.namespace',
+              'type':'i18n'
+            },
+            {
+              'resourceKey':'metadata.namespace'
+            }
+          ]
+        },
+        {
+          'cells':[
+            {
+              'resourceKey':'policy.pp.details.clusterSelector',
+              'type':'i18n'
+            },
+            {
+              'resourceKey':'clusterLabels'
+            }
+          ]
+        },
+        {
+          'cells':[
+            {
+              'resourceKey':'policy.pp.details.decisions',
+              'type':'i18n'
+            },
+            {
+              'resourceKey':'status'
+            }
+          ]
+        },
+        {
+          'cells':[
+            {
+              'resourceKey':'policy.pp.details.timestamp',
+              'type':'i18n'
+            },
+            {
+              'resourceKey':'metadata.creationTimestamp'
+            }
+          ]
+        }
+      ]
+    },
+    'tableActions':[
+      'table.actions.edit'
+    ]
+  },
+  'roleTemplates':{
+    'resourceKey':'role-templates',
+    'title':'table.header.role.template',
+    'defaultSortField':'metadata.name',
+    'normalizedKey':'metadata.name',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.role.template.name',
+        'resourceKey':'metadata.name',
+        'key':'name'
+      },
+      {
+        'msgKey':'table.header.role.template.complianceType',
+        'resourceKey':'complianceType',
+        'key':'complianceType'
+      },
+      {
+        'msgKey':'table.header.role.template.apiVersion',
+        'resourceKey':'apiVersion',
+        'key':'apiVersion'
+      }
+    ],
+    'rows':[
+      {
+        'cells':[
+          {
+            'resourceKey':'metadata.name'
+          },
+          {
+            'resourceKey':'complianceType'
+          },
+          {
+            'resourceKey':'apiVersion'
+          }
+        ]
+      }
+    ],
+    'subHeaders':[
+      'table.header.role.template.complianceType',
+      'table.header.apiGroups',
+      'table.header.resources',
+      'table.header.ruleVerbs'
+    ]
+  },
+  'objectTemplates':{
+    'resourceKey':'object-templates',
+    'title':'table.header.object.template',
+    'defaultSortField':'metadata.name',
+    'normalizedKey':'metadata.name',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.object.template.name',
+        'resourceKey':'metadata.name',
+        'key':'name'
+      },
+      {
+        'msgKey':'table.header.object.template.complianceType',
+        'resourceKey':'complianceType',
+        'key':'complianceType'
+      },
+      {
+        'msgKey':'table.header.object.template.apiVersion',
+        'resourceKey':'apiVersion',
+        'key':'apiVersion'
+      },
+      {
+        'msgKey':'table.header.object.template.kind',
+        'resourceKey':'kind',
+        'key':'kind'
+      }
+    ]
+  },
+  'policyTemplates':{
+    'resourceKey':'policy-templates',
+    'title':'table.header.policy.template',
+    'defaultSortField':'metadata.name',
+    'normalizedKey':'metadata.name',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.object.template.name',
+        'resourceKey':'metadata.name',
+        'key':'name'
+      },
+      {
+        'msgKey':'table.header.object.template.apiVersion',
+        'resourceKey':'apiVersion',
+        'key':'apiVersion'
+      },
+      {
+        'msgKey':'table.header.object.template.kind',
+        'resourceKey':'kind',
+        'key':'kind'
+      }
+    ]
+  },
+  'complianceStatus':{
+    'resourceKey':'complianceStatus',
+    'title':'table.header.compliance.compliant',
+    'defaultSortField':'clusterNamespace',
+    'normalizedKey':'clusterNamespace',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.cluster.namespace',
+        'resourceKey':'clusterNamespace',
+        'key':'clusterNamespace'
+      },
+      {
+        'msgKey':'table.header.compliance.policy.status',
+        'resourceKey':'localCompliantStatus',
+        'key':'localCompliantStatus'
+      },
+      {
+        'msgKey':'table.header.compliance.policy.valid',
+        'resourceKey':'localValidStatus',
+        'key':'localValidStatus'
+      }
+    ]
+  },
+  'tableKeys':[
+    {
+      'msgKey':'table.header.policy.name',
+      'resourceKey':'metadata.name'
+    },
+    {
+      'msgKey':'table.header.namespace',
+      'resourceKey':'metadata.namespace'
+    },
+    {
+      'msgKey':'table.header.remediation',
+      'resourceKey':'remediation'
+    },
+    {
+      'msgKey':'table.header.cluster.violation',
+      'resourceKey':'clusterCompliant'
+    },
+    {
+      'msgKey':'table.header.controls',
+      'resourceKey':'metadata.annotations["policy.open-cluster-management.io/controls"]'
+    },
+    {
+      'msgKey':'table.header.standards',
+      'resourceKey':'metadata.annotations["policy.open-cluster-management.io/standards"]'
+    },
+    {
+      'msgKey':'table.header.categories',
+      'resourceKey':'metadata.annotations["policy.open-cluster-management.io/categories"]'
+    }
+  ],
+  'tableActions':[
+    'table.actions.edit',
+    'table.actions.remove'
+  ],
+  'detailKeys':{
+    'title':'compliance.details',
+    'headerRows':[
+      'type',
+      'detail'
+    ],
+    'rows':[
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.name',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'metadata.name'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.namespace',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'metadata.namespace'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.createdAt',
+            'type':'timestamp'
+          },
+          {
+            'resourceKey':'metadata.creationTimestamp'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'table.header.cluster.violation',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'clusterCompliant'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.enforcement',
+            'information':'grc.remediation.tooltip',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'raw.spec.remediationAction'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.disabled',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'raw.spec.disabled'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.categories',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'metadata.annotations["policy.open-cluster-management.io/categories"]'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.controls',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'metadata.annotations["policy.open-cluster-management.io/controls"]'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.standards',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'metadata.annotations["policy.open-cluster-management.io/standards"]'
+          }
+        ]
+      }
+    ]
+  },
+  'policyTemplatesKeys':{
+    'title':'policy.template.details',
+    'headerRows':[
+      'description.title.name',
+      'description.title.last.transition',
+      'description.title.templateType'
+    ],
+    'rows':[
+      {
+        'cells':[
+          {
+            'resourceKey':'name'
+          },
+          {
+            'resourceKey':'lastTransition'
+          },
+          {
+            'resourceKey':'templateType'
+          }
+        ]
+      }
+    ]
+  },
+  'policyRules':{
+    'title':'table.header.rules',
+    'resourceKey':'rules',
+    'defaultSortField':'ruleUID',
+    'normalizedKey':'ruleUID',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.name',
+        'resourceKey':'ruleUID',
+        'key':'ruleUID'
+      },
+      {
+        'msgKey':'table.header.templateType',
+        'resourceKey':'templateType',
+        'key':'templateType'
+      },
+      {
+        'msgKey':'table.header.complianceType',
+        'resourceKey':'complianceType',
+        'key':'complianceType'
+      },
+      {
+        'msgKey':'table.header.apiGroups',
+        'resourceKey':'apiGroups',
+        'key':'apiGroups'
+      },
+      {
+        'msgKey':'table.header.ruleVerbs',
+        'resourceKey':'verbs',
+        'key':'verbs'
+      },
+      {
+        'msgKey':'table.header.resources',
+        'resourceKey':'resources',
+        'key':'resources'
+      }
+    ]
+  },
+  'policyViolations':{
+    'resourceKey':'violations',
+    'title':'table.header.violation.detail',
+    'defaultSortField':'name',
+    'normalizedKey':'name',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.name',
+        'resourceKey':'name',
+        'key':'name'
+      },
+      {
+        'msgKey':'table.header.cluster',
+        'resourceKey':'cluster',
+        'key':'cluster'
+      },
+      {
+        'msgKey':'table.header.message',
+        'resourceKey':'message',
+        'key':'message'
+      },
+      {
+        'msgKey':'table.header.timestamp',
+        'resourceKey':'timestamp',
+        'key':'timestamp'
+      }
+    ]
+  },
+  'policyInfoKeys':{
+    'title':'policy.details',
+    'headerRows':[
+      'type',
+      'detail'
+    ],
+    'rows':[
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.name',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'name'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'table.header.message',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'message'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.status',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'status'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.enforcement',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'enforcement'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.exclude_namespace',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'detail.exclude_namespace'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.include_namespace',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'detail.include_namespace'
+          }
+        ]
+      }
+    ]
+  },
+  'policyDetailKeys':{
+    'title':'policy.details',
+    'headerRows':[
+      'type',
+      'detail'
+    ],
+    'rows':[
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.name',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'metadata.name'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'table.header.cluster',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'cluster'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'table.header.message',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'status.details'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.status',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'status.compliant'
+          }
+        ]
+      },
+      {
+        'cells':[
+          {
+            'resourceKey':'description.title.enforcement',
+            'type':'i18n'
+          },
+          {
+            'resourceKey':'enforcement'
+          }
+        ]
+      }
+    ]
+  },
+  'policyRoleTemplates':{
+    'title':'table.header.roleTemplates',
+    'defaultSortField':'name',
+    'normalizedKey':'name',
+    'resourceKey':'roleTemplates',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.name',
+        'resourceKey':'name',
+        'key':'name'
+      },
+      {
+        'msgKey':'table.header.complianceType',
+        'resourceKey':'complianceType',
+        'key':'complianceType'
+      },
+      {
+        'msgKey':'description.title.api.version',
+        'resourceKey':'apiVersion',
+        'key':'apiVersion'
+      },
+      {
+        'msgKey':'table.header.compliant',
+        'resourceKey':'compliant',
+        'key':'compliant'
+      }
+    ]
+  },
+  'policyRoleBindingTemplates':{
+    'title':'table.header.roleBindingTemplates',
+    'defaultSortField':'name',
+    'normalizedKey':'name',
+    'resourceKey':'roleBindingTemplates',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.name',
+        'resourceKey':'name',
+        'key':'name'
+      },
+      {
+        'msgKey':'table.header.complianceType',
+        'resourceKey':'complianceType',
+        'key':'complianceType'
+      },
+      {
+        'msgKey':'description.title.api.version',
+        'resourceKey':'apiVersion',
+        'key':'apiVersion'
+      },
+      {
+        'msgKey':'table.header.compliant',
+        'resourceKey':'compliant',
+        'key':'compliant'
+      }
+    ]
+  },
+  'policyObjectTemplates':{
+    'title':'table.header.objectTemplates',
+    'defaultSortField':'name',
+    'normalizedKey':'name',
+    'resourceKey':'objectTemplates',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.name',
+        'resourceKey':'name',
+        'key':'name'
+      },
+      {
+        'msgKey':'table.header.complianceType',
+        'resourceKey':'complianceType',
+        'key':'complianceType'
+      },
+      {
+        'msgKey':'description.title.api.version',
+        'resourceKey':'apiVersion',
+        'key':'apiVersion'
+      },
+      {
+        'msgKey':'table.header.kind',
+        'resourceKey':'kind',
+        'key':'kind'
+      },
+      {
+        'msgKey':'table.header.compliant',
+        'resourceKey':'compliant',
+        'key':'compliant'
+      }
+    ]
+  },
+  'policyPolicyTemplates':{
+    'title':'table.header.policyTemplates',
+    'defaultSortField':'name',
+    'normalizedKey':'name',
+    'resourceKey':'policyTemplates',
+    'tableKeys':[
+      {
+        'msgKey':'table.header.name',
+        'resourceKey':'name',
+        'key':'name'
+      },
+      {
+        'msgKey':'description.title.api.version',
+        'resourceKey':'apiVersion',
+        'key':'apiVersion'
+      },
+      {
+        'msgKey':'table.header.kind',
+        'resourceKey':'kind',
+        'key':'kind'
+      },
+      {
+        'msgKey':'table.header.compliant',
+        'resourceKey':'compliant',
+        'key':'compliant'
+      }
+    ]
+  }
+}
+
+export const policiesClusterDetail = [
+  {
+    'cluster':'calamari',
+    'metadata':{
+      'name':'default.policy-certificatepolicy',
+      'namespace':'calamari',
+      'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/default.policy-certificatepolicy',
+      'creationTimestamp':'2020-06-05T13:13:17Z',
+      'annotations':{
+        'policy.open-cluster-management.io/categories':'PR.DS DataSecurity',
+        'policy.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
+        'policy.open-cluster-management.io/standards':'NIST-CSF'
+      },
+      'labels':{
+        'policy.open-cluster-management.io/cluster-name':'calamari',
+        'policy.open-cluster-management.io/cluster-namespace':'calamari',
+        'policy.open-cluster-management.io/root-policy':'default.policy-certificatepolicy'
+      },
+      'resourceVersion':'55464942',
+      'uid':'21615207-e76f-49ab-ba52-9af6c8a8f833',
+      '__typename':'Metadata'
+    },
+    'enforcement':'inform',
+    'raw':{
+      'apiVersion':'policy.open-cluster-management.io/v1',
+      'kind':'Policy',
+      'metadata':{
+        'annotations':{
+          'policy.open-cluster-management.io/categories':'PR.DS DataSecurity',
+          'policy.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
+          'policy.open-cluster-management.io/standards':'NIST-CSF'
+        },
+        'creationTimestamp':'2020-06-05T13:13:17Z',
+        'generation':1,
+        'labels':{
+          'policy.open-cluster-management.io/cluster-name':'calamari',
+          'policy.open-cluster-management.io/cluster-namespace':'calamari',
+          'policy.open-cluster-management.io/root-policy':'default.policy-certificatepolicy'
+        },
+        'name':'default.policy-certificatepolicy',
+        'namespace':'calamari',
+        'ownerReferences':[
+          {
+            'apiVersion':'policy.open-cluster-management.io/v1',
+            'blockOwnerDeletion':true,
+            'controller':true,
+            'kind':'Policy',
+            'name':'policy-certificatepolicy',
+            'uid':'c6ee3116-1ac5-441a-80a7-9647a8ce2fcb'
           }
         ],
-        'policyTemplates': [],
-        'detail': {
-          'exclude_namespace': [
-            'kube-*'
-          ],
-          'include_namespace': [
-            'default'
-          ]
-        },
-        'raw': {
-          'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
-          'kind': 'Policy',
-          'metadata': {
-            'annotations': {
-              'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-              'policy.mcm.ibm.com/controls': 'VA',
-              'policy.mcm.ibm.com/standards': 'NIST',
-              'seed-generation': '1'
-            },
-            'creationTimestamp': '2019-09-23T14:34:25Z',
-            'finalizers': [
-              'propagator.finalizer.mcm.ibm.com',
-              'finalizer.policies.ibm.com'
-            ],
-            'generation': 7,
-            'name': '1569249226915-policy-test',
-            'namespace': 'mcm',
-            'resourceVersion': '7688204',
-            'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
-            'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e'
-          },
-          'spec': {
-            'complianceType': 'musthave',
-            'namespaces': {
-              'exclude': [
-                'kube-*'
-              ],
-              'include': [
-                'default'
-              ]
-            },
-            'object-templates': [
-              {
-                'complianceType': 'musthave',
-                'objectDefinition': {
-                  'apiVersion': 'v1',
-                  'kind': 'Namespace',
-                  'metadata': {
-                    'name': 'prod'
-                  }
-                },
-                'status': {
-                  'Validity': {}
-                }
-              }
-            ],
-            'remediationAction': 'inform'
-          },
-          'status': {
-            'placementBindings': [
-              'binding-1569249226915-policy-test'
-            ],
-            'placementPolicies': [
-              'placement-1569249226915-policy-test'
-            ],
-            'status': {
-              'cluster1': {
-                'aggregatePoliciesStatus': {
-                  '1569249226915-policy-test': {
-                    'compliant': 'NonCompliant'
-                  }
-                },
-                'clustername': 'cluster1',
-                'compliant': 'NonCompliant'
+        'resourceVersion':'55464942',
+        'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/default.policy-certificatepolicy',
+        'uid':'21615207-e76f-49ab-ba52-9af6c8a8f833'
+      },
+      'spec':{
+        'disabled':false,
+        'policy-templates':[
+          {
+            'objectDefinition':{
+              'apiVersion':'policy.open-cluster-management.io/v1',
+              'kind':'CertificatePolicy',
+              'metadata':{
+                'name':'policy-certificatepolicy-example'
               },
-              'clusterhub': {
-                'aggregatePoliciesStatus': {
-                  '1569249226915-policy-test': {
-                    'compliant': 'NonCompliant'
-                  }
+              'spec':{
+                'minimumDuration':'300h',
+                'namespaceSelector':{
+                  'exclude':[
+                    'kube-*'
+                  ],
+                  'include':[
+                    'default'
+                  ]
                 },
-                'clustername': 'clusterhub',
-                'compliant': 'NonCompliant'
+                'remediationAction':'inform',
+                'severity':'low'
               }
             }
-          },
-          'raw': {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
-            'kind': 'Policy',
-            'metadata': {
-              'annotations': {
-                'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-                'policy.mcm.ibm.com/controls': 'VA',
-                'policy.mcm.ibm.com/standards': 'NIST',
-                'seed-generation': '1'
+          }
+        ],
+        'remediationAction':'inform'
+      },
+      'status':{
+        'compliant':'NonCompliant',
+        'details':[
+          {
+            'compliant':'NonCompliant',
+            'history':[
+              {
+                'eventName':'default.policy-certificatepolicy.1616ef45443c6f0a',
+                'lastTimestamp':'2020-06-15T15:00:07Z',
+                'message':'NonCompliant; 1 certificates expire in less than 300h0m0s: default:rsa-ca-sample-secret'
               },
-              'creationTimestamp': '2019-09-23T14:34:25Z',
-              'finalizers': [
-                'propagator.finalizer.mcm.ibm.com',
-                'finalizer.policies.ibm.com'
-              ],
-              'generation': 7,
-              'name': '1569249226915-policy-test',
-              'namespace': 'mcm',
-              'resourceVersion': '7688204',
-              'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
-              'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e'
+              {
+                'eventName':'default.policy-certificatepolicy.1615a80b722fc540',
+                'lastTimestamp':'2020-06-09T14:52:49Z',
+                'message':'Compliant'
+              },
+              {
+                'eventName':'default.policy-certificatepolicy.1615a80b722fc540',
+                'lastTimestamp':'2020-06-09T14:52:39Z',
+                'message':'Compliant'
+              },
+              {
+                'eventName':'default.policy-certificatepolicy.1615a80b722fc540',
+                'lastTimestamp':'2020-06-09T14:52:29Z',
+                'message':'Compliant'
+              },
+              {
+                'eventName':'default.policy-certificatepolicy.1615a80b722fc540',
+                'lastTimestamp':'2020-06-09T14:52:19Z',
+                'message':'Compliant'
+              },
+              {
+                'eventName':'default.policy-certificatepolicy.1615a80b722fc540',
+                'lastTimestamp':'2020-06-09T14:52:09Z',
+                'message':'Compliant'
+              },
+              {
+                'eventName':'default.policy-certificatepolicy.1615a80b722fc540',
+                'lastTimestamp':'2020-06-09T14:51:59Z',
+                'message':'Compliant'
+              },
+              {
+                'eventName':'default.policy-certificatepolicy.1615a80b722fc540',
+                'lastTimestamp':'2020-06-09T14:51:49Z',
+                'message':'Compliant'
+              },
+              {
+                'eventName':'default.policy-certificatepolicy.1615a80b722fc540',
+                'lastTimestamp':'2020-06-09T14:51:39Z',
+                'message':'Compliant'
+              },
+              {
+                'eventName':'default.policy-certificatepolicy.1615a80b722fc540',
+                'lastTimestamp':'2020-06-09T14:51:29Z',
+                'message':'Compliant'
+              }
+            ],
+            'templateMeta':{
+              'creationTimestamp':null,
+              'name':'policy-certificatepolicy-example'
+            }
+          }
+        ]
+      }
+    },
+    'roleTemplates':[
+
+    ],
+    'roleBindingTemplates':[
+
+    ],
+    'objectTemplates':[
+
+    ],
+    'policyTemplates':[
+      {
+        'name':'policy-certificatepolicy-example',
+        'kind':'CertificatePolicy',
+        'lastTransition':'',
+        'complianceType':'',
+        'apiVersion':'policy.open-cluster-management.io/v1',
+        'status':'NonCompliant',
+        'raw':{
+          'objectDefinition':{
+            'apiVersion':'policy.open-cluster-management.io/v1',
+            'kind':'CertificatePolicy',
+            'metadata':{
+              'name':'policy-certificatepolicy-example'
             },
-            'spec': {
-              'complianceType': 'musthave',
-              'namespaces': {
-                'exclude': [
+            'spec':{
+              'minimumDuration':'300h',
+              'namespaceSelector':{
+                'exclude':[
                   'kube-*'
                 ],
-                'include': [
+                'include':[
                   'default'
                 ]
               },
-              'object-templates': [
-                {
-                  'complianceType': 'musthave',
-                  'objectDefinition': {
-                    'apiVersion': 'v1',
-                    'kind': 'Namespace',
-                    'metadata': {
-                      'name': 'prod'
-                    }
-                  },
-                  'status': {
-                    'Validity': {}
-                  }
-                }
-              ],
-              'remediationAction': 'inform'
-            },
-            'status': {
-              'placementBindings': [
-                'binding-1569249226915-policy-test'
-              ],
-              'placementPolicies': [
-                'placement-1569249226915-policy-test'
-              ],
-              'status': {
-                'cluster1': {
-                  'aggregatePoliciesStatus': {
-                    '1569249226915-policy-test': {
-                      'compliant': 'NonCompliant'
-                    }
-                  },
-                  'clustername': 'cluster1',
-                  'compliant': 'NonCompliant'
-                },
-                'clusterhub': {
-                  'aggregatePoliciesStatus': {
-                    '1569249226915-policy-test': {
-                      'compliant': 'NonCompliant'
-                    }
-                  },
-                  'clustername': 'clusterhub',
-                  'compliant': 'NonCompliant'
-                }
-              }
+              'remediationAction':'inform',
+              'severity':'low'
             }
           },
-          'name': '1569249226915-policy-test',
-          'namespace': 'mcm',
-          'remediation': 'inform',
-          'clusters': [
-            'cluster1',
-            'clusterhub'
-          ]
+          'templateType':'policy-templates'
         },
-        '__typename': 'CompliancePolicyDetail'
+        '__typename':'PolicyTemplate'
       }
     ],
-    'compliancePolicies': [
+    'violations':[
       {
-        'name': '1569249226915-policy-test',
-        'clusterCompliant': [],
-        'clusterNotCompliant': [
-          'cluster1',
-          'clusterhub'
-        ],
-        'complianceName': '1569249226915-policy-test',
-        'complianceNamespace': 'mcm',
-        'policies': [
-          {
-            'name': '1569249226915-policy-test',
-            'cluster': 'cluster1',
-            'compliant': 'NonCompliant',
-            'complianceName': '1569249226915-policy-test',
-            'complianceNamespace': 'mcm',
-            'valid': 'unknown',
-            'enforcement': 'unknown',
-            'status': 'NonCompliant',
-            'raw': null,
-            'metadata': {
-              'annotations': {
-                'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-                'policy.mcm.ibm.com/controls': 'VA',
-                'policy.mcm.ibm.com/standards': 'NIST',
-                'seed-generation': '1'
-              },
-              'creationTimestamp': '2019-09-23T14:34:25Z',
-              'name': '1569249226915-policy-test',
-              'resourceVersion': '7688204',
-              'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
-              'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e',
-              '__typename': 'Metadata'
-            },
-            'roleTemplates': [],
-            'roleBindingTemplates': [],
-            'objectTemplates': [],
-            'rules': [],
-            'violations': [],
-            '__typename': 'CompliancePolicy'
-          },
-          {
-            'name': '1569249226915-policy-test',
-            'cluster': 'clusterhub',
-            'compliant': 'NonCompliant',
-            'complianceName': '1569249226915-policy-test',
-            'complianceNamespace': 'mcm',
-            'valid': 'unknown',
-            'enforcement': 'unknown',
-            'status': 'NonCompliant',
-            'raw': null,
-            'metadata': {
-              'annotations': {
-                'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-                'policy.mcm.ibm.com/controls': 'VA',
-                'policy.mcm.ibm.com/standards': 'NIST',
-                'seed-generation': '1'
-              },
-              'creationTimestamp': '2019-09-23T14:34:25Z',
-              'name': '1569249226915-policy-test',
-              'resourceVersion': '7688204',
-              'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
-              'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e',
-              '__typename': 'Metadata'
-            },
-            'roleTemplates': [],
-            'roleBindingTemplates': [],
-            'objectTemplates': [],
-            'rules': [],
-            'violations': [],
-            '__typename': 'CompliancePolicy'
-          }
-        ],
-        '__typename': 'CompliancePolicies'
+        'name':'policy-certificatepolicy-example',
+        'cluster':'calamari',
+        'message':'NonCompliant; 1 certificates expire in less than 300h0m0s: default:rsa-ca-sample-secret',
+        'timestamp':'2020-06-15T15:00:07Z',
+        '__typename':'Violations'
       }
     ],
-    'policyCompliant': '2/2',
-    'clusterCompliant': '2/2',
-    'clusters': [
-      'cluster1',
-      'clusterhub'
+    'rules':[
+
     ],
-    '__typename': 'Compliance'
+    '__typename':'Policy'
   }
 ]
+
+export const policiesClusterDetailError = {
+  'graphQLErrors':[
+
+  ],
+  'networkError':{
+    'response':{
+
+    },
+    'statusCode':504,
+    'bodyText':'Error occured while trying to proxy to: localhost:3000/graphql'
+  },
+  'message':'Network error: JSON.parse: unexpected character at line 1 column 1 of the JSON data'
+}

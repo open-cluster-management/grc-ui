@@ -21,6 +21,7 @@ import _ from 'lodash'
 import queryString from 'query-string'
 import { replaceGrcState } from '../../../lib/client/filter-helper'
 import { GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
+import TruncateText from '../../components/common/TruncateText'
 
 resources(() => {
   require('../../../scss/resource-filterbar.scss')
@@ -46,12 +47,8 @@ class ResourceFilterBar extends React.Component {
         clearFilters.push(key)
         activeSet.forEach(value=>{
           if(value) {
-            let name = value
-            if (name.length>26) {
-              name=name.substr(0,12)+'..'+name.substr(-12)
-            }
             boundFilters.push({
-              name,
+              name: value,
               onClick: this.removeActiveFilter.bind(this, key, value),
               onKeyPress: this.removeActiveFilter.bind(this, key, value)
             })
@@ -70,7 +67,7 @@ class ResourceFilterBar extends React.Component {
           <span className='title'>{msgs.get('filter.remove.filters', locale)}</span>
           {boundFilters.map(({name, onClick, onKeyPress}) => {
             return <Tag key={name} type='custom' tabIndex={0} role={'button'} onKeyPress={onKeyPress}>
-              {name}
+              <TruncateText maxCharacters={20} text={name} />
               <Icon
                 className='closeIcon'
                 description={msgs.get('filter.remove.tag', locale)}

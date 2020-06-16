@@ -97,7 +97,7 @@ exports[`StructuredListModule component test renders as expected 1`] = `
                 className="bx--structured-list-td"
               >
                 <p>
-                  1569249226915-policy-test
+                  case6-test-policy
                 </p>
               </div>
             </tr>

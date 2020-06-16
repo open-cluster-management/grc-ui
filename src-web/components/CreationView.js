@@ -59,11 +59,7 @@ const controlData = [
     available: [],
     isOneSelection: true, // close dropdown on one selection--otherwise dropdown stays open
     updateNamePrefix: 'policy-', // if user hasn't typed in a custom name, update name using this selection
-    reverse: [
-      'Policy[0].spec.role-templates',
-      'Policy[0].spec.object-templates',
-      'Policy[0].spec.policy-templates'
-    ],
+    reverse: ['Policy[0].spec',],
     mustExist: true,
   },
   {

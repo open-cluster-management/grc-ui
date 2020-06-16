@@ -225,6 +225,7 @@ const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newPar
   // if user has manually changed the objects, save their changes to stuff back into template
   if (control.hasCapturedUserSource) {
     control.userData = getTemplateSource(reverse, newParsed)
+    control.active = control.userData
   } else {
     delete control.userData
   }
@@ -240,7 +241,7 @@ const getTemplateObjects = (reverse, parsed) => {
   return objects.length>0 ? objects : undefined
 }
 
-const getTemplateSource = (reverse, parsed) => {
+export const getTemplateSource = (reverse, parsed) => {
   let ret = []
   reverse.forEach(path=>{
     path = path.split('.')

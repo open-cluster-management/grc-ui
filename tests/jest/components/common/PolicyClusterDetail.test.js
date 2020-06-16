@@ -19,10 +19,33 @@ import thunkMiddleware from 'redux-thunk'
 import GrcApolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
+import { policiesClusterDetail, staticResourceDataPolicyCluster, policiesClusterDetailError } from './CommonTestingData'
 
 describe('PolicyClusterDetail component', () => {
-  it('renders as expected', () => {
-    const updateSecondaryHeader = jest.fn()
+  it('renders as loading', () => {
+    const preloadedState = window.__PRELOADED_STATE__
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    const middleware = [thunkMiddleware]
+    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+      applyMiddleware(...middleware)
+    ))
+    const component = renderer.create(
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <PolicyClusterDetail
+              loading={true}
+            />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
+
+describe('PolicyClusterDetail component', () => {
+  it('renders as normal', () => {
     const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
@@ -30,10 +53,10 @@ describe('PolicyClusterDetail component', () => {
       applyMiddleware(...middleware)
     ))
     const location = {
-      'pathname': '/multicloud/policies/policy/cluster1/1569249226915-policy-test',
+      'pathname': '/multicloud/policies/policy/calamari/default.policy-certificatepolicy',
       'search': '',
       'hash': '',
-      'key': 'q1uagn'
+      'key': 'ngh5of'
     }
     const resourceType = {
       'name': 'HCMCompliance',
@@ -45,9 +68,33 @@ describe('PolicyClusterDetail component', () => {
           <BrowserRouter>
             <PolicyClusterDetail
               location={location}
-              params={{}}
+              loading={false}
+              staticResourceData={staticResourceDataPolicyCluster}
               resourceType={resourceType}
-              updateSecondaryHeader={updateSecondaryHeader}
+              policies={policiesClusterDetail}
+            />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
+
+describe('PolicyClusterDetail component', () => {
+  it('renders as error', () => {
+    const preloadedState = window.__PRELOADED_STATE__
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    const middleware = [thunkMiddleware]
+    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+      applyMiddleware(...middleware)
+    ))
+    const component = renderer.create(
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <PolicyClusterDetail
+              error={policiesClusterDetailError}
             />
           </BrowserRouter>
         </Provider>
