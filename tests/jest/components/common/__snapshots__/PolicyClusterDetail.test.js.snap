@@ -98,7 +98,7 @@ exports[`PolicyClusterDetail component renders as loading 1`] = `
 
 exports[`PolicyClusterDetail component renders as normal 1`] = `
 <div
-  className="page-content-container"
+  className="page-content-container policy-cluster-detail"
   role="main"
 >
   <div
