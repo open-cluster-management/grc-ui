@@ -105,3 +105,29 @@ exports[`PolicyDetail container test renders as expected 1`] = `
   </div>
 </div>
 `;
+
+exports[`PolicyDetail container test renders as loading 1`] = `
+<div
+  className="bx--loading-overlay"
+>
+  <div
+    aria-live="assertive"
+    className="bx--loading resource-detail-content-spinner"
+  >
+    <svg
+      className="bx--loading__svg"
+      viewBox="-75 -75 150 150"
+    >
+      <title>
+        Loading
+      </title>
+      <circle
+        className={null}
+        cx="0"
+        cy="0"
+        r="37.5"
+      />
+    </svg>
+  </div>
+</div>
+`;
