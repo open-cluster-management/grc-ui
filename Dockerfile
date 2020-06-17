@@ -40,8 +40,10 @@ RUN mkdir -p /opt/app-root/src/grc-ui/licenses
 WORKDIR /opt/app-root/src/grc-ui
 
 COPY . /opt/app-root/src/grc-ui
+USER root
 RUN rpm -U /opt/app-root/src/grc-ui/nodejs-nodemon-1.18.3-1.module+el8+2632+6c5111ed.noarch.rpm
 RUN rm -f /opt/app-root/src/grc-ui/nodejs-nodemon-1.18.3-1.module+el8+2632+6c5111ed.noarch.rpm
+
 
 EXPOSE 3000
 
