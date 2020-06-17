@@ -35,13 +35,16 @@ ENV BABEL_DISABLE_CACHE=1 \
     NODE_ENV=production \
     USER_UID=1001
 
+USER root
+COPY nodejs-nodemon-1.18.3-1.module+el8+2632+6c5111ed.noarch.rpm /tmp
+RUN rpm -U /tmp/nodejs-nodemon-1.18.3-1.module+el8+2632+6c5111ed.noarch.rpm \
+    && rm -f /tmp/nodejs-nodemon-1.18.3-1.module+el8+2632+6c5111ed.noarch.rpm
+
 RUN mkdir -p /opt/app-root/src/grc-ui
 RUN mkdir -p /opt/app-root/src/grc-ui/licenses
 WORKDIR /opt/app-root/src/grc-ui
 
 COPY . /opt/app-root/src/grc-ui
-USER root
-RUN rpm -U /opt/app-root/src/grc-ui/nodejs-nodemon-1.18.3-1.module+el8+2632+6c5111ed.noarch.rpm
 RUN rm -f /opt/app-root/src/grc-ui/nodejs-nodemon-1.18.3-1.module+el8+2632+6c5111ed.noarch.rpm
 
 
