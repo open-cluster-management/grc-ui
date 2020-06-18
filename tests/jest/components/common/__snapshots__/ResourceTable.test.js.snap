@@ -103,11 +103,14 @@ Array [
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.name"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -136,16 +139,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="remediation"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -174,16 +180,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="clusterCompliant"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -212,16 +221,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -250,16 +262,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -288,16 +303,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -326,7 +344,7 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
@@ -1810,11 +1828,14 @@ Array [
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.name"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -1843,16 +1864,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="remediation"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -1881,16 +1905,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="clusterCompliant"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -1919,16 +1946,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -1957,16 +1987,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -1995,16 +2028,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -2033,7 +2069,7 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
@@ -3517,11 +3553,14 @@ Array [
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="cluster"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -3550,16 +3589,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="namespace"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -3588,16 +3630,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="violation"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -3626,16 +3671,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="nonCompliant"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -3664,7 +3712,7 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
@@ -4121,11 +4169,14 @@ Array [
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="cluster"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -4154,16 +4205,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="namespace"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -4192,16 +4246,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="violation"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -4230,16 +4287,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="nonCompliant"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -4268,7 +4328,7 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
@@ -4725,11 +4785,14 @@ Array [
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="cluster"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -4758,16 +4821,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="namespace"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -4796,16 +4862,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="violation"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -4834,16 +4903,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="cluster"
               data-key="nonCompliant"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -4872,7 +4944,7 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
@@ -5326,11 +5398,14 @@ Array [
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.name"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -5359,16 +5434,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="remediation"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -5397,16 +5475,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="clusterCompliant"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -5435,16 +5516,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -5473,16 +5557,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -5511,16 +5598,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -5549,7 +5639,7 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
@@ -6608,11 +6698,14 @@ Array [
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.name"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -6641,16 +6734,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="remediation"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -6679,16 +6775,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="clusterCompliant"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -6717,16 +6816,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -6755,16 +6857,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -6793,16 +6898,19 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
           >
-            <button
+            <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
               data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
               onClick={[MockFunction]}
+              onKeyPress={[MockFunction]}
+              role="button"
+              tabIndex={0}
               title="Sort rows by this header in ascending order."
             >
               <span
@@ -6831,7 +6939,7 @@ Array [
                   d="M0 0l5 4.998L10 0z"
                 />
               </svg>
-            </button>
+            </div>
           </th>
           <th
             scope="col"
