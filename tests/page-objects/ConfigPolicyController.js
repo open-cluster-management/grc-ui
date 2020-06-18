@@ -140,6 +140,7 @@ function deletePolicy(name){
   //     this.setValue('@searchInput', name)
   //   }
   // })
+  this.waitForElementNotPresent('.bx--loading-overlay')
   this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
