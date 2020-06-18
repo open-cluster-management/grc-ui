@@ -171,6 +171,7 @@ function setSearchValue(value){
   //     this.setValue('@searchInput', value)
   //   }
   // })
+  this.waitForElementNotPresent('.bx--loading-overlay')
   this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', value)
 }
 
