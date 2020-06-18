@@ -650,11 +650,14 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                         data-default-key="objectDefinition.metadata.name"
                         data-key="objectDefinition.metadata.name"
                         onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="button"
+                        tabIndex={0}
                         title="Sort rows by this header in ascending order."
                       >
                         <span
@@ -683,16 +686,19 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                             d="M0 0l5 4.998L10 0z"
                           />
                         </svg>
-                      </button>
+                      </div>
                     </th>
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                         data-default-key="objectDefinition.metadata.name"
                         data-key="objectDefinition.apiVersion"
                         onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="button"
+                        tabIndex={0}
                         title="Sort rows by this header in ascending order."
                       >
                         <span
@@ -721,16 +727,19 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                             d="M0 0l5 4.998L10 0z"
                           />
                         </svg>
-                      </button>
+                      </div>
                     </th>
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                         data-default-key="objectDefinition.metadata.name"
                         data-key="objectDefinition.kind"
                         onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="button"
+                        tabIndex={0}
                         title="Sort rows by this header in ascending order."
                       >
                         <span
@@ -759,16 +768,19 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                             d="M0 0l5 4.998L10 0z"
                           />
                         </svg>
-                      </button>
+                      </div>
                     </th>
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                         data-default-key="objectDefinition.metadata.name"
                         data-key="status.conditions[0].lastTransitionTime"
                         onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="button"
+                        tabIndex={0}
                         title="Sort rows by this header in ascending order."
                       >
                         <span
@@ -797,16 +809,19 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                             d="M0 0l5 4.998L10 0z"
                           />
                         </svg>
-                      </button>
+                      </div>
                     </th>
                     <th
                       scope="col"
                     >
-                      <button
+                      <div
                         className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                         data-default-key="objectDefinition.metadata.name"
                         data-key="status.Compliant"
                         onClick={[Function]}
+                        onKeyPress={[Function]}
+                        role="button"
+                        tabIndex={0}
                         title="Sort rows by this header in ascending order."
                       >
                         <span
@@ -835,7 +850,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                             d="M0 0l5 4.998L10 0z"
                           />
                         </svg>
-                      </button>
+                      </div>
                     </th>
                   </tr>
                 </thead>

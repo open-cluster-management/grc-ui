@@ -13,7 +13,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import { DataTable,  } from 'carbon-components-react'
-import TruncateText from './TruncateText'
 import _uniqueId from 'lodash/uniqueId'
 
 const {
@@ -47,8 +46,8 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
           return (
             <TableRow key={row.id ? row.id : _uniqueId('sidePanelTableRow')}>
               {row.cells.map(cell => (cell && typeof cell === 'string') ?
-                <TableCell key={_uniqueId(cell.substring(0, 21))}><TruncateText text={cell} /></TableCell>
-                : <TableCell key={_uniqueId('sidePanelTableCell')}><TruncateText text='-' /></TableCell>)}
+                <TableCell key={_uniqueId(cell.substring(0, 21))}>{cell}</TableCell>
+                : <TableCell key={_uniqueId('sidePanelTableCell')}>{'-'}</TableCell>)}
             </TableRow>
           )
         }
@@ -58,9 +57,12 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
               return (
                 <TableRow key={subRow.id ? subRow.id : _uniqueId('sidePanelTableRow')}>
                   {subRow.cells.map((cell, index) => (cell && typeof cell === 'string') ?
-                    <TableCell key={_uniqueId(cell.substring(0, 21))} className={`bx--table-subRowsArray-subRow-index-${index}`}>
-                      <TruncateText text={cell} /></TableCell> :
-                    <TableCell key={_uniqueId('sidePanelTableCell')}><TruncateText text='-' /></TableCell>)}
+                    <TableCell
+                      key={_uniqueId(cell.substring(0, 21))}
+                      className={`bx--table-subRowsArray-subRow-index-${index}`}>
+                      {cell}
+                    </TableCell> :
+                    <TableCell key={_uniqueId('sidePanelTableCell')}>{'-'}</TableCell>)}
                 </TableRow>
               )
             }
