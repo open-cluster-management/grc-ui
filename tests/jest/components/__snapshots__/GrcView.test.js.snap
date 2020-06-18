@@ -340,11 +340,14 @@ exports[`GrcView component 1 renders as expected 1`] = `
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
                   data-key="metadata.name"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -373,16 +376,19 @@ exports[`GrcView component 1 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
                   data-key="namespace"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -411,16 +417,19 @@ exports[`GrcView component 1 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
                   data-key="remediation"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -465,16 +474,19 @@ exports[`GrcView component 1 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
                   data-key="clusterCompliant"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -503,16 +515,19 @@ exports[`GrcView component 1 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
                   data-key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -541,16 +556,19 @@ exports[`GrcView component 1 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
                   data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -579,16 +597,19 @@ exports[`GrcView component 1 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
                   data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -617,7 +638,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
@@ -1555,11 +1576,14 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="shortDescription"
                   data-key="shortDescription"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -1588,16 +1612,19 @@ exports[`GrcView component 5 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="shortDescription"
                   data-key="context"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -1626,16 +1653,19 @@ exports[`GrcView component 5 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="shortDescription"
                   data-key="finding.severity"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -1664,16 +1694,19 @@ exports[`GrcView component 5 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="shortDescription"
                   data-key="context.clusterName"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -1702,16 +1735,19 @@ exports[`GrcView component 5 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="shortDescription"
                   data-key="securityClassification.securityStandards"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -1740,16 +1776,19 @@ exports[`GrcView component 5 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="shortDescription"
                   data-key="securityClassification.securityControl"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -1778,16 +1817,19 @@ exports[`GrcView component 5 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="shortDescription"
                   data-key="securityClassification.securityCategories"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -1816,16 +1858,19 @@ exports[`GrcView component 5 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
               >
-                <button
+                <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="shortDescription"
                   data-key="updateTime"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
                   title="Sort rows by this header in ascending order."
                 >
                   <span
@@ -1854,7 +1899,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                       d="M0 0l5 4.998L10 0z"
                     />
                   </svg>
-                </button>
+                </div>
               </th>
               <th
                 scope="col"
