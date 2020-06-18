@@ -55,6 +55,7 @@ module.exports = {
 }
 
 function createPolicy(browser, name, yaml, time) {
+  this.log(`Creating policy:\n${yaml}`)
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   this.waitForElementNotPresent('@spinner')
@@ -85,9 +86,11 @@ function createPolicy(browser, name, yaml, time) {
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement binding')
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
   this.click('.bx--breadcrumb > div:nth-child(1)')
+  this.waitForElementNotPresent('#spinner')
 }
 
 function checkViolations(name, violationExpected, violationText) {
+  this.log(`Checking policy: ${name} violationExpected: ${violationExpected}`)
   this.waitForElementVisible('@searchInput')
   // this.pause(1000)
   // this.click('@searchInput').clearValue('@searchInput')
@@ -122,6 +125,7 @@ function searchPolicy(name, expectToDisplay) {
 }
 
 function deletePolicy(name){
+  this.log(`Deleting policy: ${name}`)
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
   // const searchClose = '.bx--search-close.bx--search-close--hidden'
