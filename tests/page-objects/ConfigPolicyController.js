@@ -48,7 +48,9 @@ module.exports = {
     createPolicy,
     searchPolicy,
     deletePolicy,
-    checkViolations
+    checkViolations,
+    setSearchValue,
+    log
   }]
 }
 
@@ -71,7 +73,7 @@ function createPolicy(browser, name, yaml, time) {
   //verify placementrule + placementbinding
   this.expect.element('@table').to.be.present
   this.waitForElementVisible('@searchInput')
-  this.setValue('@searchInput', name)
+  this.setSearchValue(name)
   this.click('tbody>tr>td>a')
   this.expect.element('.bx--detail-page-header-title').text.to.equal(name)
   this.expect.element('.section-title:nth-of-type(1)').text.to.equal('Policy details')
@@ -87,9 +89,9 @@ function createPolicy(browser, name, yaml, time) {
 
 function checkViolations(name, violationExpected, violationText) {
   this.waitForElementVisible('@searchInput')
-  this.pause(1000)
-  this.click('@searchInput').clearValue('@searchInput')
-  this.setValue('@searchInput', name)
+  // this.pause(1000)
+  // this.click('@searchInput').clearValue('@searchInput')
+  this.setSearchValue(name)
   this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
   this.click('tbody>tr>td>a')
   this.waitForElementPresent('#violation-tab')
@@ -107,8 +109,8 @@ function checkViolations(name, violationExpected, violationText) {
 
 function searchPolicy(name, expectToDisplay) {
   this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput')
-  this.setValue('@searchInput', name)
+  // this.click('@searchInput').clearValue('@searchInput')
+  this.setSearchValue(name)
   this.waitForElementVisible('@searchInput')
   if(expectToDisplay){
     this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(name)
@@ -122,20 +124,19 @@ function searchPolicy(name, expectToDisplay) {
 function deletePolicy(name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  const searchClose = '.bx--search-close.bx--search-close--hidden'
-  this.api.elements('css selector', searchClose, res => {
-    if (res.status < 0 || res.value.length < 1) {
-      // clear first
-      this.click('button.bx--search-close')
-      this.setValue('@searchInput', name)
-    }
-    else {
-      // do nothing already cleared
-      this.setValue('@searchInput', name)
-    }
-  })
-  // this.click('@searchInput').clearValue('@searchInput')
-  // this.setValue('@searchInput', name)
+  // const searchClose = '.bx--search-close.bx--search-close--hidden'
+  // this.api.elements('css selector', searchClose, res => {
+  //   if (res.status < 0 || res.value.length < 1) {
+  //     // clear first
+  //     this.click('button.bx--search-close')
+  //     this.setValue('@searchInput', name)
+  //   }
+  //   else {
+  //     // do nothing already cleared
+  //     this.setValue('@searchInput', name)
+  //   }
+  // })
+  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
   this.waitForElementNotPresent('bx--overflow-menu-options__option.bx--overflow-menu-options__option--danger')
@@ -149,4 +150,28 @@ function deletePolicy(name){
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
   // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
+}
+
+function setSearchValue(value){
+  this.log(`Searching for policy: ${value}`)
+  // const searchClose = '.bx--search-close.bx--search-close--hidden'
+  // this.api.elements('css selector', searchClose, res => {
+  //   if (res.status < 0 || res.value.length < 1) {
+  //     // clear first
+  //     this.click('button.bx--search-close')
+  //     this.setValue('@searchInput', value)
+  //   }
+  //   else {
+  //     // do nothing already cleared
+  //     this.setValue('@searchInput', value)
+  //   }
+  // })
+  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', value)
+}
+
+function log(message) {
+  return this.perform(() => {
+    // eslint-disable-next-line no-console
+    console.log(message)
+  })
 }
