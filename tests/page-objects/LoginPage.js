@@ -65,6 +65,7 @@ function submit() {
 
 function waitForLoginSuccess() {
   this.waitForElementPresent('@header')
+  window.localStorage.setItem('grc-refresh-interval-cookie', '{"pollInterval":5000}')
 }
 
 function waitForLoginForm() {
