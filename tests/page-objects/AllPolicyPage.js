@@ -179,8 +179,6 @@ function createTestPolicy(browser, time) {
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
   this.expect.element('@table').to.be.present
-  this.waitForElementVisible('@searchInput')
-  this.setValue('@searchInput',`${time}-policy-test`)
 }
 function searchPolicy(expectToDisplay, time) {
   this.waitForElementVisible('@searchInput')

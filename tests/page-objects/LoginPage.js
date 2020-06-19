@@ -22,7 +22,8 @@ module.exports = {
     submit: 'button[type="submit"]',
     error: '.bx--inline-notification--error',
     header: '.app-header',
-    loginForm: 'form[role="form"]'
+    loginForm: 'form[role="form"]',
+    spinner: '.content-spinner',
   },
   commands: [{
     inputUsername,
@@ -65,6 +66,7 @@ function submit() {
 
 function waitForLoginSuccess() {
   this.waitForElementPresent('@header')
+  this.waitForElementNotPresent('@spinner')
 }
 
 function waitForLoginForm() {
