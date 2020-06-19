@@ -43,7 +43,7 @@ echo "Login hub again"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
-export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vendor/oc whoami --show-token`
+export SERVICEACCT_TOKEN=`kubectl get secret -n open-cluster-management `kubectl get sa grc-sa -o jsonpath='{.secrets[1].name}' -n open-cluster-management` -o jsonpath='{.data.token}' | base64 -d`
 echo "SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN"
 
 make docker/login
