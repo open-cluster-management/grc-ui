@@ -35,7 +35,7 @@ module.exports = {
 }
 
 //helper for other pages to use for authentication in before() their suit
-function authenticate(browser) {
+function authenticate() {
   if(process.env.SELENIUM_USER === undefined || process.env.SELENIUM_PASSWORD === undefined){
     this.api.end()
     throw new Error('Env variable NOT set.\nPlease export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD')
@@ -45,7 +45,7 @@ function authenticate(browser) {
   this.inputUsername()
   this.inputPassword()
   this.submit()
-  this.waitForLoginSuccess(browser)
+  this.waitForLoginSuccess()
 }
 
 function inputUsername() {
@@ -63,13 +63,8 @@ function submit() {
     .click('@submit')
 }
 
-function waitForLoginSuccess(browser) {
+function waitForLoginSuccess() {
   this.waitForElementPresent('@header')
-  browser.execute(() => {
-    window.localStorage.setItem('grc-refresh-interval-cookie', '{"pollInterval":5000}')
-    return true
-  })
-
 }
 
 function waitForLoginForm() {

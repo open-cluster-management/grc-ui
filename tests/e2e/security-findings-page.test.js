@@ -19,7 +19,7 @@ module.exports = {
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
     loginPage.navigate()
-    loginPage.authenticate(browser)
+    loginPage.authenticate()
 
     const url = `${browser.launch_url}${config.get('contextPath')}/findings`
     page = browser.page.SecurityFindingsPage()
