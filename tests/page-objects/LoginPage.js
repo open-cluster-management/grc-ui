@@ -43,7 +43,7 @@ function authenticate(browser) {
   this.waitForLoginForm()
   this.waitForElementPresent('@username')
   this.inputUsername()
-  this.inputPassword(browser)
+  this.inputPassword()
   this.submit()
   this.waitForLoginSuccess(browser)
 }
