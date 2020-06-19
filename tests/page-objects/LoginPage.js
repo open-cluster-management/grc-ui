@@ -48,14 +48,14 @@ function authenticate(browser) {
   this.waitForLoginSuccess(browser)
 }
 
-function inputUsername(user) {
+function inputUsername() {
   this.waitForElementPresent('@username')
-    .setValue('@username', user || process.env.SELENIUM_USER )
+    .setValue('@username', process.env.SELENIUM_USER )
 }
 
-function inputPassword(password) {
+function inputPassword() {
   this.waitForElementPresent('@password')
-    .setValue('@password', password || process.env.SELENIUM_PASSWORD )
+    .setValue('@password', process.env.SELENIUM_PASSWORD )
 }
 
 function submit() {
