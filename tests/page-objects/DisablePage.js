@@ -158,18 +158,20 @@ function tryDisable(name){
 
 function setSearchValue(value){
   this.log(`Searching for policy: ${value}`)
-  const searchClose = '.bx--search-close.bx--search-close--hidden'
-  this.api.elements('css selector', searchClose, res => {
-    if (res.status < 0 || res.value.length < 1) {
-      // clear first
-      this.click('button.bx--search-close')
-      this.setValue('@searchInput', value)
-    }
-    else {
-      // do nothing already cleared
-      this.setValue('@searchInput', value)
-    }
-  })
+  // const searchClose = '.bx--search-close.bx--search-close--hidden'
+  // this.api.elements('css selector', searchClose, res => {
+  //   if (res.status < 0 || res.value.length < 1) {
+  //     // clear first
+  //     this.click('button.bx--search-close')
+  //     this.setValue('@searchInput', value)
+  //   }
+  //   else {
+  //     // do nothing already cleared
+  //     this.setValue('@searchInput', value)
+  //   }
+  // })
+  this.waitForElementNotPresent('.bx--loading-overlay')
+  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', value)
 }
 
 function log(message) {

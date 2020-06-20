@@ -151,9 +151,12 @@ export class ResourceTable extends React.Component {
                     if (header && header.header !== '') {
                       return (
                         <th scope={'col'} key={header.key}>
-                          <button
+                          <div
+                            role={'button'}
+                            tabIndex={0}
                             title={msgs.get(`svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`, this.context.locale)}
                             onClick={handleSort}
+                            onKeyPress={handleSort}
                             className={
                               `bx--table-sort-v2${sortDirection === 'asc'
                                 ? ' bx--table-sort-v2--ascending'
@@ -173,7 +176,7 @@ export class ResourceTable extends React.Component {
                               className='bx--table-sort-v2__icon'
                               name='caret--down'
                               description={msgs.get(`svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`, this.context.locale)} />
-                          </button>
+                          </div>
                         </th>
                       )
                     } else {

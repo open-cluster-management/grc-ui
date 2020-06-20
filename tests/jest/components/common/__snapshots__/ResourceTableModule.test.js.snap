@@ -807,10 +807,13 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                 key="metadata.name"
                                                 scope="col"
                                               >
-                                                <button
+                                                <div
                                                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                                                   data-key="metadata.name"
                                                   onClick={[Function]}
+                                                  onKeyPress={[Function]}
+                                                  role="button"
+                                                  tabIndex={0}
                                                   title="Sort rows by this header in ascending order."
                                                 >
                                                   <span
@@ -845,16 +848,19 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                       />
                                                     </svg>
                                                   </Icon>
-                                                </button>
+                                                </div>
                                               </th>
                                               <th
                                                 key="remediation"
                                                 scope="col"
                                               >
-                                                <button
+                                                <div
                                                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                                                   data-key="remediation"
                                                   onClick={[Function]}
+                                                  onKeyPress={[Function]}
+                                                  role="button"
+                                                  tabIndex={0}
                                                   title="Sort rows by this header in ascending order."
                                                 >
                                                   <span
@@ -889,16 +895,19 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                       />
                                                     </svg>
                                                   </Icon>
-                                                </button>
+                                                </div>
                                               </th>
                                               <th
                                                 key="clusterCompliant"
                                                 scope="col"
                                               >
-                                                <button
+                                                <div
                                                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                                                   data-key="clusterCompliant"
                                                   onClick={[Function]}
+                                                  onKeyPress={[Function]}
+                                                  role="button"
+                                                  tabIndex={0}
                                                   title="Sort rows by this header in ascending order."
                                                 >
                                                   <span
@@ -933,16 +942,19 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                       />
                                                     </svg>
                                                   </Icon>
-                                                </button>
+                                                </div>
                                               </th>
                                               <th
                                                 key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
                                                 scope="col"
                                               >
-                                                <button
+                                                <div
                                                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                                                   data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
                                                   onClick={[Function]}
+                                                  onKeyPress={[Function]}
+                                                  role="button"
+                                                  tabIndex={0}
                                                   title="Sort rows by this header in ascending order."
                                                 >
                                                   <span
@@ -977,16 +989,19 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                       />
                                                     </svg>
                                                   </Icon>
-                                                </button>
+                                                </div>
                                               </th>
                                               <th
                                                 key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
                                                 scope="col"
                                               >
-                                                <button
+                                                <div
                                                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                                                   data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
                                                   onClick={[Function]}
+                                                  onKeyPress={[Function]}
+                                                  role="button"
+                                                  tabIndex={0}
                                                   title="Sort rows by this header in ascending order."
                                                 >
                                                   <span
@@ -1021,16 +1036,19 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                       />
                                                     </svg>
                                                   </Icon>
-                                                </button>
+                                                </div>
                                               </th>
                                               <th
                                                 key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
                                                 scope="col"
                                               >
-                                                <button
+                                                <div
                                                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                                                   data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
                                                   onClick={[Function]}
+                                                  onKeyPress={[Function]}
+                                                  role="button"
+                                                  tabIndex={0}
                                                   title="Sort rows by this header in ascending order."
                                                 >
                                                   <span
@@ -1065,7 +1083,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                       />
                                                     </svg>
                                                   </Icon>
-                                                </button>
+                                                </div>
                                               </th>
                                             </tr>
                                           </TableRow>

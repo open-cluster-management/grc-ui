@@ -11,8 +11,6 @@
 const fs = require('fs')
 const path = require('path')
 
-const config = require('../../config')
-// const a11yScan = require('../utils/accessibilityScan')
 let page
 
 module.exports = {
@@ -23,9 +21,7 @@ module.exports = {
     loginPage.navigate()
     loginPage.authenticate()
 
-    const url = `${browser.launch_url}${config.get('contextPath')}/all`
     page = browser.page.ConfigPolicyController()
-    page.navigate(url)
   },
 
   'Policy controller: single object / musthave + mustnothave': (browser) => {
