@@ -5,10 +5,12 @@
 module.exports = {
   elements: {
     spinner: '.content-spinner',
+    table: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra',
     createPolicyButton: '.bx--btn--primary:nth-of-type(1)',
     submitCreatePolicyButton: '#create-button-portal-id',
     yamlMonacoEditor: '.monaco-editor',
     searchInput: 'input.bx--search-input',
+    searchResult: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td',
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
     noResource: '.no-resource',
@@ -35,15 +37,16 @@ module.exports = {
   },
   commands: [{
     createTestPolicy,
-    searchPolicy,
+    verifyPolicy,
     deletePolicy,
   }]
 }
 /*
  * Create a policy given arrays of policy options
  * 
+ * Defaults to the 'default' namespace with the first available policy template
 */
-function createTestPolicy(browser, time, testname, namespace='default', specification=[''], cluster=[], standard=[], category=[], controls=[], enforce=false, disable=false) {
+function createTestPolicy(policyName, namespace = 'default', specification = [''], cluster = [''], standard = [''], category = [''], controls = [''], enforce = false, disable = false) {
   /* Press Create Policy Button */
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
@@ -53,11 +56,11 @@ function createTestPolicy(browser, time, testname, namespace='default', specific
   this.click('@yamlMonacoEditor')
   /* Input Policy Name */
   this.click('@policyNameInput').clearValue('@policyNameInput')
-  this.setValue('@policyNameInput', `${time}-${testname}-policy-test`)
+  this.setValue('@policyNameInput', policyName)
   /* Select Namespace */
   this.click('@namespaceDropdown')
   this.waitForElementVisible('@namespaceDropdownBox')
-  this.useXpath().click(`//div[contains(@class,"bx--list-box__menu-item") and text()="${namespace}"]`)
+  this.click('xpath', `//div[contains(@class,"bx--list-box__menu-item") and text()="${namespace}"]`)
   this.waitForElementNotPresent('@namespaceDropdownBox')
   /* Select Specification template */
   this.click('@templateDropdown')
@@ -68,7 +71,7 @@ function createTestPolicy(browser, time, testname, namespace='default', specific
     this.waitForElementNotPresent('@templateDropdownBox')
   });
   /* Select Cluster Placement Binding(s) */
-  if (cluster.length) {
+  if (cluster[0] != '') {
     this.click('@clusterSelectorDropdown')
     this.waitForElementVisible('@clusterSelectorDropdownBox')
     cluster.forEach(item => {
@@ -80,7 +83,7 @@ function createTestPolicy(browser, time, testname, namespace='default', specific
     this.waitForElementNotPresent('@clusterSelectorDropdownBox')
   }
   /* Select Security Standard(s) */
-  if (standard.length) {
+  if (standard[0] != '') {
     this.click('@standardsDropdown')
     this.waitForElementVisible('@standardsDropdownBox')
     standard.forEach(item => {
@@ -92,7 +95,7 @@ function createTestPolicy(browser, time, testname, namespace='default', specific
     this.waitForElementNotPresent('@standardsDropdownBox')
   }
   /* Select Security Control Category(s) */
-  if (category.length) {
+  if (category[0] != '') {
     this.click('@categoriesDropdown')
     this.waitForElementVisible('@categoriesDropdownBox')
     category.forEach(item => {
@@ -104,7 +107,7 @@ function createTestPolicy(browser, time, testname, namespace='default', specific
     this.waitForElementNotPresent('@categoriesDropdownBox')
   }
   /* Select Security Control(s) */
-  if (controls.length) {
+  if (controls[0] != '') {
     this.click('@controlsDropdown')
     this.waitForElementVisible('@controlsDropdownBox')
     controls.forEach(item => {
@@ -115,7 +118,6 @@ function createTestPolicy(browser, time, testname, namespace='default', specific
     this.click('@controlsDropdownInput')
     this.waitForElementNotPresent('@controlsDropdownBox')
   }
-  this.pause(5000)
   /* Enable 'enforce' for policy (instead of 'inform') */
   if (enforce) {
     this.click('@enforceCheckbox')
@@ -124,39 +126,49 @@ function createTestPolicy(browser, time, testname, namespace='default', specific
   if (disable) {
     this.click('@disableCheckbox')
   }
-  /*  this.waitForElementNotPresent('@spinner')
-    this.waitForElementVisible('@submitCreatePolicyButton')
-    this.click('@submitCreatePolicyButton')
-    this.expect.element('@table').to.be.present
-    this.waitForElementVisible('@searchInput')
-    this.setValue('@searchInput',`${time}-policy-test`)*/
+  /* Create policy */
+  this.waitForElementVisible('@submitCreatePolicyButton')
+  this.click('@submitCreatePolicyButton')
 }
-function searchPolicy(expectToDisplay, time) {
+/* Search for created policy */
+function verifyPolicy(expectToDisplay, policyName, namespace = 'default', standard = [''], controls = [''], category = ['']) {
+  this.waitForElementNotPresent('@spinner')
+  this.waitForElementVisible('@table')
   this.waitForElementVisible('@searchInput')
-  this.setValue('@searchInput', `${time}-policy-test`)
+  this.setValue('@searchInput', policyName)
   this.waitForElementVisible('@searchInput')
   if (expectToDisplay) {
-    this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(`${time}-policy-test`)
+    this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(policyName)
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(namespace)
+    standard.forEach(item => {
+      this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.contain(item)
+    });
+    controls.forEach(item => {
+      this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.contain(item)
+    });
+    category.forEach(item => {
+      this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.contain(item)
+    });
   } else {
     this.waitForElementNotPresent('tbody>tr')
     this.click('@searchInput').clearValue('@searchInput')
   }
+  this.clearValue('@searchInput')
 }
-function deletePolicy(name) {
-  this.waitForElementVisible('body')
+/* Delete created policy */
+function deletePolicy(policyName) {
+  this.waitForElementNotPresent('@spinner')
+  this.waitForElementVisible('@table')
   this.waitForElementVisible('@searchInput')
-  this.setValue('@searchInput', name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementNotPresent('bx--overflow-menu-options__option.bx--overflow-menu-options__option--danger')
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
+  this.setValue('@searchInput', policyName)
+  this.waitForElementVisible('@table')
+  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td > a').text.to.equal(policyName)
   this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
   this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4)')
   this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Remove')
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
-  // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').not.to.be.present
+  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1)').to.not.be.present
 }

@@ -21,11 +21,12 @@ module.exports = {
 
   'Select and confirm namespace': (browser) => {
     const time = browser.globals.time
-    page.createTestPolicy(browser, time)
-    // browser.collectCoverage(() => {
-    //   page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-    //   page.searchPolicy(true, time)
-    //   page.testDetailsPage(browser, `${time}-policy-test`)
-    // })
+    const policyName = `${time}-namespace-policy-test`
+    page.createTestPolicy(policyName)
+    browser.collectCoverage(() => {
+      page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
+      page.verifyPolicy(true, policyName)
+      page.deletePolicy(policyName)
+    })
   }
 }
