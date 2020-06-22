@@ -71,6 +71,7 @@ jobs:
         - make sonar/js
       after_failure:
         - make travis-slack-reporter
+        - docker logs grcuiapi
     - stage: publish
       name: "Publish the image to quay with an official version/sha tag and publish entry to integration pipeline stage"
       if: type = push AND branch =~ /^release-[0-9]+\..*$/
