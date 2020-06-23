@@ -35,4 +35,3 @@ replacements: # if user select this choice, the template variable names and valu
                   - apiGroups: ["extensions", "apps"]
                     resources: ["deployments"]
                     verbs: ["get", "list", "watch", "delete","patch"]
-
