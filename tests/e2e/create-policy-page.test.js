@@ -8,6 +8,7 @@ let standards = [
   'FISMA',
   'HIPAA',
   'NIST',
+  'NIST-CSF',
   'PCI']
 let categories = [
   'DE.CM Security Continuous Monitoring',
@@ -22,7 +23,7 @@ let controls = [
   'PR.AC-5 Network Integrity',
   'PR.DS-2 Data-at-rest',
   'PR.DS-2 Data-in-transit',
-  'PR.IP-1 Baseline configuration',
+  'PR.IP-1 Baseline Configuration',
   'PR.PT-1 Audit Logging',
   'PR.PT-3 Least Functionality']
 

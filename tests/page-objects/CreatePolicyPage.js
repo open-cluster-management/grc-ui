@@ -1,6 +1,9 @@
 /*******************************************************************************
  * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
+const fs = require('fs')
+const path = require('path')
+const yaml = require('js-yaml')
 
 module.exports = {
   elements: {
@@ -54,7 +57,7 @@ module.exports = {
  * Create a policy given spec object with arrays of policy options
  * 
  * Defaults to the 'default' namespace with the first available policy template.
- * Will clear out Standard/Category/Controls with empty input.
+ * Will clear out Standard/Category/Controls with undefined or empty input.
 */
 function createTestPolicy(policyName, spec = { namespace: 'default', specification: [''], cluster: [''], standard: [''], category: [''], control: [''], enforce: false, disable: false }) {
   /* Press Create Policy Button */
@@ -88,24 +91,21 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
   });
   /* Select Cluster Placement Binding(s) */
   if (spec.cluster && spec.cluster[0] != '') {
-    this.expect.element('@clusterSelectorClear').to.not.be.present
+    this.expect.element('@clusterSelectorClearAll').to.not.be.present
     this.click('@clusterSelectorDropdown')
     this.waitForElementVisible('@clusterSelectorDropdownBox')
     spec.cluster.forEach(item => {
       this.setValue('@clusterSelectorDropdownInput', item)
       this.click('@clusterSelectorDropdownBox:nth-child(1)')
-      this.clearValue('@clusterSelectorDropdownInput')
+      this.click('@clusterSelectorDropdownClearValue')
     });
     this.click('@clusterSelectorDropdownInput')
     this.waitForElementNotPresent('@clusterSelectorDropdownBox')
   }
   /* Select Security Standard(s) */
-  if (!spec.standard) {
-    spec.standard = ['']
-  }
   this.click('@standardsDropdownClearAll')
   this.expect.element('@standardsDropdownClearAll').to.not.be.present
-  if (spec.standard[0] != '') {
+  if (spec.standard && spec.standard[0] != '') {
     this.click('@standardsDropdown')
     this.waitForElementVisible('@standardsDropdownBox')
     spec.standard.forEach(item => {
@@ -117,12 +117,9 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
     this.waitForElementNotPresent('@standardsDropdownBox')
   }
   /* Select Security Control Category(s) */
-  if (!spec.category) {
-    spec.category = ['']
-  }
   this.click('@categoriesDropdownClearAll')
   this.expect.element('@categoriesDropdownClearAll').to.not.be.present
-  if (spec.category[0] != '') {
+  if (spec.category && spec.category[0] != '') {
     this.click('@categoriesDropdown')
     this.waitForElementVisible('@categoriesDropdownBox')
     spec.category.forEach(item => {
@@ -134,9 +131,6 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
     this.waitForElementNotPresent('@categoriesDropdownBox')
   }
   /* Select Security Control(s) */
-  if (!spec.control) {
-    spec.control = ['']
-  }
   this.click('@controlsDropdownClearAll')
   this.expect.element('@controlsDropdownClearAll').to.not.be.present
   if (spec.control && spec.control[0] != '') {
@@ -153,11 +147,37 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
   /* Enable 'enforce' for policy (instead of 'inform') */
   if (spec.enforce) {
     this.click('@enforceCheckbox')
+  } else {
+    spec.enforce = false
   }
   /* Disable policy from propagating to managed clusters */
   if (spec.disable) {
     this.click('@disableCheckbox')
+  } else {
+    spec.disable = false
   }
+  /* Verify displayed YAML based on input */
+  this.api.execute(function () {
+    return window.monaco.editor.getModels()[0].getValue()
+  }, [], function (actual) {
+    let expected, inputyaml
+    try {
+      let file = fs.readFileSync(path.join(__dirname, '../e2e/yaml/create_policy/empty_template.yaml'));
+      expected = yaml.safeLoadAll(file)[0];
+      expected.metadata.name = policyName
+      expected.metadata.namespace = spec.namespace
+      expected.metadata.annotations['policy.open-cluster-management.io/standards'] = spec.standard ? spec.standard.join(', ') : null
+      expected.metadata.annotations['policy.open-cluster-management.io/categories'] = spec.category ? spec.category.join(', ') : null
+      expected.metadata.annotations['policy.open-cluster-management.io/controls'] = spec.control ? spec.control.join(', ') : null
+      expected.spec.remediationAction = spec.enforce ? 'enforce' : 'inform'
+      expected.spec.disabled = spec.disable
+    } catch (e) {
+      console.log(e);
+    }
+    inputyaml = actual.value.replace(/^\W+policy-templates:(.*\n)+.*/m, '')
+    actual = yaml.safeLoad(inputyaml)
+    this.assert.equal(JSON.stringify(actual), JSON.stringify(expected))
+  })
   /* Create policy */
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
@@ -202,10 +222,6 @@ function verifyPolicy(expectToDisplay, policyName, spec = { namespace: 'default'
     }
     if (spec.standard[0] != '') {
       spec.standard.forEach(item => {
-        // /* Replace dash in NIST-CRF with a space */
-        // if (item.indexOf('-') >= 0) {
-        //   item = item.replace('-', ' ')
-        // }
         item = cleanAndCapitalize(item)
         this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.contain(item)
       });
