@@ -1460,7 +1460,7 @@ export const policies3 = [
       'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/open-cluster-management-policies/policies/policy-auth-provider',
       'annotations': {
         'policy.mcm.ibm.com/categories': 'PR.IP Information Protection Processes and Procedures',
-        'policy.mcm.ibm.com/controls': 'PR.IP-1 Baseline configuration',
+        'policy.mcm.ibm.com/controls': 'PR.IP-1 Baseline Configuration',
         'policy.mcm.ibm.com/standards': 'NIST-CSF',
         'seed-generation': '1'
       },
@@ -1475,7 +1475,7 @@ export const policies3 = [
       'metadata': {
         'annotations': {
           'policy.mcm.ibm.com/categories': 'PR.IP Information Protection Processes and Procedures',
-          'policy.mcm.ibm.com/controls': 'PR.IP-1 Baseline configuration',
+          'policy.mcm.ibm.com/controls': 'PR.IP-1 Baseline Configuration',
           'policy.mcm.ibm.com/standards': 'NIST-CSF',
           'seed-generation': '1'
         },
@@ -5362,8 +5362,8 @@ export const itemPolicyOverview = [
       'kind':'Policy',
       'metadata':{
         'annotations':{
-          'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS DataSecurity","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
-          'policies.open-cluster-management.io/categories':'PR.DS DataSecurity',
+          'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS Data Security","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
+          'policies.open-cluster-management.io/categories':'PR.DS Data Security',
           'policies.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
           'policies.open-cluster-management.io/standards':'NIST-CSF'
         },
@@ -5472,15 +5472,15 @@ export const itemPolicyOverview = [
       'selfLink':'/apis/policies.open-cluster-management.io/v1/namespaces/default/policies/case6-test-policy',
       'uid':'c1aea785-0af3-4829-87eb-cf4298d0d213',
       'annotations':{
-        'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS DataSecurity","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
-        'policies.open-cluster-management.io/categories':'PR.DS DataSecurity',
+        'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS Data Security","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
+        'policies.open-cluster-management.io/categories':'PR.DS Data Security',
         'policies.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
         'policies.open-cluster-management.io/standards':'NIST-CSF'
       },
       '__typename':'Metadata'
     },
     'annotations':{
-      'categories':'PR.DS DataSecurity',
+      'categories':'PR.DS Data Security',
       'controls':'PR.DS-2 Data-in-transit',
       'standards':'NIST-CSF'
     },
@@ -5726,8 +5726,8 @@ export const itemPolicyOverview = [
           'kind':'Policy',
           'metadata':{
             'annotations':{
-              'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS DataSecurity","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
-              'policies.open-cluster-management.io/categories':'PR.DS DataSecurity',
+              'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS Data Security","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
+              'policies.open-cluster-management.io/categories':'PR.DS Data Security',
               'policies.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
               'policies.open-cluster-management.io/standards':'NIST-CSF'
             },
@@ -5839,8 +5839,8 @@ export const itemPolicyOverview = [
             'kind':'Policy',
             'metadata':{
               'annotations':{
-                'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS DataSecurity","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
-                'policies.open-cluster-management.io/categories':'PR.DS DataSecurity',
+                'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policies.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policies.open-cluster-management.io/categories":"PR.DS Data Security","policies.open-cluster-management.io/controls":"PR.DS-2 Data-in-transit","policies.open-cluster-management.io/standards":"NIST-CSF"},"name":"case6-test-policy","namespace":"default"},"spec":{"disabled":false,"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"TrustedContainerPolicy","metadata":{"name":"case6-test-policy-trustedcontainerpolicy"},"spec":{"imageRegistry":"quay.io","namespaceSelector":{"exclude":["kube-system","default"],"include":["e2e-test"]},"remediationAction":"inform","severity":"low"}}},{"objectDefinition":{"apiVersion":"policies.open-cluster-management.io/v1","kind":"ConfigurationPolicy","metadata":{"name":"case6-policy-role-example"},"spec":{"namespaceSelector":{"exclude":["kube-*"],"include":["default"]},"object-templates":[{"complianceType":"mustonlyhave","objectDefinition":{"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"name":"policy-role-example"},"rules":[{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","delete","patch"]}]}}],"remediationAction":"inform","severity":"high"}}}],"remediationAction":"inform"}}\n',
+                'policies.open-cluster-management.io/categories':'PR.DS Data Security',
                 'policies.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
                 'policies.open-cluster-management.io/standards':'NIST-CSF'
               },
@@ -6928,7 +6928,7 @@ export const policiesClusterDetail = [
       'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/default.policy-certificatepolicy',
       'creationTimestamp':'2020-06-05T13:13:17Z',
       'annotations':{
-        'policy.open-cluster-management.io/categories':'PR.DS DataSecurity',
+        'policy.open-cluster-management.io/categories':'PR.DS Data Security',
         'policy.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
         'policy.open-cluster-management.io/standards':'NIST-CSF'
       },
@@ -6947,7 +6947,7 @@ export const policiesClusterDetail = [
       'kind':'Policy',
       'metadata':{
         'annotations':{
-          'policy.open-cluster-management.io/categories':'PR.DS DataSecurity',
+          'policy.open-cluster-management.io/categories':'PR.DS Data Security',
           'policy.open-cluster-management.io/controls':'PR.DS-2 Data-in-transit',
           'policy.open-cluster-management.io/standards':'NIST-CSF'
         },
