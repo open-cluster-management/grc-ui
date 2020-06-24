@@ -1,0 +1,38 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: 
+  namespace: 
+  annotations:
+    policy.open-cluster-management.io/standards: 
+    policy.open-cluster-management.io/categories: 
+    policy.open-cluster-management.io/controls: 
+spec:
+  remediationAction: 
+  disabled: 
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-grc
+  namespace: 
+placementRef:
+  name: placement-policy-grc
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: policy-grc
+  kind: Policy
+  apiGroup: policy.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-grc
+  namespace: 
+spec:
+  clusterConditions:
+  - type: OK
+  clusterSelector:
+    matchExpressions:
+      []
