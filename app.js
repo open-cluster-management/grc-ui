@@ -121,6 +121,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(appConfig.get('headerContextPath'), cookieParser(), (req, res, next) => {
     res.setHeader(cacheControlStr, 'no-store')
     res.setHeader('Pragma', 'no-cache')
+    res.setHeader('X-Content-Type-Options', 'nosniff')
     const accessToken = req.cookies[acmAccessTokenCookieStr]
     if (req.headers.authorization) {
       req.headers.authorization = `Bearer ${accessToken}`
@@ -137,6 +138,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(`${appConfig.get('contextPath')}/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), (req, res, next) => {
     res.setHeader(cacheControlStr, 'no-store')
     res.setHeader('Pragma', 'no-cache')
+    res.setHeader('X-Content-Type-Options', 'nosniff')
     const accessToken = req.cookies[acmAccessTokenCookieStr]
     if (req.headers.authorization) {
       req.headers.authorization = `Bearer ${accessToken}`
