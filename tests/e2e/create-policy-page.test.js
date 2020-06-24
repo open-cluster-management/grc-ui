@@ -4,19 +4,19 @@
 
 const config = require('../../config')
 let page
-let standards = [
+const standards = [
   'FISMA',
   'HIPAA',
   'NIST',
   'NIST-CSF',
   'PCI']
-let categories = [
+const categories = [
   'DE.CM Security Continuous Monitoring',
   'PR.AC Identity Management Authentication and Access Control',
   'PR.DS Data Security',
   'PR.IP Information Protection Processes and Procedures',
   'PR.PT Protective Technology']
-let controls = [
+const controls = [
   'DE.CM-7 Monitoring for unauthorized activity',
   'DE.CM-8 Vulnerability scans',
   'PR.AC-4 Access Control',
@@ -41,8 +41,8 @@ module.exports = {
   },
   'Select and confirm standards': (browser) => {
     standards.forEach(std => {
-      let time = browser.globals.time
-      let policyName = `${time}-standard-policy-test`
+      const time = browser.globals.time
+      const policyName = `${time}-standard-policy-test`
       page.createTestPolicy(policyName, { standard: [std] })
       page.verifyPolicy(true, policyName, { standard: [std] })
       page.deletePolicy(policyName)
@@ -57,8 +57,8 @@ module.exports = {
   },
   'Select and confirm categories': (browser) => {
     categories.forEach(cat => {
-      let time = browser.globals.time
-      let policyName = `${time}-category-policy-test`
+      const time = browser.globals.time
+      const policyName = `${time}-category-policy-test`
       page.createTestPolicy(policyName, { category: [cat] })
       page.verifyPolicy(true, policyName, { category: [cat] })
       page.deletePolicy(policyName)
@@ -73,8 +73,8 @@ module.exports = {
   },
   'Select and confirm controls': (browser) => {
     controls.forEach(cont => {
-      let time = browser.globals.time
-      let policyName = `${time}-control-policy-test`
+      const time = browser.globals.time
+      const policyName = `${time}-control-policy-test`
       page.createTestPolicy(policyName, { control: [cont] })
       page.verifyPolicy(true, policyName, { control: [cont] })
       page.deletePolicy(policyName)

@@ -55,7 +55,7 @@ module.exports = {
 }
 /*
  * Create a policy given spec object with arrays of policy options
- * 
+ *
  * Defaults to the 'default' namespace with the first available policy template.
  * Will clear out Standard/Category/Controls with undefined or empty input.
 */
@@ -88,7 +88,7 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
     this.setValue('@templateDropdownInput', item)
     this.click('@templateDropdownBox:nth-child(1)')
     this.waitForElementNotPresent('@templateDropdownBox')
-  });
+  })
   /* Select Cluster Placement Binding(s) */
   if (spec.cluster && spec.cluster[0] != '') {
     this.expect.element('@clusterSelectorClearAll').to.not.be.present
@@ -98,7 +98,7 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
       this.setValue('@clusterSelectorDropdownInput', item)
       this.click('@clusterSelectorDropdownBox:nth-child(1)')
       this.click('@clusterSelectorDropdownClearValue')
-    });
+    })
     this.click('@clusterSelectorDropdownInput')
     this.waitForElementNotPresent('@clusterSelectorDropdownBox')
   }
@@ -112,7 +112,7 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
       this.setValue('@standardsDropdownInput', item)
       this.click('@standardsDropdownBox:nth-child(1)')
       this.click('@standardsDropdownClearValue')
-    });
+    })
     this.click('@standardsDropdownInput')
     this.waitForElementNotPresent('@standardsDropdownBox')
   }
@@ -126,7 +126,7 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
       this.setValue('@categoriesDropdownInput', item)
       this.click('@categoriesDropdownBox:nth-child(1)')
       this.click('@categoriesDropdownClearValue')
-    });
+    })
     this.click('@categoriesDropdownInput')
     this.waitForElementNotPresent('@categoriesDropdownBox')
   }
@@ -140,7 +140,7 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
       this.setValue('@controlsDropdownInput', item)
       this.click('@controlsDropdownBox:nth-child(1)')
       this.click('@controlsDropdownClearValue')
-    });
+    })
     this.click('@controlsDropdownInput')
     this.waitForElementNotPresent('@controlsDropdownBox')
   }
@@ -157,13 +157,11 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
     spec.disable = false
   }
   /* Verify displayed YAML based on input */
-  this.api.execute(function () {
-    return window.monaco.editor.getModels()[0].getValue()
-  }, [], function (actual) {
-    let expected, inputyaml
+  this.api.execute('return window.monaco.editor.getModels()[0].getValue()', [], (actual) => {
+    let expected
     try {
-      let file = fs.readFileSync(path.join(__dirname, '../e2e/yaml/create_policy/empty_template.yaml'));
-      expected = yaml.safeLoadAll(file)[0];
+      const file = fs.readFileSync(path.join(__dirname, '../e2e/yaml/create_policy/empty_template.yaml'));
+      expected = yaml.safeLoadAll(file)[0]
       expected.metadata.name = policyName
       expected.metadata.namespace = spec.namespace
       expected.metadata.annotations['policy.open-cluster-management.io/standards'] = spec.standard ? spec.standard.join(', ') : null
@@ -172,9 +170,9 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
       expected.spec.remediationAction = spec.enforce ? 'enforce' : 'inform'
       expected.spec.disabled = spec.disable
     } catch (e) {
-      console.log(e);
+      throw new Error(e)
     }
-    inputyaml = actual.value.replace(/^\W+policy-templates:(.*\n)+.*/m, '')
+    const inputyaml = actual.value.replace(/^\W+policy-templates:(.*\n)+.*/m, '')
     actual = yaml.safeLoad(inputyaml)
     this.assert.equal(JSON.stringify(actual), JSON.stringify(expected))
   })
@@ -196,8 +194,8 @@ function cleanAndCapitalize(str) {
   str = str.replace(/\b\w/g, l => l.toUpperCase())
   return str
 }
-/* 
- * Search for created policy and verify displayed details against provided 
+/*
+ * Search for created policy and verify displayed details against provided
  * parameters given in spec object
  */
 function verifyPolicy(expectToDisplay, policyName, spec = { namespace: 'default', standard: [''], control: [''], category: [''] }) {
@@ -224,7 +222,7 @@ function verifyPolicy(expectToDisplay, policyName, spec = { namespace: 'default'
       spec.standard.forEach(item => {
         item = cleanAndCapitalize(item)
         this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.contain(item)
-      });
+      })
     } else {
       this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal('-')
     }
@@ -236,7 +234,7 @@ function verifyPolicy(expectToDisplay, policyName, spec = { namespace: 'default'
       spec.control.forEach(item => {
         item = cleanAndCapitalize(item)
         this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.contain(item)
-      });
+      })
     } else {
       this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal('-')
     }
@@ -248,7 +246,7 @@ function verifyPolicy(expectToDisplay, policyName, spec = { namespace: 'default'
       spec.category.forEach(item => {
         item = cleanAndCapitalize(item)
         this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.contain(item)
-      });
+      })
     } else {
       this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal('-')
     }
@@ -258,7 +256,7 @@ function verifyPolicy(expectToDisplay, policyName, spec = { namespace: 'default'
   }
   this.clearValue('@searchInput')
 }
-/* 
+/*
  * Delete created policy given name of policy
  */
 function deletePolicy(policyName) {
