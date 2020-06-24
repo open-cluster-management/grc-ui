@@ -3,15 +3,12 @@ language: node_js
 
 services:
   - docker
-  - xvfb
 
 branches:
   only:
     - master
     - /^release-[0-9]+\..*$/
 addons:
-  packages:
-    - openjdk-8-jdk
   chrome: stable
   sonarcloud:
     organization: "open-cluster-management"
@@ -43,6 +40,7 @@ jobs:
     - stage: build
       name: "Build the image"
       script:
+        - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make copyright-check TRAVIS_BRANCH=${TRAVIS_BRANCH}
         - make component/build
@@ -58,6 +56,7 @@ jobs:
     - stage: unit-test
       name: "Build and run unit tests"
       script:
+        - set -e
         - make component/test/unit
     - stage: e2e-test
       name: "Run unit tests and e2e tests"
@@ -72,6 +71,7 @@ jobs:
         - make sonar/js
       after_failure:
         - make travis-slack-reporter
+        - docker logs grcuiapi
     - stage: publish
       name: "Publish the image to quay with an official version/sha tag and publish entry to integration pipeline stage"
       if: type = push AND branch =~ /^release-[0-9]+\..*$/

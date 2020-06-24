@@ -73,7 +73,7 @@ export default {
             resourceKey: 'violated',
           },
           {
-            resourceKey: 'spec.consoleURL',
+            resourceKey: 'status.consoleURL',
           }
         ]
       }

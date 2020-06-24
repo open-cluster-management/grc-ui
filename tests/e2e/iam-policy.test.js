@@ -5,15 +5,12 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 
 var fs = require('fs')
 const path = require('path')
 
-const config = require('../../config')
-// const a11yScan = require('../utils/accessibilityScan')
 let page
 
 module.exports = {
@@ -24,9 +21,7 @@ module.exports = {
     loginPage.navigate()
     loginPage.authenticate()
 
-    const url = `${browser.launch_url}${config.get('contextPath')}/all`
     page = browser.page.ConfigPolicyController()
-    page.navigate(url)
   },
 
   'IAM policy: create iam-policy': (browser) => {

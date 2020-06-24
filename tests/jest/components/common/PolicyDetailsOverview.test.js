@@ -19,10 +19,10 @@ import thunkMiddleware from 'redux-thunk'
 import GrcApolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
-import { staticResourceDataPolicyOverview, itemPolicyOverview } from './CommonTestingData'
+import { staticResourceDataPolicyOverview, itemPolicyOverview, itemPolicyOverviewError } from './CommonTestingData'
 
 describe('PolicyDetailsOverview component', () => {
-  it('renders as expected', () => {
+  it('renders as normal', () => {
     const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
@@ -30,7 +30,7 @@ describe('PolicyDetailsOverview component', () => {
       applyMiddleware(...middleware)
     ))
     const location = {
-      'pathname': '/multicloud/policies/policy/cluster1/1569249226915-policy-test',
+      'pathname': '/multicloud/policies/all/default/case6-test-policy',
       'search': '',
       'hash': '',
       'key': 'q1uagn'
@@ -67,7 +67,7 @@ describe('PolicyDetailsOverview component', () => {
 })
 
 describe('PolicyDetailsOverview component', () => {
-  it('renders as expected', () => {
+  it('renders as loading', () => {
     const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
@@ -101,7 +101,7 @@ describe('PolicyDetailsOverview component', () => {
               resourceType={resourceType}
               refreshControl={refreshControl}
               error={null}
-              loading={false}
+              loading={true}
             />
           </BrowserRouter>
         </Provider>
@@ -112,7 +112,7 @@ describe('PolicyDetailsOverview component', () => {
 })
 
 describe('PolicyDetailsOverview component', () => {
-  it('renders as expected', () => {
+  it('renders as error', () => {
     const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
@@ -139,13 +139,13 @@ describe('PolicyDetailsOverview component', () => {
         <Provider store={store}>
           <BrowserRouter>
             <PolicyDetailsOverview
-              item={['','','','']}
+              item={null}
               updateResourceToolbar={jest.fn()}
               staticResourceData={staticResourceDataPolicyOverview}
               location={location}
               resourceType={resourceType}
               refreshControl={refreshControl}
-              error={null}
+              error={itemPolicyOverviewError}
               loading={false}
             />
           </BrowserRouter>
@@ -155,4 +155,3 @@ describe('PolicyDetailsOverview component', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })
 })
-

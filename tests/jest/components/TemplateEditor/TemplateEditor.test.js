@@ -93,7 +93,7 @@ const controlData = [
         'multiselect': 'specs',
         'replacements': {
           'standards': 'NIST-CSF\n',
-          'categories': 'PR.DS DataSecurity\n',
+          'categories': 'PR.DS Data Security\n',
           'controls': 'PR.DS-2 Data-in-transit\n',
           'policyTemplates': '- objectDefinition:\n    apiVersion: policies.ibm.com/v1alpha1\n    kind: CertificatePolicy # cert management expiration\n    metadata:\n      name: {{name}}-example\n    spec:\n      namespaceSelector:\n        include: ["default"]\n        exclude: []\n      remediationAction: inform\n      severity: low\n      minimumDuration: 300h\n'
         }
@@ -170,7 +170,7 @@ const controlData = [
     'type': 'multiselect',
     'available': [
       'PR.PT Protective Technology',
-      'PR.DS DataSecurity',
+      'PR.DS Data Security',
       'PR.AC Identity Management Authentication and Access Control',
       'PR.IP Information Protection Processes and Procedures',
       'DE.CM Security Continuous Monitoring'
@@ -183,7 +183,7 @@ const controlData = [
       'CertificatePolicy - cert management expiration'
     ],
     'active': [
-      'PR.DS DataSecurity'
+      'PR.DS Data Security'
     ]
   },
   {
@@ -199,7 +199,7 @@ const controlData = [
       'PR.DS-2 Data-at-rest',
       'PR.AC-4 Access Control',
       'PR.AC-5 Network Integrity',
-      'PR.IP-1 Baseline configuration',
+      'PR.IP-1 Baseline Configuration',
       'DE.CM-7 Monitoring for unauthorized activity',
       'DE.CM-8 Vulnerability scans'
     ],

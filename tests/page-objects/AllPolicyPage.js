@@ -179,8 +179,6 @@ function createTestPolicy(browser, time) {
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
   this.expect.element('@table').to.be.present
-  this.waitForElementVisible('@searchInput')
-  this.setValue('@searchInput',`${time}-policy-test`)
 }
 function searchPolicy(expectToDisplay, time) {
   this.waitForElementVisible('@searchInput')
@@ -250,6 +248,7 @@ function verifyDisableEnable(name){
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
+  this.waitForElementNotPresent('.bx--loading-overlay')
   this.click('@searchInput').clearValue('@searchInput')
   this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')

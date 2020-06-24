@@ -7,7 +7,7 @@
 const fs = require('fs')
 const path = require('path')
 const { WebClient } = require('@slack/web-api')
-const { SLACK_TOKEN, /*USER,*/ TRAVIS_BUILD_WEB_URL } = process.env
+const { SLACK_TOKEN, /*USER,*/ TRAVIS_BUILD_WEB_URL, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG, TRAVIS_BRANCH } = process.env
 
 const web = new WebClient(SLACK_TOKEN)
 
@@ -60,7 +60,7 @@ function buildComment(fileName) {
   const searchIndex = fileName.indexOf('_')
   const string = fileName.slice(0, searchIndex)
   const testName = string.replace(/-/g, ' ')
-  return `:failed: *FAILED: ${testName}.* \n ${TRAVIS_BUILD_WEB_URL}`
+  return `:failed: *FAILED: ${TRAVIS_REPO_SLUG} -- ${TRAVIS_PULL_REQUEST == 'false' ? 'Branch: '+TRAVIS_BRANCH : 'PR: '+TRAVIS_PULL_REQUEST} -- ${testName}.* \n ${TRAVIS_BUILD_WEB_URL}`
 }
 
 // async function mapSlackUserByGitEmail() {

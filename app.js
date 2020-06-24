@@ -11,7 +11,6 @@
 
 const log4js = require('log4js'),
       logger = log4js.getLogger('server'),
-      watchr = require('watchr'),
       mime = require('mime-types'),
       fs = require('fs'),
       helmet = require('helmet')
@@ -23,17 +22,6 @@ const log4jsConfig = process.env.LOG4JS_CONFIG ? JSON.parse(process.env.LOG4JS_C
 log4js.configure(log4jsConfig || 'config/log4js.json')
 
 logger.info(`[pid ${process.pid}] [env ${process.env.NODE_ENV}] started.`)
-
-const stalker = watchr.open(`${process.cwd()}/config/log4js.json`, changeType => {
-  if (changeType === 'update') {
-    logger.info('Logging configuration updated.  Re-configuring log4js.')
-    log4js.shutdown(err => {
-      if (!err) {
-        log4js.configure('config/log4js.json')
-      }
-    })
-  }
-}, () => {/*This is intentional*/})
 
 const express = require('express'),
       path = require('path'),
@@ -240,7 +228,6 @@ server.listen(port, () => {
 
 process.on('SIGTERM', () => {
   logger.info('SIGTERM received.  Shutting down express server.')
-  stalker.close()
   server.close(err => {
     if (err) {
       logger.error(err)

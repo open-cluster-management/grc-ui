@@ -6,8 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
-*/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -20,7 +19,6 @@ import { Link } from 'react-router-dom'
 import ResourceTableRowExpandableTable from './ResourceTableRowExpandableTable'
 import { Module, ModuleHeader, ModuleBody } from 'carbon-addons-cloud-react'
 import msgs from '../../../nls/platform.properties'
-import TruncateText from './TruncateText'
 import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
@@ -86,22 +84,22 @@ class StructuredListModule extends React.Component {
             </TableHead>
             <TableBody>
               {(() => {
-                return data.map((row, index) => {
+                return data.map((row, rowIndex) => {
                   if (listSubItems) {
                     return (
                       <React.Fragment key={row.id}>
                         <TableExpandRow
-                          isExpanded={extended === index}
-                          onExpand={this.onSelect(index)}
+                          isExpanded={extended === rowIndex}
+                          onExpand={this.onSelect(rowIndex)}
                           ariaLabel='Overflow-menu'>
-                          {Array.isArray(rows) && rows[0].cells.map((cell, index) =>
+                          {Array.isArray(rows) && rows[0].cells.map((cell, cellIndex) =>
                             <td key={cell.resourceKey+'Cell'}>
                               <p>{
-                                (linkFixedName && (index in linkFixedName) && transform(row, cell, this.context.locale) !== '-')
+                                (linkFixedName && (cellIndex in linkFixedName) && transform(row, cell, this.context.locale) !== '-')
                                   ? <Link
                                     to={transform(row, cell, this.context.locale)}
-                                    target={linkFixedName[index].urlTarget}
-                                    className='bx--link'>{msgs.get(linkFixedName[index].fixedName, this.context.locale)}
+                                    target={linkFixedName[cellIndex].urlTarget}
+                                    className='bx--link'>{msgs.get(linkFixedName[cellIndex].fixedName, this.context.locale)}
                                   </Link>
                                   : cell.link && url
                                     ? <Link
@@ -114,7 +112,7 @@ class StructuredListModule extends React.Component {
                             </td>
                           )}
                         </TableExpandRow>
-                        {index === extended && listSubItems && (
+                        {rowIndex === extended && listSubItems && (
                           <TableExpandedRow>
                             <td className='expand-arrow-align-makeup'></td>
                             {_.isEmpty(frontPlaceholder) ? null : frontPlaceholder}
@@ -133,11 +131,11 @@ class StructuredListModule extends React.Component {
                       return (
                         <TableRow key={row.id}>
                           {Array.isArray(rows) && rows[0].cells &&
-                            rows[0].cells.map((cell, index)=>
+                            rows[0].cells.map((cell)=>
                               <TableCell
                                 key={cell.resourceKey.substring(0, 21)+'Cell'}
-                                className={row.id.includes('S_F_S_P')?'S_F_S_P_'+index:''}>
-                                <TruncateText text={transform(row, cell, this.context.locale)} />
+                                className={row.id.includes('S_F_S_P')?_uniqueId('S_F_S_P'):_uniqueId('index')}>
+                                {transform(row, cell, this.context.locale)}
                               </TableCell>
                             )}
                         </TableRow>
