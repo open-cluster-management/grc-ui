@@ -53,6 +53,9 @@ app.use(helmet({ // in production these headers are set by icp-management-ingres
   xssFilter: true
 }))
 
+// Remove the X-Powered-By headers.
+app.disable('x-powered-by')
+
 
 const morgan = require('morgan')
 if (process.env.NODE_ENV === 'production') {
