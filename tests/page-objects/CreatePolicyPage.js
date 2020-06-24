@@ -160,7 +160,7 @@ function createTestPolicy(policyName, spec = { namespace: 'default', specificati
   this.api.execute('return window.monaco.editor.getModels()[0].getValue()', [], (actual) => {
     let expected
     try {
-      const file = fs.readFileSync(path.join(__dirname, '../e2e/yaml/create_policy/empty_template.yaml'));
+      const file = fs.readFileSync(path.join(__dirname, '../e2e/yaml/create_policy/empty_template.yaml'))
       expected = yaml.safeLoadAll(file)[0]
       expected.metadata.name = policyName
       expected.metadata.namespace = spec.namespace
