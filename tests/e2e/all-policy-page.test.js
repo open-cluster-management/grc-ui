@@ -40,14 +40,14 @@ module.exports = {
     templates.forEach(t => {
       policyName = `${time}-${t}-policy-test`
       templateFile = `${t}_template.yaml`
-      page.createTestPolicy(false, false, { policyName: policyName, specification: [t] }, templateFile)
+      page.createTestPolicy(false, { policyName: policyName, specification: [t] }, templateFile)
     })
   },
 
   'All policy page: Add, search test policy': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
-    page.createTestPolicy(true, false, { policyName: policyName, specification: ['ImageManifestVulnPolicy'] })
+    page.createTestPolicy(true, { policyName: policyName, specification: ['ImageManifestVulnPolicy'] })
     page.searchPolicy(true, policyName)
     page.testDetailsPage(browser, policyName)
   },

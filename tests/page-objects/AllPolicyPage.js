@@ -32,11 +32,11 @@ module.exports = {
     templateDropdownBox: '.creation-view-controls-container > div > div:nth-child(3) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div',
     templateDropdownInput: '.creation-view-controls-container > div > div:nth-child(3) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > input',
     templateDropdownClearAll: '.creation-view-controls-container > div > div:nth-child(3) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > div.bx--list-box__selection[title="Clear all selected items"]',
-    clusterSelectorDropdown: '.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box',
-    clusterSelectorDropdownBox: '.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div',
-    clusterSelectorDropdownInput: '.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > input',
-    clusterSelectorDropdownClearAll: '.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > div.bx--list-box__selection[title="Clear all selected items"]',
-    clusterSelectorDropdownClearValue: '.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > div.bx--list-box__selection[title="Clear selected item"]',
+    clusterDropdown: '.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box',
+    clusterDropdownBox: '.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div',
+    clusterDropdownInput: '.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > input',
+    clusterDropdownClearAll: '.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > div.bx--list-box__selection[title="Clear all selected items"]',
+    clusterDropdownClearValue: '.creation-view-controls-container > div > div:nth-child(4) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > div.bx--list-box__selection[title="Clear selected item"]',
     standardsDropdown: '.creation-view-controls-container > div > div:nth-child(5) > div.bx--multi-select.bx--list-box',
     standardsDropdownBox: '.creation-view-controls-container > div > div:nth-child(5) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div',
     standardsDropdownInput: '.creation-view-controls-container > div > div:nth-child(5) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > input',
@@ -152,6 +152,52 @@ function verifyPagination() {
   this.click('.bx--pagination__button.bx--pagination__button--backward')
   this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="10"]')
 }
+/* Helper function to select dropdown options */
+function dropdownSelector(browser, label = '', options = ['']) {
+  if (options && options[0] != '') {
+    browser.click(`@${label}Dropdown`)
+    browser.waitForElementVisible(`@${label}DropdownBox`)
+    options.forEach(item => {
+      browser.setValue(`@${label}DropdownInput`, item)
+      browser.click(`@${label}DropdownBox:nth-child(1)`)
+      browser.click(`@${label}DropdownClearValue`)
+    })
+    browser.click(`@${label}DropdownInput`)
+    browser.waitForElementNotPresent(`@${label}DropdownBox`)
+  }
+}
+/* Helper function to compare the editor with a template */
+function compareTemplate(browser, templateFile, spec = {}) {
+  browser.api.execute('return window.monaco.editor.getModels()[0].getValue()', [], (result) => {
+    const expected = fs.readFileSync(path.join(__dirname, `../e2e/yaml/create_policy/${templateFile}`), 'utf8')
+    const actual = result.value
+    const expectedlines = expected.split(/\r?\n/)
+    const actuallines = actual.split(/\r?\n/)
+    let i = 0, diff = '', same = true
+    while (same && (i < expectedlines.length || i < actuallines.length)) {
+      if (i < expectedlines.length) {
+        if (i < actuallines.length) {
+          if (expectedlines[i].replace('[TEST_POLICY_NAME]', spec.policyName) != actuallines[i]) {
+            diff = 'EXPECTED: ' + expectedlines[i] + '\nACTUAL: ' + actuallines[i] + '\n---\n'
+            same = false
+          }
+        } else {
+          diff = 'EXPECTED: ' + expectedlines[i] + '\nACTUAL: <EOF>' + '\n---\n'
+          same = false
+        }
+      } else {
+        diff = 'EXPECTED: <EOF>\nACTUAL: ' + actuallines[i] + '\n---\n'
+        same = false
+      }
+      i++
+    }
+    if (!same) {
+      browser.assert.fail(`YAML in editor differs from expected YAML (${templateFile}) on Line ${i}:\n` + diff)
+    } else {
+      browser.assert.ok(true, `YAML in editor matches expected YAML (${templateFile}).`)
+    }
+  })
+}
 /*
  * Create a policy given spec object with arrays of policy options
  *
@@ -159,10 +205,9 @@ function verifyPagination() {
  * If 'clear' is set to true, will clear out default Standard/Category/Controls
  * and replace with given spec
  * Validates against the given templateFile (will skip if none is given)
-*/
-function createTestPolicy(create = true, clear = false,
-  spec = {
-    policyName: 'default-policy-test',
+ */
+function createTestPolicy(create = true,
+  spec = { policyName: 'default-policy-test',
     namespace: 'default',
     specification: [''],
     cluster: [''],
@@ -172,8 +217,7 @@ function createTestPolicy(create = true, clear = false,
     enforce: false,
     disable: false
   }, templateFile = '') {
-  /* Press Create Policy Button (if we're not already at the Create page)
-     If we're already at the page, reset the form */
+  /* Press Create Policy Button or Reset the form */
   this.api.url(result => {
     if (result.value.indexOf('/policies/create') < 0) {
       this.waitForElementVisible('@createPolicyButton')
@@ -185,7 +229,6 @@ function createTestPolicy(create = true, clear = false,
   })
   /* Wait for Editor to appear */
   this.waitForElementVisible('@yamlMonacoEditor')
-  this.click('@yamlMonacoEditor')
   /* Input Policy Name */
   this.click('@policyNameInput').clearValue('@policyNameInput')
   this.setValue('@policyNameInput', spec.policyName)
@@ -197,8 +240,7 @@ function createTestPolicy(create = true, clear = false,
   }
   this.click('xpath', `//div[contains(@class,"bx--list-box__menu-item") and text()="${spec.namespace}"]`)
   this.waitForElementNotPresent('@namespaceDropdownBox')
-  /* Select Specification template -- append ' - ' to
-  make sure we're filtering for the precise template name */
+  /* Select Specification template */
   this.click('@templateDropdown')
   this.waitForElementVisible('@templateDropdownBox')
   if (!spec.specification) {
@@ -210,66 +252,13 @@ function createTestPolicy(create = true, clear = false,
     this.waitForElementNotPresent('@templateDropdownBox')
   })
   /* Select Cluster Placement Binding(s) */
-  if (spec.cluster && spec.cluster[0] != '') {
-    this.expect.element('@clusterSelectorClearAll').to.not.be.present
-    this.click('@clusterSelectorDropdown')
-    this.waitForElementVisible('@clusterSelectorDropdownBox')
-    spec.cluster.forEach(item => {
-      this.setValue('@clusterSelectorDropdownInput', item)
-      this.click('@clusterSelectorDropdownBox:nth-child(1)')
-      this.click('@clusterSelectorDropdownClearValue')
-    })
-    this.click('@clusterSelectorDropdownInput')
-    this.waitForElementNotPresent('@clusterSelectorDropdownBox')
-  }
-  /* Clear out all template input if requested */
-  if (clear) {
-    /* Clear standards */
-    this.click('@standardsDropdownClearAll')
-    this.expect.element('@standardsDropdownClearAll').to.not.be.present
-    /* Clear categories */
-    this.click('@categoriesDropdownClearAll')
-    this.expect.element('@categoriesDropdownClearAll').to.not.be.present
-    /* Clear controls */
-    this.click('@controlsDropdownClearAll')
-    this.expect.element('@controlsDropdownClearAll').to.not.be.present
-  }
+  dropdownSelector(this, 'cluster', spec.cluster)
   /* Select Security Standard(s) */
-  if (spec.standard && spec.standard[0] != '') {
-    this.click('@standardsDropdown')
-    this.waitForElementVisible('@standardsDropdownBox')
-    spec.standard.forEach(item => {
-      this.setValue('@standardsDropdownInput', item)
-      this.click('@standardsDropdownBox:nth-child(1)')
-      this.click('@standardsDropdownClearValue')
-    })
-    this.click('@standardsDropdownInput')
-    this.waitForElementNotPresent('@standardsDropdownBox')
-  }
+  dropdownSelector(this, 'standards', spec.standard)
   /* Select Security Control Category(s) */
-  if (spec.category && spec.category[0] != '') {
-    this.click('@categoriesDropdown')
-    this.waitForElementVisible('@categoriesDropdownBox')
-    spec.category.forEach(item => {
-      this.setValue('@categoriesDropdownInput', item)
-      this.click('@categoriesDropdownBox:nth-child(1)')
-      this.click('@categoriesDropdownClearValue')
-    })
-    this.click('@categoriesDropdownInput')
-    this.waitForElementNotPresent('@categoriesDropdownBox')
-  }
+  dropdownSelector(this, 'categories', spec.category)
   /* Select Security Control(s) */
-  if (spec.control && spec.control[0] != '') {
-    this.click('@controlsDropdown')
-    this.waitForElementVisible('@controlsDropdownBox')
-    spec.control.forEach(item => {
-      this.setValue('@controlsDropdownInput', item)
-      this.click('@controlsDropdownBox:nth-child(1)')
-      this.click('@controlsDropdownClearValue')
-    })
-    this.click('@controlsDropdownInput')
-    this.waitForElementNotPresent('@controlsDropdownBox')
-  }
+  dropdownSelector(this, 'controls', spec.control)
   /* Enable 'enforce' for policy (instead of 'inform') if indicated */
   if (spec.enforce) {
     this.click('@enforceCheckbox')
@@ -284,37 +273,7 @@ function createTestPolicy(create = true, clear = false,
   }
   /* Verify displayed YAML based on input (if a template file is given) */
   if (templateFile) {
-    this.api.execute('return window.monaco.editor.getModels()[0].getValue()', [], (result) => {
-      const expected = fs.readFileSync(path.join(__dirname, `../e2e/yaml/create_policy/${templateFile}`), 'utf8')
-      const actual = result.value
-      /* Iterate over YAML for more helpful error messaging and to replace policy name */
-      const expectedLines = expected.split(/\r?\n/)
-      const actualLines = actual.split(/\r?\n/)
-      let i = 0, diff = '', same = true
-      while (same && (i < expectedLines.length || i < actualLines.length)) {
-        if (i < expectedLines.length) {
-          if (i < actualLines.length) {
-            if (expectedLines[i].replace('[TEST_POLICY_NAME]', spec.policyName) != actualLines[i]) {
-              diff = 'EXPECTED: ' + expectedLines[i] + '\nACTUAL: ' + actualLines[i] + '\n---\n'
-              same = false
-            }
-          } else {
-            diff = 'EXPECTED: ' + expectedLines[i] + '\nACTUAL: <EOF>' + '\n---\n'
-            same = false
-          }
-        } else {
-          diff = 'EXPECTED: <EOF>\nACTUAL: ' + actualLines[i] + '\n---\n'
-          same = false
-        }
-        i++
-      }
-      /* Assert results of line-by-line YAML comparison */
-      if (!same) {
-        this.assert.fail(`YAML in editor differs from expected YAML (${templateFile}) on Line ${i}:\n` + diff)
-      } else {
-        this.assert.ok(true, `YAML in editor matches expected YAML (${templateFile}).`)
-      }
-    })
+    compareTemplate(this, templateFile, spec)
   }
   /* Create policy if requested */
   if (create) {
