@@ -206,15 +206,15 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   },
                   Object {
                     "msgKey": "table.header.standards",
-                    "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]",
+                    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                   },
                   Object {
                     "msgKey": "table.header.controls",
-                    "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]",
+                    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                   },
                   Object {
                     "msgKey": "table.header.categories",
-                    "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]",
+                    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                   },
                 ],
                 "title": "policySide",
@@ -241,15 +241,15 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 },
                 Object {
                   "msgKey": "table.header.standards",
-                  "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]",
+                  "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 },
                 Object {
                   "msgKey": "table.header.controls",
-                  "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]",
+                  "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 },
                 Object {
                   "msgKey": "table.header.categories",
-                  "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]",
+                  "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 },
               ],
             }
@@ -337,15 +337,15 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                             },
                             Object {
                               "msgKey": "table.header.standards",
-                              "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]",
+                              "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                             },
                             Object {
                               "msgKey": "table.header.controls",
-                              "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]",
+                              "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                             },
                             Object {
                               "msgKey": "table.header.categories",
-                              "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]",
+                              "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                             },
                           ],
                           "title": "policySide",
@@ -448,15 +448,15 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                 },
                                 Object {
                                   "msgKey": "table.header.standards",
-                                  "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]",
+                                  "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                                 },
                                 Object {
                                   "msgKey": "table.header.controls",
-                                  "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]",
+                                  "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                                 },
                                 Object {
                                   "msgKey": "table.header.categories",
-                                  "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]",
+                                  "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                                 },
                               ],
                               "title": "policySide",
@@ -557,15 +557,15 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                   },
                                   Object {
                                     "msgKey": "table.header.standards",
-                                    "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]",
+                                    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                                   },
                                   Object {
                                     "msgKey": "table.header.controls",
-                                    "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]",
+                                    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                                   },
                                   Object {
                                     "msgKey": "table.header.categories",
-                                    "resourceKey": "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]",
+                                    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                                   },
                                 ],
                                 "title": "policySide",
@@ -596,17 +596,17 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                   Object {
                                     "header": "Standards",
                                     "information": "",
-                                    "key": "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]",
+                                    "key": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                                   },
                                   Object {
                                     "header": "Controls",
                                     "information": "",
-                                    "key": "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]",
+                                    "key": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                                   },
                                   Object {
                                     "header": "Categories",
                                     "information": "",
-                                    "key": "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]",
+                                    "key": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                                   },
                                 ]
                               }
@@ -945,12 +945,12 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                 </div>
                                               </th>
                                               <th
-                                                key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
+                                                key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
                                                 scope="col"
                                               >
                                                 <div
                                                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-                                                  data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
+                                                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
                                                   onClick={[Function]}
                                                   onKeyPress={[Function]}
                                                   role="button"
@@ -992,12 +992,12 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                 </div>
                                               </th>
                                               <th
-                                                key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
+                                                key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
                                                 scope="col"
                                               >
                                                 <div
                                                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-                                                  data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
+                                                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
                                                   onClick={[Function]}
                                                   onKeyPress={[Function]}
                                                   role="button"
@@ -1039,12 +1039,12 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                 </div>
                                               </th>
                                               <th
-                                                key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
+                                                key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
                                                 scope="col"
                                               >
                                                 <div
                                                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-                                                  data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
+                                                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
                                                   onClick={[Function]}
                                                   onKeyPress={[Function]}
                                                   role="button"

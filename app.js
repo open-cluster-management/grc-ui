@@ -17,6 +17,7 @@ const log4js = require('log4js'),
 
 const cacheControlStr = 'Cache-Control'
 const acmAccessTokenCookieStr = 'acm-access-token-cookie'
+const xContentTypeOptions = 'X-Content-Type-Options'
 
 const log4jsConfig = process.env.LOG4JS_CONFIG ? JSON.parse(process.env.LOG4JS_CONFIG) : undefined
 log4js.configure(log4jsConfig || 'config/log4js.json')
@@ -47,10 +48,14 @@ require('./lib/shared/dust-helpers')
 const app = express()
 
 app.use(helmet({ // in production these headers are set by icp-management-ingress
-  frameguard: false,
-  noSniff: false,
-  xssFilter: false
+  hidePoweredBy: true,
+  frameguard: true,
+  noSniff: true,
+  xssFilter: true
 }))
+
+// Remove the X-Powered-By headers.
+app.disable('x-powered-by')
 
 
 const morgan = require('morgan')
@@ -121,6 +126,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(appConfig.get('headerContextPath'), cookieParser(), (req, res, next) => {
     res.setHeader(cacheControlStr, 'no-store')
     res.setHeader('Pragma', 'no-cache')
+    res.setHeader(xContentTypeOptions, 'nosniff')
     const accessToken = req.cookies[acmAccessTokenCookieStr]
     if (req.headers.authorization) {
       req.headers.authorization = `Bearer ${accessToken}`
@@ -137,6 +143,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(`${appConfig.get('contextPath')}/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), (req, res, next) => {
     res.setHeader(cacheControlStr, 'no-store')
     res.setHeader('Pragma', 'no-cache')
+    res.setHeader(xContentTypeOptions, 'nosniff')
     const accessToken = req.cookies[acmAccessTokenCookieStr]
     if (req.headers.authorization) {
       req.headers.authorization = `Bearer ${accessToken}`
@@ -186,7 +193,7 @@ app.use(`${CONTEXT_PATH}`, express.static(STATIC_PATH, {
     // set cahce control to 30min, expect for nls
     const maxAge = fp.startsWith(`${STATIC_PATH}/nls`) ? 0 : (60 * 60 * 12)
     res.setHeader(cacheControlStr, `max-age=${maxAge}`)
-    res.setHeader('X-Content-Type-Options', 'nosniff')
+    res.setHeader(xContentTypeOptions, 'nosniff')
   }
 }))
 

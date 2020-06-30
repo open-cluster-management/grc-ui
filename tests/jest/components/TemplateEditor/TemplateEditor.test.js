@@ -152,7 +152,7 @@ const controlData = [
       'NIST-CSF'
     ],
     'reverse': [
-      'Policy[0].$raw.metadata.annotations["policy.mcm.ibm.com/standards"]'
+      'Policy[0].$raw.metadata.annotations["policy.open-cluster-management.io/standards"]'
     ],
     'cacheUserValueKey': 'create.policy.standards',
     'wasSet': [
@@ -176,7 +176,7 @@ const controlData = [
       'DE.CM Security Continuous Monitoring'
     ],
     'reverse': [
-      'Policy[0].$raw.metadata.annotations["policy.mcm.ibm.com/categories"]'
+      'Policy[0].$raw.metadata.annotations["policy.open-cluster-management.io/categories"]'
     ],
     'cacheUserValueKey': 'create.policy.categories',
     'wasSet': [
@@ -204,7 +204,7 @@ const controlData = [
       'DE.CM-8 Vulnerability scans'
     ],
     'reverse': [
-      'Policy[0].$raw.metadata.annotations["policy.mcm.ibm.com/controls"]'
+      'Policy[0].$raw.metadata.annotations["policy.open-cluster-management.io/controls"]'
     ],
     'cacheUserValueKey': 'create.policy.controls',
     'wasSet': [
