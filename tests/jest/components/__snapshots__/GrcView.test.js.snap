@@ -716,17 +716,17 @@ exports[`GrcView component 1 renders as expected 1`] = `
               <td
                 className={undefined}
               >
-                -
+                HIPAA
               </td>
               <td
                 className={undefined}
               >
-                -
+                Cert Manager
               </td>
               <td
                 className={undefined}
               >
-                -
+                System And Communications Protections
               </td>
               <td
                 className={undefined}
@@ -839,17 +839,17 @@ exports[`GrcView component 1 renders as expected 1`] = `
               <td
                 className={undefined}
               >
-                -
+                NIST, HIPAA
               </td>
               <td
                 className={undefined}
               >
-                -
+                Mutation Advisor
               </td>
               <td
                 className={undefined}
               >
-                -
+                System And Communications Protections, System And Information Integrity
               </td>
               <td
                 className={undefined}

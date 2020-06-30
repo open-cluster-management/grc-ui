@@ -6,9 +6,9 @@ Object {
     "__typename": "Compliance",
     "clusterCompliant": "1/2",
     "custom": Object {
-      "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]": "System And Communications Protections",
-      "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]": "IAM",
-      "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]": "FISMA",
+      "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]": "System And Communications Protections",
+      "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]": "IAM",
+      "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]": "FISMA",
       "metadata.name": Object {
         "_owner": null,
         "_store": Object {},
@@ -25,15 +25,15 @@ Object {
     "metadata": Object {
       "__typename": "Metadata",
       "annotations": Object {
-        "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-        "policy.mcm.ibm.com/controls": "IAM",
-        "policy.mcm.ibm.com/standards": "FISMA",
+        "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+        "policy.open-cluster-management.io/controls": "IAM",
+        "policy.open-cluster-management.io/standards": "FISMA",
         "seed-generation": "2",
       },
       "name": "policy-auditpolicy-will-sev",
       "namespace": "mcm",
       "resourceVersion": "5300122",
-      "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+      "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
     },
     "name": "policy-auditpolicy-will-sev",
     "namespace": "mcm",
@@ -59,13 +59,13 @@ Object {
     ],
     "policyCompliant": "1/2",
     "raw": Object {
-      "apiVersion": "policy.mcm.ibm.com/v1alpha1",
+      "apiVersion": "policy.open-cluster-management.io/v1",
       "kind": "Policy",
       "metadata": Object {
         "annotations": Object {
-          "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-          "policy.mcm.ibm.com/controls": "IAM",
-          "policy.mcm.ibm.com/standards": "FISMA",
+          "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+          "policy.open-cluster-management.io/controls": "IAM",
+          "policy.open-cluster-management.io/standards": "FISMA",
           "seed-generation": "2",
         },
         "creationTimestamp": "2019-10-01T14:55:28Z",
@@ -77,7 +77,7 @@ Object {
         "name": "policy-auditpolicy-will-sev",
         "namespace": "mcm",
         "resourceVersion": "5300122",
-        "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+        "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
         "uid": "81b9569e-e45b-11e9-8895-005056a061f1",
       },
       "spec": Object {
@@ -188,9 +188,9 @@ ShallowWrapper {
         "__typename": "Compliance",
         "clusterCompliant": "1/2",
         "custom": Object {
-          "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]": "System And Communications Protections",
-          "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]": "IAM",
-          "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]": "FISMA",
+          "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]": "System And Communications Protections",
+          "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]": "IAM",
+          "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]": "FISMA",
           "metadata.name": Object {
             "_owner": null,
             "_store": Object {},
@@ -207,15 +207,15 @@ ShallowWrapper {
         "metadata": Object {
           "__typename": "Metadata",
           "annotations": Object {
-            "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-            "policy.mcm.ibm.com/controls": "IAM",
-            "policy.mcm.ibm.com/standards": "FISMA",
+            "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+            "policy.open-cluster-management.io/controls": "IAM",
+            "policy.open-cluster-management.io/standards": "FISMA",
             "seed-generation": "2",
           },
           "name": "policy-auditpolicy-will-sev",
           "namespace": "mcm",
           "resourceVersion": "5300122",
-          "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
         },
         "name": "policy-auditpolicy-will-sev",
         "namespace": "mcm",
@@ -241,13 +241,13 @@ ShallowWrapper {
         ],
         "policyCompliant": "1/2",
         "raw": Object {
-          "apiVersion": "policy.mcm.ibm.com/v1alpha1",
+          "apiVersion": "policy.open-cluster-management.io/v1",
           "kind": "Policy",
           "metadata": Object {
             "annotations": Object {
-              "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-              "policy.mcm.ibm.com/controls": "IAM",
-              "policy.mcm.ibm.com/standards": "FISMA",
+              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+              "policy.open-cluster-management.io/controls": "IAM",
+              "policy.open-cluster-management.io/standards": "FISMA",
               "seed-generation": "2",
             },
             "creationTimestamp": "2019-10-01T14:55:28Z",
@@ -259,7 +259,7 @@ ShallowWrapper {
             "name": "policy-auditpolicy-will-sev",
             "namespace": "mcm",
             "resourceVersion": "5300122",
-            "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
             "uid": "81b9569e-e45b-11e9-8895-005056a061f1",
           },
           "spec": Object {
@@ -419,15 +419,15 @@ ShallowWrapper {
                 readOnly={false}
                 setEditor={[Function]}
                 width="50vw"
-                yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -497,15 +497,15 @@ spec:
                 readOnly={false}
                 setEditor={[Function]}
                 width="50vw"
-                yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -583,15 +583,15 @@ spec:
                   readOnly={false}
                   setEditor={[Function]}
                   width="50vw"
-                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                  yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -650,15 +650,15 @@ spec:
                   readOnly={false}
                   setEditor={[Function]}
                   width="50vw"
-                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                  yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -713,15 +713,15 @@ spec:
                   "readOnly": false,
                   "setEditor": [Function],
                   "width": "50vw",
-                  "yaml": "apiVersion: policy.mcm.ibm.com/v1alpha1
+                  "yaml": "apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -815,15 +815,15 @@ spec:
                   readOnly={false}
                   setEditor={[Function]}
                   width="50vw"
-                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                  yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -893,15 +893,15 @@ spec:
                   readOnly={false}
                   setEditor={[Function]}
                   width="50vw"
-                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                  yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -979,15 +979,15 @@ spec:
                     readOnly={false}
                     setEditor={[Function]}
                     width="50vw"
-                    yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                    yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -1046,15 +1046,15 @@ spec:
                     readOnly={false}
                     setEditor={[Function]}
                     width="50vw"
-                    yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                    yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -1109,15 +1109,15 @@ spec:
                     "readOnly": false,
                     "setEditor": [Function],
                     "width": "50vw",
-                    "yaml": "apiVersion: policy.mcm.ibm.com/v1alpha1
+                    "yaml": "apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -1203,9 +1203,9 @@ ShallowWrapper {
         "__typename": "Compliance",
         "clusterCompliant": "1/2",
         "custom": Object {
-          "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]": "System And Communications Protections",
-          "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]": "IAM",
-          "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]": "FISMA",
+          "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]": "System And Communications Protections",
+          "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]": "IAM",
+          "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]": "FISMA",
           "metadata.name": Object {
             "_owner": null,
             "_store": Object {},
@@ -1222,15 +1222,15 @@ ShallowWrapper {
         "metadata": Object {
           "__typename": "Metadata",
           "annotations": Object {
-            "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-            "policy.mcm.ibm.com/controls": "IAM",
-            "policy.mcm.ibm.com/standards": "FISMA",
+            "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+            "policy.open-cluster-management.io/controls": "IAM",
+            "policy.open-cluster-management.io/standards": "FISMA",
             "seed-generation": "2",
           },
           "name": "policy-auditpolicy-will-sev",
           "namespace": "mcm",
           "resourceVersion": "5300122",
-          "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
         },
         "name": "policy-auditpolicy-will-sev",
         "namespace": "mcm",
@@ -1256,13 +1256,13 @@ ShallowWrapper {
         ],
         "policyCompliant": "1/2",
         "raw": Object {
-          "apiVersion": "policy.mcm.ibm.com/v1alpha1",
+          "apiVersion": "policy.open-cluster-management.io/v1",
           "kind": "Policy",
           "metadata": Object {
             "annotations": Object {
-              "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-              "policy.mcm.ibm.com/controls": "IAM",
-              "policy.mcm.ibm.com/standards": "FISMA",
+              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+              "policy.open-cluster-management.io/controls": "IAM",
+              "policy.open-cluster-management.io/standards": "FISMA",
               "seed-generation": "2",
             },
             "creationTimestamp": "2019-10-01T14:55:28Z",
@@ -1274,7 +1274,7 @@ ShallowWrapper {
             "name": "policy-auditpolicy-will-sev",
             "namespace": "mcm",
             "resourceVersion": "5300122",
-            "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
             "uid": "81b9569e-e45b-11e9-8895-005056a061f1",
           },
           "spec": Object {
@@ -1439,15 +1439,15 @@ ShallowWrapper {
                 readOnly={false}
                 setEditor={[Function]}
                 width="50vw"
-                yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -1529,15 +1529,15 @@ spec:
                 readOnly={false}
                 setEditor={[Function]}
                 width="50vw"
-                yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -1615,15 +1615,15 @@ spec:
                   readOnly={false}
                   setEditor={[Function]}
                   width="50vw"
-                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                  yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -1682,15 +1682,15 @@ spec:
                   readOnly={false}
                   setEditor={[Function]}
                   width="50vw"
-                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                  yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -1745,15 +1745,15 @@ spec:
                   "readOnly": false,
                   "setEditor": [Function],
                   "width": "50vw",
-                  "yaml": "apiVersion: policy.mcm.ibm.com/v1alpha1
+                  "yaml": "apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -1851,15 +1851,15 @@ spec:
                   readOnly={false}
                   setEditor={[Function]}
                   width="50vw"
-                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                  yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -1941,15 +1941,15 @@ spec:
                   readOnly={false}
                   setEditor={[Function]}
                   width="50vw"
-                  yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                  yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -2027,15 +2027,15 @@ spec:
                     readOnly={false}
                     setEditor={[Function]}
                     width="50vw"
-                    yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                    yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -2094,15 +2094,15 @@ spec:
                     readOnly={false}
                     setEditor={[Function]}
                     width="50vw"
-                    yaml="apiVersion: policy.mcm.ibm.com/v1alpha1
+                    yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com
@@ -2157,15 +2157,15 @@ spec:
                     "readOnly": false,
                     "setEditor": [Function],
                     "width": "50vw",
-                    "yaml": "apiVersion: policy.mcm.ibm.com/v1alpha1
+                    "yaml": "apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-auditpolicy-will-sev
   namespace: mcm
   annotations:
-    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections
-    policy.mcm.ibm.com/controls: IAM
-    policy.mcm.ibm.com/standards: FISMA
+    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections
+    policy.open-cluster-management.io/controls: IAM
+    policy.open-cluster-management.io/standards: FISMA
     seed-generation: '2'
   finalizers:
     - finalizer.policies.ibm.com

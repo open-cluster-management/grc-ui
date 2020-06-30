@@ -178,7 +178,7 @@ export const policiesTestingDataSet1 = [
       'spec':{
         'runtime-rules':[
           {
-            'apiVersion':'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion':'policy.open-cluster-management.io/v1',
             'kind':'Policy',
             'metadata':{
               'creationTimestamp':null,
@@ -467,11 +467,11 @@ export const policiesTestingDataSet1 = [
     'metadata':{
       'name':'policy-ma',
       'namespace':'mcm',
-      'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-ma',
+      'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-ma',
       'annotations':{
-        'policy.mcm.ibm.com/categories':'SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls':'MutationAdvisor',
-        'policy.mcm.ibm.com/standards':'NIST',
+        'policy.open-cluster-management.io/categories':'SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls':'MutationAdvisor',
+        'policy.open-cluster-management.io/standards':'NIST',
         'seed-generation':'1'
       },
       'resourceVersion':'1308515',
@@ -480,13 +480,13 @@ export const policiesTestingDataSet1 = [
     'name':'policy-ma',
     'namespace':'mcm',
     'raw':{
-      'apiVersion':'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion':'policy.open-cluster-management.io/v1',
       'kind':'Policy',
       'metadata':{
         'annotations':{
-          'policy.mcm.ibm.com/categories':'SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls':'MutationAdvisor',
-          'policy.mcm.ibm.com/standards':'NIST',
+          'policy.open-cluster-management.io/categories':'SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls':'MutationAdvisor',
+          'policy.open-cluster-management.io/standards':'NIST',
           'seed-generation':'1'
         },
         'creationTimestamp':'2019-05-17T12:58:05Z',
@@ -497,7 +497,7 @@ export const policiesTestingDataSet1 = [
         'name':'policy-ma',
         'namespace':'mcm',
         'resourceVersion':'1308515',
-        'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-ma',
+        'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-ma',
         'uid':'692d81a1-78a3-11e9-820c-005056a061f1'
       },
       'spec':{
@@ -608,11 +608,11 @@ export const policiesTestingDataSet1 = [
     'metadata':{
       'name':'policy-pod',
       'namespace':'mcm',
-      'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-pod',
+      'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-pod',
       'annotations':{
-        'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
-        'policy.mcm.ibm.com/standards':'NIST,HIPAA',
+        'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls':'MutationAdvisor,,VA',
+        'policy.open-cluster-management.io/standards':'NIST,HIPAA',
         'seed-generation':'1'
       },
       'resourceVersion':'131792',
@@ -621,13 +621,13 @@ export const policiesTestingDataSet1 = [
     'name':'policy-pod',
     'namespace':'mcm',
     'raw':{
-      'apiVersion':'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion':'policy.open-cluster-management.io/v1',
       'kind':'Policy',
       'metadata':{
         'annotations':{
-          'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
-          'policy.mcm.ibm.com/standards':'NIST,HIPAA',
+          'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls':'MutationAdvisor,,VA',
+          'policy.open-cluster-management.io/standards':'NIST,HIPAA',
           'seed-generation':'1'
         },
         'creationTimestamp':'2019-05-17T12:57:48Z',
@@ -638,7 +638,7 @@ export const policiesTestingDataSet1 = [
         'name':'policy-pod',
         'namespace':'mcm',
         'resourceVersion':'131792',
-        'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-pod',
+        'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-pod',
         'uid':'5f3aea80-78a3-11e9-820c-005056a061f1'
       },
       'spec':{
@@ -744,11 +744,11 @@ export const policiesTestingDataSet2 = [
     'metadata':{
       'name':'1558374675051-policy-pod',
       'namespace':'mcm',
-      'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1558374675051-policy-pod',
+      'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1558374675051-policy-pod',
       'annotations':{
-        'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
-        'policy.mcm.ibm.com/standards':'NIST CSF',
+        'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls':'MutationAdvisor,,VA',
+        'policy.open-cluster-management.io/standards':'NIST CSF',
         'seed-generation':'2'
       },
       'resourceVersion':'6281988',
@@ -757,13 +757,13 @@ export const policiesTestingDataSet2 = [
     'name':'1558374675051-policy-pod',
     'namespace':'mcm',
     'raw':{
-      'apiVersion':'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion':'policy.open-cluster-management.io/v1',
       'kind':'Policy',
       'metadata':{
         'annotations':{
-          'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
-          'policy.mcm.ibm.com/standards':'NIST CSF',
+          'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls':'MutationAdvisor,,VA',
+          'policy.open-cluster-management.io/standards':'NIST CSF',
           'seed-generation':'2'
         },
         'creationTimestamp':'2019-05-20T17:51:38Z',
@@ -774,7 +774,7 @@ export const policiesTestingDataSet2 = [
         'name':'1558374675051-policy-pod',
         'namespace':'mcm',
         'resourceVersion':'6281988',
-        'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1558374675051-policy-pod',
+        'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1558374675051-policy-pod',
         'uid':'eacbfd03-7b27-11e9-a751-005056a0b88e'
       },
       'spec':{
@@ -882,11 +882,11 @@ export const policiesTestingDataSet2 = [
     'metadata':{
       'name':'1558382034240-policy-pod',
       'namespace':'mcm',
-      'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1558382034240-policy-pod',
+      'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1558382034240-policy-pod',
       'annotations':{
-        'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
-        'policy.mcm.ibm.com/standards':'NIST CSF, NIST',
+        'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls':'MutationAdvisor,,VA',
+        'policy.open-cluster-management.io/standards':'NIST CSF, NIST',
         'seed-generation':'2'
       },
       'resourceVersion':'6975805',
@@ -895,13 +895,13 @@ export const policiesTestingDataSet2 = [
     'name':'1558382034240-policy-pod',
     'namespace':'mcm',
     'raw':{
-      'apiVersion':'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion':'policy.open-cluster-management.io/v1',
       'kind':'Policy',
       'metadata':{
         'annotations':{
-          'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
-          'policy.mcm.ibm.com/standards':'NIST CSF, NIST',
+          'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls':'MutationAdvisor,,VA',
+          'policy.open-cluster-management.io/standards':'NIST CSF, NIST',
           'seed-generation':'2'
         },
         'creationTimestamp':'2019-05-20T19:54:18Z',
@@ -912,7 +912,7 @@ export const policiesTestingDataSet2 = [
         'name':'1558382034240-policy-pod',
         'namespace':'mcm',
         'resourceVersion':'6975805',
-        'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1558382034240-policy-pod',
+        'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1558382034240-policy-pod',
         'uid':'0d98fa74-7b39-11e9-a751-005056a0b88e'
       },
       'spec':{
@@ -1015,11 +1015,11 @@ export const policiesTestingDataSet2 = [
     'metadata':{
       'name':'policy-ma',
       'namespace':'mcm',
-      'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-ma',
+      'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-ma',
       'annotations':{
-        'policy.mcm.ibm.com/categories':'SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls':'MutationAdvisor',
-        'policy.mcm.ibm.com/standards':'NIST CSF, NIST',
+        'policy.open-cluster-management.io/categories':'SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls':'MutationAdvisor',
+        'policy.open-cluster-management.io/standards':'NIST CSF, NIST',
         'seed-generation':'1'
       },
       'resourceVersion':'6975864',
@@ -1028,13 +1028,13 @@ export const policiesTestingDataSet2 = [
     'name':'policy-ma',
     'namespace':'mcm',
     'raw':{
-      'apiVersion':'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion':'policy.open-cluster-management.io/v1',
       'kind':'Policy',
       'metadata':{
         'annotations':{
-          'policy.mcm.ibm.com/categories':'SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls':'MutationAdvisor',
-          'policy.mcm.ibm.com/standards':'NIST CSF, NIST',
+          'policy.open-cluster-management.io/categories':'SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls':'MutationAdvisor',
+          'policy.open-cluster-management.io/standards':'NIST CSF, NIST',
           'seed-generation':'1'
         },
         'creationTimestamp':'2019-05-16T15:21:53Z',
@@ -1045,7 +1045,7 @@ export const policiesTestingDataSet2 = [
         'name':'policy-ma',
         'namespace':'mcm',
         'resourceVersion':'6975864',
-        'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-ma',
+        'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-ma',
         'uid':'55ca144d-77ee-11e9-a751-005056a0b88e'
       },
       'spec':{
@@ -1151,11 +1151,11 @@ export const policiesTestingDataSet2 = [
     'metadata':{
       'name':'policy-pod',
       'namespace':'mcm',
-      'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-pod',
+      'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-pod',
       'annotations':{
-        'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
-        'policy.mcm.ibm.com/standards':'NIST,HIPAA',
+        'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls':'MutationAdvisor,,VA',
+        'policy.open-cluster-management.io/standards':'NIST,HIPAA',
         'seed-generation':'1'
       },
       'resourceVersion':'5210306',
@@ -1164,13 +1164,13 @@ export const policiesTestingDataSet2 = [
     'name':'policy-pod',
     'namespace':'mcm',
     'raw':{
-      'apiVersion':'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion':'policy.open-cluster-management.io/v1',
       'kind':'Policy',
       'metadata':{
         'annotations':{
-          'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls':'MutationAdvisor,,VA',
-          'policy.mcm.ibm.com/standards':'NIST,HIPAA',
+          'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls':'MutationAdvisor,,VA',
+          'policy.open-cluster-management.io/standards':'NIST,HIPAA',
           'seed-generation':'1'
         },
         'creationTimestamp':'2019-05-16T15:23:05Z',
@@ -1181,7 +1181,7 @@ export const policiesTestingDataSet2 = [
         'name':'policy-pod',
         'namespace':'mcm',
         'resourceVersion':'5210306',
-        'selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-pod',
+        'selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-pod',
         'uid':'80b48466-77ee-11e9-a751-005056a0b88e'
       },
       'spec':{
@@ -1364,13 +1364,13 @@ export const policieSubResourceListTestingItemData = [
     'total': '1',
     'violated': '1',
     'policy': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-          'policy.mcm.ibm.com/standards': 'NIST',
+          'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+          'policy.open-cluster-management.io/standards': 'NIST',
           'seed-generation': '7998'
         },
         'creationTimestamp': '2019-06-10T20:09:44Z',
@@ -1382,7 +1382,7 @@ export const policieSubResourceListTestingItemData = [
         'name': 'policy-ma',
         'namespace': 'cluster1',
         'resourceVersion': '3385191',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/cluster1/policies/policy-ma',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-ma',
         'uid': 'b08122bd-8bbb-11e9-af27-005056a0e992'
       },
       'spec': {
@@ -1495,13 +1495,13 @@ export const policieSubResourceListTestingItemData = [
     'total': '1',
     'violated': '0',
     'policy': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-          'policy.mcm.ibm.com/standards': 'NIST',
+          'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+          'policy.open-cluster-management.io/standards': 'NIST',
           'seed-generation': '7736'
         },
         'creationTimestamp': '2019-06-10T13:44:41Z',
@@ -1514,7 +1514,7 @@ export const policieSubResourceListTestingItemData = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -1523,7 +1523,7 @@ export const policieSubResourceListTestingItemData = [
           }
         ],
         'resourceVersion': '3382035',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-ma',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-ma',
         'uid': 'e5961247-8b85-11e9-983e-005056a061f1'
       },
       'spec': {
@@ -1618,7 +1618,7 @@ export const clusterSubResourceListTestingResourceData = {
           'resourceKey': 'violatedNum'
         },
         {
-          'resourceKey': 'metadata.annotations["policy.mcm.ibm.com/controls"]'
+          'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/controls"]'
         }
       ]
     }
@@ -1631,12 +1631,12 @@ export const clusterSubResourceListTestingItemData = [
     'metadata': {
       'name': 'policy-ma',
       'namespace': 'cluster1',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/cluster1/policies/policy-ma',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-ma',
       'creationTimestamp': '2019-06-10T20:09:44Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-        'policy.mcm.ibm.com/standards': 'NIST',
+        'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+        'policy.open-cluster-management.io/standards': 'NIST',
         'seed-generation': '7998'
       },
       'resourceVersion': '3385191',
@@ -1655,13 +1655,13 @@ export const clusterSubResourceListTestingItemData = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-          'policy.mcm.ibm.com/standards': 'NIST',
+          'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+          'policy.open-cluster-management.io/standards': 'NIST',
           'seed-generation': '7998'
         },
         'creationTimestamp': '2019-06-10T20:09:44Z',
@@ -1673,7 +1673,7 @@ export const clusterSubResourceListTestingItemData = [
         'name': 'policy-ma',
         'namespace': 'cluster1',
         'resourceVersion': '3385191',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/cluster1/policies/policy-ma',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-ma',
         'uid': 'b08122bd-8bbb-11e9-af27-005056a0e992'
       },
       'spec': {
@@ -1750,12 +1750,12 @@ export const clusterSubResourceListTestingItemData = [
     'metadata': {
       'name': 'policy-pod',
       'namespace': 'cluster1',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/cluster1/policies/policy-pod',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-pod',
       'creationTimestamp': '2019-06-10T20:07:44Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor,VA',
-        'policy.mcm.ibm.com/standards': 'NIST,HIPAA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor,VA',
+        'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
         'seed-generation': '45514'
       },
       'resourceVersion': '3460078',
@@ -1774,13 +1774,13 @@ export const clusterSubResourceListTestingItemData = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor,VA',
-          'policy.mcm.ibm.com/standards': 'NIST,HIPAA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor,VA',
+          'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
           'seed-generation': '45514'
         },
         'creationTimestamp': '2019-06-10T20:07:44Z',
@@ -1792,7 +1792,7 @@ export const clusterSubResourceListTestingItemData = [
         'name': 'policy-pod',
         'namespace': 'cluster1',
         'resourceVersion': '3460078',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/cluster1/policies/policy-pod',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-pod',
         'uid': '6915ae3b-8bbb-11e9-af27-005056a0e992'
       },
       'spec': {
@@ -1868,12 +1868,12 @@ export const clusterSubResourceListTestingItemData = [
     'metadata': {
       'name': 'policy-role',
       'namespace': 'cluster1',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/cluster1/policies/policy-role',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-role',
       'creationTimestamp': '2019-06-11T14:34:55Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor,VA',
-        'policy.mcm.ibm.com/standards': 'NIST,HIPAA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor,VA',
+        'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
         'seed-generation': '2'
       },
       'resourceVersion': '3235798',
@@ -1892,13 +1892,13 @@ export const clusterSubResourceListTestingItemData = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor,VA',
-          'policy.mcm.ibm.com/standards': 'NIST,HIPAA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor,VA',
+          'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-06-11T14:34:55Z',
@@ -1910,7 +1910,7 @@ export const clusterSubResourceListTestingItemData = [
         'name': 'policy-role',
         'namespace': 'cluster1',
         'resourceVersion': '3235798',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/cluster1/policies/policy-role',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-role',
         'uid': '14b4adb0-8c56-11e9-af27-005056a0e992'
       },
       'spec': {
@@ -2008,11 +2008,11 @@ export const policiesTabModuleFilteredPolicies = [
     'metadata': {
       'name': 'my-policy',
       'namespace': 'mcm',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/my-policy',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/my-policy',
       'annotations': {
-        'policy.mcm.ibm.com/categories': '',
-        'policy.mcm.ibm.com/controls': '',
-        'policy.mcm.ibm.com/standards': '',
+        'policy.open-cluster-management.io/categories': '',
+        'policy.open-cluster-management.io/controls': '',
+        'policy.open-cluster-management.io/standards': '',
         'seed-generation': '1'
       },
       'resourceVersion': '1347399',
@@ -2021,13 +2021,13 @@ export const policiesTabModuleFilteredPolicies = [
     'name': 'my-policy',
     'namespace': 'mcm',
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': '',
-          'policy.mcm.ibm.com/controls': '',
-          'policy.mcm.ibm.com/standards': '',
+          'policy.open-cluster-management.io/categories': '',
+          'policy.open-cluster-management.io/controls': '',
+          'policy.open-cluster-management.io/standards': '',
           'seed-generation': '1'
         },
         'creationTimestamp': '2019-07-21T15:53:58Z',
@@ -2038,7 +2038,7 @@ export const policiesTabModuleFilteredPolicies = [
         'name': 'my-policy',
         'namespace': 'mcm',
         'resourceVersion': '1347399',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/my-policy',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/my-policy',
         'uid': 'c049ec0d-abcf-11e9-8a41-005056a061f1'
       },
       'spec': {
@@ -2138,12 +2138,12 @@ export const policiesTabModuleFilteredPolicies = [
     'metadata': {
       'name': 'policy-ma',
       'namespace': 'mcm',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-ma',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-ma',
       'annotations': {
-        'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.mcm.ibm.com/v1alpha1","kind":"Policy","metadata":{"annotations":{"policy.mcm.ibm.com/categories":"SystemAndInformationIntegrity","policy.mcm.ibm.com/controls":"MutationAdvisor","policy.mcm.ibm.com/standards":"NIST"},"name":"policy-ma","namespace":"mcm"},"spec":{"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"MutationPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"mutation-policy-example"},"spec":{"conditions":{"ownership":["ReplicaSet","Deployment","DeamonSet","ReplicationController"]},"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}],"remediationAction":"enforce"}}\n',
-        'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-        'policy.mcm.ibm.com/standards': 'NIST',
+        'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor","policy.open-cluster-management.io/standards":"NIST"},"name":"policy-ma","namespace":"mcm"},"spec":{"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"MutationPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"mutation-policy-example"},"spec":{"conditions":{"ownership":["ReplicaSet","Deployment","DeamonSet","ReplicationController"]},"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}],"remediationAction":"enforce"}}\n',
+        'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+        'policy.open-cluster-management.io/standards': 'NIST',
         'seed-generation': '1'
       },
       'resourceVersion': '1347579',
@@ -2152,14 +2152,14 @@ export const policiesTabModuleFilteredPolicies = [
     'name': 'policy-ma',
     'namespace': 'mcm',
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.mcm.ibm.com/v1alpha1","kind":"Policy","metadata":{"annotations":{"policy.mcm.ibm.com/categories":"SystemAndInformationIntegrity","policy.mcm.ibm.com/controls":"MutationAdvisor","policy.mcm.ibm.com/standards":"NIST"},"name":"policy-ma","namespace":"mcm"},"spec":{"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"MutationPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"mutation-policy-example"},"spec":{"conditions":{"ownership":["ReplicaSet","Deployment","DeamonSet","ReplicationController"]},"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}],"remediationAction":"enforce"}}\n',
-          'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-          'policy.mcm.ibm.com/standards': 'NIST',
+          'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor","policy.open-cluster-management.io/standards":"NIST"},"name":"policy-ma","namespace":"mcm"},"spec":{"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"MutationPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"mutation-policy-example"},"spec":{"conditions":{"ownership":["ReplicaSet","Deployment","DeamonSet","ReplicationController"]},"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}],"remediationAction":"enforce"}}\n',
+          'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+          'policy.open-cluster-management.io/standards': 'NIST',
           'seed-generation': '1'
         },
         'creationTimestamp': '2019-07-16T13:18:48Z',
@@ -2170,7 +2170,7 @@ export const policiesTabModuleFilteredPolicies = [
         'name': 'policy-ma',
         'namespace': 'mcm',
         'resourceVersion': '1347579',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-ma',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-ma',
         'uid': '3f218d45-a7cc-11e9-8a41-005056a061f1'
       },
       'spec': {
@@ -2272,11 +2272,11 @@ export const policiesTabModuleFilteredPolicies = [
     'metadata': {
       'name': 'policy-pod',
       'namespace': 'mcm',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-pod',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-pod',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor,CertificateManager',
-        'policy.mcm.ibm.com/standards': 'NIST,HIPAA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor,CertificateManager',
+        'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
         'seed-generation': '1'
       },
       'resourceVersion': '1257026',
@@ -2285,13 +2285,13 @@ export const policiesTabModuleFilteredPolicies = [
     'name': 'policy-pod',
     'namespace': 'mcm',
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor,CertificateManager',
-          'policy.mcm.ibm.com/standards': 'NIST,HIPAA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor,CertificateManager',
+          'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
           'seed-generation': '1'
         },
         'creationTimestamp': '2019-07-16T13:16:46Z',
@@ -2302,7 +2302,7 @@ export const policiesTabModuleFilteredPolicies = [
         'name': 'policy-pod',
         'namespace': 'mcm',
         'resourceVersion': '1257026',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-pod',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-pod',
         'uid': 'f61a25eb-a7cb-11e9-8a41-005056a061f1'
       },
       'spec': {
@@ -2403,12 +2403,12 @@ export const policiesTabModuleFilteredPolicies = [
     'metadata': {
       'name': 'policy-role',
       'namespace': 'mcm',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-role',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-role',
       'annotations': {
-        'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.mcm.ibm.com/v1alpha1","kind":"Policy","metadata":{"annotations":{"policy.mcm.ibm.com/categories":"SystemAndCommunicationsProtections,SystemAndInformationIntegrity","policy.mcm.ibm.com/controls":"MutationAdvisor,VA","policy.mcm.ibm.com/standards":"NIST,HIPAA"},"name":"policy-role","namespace":"mcm"},"spec":{"namespaces":{"exclude":["kube*"],"include":["default"]},"remediationAction":"inform","role-templates":[{"apiVersion":"roletemplate.mcm.ibm.com/v1alpha1","complianceType":"musthave","metadata":{"name":"operator-role-policy","namespace":""},"rules":[{"complianceType":"musthave","policyRule":{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","create","delete","patch"]}}],"selector":{"matchLabels":{"dev":"true"}}}]}}\n',
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor,VA',
-        'policy.mcm.ibm.com/standards': 'NIST,HIPAA',
+        'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndCommunicationsProtections,SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor,VA","policy.open-cluster-management.io/standards":"NIST,HIPAA"},"name":"policy-role","namespace":"mcm"},"spec":{"namespaces":{"exclude":["kube*"],"include":["default"]},"remediationAction":"inform","role-templates":[{"apiVersion":"roletemplate.mcm.ibm.com/v1alpha1","complianceType":"musthave","metadata":{"name":"operator-role-policy","namespace":""},"rules":[{"complianceType":"musthave","policyRule":{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","create","delete","patch"]}}],"selector":{"matchLabels":{"dev":"true"}}}]}}\n',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor,VA',
+        'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
         'seed-generation': '1'
       },
       'resourceVersion': '1201118',
@@ -2417,14 +2417,14 @@ export const policiesTabModuleFilteredPolicies = [
     'name': 'policy-role',
     'namespace': 'mcm',
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.mcm.ibm.com/v1alpha1","kind":"Policy","metadata":{"annotations":{"policy.mcm.ibm.com/categories":"SystemAndCommunicationsProtections,SystemAndInformationIntegrity","policy.mcm.ibm.com/controls":"MutationAdvisor,VA","policy.mcm.ibm.com/standards":"NIST,HIPAA"},"name":"policy-role","namespace":"mcm"},"spec":{"namespaces":{"exclude":["kube*"],"include":["default"]},"remediationAction":"inform","role-templates":[{"apiVersion":"roletemplate.mcm.ibm.com/v1alpha1","complianceType":"musthave","metadata":{"name":"operator-role-policy","namespace":""},"rules":[{"complianceType":"musthave","policyRule":{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","create","delete","patch"]}}],"selector":{"matchLabels":{"dev":"true"}}}]}}\n',
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor,VA',
-          'policy.mcm.ibm.com/standards': 'NIST,HIPAA',
+          'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndCommunicationsProtections,SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor,VA","policy.open-cluster-management.io/standards":"NIST,HIPAA"},"name":"policy-role","namespace":"mcm"},"spec":{"namespaces":{"exclude":["kube*"],"include":["default"]},"remediationAction":"inform","role-templates":[{"apiVersion":"roletemplate.mcm.ibm.com/v1alpha1","complianceType":"musthave","metadata":{"name":"operator-role-policy","namespace":""},"rules":[{"complianceType":"musthave","policyRule":{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","create","delete","patch"]}}],"selector":{"matchLabels":{"dev":"true"}}}]}}\n',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor,VA',
+          'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
           'seed-generation': '1'
         },
         'creationTimestamp': '2019-07-16T13:19:03Z',
@@ -2435,7 +2435,7 @@ export const policiesTabModuleFilteredPolicies = [
         'name': 'policy-role',
         'namespace': 'mcm',
         'resourceVersion': '1201118',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-role',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-role',
         'uid': '47dbc091-a7cc-11e9-8a41-005056a061f1'
       },
       'spec': {

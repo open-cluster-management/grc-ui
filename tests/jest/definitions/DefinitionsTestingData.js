@@ -11,11 +11,11 @@ export const hcmPoliciesPolicyItem = {
   'metadata': {
     'name': 'policy1',
     'namespace': 'mcm',
-    'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy1',
+    'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy1',
     'annotations': {
-      'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity, RBAC',
-      'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-      'policy.mcm.ibm.com/standards': 'NIST',
+      'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity, RBAC',
+      'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+      'policy.open-cluster-management.io/standards': 'NIST',
       'seed-generation': '2'
     },
     'resourceVersion': '5456660',
@@ -24,13 +24,13 @@ export const hcmPoliciesPolicyItem = {
   'name': 'policy1',
   'namespace': 'mcm',
   'raw': {
-    'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+    'apiVersion': 'policy.open-cluster-management.io/v1',
     'kind': 'Policy',
     'metadata': {
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity, RBAC',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-        'policy.mcm.ibm.com/standards': 'NIST',
+        'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity, RBAC',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+        'policy.open-cluster-management.io/standards': 'NIST',
         'seed-generation': '2'
       },
       'creationTimestamp': '2019-07-18T13:27:59Z',
@@ -41,7 +41,7 @@ export const hcmPoliciesPolicyItem = {
       'name': 'policy1',
       'namespace': 'mcm',
       'resourceVersion': '5456660',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy1',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy1',
       'uid': 'dc761733-a95f-11e9-8e7d-005056a0b88e'
     },
     'spec': {

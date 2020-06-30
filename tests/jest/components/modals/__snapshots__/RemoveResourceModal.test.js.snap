@@ -32,9 +32,9 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
           "__typename": "Compliance",
           "clusterCompliant": "1/2",
           "custom": Object {
-            "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]": "System And Communications Protections",
-            "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]": "IAM",
-            "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]": "FISMA",
+            "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]": "System And Communications Protections",
+            "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]": "IAM",
+            "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]": "FISMA",
             "metadata.name": Object {
               "_owner": null,
               "_store": Object {},
@@ -51,15 +51,15 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
           "metadata": Object {
             "__typename": "Metadata",
             "annotations": Object {
-              "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-              "policy.mcm.ibm.com/controls": "IAM",
-              "policy.mcm.ibm.com/standards": "FISMA",
+              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+              "policy.open-cluster-management.io/controls": "IAM",
+              "policy.open-cluster-management.io/standards": "FISMA",
               "seed-generation": "2",
             },
             "name": "policy-auditpolicy-will-sev",
             "namespace": "mcm",
             "resourceVersion": "5300122",
-            "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
           },
           "name": "policy-auditpolicy-will-sev",
           "namespace": "mcm",
@@ -85,13 +85,13 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
           ],
           "policyCompliant": "1/2",
           "raw": Object {
-            "apiVersion": "policy.mcm.ibm.com/v1alpha1",
+            "apiVersion": "policy.open-cluster-management.io/v1",
             "kind": "Policy",
             "metadata": Object {
               "annotations": Object {
-                "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-                "policy.mcm.ibm.com/controls": "IAM",
-                "policy.mcm.ibm.com/standards": "FISMA",
+                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+                "policy.open-cluster-management.io/controls": "IAM",
+                "policy.open-cluster-management.io/standards": "FISMA",
                 "seed-generation": "2",
               },
               "creationTimestamp": "2019-10-01T14:55:28Z",
@@ -103,7 +103,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
               "name": "policy-auditpolicy-will-sev",
               "namespace": "mcm",
               "resourceVersion": "5300122",
-              "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
               "uid": "81b9569e-e45b-11e9-8895-005056a061f1",
             },
             "spec": Object {
@@ -232,9 +232,9 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
               "__typename": "Compliance",
               "clusterCompliant": "1/2",
               "custom": Object {
-                "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]": "System And Communications Protections",
-                "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]": "IAM",
-                "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]": "FISMA",
+                "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]": "System And Communications Protections",
+                "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]": "IAM",
+                "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]": "FISMA",
                 "metadata.name": Object {
                   "_owner": null,
                   "_store": Object {},
@@ -251,15 +251,15 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
               "metadata": Object {
                 "__typename": "Metadata",
                 "annotations": Object {
-                  "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-                  "policy.mcm.ibm.com/controls": "IAM",
-                  "policy.mcm.ibm.com/standards": "FISMA",
+                  "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+                  "policy.open-cluster-management.io/controls": "IAM",
+                  "policy.open-cluster-management.io/standards": "FISMA",
                   "seed-generation": "2",
                 },
                 "name": "policy-auditpolicy-will-sev",
                 "namespace": "mcm",
                 "resourceVersion": "5300122",
-                "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
               },
               "name": "policy-auditpolicy-will-sev",
               "namespace": "mcm",
@@ -285,13 +285,13 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
               ],
               "policyCompliant": "1/2",
               "raw": Object {
-                "apiVersion": "policy.mcm.ibm.com/v1alpha1",
+                "apiVersion": "policy.open-cluster-management.io/v1",
                 "kind": "Policy",
                 "metadata": Object {
                   "annotations": Object {
-                    "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-                    "policy.mcm.ibm.com/controls": "IAM",
-                    "policy.mcm.ibm.com/standards": "FISMA",
+                    "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+                    "policy.open-cluster-management.io/controls": "IAM",
+                    "policy.open-cluster-management.io/standards": "FISMA",
                     "seed-generation": "2",
                   },
                   "creationTimestamp": "2019-10-01T14:55:28Z",
@@ -303,7 +303,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                   "name": "policy-auditpolicy-will-sev",
                   "namespace": "mcm",
                   "resourceVersion": "5300122",
-                  "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+                  "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
                   "uid": "81b9569e-e45b-11e9-8895-005056a061f1",
                 },
                 "spec": Object {
@@ -465,9 +465,9 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                 "__typename": "Compliance",
                 "clusterCompliant": "1/2",
                 "custom": Object {
-                  "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]": "System And Communications Protections",
-                  "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]": "IAM",
-                  "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]": "FISMA",
+                  "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]": "System And Communications Protections",
+                  "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]": "IAM",
+                  "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]": "FISMA",
                   "metadata.name": Object {
                     "_owner": null,
                     "_store": Object {},
@@ -484,15 +484,15 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                 "metadata": Object {
                   "__typename": "Metadata",
                   "annotations": Object {
-                    "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-                    "policy.mcm.ibm.com/controls": "IAM",
-                    "policy.mcm.ibm.com/standards": "FISMA",
+                    "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+                    "policy.open-cluster-management.io/controls": "IAM",
+                    "policy.open-cluster-management.io/standards": "FISMA",
                     "seed-generation": "2",
                   },
                   "name": "policy-auditpolicy-will-sev",
                   "namespace": "mcm",
                   "resourceVersion": "5300122",
-                  "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+                  "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
                 },
                 "name": "policy-auditpolicy-will-sev",
                 "namespace": "mcm",
@@ -518,13 +518,13 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                 ],
                 "policyCompliant": "1/2",
                 "raw": Object {
-                  "apiVersion": "policy.mcm.ibm.com/v1alpha1",
+                  "apiVersion": "policy.open-cluster-management.io/v1",
                   "kind": "Policy",
                   "metadata": Object {
                     "annotations": Object {
-                      "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-                      "policy.mcm.ibm.com/controls": "IAM",
-                      "policy.mcm.ibm.com/standards": "FISMA",
+                      "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+                      "policy.open-cluster-management.io/controls": "IAM",
+                      "policy.open-cluster-management.io/standards": "FISMA",
                       "seed-generation": "2",
                     },
                     "creationTimestamp": "2019-10-01T14:55:28Z",
@@ -536,7 +536,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                     "name": "policy-auditpolicy-will-sev",
                     "namespace": "mcm",
                     "resourceVersion": "5300122",
-                    "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+                    "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
                     "uid": "81b9569e-e45b-11e9-8895-005056a061f1",
                   },
                   "spec": Object {
@@ -933,9 +933,9 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
           "__typename": "Compliance",
           "clusterCompliant": "1/2",
           "custom": Object {
-            "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]": "System And Communications Protections",
-            "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]": "IAM",
-            "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]": "FISMA",
+            "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]": "System And Communications Protections",
+            "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]": "IAM",
+            "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]": "FISMA",
             "metadata.name": Object {
               "_owner": null,
               "_store": Object {},
@@ -952,15 +952,15 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
           "metadata": Object {
             "__typename": "Metadata",
             "annotations": Object {
-              "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-              "policy.mcm.ibm.com/controls": "IAM",
-              "policy.mcm.ibm.com/standards": "FISMA",
+              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+              "policy.open-cluster-management.io/controls": "IAM",
+              "policy.open-cluster-management.io/standards": "FISMA",
               "seed-generation": "2",
             },
             "name": "policy-auditpolicy-will-sev",
             "namespace": "mcm",
             "resourceVersion": "5300122",
-            "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
           },
           "name": "policy-auditpolicy-will-sev",
           "namespace": "mcm",
@@ -986,13 +986,13 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
           ],
           "policyCompliant": "1/2",
           "raw": Object {
-            "apiVersion": "policy.mcm.ibm.com/v1alpha1",
+            "apiVersion": "policy.open-cluster-management.io/v1",
             "kind": "Policy",
             "metadata": Object {
               "annotations": Object {
-                "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-                "policy.mcm.ibm.com/controls": "IAM",
-                "policy.mcm.ibm.com/standards": "FISMA",
+                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+                "policy.open-cluster-management.io/controls": "IAM",
+                "policy.open-cluster-management.io/standards": "FISMA",
                 "seed-generation": "2",
               },
               "creationTimestamp": "2019-10-01T14:55:28Z",
@@ -1004,7 +1004,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
               "name": "policy-auditpolicy-will-sev",
               "namespace": "mcm",
               "resourceVersion": "5300122",
-              "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
               "uid": "81b9569e-e45b-11e9-8895-005056a061f1",
             },
             "spec": Object {
@@ -1133,9 +1133,9 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
               "__typename": "Compliance",
               "clusterCompliant": "1/2",
               "custom": Object {
-                "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]": "System And Communications Protections",
-                "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]": "IAM",
-                "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]": "FISMA",
+                "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]": "System And Communications Protections",
+                "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]": "IAM",
+                "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]": "FISMA",
                 "metadata.name": Object {
                   "_owner": null,
                   "_store": Object {},
@@ -1152,15 +1152,15 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
               "metadata": Object {
                 "__typename": "Metadata",
                 "annotations": Object {
-                  "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-                  "policy.mcm.ibm.com/controls": "IAM",
-                  "policy.mcm.ibm.com/standards": "FISMA",
+                  "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+                  "policy.open-cluster-management.io/controls": "IAM",
+                  "policy.open-cluster-management.io/standards": "FISMA",
                   "seed-generation": "2",
                 },
                 "name": "policy-auditpolicy-will-sev",
                 "namespace": "mcm",
                 "resourceVersion": "5300122",
-                "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
               },
               "name": "policy-auditpolicy-will-sev",
               "namespace": "mcm",
@@ -1186,13 +1186,13 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
               ],
               "policyCompliant": "1/2",
               "raw": Object {
-                "apiVersion": "policy.mcm.ibm.com/v1alpha1",
+                "apiVersion": "policy.open-cluster-management.io/v1",
                 "kind": "Policy",
                 "metadata": Object {
                   "annotations": Object {
-                    "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-                    "policy.mcm.ibm.com/controls": "IAM",
-                    "policy.mcm.ibm.com/standards": "FISMA",
+                    "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+                    "policy.open-cluster-management.io/controls": "IAM",
+                    "policy.open-cluster-management.io/standards": "FISMA",
                     "seed-generation": "2",
                   },
                   "creationTimestamp": "2019-10-01T14:55:28Z",
@@ -1204,7 +1204,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                   "name": "policy-auditpolicy-will-sev",
                   "namespace": "mcm",
                   "resourceVersion": "5300122",
-                  "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+                  "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
                   "uid": "81b9569e-e45b-11e9-8895-005056a061f1",
                 },
                 "spec": Object {
@@ -1366,9 +1366,9 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                 "__typename": "Compliance",
                 "clusterCompliant": "1/2",
                 "custom": Object {
-                  "metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]": "System And Communications Protections",
-                  "metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]": "IAM",
-                  "metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]": "FISMA",
+                  "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]": "System And Communications Protections",
+                  "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]": "IAM",
+                  "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]": "FISMA",
                   "metadata.name": Object {
                     "_owner": null,
                     "_store": Object {},
@@ -1385,15 +1385,15 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                 "metadata": Object {
                   "__typename": "Metadata",
                   "annotations": Object {
-                    "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-                    "policy.mcm.ibm.com/controls": "IAM",
-                    "policy.mcm.ibm.com/standards": "FISMA",
+                    "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+                    "policy.open-cluster-management.io/controls": "IAM",
+                    "policy.open-cluster-management.io/standards": "FISMA",
                     "seed-generation": "2",
                   },
                   "name": "policy-auditpolicy-will-sev",
                   "namespace": "mcm",
                   "resourceVersion": "5300122",
-                  "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+                  "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
                 },
                 "name": "policy-auditpolicy-will-sev",
                 "namespace": "mcm",
@@ -1419,13 +1419,13 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                 ],
                 "policyCompliant": "1/2",
                 "raw": Object {
-                  "apiVersion": "policy.mcm.ibm.com/v1alpha1",
+                  "apiVersion": "policy.open-cluster-management.io/v1",
                   "kind": "Policy",
                   "metadata": Object {
                     "annotations": Object {
-                      "policy.mcm.ibm.com/categories": "SystemAndCommunicationsProtections",
-                      "policy.mcm.ibm.com/controls": "IAM",
-                      "policy.mcm.ibm.com/standards": "FISMA",
+                      "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
+                      "policy.open-cluster-management.io/controls": "IAM",
+                      "policy.open-cluster-management.io/standards": "FISMA",
                       "seed-generation": "2",
                     },
                     "creationTimestamp": "2019-10-01T14:55:28Z",
@@ -1437,7 +1437,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                     "name": "policy-auditpolicy-will-sev",
                     "namespace": "mcm",
                     "resourceVersion": "5300122",
-                    "selfLink": "/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
+                    "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev",
                     "uid": "81b9569e-e45b-11e9-8895-005056a061f1",
                   },
                   "spec": Object {
