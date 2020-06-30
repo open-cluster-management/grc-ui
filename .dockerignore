@@ -16,7 +16,6 @@ tests
 Configfile
 npm-shrinkwrap.json
 README.md
-**/*.test.js*
 **/__snapshots__/**
 .build-harness
 Makefile*
@@ -32,7 +31,6 @@ travis-env.sh
 .nvmrc
 travis-scripts
 copy.sh
-nightwatch*
 upload-selenium.sh
 webpack*
 version.ejs
