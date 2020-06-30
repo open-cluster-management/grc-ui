@@ -1,0 +1,31 @@
+# Copyright (c) 2020 Red Hat, Inc.
+
+FROM registry.access.redhat.com/ubi8/nodejs-10:1
+
+ENV NODE_ENV=development
+
+USER root
+
+RUN mkdir -p /opt/app-root/src/grc-ui
+
+WORKDIR /opt/app-root/src/grc-ui
+
+COPY package.json .
+COPY config .
+COPY build ./build
+COPY nightwatch.conf.js .
+COPY nightwatch.json .
+COPY tests ./tests
+
+# Install Firefox
+RUN apt-get update && apt-get install -y firefox-esr
+# Install Chrome
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+
+RUN sh ./build/download-clis.sh
+
+RUN npm install 
+
+CMD ["npm", "run", "test:e2e-headless"]
+
