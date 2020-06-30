@@ -25,13 +25,13 @@ describe('ResourceOverview component', () => {
     const item = [
       {
         'raw': {
-          'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+          'apiVersion': 'policy.open-cluster-management.io/v1',
           'kind': 'Policy',
           'metadata': {
             'annotations': {
-              'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-              'policy.mcm.ibm.com/controls': 'VA',
-              'policy.mcm.ibm.com/standards': 'NIST',
+              'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+              'policy.open-cluster-management.io/controls': 'VA',
+              'policy.open-cluster-management.io/standards': 'NIST',
               'seed-generation': '1'
             },
             'creationTimestamp': '2019-09-23T14:34:25Z',
@@ -43,7 +43,7 @@ describe('ResourceOverview component', () => {
             'name': '1569249226915-policy-test',
             'namespace': 'mcm',
             'resourceVersion': '7688204',
-            'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
+            'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1569249226915-policy-test',
             'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e'
           },
           'spec': {
@@ -107,12 +107,12 @@ describe('ResourceOverview component', () => {
           'name': '1569249226915-policy-test',
           'namespace': 'mcm',
           'resourceVersion': '7688204',
-          'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1569249226915-policy-test',
           'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e',
           'annotations': {
-            'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-            'policy.mcm.ibm.com/controls': 'VA',
-            'policy.mcm.ibm.com/standards': 'NIST',
+            'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+            'policy.open-cluster-management.io/controls': 'VA',
+            'policy.open-cluster-management.io/standards': 'NIST',
             'seed-generation': '1'
           },
           '__typename': 'Metadata'
@@ -132,7 +132,7 @@ describe('ResourceOverview component', () => {
               'name': 'placement-1569249226915-policy-test',
               'namespace': 'mcm',
               'creationTimestamp': '2019-09-23T14:34:25Z',
-              'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
+              'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
               '__typename': 'Metadata'
             },
             'clusterLabels': {
@@ -162,7 +162,7 @@ describe('ResourceOverview component', () => {
               'metadata': {
                 'name': 'placement-1569249226915-policy-test',
                 'namespace': 'mcm',
-                'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
+                'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
                 'uid': '3de387ad-de0f-11e9-a6d8-02e847915a0f',
                 'resourceVersion': '188032',
                 'creationTimestamp': '2019-09-23T14:34:25Z',
@@ -204,7 +204,7 @@ describe('ResourceOverview component', () => {
               'name': 'binding-1569249226915-policy-test',
               'namespace': 'mcm',
               'creationTimestamp': '2019-09-23T14:34:25Z',
-              'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
+              'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
               '__typename': 'Metadata'
             },
             'placementRef': {
@@ -215,7 +215,7 @@ describe('ResourceOverview component', () => {
             'subjects': [
               {
                 'name': '1569249226915-policy-test',
-                'apiGroup': 'policy.mcm.ibm.com',
+                'apiGroup': 'policy.open-cluster-management.io',
                 'kind': 'Policy',
                 '__typename': 'Subject'
               }
@@ -226,7 +226,7 @@ describe('ResourceOverview component', () => {
               'metadata': {
                 'name': 'binding-1569249226915-policy-test',
                 'namespace': 'mcm',
-                'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
+                'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
                 'uid': '3de3a5b6-de0f-11e9-a6d8-02e847915a0f',
                 'resourceVersion': '185883',
                 'creationTimestamp': '2019-09-23T14:34:25Z',
@@ -245,7 +245,7 @@ describe('ResourceOverview component', () => {
               'subjects': [
                 {
                   'kind': 'Policy',
-                  'apiGroup': 'policy.mcm.ibm.com',
+                  'apiGroup': 'policy.open-cluster-management.io',
                   'name': '1569249226915-policy-test'
                 }
               ],
@@ -280,7 +280,7 @@ describe('ResourceOverview component', () => {
             'status': 'NonCompliant',
             'complianceName': '1569249226915-policy-test',
             'complianceNamespace': 'mcm',
-            'complianceSelfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
+            'complianceSelfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1569249226915-policy-test',
             'roleTemplates': [],
             'roleBindingTemplates': [],
             'objectTemplates': [
@@ -319,13 +319,13 @@ describe('ResourceOverview component', () => {
               ]
             },
             'raw': {
-              'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+              'apiVersion': 'policy.open-cluster-management.io/v1',
               'kind': 'Policy',
               'metadata': {
                 'annotations': {
-                  'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-                  'policy.mcm.ibm.com/controls': 'VA',
-                  'policy.mcm.ibm.com/standards': 'NIST',
+                  'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+                  'policy.open-cluster-management.io/controls': 'VA',
+                  'policy.open-cluster-management.io/standards': 'NIST',
                   'seed-generation': '1'
                 },
                 'creationTimestamp': '2019-09-23T14:34:25Z',
@@ -337,7 +337,7 @@ describe('ResourceOverview component', () => {
                 'name': '1569249226915-policy-test',
                 'namespace': 'mcm',
                 'resourceVersion': '7688204',
-                'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
+                'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1569249226915-policy-test',
                 'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e'
               },
               'spec': {
@@ -396,13 +396,13 @@ describe('ResourceOverview component', () => {
                 }
               },
               'raw': {
-                'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+                'apiVersion': 'policy.open-cluster-management.io/v1',
                 'kind': 'Policy',
                 'metadata': {
                   'annotations': {
-                    'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-                    'policy.mcm.ibm.com/controls': 'VA',
-                    'policy.mcm.ibm.com/standards': 'NIST',
+                    'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+                    'policy.open-cluster-management.io/controls': 'VA',
+                    'policy.open-cluster-management.io/standards': 'NIST',
                     'seed-generation': '1'
                   },
                   'creationTimestamp': '2019-09-23T14:34:25Z',
@@ -414,7 +414,7 @@ describe('ResourceOverview component', () => {
                   'name': '1569249226915-policy-test',
                   'namespace': 'mcm',
                   'resourceVersion': '7688204',
-                  'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
+                  'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1569249226915-policy-test',
                   'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e'
                 },
                 'spec': {
@@ -507,15 +507,15 @@ describe('ResourceOverview component', () => {
                 'raw': null,
                 'metadata': {
                   'annotations': {
-                    'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-                    'policy.mcm.ibm.com/controls': 'VA',
-                    'policy.mcm.ibm.com/standards': 'NIST',
+                    'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+                    'policy.open-cluster-management.io/controls': 'VA',
+                    'policy.open-cluster-management.io/standards': 'NIST',
                     'seed-generation': '1'
                   },
                   'creationTimestamp': '2019-09-23T14:34:25Z',
                   'name': '1569249226915-policy-test',
                   'resourceVersion': '7688204',
-                  'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
+                  'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1569249226915-policy-test',
                   'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e',
                   '__typename': 'Metadata'
                 },
@@ -538,15 +538,15 @@ describe('ResourceOverview component', () => {
                 'raw': null,
                 'metadata': {
                   'annotations': {
-                    'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-                    'policy.mcm.ibm.com/controls': 'VA',
-                    'policy.mcm.ibm.com/standards': 'NIST',
+                    'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+                    'policy.open-cluster-management.io/controls': 'VA',
+                    'policy.open-cluster-management.io/standards': 'NIST',
                     'seed-generation': '1'
                   },
                   'creationTimestamp': '2019-09-23T14:34:25Z',
                   'name': '1569249226915-policy-test',
                   'resourceVersion': '7688204',
-                  'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1569249226915-policy-test',
+                  'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1569249226915-policy-test',
                   'uid': '3dc879b5-de0f-11e9-a1ed-005056a0b88e',
                   '__typename': 'Metadata'
                 },
@@ -983,15 +983,15 @@ describe('ResourceOverview component', () => {
         },
         {
           'msgKey': 'table.header.controls',
-          'resourceKey': 'metadata.annotations["policy.mcm.ibm.com/controls"]'
+          'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/controls"]'
         },
         {
           'msgKey': 'table.header.standards',
-          'resourceKey': 'metadata.annotations["policy.mcm.ibm.com/standards"]'
+          'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/standards"]'
         },
         {
           'msgKey': 'table.header.categories',
-          'resourceKey': 'metadata.annotations["policy.mcm.ibm.com/categories"]'
+          'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/categories"]'
         }
       ],
       'tableActions': [
