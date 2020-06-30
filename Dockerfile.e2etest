@@ -1,6 +1,6 @@
 # Copyright (c) 2020 Red Hat, Inc.
 
-FROM node:12.16.3-stretch
+FROM node:10.21.0
 
 ENV NODE_ENV=development
 
