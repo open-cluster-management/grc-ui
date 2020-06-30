@@ -28,7 +28,6 @@ travis-env.sh
 .dockerignore
 .eslint*
 .nvmrc
-package.json
 travis-scripts
 copy.sh
 upload-selenium.sh

@@ -15,6 +15,7 @@ COPY build ./build
 COPY nightwatch.conf.js .
 COPY nightwatch.json .
 COPY tests ./tests
+COPY package.json .
 
 # Install Firefox
 RUN apt-get update && apt-get install -y firefox-esr
