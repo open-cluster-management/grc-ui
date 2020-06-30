@@ -132,7 +132,7 @@ describe('ResourceOverview component', () => {
               'name': 'placement-1569249226915-policy-test',
               'namespace': 'mcm',
               'creationTimestamp': '2019-09-23T14:34:25Z',
-              'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
+              'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
               '__typename': 'Metadata'
             },
             'clusterLabels': {
@@ -162,7 +162,7 @@ describe('ResourceOverview component', () => {
               'metadata': {
                 'name': 'placement-1569249226915-policy-test',
                 'namespace': 'mcm',
-                'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
+                'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
                 'uid': '3de387ad-de0f-11e9-a6d8-02e847915a0f',
                 'resourceVersion': '188032',
                 'creationTimestamp': '2019-09-23T14:34:25Z',
@@ -204,7 +204,7 @@ describe('ResourceOverview component', () => {
               'name': 'binding-1569249226915-policy-test',
               'namespace': 'mcm',
               'creationTimestamp': '2019-09-23T14:34:25Z',
-              'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
+              'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
               '__typename': 'Metadata'
             },
             'placementRef': {
@@ -226,7 +226,7 @@ describe('ResourceOverview component', () => {
               'metadata': {
                 'name': 'binding-1569249226915-policy-test',
                 'namespace': 'mcm',
-                'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
+                'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
                 'uid': '3de3a5b6-de0f-11e9-a6d8-02e847915a0f',
                 'resourceVersion': '185883',
                 'creationTimestamp': '2019-09-23T14:34:25Z',

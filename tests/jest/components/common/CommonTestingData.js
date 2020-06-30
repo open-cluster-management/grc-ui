@@ -160,7 +160,7 @@ export const policies = [
       {
         'metadata': {
           'name': 'placement-my-policy-test',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-my-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-my-policy-test',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -170,7 +170,7 @@ export const policies = [
       {
         'metadata': {
           'name': 'binding-my-policy-test',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-my-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-my-policy-test',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -294,7 +294,7 @@ export const policies = [
       {
         'metadata': {
           'name': 'placement-ma',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-ma',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-ma',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -304,7 +304,7 @@ export const policies = [
       {
         'metadata': {
           'name': 'binding-ma',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-ma',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-ma',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -425,7 +425,7 @@ export const policies = [
       {
         'metadata': {
           'name': 'placement-pod',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-pod',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-pod',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -435,7 +435,7 @@ export const policies = [
       {
         'metadata': {
           'name': 'binding-pod',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-pod',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-pod',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -569,7 +569,7 @@ export const policies = [
       {
         'metadata': {
           'name': 'placement-role',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-role',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-role',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -579,7 +579,7 @@ export const policies = [
       {
         'metadata': {
           'name': 'binding-role',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-role',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-role',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -724,7 +724,7 @@ export const policies2 = [
       {
         'metadata': {
           'name': 'placement-my-policy-test',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-my-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-my-policy-test',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -734,7 +734,7 @@ export const policies2 = [
       {
         'metadata': {
           'name': 'binding-my-policy-test',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-my-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-my-policy-test',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -856,7 +856,7 @@ export const policies3 = [
       {
         'metadata': {
           'name': 'binding-policy-crontab',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/default/placementbindings/binding-policy-crontab',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-policy-crontab',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -1198,7 +1198,7 @@ export const policies3 = [
       {
         'metadata': {
           'name': 'binding-policy-imagemanifestvulnpolicy',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/default/placementbindings/binding-policy-imagemanifestvulnpolicy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-policy-imagemanifestvulnpolicy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -1326,7 +1326,7 @@ export const policies3 = [
       {
         'metadata': {
           'name': 'binding-policy-trustedcontainer',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/default/placementbindings/binding-policy-trustedcontainer',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-policy-trustedcontainer',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -1445,7 +1445,7 @@ export const policies3 = [
       {
         'metadata': {
           'name': 'binding-policy2',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/default/placementbindings/binding-policy2',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-policy2',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -1596,7 +1596,7 @@ export const policies3 = [
       {
         'metadata': {
           'name': 'binding-policy-auth-provider',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/open-cluster-management-policies/placementbindings/binding-policy-auth-provider',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/open-cluster-management-policies/placementbindings/binding-policy-auth-provider',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -2805,7 +2805,7 @@ export const items = {
       {
         'metadata': {
           'name': 'placement-1569249226915-policy-test',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-1569249226915-policy-test',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -2815,7 +2815,7 @@ export const items = {
       {
         'metadata': {
           'name': 'binding-1569249226915-policy-test',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-1569249226915-policy-test',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -2971,7 +2971,7 @@ export const items = {
       {
         'metadata': {
           'name': 'placement-policy-auditpolicy',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-auditpolicy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-auditpolicy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -2981,7 +2981,7 @@ export const items = {
       {
         'metadata': {
           'name': 'binding-policy-auditpolicy',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-auditpolicy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-auditpolicy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -3133,7 +3133,7 @@ export const items = {
       {
         'metadata': {
           'name': 'placement-policy-certificatepolicy',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-certificatepolicy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-certificatepolicy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -3143,7 +3143,7 @@ export const items = {
       {
         'metadata': {
           'name': 'binding-policy-certificatepolicy',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-certificatepolicy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-certificatepolicy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -3296,7 +3296,7 @@ export const items = {
       {
         'metadata': {
           'name': 'placement-policy-iampolicy',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-iampolicy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-iampolicy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -3306,7 +3306,7 @@ export const items = {
       {
         'metadata': {
           'name': 'binding-policy-iampolicy',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-iampolicy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-iampolicy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -3452,7 +3452,7 @@ export const items = {
       {
         'metadata': {
           'name': 'placement-policy-image',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-image',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-image',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -3462,7 +3462,7 @@ export const items = {
       {
         'metadata': {
           'name': 'binding-policy-image',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-image',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-image',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -3614,7 +3614,7 @@ export const items = {
       {
         'metadata': {
           'name': 'placement-policy-limitrange',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-limitrange',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-limitrange',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -3624,7 +3624,7 @@ export const items = {
       {
         'metadata': {
           'name': 'binding-policy-limitrange',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-limitrange',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-limitrange',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -3750,7 +3750,7 @@ export const items = {
       {
         'metadata': {
           'name': 'placement-namespace',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-namespace',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-namespace',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -3760,7 +3760,7 @@ export const items = {
       {
         'metadata': {
           'name': 'binding-namespace',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-namespace',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-namespace',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -3912,7 +3912,7 @@ export const items = {
       {
         'metadata': {
           'name': 'placement-policy-pod',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-pod',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-pod',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -3922,7 +3922,7 @@ export const items = {
       {
         'metadata': {
           'name': 'binding-policy-pod',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-pod',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-pod',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -4074,7 +4074,7 @@ export const items = {
       {
         'metadata': {
           'name': 'placement-policy-pod-2',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-pod-2',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-pod-2',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -4084,7 +4084,7 @@ export const items = {
       {
         'metadata': {
           'name': 'binding-policy-pod-2',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-pod-2',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-pod-2',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -4236,7 +4236,7 @@ export const items = {
       {
         'metadata': {
           'name': 'placement-policy-pod-edge',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-pod-edge',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-pod-edge',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -4246,7 +4246,7 @@ export const items = {
       {
         'metadata': {
           'name': 'binding-policy-pod-edge',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-pod-edge',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-pod-edge',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'

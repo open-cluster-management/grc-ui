@@ -127,7 +127,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'placement-my-policy',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-my-policy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-my-policy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -137,7 +137,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'binding-my-policy',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-my-policy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-my-policy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -261,7 +261,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'placement-ma',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-ma',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-ma',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -271,7 +271,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'binding-ma',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-ma',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-ma',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -392,7 +392,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'placement-pod',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-pod',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-pod',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -402,7 +402,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'binding-pod',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-pod',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-pod',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -536,7 +536,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'placement-role',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-role',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-role',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -546,7 +546,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'binding-role',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-role',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-role',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -830,7 +830,7 @@ export const reduxStorePolicyCluster = {
           {
             metadata: {
               name: 'placement-policy-limitrange',
-              selfLink: '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-limitrange',
+              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-limitrange',
               __typename: 'Metadata'
             },
             __typename: 'PlacementPolicy'
@@ -840,7 +840,7 @@ export const reduxStorePolicyCluster = {
           {
             metadata: {
               name: 'binding-policy-limitrange',
-              selfLink: '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-limitrange',
+              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-limitrange',
               __typename: 'Metadata'
             },
             __typename: 'PlacementBinding'
@@ -966,7 +966,7 @@ export const reduxStorePolicyCluster = {
           {
             metadata: {
               name: 'placement-namespace',
-              selfLink: '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-namespace',
+              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-namespace',
               __typename: 'Metadata'
             },
             __typename: 'PlacementPolicy'
@@ -976,7 +976,7 @@ export const reduxStorePolicyCluster = {
           {
             metadata: {
               name: 'binding-namespace',
-              selfLink: '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-namespace',
+              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-namespace',
               __typename: 'Metadata'
             },
             __typename: 'PlacementBinding'

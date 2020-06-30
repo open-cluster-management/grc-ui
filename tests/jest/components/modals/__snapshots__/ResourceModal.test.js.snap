@@ -43,7 +43,7 @@ Object {
         "metadata": Object {
           "__typename": "Metadata",
           "name": "binding-policy-auditpolicy-will-sev",
-          "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-auditpolicy-will-sev",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-auditpolicy-will-sev",
         },
       },
     ],
@@ -53,7 +53,7 @@ Object {
         "metadata": Object {
           "__typename": "Metadata",
           "name": "placement-policy-auditpolicy-will-sev",
-          "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-auditpolicy-will-sev",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-auditpolicy-will-sev",
         },
       },
     ],
@@ -225,7 +225,7 @@ ShallowWrapper {
             "metadata": Object {
               "__typename": "Metadata",
               "name": "binding-policy-auditpolicy-will-sev",
-              "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-auditpolicy-will-sev",
+              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-auditpolicy-will-sev",
             },
           },
         ],
@@ -235,7 +235,7 @@ ShallowWrapper {
             "metadata": Object {
               "__typename": "Metadata",
               "name": "placement-policy-auditpolicy-will-sev",
-              "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-auditpolicy-will-sev",
+              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-auditpolicy-will-sev",
             },
           },
         ],
@@ -1240,7 +1240,7 @@ ShallowWrapper {
             "metadata": Object {
               "__typename": "Metadata",
               "name": "binding-policy-auditpolicy-will-sev",
-              "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-auditpolicy-will-sev",
+              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-auditpolicy-will-sev",
             },
           },
         ],
@@ -1250,7 +1250,7 @@ ShallowWrapper {
             "metadata": Object {
               "__typename": "Metadata",
               "name": "placement-policy-auditpolicy-will-sev",
-              "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-auditpolicy-will-sev",
+              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-auditpolicy-will-sev",
             },
           },
         ],

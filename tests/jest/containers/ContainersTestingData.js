@@ -1052,7 +1052,7 @@ export const items = [
           'name': 'placement-1570049336008-policy-test',
           'namespace': 'mcm',
           'creationTimestamp': '2019-10-02T20:49:21Z',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1570049336008-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-1570049336008-policy-test',
           '__typename': 'Metadata'
         },
         'clusterLabels': {
@@ -1086,7 +1086,7 @@ export const items = [
           'metadata': {
             'name': 'placement-1570049336008-policy-test',
             'namespace': 'mcm',
-            'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1570049336008-policy-test',
+            'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-1570049336008-policy-test',
             'uid': '1c265de1-e556-11e9-a436-4a723cab1df3',
             'resourceVersion': '76788',
             'creationTimestamp': '2019-10-02T20:49:21Z',
@@ -1132,7 +1132,7 @@ export const items = [
           'name': 'binding-1570049336008-policy-test',
           'namespace': 'mcm',
           'creationTimestamp': '2019-10-02T20:49:21Z',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1570049336008-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-1570049336008-policy-test',
           '__typename': 'Metadata'
         },
         'placementRef': {
@@ -1154,7 +1154,7 @@ export const items = [
           'metadata': {
             'name': 'binding-1570049336008-policy-test',
             'namespace': 'mcm',
-            'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1570049336008-policy-test',
+            'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-1570049336008-policy-test',
             'uid': '1c2670fc-e556-11e9-a436-4a723cab1df3',
             'resourceVersion': '76790',
             'creationTimestamp': '2019-10-02T20:49:21Z',

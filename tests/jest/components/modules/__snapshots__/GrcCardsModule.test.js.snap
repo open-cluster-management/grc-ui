@@ -3256,7 +3256,7 @@ ShallowWrapper {
             "name": "compliance-all",
             "namespace": "mcm",
             "resourceVersion": "1071070",
-            "selfLink": "/apis/compliance.mcm.ibm.com/v1alpha1/namespaces/mcm/compliances/compliance-all",
+            "selfLink": "/apis/compliance.policy.open-cluster-management.io/v1/namespaces/mcm/compliances/compliance-all",
           },
           "name": "compliance-all",
           "namespace": "mcm",
@@ -3266,7 +3266,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "binding-comp",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-comp",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-comp",
               },
             },
           ],
@@ -3276,7 +3276,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "placement-comp",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-comp",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-comp",
               },
             },
           ],
@@ -3296,7 +3296,7 @@ ShallowWrapper {
               "name": "compliance-all",
               "namespace": "mcm",
               "resourceVersion": "1071070",
-              "selfLink": "/apis/compliance.mcm.ibm.com/v1alpha1/namespaces/mcm/compliances/compliance-all",
+              "selfLink": "/apis/compliance.policy.open-cluster-management.io/v1/namespaces/mcm/compliances/compliance-all",
               "uid": "1e04ec63-7bd1-11e9-820c-005056a061f1",
             },
             "spec": Object {
@@ -3574,7 +3574,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "binding-ma",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-ma",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-ma",
               },
             },
           ],
@@ -3584,7 +3584,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "placement-ma",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-ma",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-ma",
               },
             },
           ],
@@ -3706,7 +3706,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "binding-pod",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-pod",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-pod",
               },
             },
           ],
@@ -3716,7 +3716,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "placement-pod",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-pod",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-pod",
               },
             },
           ],
@@ -4190,7 +4190,7 @@ ShallowWrapper {
             "name": "compliance-all",
             "namespace": "mcm",
             "resourceVersion": "1071070",
-            "selfLink": "/apis/compliance.mcm.ibm.com/v1alpha1/namespaces/mcm/compliances/compliance-all",
+            "selfLink": "/apis/compliance.policy.open-cluster-management.io/v1/namespaces/mcm/compliances/compliance-all",
           },
           "name": "compliance-all",
           "namespace": "mcm",
@@ -4200,7 +4200,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "binding-comp",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-comp",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-comp",
               },
             },
           ],
@@ -4210,7 +4210,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "placement-comp",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-comp",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-comp",
               },
             },
           ],
@@ -4230,7 +4230,7 @@ ShallowWrapper {
               "name": "compliance-all",
               "namespace": "mcm",
               "resourceVersion": "1071070",
-              "selfLink": "/apis/compliance.mcm.ibm.com/v1alpha1/namespaces/mcm/compliances/compliance-all",
+              "selfLink": "/apis/compliance.policy.open-cluster-management.io/v1/namespaces/mcm/compliances/compliance-all",
               "uid": "1e04ec63-7bd1-11e9-820c-005056a061f1",
             },
             "spec": Object {
@@ -4508,7 +4508,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "binding-ma",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-ma",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-ma",
               },
             },
           ],
@@ -4518,7 +4518,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "placement-ma",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-ma",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-ma",
               },
             },
           ],
@@ -4640,7 +4640,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "binding-pod",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-pod",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-pod",
               },
             },
           ],
@@ -4650,7 +4650,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "placement-pod",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-pod",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-pod",
               },
             },
           ],
@@ -5747,7 +5747,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "1558374675051-placement-binding-test",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/1558374675051-placement-binding-test",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/1558374675051-placement-binding-test",
               },
             },
           ],
@@ -5757,7 +5757,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "1558374675051-placement-policy-test",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/1558374675051-placement-policy-test",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/1558374675051-placement-policy-test",
               },
             },
           ],
@@ -5878,7 +5878,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "1558382034240-placement-binding-test",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/1558382034240-placement-binding-test",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/1558382034240-placement-binding-test",
               },
             },
           ],
@@ -5888,7 +5888,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "1558382034240-placement-policy-test",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/1558382034240-placement-policy-test",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/1558382034240-placement-policy-test",
               },
             },
           ],
@@ -6009,7 +6009,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "binding-ma",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-ma",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-ma",
               },
             },
           ],
@@ -6019,7 +6019,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "placement-ma",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-ma",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-ma",
               },
             },
           ],
@@ -6146,7 +6146,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "binding-pod",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-pod",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-pod",
               },
             },
           ],
@@ -6156,7 +6156,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "placement-pod",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-pod",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-pod",
               },
             },
           ],
@@ -6643,7 +6643,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "1558374675051-placement-binding-test",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/1558374675051-placement-binding-test",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/1558374675051-placement-binding-test",
               },
             },
           ],
@@ -6653,7 +6653,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "1558374675051-placement-policy-test",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/1558374675051-placement-policy-test",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/1558374675051-placement-policy-test",
               },
             },
           ],
@@ -6774,7 +6774,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "1558382034240-placement-binding-test",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/1558382034240-placement-binding-test",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/1558382034240-placement-binding-test",
               },
             },
           ],
@@ -6784,7 +6784,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "1558382034240-placement-policy-test",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/1558382034240-placement-policy-test",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/1558382034240-placement-policy-test",
               },
             },
           ],
@@ -6905,7 +6905,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "binding-ma",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-ma",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-ma",
               },
             },
           ],
@@ -6915,7 +6915,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "placement-ma",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-ma",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-ma",
               },
             },
           ],
@@ -7042,7 +7042,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "binding-pod",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-pod",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-pod",
               },
             },
           ],
@@ -7052,7 +7052,7 @@ ShallowWrapper {
               "metadata": Object {
                 "__typename": "Metadata",
                 "name": "placement-pod",
-                "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-pod",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-pod",
               },
             },
           ],

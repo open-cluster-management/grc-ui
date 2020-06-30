@@ -26,7 +26,7 @@ Array [
         "metadata": Object {
           "__typename": "Metadata",
           "name": "binding-my-policy-test",
-          "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-my-policy-test",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-my-policy-test",
         },
       },
     ],
@@ -36,7 +36,7 @@ Array [
         "metadata": Object {
           "__typename": "Metadata",
           "name": "placement-my-policy-test",
-          "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-my-policy-test",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-my-policy-test",
         },
       },
     ],
@@ -210,7 +210,7 @@ Array [
         "metadata": Object {
           "__typename": "Metadata",
           "name": "binding-ma",
-          "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-ma",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-ma",
         },
       },
     ],
@@ -220,7 +220,7 @@ Array [
         "metadata": Object {
           "__typename": "Metadata",
           "name": "placement-ma",
-          "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-ma",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-ma",
         },
       },
     ],
@@ -358,7 +358,7 @@ Array [
         "metadata": Object {
           "__typename": "Metadata",
           "name": "binding-pod",
-          "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-pod",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-pod",
         },
       },
     ],
@@ -368,7 +368,7 @@ Array [
         "metadata": Object {
           "__typename": "Metadata",
           "name": "placement-pod",
-          "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-pod",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-pod",
         },
       },
     ],
@@ -505,7 +505,7 @@ Array [
         "metadata": Object {
           "__typename": "Metadata",
           "name": "binding-role",
-          "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-role",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-role",
         },
       },
     ],
@@ -515,7 +515,7 @@ Array [
         "metadata": Object {
           "__typename": "Metadata",
           "name": "placement-role",
-          "selfLink": "/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-role",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-role",
         },
       },
     ],

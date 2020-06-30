@@ -277,7 +277,7 @@ export const hcmPoliciesPolicyItem = {
     {
       'metadata': {
         'name': 'placement-policy1',
-        'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy1',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy1',
         '__typename': 'Metadata'
       },
       '__typename': 'PlacementPolicy'
@@ -287,7 +287,7 @@ export const hcmPoliciesPolicyItem = {
     {
       'metadata': {
         'name': 'binding-policy1',
-        'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy1',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy1',
         '__typename': 'Metadata'
       },
       '__typename': 'PlacementBinding'
