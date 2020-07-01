@@ -149,8 +149,8 @@ module.exports = {
     filename: PRODUCTION ? 'js/[name].[hash].min.js' : 'js/[name].min.js',
     chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].min.js',
     path: __dirname + '/public',
-    publicPath: `${config.get('contextPath')}`.replace(/\/?$/, '/'),
-    jsonpFunction: 'webpackJsonpFunction3',
+    publicPath: config.get('contextPath').replace(/\/?$/, '/'),
+    jsonpFunction: 'webpackJsonpFunctionGrc',
   },
 
   plugins: [
