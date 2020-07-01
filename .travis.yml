@@ -43,8 +43,12 @@ jobs:
         - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make copyright-check TRAVIS_BRANCH=${TRAVIS_BRANCH}
+        - echo '"start grc-ui building..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/build
+        - echo '"finished grc-ui build"' && echo -en 'travis_fold:end:script.build\\r'
+        - echo '"start image pushing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/push
+        - echo '"finished image push"' && echo -en 'travis_fold:end:script.build\\r'
         - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then 
             export COMPONENT_NEWTAG="latest-dev";
             make component/tag;
@@ -64,11 +68,17 @@ jobs:
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make sonar/js/jest-init
+        - echo '"start unit testing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/test/unit
+        - echo '"finished unit test"' && echo -en 'travis_fold:end:script.build\\r'
         - make component/pull
+        - echo '"start e2e testing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/test/e2e
+        - echo '"finished e2e test"' && echo -en 'travis_fold:end:script.build\\r'
         - npm run merge:coverage
+        - echo '"start sonar checking..."' && echo -en 'travis_fold:start:script.build\\r'
         - make sonar/js
+        - echo '"finished sonar check"' && echo -en 'travis_fold:end:script.build\\r'
       after_failure:
         - make travis-slack-reporter
         - docker logs grcuiapi

@@ -7,14 +7,14 @@
  * Contract with IBM Corp.
  *******************************************************************************
 /* Copyright (c) 2020 Red Hat, Inc. */
-const path = require('path'),
+const config = require('./config'),
+      path = require('path'),
       webpack = require('webpack'),
-      ExtractTextPlugin = require('extract-text-webpack-plugin'),
-      UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
+      MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+      TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
       WebpackMd5Hash = require('webpack-md5-hash'),
       FileManagerPlugin = require('filemanager-webpack-plugin'),
-      config = require('./config'),
       CompressionPlugin = require('compression-webpack-plugin'),
       MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
@@ -32,7 +32,7 @@ module.exports = {
   devtool: PRODUCTION ? 'source-map' : 'cheap-module-source-map',
   stats: { children: false },
   entry: {
-    'main': ['babel-polyfill', './src-web/index.js']
+    'main': ['@babel/polyfill', './src-web/index.js']
   },
 
   externals: Object.assign(PRODUCTION ? prodExternals : {}, {
@@ -55,36 +55,38 @@ module.exports = {
         test: [/\.jsx$/, /\.js$/],
         exclude: /node_modules|\.scss/,
         loader: 'babel-loader?cacheDirectory',
+        query: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: ['@babel/plugin-proposal-class-properties']
+        }
       },
       {
         test: [/\.scss$/],
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader?sourceMap',
-              options: {
-                minimize: PRODUCTION ? true : false
-              }
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader?sourceMap',
+            options: {
+              // minimize: PRODUCTION ? true : false
             },
-            {
-              loader: 'postcss-loader?sourceMap',
-              options: {
-                plugins: function () {
-                  return [
-                    require('autoprefixer')
-                  ]
-                },
-              }
+          },
+          {
+            loader: 'postcss-loader?sourceMap',
+            options: {
+              plugins: function () {
+                return [
+                  require('autoprefixer')
+                ]
+              },
             },
-            {
-              loader: 'sass-loader?sourceMap',
-              options: {
-                data: '$font-path: "'+ config.get('contextPath') + '/fonts";'
-              }
-            }
-          ]
-        })
+          },
+          {
+            loader: 'sass-loader?sourceMap',
+            options: {
+              prependData: '$font-path: "'+ config.get('contextPath') + '/fonts";'
+            },
+          },
+        ],
       },
       {
         test: /\.woff2?$/,
@@ -135,7 +137,6 @@ module.exports = {
         test: overpassTest,
         loader: 'null-loader',
       },
-
     ],
     noParse: [
       // don't parse minified bundles (vendor libs) for faster builds
@@ -144,10 +145,12 @@ module.exports = {
   },
 
   output: {
-    filename: PRODUCTION ? 'js/[name].[hash].min.js' : 'js/[name].min.js', //needs to be hash for production (vs chunckhash) in order to cache bust references to chunks
+    //needs to be hash for production (vs chunckhash) in order to cache bust references to chunks
+    filename: PRODUCTION ? 'js/[name].[hash].min.js' : 'js/[name].min.js',
     chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].min.js',
     path: __dirname + '/public',
-    publicPath: `${config.get('contextPath')}`.replace(/\/?$/, '/')
+    publicPath: `${config.get('contextPath')}`.replace(/\/?$/, '/'),
+    jsonpFunction: 'webpackJsonpFunction3',
   },
 
   plugins: [
@@ -159,13 +162,14 @@ module.exports = {
     }),
     new webpack.DllReferencePlugin({
       context: process.env.STORYBOOK ? path.join(__dirname, '..') : __dirname,
+      // eslint-disable-next-line import/no-unresolved
       manifest: require('./dll/vendorhcm-manifest.json'),
     }),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: PRODUCTION ? 'css/[name].[contenthash].css' : 'css/[name].css',
       allChunks: true
     }),
-    PRODUCTION ? new UglifyJSPlugin({
+    PRODUCTION ? new TerserPlugin({
       sourceMap: true
     }) : noOP,
     new webpack.LoaderOptionsPlugin({
@@ -182,7 +186,7 @@ module.exports = {
       }
     }),
     new CompressionPlugin({
-      asset: '[path].gz[query]',
+      filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.css$/,
       minRatio: 1,

@@ -137,7 +137,7 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
       }
     }
 
-    componentWillReceiveProps() {
+    UNSAFE_componentWillReceiveProps() {
       this.setState({firstTimeLoad: false})
     }
 
