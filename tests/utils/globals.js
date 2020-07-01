@@ -25,11 +25,15 @@ module.exports = {
 
   // External before hook is ran at the beginning of the tests run, before creating the Selenium session
   before: function(done) {
-    del([reportFolder, `${BASE_DIR}/selenium-debug.log`]).then(() => {
-      // eslint-disable-next-line no-console
-      console.log('Deleted test reports and logs.')
+    if(process.env.SKIP_LOG_DELETE) {
       done()
-    })
+    } else {
+      del([reportFolder, `${BASE_DIR}/selenium-debug.log`]).then(() => {
+        // eslint-disable-next-line no-console
+        console.log('Deleted test reports and logs.')
+        done()
+      })
+    }
   },
 
   time: time,
