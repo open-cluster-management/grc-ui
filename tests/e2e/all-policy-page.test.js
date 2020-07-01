@@ -22,11 +22,34 @@ module.exports = {
     page = browser.page.AllPolicyPage()
   },
 
+  'Create policy page: Verify templates': (browser) => {
+    const templates = [
+      'CertificatePolicy',
+      'IamPolicy',
+      'ImageManifestVulnPolicy',
+      'LimitRange',
+      'Namespace',
+      'Pod',
+      'PodSecurityPolicy',
+      'Role',
+      'RoleBinding',
+      'SecurityContextConstraints'
+    ]
+    const time = browser.globals.time
+    let policyName = '', templateFile = ''
+    templates.forEach(t => {
+      policyName = `${time}-${t}-policy-test`
+      templateFile = `${t}_template.yaml`
+      page.createTestPolicy(false, { policyName: policyName, specification: [t] }, templateFile)
+    })
+  },
+
   'All policy page: Add, search test policy': (browser) => {
     const time = browser.globals.time
-    page.createTestPolicy(browser, time)
-    page.searchPolicy(true, time)
-    page.testDetailsPage(browser, `${time}-policy-test`)
+    const policyName = `${time}-policy-test`
+    page.createTestPolicy(true, { policyName: policyName, specification: ['ImageManifestVulnPolicy'] })
+    page.searchPolicy(true, policyName)
+    page.testDetailsPage(browser, policyName)
   },
 
   'All policy page: Verify summary table': (browser) => {
@@ -39,6 +62,7 @@ module.exports = {
 
   'All policy page: Delete test policy': (browser) => {
     const time = browser.globals.time
-    page.deletePolicy(`${time}-policy-test`, browser)
+    const policyName = `${time}-policy-test`
+    page.deletePolicy(policyName, browser)
   },
 }
