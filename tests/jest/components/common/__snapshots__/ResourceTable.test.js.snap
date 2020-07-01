@@ -229,7 +229,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -270,7 +270,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -311,7 +311,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -1954,7 +1954,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -1995,7 +1995,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -2036,7 +2036,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -5524,7 +5524,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -5565,7 +5565,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -5606,7 +5606,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -6824,7 +6824,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/standards\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -6865,7 +6865,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/controls\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
@@ -6906,7 +6906,7 @@ Array [
             <div
               className="bx--table-sort-v2 bx--table-sort-v2--ascending"
               data-default-key="metadata.name"
-              data-key="metadata.annotations[\\"policy.mcm.ibm.com/categories\\"]"
+              data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
               onClick={[MockFunction]}
               onKeyPress={[MockFunction]}
               role="button"
