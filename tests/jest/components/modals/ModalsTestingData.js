@@ -27,7 +27,7 @@ export const sidePanelPolicies = [
         'mcm.ibm.com/user-identity': 'aGNtOmNsdXN0ZXJzOmNsdXN0ZXIxOmNsdXN0ZXIx'
       },
       'uid': '24694bf8-ce79-11e9-bbf4-26cb3fc6476c',
-      'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/cluster1/clusterstatuses/cluster1',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/clusterstatuses/cluster1',
       '__typename': 'Metadata'
     },
     'kind': 'Cluster',
@@ -48,13 +48,13 @@ export const sidePanelPolicies = [
     'total': '1',
     'violated': '1',
     'policy': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'CertManager',
-          'policy.mcm.ibm.com/standards': 'HIPAA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'CertManager',
+          'policy.open-cluster-management.io/standards': 'HIPAA',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-09-15T08:12:48Z',
@@ -66,7 +66,7 @@ export const sidePanelPolicies = [
         'name': 'policy-limitrange',
         'namespace': 'cluster1',
         'resourceVersion': '8412735',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/cluster1/policies/policy-limitrange',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-limitrange',
         'uid': '9aa50808-d790-11e9-8a74-005056a04901'
       },
       'spec': {
@@ -210,7 +210,7 @@ export const sidePanelPolicies = [
         'mcm.ibm.com/user-identity': 'aGNtOmNsdXN0ZXJzOmNsdXN0ZXJodWI6Y2x1c3Rlcmh1Yg=='
       },
       'uid': '3fb19cc2-ca8b-11e9-bbf4-26cb3fc6476c',
-      'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/clusterhub/clusterstatuses/clusterhub',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/clusterstatuses/clusterhub',
       '__typename': 'Metadata'
     },
     'kind': 'Cluster',
@@ -231,13 +231,13 @@ export const sidePanelPolicies = [
     'total': '1',
     'violated': '1',
     'policy': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'CertManager',
-          'policy.mcm.ibm.com/standards': 'HIPAA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'CertManager',
+          'policy.open-cluster-management.io/standards': 'HIPAA',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-09-15T08:12:48Z',
@@ -252,7 +252,7 @@ export const sidePanelPolicies = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -261,7 +261,7 @@ export const sidePanelPolicies = [
           }
         ],
         'resourceVersion': '5854341',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-limitrange',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-limitrange',
         'uid': '9aa3d1ac-d790-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -405,7 +405,7 @@ export const sidePanelPoliciesAllCompliant = [
         'mcm.ibm.com/user-identity': 'aGNtOmNsdXN0ZXJzOmNsdXN0ZXIxOmNsdXN0ZXIx'
       },
       'uid': '24694bf8-ce79-11e9-bbf4-26cb3fc6476c',
-      'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/cluster1/clusterstatuses/cluster1',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/clusterstatuses/cluster1',
       '__typename': 'Metadata'
     },
     'kind': 'Cluster',
@@ -426,13 +426,13 @@ export const sidePanelPoliciesAllCompliant = [
     'total': '1',
     'violated': '0',
     'policy': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'CertManager',
-          'policy.mcm.ibm.com/standards': 'HIPAA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'CertManager',
+          'policy.open-cluster-management.io/standards': 'HIPAA',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-09-15T08:12:48Z',
@@ -444,7 +444,7 @@ export const sidePanelPoliciesAllCompliant = [
         'name': 'policy-limitrange',
         'namespace': 'cluster1',
         'resourceVersion': '8412735',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/cluster1/policies/policy-limitrange',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-limitrange',
         'uid': '9aa50808-d790-11e9-8a74-005056a04901'
       },
       'spec': {
@@ -588,7 +588,7 @@ export const sidePanelPoliciesAllCompliant = [
         'mcm.ibm.com/user-identity': 'aGNtOmNsdXN0ZXJzOmNsdXN0ZXJodWI6Y2x1c3Rlcmh1Yg=='
       },
       'uid': '3fb19cc2-ca8b-11e9-bbf4-26cb3fc6476c',
-      'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/clusterhub/clusterstatuses/clusterhub',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/clusterstatuses/clusterhub',
       '__typename': 'Metadata'
     },
     'kind': 'Cluster',
@@ -609,13 +609,13 @@ export const sidePanelPoliciesAllCompliant = [
     'total': '1',
     'violated': '0',
     'policy': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'CertManager',
-          'policy.mcm.ibm.com/standards': 'HIPAA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'CertManager',
+          'policy.open-cluster-management.io/standards': 'HIPAA',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-09-15T08:12:48Z',
@@ -630,7 +630,7 @@ export const sidePanelPoliciesAllCompliant = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -639,7 +639,7 @@ export const sidePanelPoliciesAllCompliant = [
           }
         ],
         'resourceVersion': '5854341',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-limitrange',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-limitrange',
         'uid': '9aa3d1ac-d790-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -775,12 +775,12 @@ export const sidePanelClusters = [
     'metadata': {
       'name': 'policy-auditpolicy',
       'namespace': 'clusterhub',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-auditpolicy',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-auditpolicy',
       'creationTimestamp': '2019-09-15T08:12:45Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-        'policy.mcm.ibm.com/controls': 'secretEncryption',
-        'policy.mcm.ibm.com/standards': 'FISMA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+        'policy.open-cluster-management.io/controls': 'secretEncryption',
+        'policy.open-cluster-management.io/standards': 'FISMA',
         'seed-generation': '103'
       },
       'resourceVersion': '6127749',
@@ -799,13 +799,13 @@ export const sidePanelClusters = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'secretEncryption',
-          'policy.mcm.ibm.com/standards': 'FISMA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'secretEncryption',
+          'policy.open-cluster-management.io/standards': 'FISMA',
           'seed-generation': '103'
         },
         'creationTimestamp': '2019-09-15T08:12:45Z',
@@ -820,7 +820,7 @@ export const sidePanelClusters = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -829,7 +829,7 @@ export const sidePanelClusters = [
           }
         ],
         'resourceVersion': '6127749',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-auditpolicy',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-auditpolicy',
         'uid': '98de47f9-d790-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -906,12 +906,12 @@ export const sidePanelClusters = [
     'metadata': {
       'name': 'policy-certificatepolicy',
       'namespace': 'clusterhub',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-certificatepolicy',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-certificatepolicy',
       'creationTimestamp': '2019-09-15T08:13:48Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls': 'CertManager',
-        'policy.mcm.ibm.com/standards': 'FISMA, PCI',
+        'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls': 'CertManager',
+        'policy.open-cluster-management.io/standards': 'FISMA, PCI',
         'seed-generation': '2'
       },
       'resourceVersion': '5854790',
@@ -930,13 +930,13 @@ export const sidePanelClusters = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'CertManager',
-          'policy.mcm.ibm.com/standards': 'FISMA, PCI',
+          'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'CertManager',
+          'policy.open-cluster-management.io/standards': 'FISMA, PCI',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-09-15T08:13:48Z',
@@ -951,7 +951,7 @@ export const sidePanelClusters = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -960,7 +960,7 @@ export const sidePanelClusters = [
           }
         ],
         'resourceVersion': '5854790',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-certificatepolicy',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-certificatepolicy',
         'uid': 'be7f68f7-d790-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -1024,12 +1024,12 @@ export const sidePanelClusters = [
     'metadata': {
       'name': 'policy-iampolicy',
       'namespace': 'clusterhub',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-iampolicy',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-iampolicy',
       'creationTimestamp': '2019-09-11T19:22:19Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-        'policy.mcm.ibm.com/standards': 'FISMA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+        'policy.open-cluster-management.io/standards': 'FISMA',
         'seed-generation': '2'
       },
       'resourceVersion': '5071621',
@@ -1048,13 +1048,13 @@ export const sidePanelClusters = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-          'policy.mcm.ibm.com/standards': 'FISMA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+          'policy.open-cluster-management.io/standards': 'FISMA',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-09-11T19:22:19Z',
@@ -1069,7 +1069,7 @@ export const sidePanelClusters = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -1078,7 +1078,7 @@ export const sidePanelClusters = [
           }
         ],
         'resourceVersion': '5071621',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-iampolicy',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-iampolicy',
         'uid': '790ce871-d4c9-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -1146,12 +1146,12 @@ export const sidePanelClusters = [
     'metadata': {
       'name': 'policy-image',
       'namespace': 'clusterhub',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-image',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-image',
       'creationTimestamp': '2019-09-15T08:13:48Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-        'policy.mcm.ibm.com/controls': 'VA',
-        'policy.mcm.ibm.com/standards': 'FISMA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+        'policy.open-cluster-management.io/controls': 'VA',
+        'policy.open-cluster-management.io/standards': 'FISMA',
         'seed-generation': '5'
       },
       'resourceVersion': '5854643',
@@ -1170,13 +1170,13 @@ export const sidePanelClusters = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'VA',
-          'policy.mcm.ibm.com/standards': 'FISMA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'VA',
+          'policy.open-cluster-management.io/standards': 'FISMA',
           'seed-generation': '5'
         },
         'creationTimestamp': '2019-09-15T08:13:48Z',
@@ -1191,7 +1191,7 @@ export const sidePanelClusters = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -1200,7 +1200,7 @@ export const sidePanelClusters = [
           }
         ],
         'resourceVersion': '5854643',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-image',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-image',
         'uid': 'be8091d5-d790-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -1258,12 +1258,12 @@ export const sidePanelClusters = [
     'metadata': {
       'name': 'policy-limitrange',
       'namespace': 'clusterhub',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-limitrange',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-limitrange',
       'creationTimestamp': '2019-09-15T08:12:48Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-        'policy.mcm.ibm.com/controls': 'CertManager',
-        'policy.mcm.ibm.com/standards': 'HIPAA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+        'policy.open-cluster-management.io/controls': 'CertManager',
+        'policy.open-cluster-management.io/standards': 'HIPAA',
         'seed-generation': '2'
       },
       'resourceVersion': '5854341',
@@ -1282,13 +1282,13 @@ export const sidePanelClusters = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'CertManager',
-          'policy.mcm.ibm.com/standards': 'HIPAA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'CertManager',
+          'policy.open-cluster-management.io/standards': 'HIPAA',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-09-15T08:12:48Z',
@@ -1303,7 +1303,7 @@ export const sidePanelClusters = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -1312,7 +1312,7 @@ export const sidePanelClusters = [
           }
         ],
         'resourceVersion': '5854341',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-limitrange',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-limitrange',
         'uid': '9aa3d1ac-d790-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -1376,12 +1376,12 @@ export const sidePanelClusters = [
     'metadata': {
       'name': 'policy-namespace',
       'namespace': 'clusterhub',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-namespace',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-namespace',
       'creationTimestamp': '2019-09-12T23:53:57Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-        'policy.mcm.ibm.com/standards': 'NIST,HIPAA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+        'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
         'seed-generation': '1'
       },
       'resourceVersion': '5335869',
@@ -1400,13 +1400,13 @@ export const sidePanelClusters = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-          'policy.mcm.ibm.com/standards': 'NIST,HIPAA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+          'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
           'seed-generation': '1'
         },
         'creationTimestamp': '2019-09-12T23:53:57Z',
@@ -1421,7 +1421,7 @@ export const sidePanelClusters = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -1430,7 +1430,7 @@ export const sidePanelClusters = [
           }
         ],
         'resourceVersion': '5335869',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-namespace',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-namespace',
         'uid': '95ff86af-d5b8-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -1462,12 +1462,12 @@ export const sidePanelClusters = [
     'metadata': {
       'name': 'policy-pod',
       'namespace': 'clusterhub',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-pod',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-pod',
       'creationTimestamp': '2019-09-15T08:12:48Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-        'policy.mcm.ibm.com/standards': 'FISMA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+        'policy.open-cluster-management.io/standards': 'FISMA',
         'seed-generation': '2'
       },
       'resourceVersion': '5854352',
@@ -1486,13 +1486,13 @@ export const sidePanelClusters = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-          'policy.mcm.ibm.com/standards': 'FISMA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+          'policy.open-cluster-management.io/standards': 'FISMA',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-09-15T08:12:48Z',
@@ -1507,7 +1507,7 @@ export const sidePanelClusters = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -1516,7 +1516,7 @@ export const sidePanelClusters = [
           }
         ],
         'resourceVersion': '5854352',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-pod',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-pod',
         'uid': '9a919f45-d790-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -1578,12 +1578,12 @@ export const sidePanelClusters = [
     'metadata': {
       'name': 'policy-rolebinding-1',
       'namespace': 'clusterhub',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-rolebinding-1',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-rolebinding-1',
       'creationTimestamp': '2019-09-15T08:12:48Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-        'policy.mcm.ibm.com/standards': 'FISMA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+        'policy.open-cluster-management.io/standards': 'FISMA',
         'seed-generation': '2'
       },
       'resourceVersion': '5854333',
@@ -1602,13 +1602,13 @@ export const sidePanelClusters = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-          'policy.mcm.ibm.com/standards': 'FISMA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+          'policy.open-cluster-management.io/standards': 'FISMA',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-09-15T08:12:48Z',
@@ -1623,7 +1623,7 @@ export const sidePanelClusters = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -1632,7 +1632,7 @@ export const sidePanelClusters = [
           }
         ],
         'resourceVersion': '5854333',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-rolebinding-1',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-rolebinding-1',
         'uid': '9a9d57f0-d790-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -1695,12 +1695,12 @@ export const sidePanelClusters = [
     'metadata': {
       'name': 'policy-vulnerabilitypolicy',
       'namespace': 'clusterhub',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-vulnerabilitypolicy',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-vulnerabilitypolicy',
       'creationTimestamp': '2019-09-15T08:13:48Z',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-        'policy.mcm.ibm.com/controls': 'VA',
-        'policy.mcm.ibm.com/standards': 'PCI',
+        'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+        'policy.open-cluster-management.io/controls': 'VA',
+        'policy.open-cluster-management.io/standards': 'PCI',
         'seed-generation': '2'
       },
       'resourceVersion': '5854650',
@@ -1719,13 +1719,13 @@ export const sidePanelClusters = [
       '__typename': 'PolicyDetail'
     },
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity',
-          'policy.mcm.ibm.com/controls': 'VA',
-          'policy.mcm.ibm.com/standards': 'PCI',
+          'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
+          'policy.open-cluster-management.io/controls': 'VA',
+          'policy.open-cluster-management.io/standards': 'PCI',
           'seed-generation': '2'
         },
         'creationTimestamp': '2019-09-15T08:13:48Z',
@@ -1740,7 +1740,7 @@ export const sidePanelClusters = [
         'namespace': 'clusterhub',
         'ownerReferences': [
           {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'blockOwnerDeletion': true,
             'controller': true,
             'kind': 'Policy',
@@ -1749,7 +1749,7 @@ export const sidePanelClusters = [
           }
         ],
         'resourceVersion': '5854650',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/clusterhub/policies/policy-vulnerabilitypolicy',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-vulnerabilitypolicy',
         'uid': 'be757224-d790-11e9-a1ed-005056a0b88e'
       },
       'spec': {
@@ -2722,6 +2722,6 @@ export const availableFilters = {
   }
 }
 
-export const resourceModalData = {'kind':'HCMPolicyPolicy','metadata':{'name':'policy-auditpolicy-will-sev','namespace':'mcm','selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev','annotations':{'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections','policy.mcm.ibm.com/controls':'IAM','policy.mcm.ibm.com/standards':'FISMA','seed-generation':'2'},'resourceVersion':'5300122','__typename':'Metadata'},'name':'policy-auditpolicy-will-sev','namespace':'mcm','raw':{'apiVersion':'policy.mcm.ibm.com/v1alpha1','kind':'Policy','metadata':{'annotations':{'policy.mcm.ibm.com/categories':'SystemAndCommunicationsProtections','policy.mcm.ibm.com/controls':'IAM','policy.mcm.ibm.com/standards':'FISMA','seed-generation':'2'},'creationTimestamp':'2019-10-01T14:55:28Z','finalizers':['finalizer.policies.ibm.com','propagator.finalizer.mcm.ibm.com'],'generation':27,'name':'policy-auditpolicy-will-sev','namespace':'mcm','resourceVersion':'5300122','selfLink':'/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy-auditpolicy-will-sev','uid':'81b9569e-e45b-11e9-8895-005056a061f1'},'spec':{'complianceType':'musthave','namespaces':{'exclude':['kube-*'],'include':['default']},'policy-templates':[{'objectDefinition':{'apiVersion':'audit.policies.ibm.com/v1alpha1','kind':'AuditPolicy','metadata':{'label':{'category':'System-Integrity'},'name':'policy-auditpolicy-will-sev'},'spec':{'clusterAuditPolicy':{'auditPolicyRules':{'auth-idp':'ignore','helmapi':'ignore','kubernetes':'ignore','platform-api':'ignore','platform-identity-manager':'ignore','platform-identity-provider':'ignore','vulnerability-advisor':'ignore'}},'namespaceSelector':{'exclude':['kube-system'],'include':['default','kube-*']},'remediationAction':'inform','severity':'low'}},'status':{'Validity':{}}}],'remediationAction':'inform'},'status':{'placementBindings':['binding-policy-auditpolicy-will-sev'],'placementPolicies':['placement-policy-auditpolicy-will-sev'],'status':{'cluster1':{'aggregatePoliciesStatus':{'policy-auditpolicy-will-sev':{'compliant':'Compliant'}},'clustername':'cluster1','compliant':'Compliant'},'clusterhub':{'aggregatePoliciesStatus':{'policy-auditpolicy-will-sev':{}},'clustername':'clusterhub'}}}},'remediation':'inform','policyCompliant':'1/2','clusterCompliant':'1/2','placementPolicies':[{'metadata':{'name':'placement-policy-auditpolicy-will-sev','selfLink':'/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy-auditpolicy-will-sev','__typename':'Metadata'},'__typename':'PlacementPolicy'}],'placementBindings':[{'metadata':{'name':'binding-policy-auditpolicy-will-sev','selfLink':'/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy-auditpolicy-will-sev','__typename':'Metadata'},'__typename':'PlacementBinding'}],'__typename':'Compliance','subItems':[{'name':'policy.pb','items':['binding-policy-auditpolicy-will-sev']},{'name':'policy.pp','items':['placement-policy-auditpolicy-will-sev']}],'custom':{'metadata.name':{'key':null,'ref':null,'props':{'to':'/multicloud/policies/all/policy-auditpolicy-will-sev','children':'policy-auditpolicy-will-sev','replace':false},'_owner':null,'_store':{}},'metadata.annotations["policy.mcm.ibm.com/standards"]':'FISMA','metadata.annotations["policy.mcm.ibm.com/controls"]':'IAM','metadata.annotations["policy.mcm.ibm.com/categories"]':'System And Communications Protections'}}
+export const resourceModalData = {'kind':'HCMPolicyPolicy','metadata':{'name':'policy-auditpolicy-will-sev','namespace':'mcm','selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev','annotations':{'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections','policy.open-cluster-management.io/controls':'IAM','policy.open-cluster-management.io/standards':'FISMA','seed-generation':'2'},'resourceVersion':'5300122','__typename':'Metadata'},'name':'policy-auditpolicy-will-sev','namespace':'mcm','raw':{'apiVersion':'policy.open-cluster-management.io/v1','kind':'Policy','metadata':{'annotations':{'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections','policy.open-cluster-management.io/controls':'IAM','policy.open-cluster-management.io/standards':'FISMA','seed-generation':'2'},'creationTimestamp':'2019-10-01T14:55:28Z','finalizers':['finalizer.policies.ibm.com','propagator.finalizer.mcm.ibm.com'],'generation':27,'name':'policy-auditpolicy-will-sev','namespace':'mcm','resourceVersion':'5300122','selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-auditpolicy-will-sev','uid':'81b9569e-e45b-11e9-8895-005056a061f1'},'spec':{'complianceType':'musthave','namespaces':{'exclude':['kube-*'],'include':['default']},'policy-templates':[{'objectDefinition':{'apiVersion':'audit.policies.ibm.com/v1alpha1','kind':'AuditPolicy','metadata':{'label':{'category':'System-Integrity'},'name':'policy-auditpolicy-will-sev'},'spec':{'clusterAuditPolicy':{'auditPolicyRules':{'auth-idp':'ignore','helmapi':'ignore','kubernetes':'ignore','platform-api':'ignore','platform-identity-manager':'ignore','platform-identity-provider':'ignore','vulnerability-advisor':'ignore'}},'namespaceSelector':{'exclude':['kube-system'],'include':['default','kube-*']},'remediationAction':'inform','severity':'low'}},'status':{'Validity':{}}}],'remediationAction':'inform'},'status':{'placementBindings':['binding-policy-auditpolicy-will-sev'],'placementPolicies':['placement-policy-auditpolicy-will-sev'],'status':{'cluster1':{'aggregatePoliciesStatus':{'policy-auditpolicy-will-sev':{'compliant':'Compliant'}},'clustername':'cluster1','compliant':'Compliant'},'clusterhub':{'aggregatePoliciesStatus':{'policy-auditpolicy-will-sev':{}},'clustername':'clusterhub'}}}},'remediation':'inform','policyCompliant':'1/2','clusterCompliant':'1/2','placementPolicies':[{'metadata':{'name':'placement-policy-auditpolicy-will-sev','selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-auditpolicy-will-sev','__typename':'Metadata'},'__typename':'PlacementPolicy'}],'placementBindings':[{'metadata':{'name':'binding-policy-auditpolicy-will-sev','selfLink':'/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-auditpolicy-will-sev','__typename':'Metadata'},'__typename':'PlacementBinding'}],'__typename':'Compliance','subItems':[{'name':'policy.pb','items':['binding-policy-auditpolicy-will-sev']},{'name':'policy.pp','items':['placement-policy-auditpolicy-will-sev']}],'custom':{'metadata.name':{'key':null,'ref':null,'props':{'to':'/multicloud/policies/all/policy-auditpolicy-will-sev','children':'policy-auditpolicy-will-sev','replace':false},'_owner':null,'_store':{}},'metadata.annotations["policy.open-cluster-management.io/standards"]':'FISMA','metadata.annotations["policy.open-cluster-management.io/controls"]':'IAM','metadata.annotations["policy.open-cluster-management.io/categories"]':'System And Communications Protections'}}
 
-export const resourceModalYAML= 'apiVersion: policy.mcm.ibm.com/v1alpha1\nkind: Policy\nmetadata:\n  name: policy-auditpolicy-will-sev\n  namespace: mcm\n  annotations:\n    policy.mcm.ibm.com/categories: SystemAndCommunicationsProtections\n    policy.mcm.ibm.com/controls: IAM\n    policy.mcm.ibm.com/standards: FISMA\n    seed-generation: \'2\'\n  finalizers:\n    - finalizer.policies.ibm.com\n    - propagator.finalizer.mcm.ibm.com\n  generation: 31\n  resourceVersion: \'5696116\'\nspec:\n  complianceType: musthave\n  namespaces:\n    exclude:\n      - kube-*\n    include:\n      - default\n  policy-templates:\n    - objectDefinition:\n        apiVersion: audit.policies.ibm.com/v1alpha1\n        kind: AuditPolicy\n        metadata:\n          name: policy-auditpolicy-will-sev\n          label:\n            category: System-Integrity\n        spec:\n          clusterAuditPolicy:\n            auditPolicyRules:\n              auth-idp: ignore\n              helmapi: ignore\n              kubernetes: ignore\n              platform-api: ignore\n              platform-identity-manager: ignore\n              platform-identity-provider: ignore\n              vulnerability-advisor: ignore\n          namespaceSelector:\n            exclude:\n              - kube-system\n            include:\n              - default\n              - kube-*\n          remediationAction: inform\n          severity: low\n  remediationAction: inform\n'
+export const resourceModalYAML= 'apiVersion: policy.open-cluster-management.io/v1\nkind: Policy\nmetadata:\n  name: policy-auditpolicy-will-sev\n  namespace: mcm\n  annotations:\n    policy.open-cluster-management.io/categories: SystemAndCommunicationsProtections\n    policy.open-cluster-management.io/controls: IAM\n    policy.open-cluster-management.io/standards: FISMA\n    seed-generation: \'2\'\n  finalizers:\n    - finalizer.policies.ibm.com\n    - propagator.finalizer.mcm.ibm.com\n  generation: 31\n  resourceVersion: \'5696116\'\nspec:\n  complianceType: musthave\n  namespaces:\n    exclude:\n      - kube-*\n    include:\n      - default\n  policy-templates:\n    - objectDefinition:\n        apiVersion: audit.policies.ibm.com/v1alpha1\n        kind: AuditPolicy\n        metadata:\n          name: policy-auditpolicy-will-sev\n          label:\n            category: System-Integrity\n        spec:\n          clusterAuditPolicy:\n            auditPolicyRules:\n              auth-idp: ignore\n              helmapi: ignore\n              kubernetes: ignore\n              platform-api: ignore\n              platform-identity-manager: ignore\n              platform-identity-provider: ignore\n              vulnerability-advisor: ignore\n          namespaceSelector:\n            exclude:\n              - kube-system\n            include:\n              - default\n              - kube-*\n          remediationAction: inform\n          severity: low\n  remediationAction: inform\n'
