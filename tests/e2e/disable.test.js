@@ -14,7 +14,7 @@ const path = require('path')
 let page
 
 module.exports = {
-  '@disabled': true,
+  '@disabled': false,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()

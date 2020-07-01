@@ -47,8 +47,12 @@ module.exports = {
 
   // This will be run after each test suite is finished
   afterEach: function(browser, done) {
-    browser.collectCoverage(() => {
-      browser.end(done)
-    })
+    if( process.env.SKIP_NIGHTWATCH_COVERAGE ) {
+      done()
+    } else {
+      browser.collectCoverage(() => {
+        browser.end(done)
+      })
+    }
   }
 }
