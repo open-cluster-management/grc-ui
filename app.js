@@ -210,6 +210,8 @@ app.use(cookieParser())
 app.get('/favicon.ico', (req, res) => res.sendStatus(204))
 
 app.locals.config = require('./lib/shared/config')
+// this path only existing after npm build
+// eslint-disable-next-line import/no-unresolved
 app.locals.manifest = require('./public/webpack-assets.json')
 
 let server

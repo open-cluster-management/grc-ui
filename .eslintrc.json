@@ -28,6 +28,18 @@
         "jsx-a11y"
     ],
     "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "detect"
+          },
+        "import/resolver": {
+            "node": {
+              "extensions": [
+                ".js",
+                ".jsx"
+              ]
+            }
+        },
         "html/html-extensions": [
             ".dust"
         ]
@@ -47,6 +59,7 @@
         "react/no-array-index-key": "error",
         "react/no-did-mount-set-state": "error",
         "react/no-did-update-set-state": "error",
+        "react/no-deprecated": 1,
         "react/no-render-return-value": "error",
         "react/no-unused-prop-types": "error",
         "react/no-unused-state": "error",

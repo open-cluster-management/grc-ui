@@ -9,7 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 const path = require('path'),
       webpack = require('webpack'),
-      TerserPlugin = require('terser-webpack-plugin'),
+      TerserPlugin = require('terser-webpack-plugin-legacy'),
       AssetsPlugin = require('assets-webpack-plugin'),
       WebpackMd5Hash = require('webpack-md5-hash'),
       CompressionPlugin = require('compression-webpack-plugin')
