@@ -207,8 +207,7 @@ const pageWithUrlQuery = (ChildComponent, resourceType) => {
             filters = {...filters, clientSideFilters}
           }
         }
-      // eslint-disable-next-line no-empty
-      } catch(e) {}
+      } catch(e) {return undefined}
       return filters
     }
 

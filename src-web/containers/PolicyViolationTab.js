@@ -10,7 +10,6 @@
 'use strict'
 
 // seems to be an issue with this rule and redux connect method in SecondaryHeader
-/* eslint-disable import/no-named-as-default */
 
 import React from 'react'
 import { withRouter } from 'react-router-dom'
@@ -27,6 +26,7 @@ import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
 import { HCMPolicyViolations } from '../../lib/client/queries'
 import NoResource from '../components/common/NoResource'
+import { getAge } from '../../lib/client/resource-helper'
 
 resources(() => {
   require('../../scss/policy-violation-tab.scss')
@@ -57,6 +57,13 @@ class PolicyViolationTab extends React.Component{
             return (<Loading withOverlay={false} className='content-spinner' />)
           }
           if( data.violations && data.violations.length > 0){
+            // recalculate last report based current time
+            if(data.violations && Array.isArray(data.violations) && data.violations.length > 0) {
+              data.violations.forEach((violation, index) => {
+                data.violations[index].lastReport = getAge(violation, '', 'timestamp')
+              })
+            }
+
             return (<div className='policy-violation-tab'>
               <h5 className='section-title'>Violations</h5>
               <ResourceTableModule

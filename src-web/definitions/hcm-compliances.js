@@ -613,10 +613,9 @@ export default {
         transformFunction: formLinkToCISControllerDoc,
       },
       {
-        msgKey: 'table.header.timestamp',
-        resourceKey: 'timestamp',
-        key: 'timestamp',
-        transformFunction: getAge,
+        msgKey: 'table.header.lastReport',
+        resourceKey: 'lastReport',
+        key: 'lastReport',
       },
     ],
   },

@@ -45,11 +45,16 @@ export class SecondaryHeader extends React.Component {
       break
     }
     if ((tabs && tabs.length > 0) || (breadcrumbItems && breadcrumbItems.length > 0)) {
-      const midName = (!location.pathname.startsWith('/multicloud/policies/all/') ? 'secondary-header-grc-overview' : '')
+      const midName = (!location.pathname.startsWith('/multicloud/policies/all/')
+        ? 'secondary-header-grc-overview'
+        : '')
       return (
         <div className='secondary-header-wrapper' role='region' aria-label={title}>
-          <div className={`secondary-header ${midName} simple-header${description ? ' special-layout': ''}`
-          }>
+          <div
+            className={
+              `secondary-header ${midName} simple-header${description ? ' special-layout': ''}`
+            }
+          >
             <header aria-label={`Heading: ${title}`}>
               <div className="bx--detail-page-header-content">
                 {breadcrumbItems &&
@@ -61,7 +66,10 @@ export class SecondaryHeader extends React.Component {
                 }
                 {this.renderHeader()}
                 {tabs && tabs.length > 0 &&
-                  <Tabs selected={this.getSelectedTab() || 0} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
+                  <Tabs
+                    selected={this.getSelectedTab() || 0}
+                    aria-label={`${title} ${msgs.get('tabs.label', locale)}`}
+                  >
                     {this.renderTabs()}
                   </Tabs>
                 }
@@ -77,7 +85,11 @@ export class SecondaryHeader extends React.Component {
       )
     } else {
       return (
-        <div className='secondary-header-wrapper-min' role='region' aria-label={`${title} ${msgs.get('secondaryHeader', locale)}`}>
+        <div
+          className='secondary-header-wrapper-min'
+          role='region'
+          aria-label={`${title} ${msgs.get('secondaryHeader', locale)}`}
+        >
           <div className='secondary-header simple-header'>
             <h1 className='bx--detail-page-header-title'>{decodeURIComponent(title)}</h1>
           </div>
@@ -89,11 +101,20 @@ export class SecondaryHeader extends React.Component {
   renderHeader() {
     const { title:headerTitle, description, information, links=[] } = this.props
     if (description) {
-      /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
       return (
         <div className="bx--detail-page-header-title-container">
           <h1 className="bx--detail-page-header-title">{headerTitle}</h1>
-          <div className="detail-page-header-title-button" onClick={description.action}><p>{description.display}</p></div>
+          <div
+            role="button"
+            tabIndex={0}
+            className="detail-page-header-title-button"
+            onClick={description.action}
+            onKeyPress={description.action}
+          >
+            <p>
+              {description.display}
+            </p>
+          </div>
         </div>
       )
     } else {
@@ -127,11 +148,31 @@ export class SecondaryHeader extends React.Component {
       const key = `${breadcrumb.id}-${index}`
       const noLocale = _.get(breadcrumb, 'noLocale', false)
       return (
-        <div key={key} className='bx--breadcrumb-item' title={decodeURIComponent(breadcrumb.label)}>
-          {breadcrumb.handleClick ?
-            // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
-            <div className='breadcrumb-link' onClick={breadcrumb.handleClick} >{msgs.get(breadcrumb.label, locale)}</div> :
-            <Link to={breadcrumb.url || ''} className='bx--link'>{noLocale ? breadcrumb.label : msgs.get(breadcrumb.label, locale)}</Link>}
+        <div
+          key={key}
+          className='bx--breadcrumb-item'
+          title={decodeURIComponent(breadcrumb.label)}
+        >
+          {
+            breadcrumb.handleClick
+              ? <div
+                role="button"
+                tabIndex={0}
+                className='breadcrumb-link'
+                onClick={breadcrumb.handleClick}
+                onKeyPress={breadcrumb.handleClick}
+              >
+                {msgs.get(breadcrumb.label, locale)}
+              </div>
+              : <Link
+                to={breadcrumb.url || ''}
+                className='bx--link'>
+                {noLocale
+                  ? breadcrumb.label
+                  : msgs.get(breadcrumb.label, locale)
+                }
+              </Link>
+          }
         </div>
       )
     })
@@ -141,7 +182,13 @@ export class SecondaryHeader extends React.Component {
     const { tabs } = this.props,
           { locale } = this.context
     return tabs.map(tab => {
-      return <Tab label={msgs.get(tab.label, locale)} key={tab.id} id={tab.id} href={tab.url} onClick={tab.handleClick ? tab.handleClick : this.clickTab.bind(this, tab.url)} />
+      return <Tab
+        label={msgs.get(tab.label, locale)}
+        key={tab.id}
+        id={tab.id}
+        href={tab.url}
+        onClick={tab.handleClick ? tab.handleClick : this.clickTab.bind(this, tab.url)}
+      />
     })
   }
 
@@ -149,7 +196,13 @@ export class SecondaryHeader extends React.Component {
     const { links } = this.props,
           { locale } = this.context
     return links.map(link => {
-      const {id, label, url, kind='primary', handleClick=(()=> this.props.history.push(url)) } = link
+      const {
+        id,
+        label,
+        url,
+        kind='primary',
+        handleClick=(()=> this.props.history.push(url))
+      } = link
       // if portal, react component will create the button using a portal
       if (kind==='portal') {
         return <div key={id} id={id} className='portal' />

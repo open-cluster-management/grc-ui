@@ -23,7 +23,7 @@ import { updateResourceToolbar} from '../../actions/common'
 import _ from 'lodash'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
-
+import { getAge } from '../../../lib/client/resource-helper'
 resources(() => {
   require('../../../scss/resource-overview.scss')
 })
@@ -78,6 +78,18 @@ class PolicyClusterDetail extends React.Component {
       return (<Loading withOverlay={false} className='content-spinner' />)
     }
     const policy = policies[0]
+    const details = _.get(policy, 'raw.status.details')
+    // recalculate last report based current time
+    if(Array.isArray(details) && details.length > 0) {
+      details.forEach((detail, detailIndex) => {
+        const history = _.get(detail, 'history')
+        if(Array.isArray(history) && history.length > 0) {
+          history.forEach((his, hisIndex) => {
+            policy.raw.status.details[detailIndex].history[hisIndex].lastReport = getAge(his, '', 'lastTimestamp')
+          })
+        }
+      })
+    }
     React.Children.map([
       <PolicyTemplates key='Policy Templates' headerKey='table.header.policyTemplate' right />,
       <ResourceTableModule key='roleTemplates' definitionsKey='policyRoleTemplates' />,
@@ -91,6 +103,8 @@ class PolicyClusterDetail extends React.Component {
         modulesBottom.push(React.cloneElement(module, { staticResourceData: staticResourceData, resourceType: resourceType, resourceData: policy, params }))
       }
     })
+    // eslint-disable-next-line no-console
+    console.log(JSON.stringify(policy))
     return (
       <div className='page-content-container policy-cluster-detail' role='main'>
         <div className='overview-content'>

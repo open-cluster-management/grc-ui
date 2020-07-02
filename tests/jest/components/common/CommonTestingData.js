@@ -6655,7 +6655,7 @@ export const staticResourceDataPolicyCluster = {
         'key':'message'
       },
       {
-        'msgKey':'table.header.timestamp',
+        'msgKey':'table.header.lastReport',
         'resourceKey':'timestamp',
         'key':'timestamp'
       }
