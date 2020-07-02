@@ -70,15 +70,13 @@ function waitForLoginSuccess() {
 }
 
 function waitForLoginForm() {
-  // const specialSelect = 'li.idp'
   this.api.elements('tag name', 'form', res => {
     if (res.status < 0 || res.value.length < 1) {
       // select kube:admin if env SELENIUM_USER_SELECT not specified
       const userSelector = `a[title="Log in with ${process.env.SELENIUM_USER_SELECT || 'kube:admin'}"]`
       this.waitForElementPresent(userSelector)
       this.click(userSelector)
-    }
-    else{
+    } else {
       // do nothing
     }
   })
