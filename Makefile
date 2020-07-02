@@ -49,13 +49,10 @@ travis-slack-reporter:
 	fi
 
 build-test-image:
-	@echo "Building $(COMPONENT_DOCKER_REPO)/$(COMPONENT_NAME)-tests:$(TEST_IMAGE_TAG)"
-	docker build . \
-	-f Dockerfile.e2etest \
-	-t $(COMPONENT_DOCKER_REPO)/$(COMPONENT_NAME)-tests:$(TEST_IMAGE_TAG)
+	make component/build
 
 push-test-image:
-	make component/push COMPONENT_NAME=$(COMPONENT_NAME)-tests
+	make component/push
 
 publish-test-image:
 	rm -rf pipeline

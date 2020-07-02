@@ -57,6 +57,8 @@ jobs:
       name: "Build the test image and push it"
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
+        - export COMPONENT_BUILD_COMMAND="docker build . -f Dockerfile.e2etest -t "
+        - export COMPONENT_NAME="grc-ui-tests"
         - make build-test-image
         - make push-test-image
     - stage: unit-test
