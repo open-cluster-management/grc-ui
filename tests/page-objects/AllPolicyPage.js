@@ -205,7 +205,9 @@ function compareTemplate(browser, templateFile, spec = {}) {
  * Create a policy given spec object with arrays of policy options
  *
  * Defaults to the 'default' namespace with the first available policy template.
- * Validates against the given templateFile (will skip if none is given)
+ * Validates against the given templateFile (will skip this step if none is given)
+ * If the same standards/categories/controls are provided as a template, they
+ * will be deselected
  */
 function createTestPolicy(create = true,
   spec = {
