@@ -94,12 +94,12 @@ function setReq(req) {
   return req
 }
 
-const proxy = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 app.use(`${appConfig.get('contextPath')}/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
   res = setRes(res)
   req = setReq(req)
   next()
-}, proxy({
+}, createProxyMiddleware({
   target: appConfig.get('grcUiApiUrl') || 'https://localhost:4000/grcuiapi',
   changeOrigin: true,
   pathRewrite: {
@@ -112,7 +112,7 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
   res = setRes(res)
   req = setReq(req)
   next()
-}, proxy({
+}, createProxyMiddleware({
   // TODO - use flag while ironing out the chart changes
   target: appConfig.get('searchApiUrl') || 'https://localhost:4010/searchapi',
   changeOrigin: true,
@@ -135,7 +135,7 @@ if (process.env.NODE_ENV === 'development') {
       req.headers.Authorization = `Bearer ${accessToken}`
     }
     next()
-  }, proxy({
+  }, createProxyMiddleware({
     target: appConfig.get('headerUrl'),
     changeOrigin: true,
     secure: false,
@@ -152,7 +152,7 @@ if (process.env.NODE_ENV === 'development') {
       req.headers.Authorization = `Bearer ${accessToken}`
     }
     next()
-  }, proxy({
+  }, createProxyMiddleware({
     target: appConfig.get('headerUrl'),
     changeOrigin: true,
     pathRewrite: {

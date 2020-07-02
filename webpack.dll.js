@@ -9,7 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 const path = require('path'),
       webpack = require('webpack'),
-      UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
+      TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
       WebpackMd5Hash = require('webpack-md5-hash'),
       CompressionPlugin = require('compression-webpack-plugin')
@@ -51,7 +51,7 @@ module.exports = {
         test: /\.css$/,
         include: path.resolve(__dirname, './node_modules/monaco-editor'),
         use: [{ loader: 'style-loader', options: { base: 2000 } },
-          { loader: 'css-loader', options: { base: 3000 } }],
+          'css-loader',],
       },
       {
         test: /\.(woff2?|ttf|eot|otf)(\?.*$|$)/,
@@ -88,11 +88,11 @@ module.exports = {
       name: '[name]',
       context: __dirname
     }),
-    PRODUCTION ? new UglifyJSPlugin({
+    PRODUCTION ? new TerserPlugin({
       sourceMap: true
     }) : noOP,
     new CompressionPlugin({
-      asset: '[path].gz[query]',
+      filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
     }),
