@@ -144,12 +144,12 @@ module.exports = {
   },
 
   output: {
+    chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].min.js',
     //needs to be hash for production (vs chunckhash) in order to cache bust references to chunks
     filename: PRODUCTION ? 'js/[name].[hash].min.js' : 'js/[name].min.js',
-    chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].min.js',
-    path: __dirname + '/public',
-    publicPath: `${config.get('contextPath')}`.replace(/\/?$/, '/'),
     jsonpFunction: 'webpackJsonpFunctionGrc',
+    path: __dirname + '/public',
+    publicPath: `${config.get('contextPath')}`.replace(/\/?$/, '/')
   },
 
   plugins: [
