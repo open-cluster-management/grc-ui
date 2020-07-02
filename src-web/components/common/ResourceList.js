@@ -10,7 +10,7 @@
 'use strict'
 
 import React from 'react'
-import lodash from 'lodash'
+import _ from 'lodash'
 // eslint-disable-next-line import/no-named-as-default
 import ResourceTable from './ResourceTable'
 import { REQUEST_STATUS } from '../../actions/index'
@@ -57,7 +57,7 @@ class ResourceList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if ((!lodash.isEqual(this.props.listData, nextProps.listData)) ||(!lodash.isEqual(this.props.resourceType, nextProps.resourceType))) {
+    if ((!_.isEqual(this.props.listData, nextProps.listData)) ||(!_.isEqual(this.props.resourceType, nextProps.resourceType))) {
       this.props.fetchResources(nextProps.listData, nextProps.resourceType)
     }
   }
@@ -298,7 +298,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       if(nextPropsResourceType === undefined){
         nextPropsResourceType = resourceType
       }
-      dispatch(receiveResourceSuccess({items: lodash.cloneDeep(listData)}, nextPropsResourceType))
+      dispatch(receiveResourceSuccess({items: _.cloneDeep(listData)}, nextPropsResourceType))
     },
     changeTablePage: page => dispatch(changeTablePage(page, resourceType)),
     searchTable: (search, updateURL) => {

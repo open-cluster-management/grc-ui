@@ -10,7 +10,7 @@
 'use strict'
 
 import React from 'react'
-import lodash from 'lodash'
+import _ from 'lodash'
 import { Modal, Loading, InlineNotification } from 'carbon-components-react'
 import resources from '../../../lib/shared/resources'
 import { clearRequestStatus, editResource, updateModal } from '../../actions/common'
@@ -47,7 +47,7 @@ export class ResourceModal extends React.PureComponent {
       let selfLink = this.props.data.metadata.selfLink
       let localResources
       try {
-        localResources = lodash.compact(saveLoad(this.state.data))
+        localResources = _.compact(saveLoad(this.state.data))
         localResources.forEach(resource => {
           if (resource.metadata && resource.metadata.namespace) {
             namespace = resource.metadata.namespace

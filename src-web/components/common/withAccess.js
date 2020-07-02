@@ -11,7 +11,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import lodash from 'lodash'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { ROLES } from '../../../lib/shared/constants'
@@ -25,8 +25,8 @@ const withAccess = (ChildComponent, lowestRole) => {
 
     render() {
       const { role } = this.props
-      const roleKey = lodash.findKey(ROLES, value => value.toLowerCase() === role.toLowerCase())
-      const lowestRoleKey = lodash.findKey(ROLES, value => value.toLowerCase() === lowestRole.toLowerCase())
+      const roleKey = _.findKey(ROLES, value => value.toLowerCase() === role.toLowerCase())
+      const lowestRoleKey = _.findKey(ROLES, value => value.toLowerCase() === lowestRole.toLowerCase())
       return Object.keys(ROLES).indexOf(roleKey) >= Object.keys(ROLES).indexOf(lowestRoleKey)
         ? <ChildComponent {...this.props} />
         : <Redirect to={`${config.contextPath}/welcome`} />

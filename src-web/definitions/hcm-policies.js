@@ -10,7 +10,7 @@
 'use strict'
 
 import React from 'react'
-import lodash from 'lodash'
+import _ from 'lodash'
 import msgs from '../../nls/platform.properties'
 import {getAge, getLabelsToList} from '../../lib/client/resource-helper'
 import { Link } from 'react-router-dom'
@@ -410,7 +410,7 @@ export function getStatus(item= {}, locale) {
 }
 
 export function getExcludeNamespace(item) {
-  const namespace = lodash.get(item, 'detail.exclude_namespace')
+  const namespace = _.get(item, 'detail.exclude_namespace')
   if (namespace) {
     return namespace.join(', ')
   }
@@ -418,7 +418,7 @@ export function getExcludeNamespace(item) {
 }
 
 export function getIncludeNamespace(item) {
-  const namespace = lodash.get(item, 'detail.include_namespace')
+  const namespace = _.get(item, 'detail.include_namespace')
   if (namespace) {
     return namespace.join(', ')
   }
@@ -434,7 +434,7 @@ export function getEnforcement(item, locale) {
 }
 
 export function getAPIGroups(item) {
-  const apiGroups = lodash.get(item, 'apiGroups')
+  const apiGroups = _.get(item, 'apiGroups')
   if (apiGroups) {
     return apiGroups.join(', ')
   }
@@ -442,7 +442,7 @@ export function getAPIGroups(item) {
 }
 
 export function getRuleVerbs(item) {
-  const verbs = lodash.get(item, 'verbs')
+  const verbs = _.get(item, 'verbs')
   if (verbs) {
     return verbs.join(', ')
   }
