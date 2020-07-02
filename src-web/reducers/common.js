@@ -21,7 +21,7 @@ when given the full store, returns the desired part (or derivation) of the store
 */
 
 import { createSelector } from 'reselect'
-import lodash from 'lodash'
+import _ from 'lodash'
 import { normalize } from 'normalizr'
 import ReactDOMServer from 'react-dom/server'
 import { createResourcesSchema } from '../../lib/client/resource-schema'
@@ -104,7 +104,7 @@ function searchTableCellHelper(search, tableKeys, item, context) {
     localTableKey =>
       msgs.get(localTableKey.msgKey, context.locale).toLowerCase() === searchKey.toLowerCase()
   )
-  if (!lodash.isEmpty(searchField)) {
+  if (!_.isEmpty(searchField)) {
     if (!searchField.includes('{')) {
       if (tableKey) {
         return searchTableCell(item, tableKey, context, searchField)
@@ -135,7 +135,7 @@ const makeGetFilteredItemsSelector = (resourceType) => {
   return createSelector(
     [getItems, getSearch],
     (items, search) => items.filter((item) => {
-      if (lodash.isEmpty(search)) {
+      if (_.isEmpty(search)) {
         return true
       }
 
@@ -199,7 +199,7 @@ const makeGetSortedItemsSelector = (resourceType) => {
           ? SORT_DIRECTION_DESCENDING
           : SORT_DIRECTION_ASCENDING)
         : sortDirection // date fields should initially sort from latest to oldest
-      return lodash.orderBy(items, item => lodash.get(item, sortField), [sortDir])
+      return _.orderBy(items, item => _.get(item, sortField), [sortDir])
     }
   )
 }
@@ -230,7 +230,7 @@ export const makeGetVisibleTableItemsSelector = (resourceType) => {
       return Object.assign(result, {
         normalizedItems: normalizedItems,
         // to support multi cluster, use ${name}-${cluster} as unique id
-        items: result.items.map(item => sk ? `${lodash.get(item, pk)}-${lodash.get(item, sk)}`:`${lodash.get(item, pk)}`)
+        items: result.items.map(item => sk ? `${_.get(item, pk)}-${_.get(item, sk)}`:`${_.get(item, pk)}`)
       })
     }
   )
@@ -245,8 +245,8 @@ export const getSingleResourceItem = createSelector(
 
 export const resourceItemByName = (items, props) => {
   const key = getURIKey(props.resourceType)
-  return lodash.find(items, item =>
-    lodash.get(item, key) === props.name
+  return _.find(items, item =>
+    _.get(item, key) === props.name
   )
 }
 
@@ -380,10 +380,10 @@ export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
     })
   case RESOURCE_ADD: /* eslint-disable no-case-declarations */
   case RESOURCE_MODIFY:
-    const resourceTypeObj = !lodash.isObject(action.resourceType) ? RESOURCE_TYPES[lodash.findKey(RESOURCE_TYPES, { name: action.resourceType })] : action.resourceType
+    const resourceTypeObj = !_.isObject(action.resourceType) ? RESOURCE_TYPES[_.findKey(RESOURCE_TYPES, { name: action.resourceType })] : action.resourceType
     const primaryKey = getPrimaryKey(resourceTypeObj)
     items = state.items.slice(0)
-    index = lodash.findIndex(items, o => (lodash.get(o, primaryKey) === lodash.get(action.item, primaryKey)))
+    index = _.findIndex(items, o => (_.get(o, primaryKey) === _.get(action.item, primaryKey)))
     index > -1 ? items.splice(index, 1, action.item) : items.push(action.item)
     return Object.assign({}, state, {
       items: items
@@ -408,7 +408,7 @@ export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
     })
   case RESOURCE_DELETE:
     items = [...state.items]
-    index = lodash.findIndex(items, o => lodash.get(o, 'metadata.uid') === lodash.get(action, 'item.metadata.uid'))
+    index = _.findIndex(items, o => _.get(o, 'metadata.uid') === _.get(action, 'item.metadata.uid'))
     if(index > -1) {
       items.splice(index, 1)
       return Object.assign({}, state, {
@@ -422,11 +422,11 @@ export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
     case RESOURCE_TYPES.HCM_COMPLIANCES:
     case RESOURCE_TYPES.HCM_POLICIES:
     case RESOURCE_TYPES.HCM_POLICIES_PER_POLICY:
-      const policy = lodash.get(action, 'resource')
-      index = lodash.findIndex(items, { 'name':policy.name, 'namespace':policy.namespace })
+      const policy = _.get(action, 'resource')
+      index = _.findIndex(items, { 'name':policy.name, 'namespace':policy.namespace })
       break
     default:
-      index = lodash.findIndex(items, o => lodash.get(o, 'Name') === lodash.get(action, 'resourceName'))
+      index = _.findIndex(items, o => _.get(o, 'Name') === _.get(action, 'resourceName'))
       break
     }
     if(index > -1) {

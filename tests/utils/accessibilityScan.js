@@ -9,7 +9,7 @@
 // const AAT = require('@ibma/aat')
 // const fs = require('fs')
 // const path = require('path')
-// const lodash = require('lodash')
+// const _ = require('lodash')
 
 // module.exports = {
 //   runAccessibilityScan: (browser, page) => {
@@ -24,20 +24,20 @@
 //           AAT.getCompliance(source.value, page, (report) => {
 //             const reportSnap = JSON.parse(fs.readFileSync(path.join(__dirname,`/A11y-snapshot/${page}.json`), 'utf8'))
 //             if(report.summary.counts.violation !== reportSnap.summary.counts.violation){
-//               const currentViolations = lodash.filter(report.reports[0].issues,{'level':'violation'})
-//               const currentPotentialViolations = lodash.filter(report.reports[0].issues,{'level':'potentialviolation'})
-//               const snapshotViolations = lodash.filter(reportSnap.reports[0].issues,{'level':'violation'})
-//               const snapshotPotentialViolations = lodash.filter(reportSnap.reports[0].issues,{'level':'potentialviolation'})
+//               const currentViolations = _.filter(report.reports[0].issues,{'level':'violation'})
+//               const currentPotentialViolations = _.filter(report.reports[0].issues,{'level':'potentialviolation'})
+//               const snapshotViolations = _.filter(reportSnap.reports[0].issues,{'level':'violation'})
+//               const snapshotPotentialViolations = _.filter(reportSnap.reports[0].issues,{'level':'potentialviolation'})
 //               // eslint-disable-next-line no-console
-//               console.log('Violations from current page',lodash.countBy(currentViolations,'ruleId'))
+//               console.log('Violations from current page',_.countBy(currentViolations,'ruleId'))
 //               // eslint-disable-next-line no-console
-//               console.log('Violations from snapshot',lodash.countBy(snapshotViolations,'ruleId'))
-//               // console.log('Violation difference', lodash.difference(currentViolations,snapshotViolations))
+//               console.log('Violations from snapshot',_.countBy(snapshotViolations,'ruleId'))
+//               // console.log('Violation difference', _.difference(currentViolations,snapshotViolations))
 //               // eslint-disable-next-line no-console
-//               console.log('Potential violations from current page',lodash.countBy(currentPotentialViolations,'ruleId'))
+//               console.log('Potential violations from current page',_.countBy(currentPotentialViolations,'ruleId'))
 //               // eslint-disable-next-line no-console
-//               console.log('Potential violations from snapshot',lodash.countBy(snapshotPotentialViolations,'ruleId'))
-//               // console.log('Potential violation difference', lodash.difference(currentPotentialViolations,snapshotPotentialViolations))
+//               console.log('Potential violations from snapshot',_.countBy(snapshotPotentialViolations,'ruleId'))
+//               // console.log('Potential violation difference', _.difference(currentPotentialViolations,snapshotPotentialViolations))
 //               // eslint-disable-next-line no-console
 //               console.log('------------TO FIND RULE SET--------------')
 //               // eslint-disable-next-line no-console
