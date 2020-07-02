@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import jsYaml from 'js-yaml'
 import YamlEditor from '../common/YamlEditor'
-import _ from 'lodash'
+import lodash from 'lodash'
 import { dumpAndParse } from '../../../lib/client/design-helper'
 import { Button, InlineNotification, Loading } from 'carbon-components-react'
 import { connect } from 'react-redux'
@@ -98,14 +98,14 @@ class PolicyTemplates extends React.Component {
       return
     }
     if (resourceData.__typename === 'Compliance') {
-      const namespace = _.get(resourceData, 'metadata.namespace')
-      const name = _.get(resourceData, 'metadata.name')
-      const selfLink = _.get(resourceData, 'metadata.selfLink')
+      const namespace = lodash.get(resourceData, 'metadata.namespace')
+      const name = lodash.get(resourceData, 'metadata.name')
+      const selfLink = lodash.get(resourceData, 'metadata.selfLink')
       localEditResource(resourceType, namespace, name, resource, selfLink)
     } else if (resourceData.__typename === 'PolicyClusterDetail') {
-      const namespace = _.get(resourceData, 'complianceNamespace')
-      const name = _.get(resourceData, 'complianceName')
-      const selfLink = _.get(resourceData, 'complianceSelfLink')
+      const namespace = lodash.get(resourceData, 'complianceNamespace')
+      const name = lodash.get(resourceData, 'complianceName')
+      const selfLink = lodash.get(resourceData, 'complianceSelfLink')
       localEditResource(resourceType, namespace, name, resource, selfLink, resourcePath)
     }
   }

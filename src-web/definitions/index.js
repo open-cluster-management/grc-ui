@@ -9,7 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-import _ from 'lodash'
+import lodash from 'lodash'
 
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
 
@@ -115,7 +115,7 @@ export function getLink(link, resource) {
     const parts = link.split('/')
     let path = ''
     parts.forEach(part => {
-      const value = _.get(resource, part)
+      const value = lodash.get(resource, part)
       path += `/${encodeURIComponent(value)}`
     })
     return path

@@ -23,7 +23,7 @@
 
 import { createResourceReducer, resourceReducerFunction } from './common'
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
-import _ from 'lodash'
+import lodash from 'lodash'
 
 export { user, loggedIn } from './user'
 export { role } from './role'
@@ -44,10 +44,10 @@ export const HCMClusterFindingsList = createResourceReducer(resourceReducerFunct
 export { resourceFilters } from './filter'
 
 export function predicate(resourceType, action) {
-  if (_.isEqual(resourceType, action.resourceType)) {
+  if (lodash.isEqual(resourceType, action.resourceType)) {
     return true
   }
-  const result = _.find(_.values(resourceType), type => {
+  const result = lodash.find(lodash.values(resourceType), type => {
     if (typeof type === 'string') {
       return type.indexOf(action.resourceType) > -1
     }

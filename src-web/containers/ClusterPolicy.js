@@ -15,14 +15,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { updateSecondaryHeader} from '../actions/common'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
-import _ from 'lodash'
+import lodash from 'lodash'
 import { GRC_REFRESH_INTERVAL_COOKIE, RESOURCE_TYPES } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
 import { HCMPolicy } from '../../lib/client/queries'
 import getResourceDefinitions from '../definitions'
 import PolicyClusterDetail from '../components/common/PolicyClusterDetail'
-import { getAge } from '../../lib/client/resource-helper'
 
 class ClusterPolicy extends React.Component {
   static propTypes = {
@@ -103,7 +102,7 @@ class ClusterPolicy extends React.Component {
   }
 
   render() {
-    const url = _.get(this.props, 'location.pathname')
+    const url = lodash.get(this.props, 'location.pathname')
     const urlSegments = url.split('/')
     const policyName = urlSegments[urlSegments.length - 1]
     const policyNamespace = urlSegments[urlSegments.length - 2]
@@ -127,18 +126,6 @@ class ClusterPolicy extends React.Component {
             refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
             startPolling, stopPolling, refetch,
             timestamp: this.timestamp
-          }
-
-          // recalculate last report based current time
-          if(Array.isArray(policies) && policies.length > 0) {
-            policies.forEach((policy, policyIndex) => {
-              const violations = _.get(policy, 'violations')
-              if(Array.isArray(violations) && violations.length > 0) {
-                violations.forEach((violation, violationIndex) => {
-                  policies[policyIndex].violations[violationIndex].lastReport = getAge(violation, '', 'timestamp')
-                })
-              }
-            })
           }
 
           return (

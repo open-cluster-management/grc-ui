@@ -21,7 +21,7 @@ const ReactDOMServer = require('react-dom/server'),
       appUtil = require('../../lib/server/app-util'),
       Provider = require('react-redux').Provider,
       router = express.Router({ mergeParams: true }),
-      _ = require('lodash'),
+      lodash = require('lodash'),
       request = require('../../lib/server/request'),
       i18n = require('node-i18n-util')
 
@@ -72,7 +72,7 @@ function fetchHeader(req, res, store, fetchHeaderContext) {
       store.dispatch(role.roleReceiveSuccess(stateH.role.role))}
 
     if(process.env.NODE_ENV === 'development') {
-      _.forOwn(filesH, value => {
+      lodash.forOwn(filesH, value => {
         value.path = `${config.get('contextPath')}/api/proxy${value.path}` //preprend with proxy route
       })
     }

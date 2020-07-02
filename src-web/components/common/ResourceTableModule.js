@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Module, ModuleHeader, ModuleBody } from 'carbon-addons-cloud-react'
-import _ from 'lodash'
+import lodash from 'lodash'
 import { fetchResource } from '../../actions/common'
 import msgs from '../../../nls/platform.properties'
 import { getSingleResourceItem, resourceItemByName } from '../../reducers/common'
@@ -88,11 +88,11 @@ export class ResourceTableModule extends React.Component {
       tableResources = inputData
     }
     const { searchValue } = this.state
-    let normalizedItems = tableResources && _.keyBy(tableResources, repo => normalizedKey? _.get(repo, normalizedKey) + (repo.cluster ? repo.cluster : '') : repo.name)
+    let normalizedItems = tableResources && lodash.keyBy(tableResources, repo => normalizedKey? lodash.get(repo, normalizedKey) + (repo.cluster ? repo.cluster : '') : repo.name)
     let itemIds = normalizedItems && Object.keys(normalizedItems)
     if (searchValue) {
       itemIds = itemIds.filter(repo => repo.includes(searchValue))
-      normalizedItems = _.pick(normalizedItems, itemIds)
+      normalizedItems = lodash.pick(normalizedItems, itemIds)
     }
     this.setState({ resourceItems: normalizedItems, resourceIds: itemIds })
   }
@@ -105,7 +105,7 @@ export class ResourceTableModule extends React.Component {
       let resItems = prevState.resourceItems
       let resIds = prevState.resourceIds
       resIds = resIds.filter(repo => repo.includes(searchValue))
-      resItems = _.pick(resItems, resIds)
+      resItems = lodash.pick(resItems, resIds)
       return { resourceItems: resItems, resourceIds: resIds, searchValue }
     })
     return undefined
@@ -116,9 +116,9 @@ export class ResourceTableModule extends React.Component {
       const { staticResourceData, definitionsKey } = this.props
       const resourceKeys = staticResourceData[definitionsKey]
       const { resources, sortDirection } = this.state
-      const selectedKey = _.get(key, 'target.dataset.key')
+      const selectedKey = lodash.get(key, 'target.dataset.key')
       const sortKey = resourceKeys.tableKeys.find(tableKey => tableKey.resourceKey === selectedKey).resourceKey
-      const sortedRes = _.orderBy(resources, [sortKey], [sortDirection])
+      const sortedRes = lodash.orderBy(resources, [sortKey], [sortDirection])
       this.setState({ resources: sortedRes, sortDirection: sortDirection === 'asc' ? 'desc' : 'asc' })
     }
   }

@@ -17,7 +17,7 @@ import { getTabs } from '../../../lib/client/resource-helper'
 import { updateSecondaryHeader, fetchResource } from '../../actions/common'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import _ from 'lodash'
+import lodash from 'lodash'
 import msgs from '../../../nls/platform.properties'
 import ResourceOverview from './ResourceOverview'
 import PolicyClusterDetail from './PolicyClusterDetail'
@@ -197,7 +197,7 @@ class ResourceDetails extends React.Component {
 
     // The base path, calculated by the current location minus params
     let paramsLength = 0
-    _.forOwn(match.params, (value) => {
+    lodash.forOwn(match.params, (value) => {
       if (value) {
         paramsLength++
       }

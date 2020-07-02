@@ -20,7 +20,7 @@ import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { getPollInterval } from '../components/common/RefreshTimeSelect'
 import ResourceTableModule from '../components/common/ResourceTableModuleFromProps'
 import {  Loading } from 'carbon-components-react'
-import _ from 'lodash'
+import lodash from 'lodash'
 import resources from '../../lib/shared/resources'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
@@ -38,9 +38,9 @@ class PolicyViolationTab extends React.Component{
   }
 
   render() {
-    const url = _.get(this.props, 'match.url')
-    const item = _.get(this.props, 'item',[])
-    const namespace = _.get(item[0], 'metadata.namespace', null)
+    const url = lodash.get(this.props, 'match.url')
+    const item = lodash.get(this.props, 'item',[])
+    const namespace = lodash.get(item[0], 'metadata.namespace', null)
     const urlSegments = url.split('/')
     const policyName = urlSegments[urlSegments.length - 2]
     const {staticResourceData} = this.props

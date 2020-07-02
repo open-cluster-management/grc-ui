@@ -23,7 +23,7 @@ import { updateResourceToolbar} from '../../actions/common'
 import _ from 'lodash'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
-
+import { getAge } from '../../../lib/client/resource-helper'
 resources(() => {
   require('../../../scss/resource-overview.scss')
 })
@@ -78,6 +78,14 @@ class PolicyClusterDetail extends React.Component {
       return (<Loading withOverlay={false} className='content-spinner' />)
     }
     const policy = policies[0]
+    const violations = _.get(policy, 'violations')
+    // recalculate last report based current time
+    if(Array.isArray(violations) && violations.length > 0) {
+      violations.forEach((violation, index) => {
+        policy.violations[index].lastReport = getAge(violation, '', 'timestamp')
+      })
+    }
+
     React.Children.map(
       [
         <PolicyTemplates key='Policy Templates' headerKey='table.header.policyTemplate' right />,
