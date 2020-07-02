@@ -78,33 +78,51 @@ class PolicyClusterDetail extends React.Component {
       return (<Loading withOverlay={false} className='content-spinner' />)
     }
     const policy = policies[0]
-    const details = _.get(policy, 'raw.status.details')
+    const violations = _.get(policy, 'violations')
     // recalculate last report based current time
-    if(Array.isArray(details) && details.length > 0) {
-      details.forEach((detail, detailIndex) => {
-        const history = _.get(detail, 'history')
-        if(Array.isArray(history) && history.length > 0) {
-          history.forEach((his, hisIndex) => {
-            policy.raw.status.details[detailIndex].history[hisIndex].lastReport = getAge(his, '', 'lastTimestamp')
-          })
-        }
+    if(Array.isArray(violations) && violations.length > 0) {
+      violations.forEach((violation, index) => {
+        policy.violations[index].lastReport = getAge(violation, '', 'timestamp')
       })
     }
-    React.Children.map([
-      <PolicyTemplates key='Policy Templates' headerKey='table.header.policyTemplate' right />,
-      <ResourceTableModule key='roleTemplates' definitionsKey='policyRoleTemplates' />,
-      <ResourceTableModule key='objectTemplates' definitionsKey='policyObjectTemplates' />,
-      <ResourceTableModule key='policyTemplates' definitionsKey='policyPolicyTemplates' />,
-      <ResourceTableModule key='rules' definitionsKey='policyRules' />,
-      <ResourceTableModule key='violations' definitionsKey='policyViolations' />], module => {
-      if (module.props.right) {
-        modulesRight.push(React.cloneElement(module, { staticResourceData: staticResourceData, resourceType: resourceType, resourceData: policy, params }))
-      } else {
-        modulesBottom.push(React.cloneElement(module, { staticResourceData: staticResourceData, resourceType: resourceType, resourceData: policy, params }))
-      }
-    })
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(policy))
+
+    React.Children.map(
+      [
+        <PolicyTemplates key='Policy Templates' headerKey='table.header.policyTemplate' right />,
+        <ResourceTableModule key='roleTemplates' definitionsKey='policyRoleTemplates' />,
+        <ResourceTableModule key='objectTemplates' definitionsKey='policyObjectTemplates' />,
+        <ResourceTableModule key='policyTemplates' definitionsKey='policyPolicyTemplates' />,
+        <ResourceTableModule key='rules' definitionsKey='policyRules' />,
+        <ResourceTableModule key='violations' definitionsKey='policyViolations' />
+      ],
+      module => {
+        if (module.props.right) {
+          modulesRight.push(
+            React.cloneElement(
+              module,
+              {
+                staticResourceData: staticResourceData,
+                resourceType: resourceType,
+                resourceData: policy,
+                params
+              }
+            )
+          )
+        } else {
+          modulesBottom.push(
+            React.cloneElement(
+              module,
+              {
+                staticResourceData: staticResourceData,
+                resourceType: resourceType,
+                resourceData: policy,
+                params
+              }
+            )
+          )
+        }
+      })
+
     return (
       <div className='page-content-container policy-cluster-detail' role='main'>
         <div className='overview-content'>

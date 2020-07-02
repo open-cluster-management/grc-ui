@@ -282,6 +282,9 @@ Array [
     <div
       className="breadcrumb-link"
       onClick={[MockFunction]}
+      onKeyPress={[MockFunction]}
+      role="button"
+      tabIndex={0}
     />
   </div>,
   <div
@@ -303,6 +306,9 @@ Array [
     <div
       className="breadcrumb-link"
       onClick={[MockFunction]}
+      onKeyPress={[MockFunction]}
+      role="button"
+      tabIndex={0}
     />
   </div>,
   <div
@@ -330,6 +336,9 @@ exports[`SecondaryHeader component 5 renderHeader with description 1`] = `
   <div
     className="detail-page-header-title-button"
     onClick={[MockFunction]}
+    onKeyPress={[MockFunction]}
+    role="button"
+    tabIndex={0}
   >
     <p>
       [MockFunction]
