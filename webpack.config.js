@@ -7,14 +7,14 @@
  * Contract with IBM Corp.
  *******************************************************************************
 /* Copyright (c) 2020 Red Hat, Inc. */
-const path = require('path'),
+const config = require('./config'),
+      path = require('path'),
       webpack = require('webpack'),
       ExtractTextPlugin = require('extract-text-webpack-plugin'),
-      UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
+      TerserPlugin = require('terser-webpack-plugin-legacy'),
       AssetsPlugin = require('assets-webpack-plugin'),
       WebpackMd5Hash = require('webpack-md5-hash'),
       FileManagerPlugin = require('filemanager-webpack-plugin'),
-      config = require('./config'),
       CompressionPlugin = require('compression-webpack-plugin'),
       MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
@@ -64,7 +64,7 @@ module.exports = {
             {
               loader: 'css-loader?sourceMap',
               options: {
-                minimize: PRODUCTION ? true : false
+                // minimize: PRODUCTION ? true : false
               }
             },
             {
@@ -144,8 +144,10 @@ module.exports = {
   },
 
   output: {
-    filename: PRODUCTION ? 'js/[name].[hash].min.js' : 'js/[name].min.js', //needs to be hash for production (vs chunckhash) in order to cache bust references to chunks
     chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].min.js',
+    //needs to be hash for production (vs chunckhash) in order to cache bust references to chunks
+    filename: PRODUCTION ? 'js/[name].[hash].min.js' : 'js/[name].min.js',
+    jsonpFunction: 'webpackJsonpFunctionGrc',
     path: __dirname + '/public',
     publicPath: `${config.get('contextPath')}`.replace(/\/?$/, '/')
   },
@@ -159,13 +161,14 @@ module.exports = {
     }),
     new webpack.DllReferencePlugin({
       context: process.env.STORYBOOK ? path.join(__dirname, '..') : __dirname,
+      // eslint-disable-next-line import/no-unresolved
       manifest: require('./dll/vendorhcm-manifest.json'),
     }),
     new ExtractTextPlugin({
       filename: PRODUCTION ? 'css/[name].[contenthash].css' : 'css/[name].css',
       allChunks: true
     }),
-    PRODUCTION ? new UglifyJSPlugin({
+    PRODUCTION ? new TerserPlugin({
       sourceMap: true
     }) : noOP,
     new webpack.LoaderOptionsPlugin({
@@ -182,7 +185,7 @@ module.exports = {
       }
     }),
     new CompressionPlugin({
-      asset: '[path].gz[query]',
+      filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.css$/,
       minRatio: 1,
