@@ -30,6 +30,7 @@ module.exports = {
     policyNameInput: '#name',
     namespaceDropdown: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box',
     namespaceDropdownBox: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div',
+    namespaceDropdownValue: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__field > span',
     templateDropdown: '.creation-view-controls-container > div > div:nth-child(3) > div.bx--multi-select.bx--list-box',
     templateDropdownBox: '.creation-view-controls-container > div > div:nth-child(3) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div',
     templateDropdownInput: '.creation-view-controls-container > div > div:nth-child(3) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > input',
@@ -58,6 +59,7 @@ module.exports = {
     verifyTable,
     verifyPagination,
     createTestPolicy,
+    updateYamlEditor,
     searchPolicy,
     testDetailsPage,
     deletePolicy,
@@ -253,6 +255,7 @@ function createTestPolicy(create = true,
   }
   spec.specification.forEach(item => {
     this.setValue('@templateDropdownInput', item + ' - ')
+    this.expect.element('@templateDropdownBox:nth-child(1)').text.to.startWith(item)
     this.click('@templateDropdownBox:nth-child(1)')
     this.waitForElementNotPresent('@templateDropdownBox')
   })
@@ -283,6 +286,31 @@ function createTestPolicy(create = true,
     this.click('@submitCreatePolicyButton')
     this.expect.element('@table').to.be.present
   }
+}
+/* Helper function to edit YAML in editor and verify fields changed */
+function editYaml(browser, content, line, dropdown) {
+  browser.click(`.monaco-editor div.view-line:nth-child(${line}) > span > span:nth-child(3)`)
+  browser.api.keys(`\uE014${content}`)
+  /* Wait half a second for the DOM update */
+  browser.pause(500)
+  browser.api.getAttribute('css selector', browser.elements[dropdown], 'placeholder', (result) => {
+    if (result.value) {
+      browser.assert.equal(result.value, content, `Placeholder value of @${dropdown} matches expected value "${content}"`)
+    } else {
+      browser.expect.element(`@${dropdown}`).text.to.equal(content)
+    }
+  })
+}
+/* Test whether updating the YAML updates the fields accordingly */
+function updateYamlEditor() {
+  /* Reset the form */
+  this.click('@resetEditor')
+  /* NOTE: If the screen scrolls, line references will
+     be wrong, so we're assuming nothing has moved */
+  editYaml(this, 'test-namespace', 5, 'namespaceDropdownValue')
+  editYaml(this, 'test-standard', 7, 'standardsDropdownInput')
+  editYaml(this, 'test-category', 8, 'categoriesDropdownInput')
+  editYaml(this, 'test-control', 9, 'controlsDropdownInput')
 }
 function searchPolicy(expectToDisplay, policyName) {
   this.waitForElementVisible('@searchInput')
