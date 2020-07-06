@@ -6,16 +6,17 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  ****************************************************************************** */
+/* Copyright (c) 2020 Red Hat, Inc. */
 
 export const hcmPoliciesPolicyItem = {
   'metadata': {
     'name': 'policy1',
     'namespace': 'mcm',
-    'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy1',
+    'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy1',
     'annotations': {
-      'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity, RBAC',
-      'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-      'policy.mcm.ibm.com/standards': 'NIST',
+      'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity, RBAC',
+      'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+      'policy.open-cluster-management.io/standards': 'NIST',
       'seed-generation': '2'
     },
     'resourceVersion': '5456660',
@@ -24,13 +25,13 @@ export const hcmPoliciesPolicyItem = {
   'name': 'policy1',
   'namespace': 'mcm',
   'raw': {
-    'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+    'apiVersion': 'policy.open-cluster-management.io/v1',
     'kind': 'Policy',
     'metadata': {
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndInformationIntegrity, RBAC',
-        'policy.mcm.ibm.com/controls': 'MutationAdvisor',
-        'policy.mcm.ibm.com/standards': 'NIST',
+        'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity, RBAC',
+        'policy.open-cluster-management.io/controls': 'MutationAdvisor',
+        'policy.open-cluster-management.io/standards': 'NIST',
         'seed-generation': '2'
       },
       'creationTimestamp': '2019-07-18T13:27:59Z',
@@ -41,7 +42,7 @@ export const hcmPoliciesPolicyItem = {
       'name': 'policy1',
       'namespace': 'mcm',
       'resourceVersion': '5456660',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/policy1',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy1',
       'uid': 'dc761733-a95f-11e9-8e7d-005056a0b88e'
     },
     'spec': {
@@ -277,7 +278,7 @@ export const hcmPoliciesPolicyItem = {
     {
       'metadata': {
         'name': 'placement-policy1',
-        'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-policy1',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy1',
         '__typename': 'Metadata'
       },
       '__typename': 'PlacementPolicy'
@@ -287,7 +288,7 @@ export const hcmPoliciesPolicyItem = {
     {
       'metadata': {
         'name': 'binding-policy1',
-        'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-policy1',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy1',
         '__typename': 'Metadata'
       },
       '__typename': 'PlacementBinding'
