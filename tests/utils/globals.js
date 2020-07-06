@@ -46,7 +46,7 @@ module.exports = {
 
   // External before hook is ran at the beginning of the tests run, before creating the Selenium session
   before: function(done) {
-    if( isRunningInDocker ) {
+    if(isRunningInDocker) {
       done()
     } else {
       del([reportFolder, `${BASE_DIR}/selenium-debug.log`]).then(() => {
@@ -72,7 +72,7 @@ module.exports = {
 
   // This will be run after each test suite is finished
   afterEach: function(browser, done) {
-    if( process.env.SELENIUM_CLUSTER ) {
+    if(process.env.SELENIUM_CLUSTER) {
       done()
     } else {
       browser.collectCoverage(() => {
