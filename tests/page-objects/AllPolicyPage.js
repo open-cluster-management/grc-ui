@@ -156,6 +156,7 @@ function dropdownSelector(browser, label = '', options = ['']) {
     browser.waitForElementVisible(`@${label}DropdownBox`)
     options.forEach(item => {
       browser.setValue(`@${label}DropdownInput`, item)
+      browser.expect.element(`@${label}DropdownBox:nth-child(1)`).text.to.equal(item)
       browser.click(`@${label}DropdownBox:nth-child(1)`)
       browser.click(`@${label}DropdownClearValue`)
     })
