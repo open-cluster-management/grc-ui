@@ -49,7 +49,7 @@ class PolicyDetail extends React.Component {
     this.firstLoad = true
   }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     const {
       updateSecondaryHeader:localUpdateSecondaryHeader,
       tabs,
@@ -60,7 +60,7 @@ class PolicyDetail extends React.Component {
     localUpdateSecondaryHeader(this.getPolicyName(location), getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(), launch_links)
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.location !== this.props.location) {
       const {
         updateSecondaryHeader:localUpdateSecondaryHeader,

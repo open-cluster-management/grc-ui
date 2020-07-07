@@ -40,7 +40,7 @@ export default class RefreshTimeSelect extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     const { locale } = this.context
     const { refreshValues=[] } = this.props
     this.autoRefreshChoices = refreshValues.map(pollInterval=>{
@@ -82,7 +82,7 @@ export default class RefreshTimeSelect extends React.Component {
     this.setState({ pollInterval })
   }
 
-  UNSAFE_componentWillReceiveProps(){
+  componentWillReceiveProps(){
     this.setState((prevState, props) => {
       const {refreshControl: {refreshCookie}} = props
       return {pollInterval: getPollInterval(refreshCookie)}

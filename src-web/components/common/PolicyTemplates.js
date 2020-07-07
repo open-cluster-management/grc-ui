@@ -35,7 +35,7 @@ class PolicyTemplates extends React.Component {
     }
   }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     const { resourceData } = this.props
     const { yaml } = dumpAndParse(resourceData)
     if (yaml && !this.state.yaml) {
@@ -66,7 +66,7 @@ class PolicyTemplates extends React.Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.ERROR && (this.state.reqStatus !== nextProps.reqStatus)) {
       this.setState({
         reqStatus: nextProps.reqStatus,

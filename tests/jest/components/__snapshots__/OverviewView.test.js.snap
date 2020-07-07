@@ -107,18 +107,14 @@ exports[`OverviewView component 3 renders as expected 1`] = `
       src="undefined/graphics/no-policy.svg"
     />
     <div
-      className="no-resource-text-info"
+      className="no-resource-title"
     >
-      <div
-        className="no-resource-title"
-      >
-        Get set-up to track your governance and risk.
-      </div>
-      <div
-        className="no-resource-detail"
-      >
-        We noticed that you didn't have any policies created yet. You can view our documentation to see some samples for creating new policies, or you can go ahead and create one now!
-      </div>
+      Get set-up to track your governance and risk.
+    </div>
+    <div
+      className="no-resource-detail"
+    >
+      We noticed that you didn't have any policies created yet. You can view our documentation to see some samples for creating new policies, or you can go ahead and create one now!
     </div>
     <div
       className="button-group"

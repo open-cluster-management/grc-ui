@@ -56,7 +56,7 @@ class PolicyClusterDetail extends React.Component {
     super(props)
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const {refreshControl, policies, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
     if (!_.isEqual(refreshControl, this.props.refreshControl) ||
         !_.isEqual(policies, this.props.policies)) {

@@ -14,18 +14,14 @@ exports[`NoResource component renders as expected 1`] = `
       src="undefined/graphics/no-policy.svg"
     />
     <div
-      className="no-resource-text-info"
+      className="no-resource-title"
     >
-      <div
-        className="no-resource-title"
-      >
-        title
-      </div>
-      <div
-        className="no-resource-detail"
-      >
-        detailed description
-      </div>
+      title
+    </div>
+    <div
+      className="no-resource-detail"
+    >
+      detailed description
     </div>
     <div
       className="child"
@@ -50,18 +46,14 @@ exports[`NoResource component renders as expected 2`] = `
       src="undefined/graphics/no-policy.svg"
     />
     <div
-      className="no-resource-text-info"
+      className="no-resource-title"
     >
-      <div
-        className="no-resource-title"
-      >
-        title
-      </div>
-      <div
-        className="no-resource-detail"
-      >
-        detailed description
-      </div>
+      title
+    </div>
+    <div
+      className="no-resource-detail"
+    >
+      detailed description
     </div>
     <div
       className="child"
@@ -86,18 +78,14 @@ exports[`NoResource component renders as expected 3`] = `
       src="undefined/graphics/test-svg.svg"
     />
     <div
-      className="no-resource-text-info"
+      className="test-title"
     >
-      <div
-        className="test-title"
-      >
-        title
-      </div>
-      <div
-        className="no-resource-detail"
-      >
-        detailed description
-      </div>
+      title
+    </div>
+    <div
+      className="no-resource-detail"
+    >
+      detailed description
     </div>
     <div
       className="child"

@@ -36,7 +36,7 @@ class ResourceList extends React.Component {
     this.state = {}
   }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     const {
       updateSecondaryHeader:localUpdateSecondaryHeader,
       tabs,
@@ -56,7 +56,7 @@ class ResourceList extends React.Component {
     localSearchTable('', false)
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if ((!lodash.isEqual(this.props.listData, nextProps.listData)) ||(!lodash.isEqual(this.props.resourceType, nextProps.resourceType))) {
       this.props.fetchResources(nextProps.listData, nextProps.resourceType)
     }

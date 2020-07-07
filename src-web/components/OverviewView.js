@@ -49,10 +49,10 @@ export class OverviewView extends React.Component {
     this.handleDrillDownClickOverview = this.handleDrillDownClickOverview.bind(this)
   }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     const { activeFilters={} } = this.props
     //get (activeFilters ∪ storedFilters) only since availableGrcFilters is uninitialized at this stage
-    //later when availableGrcFilters initialized, will do further filtering in UNSAFE_componentWillReceiveProps
+    //later when availableGrcFilters initialized, will do further filtering in componentWillReceiveProps
     const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
     delete combinedFilters.severity//remove severity filter set during first time render
     //update sessionStorage
@@ -71,7 +71,7 @@ export class OverviewView extends React.Component {
     this.onUnload()
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const {
       refreshControl,
       policies,

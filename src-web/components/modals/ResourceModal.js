@@ -83,7 +83,7 @@ export class ResourceModal extends React.PureComponent {
     this.setState({data: value})
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.data && this.props.data !== nextProps.data) {
       // this.setState({data: JSON.stringify(this.props.data, null, 2)})
       this.setState({data: dumpAndParse(this.props.data).yaml})

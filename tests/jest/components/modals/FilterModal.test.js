@@ -22,14 +22,14 @@ describe('CreateResourceModal modal', () => {
     />)
     expect(component).toMatchSnapshot()
   })
-  it('UNSAFE_componentWillReceiveProps as expected', () => {
+  it('componentWillReceiveProps as expected', () => {
     const component = shallow(<FilterModal
       availableFilters = {availableFilters}
       handleModalClose = {handleModalClose}
     />)
-    component.instance().UNSAFE_componentWillReceiveProps()
+    component.instance().componentWillReceiveProps()
     expect(component.state().tags).toEqual([])
-    component.instance().UNSAFE_componentWillReceiveProps({selected:['test']})
+    component.instance().componentWillReceiveProps({selected:['test']})
     expect(component.state().tags).toEqual(['test'])
   })
   it('convertFilterArray as expected', () => {
