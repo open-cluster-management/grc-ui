@@ -6,6 +6,8 @@ ENV NODE_ENV=development
 
 USER root
 
+COPY ./build/google-chrome.repo ./etc/yum.repos.d/google-chrome.repo
+
 RUN mkdir -p /opt/app-root/src/grc-ui
 
 WORKDIR /opt/app-root/src/grc-ui
@@ -22,9 +24,14 @@ COPY package.json .
 # Install Chrome
 # RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 # RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-yum -y install redhat-lsb libXScrnSaver
-yum -y localinstall google-chrome-stable_current_x86_64.rpm
+#RUN yum -y update
+#RUN yum --enablerepo=extras install epel-release
+#RUN yum install libappindicator-gtk3
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+RUN yum -y localinstall --skip-broken google-chrome-stable_current_x86_64.rpm
+
+# RUN yum info google-chrome-stable
+# RUN yum install google-chrome-stable
 
 # Don't need for now, will need after resume cert-policy test
 # RUN sh ./build/download-clis.sh
