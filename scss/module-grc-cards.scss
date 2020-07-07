@@ -186,20 +186,38 @@
          }
          
          .empty-violations-strip {
-          flex-basis: 100%;
+          flex-basis: auto;
           .empty {
+            display: flex;
             .empty-violations-img{
+              max-width: 5rem;
+              max-height: 5rem;
               display: block;
-              margin-left: auto;
+              margin-left: 0.75rem;
               margin-right: auto;
               margin-bottom: 0.25rem;
             }
           }
-          .no-card-violations {
-            text-align: center;
-            font-weight: bold;
-            font-size: 0.75rem;
-            color: $color__navy-gray-6;
+          .no-resource-text-info {
+            display: block;
+            margin-left: 0.875rem;
+            margin-right: auto;
+            .no-card-violations {
+              text-align: left;
+              font-weight: bold;
+              font-size: 0.875rem;
+              margin-top: 0.8rem;
+              margin-right: auto;
+              color: $color__navy-gray-6;
+            }
+            .no-resource-detail {
+              font-size: 0.75rem;
+              margin-top: 0.625rem;
+              margin-right: auto;
+              font-weight: 400;
+              word-break: break-word;
+              color: $color__navy-gray-6;
+            }
           }
         }
 
