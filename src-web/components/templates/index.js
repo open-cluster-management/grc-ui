@@ -9,7 +9,6 @@
  /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-import config from '../../../lib/shared/config'
 import specPodRole from './spec-rolebinding.yaml'
 import specPodSecurity from './spec-psp.yaml'
 import specPodLimit from './spec-mem-limit.yaml'
@@ -18,7 +17,6 @@ import specRoles from './spec-roles.yaml'
 import specNamespace from './spec-namespace.yaml'
 import specClustadminrole from './spec-clusteradminrole.yaml'
 import specCertmgmtexp from './spec-certmgmtexp.yaml'
-import specCisOcp from './spec-cis-ocp.yaml'
 import specScc from './spec-scc.yaml'
 import specImv from './spec-imagemanifestvuln.yaml'
 
@@ -33,11 +31,6 @@ const Choices = {
   specCertmgmtexp,
   specScc,
   specImv,
-}
-
-// don't show Cis policy related if featureFlags_cisPolicyTemplate is false
-if (config.featureFlags_cisPolicyTemplate) {
-  Choices.specCisOcp = specCisOcp
 }
 
 export default Choices
