@@ -221,4 +221,4 @@ spec:
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: cloud, operator: In, values: ["auto-detect"]}
+      []  # selects all clusters if not specified

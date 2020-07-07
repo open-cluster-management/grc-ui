@@ -336,6 +336,7 @@ function testDetailsPage(name, templateFile) {
   this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
   this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
   this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a')
+  this.waitForElementNotPresent('@spinner')
   // DETAILS TAB TESTS
   // Check policy details
   this.expect.element('.bx--detail-page-header-title').text.to.equal(name)

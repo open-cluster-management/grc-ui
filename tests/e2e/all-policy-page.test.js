@@ -51,7 +51,6 @@ module.exports = {
     page.createTestPolicy(true, {
       policyName: policyName,
       specification: ['ImageManifestVulnPolicy'],
-      cluster: ['cloud: "auto-detect"'],
       standard: ['FISMA'],
       category: ['PR.DS Data Security'],
       control: ['DE.CM-7 Monitoring for unauthorized activity']
