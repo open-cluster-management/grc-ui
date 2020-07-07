@@ -1,6 +1,6 @@
 # Copyright (c) 2020 Red Hat, Inc.
 
-FROM registry.access.redhat.com/ubi8/nodejs-10:1
+FROM node:10.21.0
 
 ENV NODE_ENV=development
 
@@ -18,13 +18,10 @@ COPY tests ./tests
 COPY package.json .
 
 # Install Firefox
-# RUN apt-get update && apt-get install -y firefox-esr
+RUN apt-get update && apt-get install -y firefox-esr
 # Install Chrome
-# RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-yum -y install redhat-lsb libXScrnSaver
-yum -y localinstall google-chrome-stable_current_x86_64.rpm
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
 # Don't need for now, will need after resume cert-policy test
 # RUN sh ./build/download-clis.sh
