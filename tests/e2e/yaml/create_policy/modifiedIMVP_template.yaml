@@ -221,4 +221,4 @@ spec:
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: environment, operator: In, values: ["dev"]}
+      - {key: cloud, operator: In, values: ["auto-detect"]}
