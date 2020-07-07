@@ -3122,14 +3122,18 @@ exports[`GrcView component 7 renders as expected 1`] = `
       src="undefined/graphics/no-policy.svg"
     />
     <div
-      className="no-resource-title"
+      className="no-resource-text-info"
     >
-      Get set-up to track your governance and risk.
-    </div>
-    <div
-      className="no-resource-detail"
-    >
-      We noticed that you didn't have any policies created yet. You can view our documentation to see some samples for creating new policies, or you can go ahead and create one now!
+      <div
+        className="no-resource-title"
+      >
+        Get set-up to track your governance and risk.
+      </div>
+      <div
+        className="no-resource-detail"
+      >
+        We noticed that you didn't have any policies created yet. You can view our documentation to see some samples for creating new policies, or you can go ahead and create one now!
+      </div>
     </div>
     <div
       className="button-group"
@@ -3197,14 +3201,18 @@ exports[`GrcView component 8 renders as expected 1`] = `
       src="undefined/graphics/no-policy.svg"
     />
     <div
-      className="no-resource-title"
+      className="no-resource-text-info"
     >
-      Get set-up to track your governance and risk.
-    </div>
-    <div
-      className="no-resource-detail"
-    >
-      You don't have any security risk integrations, yet. You can view the product documentation for instructions, or you can just start integrating.
+      <div
+        className="no-resource-title"
+      >
+        Get set-up to track your governance and risk.
+      </div>
+      <div
+        className="no-resource-detail"
+      >
+        You don't have any security risk integrations, yet. You can view the product documentation for instructions, or you can just start integrating.
+      </div>
     </div>
     <div
       className="button-group"
