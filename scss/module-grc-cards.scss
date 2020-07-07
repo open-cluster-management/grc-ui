@@ -186,32 +186,34 @@
          }
          
          .empty-violations-strip {
+          flex-basis: auto;
           .empty {
             display: flex;
             .empty-violations-img{
-              width:20%;
               max-width: 5rem;
               max-height: 5rem;
               display: block;
               margin-left: 0.75rem;
-              margin-right: 0.75rem;
+              margin-right: auto;
               margin-bottom: 0.25rem;
             }
           }
           .no-resource-text-info {
-            width:60%;
-            margin-left: 0.75rem;
+            display: block;
+            margin-left: 0.875rem;
             margin-right: auto;
             .no-card-violations {
               text-align: left;
               font-weight: bold;
               font-size: 0.875rem;
               margin-top: 0.8rem;
+              margin-right: auto;
               color: $color__navy-gray-6;
             }
             .no-resource-detail {
               font-size: 0.75rem;
               margin-top: 0.5rem;
+              margin-right: auto;
               font-weight: 400;
               word-break: break-word;
               color: $color__navy-gray-6;
