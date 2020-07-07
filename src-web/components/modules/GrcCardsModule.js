@@ -458,6 +458,7 @@ const PolicyCard = ({data, locale, handleClick}) => {
                 <NoResource
                   className={'card-violations empty'}
                   imgClassName={'empty-violations-img'}
+                  titleClassName={'no-card-violations'}
                   title={msgs.get('overview.violations.empty', locale)}
                   detail={msgs.get('overview.violations.empty.detail', locale)}
                   svgName={'NoViolation-illus.png'}>
