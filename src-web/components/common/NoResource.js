@@ -38,8 +38,10 @@ const NoResource = ({
           className={imgClassName ? imgClassName : 'no-resource-icon'}
           src={`${config.contextPath}/graphics/${svgName ? svgName : 'no-policy.svg'}`}
           alt={alt ? alt : msgs.get('svg.description.noresource', context.locale)} />
-        <div className={titleClassName ? titleClassName : 'no-resource-title'}>{title}</div>
-        {detail && <div className='no-resource-detail'>{detail}</div>}
+        <div className={'no-resource-text-info'}>
+          <div className={titleClassName ? titleClassName : 'no-resource-title'}>{title}</div>
+          {detail && <div className='no-resource-detail'>{detail}</div>}
+        </div>
         {children}
       </div>
     </div> :

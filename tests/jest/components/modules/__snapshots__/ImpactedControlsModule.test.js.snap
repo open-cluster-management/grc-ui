@@ -231,14 +231,18 @@ exports[`ImpactedControlsModule view with Security Findings renders as expected 
                   src="undefined/graphics/no-impacted-controls-overlap.svg"
                 />
                 <div
-                  className="no-resource-title"
+                  className="no-resource-text-info"
                 >
-                  Your data visualizations cannot be displayed
-                </div>
-                <div
-                  className="no-resource-detail"
-                >
-                  There are no controls that have both policy violations and security findings. You can try selecting different filters or clearing the current filters. The system will continue to monitor and display the visualization here.
+                  <div
+                    className="no-resource-title"
+                  >
+                    Your data visualizations cannot be displayed
+                  </div>
+                  <div
+                    className="no-resource-detail"
+                  >
+                    There are no controls that have both policy violations and security findings. You can try selecting different filters or clearing the current filters. The system will continue to monitor and display the visualization here.
+                  </div>
                 </div>
               </div>
             </div>
@@ -473,14 +477,18 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                   src="undefined/graphics/no-impacted-controls-overlap.svg"
                 />
                 <div
-                  className="no-resource-title"
+                  className="no-resource-text-info"
                 >
-                  Your data visualizations cannot be displayed
-                </div>
-                <div
-                  className="no-resource-detail"
-                >
-                  There are no controls that have both policy violations and security findings. You can try selecting different filters or clearing the current filters. The system will continue to monitor and display the visualization here.
+                  <div
+                    className="no-resource-title"
+                  >
+                    Your data visualizations cannot be displayed
+                  </div>
+                  <div
+                    className="no-resource-detail"
+                  >
+                    There are no controls that have both policy violations and security findings. You can try selecting different filters or clearing the current filters. The system will continue to monitor and display the visualization here.
+                  </div>
                 </div>
               </div>
             </div>
@@ -715,14 +723,18 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                   src="undefined/graphics/no-impacted-controls-overlap.svg"
                 />
                 <div
-                  className="no-resource-title"
+                  className="no-resource-text-info"
                 >
-                  Your data visualizations cannot be displayed
-                </div>
-                <div
-                  className="no-resource-detail"
-                >
-                  There are no controls that have both policy violations and security findings. You can try selecting different filters or clearing the current filters. The system will continue to monitor and display the visualization here.
+                  <div
+                    className="no-resource-title"
+                  >
+                    Your data visualizations cannot be displayed
+                  </div>
+                  <div
+                    className="no-resource-detail"
+                  >
+                    There are no controls that have both policy violations and security findings. You can try selecting different filters or clearing the current filters. The system will continue to monitor and display the visualization here.
+                  </div>
                 </div>
               </div>
             </div>
