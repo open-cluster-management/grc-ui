@@ -35,7 +35,5 @@ RUN npm install \
     log4js@2.11.0 \
     del@5.1.0
 
-USER 1001
-
 CMD ["npm", "run", "test:e2e-headless"]
 
