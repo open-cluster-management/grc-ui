@@ -71,12 +71,12 @@ class StructuredListModule extends React.Component {
                 {Array.isArray(headerRows) && headerRows.map((header, index) => {
                   if (header) {
                     return (
-                      <th className={'bx--header-index-'+index} scope={'col'} key={header}>
+                      <th className={`bx--header-index-${index}`} scope={'col'} key={header}>
                         <span className='bx--table-header-label'>{msgs.get(header, this.context.locale)}</span>
                       </th>
                     )
                   } else {
-                    return <th className={'bx--header-index-'+index} scope={'col'} key={_uniqueId('bx--header')} />
+                    return <th className={`bx--header-index-${index}`} scope={'col'} key={_uniqueId('bx--header')} />
                   }
                 }
                 )}
@@ -93,7 +93,7 @@ class StructuredListModule extends React.Component {
                           onExpand={this.onSelect(rowIndex)}
                           ariaLabel='Overflow-menu'>
                           {Array.isArray(rows) && rows[0].cells.map((cell, cellIndex) =>
-                            <td key={cell.resourceKey+'Cell'}>
+                            <td key={`${cell.resourceKey}Cell`}>
                               <p>{
                                 (linkFixedName && (cellIndex in linkFixedName) && transform(row, cell, this.context.locale) !== '-')
                                   ? <Link
@@ -133,7 +133,7 @@ class StructuredListModule extends React.Component {
                           {Array.isArray(rows) && rows[0].cells &&
                             rows[0].cells.map((cell)=>
                               <TableCell
-                                key={cell.resourceKey.substring(0, 21)+'Cell'}
+                                key={`${cell.resourceKey.substring(0, 21)}Cell`}
                                 className={row.id.includes('S_F_S_P')?_uniqueId('S_F_S_P'):_uniqueId('index')}>
                                 {transform(row, cell, this.context.locale)}
                               </TableCell>
