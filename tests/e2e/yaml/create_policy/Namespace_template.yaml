@@ -15,7 +15,7 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: [TEST_POLICY_NAME]-example
+          name: [TEST_POLICY_NAME]-prod
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: low
