@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -57,6 +58,12 @@ export default class TemplateEditor extends React.Component {
     portals: PropTypes.object.isRequired,
     template: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
+    updateControl: PropTypes.shape({
+      updateResource: PropTypes.func,
+      cancelUpdate: PropTypes.func,
+      updateStatus: PropTypes.string,
+      updateMsg: PropTypes.string
+    }),
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -64,6 +71,12 @@ export default class TemplateEditor extends React.Component {
     const {isLoaded} = fetchControl || {isLoaded:true}
     const {creationStatus, creationMsg} = createControl
     if (creationStatus === 'ERROR') {
+      console.log('------- CREATION ERROR --------')
+      console.log(creationMsg)
+      if (creationMsg.endsWith('already exists')) {
+        console.log('updating resource!')
+        return {tryUpdate: true}
+      }
       return {updateMsgKind: 'error', updateMessage: creationMsg}
     } else if (isLoaded) {
       const { template, controlData: initialControlData } = props
@@ -108,6 +121,7 @@ export default class TemplateEditor extends React.Component {
       hasUndo: false,
       hasRedo: false,
       resetInx: 0,
+      tryUpdate: false,
     }
     this.multiSelectCmpMap = {}
     this.parseDebounced = _.debounce(()=>{
@@ -115,6 +129,7 @@ export default class TemplateEditor extends React.Component {
     }, 500)
     this.handleEditorCommand = this.handleEditorCommand.bind(this)
     this.handleSearchChange = this.handleSearchChange.bind(this)
+    // this.handleUpdateResource = this.handleUpdateResource.bind(this)
     const { type='unknown' } = this.props
     this.splitterSizeCookie = `TEMPLATE-EDITOR-SPLITTER-SIZE-${type.toUpperCase()}`
   }
@@ -153,10 +168,14 @@ export default class TemplateEditor extends React.Component {
   render() {
     const {fetchControl, locale} = this.props
     const {isLoaded, isFailed, error} = fetchControl || {isLoaded:true}
-    const { showEditor, resetInx } = this.state
+    const { showEditor, resetInx, tryUpdate } = this.state
 
     if (!isLoaded) {
       return <Loading withOverlay={false} className='content-spinner' />
+    }
+
+    if (tryUpdate) {
+      return this.renderUpdatePrompt()
     }
 
     if (isFailed) {
@@ -774,12 +793,31 @@ export default class TemplateEditor extends React.Component {
     return null
   }
 
+  renderUpdatePrompt() {
+    return <Button id={'updateSubmit'}
+      onClick={this.handleUpdateResource.bind(this)}
+      kind={'primary'} >
+      Confirm Update
+    </Button>
+  }
+
   handleCreateResource() {
     const { createControl } = this.props
     const {createResource} = createControl
     const resourceJSON = this.getResourceJSON()
     if (resourceJSON) {
       createResource(resourceJSON)
+    }
+  }
+
+  handleUpdateResource() {
+    console.log(' --- in handleUpdateResource() ---')
+    const { updateControl } = this.props
+    console.log(updateControl)
+    const {updateResource} = updateControl
+    const resourceJSON = this.getResourceJSON()
+    if (resourceJSON) {
+      updateResource(resourceJSON)
     }
   }
 

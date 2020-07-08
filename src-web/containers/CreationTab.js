@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -15,7 +16,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
-import { createResources, updateSecondaryHeader, clearRequestStatus } from '../actions/common'
+import { createResources, editResource, updateSecondaryHeader, clearRequestStatus } from '../actions/common'
 import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Page from '../components/common/Page'
@@ -29,6 +30,7 @@ export class CreationTab extends React.Component {
   static propTypes = {
     cleanReqStatus: PropTypes.func,
     handleCreateResources: PropTypes.func,
+    handleUpdateResource: PropTypes.func,
     mutateErrorMsg: PropTypes.string,
     mutateStatus: PropTypes.string,
     secondaryHeaderProps: PropTypes.object,
@@ -59,6 +61,25 @@ export class CreationTab extends React.Component {
     if (resourceJSON) {
       const {handleCreateResources} = this.props
       handleCreateResources(resourceJSON)
+    }
+  }
+
+  handleUpdate = (resourceJSON) => {
+    console.log('****** handling update for json ******')
+    console.log(resourceJSON)
+    if (resourceJSON) {
+      const {handleUpdateResource} = this.props
+      if (Array.isArray(resourceJSON)) {
+        for (let i = 0; i < resourceJSON.length; i++) {
+          console.log('// handling resource!')
+          console.log(resourceJSON[i])
+          console.log(resourceJSON[i].metadata)
+          resourceJSON[i].metadata.resourceVersion = '12861927'
+          handleUpdateResource(resourceJSON[i])
+        }
+      } else {
+        handleUpdateResource(resourceJSON)
+      }
     }
   }
 
@@ -96,11 +117,18 @@ export class CreationTab extends React.Component {
               creationStatus: mutateStatus,
               creationMsg: mutateErrorMsg,
             }
+            const updateControl = {
+              updateResource: this.handleUpdate.bind(this),
+              cancelUpdate: this.handleCancel.bind(this),
+              updateStatus: mutateStatus,
+              updateMsg: mutateErrorMsg,
+            }
             return (
               <CreationView
                 discovered={discoveries}
                 fetchControl={fetchControl}
                 createControl={createControl}
+                updateControl={updateControl}
               />
             )
           }
@@ -119,9 +147,16 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+  // resourceType, namespace, name, body, selfLink, resourcePath
   return {
     updateSecondaryHeader: (title, tabs, breadcrumbItems, links, information) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links, '', information)),
     handleCreateResources: (json) => dispatch(createResources(RESOURCE_TYPES.HCM_POLICIES, json)),
+    handleUpdateResource: (json) => dispatch(editResource(
+      RESOURCE_TYPES.HCM_POLICIES,
+      json.metadata.namespace,
+      json.metadata.name,
+      json,
+      `/apis/${json.apiVersion}/namespaces/${json.metadata.namespace}/policies/${json.metadata.name}`)),
     cleanReqStatus: () => dispatch(clearRequestStatus(RESOURCE_TYPES.HCM_POLICIES))
   }
 }

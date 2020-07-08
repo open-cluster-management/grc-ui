@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -147,8 +148,12 @@ export const updateResourceLabels = (resourceType, namespace, name, labels, self
 
 export const editResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(putResource(resourceType))
+  console.log('---- UPDATE RESOURCE API CALL FOR: -------')
+  console.log(selfLink)
   return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
     .then(response => {
+      console.log('...... response recieved ......')
+      console.log(response)
       if (response.errors) {
         return dispatch(receivePutError(response.errors[0], resourceType))
       } else {
