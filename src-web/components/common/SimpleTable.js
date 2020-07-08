@@ -53,7 +53,8 @@ class StructuredListModule extends React.Component {
   }
 
   render() {
-    const { headerRows, data, listSubItems, url, rows, title, subHeaders, linkFixedName, emptyColFront } = this.props
+    const { headerRows, data, listSubItems, url, rows:resourceRows, title, subHeaders,
+      linkFixedName, emptyColFront } = this.props
     const { extended } = this.state
     const frontPlaceholder = []
     if(emptyColFront) {
@@ -72,11 +73,17 @@ class StructuredListModule extends React.Component {
                   if (header) {
                     return (
                       <th className={`bx--header-index-${index}`} scope={'col'} key={header}>
-                        <span className='bx--table-header-label'>{msgs.get(header, this.context.locale)}</span>
+                        <span className='bx--table-header-label'>
+                          {msgs.get(header, this.context.locale)}
+                        </span>
                       </th>
                     )
                   } else {
-                    return <th className={`bx--header-index-${index}`} scope={'col'} key={_uniqueId('bx--header')} />
+                    return <th
+                      className={`bx--header-index-${index}`}
+                      scope={'col'}
+                      key={_uniqueId('bx--header')}
+                    />
                   }
                 }
                 )}
@@ -92,14 +99,15 @@ class StructuredListModule extends React.Component {
                           isExpanded={extended === rowIndex}
                           onExpand={this.onSelect(rowIndex)}
                           ariaLabel='Overflow-menu'>
-                          {Array.isArray(rows) && rows[0].cells.map((cell, cellIndex) =>
+                          {Array.isArray(resourceRows) && resourceRows[0].cells.map((cell, cellIndex) =>
                             <td key={`${cell.resourceKey}Cell`}>
                               <p>{
                                 (linkFixedName && (cellIndex in linkFixedName) && transform(row, cell, this.context.locale) !== '-')
                                   ? <Link
                                     to={transform(row, cell, this.context.locale)}
                                     target={linkFixedName[cellIndex].urlTarget}
-                                    className='bx--link'>{msgs.get(linkFixedName[cellIndex].fixedName, this.context.locale)}
+                                    className='bx--link'>
+                                    {msgs.get(linkFixedName[cellIndex].fixedName, this.context.locale)}
                                   </Link>
                                   : cell.link && url
                                     ? <Link
@@ -130,14 +138,14 @@ class StructuredListModule extends React.Component {
                     if(row && row.id){
                       return (
                         <TableRow key={row.id}>
-                          {Array.isArray(rows) && rows[0].cells &&
-                            rows[0].cells.map((cell)=>
-                              <TableCell
-                                key={`${cell.resourceKey.substring(0, 21)}Cell`}
-                                className={row.id.includes('S_F_S_P')?_uniqueId('S_F_S_P'):_uniqueId('index')}>
-                                {transform(row, cell, this.context.locale)}
-                              </TableCell>
-                            )}
+                          {Array.isArray(resourceRows) && resourceRows[0].cells
+                          && resourceRows[0].cells.map((cell)=>
+                            <TableCell
+                              key={`${cell.resourceKey.substring(0, 21)}Cell`}
+                              className={row.id.includes('S_F_S_P')?_uniqueId('S_F_S_P'):_uniqueId('index')}>
+                              {transform(row, cell, this.context.locale)}
+                            </TableCell>
+                          )}
                         </TableRow>
                       )
                     }
