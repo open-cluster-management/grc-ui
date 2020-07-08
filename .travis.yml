@@ -57,10 +57,12 @@ jobs:
             make component/push;
           fi;
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
+        - echo '"start test image pushing..."' && echo -en 'travis_fold:start:script.build\\r'
         - export COMPONENT_BUILD_COMMAND="docker build . -f Dockerfile.e2etest -t "
         - export COMPONENT_NAME="grc-ui-tests"
         - make build-test-image
         - make push-test-image
+        - echo '"finished test image push"' && echo -en 'travis_fold:end:script.build\\r'
     - stage: unit-test
       name: "Build and run unit tests"
       script:
