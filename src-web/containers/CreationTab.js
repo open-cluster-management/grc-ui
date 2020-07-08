@@ -16,7 +16,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
-import { createResources, editResource, updateSecondaryHeader, clearRequestStatus } from '../actions/common'
+import { createResources, editResource, updateSecondaryHeader, clearRequestStatus, fetchSingleResource } from '../actions/common'
 import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Page from '../components/common/Page'
@@ -30,6 +30,7 @@ export class CreationTab extends React.Component {
   static propTypes = {
     cleanReqStatus: PropTypes.func,
     handleCreateResources: PropTypes.func,
+    handleFetchResource: PropTypes.func,
     handleUpdateResource: PropTypes.func,
     mutateErrorMsg: PropTypes.string,
     mutateStatus: PropTypes.string,
@@ -65,18 +66,15 @@ export class CreationTab extends React.Component {
   }
 
   handleUpdate = (resourceJSON) => {
-    console.log('****** handling update for json ******')
-    console.log(resourceJSON)
     if (resourceJSON) {
-      const {handleUpdateResource} = this.props
+      const {handleUpdateResource, handleFetchResource} = this.props
       if (Array.isArray(resourceJSON)) {
-        for (let i = 0; i < resourceJSON.length; i++) {
-          console.log('// handling resource!')
-          console.log(resourceJSON[i])
-          console.log(resourceJSON[i].metadata)
-          resourceJSON[i].metadata.resourceVersion = '12861927'
-          handleUpdateResource(resourceJSON[i])
-        }
+        handleFetchResource(resourceJSON[0]).then((res) => {
+          const existingPolicy = res.items.policies[0]
+          resourceJSON[0].metadata.selfLink = existingPolicy.metadata.selfLink
+          resourceJSON[0].metadata.resourceVersion = existingPolicy.metadata.resourceVersion
+          handleUpdateResource(resourceJSON[0])
+        })
       } else {
         handleUpdateResource(resourceJSON)
       }
@@ -151,12 +149,15 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateSecondaryHeader: (title, tabs, breadcrumbItems, links, information) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links, '', information)),
     handleCreateResources: (json) => dispatch(createResources(RESOURCE_TYPES.HCM_POLICIES, json)),
-    handleUpdateResource: (json) => dispatch(editResource(
-      RESOURCE_TYPES.HCM_POLICIES,
-      json.metadata.namespace,
-      json.metadata.name,
-      json,
-      `/apis/${json.apiVersion}/namespaces/${json.metadata.namespace}/policies/${json.metadata.name}`)),
+    handleFetchResource: (json) => dispatch(fetchSingleResource(RESOURCE_TYPES.HCM_POLICIES, json.metadata.namespace, json.metadata.name)),
+    handleUpdateResource: (json) => {
+      dispatch(editResource(
+        RESOURCE_TYPES.HCM_POLICIES,
+        json.metadata.namespace,
+        json.metadata.name,
+        json,
+        json.metadata.selfLink))
+    },
     cleanReqStatus: () => dispatch(clearRequestStatus(RESOURCE_TYPES.HCM_POLICIES))
   }
 }
