@@ -1043,7 +1043,7 @@ export function formLinkToCluster(item){
   return '-'
 }
 
-export function formLinkToCISControllerDoc(item/*, locale*/){
+export function formLinkToCISControllerDoc(item){
   if(item && item.message){
     return item.message
   }
