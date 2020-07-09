@@ -23,7 +23,8 @@ import {
   DropdownV2,
   TooltipIcon,
   MultiSelect,
-  ToggleSmall} from 'carbon-components-react'
+  ToggleSmall,
+  Modal} from 'carbon-components-react'
 import { initializeControlData, cacheUserData, updateControls, parseYAML } from './utils/update-controls'
 import { generateYAML, highlightChanges, getUniqueName } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
@@ -70,8 +71,8 @@ export default class TemplateEditor extends React.Component {
     const {isLoaded} = fetchControl || {isLoaded:true}
     const {creationStatus, creationMsg} = createControl
     if (creationStatus === 'ERROR') {
-      if (creationMsg.endsWith('already exists')) {
-        return {tryUpdate: true}
+      if (creationMsg.endsWith('already exists') && (creationMsg != state.oldCreationMsg || state.canOpenModal)) {
+        return { tryUpdate: true, oldCreationMsg: creationMsg }
       }
       return {updateMsgKind: 'error', updateMessage: creationMsg}
     } else if (isLoaded) {
@@ -125,7 +126,7 @@ export default class TemplateEditor extends React.Component {
     }, 500)
     this.handleEditorCommand = this.handleEditorCommand.bind(this)
     this.handleSearchChange = this.handleSearchChange.bind(this)
-    // this.handleUpdateResource = this.handleUpdateResource.bind(this)
+    this.handleUpdateResource = this.handleUpdateResource.bind(this)
     const { type='unknown' } = this.props
     this.splitterSizeCookie = `TEMPLATE-EDITOR-SPLITTER-SIZE-${type.toUpperCase()}`
   }
@@ -164,13 +165,13 @@ export default class TemplateEditor extends React.Component {
   render() {
     const {fetchControl, locale} = this.props
     const {isLoaded, isFailed, error} = fetchControl || {isLoaded:true}
-    const { showEditor, resetInx, tryUpdate } = this.state
+    const { showEditor, resetInx, tryUpdate, canOpenModal } = this.state
 
     if (!isLoaded) {
       return <Loading withOverlay={false} className='content-spinner' />
     }
 
-    if (tryUpdate) {
+    if (tryUpdate && canOpenModal) {
       return this.renderUpdatePrompt()
     }
 
@@ -790,11 +791,30 @@ export default class TemplateEditor extends React.Component {
   }
 
   renderUpdatePrompt() {
-    return <Button id={'updateSubmit'}
-      onClick={this.handleUpdateResource.bind(this)}
-      kind={'primary'} >
-      Confirm Update
-    </Button>
+    return (
+      <Modal
+        danger
+        id='policy-update-modal'
+        open={this.state.tryUpdate && this.state.canOpenModal}
+        primaryButtonText={'Apply'}
+        secondaryButtonText={'Cancel'}
+        modalLabel={'Update Existing Policy'}
+        modalHeading={'Update Existing Policy'}
+        onRequestClose={() => {
+          this.setState({ tryUpdate: false, canOpenModal: false })
+        }}
+        onSecondarySubmit={() => {
+          this.setState({ tryUpdate: false, canOpenModal: false })
+        }}
+        onRequestSubmit={() => {
+          this.handleUpdateResource()
+          this.setState({ tryUpdate: false, canOpenModal: false })
+        }}
+        role='region'
+        aria-label={'policy-update'}>
+        <p>{'This policy already exists. Apply changes to the existing policy?'}</p>
+      </Modal>
+    )
   }
 
   handleCreateResource() {
@@ -804,6 +824,7 @@ export default class TemplateEditor extends React.Component {
     if (resourceJSON) {
       createResource(resourceJSON)
     }
+    this.setState({ canOpenModal: true })
   }
 
   handleUpdateResource() {
