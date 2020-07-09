@@ -68,7 +68,6 @@ module.exports = {
 }
 function verifySummary(browser, url) {
   this.waitForElementVisible('button.collapse > span.collapse-button')
-  this.waitForElementVisible('div.module-grc-cards > div.card-container-container')
   this.waitForElementVisible('@summaryInfoContainer')
   this.navigate(url + '?card=false&index=0')
   this.waitForElementNotPresent('@summaryInfoContainer')
