@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -71,10 +70,7 @@ export default class TemplateEditor extends React.Component {
     const {isLoaded} = fetchControl || {isLoaded:true}
     const {creationStatus, creationMsg} = createControl
     if (creationStatus === 'ERROR') {
-      console.log('------- CREATION ERROR --------')
-      console.log(creationMsg)
       if (creationMsg.endsWith('already exists')) {
-        console.log('updating resource!')
         return {tryUpdate: true}
       }
       return {updateMsgKind: 'error', updateMessage: creationMsg}
@@ -811,9 +807,7 @@ export default class TemplateEditor extends React.Component {
   }
 
   handleUpdateResource() {
-    console.log(' --- in handleUpdateResource() ---')
     const { updateControl } = this.props
-    console.log(updateControl)
     const {updateResource} = updateControl
     const resourceJSON = this.getResourceJSON()
     if (resourceJSON) {

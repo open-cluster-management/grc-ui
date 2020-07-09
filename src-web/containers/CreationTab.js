@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -61,23 +60,61 @@ export class CreationTab extends React.Component {
   handleCreate = (resourceJSON) => {
     if (resourceJSON) {
       const {handleCreateResources} = this.props
-      handleCreateResources(resourceJSON)
+      handleCreateResources(RESOURCE_TYPES.HCM_POLICIES, resourceJSON)
     }
   }
 
   handleUpdate = (resourceJSON) => {
     if (resourceJSON) {
-      const {handleUpdateResource, handleFetchResource} = this.props
-      if (Array.isArray(resourceJSON)) {
-        handleFetchResource(resourceJSON[0]).then((res) => {
-          const existingPolicy = res.items.policies[0]
-          resourceJSON[0].metadata.selfLink = existingPolicy.metadata.selfLink
-          resourceJSON[0].metadata.resourceVersion = existingPolicy.metadata.resourceVersion
-          handleUpdateResource(resourceJSON[0])
-        })
-      } else {
-        handleUpdateResource(resourceJSON)
+      const {handleUpdateResource, handleFetchResource, handleCreateResources} = this.props
+      let plc, pb, pr = {}
+      for (let i = 0; i < resourceJSON.length; i++) {
+        if (resourceJSON[i].kind === 'Policy') {
+          plc = resourceJSON[i]
+        } else if (resourceJSON[i].kind === 'PlacementBinding') {
+          pb = resourceJSON[i]
+        } else if (resourceJSON[i].kind === 'PlacementRule') {
+          pr = resourceJSON[i]
+        }
       }
+      //update policy
+      handleFetchResource(RESOURCE_TYPES.HCM_POLICIES, {
+        clusterName: plc.metadata.namespace,
+        name: plc.metadata.name
+      }).then((res) => {
+        const existingPolicy = res.items.policies[0]
+        plc.metadata.selfLink = existingPolicy.metadata.selfLink
+        plc.metadata.resourceVersion = existingPolicy.metadata.resourceVersion
+        handleUpdateResource(RESOURCE_TYPES.HCM_POLICIES, plc)
+        //create/update placementbinding
+        handleFetchResource(RESOURCE_TYPES.PLACEMENT_BINDING, { parent: existingPolicy.raw }).then((pbres) => {
+          if (pbres.items.placementBindings.length != 0) {
+            const existingPB = pbres.items.placementBindings[0]
+            pb.metadata.selfLink = existingPB.metadata.selfLink
+            pb.metadata.resourceVersion = existingPB.metadata.resourceVersion
+            handleUpdateResource(RESOURCE_TYPES.PLACEMENT_BINDING, pb)
+          } else {
+            handleCreateResources(RESOURCE_TYPES.PLACEMENT_BINDING, pb)
+          }
+        }).catch((err) => {
+          // eslint-disable-next-line no-console
+          console.error('FETCH PLACEMENT BINDING ERROR: ', err)
+        })
+        //create/update placementrule
+        handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, { parent: existingPolicy.raw }).then((prres) => {
+          if (prres.items.placementRules.length != 0) {
+            const existingPR = prres.items.placementRules[0]
+            pr.metadata.selfLink = existingPR.metadata.selfLink
+            pr.metadata.resourceVersion = existingPR.metadata.resourceVersion
+            handleUpdateResource(RESOURCE_TYPES.PLACEMENT_RULE, pr)
+          } else {
+            handleCreateResources(RESOURCE_TYPES.PLACEMENT_RULE, pr)
+          }
+        }).catch((err) => {
+          // eslint-disable-next-line no-console
+          console.error('FETCH PLACEMENT RULE ERROR: ', err)
+        })
+      })
     }
   }
 
@@ -148,11 +185,11 @@ const mapDispatchToProps = (dispatch) => {
   // resourceType, namespace, name, body, selfLink, resourcePath
   return {
     updateSecondaryHeader: (title, tabs, breadcrumbItems, links, information) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links, '', information)),
-    handleCreateResources: (json) => dispatch(createResources(RESOURCE_TYPES.HCM_POLICIES, json)),
-    handleFetchResource: (json) => dispatch(fetchSingleResource(RESOURCE_TYPES.HCM_POLICIES, json.metadata.namespace, json.metadata.name)),
-    handleUpdateResource: (json) => {
+    handleCreateResources: (type, json) => dispatch(createResources(type, json)),
+    handleFetchResource: (type, json) => dispatch(fetchSingleResource(type, json)),
+    handleUpdateResource: (type, json) => {
       dispatch(editResource(
-        RESOURCE_TYPES.HCM_POLICIES,
+        type,
         json.metadata.namespace,
         json.metadata.name,
         json,

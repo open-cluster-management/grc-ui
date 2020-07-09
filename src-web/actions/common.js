@@ -116,10 +116,10 @@ export const fetchResources = (resourceType, vars) => {
   }
 }
 
-export const fetchSingleResource = (resourceType, namespace, name) => {
+export const fetchSingleResource = (resourceType, args) => {
   return (dispatch) => {
     dispatch(requestResource(resourceType))
-    return GrcApolloClient.getResource(resourceType, {clusterName: namespace, name: name})
+    return GrcApolloClient.getResource(resourceType, args)
       .then(response => {
         if (response.errors) {
           return dispatch(receiveResourceError(response.errors[0], resourceType))
@@ -162,12 +162,8 @@ export const updateResourceLabels = (resourceType, namespace, name, labels, self
 
 export const editResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(putResource(resourceType))
-  console.log('---- UPDATE RESOURCE API CALL FOR: -------')
-  console.log(selfLink)
   return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
     .then(response => {
-      console.log('...... response recieved ......')
-      console.log(response)
       if (response.errors) {
         return dispatch(receivePutError(response.errors[0], resourceType))
       } else {
