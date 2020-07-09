@@ -316,10 +316,6 @@ describe('hcm-compliances - formLinkToCluster', () => {
 })
 
 describe('hcm-compliances - formLinkToCISControllerDoc', () => {
-  // it('should get message with doc link', () => {
-  //   const item = {message:'couldn\'t find mapping resource with kind CisPolicy, please check if you have corresponding policy controller deployed'}
-  //   expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
-  // })
   it('should get message without doc link', () => {
     const item = {message:'mapping resource with kind CisPolicy'}
     expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
