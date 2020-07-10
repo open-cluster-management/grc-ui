@@ -77,6 +77,26 @@ export const resourceActions = (action, dispatch, resourceType, data, hasService
         },
         data: { apiVersion: resourceType.api_version, kind: resourceType.name, ...data }}))
   }
+  case 'table.actions.enforce': {
+    return dispatch(updateModal(
+      { open: true, type: 'resource-enforce', resourceType,
+        label: {
+          primaryBtn: `modal.enforce-${resourceType.name.toLowerCase()}.heading`,
+          label: `modal.enforce-${resourceType.name.toLowerCase()}.label`,
+          heading: `modal.enforce-${resourceType.name.toLowerCase()}.heading`
+        },
+        data: { apiVersion: resourceType.api_version, kind: resourceType.name, ...data }}))
+  }
+  case 'table.actions.inform': {
+    return dispatch(updateModal(
+      { open: true, type: 'resource-inform', resourceType,
+        label: {
+          primaryBtn: `modal.inform-${resourceType.name.toLowerCase()}.heading`,
+          label: `modal.inform-${resourceType.name.toLowerCase()}.label`,
+          heading: `modal.inform-${resourceType.name.toLowerCase()}.heading`
+        },
+        data: { apiVersion: resourceType.api_version, kind: resourceType.name, ...data }}))
+  }
   case 'table.actions.cluster.view.nodes':{
     history.push(`${config.contextPath}/nodes?filters={"cluster":["${data.metadata.name}"]}`)
     return

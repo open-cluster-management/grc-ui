@@ -173,6 +173,20 @@ export const disableResource = (resourceType, namespace, name, body, selfLink, r
     })
 })
 
+export const enforcResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
+  dispatch(patchResource(resourceType))
+  return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
+    .then(response => {
+      if (response.errors) {
+        return dispatch(receivePatchError(response.errors[0], resourceType))
+      } else {
+        dispatch(updateModal({open: false, type: 'resource-enforce'}))
+      }
+      dispatch(fetchResources(resourceType))
+      return dispatch(receivePatchResource(response, resourceType))
+    })
+})
+
 export const removeResource = (resourceType, vars) => async dispatch => {
   dispatch(delResource(resourceType))
   try {
