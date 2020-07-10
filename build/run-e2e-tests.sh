@@ -69,7 +69,7 @@ npm run build
 npm run start:instrument &>/dev/null &
 sleep 10
 export COMPONENT_VERSION=`cat COMPONENT_VERSION`
-export GRC_UI_TESTS_URL=quay.io/open-cluster-management/grc-ui-tests:${COMPONENT_VERSION}${COMPONENT_TAG_EXTENSION}
+export GRC_UI_TESTS_URL=quay.io/open-cluster-management/grc-ui-tests:$COMPONENT_VERSION$COMPONENT_TAG_EXTENSION
 echo $GRC_UI_TESTS_URL
 docker run --volume $(pwd)/test-output/e2e:/opt/app-root/src/grc-ui/test-output/e2e -e SELENIUM_PASSWORD=$SELENIUM_PASSWORD -e SELENIUM_USER=$SELENIUM_USER $GRC_UI_TESTS_URL
 
