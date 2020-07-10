@@ -298,7 +298,7 @@ function editYaml(browser, content, line, element, clear = false, expected = con
     if (process.platform == 'darwin') {
       keystrokes.push(browser.api.Keys.COMMAND, browser.api.Keys.SHIFT, browser.api.Keys.ARROW_RIGHT)
     } else {
-      keystrokes.push(browser.api.Keys.CONTROL, browser.api.Keys.SHIFT, browser.api.Keys.END)
+      keystrokes.push(browser.api.Keys.SHIFT, browser.api.Keys.END)
     }
     keystrokes.push(browser.api.Keys.NULL, browser.api.Keys.BACK_SPACE)
   }
