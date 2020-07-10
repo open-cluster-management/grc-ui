@@ -68,7 +68,7 @@ export API_SERVER_URL=$OC_HUB_CLUSTER_URL
 npm run build
 npm run start:instrument &>/dev/null &
 sleep 10
-npm run test:e2e-headless
+docker run --volume $(pwd)/test-output/e2e:/opt/app-root/src/grc-ui/test-output/e2e SELENIUM_PASSWORD=$SELENIUM_PASSWORD --env SELENIUM_USER=$SELENIUM_USER  quay.io/open-cluster-management/grc-ui-tests:${COMPONENT_VERSION}${COMPONENT_TAG_EXTENSION}
 
 # kill the node process to let nyc generate coverage report
 ps -ef | grep 'node app.js' | grep -v grep | awk '{print $2}' | xargs kill
