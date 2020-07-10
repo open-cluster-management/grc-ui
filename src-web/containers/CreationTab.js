@@ -78,44 +78,46 @@ export class CreationTab extends React.Component {
           pr = resourceJSON[i]
         }
       }
-      //update policy
-      handleFetchResource(RESOURCE_TYPES.HCM_POLICIES, {
-        clusterName: plc.metadata.namespace,
-        name: plc.metadata.name
-      }).then((res) => {
-        const existingPolicy = res.items.policies[0]
-        plc.metadata.selfLink = existingPolicy.metadata.selfLink
-        plc.metadata.resourceVersion = existingPolicy.metadata.resourceVersion
-        handleUpdateResource(RESOURCE_TYPES.HCM_POLICIES, plc)
-        //create/update placementbinding
-        handleFetchResource(RESOURCE_TYPES.PLACEMENT_BINDING, { parent: existingPolicy.raw }).then((pbres) => {
-          if (pbres.items.placementBindings.length != 0) {
-            const existingPB = pbres.items.placementBindings[0]
-            pb.metadata.selfLink = existingPB.metadata.selfLink
-            pb.metadata.resourceVersion = existingPB.metadata.resourceVersion
-            handleUpdateResource(RESOURCE_TYPES.PLACEMENT_BINDING, pb)
-          } else {
-            handleCreateResources(RESOURCE_TYPES.PLACEMENT_BINDING, pb)
-          }
-        }).catch((err) => {
-          // eslint-disable-next-line no-console
-          console.error('FETCH PLACEMENT BINDING ERROR: ', err)
+      if (plc) {
+        //update policy
+        handleFetchResource(RESOURCE_TYPES.HCM_POLICIES, {
+          clusterName: plc.metadata.namespace,
+          name: plc.metadata.name
+        }).then((res) => {
+          const existingPolicy = res.items.policies[0]
+          plc.metadata.selfLink = existingPolicy.metadata.selfLink
+          plc.metadata.resourceVersion = existingPolicy.metadata.resourceVersion
+          handleUpdateResource(RESOURCE_TYPES.HCM_POLICIES, plc)
+          //create/update placementbinding
+          handleFetchResource(RESOURCE_TYPES.PLACEMENT_BINDING, { parent: existingPolicy.raw }).then((pbres) => {
+            if (pbres.items.placementBindings.length != 0) {
+              const existingPB = pbres.items.placementBindings[0]
+              pb.metadata.selfLink = existingPB.metadata.selfLink
+              pb.metadata.resourceVersion = existingPB.metadata.resourceVersion
+              handleUpdateResource(RESOURCE_TYPES.PLACEMENT_BINDING, pb)
+            } else {
+              handleCreateResources(RESOURCE_TYPES.PLACEMENT_BINDING, pb)
+            }
+          }).catch((err) => {
+            // eslint-disable-next-line no-console
+            console.error('FETCH PLACEMENT BINDING ERROR: ', err)
+          })
+          //create/update placementrule
+          handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, { parent: existingPolicy.raw }).then((prres) => {
+            if (prres.items.placementRules.length != 0) {
+              const existingPR = prres.items.placementRules[0]
+              pr.metadata.selfLink = existingPR.metadata.selfLink
+              pr.metadata.resourceVersion = existingPR.metadata.resourceVersion
+              handleUpdateResource(RESOURCE_TYPES.PLACEMENT_RULE, pr)
+            } else {
+              handleCreateResources(RESOURCE_TYPES.PLACEMENT_RULE, pr)
+            }
+          }).catch((err) => {
+            // eslint-disable-next-line no-console
+            console.error('FETCH PLACEMENT RULE ERROR: ', err)
+          })
         })
-        //create/update placementrule
-        handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, { parent: existingPolicy.raw }).then((prres) => {
-          if (prres.items.placementRules.length != 0) {
-            const existingPR = prres.items.placementRules[0]
-            pr.metadata.selfLink = existingPR.metadata.selfLink
-            pr.metadata.resourceVersion = existingPR.metadata.resourceVersion
-            handleUpdateResource(RESOURCE_TYPES.PLACEMENT_RULE, pr)
-          } else {
-            handleCreateResources(RESOURCE_TYPES.PLACEMENT_RULE, pr)
-          }
-        }).catch((err) => {
-          // eslint-disable-next-line no-console
-          console.error('FETCH PLACEMENT RULE ERROR: ', err)
-        })
-      })
+      }
     }
   }
 
