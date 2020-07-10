@@ -162,17 +162,20 @@ export default class TemplateEditor extends React.Component {
     this.layoutEditors()
   };
 
+  conditionalRenderUpdate = () => {
+    const { tryUpdate, canOpenModal } = this.state
+    if (tryUpdate && canOpenModal) {
+      return this.renderUpdatePrompt()
+    }
+  }
+
   render() {
     const {fetchControl, locale} = this.props
     const {isLoaded, isFailed, error} = fetchControl || {isLoaded:true}
-    const { showEditor, resetInx, tryUpdate, canOpenModal } = this.state
+    const { showEditor, resetInx } = this.state
 
     if (!isLoaded) {
       return <Loading withOverlay={false} className='content-spinner' />
-    }
-
-    if (tryUpdate && canOpenModal) {
-      return this.renderUpdatePrompt()
     }
 
     if (isFailed) {
@@ -190,6 +193,7 @@ export default class TemplateEditor extends React.Component {
     })
     return (
       <div key={`key${resetInx}`} className={viewClasses} ref={this.setContainerRef}>
+        {this.conditionalRenderUpdate()}
         {this.renderEditButton()}
         {this.renderCreateButton()}
         {this.renderCancelButton()}

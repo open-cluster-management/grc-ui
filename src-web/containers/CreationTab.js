@@ -15,7 +15,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
-import { createResources, editResource, updateSecondaryHeader, clearRequestStatus, fetchSingleResource } from '../actions/common'
+import { createResources, editResourceFromCreate, updateSecondaryHeader,
+  clearRequestStatus, fetchSingleResource } from '../actions/common'
 import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Page from '../components/common/Page'
@@ -188,7 +189,7 @@ const mapDispatchToProps = (dispatch) => {
     handleCreateResources: (type, json) => dispatch(createResources(type, json)),
     handleFetchResource: (type, json) => dispatch(fetchSingleResource(type, json)),
     handleUpdateResource: (type, json) => {
-      dispatch(editResource(
+      dispatch(editResourceFromCreate(
         type,
         json.metadata.namespace,
         json.metadata.name,
