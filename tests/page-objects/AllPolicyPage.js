@@ -50,8 +50,8 @@ module.exports = {
     controlsDropdownBox: '.creation-view-controls-container > div > div:nth-child(7) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div',
     controlsDropdownInput: '.creation-view-controls-container > div > div:nth-child(7) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > input',
     controlsDropdownClearValue: '.creation-view-controls-container > div > div:nth-child(7) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > div.bx--list-box__selection[title="Clear selected item"]',
-    enforceCheckbox: '#enforce ~ .checkbox',
-    disableCheckbox: '#disabled ~ .checkbox',
+    enforceCheckbox: '#enforce',
+    disableCheckbox: '#disabled',
   },
   commands: [{
     verifySummary,
@@ -168,8 +168,11 @@ function dropdownSelector(browser, label = '', options = ['']) {
 /* Helper function to parse template files */
 function applyTemplate(name, templateFile) {
   const file = fs.readFileSync(path.join(__dirname, `../e2e/yaml/create_policy/${templateFile}`), 'utf8')
-  const data = file.replace(/\[TEST_POLICY_NAME\]/g, name)
-  return data
+  if (name && name != '') {
+    return file.replace(/\[TEST_POLICY_NAME\]/g, name)
+  } else {
+    return file
+  }
 }
 /* Helper function to compare the editor with a template */
 function compareTemplate(browser, templateFile, spec = {}) {
@@ -287,21 +290,60 @@ function createTestPolicy(create = true,
   }
 }
 /* Helper function to edit YAML in editor and verify fields changed */
-function editYaml(browser, content, line, dropdown) {
+function editYaml(browser, content, line, element, clear = false, expected = content) {
   browser.click(`.monaco-editor div.view-line:nth-child(${line}) > span > span:nth-child(3)`)
-  browser.api.keys(`\uE014${content}`)
-  /* Wait half a second for the DOM update */
-  browser.pause(500)
-  browser.api.getAttribute('css selector', browser.elements[dropdown], 'placeholder', (result) => {
-    if (result.value) {
-      browser.assert.equal(result.value, content, `Placeholder value of @${dropdown} matches expected value "${content}"`)
+  const keystrokes = []
+  /* Delete current content if indicated */
+  if (clear) {
+    if (process.platform == 'darwin') {
+      keystrokes.push(browser.api.Keys.COMMAND, browser.api.Keys.SHIFT, browser.api.Keys.ARROW_RIGHT)
     } else {
-      browser.expect.element(`@${dropdown}`).text.to.equal(content)
+      keystrokes.push(browser.api.Keys.CONTROL, browser.api.Keys.SHIFT, browser.api.Keys.END)
     }
-  })
+    keystrokes.push(browser.api.Keys.NULL, browser.api.Keys.BACK_SPACE)
+  }
+  /* Enter content into editor, dealing with newlines and indents if present */
+  keystrokes.push(' ')
+  if (content.indexOf('\n') > 0) {
+    content.split(/\r?\n/).forEach(contentline => {
+      keystrokes.push(contentline)
+      keystrokes.push(browser.api.Keys.RETURN)
+      const indentation = contentline.search(/\S|$/)
+      for (let i = 0; i < indentation / 2; i++ )
+        keystrokes.push(browser.api.Keys.BACK_SPACE)
+    })
+  } else {
+    keystrokes.push(content)
+  }
+  browser.api.keys(keystrokes)
+  /* Wait half a second for DOM update */
+  browser.pause(500)
+  if (element.indexOf('Dropdown') > 0) {
+    browser.api.getAttribute('css selector', browser.elements[element], 'placeholder', (result) => {
+      if (result.value) {
+        browser.assert.equal(result.value, expected, `Placeholder value of @${element} matches expected value "${expected}"`)
+      } else {
+        browser.expect.element(`@${element}`).text.to.equal(expected)
+      }
+    })
+  } else if (element.indexOf('Checkbox') > 0) {
+    browser.expect.element(`@${element}`).to.be.selected
+  } else {
+    throw new Error('editYaml was given an unknown element type (if this is unexpected, a new test may need to be specified): ' + element)
+  }
 }
 /* Test whether updating the YAML updates the fields accordingly */
 function updateYamlEditor() {
+  /* Press Create Policy Button or Reset the form */
+  this.api.url(result => {
+    if (result.value.indexOf('/policies/create') < 0) {
+      this.waitForElementVisible('@createPolicyButton')
+      this.click('@createPolicyButton')
+      this.waitForElementNotPresent('@spinner')
+    } else {
+      this.click('@resetEditor')
+    }
+  })
   /* Reset the form */
   this.click('@resetEditor')
   /* NOTE: If the screen scrolls, line references will
@@ -310,6 +352,9 @@ function updateYamlEditor() {
   editYaml(this, 'test-standard', 7, 'standardsDropdownInput')
   editYaml(this, 'test-category', 8, 'categoriesDropdownInput')
   editYaml(this, 'test-control', 9, 'controlsDropdownInput')
+  editYaml(this, 'enforce', 11, 'enforceCheckbox', true)
+  editYaml(this, 'true', 12, 'disableCheckbox', true)
+  editYaml(this, applyTemplate('', 'custom_spec.yaml'), 12, 'templateDropdownInput', true, 'Custom specifications')
 }
 function searchPolicy(expectToDisplay, policyName) {
   this.waitForElementVisible('@searchInput')
