@@ -16,7 +16,6 @@ import { withRouter } from 'react-router-dom'
 import { updateResourceToolbar, updateActiveFilters } from '../actions/common'
 import { Loading, Notification } from 'carbon-components-react'
 import { filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState, combineResourceFilters,replaceGrcState } from '../../lib/client/filter-helper'
-import { showResourceToolbar, hideResourceToolbar } from '../../lib/client/resource-helper'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
 import RecentActivityModule from './modules/RecentActivityModule'
 import RecentActivityModuleWithoutFindings from './modules/RecentActivityModuleWithoutFindings'
@@ -99,7 +98,6 @@ export class OverviewView extends React.Component {
     const { locale } = this.context
     const showFindings = config['feature_security-findings']
     const { loading, error, policies, findings, applications, activeFilters={} } = this.props
-    hideResourceToolbar()
 
     if (loading) {
       return <Loading withOverlay={false} className='content-spinner' />
@@ -123,7 +121,6 @@ export class OverviewView extends React.Component {
         </NoResource>
       )
     }
-    showResourceToolbar()
     const { viewState } = this.state
     const showApplications = this.props.showApplications
     const availableFilters =  getAvailableGrcFilters(policies, findings, locale)
