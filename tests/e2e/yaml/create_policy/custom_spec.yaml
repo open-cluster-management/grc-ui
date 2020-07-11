@@ -1,0 +1,13 @@
+false
+policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: MyOwnPolicy
+      metadata:
+        name: policy-myownpolicy-example
+      spec:
+        namespaceSelector:
+          include: ["default"]
+          exclude: ["kube-*"]
+        remediationAction: inform
+        severity: low
