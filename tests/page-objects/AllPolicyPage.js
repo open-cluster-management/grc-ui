@@ -295,11 +295,7 @@ function editYaml(browser, content, line, element, clear = false, expected = con
   const keystrokes = []
   /* Delete current content if indicated */
   if (clear) {
-    if (process.platform == 'darwin') {
-      keystrokes.push(browser.api.Keys.COMMAND, browser.api.Keys.SHIFT, browser.api.Keys.ARROW_RIGHT)
-    } else {
-      keystrokes.push(browser.api.Keys.SHIFT, browser.api.Keys.END)
-    }
+    keystrokes.push(browser.api.Keys.SHIFT, browser.api.Keys.END)
     keystrokes.push(browser.api.Keys.NULL, browser.api.Keys.BACK_SPACE)
   }
   /* Enter content into editor, dealing with newlines and indents if present */
@@ -315,6 +311,9 @@ function editYaml(browser, content, line, element, clear = false, expected = con
   } else {
     keystrokes.push(content)
   }
+  /* Return to beginning of the line so that
+  elements are in view for the next test */
+  keystrokes.push(browser.api.Keys.HOME)
   browser.api.keys(keystrokes)
   /* Wait half a second for DOM update */
   browser.pause(500)
