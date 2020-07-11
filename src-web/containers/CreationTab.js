@@ -90,7 +90,7 @@ export class CreationTab extends React.Component {
           handleUpdateResource(RESOURCE_TYPES.HCM_POLICIES, plc)
           //create/update placementbinding
           handleFetchResource(RESOURCE_TYPES.PLACEMENT_BINDING, { parent: existingPolicy.raw }).then((pbres) => {
-            if (pbres.items.placementBindings.length != 0) {
+            if (pbres.items.placementBindings.length !== 0) {
               const existingPB = pbres.items.placementBindings[0]
               pb.metadata.selfLink = existingPB.metadata.selfLink
               pb.metadata.resourceVersion = existingPB.metadata.resourceVersion
@@ -104,7 +104,7 @@ export class CreationTab extends React.Component {
           })
           //create/update placementrule
           handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, { parent: existingPolicy.raw }).then((prres) => {
-            if (prres.items.placementRules.length != 0) {
+            if (prres.items.placementRules.length !== 0) {
               const existingPR = prres.items.placementRules[0]
               pr.metadata.selfLink = existingPR.metadata.selfLink
               pr.metadata.resourceVersion = existingPR.metadata.resourceVersion

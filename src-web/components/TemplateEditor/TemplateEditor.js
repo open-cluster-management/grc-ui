@@ -71,7 +71,7 @@ export default class TemplateEditor extends React.Component {
     const {isLoaded} = fetchControl || {isLoaded:true}
     const {creationStatus, creationMsg} = createControl
     if (creationStatus === 'ERROR') {
-      if (creationMsg.endsWith('already exists') && (creationMsg != state.oldCreationMsg || state.canOpenModal)) {
+      if (creationMsg.endsWith('already exists') && (creationMsg !== state.oldCreationMsg || state.canOpenModal)) {
         return { tryUpdate: true, oldCreationMsg: creationMsg }
       }
       return {updateMsgKind: 'error', updateMessage: creationMsg}
@@ -167,6 +167,7 @@ export default class TemplateEditor extends React.Component {
     if (tryUpdate && canOpenModal) {
       return this.renderUpdatePrompt()
     }
+    return null
   }
 
   render() {
