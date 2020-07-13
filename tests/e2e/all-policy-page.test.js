@@ -44,6 +44,10 @@ module.exports = {
     })
   },
 
+  'Create policy page: Updating YAML in editor': () => {
+    page.updateYamlEditor()
+  },
+
   'All policy page: Create, Search, Verify details of policy': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
@@ -72,5 +76,5 @@ module.exports = {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
     page.deletePolicy(policyName, browser)
-  },
+  }
 }
