@@ -5,12 +5,10 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 
 const config = require('../../config')
-// const a11yScan = require('../utils/accessibilityScan')
 let page
 
 module.exports = {
@@ -21,50 +19,62 @@ module.exports = {
     loginPage.navigate()
     loginPage.authenticate()
 
-    const url = `${browser.launch_url}${config.get('contextPath')}/all`
     page = browser.page.AllPolicyPage()
-    page.navigate(url)
   },
 
-  'All policy page: Add, search, disable/enable test policy': (browser) => {
+  'Create policy page: Verify templates': (browser) => {
+    const templates = [
+      'CertificatePolicy',
+      'IamPolicy',
+      'ImageManifestVulnPolicy',
+      'LimitRange',
+      'Namespace',
+      'Pod',
+      'PodSecurityPolicy',
+      'Role',
+      'RoleBinding',
+      'SecurityContextConstraints'
+    ]
     const time = browser.globals.time
-    page.createTestPolicy(browser, time)
-    browser.collectCoverage(() => {
-      page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-      page.searchPolicy(true, time)
-      page.testDetailsPage(browser, `${time}-policy-test`)
+    let policyName = '', templateFile = ''
+    templates.forEach(t => {
+      policyName = `${time}-${t}-policy-test`
+      templateFile = `${t}_template.yaml`
+      page.createTestPolicy(false, { policyName: policyName, specification: [t] }, templateFile)
     })
-    // page.verifyDisableEnable(`${time}-policy-test`, browser)
   },
 
-  // 'All policy page: Load and run expand': (browser) => {
-  //   page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-  //   page.verifyTable(browser, false)
-  // },
+  'Create policy page: Updating YAML in editor': () => {
+    page.updateYamlEditor()
+  },
+
+  'All policy page: Create, Search, Verify details of policy': (browser) => {
+    const time = browser.globals.time
+    const policyName = `${time}-policy-test`
+    const templateFile = 'modifiedIMVP_template.yaml'
+    page.createTestPolicy(true, {
+      policyName: policyName,
+      specification: ['ImageManifestVulnPolicy'],
+      standard: ['FISMA'],
+      category: ['PR.DS Data Security'],
+      control: ['DE.CM-7 Monitoring for unauthorized activity']
+    }, templateFile)
+    page.searchPolicy(true, policyName)
+    page.verifyPolicyTable(policyName, templateFile)
+    page.testDetailsPage(policyName, templateFile)
+  },
 
   'All policy page: Verify summary table': (browser) => {
-    browser.collectCoverage(() => {
-      page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-      page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
-    })
+    page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
   },
 
   'All policy page: Test pagination': (browser) => {
-    browser.collectCoverage(() => {
-      page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-      page.verifyPagination(browser)
-    })
+    page.verifyPagination(browser)
   },
-
-  // 'All policy page: Run Accessibility Scan': (browser) => {
-  //   page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-  //   a11yScan.runAccessibilityScan(browser, 'allPolicy')
-  //   page.navigate(`${browser.launch_url}${config.get('contextPath')}/all`)
-  //   a11yScan.runAccessibilityScan(browser, 'policyDetail')
-  // },
 
   'All policy page: Delete test policy': (browser) => {
     const time = browser.globals.time
-    page.deletePolicy(`${time}-policy-test`, browser)
-  },
+    const policyName = `${time}-policy-test`
+    page.deletePolicy(policyName, browser)
+  }
 }

@@ -43,11 +43,12 @@ metadata:
   namespace: {{namespace}}
 spec:
   clusterConditions:
-  - type: OK
+  - status: "True"
+    type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
       {{#each clusters}}
       - {key: {{@key}}, operator: In, values: [{{#each this}}{{#if @index}}, {{/if}}"{{this}}"{{/each}}]}
       {{else}}
-      []
+      []  # selects all clusters if not specified
       {{/each}}

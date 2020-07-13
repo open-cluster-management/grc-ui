@@ -43,16 +43,23 @@ jobs:
         - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make copyright-check TRAVIS_BRANCH=${TRAVIS_BRANCH}
+        - echo '"start grc-ui building..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/build
+        - echo '"finished grc-ui build"' && echo -en 'travis_fold:end:script.build\\r'
+        - echo '"start image pushing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/push
+        - echo '"finished image push"' && echo -en 'travis_fold:end:script.build\\r'
         - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then 
-            export COMPONENT_NEWTAG="latest-dev";
-            make component/tag;
-            export COMPONENT_VERSION="latest";
-            export COMPONENT_TAG_EXTENSION="-dev";
-            make component/push;
+            COMPONENT_NEWTAG="latest-dev" make component/tag;
+            COMPONENT_VERSION="latest" COMPONENT_TAG_EXTENSION="-dev" make component/push;
           fi;
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
+        - echo '"start test image pushing..."' && echo -en 'travis_fold:start:script.build\\r'
+        - export COMPONENT_BUILD_COMMAND="docker build . -f Dockerfile.e2etest -t "
+        - export COMPONENT_NAME="grc-ui-tests"
+        - make build-test-image
+        - make push-test-image
+        - echo '"finished test image push"' && echo -en 'travis_fold:end:script.build\\r'
     - stage: unit-test
       name: "Build and run unit tests"
       script:
@@ -64,15 +71,25 @@ jobs:
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make sonar/js/jest-init
+        - echo '"start unit testing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/test/unit
+        - echo '"finished unit test"' && echo -en 'travis_fold:end:script.build\\r'
         - make component/pull
+        - echo '"start e2e testing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/test/e2e
+        - echo '"finished e2e test"' && echo -en 'travis_fold:end:script.build\\r'
         - npm run merge:coverage
+        - echo '"start sonar checking..."' && echo -en 'travis_fold:start:script.build\\r'
         - make sonar/js
+        - echo '"finished sonar check"' && echo -en 'travis_fold:end:script.build\\r'
       after_failure:
         - make travis-slack-reporter
+        - docker logs grcuiapi
     - stage: publish
       name: "Publish the image to quay with an official version/sha tag and publish entry to integration pipeline stage"
       if: type = push AND branch =~ /^release-[0-9]+\..*$/
       script:
+        - set -e
         - make pipeline-manifest/update PIPELINE_MANIFEST_COMPONENT_SHA256=${TRAVIS_COMMIT} PIPELINE_MANIFEST_COMPONENT_REPO=${TRAVIS_REPO_SLUG} PIPELINE_MANIFEST_BRANCH=${TRAVIS_BRANCH}
+        - echo "Waiting 60s before publishing test image..." && sleep 60
+        - make publish-test-image

@@ -9,7 +9,7 @@ replacements: # if user select this choice, the template variable names and valu
   standards: |
     NIST-CSF
   categories: |
-    PR.DS DataSecurity
+    PR.DS Data Security
   controls: |
     PR.DS-2 Data-in-transit
   policyTemplates: |

@@ -22,7 +22,8 @@ module.exports = {
     submit: 'button[type="submit"]',
     error: '.bx--inline-notification--error',
     header: '.app-header',
-    loginForm: 'form[role="form"]'
+    loginForm: 'form[role="form"]',
+    spinner: '.content-spinner',
   },
   commands: [{
     inputUsername,
@@ -35,27 +36,27 @@ module.exports = {
 }
 
 //helper for other pages to use for authentication in before() their suit
-function authenticate(user, password) {
+function authenticate() {
   if(process.env.SELENIUM_USER === undefined || process.env.SELENIUM_PASSWORD === undefined){
     this.api.end()
     throw new Error('Env variable NOT set.\nPlease export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD')
   }
   this.waitForLoginForm()
   this.waitForElementPresent('@username')
-  this.inputUsername(user)
-  this.inputPassword(password)
+  this.inputUsername()
+  this.inputPassword()
   this.submit()
   this.waitForLoginSuccess()
 }
 
-function inputUsername(user) {
+function inputUsername() {
   this.waitForElementPresent('@username')
-    .setValue('@username', user || process.env.SELENIUM_USER )
+    .setValue('@username', process.env.SELENIUM_USER )
 }
 
-function inputPassword(password) {
+function inputPassword() {
   this.waitForElementPresent('@password')
-    .setValue('@password', password || process.env.SELENIUM_PASSWORD )
+    .setValue('@password', process.env.SELENIUM_PASSWORD )
 }
 
 function submit() {
@@ -65,19 +66,18 @@ function submit() {
 
 function waitForLoginSuccess() {
   this.waitForElementPresent('@header')
+  this.waitForElementNotPresent('@spinner')
 }
 
 function waitForLoginForm() {
-  const specialSelect = 'a.idp'
-  this.api.elements('css selector', specialSelect, res => {
+  this.api.elements('tag name', 'form', res => {
     if (res.status < 0 || res.value.length < 1) {
-      // do nothing
-    }
-    else{
       // select kube:admin if env SELENIUM_USER_SELECT not specified
-      const userSelector = `a.idp[title="Log in with ${process.env.SELENIUM_USER_SELECT || 'kube:admin'}"]`
+      const userSelector = `a[title="Log in with ${process.env.SELENIUM_USER_SELECT || 'kube:admin'}"]`
       this.waitForElementPresent(userSelector)
       this.click(userSelector)
+    } else {
+      // do nothing
     }
   })
   this.waitForElementVisible('@loginForm')

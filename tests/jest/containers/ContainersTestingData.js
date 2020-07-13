@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  ****************************************************************************** */
+/* Copyright (c) 2020 Red Hat, Inc. */
 
 export const staticResourceData = {
   'defaultSortField': 'metadata.name',
@@ -420,15 +421,15 @@ export const staticResourceData = {
     },
     {
       'msgKey': 'table.header.controls',
-      'resourceKey': 'metadata.annotations["policy.mcm.ibm.com/controls"]'
+      'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/controls"]'
     },
     {
       'msgKey': 'table.header.standards',
-      'resourceKey': 'metadata.annotations["policy.mcm.ibm.com/standards"]'
+      'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/standards"]'
     },
     {
       'msgKey': 'table.header.categories',
-      'resourceKey': 'metadata.annotations["policy.mcm.ibm.com/categories"]'
+      'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/categories"]'
     }
   ],
   'tableActions': [
@@ -945,13 +946,13 @@ export const staticResourceData = {
 export const items = [
   {
     'raw': {
-      'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+      'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-          'policy.mcm.ibm.com/controls': 'IAM',
-          'policy.mcm.ibm.com/standards': 'FISMA',
+          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+          'policy.open-cluster-management.io/controls': 'IAM',
+          'policy.open-cluster-management.io/standards': 'FISMA',
           'seed-generation': '1'
         },
         'creationTimestamp': '2019-10-02T20:49:21Z',
@@ -963,7 +964,7 @@ export const items = [
         'name': '1570049336008-policy-test',
         'namespace': 'mcm',
         'resourceVersion': '6305204',
-        'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1570049336008-policy-test',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1570049336008-policy-test',
         'uid': '1c260624-e556-11e9-8895-005056a061f1'
       },
       'spec': {
@@ -1027,12 +1028,12 @@ export const items = [
       'name': '1570049336008-policy-test',
       'namespace': 'mcm',
       'resourceVersion': '6305204',
-      'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1570049336008-policy-test',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1570049336008-policy-test',
       'uid': '1c260624-e556-11e9-8895-005056a061f1',
       'annotations': {
-        'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-        'policy.mcm.ibm.com/controls': 'IAM',
-        'policy.mcm.ibm.com/standards': 'FISMA',
+        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+        'policy.open-cluster-management.io/controls': 'IAM',
+        'policy.open-cluster-management.io/standards': 'FISMA',
         'seed-generation': '1'
       },
       '__typename': 'Metadata'
@@ -1052,7 +1053,7 @@ export const items = [
           'name': 'placement-1570049336008-policy-test',
           'namespace': 'mcm',
           'creationTimestamp': '2019-10-02T20:49:21Z',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1570049336008-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-1570049336008-policy-test',
           '__typename': 'Metadata'
         },
         'clusterLabels': {
@@ -1086,7 +1087,7 @@ export const items = [
           'metadata': {
             'name': 'placement-1570049336008-policy-test',
             'namespace': 'mcm',
-            'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementpolicies/placement-1570049336008-policy-test',
+            'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-1570049336008-policy-test',
             'uid': '1c265de1-e556-11e9-a436-4a723cab1df3',
             'resourceVersion': '76788',
             'creationTimestamp': '2019-10-02T20:49:21Z',
@@ -1132,7 +1133,7 @@ export const items = [
           'name': 'binding-1570049336008-policy-test',
           'namespace': 'mcm',
           'creationTimestamp': '2019-10-02T20:49:21Z',
-          'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1570049336008-policy-test',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-1570049336008-policy-test',
           '__typename': 'Metadata'
         },
         'placementRef': {
@@ -1143,7 +1144,7 @@ export const items = [
         'subjects': [
           {
             'name': '1570049336008-policy-test',
-            'apiGroup': 'policy.mcm.ibm.com',
+            'apiGroup': 'policy.open-cluster-management.io',
             'kind': 'Policy',
             '__typename': 'Subject'
           }
@@ -1154,7 +1155,7 @@ export const items = [
           'metadata': {
             'name': 'binding-1570049336008-policy-test',
             'namespace': 'mcm',
-            'selfLink': '/apis/mcm.ibm.com/v1alpha1/namespaces/mcm/placementbindings/binding-1570049336008-policy-test',
+            'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-1570049336008-policy-test',
             'uid': '1c2670fc-e556-11e9-a436-4a723cab1df3',
             'resourceVersion': '76790',
             'creationTimestamp': '2019-10-02T20:49:21Z',
@@ -1174,7 +1175,7 @@ export const items = [
           'subjects': [
             {
               'kind': 'Policy',
-              'apiGroup': 'policy.mcm.ibm.com',
+              'apiGroup': 'policy.open-cluster-management.io',
               'name': '1570049336008-policy-test'
             }
           ],
@@ -1209,7 +1210,7 @@ export const items = [
         'status': 'Compliant',
         'complianceName': '1570049336008-policy-test',
         'complianceNamespace': 'mcm',
-        'complianceSelfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1570049336008-policy-test',
+        'complianceSelfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1570049336008-policy-test',
         'roleTemplates': [],
         'roleBindingTemplates': [],
         'objectTemplates': [
@@ -1248,13 +1249,13 @@ export const items = [
           ]
         },
         'raw': {
-          'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+          'apiVersion': 'policy.open-cluster-management.io/v1',
           'kind': 'Policy',
           'metadata': {
             'annotations': {
-              'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-              'policy.mcm.ibm.com/controls': 'IAM',
-              'policy.mcm.ibm.com/standards': 'FISMA',
+              'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+              'policy.open-cluster-management.io/controls': 'IAM',
+              'policy.open-cluster-management.io/standards': 'FISMA',
               'seed-generation': '1'
             },
             'creationTimestamp': '2019-10-02T20:49:21Z',
@@ -1266,7 +1267,7 @@ export const items = [
             'name': '1570049336008-policy-test',
             'namespace': 'mcm',
             'resourceVersion': '6305204',
-            'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1570049336008-policy-test',
+            'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1570049336008-policy-test',
             'uid': '1c260624-e556-11e9-8895-005056a061f1'
           },
           'spec': {
@@ -1325,13 +1326,13 @@ export const items = [
             }
           },
           'raw': {
-            'apiVersion': 'policy.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'policy.open-cluster-management.io/v1',
             'kind': 'Policy',
             'metadata': {
               'annotations': {
-                'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-                'policy.mcm.ibm.com/controls': 'IAM',
-                'policy.mcm.ibm.com/standards': 'FISMA',
+                'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+                'policy.open-cluster-management.io/controls': 'IAM',
+                'policy.open-cluster-management.io/standards': 'FISMA',
                 'seed-generation': '1'
               },
               'creationTimestamp': '2019-10-02T20:49:21Z',
@@ -1343,7 +1344,7 @@ export const items = [
               'name': '1570049336008-policy-test',
               'namespace': 'mcm',
               'resourceVersion': '6305204',
-              'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1570049336008-policy-test',
+              'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1570049336008-policy-test',
               'uid': '1c260624-e556-11e9-8895-005056a061f1'
             },
             'spec': {
@@ -1436,15 +1437,15 @@ export const items = [
             'raw': null,
             'metadata': {
               'annotations': {
-                'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-                'policy.mcm.ibm.com/controls': 'IAM',
-                'policy.mcm.ibm.com/standards': 'FISMA',
+                'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+                'policy.open-cluster-management.io/controls': 'IAM',
+                'policy.open-cluster-management.io/standards': 'FISMA',
                 'seed-generation': '1'
               },
               'creationTimestamp': '2019-10-02T20:49:21Z',
               'name': '1570049336008-policy-test',
               'resourceVersion': '6305204',
-              'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1570049336008-policy-test',
+              'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1570049336008-policy-test',
               'uid': '1c260624-e556-11e9-8895-005056a061f1',
               '__typename': 'Metadata'
             },
@@ -1467,15 +1468,15 @@ export const items = [
             'raw': null,
             'metadata': {
               'annotations': {
-                'policy.mcm.ibm.com/categories': 'SystemAndCommunicationsProtections',
-                'policy.mcm.ibm.com/controls': 'IAM',
-                'policy.mcm.ibm.com/standards': 'FISMA',
+                'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
+                'policy.open-cluster-management.io/controls': 'IAM',
+                'policy.open-cluster-management.io/standards': 'FISMA',
                 'seed-generation': '1'
               },
               'creationTimestamp': '2019-10-02T20:49:21Z',
               'name': '1570049336008-policy-test',
               'resourceVersion': '6305204',
-              'selfLink': '/apis/policy.mcm.ibm.com/v1alpha1/namespaces/mcm/policies/1570049336008-policy-test',
+              'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/1570049336008-policy-test',
               'uid': '1c260624-e556-11e9-8895-005056a061f1',
               '__typename': 'Metadata'
             },

@@ -9,22 +9,19 @@
  /* Copyright (c) 2020 Red Hat, Inc. */
 const fs = require('fs')
 const path = require('path')
+const DISABLE_CERT_TEST = process.env.DISABLE_CERT_TEST ? true : false
 
-const config = require('../../config')
-// const a11yScan = require('../utils/accessibilityScan')
 let page
 
 module.exports = {
-  '@disabled': false,
+  '@disabled': DISABLE_CERT_TEST,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
     loginPage.navigate()
     loginPage.authenticate()
 
-    const url = `${browser.launch_url}${config.get('contextPath')}/all`
     page = browser.page.ConfigPolicyController()
-    page.navigate(url)
   },
 
   'Cert policy: create issuer and certificate ': (browser) => {

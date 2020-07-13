@@ -45,3 +45,13 @@ travis-slack-reporter:
 	if [ -d "test-output/e2e/screenshots" ]; then \
 		node ./tests/utils/slack-reporter.js; \
 	fi
+
+build-test-image:
+	make component/build
+
+push-test-image:
+	make component/push
+
+publish-test-image:
+	rm -rf pipeline
+	make pipeline-manifest/update COMPONENT_NAME=$(COMPONENT_NAME)-tests PIPELINE_MANIFEST_COMPONENT_SHA256=${TRAVIS_COMMIT} PIPELINE_MANIFEST_COMPONENT_REPO=${TRAVIS_REPO_SLUG} PIPELINE_MANIFEST_BRANCH=${TRAVIS_BRANCH}

@@ -17,6 +17,7 @@ const log4js = require('log4js'),
 
 const cacheControlStr = 'Cache-Control'
 const acmAccessTokenCookieStr = 'acm-access-token-cookie'
+const xContentTypeOptions = 'X-Content-Type-Options'
 
 const log4jsConfig = process.env.LOG4JS_CONFIG ? JSON.parse(process.env.LOG4JS_CONFIG) : undefined
 log4js.configure(log4jsConfig || 'config/log4js.json')
@@ -47,10 +48,14 @@ require('./lib/shared/dust-helpers')
 const app = express()
 
 app.use(helmet({ // in production these headers are set by icp-management-ingress
-  frameguard: false,
-  noSniff: false,
-  xssFilter: false
+  hidePoweredBy: true,
+  frameguard: true,
+  noSniff: true,
+  xssFilter: true
 }))
+
+// Remove the X-Powered-By headers.
+app.disable('x-powered-by')
 
 
 const morgan = require('morgan')
@@ -89,12 +94,12 @@ function setReq(req) {
   return req
 }
 
-const proxy = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 app.use(`${appConfig.get('contextPath')}/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
   res = setRes(res)
   req = setReq(req)
   next()
-}, proxy({
+}, createProxyMiddleware({
   target: appConfig.get('grcUiApiUrl') || 'https://localhost:4000/grcuiapi',
   changeOrigin: true,
   pathRewrite: {
@@ -107,7 +112,7 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
   res = setRes(res)
   req = setReq(req)
   next()
-}, proxy({
+}, createProxyMiddleware({
   // TODO - use flag while ironing out the chart changes
   target: appConfig.get('searchApiUrl') || 'https://localhost:4010/searchapi',
   changeOrigin: true,
@@ -121,6 +126,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(appConfig.get('headerContextPath'), cookieParser(), (req, res, next) => {
     res.setHeader(cacheControlStr, 'no-store')
     res.setHeader('Pragma', 'no-cache')
+    res.setHeader(xContentTypeOptions, 'nosniff')
     const accessToken = req.cookies[acmAccessTokenCookieStr]
     if (req.headers.authorization) {
       req.headers.authorization = `Bearer ${accessToken}`
@@ -129,7 +135,7 @@ if (process.env.NODE_ENV === 'development') {
       req.headers.Authorization = `Bearer ${accessToken}`
     }
     next()
-  }, proxy({
+  }, createProxyMiddleware({
     target: appConfig.get('headerUrl'),
     changeOrigin: true,
     secure: false,
@@ -137,6 +143,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(`${appConfig.get('contextPath')}/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), (req, res, next) => {
     res.setHeader(cacheControlStr, 'no-store')
     res.setHeader('Pragma', 'no-cache')
+    res.setHeader(xContentTypeOptions, 'nosniff')
     const accessToken = req.cookies[acmAccessTokenCookieStr]
     if (req.headers.authorization) {
       req.headers.authorization = `Bearer ${accessToken}`
@@ -145,7 +152,7 @@ if (process.env.NODE_ENV === 'development') {
       req.headers.Authorization = `Bearer ${accessToken}`
     }
     next()
-  }, proxy({
+  }, createProxyMiddleware({
     target: appConfig.get('headerUrl'),
     changeOrigin: true,
     pathRewrite: {
@@ -186,7 +193,7 @@ app.use(`${CONTEXT_PATH}`, express.static(STATIC_PATH, {
     // set cahce control to 30min, expect for nls
     const maxAge = fp.startsWith(`${STATIC_PATH}/nls`) ? 0 : (60 * 60 * 12)
     res.setHeader(cacheControlStr, `max-age=${maxAge}`)
-    res.setHeader('X-Content-Type-Options', 'nosniff')
+    res.setHeader(xContentTypeOptions, 'nosniff')
   }
 }))
 
@@ -203,6 +210,8 @@ app.use(cookieParser())
 app.get('/favicon.ico', (req, res) => res.sendStatus(204))
 
 app.locals.config = require('./lib/shared/config')
+// this path only existing after npm build
+// eslint-disable-next-line import/no-unresolved
 app.locals.manifest = require('./public/webpack-assets.json')
 
 let server

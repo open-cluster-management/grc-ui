@@ -27,10 +27,6 @@
     }
   }
 
-  &.bottom-border {
-    box-shadow: 0 0.1875rem 0.5rem 0 rgba(0,0,0,0.05);
-  }
-
   &-links {
     position: fixed;
     right: 5%;
@@ -122,6 +118,20 @@
     background-color: $color__white;
     padding: 0.75rem 5% 0;
     // padding: 0.75rem 5% 0;
+    &-with-shadow{
+      @extend .simple-header;
+      box-shadow: 0 0.1875rem 0.5rem 0 rgba(0,0,0,0.05);
+
+      &.special-layout {
+        header {
+          margin-top: 1.5rem;
+        }
+  
+        .bx--detail-page-header-title {
+          margin: 1rem 0 -1rem 0;
+        }
+      }
+    }
     &.special-layout {
       header {
         margin-top: 1.5rem;

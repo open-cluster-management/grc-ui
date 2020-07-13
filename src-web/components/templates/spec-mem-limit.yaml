@@ -11,13 +11,13 @@ replacements: # if user select this choice, the template variable names and valu
   categories: |
     PR.IP Information Protection Processes and Procedures
   controls: |
-    PR.IP-1 Baseline configuration
+    PR.IP-1 Baseline Configuration
   policyTemplates: |
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: {{name}}-example
+          name: {{name}}-mem-limit-range
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: medium

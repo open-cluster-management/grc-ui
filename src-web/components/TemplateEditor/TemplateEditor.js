@@ -604,6 +604,7 @@ export default class TemplateEditor extends React.Component {
 
   closeEdit()  {
     localStorage.setItem(tempCookie, false)
+    document.getElementById('edit-yaml').checked = false
     this.setState({showEditor: false})
   }
 

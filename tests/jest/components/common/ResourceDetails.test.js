@@ -445,15 +445,15 @@ describe('ResourceDetails error', () => {
         },
         {
           'msgKey': 'table.header.controls',
-          'resourceKey': 'metadata.annotations["policy.mcm.ibm.com/controls"]'
+          'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/controls"]'
         },
         {
           'msgKey': 'table.header.standards',
-          'resourceKey': 'metadata.annotations["policy.mcm.ibm.com/standards"]'
+          'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/standards"]'
         },
         {
           'msgKey': 'table.header.categories',
-          'resourceKey': 'metadata.annotations["policy.mcm.ibm.com/categories"]'
+          'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/categories"]'
         }
       ],
       'tableActions': [
