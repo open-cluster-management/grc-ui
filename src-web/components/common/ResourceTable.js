@@ -369,7 +369,7 @@ export class ResourceTable extends React.Component {
             fliteredActions[fliteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
             row.disabled = true
           }
-          if (this.checkPolicyRemediation(item)) {
+          if (this.checkPolicyRemediation(item) === 'enforce') {
             fliteredActions[fliteredActions.indexOf('table.actions.enforce')] = 'table.actions.inform'
             row.remediation = 'enforce'
           }
