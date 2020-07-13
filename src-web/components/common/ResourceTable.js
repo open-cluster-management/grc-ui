@@ -319,6 +319,10 @@ export class ResourceTable extends React.Component {
     return lodash.get(data, 'raw.spec.disabled', false)
   }
 
+  checkPolicyRemediation(data) {
+    return lodash.get(data, 'raw.spec.remediationAction', 'inform')
+  }
+
   getRows() {
     const { history, items, itemIds, tableActions, resourceType, staticResourceData, match,
       getResourceAction, userRole, highLightRowName, autoAction, showSidePanel } = this.props
@@ -359,9 +363,16 @@ export class ResourceTable extends React.Component {
 
         //changes menu item based on whether policy is enabled or disabled
         row.disabled = false
-        if (fliteredActions !== null && fliteredActions.length === 4 && this.checkPolicyDisabled(item)) {
-          fliteredActions[fliteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
-          row.disabled = true
+        row.remediation = 'infrom'
+        if (fliteredActions !== null && fliteredActions.length === 5) {
+          if (this.checkPolicyDisabled(item)) {
+            fliteredActions[fliteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
+            row.disabled = true
+          }
+          if (this.checkPolicyRemediation(item)) {
+            fliteredActions[fliteredActions.indexOf('table.actions.enforce')] = 'table.actions.inform'
+            row.remediation = 'enforce'
+          }
         }
 
         if (fliteredActions && fliteredActions.length > 0 && this.showTableToobar()) {
