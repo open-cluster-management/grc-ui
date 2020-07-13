@@ -72,7 +72,7 @@ export default class TemplateEditor extends React.Component {
     const {creationStatus, creationMsg} = createControl
     const {updateMsg} = updateControl
     if (creationStatus === 'ERROR') {
-      if (creationMsg.endsWith('already exists') && (creationMsg != state.oldCreationMsg || state.canOpenModal)) {
+      if (creationMsg.endsWith('already exists') && (creationMsg !== state.oldCreationMsg || state.canOpenModal)) {
         return { tryUpdate: true, oldCreationMsg: creationMsg }
       }
       return {updateMsgKind: 'error', updateMessage: creationMsg}
@@ -170,6 +170,7 @@ export default class TemplateEditor extends React.Component {
     if (tryUpdate && canOpenModal) {
       return this.renderUpdatePrompt()
     }
+    return null
   }
 
   render() {

@@ -76,6 +76,7 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
   this.click('tbody>tr>td>a')
+  this.waitForElementNotPresent('@spinner')
   this.expect.element('.bx--detail-page-header-title').text.to.equal(name)
   this.expect.element('.section-title:nth-of-type(1)').text.to.equal('Policy details')
   this.expect.element('.new-structured-list > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(name)
