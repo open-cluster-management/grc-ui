@@ -27,6 +27,13 @@ import config from '../../lib/shared/config'
 
 export class CreationTab extends React.Component {
 
+  constructor (props) {
+    super(props)
+    this.state= {
+      updateRequested: false
+    }
+  }
+
   static propTypes = {
     cleanReqStatus: PropTypes.func,
     handleCreateResources: PropTypes.func,
@@ -35,7 +42,10 @@ export class CreationTab extends React.Component {
     mutateErrorMsg: PropTypes.string,
     mutateStatus: PropTypes.string,
     secondaryHeaderProps: PropTypes.object,
+    updatePBErrorMsg: PropTypes.string,
+    updatePRErrorMsg: PropTypes.string,
     updateSecondaryHeader: PropTypes.func,
+    updateStatus: PropTypes.string
   }
 
   componentWillMount() {
@@ -67,6 +77,7 @@ export class CreationTab extends React.Component {
 
   handleUpdate = (resourceJSON) => {
     if (resourceJSON) {
+      this.setState({ updateRequested: true })
       const {handleUpdateResource, handleFetchResource, handleCreateResources} = this.props
       let plc, pb, pr = {}
       for (let i = 0; i < resourceJSON.length; i++) {
@@ -98,9 +109,6 @@ export class CreationTab extends React.Component {
             } else {
               handleCreateResources(RESOURCE_TYPES.PLACEMENT_BINDING, pb)
             }
-          }).catch((err) => {
-            // eslint-disable-next-line no-console
-            console.error('FETCH PLACEMENT BINDING ERROR: ', err)
           })
           //create/update placementrule
           handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, { parent: existingPolicy.raw }).then((prres) => {
@@ -112,9 +120,6 @@ export class CreationTab extends React.Component {
             } else {
               handleCreateResources(RESOURCE_TYPES.PLACEMENT_RULE, pr)
             }
-          }).catch((err) => {
-            // eslint-disable-next-line no-console
-            console.error('FETCH PLACEMENT RULE ERROR: ', err)
           })
         })
       }
@@ -122,12 +127,24 @@ export class CreationTab extends React.Component {
   }
 
   handleCancel = () => {
+    this.props.cleanReqStatus && this.props.cleanReqStatus()
     window.history.back()
   }
 
+  formatUpdateError = (m1, m2) => {
+    if (m1 && m2) {
+      return m1 + '; ' + m2
+    } else if (m1) {
+      return m1
+    } else {
+      return m2
+    }
+  }
+
   render () {
-    const { mutateStatus, mutateErrorMsg } = this.props
-    if (mutateStatus && mutateStatus === 'DONE') {
+    const { mutateStatus, mutateErrorMsg, updatePBErrorMsg, updatePRErrorMsg, updateStatus } = this.props
+    const { updateRequested } = this.state
+    if ((mutateStatus && mutateStatus === 'DONE') && (!updateRequested || (updateStatus && updateStatus === 'DONE'))) {
       this.props.cleanReqStatus && this.props.cleanReqStatus()
       return <Redirect to={`${config.contextPath}/all`} />
     }
@@ -158,8 +175,8 @@ export class CreationTab extends React.Component {
             const updateControl = {
               updateResource: this.handleUpdate.bind(this),
               cancelUpdate: this.handleCancel.bind(this),
-              updateStatus: mutateStatus,
-              updateMsg: mutateErrorMsg,
+              updateStatus,
+              updateMsg: this.formatUpdateError(updatePBErrorMsg, updatePRErrorMsg)
             }
             return (
               <CreationView
@@ -178,14 +195,22 @@ export class CreationTab extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  let updateState = 'IN_PROGRESS'
+  if ((state['PlacementRulesList'].mutateStatus === 'ERROR') || (state['PlacementBindingsList'].mutateStatus === 'ERROR')) {
+    updateState = 'ERROR'
+  } else if ((state['PlacementRulesList'].mutateStatus === 'DONE') && (state['PlacementBindingsList'].mutateStatus === 'DONE')) {
+    updateState = 'DONE'
+  }
   return {
     mutateStatus: state['HCMPolicyList'].mutateStatus,
     mutateErrorMsg: state['HCMPolicyList'].mutateErrorMsg,
+    updatePRErrorMsg: state['PlacementRulesList'].mutateErrorMsg,
+    updatePBErrorMsg: state['PlacementBindingsList'].mutateErrorMsg,
+    updateStatus: updateState
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  // resourceType, namespace, name, body, selfLink, resourcePath
   return {
     updateSecondaryHeader: (title, tabs, breadcrumbItems, links, information) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links, '', information)),
     handleCreateResources: (type, json) => dispatch(createResources(type, json)),
@@ -198,7 +223,11 @@ const mapDispatchToProps = (dispatch) => {
         json,
         json.metadata.selfLink))
     },
-    cleanReqStatus: () => dispatch(clearRequestStatus(RESOURCE_TYPES.HCM_POLICIES))
+    cleanReqStatus: () => {
+      dispatch(clearRequestStatus(RESOURCE_TYPES.HCM_POLICIES))
+      dispatch(clearRequestStatus(RESOURCE_TYPES.PLACEMENT_RULE))
+      dispatch(clearRequestStatus(RESOURCE_TYPES.PLACEMENT_BINDING))
+    }
   }
 }
 

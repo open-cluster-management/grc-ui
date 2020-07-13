@@ -67,14 +67,17 @@ export default class TemplateEditor extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const {fetchControl, createControl={}} = props
+    const {fetchControl, createControl={}, updateControl={}} = props
     const {isLoaded} = fetchControl || {isLoaded:true}
     const {creationStatus, creationMsg} = createControl
+    const {updateMsg} = updateControl
     if (creationStatus === 'ERROR') {
       if (creationMsg.endsWith('already exists') && (creationMsg != state.oldCreationMsg || state.canOpenModal)) {
         return { tryUpdate: true, oldCreationMsg: creationMsg }
       }
       return {updateMsgKind: 'error', updateMessage: creationMsg}
+    } else if (updateMsg) {
+      return {updateMsgKind: 'error', updateMessage: updateMsg}
     } else if (isLoaded) {
       const { template, controlData: initialControlData } = props
       const { isCustomName } = state
