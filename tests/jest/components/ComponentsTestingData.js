@@ -786,9 +786,6 @@ export const reduxStorePolicyCluster = {
                       }
                     ]
                   }
-                },
-                status: {
-                  Validity: {}
                 }
               }
             ],
@@ -928,9 +925,6 @@ export const reduxStorePolicyCluster = {
                   metadata: {
                     name: 'dev-will-test'
                   }
-                },
-                status: {
-                  Validity: {}
                 }
               }
             ],
