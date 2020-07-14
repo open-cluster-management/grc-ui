@@ -51,9 +51,6 @@ module.exports = {
     page.checkViolations('policy-pod-' + time, false)
     page.checkViolations('policy-pod-inform-' + time, false)
 
-    page.tryEnforce('policy-pod-' + time)
-    page.tryInform('policy-pod-' + time)
-
     page.deletePolicy('policy-pod-inform-' + time)
     page.deletePolicy('policy-pod-' + time)
   },
