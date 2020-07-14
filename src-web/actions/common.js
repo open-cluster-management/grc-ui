@@ -115,6 +115,20 @@ export const fetchResources = (resourceType, vars) => {
   }
 }
 
+export const fetchSingleResource = (resourceType, args) => {
+  return (dispatch) => {
+    dispatch(requestResource(resourceType))
+    return GrcApolloClient.getResource(resourceType, args)
+      .then(response => {
+        if (response.errors) {
+          return dispatch(receiveResourceError(response.errors[0], resourceType))
+        }
+        return dispatch(receiveResourceSuccess({items: lodash.cloneDeep(response.data)}, resourceType))
+      })
+      .catch(err => dispatch(receiveResourceError(err, resourceType)))
+  }
+}
+
 export const fetchResource = (resourceType, namespace, name) => {
   return (dispatch) => {
     dispatch(requestResource(resourceType))
@@ -144,6 +158,20 @@ export const updateResourceLabels = (resourceType, namespace, name, labels, self
       .catch(err => dispatch(receivePutError(err, resourceType)))
   }
 }
+
+export const editResourceFromCreate = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
+  dispatch(mutateResource(resourceType))
+  return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
+    .then(response => {
+      if (response.errors) {
+        return dispatch(mutateResourceFailure(resourceType, response.errors[0]))
+      } else {
+        dispatch(updateModal({open: false, type: 'resource-edit'}))
+      }
+      dispatch(fetchResources(resourceType))
+      return dispatch(mutateResourceSuccess(resourceType))
+    })
+})
 
 export const editResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(putResource(resourceType))
