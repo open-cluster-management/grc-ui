@@ -19,38 +19,38 @@ module.exports = {
   'Remediation policy: test policy enforce + inform': (browser) => {
     const time = browser.globals.time
 
-    const inform = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_mustnothave_inform.yaml'))
+    const inform = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_remediation_inform.yaml'))
     var yaml = inform.toString()
     page.createPolicy(browser, yaml, time)
     browser.pause(30000)
-    //policy-pod-inform isn't violated
-    page.checkViolations('policy-pod-inform-' + time, false)
+    //policy-pod-remediation-inform isn't violated
+    page.checkViolations('policy-pod-remediation-inform-' + time, false)
 
-    const createPod = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_create.yaml'))
+    const createPod = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_remediation_enforce.yaml'))
     yaml = createPod.toString()
     page.createPolicy(browser, yaml, time)
     browser.pause(30000)
-    page.checkViolations('policy-pod-create-' + time, false)
-    // after creating policy-pod-create, now policy-pod-inform is violated
-    page.checkViolations('policy-pod-inform-' + time, true)
+    page.checkViolations('policy-pod-remediation-enforce-' + time, false)
+    // after creating policy-pod-remediation-enforce, now policy-pod-remediation-inform is violated
+    page.checkViolations('policy-pod-remediation-inform-' + time, true)
 
-    page.tryEnforce('policy-pod-inform-' + time)
+    page.tryEnforce('policy-pod-remediation-inform-' + time)
     browser.pause(30000)
-    page.checkEnforce('policy-pod-inform-' + time)
+    page.checkEnforce('policy-pod-remediation-inform-' + time)
     browser.pause(30000)
-    page.checkViolations('policy-pod-create-' + time, false)
-    //policy-pod-inform isn't violated after enforcing
-    page.checkViolations('policy-pod-inform-' + time, false)
+    page.checkViolations('policy-pod-remediation-enforce-' + time, false)
+    //policy-pod-remediation-inform isn't violated after enforcing
+    page.checkViolations('policy-pod-remediation-inform-' + time, false)
 
-    page.tryInform('policy-pod-inform-' + time)
+    page.tryInform('policy-pod-remediation-inform-' + time)
     browser.pause(30000)
-    page.checkInform('policy-pod-inform-' + time)
+    page.checkInform('policy-pod-remediation-inform-' + time)
     browser.pause(30000)
-    page.checkViolations('policy-pod-create-' + time, false)
-    //policy-pod-inform is violated after informing
-    page.checkViolations('policy-pod-inform-' + time, true)
+    page.checkViolations('policy-pod-remediation-enforce-' + time, false)
+    //policy-pod-remediation-inform is violated after informing
+    page.checkViolations('policy-pod-remediation-inform-' + time, true)
 
-    page.deletePolicy('policy-pod-create-' + time)
-    page.deletePolicy('policy-pod-inform-' + time)
+    page.deletePolicy('policy-pod-remediation-enforce-' + time)
+    page.deletePolicy('policy-pod-remediation-inform-' + time)
   },
 }
