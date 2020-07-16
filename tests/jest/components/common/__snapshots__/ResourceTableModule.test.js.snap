@@ -187,7 +187,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   },
                 ],
                 "subHeaders": Array [
-                  "table.header.name",
+                  "string.name",
                   "table.header.message",
                   "table.header.reason",
                 ],
@@ -205,15 +205,15 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                     "resourceKey": "clusterCompliant",
                   },
                   Object {
-                    "msgKey": "table.header.standards",
+                    "msgKey": "string.standards",
                     "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                   },
                   Object {
-                    "msgKey": "table.header.controls",
+                    "msgKey": "string.controls",
                     "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                   },
                   Object {
-                    "msgKey": "table.header.categories",
+                    "msgKey": "string.categories",
                     "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                   },
                 ],
@@ -240,15 +240,15 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "resourceKey": "clusterCompliant",
                 },
                 Object {
-                  "msgKey": "table.header.standards",
+                  "msgKey": "string.standards",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 },
                 Object {
-                  "msgKey": "table.header.controls",
+                  "msgKey": "string.controls",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 },
                 Object {
-                  "msgKey": "table.header.categories",
+                  "msgKey": "string.categories",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 },
               ],
@@ -318,7 +318,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                             },
                           ],
                           "subHeaders": Array [
-                            "table.header.name",
+                            "string.name",
                             "table.header.message",
                             "table.header.reason",
                           ],
@@ -336,15 +336,15 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                               "resourceKey": "clusterCompliant",
                             },
                             Object {
-                              "msgKey": "table.header.standards",
+                              "msgKey": "string.standards",
                               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                             },
                             Object {
-                              "msgKey": "table.header.controls",
+                              "msgKey": "string.controls",
                               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                             },
                             Object {
-                              "msgKey": "table.header.categories",
+                              "msgKey": "string.categories",
                               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                             },
                           ],
@@ -429,7 +429,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                 },
                               ],
                               "subHeaders": Array [
-                                "table.header.name",
+                                "string.name",
                                 "table.header.message",
                                 "table.header.reason",
                               ],
@@ -447,15 +447,15 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                   "resourceKey": "clusterCompliant",
                                 },
                                 Object {
-                                  "msgKey": "table.header.standards",
+                                  "msgKey": "string.standards",
                                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                                 },
                                 Object {
-                                  "msgKey": "table.header.controls",
+                                  "msgKey": "string.controls",
                                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                                 },
                                 Object {
-                                  "msgKey": "table.header.categories",
+                                  "msgKey": "string.categories",
                                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                                 },
                               ],
@@ -538,7 +538,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                   },
                                 ],
                                 "subHeaders": Array [
-                                  "table.header.name",
+                                  "string.name",
                                   "table.header.message",
                                   "table.header.reason",
                                 ],
@@ -556,15 +556,15 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                     "resourceKey": "clusterCompliant",
                                   },
                                   Object {
-                                    "msgKey": "table.header.standards",
+                                    "msgKey": "string.standards",
                                     "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                                   },
                                   Object {
-                                    "msgKey": "table.header.controls",
+                                    "msgKey": "string.controls",
                                     "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                                   },
                                   Object {
-                                    "msgKey": "table.header.categories",
+                                    "msgKey": "string.categories",
                                     "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                                   },
                                 ],

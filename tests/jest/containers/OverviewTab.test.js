@@ -39,7 +39,7 @@ describe('OverviewTab container test', () => {
         },
         {
           'id': 'policy-overview-all',
-          'label': 'routes.policies',
+          'label': 'string.policies',
           'url': '/multicloud/policies/all'
         }
       ]

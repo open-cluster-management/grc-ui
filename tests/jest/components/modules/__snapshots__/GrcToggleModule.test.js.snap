@@ -170,13 +170,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -559,13 +559,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -601,7 +601,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -621,7 +621,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -634,17 +634,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -662,13 +662,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ]
@@ -1061,13 +1061,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -1101,7 +1101,7 @@ ShallowWrapper {
               },
             ],
             "subHeaders": Array [
-              "table.header.name",
+              "string.name",
               "table.header.message",
               "table.header.timestamp",
             ],
@@ -1121,7 +1121,7 @@ ShallowWrapper {
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.namespace",
+              "msgKey": "string.namespace",
               "resourceKey": "namespace",
             },
             Object {
@@ -1134,17 +1134,17 @@ ShallowWrapper {
               "resourceKey": "clusterCompliant",
             },
             Object {
-              "msgKey": "table.header.standards",
+              "msgKey": "string.standards",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.controls",
+              "msgKey": "string.controls",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.categories",
+              "msgKey": "string.categories",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
               "transformFunction": [Function],
             },
@@ -1160,13 +1160,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -1603,13 +1603,13 @@ ShallowWrapper {
                 Object {
                   "id": "grc-all",
                   "index": 1,
-                  "label": "tabs.grc.all",
+                  "label": "string.policies",
                   "url": "/multicloud/policies/all",
                 },
                 Object {
                   "id": "grc-findings",
                   "index": 2,
-                  "label": "tabs.grc.findings",
+                  "label": "string.security.findings",
                   "url": "/multicloud/policies/findings",
                 },
               ],
@@ -1645,7 +1645,7 @@ ShallowWrapper {
                   },
                 ],
                 "subHeaders": Array [
-                  "table.header.name",
+                  "string.name",
                   "table.header.message",
                   "table.header.timestamp",
                 ],
@@ -1665,7 +1665,7 @@ ShallowWrapper {
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.namespace",
+                  "msgKey": "string.namespace",
                   "resourceKey": "namespace",
                 },
                 Object {
@@ -1678,17 +1678,17 @@ ShallowWrapper {
                   "resourceKey": "clusterCompliant",
                 },
                 Object {
-                  "msgKey": "table.header.standards",
+                  "msgKey": "string.standards",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.controls",
+                  "msgKey": "string.controls",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.categories",
+                  "msgKey": "string.categories",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                   "transformFunction": [Function],
                 },
@@ -1706,13 +1706,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ]
@@ -2105,13 +2105,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -2145,7 +2145,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -2165,7 +2165,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -2178,17 +2178,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -2204,13 +2204,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -2473,13 +2473,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -2862,13 +2862,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -2904,7 +2904,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -2924,7 +2924,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -2937,17 +2937,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -2965,13 +2965,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ]
@@ -3333,13 +3333,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -3373,7 +3373,7 @@ ShallowWrapper {
               },
             ],
             "subHeaders": Array [
-              "table.header.name",
+              "string.name",
               "table.header.message",
               "table.header.timestamp",
             ],
@@ -3393,7 +3393,7 @@ ShallowWrapper {
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.namespace",
+              "msgKey": "string.namespace",
               "resourceKey": "namespace",
             },
             Object {
@@ -3406,17 +3406,17 @@ ShallowWrapper {
               "resourceKey": "clusterCompliant",
             },
             Object {
-              "msgKey": "table.header.standards",
+              "msgKey": "string.standards",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.controls",
+              "msgKey": "string.controls",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.categories",
+              "msgKey": "string.categories",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
               "transformFunction": [Function],
             },
@@ -3432,13 +3432,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -3816,13 +3816,13 @@ ShallowWrapper {
                 Object {
                   "id": "grc-all",
                   "index": 1,
-                  "label": "tabs.grc.all",
+                  "label": "string.policies",
                   "url": "/multicloud/policies/all",
                 },
                 Object {
                   "id": "grc-findings",
                   "index": 2,
-                  "label": "tabs.grc.findings",
+                  "label": "string.security.findings",
                   "url": "/multicloud/policies/findings",
                 },
               ],
@@ -3858,7 +3858,7 @@ ShallowWrapper {
                   },
                 ],
                 "subHeaders": Array [
-                  "table.header.name",
+                  "string.name",
                   "table.header.message",
                   "table.header.timestamp",
                 ],
@@ -3878,7 +3878,7 @@ ShallowWrapper {
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.namespace",
+                  "msgKey": "string.namespace",
                   "resourceKey": "namespace",
                 },
                 Object {
@@ -3891,17 +3891,17 @@ ShallowWrapper {
                   "resourceKey": "clusterCompliant",
                 },
                 Object {
-                  "msgKey": "table.header.standards",
+                  "msgKey": "string.standards",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.controls",
+                  "msgKey": "string.controls",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.categories",
+                  "msgKey": "string.categories",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                   "transformFunction": [Function],
                 },
@@ -3919,13 +3919,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ]
@@ -4287,13 +4287,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -4327,7 +4327,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -4347,7 +4347,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -4360,17 +4360,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -4386,13 +4386,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -5007,13 +5007,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -6244,13 +6244,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -6286,7 +6286,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -6306,7 +6306,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -6319,17 +6319,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -6347,13 +6347,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ]
@@ -7594,13 +7594,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -7634,7 +7634,7 @@ ShallowWrapper {
               },
             ],
             "subHeaders": Array [
-              "table.header.name",
+              "string.name",
               "table.header.message",
               "table.header.timestamp",
             ],
@@ -7654,7 +7654,7 @@ ShallowWrapper {
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.namespace",
+              "msgKey": "string.namespace",
               "resourceKey": "namespace",
             },
             Object {
@@ -7667,17 +7667,17 @@ ShallowWrapper {
               "resourceKey": "clusterCompliant",
             },
             Object {
-              "msgKey": "table.header.standards",
+              "msgKey": "string.standards",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.controls",
+              "msgKey": "string.controls",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.categories",
+              "msgKey": "string.categories",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
               "transformFunction": [Function],
             },
@@ -7693,13 +7693,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -8984,13 +8984,13 @@ ShallowWrapper {
                 Object {
                   "id": "grc-all",
                   "index": 1,
-                  "label": "tabs.grc.all",
+                  "label": "string.policies",
                   "url": "/multicloud/policies/all",
                 },
                 Object {
                   "id": "grc-findings",
                   "index": 2,
-                  "label": "tabs.grc.findings",
+                  "label": "string.security.findings",
                   "url": "/multicloud/policies/findings",
                 },
               ],
@@ -9026,7 +9026,7 @@ ShallowWrapper {
                   },
                 ],
                 "subHeaders": Array [
-                  "table.header.name",
+                  "string.name",
                   "table.header.message",
                   "table.header.timestamp",
                 ],
@@ -9046,7 +9046,7 @@ ShallowWrapper {
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.namespace",
+                  "msgKey": "string.namespace",
                   "resourceKey": "namespace",
                 },
                 Object {
@@ -9059,17 +9059,17 @@ ShallowWrapper {
                   "resourceKey": "clusterCompliant",
                 },
                 Object {
-                  "msgKey": "table.header.standards",
+                  "msgKey": "string.standards",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.controls",
+                  "msgKey": "string.controls",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.categories",
+                  "msgKey": "string.categories",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                   "transformFunction": [Function],
                 },
@@ -9087,13 +9087,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ]
@@ -10334,13 +10334,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -10374,7 +10374,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -10394,7 +10394,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -10407,17 +10407,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -10433,13 +10433,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -11113,13 +11113,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -12350,13 +12350,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -12392,7 +12392,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -12412,7 +12412,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -12425,17 +12425,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -12453,13 +12453,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ]
@@ -13669,13 +13669,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -13709,7 +13709,7 @@ ShallowWrapper {
               },
             ],
             "subHeaders": Array [
-              "table.header.name",
+              "string.name",
               "table.header.message",
               "table.header.timestamp",
             ],
@@ -13729,7 +13729,7 @@ ShallowWrapper {
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.namespace",
+              "msgKey": "string.namespace",
               "resourceKey": "namespace",
             },
             Object {
@@ -13742,17 +13742,17 @@ ShallowWrapper {
               "resourceKey": "clusterCompliant",
             },
             Object {
-              "msgKey": "table.header.standards",
+              "msgKey": "string.standards",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.controls",
+              "msgKey": "string.controls",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.categories",
+              "msgKey": "string.categories",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
               "transformFunction": [Function],
             },
@@ -13768,13 +13768,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -15000,13 +15000,13 @@ ShallowWrapper {
                 Object {
                   "id": "grc-all",
                   "index": 1,
-                  "label": "tabs.grc.all",
+                  "label": "string.policies",
                   "url": "/multicloud/policies/all",
                 },
                 Object {
                   "id": "grc-findings",
                   "index": 2,
-                  "label": "tabs.grc.findings",
+                  "label": "string.security.findings",
                   "url": "/multicloud/policies/findings",
                 },
               ],
@@ -15042,7 +15042,7 @@ ShallowWrapper {
                   },
                 ],
                 "subHeaders": Array [
-                  "table.header.name",
+                  "string.name",
                   "table.header.message",
                   "table.header.timestamp",
                 ],
@@ -15062,7 +15062,7 @@ ShallowWrapper {
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.namespace",
+                  "msgKey": "string.namespace",
                   "resourceKey": "namespace",
                 },
                 Object {
@@ -15075,17 +15075,17 @@ ShallowWrapper {
                   "resourceKey": "clusterCompliant",
                 },
                 Object {
-                  "msgKey": "table.header.standards",
+                  "msgKey": "string.standards",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.controls",
+                  "msgKey": "string.controls",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.categories",
+                  "msgKey": "string.categories",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                   "transformFunction": [Function],
                 },
@@ -15103,13 +15103,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ]
@@ -16319,13 +16319,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -16359,7 +16359,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -16379,7 +16379,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -16392,17 +16392,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -16418,13 +16418,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -17039,13 +17039,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -18276,13 +18276,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -18318,7 +18318,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -18338,7 +18338,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -18351,17 +18351,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -18379,13 +18379,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ]
@@ -19626,13 +19626,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -19666,7 +19666,7 @@ ShallowWrapper {
               },
             ],
             "subHeaders": Array [
-              "table.header.name",
+              "string.name",
               "table.header.message",
               "table.header.timestamp",
             ],
@@ -19686,7 +19686,7 @@ ShallowWrapper {
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.namespace",
+              "msgKey": "string.namespace",
               "resourceKey": "namespace",
             },
             Object {
@@ -19699,17 +19699,17 @@ ShallowWrapper {
               "resourceKey": "clusterCompliant",
             },
             Object {
-              "msgKey": "table.header.standards",
+              "msgKey": "string.standards",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.controls",
+              "msgKey": "string.controls",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.categories",
+              "msgKey": "string.categories",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
               "transformFunction": [Function],
             },
@@ -19725,13 +19725,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -21016,13 +21016,13 @@ ShallowWrapper {
                 Object {
                   "id": "grc-all",
                   "index": 1,
-                  "label": "tabs.grc.all",
+                  "label": "string.policies",
                   "url": "/multicloud/policies/all",
                 },
                 Object {
                   "id": "grc-findings",
                   "index": 2,
-                  "label": "tabs.grc.findings",
+                  "label": "string.security.findings",
                   "url": "/multicloud/policies/findings",
                 },
               ],
@@ -21058,7 +21058,7 @@ ShallowWrapper {
                   },
                 ],
                 "subHeaders": Array [
-                  "table.header.name",
+                  "string.name",
                   "table.header.message",
                   "table.header.timestamp",
                 ],
@@ -21078,7 +21078,7 @@ ShallowWrapper {
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.namespace",
+                  "msgKey": "string.namespace",
                   "resourceKey": "namespace",
                 },
                 Object {
@@ -21091,17 +21091,17 @@ ShallowWrapper {
                   "resourceKey": "clusterCompliant",
                 },
                 Object {
-                  "msgKey": "table.header.standards",
+                  "msgKey": "string.standards",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.controls",
+                  "msgKey": "string.controls",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.categories",
+                  "msgKey": "string.categories",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                   "transformFunction": [Function],
                 },
@@ -21119,13 +21119,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ]
@@ -22366,13 +22366,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -22406,7 +22406,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -22426,7 +22426,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -22439,17 +22439,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -22465,13 +22465,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -23145,13 +23145,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -24382,13 +24382,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -24424,7 +24424,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -24444,7 +24444,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -24457,17 +24457,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -24485,13 +24485,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ]
@@ -25701,13 +25701,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],
@@ -25741,7 +25741,7 @@ ShallowWrapper {
               },
             ],
             "subHeaders": Array [
-              "table.header.name",
+              "string.name",
               "table.header.message",
               "table.header.timestamp",
             ],
@@ -25761,7 +25761,7 @@ ShallowWrapper {
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.namespace",
+              "msgKey": "string.namespace",
               "resourceKey": "namespace",
             },
             Object {
@@ -25774,17 +25774,17 @@ ShallowWrapper {
               "resourceKey": "clusterCompliant",
             },
             Object {
-              "msgKey": "table.header.standards",
+              "msgKey": "string.standards",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.controls",
+              "msgKey": "string.controls",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
               "transformFunction": [Function],
             },
             Object {
-              "msgKey": "table.header.categories",
+              "msgKey": "string.categories",
               "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
               "transformFunction": [Function],
             },
@@ -25800,13 +25800,13 @@ ShallowWrapper {
           Object {
             "id": "grc-all",
             "index": 1,
-            "label": "tabs.grc.all",
+            "label": "string.policies",
             "url": "/multicloud/policies/all",
           },
           Object {
             "id": "grc-findings",
             "index": 2,
-            "label": "tabs.grc.findings",
+            "label": "string.security.findings",
             "url": "/multicloud/policies/findings",
           },
         ],
@@ -27032,13 +27032,13 @@ ShallowWrapper {
                 Object {
                   "id": "grc-all",
                   "index": 1,
-                  "label": "tabs.grc.all",
+                  "label": "string.policies",
                   "url": "/multicloud/policies/all",
                 },
                 Object {
                   "id": "grc-findings",
                   "index": 2,
-                  "label": "tabs.grc.findings",
+                  "label": "string.security.findings",
                   "url": "/multicloud/policies/findings",
                 },
               ],
@@ -27074,7 +27074,7 @@ ShallowWrapper {
                   },
                 ],
                 "subHeaders": Array [
-                  "table.header.name",
+                  "string.name",
                   "table.header.message",
                   "table.header.timestamp",
                 ],
@@ -27094,7 +27094,7 @@ ShallowWrapper {
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.namespace",
+                  "msgKey": "string.namespace",
                   "resourceKey": "namespace",
                 },
                 Object {
@@ -27107,17 +27107,17 @@ ShallowWrapper {
                   "resourceKey": "clusterCompliant",
                 },
                 Object {
-                  "msgKey": "table.header.standards",
+                  "msgKey": "string.standards",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.controls",
+                  "msgKey": "string.controls",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                   "transformFunction": [Function],
                 },
                 Object {
-                  "msgKey": "table.header.categories",
+                  "msgKey": "string.categories",
                   "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                   "transformFunction": [Function],
                 },
@@ -27135,13 +27135,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ]
@@ -28351,13 +28351,13 @@ ShallowWrapper {
               Object {
                 "id": "grc-all",
                 "index": 1,
-                "label": "tabs.grc.all",
+                "label": "string.policies",
                 "url": "/multicloud/policies/all",
               },
               Object {
                 "id": "grc-findings",
                 "index": 2,
-                "label": "tabs.grc.findings",
+                "label": "string.security.findings",
                 "url": "/multicloud/policies/findings",
               },
             ],
@@ -28391,7 +28391,7 @@ ShallowWrapper {
                 },
               ],
               "subHeaders": Array [
-                "table.header.name",
+                "string.name",
                 "table.header.message",
                 "table.header.timestamp",
               ],
@@ -28411,7 +28411,7 @@ ShallowWrapper {
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.namespace",
+                "msgKey": "string.namespace",
                 "resourceKey": "namespace",
               },
               Object {
@@ -28424,17 +28424,17 @@ ShallowWrapper {
                 "resourceKey": "clusterCompliant",
               },
               Object {
-                "msgKey": "table.header.standards",
+                "msgKey": "string.standards",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.controls",
+                "msgKey": "string.controls",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
                 "transformFunction": [Function],
               },
               Object {
-                "msgKey": "table.header.categories",
+                "msgKey": "string.categories",
                 "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
                 "transformFunction": [Function],
               },
@@ -28450,13 +28450,13 @@ ShallowWrapper {
             Object {
               "id": "grc-all",
               "index": 1,
-              "label": "tabs.grc.all",
+              "label": "string.policies",
               "url": "/multicloud/policies/all",
             },
             Object {
               "id": "grc-findings",
               "index": 2,
-              "label": "tabs.grc.findings",
+              "label": "string.security.findings",
               "url": "/multicloud/policies/findings",
             },
           ],

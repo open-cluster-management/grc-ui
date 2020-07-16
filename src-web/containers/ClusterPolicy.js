@@ -82,7 +82,7 @@ class ClusterPolicy extends React.Component {
     // Push only one breadcrumb to overview page
     if (resourceType.name === RESOURCE_TYPES.HCM_COMPLIANCES.name) {
       breadcrumbItems.push({
-        label: msgs.get('tabs.hcmcompliance', locale),
+        label: msgs.get('string.policies', locale),
         noLocale: true,
         url: `${urlSegments.slice(0, 3).join('/')}/all`
       },

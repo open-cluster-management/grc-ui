@@ -51,7 +51,7 @@ class FilterModal extends React.PureComponent {
     return (
       <NestedTable
         availableItems={this.convertFilterArray(availableFilters)}
-        header={ msgs.get('modal.formfield.name', this.context.locale) }
+        header={ msgs.get('string.name', this.context.locale) }
         selectedItems={selectedFilters}
         selectionChanged={selectionChanged}
       />

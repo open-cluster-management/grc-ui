@@ -27,8 +27,8 @@ resources(() => {
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis)
 
 const EMPTY_CHOICE = 'EMPTY_CHOICE'
-const overviewTopInfoClustersStr = 'overview.top.informations.clusters'
-const overviewTopInfoAppStr = 'overview.top.informations.applications'
+const overviewTopInfoClustersStr = 'string.clusters'
+const overviewTopInfoAppStr = 'string.applications'
 
 const TopInformationSelections = Object.freeze({
   clusters: 'clusters',
@@ -207,7 +207,7 @@ export default class TopInformationModule extends React.Component {
             case TopInformationSelections.policies:
               name = _.get(item, 'metadata.name', 'unknown')
               description = key
-              choice = msgs.get('overview.top.informations.policies').toLowerCase()
+              choice = msgs.get('string.policies').toLowerCase()
               nameSpace = _.get(item, 'metadata.namespace', 'unknown')
               itemName= _.get(item, 'raw.spec.runtime-rules[0].metadata.name', name)
               break
@@ -298,7 +298,7 @@ export default class TopInformationModule extends React.Component {
         default:
           name = _.get(item, 'shortDescription', 'unknown')
           description = _.get(item, 'context.clusterName', 'unknown')
-          choice = msgs.get('overview.top.informations.findings').toLowerCase()
+          choice = msgs.get('string.security.findings').toLowerCase()
           nameSpace = _.get(item, 'context.namespaceName', 'unknown')
           break
         case TopInformationSelections.clusters:
@@ -348,7 +348,7 @@ export default class TopInformationModule extends React.Component {
       this.topViolationChoices = [
         {
           value: TopInformationSelections.policies,
-          label: msgs.get('overview.top.informations.policies', locale),
+          label: msgs.get('string.policies', locale),
         },
         {
           value: TopInformationSelections.clusters,
@@ -368,7 +368,7 @@ export default class TopInformationModule extends React.Component {
       this.topFindingChoices = [
         {
           value: TopInformationSelections.findings,
-          label: msgs.get('overview.top.informations.findings', locale),
+          label: msgs.get('string.security.findings', locale),
         },
         {
           value: TopInformationSelections.clusters,

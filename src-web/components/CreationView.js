@@ -32,9 +32,10 @@ const Portals = Object.freeze({
 //  available: available choices
 //  reverse: the yaml object to control path--if user edits yaml, what control should be updated
 //  mustExist: when validating the template for creation, this value must exist
+const commonPlaceHolder = 'string.begin.typing.palceholder'
 const controlData = [
   {
-    name: 'creation.view.policy.name',
+    name: 'string.name',
     id: 'name',
     type: 'text',
     active: 'policy-grc',
@@ -42,7 +43,7 @@ const controlData = [
     mustExist: true,
   },
   {
-    name: 'creation.view.policy.namespace',
+    name: 'string.namespace',
     id: 'namespace',
     type: 'singleselect',
     description: 'policy.create.namespace.tooltip',
@@ -53,7 +54,7 @@ const controlData = [
   {
     name: 'creation.view.policy.specs',
     description: 'policy.create.specs.tooltip',
-    placeholder: 'creation.view.policy.select.specs',
+    placeholder: commonPlaceHolder,
     id: 'specs',
     type: 'multiselect',
     available: [],
@@ -65,7 +66,7 @@ const controlData = [
   {
     name: 'creation.view.policy.binding',
     description: 'policy.create.selectors.tooltip',
-    placeholder: 'creation.view.policy.select.selectors',
+    placeholder: commonPlaceHolder,
     id: 'clusters',
     type: 'multiselect',
     available: [],
@@ -73,9 +74,9 @@ const controlData = [
     mustExist: false,
   },
   {
-    name: 'creation.view.policy.standards',
+    name: 'string.standards',
     description: 'policy.create.standards.tooltip',
-    placeholder: 'creation.view.policy.select.standards',
+    placeholder: commonPlaceHolder,
     id: 'standards',
     type: 'multiselect',
     available: ['NIST', 'NIST-CSF', 'PCI', 'FISMA', 'HIPAA'],
@@ -83,9 +84,9 @@ const controlData = [
     cacheUserValueKey: 'create.policy.standards',
   },
   {
-    name: 'creation.view.policy.categories',
+    name: 'string.categories',
     description: 'policy.create.categories.tooltip',
-    placeholder: 'creation.view.policy.select.categories',
+    placeholder: commonPlaceHolder,
     id: 'categories',
     type: 'multiselect',
     available: ['PR.PT Protective Technology','PR.DS Data Security', 'PR.AC Identity Management Authentication and Access Control', 'PR.IP Information Protection Processes and Procedures', 'DE.CM Security Continuous Monitoring'],
@@ -93,9 +94,9 @@ const controlData = [
     cacheUserValueKey: 'create.policy.categories',
   },
   {
-    name: 'creation.view.policy.controls',
+    name: 'string.controls',
     description: 'policy.create.controls.tooltip',
-    placeholder: 'creation.view.policy.select.controls',
+    placeholder: commonPlaceHolder,
     id: 'controls',
     type: 'multiselect',
     available: ['PR.PT-1 Audit Logging','PR.PT-3 Least Functionality','PR.DS-2 Data-in-transit','PR.DS-2 Data-at-rest','PR.AC-4 Access Control', 'PR.AC-5 Network Integrity', 'PR.IP-1 Baseline Configuration', 'DE.CM-7 Monitoring for unauthorized activity','DE.CM-8 Vulnerability scans'],
@@ -113,7 +114,7 @@ const controlData = [
     mustExist: true,
   },
   {
-    name: 'creation.view.policy.disabled',
+    name: 'string.disable.policy',
     description: 'policy.create.disabled.tooltip',
     id: 'disabled',
     type: 'checkbox',

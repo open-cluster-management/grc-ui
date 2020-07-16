@@ -41,17 +41,17 @@ export default {
       resourceKey: 'context.clusterName',
     },
     {
-      msgKey: 'table.header.standards',
+      msgKey: 'string.standards',
       resourceKey: 'securityClassification.securityStandards',
       transformFunction: getFindingStandards
     },
     {
-      msgKey: 'table.header.controls',
+      msgKey: 'string.controls',
       resourceKey: 'securityClassification.securityControl',
       transformFunction: getFindingControl
     },
     {
-      msgKey: 'table.header.categories',
+      msgKey: 'string.categories',
       resourceKey: 'securityClassification.securityCategories',
       transformFunction: getFindingCategories
     },

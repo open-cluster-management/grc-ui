@@ -162,7 +162,7 @@ const SecurityFindingsTable = ({singleFinding, type, inapplicable, locale}) => {
     },
     {
       id: 'S_F_S_P_namespaceName',
-      key: msgs.get('table.header.namespace', locale),
+      key: msgs.get('string.namespace', locale),
       value: _.get(singleFinding, 'context.namespaceName', inapplicable),
     },
     {
@@ -247,7 +247,7 @@ const ClusterFindingsTable = ({items, type, inapplicable, locale}) => {
           },
           {
             id: id+'namespaceName',
-            cells: [ msgs.get('table.header.namespace', locale),  _.get(finding, 'context.namespaceName', inapplicable) ]
+            cells: [ msgs.get('string.namespace', locale),  _.get(finding, 'context.namespaceName', inapplicable) ]
           },
           {
             id: id+'resourceId',

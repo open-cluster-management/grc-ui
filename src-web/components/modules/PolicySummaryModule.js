@@ -69,10 +69,10 @@ export default class PolicySummaryModule extends React.Component {
     policies.map(policy=>policySet.add(_.get(policy, 'metadata.name', 'unknown')))
     return {
       summary: [
-        {count: standardsSet.size, summaryType: msgs.get('overview.policy.summary.standards', locale)},
-        {count: categorySet.size, summaryType: msgs.get('overview.policy.summary.categories', locale)},
-        {count: policySet.size, summaryType: msgs.get('overview.policy.summary.policies', locale)},
-        {count: controlSet.size, summaryType: msgs.get('overview.policy.summary.controls', locale)},
+        {count: standardsSet.size, summaryType: msgs.get('string.standards', locale)},
+        {count: categorySet.size, summaryType: msgs.get('string.categories', locale)},
+        {count: policySet.size, summaryType: msgs.get('string.policies', locale)},
+        {count: controlSet.size, summaryType: msgs.get('string.controls', locale)},
       ],
     }
   }

@@ -44,7 +44,7 @@ export default {
   ],
   clusterViolatedSidePanel: {
     headerRows: ['', 'table.header.policy.name', 'table.header.rule.violation', 'table.header.control'],
-    subHeaders: ['table.header.name', 'table.header.message', 'table.header.timestamp'],
+    subHeaders: ['string.name', 'table.header.message', 'table.header.timestamp'],
     rows: [
       {
         cells: [

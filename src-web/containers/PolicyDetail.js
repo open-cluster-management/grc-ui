@@ -154,7 +154,7 @@ class PolicyDetail extends React.Component {
     const paramsLength = 2
 
     breadcrumbItems.push({
-      label: msgs.get('tabs.grc.all', locale),
+      label: msgs.get('string.policies', locale),
       noLocale: true,
       url: urlSegments.slice(0, (urlSegments.length - (paramsLength + (currentTab ? 1 : 0)))).join('/')
     })

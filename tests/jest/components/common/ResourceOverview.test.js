@@ -576,7 +576,7 @@ describe('ResourceOverview component', () => {
       'secondaryKey': 'metadata.namespace',
       'compliancePolicies': {
         'resourceKey': 'compliancePolicies',
-        'title': 'table.header.compliance.policies',
+        'title': 'string.policies',
         'defaultSortField': 'name',
         'normalizedKey': 'name',
         'tableKeys': [
@@ -586,7 +586,7 @@ describe('ResourceOverview component', () => {
             'key': 'policyCompliantStatus'
           },
           {
-            'msgKey': 'table.header.name',
+            'msgKey': 'string.name',
             'resourceKey': 'name',
             'key': 'name'
           },
@@ -610,12 +610,12 @@ describe('ResourceOverview component', () => {
           {
             'key': 'name',
             'resourceKey': 'metadata.name',
-            'msgKey': 'table.header.name'
+            'msgKey': 'string.name'
           },
           {
             'key': 'namespace',
             'resourceKey': 'metadata.namespace',
-            'msgKey': 'table.header.namespace'
+            'msgKey': 'string.namespace'
           },
           {
             'key': 'placementpolicy',
@@ -630,7 +630,7 @@ describe('ResourceOverview component', () => {
           {
             'key': 'timestamp',
             'resourceKey': 'metadata.creationTimestamp',
-            'msgKey': 'table.header.created'
+            'msgKey': 'string.created'
           }
         ],
         'detailKeys': {
@@ -643,7 +643,7 @@ describe('ResourceOverview component', () => {
             {
               'cells': [
                 {
-                  'resourceKey': 'policy.pb.details.name',
+                  'resourceKey': 'string.name',
                   'type': 'i18n'
                 },
                 {
@@ -654,7 +654,7 @@ describe('ResourceOverview component', () => {
             {
               'cells': [
                 {
-                  'resourceKey': 'policy.pb.details.namespace',
+                  'resourceKey': 'string.namespace',
                   'type': 'i18n'
                 },
                 {
@@ -665,7 +665,7 @@ describe('ResourceOverview component', () => {
             {
               'cells': [
                 {
-                  'resourceKey': 'policy.pb.details.pp',
+                  'resourceKey': 'string.placement.rule',
                   'type': 'i18n'
                 },
                 {
@@ -687,7 +687,7 @@ describe('ResourceOverview component', () => {
             {
               'cells': [
                 {
-                  'resourceKey': 'policy.pb.details.timestamp',
+                  'resourceKey': 'string.timestamp',
                   'type': 'i18n'
                 },
                 {
@@ -709,12 +709,12 @@ describe('ResourceOverview component', () => {
           {
             'key': 'name',
             'resourceKey': 'metadata.name',
-            'msgKey': 'table.header.name'
+            'msgKey': 'string.name'
           },
           {
             'key': 'namespace',
             'resourceKey': 'metadata.namespace',
-            'msgKey': 'table.header.namespace'
+            'msgKey': 'string.namespace'
           },
           {
             'key': 'replicas',
@@ -724,7 +724,7 @@ describe('ResourceOverview component', () => {
           {
             'key': 'clusterSelector',
             'resourceKey': 'clusterLabels',
-            'msgKey': 'table.header.cluster.selector'
+            'msgKey': 'string.cluster.selector'
           },
           {
             'key': 'resourceSelector',
@@ -739,11 +739,11 @@ describe('ResourceOverview component', () => {
           {
             'key': 'timestamp',
             'resourceKey': 'metadata.creationTimestamp',
-            'msgKey': 'table.header.created'
+            'msgKey': 'string.created'
           }
         ],
         'detailKeys': {
-          'title': 'policy.pp.details.title',
+          'title': 'string.placement.rule',
           'headerRows': [
             'type',
             'detail'
@@ -752,7 +752,7 @@ describe('ResourceOverview component', () => {
             {
               'cells': [
                 {
-                  'resourceKey': 'policy.pp.details.name',
+                  'resourceKey': 'string.name',
                   'type': 'i18n'
                 },
                 {
@@ -763,7 +763,7 @@ describe('ResourceOverview component', () => {
             {
               'cells': [
                 {
-                  'resourceKey': 'policy.pp.details.namespace',
+                  'resourceKey': 'string.namespace',
                   'type': 'i18n'
                 },
                 {
@@ -774,7 +774,7 @@ describe('ResourceOverview component', () => {
             {
               'cells': [
                 {
-                  'resourceKey': 'policy.pp.details.clusterSelector',
+                  'resourceKey': 'string.cluster.selector',
                   'type': 'i18n'
                 },
                 {
@@ -796,7 +796,7 @@ describe('ResourceOverview component', () => {
             {
               'cells': [
                 {
-                  'resourceKey': 'policy.pp.details.timestamp',
+                  'resourceKey': 'string.timestamp',
                   'type': 'i18n'
                 },
                 {
@@ -817,7 +817,7 @@ describe('ResourceOverview component', () => {
         'normalizedKey': 'metadata.name',
         'tableKeys': [
           {
-            'msgKey': 'table.header.role.template.name',
+            'msgKey': 'string.name',
             'resourceKey': 'metadata.name',
             'key': 'name'
           },
@@ -827,7 +827,7 @@ describe('ResourceOverview component', () => {
             'key': 'complianceType'
           },
           {
-            'msgKey': 'table.header.role.template.apiVersion',
+            'msgKey': 'string.api.version',
             'resourceKey': 'apiVersion',
             'key': 'apiVersion'
           },
@@ -877,7 +877,7 @@ describe('ResourceOverview component', () => {
         'normalizedKey': 'objectDefinition.metadata.name',
         'tableKeys': [
           {
-            'msgKey': 'table.header.object.template.name',
+            'msgKey': 'string.name',
             'resourceKey': 'objectDefinition.metadata.name',
             'key': 'name'
           },
@@ -887,7 +887,7 @@ describe('ResourceOverview component', () => {
             'key': 'complianceType'
           },
           {
-            'msgKey': 'table.header.object.template.apiVersion',
+            'msgKey': 'string.api.version',
             'resourceKey': 'objectDefinition.apiVersion',
             'key': 'apiVersion'
           },
@@ -897,12 +897,12 @@ describe('ResourceOverview component', () => {
             'key': 'kind'
           },
           {
-            'msgKey': 'table.header.object.template.lastTransition',
+            'msgKey': 'string.last.transition',
             'resourceKey': 'status.conditions[0].lastTransitionTime',
             'key': 'lastTransition'
           },
           {
-            'msgKey': 'table.header.object.template.status',
+            'msgKey': 'string.status',
             'resourceKey': 'status.Compliant',
             'key': 'status'
           }
@@ -915,12 +915,12 @@ describe('ResourceOverview component', () => {
         'normalizedKey': 'metadata.name',
         'tableKeys': [
           {
-            'msgKey': 'table.header.object.template.name',
+            'msgKey': 'string.name',
             'resourceKey': 'objectDefinition.metadata.name',
             'key': 'name'
           },
           {
-            'msgKey': 'table.header.object.template.apiVersion',
+            'msgKey': 'string.api.version',
             'resourceKey': 'objectDefinition.apiVersion',
             'key': 'apiVersion'
           },
@@ -930,12 +930,12 @@ describe('ResourceOverview component', () => {
             'key': 'kind'
           },
           {
-            'msgKey': 'table.header.object.template.lastTransition',
+            'msgKey': 'string.last.transition',
             'resourceKey': 'status.conditions[0].lastTransitionTime',
             'key': 'lastTransition'
           },
           {
-            'msgKey': 'table.header.object.template.status',
+            'msgKey': 'string.status',
             'resourceKey': 'status.Compliant',
             'key': 'status'
           }
@@ -970,7 +970,7 @@ describe('ResourceOverview component', () => {
           'resourceKey': 'metadata.name'
         },
         {
-          'msgKey': 'table.header.namespace',
+          'msgKey': 'string.namespace',
           'resourceKey': 'metadata.namespace'
         },
         {
@@ -982,15 +982,15 @@ describe('ResourceOverview component', () => {
           'resourceKey': 'clusterCompliant'
         },
         {
-          'msgKey': 'table.header.controls',
+          'msgKey': 'string.controls',
           'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/controls"]'
         },
         {
-          'msgKey': 'table.header.standards',
+          'msgKey': 'string.standards',
           'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/standards"]'
         },
         {
-          'msgKey': 'table.header.categories',
+          'msgKey': 'string.categories',
           'resourceKey': 'metadata.annotations["policy.open-cluster-management.io/categories"]'
         }
       ],
@@ -999,7 +999,7 @@ describe('ResourceOverview component', () => {
         'table.actions.remove'
       ],
       'detailKeys': {
-        'title': 'compliance.details',
+        'title': 'string.policy.details',
         'headerRows': [
           'type',
           'detail'
@@ -1008,7 +1008,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.name',
+                'resourceKey': 'string.name',
                 'type': 'i18n'
               },
               {
@@ -1019,7 +1019,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.namespace',
+                'resourceKey': 'string.namespace',
                 'type': 'i18n'
               },
               {
@@ -1030,7 +1030,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.enforcement',
+                'resourceKey': 'string.enforcement',
                 'type': 'i18n'
               },
               {
@@ -1074,7 +1074,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.categories',
+                'resourceKey': 'string.categories',
                 'type': 'i18n'
               },
               {
@@ -1085,7 +1085,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.controls',
+                'resourceKey': 'string.controls',
                 'type': 'i18n'
               },
               {
@@ -1096,7 +1096,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.standards',
+                'resourceKey': 'string.standards',
                 'type': 'i18n'
               },
               {
@@ -1109,9 +1109,9 @@ describe('ResourceOverview component', () => {
       'policyTemplatesKeys': {
         'title': 'policy.template.details',
         'headerRows': [
-          'description.title.name',
-          'description.title.last.transition',
-          'description.title.templateType'
+          'string.name',
+          'string.last.transition',
+          'string.template.type'
         ],
         'rows': [
           {
@@ -1136,12 +1136,12 @@ describe('ResourceOverview component', () => {
         'normalizedKey': 'ruleUID',
         'tableKeys': [
           {
-            'msgKey': 'table.header.name',
+            'msgKey': 'string.name',
             'resourceKey': 'ruleUID',
             'key': 'ruleUID'
           },
           {
-            'msgKey': 'table.header.templateType',
+            'msgKey': 'string.template.type',
             'resourceKey': 'templateType',
             'key': 'templateType'
           },
@@ -1174,7 +1174,7 @@ describe('ResourceOverview component', () => {
         'normalizedKey': 'name',
         'tableKeys': [
           {
-            'msgKey': 'table.header.name',
+            'msgKey': 'string.name',
             'resourceKey': 'name',
             'key': 'name'
           },
@@ -1199,14 +1199,14 @@ describe('ResourceOverview component', () => {
             'key': 'reason'
           },
           {
-            'msgKey': 'table.header.status',
+            'msgKey': 'string.status',
             'resourceKey': 'status',
             'key': 'status'
           }
         ]
       },
       'policyInfoKeys': {
-        'title': 'policy.details',
+        'title': 'string.policy.details',
         'headerRows': [
           'type',
           'detail'
@@ -1215,7 +1215,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.name',
+                'resourceKey': 'string.name',
                 'type': 'i18n'
               },
               {
@@ -1237,7 +1237,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.status',
+                'resourceKey': 'string.status',
                 'type': 'i18n'
               },
               {
@@ -1248,7 +1248,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.enforcement',
+                'resourceKey': 'string.enforcement',
                 'type': 'i18n'
               },
               {
@@ -1281,7 +1281,7 @@ describe('ResourceOverview component', () => {
         ]
       },
       'policyDetailKeys': {
-        'title': 'policy.details',
+        'title': 'string.policy.details',
         'headerRows': [
           'type',
           'detail'
@@ -1290,7 +1290,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.name',
+                'resourceKey': 'string.name',
                 'type': 'i18n'
               },
               {
@@ -1323,7 +1323,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.status',
+                'resourceKey': 'string.status',
                 'type': 'i18n'
               },
               {
@@ -1334,7 +1334,7 @@ describe('ResourceOverview component', () => {
           {
             'cells': [
               {
-                'resourceKey': 'description.title.enforcement',
+                'resourceKey': 'string.enforcement',
                 'type': 'i18n'
               },
               {
@@ -1373,7 +1373,7 @@ describe('ResourceOverview component', () => {
         'resourceKey': 'roleTemplates',
         'tableKeys': [
           {
-            'msgKey': 'table.header.name',
+            'msgKey': 'string.name',
             'resourceKey': 'name',
             'key': 'name'
           },
@@ -1383,12 +1383,12 @@ describe('ResourceOverview component', () => {
             'key': 'complianceType'
           },
           {
-            'msgKey': 'description.title.api.version',
+            'msgKey': 'string.api.version',
             'resourceKey': 'apiVersion',
             'key': 'apiVersion'
           },
           {
-            'msgKey': 'description.title.last.transition',
+            'msgKey': 'string.last.transition',
             'resourceKey': 'lastTransition',
             'key': 'lastTransition'
           },
@@ -1406,7 +1406,7 @@ describe('ResourceOverview component', () => {
         'resourceKey': 'roleBindingTemplates',
         'tableKeys': [
           {
-            'msgKey': 'table.header.name',
+            'msgKey': 'string.name',
             'resourceKey': 'name',
             'key': 'name'
           },
@@ -1416,12 +1416,12 @@ describe('ResourceOverview component', () => {
             'key': 'complianceType'
           },
           {
-            'msgKey': 'description.title.api.version',
+            'msgKey': 'string.api.version',
             'resourceKey': 'apiVersion',
             'key': 'apiVersion'
           },
           {
-            'msgKey': 'description.title.last.transition',
+            'msgKey': 'string.last.transition',
             'resourceKey': 'lastTransition',
             'key': 'lastTransition'
           },
@@ -1439,7 +1439,7 @@ describe('ResourceOverview component', () => {
         'resourceKey': 'objectTemplates',
         'tableKeys': [
           {
-            'msgKey': 'table.header.name',
+            'msgKey': 'string.name',
             'resourceKey': 'name',
             'key': 'name'
           },
@@ -1449,7 +1449,7 @@ describe('ResourceOverview component', () => {
             'key': 'complianceType'
           },
           {
-            'msgKey': 'description.title.api.version',
+            'msgKey': 'string.api.version',
             'resourceKey': 'apiVersion',
             'key': 'apiVersion'
           },
@@ -1459,7 +1459,7 @@ describe('ResourceOverview component', () => {
             'key': 'kind'
           },
           {
-            'msgKey': 'description.title.last.transition',
+            'msgKey': 'string.last.transition',
             'resourceKey': 'lastTransition',
             'key': 'lastTransition'
           },
@@ -1477,12 +1477,12 @@ describe('ResourceOverview component', () => {
         'resourceKey': 'policyTemplates',
         'tableKeys': [
           {
-            'msgKey': 'table.header.name',
+            'msgKey': 'string.name',
             'resourceKey': 'name',
             'key': 'name'
           },
           {
-            'msgKey': 'description.title.api.version',
+            'msgKey': 'string.api.version',
             'resourceKey': 'apiVersion',
             'key': 'apiVersion'
           },
@@ -1492,7 +1492,7 @@ describe('ResourceOverview component', () => {
             'key': 'kind'
           },
           {
-            'msgKey': 'description.title.last.transition',
+            'msgKey': 'string.last.transition',
             'resourceKey': 'lastTransition',
             'key': 'lastTransition'
           },

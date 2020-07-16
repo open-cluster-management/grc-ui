@@ -26,7 +26,7 @@ export default {
   secondaryKey: 'metadata.namespace',
   compliancePolicies: {
     resourceKey: 'compliancePolicies',
-    title: 'table.header.compliance.policies',
+    title: 'string.policies',
     defaultSortField: 'name',
     normalizedKey: 'name',
     tableKeys: [
@@ -37,7 +37,7 @@ export default {
         transformFunction: getCompliancePolicyStatus,
       },
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'name',
         key: 'name',
         transformFunction: createPolicyLink,
@@ -64,12 +64,12 @@ export default {
       {
         key: 'name',
         resourceKey: 'metadata.name',
-        msgKey: 'table.header.name'
+        msgKey: 'string.name'
       },
       {
         key: 'namespace',
         resourceKey: 'metadata.namespace',
-        msgKey: 'table.header.namespace'
+        msgKey: 'string.namespace'
       },
       {
         key: 'placementpolicy',
@@ -85,7 +85,7 @@ export default {
       {
         key: 'timestamp',
         resourceKey: 'metadata.creationTimestamp',
-        msgKey: 'table.header.created',
+        msgKey: 'string.created',
         transformFunction: getAge
       },
     ],
@@ -96,7 +96,7 @@ export default {
         {
           cells: [
             {
-              resourceKey: 'policy.pb.details.name',
+              resourceKey: 'string.name',
               type: 'i18n'
             },
             {
@@ -107,7 +107,7 @@ export default {
         {
           cells: [
             {
-              resourceKey: 'policy.pb.details.namespace',
+              resourceKey: 'string.namespace',
               type: 'i18n'
             },
             {
@@ -118,7 +118,7 @@ export default {
         {
           cells: [
             {
-              resourceKey: 'policy.pb.details.pp',
+              resourceKey: 'string.placement.rule',
               type: 'i18n'
             },
             {
@@ -141,7 +141,7 @@ export default {
         {
           cells: [
             {
-              resourceKey: 'policy.pb.details.timestamp',
+              resourceKey: 'string.timestamp',
               type: 'i18n'
             },
             {
@@ -164,12 +164,12 @@ export default {
       {
         key: 'name',
         resourceKey: 'metadata.name',
-        msgKey: 'table.header.name'
+        msgKey: 'string.name'
       },
       {
         key: 'namespace',
         resourceKey: 'metadata.namespace',
-        msgKey: 'table.header.namespace'
+        msgKey: 'string.namespace'
       },
       {
         key: 'replicas',
@@ -179,7 +179,7 @@ export default {
       {
         key: 'clusterSelector',
         resourceKey: 'clusterLabels',
-        msgKey: 'table.header.cluster.selector',
+        msgKey: 'string.cluster.selector',
         transformFunction: getLabelsToList,
       },
       {
@@ -197,18 +197,18 @@ export default {
       {
         key: 'timestamp',
         resourceKey: 'metadata.creationTimestamp',
-        msgKey: 'table.header.created',
+        msgKey: 'string.created',
         transformFunction: getAge
       },
     ],
     detailKeys: {
-      title: 'policy.pp.details.title',
+      title: 'string.placement.rule',
       headerRows: ['type', 'detail'],
       rows: [
         {
           cells: [
             {
-              resourceKey: 'policy.pp.details.name',
+              resourceKey: 'string.name',
               type: 'i18n'
             },
             {
@@ -219,7 +219,7 @@ export default {
         {
           cells: [
             {
-              resourceKey: 'policy.pp.details.namespace',
+              resourceKey: 'string.namespace',
               type: 'i18n'
             },
             {
@@ -230,7 +230,7 @@ export default {
         {
           cells: [
             {
-              resourceKey: 'policy.pp.details.clusterSelector',
+              resourceKey: 'string.cluster.selector',
               type: 'i18n'
             },
             {
@@ -254,7 +254,7 @@ export default {
         {
           cells: [
             {
-              resourceKey: 'policy.pp.details.timestamp',
+              resourceKey: 'string.timestamp',
               type: 'i18n'
             },
             {
@@ -276,7 +276,7 @@ export default {
     normalizedKey: 'metadata.name',
     tableKeys: [
       {
-        msgKey: 'table.header.role.template.name',
+        msgKey: 'string.name',
         resourceKey: 'metadata.name',
         key: 'name',
       },
@@ -286,7 +286,7 @@ export default {
         key: 'complianceType',
       },
       {
-        msgKey: 'table.header.role.template.apiVersion',
+        msgKey: 'string.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
       }
@@ -318,7 +318,7 @@ export default {
     normalizedKey: 'metadata.name',
     tableKeys: [
       {
-        msgKey: 'table.header.object.template.name',
+        msgKey: 'string.name',
         resourceKey: 'metadata.name',
         key: 'name',
       },
@@ -328,7 +328,7 @@ export default {
         key: 'complianceType',
       },
       {
-        msgKey: 'table.header.object.template.apiVersion',
+        msgKey: 'string.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
@@ -346,12 +346,12 @@ export default {
     normalizedKey: 'metadata.name',
     tableKeys: [
       {
-        msgKey: 'table.header.object.template.name',
+        msgKey: 'string.name',
         resourceKey: 'metadata.name',
         key: 'name',
       },
       {
-        msgKey: 'table.header.object.template.apiVersion',
+        msgKey: 'string.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
@@ -392,7 +392,7 @@ export default {
       transformFunction: createComplianceLink,
     },
     {
-      msgKey: 'table.header.namespace',
+      msgKey: 'string.namespace',
       resourceKey: 'metadata.namespace',
     },
     {
@@ -404,17 +404,17 @@ export default {
       resourceKey: 'clusterCompliant',
     },
     {
-      msgKey: 'table.header.controls',
+      msgKey: 'string.controls',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/controls"]',
       transformFunction: getControls,
     },
     {
-      msgKey: 'table.header.standards',
+      msgKey: 'string.standards',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/standards"]',
       transformFunction: getStandards,
     },
     {
-      msgKey: 'table.header.categories',
+      msgKey: 'string.categories',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/categories"]',
       transformFunction: getCategories
     },
@@ -424,13 +424,13 @@ export default {
     'table.actions.remove',
   ],
   detailKeys: {
-    title: 'compliance.details',
+    title: 'string.policy.details',
     headerRows: ['type', 'detail'],
     rows: [
       {
         cells: [
           {
-            resourceKey: 'description.title.name',
+            resourceKey: 'string.name',
             type: 'i18n'
           },
           {
@@ -441,7 +441,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.namespace',
+            resourceKey: 'string.namespace',
             type: 'i18n'
           },
           {
@@ -452,7 +452,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.createdAt',
+            resourceKey: 'string.createdAt',
             type: 'timestamp'
           },
           {
@@ -474,7 +474,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.enforcement',
+            resourceKey: 'string.enforcement',
             information: 'grc.remediation.tooltip',
             type: 'i18n'
           },
@@ -497,7 +497,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.categories',
+            resourceKey: 'string.categories',
             type: 'i18n'
           },
           {
@@ -508,7 +508,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.controls',
+            resourceKey: 'string.controls',
             type: 'i18n'
           },
           {
@@ -519,7 +519,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.standards',
+            resourceKey: 'string.standards',
             type: 'i18n'
           },
           {
@@ -531,7 +531,7 @@ export default {
   },
   policyTemplatesKeys: {
     title: 'policy.template.details',
-    headerRows: ['description.title.name', 'description.title.last.transition', 'description.title.templateType'],
+    headerRows: ['string.name', 'string.last.transition', 'string.template.type'],
     rows: [
       {
         cells: [
@@ -556,12 +556,12 @@ export default {
     normalizedKey: 'ruleUID',
     tableKeys: [
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'ruleUID',
         key: 'ruleUID',
       },
       {
-        msgKey: 'table.header.templateType',
+        msgKey: 'string.template.type',
         resourceKey: 'templateType',
         key: 'templateType',
       },
@@ -596,7 +596,7 @@ export default {
     normalizedKey: 'name',
     tableKeys: [
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'name',
         key: 'name',
       },
@@ -621,13 +621,13 @@ export default {
     ],
   },
   policyInfoKeys: {
-    title: 'policy.details',
+    title: 'string.policy.details',
     headerRows: ['type', 'detail'],
     rows: [
       {
         cells: [
           {
-            resourceKey: 'description.title.name',
+            resourceKey: 'string.name',
             type: 'i18n'
           },
           {
@@ -649,7 +649,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.status',
+            resourceKey: 'string.status',
             type: 'i18n'
           },
           {
@@ -660,7 +660,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.enforcement',
+            resourceKey: 'string.enforcement',
             type: 'i18n'
           },
           {
@@ -695,13 +695,13 @@ export default {
     ]
   },
   policyDetailKeys: {
-    title: 'policy.details',
+    title: 'string.policy.details',
     headerRows: ['type', 'detail'],
     rows: [
       {
         cells: [
           {
-            resourceKey: 'description.title.name',
+            resourceKey: 'string.name',
             type: 'i18n'
           },
           {
@@ -735,7 +735,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.status',
+            resourceKey: 'string.status',
             type: 'i18n'
           },
           {
@@ -746,7 +746,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.enforcement',
+            resourceKey: 'string.enforcement',
             type: 'i18n'
           },
           {
@@ -763,7 +763,7 @@ export default {
     resourceKey: 'roleTemplates',
     tableKeys: [
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'name',
         key: 'name',
       },
@@ -773,7 +773,7 @@ export default {
         key: 'complianceType',
       },
       {
-        msgKey: 'description.title.api.version',
+        msgKey: 'string.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
@@ -792,7 +792,7 @@ export default {
     resourceKey: 'roleBindingTemplates',
     tableKeys: [
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'name',
         key: 'name',
       },
@@ -802,7 +802,7 @@ export default {
         key: 'complianceType',
       },
       {
-        msgKey: 'description.title.api.version',
+        msgKey: 'string.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
@@ -821,7 +821,7 @@ export default {
     resourceKey: 'objectTemplates',
     tableKeys: [
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'name',
         key: 'name',
       },
@@ -831,7 +831,7 @@ export default {
         key: 'complianceType',
       },
       {
-        msgKey: 'description.title.api.version',
+        msgKey: 'string.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
@@ -855,12 +855,12 @@ export default {
     resourceKey: 'policyTemplates',
     tableKeys: [
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'name',
         key: 'name',
       },
       {
-        msgKey: 'description.title.api.version',
+        msgKey: 'string.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
       },

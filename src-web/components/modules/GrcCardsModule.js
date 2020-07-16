@@ -364,11 +364,11 @@ export class GrcCardsModule extends React.Component {
       this.grcCardChoices = [
         {
           value: GrcCardsSelections.categories,
-          label: msgs.get('overview.grc.cards.categories', locale),
+          label: msgs.get('string.categories', locale),
         },
         {
           value: GrcCardsSelections.standards,
-          label: msgs.get('overview.grc.cards.standards', locale),
+          label: msgs.get('string.standards', locale),
         },
       ]
     }

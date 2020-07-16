@@ -25,6 +25,8 @@ export const ClusterPolicy = loadable(() => import(/* webpackChunkName: "policyC
 const BASE_PAGE_PATH = `${config.contextPath}`
 const showFindings = config['feature_security-findings']
 
+const commonStringPolicies = 'string.policies'
+
 const SECONDARY_HEADER_PROPS = {
   title: 'routes.grc',
   information: 'grc.header.tooltip',
@@ -43,12 +45,12 @@ const SECONDARY_HEADER_PROPS = {
     // },
     {
       id: 'grc-all',
-      label: 'tabs.grc.all',
+      label: commonStringPolicies,
       url: `${BASE_PAGE_PATH}/all`
     },
     {
       id: 'grc-findings',
-      label: 'tabs.grc.findings',
+      label: 'string.security.findings',
       url: `${BASE_PAGE_PATH}/findings`
     },
   ] : [
@@ -59,7 +61,7 @@ const SECONDARY_HEADER_PROPS = {
     // },
     {
       id: 'grc-all',
-      label: 'tabs.grc.all',
+      label: commonStringPolicies,
       url: `${BASE_PAGE_PATH}/all`
     },
   ]
@@ -76,7 +78,7 @@ const CREATION_HEADER_PROPS = {
     },
     {
       id: 'policy-overview-all',
-      label: 'routes.policies',
+      label: commonStringPolicies,
       url: `${BASE_PAGE_PATH}/all`
     },
   ],

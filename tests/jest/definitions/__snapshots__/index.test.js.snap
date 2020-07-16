@@ -21,17 +21,17 @@ Array [
     "resourceKey": "context.clusterName",
   },
   Object {
-    "msgKey": "table.header.standards",
+    "msgKey": "string.standards",
     "resourceKey": "securityClassification.securityStandards",
     "transformFunction": [Function],
   },
   Object {
-    "msgKey": "table.header.controls",
+    "msgKey": "string.controls",
     "resourceKey": "securityClassification.securityControl",
     "transformFunction": [Function],
   },
   Object {
-    "msgKey": "table.header.categories",
+    "msgKey": "string.categories",
     "resourceKey": "securityClassification.securityCategories",
     "transformFunction": [Function],
   },

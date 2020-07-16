@@ -48,7 +48,7 @@ function getHeader(data, locale) {
     if (!isNaN(vioNum) && !isNaN(totalNum)) {
       percent = +vioNum / +totalNum
     }
-    violation += ' ' + msgs.get('overview.top.informations.clusters', locale)
+    violation += ' ' + msgs.get('string.clusters', locale)
     queryPara = {policy:data.name, hubNamespace:hubNamespace}
     query = AllClustersInPolicy
     break
@@ -61,7 +61,7 @@ function getHeader(data, locale) {
     if (!isNaN(vioNum) && !isNaN(totalNum)) {
       percent = +vioNum / +totalNum
     }
-    violation += ' ' + msgs.get('overview.top.informations.policies', locale)
+    violation += ' ' + msgs.get('string.policies', locale)
     queryPara = {cluster:data.cluster}
     query = AllPoliciesInCluster
     break
@@ -71,7 +71,7 @@ function getHeader(data, locale) {
     descr = _.get(data, '', '')
     violation = _.get(data, 'violations', '0')
     percent = 1
-    violation += ' ' + msgs.get('overview.top.informations.policies', locale)
+    violation += ' ' + msgs.get('string.policies', locale)
     queryPara = {violatedPolicies:data.violatedPolicies}
     query = AllPoliciesInApplication
     break

@@ -1300,7 +1300,7 @@ export const policieSubResourceListTestingResourceData = {
     ''
   ],
   'subHeaders': [
-    'table.header.name',
+    'string.name',
     'table.header.message',
     'table.header.reason'
   ],
@@ -1604,7 +1604,7 @@ export const clusterSubResourceListTestingResourceData = {
     'table.header.control'
   ],
   'subHeaders': [
-    'table.header.name',
+    'string.name',
     'table.header.message',
     'table.header.reason'
   ],
@@ -2564,13 +2564,13 @@ export const policiesTabModuleSecondaryHeaderProps =  {
     },
     {
       'id': 'grc-all',
-      'label': 'tabs.grc.all',
+      'label': 'string.policies',
       'url': '/multicloud/policies/all',
       'index': 1
     },
     {
       'id': 'grc-findings',
-      'label': 'tabs.grc.findings',
+      'label': 'string.security.findings',
       'url': '/multicloud/policies/findings',
       'index': 2
     }

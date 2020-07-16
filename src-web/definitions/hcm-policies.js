@@ -33,12 +33,12 @@ export default {
     resourceKey: 'rules',
     tableKeys: [
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'ruleUID',
         key: 'ruleUID',
       },
       {
-        msgKey: 'table.header.templateType',
+        msgKey: 'string.template.type',
         resourceKey: 'templateType',
         key: 'templateType',
       },
@@ -73,7 +73,7 @@ export default {
     resourceKey: 'roleTemplates',
     tableKeys: [
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'name',
         key: 'name',
       },
@@ -83,12 +83,12 @@ export default {
         key: 'complianceType',
       },
       {
-        msgKey: 'description.title.api.version',
+        msgKey: 'string.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
       {
-        msgKey: 'description.title.last.transition',
+        msgKey: 'string.last.transition',
         resourceKey: 'lastTransition',
         key: 'lastTransition',
       },
@@ -107,7 +107,7 @@ export default {
     resourceKey: 'roleBindingTemplates',
     tableKeys: [
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'name',
         key: 'name',
       },
@@ -117,12 +117,12 @@ export default {
         key: 'complianceType',
       },
       {
-        msgKey: 'description.title.api.version',
+        msgKey: 'string.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
       {
-        msgKey: 'description.title.last.transition',
+        msgKey: 'string.last.transition',
         resourceKey: 'lastTransition',
         key: 'lastTransition',
       },
@@ -141,7 +141,7 @@ export default {
     resourceKey: 'objectTemplates',
     tableKeys: [
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'name',
         key: 'name',
       },
@@ -151,12 +151,12 @@ export default {
         key: 'complianceType',
       },
       {
-        msgKey: 'description.title.api.version',
+        msgKey: 'string.api.version',
         resourceKey: 'apiVersion',
         key: 'apiVersion',
       },
       {
-        msgKey: 'description.title.last.transition',
+        msgKey: 'string.last.transition',
         resourceKey: 'lastTransition',
         key: 'lastTransition',
       },
@@ -175,7 +175,7 @@ export default {
     normalizedKey: 'name',
     tableKeys: [
       {
-        msgKey: 'table.header.status',
+        msgKey: 'string.status',
         resourceKey: 'status',
         key: 'status',
         transformFunction: getStatus,
@@ -186,7 +186,7 @@ export default {
         key: 'cluster',
       },
       {
-        msgKey: 'table.header.name',
+        msgKey: 'string.name',
         resourceKey: 'name',
         key: 'name',
       },
@@ -210,21 +210,21 @@ export default {
   },
   tableKeys: [
     {
-      msgKey: 'table.header.name',
+      msgKey: 'string.name',
       resourceKey: 'metadata.name',
       transformFunction: createPolicyLink,
     },
     {
-      msgKey: 'table.header.namespace',
+      msgKey: 'string.namespace',
       resourceKey: 'metadata.namespace',
     },
     {
-      msgKey: 'table.header.status',
+      msgKey: 'string.status',
       resourceKey: 'status',
       transformFunction: getStatus,
     },
     {
-      msgKey: 'table.header.enforcement',
+      msgKey: 'string.enforcement',
       resourceKey: 'enforcement',
       transformFunction: getEnforcement,
     },
@@ -233,13 +233,13 @@ export default {
     'table.actions.remove',
   ],
   detailKeys: {
-    title: 'policy.details',
+    title: 'string.policy.details',
     headerRows: ['type', 'detail'],
     rows: [
       {
         cells: [
           {
-            resourceKey: 'description.title.name',
+            resourceKey: 'string.name',
             type: 'i18n'
           },
           {
@@ -250,7 +250,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.namespace',
+            resourceKey: 'string.namespace',
             type: 'i18n'
           },
           {
@@ -261,7 +261,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.status',
+            resourceKey: 'string.status',
             type: 'i18n'
           },
           {
@@ -307,7 +307,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.enforcement',
+            resourceKey: 'string.enforcement',
             type: 'i18n'
           },
           {
@@ -318,7 +318,7 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.created',
+            resourceKey: 'string.created',
             type: 'i18n'
           },
           {

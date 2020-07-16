@@ -148,7 +148,7 @@ class ImpactedControlsModule extends React.Component {
     const { showFindings } = this.props
     const legend = showFindings ? [
       {title: msgs.get('overview.impacted.controls.legend.policies', locale), className: 'policies'},
-      {title: msgs.get('overview.impacted.controls.legend.findings', locale), className: 'findings'},
+      {title: msgs.get('string.security.findings', locale), className: 'findings'},
     ] : [
       {title: msgs.get('overview.impacted.controls.legend.policies', locale), className: 'policies'},
     ]

@@ -586,13 +586,13 @@ export const GrcViewSecondaryHeaderProps =  {
     },
     {
       'id': 'grc-all',
-      'label': 'tabs.grc.all',
+      'label': 'string.policies',
       'url': '/multicloud/policies/all',
       'index': 1
     },
     {
       'id': 'grc-findings',
-      'label': 'tabs.grc.findings',
+      'label': 'string.security.findings',
       'url': '/multicloud/policies/findings',
       'index': 2
     }
@@ -2877,13 +2877,13 @@ export const reduxStoreFindingCluster = {
       },
       {
         id: 'grc-all',
-        label: 'tabs.grc.all',
+        label: 'string.policies',
         url: '/multicloud/policies/all',
         index: 1
       },
       {
         id: 'grc-findings',
-        label: 'tabs.grc.findings',
+        label: 'string.security.findings',
         url: '/multicloud/policies/findings',
         index: 2
       }

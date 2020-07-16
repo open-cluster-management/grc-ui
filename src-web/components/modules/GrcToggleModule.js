@@ -136,12 +136,12 @@ export class GrcToggleModule extends React.Component {
     switch(displayType) {
     case 'all':
     default:
-      toggleText1 = msgs.get('tabs.grc.toggle.allPolicies', locale)
+      toggleText1 = msgs.get('string.policies', locale)
       toggleText2 = msgs.get('tabs.grc.toggle.clusterViolations', locale)
       toggleText3 = msgs.get('tabs.grc.toggle.policiesApplications', locale)
       break
     case 'findings':
-      toggleText1 = msgs.get('tabs.grc.toggle.securityFindings', locale)
+      toggleText1 = msgs.get('string.security.findings', locale)
       toggleText2 = msgs.get('tabs.grc.toggle.clusterFindings', locale)
       break
     }

@@ -134,7 +134,7 @@ describe('SecondaryHeader component 5', () => {
         title='hello world'
         location={location}
         history={history}
-        tabs={[{'id':'grc-overview','label':'tabs.grc.overview','url':'/multicloud/policies','index':0},{'id':'grc-all','label':'tabs.grc.all','url':'/multicloud/policies/all','index':1},{'id':'grc-findings','label':'tabs.grc.findings','url':'/multicloud/policies/findings','index':2}]}
+        tabs={[{'id':'grc-overview','label':'tabs.grc.overview','url':'/multicloud/policies','index':0},{'id':'grc-all','label':'string.policies','url':'/multicloud/policies/all','index':1},{'id':'grc-findings','label':'string.security.findings','url':'/multicloud/policies/findings','index':2}]}
       />
     )
     expect(component.instance().renderTabs()).toMatchSnapshot()

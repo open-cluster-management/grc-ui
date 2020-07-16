@@ -28,7 +28,7 @@ export default {
       transformFunction: createApplicationLink,
     },
     {
-      msgKey: 'table.header.namespace',
+      msgKey: 'string.namespace',
       resourceKey: 'nameSpace',
     },
     {
@@ -43,7 +43,7 @@ export default {
   ],
   applicationViolatedSidePanel: {
     headerRows: ['', 'table.header.policy.name', 'table.header.rule.violation', 'table.header.control', 'table.header.cluster',],
-    subHeaders: ['table.header.name', 'table.header.message', 'table.header.reason', '',],
+    subHeaders: ['string.name', 'table.header.message', 'table.header.reason', '',],
     rows: [
       {
         cells: [

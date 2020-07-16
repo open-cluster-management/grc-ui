@@ -41,7 +41,7 @@ describe('FindingsTab container test', () => {
         },
         {
           'id': 'policy-overview-all',
-          'label': 'routes.policies',
+          'label': 'string.policies',
           'url': '/multicloud/policies/all'
         }
       ]
@@ -77,7 +77,7 @@ describe('FindingsTab container formatEmptySecurityClassification test', () => {
         },
         {
           'id': 'policy-overview-all',
-          'label': 'routes.policies',
+          'label': 'string.policies',
           'url': '/multicloud/policies/all'
         }
       ]

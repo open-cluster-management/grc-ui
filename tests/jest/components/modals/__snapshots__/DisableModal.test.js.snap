@@ -199,9 +199,9 @@ ShallowWrapper {
     }
     label={
       Object {
-        "heading": "modal.disable-hcmpolicypolicy.heading",
-        "label": "modal.disable-hcmpolicypolicy.label",
-        "primaryBtn": "modal.disable-hcmpolicypolicy.heading",
+        "heading": "string.disable.policy",
+        "label": "string.disable.policy",
+        "primaryBtn": "string.disable.policy",
       }
     }
     locale="en-US"
@@ -615,9 +615,9 @@ ShallowWrapper {
     handleClose={[MockFunction]}
     label={
       Object {
-        "heading": "modal.disable-hcmpolicypolicy.heading",
-        "label": "modal.disable-hcmpolicypolicy.label",
-        "primaryBtn": "modal.disable-hcmpolicypolicy.heading",
+        "heading": "string.disable.policy",
+        "label": "string.disable.policy",
+        "primaryBtn": "string.disable.policy",
       }
     }
     locale="en-US"
@@ -1031,9 +1031,9 @@ ShallowWrapper {
     handleClose={[MockFunction]}
     label={
       Object {
-        "heading": "modal.disable-hcmpolicypolicy.heading",
-        "label": "modal.disable-hcmpolicypolicy.label",
-        "primaryBtn": "modal.disable-hcmpolicypolicy.heading",
+        "heading": "string.disable.policy",
+        "label": "string.disable.policy",
+        "primaryBtn": "string.disable.policy",
       }
     }
     locale="en-US"

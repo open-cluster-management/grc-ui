@@ -31,7 +31,7 @@ export default {
       transformFunction: createComplianceLink,
     },
     {
-      msgKey: 'table.header.namespace',
+      msgKey: 'string.namespace',
       resourceKey: 'namespace',
     },
     {
@@ -44,17 +44,17 @@ export default {
       resourceKey: 'clusterCompliant',
     },
     {
-      msgKey: 'table.header.standards',
+      msgKey: 'string.standards',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/standards"]',
       transformFunction: getStandards,
     },
     {
-      msgKey: 'table.header.controls',
+      msgKey: 'string.controls',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/controls"]',
       transformFunction: getControls,
     },
     {
-      msgKey: 'table.header.categories',
+      msgKey: 'string.categories',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/categories"]',
       transformFunction: getCategories
     },
@@ -62,7 +62,7 @@ export default {
   policyViolatedSidePanel: {
     // title: 'policy.violated.cluster',
     headerRows: ['', 'table.header.cluster.name', 'table.header.rule.violation', ''],
-    subHeaders: ['table.header.name', 'table.header.message', 'table.header.timestamp'],
+    subHeaders: ['string.name', 'table.header.message', 'table.header.timestamp'],
     rows: [
       {
         cells: [
