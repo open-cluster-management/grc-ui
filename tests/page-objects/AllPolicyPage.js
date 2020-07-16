@@ -390,12 +390,12 @@ function verifyPolicyTable(name, templateFile) {
     this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal('-')
   }
   if (data[0].metadata.annotations['policy.open-cluster-management.io/controls']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/controls']))
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/categories']))
   } else {
     this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal('-')
   }
   if (data[0].metadata.annotations['policy.open-cluster-management.io/categories']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/categories']))
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/controls']))
   } else {
     this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal('-')
   }
