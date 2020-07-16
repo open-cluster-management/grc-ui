@@ -44,7 +44,7 @@ spec:
                   type: MustRunAs
                 groups:
                 - system:authenticated
-                priority: null
+                priority: 10
                 readOnlyRootFilesystem: false
                 requiredDropCapabilities:
                 - KILL

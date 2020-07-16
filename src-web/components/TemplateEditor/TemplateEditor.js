@@ -23,7 +23,8 @@ import {
   DropdownV2,
   TooltipIcon,
   MultiSelect,
-  ToggleSmall} from 'carbon-components-react'
+  ToggleSmall,
+  Modal} from 'carbon-components-react'
 import { initializeControlData, cacheUserData, updateControls, parseYAML } from './utils/update-controls'
 import { generateYAML, highlightChanges, getUniqueName } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
@@ -57,14 +58,26 @@ export default class TemplateEditor extends React.Component {
     portals: PropTypes.object.isRequired,
     template: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
+    updateControl: PropTypes.shape({
+      updateResource: PropTypes.func,
+      cancelUpdate: PropTypes.func,
+      updateStatus: PropTypes.string,
+      updateMsg: PropTypes.string
+    }),
   }
 
   static getDerivedStateFromProps(props, state) {
-    const {fetchControl, createControl={}} = props
+    const {fetchControl, createControl={}, updateControl={}} = props
     const {isLoaded} = fetchControl || {isLoaded:true}
     const {creationStatus, creationMsg} = createControl
+    const {updateMsg} = updateControl
     if (creationStatus === 'ERROR') {
+      if (creationMsg.endsWith('already exists') && (creationMsg !== state.oldCreationMsg || state.canOpenModal)) {
+        return { tryUpdate: true, oldCreationMsg: creationMsg }
+      }
       return {updateMsgKind: 'error', updateMessage: creationMsg}
+    } else if (updateMsg) {
+      return {updateMsgKind: 'error', updateMessage: updateMsg}
     } else if (isLoaded) {
       const { template, controlData: initialControlData } = props
       const { isCustomName } = state
@@ -108,6 +121,7 @@ export default class TemplateEditor extends React.Component {
       hasUndo: false,
       hasRedo: false,
       resetInx: 0,
+      tryUpdate: false,
     }
     this.multiSelectCmpMap = {}
     this.parseDebounced = _.debounce(()=>{
@@ -115,6 +129,7 @@ export default class TemplateEditor extends React.Component {
     }, 500)
     this.handleEditorCommand = this.handleEditorCommand.bind(this)
     this.handleSearchChange = this.handleSearchChange.bind(this)
+    this.handleUpdateResource = this.handleUpdateResource.bind(this)
     const { type='unknown' } = this.props
     this.splitterSizeCookie = `TEMPLATE-EDITOR-SPLITTER-SIZE-${type.toUpperCase()}`
   }
@@ -150,6 +165,14 @@ export default class TemplateEditor extends React.Component {
     this.layoutEditors()
   };
 
+  conditionalRenderUpdate = () => {
+    const { tryUpdate, canOpenModal } = this.state
+    if (tryUpdate && canOpenModal) {
+      return this.renderUpdatePrompt()
+    }
+    return null
+  }
+
   render() {
     const {fetchControl, locale} = this.props
     const {isLoaded, isFailed, error} = fetchControl || {isLoaded:true}
@@ -174,6 +197,7 @@ export default class TemplateEditor extends React.Component {
     })
     return (
       <div key={`key${resetInx}`} className={viewClasses} ref={this.setContainerRef}>
+        {this.conditionalRenderUpdate()}
         {this.renderEditButton()}
         {this.renderCreateButton()}
         {this.renderCancelButton()}
@@ -774,12 +798,49 @@ export default class TemplateEditor extends React.Component {
     return null
   }
 
+  renderUpdatePrompt() {
+    return (
+      <Modal
+        danger
+        id='policy-update-modal'
+        open={this.state.tryUpdate && this.state.canOpenModal}
+        primaryButtonText={'Apply'}
+        secondaryButtonText={'Cancel'}
+        modalLabel={'Update Existing Policy'}
+        modalHeading={'Update Existing Policy'}
+        onRequestClose={() => {
+          this.setState({ tryUpdate: false, canOpenModal: false })
+        }}
+        onSecondarySubmit={() => {
+          this.setState({ tryUpdate: false, canOpenModal: false })
+        }}
+        onRequestSubmit={() => {
+          this.handleUpdateResource()
+          this.setState({ tryUpdate: false, canOpenModal: false })
+        }}
+        role='region'
+        aria-label={'policy-update'}>
+        <p>{'This policy already exists. Apply changes to the existing policy?'}</p>
+      </Modal>
+    )
+  }
+
   handleCreateResource() {
     const { createControl } = this.props
     const {createResource} = createControl
     const resourceJSON = this.getResourceJSON()
     if (resourceJSON) {
       createResource(resourceJSON)
+    }
+    this.setState({ canOpenModal: true })
+  }
+
+  handleUpdateResource() {
+    const { updateControl } = this.props
+    const {updateResource} = updateControl
+    const resourceJSON = this.getResourceJSON()
+    if (resourceJSON) {
+      updateResource(resourceJSON)
     }
   }
 
