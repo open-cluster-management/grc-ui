@@ -32,7 +32,7 @@ const Portals = Object.freeze({
 //  available: available choices
 //  reverse: the yaml object to control path--if user edits yaml, what control should be updated
 //  mustExist: when validating the template for creation, this value must exist
-const commonPlaceHolder = 'string.begin.typing.palceholder'
+const commonPlaceHolder = 'string.begin.typing.placeholder'
 const controlData = [
   {
     name: 'string.name',
