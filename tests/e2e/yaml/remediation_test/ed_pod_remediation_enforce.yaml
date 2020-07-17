@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: policy-pod-remediation-inform-[TIME]
+  name: policy-pod-remediation-enforce-[TIME]
   namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
@@ -15,7 +15,7 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: IamPolicy # limit clusteradminrole and report violation
         metadata:
-          name: policy-pod-remediation-inform-[TIME]-example
+          name: policy-pod-remediation-enforce-[TIME]-example
         spec:
           severity: medium
           namespaceSelector:
@@ -27,21 +27,21 @@ spec:
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-pod-remediation-inform-[TIME]
+  name: binding-policy-pod-remediation-enforce-[TIME]
   namespace: default
 placementRef:
-  name: placement-policy-pod-remediation-inform-[TIME]
+  name: placement-policy-pod-remediation-enforce-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-pod-remediation-inform-[TIME]
+- name: policy-pod-remediation-enforce-[TIME]
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-pod-remediation-inform-[TIME]
+  name: placement-policy-pod-remediation-enforce-[TIME]
   namespace: default
 spec:
   clusterConditions:
