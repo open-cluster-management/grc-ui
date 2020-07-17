@@ -1,48 +1,48 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: policy-pod-remediation-enforce-[TIME]
-  namespace: 
+  name: policy-pod-remediation-inform-[TIME]
+  namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
     policy.open-cluster-management.io/categories: PR.AC Identity Management Authentication and Access Control
     policy.open-cluster-management.io/controls: PR.AC-4 Access Control
 spec:
-  remediationAction: inform
+  remediationAction: enforce
   disabled: false
   policy-templates:
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: IamPolicy # limit clusteradminrole and report violation
         metadata:
-          name: policy-pod-remediation-enforce-[TIME]-example
+          name: policy-pod-remediation-inform-[TIME]-example
         spec:
           severity: medium
           namespaceSelector:
             include: ["*"]
             exclude: ["kube-*", "openshift-*"]
-          remediationAction: inform # will be overridden by remediationAction in parent policy
+          remediationAction: enforce # will be overridden by remediationAction in parent policy
           maxClusterRoleBindingUsers: 5
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-pod-remediation-enforce-[TIME]
-  namespace: 
+  name: binding-policy-pod-remediation-inform-[TIME]
+  namespace: default
 placementRef:
-  name: placement-policy-pod-remediation-enforce-[TIME]
+  name: placement-policy-pod-remediation-inform-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-pod-remediation-enforce-[TIME]
+- name: policy-pod-remediation-inform-[TIME]
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-pod-remediation-enforce-[TIME]
-  namespace: 
+  name: placement-policy-pod-remediation-inform-[TIME]
+  namespace: default
 spec:
   clusterConditions:
   - status: "True"
