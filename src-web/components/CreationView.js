@@ -54,7 +54,7 @@ const controlData = [
   {
     name: 'creation.view.policy.specs',
     description: 'policy.create.specs.tooltip',
-    placeholder: commonPlaceHolder,
+    placeholder: 'creation.view.policy.select.specs',
     id: 'specs',
     type: 'multiselect',
     available: [],
@@ -66,7 +66,7 @@ const controlData = [
   {
     name: 'creation.view.policy.binding',
     description: 'policy.create.selectors.tooltip',
-    placeholder: commonPlaceHolder,
+    placeholder: 'creation.view.policy.select.selectors',
     id: 'clusters',
     type: 'multiselect',
     available: [],
