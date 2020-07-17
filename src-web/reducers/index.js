@@ -40,6 +40,8 @@ export const HCMPolicyPolicyList = createResourceReducer(resourceReducerFunction
 export const HCMPolicyClusterList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER))
 export const HCMSecurityFindingsList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.HCM_SECURITY_FINDINGS))
 export const HCMClusterFindingsList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.HCM_CLUSTER_FINDINGS))
+export const PlacementBindingsList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.PLACEMENT_BINDING))
+export const PlacementRulesList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.PLACEMENT_RULE))
 
 export { resourceFilters } from './filter'
 

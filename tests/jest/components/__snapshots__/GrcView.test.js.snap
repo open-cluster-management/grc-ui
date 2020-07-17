@@ -564,7 +564,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
-                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
+                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
                   onClick={[Function]}
                   onKeyPress={[Function]}
                   role="button"
@@ -574,7 +574,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   <span
                     className="bx--table-header-label"
                   >
-                    Controls
+                    Categories
                   </span>
                   
                   <svg
@@ -605,7 +605,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 <div
                   className="bx--table-sort-v2 bx--table-sort-v2--ascending"
                   data-default-key="metadata.name"
-                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
+                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
                   onClick={[Function]}
                   onKeyPress={[Function]}
                   role="button"
@@ -615,7 +615,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   <span
                     className="bx--table-header-label"
                   >
-                    Categories
+                    Controls
                   </span>
                   
                   <svg
@@ -721,12 +721,12 @@ exports[`GrcView component 1 renders as expected 1`] = `
               <td
                 className={undefined}
               >
-                Cert Manager
+                System And Communications Protections
               </td>
               <td
                 className={undefined}
               >
-                System And Communications Protections
+                Cert Manager
               </td>
               <td
                 className={undefined}
@@ -844,12 +844,12 @@ exports[`GrcView component 1 renders as expected 1`] = `
               <td
                 className={undefined}
               >
-                Mutation Advisor
+                System And Communications Protections, System And Information Integrity
               </td>
               <td
                 className={undefined}
               >
-                System And Communications Protections, System And Information Integrity
+                Mutation Advisor
               </td>
               <td
                 className={undefined}

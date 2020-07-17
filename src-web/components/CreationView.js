@@ -138,6 +138,12 @@ export default class CreationView extends React.Component {
       isLoaded: PropTypes.bool,
       isFailed: PropTypes.bool,
     }),
+    updateControl: PropTypes.shape({
+      updateResource: PropTypes.func,
+      cancelUpdate: PropTypes.func,
+      updateStatus: PropTypes.string,
+      updateMsg: PropTypes.string
+    }),
   }
 
   componentWillUnmount() {
@@ -147,7 +153,7 @@ export default class CreationView extends React.Component {
   render() {
     hideResourceToolbar()
     const { locale } = this.context
-    const {fetchControl, createControl, discovered} = this.props
+    const {fetchControl, createControl, updateControl, discovered} = this.props
     return (
       <TemplateEditor
         template={policyTemplate}
@@ -155,6 +161,7 @@ export default class CreationView extends React.Component {
         portals={Portals}
         fetchControl={fetchControl}
         createControl={createControl}
+        updateControl={updateControl}
         type={'policy'}
         locale={locale}
       />

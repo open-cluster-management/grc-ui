@@ -22,6 +22,7 @@ export default {
     'table.actions.policy.policies.sidepanel',
     'table.actions.edit',
     'table.actions.disable',
+    'table.actions.enforce',
     'table.actions.remove',
   ],
   tableKeys: [
@@ -49,14 +50,14 @@ export default {
       transformFunction: getStandards,
     },
     {
-      msgKey: 'table.header.controls',
-      resourceKey: 'metadata.annotations["policy.open-cluster-management.io/controls"]',
-      transformFunction: getControls,
-    },
-    {
       msgKey: 'table.header.categories',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/categories"]',
       transformFunction: getCategories
+    },
+    {
+      msgKey: 'table.header.controls',
+      resourceKey: 'metadata.annotations["policy.open-cluster-management.io/controls"]',
+      transformFunction: getControls,
     },
   ],
   policyViolatedSidePanel: {

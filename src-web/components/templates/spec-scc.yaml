@@ -46,7 +46,7 @@ replacements: # if user select this choice, the template variable names and valu
                   type: MustRunAs
                 groups:
                 - system:authenticated
-                priority: null
+                priority: 10
                 readOnlyRootFilesystem: false
                 requiredDropCapabilities:
                 - KILL
