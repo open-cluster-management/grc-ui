@@ -19,14 +19,14 @@ module.exports = {
   'Remediation policy: test policy enforce + inform': (browser) => {
     const time = browser.globals.time
 
-    const inform = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_remediation_inform.yaml'))
+    const inform = fs.readFileSync(path.join(__dirname, 'yaml/remediation_test/ed_pod_remediation_inform.yaml'))
     var yaml = inform.toString()
     page.createPolicy(browser, yaml, time)
     browser.pause(30000)
     //policy-pod-remediation-inform isn't violated
     page.checkViolations('policy-pod-remediation-inform-' + time, false)
 
-    const createPod = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_remediation_enforce.yaml'))
+    const createPod = fs.readFileSync(path.join(__dirname, 'yaml/remediation_test/ed_pod_remediation_enforce.yaml'))
     yaml = createPod.toString()
     page.createPolicy(browser, yaml, time)
     browser.pause(30000)
