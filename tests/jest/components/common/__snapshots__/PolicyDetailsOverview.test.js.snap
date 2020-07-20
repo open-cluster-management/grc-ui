@@ -13,12 +13,9 @@ exports[`PolicyDetailsOverview component renders as error 1`] = `
       alt="closes notification"
       aria-label="closes notification"
       className="bx--inline-notification__icon"
-      fill={undefined}
       fillRule="evenodd"
       height="16"
-      name={undefined}
       role="img"
-      style={undefined}
       viewBox="0 0 16 16"
       width="16"
     >
@@ -54,12 +51,9 @@ exports[`PolicyDetailsOverview component renders as error 1`] = `
       alt="close icon"
       aria-label="close icon"
       className="bx--inline-notification__close-icon"
-      fill={undefined}
       fillRule="evenodd"
       height="10"
-      name={undefined}
       role="img"
-      style={undefined}
       viewBox="0 0 10 10"
       width="10"
     >
@@ -84,7 +78,7 @@ exports[`PolicyDetailsOverview component renders as loading 1`] = `
     viewBox="-75 -75 150 150"
   >
     <title>
-      Loading
+      Active loading indicator
     </title>
     <circle
       className={null}
@@ -312,7 +306,6 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
       >
         <div
           className="bx--module bx--module--double structured-list-module"
-          id={undefined}
         >
           <div
             className="bx--module__inner"
@@ -434,12 +427,10 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                                 alt="Status Icon"
                                 aria-label="Status Icon"
                                 className="table-status-icon__critical"
-                                fill={undefined}
                                 fillRule="evenodd"
                                 height="16"
                                 name="icon--error--glyph"
                                 role="img"
-                                style={undefined}
                                 viewBox="0 0 16 16"
                                 width="16"
                               >
@@ -486,7 +477,6 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
       >
         <div
           className="bx--module bx--module--double structured-list-module"
-          id={undefined}
         >
           <div
             className="bx--module__inner"
@@ -641,12 +631,8 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
               <table
                 className="bx--data-table-v2 resource-table bx--data-table-v2--zebra"
               >
-                <thead
-                  className={undefined}
-                >
-                  <tr
-                    className={undefined}
-                  >
+                <thead>
+                  <tr>
                     <th
                       scope="col"
                     >
@@ -670,12 +656,10 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -711,12 +695,10 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -752,12 +734,10 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -793,12 +773,10 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -834,12 +812,10 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -854,62 +830,38 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                     </th>
                   </tr>
                 </thead>
-                <tbody
-                  className={undefined}
-                >
+                <tbody>
                   <tr
                     className="high-light"
-                    data-row-name={undefined}
                   >
-                    <td
-                      className={undefined}
-                    />
-                    <td
-                      className={undefined}
-                    >
+                    <td />
+                    <td>
                       -
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       -
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       -
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       -
                     </td>
                   </tr>
                   <tr
                     className="high-light"
-                    data-row-name={undefined}
                   >
-                    <td
-                      className={undefined}
-                    />
-                    <td
-                      className={undefined}
-                    >
+                    <td />
+                    <td>
                       -
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       -
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       -
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       -
                     </td>
                   </tr>

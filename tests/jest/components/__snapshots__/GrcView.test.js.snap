@@ -17,19 +17,19 @@ exports[`GrcView component 1 renders as expected 1`] = `
       </div>
       <div>
         <div
-          aria-invalid={undefined}
           aria-label="Summary"
           className="bx--dropdown selection bx--list-box"
-          data-invalid={undefined}
           onClick={[Function]}
           onKeyDown={[Function]}
           role="listbox"
           tabIndex={null}
         >
           <div
+            aria-controls={null}
             aria-expanded={false}
             aria-haspopup={true}
-            aria-label="open menu"
+            aria-label="Summary"
+            aria-owns={null}
             className="bx--list-box__field"
             data-toggle={true}
             disabled={false}
@@ -52,14 +52,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
               <svg
                 alt="Open menu"
                 aria-label="Open menu"
-                className={undefined}
-                fill={undefined}
                 fillRule="evenodd"
                 focusable="false"
                 height="5"
-                name={undefined}
                 role="img"
-                style={undefined}
                 viewBox="0 0 10 5"
                 width="10"
               >
@@ -92,12 +88,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
           alt="collapse"
           aria-label="collapse"
           className="arrow-up"
-          fill={undefined}
           fillRule="evenodd"
           height="7"
           name="chevron--up"
           role="img"
-          style={undefined}
           viewBox="0 0 12 7"
           width="12"
         >
@@ -213,12 +207,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 alt="Filter table"
                 aria-label="Filter table"
                 className="bx--search-magnifier"
-                fill={undefined}
                 fillRule="evenodd"
                 height="16"
-                name={undefined}
                 role="img"
-                style={undefined}
                 viewBox="0 0 16 16"
                 width="16"
               >
@@ -246,7 +237,6 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 value=""
               />
               <button
-                aria-label={undefined}
                 className="bx--search-close bx--search-close--hidden"
                 onClick={[Function]}
                 type="button"
@@ -254,13 +244,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 <svg
                   alt="Provide a description that will be used as the title"
                   aria-label="Provide a description that will be used as the title"
-                  className={undefined}
-                  fill={undefined}
                   fillRule="evenodd"
                   height="16"
-                  name={undefined}
                   role="img"
-                  style={undefined}
                   viewBox="0 0 16 16"
                   width="16"
                 >
@@ -328,12 +314,8 @@ exports[`GrcView component 1 renders as expected 1`] = `
         <table
           className="bx--data-table-v2 resource-table bx--data-table-v2--zebra"
         >
-          <thead
-            className={undefined}
-          >
-            <tr
-              className={undefined}
-            >
+          <thead>
+            <tr>
               <th
                 scope="col"
               />
@@ -360,12 +342,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -401,12 +381,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -458,12 +436,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -499,12 +475,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -540,12 +514,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -581,12 +553,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -622,12 +592,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -645,9 +613,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
               />
             </tr>
           </thead>
-          <tbody
-            className={undefined}
-          >
+          <tbody>
             <tr
               aria-hidden={false}
               className="bx--parent-row-v2"
@@ -657,25 +623,20 @@ exports[`GrcView component 1 renders as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="TableExpandRow"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -688,55 +649,38 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   </svg>
                 </button>
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <a
-                  href="undefined/all/mcm/policy-limitrange"
+                  href="/undefined/all/mcm/policy-limitrange"
                   onClick={[Function]}
                 >
                   policy-limitrange
                 </a>
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 mcm
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 inform
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 2/2
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 HIPAA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Cert Manager
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -749,15 +693,12 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -780,25 +721,20 @@ exports[`GrcView component 1 renders as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="TableExpandRow"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -811,55 +747,38 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   </svg>
                 </button>
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <a
-                  href="undefined/all/mcm/policy-namespace"
+                  href="/undefined/all/mcm/policy-namespace"
                   onClick={[Function]}
                 >
                   policy-namespace
                 </a>
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 mcm
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 enforce
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 2/2
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 NIST, HIPAA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections, System And Information Integrity
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Mutation Advisor
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -872,15 +791,12 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -922,10 +838,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 items per page
               </label>
               <select
-                aria-invalid={undefined}
                 className="bx--select-input"
-                data-invalid={undefined}
-                disabled={undefined}
                 id="bx-pagination-select-resource-table-pagination"
                 onChange={[Function]}
                 value={10}
@@ -983,12 +896,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 alt="open list of options"
                 aria-label="open list of options"
                 className="bx--select__arrow"
-                fill={undefined}
                 fillRule="evenodd"
                 height="5"
-                name={undefined}
                 role="img"
-                style={undefined}
                 viewBox="0 0 10 5"
                 width="10"
               >
@@ -1021,12 +931,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
               alt="Previous page"
               aria-label="Previous page"
               className="bx--pagination__button-icon"
-              fill={undefined}
               fillRule="evenodd"
               height="12"
-              name={undefined}
               role="img"
-              style={undefined}
               viewBox="0 0 7 12"
               width="7"
             >
@@ -1048,12 +955,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
               alt="Next page"
               aria-label="Next page"
               className="bx--pagination__button-icon"
-              fill={undefined}
               fillRule="evenodd"
               height="12"
-              name={undefined}
               role="img"
-              style={undefined}
               viewBox="0 0 7 12"
               width="7"
             >
@@ -1082,7 +986,7 @@ exports[`GrcView component 2 renders as expected 1`] = `
     viewBox="-75 -75 150 150"
   >
     <title>
-      Loading
+      Active loading indicator
     </title>
     <circle
       className={null}
@@ -1107,12 +1011,9 @@ exports[`GrcView component 3 renders as expected 1`] = `
       alt="closes notification"
       aria-label="closes notification"
       className="bx--inline-notification__icon"
-      fill={undefined}
       fillRule="evenodd"
       height="16"
-      name={undefined}
       role="img"
-      style={undefined}
       viewBox="0 0 16 16"
       width="16"
     >
@@ -1148,12 +1049,9 @@ exports[`GrcView component 3 renders as expected 1`] = `
       alt="close icon"
       aria-label="close icon"
       className="bx--inline-notification__close-icon"
-      fill={undefined}
       fillRule="evenodd"
       height="10"
-      name={undefined}
       role="img"
-      style={undefined}
       viewBox="0 0 10 10"
       width="10"
     >
@@ -1196,12 +1094,10 @@ exports[`GrcView component 4 renders as expected 1`] = `
           alt="expand"
           aria-label="expand"
           className="arrow-down"
-          fill={undefined}
           fillRule="evenodd"
           height="7"
           name="chevron--down"
           role="img"
-          style={undefined}
           viewBox="0 0 12 7"
           width="12"
         >
@@ -1227,7 +1123,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
         viewBox="-75 -75 150 150"
       >
         <title>
-          Loading
+          Active loading indicator
         </title>
         <circle
           className={null}
@@ -1258,19 +1154,19 @@ exports[`GrcView component 5 renders as expected 1`] = `
       </div>
       <div>
         <div
-          aria-invalid={undefined}
           aria-label="Summary"
           className="bx--dropdown selection bx--list-box"
-          data-invalid={undefined}
           onClick={[Function]}
           onKeyDown={[Function]}
           role="listbox"
           tabIndex={null}
         >
           <div
+            aria-controls={null}
             aria-expanded={false}
             aria-haspopup={true}
-            aria-label="open menu"
+            aria-label="Summary"
+            aria-owns={null}
             className="bx--list-box__field"
             data-toggle={true}
             disabled={false}
@@ -1293,14 +1189,10 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <svg
                 alt="Open menu"
                 aria-label="Open menu"
-                className={undefined}
-                fill={undefined}
                 fillRule="evenodd"
                 focusable="false"
                 height="5"
-                name={undefined}
                 role="img"
-                style={undefined}
                 viewBox="0 0 10 5"
                 width="10"
               >
@@ -1333,12 +1225,10 @@ exports[`GrcView component 5 renders as expected 1`] = `
           alt="collapse"
           aria-label="collapse"
           className="arrow-up"
-          fill={undefined}
           fillRule="evenodd"
           height="7"
           name="chevron--up"
           role="img"
-          style={undefined}
           viewBox="0 0 12 7"
           width="12"
         >
@@ -1462,12 +1352,9 @@ exports[`GrcView component 5 renders as expected 1`] = `
                 alt="Filter table"
                 aria-label="Filter table"
                 className="bx--search-magnifier"
-                fill={undefined}
                 fillRule="evenodd"
                 height="16"
-                name={undefined}
                 role="img"
-                style={undefined}
                 viewBox="0 0 16 16"
                 width="16"
               >
@@ -1495,7 +1382,6 @@ exports[`GrcView component 5 renders as expected 1`] = `
                 value=""
               />
               <button
-                aria-label={undefined}
                 className="bx--search-close bx--search-close--hidden"
                 onClick={[Function]}
                 type="button"
@@ -1503,13 +1389,9 @@ exports[`GrcView component 5 renders as expected 1`] = `
                 <svg
                   alt="Provide a description that will be used as the title"
                   aria-label="Provide a description that will be used as the title"
-                  className={undefined}
-                  fill={undefined}
                   fillRule="evenodd"
                   height="16"
-                  name={undefined}
                   role="img"
-                  style={undefined}
                   viewBox="0 0 16 16"
                   width="16"
                 >
@@ -1567,12 +1449,8 @@ exports[`GrcView component 5 renders as expected 1`] = `
         <table
           className="bx--data-table-v2 resource-table bx--data-table-v2--zebra"
         >
-          <thead
-            className={undefined}
-          >
-            <tr
-              className={undefined}
-            >
+          <thead>
+            <tr>
               <th
                 scope="col"
               >
@@ -1596,12 +1474,10 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -1637,12 +1513,10 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -1678,12 +1552,10 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -1719,12 +1591,10 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -1760,12 +1630,10 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -1801,12 +1669,10 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -1842,12 +1708,10 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -1883,12 +1747,10 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Sort rows by this header in ascending order."
                     aria-label="Sort rows by this header in ascending order."
                     className="bx--table-sort-v2__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="5"
                     name="caret--down"
                     role="img"
-                    style={undefined}
                     viewBox="0 0 10 5"
                     width="10"
                   >
@@ -1906,62 +1768,40 @@ exports[`GrcView component 5 renders as expected 1`] = `
               />
             </tr>
           </thead>
-          <tbody
-            className={undefined}
-          >
+          <tbody>
             <tr
-              className={undefined}
               data-row-name="Policy that is not compliant"
             >
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy that is not compliant
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy: policy-vulnerabilitypolicy
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Medium
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 clusterhub
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 PCI
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 VA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Information Integrity
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 in an hour
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -1974,15 +1814,12 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -1997,58 +1834,38 @@ exports[`GrcView component 5 renders as expected 1`] = `
               </td>
             </tr>
             <tr
-              className={undefined}
               data-row-name="Policy that is not compliant"
             >
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy that is not compliant
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy: policy-rolebinding-1
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 High
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 clusterhub
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 FISMA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Mutation Advisor
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 in an hour
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -2061,15 +1878,12 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -2084,58 +1898,38 @@ exports[`GrcView component 5 renders as expected 1`] = `
               </td>
             </tr>
             <tr
-              className={undefined}
               data-row-name="Policy that is not compliant"
             >
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy that is not compliant
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy: policy-rolebinding-1
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 High
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 cluster1
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 FISMA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Mutation Advisor
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 in an hour
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -2148,15 +1942,12 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -2171,58 +1962,38 @@ exports[`GrcView component 5 renders as expected 1`] = `
               </td>
             </tr>
             <tr
-              className={undefined}
               data-row-name="Policy that is not compliant"
             >
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy that is not compliant
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy: policy-limitrange
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 High
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 clusterhub
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 HIPAA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Cert Manager
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 in an hour
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -2235,15 +2006,12 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -2258,58 +2026,38 @@ exports[`GrcView component 5 renders as expected 1`] = `
               </td>
             </tr>
             <tr
-              className={undefined}
               data-row-name="Policy that is not compliant"
             >
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy that is not compliant
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy: policy-limitrange
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 High
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 cluster1
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 HIPAA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Cert Manager
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 in an hour
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -2322,15 +2070,12 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -2345,58 +2090,38 @@ exports[`GrcView component 5 renders as expected 1`] = `
               </td>
             </tr>
             <tr
-              className={undefined}
               data-row-name="Policy that is not compliant"
             >
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy that is not compliant
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy: policy-image
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 High
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 cluster1
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 FISMA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 VA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 in an hour
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -2409,15 +2134,12 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -2432,58 +2154,38 @@ exports[`GrcView component 5 renders as expected 1`] = `
               </td>
             </tr>
             <tr
-              className={undefined}
               data-row-name="Policy that is not compliant"
             >
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy that is not compliant
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy: policy-image
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 High
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 clusterhub
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 FISMA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 VA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 in an hour
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -2496,15 +2198,12 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -2519,58 +2218,38 @@ exports[`GrcView component 5 renders as expected 1`] = `
               </td>
             </tr>
             <tr
-              className={undefined}
               data-row-name="Policy that is not compliant"
             >
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy that is not compliant
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy: policy-iampolicy
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Medium
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 cluster1
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 FISMA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Mutation Advisor
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 in an hour
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -2583,15 +2262,12 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -2606,58 +2282,38 @@ exports[`GrcView component 5 renders as expected 1`] = `
               </td>
             </tr>
             <tr
-              className={undefined}
               data-row-name="Policy that is not compliant"
             >
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy that is not compliant
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy: policy-iampolicy
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Medium
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 clusterhub
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 FISMA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Mutation Advisor
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 in an hour
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -2670,15 +2326,12 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -2693,58 +2346,38 @@ exports[`GrcView component 5 renders as expected 1`] = `
               </td>
             </tr>
             <tr
-              className={undefined}
               data-row-name="Policy that is not compliant"
             >
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy that is not compliant
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Policy: policy-pod
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 High
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 cluster1
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 FISMA
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 Mutation Advisor
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 System And Communications Protections
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 in an hour
               </td>
-              <td
-                className={undefined}
-              >
+              <td>
                 <div
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="Overflow-menu"
                   className="bx--overflow-menu"
-                  id={undefined}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onClose={[Function]}
@@ -2757,15 +2390,12 @@ exports[`GrcView component 5 renders as expected 1`] = `
                     alt="Open and close list of options"
                     aria-label="Open and close list of options"
                     className="bx--overflow-menu__icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     focusable="false"
                     height="15"
-                    name={undefined}
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 3 15"
                     width="3"
                   >
@@ -2807,10 +2437,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                 items per page
               </label>
               <select
-                aria-invalid={undefined}
                 className="bx--select-input"
-                data-invalid={undefined}
-                disabled={undefined}
                 id="bx-pagination-select-resource-table-pagination"
                 onChange={[Function]}
                 value={10}
@@ -2868,12 +2495,9 @@ exports[`GrcView component 5 renders as expected 1`] = `
                 alt="open list of options"
                 aria-label="open list of options"
                 className="bx--select__arrow"
-                fill={undefined}
                 fillRule="evenodd"
                 height="5"
-                name={undefined}
                 role="img"
-                style={undefined}
                 viewBox="0 0 10 5"
                 width="10"
               >
@@ -2911,12 +2535,9 @@ exports[`GrcView component 5 renders as expected 1`] = `
               alt="Previous page"
               aria-label="Previous page"
               className="bx--pagination__button-icon"
-              fill={undefined}
               fillRule="evenodd"
               height="12"
-              name={undefined}
               role="img"
-              style={undefined}
               viewBox="0 0 7 12"
               width="7"
             >
@@ -2941,10 +2562,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
                 items per page
               </label>
               <select
-                aria-invalid={undefined}
                 className="bx--select-input"
-                data-invalid={undefined}
-                disabled={undefined}
                 id="bx-pagination-select-resource-table-pagination2"
                 onChange={[Function]}
                 value={1}
@@ -2986,12 +2604,9 @@ exports[`GrcView component 5 renders as expected 1`] = `
                 alt="open list of options"
                 aria-label="open list of options"
                 className="bx--select__arrow"
-                fill={undefined}
                 fillRule="evenodd"
                 height="5"
-                name={undefined}
                 role="img"
-                style={undefined}
                 viewBox="0 0 10 5"
                 width="10"
               >
@@ -3014,12 +2629,9 @@ exports[`GrcView component 5 renders as expected 1`] = `
               alt="Next page"
               aria-label="Next page"
               className="bx--pagination__button-icon"
-              fill={undefined}
               fillRule="evenodd"
               height="12"
-              name={undefined}
               role="img"
-              style={undefined}
               viewBox="0 0 7 12"
               width="7"
             >
@@ -3066,12 +2678,10 @@ exports[`GrcView component 6 renders as expected 1`] = `
           alt="expand"
           aria-label="expand"
           className="arrow-down"
-          fill={undefined}
           fillRule="evenodd"
           height="7"
           name="chevron--down"
           role="img"
-          style={undefined}
           viewBox="0 0 12 7"
           width="12"
         >
@@ -3097,7 +2707,7 @@ exports[`GrcView component 6 renders as expected 1`] = `
         viewBox="-75 -75 150 150"
       >
         <title>
-          Loading
+          Active loading indicator
         </title>
         <circle
           className={null}
@@ -3152,12 +2762,10 @@ exports[`GrcView component 7 renders as expected 1`] = `
           aria-hidden={true}
           aria-label="Provide icon description if icon is used"
           className="bx--btn__icon"
-          fill={undefined}
           fillRule="evenodd"
           height="16"
           name="add--glyph"
           role="img"
-          style={undefined}
           viewBox="0 0 16 16"
           width="16"
         >

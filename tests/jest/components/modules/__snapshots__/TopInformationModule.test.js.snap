@@ -40,13 +40,9 @@ exports[`TopInformationModule clusters view with application renders as expected
           <svg
             alt="show menu options"
             aria-label="show menu options"
-            className={undefined}
-            fill={undefined}
             fillRule="evenodd"
             height="5"
-            name={undefined}
             role="img"
-            style={undefined}
             viewBox="0 0 10 5"
             width="10"
           >
@@ -120,19 +116,16 @@ exports[`TopInformationModule clusters view with application renders as expected
       </nav>
       <div
         aria-hidden={true}
-        className={undefined}
         hidden={true}
         selected={false}
       />
       <div
         aria-hidden={false}
-        className={undefined}
         hidden={false}
         selected={true}
       />
       <div
         aria-hidden={true}
-        className={undefined}
         hidden={true}
         selected={false}
       />
@@ -356,13 +349,9 @@ exports[`TopInformationModule clusters view without application renders as expec
           <svg
             alt="show menu options"
             aria-label="show menu options"
-            className={undefined}
-            fill={undefined}
             fillRule="evenodd"
             height="5"
-            name={undefined}
             role="img"
-            style={undefined}
             viewBox="0 0 10 5"
             width="10"
           >
@@ -418,13 +407,11 @@ exports[`TopInformationModule clusters view without application renders as expec
       </nav>
       <div
         aria-hidden={true}
-        className={undefined}
         hidden={true}
         selected={false}
       />
       <div
         aria-hidden={false}
-        className={undefined}
         hidden={false}
         selected={true}
       />
@@ -648,13 +635,9 @@ exports[`TopInformationModule findings clusters view renders as expected 1`] = `
           <svg
             alt="show menu options"
             aria-label="show menu options"
-            className={undefined}
-            fill={undefined}
             fillRule="evenodd"
             height="5"
-            name={undefined}
             role="img"
-            style={undefined}
             viewBox="0 0 10 5"
             width="10"
           >
@@ -710,13 +693,11 @@ exports[`TopInformationModule findings clusters view renders as expected 1`] = `
       </nav>
       <div
         aria-hidden={true}
-        className={undefined}
         hidden={true}
         selected={false}
       />
       <div
         aria-hidden={false}
-        className={undefined}
         hidden={false}
         selected={true}
       />
@@ -978,13 +959,9 @@ exports[`TopInformationModule findings view renders as expected 1`] = `
           <svg
             alt="show menu options"
             aria-label="show menu options"
-            className={undefined}
-            fill={undefined}
             fillRule="evenodd"
             height="5"
-            name={undefined}
             role="img"
-            style={undefined}
             viewBox="0 0 10 5"
             width="10"
           >
@@ -1040,13 +1017,11 @@ exports[`TopInformationModule findings view renders as expected 1`] = `
       </nav>
       <div
         aria-hidden={false}
-        className={undefined}
         hidden={false}
         selected={true}
       />
       <div
         aria-hidden={true}
-        className={undefined}
         hidden={true}
         selected={false}
       />
@@ -1216,13 +1191,9 @@ exports[`TopInformationModule policies view with application renders as expected
           <svg
             alt="show menu options"
             aria-label="show menu options"
-            className={undefined}
-            fill={undefined}
             fillRule="evenodd"
             height="5"
-            name={undefined}
             role="img"
-            style={undefined}
             viewBox="0 0 10 5"
             width="10"
           >
@@ -1296,19 +1267,16 @@ exports[`TopInformationModule policies view with application renders as expected
       </nav>
       <div
         aria-hidden={false}
-        className={undefined}
         hidden={false}
         selected={true}
       />
       <div
         aria-hidden={true}
-        className={undefined}
         hidden={true}
         selected={false}
       />
       <div
         aria-hidden={true}
-        className={undefined}
         hidden={true}
         selected={false}
       />
@@ -1580,13 +1548,9 @@ exports[`TopInformationModule policies view without application renders as expec
           <svg
             alt="show menu options"
             aria-label="show menu options"
-            className={undefined}
-            fill={undefined}
             fillRule="evenodd"
             height="5"
-            name={undefined}
             role="img"
-            style={undefined}
             viewBox="0 0 10 5"
             width="10"
           >
@@ -1642,13 +1606,11 @@ exports[`TopInformationModule policies view without application renders as expec
       </nav>
       <div
         aria-hidden={false}
-        className={undefined}
         hidden={false}
         selected={true}
       />
       <div
         aria-hidden={true}
-        className={undefined}
         hidden={true}
         selected={false}
       />

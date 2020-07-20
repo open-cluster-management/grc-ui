@@ -10,7 +10,6 @@ exports[`hcm-compliances - createComplianceLink should return valid compliance l
 
 exports[`hcm-compliances - createComplianceLink should return valid compliance link 2`] = `
 <Link
-  replace={false}
   to="undefined/all/testCreateComplianceLink2"
 >
   testCreateComplianceLink2
@@ -20,7 +19,6 @@ exports[`hcm-compliances - createComplianceLink should return valid compliance l
 
 exports[`hcm-compliances - createComplianceLink should return valid compliance link 3`] = `
 <Link
-  replace={false}
   to="undefined/all/testCreateComplianceLink3"
 >
   testCreateComplianceLink3
@@ -31,7 +29,6 @@ exports[`hcm-compliances - createCompliancePolicyLink should return valid compli
 
 exports[`hcm-compliances - createPolicyLink should return valid policy link 1`] = `
 <Link
-  replace={false}
   to="undefined/all/undefined/undefined/compliancePolicy/undefined"
 />
 `;

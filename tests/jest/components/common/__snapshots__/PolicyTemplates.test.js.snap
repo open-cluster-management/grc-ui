@@ -35,12 +35,10 @@ exports[`PolicyTemplates component renders as expected 1`] = `
             aria-hidden={true}
             aria-label="Provide icon description if icon is used"
             className="bx--btn__icon"
-            fill={undefined}
             fillRule="evenodd"
             height="16"
             name="add--glyph"
             role="img"
-            style={undefined}
             viewBox="0 0 16 16"
             width="16"
           >
@@ -66,12 +64,10 @@ exports[`PolicyTemplates component renders as expected 1`] = `
             aria-hidden={true}
             aria-label="Provide icon description if icon is used"
             className="bx--btn__icon"
-            fill={undefined}
             fillRule="evenodd"
             height="16"
             name="add--glyph"
             role="img"
-            style={undefined}
             viewBox="0 0 16 16"
             width="16"
           >

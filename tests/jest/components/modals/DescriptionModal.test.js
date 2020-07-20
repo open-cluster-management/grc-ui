@@ -19,7 +19,7 @@ import { updateModal } from '../../../../src-web/actions/common'
 import { shallow } from 'enzyme'
 
 describe('DescriptionModal render test', () => {
-  it('renders as expected', () => {
+  it('shallow wrapper Stateless instance should be null since react 16', () => {
     const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
@@ -41,6 +41,6 @@ describe('DescriptionModal render test', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(wrapper.instance().render()).toMatchSnapshot()
+    expect(wrapper.instance()).toMatchSnapshot()
   })
 })

@@ -16,41 +16,30 @@ exports[`ClustersOrApplicationsTable 1 renders expand as expected 1`] = `
         <table
           className="bx--data-table-v2 resource-table-main simple-table bx--data-table-v2--zebra"
         >
-          <thead
-            className={undefined}
-          >
-            <tr
-              className={undefined}
-            />
+          <thead>
+            <tr />
           </thead>
-          <tbody
-            className={undefined}
-          >
+          <tbody>
             <tr
               className="bx--parent-row-v2"
               data-parent-row={true}
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -70,25 +59,20 @@ exports[`ClustersOrApplicationsTable 1 renders expand as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -108,25 +92,20 @@ exports[`ClustersOrApplicationsTable 1 renders expand as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -146,25 +125,20 @@ exports[`ClustersOrApplicationsTable 1 renders expand as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -184,25 +158,20 @@ exports[`ClustersOrApplicationsTable 1 renders expand as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -222,25 +191,20 @@ exports[`ClustersOrApplicationsTable 1 renders expand as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -260,25 +224,20 @@ exports[`ClustersOrApplicationsTable 1 renders expand as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -298,25 +257,20 @@ exports[`ClustersOrApplicationsTable 1 renders expand as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -336,25 +290,20 @@ exports[`ClustersOrApplicationsTable 1 renders expand as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -392,16 +341,10 @@ exports[`ClustersOrApplicationsTable 2 renders expand as expected 1`] = `
         <table
           className="bx--data-table-v2 resource-table-main simple-table bx--data-table-v2--zebra"
         >
-          <thead
-            className={undefined}
-          >
-            <tr
-              className={undefined}
-            />
+          <thead>
+            <tr />
           </thead>
-          <tbody
-            className={undefined}
-          />
+          <tbody />
         </table>
       </div>
     </div>
@@ -409,1116 +352,7 @@ exports[`ClustersOrApplicationsTable 2 renders expand as expected 1`] = `
 </div>
 `;
 
-exports[`ClustersView view renders expand as expected 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <withRouter(Connect(PolicySidePanelDetailsModal))
-    data={
-      Array [
-        Object {
-          "__typename": "Policy",
-          "cluster": null,
-          "detail": Object {
-            "__typename": "PolicyDetail",
-            "exclude_namespace": Array [
-              "kube-*",
-            ],
-            "include_namespace": Array [
-              "default",
-            ],
-          },
-          "enforcement": "inform",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-              "policy.open-cluster-management.io/controls": "secretEncryption",
-              "policy.open-cluster-management.io/standards": "FISMA",
-              "seed-generation": "103",
-            },
-            "creationTimestamp": "2019-09-15T08:12:45Z",
-            "name": "policy-auditpolicy",
-            "namespace": "clusterhub",
-            "resourceVersion": "6127749",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-auditpolicy",
-            "uid": "98de47f9-d790-11e9-a1ed-005056a0b88e",
-          },
-          "raw": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-                "policy.open-cluster-management.io/controls": "secretEncryption",
-                "policy.open-cluster-management.io/standards": "FISMA",
-                "seed-generation": "103",
-              },
-              "creationTimestamp": "2019-09-15T08:12:45Z",
-              "finalizers": Array [
-                "finalizer.policies.ibm.com",
-                "propagator.finalizer.mcm.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-              ],
-              "generation": 103,
-              "name": "policy-auditpolicy",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-auditpolicy",
-                  "uid": "786625e5-d307-11e9-a1ed-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "6127749",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-auditpolicy",
-              "uid": "98de47f9-d790-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "policy-templates": Array [
-                Object {
-                  "objectDefinition": Object {
-                    "apiVersion": "audit.policies.ibm.com/v1alpha1",
-                    "kind": "AuditPolicy",
-                    "metadata": Object {
-                      "label": Object {
-                        "category": "System-Integrity",
-                      },
-                      "name": "policy-auditpolicy-example",
-                    },
-                    "spec": Object {
-                      "clusterAuditPolicy": Object {
-                        "auditPolicyRules": Object {
-                          "auth-idp": "validate",
-                          "helmapi": "validate",
-                          "kubernetes": "ignore",
-                          "platform-api": "validate",
-                          "platform-identity-manager": "validate",
-                          "platform-identity-provider": "validate",
-                          "vulnerability-advisor": "validate",
-                        },
-                      },
-                      "namespaceSelector": Object {
-                        "exclude": Array [
-                          "kube-system",
-                        ],
-                        "include": Array [
-                          "default",
-                          "kube-*",
-                        ],
-                      },
-                      "remediationAction": "inform",
-                      "severity": "low",
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-16T13:58:03Z",
-                        "message": "Compliant; [0 violations, services detected with audit disabled in namespace \`default\` ]; [0 violations, services detected with audit disabled in namespace \`kube-public\` ]",
-                        "reason": "policy: clusterhub/policy-auditpolicy-example",
-                        "status": "True",
-                        "type": "completed",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-            },
-            "status": Object {
-              "compliant": "Compliant",
-            },
-          },
-          "status": "Compliant",
-        },
-        Object {
-          "__typename": "Policy",
-          "cluster": null,
-          "detail": Object {
-            "__typename": "PolicyDetail",
-            "exclude_namespace": Array [
-              "kube-*",
-            ],
-            "include_namespace": Array [
-              "default",
-            ],
-          },
-          "enforcement": "inform",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "policy.open-cluster-management.io/categories": "SystemAndInformationIntegrity",
-              "policy.open-cluster-management.io/controls": "CertManager",
-              "policy.open-cluster-management.io/standards": "FISMA, PCI",
-              "seed-generation": "2",
-            },
-            "creationTimestamp": "2019-09-15T08:13:48Z",
-            "name": "policy-certificatepolicy",
-            "namespace": "clusterhub",
-            "resourceVersion": "5854790",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-certificatepolicy",
-            "uid": "be7f68f7-d790-11e9-a1ed-005056a0b88e",
-          },
-          "raw": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndInformationIntegrity",
-                "policy.open-cluster-management.io/controls": "CertManager",
-                "policy.open-cluster-management.io/standards": "FISMA, PCI",
-                "seed-generation": "2",
-              },
-              "creationTimestamp": "2019-09-15T08:13:48Z",
-              "finalizers": Array [
-                "finalizer.policies.ibm.com",
-                "propagator.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-              ],
-              "generation": 2,
-              "name": "policy-certificatepolicy",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-certificatepolicy",
-                  "uid": "68d772b1-ce79-11e9-a1ed-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "5854790",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-certificatepolicy",
-              "uid": "be7f68f7-d790-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "policy-templates": Array [
-                Object {
-                  "objectDefinition": Object {
-                    "apiVersion": "policies.ibm.com/v1alpha1",
-                    "kind": "CertificatePolicy",
-                    "metadata": Object {
-                      "label": Object {
-                        "category": "System-Integrity",
-                      },
-                      "name": "certificate-policy-example",
-                    },
-                    "spec": Object {
-                      "minimumDuration": "300h",
-                      "namespaceSelector": Object {
-                        "exclude": Array [],
-                        "include": Array [
-                          "default",
-                        ],
-                      },
-                      "remediationAction": "inform",
-                      "severity": "low",
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:14:39Z",
-                        "message": "Compliant",
-                        "reason": "policy: clusterhub/certificate-policy-example",
-                        "status": "True",
-                        "type": "completed",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-            },
-            "status": Object {
-              "compliant": "Compliant",
-            },
-          },
-          "status": "Compliant",
-        },
-        Object {
-          "__typename": "Policy",
-          "cluster": null,
-          "detail": Object {
-            "__typename": "PolicyDetail",
-            "exclude_namespace": Array [
-              "kube-*",
-            ],
-            "include_namespace": Array [
-              "default",
-            ],
-          },
-          "enforcement": "inform",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-              "policy.open-cluster-management.io/controls": "MutationAdvisor",
-              "policy.open-cluster-management.io/standards": "FISMA",
-              "seed-generation": "2",
-            },
-            "creationTimestamp": "2019-09-11T19:22:19Z",
-            "name": "policy-iampolicy",
-            "namespace": "clusterhub",
-            "resourceVersion": "5071621",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-iampolicy",
-            "uid": "790ce871-d4c9-11e9-a1ed-005056a0b88e",
-          },
-          "raw": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-                "policy.open-cluster-management.io/controls": "MutationAdvisor",
-                "policy.open-cluster-management.io/standards": "FISMA",
-                "seed-generation": "2",
-              },
-              "creationTimestamp": "2019-09-11T19:22:19Z",
-              "finalizers": Array [
-                "finalizer.policies.ibm.com",
-                "propagator.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-              ],
-              "generation": 2,
-              "name": "policy-iampolicy",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-iampolicy",
-                  "uid": "a18d825a-cb36-11e9-a1eb-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "5071621",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-iampolicy",
-              "uid": "790ce871-d4c9-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "policy-templates": Array [
-                Object {
-                  "objectDefinition": Object {
-                    "apiVersion": "iam.policies.ibm.com/v1alpha1",
-                    "kind": "IamPolicy",
-                    "metadata": Object {
-                      "label": Object {
-                        "category": "System-Integrity",
-                      },
-                      "name": "iam-policy-example",
-                    },
-                    "spec": Object {
-                      "maxClusterRoleBindingUsers": 5,
-                      "maxRoleBindingViolationsPerNamespace": 2,
-                      "namespaceSelector": Object {
-                        "exclude": Array [
-                          "kube-system",
-                        ],
-                        "include": Array [
-                          "default",
-                          "kube-*",
-                        ],
-                      },
-                      "remediationAction": "inform",
-                      "severity": "medium",
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "NonCompliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-11T19:22:34Z",
-                        "message": "NonCompliant; 1 clusterrole admin users violations detected in namespace \`cluster-wide\`",
-                        "reason": "policy: clusterhub/iam-policy-example",
-                        "status": "True",
-                        "type": "completed",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-            },
-            "status": Object {
-              "compliant": "NonCompliant",
-            },
-          },
-          "status": "NonCompliant",
-        },
-        Object {
-          "__typename": "Policy",
-          "cluster": null,
-          "detail": Object {
-            "__typename": "PolicyDetail",
-            "exclude_namespace": Array [
-              "kube-*",
-            ],
-            "include_namespace": Array [
-              "default",
-            ],
-          },
-          "enforcement": "inform",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-              "policy.open-cluster-management.io/controls": "VA",
-              "policy.open-cluster-management.io/standards": "FISMA",
-              "seed-generation": "5",
-            },
-            "creationTimestamp": "2019-09-15T08:13:48Z",
-            "name": "policy-image",
-            "namespace": "clusterhub",
-            "resourceVersion": "5854643",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-image",
-            "uid": "be8091d5-d790-11e9-a1ed-005056a0b88e",
-          },
-          "raw": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-                "policy.open-cluster-management.io/controls": "VA",
-                "policy.open-cluster-management.io/standards": "FISMA",
-                "seed-generation": "5",
-              },
-              "creationTimestamp": "2019-09-15T08:13:48Z",
-              "finalizers": Array [
-                "finalizer.policies.ibm.com",
-                "propagator.finalizer.mcm.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-              ],
-              "generation": 2,
-              "name": "policy-image",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-image",
-                  "uid": "8be1a627-cb2c-11e9-a1eb-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "5854643",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-image",
-              "uid": "be8091d5-d790-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "object-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "securityenforcement.admission.cloud.ibm.com/v1beta1",
-                    "kind": "ClusterImagePolicy",
-                    "metadata": Object {
-                      "name": "mongo",
-                    },
-                    "spec": Object {
-                      "repositories": Array [
-                        Object {
-                          "name": "docker.io/mongo",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "NonCompliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:13:52Z",
-                        "message": "clusterimagepolicies \`mongo\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-            },
-            "status": Object {
-              "compliant": "NonCompliant",
-            },
-          },
-          "status": "NonCompliant",
-        },
-        Object {
-          "__typename": "Policy",
-          "cluster": null,
-          "detail": Object {
-            "__typename": "PolicyDetail",
-            "exclude_namespace": Array [
-              "kube-*",
-            ],
-            "include_namespace": Array [
-              "default",
-            ],
-          },
-          "enforcement": "inform",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-              "policy.open-cluster-management.io/controls": "CertManager",
-              "policy.open-cluster-management.io/standards": "HIPAA",
-              "seed-generation": "2",
-            },
-            "creationTimestamp": "2019-09-15T08:12:48Z",
-            "name": "policy-limitrange",
-            "namespace": "clusterhub",
-            "resourceVersion": "5854341",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-limitrange",
-            "uid": "9aa3d1ac-d790-11e9-a1ed-005056a0b88e",
-          },
-          "raw": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-                "policy.open-cluster-management.io/controls": "CertManager",
-                "policy.open-cluster-management.io/standards": "HIPAA",
-                "seed-generation": "2",
-              },
-              "creationTimestamp": "2019-09-15T08:12:48Z",
-              "finalizers": Array [
-                "propagator.finalizer.mcm.ibm.com",
-                "finalizer.policies.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-              ],
-              "generation": 2,
-              "name": "policy-limitrange",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-limitrange",
-                  "uid": "d358638d-cf30-11e9-a1ed-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "5854341",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-limitrange",
-              "uid": "9aa3d1ac-d790-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "object-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "kind": "LimitRange",
-                    "metadata": Object {
-                      "name": "mem-limit-range",
-                    },
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "NonCompliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:54Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-            },
-            "status": Object {
-              "compliant": "NonCompliant",
-            },
-          },
-          "status": "NonCompliant",
-        },
-        Object {
-          "__typename": "Policy",
-          "cluster": null,
-          "detail": Object {
-            "__typename": "PolicyDetail",
-            "exclude_namespace": Array [
-              "*",
-            ],
-            "include_namespace": Array [
-              "*",
-            ],
-          },
-          "enforcement": "enforce",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-              "policy.open-cluster-management.io/controls": "MutationAdvisor",
-              "policy.open-cluster-management.io/standards": "NIST,HIPAA",
-              "seed-generation": "1",
-            },
-            "creationTimestamp": "2019-09-12T23:53:57Z",
-            "name": "policy-namespace",
-            "namespace": "clusterhub",
-            "resourceVersion": "5335869",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-namespace",
-            "uid": "95ff86af-d5b8-11e9-a1ed-005056a0b88e",
-          },
-          "raw": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-                "policy.open-cluster-management.io/controls": "MutationAdvisor",
-                "policy.open-cluster-management.io/standards": "NIST,HIPAA",
-                "seed-generation": "1",
-              },
-              "creationTimestamp": "2019-09-12T23:53:57Z",
-              "finalizers": Array [
-                "propagator.finalizer.mcm.ibm.com",
-                "finalizer.policies.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-              ],
-              "generation": 1,
-              "name": "policy-namespace",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-namespace",
-                  "uid": "2516c2c7-d3f4-11e9-a1ed-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "5335869",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-namespace",
-              "uid": "95ff86af-d5b8-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {},
-              "object-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "kind": "Namespace",
-                    "metadata": Object {
-                      "name": "dev-will-test",
-                    },
-                  },
-                  "status": Object {
-                    "Validity": Object {},
-                  },
-                },
-              ],
-              "remediationAction": "enforce",
-            },
-            "status": Object {},
-          },
-          "status": "unknown",
-        },
-        Object {
-          "__typename": "Policy",
-          "cluster": null,
-          "detail": Object {
-            "__typename": "PolicyDetail",
-            "exclude_namespace": Array [
-              "kube-*",
-            ],
-            "include_namespace": Array [
-              "default",
-            ],
-          },
-          "enforcement": "inform",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-              "policy.open-cluster-management.io/controls": "MutationAdvisor",
-              "policy.open-cluster-management.io/standards": "FISMA",
-              "seed-generation": "2",
-            },
-            "creationTimestamp": "2019-09-15T08:12:48Z",
-            "name": "policy-pod",
-            "namespace": "clusterhub",
-            "resourceVersion": "5854352",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-pod",
-            "uid": "9a919f45-d790-11e9-a1ed-005056a0b88e",
-          },
-          "raw": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-                "policy.open-cluster-management.io/controls": "MutationAdvisor",
-                "policy.open-cluster-management.io/standards": "FISMA",
-                "seed-generation": "2",
-              },
-              "creationTimestamp": "2019-09-15T08:12:48Z",
-              "finalizers": Array [
-                "finalizer.policies.ibm.com",
-                "propagator.finalizer.mcm.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-              ],
-              "generation": 7,
-              "name": "policy-pod",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-pod",
-                  "uid": "48316272-d009-11e9-a1ed-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "5854352",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-pod",
-              "uid": "9a919f45-d790-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "object-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "kind": "Pod",
-                    "metadata": Object {
-                      "name": "nginx-pod",
-                    },
-                    "spec": Object {
-                      "containers": Array [
-                        Object {
-                          "image": "nginx:1.7.9",
-                          "name": "nginx",
-                          "ports": Array [
-                            Object {
-                              "containerPort": 80,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "NonCompliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:52Z",
-                        "message": "pods \`nginx-pod\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-            },
-            "status": Object {},
-          },
-          "status": "unknown",
-        },
-        Object {
-          "__typename": "Policy",
-          "cluster": null,
-          "detail": Object {
-            "__typename": "PolicyDetail",
-            "exclude_namespace": Array [
-              "kube-*",
-            ],
-            "include_namespace": Array [
-              "default",
-            ],
-          },
-          "enforcement": "inform",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-              "policy.open-cluster-management.io/controls": "MutationAdvisor",
-              "policy.open-cluster-management.io/standards": "FISMA",
-              "seed-generation": "2",
-            },
-            "creationTimestamp": "2019-09-15T08:12:48Z",
-            "name": "policy-rolebinding-1",
-            "namespace": "clusterhub",
-            "resourceVersion": "5854333",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-rolebinding-1",
-            "uid": "9a9d57f0-d790-11e9-a1ed-005056a0b88e",
-          },
-          "raw": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-                "policy.open-cluster-management.io/controls": "MutationAdvisor",
-                "policy.open-cluster-management.io/standards": "FISMA",
-                "seed-generation": "2",
-              },
-              "creationTimestamp": "2019-09-15T08:12:48Z",
-              "finalizers": Array [
-                "finalizer.policies.ibm.com",
-                "propagator.finalizer.mcm.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-              ],
-              "generation": 2,
-              "name": "policy-rolebinding-1",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-rolebinding-1",
-                  "uid": "22ac9660-cf15-11e9-a1ed-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "5854333",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-rolebinding-1",
-              "uid": "9a9d57f0-d790-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "object-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "rbac.authorization.k8s.io/v1",
-                    "kind": "RoleBinding",
-                    "metadata": Object {
-                      "name": "operate-pods-rolebinding",
-                    },
-                    "roleRef": Object {
-                      "apiGroup": "rbac.authorization.k8s.io",
-                      "kind": "Role",
-                      "name": "operator",
-                    },
-                    "subjects": Array [
-                      Object {
-                        "apiGroup": "rbac.authorization.k8s.io",
-                        "kind": "User",
-                        "name": "admin",
-                      },
-                    ],
-                  },
-                  "status": Object {
-                    "Compliant": "NonCompliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:53Z",
-                        "message": "rolebindings \`operate-pods-rolebinding\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-            },
-            "status": Object {
-              "compliant": "NonCompliant",
-            },
-          },
-          "status": "NonCompliant",
-        },
-        Object {
-          "__typename": "Policy",
-          "cluster": null,
-          "detail": Object {
-            "__typename": "PolicyDetail",
-            "exclude_namespace": Array [
-              "kube-*",
-            ],
-            "include_namespace": Array [
-              "default",
-            ],
-          },
-          "enforcement": "inform",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "policy.open-cluster-management.io/categories": "SystemAndInformationIntegrity",
-              "policy.open-cluster-management.io/controls": "VA",
-              "policy.open-cluster-management.io/standards": "PCI",
-              "seed-generation": "2",
-            },
-            "creationTimestamp": "2019-09-15T08:13:48Z",
-            "name": "policy-vulnerabilitypolicy",
-            "namespace": "clusterhub",
-            "resourceVersion": "5854650",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-vulnerabilitypolicy",
-            "uid": "be757224-d790-11e9-a1ed-005056a0b88e",
-          },
-          "raw": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndInformationIntegrity",
-                "policy.open-cluster-management.io/controls": "VA",
-                "policy.open-cluster-management.io/standards": "PCI",
-                "seed-generation": "2",
-              },
-              "creationTimestamp": "2019-09-15T08:13:48Z",
-              "finalizers": Array [
-                "finalizer.policies.ibm.com",
-                "propagator.finalizer.mcm.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-              ],
-              "generation": 2,
-              "name": "policy-vulnerabilitypolicy",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-vulnerabilitypolicy",
-                  "uid": "2767ac02-ce7a-11e9-a1ed-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "5854650",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-vulnerabilitypolicy",
-              "uid": "be757224-d790-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "policy-templates": Array [
-                Object {
-                  "objectDefinition": Object {
-                    "apiVersion": "policies.ibm.com/v1alpha1",
-                    "kind": "VulnerabilityPolicy",
-                    "metadata": Object {
-                      "label": Object {
-                        "category": "System-Integrity",
-                      },
-                      "name": "va-policy-example",
-                    },
-                    "spec": Object {
-                      "namespaceSelector": Object {
-                        "exclude": Array [
-                          "kube-system",
-                        ],
-                        "include": Array [
-                          "default",
-                          "kube-*",
-                        ],
-                      },
-                      "remediationAction": "inform",
-                      "severity": "medium",
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "NonCompliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:13:52Z",
-                        "message": "mapping error from raw object: \`no matches for kind \\"VulnerabilityPolicy\\" in version \\"policies.ibm.com/v1alpha1\\"\`",
-                        "reason": "K8s creation error",
-                        "status": "False",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-            },
-            "status": Object {
-              "compliant": "NonCompliant",
-            },
-          },
-          "status": "NonCompliant",
-        },
-      ]
-    }
-    locale="en-US"
-    open={true}
-    resourceType={
-      Object {
-        "list": "HCMPolicyClusterList",
-        "name": "HCMPolicyCluster",
-      }
-    }
-    title=""
-    updateModal={[MockFunction]}
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "render": [Function],
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "render": [Function],
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
-`;
+exports[`ClustersView view renders expand as expected 1`] = `ShallowWrapper {}`;
 
 exports[`PoliciesTable 1 renders expand as expected 1`] = `
 <div
@@ -1536,41 +370,30 @@ exports[`PoliciesTable 1 renders expand as expected 1`] = `
         <table
           className="bx--data-table-v2 resource-table-main simple-table bx--data-table-v2--zebra"
         >
-          <thead
-            className={undefined}
-          >
-            <tr
-              className={undefined}
-            />
+          <thead>
+            <tr />
           </thead>
-          <tbody
-            className={undefined}
-          >
+          <tbody>
             <tr
               className="bx--parent-row-v2"
               data-parent-row={true}
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -1590,25 +413,20 @@ exports[`PoliciesTable 1 renders expand as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -1646,16 +464,10 @@ exports[`PoliciesTable 2 renders expand as expected 1`] = `
         <table
           className="bx--data-table-v2 resource-table-main simple-table bx--data-table-v2--zebra"
         >
-          <thead
-            className={undefined}
-          >
-            <tr
-              className={undefined}
-            />
+          <thead>
+            <tr />
           </thead>
-          <tbody
-            className={undefined}
-          />
+          <tbody />
         </table>
       </div>
     </div>
@@ -1679,41 +491,30 @@ exports[`PoliciesTable 3 renders expand as expected 1`] = `
         <table
           className="bx--data-table-v2 resource-table-main simple-table bx--data-table-v2--zebra"
         >
-          <thead
-            className={undefined}
-          >
-            <tr
-              className={undefined}
-            />
+          <thead>
+            <tr />
           </thead>
-          <tbody
-            className={undefined}
-          >
+          <tbody>
             <tr
               className="bx--parent-row-v2"
               data-parent-row={true}
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -1733,25 +534,20 @@ exports[`PoliciesTable 3 renders expand as expected 1`] = `
             >
               <td
                 className="bx--table-expand-v2"
-                data-previous-value={undefined}
                 headers="expand"
               >
                 <button
                   aria-label="Overflow-menu"
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -1773,894 +569,6 @@ exports[`PoliciesTable 3 renders expand as expected 1`] = `
 </div>
 `;
 
-exports[`PoliciesView view renders expand as expected 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <withRouter(Connect(PolicySidePanelDetailsModal))
-    data={
-      Array [
-        Object {
-          "__typename": "ClusterInfo",
-          "apiVersion": "clusterregistry.k8s.io/v1alpha1",
-          "kind": "Cluster",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "mcm.ibm.com/deployer-prefix": "md",
-              "mcm.ibm.com/secretRef": "cluster1-federation-secret",
-              "mcm.ibm.com/user-group": "aGNtOmNsdXN0ZXJzLHN5c3RlbTphdXRoZW50aWNhdGVk",
-              "mcm.ibm.com/user-identity": "aGNtOmNsdXN0ZXJzOmNsdXN0ZXIxOmNsdXN0ZXIx",
-            },
-            "labels": Object {
-              "cloud": "IBM",
-              "environment": "Dev",
-              "name": "cluster1",
-              "region": "US",
-            },
-            "name": "cluster1",
-            "namespace": "cluster1",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/clusterstatuses/cluster1",
-            "uid": "24694bf8-ce79-11e9-bbf4-26cb3fc6476c",
-          },
-          "name": "cluster1",
-          "policy": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-                "policy.open-cluster-management.io/controls": "CertManager",
-                "policy.open-cluster-management.io/standards": "HIPAA",
-                "seed-generation": "2",
-              },
-              "creationTimestamp": "2019-09-15T08:12:48Z",
-              "finalizers": Array [
-                "policy.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-              ],
-              "generation": 2,
-              "name": "policy-limitrange",
-              "namespace": "cluster1",
-              "resourceVersion": "8412735",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-limitrange",
-              "uid": "9aa50808-d790-11e9-8a74-005056a04901",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "object-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:49Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "policy-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:49Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-              "role-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:49Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-            "status": Object {
-              "compliant": "NonCompliant",
-            },
-          },
-          "spec": Object {
-            "consoleURL": "https://9.42.82.160:8443",
-          },
-          "status": Object {
-            "conditions": Array [
-              Object {
-                "lastHeartbeatTime": "2019-09-16T15:10:15Z",
-                "lastTransitionTime": "2019-09-16T14:25:40Z",
-                "status": "",
-                "type": "OK",
-              },
-            ],
-          },
-          "total": "1",
-          "violated": "1",
-        },
-        Object {
-          "__typename": "ClusterInfo",
-          "apiVersion": "clusterregistry.k8s.io/v1alpha1",
-          "kind": "Cluster",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "mcm.ibm.com/deployer-prefix": "md",
-              "mcm.ibm.com/secretRef": "clusterhub-federation-secret",
-              "mcm.ibm.com/user-group": "aGNtOmNsdXN0ZXJzLHN5c3RlbTphdXRoZW50aWNhdGVk",
-              "mcm.ibm.com/user-identity": "aGNtOmNsdXN0ZXJzOmNsdXN0ZXJodWI6Y2x1c3Rlcmh1Yg==",
-            },
-            "labels": Object {
-              "cloud": "IBM",
-              "datacenter": "toronto",
-              "environment": "Dev",
-              "name": "clusterhub",
-              "owner": "marketing",
-              "region": "US",
-              "vendor": "ICP",
-            },
-            "name": "clusterhub",
-            "namespace": "clusterhub",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/clusterstatuses/clusterhub",
-            "uid": "3fb19cc2-ca8b-11e9-bbf4-26cb3fc6476c",
-          },
-          "name": "clusterhub",
-          "policy": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-                "policy.open-cluster-management.io/controls": "CertManager",
-                "policy.open-cluster-management.io/standards": "HIPAA",
-                "seed-generation": "2",
-              },
-              "creationTimestamp": "2019-09-15T08:12:48Z",
-              "finalizers": Array [
-                "propagator.finalizer.mcm.ibm.com",
-                "finalizer.policies.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-              ],
-              "generation": 2,
-              "name": "policy-limitrange",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-limitrange",
-                  "uid": "d358638d-cf30-11e9-a1ed-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "5854341",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-limitrange",
-              "uid": "9aa3d1ac-d790-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "object-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "NonCompliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:54Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "policy-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "NonCompliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:54Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-              "role-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "NonCompliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:54Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-            "status": Object {
-              "compliant": "NonCompliant",
-            },
-          },
-          "spec": Object {
-            "consoleURL": "https://9.42.82.240:8443",
-          },
-          "status": Object {
-            "conditions": Array [
-              Object {
-                "lastHeartbeatTime": "2019-09-16T15:10:37Z",
-                "lastTransitionTime": "2019-09-16T14:25:41Z",
-                "status": "",
-                "type": "OK",
-              },
-            ],
-          },
-          "total": "1",
-          "violated": "1",
-        },
-      ]
-    }
-    locale="en-US"
-    open={true}
-    resourceType={
-      Object {
-        "list": "HCMPolicyPolicyList",
-        "name": "HCMPolicyPolicy",
-      }
-    }
-    title=""
-    updateModal={[MockFunction]}
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "render": [Function],
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "render": [Function],
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
-`;
+exports[`PoliciesView view renders expand as expected 1`] = `ShallowWrapper {}`;
 
-exports[`PoliciesView view renders expand as expected 2`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <withRouter(Connect(PolicySidePanelDetailsModal))
-    data={
-      Array [
-        Object {
-          "__typename": "ClusterInfo",
-          "apiVersion": "clusterregistry.k8s.io/v1alpha1",
-          "kind": "Cluster",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "mcm.ibm.com/deployer-prefix": "md",
-              "mcm.ibm.com/secretRef": "cluster1-federation-secret",
-              "mcm.ibm.com/user-group": "aGNtOmNsdXN0ZXJzLHN5c3RlbTphdXRoZW50aWNhdGVk",
-              "mcm.ibm.com/user-identity": "aGNtOmNsdXN0ZXJzOmNsdXN0ZXIxOmNsdXN0ZXIx",
-            },
-            "labels": Object {
-              "cloud": "IBM",
-              "environment": "Dev",
-              "name": "cluster1",
-              "region": "US",
-            },
-            "name": "cluster1",
-            "namespace": "cluster1",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/clusterstatuses/cluster1",
-            "uid": "24694bf8-ce79-11e9-bbf4-26cb3fc6476c",
-          },
-          "name": "cluster1",
-          "policy": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-                "policy.open-cluster-management.io/controls": "CertManager",
-                "policy.open-cluster-management.io/standards": "HIPAA",
-                "seed-generation": "2",
-              },
-              "creationTimestamp": "2019-09-15T08:12:48Z",
-              "finalizers": Array [
-                "policy.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-              ],
-              "generation": 2,
-              "name": "policy-limitrange",
-              "namespace": "cluster1",
-              "resourceVersion": "8412735",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/cluster1/policies/policy-limitrange",
-              "uid": "9aa50808-d790-11e9-8a74-005056a04901",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "object-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:49Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "policy-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:49Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-              "role-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:49Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-            "status": Object {
-              "compliant": "Compliant",
-            },
-          },
-          "spec": Object {
-            "consoleURL": "https://9.42.82.160:8443",
-          },
-          "status": Object {
-            "conditions": Array [
-              Object {
-                "lastHeartbeatTime": "2019-09-16T15:10:15Z",
-                "lastTransitionTime": "2019-09-16T14:25:40Z",
-                "status": "",
-                "type": "OK",
-              },
-            ],
-          },
-          "total": "1",
-          "violated": "0",
-        },
-        Object {
-          "__typename": "ClusterInfo",
-          "apiVersion": "clusterregistry.k8s.io/v1alpha1",
-          "kind": "Cluster",
-          "metadata": Object {
-            "__typename": "Metadata",
-            "annotations": Object {
-              "mcm.ibm.com/deployer-prefix": "md",
-              "mcm.ibm.com/secretRef": "clusterhub-federation-secret",
-              "mcm.ibm.com/user-group": "aGNtOmNsdXN0ZXJzLHN5c3RlbTphdXRoZW50aWNhdGVk",
-              "mcm.ibm.com/user-identity": "aGNtOmNsdXN0ZXJzOmNsdXN0ZXJodWI6Y2x1c3Rlcmh1Yg==",
-            },
-            "labels": Object {
-              "cloud": "IBM",
-              "datacenter": "toronto",
-              "environment": "Dev",
-              "name": "clusterhub",
-              "owner": "marketing",
-              "region": "US",
-              "vendor": "ICP",
-            },
-            "name": "clusterhub",
-            "namespace": "clusterhub",
-            "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/clusterstatuses/clusterhub",
-            "uid": "3fb19cc2-ca8b-11e9-bbf4-26cb3fc6476c",
-          },
-          "name": "clusterhub",
-          "policy": Object {
-            "apiVersion": "policy.open-cluster-management.io/v1",
-            "kind": "Policy",
-            "metadata": Object {
-              "annotations": Object {
-                "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-                "policy.open-cluster-management.io/controls": "CertManager",
-                "policy.open-cluster-management.io/standards": "HIPAA",
-                "seed-generation": "2",
-              },
-              "creationTimestamp": "2019-09-15T08:12:48Z",
-              "finalizers": Array [
-                "propagator.finalizer.mcm.ibm.com",
-                "finalizer.policies.ibm.com",
-                "policy.finalizer.mcm.ibm.com",
-                "sync.finalizer.mcm.ibm.com",
-              ],
-              "generation": 2,
-              "name": "policy-limitrange",
-              "namespace": "clusterhub",
-              "ownerReferences": Array [
-                Object {
-                  "apiVersion": "policy.open-cluster-management.io/v1",
-                  "blockOwnerDeletion": true,
-                  "controller": true,
-                  "kind": "Policy",
-                  "name": "policy-limitrange",
-                  "uid": "d358638d-cf30-11e9-a1ed-005056a0b88e",
-                },
-              ],
-              "resourceVersion": "5854341",
-              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/clusterhub/policies/policy-limitrange",
-              "uid": "9aa3d1ac-d790-11e9-a1ed-005056a0b88e",
-            },
-            "spec": Object {
-              "complianceType": "musthave",
-              "namespaces": Object {
-                "exclude": Array [
-                  "kube-*",
-                ],
-                "include": Array [
-                  "default",
-                ],
-              },
-              "object-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:54Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "policy-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:54Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-              "remediationAction": "inform",
-              "role-templates": Array [
-                Object {
-                  "complianceType": "musthave",
-                  "objectDefinition": Object {
-                    "apiVersion": "v1",
-                    "spec": Object {
-                      "limits": Array [
-                        Object {
-                          "default": Object {
-                            "memory": "512Mi",
-                          },
-                          "defaultRequest": Object {
-                            "memory": "256Mi",
-                          },
-                          "type": "Container",
-                        },
-                      ],
-                    },
-                  },
-                  "status": Object {
-                    "Compliant": "Compliant",
-                    "Validity": Object {},
-                    "conditions": Array [
-                      Object {
-                        "lastTransitionTime": "2019-09-15T08:12:54Z",
-                        "message": "limitranges \`mem-limit-range\` is missing, and should be created",
-                        "reason": "K8s missing a must have object",
-                        "status": "True",
-                        "type": "violation",
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-            "status": Object {
-              "compliant": "Compliant",
-            },
-          },
-          "spec": Object {
-            "consoleURL": "https://9.42.82.240:8443",
-          },
-          "status": Object {
-            "conditions": Array [
-              Object {
-                "lastHeartbeatTime": "2019-09-16T15:10:37Z",
-                "lastTransitionTime": "2019-09-16T14:25:41Z",
-                "status": "",
-                "type": "OK",
-              },
-            ],
-          },
-          "total": "1",
-          "violated": "0",
-        },
-      ]
-    }
-    locale="en-US"
-    open={true}
-    resourceType={
-      Object {
-        "list": "HCMPolicyPolicyList",
-        "name": "HCMPolicyPolicy",
-      }
-    }
-    title=""
-    updateModal={[MockFunction]}
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "render": [Function],
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "render": [Function],
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
-`;
+exports[`PoliciesView view renders expand as expected 2`] = `ShallowWrapper {}`;

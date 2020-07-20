@@ -13,12 +13,9 @@ exports[`PolicyClusterDetail component renders as error 1`] = `
       alt="closes notification"
       aria-label="closes notification"
       className="bx--inline-notification__icon"
-      fill={undefined}
       fillRule="evenodd"
       height="16"
-      name={undefined}
       role="img"
-      style={undefined}
       viewBox="0 0 16 16"
       width="16"
     >
@@ -54,12 +51,9 @@ exports[`PolicyClusterDetail component renders as error 1`] = `
       alt="close icon"
       aria-label="close icon"
       className="bx--inline-notification__close-icon"
-      fill={undefined}
       fillRule="evenodd"
       height="10"
-      name={undefined}
       role="img"
-      style={undefined}
       viewBox="0 0 10 10"
       width="10"
     >
@@ -84,7 +78,7 @@ exports[`PolicyClusterDetail component renders as loading 1`] = `
     viewBox="-75 -75 150 150"
   >
     <title>
-      Loading
+      Active loading indicator
     </title>
     <circle
       className={null}
@@ -328,12 +322,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       alt="Filter table"
                       aria-label="Filter table"
                       className="bx--search-magnifier"
-                      fill={undefined}
                       fillRule="evenodd"
                       height="16"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 16 16"
                       width="16"
                     >
@@ -361,7 +352,6 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       value=""
                     />
                     <button
-                      aria-label={undefined}
                       className="bx--search-close bx--search-close--hidden"
                       onClick={[Function]}
                       type="button"
@@ -369,13 +359,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       <svg
                         alt="Provide a description that will be used as the title"
                         aria-label="Provide a description that will be used as the title"
-                        className={undefined}
-                        fill={undefined}
                         fillRule="evenodd"
                         height="16"
-                        name={undefined}
                         role="img"
-                        style={undefined}
                         viewBox="0 0 16 16"
                         width="16"
                       >
@@ -396,12 +382,8 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
               <table
                 className="bx--data-table-v2 resource-table bx--data-table-v2--zebra"
               >
-                <thead
-                  className={undefined}
-                >
-                  <tr
-                    className={undefined}
-                  >
+                <thead>
+                  <tr>
                     <th
                       scope="col"
                     >
@@ -425,12 +407,10 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -466,12 +446,10 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -507,12 +485,10 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -548,12 +524,10 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -568,31 +542,20 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                     </th>
                   </tr>
                 </thead>
-                <tbody
-                  className={undefined}
-                >
+                <tbody>
                   <tr
-                    className={undefined}
                     data-row-name="policy-certificatepolicy-example"
                   >
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       policy-certificatepolicy-example
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       policy.open-cluster-management.io/v1
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       CertificatePolicy
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       -
                     </td>
                   </tr>
@@ -624,10 +587,7 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       items per page
                     </label>
                     <select
-                      aria-invalid={undefined}
                       className="bx--select-input"
-                      data-invalid={undefined}
-                      disabled={undefined}
                       id="bx-pagination-select-policyTemplates-resource-table-pagination"
                       onChange={[Function]}
                       value={10}
@@ -685,12 +645,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       alt="open list of options"
                       aria-label="open list of options"
                       className="bx--select__arrow"
-                      fill={undefined}
                       fillRule="evenodd"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -728,12 +685,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                     alt="Previous page"
                     aria-label="Previous page"
                     className="bx--pagination__button-icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -758,10 +712,7 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       items per page
                     </label>
                     <select
-                      aria-invalid={undefined}
                       className="bx--select-input"
-                      data-invalid={undefined}
-                      disabled={undefined}
                       id="bx-pagination-select-policyTemplates-resource-table-pagination2"
                       onChange={[Function]}
                       value={1}
@@ -779,12 +730,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       alt="open list of options"
                       aria-label="open list of options"
                       className="bx--select__arrow"
-                      fill={undefined}
                       fillRule="evenodd"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -807,12 +755,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                     alt="Next page"
                     aria-label="Next page"
                     className="bx--pagination__button-icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -869,12 +814,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       alt="Filter table"
                       aria-label="Filter table"
                       className="bx--search-magnifier"
-                      fill={undefined}
                       fillRule="evenodd"
                       height="16"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 16 16"
                       width="16"
                     >
@@ -902,7 +844,6 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       value=""
                     />
                     <button
-                      aria-label={undefined}
                       className="bx--search-close bx--search-close--hidden"
                       onClick={[Function]}
                       type="button"
@@ -910,13 +851,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       <svg
                         alt="Provide a description that will be used as the title"
                         aria-label="Provide a description that will be used as the title"
-                        className={undefined}
-                        fill={undefined}
                         fillRule="evenodd"
                         height="16"
-                        name={undefined}
                         role="img"
-                        style={undefined}
                         viewBox="0 0 16 16"
                         width="16"
                       >
@@ -937,12 +874,8 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
               <table
                 className="bx--data-table-v2 resource-table bx--data-table-v2--zebra"
               >
-                <thead
-                  className={undefined}
-                >
-                  <tr
-                    className={undefined}
-                  >
+                <thead>
+                  <tr>
                     <th
                       scope="col"
                     >
@@ -966,12 +899,10 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -1007,12 +938,10 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -1048,12 +977,10 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -1089,12 +1016,10 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                           alt="Sort rows by this header in ascending order."
                           aria-label="Sort rows by this header in ascending order."
                           className="bx--table-sort-v2__icon"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="5"
                           name="caret--down"
                           role="img"
-                          style={undefined}
                           viewBox="0 0 10 5"
                           width="10"
                         >
@@ -1109,31 +1034,20 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                     </th>
                   </tr>
                 </thead>
-                <tbody
-                  className={undefined}
-                >
+                <tbody>
                   <tr
-                    className={undefined}
                     data-row-name="policy-certificatepolicy-example"
                   >
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       policy-certificatepolicy-example
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       calamari
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       NonCompliant; 1 certificates expire in less than 300h0m0s: default:rsa-ca-sample-secret
                     </td>
-                    <td
-                      className={undefined}
-                    >
+                    <td>
                       2020-06-15T15:00:07Z
                     </td>
                   </tr>
@@ -1165,10 +1079,7 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       items per page
                     </label>
                     <select
-                      aria-invalid={undefined}
                       className="bx--select-input"
-                      data-invalid={undefined}
-                      disabled={undefined}
                       id="bx-pagination-select-violations-resource-table-pagination"
                       onChange={[Function]}
                       value={10}
@@ -1226,12 +1137,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       alt="open list of options"
                       aria-label="open list of options"
                       className="bx--select__arrow"
-                      fill={undefined}
                       fillRule="evenodd"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -1269,12 +1177,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                     alt="Previous page"
                     aria-label="Previous page"
                     className="bx--pagination__button-icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >
@@ -1299,10 +1204,7 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       items per page
                     </label>
                     <select
-                      aria-invalid={undefined}
                       className="bx--select-input"
-                      data-invalid={undefined}
-                      disabled={undefined}
                       id="bx-pagination-select-violations-resource-table-pagination2"
                       onChange={[Function]}
                       value={1}
@@ -1320,12 +1222,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                       alt="open list of options"
                       aria-label="open list of options"
                       className="bx--select__arrow"
-                      fill={undefined}
                       fillRule="evenodd"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -1348,12 +1247,9 @@ exports[`PolicyClusterDetail component renders as normal 1`] = `
                     alt="Next page"
                     aria-label="Next page"
                     className="bx--pagination__button-icon"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >

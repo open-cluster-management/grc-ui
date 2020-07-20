@@ -11,7 +11,6 @@ Object {
     iconTitle=""
     menuOffset={[Function]}
     open={false}
-    renderIcon={undefined}
     showIcon={false}
     text="TruncateText"
     triggerClassName="textWithTruncation"
