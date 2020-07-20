@@ -47,6 +47,4 @@ ResourceOverviewModule.propTypes = {
   staticResourceData: PropTypes.object
 }
 
-
-
 export default ResourceOverviewModule

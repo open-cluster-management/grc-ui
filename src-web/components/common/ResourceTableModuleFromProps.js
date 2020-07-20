@@ -158,5 +158,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-
 export default withRouter(connect(mapStateToProps)(ResourceTableModule))

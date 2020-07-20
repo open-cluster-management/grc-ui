@@ -71,7 +71,6 @@ module.exports = {
     ],
   },
 
-
   output: {
     path: __dirname + '/public',
     filename: PRODUCTION ? 'dll.[name].[chunkhash].js' : 'dll.[name].js',

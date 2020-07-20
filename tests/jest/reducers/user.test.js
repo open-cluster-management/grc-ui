@@ -35,7 +35,6 @@ describe('User reducer', () => {
     })
   })
 
-
   describe('#loggedIn', () => {
     const initialState = Actions.USER_LOGIN_STATUS.LOGGED_OUT
     it('should return the initial state', () => {

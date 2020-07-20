@@ -43,7 +43,6 @@ ShowOrMoreItem.propTypes = {
   onExpand: PropTypes.func,
 }
 
-
 const FilterSection = ({ section: {name, filters, isExpanded, onExpand}, locale }) => {
   filters.sort(({label:a, isAll:ia, isOther:oa}, {label:b, isAll:ib, isOther:ob})=>{
     if (ia && !ib) {
@@ -93,12 +92,10 @@ const FilterSection = ({ section: {name, filters, isExpanded, onExpand}, locale 
   )
 }
 
-
 FilterSection.propTypes = {
   locale: PropTypes.string,
   section: PropTypes.object,
 }
-
 
 export default class ResourceFilterView extends React.Component {
 

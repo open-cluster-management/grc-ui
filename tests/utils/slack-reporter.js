@@ -32,7 +32,6 @@ async function reportFailure() {
   }
 }
 
-
 function recFindByExt(base,ext,files,result) {
   files = files || fs.readdirSync(base)
   result = result || []

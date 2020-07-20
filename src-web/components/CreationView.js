@@ -123,7 +123,6 @@ const controlData = [
   },
 ]
 
-
 export default class CreationView extends React.Component {
 
   static propTypes = {

@@ -80,7 +80,6 @@ class NestedTable extends React.PureComponent {
     </Table>
   );
 
-
   render() {
     const {
       availableItems,

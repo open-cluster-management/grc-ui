@@ -19,7 +19,6 @@ resources(() => {
   require('../../../scss/textWithTruncation.scss')
 })
 
-
 class TruncateText extends React.PureComponent {
   static propTypes = {
     maxCharacters: PropTypes.number,

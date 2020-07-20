@@ -161,7 +161,6 @@ ResourceToolbar.propTypes = {
   updateActiveFilters: PropTypes.func,
 }
 
-
 const mapStateToProps = (state) => {
   const {resourceToolbar: {availableFilters, activeFilters, refreshControl}} = state
   return { availableFilters, activeFilters, refreshControl }

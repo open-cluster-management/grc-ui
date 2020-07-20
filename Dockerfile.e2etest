@@ -1,5 +1,4 @@
 # Copyright (c) 2020 Red Hat, Inc.
-
 FROM node:erbium
 
 ENV NODE_ENV=development
@@ -37,4 +36,3 @@ RUN npm install \
     js-yaml@3.13.1
 
 CMD ["npm", "run", "test:e2e-headless"]
-

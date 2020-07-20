@@ -23,7 +23,6 @@ import 'monaco-editor/esm/vs/editor/standalone/browser/quickOpen/quickCommand.js
 import 'monaco-editor/esm/vs/basic-languages/yaml/yaml.contribution.js'
 import config from '../../../../lib/shared/config'
 
-
 if (window.monaco) {
   window.monaco.editor.defineTheme('console', {
     base: 'vs-dark',
@@ -76,7 +75,6 @@ class MonacoEditorEx extends MonacoEditor {
 }
 
 class YamlEditor extends React.Component {
-
 
   editorWillMount() {
     // Monaco uses <span> to measure character sizes

@@ -23,7 +23,6 @@ describe('table-helper handleInputValue', () => {
   })
 })
 
-
 describe('table-helper handleSort newSortColumn==defaultSortColumn', () => {
   const item = {
     currentTarget: {

@@ -9,7 +9,6 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 const config = require('./config')
 
-
 module.exports = (settings => {
 
   let defaultUrl = `https://localhost:${config.get('httpPort')}`

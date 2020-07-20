@@ -97,5 +97,4 @@ FilterModal.propTypes = {
   selected: PropTypes.array,
 }
 
-
 export default FilterModal

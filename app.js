@@ -57,7 +57,6 @@ app.use(helmet({ // in production these headers are set by icp-management-ingres
 // Remove the X-Powered-By headers.
 app.disable('x-powered-by')
 
-
 const morgan = require('morgan')
 if (process.env.NODE_ENV === 'production') {
   app.use(
@@ -196,8 +195,6 @@ app.use(`${CONTEXT_PATH}`, express.static(STATIC_PATH, {
     res.setHeader(xContentTypeOptions, 'nosniff')
   }
 }))
-
-
 
 app.get(`${CONTEXT_PATH}/performance-now.js.map`, (req, res) => res.sendStatus(404))
 

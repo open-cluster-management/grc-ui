@@ -276,7 +276,6 @@ describe('ResourceTable no search', () => {
   })
 })
 
-
 describe('ResourceTable with search', () => {
   it('renders as expected', () => {
     const fn = jest.fn()

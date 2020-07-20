@@ -133,7 +133,6 @@ describe('getSeverity', () => {
   })
 })
 
-
 describe('compressArray', () => {
   it('Should compress array', () => {
     expect(compressArray([])).toMatchSnapshot()

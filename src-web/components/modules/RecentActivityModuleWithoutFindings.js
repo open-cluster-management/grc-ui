@@ -19,11 +19,9 @@ import msgs from '../../../nls/platform.properties'
 import TopInformationModule from './TopInformationModule'
 import _ from 'lodash'
 
-
 resources(() => {
   require('../../../scss/module-recent-activity.scss')
 })
-
 
 const MAX_INFORMATION_THRESHOLD = 4
 

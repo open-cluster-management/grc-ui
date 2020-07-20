@@ -122,7 +122,6 @@ export class ResourceModal extends React.PureComponent {
     }
   }
 
-
   render() {
     const { reqCount, open, label, locale, resourceType } = this.props
     return (

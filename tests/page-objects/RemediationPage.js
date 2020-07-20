@@ -132,7 +132,6 @@ function checkEnforce(name){
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
 }
 
-
 function checkInform(name){
   this.log(`Check policy remediation is inform: ${name}`)
   //verify table/menu exist

@@ -17,7 +17,6 @@ import { shallow } from 'enzyme'
 import _ from 'lodash'
 //import { existing } from '../ComponentsTestingData'
 
-
 const Portals = Object.freeze({
   createBtn: 'create-button-portal-id',
   cancelBtn: 'cancel-button-portal-id',
