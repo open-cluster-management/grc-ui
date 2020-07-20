@@ -19,6 +19,7 @@ import { Tabs, Tab, Tag } from 'carbon-components-react'
 import LinesEllipsis from 'react-lines-ellipsis'
 import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC'
 import NoResource from '../common/NoResource'
+import CONSTANTS from '../../constants'
 
 resources(() => {
   require('../../../scss/module-top-information.scss')
@@ -26,9 +27,9 @@ resources(() => {
 
 const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis)
 
-const EMPTY_CHOICE = 'EMPTY_CHOICE'
-const overviewTopInfoClustersStr = 'string.clusters'
-const overviewTopInfoAppStr = 'string.applications'
+const EMPTY_CHOICE = CONSTANTS.EMPTY_CHOICE
+const overviewTopInfoClustersStr = CONSTANTS.overviewTopInfoClustersStr
+const overviewTopInfoAppStr = CONSTANTS.overviewTopInfoClustersStr
 
 const TopInformationSelections = Object.freeze({
   clusters: 'clusters',
