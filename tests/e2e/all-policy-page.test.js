@@ -44,12 +44,24 @@ module.exports = {
     })
   },
 
-  'All policy page: Add, search test policy': (browser) => {
+  'Create policy page: Updating YAML in editor': () => {
+    page.updateYamlEditor()
+  },
+
+  'All policy page: Create, Search, Verify details of policy': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
-    page.createTestPolicy(true, { policyName: policyName, specification: ['ImageManifestVulnPolicy'] })
+    const templateFile = 'modifiedIMVP_template.yaml'
+    page.createTestPolicy(true, {
+      policyName: policyName,
+      specification: ['ImageManifestVulnPolicy'],
+      standard: ['FISMA'],
+      category: ['PR.DS Data Security'],
+      control: ['DE.CM-7 Monitoring for unauthorized activity']
+    }, templateFile)
     page.searchPolicy(true, policyName)
-    page.testDetailsPage(browser, policyName)
+    page.verifyPolicyTable(policyName, templateFile)
+    page.testDetailsPage(policyName, templateFile)
   },
 
   'All policy page: Verify summary table': (browser) => {
@@ -64,5 +76,5 @@ module.exports = {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
     page.deletePolicy(policyName, browser)
-  },
+  }
 }

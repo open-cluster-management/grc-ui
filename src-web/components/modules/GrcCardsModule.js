@@ -460,7 +460,8 @@ const PolicyCard = ({data, locale, handleClick}) => {
                   imgClassName={'empty-violations-img'}
                   titleClassName={'no-card-violations'}
                   title={msgs.get('overview.violations.empty', locale)}
-                  svgName={'no-other-violations.svg'}>
+                  detail={msgs.get('overview.violations.empty.detail', locale)}
+                  svgName={'NoViolation-illus.png'}>
                 </NoResource>
               </div>}
           </div>

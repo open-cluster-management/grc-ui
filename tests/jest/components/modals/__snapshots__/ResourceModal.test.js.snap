@@ -466,6 +466,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
               />
@@ -544,6 +546,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
               />
@@ -630,6 +634,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                 />
@@ -697,6 +703,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                 />,
@@ -760,6 +768,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 ",
                 },
@@ -862,6 +872,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                 />
@@ -940,6 +952,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                 />
@@ -1026,6 +1040,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                   />
@@ -1093,6 +1109,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                   />,
@@ -1156,6 +1174,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 ",
                   },
@@ -1486,6 +1506,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
               />
@@ -1576,6 +1598,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
               />
@@ -1662,6 +1686,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                 />
@@ -1729,6 +1755,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                 />,
@@ -1792,6 +1820,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 ",
                 },
@@ -1898,6 +1928,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                 />
@@ -1988,6 +2020,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                 />
@@ -2074,6 +2108,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                   />
@@ -2141,6 +2177,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 "
                   />,
@@ -2204,6 +2242,8 @@ spec:
               - kube-*
           remediationAction: inform
           severity: low
+      status:
+        Validity: {}
   remediationAction: inform
 ",
                   },

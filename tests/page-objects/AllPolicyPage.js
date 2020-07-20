@@ -9,6 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 const fs = require('fs')
 const path = require('path')
+const yaml = require('js-yaml')
 
 module.exports = {
   elements: {
@@ -25,9 +26,11 @@ module.exports = {
     noResource: '.no-resource',
     summaryInfoContainer: 'div.module-grc-cards > div.card-container-container',
     summaryDropdown: 'div.module-grc-cards > div:nth-child(1) > div:nth-child(2) > div > div:nth-child(1)',
+    summaryDropdownBox: 'div.module-grc-cards > div:nth-child(1) > div:nth-child(2) > div > div:nth-child(2) > div',
     policyNameInput: '#name',
     namespaceDropdown: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box',
     namespaceDropdownBox: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div',
+    namespaceDropdownValue: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__field > span',
     templateDropdown: '.creation-view-controls-container > div > div:nth-child(3) > div.bx--multi-select.bx--list-box',
     templateDropdownBox: '.creation-view-controls-container > div > div:nth-child(3) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div',
     templateDropdownInput: '.creation-view-controls-container > div > div:nth-child(3) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > input',
@@ -47,23 +50,23 @@ module.exports = {
     controlsDropdownBox: '.creation-view-controls-container > div > div:nth-child(7) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div',
     controlsDropdownInput: '.creation-view-controls-container > div > div:nth-child(7) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > input',
     controlsDropdownClearValue: '.creation-view-controls-container > div > div:nth-child(7) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > div.bx--list-box__selection[title="Clear selected item"]',
-    enforceCheckbox: '#enforce ~ .checkbox',
-    disableCheckbox: '#disabled ~ .checkbox',
+    enforceCheckbox: '#enforce',
+    disableCheckbox: '#disabled',
   },
   commands: [{
     verifySummary,
+    verifyPolicyTable,
     verifyTable,
     verifyPagination,
     createTestPolicy,
+    updateYamlEditor,
     searchPolicy,
     testDetailsPage,
     deletePolicy,
-    verifyDisableEnable,
   }]
 }
 function verifySummary(browser, url) {
   this.waitForElementVisible('button.collapse > span.collapse-button')
-  this.waitForElementVisible('div.module-grc-cards > div.card-container-container')
   this.waitForElementVisible('@summaryInfoContainer')
   this.navigate(url + '?card=false&index=0')
   this.waitForElementNotPresent('@summaryInfoContainer')
@@ -73,16 +76,15 @@ function verifySummary(browser, url) {
   this.waitForElementVisible('@summaryDropdown')
   this.click('@summaryDropdown')
   browser.pause(1000)//wait 1s for every click
-  const dropdownBox = 'div.module-grc-cards > div:nth-child(1) > div:nth-child(2) > div > div:nth-child(2)'
   //Categories summary
-  this.click(dropdownBox + ' > div:nth-child(1)')
+  this.click('@summaryDropdownBox:nth-child(1)')
   browser.pause(1000)
   checkPolicySummaryCards.call(this, browser)
   browser.pause(1000)//wait 1s for checkPolicySummaryCards func
   //Standards summary
   this.click('@summaryDropdown')
   browser.pause(1000)
-  this.click(dropdownBox + ' > div:nth-child(2)')
+  this.click('@summaryDropdownBox:nth-child(2)')
   browser.pause(1000)
   checkPolicySummaryCards.call(this, browser)
 }
@@ -154,6 +156,7 @@ function dropdownSelector(browser, label = '', options = ['']) {
     browser.waitForElementVisible(`@${label}DropdownBox`)
     options.forEach(item => {
       browser.setValue(`@${label}DropdownInput`, item)
+      browser.expect.element(`@${label}DropdownBox:nth-child(1)`).text.to.equal(item)
       browser.click(`@${label}DropdownBox:nth-child(1)`)
       browser.click(`@${label}DropdownClearValue`)
     })
@@ -161,10 +164,19 @@ function dropdownSelector(browser, label = '', options = ['']) {
     browser.waitForElementNotPresent(`@${label}DropdownBox`)
   }
 }
+/* Helper function to parse template files */
+function applyTemplate(name, templateFile) {
+  const file = fs.readFileSync(path.join(__dirname, `../e2e/yaml/create_policy/${templateFile}`), 'utf8')
+  if (name && name != '') {
+    return file.replace(/\[TEST_POLICY_NAME\]/g, name)
+  } else {
+    return file
+  }
+}
 /* Helper function to compare the editor with a template */
 function compareTemplate(browser, templateFile, spec = {}) {
   browser.api.execute('return window.monaco.editor.getModels()[0].getValue()', [], (result) => {
-    const expected = fs.readFileSync(path.join(__dirname, `../e2e/yaml/create_policy/${templateFile}`), 'utf8')
+    const expected = applyTemplate(spec.policyName, templateFile)
     const actual = result.value
     const expectedlines = expected.split(/\r?\n/)
     const actuallines = actual.split(/\r?\n/)
@@ -172,16 +184,16 @@ function compareTemplate(browser, templateFile, spec = {}) {
     while (same && (i < expectedlines.length || i < actuallines.length)) {
       if (i < expectedlines.length) {
         if (i < actuallines.length) {
-          if (expectedlines[i].replace('[TEST_POLICY_NAME]', spec.policyName) != actuallines[i]) {
-            diff = 'EXPECTED: ' + expectedlines[i] + '\nACTUAL: ' + actuallines[i] + '\n---\n'
+          if (expectedlines[i] != actuallines[i]) {
+            diff = 'EXPECTED: ' + expectedlines[i] + '\nACTUAL  : ' + actuallines[i] + '\n---\n'
             same = false
           }
         } else {
-          diff = 'EXPECTED: ' + expectedlines[i] + '\nACTUAL: <EOF>' + '\n---\n'
+          diff = 'EXPECTED: ' + expectedlines[i] + '\nACTUAL  : <EOF>' + '\n---\n'
           same = false
         }
       } else {
-        diff = 'EXPECTED: <EOF>\nACTUAL: ' + actuallines[i] + '\n---\n'
+        diff = 'EXPECTED: <EOF>\nACTUAL  : ' + actuallines[i] + '\n---\n'
         same = false
       }
       i++
@@ -197,12 +209,13 @@ function compareTemplate(browser, templateFile, spec = {}) {
  * Create a policy given spec object with arrays of policy options
  *
  * Defaults to the 'default' namespace with the first available policy template.
- * If 'clear' is set to true, will clear out default Standard/Category/Controls
- * and replace with given spec
- * Validates against the given templateFile (will skip if none is given)
+ * Validates against the given templateFile (will skip this step if none is given)
+ * If the same standards/categories/controls are provided as a template, they
+ * will be deselected
  */
 function createTestPolicy(create = true,
-  spec = { policyName: 'default-policy-test',
+  spec = {
+    policyName: 'default-policy-test',
     namespace: 'default',
     specification: [''],
     cluster: [''],
@@ -243,16 +256,14 @@ function createTestPolicy(create = true,
   }
   spec.specification.forEach(item => {
     this.setValue('@templateDropdownInput', item + ' - ')
+    this.expect.element('@templateDropdownBox:nth-child(1)').text.to.startWith(item)
     this.click('@templateDropdownBox:nth-child(1)')
     this.waitForElementNotPresent('@templateDropdownBox')
   })
-  /* Select Cluster Placement Binding(s) */
+  /* Select Cluster, Standard, Category, Control dropdowns */
   dropdownSelector(this, 'cluster', spec.cluster)
-  /* Select Security Standard(s) */
   dropdownSelector(this, 'standards', spec.standard)
-  /* Select Security Control Category(s) */
   dropdownSelector(this, 'categories', spec.category)
-  /* Select Security Control(s) */
   dropdownSelector(this, 'controls', spec.control)
   /* Enable 'enforce' for policy (instead of 'inform') if indicated */
   if (spec.enforce) {
@@ -277,6 +288,72 @@ function createTestPolicy(create = true,
     this.expect.element('@table').to.be.present
   }
 }
+/* Helper function to edit YAML in editor and verify fields changed */
+function editYaml(browser, content, line, element, clear = false, expected = content) {
+  browser.click(`.monaco-editor div.view-line:nth-child(${line}) > span > span:nth-child(3)`)
+  const keystrokes = []
+  /* Delete current content if indicated */
+  if (clear) {
+    keystrokes.push(browser.api.Keys.SHIFT, browser.api.Keys.END)
+    keystrokes.push(browser.api.Keys.NULL, browser.api.Keys.BACK_SPACE)
+  }
+  /* Enter content into editor, dealing with newlines and indents if present */
+  keystrokes.push(' ')
+  if (content.indexOf('\n') > 0) {
+    content.split(/\r?\n/).forEach(contentline => {
+      keystrokes.push(contentline)
+      keystrokes.push(browser.api.Keys.RETURN)
+      const indentation = contentline.search(/\S|$/)
+      for (let i = 0; i < indentation / 2; i++ )
+        keystrokes.push(browser.api.Keys.BACK_SPACE)
+    })
+  } else {
+    keystrokes.push(content)
+  }
+  /* Return to beginning of the line so that
+  elements are in view for the next test */
+  keystrokes.push(browser.api.Keys.HOME)
+  browser.api.keys(keystrokes)
+  /* Wait half a second for DOM update */
+  browser.pause(500)
+  if (element.indexOf('Dropdown') > 0) {
+    browser.api.getAttribute('css selector', browser.elements[element], 'placeholder', (result) => {
+      if (result.value) {
+        browser.assert.equal(result.value, expected, `Placeholder value of @${element} matches expected value "${expected}"`)
+      } else {
+        browser.expect.element(`@${element}`).text.to.equal(expected)
+      }
+    })
+  } else if (element.indexOf('Checkbox') > 0) {
+    browser.expect.element(`@${element}`).to.be.selected
+  } else {
+    throw new Error('editYaml was given an unknown element type (if this is unexpected, a new test may need to be specified): ' + element)
+  }
+}
+/* Test whether updating the YAML updates the fields accordingly */
+function updateYamlEditor() {
+  /* Press Create Policy Button or Reset the form */
+  this.api.url(result => {
+    if (result.value.indexOf('/policies/create') < 0) {
+      this.waitForElementVisible('@createPolicyButton')
+      this.click('@createPolicyButton')
+      this.waitForElementNotPresent('@spinner')
+    } else {
+      this.click('@resetEditor')
+    }
+  })
+  /* Reset the form */
+  this.click('@resetEditor')
+  /* NOTE: If the screen scrolls, line references will
+     be wrong, so we're assuming nothing has moved */
+  editYaml(this, 'test-namespace', 5, 'namespaceDropdownValue')
+  editYaml(this, 'test-standard', 7, 'standardsDropdownInput')
+  editYaml(this, 'test-category', 8, 'categoriesDropdownInput')
+  editYaml(this, 'test-control', 9, 'controlsDropdownInput')
+  editYaml(this, 'enforce', 11, 'enforceCheckbox', true)
+  editYaml(this, 'true', 12, 'disableCheckbox', true)
+  editYaml(this, applyTemplate('', 'custom_spec.yaml'), 12, 'templateDropdownInput', true, 'Custom specifications')
+}
 function searchPolicy(expectToDisplay, policyName) {
   this.waitForElementVisible('@searchInput')
   this.setValue('@searchInput', policyName)
@@ -288,23 +365,77 @@ function searchPolicy(expectToDisplay, policyName) {
     this.click('@searchInput').clearValue('@searchInput')
   }
 }
-function testDetailsPage(browser, name) {
-  this.click('tbody>tr>td>a')
-  //overview tab test
+/* Helper to replace punctuation with spaces and capitalize text */
+function cleanAndCapitalize(str) {
+  const punctuation = ['-', '.']
+  punctuation.forEach(p => {
+    while (str.indexOf(p) >= 0) {
+      str = str.replace(p, ' ')
+    }
+  })
+  str = str.replace(/\b\w/g, l => l.toUpperCase())
+  return str
+}
+function verifyPolicyTable(name, templateFile) {
+  // Parse template file into object
+  const file = applyTemplate(name, templateFile)
+  const data = yaml.safeLoadAll(file)
+  // Verify summary table fields
+  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
+  if (data[0].metadata.annotations['policy.open-cluster-management.io/standards']) {
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/standards']))
+  } else {
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal('-')
+  }
+  if (data[0].metadata.annotations['policy.open-cluster-management.io/controls']) {
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/categories']))
+  } else {
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal('-')
+  }
+  if (data[0].metadata.annotations['policy.open-cluster-management.io/categories']) {
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/controls']))
+  } else {
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal('-')
+  }
+}
+function testDetailsPage(name, templateFile) {
+  // Parse template file into object
+  const file = applyTemplate(name, templateFile)
+  const data = yaml.safeLoadAll(file)
+  // Verify and click policy name in policy table
+  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
+  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a')
+  this.waitForElementNotPresent('@spinner')
+  // DETAILS TAB TESTS
+  // Check policy details
   this.expect.element('.bx--detail-page-header-title').text.to.equal(name)
   this.expect.element('.section-title:nth-of-type(1)').text.to.equal('Policy details')
   this.expect.element('.new-structured-list > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(name)
+  this.expect.element('.new-structured-list > table:nth-child(5) > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/categories'])
+  this.expect.element('.new-structured-list > table:nth-child(5) > tbody > tr:nth-child(2) > td:nth-child(2)').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/controls'])
+  this.expect.element('.new-structured-list > table:nth-child(5) > tbody > tr:nth-child(3) > td:nth-child(2)').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/standards'])
+  this.expect.element('.new-structured-list > table:nth-child(3) > tbody > tr:nth-child(2) > td:nth-child(2)').text.to.equal(data[0].spec.remediationAction)
+  this.expect.element('.new-structured-list > table:nth-child(3) > tbody > tr:nth-child(3) > td:nth-child(2)').text.to.equal(data[0].spec.disabled.toString())
+  // Check Placement rule
   this.expect.element('.overview-content > div:nth-child(2) > .section-title').text.to.equal('Placement')
   this.waitForElementVisible('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title')
   this.expect.element('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement rule')
   this.expect.element('.overview-content-second > div:nth-child(1) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('placement-' + name)
+  this.expect.element('.overview-content-second > div:nth-child(1) > div > div > .bx--module__content > section > div > div:nth-child(2) > div:nth-child(2)').text.to.equal(data[2].metadata.namespace)
+  this.api.getText('.overview-content-second > div:nth-child(1) > div > div > .bx--module__content > section > div > div:nth-child(3) > div:nth-child(2)', (result) => {
+    this.assert.equal(result.value.replace(/ /g, ''), 'matchExpressions=' + JSON.stringify(data[2].spec.clusterSelector.matchExpressions))
+  })
+  // Check Placement binding
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement binding')
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
+  this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(2) > div:nth-child(2)').text.to.equal(data[1].metadata.namespace)
+  // Check Policy templates
   this.expect.element('.overview-content > div:nth-child(3) > .section-title').text.to.equal('Policy templates')
-  //violation tab test
+  // VIOLATION TAB TESTS
   this.waitForElementVisible('#violation-tab')
   this.click('#violation-tab')
-  this.waitForElementNotPresent('#spinner')
   this.waitForElementNotPresent('#spinner')
   // Temp disable violation table test - Adam Kang 11Nov19
   // this.waitForElementVisible('.policy-violation-tab > .section-title', 15000, false, (result) => {
@@ -315,12 +446,13 @@ function testDetailsPage(browser, name) {
   //     browser.expect.element('.policy-violation-tab > .section-title').text.to.equal('Violations')
   //   }
   // })
-  //policy yaml page test
+  // YAML TAB TESTS
   this.waitForElementVisible('#yaml-tab')
   this.click('#yaml-tab')
   this.waitForElementVisible('.monaco-editor')
   this.waitForElementVisible('.yaml-editor-button > button:nth-child(1)')
   this.waitForElementVisible('.yaml-editor-button > button:nth-child(2)')
+  // Return to All Policies page
   this.click('.bx--breadcrumb > div:nth-child(1)')
 }
 function deletePolicy(name) {
@@ -333,43 +465,11 @@ function deletePolicy(name) {
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
   this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
   this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Remove')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5)')
+  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button').text.to.equal('Remove')
+  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button')
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
   // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').not.to.be.present
-}
-function verifyDisableEnable(name) {
-  //verify table/menu exist
-  this.waitForElementVisible('body')
-  this.waitForElementVisible('@searchInput')
-  this.waitForElementNotPresent('.bx--loading-overlay')
-  this.click('@searchInput').clearValue('@searchInput')
-  this.setValue('@searchInput', name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  //disable policy
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Disable')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
-  this.waitForElementVisible('#disable-resource-modal')
-  this.click('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
-  //enable policy
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Enable')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
-  this.waitForElementVisible('#enable-resource-modal')
-  this.click('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
-  //re-check menu
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Disable')
 }

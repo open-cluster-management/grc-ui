@@ -25,7 +25,6 @@ import {
   filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState,
   replaceGrcState, combineResourceFilters, saveGrcStatePair
 } from '../../lib/client/filter-helper'
-import { showResourceToolbar, hideResourceToolbar } from '../../lib/client/resource-helper'
 import NoResource from './common/NoResource'
 import createDocLink from './common/CreateDocLink'
 import ResourceFilterBar from './common/ResourceFilterBar'
@@ -129,7 +128,6 @@ export class GrcView extends React.Component {
     const showApplications = this.props.showApplications
     const { viewState } = this.state
     const { loading, error, grcItems, applications, activeFilters={}, secondaryHeaderProps, refreshControl, location } = this.props
-    hideResourceToolbar()
     if (loading) {
       return <Loading withOverlay={false} className='content-spinner' />
     }
@@ -183,7 +181,6 @@ export class GrcView extends React.Component {
       break
     }
 
-    showResourceToolbar()
     const urlParams = queryString.parse(location.search)
     const showGrcCard = urlParams.card==='false' ? false : true
     const grcTabToggleIndex = urlParams.index ? Number(urlParams.index) : 0

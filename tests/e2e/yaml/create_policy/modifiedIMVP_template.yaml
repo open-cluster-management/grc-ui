@@ -4,9 +4,9 @@ metadata:
   name: [TEST_POLICY_NAME]
   namespace: default
   annotations:
-    policy.open-cluster-management.io/standards: NIST-CSF
-    policy.open-cluster-management.io/categories: DE.CM Security Continuous Monitoring
-    policy.open-cluster-management.io/controls: DE.CM-8 Vulnerability scans
+    policy.open-cluster-management.io/standards: NIST-CSF, FISMA
+    policy.open-cluster-management.io/categories: DE.CM Security Continuous Monitoring, PR.DS Data Security
+    policy.open-cluster-management.io/controls: DE.CM-8 Vulnerability scans, DE.CM-7 Monitoring for unauthorized activity
 spec:
   remediationAction: inform
   disabled: false

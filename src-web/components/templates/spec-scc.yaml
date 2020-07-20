@@ -17,7 +17,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: {{name}}-example
+          name: {{name}}-sample-restricted-scc
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: high
@@ -46,7 +46,7 @@ replacements: # if user select this choice, the template variable names and valu
                   type: MustRunAs
                 groups:
                 - system:authenticated
-                priority: null
+                priority: 10
                 readOnlyRootFilesystem: false
                 requiredDropCapabilities:
                 - KILL

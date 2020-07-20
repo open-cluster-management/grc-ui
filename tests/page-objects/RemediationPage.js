@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2018, 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 const parser = require('../utils/yamlHelper')
 
@@ -46,55 +38,37 @@ module.exports = {
   },
   commands: [{
     createPolicy,
-    searchPolicy,
     deletePolicy,
+    tryInform,
+    checkInform,
+    tryEnforce,
+    checkEnforce,
     checkViolations,
     setSearchValue,
     log
   }]
 }
 
-function createPolicy(browser, name, yaml, time) {
+function createPolicy(browser, yaml, time) {
   this.log(`Creating policy:\n${yaml}`)
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
-  this.waitForElementNotPresent('@spinner')
-  //this.click('.bx--toggle__appearance')
   this.click('@namespaceDropdown')
   this.waitForElementPresent('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.click('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.waitForElementPresent('@yamlMonacoEditor')
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
-  // this.click('@policyNameInput').clearValue('@policyNameInput')
-  // this.setValue('@policyNameInput',`${time}-policy-test`)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
-  //verify placementrule + placementbinding
-  this.expect.element('@table').to.be.present
-  this.waitForElementVisible('@searchInput')
-  this.setSearchValue(name)
-  this.click('tbody>tr>td>a')
-  this.waitForElementNotPresent('@spinner')
-  this.expect.element('.bx--detail-page-header-title').text.to.equal(name)
-  this.expect.element('.section-title:nth-of-type(1)').text.to.equal('Policy details')
-  this.expect.element('.new-structured-list > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(name)
-  this.expect.element('.overview-content > div:nth-child(2) > .section-title').text.to.equal('Placement')
-  this.waitForElementVisible('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title')
-  this.expect.element('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement rule')
-  this.expect.element('.overview-content-second > div:nth-child(1) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('placement-' + name)
-  this.expect.element('.overview-content-second > div:nth-child(2) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement binding')
-  this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
-  this.click('.bx--breadcrumb > div:nth-child(1)')
-  this.waitForElementNotPresent('#spinner')
+  this.waitForElementVisible('@table')
 }
 
 function checkViolations(name, violationExpected, violationText) {
   this.log(`Checking policy: ${name} violationExpected: ${violationExpected}`)
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
-  this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
   this.click('tbody>tr>td>a')
   this.waitForElementPresent('#violation-tab')
   this.click('#violation-tab')
@@ -107,20 +81,6 @@ function checkViolations(name, violationExpected, violationText) {
     this.waitForElementPresent('.no-resource')
   }
   this.click('.bx--breadcrumb > div:nth-child(1)')
-}
-
-function searchPolicy(name, expectToDisplay) {
-  this.waitForElementVisible('@searchInput')
-  // this.click('@searchInput').clearValue('@searchInput')
-  this.setSearchValue(name)
-  this.waitForElementVisible('@searchInput')
-  if(expectToDisplay){
-    this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(name)
-    this.click('@searchInput').clearValue('@searchInput')
-  } else{
-    this.waitForElementNotPresent('tbody>tr')
-    this.click('@searchInput').clearValue('@searchInput')
-  }
 }
 
 function deletePolicy(name){
@@ -140,23 +100,71 @@ function deletePolicy(name){
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
-  // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
+}
+
+function tryEnforce(name){
+  this.log(`Enforcing policy: ${name}`)
+  //verify table/menu exist
+  this.waitForElementVisible('body')
+  this.waitForElementVisible('@searchInput')
+  this.setSearchValue(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
+  //enforce policy
+  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4)')
+  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Enforce')
+  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
+  this.waitForElementVisible('#enforce-resource-modal')
+  this.click('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
+}
+
+function checkEnforce(name){
+  this.log(`Check policy remediation is enforce: ${name}`)
+  //verify table/menu exist
+  this.waitForElementVisible('body')
+  this.waitForElementVisible('@searchInput')
+  this.setSearchValue(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
+}
+
+
+function checkInform(name){
+  this.log(`Check policy remediation is inform: ${name}`)
+  //verify table/menu exist
+  this.waitForElementVisible('body')
+  this.waitForElementVisible('@searchInput')
+  this.setSearchValue(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
+}
+
+function tryInform(name){
+  this.log(`Informing policy: ${name}`)
+  //verify table/menu exist
+  this.waitForElementVisible('body')
+  this.waitForElementVisible('@searchInput')
+  this.setSearchValue(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
+  //inform policy
+  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4)')
+  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Inform')
+  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
+  this.waitForElementVisible('#inform-resource-modal')
+  this.click('#inform-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
 }
 
 function setSearchValue(value){
   this.log(`Searching for policy: ${value}`)
-  // const searchClose = '.bx--search-close.bx--search-close--hidden'
-  // this.api.elements('css selector', searchClose, res => {
-  //   if (res.status < 0 || res.value.length < 1) {
-  //     // clear first
-  //     this.click('button.bx--search-close')
-  //     this.setValue('@searchInput', value)
-  //   }
-  //   else {
-  //     // do nothing already cleared
-  //     this.setValue('@searchInput', value)
-  //   }
-  // })
   this.waitForElementNotPresent('.bx--loading-overlay')
   this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', value)
 }

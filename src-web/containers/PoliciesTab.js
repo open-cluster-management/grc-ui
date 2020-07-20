@@ -27,7 +27,6 @@ import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
 
 class PoliciesTab extends React.Component {
-
   static propTypes = {
     secondaryHeaderProps: PropTypes.object,
     showApplications: PropTypes.bool,
@@ -52,12 +51,12 @@ class PoliciesTab extends React.Component {
     return (
       <Page>
         <Query query={HCMComplianceList} pollInterval={pollInterval} notifyOnNetworkStatusChange >
-          {( result ) => {
-            const {data={}, loading, startPolling, stopPolling, refetch} = result
+          {( complianceResult ) => {
+            const {data={}, loading, startPolling, stopPolling, refetch} = complianceResult
             const { items } = data
-            const error = items ? null : result.error
+            const error = items ? null : complianceResult.error
             if (error) {
-              const errorName = result.error.graphQLErrors[0].name ? result.error.graphQLErrors[0].name : error.name
+              const errorName = complianceResult.error.graphQLErrors[0].name ? complianceResult.error.graphQLErrors[0].name : error.name
               error.name = errorName
             }
             const firstLoad = this.firstLoad
@@ -76,10 +75,10 @@ class PoliciesTab extends React.Component {
             return (
               showApplications ?
                 <Query query={HCMApplicationList} pollInterval={pollInterval} client={GrcApolloClient.getSearchClient()} notifyOnNetworkStatusChange >
-                  {( result ) => {
-                    const {applicationsData={}} = result
+                  {( applicationResult ) => {
+                    const {applicationsData={}} = applicationResult
                     const { applications } = applicationsData
-                    const searchError = applications ? null : result.error
+                    const searchError = applications ? null : applicationResult.error
                     return (
                       <GrcView
                         showApplications={showApplications}
@@ -120,4 +119,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter(connect(null, mapDispatchToProps)(PoliciesTab))
-

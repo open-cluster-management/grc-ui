@@ -17,7 +17,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: {{name}}-example
+          name: {{name}}-sample-role
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: high

@@ -28,7 +28,29 @@ export class SecondaryHeader extends React.Component {
     this.renderBreadCrumb = this.renderBreadCrumb.bind(this)
     this.renderTabs = this.renderTabs.bind(this)
     this.renderLinks = this.renderLinks.bind(this)
+
+    this.state = {
+      shadowPresent: false
+    }
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.listenToScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.listenToScroll)
+  }
+
+  listenToScroll = () => {
+    if (window.scrollY > .1 && this.state.shadowPresent === false) {
+      this.setState({shadowPresent:true})
+    }
+    else if (window.scrollY <= .1 && this.state.shadowPresent === true) {
+      this.setState({shadowPresent:false})
+    }
+  }
+
 
   render() {
     const { tabs, title, breadcrumbItems, links, description, location } = this.props
@@ -48,7 +70,7 @@ export class SecondaryHeader extends React.Component {
       const midName = (!location.pathname.startsWith('/multicloud/policies/all/') ? 'secondary-header-grc-overview' : '')
       return (
         <div className='secondary-header-wrapper' role='region' aria-label={title}>
-          <div className={`secondary-header ${midName} simple-header${description ? ' special-layout': ''}`
+          <div className={`secondary-header ${midName} simple-header${this.state.shadowPresent ? '-with-shadow' : ''}${description ? ' special-layout': ''}`
           }>
             <header aria-label={`Heading: ${title}`}>
               <div className="bx--detail-page-header-content">
