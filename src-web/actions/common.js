@@ -364,6 +364,24 @@ export const createResources = (resourceType, resourceJson) => {
   }
 }
 
+export const createAndUpdateResources = (resourceTypes, createList, updateList) => {
+  return (dispatch) => {
+    resourceTypes.forEach((resourceType) => {
+      dispatch(mutateResource(resourceType))
+    })
+    return GrcApolloClient.createAndUpdateResources({toCreate: createList, toUpdate: updateList})
+      .then(result => {
+        // TODO add error handling
+        // if (result.data.createResources.errors && result.data.createResources.errors.length > 0){
+        //   dispatch(mutateResourceFailure(resourceType, result.data.createResources.errors[0]))
+        // } else {
+        //   dispatch(mutateResourceSuccess(resourceType))
+        // }
+        return result
+      })
+  }
+}
+
 export const createResource = (resourceType, variables) => {
   return (dispatch) => {
     dispatch(postResource(resourceType))

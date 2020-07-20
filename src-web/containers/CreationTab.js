@@ -15,7 +15,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
-import { createResources, editResourceFromCreate, updateSecondaryHeader,
+import { createResources, createAndUpdateResources, editResourceFromCreate, updateSecondaryHeader,
   clearRequestStatus, fetchSingleResource } from '../actions/common'
 import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -36,6 +36,7 @@ export class CreationTab extends React.Component {
 
   static propTypes = {
     cleanReqStatus: PropTypes.func,
+    handleCreateAndUpdateResources: PropTypes.func,
     handleCreateResources: PropTypes.func,
     handleFetchResource: PropTypes.func,
     handleUpdateResource: PropTypes.func,
@@ -72,6 +73,62 @@ export class CreationTab extends React.Component {
     if (resourceJSON) {
       const {handleCreateResources} = this.props
       handleCreateResources(RESOURCE_TYPES.HCM_POLICIES, resourceJSON)
+    }
+  }
+
+  handleCreateAndUpdate = (resourceJSON) => {
+    if (resourceJSON) {
+      // this.setState({ updateRequested: true })
+      const { handleFetchResource, handleCreateAndUpdateResources} = this.props
+      let plc = {}
+      const pbs = []
+      const prs = []
+      const create = []
+      const update = []
+      for (let i = 0; i < resourceJSON.length; i++) {
+        if (resourceJSON[i].kind === 'Policy') {
+          plc = resourceJSON[i]
+        } else if (resourceJSON[i].kind === 'PlacementBinding') {
+          pbs.push(resourceJSON[i])
+        } else if (resourceJSON[i].kind === 'PlacementRule') {
+          prs.push(resourceJSON[i])
+        }
+      }
+      handleFetchResource(RESOURCE_TYPES.HCM_POLICIES, {
+        clusterName: plc.metadata.namespace,
+        name: plc.metadata.name
+      }).then((res) => {
+        if (res.items.policies.length !== 0) {
+          update.push(plc)
+        } else {
+          create.push(plc)
+        }
+      })
+      handleFetchResource(RESOURCE_TYPES.PLACEMENT_BINDING, {
+        pbs: pbs.map((pb => pb.metadata.name)),
+      }).then((res) => {
+        const resPBs = res.items.placementBindings
+        pbs.forEach((pb) => {
+          if (resPBs.includes(pb.metadata.name)) {
+            update.push(pb)
+          } else {
+            create.push(pb)
+          }
+        })
+      })
+      handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, {
+        prs: prs.map((pr => pr.metadata.name)),
+      }).then((res) => {
+        const resPRs = res.items.placementBindings
+        pbs.forEach((pr) => {
+          if (resPRs.includes(pr.metadata.name)) {
+            update.push(pr)
+          } else {
+            create.push(pr)
+          }
+        })
+      })
+      handleCreateAndUpdateResources([], create, update)
     }
   }
 
@@ -214,6 +271,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateSecondaryHeader: (title, tabs, breadcrumbItems, links, information) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links, '', information)),
     handleCreateResources: (type, json) => dispatch(createResources(type, json)),
+    handleCreateAndUpdateResources: (types, create, update) => dispatch(createAndUpdateResources(types, create, update)),
     handleFetchResource: (type, json) => dispatch(fetchSingleResource(type, json)),
     handleUpdateResource: (type, json) => {
       dispatch(editResourceFromCreate(
