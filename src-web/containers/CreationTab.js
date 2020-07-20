@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -76,10 +77,11 @@ export class CreationTab extends React.Component {
     }
   }
 
-  handleCreateAndUpdate = (resourceJSON) => {
+  buildCreateUpdateLists = (resourceJSON) => {
+    console.log('---- BCUL --------')
     if (resourceJSON) {
       // this.setState({ updateRequested: true })
-      const { handleFetchResource, handleCreateAndUpdateResources} = this.props
+      const { handleFetchResource } = this.props
       let plc = {}
       const pbs = []
       const prs = []
@@ -98,7 +100,10 @@ export class CreationTab extends React.Component {
         clusterName: plc.metadata.namespace,
         name: plc.metadata.name
       }).then((res) => {
-        if (res.items.policies.length !== 0) {
+        console.log('fetch plc')
+        console.log(plc)
+        console.log(res)
+        if (res.items.policies && res.items.policies.length !== 0) {
           update.push(plc)
         } else {
           create.push(plc)
@@ -107,29 +112,57 @@ export class CreationTab extends React.Component {
       handleFetchResource(RESOURCE_TYPES.PLACEMENT_BINDING, {
         pbs: pbs.map((pb => pb.metadata.name)),
       }).then((res) => {
-        const resPBs = res.items.placementBindings
-        pbs.forEach((pb) => {
-          if (resPBs.includes(pb.metadata.name)) {
-            update.push(pb)
-          } else {
-            create.push(pb)
-          }
-        })
+        if (res.items.placementBindings) {
+          const resPBs = {}
+          res.items.placementBindings.forEach((b) => {
+            resPBs[b.metadata.name] = b
+          })
+          console.log(resPBs)
+          pbs.forEach((pb) => {
+            const resPB = resPBs[pb.metadata.name]
+            if (resPB) {
+              pb.metadata.selfLink = resPB.metadata.selfLink
+              pb.metadata.resourceVersion = resPB.metadata.resourceVersion
+              update.push(pb)
+            } else {
+              create.push(pb)
+            }
+          })
+        } else {
+          console.log('--- fetch pb error')
+        }
       })
       handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, {
         prs: prs.map((pr => pr.metadata.name)),
       }).then((res) => {
-        const resPRs = res.items.placementBindings
-        pbs.forEach((pr) => {
-          if (resPRs.includes(pr.metadata.name)) {
-            update.push(pr)
-          } else {
-            create.push(pr)
-          }
-        })
+        if (res.items.placementRules) {
+          const resPRs = {}
+          res.items.placementRules.forEach((r) => {
+            resPRs[r.metadata.name] = r
+          })
+          console.log(resPRs)
+          prs.forEach((pr) => {
+            const resPR = resPRs[pr.metadata.name]
+            if (resPR) {
+              pr.metadata.selfLink = resPR.metadata.selfLink
+              pr.metadata.resourceVersion = resPR.metadata.resourceVersion
+              update.push(pr)
+            } else {
+              create.push(pr)
+            }
+          })
+        } else {
+          console.log('--- fetch pr error')
+        }
       })
-      handleCreateAndUpdateResources([], create, update)
+      return { create, update }
+    } else {
+      return { create: [], update: [] }
     }
+  }
+
+  handleCreateAndUpdate = (createList, updateList) => {
+    this.props.handleCreateAndUpdateResources([], createList, updateList)
   }
 
   handleUpdate = (resourceJSON) => {
@@ -223,6 +256,12 @@ export class CreationTab extends React.Component {
               isFailed: errored,
               error: error
             }
+            const buildControl = {
+              buildResourceLists: this.buildCreateUpdateLists.bind(this),
+              // cancelCreate: this.handleCancel.bind(this),
+              // creationStatus: mutateStatus,
+              // creationMsg: mutateErrorMsg,
+            }
             const createControl = {
               createResource: this.handleCreate.bind(this),
               cancelCreate: this.handleCancel.bind(this),
@@ -241,6 +280,7 @@ export class CreationTab extends React.Component {
                 fetchControl={fetchControl}
                 createControl={createControl}
                 updateControl={updateControl}
+                buildControl={buildControl}
               />
             )
           }

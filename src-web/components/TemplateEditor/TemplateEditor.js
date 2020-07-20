@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -42,6 +43,9 @@ const diagramIconsInfoStr = '#diagramIcons_info'
 export default class TemplateEditor extends React.Component {
 
   static propTypes = {
+    buildControl: PropTypes.shape({
+      buildResourceLists: PropTypes.func,
+    }),
     controlData: PropTypes.array.isRequired,
     createControl: PropTypes.shape({
       createResource: PropTypes.func,
@@ -826,13 +830,19 @@ export default class TemplateEditor extends React.Component {
   }
 
   handleCreateResource() {
-    const { createControl } = this.props
+    const { buildControl, createControl } = this.props
     const {createResource} = createControl
+    const {buildResourceLists} = buildControl
     const resourceJSON = this.getResourceJSON()
     if (resourceJSON) {
-      createResource(resourceJSON)
+      console.log('-------- HANDLING CREATE --------')
+      console.log(buildResourceLists(resourceJSON))
+      var create, update = buildResourceLists(resourceJSON)
+      if (update.length == 0) {
+        createResource(create)
+      }
     }
-    this.setState({ canOpenModal: true })
+    // this.setState({ canOpenModal: true })
   }
 
   handleUpdateResource() {
