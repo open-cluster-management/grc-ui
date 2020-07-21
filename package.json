@@ -144,7 +144,7 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.0",
     "file-loader": "6.0.0",
-    "filemanager-webpack-plugin": "^2.0.5",
+    "filemanager-webpack-plugin-fixed": "^2.0.9",
     "flatpickr": "^4.6.3",
     "geckodriver": "^1.19.1",
     "jest": "^26.1.0",

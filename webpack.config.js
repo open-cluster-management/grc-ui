@@ -14,7 +14,7 @@ const config = require('./config'),
       TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
       WebpackMd5Hash = require('webpack-md5-hash'),
-      FileManagerPlugin = require('filemanager-webpack-plugin'),
+      FileManagerPlugin = require('filemanager-webpack-plugin-fixed'),
       CompressionPlugin = require('compression-webpack-plugin'),
       MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
