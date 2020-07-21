@@ -117,6 +117,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
+    "@babel/plugin-transform-spread": "^7.10.4",
     "@babel/polyfill": "^7.10.1",
     "@babel/runtime": "^7.10.3",
     "@slack/web-api": "^5.11.0",
