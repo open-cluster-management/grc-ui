@@ -30,7 +30,10 @@ const overpassTest = /overpass-.*\.(woff2?|ttf|eot|otf)(\?.*$|$)/
 module.exports = {
   context: __dirname,
   devtool: PRODUCTION ? 'source-map' : 'cheap-module-source-map',
-  stats: { children: false },
+  stats: {
+    children: false,
+    warningsFilter: [/Failed to parse source map/],
+  },
   entry: {
     'main': ['@babel/polyfill', './src-web/index.js']
   },
@@ -42,6 +45,11 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      },
       {
         test: /\.js$/,
         enforce: 'pre',
