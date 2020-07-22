@@ -77,87 +77,84 @@ export class CreationTab extends React.Component {
     }
   }
 
-  buildCreateUpdateLists = (resourceJSON) => {
-    console.log('---- BCUL --------')
+  async buildCreateUpdateLists(resourceJSON) {
     if (resourceJSON) {
+      return new Promise((resolve) => {
+        const { handleFetchResource } = this.props
+        let plc = {}
+        const pbs = []
+        const prs = []
+        const create = []
+        const update = []
+        for (let i = 0; i < resourceJSON.length; i++) {
+          if (resourceJSON[i].kind === 'Policy') {
+            plc = resourceJSON[i]
+          } else if (resourceJSON[i].kind === 'PlacementBinding') {
+            pbs.push(resourceJSON[i])
+          } else if (resourceJSON[i].kind === 'PlacementRule') {
+            prs.push(resourceJSON[i])
+          }
+        }
+        handleFetchResource(RESOURCE_TYPES.HCM_POLICIES, {
+          clusterName: plc.metadata.namespace,
+          name: plc.metadata.name
+        }).then((res) => {
+          if (res.items.policies && res.items.policies.length !== 0) {
+            update.push(plc)
+          } else {
+            create.push(plc)
+          }
+        }).then(() => {
+          return handleFetchResource(RESOURCE_TYPES.PLACEMENT_BINDING, {
+            pbs: pbs.map((pb => pb.metadata.name)),
+          })
+        }).then((res) => {
+          if (res.items.placementBindings) {
+            const resPBs = {}
+            res.items.placementBindings.forEach((b) => {
+              resPBs[b.metadata.name] = b
+            })
+            pbs.forEach((pb) => {
+              const resPB = resPBs[pb.metadata.name]
+              if (resPB) {
+                pb.metadata.selfLink = resPB.metadata.selfLink
+                pb.metadata.resourceVersion = resPB.metadata.resourceVersion
+                update.push(pb)
+              } else {
+                create.push(pb)
+              }
+            })
+          } else {
+            console.log('fetch pb error')
+          }
+        }).then(() => {
+          return handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, {
+            prs: prs.map((pr => pr.metadata.name)),
+          })
+        }).then((res) => {
+          if (res.items.placementRules) {
+            const resPRs = {}
+            res.items.placementRules.forEach((r) => {
+              resPRs[r.metadata.name] = r
+            })
+            prs.forEach((pr) => {
+              const resPR = resPRs[pr.metadata.name]
+              if (resPR) {
+                pr.metadata.selfLink = resPR.metadata.selfLink
+                pr.metadata.resourceVersion = resPR.metadata.resourceVersion
+                update.push(pr)
+              } else {
+                create.push(pr)
+              }
+            })
+          } else {
+            console.log('--- fetch pr error')
+          }
+        }).then(() => {
+          return resolve({ create, update })
+        })
+      })
       // this.setState({ updateRequested: true })
-      const { handleFetchResource } = this.props
-      let plc = {}
-      const pbs = []
-      const prs = []
-      const create = []
-      const update = []
-      for (let i = 0; i < resourceJSON.length; i++) {
-        if (resourceJSON[i].kind === 'Policy') {
-          plc = resourceJSON[i]
-        } else if (resourceJSON[i].kind === 'PlacementBinding') {
-          pbs.push(resourceJSON[i])
-        } else if (resourceJSON[i].kind === 'PlacementRule') {
-          prs.push(resourceJSON[i])
-        }
-      }
-      handleFetchResource(RESOURCE_TYPES.HCM_POLICIES, {
-        clusterName: plc.metadata.namespace,
-        name: plc.metadata.name
-      }).then((res) => {
-        console.log('fetch plc')
-        console.log(plc)
-        console.log(res)
-        if (res.items.policies && res.items.policies.length !== 0) {
-          update.push(plc)
-        } else {
-          create.push(plc)
-        }
-      })
-      handleFetchResource(RESOURCE_TYPES.PLACEMENT_BINDING, {
-        pbs: pbs.map((pb => pb.metadata.name)),
-      }).then((res) => {
-        if (res.items.placementBindings) {
-          const resPBs = {}
-          res.items.placementBindings.forEach((b) => {
-            resPBs[b.metadata.name] = b
-          })
-          console.log(resPBs)
-          pbs.forEach((pb) => {
-            const resPB = resPBs[pb.metadata.name]
-            if (resPB) {
-              pb.metadata.selfLink = resPB.metadata.selfLink
-              pb.metadata.resourceVersion = resPB.metadata.resourceVersion
-              update.push(pb)
-            } else {
-              create.push(pb)
-            }
-          })
-        } else {
-          console.log('--- fetch pb error')
-        }
-      })
-      handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, {
-        prs: prs.map((pr => pr.metadata.name)),
-      }).then((res) => {
-        if (res.items.placementRules) {
-          const resPRs = {}
-          res.items.placementRules.forEach((r) => {
-            resPRs[r.metadata.name] = r
-          })
-          console.log(resPRs)
-          prs.forEach((pr) => {
-            const resPR = resPRs[pr.metadata.name]
-            if (resPR) {
-              pr.metadata.selfLink = resPR.metadata.selfLink
-              pr.metadata.resourceVersion = resPR.metadata.resourceVersion
-              update.push(pr)
-            } else {
-              create.push(pr)
-            }
-          })
-        } else {
-          console.log('--- fetch pr error')
-        }
-      })
-      return { create, update }
-    } else {
-      return { create: [], update: [] }
     }
   }
 
