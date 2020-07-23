@@ -53,9 +53,6 @@ export class ResourceTable extends React.Component {
     document.querySelectorAll('td.bx--table-expand-v2').forEach((ele) => {
       ele.removeAttribute('headers')
     })
-    document.querySelectorAll('div.bx--overflow-menu').forEach((ele) => {
-      ele.removeAttribute('role')
-    })
   }
 
   render() {
