@@ -137,7 +137,7 @@ class PolicyTemplates extends React.Component {
             </Button>
             <Button
               icon="add--glyph" small
-              id={'edit-button'}
+              id={'submit-button'}
               key='submit-resource-change'
               onClick={this.handleSubmitClick}>
               {msgs.get('modal.button.submit', this.context.locale)}

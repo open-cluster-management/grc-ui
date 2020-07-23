@@ -82,6 +82,12 @@ export default class RefreshTimeSelect extends React.Component {
     this.setState({ pollInterval })
   }
 
+  componentDidMount(){
+    document.querySelectorAll('.bx--dropdown').forEach((ele) => {
+      ele.removeAttribute('role')
+    })
+  }
+
   componentWillReceiveProps(){
     this.setState((prevState, props) => {
       const {refreshControl: {refreshCookie}} = props

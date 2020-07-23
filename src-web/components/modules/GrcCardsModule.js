@@ -43,6 +43,12 @@ export class GrcCardsModule extends React.Component {
     this.collapseClick = this.collapseClick.bind(this)
   }
 
+  componentDidMount(){
+    document.querySelectorAll('.bx--dropdown').forEach((ele) => {
+      ele.removeAttribute('role')
+    })
+  }
+
   render() {
     const { displayType, showGrcCard } = this.props
     let cardData
