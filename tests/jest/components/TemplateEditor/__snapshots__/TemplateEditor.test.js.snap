@@ -66,6 +66,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="bx--form-item"
               >
                 <input
+                  aria-label="name"
                   className="bx--text-input bx--text__input"
                   disabled={false}
                   id="name"
@@ -792,6 +793,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="bx--form-item bx--checkbox-wrapper"
               >
                 <input
+                  aria-label="enforce"
                   checked={false}
                   className="bx--checkbox"
                   id="enforce"
@@ -837,6 +839,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="bx--form-item bx--checkbox-wrapper"
               >
                 <input
+                  aria-label="disabled"
                   checked={false}
                   className="bx--checkbox"
                   id="disabled"

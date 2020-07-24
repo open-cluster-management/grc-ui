@@ -55,7 +55,7 @@ exports[`PolicyDetail container test renders as expected 1`] = `
         <button
           className="bx--btn bx--btn--sm bx--btn--primary"
           disabled={false}
-          id="edit-button"
+          id="submit-button"
           onClick={[Function]}
           tabIndex={0}
           type="button"
