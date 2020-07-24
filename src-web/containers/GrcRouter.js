@@ -5,14 +5,14 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************
- * Copyright (c) 2020 Red Hat, Inc. */
+ *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import loadable from 'loadable-components'
+import loadable from '@loadable/component'
 import config from '../../lib/shared/config'
 
 // export const OverviewTab = loadable(() => import(/* webpackChunkName: "overview" */ './OverviewTab'))

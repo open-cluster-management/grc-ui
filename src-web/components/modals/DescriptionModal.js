@@ -49,14 +49,12 @@ class DescriptionModal extends React.PureComponent {
   }
 }
 
-
 DescriptionModal.propTypes = {
   content: PropTypes.string,
   open: PropTypes.bool,
   title: PropTypes.string,
   updateModal: PropTypes.func
 }
-
 
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -6,7 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  ******************************************************************************
- /* Copyright (c) 2020 Red Hat, Inc. */
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -123,7 +123,6 @@ const controlData = [
   },
 ]
 
-
 export default class CreationView extends React.Component {
 
   static propTypes = {
@@ -190,9 +189,18 @@ const getControlData = (discovered, locale) => {
     name.existing = policyNames
     namespace.available = namespaces
     clusters.available = clusterLabels
-    standards.available = [...new Set([...standards.available, ...annotations.standards])]
-    categories.available = [...new Set([...categories.available, ...annotations.categories])]
-    controls.available = [...new Set([...controls.available, ...annotations.controls])]
+    if ((typeof annotations.standards === 'object' && Object.keys(annotations.standards).length > 0)
+      || (Array.isArray(annotations.standards) && annotations.standards.length > 0)) {
+      standards.available = [...new Set([...standards.available, ...annotations.standards])]
+    }
+    if ((typeof annotations.categories === 'object' && Object.keys(annotations.categories).length > 0)
+      || (Array.isArray(annotations.categories) && annotations.categories.length > 0)) {
+      categories.available = [...new Set([...categories.available, ...annotations.categories])]
+    }
+    if ((typeof annotations.controls === 'object' && Object.keys(annotations.controls).length > 0)
+      || (Array.isArray(annotations.controls) && annotations.controls.length > 0)) {
+      controls.available = [...new Set([...controls.available, ...annotations.controls])]
+    }
 
     // convert message keys
     mergedData.forEach(control=>{

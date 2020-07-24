@@ -5,8 +5,8 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************
- /* Copyright (c) 2020 Red Hat, Inc. */
+ *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 const fs = require('fs')
 const path = require('path')
 const DISABLE_CERT_TEST = process.env.DISABLE_CERT_TEST ? true : false

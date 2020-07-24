@@ -33,7 +33,6 @@ const withAccess = (ChildComponent, lowestRole) => {
     }
   }
 
-
   const mapStateToProps = (state) => {
     const role = state.role && state.role.role
     return { role }
@@ -41,6 +40,5 @@ const withAccess = (ChildComponent, lowestRole) => {
 
   return connect(mapStateToProps)(CheckAccess)
 }
-
 
 export default withAccess

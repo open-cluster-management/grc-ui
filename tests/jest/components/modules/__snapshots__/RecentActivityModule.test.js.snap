@@ -180,13 +180,9 @@ exports[`RecentActivityModule view with Security Findings and applications rende
                 <svg
                   alt="show menu options"
                   aria-label="show menu options"
-                  className={undefined}
-                  fill={undefined}
                   fillRule="evenodd"
                   height="5"
-                  name={undefined}
                   role="img"
-                  style={undefined}
                   viewBox="0 0 10 5"
                   width="10"
                 >
@@ -260,19 +256,16 @@ exports[`RecentActivityModule view with Security Findings and applications rende
             </nav>
             <div
               aria-hidden={false}
-              className={undefined}
               hidden={false}
               selected={true}
             />
             <div
               aria-hidden={true}
-              className={undefined}
               hidden={true}
               selected={false}
             />
             <div
               aria-hidden={true}
-              className={undefined}
               hidden={true}
               selected={false}
             />
@@ -462,13 +455,9 @@ exports[`RecentActivityModule view with Security Findings and applications rende
                 <svg
                   alt="show menu options"
                   aria-label="show menu options"
-                  className={undefined}
-                  fill={undefined}
                   fillRule="evenodd"
                   height="5"
-                  name={undefined}
                   role="img"
-                  style={undefined}
                   viewBox="0 0 10 5"
                   width="10"
                 >
@@ -524,13 +513,11 @@ exports[`RecentActivityModule view with Security Findings and applications rende
             </nav>
             <div
               aria-hidden={false}
-              className={undefined}
               hidden={false}
               selected={true}
             />
             <div
               aria-hidden={true}
-              className={undefined}
               hidden={true}
               selected={false}
             />
@@ -742,13 +729,9 @@ exports[`RecentActivityModule view without Security Findings and applications re
                 <svg
                   alt="show menu options"
                   aria-label="show menu options"
-                  className={undefined}
-                  fill={undefined}
                   fillRule="evenodd"
                   height="5"
-                  name={undefined}
                   role="img"
-                  style={undefined}
                   viewBox="0 0 10 5"
                   width="10"
                 >
@@ -804,13 +787,11 @@ exports[`RecentActivityModule view without Security Findings and applications re
             </nav>
             <div
               aria-hidden={false}
-              className={undefined}
               hidden={false}
               selected={true}
             />
             <div
               aria-hidden={true}
-              className={undefined}
               hidden={true}
               selected={false}
             />

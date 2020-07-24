@@ -79,19 +79,19 @@ exports[`ImpactedControlsModule view with Security Findings renders as expected 
                 Standard
               </div>
               <div
-                aria-invalid={undefined}
                 aria-label="Most impacted controls"
                 className="bx--dropdown selection bx--list-box"
-                data-invalid={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="listbox"
                 tabIndex={null}
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
-                  aria-label="open menu"
+                  aria-label="Most impacted controls"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -114,14 +114,10 @@ exports[`ImpactedControlsModule view with Security Findings renders as expected 
                     <svg
                       alt="Open menu"
                       aria-label="Open menu"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -194,7 +190,6 @@ exports[`ImpactedControlsModule view with Security Findings renders as expected 
                       min={1}
                       name="Show more or less controls"
                       onChange={[Function]}
-                      required={undefined}
                       step={1}
                       type="hidden"
                       value={0}
@@ -325,19 +320,19 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                 Standard
               </div>
               <div
-                aria-invalid={undefined}
                 aria-label="Most impacted controls"
                 className="bx--dropdown selection bx--list-box"
-                data-invalid={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="listbox"
                 tabIndex={null}
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
-                  aria-label="open menu"
+                  aria-label="Most impacted controls"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -360,14 +355,10 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                     <svg
                       alt="Open menu"
                       aria-label="Open menu"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -440,7 +431,6 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                       min={1}
                       name="Show more or less controls"
                       onChange={[Function]}
-                      required={undefined}
                       step={1}
                       type="hidden"
                       value={0}
@@ -571,19 +561,19 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                 Standard
               </div>
               <div
-                aria-invalid={undefined}
                 aria-label="Most impacted controls"
                 className="bx--dropdown selection bx--list-box"
-                data-invalid={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="listbox"
                 tabIndex={null}
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
-                  aria-label="open menu"
+                  aria-label="Most impacted controls"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -606,14 +596,10 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                     <svg
                       alt="Open menu"
                       aria-label="Open menu"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -686,7 +672,6 @@ exports[`ImpactedControlsModule view without Security Findings renders as expect
                       min={1}
                       name="Show more or less controls"
                       onChange={[Function]}
-                      required={undefined}
                       step={1}
                       type="hidden"
                       value={0}

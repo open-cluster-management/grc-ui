@@ -18,7 +18,6 @@ import { DEFAULT_REFRESH_TIME, DEFAULT_SIDE_PANEL_REFRESH_TIME } from '../../../
 import msgs from '../../../nls/platform.properties'
 import moment from 'moment'
 
-
 resources(() => {
   require('../../../scss/refresh-time-select.scss')
 })
@@ -40,7 +39,7 @@ export default class RefreshTimeSelect extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { locale } = this.context
     const { refreshValues=[] } = this.props
     this.autoRefreshChoices = refreshValues.map(pollInterval=>{
@@ -69,7 +68,6 @@ export default class RefreshTimeSelect extends React.Component {
     }
   }
 
-
   handleChange = (e) => {
     const {selectedItem: {pollInterval}} = e
     const {refreshControl: {refreshCookie, startPolling, stopPolling}} = this.props
@@ -82,7 +80,7 @@ export default class RefreshTimeSelect extends React.Component {
     this.setState({ pollInterval })
   }
 
-  componentWillReceiveProps(){
+  UNSAFE_componentWillReceiveProps(){
     this.setState((prevState, props) => {
       const {refreshControl: {refreshCookie}} = props
       return {pollInterval: getPollInterval(refreshCookie)}

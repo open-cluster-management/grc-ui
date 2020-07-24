@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 import { getFindingStandards, getFindingControl, getFindingCategories, showTypeAndName, compressArray, getSeverity } from '../../../src-web/definitions/hcm-security-findings'
 
@@ -132,7 +133,6 @@ describe('getSeverity', () => {
     expect(getSeverity(item9)).toMatchSnapshot()
   })
 })
-
 
 describe('compressArray', () => {
   it('Should compress array', () => {

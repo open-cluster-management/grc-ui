@@ -487,7 +487,6 @@ export default class TemplateEditor extends React.Component {
     )
   }
 
-
   handleChange(field, evt) {
     const multiSelect = this.multiSelectCmpMap[field]
 
@@ -565,7 +564,6 @@ export default class TemplateEditor extends React.Component {
     this.multiSelectCmpMap[field] = ref
   }
 
-
   setEditor = (editor) => {
     this.editor = editor
     this.layoutEditors()
@@ -635,7 +633,6 @@ export default class TemplateEditor extends React.Component {
     document.getElementById('edit-yaml').checked = false
     this.setState({showEditor: false})
   }
-
 
   handleSearchChange(searchName) {
     if (searchName.length>1 || this.nameSearchMode) {

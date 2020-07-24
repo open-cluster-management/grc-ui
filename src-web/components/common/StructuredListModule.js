@@ -29,7 +29,6 @@ const {
   TableExpandRow,
   TableExpandedRow } = DataTable
 
-
 class StructuredListModule extends React.Component {
   constructor() {
     super()
@@ -118,7 +117,6 @@ class StructuredListModule extends React.Component {
     )
   }
 }
-
 
 StructuredListModule.contextTypes = {
   locale: PropTypes.string

@@ -35,12 +35,10 @@ exports[`PolicyDetail container test renders as expected 1`] = `
             aria-hidden={true}
             aria-label="Provide icon description if icon is used"
             className="bx--btn__icon"
-            fill={undefined}
             fillRule="evenodd"
             height="16"
             name="add--glyph"
             role="img"
-            style={undefined}
             viewBox="0 0 16 16"
             width="16"
           >
@@ -66,12 +64,10 @@ exports[`PolicyDetail container test renders as expected 1`] = `
             aria-hidden={true}
             aria-label="Provide icon description if icon is used"
             className="bx--btn__icon"
-            fill={undefined}
             fillRule="evenodd"
             height="16"
             name="add--glyph"
             role="img"
-            style={undefined}
             viewBox="0 0 16 16"
             width="16"
           >
@@ -119,7 +115,7 @@ exports[`PolicyDetail container test renders as loading 1`] = `
       viewBox="-75 -75 150 150"
     >
       <title>
-        Loading
+        Active loading indicator
       </title>
       <circle
         className={null}

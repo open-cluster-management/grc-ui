@@ -72,7 +72,6 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   id="name"
                   onChange={[Function]}
                   onClick={[Function]}
-                  placeholder={undefined}
                   spellCheck={false}
                   type="text"
                   value="policy-certificatepolicy-1"
@@ -109,19 +108,18 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-invalid={undefined}
                 aria-label="Choose an item"
                 className="bx--dropdown bx--list-box"
-                data-invalid={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="listbox"
                 tabIndex={null}
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
-                  aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -144,14 +142,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Open menu"
                       aria-label="Open menu"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -196,19 +190,19 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-invalid={undefined}
                 aria-label="Choose an item"
                 className="bx--multi-select bx--combo-box bx--list-box"
-                data-invalid={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="listbox"
                 tabIndex="-1"
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -231,14 +225,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Clear all selected items"
                       aria-label="Clear all selected items"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="10"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 10"
                       width="10"
                     >
@@ -272,14 +262,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Open menu"
                       aria-label="Open menu"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -319,19 +305,19 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-invalid={undefined}
                 aria-label="Choose an item"
                 className="bx--multi-select bx--combo-box bx--list-box"
-                data-invalid={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="listbox"
                 tabIndex="-1"
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -354,14 +340,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Clear all selected items"
                       aria-label="Clear all selected items"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="10"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 10"
                       width="10"
                     >
@@ -395,14 +377,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Open menu"
                       aria-label="Open menu"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -442,19 +420,19 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-invalid={undefined}
                 aria-label="Choose an item"
                 className="bx--multi-select bx--combo-box bx--list-box"
-                data-invalid={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="listbox"
                 tabIndex="-1"
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -477,14 +455,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Clear all selected items"
                       aria-label="Clear all selected items"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="10"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 10"
                       width="10"
                     >
@@ -518,14 +492,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Open menu"
                       aria-label="Open menu"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -565,19 +535,19 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-invalid={undefined}
                 aria-label="Choose an item"
                 className="bx--multi-select bx--combo-box bx--list-box"
-                data-invalid={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="listbox"
                 tabIndex="-1"
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -600,14 +570,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Clear all selected items"
                       aria-label="Clear all selected items"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="10"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 10"
                       width="10"
                     >
@@ -641,14 +607,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Open menu"
                       aria-label="Open menu"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -688,19 +650,19 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-invalid={undefined}
                 aria-label="Choose an item"
                 className="bx--multi-select bx--combo-box bx--list-box"
-                data-invalid={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="listbox"
                 tabIndex="-1"
               >
                 <div
+                  aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
                   aria-label="open menu"
+                  aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
                   disabled={false}
@@ -723,14 +685,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Clear all selected items"
                       aria-label="Clear all selected items"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="10"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 10"
                       width="10"
                     >
@@ -764,14 +722,10 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     <svg
                       alt="Open menu"
                       aria-label="Open menu"
-                      className={undefined}
-                      fill={undefined}
                       fillRule="evenodd"
                       focusable="false"
                       height="5"
-                      name={undefined}
                       role="img"
-                      style={undefined}
                       viewBox="0 0 10 5"
                       width="10"
                     >
@@ -908,9 +862,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
             className="creation-view-yaml-header"
           >
             <div
-              aria-label={undefined}
               className="creation-view-yaml-header-toolbar"
-              id={undefined}
               role="region"
             >
               <div
@@ -993,12 +945,9 @@ exports[`TemplateEditor component renders as expected 1`] = `
                           alt=""
                           aria-label=""
                           className="bx--search-magnifier"
-                          fill={undefined}
                           fillRule="evenodd"
                           height="16"
-                          name={undefined}
                           role="img"
-                          style={undefined}
                           viewBox="0 0 16 16"
                           width="16"
                         >
@@ -1026,7 +975,6 @@ exports[`TemplateEditor component renders as expected 1`] = `
                           type="text"
                         />
                         <button
-                          aria-label={undefined}
                           className="bx--search-close bx--search-close--hidden"
                           onClick={[Function]}
                           type="button"
@@ -1034,13 +982,9 @@ exports[`TemplateEditor component renders as expected 1`] = `
                           <svg
                             alt="Provide a description that will be used as the title"
                             aria-label="Provide a description that will be used as the title"
-                            className={undefined}
-                            fill={undefined}
                             fillRule="evenodd"
                             height="16"
-                            name={undefined}
                             role="img"
-                            style={undefined}
                             viewBox="0 0 16 16"
                             width="16"
                           >

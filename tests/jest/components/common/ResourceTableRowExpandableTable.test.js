@@ -223,7 +223,6 @@ describe('ResourceTableRowExpandableTable component test', () => {
   })
 })
 
-
 const items4 = [
   'calamari',
   {

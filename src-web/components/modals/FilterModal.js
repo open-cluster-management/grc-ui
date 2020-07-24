@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -19,7 +20,6 @@ resources(() => {
   require('../../../scss/modal.scss')
 })
 
-
 class FilterModal extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -30,7 +30,7 @@ class FilterModal extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.selected !== this.props.selected) {
       this.setState({tags: nextProps.selected})
     }
@@ -96,6 +96,5 @@ FilterModal.propTypes = {
   modalOpen: PropTypes.bool,
   selected: PropTypes.array,
 }
-
 
 export default FilterModal

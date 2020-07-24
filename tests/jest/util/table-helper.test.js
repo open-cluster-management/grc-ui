@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 import tableHelper from'../../../src-web/util/table-helper'
 
@@ -22,7 +23,6 @@ describe('table-helper handleInputValue', () => {
     expect(fn).toHaveBeenCalledWith(expect.stringContaining('world'))
   })
 })
-
 
 describe('table-helper handleSort newSortColumn==defaultSortColumn', () => {
   const item = {

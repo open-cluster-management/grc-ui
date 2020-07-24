@@ -161,7 +161,6 @@ class StructuredListModule extends React.Component {
   }
 }
 
-
 StructuredListModule.contextTypes = {
   locale: PropTypes.string
 }
