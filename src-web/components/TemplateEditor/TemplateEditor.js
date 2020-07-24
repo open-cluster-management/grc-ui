@@ -329,6 +329,7 @@ export default class TemplateEditor extends React.Component {
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
           </div>
           <TextInput
+            aria-label={id}
             id={id}
             invalid={invalid}
             hideLabel
@@ -347,6 +348,7 @@ export default class TemplateEditor extends React.Component {
       <React.Fragment>
         <div className='creation-view-controls-checkbox'>
           <Checkbox
+            aria-label={id}
             id={id}
             className='checkbox'
             hideLabel
@@ -385,6 +387,7 @@ export default class TemplateEditor extends React.Component {
             </TooltipIcon>
           </div>
           <DropdownV2
+            aria-label={id}
             key={key}
             label={msgs.get('policy.create.namespace.tooltip', locale)}
             items={available}
@@ -444,6 +447,7 @@ export default class TemplateEditor extends React.Component {
             </TooltipIcon>
           </div>
           <MultiSelect.Filterable
+            aria-label={id}
             key={key}
             items={available}
             initialSelectedItems={active}
@@ -786,7 +790,7 @@ export default class TemplateEditor extends React.Component {
       const portal = document.getElementById(createBtn)
       if (portal) {
         return ReactDOM.createPortal(
-          <Button id={createBtn}
+          <Button id={`${createBtn}-btn`}
             onClick={this.handleCreateResource.bind(this)}
             kind={'primary'} >
             {msgs.get('button.create', locale)}
@@ -852,7 +856,7 @@ export default class TemplateEditor extends React.Component {
       if (portal) {
         const {cancelCreate} = createControl
         return ReactDOM.createPortal(
-          <Button id={cancelBtn}
+          <Button id={`${cancelBtn}-btn`}
             onClick={cancelCreate}
             kind={'secondary'} >
             {msgs.get('button.cancel', locale)}
