@@ -48,12 +48,6 @@ const {
 
 export class ResourceTable extends React.Component {
 
-  componentDidMount(){
-    document.querySelectorAll('td.bx--table-expand-v2').forEach((ele) => {
-      ele.removeAttribute('headers')
-    })
-  }
-
   render() {
     const { locale } = this.context
     const {
