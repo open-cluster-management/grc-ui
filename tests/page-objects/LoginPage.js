@@ -20,8 +20,11 @@ module.exports = {
     submit: 'button[type="submit"]',
     error: '.bx--inline-notification--error',
     header: '.app-header',
+    loginPage: 'body > div.pf-c-login',
     loginForm: 'form[role="form"]',
     spinner: '.content-spinner',
+    userDropdown: '#acm-user-dropdown > .dropdown-container > .header-action-trigger',
+    logout: '#logout'
   },
   commands: [{
     inputUsername,
@@ -29,32 +32,44 @@ module.exports = {
     submit,
     authenticate,
     waitForLoginSuccess,
-    waitForLoginForm
+    waitForLoginForm,
+    logout
   }]
 }
 
 //helper for other pages to use for authentication in before() their suit
-function authenticate() {
+function authenticate(username = '') {
+  let password, rbac_user = false
   if(process.env.SELENIUM_USER === undefined || process.env.SELENIUM_PASSWORD === undefined){
     this.api.end()
     throw new Error('Env variable NOT set.\nPlease export UI user/password as SELENIUM_USER/SELENIUM_PASSWORD')
+  } else if (username != '') {
+    // If a username is provided, we assume it's an RBAC user
+    if (process.env.RBAC_PASS === undefined) {
+      throw new Error('Env variable NOT set.\nPlease export UI RBAC password as RBAC_PASS')
+    } else {
+      password = process.env.RBAC_PASS
+      rbac_user = true
+    }
+  } else {
+    username = process.env.SELENIUM_USER
+    password = process.env.SELENIUM_PASSWORD
   }
-  this.waitForLoginForm()
-  this.waitForElementPresent('@username')
-  this.inputUsername()
-  this.inputPassword()
+  this.waitForLoginForm(rbac_user)
+  this.inputUsername(username)
+  this.inputPassword(password)
   this.submit()
   this.waitForLoginSuccess()
 }
 
-function inputUsername() {
+function inputUsername(username) {
   this.waitForElementPresent('@username')
-    .setValue('@username', process.env.SELENIUM_USER )
+    .setValue('@username', username )
 }
 
-function inputPassword() {
+function inputPassword(password) {
   this.waitForElementPresent('@password')
-    .setValue('@password', process.env.SELENIUM_PASSWORD )
+    .setValue('@password', password )
 }
 
 function submit() {
@@ -67,11 +82,18 @@ function waitForLoginSuccess() {
   this.waitForElementNotPresent('@spinner')
 }
 
-function waitForLoginForm() {
+function waitForLoginForm(rbac_user) {
   this.api.elements('tag name', 'form', res => {
     if (res.status < 0 || res.value.length < 1) {
-      // select kube:admin if env SELENIUM_USER_SELECT not specified
-      const userSelector = `a[title="Log in with ${process.env.SELENIUM_USER_SELECT || 'kube:admin'}"]`
+      // Choose login method
+      let login_with
+      if (rbac_user) {
+        login_with = 'e2e-htpasswd'
+      } else {
+        // select kube:admin if env SELENIUM_USER_SELECT not specified
+        login_with = process.env.SELENIUM_USER_SELECT || 'kube:admin'
+      }
+      const userSelector = `a[title="Log in with ${login_with}"]`
       this.waitForElementPresent(userSelector)
       this.click(userSelector)
     } else {
@@ -79,4 +101,10 @@ function waitForLoginForm() {
     }
   })
   this.waitForElementVisible('@loginForm')
+}
+
+function logout() {
+  this.click('@userDropdown')
+  this.click('@logout')
+  this.waitForElementPresent('@loginPage')
 }
