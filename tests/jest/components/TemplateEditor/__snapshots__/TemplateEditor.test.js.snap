@@ -66,6 +66,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="bx--form-item"
               >
                 <input
+                  aria-label="name"
                   className="bx--text-input bx--text__input"
                   disabled={false}
                   id="name"
@@ -118,6 +119,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
+                  aria-label="namespace"
                   aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
@@ -189,7 +191,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="Choose an item"
+                aria-label="specs"
                 className="bx--multi-select bx--combo-box bx--list-box"
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -200,7 +202,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
-                  aria-label="open menu"
+                  aria-label="specs"
                   aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
@@ -304,7 +306,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="Choose an item"
+                aria-label="clusters"
                 className="bx--multi-select bx--combo-box bx--list-box"
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -315,7 +317,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
-                  aria-label="open menu"
+                  aria-label="clusters"
                   aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
@@ -419,7 +421,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="Choose an item"
+                aria-label="standards"
                 className="bx--multi-select bx--combo-box bx--list-box"
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -430,7 +432,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
-                  aria-label="open menu"
+                  aria-label="standards"
                   aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
@@ -534,7 +536,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="Choose an item"
+                aria-label="categories"
                 className="bx--multi-select bx--combo-box bx--list-box"
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -545,7 +547,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
-                  aria-label="open menu"
+                  aria-label="categories"
                   aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
@@ -649,7 +651,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="Choose an item"
+                aria-label="controls"
                 className="bx--multi-select bx--combo-box bx--list-box"
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -660,7 +662,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   aria-controls={null}
                   aria-expanded={false}
                   aria-haspopup={true}
-                  aria-label="open menu"
+                  aria-label="controls"
                   aria-owns={null}
                   className="bx--list-box__field"
                   data-toggle={true}
@@ -746,6 +748,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="bx--form-item bx--checkbox-wrapper"
               >
                 <input
+                  aria-label="enforce"
                   checked={false}
                   className="bx--checkbox"
                   id="enforce"
@@ -791,6 +794,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="bx--form-item bx--checkbox-wrapper"
               >
                 <input
+                  aria-label="disabled"
                   checked={false}
                   className="bx--checkbox"
                   id="disabled"
