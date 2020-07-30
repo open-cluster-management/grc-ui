@@ -8,7 +8,7 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 
-let page, loginPage
+let page, loginPage, lastTest = false
 
 module.exports = {
   '@disabled': false,
@@ -23,7 +23,9 @@ module.exports = {
   },
 
   afterEach: (browser) => {
-    loginPage.logout()
+    if (!lastTest) {
+      loginPage.logout()
+    }
   },
 
   'Cluster-wide cluster-admin user': (browser) => {
@@ -63,6 +65,7 @@ module.exports = {
   },
 
   'Namespaced view user in a group': (browser) => {
+    lastTest = true
     loginPage.authenticate('e2e-group-ns')
   }
 
