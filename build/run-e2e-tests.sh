@@ -47,7 +47,7 @@ export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vendor/oc whoami --show-token`
 echo "SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN"
 
 echo "Create RBAC users"
-${TRAVIS_BUILD_DIR}/build/rbac-setup.sh ${TRAVIS_BUILD_DIR}
+${TRAVIS_BUILD_DIR}/build/rbac-setup.sh
 
 make docker/login
 export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:latest-dev

@@ -15,7 +15,7 @@
 #     export RBAC_PASS=<your-password>
 
 set -e
-RBAC_DIR=${1:-.}/tests/e2e/yaml/rbac_test
+RBAC_DIR=${TRAVIS_BUILD_DIR:-.}/tests/e2e/yaml/rbac_test
 
 if [ ! -d ${RBAC_DIR} ]; then
   echo "Error: Directory ${RBAC_DIR} does not exist. Not creating RBAC resources."
