@@ -7,7 +7,6 @@
 # Copyright (c) 2020 Red Hat, Inc.
 set -e
 UI_CURRENT_IMAGE=$1
-RBAC_DIR=${TRAVIS_BUILD_DIR}/tests/e2e/yaml/rbac_test
 
 echo "Login hub to clean up"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
@@ -17,8 +16,6 @@ oc delete policies.policy.open-cluster-management.io -n default --all || true
 # placementbindings.mcm.ibm.com throws error when doesn't exist
 oc delete placementbindings.policy.open-cluster-management.io  -n default --all || true
 oc delete placementrule  -n default --all || true
-oc delete -n openshift-config secret e2e-users || true
-oc delete -k ${RBAC_DIR} || true
 
 echo "Logout"
 export OC_COMMAND=logout
@@ -50,23 +47,14 @@ export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vendor/oc whoami --show-token`
 echo "SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN"
 
 echo "Create RBAC users"
-export RBAC_PASS=$(date | md5sum)
-touch ${RBAC_DIR}/htpasswd
-for access in cluster ns; do
-  for role in cluster-admin admin edit view group; do
-    htpasswd -b ${RBAC_DIR}/htpasswd e2e-${role}-${access} ${RBAC_PASS}
-  done
-done
-oc create secret generic e2e-users --from-file=htpasswd=${RBAC_DIR}/htpasswd -n openshift-config
-rm ${RBAC_DIR}/htpasswd
-oc apply --validate=false -k ${RBAC_DIR}
+${TRAVIS_BUILD_DIR}/build/rbac-setup.sh ${TRAVIS_BUILD_DIR}
 
 make docker/login
 export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:latest-dev
 make docker/pull
 
-export SELENIUM_USER=$OC_CLUSTER_USER
-export SELENIUM_PASSWORD=$OC_HUB_CLUSTER_PASS
+export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
+export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_HUB_CLUSTER_PASS}}
 
 # docker network create --subnet 10.10.0.0/16 test-network
 # docker run --network test-network -d --ip 10.10.0.5 -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$OC_HUB_CLUSTER_URL $DOCKER_URI
