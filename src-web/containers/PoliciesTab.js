@@ -25,6 +25,7 @@ import { updateSecondaryHeader } from '../actions/common'
 import { HCMComplianceList, HCMApplicationList } from '../../lib/client/queries'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
+import { getActionPermission } from '../../lib/client/access-helper'
 
 class PoliciesTab extends React.Component {
   static propTypes = {
@@ -48,6 +49,14 @@ class PoliciesTab extends React.Component {
     const { secondaryHeaderProps } = this.props
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     const showApplications = this.props.showApplications === undefined ? config['feature_applications'] : this.props.showApplications
+    const resource = 'policy'
+    const action = 'edit'
+    const namespace = ''
+    const apiGroup = '*'
+    getActionPermission(resource, action, namespace, apiGroup).then(response => {
+      console.log(JSON.stringify(this.props))
+      console.log(JSON.stringify(response))
+    })
     return (
       <Page>
         <Query query={HCMComplianceList} pollInterval={pollInterval} notifyOnNetworkStatusChange >
