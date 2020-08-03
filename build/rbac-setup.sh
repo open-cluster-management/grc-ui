@@ -33,7 +33,7 @@ for access in cluster ns; do
     htpasswd -b ${RBAC_DIR}/htpasswd e2e-${role}-${access} ${RBAC_PASS}
   done
 done
-oc create secret generic e2e-users --from-file=htpasswd=${RBAC_DIR}/htpasswd -n openshift-config
+oc create secret generic e2e-users --from-file=htpasswd=${RBAC_DIR}/htpasswd -n openshift-config || true
 rm ${RBAC_DIR}/htpasswd
 oc apply --validate=false -k ${RBAC_DIR}
 

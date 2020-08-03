@@ -2,7 +2,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: e2e-cluster-admin-rolebinding
-  namespace: e2e-rbac-test
+  namespace: e2e-rbac-test-1
 subjects:
   - kind: User
     name: e2e-cluster-admin-ns
@@ -14,8 +14,8 @@ roleRef:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: e2e-admin-rolebinding-rbactest
-  namespace: e2e-rbac-test
+  name: e2e-admin-rolebinding-rbactest1
+  namespace: e2e-rbac-test-1
 subjects:
   - kind: User
     name: e2e-admin-ns
@@ -27,8 +27,8 @@ roleRef:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: e2e-admin-rolebinding-default
-  namespace: default
+  name: e2e-admin-rolebinding-rbactest2
+  namespace: e2e-rbac-test-2
 subjects:
   - kind: User
     name: e2e-admin-ns
@@ -41,7 +41,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: e2e-edit-rolebinding
-  namespace: e2e-rbac-test
+  namespace: e2e-rbac-test-1
 subjects:
   - kind: User
     name: e2e-edit-ns
@@ -54,7 +54,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: e2e-view-rolebinding
-  namespace: e2e-rbac-test
+  namespace: e2e-rbac-test-1
 subjects:
   - kind: User
     name: e2e-view-ns
@@ -67,7 +67,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: e2e-group-rolebinding
-  namespace: e2e-rbac-test
+  namespace: e2e-rbac-test-1
 subjects:
   - kind: Group
     name: e2e-ns-group
