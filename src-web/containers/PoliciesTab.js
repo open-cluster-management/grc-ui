@@ -54,7 +54,7 @@ class PoliciesTab extends React.Component {
     const namespace = 'e2e-rbac-test-1'
     const apiGroup = '*'
     getActionPermission(resource, action, namespace, apiGroup).then(response => {
-      console.log(JSON.stringify('ns : e2e-rbac-test-1'))
+      console.log(JSON.stringify(`resource : ${resource} + action : ${action} + namespace : ${namespace} + group : ${apiGroup}`))
       // console.log(JSON.stringify(this.props))
       console.log(JSON.stringify(response))
     })
