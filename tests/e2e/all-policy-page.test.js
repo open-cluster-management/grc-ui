@@ -21,7 +21,7 @@ module.exports = {
 
     page = browser.page.AllPolicyPage()
   },
-
+/*
   'Create policy page: Verify templates': (browser) => {
     const templates = [
       'CertificatePolicy',
@@ -43,11 +43,11 @@ module.exports = {
       page.createTestPolicy(false, { policyName: policyName, specification: [t] }, templateFile)
     })
   },
-
+*/
   'Create policy page: Updating YAML in editor': () => {
     page.updateYamlEditor()
   },
-
+/*
   'All policy page: Create, Search, Verify details of policy': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
@@ -77,4 +77,5 @@ module.exports = {
     const policyName = `${time}-policy-test`
     page.deletePolicy(policyName, browser)
   }
+*/
 }

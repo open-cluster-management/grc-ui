@@ -12,8 +12,8 @@ module.exports = {
   enterTextInYamlEditor: (el, browser, yaml, time) => {
     el.click('.monaco-editor')
     el.api.execute(
-      'const monaco = window.monaco.editor.getModels()[0]\n' +
-      `monaco.pushEditOperations([], \
+      `const monaco = window.monaco.editor.getModels()[0]\n \
+      monaco.pushEditOperations([], \
         [{ \
           range:monaco.getFullModelRange(), \
           text:'${yaml.replace(/\[TIME\]/g, time).replace(/\r?\n/g, '\\n').replace(/'/g, '\\\'')}' \
