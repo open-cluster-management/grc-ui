@@ -11,24 +11,14 @@
 module.exports = {
   enterTextInYamlEditor: (el, browser, yaml, time) => {
     el.click('.monaco-editor')
-    const keystrokes = []
-    if (process.platform == 'darwin') {
-      keystrokes.push(browser.Keys.COMMAND)
-    } else {
-      keystrokes.push(browser.Keys.CONTROL)
-    }
-    keystrokes.push('a')
-    keystrokes.push(browser.Keys.NULL)
-    keystrokes.push(browser.Keys.BACK_SPACE)
-    el.click('.monaco-editor')
-    yaml.split(/\r?\n/).forEach(line => {
-      const indentation = line.search(/\S|$/)
-      line = line.replace('[TIME]', time)
-      keystrokes.push(line)
-      keystrokes.push(browser.Keys.RETURN)
-      for (let i = 0; i < indentation / 2; i++ )
-        keystrokes.push(browser.Keys.BACK_SPACE)
-    })
-    el.api.keys(keystrokes)
+    el.api.execute(
+      'const monaco = window.monaco.editor.getModels()[0]\n' +
+      `monaco.pushEditOperations([], \
+        [{ \
+          range:monaco.getFullModelRange(), \
+          text:'${yaml.replace(/\[TIME\]/g, time).replace(/\r?\n/g, '\\n').replace(/'/g, '\\\'')}' \
+        }] \
+      )`)
   }
 }
+
