@@ -38,6 +38,7 @@ module.exports = {
     browser.pause(20000) // wait for policy to create pod
     page.checkViolations('policy-pod-single-musthave-enforce-' + time, false)
     page.deletePolicy('policy-pod-single-musthave-enforce-' + time)
+    browser.pause(1000)
     const singleMustNotHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/single_mustnothave_inform.yaml'))
     yaml = singleMustNotHaveInform.toString()
     page.createPolicy(browser, 'policy-pod-single-mustnothave-inform-' + time, yaml, time)

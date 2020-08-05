@@ -437,15 +437,6 @@ function testDetailsPage(name, templateFile) {
   this.waitForElementVisible('#violation-tab')
   this.click('#violation-tab')
   this.waitForElementNotPresent('#spinner')
-  // Temp disable violation table test - Adam Kang 11Nov19
-  // this.waitForElementVisible('.policy-violation-tab > .section-title', 15000, false, (result) => {
-  //   if(result.value === false){
-  //     browser.expect.element('.no-resource').to.be.present
-  //   }
-  //   else{
-  //     browser.expect.element('.policy-violation-tab > .section-title').text.to.equal('Violations')
-  //   }
-  // })
   // YAML TAB TESTS
   this.waitForElementVisible('#yaml-tab')
   this.click('#yaml-tab')
@@ -471,5 +462,4 @@ function deletePolicy(name) {
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
-  // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').not.to.be.present
 }
