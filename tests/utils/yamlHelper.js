@@ -19,6 +19,8 @@ module.exports = {
           text:'${yaml.replace(/\[TIME\]/g, time).replace(/\r?\n/g, '\\n').replace(/'/g, '\\\'')}' \
         }] \
       )`)
+    /* Wait half a second for DOM update */
+    el.pause(500)
   }
 }
 
