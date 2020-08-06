@@ -23,15 +23,6 @@ if [ -z ${RBAC_PASS} ]; then
   exit 1
 fi
 
-if ! which htpasswd &>/dev/null; then
-  if which apt &>/dev/null; then
-    sudo apt install -y apache2-utils
-  else
-    echo "Package manager not found. Failed to find or install htpasswd."
-    exit 1
-  fi
-fi
-
 touch ${RBAC_DIR}/htpasswd
 for access in cluster ns; do
   for role in cluster-admin admin edit view group; do

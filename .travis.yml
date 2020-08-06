@@ -14,6 +14,8 @@ addons:
     organization: "open-cluster-management"
     token:
       secure: "stfsRk8QKfns8hqznhrVmaEN0jvisW3aGF16wKh9necbxU5YxmA4lyusGbgltqQrZbAA5w23u5g829thLEdQUYcZOWn2UciYAhCzz1YfP34Ac+RIztJ92gc1VauQ6cSuSZbQ/2kmpaLD3OgdG5AJjrJtlcHGNAal2y5JJk+O+gB5RddADiA2TqpvBYcMZTiSBgcfgTYVWgSANbtjTtcj62dLLeaVRT4FADk6jrukD363RKTnJnQ+xBz+STn2vyBs3OENznciXBc5o0tCsebO7DOQAnbHccyxaNEp+qK34tH1xfVY04opy0f0cJ6UUI9PmI6cwt7BNTupYLfPsBknlz8mEDOazR+aaxUGloJDpQZ5oqPYYOjNIj0SI3zTgxLUgZ5PHOmhf+j9Ld/LJM2U3QiulL65C/j7Y/GuOi+VzUTHh8mtnPP30k2Y4rh1SPaInJhtTqOeytU4y2/FSmD9N5JBY8CguoKz6RVjnoBxBySvC6MIob6CfJgYlXuc2tu+l6lHqokPaZemnKXc3ahWJlADTWH3CI1zyXINLj7KAv4GLmi64BMFehwqH41BQUVQL2dwGWwfGLVhJ0mMohPL5J/HG7c4WPpvtzxI5Xg9SeihqCWavz0o9/5z/+Fcc6BV/u0BPDkNDCG8OGAwWK/idbm2V3Iw5iMBRLt8ufkxJ+8="
+before_install:
+  - sudo apt-get install -y apache2-utils
 
 env:
   global:
