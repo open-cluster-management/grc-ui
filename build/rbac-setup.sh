@@ -24,8 +24,8 @@ if [ -z ${RBAC_PASS} ]; then
 fi
 
 if ! which htpasswd &>/dev/null; then
-  if which apt &>/dev/null; then
-    sudo apt install -y apache2-utils
+  if which apt-get &>/dev/null; then
+    sudo apt-get install -y apache2-utils
   else
     echo "Package manager not found. Failed to find or install htpasswd."
     exit 1
