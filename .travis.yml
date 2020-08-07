@@ -25,7 +25,6 @@ env:
     - COMPONENT_BUILD_COMMAND=${TRAVIS_BUILD_DIR}/build/build.sh
     - COMPONENT_UNIT_TEST_COMMAND=${TRAVIS_BUILD_DIR}/build/run-unit-tests.sh
     - COMPONENT_E2E_TEST_COMMAND=${TRAVIS_BUILD_DIR}/build/run-e2e-tests.sh
-    - secure: fYzfKjt7J/ecgCt9bmwrWxzrWvCeuhCYpnepP7n3+4Od/8KfbG+NWd/kT8+k6m/FvI9b1G0JhKy60lxqtHtuzJ2rzK4hGHyxuwqyiT09l7ZBhrfbUnqwIdYqC+x4C4towZKY7BCxf1Up/hMyOnyoft7TiolUnk77l2AOGnBJKan4fDjMp9/VVCaEK0ORyO4qyXnfG0TuMtAuxvJdfyz/ZvKRWjGHPkafLv11kygFhLtonVDudMgKgQp28QqBYAmlO/sVegebVeRj/yqQroKv4NdYkcNFw+wEcmp5/jPz8rZamZbk8LkmwZkRlL5sLJE2ViViXHDYobynhlDbWHE9HHj1cg2BwIdcCXZ9wE0h0lmz7xVFfrPNeyJHSrDtIxQLJgnqiO7ZrqbcEQ9CXc5VffBNIdhFKcY2rbBL8kSXNUE3Hj6sQ0U/ljRmC23JxX4KdrJ9s4s0FXJCxCRPK/0khUVZiESUWEBEi2Sv913fUnqFmWxn7r8RnJrIFU9zwpljFcRn7+nexPx1bCJ1vuS5TgMwf0ukm0XMxz4SSVLVugL6yBsfDon1oYLAZGzsq0ibXSxPVhvLBnnX2YuVSoB1b5BeqlEr8Gxqwhi2I4xFUEtn3Kt4pSqyGJshzyeh6umh/VylVqC9gxU7HVQ3HDpdslDJ0z4K7IOtsvHJw4DtvzE=
 
 stages:
   - build
