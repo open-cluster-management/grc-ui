@@ -17,4 +17,3 @@ function verifyAllTable (ns, nsNum) {
   this.waitForElementVisible('@allTable')
   this.expect.element('@allTable').to.have.property('childElementCount').equals(nsNum)
 }
-/*  */

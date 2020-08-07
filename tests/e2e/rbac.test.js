@@ -2,9 +2,10 @@
 
 const policies = [], namespaces = []
 let page, loginPage, createPage, policyName
+const DISABLE_CANARY_TEST = process.env.DISABLE_CANARY_TEST ? true : false
 
 module.exports = {
-  '@disabled': false,
+  '@disabled': DISABLE_CANARY_TEST,
 
   before: (browser) => {
     page = browser.page.RbacPage()
