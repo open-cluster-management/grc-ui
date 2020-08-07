@@ -77,4 +77,5 @@ module.exports = {
     const policyName = `${time}-policy-test`
     page.deletePolicy(policyName, browser)
   }
+
 }

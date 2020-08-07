@@ -31,7 +31,6 @@ module.exports = {
     page.createPolicy(browser, 'policy-create-issuer-' + time, yaml, time)
     browser.pause(20000) // Wait for policy to create issuer 20s
     page.checkViolations('policy-create-issuer-' + time, false)
-    browser.pause(1000)
 
     const testCertificate = fs.readFileSync(path.join(__dirname, 'yaml/cert_policy/create_test_certificate.yaml'))
     yaml = testCertificate.toString()
@@ -55,15 +54,13 @@ module.exports = {
     const updateCertificate = fs.readFileSync(path.join(__dirname, 'yaml/cert_policy/update_test_certificate.yaml'))
     const yaml = updateCertificate.toString()
     page.createPolicy(browser, 'policy-update-certificate-' + time, yaml, time)
-    browser.pause(40000) // Wait for policy to update certificate 30s
+    browser.pause(40000) // Wait for policy to update certificate 40s
     page.checkViolations('policy-update-certificate-' + time, false)
     page.deletePolicy('policy-update-certificate-' + time)
   },
 
   'Cert policy: cert policy should show compliant': (browser) => {
     const time = browser.globals.time
-    // page.searchPolicy('policy-certificatepolicy-' + time, true)
-    // browser.pause(20000) // Wait for cert policy to detect compliant 60s
     page.checkViolations('policy-certificatepolicy-' + time, false)
   },
 
@@ -78,13 +75,5 @@ module.exports = {
     browser.pause(20000) // Wait for policy to delete
     page.checkViolations('policy-delete-all-' + time, false)
     page.deletePolicy('policy-delete-all-' + time)
-
-    // page.searchPolicy('policy-create-issuer-' + time, false)
-    // page.searchPolicy('policy-create-certificate-' + time, false)
-    // page.searchPolicy('policy-certificatepolicy-' + time, false)
-    // page.searchPolicy('policy-update-certificate-' + time, false)
-    // page.searchPolicy('policy-delete-certificate-' + time, false)
-    // page.searchPolicy('policy-delete-secret-' + time, false)
-    // page.searchPolicy('policy-delete-issuer-' + time, false)
   },
 }
