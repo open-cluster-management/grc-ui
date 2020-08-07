@@ -1,5 +1,5 @@
 false
-policy-templates:
+  policy-templates:
   - objectDefinition:
       apiVersion: policy.open-cluster-management.io/v1
       kind: MyOwnPolicy
