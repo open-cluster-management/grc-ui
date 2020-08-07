@@ -35,7 +35,7 @@ The UI Platform is developed as an isomorphic react application. View the list o
 
 ## Run installation
 
-2. The following environment variables need to be set to point to a running Openshift cluster. Your environment might resemble the following content:
+1. The following environment variables need to be set to point to a running Openshift cluster. Your environment might resemble the following content:
 
    ```json
    {
@@ -59,13 +59,13 @@ The UI Platform is developed as an isomorphic react application. View the list o
          oc whoami -t
          ```
 
-3. Start the server for production by running the following command:
+2. Start the server for production by running the following command:
 
    ```bash
    npm run start:production
    ```
 
-4. Start the server for development by running the following commands:
+3. Start the server for development by running the following commands:
 
    ```bash
    npm run build:watch
