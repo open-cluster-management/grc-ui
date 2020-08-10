@@ -3,6 +3,32 @@
 const policies = [], namespaces = []
 let page, loginPage, createPage, policyName
 const DISABLE_CANARY_TEST = process.env.DISABLE_CANARY_TEST ? true : false
+const permissions = {
+  'clusterAdmin': {
+    'get': true,
+    'patch': true,
+    'create': true,
+    'delete': true
+  },
+  'admin': {
+    'get': true,
+    'patch': true,
+    'create': true,
+    'delete': true
+  },
+  'edit': {
+    'get': true,
+    'patch': true,
+    'create': true,//false,
+    'delete': true//false
+  },
+  'view': {
+    'get': true,
+    'patch': true,//false,
+    'create': true,//false,
+    'delete': true//false
+  },
+}
 
 module.exports = {
   '@disabled': DISABLE_CANARY_TEST,
@@ -44,53 +70,68 @@ module.exports = {
 
   'Cluster-wide cluster-admin user': () => {
     loginPage.authenticate('e2e-cluster-admin-cluster')
-    page.verifyAllTable(policyName, namespaces.length)
+    page.verifyAllPage(policyName, namespaces.length, permissions.clusterAdmin)
+    const createdPolicy = `${policyName}-cluster-admin-cluster`
+    page.verifyCreatePage(createPage, createdPolicy, namespaces, permissions.clusterAdmin, true)
+    createPage.deletePolicy(createdPolicy)
   },
 
   'Cluster-wide admin user': () => {
     loginPage.authenticate('e2e-admin-cluster')
-    page.verifyAllTable(policyName, namespaces.length)
+    page.verifyAllPage(policyName, namespaces.length, permissions.admin)
+    const createdPolicy = `${policyName}-admin-cluster`
+    page.verifyCreatePage(createPage, createdPolicy, namespaces, permissions.admin, true)
+    createPage.deletePolicy(createdPolicy)
   },
 
   'Cluster-wide edit user': () => {
     loginPage.authenticate('e2e-edit-cluster')
-    page.verifyAllTable(policyName, namespaces.length)
+    page.verifyAllPage(policyName, namespaces.length, permissions.edit)
   },
 
   'Cluster-wide view user': () => {
     loginPage.authenticate('e2e-view-cluster')
-    page.verifyAllTable(policyName, namespaces.length)
+    page.verifyAllPage(policyName, namespaces.length, permissions.view)
   },
 
   'Cluster-wide view user in a group': () => {
     loginPage.authenticate('e2e-group-cluster')
-    page.verifyAllTable(policyName, namespaces.length)
+    page.verifyAllPage(policyName, namespaces.length, permissions.view)
   },
 
   'Namespaced cluster-admin user': () => {
     loginPage.authenticate('e2e-cluster-admin-ns')
-    page.verifyAllTable(policyName, 1)
+    page.verifyAllPage(policyName, 1, permissions.clusterAdmin)
+    const createdPolicy = `${policyName}-cluster-admin-ns`
+    page.verifyCreatePage(createPage, createdPolicy, [namespaces[0]], permissions.clusterAdmin, false)
+    createPage.deletePolicy(createdPolicy)
   },
 
   'Namespaced admin user': () => {
     loginPage.authenticate('e2e-admin-ns')
     // This would be 1, but admin user also has view access to namespace 2
-    page.verifyAllTable(policyName, 2)
+    page.verifyAllPage(policyName, 2, permissions.admin)
+    const createdPolicy = `${policyName}-admin-ns`
+    // The ns array would only be namespace 1 but user also has view access to ns 2
+    page.verifyCreatePage(createPage, createdPolicy, namespaces, permissions.admin, false, true)
+    createPage.deletePolicy(createdPolicy)
+    // Verify view permissions for this user by filtering for the specific policy
+    page.verifyAllPage(`${policyName}-${namespaces[1]}`, 1, permissions.view)
   },
 
   'Namespaced edit user': () => {
     loginPage.authenticate('e2e-edit-ns')
-    page.verifyAllTable(policyName, 1)
+    page.verifyAllPage(policyName, 1, permissions.edit)
   },
 
   'Namespaced view user': () => {
     loginPage.authenticate('e2e-view-ns')
-    page.verifyAllTable(policyName, 1)
+    page.verifyAllPage(policyName, 1, permissions.view)
   },
 
   'Namespaced view user in a group': () => {
     loginPage.authenticate('e2e-group-ns')
-    page.verifyAllTable(policyName, 1)
+    page.verifyAllPage(policyName, 1, permissions.view)
   }
 
 }

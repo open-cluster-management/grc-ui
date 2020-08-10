@@ -15,7 +15,7 @@ module.exports = {
   elements: {
     spinner: '.content-spinner',
     table: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra',
-    createPolicyButton: '.bx--btn--primary:nth-of-type(1)',
+    createPolicyButton: '#create-policy',
     submitCreatePolicyButton: '#create-button-portal-id',
     resetEditor: 'div.creation-view-yaml-header div.editor-bar-button[title="Reset"]',
     yamlMonacoEditor: '.monaco-editor',
