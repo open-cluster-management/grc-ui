@@ -1,5 +1,6 @@
 # grc-ui [![Build Status](https://travis-ci.com/open-cluster-management/grc-ui.svg?token=1xoYGv8XzWhB2heDk2My&branch=master)](https://travis-ci.com/open-cluster-management/grc-ui)
-The UI microservice, `grc-ui` uses the `platform-ui` environment from IBM Hybrid Cloud Manager.
+
+The UI microservice, `grc-ui`, is the governance and risk dashboard for Red Hat Advanced Cluster Management.
 
 ## Design
 
