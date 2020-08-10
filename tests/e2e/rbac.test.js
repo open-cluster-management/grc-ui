@@ -43,7 +43,7 @@ module.exports = {
     // Create policies for RBAC testing and save names for deletion later
     policyName = `rbac-policy-test-${browser.globals.time}`
     const ns = 'e2e-rbac-test'
-    for (let i = 1; i <= 2; i++ ) {
+    for (let i = 1; i <= 2; i++) {
       namespaces.push(`${ns}-${i}`)
       policies.push(`${policyName}-${ns}-${i}`)
       createPage.createTestPolicy(true, { policyName: policies[policies.length - 1], namespace: namespaces[namespaces.length - 1] })
@@ -72,39 +72,48 @@ module.exports = {
     loginPage.authenticate('e2e-cluster-admin-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.clusterAdmin)
     const createdPolicy = `${policyName}-cluster-admin-cluster`
-    page.verifyCreatePage(createPage, createdPolicy, namespaces, permissions.clusterAdmin, true)
+    page.verifyCreatePage(permissions.clusterAdmin, createPage, createdPolicy, namespaces, true)
     createPage.deletePolicy(createdPolicy)
+    page.verifyPolicyPage(policyName, permissions.clusterAdmin)
   },
 
   'Cluster-wide admin user': () => {
     loginPage.authenticate('e2e-admin-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.admin)
     const createdPolicy = `${policyName}-admin-cluster`
-    page.verifyCreatePage(createPage, createdPolicy, namespaces, permissions.admin, true)
+    page.verifyCreatePage(permissions.admin, createPage, createdPolicy, namespaces, true)
     createPage.deletePolicy(createdPolicy)
+    page.verifyPolicyPage(policyName, permissions.admin)
   },
 
   'Cluster-wide edit user': () => {
     loginPage.authenticate('e2e-edit-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.edit)
+    page.verifyCreatePage({ create: false })//permissions.edit) // TODO: Restore permissions
+    page.verifyPolicyPage(policyName, permissions.edit)
   },
 
   'Cluster-wide view user': () => {
     loginPage.authenticate('e2e-view-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.view)
+    page.verifyCreatePage({ create: false })//permissions.view) // TODO: Restore permissions
+    page.verifyPolicyPage(policyName, permissions.view)
   },
 
   'Cluster-wide view user in a group': () => {
     loginPage.authenticate('e2e-group-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.view)
+    page.verifyCreatePage({ create: false })//permissions.view) // TODO: Restore permissions
+    page.verifyPolicyPage(policyName, permissions.view)
   },
 
   'Namespaced cluster-admin user': () => {
     loginPage.authenticate('e2e-cluster-admin-ns')
     page.verifyAllPage(policyName, 1, permissions.clusterAdmin)
     const createdPolicy = `${policyName}-cluster-admin-ns`
-    page.verifyCreatePage(createPage, createdPolicy, [namespaces[0]], permissions.clusterAdmin, false)
+    page.verifyCreatePage(permissions.clusterAdmin, createPage, createdPolicy, [namespaces[0]], false)
     createPage.deletePolicy(createdPolicy)
+    page.verifyPolicyPage(policyName, permissions.clusterAdmin)
   },
 
   'Namespaced admin user': () => {
@@ -113,25 +122,32 @@ module.exports = {
     page.verifyAllPage(policyName, 2, permissions.admin)
     const createdPolicy = `${policyName}-admin-ns`
     // The ns array would only be namespace 1 but user also has view access to ns 2
-    page.verifyCreatePage(createPage, createdPolicy, namespaces, permissions.admin, false, true)
+    page.verifyCreatePage(permissions.admin, createPage, createdPolicy, namespaces, false, true)
     createPage.deletePolicy(createdPolicy)
     // Verify view permissions for this user by filtering for the specific policy
     page.verifyAllPage(`${policyName}-${namespaces[1]}`, 1, permissions.view)
+    page.verifyPolicyPage(policyName, permissions.admin)
   },
 
   'Namespaced edit user': () => {
     loginPage.authenticate('e2e-edit-ns')
     page.verifyAllPage(policyName, 1, permissions.edit)
+    page.verifyCreatePage({ create: false })//permissions.edit) // TODO: Restore permissions
+    page.verifyPolicyPage(policyName, permissions.edit)
   },
 
   'Namespaced view user': () => {
     loginPage.authenticate('e2e-view-ns')
     page.verifyAllPage(policyName, 1, permissions.view)
+    page.verifyCreatePage({ create: false })//permissions.view) // TODO: Restore permissions
+    page.verifyPolicyPage(policyName, permissions.view)
   },
 
   'Namespaced view user in a group': () => {
     loginPage.authenticate('e2e-group-ns')
     page.verifyAllPage(policyName, 1, permissions.view)
+    page.verifyCreatePage({ create: false })//permissions.view) // TODO: Restore permissions
+    page.verifyPolicyPage(policyName, permissions.view)
   }
 
 }
