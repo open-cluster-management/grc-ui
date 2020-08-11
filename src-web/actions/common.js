@@ -370,15 +370,15 @@ export const createAndUpdateResources = (resourceTypes, createList, updateList) 
             error: '',
           }
         }
-        if (result.data.createAndUpdateResources.create.errors &&
-          result.data.createAndUpdateResources.create.errors.length > 0){
-          result.data.createAndUpdateResources.create.errors.forEach((error) => {
+        if (lodash.get(result, 'data.createAndUpdateResources.create.errors') &&
+          lodash.get(result, 'data.createAndUpdateResources.create.errors.length') > 0){
+          lodash.get(result, 'data.createAndUpdateResources.create.errors').forEach((error) => {
             errors[error.kind].error = error.message
           })
         }
-        if (result.data.createAndUpdateResources.update.errors &&
-          result.data.createAndUpdateResources.update.errors.length > 0){
-          result.data.createAndUpdateResources.update.errors.forEach((error) => {
+        if (lodash.get(result, 'data.createAndUpdateResources.update.errors') &&
+          lodash.get(result, 'data.createAndUpdateResources.update.errors.length') > 0){
+          lodash.get(result, 'data.createAndUpdateResources.update.errors').forEach((error) => {
             errors[error.kind].error = error.message
           })
         }
@@ -389,6 +389,7 @@ export const createAndUpdateResources = (resourceTypes, createList, updateList) 
             errored = true
             dispatch(mutateResourceFailure(resp.resourceType, { message: resp.error }))
           }
+          return
         })
         if (!errored) {
           resourceTypes.forEach((resourceType) => {
