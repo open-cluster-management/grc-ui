@@ -130,6 +130,12 @@ export default class CreationView extends React.Component {
     buildControl: PropTypes.shape({
       buildResourceLists: PropTypes.func,
     }),
+    createAndUpdateControl: PropTypes.shape({
+      createAndUpdateResource: PropTypes.func,
+      cancelCreateAndUpdate: PropTypes.func,
+      createAndUpdateStatus: PropTypes.string,
+      createAndUpdateMsg: PropTypes.string
+    }),
     createControl: PropTypes.shape({
       createResource: PropTypes.func,
       cancelCreate: PropTypes.func,
@@ -156,7 +162,7 @@ export default class CreationView extends React.Component {
   render() {
     hideResourceToolbar()
     const { locale } = this.context
-    const {fetchControl, createControl, buildControl, updateControl, discovered} = this.props
+    const {fetchControl, createControl, buildControl, updateControl, discovered, createAndUpdateControl} = this.props
     return (
       <TemplateEditor
         template={policyTemplate}
@@ -166,6 +172,7 @@ export default class CreationView extends React.Component {
         createControl={createControl}
         buildControl={buildControl}
         updateControl={updateControl}
+        createAndUpdateControl={createAndUpdateControl}
         type={'policy'}
         locale={locale}
       />

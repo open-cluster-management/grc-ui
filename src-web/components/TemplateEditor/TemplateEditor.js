@@ -47,6 +47,12 @@ export default class TemplateEditor extends React.Component {
       buildResourceLists: PropTypes.func,
     }),
     controlData: PropTypes.array.isRequired,
+    createAndUpdateControl: PropTypes.shape({
+      createAndUpdateResource: PropTypes.func,
+      cancelCreateAndUpdate: PropTypes.func,
+      createAndUpdateStatus: PropTypes.string,
+      createAndUpdateMsg: PropTypes.string
+    }),
     createControl: PropTypes.shape({
       createResource: PropTypes.func,
       cancelCreate: PropTypes.func,
@@ -62,26 +68,20 @@ export default class TemplateEditor extends React.Component {
     portals: PropTypes.object.isRequired,
     template: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
-    updateControl: PropTypes.shape({
-      updateResource: PropTypes.func,
-      cancelUpdate: PropTypes.func,
-      updateStatus: PropTypes.string,
-      updateMsg: PropTypes.string
-    }),
   }
 
   static getDerivedStateFromProps(props, state) {
-    const {fetchControl, createControl={}, updateControl={}} = props
+    const {fetchControl, createControl={}, createAndUpdateControl={}} = props
     const {isLoaded} = fetchControl || {isLoaded:true}
     const {creationStatus, creationMsg} = createControl
-    const {updateMsg} = updateControl
+    const {createAndUpdateMsg} = createAndUpdateControl
     if (creationStatus === 'ERROR') {
       // if (creationMsg.endsWith('already exists') && (creationMsg !== state.oldCreationMsg || state.canOpenModal)) {
       //   return { tryUpdate: true, oldCreationMsg: creationMsg }
       // }
       return {updateMsgKind: 'error', updateMessage: creationMsg}
-    } else if (updateMsg) {
-      return {updateMsgKind: 'error', updateMessage: updateMsg}
+    } else if (createAndUpdateMsg) {
+      return {updateMsgKind: 'error', updateMessage: createAndUpdateMsg}
     } else if (isLoaded) {
       const { template, controlData: initialControlData } = props
       const { isCustomName } = state
@@ -125,7 +125,6 @@ export default class TemplateEditor extends React.Component {
       hasUndo: false,
       hasRedo: false,
       resetInx: 0,
-      tryUpdate: false,
     }
     this.multiSelectCmpMap = {}
     this.parseDebounced = _.debounce(()=>{
@@ -806,18 +805,15 @@ export default class TemplateEditor extends React.Component {
     let msg = ''
     if (this.state.toCreate && this.state.toUpdate) {
       if (this.state.toCreate.length > 0) {
-        msg += `${this.state.toCreate.join()} will be created`
+        msg += `${(this.state.toCreate.map((rsc) => rsc.metadata.name)).join(', ')} will be created`
       }
       if (this.state.toCreate.length > 0 && this.state.toUpdate.length > 0) {
-        msg += ', '
+        msg += '; '
       }
       if (this.state.toUpdate.length > 0) {
-        msg += `${this.state.toUpdate.join()} will be updated`
+        msg += `${(this.state.toUpdate.map((rsc) => rsc.metadata.name)).join(', ')} will be updated`
       }
     }
-    console.log('--- RUP')
-    console.log(msg)
-    console.log(this.state)
     return (
       <Modal
         danger
@@ -850,17 +846,12 @@ export default class TemplateEditor extends React.Component {
     const {buildResourceLists} = buildControl
     const resourceJSON = this.getResourceJSON()
     if (resourceJSON) {
-      console.log('-------- HANDLING CREATE --------')
       const res = await buildResourceLists(resourceJSON)
-      console.log('returned vals: ')
-      console.log(JSON.stringify(res))
       const create = res.create
       const update = res.update
       if (update.length == 0) {
-        console.log('---- create ----')
         createResource(create)
       } else {
-        console.log('update')
         this.setState({
           canOpenModal: true,
           toCreate: create,
@@ -871,10 +862,9 @@ export default class TemplateEditor extends React.Component {
   }
 
   handleUpdateResource(create, update) {
-    console.log(' --- create + update -----')
-    const { updateControl } = this.props
-    const {updateResource} = updateControl
-    updateResource(create, update)
+    const { createAndUpdateControl } = this.props
+    const {createAndUpdateResource} = createAndUpdateControl
+    createAndUpdateResource(create, update)
   }
 
   renderCancelButton() {

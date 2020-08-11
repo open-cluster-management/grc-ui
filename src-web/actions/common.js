@@ -369,14 +369,47 @@ export const createAndUpdateResources = (resourceTypes, createList, updateList) 
     resourceTypes.forEach((resourceType) => {
       dispatch(mutateResource(resourceType))
     })
-    return GrcApolloClient.createAndUpdateResources({toCreate: createList, toUpdate: updateList})
+    return GrcApolloClient.createAndUpdateResources(createList, updateList)
       .then(result => {
-        // TODO add error handling
-        // if (result.data.createResources.errors && result.data.createResources.errors.length > 0){
-        //   dispatch(mutateResourceFailure(resourceType, result.data.createResources.errors[0]))
-        // } else {
-        //   dispatch(mutateResourceSuccess(resourceType))
-        // }
+        var errors = {
+          Policy: {
+            resourceType: 'HCMPolicy',
+            error: '',
+          },
+          PlacementRule: {
+            resourceType: 'PlacementRule',
+            error: '',
+          },
+          PlacementBinding: {
+            resourceType: 'PlacementBinding',
+            error: '',
+          }
+        }
+        if (result.data.createAndUpdateResources.create.errors &&
+          result.data.createAndUpdateResources.create.errors.length > 0){
+          result.data.createAndUpdateResources.create.errors.forEach((error) => {
+            errors[error.kind].error = error.message
+          })
+        }
+        if (result.data.createAndUpdateResources.update.errors &&
+          result.data.createAndUpdateResources.update.errors.length > 0){
+          result.data.createAndUpdateResources.update.errors.forEach((error) => {
+            errors[error.kind].error = error.message
+          })
+        }
+        let errored = false
+        Object.keys(errors).map((key) => {
+          const resp = errors[key]
+          if (resp.error != '') {
+            errored = true
+            dispatch(mutateResourceFailure(resp.resourceType, { message: resp.error }))
+          }
+        })
+        if (!errored) {
+          resourceTypes.forEach((resourceType) => {
+            dispatch(mutateResourceSuccess(resourceType))
+          })
+        }
         return result
       })
   }

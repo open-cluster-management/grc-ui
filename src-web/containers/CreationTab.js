@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -42,10 +41,10 @@ export class CreationTab extends React.Component {
     handleFetchResource: PropTypes.func,
     handleUpdateResource: PropTypes.func,
     mutateErrorMsg: PropTypes.string,
+    mutatePBErrorMsg: PropTypes.string,
+    mutatePRErrorMsg: PropTypes.string,
     mutateStatus: PropTypes.string,
     secondaryHeaderProps: PropTypes.object,
-    updatePBErrorMsg: PropTypes.string,
-    updatePRErrorMsg: PropTypes.string,
     updateSecondaryHeader: PropTypes.func,
     updateStatus: PropTypes.string
   }
@@ -100,6 +99,8 @@ export class CreationTab extends React.Component {
           name: plc.metadata.name
         }).then((res) => {
           if (res.items.policies && res.items.policies.length !== 0) {
+            plc.metadata.selfLink = res.items.policies[0].metadata.selfLink
+            plc.metadata.resourceVersion = res.items.policies[0].metadata.resourceVersion
             update.push(plc)
           } else {
             create.push(plc)
@@ -125,7 +126,7 @@ export class CreationTab extends React.Component {
               }
             })
           } else {
-            console.log('fetch pb error')
+            throw 'Error fetching placement binding'
           }
         }).then(() => {
           return handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, {
@@ -148,18 +149,21 @@ export class CreationTab extends React.Component {
               }
             })
           } else {
-            console.log('--- fetch pr error')
+            throw 'Error fetching placement rule'
           }
         }).then(() => {
           return resolve({ create, update })
         })
       })
-      // this.setState({ updateRequested: true })
     }
   }
 
   handleCreateAndUpdate = (createList, updateList) => {
-    this.props.handleCreateAndUpdateResources([], createList, updateList)
+    this.props.handleCreateAndUpdateResources([
+      RESOURCE_TYPES.HCM_POLICIES,
+      RESOURCE_TYPES.PLACEMENT_BINDING,
+      RESOURCE_TYPES.PLACEMENT_RULE
+    ], createList, updateList)
   }
 
   handleUpdate = (resourceJSON) => {
@@ -229,7 +233,7 @@ export class CreationTab extends React.Component {
   }
 
   render () {
-    const { mutateStatus, mutateErrorMsg, updatePBErrorMsg, updatePRErrorMsg, updateStatus } = this.props
+    const { mutateStatus, mutateErrorMsg, mutatePBErrorMsg, mutatePRErrorMsg, updateStatus } = this.props
     const { updateRequested } = this.state
     if ((mutateStatus && mutateStatus === 'DONE') && (!updateRequested || (updateStatus && updateStatus === 'DONE'))) {
       this.props.cleanReqStatus && this.props.cleanReqStatus()
@@ -255,9 +259,6 @@ export class CreationTab extends React.Component {
             }
             const buildControl = {
               buildResourceLists: this.buildCreateUpdateLists.bind(this),
-              // cancelCreate: this.handleCancel.bind(this),
-              // creationStatus: mutateStatus,
-              // creationMsg: mutateErrorMsg,
             }
             const createControl = {
               createResource: this.handleCreate.bind(this),
@@ -269,7 +270,13 @@ export class CreationTab extends React.Component {
               updateResource: this.handleUpdate.bind(this),
               cancelUpdate: this.handleCancel.bind(this),
               updateStatus,
-              updateMsg: this.formatUpdateError(updatePBErrorMsg, updatePRErrorMsg)
+              updateMsg: ''
+            }
+            const createAndUpdateControl = {
+              createAndUpdateResource: this.handleCreateAndUpdate.bind(this),
+              cancelCreateAndUpdate: this.handleCancel.bind(this),
+              createAndUpdateStatus: updateStatus,
+              createAndUpdateMsg: this.formatUpdateError(this.formatUpdateError(mutatePBErrorMsg, mutateErrorMsg), mutatePRErrorMsg),
             }
             return (
               <CreationView
@@ -278,6 +285,7 @@ export class CreationTab extends React.Component {
                 createControl={createControl}
                 updateControl={updateControl}
                 buildControl={buildControl}
+                createAndUpdateControl={createAndUpdateControl}
               />
             )
           }
@@ -290,16 +298,16 @@ export class CreationTab extends React.Component {
 
 const mapStateToProps = (state) => {
   let updateState = 'IN_PROGRESS'
-  if ((state['PlacementRulesList'].mutateStatus === 'ERROR') || (state['PlacementBindingsList'].mutateStatus === 'ERROR')) {
+  if ((state['PlacementRulesList'].mutateStatus === 'ERROR') || (state['PlacementBindingsList'].mutateStatus === 'ERROR') || (state['HCMPolicyList'].mutateStatus === 'ERROR')) {
     updateState = 'ERROR'
-  } else if ((state['PlacementRulesList'].mutateStatus === 'DONE') && (state['PlacementBindingsList'].mutateStatus === 'DONE')) {
+  } else if ((state['PlacementRulesList'].mutateStatus === 'DONE') && (state['PlacementBindingsList'].mutateStatus === 'DONE') && (state['HCMPolicyList'].mutateStatus === 'DONE')) {
     updateState = 'DONE'
   }
   return {
     mutateStatus: state['HCMPolicyList'].mutateStatus,
     mutateErrorMsg: state['HCMPolicyList'].mutateErrorMsg,
-    updatePRErrorMsg: state['PlacementRulesList'].mutateErrorMsg,
-    updatePBErrorMsg: state['PlacementBindingsList'].mutateErrorMsg,
+    mutatePRErrorMsg: state['PlacementRulesList'].mutateErrorMsg,
+    mutatePBErrorMsg: state['PlacementBindingsList'].mutateErrorMsg,
     updateStatus: updateState
   }
 }
