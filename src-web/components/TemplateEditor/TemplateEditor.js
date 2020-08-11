@@ -847,7 +847,7 @@ export default class TemplateEditor extends React.Component {
       const res = await buildResourceLists(resourceJSON)
       const create = res.create
       const update = res.update
-      if (update.length == 0) {
+      if (update.length === 0) {
         createResource(create)
       } else {
         this.setState({

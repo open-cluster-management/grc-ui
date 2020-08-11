@@ -109,51 +109,60 @@ export class CreationTab extends React.Component {
             pbs: pbs.map((pb => pb.metadata.name)),
           })
         }).then((res) => {
-          if (res.items.placementBindings) {
-            const resPBs = {}
-            res.items.placementBindings.forEach((b) => {
-              resPBs[b.metadata.name] = b
-            })
-            pbs.forEach((pb) => {
-              const resPB = resPBs[pb.metadata.name]
-              if (resPB) {
-                pb.metadata.selfLink = resPB.metadata.selfLink
-                pb.metadata.resourceVersion = resPB.metadata.resourceVersion
-                update.push(pb)
-              } else {
-                create.push(pb)
-              }
-            })
-          } else {
-            throw 'Error fetching placement binding'
-          }
+          this.addPBs(res, pbs, update, create)
         }).then(() => {
           return handleFetchResource(RESOURCE_TYPES.PLACEMENT_RULE, {
             prs: prs.map((pr => pr.metadata.name)),
           })
         }).then((res) => {
-          if (res.items.placementRules) {
-            const resPRs = {}
-            res.items.placementRules.forEach((r) => {
-              resPRs[r.metadata.name] = r
-            })
-            prs.forEach((pr) => {
-              const resPR = resPRs[pr.metadata.name]
-              if (resPR) {
-                pr.metadata.selfLink = resPR.metadata.selfLink
-                pr.metadata.resourceVersion = resPR.metadata.resourceVersion
-                update.push(pr)
-              } else {
-                create.push(pr)
-              }
-            })
-          } else {
-            throw 'Error fetching placement rule'
-          }
+          this.addPRs(res, prs, update, create)
         }).then(() => {
           return resolve({ create, update })
         })
       })
+    }
+    return Promise.resolve()
+  }
+
+  addPBs = (res, pbs, update, create) => {
+    if (res.items.placementBindings) {
+      const resPBs = {}
+      res.items.placementBindings.forEach((b) => {
+        resPBs[b.metadata.name] = b
+      })
+      pbs.forEach((pb) => {
+        const resPB = resPBs[pb.metadata.name]
+        if (resPB) {
+          pb.metadata.selfLink = resPB.metadata.selfLink
+          pb.metadata.resourceVersion = resPB.metadata.resourceVersion
+          update.push(pb)
+        } else {
+          create.push(pb)
+        }
+      })
+    } else {
+      throw { code: 400, message: 'Error fetching placement binding' }
+    }
+  }
+
+  addPRs = (res, prs, update, create) => {
+    if (res.items.placementRules) {
+      const resPRs = {}
+      res.items.placementRules.forEach((r) => {
+        resPRs[r.metadata.name] = r
+      })
+      prs.forEach((pr) => {
+        const resPR = resPRs[pr.metadata.name]
+        if (resPR) {
+          pr.metadata.selfLink = resPR.metadata.selfLink
+          pr.metadata.resourceVersion = resPR.metadata.resourceVersion
+          update.push(pr)
+        } else {
+          create.push(pr)
+        }
+      })
+    } else {
+      throw { code: 400, message: 'Error fetching placement rule' }
     }
   }
 
@@ -241,7 +250,8 @@ const mapStateToProps = (state) => {
   let updateState = 'IN_PROGRESS'
   if ((state['PlacementRulesList'].mutateStatus === 'ERROR') || (state['PlacementBindingsList'].mutateStatus === 'ERROR') || (state['HCMPolicyList'].mutateStatus === 'ERROR')) {
     updateState = 'ERROR'
-  } else if ((state['PlacementRulesList'].mutateStatus === 'DONE') && (state['PlacementBindingsList'].mutateStatus === 'DONE') && (state['HCMPolicyList'].mutateStatus === 'DONE')) {
+  } else if ((state['PlacementRulesList'].mutateStatus === 'DONE') && (state['PlacementBindingsList'].mutateStatus === 'DONE')
+    && (state['HCMPolicyList'].mutateStatus === 'DONE')) {
     updateState = 'DONE'
   }
   return {

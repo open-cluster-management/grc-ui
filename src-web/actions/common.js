@@ -356,7 +356,7 @@ export const createAndUpdateResources = (resourceTypes, createList, updateList) 
     })
     return GrcApolloClient.createAndUpdateResources(createList, updateList)
       .then(result => {
-        var errors = {
+        const errors = {
           Policy: {
             resourceType: 'HCMPolicy',
             error: '',
@@ -385,11 +385,11 @@ export const createAndUpdateResources = (resourceTypes, createList, updateList) 
         let errored = false
         Object.keys(errors).map((key) => {
           const resp = errors[key]
-          if (resp.error != '') {
+          if (resp.error !== '') {
             errored = true
             dispatch(mutateResourceFailure(resp.resourceType, { message: resp.error }))
           }
-          return
+          return key
         })
         if (!errored) {
           resourceTypes.forEach((resourceType) => {
