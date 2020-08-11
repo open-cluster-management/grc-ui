@@ -13,7 +13,6 @@ const propertiesParser = require('properties-parser')
 const jsonfile = require('jsonfile')
 const fs = require('fs')
 
-
 module.exports = async function () {
   const content = fs.readFileSync(platformFilePath, { encoding: 'utf-8' })
   if (content) {

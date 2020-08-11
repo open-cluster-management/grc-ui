@@ -5,7 +5,7 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************
+ *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 const parser = require('../utils/yamlHelper')
 
@@ -107,6 +107,7 @@ function checkViolations(name, violationExpected, violationText) {
     this.waitForElementPresent('.no-resource')
   }
   this.click('.bx--breadcrumb > div:nth-child(1)')
+  this.pause(1000)
 }
 
 function searchPolicy(name, expectToDisplay) {
@@ -140,6 +141,7 @@ function deletePolicy(name){
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
+  this.pause(1000)
   // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
 }
 

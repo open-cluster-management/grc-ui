@@ -51,7 +51,6 @@ export class SecondaryHeader extends React.Component {
     }
   }
 
-
   render() {
     const { tabs, title, breadcrumbItems, links, description, location } = this.props
     const { locale } = this.context

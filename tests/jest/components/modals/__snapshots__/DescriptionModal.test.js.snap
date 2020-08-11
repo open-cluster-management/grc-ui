@@ -1,12 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DescriptionModal render test renders as expected 1`] = `
-<BrowserRouter>
-  <Connect(DescriptionModal)
-    content="filler"
-    open={true}
-    title="filler"
-    updateModal={[Function]}
-  />
-</BrowserRouter>
-`;
+exports[`DescriptionModal render test shallow wrapper Stateless instance should be null since react 16 1`] = `null`;

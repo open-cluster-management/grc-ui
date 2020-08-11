@@ -5,8 +5,8 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************
- * Copyright (c) 2020 Red Hat, Inc. */
+ *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -43,7 +43,7 @@ class ClusterPolicy extends React.Component {
     super(props)
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { updateSecondaryHeader:localUpdateSecondaryHeader } = this.props
     localUpdateSecondaryHeader(this.getPolicyName(true), null, this.getBreadcrumb())
   }

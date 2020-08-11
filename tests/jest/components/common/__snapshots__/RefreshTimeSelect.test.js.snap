@@ -22,19 +22,19 @@ exports[`RefreshTimeSelect component renders as expected 1`] = `
     </svg>
   </div>
   <div
-    aria-invalid={undefined}
     aria-label="Choose refresh"
     className="bx--dropdown selection bx--list-box"
-    data-invalid={undefined}
     onClick={[Function]}
     onKeyDown={[Function]}
     role="listbox"
     tabIndex={null}
   >
     <div
+      aria-controls={null}
       aria-expanded={false}
       aria-haspopup={true}
-      aria-label="open menu"
+      aria-label="Choose refresh"
+      aria-owns={null}
       className="bx--list-box__field"
       data-toggle={true}
       disabled={false}
@@ -57,14 +57,10 @@ exports[`RefreshTimeSelect component renders as expected 1`] = `
         <svg
           alt="Open menu"
           aria-label="Open menu"
-          className={undefined}
-          fill={undefined}
           fillRule="evenodd"
           focusable="false"
           height="5"
-          name={undefined}
           role="img"
-          style={undefined}
           viewBox="0 0 10 5"
           width="10"
         >
@@ -103,19 +99,19 @@ exports[`RefreshTimeSelect component with data renders as expected 1`] = `
     </svg>
   </div>
   <div
-    aria-invalid={undefined}
     aria-label="Choose refresh"
     className="bx--dropdown selection bx--list-box"
-    data-invalid={undefined}
     onClick={[Function]}
     onKeyDown={[Function]}
     role="listbox"
     tabIndex={null}
   >
     <div
+      aria-controls={null}
       aria-expanded={false}
       aria-haspopup={true}
-      aria-label="open menu"
+      aria-label="Choose refresh"
+      aria-owns={null}
       className="bx--list-box__field"
       data-toggle={true}
       disabled={false}
@@ -138,14 +134,10 @@ exports[`RefreshTimeSelect component with data renders as expected 1`] = `
         <svg
           alt="Open menu"
           aria-label="Open menu"
-          className={undefined}
-          fill={undefined}
           fillRule="evenodd"
           focusable="false"
           height="5"
-          name={undefined}
           role="img"
-          style={undefined}
           viewBox="0 0 10 5"
           width="10"
         >

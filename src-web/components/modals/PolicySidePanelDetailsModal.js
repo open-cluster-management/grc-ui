@@ -6,8 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
-*/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -327,7 +326,6 @@ PolicySidePanelDetailsModal.propTypes = {
   title: PropTypes.string,
   updateModal: PropTypes.func
 }
-
 
 const mapStateToProps = (state) => {
   const {resourceToolbar: {activeFilters}} = state

@@ -26,7 +26,6 @@ import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
 import constants from '../../../lib/shared/constants'
 import { fliterTableAction } from '../../../lib/client/access-helper'
 
-
 resources(() => {
   require('../../../scss/table.scss')
 })

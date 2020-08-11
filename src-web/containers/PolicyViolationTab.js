@@ -53,10 +53,10 @@ class PolicyViolationTab extends React.Component{
     return (
       <Query query={HCMPolicyViolations} pollInterval={pollInterval} variables={{policyName: policyName, policyNamespace: namespace}}>
         {({ data, loading }) => {
-          if (loading && data.violations === undefined) {
+          if (loading && data && data.violations === undefined) {
             return (<Loading withOverlay={false} className='content-spinner' />)
           }
-          if( data.violations && data.violations.length > 0){
+          if( data && data.violations && data.violations.length > 0){
             return (<div className='policy-violation-tab'>
               <h5 className='section-title'>Violations</h5>
               <ResourceTableModule

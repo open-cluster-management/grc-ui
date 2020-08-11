@@ -149,7 +149,6 @@ const updateMultiSelectControl = (control, reverse, oldParsed, newParsed) => {
   }
 }
 
-
 const updateMultiSelectStringControl = (control, reverse, newParsed) => {
   let values = _.get(newParsed, reverse[0])
   if (values && typeof values==='string') {
@@ -260,7 +259,6 @@ export const getTemplateSource = (reverse, parsed) => {
   })
   return ret.join('\n')
 }
-
 
 export const parseYAML = (yaml) => {
   let absLine=0

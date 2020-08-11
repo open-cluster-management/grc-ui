@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -46,7 +47,5 @@ ResourceOverviewModule.propTypes = {
   listSubItems: PropTypes.bool,
   staticResourceData: PropTypes.object
 }
-
-
 
 export default ResourceOverviewModule

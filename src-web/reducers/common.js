@@ -60,7 +60,6 @@ export const getSearch = (state, props) => getFromState(state,props.storeRoot, '
 export const getSortColumn = (state, props) => getFromState(state,props.storeRoot, 'sortColumn')
 export const getSortDirection = (state, props) => getFromState(state,props.storeRoot, 'sortDirection')
 
-
 export const INITIAL_STATE = {
   items: [],
   itemsPerPage: PAGE_SIZES.DEFAULT,
@@ -281,7 +280,6 @@ export const secondaryHeader = (state = {title: '', tabs: [], breadcrumbItems: [
     return state
   }
 }
-
 
 export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
   let items,index

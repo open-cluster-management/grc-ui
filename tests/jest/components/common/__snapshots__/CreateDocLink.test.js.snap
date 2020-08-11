@@ -4,7 +4,7 @@ exports[`createDocLink view renders does not show create link as expected 1`] = 
 <div
   className="button-group"
 >
-  <UNDEFINED
+  <ForwardRef
     disabled={false}
     icon="add--glyph"
     iconDescription="Provide icon description if icon is used"
@@ -16,7 +16,7 @@ exports[`createDocLink view renders does not show create link as expected 1`] = 
     type="button"
   >
     does not show create link
-  </UNDEFINED>
+  </ForwardRef>
   <div
     className="buttons"
   >
@@ -40,7 +40,7 @@ exports[`createDocLink view renders show create link as expected 1`] = `
 <div
   className="button-group"
 >
-  <UNDEFINED
+  <ForwardRef
     disabled={false}
     icon="add--glyph"
     iconDescription="Provide icon description if icon is used"
@@ -52,7 +52,7 @@ exports[`createDocLink view renders show create link as expected 1`] = `
     type="button"
   >
     show create link
-  </UNDEFINED>
+  </ForwardRef>
   <div
     className="buttons"
   >

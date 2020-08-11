@@ -10,7 +10,7 @@ exports[`OverviewView component 1 renders as expected 1`] = `
     viewBox="-75 -75 150 150"
   >
     <title>
-      Loading
+      Active loading indicator
     </title>
     <circle
       className={null}
@@ -35,12 +35,9 @@ exports[`OverviewView component 2 renders as expected 1`] = `
       alt="closes notification"
       aria-label="closes notification"
       className="bx--inline-notification__icon"
-      fill={undefined}
       fillRule="evenodd"
       height="16"
-      name={undefined}
       role="img"
-      style={undefined}
       viewBox="0 0 16 16"
       width="16"
     >
@@ -76,12 +73,9 @@ exports[`OverviewView component 2 renders as expected 1`] = `
       alt="close icon"
       aria-label="close icon"
       className="bx--inline-notification__close-icon"
-      fill={undefined}
       fillRule="evenodd"
       height="10"
-      name={undefined}
       role="img"
-      style={undefined}
       viewBox="0 0 10 10"
       width="10"
     >
@@ -137,12 +131,10 @@ exports[`OverviewView component 3 renders as expected 1`] = `
           aria-hidden={true}
           aria-label="Provide icon description if icon is used"
           className="bx--btn__icon"
-          fill={undefined}
           fillRule="evenodd"
           height="16"
           name="add--glyph"
           role="img"
-          style={undefined}
           viewBox="0 0 16 16"
           width="16"
         >

@@ -59,21 +59,16 @@ exports[`StructuredListModule component test renders as expected 1`] = `
                 headers="expand"
               >
                 <button
-                  aria-label={undefined}
                   className="bx--table-expand-v2__button"
                   onClick={[Function]}
-                  title={undefined}
                 >
                   <svg
                     alt="Provide a description that will be used as the title"
                     aria-label="Provide a description that will be used as the title"
                     className="bx--table-expand-v2__svg"
-                    fill={undefined}
                     fillRule="evenodd"
                     height="12"
-                    name={undefined}
                     role="img"
-                    style={undefined}
                     viewBox="0 0 7 12"
                     width="7"
                   >

@@ -63,7 +63,6 @@ describe('FindingsTab container test', () => {
   })
 })
 
-
 describe('FindingsTab container formatEmptySecurityClassification test', () => {
   it('renders as expected', () => {
     const secondaryHeaderProps = {
