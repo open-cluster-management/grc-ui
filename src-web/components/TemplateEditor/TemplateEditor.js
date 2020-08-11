@@ -165,10 +165,10 @@ export default class TemplateEditor extends React.Component {
     this.layoutEditors()
   };
 
-  conditionalRenderUpdate = () => {
+  conditionalRenderUpdate = (locale) => {
     const { canOpenModal } = this.state
     if (canOpenModal) {
-      return this.renderUpdatePrompt()
+      return this.renderUpdatePrompt(locale)
     }
     return null
   }
@@ -197,7 +197,7 @@ export default class TemplateEditor extends React.Component {
     })
     return (
       <div key={`key${resetInx}`} className={viewClasses} ref={this.setContainerRef}>
-        {this.conditionalRenderUpdate()}
+        {this.conditionalRenderUpdate(locale)}
         {this.renderEditButton()}
         {this.renderCreateButton()}
         {this.renderCancelButton()}
@@ -799,17 +799,17 @@ export default class TemplateEditor extends React.Component {
     return null
   }
 
-  renderUpdatePrompt() {
+  renderUpdatePrompt(locale) {
     let msg = ''
     if (this.state.toCreate && this.state.toUpdate) {
       if (this.state.toCreate.length > 0) {
-        msg += `${(this.state.toCreate.map((rsc) => rsc.metadata.name)).join(', ')} will be created`
+        msg += `${(this.state.toCreate.map((rsc) => rsc.metadata.name)).join(', ')} ${msgs.get('update.list.create', locale)}`
       }
       if (this.state.toCreate.length > 0 && this.state.toUpdate.length > 0) {
         msg += '; '
       }
       if (this.state.toUpdate.length > 0) {
-        msg += `${(this.state.toUpdate.map((rsc) => rsc.metadata.name)).join(', ')} will be updated`
+        msg += `${(this.state.toUpdate.map((rsc) => rsc.metadata.name)).join(', ')} ${msgs.get('update.list.update', locale)}`
       }
     }
     return (
@@ -817,10 +817,10 @@ export default class TemplateEditor extends React.Component {
         danger
         id='policy-update-modal'
         open={this.state.canOpenModal}
-        primaryButtonText={'Apply'}
-        secondaryButtonText={'Cancel'}
-        modalLabel={'Update Existing Policy'}
-        modalHeading={'Update Existing Policy'}
+        primaryButtonText={msgs.get('update.apply', locale)}
+        secondaryButtonText={msgs.get('update.cancel', locale)}
+        modalLabel={msgs.get('update.existing', locale)}
+        modalHeading={msgs.get('update.existing', locale)}
         onRequestClose={() => {
           this.setState({ canOpenModal: false })
         }}
@@ -833,7 +833,7 @@ export default class TemplateEditor extends React.Component {
         }}
         role='region'
         aria-label={'policy-update'}>
-        <p>{`Some objects already exist. Apply changes to the existing objects? ${msg}`}</p>
+        <p>{`${msgs.get('update.question', locale)} ${msg}`}</p>
       </Modal>
     )
   }

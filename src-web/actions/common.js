@@ -372,13 +372,13 @@ export const createAndUpdateResources = (resourceTypes, createList, updateList) 
         }
         if (lodash.get(result, 'data.createAndUpdateResources.create.errors') &&
           lodash.get(result, 'data.createAndUpdateResources.create.errors.length') > 0){
-          lodash.get(result, 'data.createAndUpdateResources.create.errors').forEach((error) => {
+          lodash.get(result, 'data.createAndUpdateResources.create.errors', []).forEach((error) => {
             errors[error.kind].error = error.message
           })
         }
         if (lodash.get(result, 'data.createAndUpdateResources.update.errors') &&
           lodash.get(result, 'data.createAndUpdateResources.update.errors.length') > 0){
-          lodash.get(result, 'data.createAndUpdateResources.update.errors').forEach((error) => {
+          lodash.get(result, 'data.createAndUpdateResources.update.errors', []).forEach((error) => {
             errors[error.kind].error = error.message
           })
         }
