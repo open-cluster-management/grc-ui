@@ -6,12 +6,10 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-/*
-For a given input, a selector should always produce the same output.
- */
-
+// For a given input, a selector should always produce the same output.
 import { user, loggedIn, isAuthenticated } from '../../../src-web/reducers/user'
 import * as Actions from '../../../src-web/actions'
 
@@ -34,7 +32,6 @@ describe('User reducer', () => {
       expect(user({}, action)).toEqual(null)
     })
   })
-
 
   describe('#loggedIn', () => {
     const initialState = Actions.USER_LOGIN_STATUS.LOGGED_OUT

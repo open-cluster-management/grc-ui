@@ -81,12 +81,9 @@ exports[`EditorBar component renders as expected 1`] = `
             alt=""
             aria-label=""
             className="bx--search-magnifier"
-            fill={undefined}
             fillRule="evenodd"
             height="16"
-            name={undefined}
             role="img"
-            style={undefined}
             viewBox="0 0 16 16"
             width="16"
           >
@@ -114,7 +111,6 @@ exports[`EditorBar component renders as expected 1`] = `
             type="text"
           />
           <button
-            aria-label={undefined}
             className="bx--search-close bx--search-close--hidden"
             onClick={[Function]}
             type="button"
@@ -122,13 +118,9 @@ exports[`EditorBar component renders as expected 1`] = `
             <svg
               alt="Provide a description that will be used as the title"
               aria-label="Provide a description that will be used as the title"
-              className={undefined}
-              fill={undefined}
               fillRule="evenodd"
               height="16"
-              name={undefined}
               role="img"
-              style={undefined}
               viewBox="0 0 16 16"
               width="16"
             >

@@ -15,5 +15,3 @@ aws/shell: aws/check-shell
 aws/check-shell:
 	$(call assert-set,AWS_PROFILE)
 
-
-

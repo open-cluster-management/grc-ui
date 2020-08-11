@@ -138,4 +138,3 @@ const getRow = (path, parsed) => {
   return synced ? synced.$r+1 : 0
 }
 
-

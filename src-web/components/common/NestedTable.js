@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -79,7 +80,6 @@ class NestedTable extends React.PureComponent {
       </TableBody>
     </Table>
   );
-
 
   render() {
     const {

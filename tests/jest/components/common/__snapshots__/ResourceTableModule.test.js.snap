@@ -4,44 +4,39 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
 <ApolloProvider
   client={
     ApolloClient {
-      "__operations_cache__": Map {},
       "cache": InMemoryCache {
         "addTypename": true,
-        "cacheKeyRoot": CacheKeyNode {
-          "children": null,
-          "key": null,
+        "cacheKeyRoot": KeyTrie {
+          "weakness": true,
         },
         "config": Object {
           "addTypename": true,
           "dataIdFromObject": [Function],
           "fragmentMatcher": HeuristicFragmentMatcher {},
+          "freezeResults": false,
+          "resultCaching": true,
         },
         "data": DepTrackingCache {
           "data": Object {},
           "depend": [Function],
         },
         "maybeBroadcastWatch": [Function],
-        "optimistic": Array [],
+        "optimisticData": DepTrackingCache {
+          "data": Object {},
+          "depend": [Function],
+        },
         "silenceBroadcast": false,
         "storeReader": StoreReader {
-          "cacheKeyRoot": CacheKeyNode {
-            "children": null,
-            "key": null,
-          },
           "executeSelectionSet": [Function],
           "executeStoreQuery": [Function],
-          "keyMaker": QueryKeyMaker {
-            "cacheKeyRoot": CacheKeyNode {
-              "children": null,
-              "key": null,
-            },
-            "perQueryKeyMakers": Map {},
-          },
+          "executeSubSelectedArray": [Function],
+          "freezeResults": false,
         },
         "storeWriter": StoreWriter {},
         "typenameDocumentCache": Map {},
         "watches": Set {},
       },
+      "clearStoreCallbacks": Array [],
       "defaultOptions": Object {
         "mutate": Object {
           "errorPolicy": "all",
@@ -59,53 +54,177 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
       "link": ApolloLink {
         "request": [Function],
       },
-      "mutate": [Function],
-      "query": [Function],
-      "queryDeduplication": true,
-      "reFetchObservableQueries": [Function],
-      "resetStore": [Function],
-      "resetStoreCallbacks": Array [],
-      "ssrMode": false,
-      "store": DataStore {
+      "localState": LocalState {
         "cache": InMemoryCache {
           "addTypename": true,
-          "cacheKeyRoot": CacheKeyNode {
-            "children": null,
-            "key": null,
+          "cacheKeyRoot": KeyTrie {
+            "weakness": true,
           },
           "config": Object {
             "addTypename": true,
             "dataIdFromObject": [Function],
             "fragmentMatcher": HeuristicFragmentMatcher {},
+            "freezeResults": false,
+            "resultCaching": true,
           },
           "data": DepTrackingCache {
             "data": Object {},
             "depend": [Function],
           },
           "maybeBroadcastWatch": [Function],
-          "optimistic": Array [],
+          "optimisticData": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
           "silenceBroadcast": false,
           "storeReader": StoreReader {
-            "cacheKeyRoot": CacheKeyNode {
-              "children": null,
-              "key": null,
-            },
             "executeSelectionSet": [Function],
             "executeStoreQuery": [Function],
-            "keyMaker": QueryKeyMaker {
-              "cacheKeyRoot": CacheKeyNode {
-                "children": null,
-                "key": null,
-              },
-              "perQueryKeyMakers": Map {},
+            "executeSubSelectedArray": [Function],
+            "freezeResults": false,
+          },
+          "storeWriter": StoreWriter {},
+          "typenameDocumentCache": Map {},
+          "watches": Set {},
+        },
+        "client": [Circular],
+      },
+      "mutate": [Function],
+      "query": [Function],
+      "queryDeduplication": true,
+      "queryManager": QueryManager {
+        "assumeImmutableResults": false,
+        "clientAwareness": Object {
+          "name": undefined,
+          "version": undefined,
+        },
+        "dataStore": DataStore {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "cacheKeyRoot": KeyTrie {
+              "weakness": true,
             },
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "freezeResults": false,
+              "resultCaching": true,
+            },
+            "data": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "maybeBroadcastWatch": [Function],
+            "optimisticData": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "silenceBroadcast": false,
+            "storeReader": StoreReader {
+              "executeSelectionSet": [Function],
+              "executeStoreQuery": [Function],
+              "executeSubSelectedArray": [Function],
+              "freezeResults": false,
+            },
+            "storeWriter": StoreWriter {},
+            "typenameDocumentCache": Map {},
+            "watches": Set {},
+          },
+        },
+        "fetchQueryRejectFns": Map {},
+        "idCounter": 1,
+        "inFlightLinkObservables": Map {},
+        "link": ApolloLink {
+          "request": [Function],
+        },
+        "localState": LocalState {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "cacheKeyRoot": KeyTrie {
+              "weakness": true,
+            },
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "freezeResults": false,
+              "resultCaching": true,
+            },
+            "data": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "maybeBroadcastWatch": [Function],
+            "optimisticData": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "silenceBroadcast": false,
+            "storeReader": StoreReader {
+              "executeSelectionSet": [Function],
+              "executeStoreQuery": [Function],
+              "executeSubSelectedArray": [Function],
+              "freezeResults": false,
+            },
+            "storeWriter": StoreWriter {},
+            "typenameDocumentCache": Map {},
+            "watches": Set {},
+          },
+          "client": [Circular],
+        },
+        "mutationStore": MutationStore {
+          "store": Object {},
+        },
+        "onBroadcast": [Function],
+        "pollingInfoByQueryId": Map {},
+        "queries": Map {},
+        "queryDeduplication": true,
+        "queryStore": QueryStore {
+          "store": Object {},
+        },
+        "ssrMode": false,
+        "transformCache": WeakMap {},
+      },
+      "reFetchObservableQueries": [Function],
+      "resetStore": [Function],
+      "resetStoreCallbacks": Array [],
+      "store": DataStore {
+        "cache": InMemoryCache {
+          "addTypename": true,
+          "cacheKeyRoot": KeyTrie {
+            "weakness": true,
+          },
+          "config": Object {
+            "addTypename": true,
+            "dataIdFromObject": [Function],
+            "fragmentMatcher": HeuristicFragmentMatcher {},
+            "freezeResults": false,
+            "resultCaching": true,
+          },
+          "data": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
+          "maybeBroadcastWatch": [Function],
+          "optimisticData": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
+          "silenceBroadcast": false,
+          "storeReader": StoreReader {
+            "executeSelectionSet": [Function],
+            "executeStoreQuery": [Function],
+            "executeSubSelectedArray": [Function],
+            "freezeResults": false,
           },
           "storeWriter": StoreWriter {},
           "typenameDocumentCache": Map {},
           "watches": Set {},
         },
       },
-      "version": "2.4.5",
+      "typeDefs": undefined,
+      "version": "2.6.10",
       "watchQuery": [Function],
     }
   }
@@ -150,6 +269,12 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
             [MockFunction] {
               "calls": Array [
                 Array [],
+              ],
+              "results": Array [
+                Object {
+                  "type": "return",
+                  "value": undefined,
+                },
               ],
             }
           }
@@ -353,10 +478,116 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                       }
                       totalFilteredItems={0}
                     >
-                      <Route
-                        render={[Function]}
+                      <Connect(ResourceTable)
+                        handleSearch={[Function]}
+                        handleSort={[Function]}
+                        history={
+                          Object {
+                            "action": "POP",
+                            "block": [Function],
+                            "createHref": [Function],
+                            "go": [Function],
+                            "goBack": [Function],
+                            "goForward": [Function],
+                            "length": 1,
+                            "listen": [Function],
+                            "location": Object {
+                              "hash": "",
+                              "pathname": "/",
+                              "search": "",
+                              "state": undefined,
+                            },
+                            "push": [Function],
+                            "replace": [Function],
+                          }
+                        }
+                        itemIds={Array []}
+                        items={Object {}}
+                        location={
+                          Object {
+                            "hash": "",
+                            "pathname": "/",
+                            "search": "",
+                            "state": undefined,
+                          }
+                        }
+                        match={
+                          Object {
+                            "isExact": true,
+                            "params": Object {},
+                            "path": "/",
+                            "url": "/",
+                          }
+                        }
+                        resourceType={
+                          Object {
+                            "list": "HCMComplianceList",
+                            "name": "HCMCompliance",
+                          }
+                        }
+                        searchValue=""
+                        sortDirection="asc"
+                        staticResourceData={
+                          Object {
+                            "headerRows": Array [
+                              "",
+                              "table.header.cluster.name",
+                              "table.header.rule.violation",
+                              "",
+                            ],
+                            "rows": Array [
+                              Object {
+                                "cells": Array [
+                                  Object {
+                                    "resourceKey": "metadata.name",
+                                  },
+                                  Object {
+                                    "resourceKey": "violated",
+                                  },
+                                  Object {
+                                    "resourceKey": "spec.consoleURL",
+                                  },
+                                ],
+                              },
+                            ],
+                            "subHeaders": Array [
+                              "table.header.name",
+                              "table.header.message",
+                              "table.header.reason",
+                            ],
+                            "tableKeys": Array [
+                              Object {
+                                "msgKey": "table.header.policy.name",
+                                "resourceKey": "metadata.name",
+                              },
+                              Object {
+                                "msgKey": "table.header.remediation",
+                                "resourceKey": "remediation",
+                              },
+                              Object {
+                                "msgKey": "table.header.cluster.violation",
+                                "resourceKey": "clusterCompliant",
+                              },
+                              Object {
+                                "msgKey": "table.header.standards",
+                                "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
+                              },
+                              Object {
+                                "msgKey": "table.header.controls",
+                                "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
+                              },
+                              Object {
+                                "msgKey": "table.header.categories",
+                                "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
+                              },
+                            ],
+                            "title": "policySide",
+                          }
+                        }
+                        totalFilteredItems={0}
                       >
-                        <Connect(ResourceTable)
+                        <ResourceTable
+                          getResourceAction={[Function]}
                           handleSearch={[Function]}
                           handleSort={[Function]}
                           history={
@@ -463,229 +694,188 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                             }
                           }
                           totalFilteredItems={0}
+                          userRole={null}
                         >
-                          <ResourceTable
-                            getResourceAction={[Function]}
-                            handleSearch={[Function]}
-                            handleSort={[Function]}
-                            history={
-                              Object {
-                                "action": "POP",
-                                "block": [Function],
-                                "createHref": [Function],
-                                "go": [Function],
-                                "goBack": [Function],
-                                "goForward": [Function],
-                                "length": 1,
-                                "listen": [Function],
-                                "location": Object {
-                                  "hash": "",
-                                  "pathname": "/",
-                                  "search": "",
-                                  "state": undefined,
+                          <DataTable
+                            filterRows={[Function]}
+                            headers={
+                              Array [
+                                Object {
+                                  "header": "Policy name",
+                                  "information": "",
+                                  "key": "metadata.name",
                                 },
-                                "push": [Function],
-                                "replace": [Function],
-                              }
+                                Object {
+                                  "header": "Remediation",
+                                  "information": "",
+                                  "key": "remediation",
+                                },
+                                Object {
+                                  "header": "Cluster violations",
+                                  "information": "",
+                                  "key": "clusterCompliant",
+                                },
+                                Object {
+                                  "header": "Standards",
+                                  "information": "",
+                                  "key": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
+                                },
+                                Object {
+                                  "header": "Controls",
+                                  "information": "",
+                                  "key": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
+                                },
+                                Object {
+                                  "header": "Categories",
+                                  "information": "",
+                                  "key": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
+                                },
+                              ]
                             }
-                            itemIds={Array []}
-                            items={Object {}}
-                            location={
-                              Object {
-                                "hash": "",
-                                "pathname": "/",
-                                "search": "",
-                                "state": undefined,
-                              }
-                            }
-                            match={
-                              Object {
-                                "isExact": true,
-                                "params": Object {},
-                                "path": "/",
-                                "url": "/",
-                              }
-                            }
-                            resourceType={
-                              Object {
-                                "list": "HCMComplianceList",
-                                "name": "HCMCompliance",
-                              }
-                            }
-                            searchValue=""
-                            sortDirection="asc"
-                            staticResourceData={
-                              Object {
-                                "headerRows": Array [
-                                  "",
-                                  "table.header.cluster.name",
-                                  "table.header.rule.violation",
-                                  "",
-                                ],
-                                "rows": Array [
-                                  Object {
-                                    "cells": Array [
-                                      Object {
-                                        "resourceKey": "metadata.name",
-                                      },
-                                      Object {
-                                        "resourceKey": "violated",
-                                      },
-                                      Object {
-                                        "resourceKey": "spec.consoleURL",
-                                      },
-                                    ],
-                                  },
-                                ],
-                                "subHeaders": Array [
-                                  "table.header.name",
-                                  "table.header.message",
-                                  "table.header.reason",
-                                ],
-                                "tableKeys": Array [
-                                  Object {
-                                    "msgKey": "table.header.policy.name",
-                                    "resourceKey": "metadata.name",
-                                  },
-                                  Object {
-                                    "msgKey": "table.header.remediation",
-                                    "resourceKey": "remediation",
-                                  },
-                                  Object {
-                                    "msgKey": "table.header.cluster.violation",
-                                    "resourceKey": "clusterCompliant",
-                                  },
-                                  Object {
-                                    "msgKey": "table.header.standards",
-                                    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
-                                  },
-                                  Object {
-                                    "msgKey": "table.header.controls",
-                                    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
-                                  },
-                                  Object {
-                                    "msgKey": "table.header.categories",
-                                    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
-                                  },
-                                ],
-                                "title": "policySide",
-                              }
-                            }
-                            totalFilteredItems={0}
-                            userRole={null}
+                            key="data-table"
+                            locale="en"
+                            render={[Function]}
+                            rows={Array []}
+                            short={false}
+                            shouldShowBorder={true}
+                            sortRow={[Function]}
+                            translateWithId={[Function]}
                           >
-                            <DataTable
-                              filterRows={[Function]}
-                              headers={
-                                Array [
-                                  Object {
-                                    "header": "Policy name",
-                                    "information": "",
-                                    "key": "metadata.name",
-                                  },
-                                  Object {
-                                    "header": "Remediation",
-                                    "information": "",
-                                    "key": "remediation",
-                                  },
-                                  Object {
-                                    "header": "Cluster violations",
-                                    "information": "",
-                                    "key": "clusterCompliant",
-                                  },
-                                  Object {
-                                    "header": "Standards",
-                                    "information": "",
-                                    "key": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
-                                  },
-                                  Object {
-                                    "header": "Controls",
-                                    "information": "",
-                                    "key": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
-                                  },
-                                  Object {
-                                    "header": "Categories",
-                                    "information": "",
-                                    "key": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
-                                  },
-                                ]
-                              }
-                              key="data-table"
-                              locale="en"
-                              render={[Function]}
-                              rows={Array []}
-                              short={false}
-                              shouldShowBorder={true}
-                              sortRow={[Function]}
-                              translateWithId={[Function]}
+                            <TableContainer
+                              id="table-container"
                             >
-                              <TableContainer
+                              <div
+                                className="bx--data-table-v2-container"
                                 id="table-container"
                               >
-                                <div
-                                  className="bx--data-table-v2-container"
-                                  id="table-container"
+                                <TableToolbar
+                                  aria-label="search"
+                                  role="region"
                                 >
-                                  <TableToolbar
+                                  <section
                                     aria-label="search"
+                                    className="bx--table-toolbar"
                                     role="region"
                                   >
-                                    <section
+                                    <TableToolbarSearch
                                       aria-label="search"
-                                      className="bx--table-toolbar"
-                                      role="region"
+                                      id="search"
+                                      light={true}
+                                      onChange={[Function]}
+                                      translateWithId={[Function]}
+                                      value=""
                                     >
-                                      <TableToolbarSearch
-                                        aria-label="search"
-                                        id="search"
-                                        light={true}
-                                        onChange={[Function]}
-                                        translateWithId={[Function]}
-                                        value=""
+                                      <div
+                                        className="bx--toolbar-search-container"
                                       >
-                                        <div
-                                          className="bx--toolbar-search-container"
+                                        <Search
+                                          aria-label="search"
+                                          id="search"
+                                          labelText="Filter table"
+                                          light={true}
+                                          onChange={[Function]}
+                                          placeHolderText="Search"
+                                          small={true}
+                                          type="text"
+                                          value=""
                                         >
-                                          <Search
-                                            aria-label="search"
-                                            id="search"
-                                            labelText="Filter table"
-                                            light={true}
-                                            onChange={[Function]}
-                                            placeHolderText="Search"
-                                            small={true}
-                                            type="text"
-                                            value=""
+                                          <div
+                                            aria-labelledby="search-label"
+                                            className="bx--search bx--search--sm bx--search--light"
+                                            role="search"
                                           >
-                                            <div
-                                              aria-labelledby="search-label"
-                                              className="bx--search bx--search--sm bx--search--light"
-                                              role="search"
+                                            <Icon
+                                              className="bx--search-magnifier"
+                                              description="Filter table"
+                                              fillRule="evenodd"
+                                              icon={
+                                                Object {
+                                                  "height": "16",
+                                                  "id": "icon--search",
+                                                  "name": "icon--search",
+                                                  "styles": "",
+                                                  "svgData": Object {
+                                                    "circles": "",
+                                                    "ellipses": "",
+                                                    "paths": Array [
+                                                      Object {
+                                                        "d": "M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z",
+                                                        "fill-rule": "nonzero",
+                                                      },
+                                                    ],
+                                                    "polygons": "",
+                                                    "polylines": "",
+                                                    "rects": "",
+                                                  },
+                                                  "tags": "icon--search",
+                                                  "viewBox": "0 0 16 16",
+                                                  "width": "16",
+                                                }
+                                              }
+                                              role="img"
+                                            >
+                                              <svg
+                                                alt="Filter table"
+                                                aria-label="Filter table"
+                                                className="bx--search-magnifier"
+                                                fillRule="evenodd"
+                                                height="16"
+                                                role="img"
+                                                viewBox="0 0 16 16"
+                                                width="16"
+                                              >
+                                                <title>
+                                                  Filter table
+                                                </title>
+                                                <path
+                                                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
+                                                  key="key0"
+                                                />
+                                              </svg>
+                                            </Icon>
+                                            <label
+                                              className="bx--label"
+                                              htmlFor="search"
+                                              id="search-label"
+                                            >
+                                              Filter table
+                                            </label>
+                                            <input
+                                              aria-label="search"
+                                              className="bx--search-input"
+                                              id="search"
+                                              onChange={[Function]}
+                                              placeholder="Search"
+                                              type="text"
+                                              value=""
+                                            />
+                                            <button
+                                              className="bx--search-close bx--search-close--hidden"
+                                              onClick={[Function]}
+                                              type="button"
                                             >
                                               <Icon
-                                                className="bx--search-magnifier"
-                                                description="Filter table"
+                                                description="Provide a description that will be used as the title"
                                                 fillRule="evenodd"
                                                 icon={
                                                   Object {
                                                     "height": "16",
-                                                    "id": "icon--search",
-                                                    "name": "icon--search",
+                                                    "id": "icon--close--solid",
+                                                    "name": "icon--close--solid",
                                                     "styles": "",
                                                     "svgData": Object {
                                                       "circles": "",
                                                       "ellipses": "",
                                                       "paths": Array [
                                                         Object {
-                                                          "d": "M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z",
-                                                          "fill-rule": "nonzero",
+                                                          "d": "M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z",
                                                         },
                                                       ],
                                                       "polygons": "",
                                                       "polylines": "",
                                                       "rects": "",
                                                     },
-                                                    "tags": "icon--search",
+                                                    "tags": "icon--close--solid",
                                                     "viewBox": "0 0 16 16",
                                                     "width": "16",
                                                   }
@@ -693,9 +883,8 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                 role="img"
                                               >
                                                 <svg
-                                                  alt="Filter table"
-                                                  aria-label="Filter table"
-                                                  className="bx--search-magnifier"
+                                                  alt="Provide a description that will be used as the title"
+                                                  aria-label="Provide a description that will be used as the title"
                                                   fillRule="evenodd"
                                                   height="16"
                                                   role="img"
@@ -703,854 +892,786 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                                                   width="16"
                                                 >
                                                   <title>
-                                                    Filter table
+                                                    Provide a description that will be used as the title
                                                   </title>
                                                   <path
-                                                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
+                                                    d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
                                                     key="key0"
                                                   />
                                                 </svg>
                                               </Icon>
-                                              <label
-                                                className="bx--label"
-                                                htmlFor="search"
-                                                id="search-label"
-                                              >
-                                                Filter table
-                                              </label>
-                                              <input
-                                                aria-label="search"
-                                                className="bx--search-input"
-                                                id="search"
-                                                onChange={[Function]}
-                                                placeholder="Search"
-                                                type="text"
-                                                value=""
-                                              />
-                                              <button
-                                                className="bx--search-close bx--search-close--hidden"
+                                            </button>
+                                          </div>
+                                        </Search>
+                                      </div>
+                                    </TableToolbarSearch>
+                                    <TableToolbarContent>
+                                      <div
+                                        className="bx--toolbar-content"
+                                      />
+                                    </TableToolbarContent>
+                                  </section>
+                                </TableToolbar>
+                                <Table
+                                  className="resource-table"
+                                  short={false}
+                                  shouldShowBorder={true}
+                                  zebra={true}
+                                >
+                                  <table
+                                    className="bx--data-table-v2 resource-table bx--data-table-v2--zebra"
+                                  >
+                                    <TableHead>
+                                      <thead>
+                                        <TableRow>
+                                          <tr>
+                                            <th
+                                              key="metadata.name"
+                                              scope="col"
+                                            >
+                                              <div
+                                                className="bx--table-sort-v2 bx--table-sort-v2--ascending"
+                                                data-key="metadata.name"
                                                 onClick={[Function]}
-                                                type="button"
+                                                onKeyPress={[Function]}
+                                                role="button"
+                                                tabIndex={0}
+                                                title="Sort rows by this header in ascending order."
                                               >
+                                                <span
+                                                  className="bx--table-header-label"
+                                                >
+                                                  Policy name
+                                                </span>
                                                 <Icon
-                                                  description="Provide a description that will be used as the title"
+                                                  className="bx--table-sort-v2__icon"
+                                                  description="Sort rows by this header in ascending order."
                                                   fillRule="evenodd"
-                                                  icon={
-                                                    Object {
-                                                      "height": "16",
-                                                      "id": "icon--close--solid",
-                                                      "name": "icon--close--solid",
-                                                      "styles": "",
-                                                      "svgData": Object {
-                                                        "circles": "",
-                                                        "ellipses": "",
-                                                        "paths": Array [
-                                                          Object {
-                                                            "d": "M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z",
-                                                          },
-                                                        ],
-                                                        "polygons": "",
-                                                        "polylines": "",
-                                                        "rects": "",
-                                                      },
-                                                      "tags": "icon--close--solid",
-                                                      "viewBox": "0 0 16 16",
-                                                      "width": "16",
-                                                    }
-                                                  }
+                                                  name="caret--down"
                                                   role="img"
                                                 >
                                                   <svg
-                                                    alt="Provide a description that will be used as the title"
-                                                    aria-label="Provide a description that will be used as the title"
+                                                    alt="Sort rows by this header in ascending order."
+                                                    aria-label="Sort rows by this header in ascending order."
+                                                    className="bx--table-sort-v2__icon"
                                                     fillRule="evenodd"
-                                                    height="16"
+                                                    height="5"
+                                                    name="caret--down"
                                                     role="img"
-                                                    viewBox="0 0 16 16"
-                                                    width="16"
+                                                    viewBox="0 0 10 5"
+                                                    width="10"
                                                   >
                                                     <title>
-                                                      Provide a description that will be used as the title
+                                                      Sort rows by this header in ascending order.
                                                     </title>
                                                     <path
-                                                      d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
+                                                      d="M0 0l5 4.998L10 0z"
                                                       key="key0"
                                                     />
                                                   </svg>
                                                 </Icon>
-                                              </button>
-                                            </div>
-                                          </Search>
-                                        </div>
-                                      </TableToolbarSearch>
-                                      <TableToolbarContent>
-                                        <div
-                                          className="bx--toolbar-content"
-                                        />
-                                      </TableToolbarContent>
-                                    </section>
-                                  </TableToolbar>
-                                  <Table
-                                    className="resource-table"
-                                    short={false}
-                                    shouldShowBorder={true}
-                                    zebra={true}
-                                  >
-                                    <table
-                                      className="bx--data-table-v2 resource-table bx--data-table-v2--zebra"
-                                    >
-                                      <TableHead>
-                                        <thead>
-                                          <TableRow>
-                                            <tr>
-                                              <th
-                                                key="metadata.name"
-                                                scope="col"
+                                              </div>
+                                            </th>
+                                            <th
+                                              key="remediation"
+                                              scope="col"
+                                            >
+                                              <div
+                                                className="bx--table-sort-v2 bx--table-sort-v2--ascending"
+                                                data-key="remediation"
+                                                onClick={[Function]}
+                                                onKeyPress={[Function]}
+                                                role="button"
+                                                tabIndex={0}
+                                                title="Sort rows by this header in ascending order."
                                               >
-                                                <div
-                                                  className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-                                                  data-key="metadata.name"
-                                                  onClick={[Function]}
-                                                  onKeyPress={[Function]}
-                                                  role="button"
-                                                  tabIndex={0}
-                                                  title="Sort rows by this header in ascending order."
+                                                <span
+                                                  className="bx--table-header-label"
                                                 >
-                                                  <span
-                                                    className="bx--table-header-label"
-                                                  >
-                                                    Policy name
-                                                  </span>
-                                                  <Icon
+                                                  Remediation
+                                                </span>
+                                                <Icon
+                                                  className="bx--table-sort-v2__icon"
+                                                  description="Sort rows by this header in ascending order."
+                                                  fillRule="evenodd"
+                                                  name="caret--down"
+                                                  role="img"
+                                                >
+                                                  <svg
+                                                    alt="Sort rows by this header in ascending order."
+                                                    aria-label="Sort rows by this header in ascending order."
                                                     className="bx--table-sort-v2__icon"
-                                                    description="Sort rows by this header in ascending order."
                                                     fillRule="evenodd"
+                                                    height="5"
                                                     name="caret--down"
                                                     role="img"
+                                                    viewBox="0 0 10 5"
+                                                    width="10"
                                                   >
-                                                    <svg
-                                                      alt="Sort rows by this header in ascending order."
-                                                      aria-label="Sort rows by this header in ascending order."
-                                                      className="bx--table-sort-v2__icon"
-                                                      fillRule="evenodd"
-                                                      height="5"
-                                                      name="caret--down"
-                                                      role="img"
-                                                      viewBox="0 0 10 5"
-                                                      width="10"
-                                                    >
-                                                      <title>
-                                                        Sort rows by this header in ascending order.
-                                                      </title>
-                                                      <path
-                                                        d="M0 0l5 4.998L10 0z"
-                                                        key="key0"
-                                                      />
-                                                    </svg>
-                                                  </Icon>
-                                                </div>
-                                              </th>
-                                              <th
-                                                key="remediation"
-                                                scope="col"
+                                                    <title>
+                                                      Sort rows by this header in ascending order.
+                                                    </title>
+                                                    <path
+                                                      d="M0 0l5 4.998L10 0z"
+                                                      key="key0"
+                                                    />
+                                                  </svg>
+                                                </Icon>
+                                              </div>
+                                            </th>
+                                            <th
+                                              key="clusterCompliant"
+                                              scope="col"
+                                            >
+                                              <div
+                                                className="bx--table-sort-v2 bx--table-sort-v2--ascending"
+                                                data-key="clusterCompliant"
+                                                onClick={[Function]}
+                                                onKeyPress={[Function]}
+                                                role="button"
+                                                tabIndex={0}
+                                                title="Sort rows by this header in ascending order."
                                               >
-                                                <div
-                                                  className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-                                                  data-key="remediation"
-                                                  onClick={[Function]}
-                                                  onKeyPress={[Function]}
-                                                  role="button"
-                                                  tabIndex={0}
-                                                  title="Sort rows by this header in ascending order."
+                                                <span
+                                                  className="bx--table-header-label"
                                                 >
-                                                  <span
-                                                    className="bx--table-header-label"
-                                                  >
-                                                    Remediation
-                                                  </span>
-                                                  <Icon
+                                                  Cluster violations
+                                                </span>
+                                                <Icon
+                                                  className="bx--table-sort-v2__icon"
+                                                  description="Sort rows by this header in ascending order."
+                                                  fillRule="evenodd"
+                                                  name="caret--down"
+                                                  role="img"
+                                                >
+                                                  <svg
+                                                    alt="Sort rows by this header in ascending order."
+                                                    aria-label="Sort rows by this header in ascending order."
                                                     className="bx--table-sort-v2__icon"
-                                                    description="Sort rows by this header in ascending order."
                                                     fillRule="evenodd"
+                                                    height="5"
                                                     name="caret--down"
                                                     role="img"
+                                                    viewBox="0 0 10 5"
+                                                    width="10"
                                                   >
-                                                    <svg
-                                                      alt="Sort rows by this header in ascending order."
-                                                      aria-label="Sort rows by this header in ascending order."
-                                                      className="bx--table-sort-v2__icon"
-                                                      fillRule="evenodd"
-                                                      height="5"
-                                                      name="caret--down"
-                                                      role="img"
-                                                      viewBox="0 0 10 5"
-                                                      width="10"
-                                                    >
-                                                      <title>
-                                                        Sort rows by this header in ascending order.
-                                                      </title>
-                                                      <path
-                                                        d="M0 0l5 4.998L10 0z"
-                                                        key="key0"
-                                                      />
-                                                    </svg>
-                                                  </Icon>
-                                                </div>
-                                              </th>
-                                              <th
-                                                key="clusterCompliant"
-                                                scope="col"
+                                                    <title>
+                                                      Sort rows by this header in ascending order.
+                                                    </title>
+                                                    <path
+                                                      d="M0 0l5 4.998L10 0z"
+                                                      key="key0"
+                                                    />
+                                                  </svg>
+                                                </Icon>
+                                              </div>
+                                            </th>
+                                            <th
+                                              key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
+                                              scope="col"
+                                            >
+                                              <div
+                                                className="bx--table-sort-v2 bx--table-sort-v2--ascending"
+                                                data-key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
+                                                onClick={[Function]}
+                                                onKeyPress={[Function]}
+                                                role="button"
+                                                tabIndex={0}
+                                                title="Sort rows by this header in ascending order."
                                               >
-                                                <div
-                                                  className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-                                                  data-key="clusterCompliant"
-                                                  onClick={[Function]}
-                                                  onKeyPress={[Function]}
-                                                  role="button"
-                                                  tabIndex={0}
-                                                  title="Sort rows by this header in ascending order."
+                                                <span
+                                                  className="bx--table-header-label"
                                                 >
-                                                  <span
-                                                    className="bx--table-header-label"
-                                                  >
-                                                    Cluster violations
-                                                  </span>
-                                                  <Icon
+                                                  Standards
+                                                </span>
+                                                <Icon
+                                                  className="bx--table-sort-v2__icon"
+                                                  description="Sort rows by this header in ascending order."
+                                                  fillRule="evenodd"
+                                                  name="caret--down"
+                                                  role="img"
+                                                >
+                                                  <svg
+                                                    alt="Sort rows by this header in ascending order."
+                                                    aria-label="Sort rows by this header in ascending order."
                                                     className="bx--table-sort-v2__icon"
-                                                    description="Sort rows by this header in ascending order."
                                                     fillRule="evenodd"
+                                                    height="5"
                                                     name="caret--down"
                                                     role="img"
+                                                    viewBox="0 0 10 5"
+                                                    width="10"
                                                   >
-                                                    <svg
-                                                      alt="Sort rows by this header in ascending order."
-                                                      aria-label="Sort rows by this header in ascending order."
-                                                      className="bx--table-sort-v2__icon"
-                                                      fillRule="evenodd"
-                                                      height="5"
-                                                      name="caret--down"
-                                                      role="img"
-                                                      viewBox="0 0 10 5"
-                                                      width="10"
-                                                    >
-                                                      <title>
-                                                        Sort rows by this header in ascending order.
-                                                      </title>
-                                                      <path
-                                                        d="M0 0l5 4.998L10 0z"
-                                                        key="key0"
-                                                      />
-                                                    </svg>
-                                                  </Icon>
-                                                </div>
-                                              </th>
-                                              <th
-                                                key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
-                                                scope="col"
+                                                    <title>
+                                                      Sort rows by this header in ascending order.
+                                                    </title>
+                                                    <path
+                                                      d="M0 0l5 4.998L10 0z"
+                                                      key="key0"
+                                                    />
+                                                  </svg>
+                                                </Icon>
+                                              </div>
+                                            </th>
+                                            <th
+                                              key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
+                                              scope="col"
+                                            >
+                                              <div
+                                                className="bx--table-sort-v2 bx--table-sort-v2--ascending"
+                                                data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
+                                                onClick={[Function]}
+                                                onKeyPress={[Function]}
+                                                role="button"
+                                                tabIndex={0}
+                                                title="Sort rows by this header in ascending order."
                                               >
-                                                <div
-                                                  className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-                                                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]"
-                                                  onClick={[Function]}
-                                                  onKeyPress={[Function]}
-                                                  role="button"
-                                                  tabIndex={0}
-                                                  title="Sort rows by this header in ascending order."
+                                                <span
+                                                  className="bx--table-header-label"
                                                 >
-                                                  <span
-                                                    className="bx--table-header-label"
-                                                  >
-                                                    Standards
-                                                  </span>
-                                                  <Icon
+                                                  Controls
+                                                </span>
+                                                <Icon
+                                                  className="bx--table-sort-v2__icon"
+                                                  description="Sort rows by this header in ascending order."
+                                                  fillRule="evenodd"
+                                                  name="caret--down"
+                                                  role="img"
+                                                >
+                                                  <svg
+                                                    alt="Sort rows by this header in ascending order."
+                                                    aria-label="Sort rows by this header in ascending order."
                                                     className="bx--table-sort-v2__icon"
-                                                    description="Sort rows by this header in ascending order."
                                                     fillRule="evenodd"
+                                                    height="5"
                                                     name="caret--down"
                                                     role="img"
+                                                    viewBox="0 0 10 5"
+                                                    width="10"
                                                   >
-                                                    <svg
-                                                      alt="Sort rows by this header in ascending order."
-                                                      aria-label="Sort rows by this header in ascending order."
-                                                      className="bx--table-sort-v2__icon"
-                                                      fillRule="evenodd"
-                                                      height="5"
-                                                      name="caret--down"
-                                                      role="img"
-                                                      viewBox="0 0 10 5"
-                                                      width="10"
-                                                    >
-                                                      <title>
-                                                        Sort rows by this header in ascending order.
-                                                      </title>
-                                                      <path
-                                                        d="M0 0l5 4.998L10 0z"
-                                                        key="key0"
-                                                      />
-                                                    </svg>
-                                                  </Icon>
-                                                </div>
-                                              </th>
-                                              <th
-                                                key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
-                                                scope="col"
+                                                    <title>
+                                                      Sort rows by this header in ascending order.
+                                                    </title>
+                                                    <path
+                                                      d="M0 0l5 4.998L10 0z"
+                                                      key="key0"
+                                                    />
+                                                  </svg>
+                                                </Icon>
+                                              </div>
+                                            </th>
+                                            <th
+                                              key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
+                                              scope="col"
+                                            >
+                                              <div
+                                                className="bx--table-sort-v2 bx--table-sort-v2--ascending"
+                                                data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
+                                                onClick={[Function]}
+                                                onKeyPress={[Function]}
+                                                role="button"
+                                                tabIndex={0}
+                                                title="Sort rows by this header in ascending order."
                                               >
-                                                <div
-                                                  className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-                                                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]"
-                                                  onClick={[Function]}
-                                                  onKeyPress={[Function]}
-                                                  role="button"
-                                                  tabIndex={0}
-                                                  title="Sort rows by this header in ascending order."
+                                                <span
+                                                  className="bx--table-header-label"
                                                 >
-                                                  <span
-                                                    className="bx--table-header-label"
-                                                  >
-                                                    Controls
-                                                  </span>
-                                                  <Icon
+                                                  Categories
+                                                </span>
+                                                <Icon
+                                                  className="bx--table-sort-v2__icon"
+                                                  description="Sort rows by this header in ascending order."
+                                                  fillRule="evenodd"
+                                                  name="caret--down"
+                                                  role="img"
+                                                >
+                                                  <svg
+                                                    alt="Sort rows by this header in ascending order."
+                                                    aria-label="Sort rows by this header in ascending order."
                                                     className="bx--table-sort-v2__icon"
-                                                    description="Sort rows by this header in ascending order."
                                                     fillRule="evenodd"
+                                                    height="5"
                                                     name="caret--down"
                                                     role="img"
+                                                    viewBox="0 0 10 5"
+                                                    width="10"
                                                   >
-                                                    <svg
-                                                      alt="Sort rows by this header in ascending order."
-                                                      aria-label="Sort rows by this header in ascending order."
-                                                      className="bx--table-sort-v2__icon"
-                                                      fillRule="evenodd"
-                                                      height="5"
-                                                      name="caret--down"
-                                                      role="img"
-                                                      viewBox="0 0 10 5"
-                                                      width="10"
-                                                    >
-                                                      <title>
-                                                        Sort rows by this header in ascending order.
-                                                      </title>
-                                                      <path
-                                                        d="M0 0l5 4.998L10 0z"
-                                                        key="key0"
-                                                      />
-                                                    </svg>
-                                                  </Icon>
-                                                </div>
-                                              </th>
-                                              <th
-                                                key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
-                                                scope="col"
-                                              >
-                                                <div
-                                                  className="bx--table-sort-v2 bx--table-sort-v2--ascending"
-                                                  data-key="metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]"
-                                                  onClick={[Function]}
-                                                  onKeyPress={[Function]}
-                                                  role="button"
-                                                  tabIndex={0}
-                                                  title="Sort rows by this header in ascending order."
-                                                >
-                                                  <span
-                                                    className="bx--table-header-label"
-                                                  >
-                                                    Categories
-                                                  </span>
-                                                  <Icon
-                                                    className="bx--table-sort-v2__icon"
-                                                    description="Sort rows by this header in ascending order."
-                                                    fillRule="evenodd"
-                                                    name="caret--down"
-                                                    role="img"
-                                                  >
-                                                    <svg
-                                                      alt="Sort rows by this header in ascending order."
-                                                      aria-label="Sort rows by this header in ascending order."
-                                                      className="bx--table-sort-v2__icon"
-                                                      fillRule="evenodd"
-                                                      height="5"
-                                                      name="caret--down"
-                                                      role="img"
-                                                      viewBox="0 0 10 5"
-                                                      width="10"
-                                                    >
-                                                      <title>
-                                                        Sort rows by this header in ascending order.
-                                                      </title>
-                                                      <path
-                                                        d="M0 0l5 4.998L10 0z"
-                                                        key="key0"
-                                                      />
-                                                    </svg>
-                                                  </Icon>
-                                                </div>
-                                              </th>
-                                            </tr>
-                                          </TableRow>
-                                        </thead>
-                                      </TableHead>
-                                      <TableBody>
-                                        <tbody />
-                                      </TableBody>
-                                    </table>
-                                  </Table>
-                                </div>
-                              </TableContainer>
-                            </DataTable>
-                            <PaginationV2
-                              backwardText="Previous page"
+                                                    <title>
+                                                      Sort rows by this header in ascending order.
+                                                    </title>
+                                                    <path
+                                                      d="M0 0l5 4.998L10 0z"
+                                                      key="key0"
+                                                    />
+                                                  </svg>
+                                                </Icon>
+                                              </div>
+                                            </th>
+                                          </tr>
+                                        </TableRow>
+                                      </thead>
+                                    </TableHead>
+                                    <TableBody>
+                                      <tbody />
+                                    </TableBody>
+                                  </table>
+                                </Table>
+                              </div>
+                            </TableContainer>
+                          </DataTable>
+                          <PaginationV2
+                            backwardText="Previous page"
+                            disabled={false}
+                            forwardText="Next page"
+                            id="resource-table-pagination"
+                            isLastPage={false}
+                            itemRangeText={[Function]}
+                            itemText={[Function]}
+                            itemsPerPageText="items per page"
+                            key="pagination"
+                            page={1}
+                            pageInputDisabled={false}
+                            pageNumberText="Page Number"
+                            pageRangeText={[Function]}
+                            pageSize={10}
+                            pageSizes={
+                              Array [
+                                5,
+                                10,
+                                20,
+                                50,
+                                75,
+                                100,
+                              ]
+                            }
+                            pageText={[Function]}
+                            pagesUnknown={false}
+                            totalItems={0}
+                          >
+                            <div
+                              className="bx--pagination"
                               disabled={false}
-                              forwardText="Next page"
-                              id="resource-table-pagination"
-                              isLastPage={false}
-                              itemRangeText={[Function]}
-                              itemText={[Function]}
-                              itemsPerPageText="items per page"
-                              key="pagination"
-                              page={1}
-                              pageInputDisabled={false}
-                              pageNumberText="Page Number"
-                              pageRangeText={[Function]}
-                              pageSize={10}
-                              pageSizes={
-                                Array [
-                                  5,
-                                  10,
-                                  20,
-                                  50,
-                                  75,
-                                  100,
-                                ]
-                              }
-                              pageText={[Function]}
-                              pagesUnknown={false}
-                              totalItems={0}
                             >
                               <div
-                                className="bx--pagination"
-                                disabled={false}
+                                className="bx--pagination__left"
                               >
-                                <div
-                                  className="bx--pagination__left"
+                                <span
+                                  className="bx--pagination__text"
                                 >
-                                  <span
-                                    className="bx--pagination__text"
-                                  >
-                                    items per page
-                                  </span>
-                                  <ForwardRef
-                                    disabled={false}
-                                    helperText=""
-                                    hideLabel={true}
-                                    iconDescription="open list of options"
-                                    id="bx-pagination-select-resource-table-pagination"
-                                    inline={true}
-                                    invalid={false}
-                                    invalidText=""
-                                    labelText="items per page"
-                                    light={false}
-                                    onChange={[Function]}
-                                    value={10}
+                                  items per page
+                                </span>
+                                <ForwardRef
+                                  disabled={false}
+                                  helperText=""
+                                  hideLabel={true}
+                                  iconDescription="open list of options"
+                                  id="bx-pagination-select-resource-table-pagination"
+                                  inline={true}
+                                  invalid={false}
+                                  invalidText=""
+                                  labelText="items per page"
+                                  light={false}
+                                  onChange={[Function]}
+                                  value={10}
+                                >
+                                  <div
+                                    className="bx--form-item"
                                   >
                                     <div
-                                      className="bx--form-item"
+                                      className="bx--select bx--select--inline"
                                     >
-                                      <div
-                                        className="bx--select bx--select--inline"
+                                      <label
+                                        className="bx--label bx--visually-hidden"
+                                        htmlFor="bx-pagination-select-resource-table-pagination"
                                       >
-                                        <label
-                                          className="bx--label bx--visually-hidden"
-                                          htmlFor="bx-pagination-select-resource-table-pagination"
+                                        items per page
+                                      </label>
+                                      <select
+                                        className="bx--select-input"
+                                        id="bx-pagination-select-resource-table-pagination"
+                                        onChange={[Function]}
+                                        value={10}
+                                      >
+                                        <SelectItem
+                                          disabled={false}
+                                          hidden={false}
+                                          key="5"
+                                          text="5"
+                                          value={5}
                                         >
-                                          items per page
-                                        </label>
-                                        <select
-                                          className="bx--select-input"
-                                          id="bx-pagination-select-resource-table-pagination"
-                                          onChange={[Function]}
-                                          value={10}
-                                        >
-                                          <SelectItem
+                                          <option
+                                            className="bx--select-option"
                                             disabled={false}
                                             hidden={false}
-                                            key="5"
-                                            text="5"
                                             value={5}
                                           >
-                                            <option
-                                              className="bx--select-option"
-                                              disabled={false}
-                                              hidden={false}
-                                              value={5}
-                                            >
-                                              5
-                                            </option>
-                                          </SelectItem>
-                                          <SelectItem
+                                            5
+                                          </option>
+                                        </SelectItem>
+                                        <SelectItem
+                                          disabled={false}
+                                          hidden={false}
+                                          key="10"
+                                          text="10"
+                                          value={10}
+                                        >
+                                          <option
+                                            className="bx--select-option"
                                             disabled={false}
                                             hidden={false}
-                                            key="10"
-                                            text="10"
                                             value={10}
                                           >
-                                            <option
-                                              className="bx--select-option"
-                                              disabled={false}
-                                              hidden={false}
-                                              value={10}
-                                            >
-                                              10
-                                            </option>
-                                          </SelectItem>
-                                          <SelectItem
+                                            10
+                                          </option>
+                                        </SelectItem>
+                                        <SelectItem
+                                          disabled={false}
+                                          hidden={false}
+                                          key="20"
+                                          text="20"
+                                          value={20}
+                                        >
+                                          <option
+                                            className="bx--select-option"
                                             disabled={false}
                                             hidden={false}
-                                            key="20"
-                                            text="20"
                                             value={20}
                                           >
-                                            <option
-                                              className="bx--select-option"
-                                              disabled={false}
-                                              hidden={false}
-                                              value={20}
-                                            >
-                                              20
-                                            </option>
-                                          </SelectItem>
-                                          <SelectItem
+                                            20
+                                          </option>
+                                        </SelectItem>
+                                        <SelectItem
+                                          disabled={false}
+                                          hidden={false}
+                                          key="50"
+                                          text="50"
+                                          value={50}
+                                        >
+                                          <option
+                                            className="bx--select-option"
                                             disabled={false}
                                             hidden={false}
-                                            key="50"
-                                            text="50"
                                             value={50}
                                           >
-                                            <option
-                                              className="bx--select-option"
-                                              disabled={false}
-                                              hidden={false}
-                                              value={50}
-                                            >
-                                              50
-                                            </option>
-                                          </SelectItem>
-                                          <SelectItem
+                                            50
+                                          </option>
+                                        </SelectItem>
+                                        <SelectItem
+                                          disabled={false}
+                                          hidden={false}
+                                          key="75"
+                                          text="75"
+                                          value={75}
+                                        >
+                                          <option
+                                            className="bx--select-option"
                                             disabled={false}
                                             hidden={false}
-                                            key="75"
-                                            text="75"
                                             value={75}
                                           >
-                                            <option
-                                              className="bx--select-option"
-                                              disabled={false}
-                                              hidden={false}
-                                              value={75}
-                                            >
-                                              75
-                                            </option>
-                                          </SelectItem>
-                                          <SelectItem
+                                            75
+                                          </option>
+                                        </SelectItem>
+                                        <SelectItem
+                                          disabled={false}
+                                          hidden={false}
+                                          key="100"
+                                          text="100"
+                                          value={100}
+                                        >
+                                          <option
+                                            className="bx--select-option"
                                             disabled={false}
                                             hidden={false}
-                                            key="100"
-                                            text="100"
                                             value={100}
                                           >
-                                            <option
-                                              className="bx--select-option"
-                                              disabled={false}
-                                              hidden={false}
-                                              value={100}
-                                            >
-                                              100
-                                            </option>
-                                          </SelectItem>
-                                        </select>
-                                        <Icon
-                                          className="bx--select__arrow"
-                                          description="open list of options"
-                                          fillRule="evenodd"
-                                          icon={
-                                            Object {
-                                              "height": "5",
-                                              "id": "icon--caret--down",
-                                              "name": "icon--caret--down",
-                                              "styles": "",
-                                              "svgData": Object {
-                                                "circles": "",
-                                                "ellipses": "",
-                                                "paths": Array [
-                                                  Object {
-                                                    "d": "M0 0l5 4.998L10 0z",
-                                                  },
-                                                ],
-                                                "polygons": "",
-                                                "polylines": "",
-                                                "rects": "",
-                                              },
-                                              "tags": "icon--caret--down",
-                                              "viewBox": "0 0 10 5",
-                                              "width": "10",
-                                            }
-                                          }
-                                          role="img"
-                                        >
-                                          <svg
-                                            alt="open list of options"
-                                            aria-label="open list of options"
-                                            className="bx--select__arrow"
-                                            fillRule="evenodd"
-                                            height="5"
-                                            role="img"
-                                            viewBox="0 0 10 5"
-                                            width="10"
-                                          >
-                                            <title>
-                                              open list of options
-                                            </title>
-                                            <path
-                                              d="M0 0l5 4.998L10 0z"
-                                              key="key0"
-                                            />
-                                          </svg>
-                                        </Icon>
-                                      </div>
-                                    </div>
-                                  </ForwardRef>
-                                  <span
-                                    className="bx--pagination__text"
-                                  >
-                                     |  
-                                    {0}-{1} of {0} items
-                                  </span>
-                                </div>
-                                <div
-                                  className="bx--pagination__right bx--pagination--inline"
-                                >
-                                  <span
-                                    className="bx--pagination__text"
-                                  >
-                                    {0} of {1} pages
-                                  </span>
-                                  <button
-                                    aria-label="Previous page"
-                                    className="bx--pagination__button bx--pagination__button--backward bx--pagination__button--no-index"
-                                    disabled={true}
-                                    onClick={[Function]}
-                                  >
-                                    <Icon
-                                      className="bx--pagination__button-icon"
-                                      description="Previous page"
-                                      fillRule="evenodd"
-                                      icon={
-                                        Object {
-                                          "height": "12",
-                                          "id": "icon--chevron--left",
-                                          "name": "icon--chevron--left",
-                                          "styles": "",
-                                          "svgData": Object {
-                                            "circles": "",
-                                            "ellipses": "",
-                                            "paths": Array [
-                                              Object {
-                                                "d": "M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z",
-                                                "fill-rule": "nonzero",
-                                              },
-                                            ],
-                                            "polygons": "",
-                                            "polylines": "",
-                                            "rects": "",
-                                          },
-                                          "tags": "icon--chevron--left",
-                                          "viewBox": "0 0 7 12",
-                                          "width": "7",
-                                        }
-                                      }
-                                      role="img"
-                                    >
-                                      <svg
-                                        alt="Previous page"
-                                        aria-label="Previous page"
-                                        className="bx--pagination__button-icon"
+                                            100
+                                          </option>
+                                        </SelectItem>
+                                      </select>
+                                      <Icon
+                                        className="bx--select__arrow"
+                                        description="open list of options"
                                         fillRule="evenodd"
-                                        height="12"
+                                        icon={
+                                          Object {
+                                            "height": "5",
+                                            "id": "icon--caret--down",
+                                            "name": "icon--caret--down",
+                                            "styles": "",
+                                            "svgData": Object {
+                                              "circles": "",
+                                              "ellipses": "",
+                                              "paths": Array [
+                                                Object {
+                                                  "d": "M0 0l5 4.998L10 0z",
+                                                },
+                                              ],
+                                              "polygons": "",
+                                              "polylines": "",
+                                              "rects": "",
+                                            },
+                                            "tags": "icon--caret--down",
+                                            "viewBox": "0 0 10 5",
+                                            "width": "10",
+                                          }
+                                        }
                                         role="img"
-                                        viewBox="0 0 7 12"
-                                        width="7"
                                       >
-                                        <title>
-                                          Previous page
-                                        </title>
-                                        <path
-                                          d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"
-                                          key="key0"
-                                        />
-                                      </svg>
-                                    </Icon>
-                                  </button>
-                                  <ForwardRef
-                                    disabled={false}
-                                    helperText=""
-                                    hideLabel={true}
-                                    iconDescription="open list of options"
-                                    id="bx-pagination-select-resource-table-pagination2"
-                                    inline={true}
-                                    invalid={false}
-                                    invalidText=""
-                                    labelText="items per page"
-                                    light={false}
-                                    onChange={[Function]}
-                                    value={1}
+                                        <svg
+                                          alt="open list of options"
+                                          aria-label="open list of options"
+                                          className="bx--select__arrow"
+                                          fillRule="evenodd"
+                                          height="5"
+                                          role="img"
+                                          viewBox="0 0 10 5"
+                                          width="10"
+                                        >
+                                          <title>
+                                            open list of options
+                                          </title>
+                                          <path
+                                            d="M0 0l5 4.998L10 0z"
+                                            key="key0"
+                                          />
+                                        </svg>
+                                      </Icon>
+                                    </div>
+                                  </div>
+                                </ForwardRef>
+                                <span
+                                  className="bx--pagination__text"
+                                >
+                                   |  
+                                  {0}-{1} of {0} items
+                                </span>
+                              </div>
+                              <div
+                                className="bx--pagination__right bx--pagination--inline"
+                              >
+                                <span
+                                  className="bx--pagination__text"
+                                >
+                                  {0} of {1} pages
+                                </span>
+                                <button
+                                  aria-label="Previous page"
+                                  className="bx--pagination__button bx--pagination__button--backward bx--pagination__button--no-index"
+                                  disabled={true}
+                                  onClick={[Function]}
+                                >
+                                  <Icon
+                                    className="bx--pagination__button-icon"
+                                    description="Previous page"
+                                    fillRule="evenodd"
+                                    icon={
+                                      Object {
+                                        "height": "12",
+                                        "id": "icon--chevron--left",
+                                        "name": "icon--chevron--left",
+                                        "styles": "",
+                                        "svgData": Object {
+                                          "circles": "",
+                                          "ellipses": "",
+                                          "paths": Array [
+                                            Object {
+                                              "d": "M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z",
+                                              "fill-rule": "nonzero",
+                                            },
+                                          ],
+                                          "polygons": "",
+                                          "polylines": "",
+                                          "rects": "",
+                                        },
+                                        "tags": "icon--chevron--left",
+                                        "viewBox": "0 0 7 12",
+                                        "width": "7",
+                                      }
+                                    }
+                                    role="img"
+                                  >
+                                    <svg
+                                      alt="Previous page"
+                                      aria-label="Previous page"
+                                      className="bx--pagination__button-icon"
+                                      fillRule="evenodd"
+                                      height="12"
+                                      role="img"
+                                      viewBox="0 0 7 12"
+                                      width="7"
+                                    >
+                                      <title>
+                                        Previous page
+                                      </title>
+                                      <path
+                                        d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"
+                                        key="key0"
+                                      />
+                                    </svg>
+                                  </Icon>
+                                </button>
+                                <ForwardRef
+                                  disabled={false}
+                                  helperText=""
+                                  hideLabel={true}
+                                  iconDescription="open list of options"
+                                  id="bx-pagination-select-resource-table-pagination2"
+                                  inline={true}
+                                  invalid={false}
+                                  invalidText=""
+                                  labelText="items per page"
+                                  light={false}
+                                  onChange={[Function]}
+                                  value={1}
+                                >
+                                  <div
+                                    className="bx--form-item"
                                   >
                                     <div
-                                      className="bx--form-item"
+                                      className="bx--select bx--select--inline"
                                     >
-                                      <div
-                                        className="bx--select bx--select--inline"
+                                      <label
+                                        className="bx--label bx--visually-hidden"
+                                        htmlFor="bx-pagination-select-resource-table-pagination2"
                                       >
-                                        <label
-                                          className="bx--label bx--visually-hidden"
-                                          htmlFor="bx-pagination-select-resource-table-pagination2"
-                                        >
-                                          items per page
-                                        </label>
-                                        <select
-                                          className="bx--select-input"
-                                          id="bx-pagination-select-resource-table-pagination2"
-                                          onChange={[Function]}
+                                        items per page
+                                      </label>
+                                      <select
+                                        className="bx--select-input"
+                                        id="bx-pagination-select-resource-table-pagination2"
+                                        onChange={[Function]}
+                                        value={1}
+                                      >
+                                        <SelectItem
+                                          disabled={false}
+                                          hidden={false}
+                                          key="1"
+                                          text="1"
                                           value={1}
                                         >
-                                          <SelectItem
+                                          <option
+                                            className="bx--select-option"
                                             disabled={false}
                                             hidden={false}
-                                            key="1"
-                                            text="1"
                                             value={1}
                                           >
-                                            <option
-                                              className="bx--select-option"
-                                              disabled={false}
-                                              hidden={false}
-                                              value={1}
-                                            >
-                                              1
-                                            </option>
-                                          </SelectItem>
-                                        </select>
-                                        <Icon
-                                          className="bx--select__arrow"
-                                          description="open list of options"
-                                          fillRule="evenodd"
-                                          icon={
-                                            Object {
-                                              "height": "5",
-                                              "id": "icon--caret--down",
-                                              "name": "icon--caret--down",
-                                              "styles": "",
-                                              "svgData": Object {
-                                                "circles": "",
-                                                "ellipses": "",
-                                                "paths": Array [
-                                                  Object {
-                                                    "d": "M0 0l5 4.998L10 0z",
-                                                  },
-                                                ],
-                                                "polygons": "",
-                                                "polylines": "",
-                                                "rects": "",
-                                              },
-                                              "tags": "icon--caret--down",
-                                              "viewBox": "0 0 10 5",
-                                              "width": "10",
-                                            }
-                                          }
-                                          role="img"
-                                        >
-                                          <svg
-                                            alt="open list of options"
-                                            aria-label="open list of options"
-                                            className="bx--select__arrow"
-                                            fillRule="evenodd"
-                                            height="5"
-                                            role="img"
-                                            viewBox="0 0 10 5"
-                                            width="10"
-                                          >
-                                            <title>
-                                              open list of options
-                                            </title>
-                                            <path
-                                              d="M0 0l5 4.998L10 0z"
-                                              key="key0"
-                                            />
-                                          </svg>
-                                        </Icon>
-                                      </div>
-                                    </div>
-                                  </ForwardRef>
-                                  <button
-                                    aria-label="Next page"
-                                    className="bx--pagination__button bx--pagination__button--forward"
-                                    disabled={true}
-                                    onClick={[Function]}
-                                  >
-                                    <Icon
-                                      className="bx--pagination__button-icon"
-                                      description="Next page"
-                                      fillRule="evenodd"
-                                      icon={
-                                        Object {
-                                          "height": "12",
-                                          "id": "icon--chevron--right",
-                                          "name": "icon--chevron--right",
-                                          "styles": "",
-                                          "svgData": Object {
-                                            "circles": "",
-                                            "ellipses": "",
-                                            "paths": Array [
-                                              Object {
-                                                "d": "M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z",
-                                                "fill-rule": "nonzero",
-                                              },
-                                            ],
-                                            "polygons": "",
-                                            "polylines": "",
-                                            "rects": "",
-                                          },
-                                          "tags": "icon--chevron--right",
-                                          "viewBox": "0 0 7 12",
-                                          "width": "7",
-                                        }
-                                      }
-                                      role="img"
-                                    >
-                                      <svg
-                                        alt="Next page"
-                                        aria-label="Next page"
-                                        className="bx--pagination__button-icon"
+                                            1
+                                          </option>
+                                        </SelectItem>
+                                      </select>
+                                      <Icon
+                                        className="bx--select__arrow"
+                                        description="open list of options"
                                         fillRule="evenodd"
-                                        height="12"
+                                        icon={
+                                          Object {
+                                            "height": "5",
+                                            "id": "icon--caret--down",
+                                            "name": "icon--caret--down",
+                                            "styles": "",
+                                            "svgData": Object {
+                                              "circles": "",
+                                              "ellipses": "",
+                                              "paths": Array [
+                                                Object {
+                                                  "d": "M0 0l5 4.998L10 0z",
+                                                },
+                                              ],
+                                              "polygons": "",
+                                              "polylines": "",
+                                              "rects": "",
+                                            },
+                                            "tags": "icon--caret--down",
+                                            "viewBox": "0 0 10 5",
+                                            "width": "10",
+                                          }
+                                        }
                                         role="img"
-                                        viewBox="0 0 7 12"
-                                        width="7"
                                       >
-                                        <title>
-                                          Next page
-                                        </title>
-                                        <path
-                                          d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
-                                          key="key0"
-                                        />
-                                      </svg>
-                                    </Icon>
-                                  </button>
-                                </div>
+                                        <svg
+                                          alt="open list of options"
+                                          aria-label="open list of options"
+                                          className="bx--select__arrow"
+                                          fillRule="evenodd"
+                                          height="5"
+                                          role="img"
+                                          viewBox="0 0 10 5"
+                                          width="10"
+                                        >
+                                          <title>
+                                            open list of options
+                                          </title>
+                                          <path
+                                            d="M0 0l5 4.998L10 0z"
+                                            key="key0"
+                                          />
+                                        </svg>
+                                      </Icon>
+                                    </div>
+                                  </div>
+                                </ForwardRef>
+                                <button
+                                  aria-label="Next page"
+                                  className="bx--pagination__button bx--pagination__button--forward"
+                                  disabled={true}
+                                  onClick={[Function]}
+                                >
+                                  <Icon
+                                    className="bx--pagination__button-icon"
+                                    description="Next page"
+                                    fillRule="evenodd"
+                                    icon={
+                                      Object {
+                                        "height": "12",
+                                        "id": "icon--chevron--right",
+                                        "name": "icon--chevron--right",
+                                        "styles": "",
+                                        "svgData": Object {
+                                          "circles": "",
+                                          "ellipses": "",
+                                          "paths": Array [
+                                            Object {
+                                              "d": "M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z",
+                                              "fill-rule": "nonzero",
+                                            },
+                                          ],
+                                          "polygons": "",
+                                          "polylines": "",
+                                          "rects": "",
+                                        },
+                                        "tags": "icon--chevron--right",
+                                        "viewBox": "0 0 7 12",
+                                        "width": "7",
+                                      }
+                                    }
+                                    role="img"
+                                  >
+                                    <svg
+                                      alt="Next page"
+                                      aria-label="Next page"
+                                      className="bx--pagination__button-icon"
+                                      fillRule="evenodd"
+                                      height="12"
+                                      role="img"
+                                      viewBox="0 0 7 12"
+                                      width="7"
+                                    >
+                                      <title>
+                                        Next page
+                                      </title>
+                                      <path
+                                        d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"
+                                        key="key0"
+                                      />
+                                    </svg>
+                                  </Icon>
+                                </button>
                               </div>
-                            </PaginationV2>
-                          </ResourceTable>
-                        </Connect(ResourceTable)>
-                      </Route>
+                            </div>
+                          </PaginationV2>
+                        </ResourceTable>
+                      </Connect(ResourceTable)>
                     </withRouter(Connect(ResourceTable))>
                   </div>
                 </ModuleBody>

@@ -21,7 +21,6 @@ import config from '../lib/shared/config'
 import GrcApolloClient from '../lib/client/apollo-client'
 import ScrollToTop from './components/common/ScrollToTop'
 
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const loggerMiddleware = createLogger()

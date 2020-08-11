@@ -5,7 +5,7 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************
+ *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 const fs = require('fs')
 const path = require('path')
@@ -19,7 +19,8 @@ module.exports = {
     submitCreatePolicyButton: '#create-button-portal-id',
     resetEditor: 'div.creation-view-yaml-header div.editor-bar-button[title="Reset"]',
     yamlMonacoEditor: '.monaco-editor',
-    searchInput: 'input.bx--search-input',
+    searchInput: '#search',
+    searchInputClear: '#search ~ .bx--search-close',
     searchResult: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td',
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
@@ -290,30 +291,22 @@ function createTestPolicy(create = true,
 }
 /* Helper function to edit YAML in editor and verify fields changed */
 function editYaml(browser, content, line, element, clear = false, expected = content) {
-  browser.click(`.monaco-editor div.view-line:nth-child(${line}) > span > span:nth-child(3)`)
-  const keystrokes = []
-  /* Delete current content if indicated */
-  if (clear) {
-    keystrokes.push(browser.api.Keys.SHIFT, browser.api.Keys.END)
-    keystrokes.push(browser.api.Keys.NULL, browser.api.Keys.BACK_SPACE)
-  }
-  /* Enter content into editor, dealing with newlines and indents if present */
-  keystrokes.push(' ')
-  if (content.indexOf('\n') > 0) {
-    content.split(/\r?\n/).forEach(contentline => {
-      keystrokes.push(contentline)
-      keystrokes.push(browser.api.Keys.RETURN)
-      const indentation = contentline.search(/\S|$/)
-      for (let i = 0; i < indentation / 2; i++ )
-        keystrokes.push(browser.api.Keys.BACK_SPACE)
-    })
-  } else {
-    keystrokes.push(content)
-  }
-  /* Return to beginning of the line so that
-  elements are in view for the next test */
-  keystrokes.push(browser.api.Keys.HOME)
-  browser.api.keys(keystrokes)
+  browser.click('@yamlMonacoEditor')
+  /* Delete current content if indicated and enter content */
+  browser.api.execute(
+    `const monaco = window.monaco.editor.getModels()[0]\n \
+    const current = monaco.getLineContent(${line})\n \
+    monaco.pushEditOperations([], \
+      [{ \
+        range: { \
+            startColumn: ${clear} ? current.indexOf(':') + 3 : current.length + 1, \
+            endColumn: current.length + 1, \
+            startLineNumber: ${line}, \
+            endLineNumber: ${line} \
+          }, \
+        text:'${content.replace(/\r?\n/g, '\\n').replace(/'/g, '\\\'')}' \
+      }] \
+    )`, [])
   /* Wait half a second for DOM update */
   browser.pause(500)
   if (element.indexOf('Dropdown') > 0) {
@@ -342,10 +335,7 @@ function updateYamlEditor() {
       this.click('@resetEditor')
     }
   })
-  /* Reset the form */
-  this.click('@resetEditor')
-  /* NOTE: If the screen scrolls, line references will
-     be wrong, so we're assuming nothing has moved */
+  /* Enter data */
   editYaml(this, 'test-namespace', 5, 'namespaceDropdownValue')
   editYaml(this, 'test-standard', 7, 'standardsDropdownInput')
   editYaml(this, 'test-category', 8, 'categoriesDropdownInput')
@@ -437,15 +427,6 @@ function testDetailsPage(name, templateFile) {
   this.waitForElementVisible('#violation-tab')
   this.click('#violation-tab')
   this.waitForElementNotPresent('#spinner')
-  // Temp disable violation table test - Adam Kang 11Nov19
-  // this.waitForElementVisible('.policy-violation-tab > .section-title', 15000, false, (result) => {
-  //   if(result.value === false){
-  //     browser.expect.element('.no-resource').to.be.present
-  //   }
-  //   else{
-  //     browser.expect.element('.policy-violation-tab > .section-title').text.to.equal('Violations')
-  //   }
-  // })
   // YAML TAB TESTS
   this.waitForElementVisible('#yaml-tab')
   this.click('#yaml-tab')
@@ -471,5 +452,10 @@ function deletePolicy(name) {
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
+  this.isVisible('@searchInputClear', result => {
+    if (result.value) {
+      this.click('@searchInputClear')
+    }
+  })
   // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').not.to.be.present
 }

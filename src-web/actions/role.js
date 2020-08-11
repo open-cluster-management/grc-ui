@@ -11,7 +11,6 @@ import {
   ROLE_RECEIVE_SUCCESS, ROLE_RECEIVE_FAILURE,
 } from './index'
 
-
 export const roleReceiveSuccess = role => ({
   type: ROLE_RECEIVE_SUCCESS,
   role

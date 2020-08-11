@@ -1,25 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App container test renders as expected 1`] = `
-<BrowserRouter>
-  <Component
-    match={
-      Object {
-        "isExact": false,
-        "params": Object {},
-        "path": "/multicloud",
-        "url": "/multicloud",
-      }
-    }
-    staticContext={
-      Object {
-        "context": Object {
-          "locale": "en",
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
         },
-        "title": "IBM Multicloud Manager",
-        "xsrfToken": "tXcZ8lkN-bDcRaa7cJmmIMX5EmsmJ_vI_YnU",
-      }
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "dispatch": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+          Symbol(observable): [Function],
+        },
+        "unsubscribe": null,
+      },
     }
-  />
-</BrowserRouter>
+  }
+>
+  <BrowserRouter>
+    <_default
+      match={
+        Object {
+          "isExact": false,
+          "params": Object {},
+          "path": "/multicloud",
+          "url": "/multicloud",
+        }
+      }
+      staticContext={
+        Object {
+          "context": Object {
+            "locale": "en",
+          },
+          "title": "IBM Multicloud Manager",
+          "xsrfToken": "tXcZ8lkN-bDcRaa7cJmmIMX5EmsmJ_vI_YnU",
+        }
+      }
+    />
+  </BrowserRouter>
+</ContextProvider>
 `;

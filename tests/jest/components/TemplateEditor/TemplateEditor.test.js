@@ -17,7 +17,6 @@ import { shallow } from 'enzyme'
 import _ from 'lodash'
 //import { existing } from '../ComponentsTestingData'
 
-
 const Portals = Object.freeze({
   createBtn: 'create-button-portal-id',
   cancelBtn: 'cancel-button-portal-id',
@@ -245,7 +244,6 @@ const controlData = [
   }
 ]
 
-
 describe('TemplateEditor component', () => {
   it('renders as expected', () => {
     const component = renderer.create(
@@ -375,7 +373,6 @@ describe('handleEditorCommand function', () => {
     expect(wrapper.instance().handleEditorCommand('restore')).toEqual('restore')
   })
 })
-
 
 describe('getResourceJSON function', () => {
   it('renders as expected', () => {

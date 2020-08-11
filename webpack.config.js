@@ -5,16 +5,16 @@
  * Note to U.S. Government Users Restricted Rights:
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
- *******************************************************************************
+ *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 const config = require('./config'),
       path = require('path'),
       webpack = require('webpack'),
-      ExtractTextPlugin = require('extract-text-webpack-plugin'),
-      TerserPlugin = require('terser-webpack-plugin-legacy'),
+      MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+      TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
       WebpackMd5Hash = require('webpack-md5-hash'),
-      FileManagerPlugin = require('filemanager-webpack-plugin'),
+      FileManagerPlugin = require('filemanager-webpack-plugin-fixed'),
       CompressionPlugin = require('compression-webpack-plugin'),
       MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
@@ -30,9 +30,12 @@ const overpassTest = /overpass-.*\.(woff2?|ttf|eot|otf)(\?.*$|$)/
 module.exports = {
   context: __dirname,
   devtool: PRODUCTION ? 'source-map' : 'cheap-module-source-map',
-  stats: { children: false },
+  stats: {
+    children: false,
+    warningsFilter: [/Failed to parse source map/],
+  },
   entry: {
-    'main': ['babel-polyfill', './src-web/index.js']
+    'main': ['@babel/polyfill', './src-web/index.js']
   },
 
   externals: Object.assign(PRODUCTION ? prodExternals : {}, {
@@ -42,6 +45,11 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      },
       {
         test: /\.js$/,
         enforce: 'pre',
@@ -55,36 +63,38 @@ module.exports = {
         test: [/\.jsx$/, /\.js$/],
         exclude: /node_modules|\.scss/,
         loader: 'babel-loader?cacheDirectory',
+        query: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: ['@babel/plugin-proposal-class-properties']
+        }
       },
       {
         test: [/\.scss$/],
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader?sourceMap',
-              options: {
-                // minimize: PRODUCTION ? true : false
-              }
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader?sourceMap',
+            options: {
+              // minimize: PRODUCTION ? true : false
             },
-            {
-              loader: 'postcss-loader?sourceMap',
-              options: {
-                plugins: function () {
-                  return [
-                    require('autoprefixer')
-                  ]
-                },
-              }
+          },
+          {
+            loader: 'postcss-loader?sourceMap',
+            options: {
+              plugins: function () {
+                return [
+                  require('autoprefixer')
+                ]
+              },
             },
-            {
-              loader: 'sass-loader?sourceMap',
-              options: {
-                data: '$font-path: "'+ config.get('contextPath') + '/fonts";'
-              }
-            }
-          ]
-        })
+          },
+          {
+            loader: 'sass-loader?sourceMap',
+            options: {
+              prependData: '$font-path: "'+ config.get('contextPath') + '/fonts";'
+            },
+          },
+        ],
       },
       {
         test: /\.woff2?$/,
@@ -135,7 +145,6 @@ module.exports = {
         test: overpassTest,
         loader: 'null-loader',
       },
-
     ],
     noParse: [
       // don't parse minified bundles (vendor libs) for faster builds
@@ -144,12 +153,12 @@ module.exports = {
   },
 
   output: {
-    chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].min.js',
     //needs to be hash for production (vs chunckhash) in order to cache bust references to chunks
     filename: PRODUCTION ? 'js/[name].[hash].min.js' : 'js/[name].min.js',
-    jsonpFunction: 'webpackJsonpFunctionGrc',
+    chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].min.js',
     path: __dirname + '/public',
-    publicPath: `${config.get('contextPath')}`.replace(/\/?$/, '/')
+    publicPath: config.get('contextPath').replace(/\/?$/, '/'),
+    jsonpFunction: 'webpackJsonpFunctionGrc',
   },
 
   plugins: [
@@ -164,7 +173,7 @@ module.exports = {
       // eslint-disable-next-line import/no-unresolved
       manifest: require('./dll/vendorhcm-manifest.json'),
     }),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: PRODUCTION ? 'css/[name].[contenthash].css' : 'css/[name].css',
       allChunks: true
     }),

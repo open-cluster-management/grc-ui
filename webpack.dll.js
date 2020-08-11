@@ -9,7 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 const path = require('path'),
       webpack = require('webpack'),
-      TerserPlugin = require('terser-webpack-plugin-legacy'),
+      TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
       WebpackMd5Hash = require('webpack-md5-hash'),
       CompressionPlugin = require('compression-webpack-plugin')
@@ -26,7 +26,7 @@ module.exports = {
     'vendorhcm': [
       'carbon-components-react',
       'd3',
-      'loadable-components',
+      '@loadable/component',
       'lodash',
       'moment',
       'normalizr',
@@ -70,7 +70,6 @@ module.exports = {
       },
     ],
   },
-
 
   output: {
     path: __dirname + '/public',

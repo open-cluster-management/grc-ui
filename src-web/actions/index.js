@@ -13,8 +13,6 @@
  * action name: <NOUN>_<VERB>
  */
 
-
-
 export const DEL_RECEIVE_FAILURE = 'DEL_RECEIVE_FAILURE'
 export const DEL_RECEIVE_SUCCESS = 'DEL_RECEIVE_SUCCESS'
 export const DEL_REQUEST = 'DEL_REQUEST'
@@ -66,7 +64,6 @@ export const USER_LOGIN_RECEIVE_SUCCESS = 'USER_LOGIN_RECEIVE_SUCCESS'
 export const USER_LOGOUT_RECEIVE_FAILURE = 'USER_LOGOUT_RECEIVE_FAILURE'
 export const USER_LOGOUT_RECEIVE_SUCCESS = 'USER_LOGOUT_RECEIVE_SUCCESS'
 export const USER_LOGOUT_REQUEST = 'USER_LOGOUT_REQUEST'
-
 
 /*
  * other constants specific to particular actions

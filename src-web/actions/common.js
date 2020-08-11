@@ -100,7 +100,6 @@ export const mutateResourceFailure = (resourceType, error) => ({
   resourceType,
 })
 
-
 export const fetchResources = (resourceType, vars) => {
   return (dispatch) => {
     dispatch(requestResource(resourceType))

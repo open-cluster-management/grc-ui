@@ -20,7 +20,7 @@ import client from '../../lib/shared/client'
 import config from '../../lib/shared/config'
 import Modal from '../components/common/Modal'
 import GrcRouter from './GrcRouter'
-import loadable from 'loadable-components'
+import loadable from '@loadable/component'
 
 export const ResourceToolbar = loadable(() => import(/* webpackChunkName: "ResourceToolbar" */ '../components/common/ResourceToolbar'))
 

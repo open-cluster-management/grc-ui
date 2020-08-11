@@ -75,7 +75,6 @@ export class CreateResourceModal extends React.PureComponent {
 
   isSubmitDisabled = () => this.state.processing === true
 
-
   render(){
     return (
       <div>
@@ -129,7 +128,6 @@ export class CreateResourceModal extends React.PureComponent {
 CreateResourceModal.contextTypes = {
   locale: PropTypes.string
 }
-
 
 const mapDispatchToProps = (dispatch, { onCreateResource }) => {
   return {

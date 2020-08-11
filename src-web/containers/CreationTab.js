@@ -49,7 +49,7 @@ export class CreationTab extends React.Component {
     updateStatus: PropTypes.string
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { updateSecondaryHeader:localUpdateSecondaryHeader, secondaryHeaderProps } = this.props
     const { title, tabs, breadcrumbItems, information } = secondaryHeaderProps
     const portals = [

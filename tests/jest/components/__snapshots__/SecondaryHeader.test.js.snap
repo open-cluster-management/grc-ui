@@ -67,13 +67,9 @@ exports[`SecondaryHeader component 2 renders as expected 1`] = `
             <svg
               alt="show menu options"
               aria-label="show menu options"
-              className={undefined}
-              fill={undefined}
               fillRule="evenodd"
               height="5"
-              name={undefined}
               role="img"
-              style={undefined}
               viewBox="0 0 10 5"
               width="10"
             >
@@ -112,7 +108,6 @@ exports[`SecondaryHeader component 2 renders as expected 1`] = `
         </nav>
         <div
           aria-hidden={false}
-          className={undefined}
           hidden={false}
           selected={true}
         />
@@ -171,13 +166,9 @@ exports[`SecondaryHeader component 3 renders as expected 1`] = `
             <svg
               alt="show menu options"
               aria-label="show menu options"
-              className={undefined}
-              fill={undefined}
               fillRule="evenodd"
               height="5"
-              name={undefined}
               role="img"
-              style={undefined}
               viewBox="0 0 10 5"
               width="10"
             >
@@ -235,13 +226,11 @@ exports[`SecondaryHeader component 3 renders as expected 1`] = `
         </nav>
         <div
           aria-hidden={false}
-          className={undefined}
           hidden={false}
           selected={true}
         />
         <div
           aria-hidden={true}
-          className={undefined}
           hidden={true}
           selected={false}
         />
@@ -290,7 +279,6 @@ Array [
   >
     <Link
       className="bx--link"
-      replace={false}
       to="www.test2.com"
     >
       label2
@@ -311,7 +299,6 @@ Array [
   >
     <Link
       className="bx--link"
-      replace={false}
       to="www.test4.com"
     />
   </div>,
@@ -352,7 +339,7 @@ exports[`SecondaryHeader component 5 renderHeader without description 1`] = `
 
 exports[`SecondaryHeader component 5 renderLinks as expected 1`] = `
 Array [
-  <UNDEFINED
+  <ForwardRef
     disabled={false}
     iconDescription="Provide icon description if icon is used"
     id="create-policy"
@@ -363,7 +350,7 @@ Array [
     type="button"
   >
     Create policy
-  </UNDEFINED>,
+  </ForwardRef>,
 ]
 `;
 
