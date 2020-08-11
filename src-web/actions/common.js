@@ -158,20 +158,6 @@ export const updateResourceLabels = (resourceType, namespace, name, labels, self
   }
 }
 
-export const editResourceFromCreate = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
-  dispatch(mutateResource(resourceType))
-  return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
-    .then(response => {
-      if (response.errors) {
-        return dispatch(mutateResourceFailure(resourceType, response.errors[0]))
-      } else {
-        dispatch(updateModal({open: false, type: 'resource-edit'}))
-      }
-      dispatch(fetchResources(resourceType))
-      return dispatch(mutateResourceSuccess(resourceType))
-    })
-})
-
 export const editResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(putResource(resourceType))
   return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
