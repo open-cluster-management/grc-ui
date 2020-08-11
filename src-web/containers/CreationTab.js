@@ -266,12 +266,6 @@ export class CreationTab extends React.Component {
               creationStatus: mutateStatus,
               creationMsg: mutateErrorMsg,
             }
-            const updateControl = {
-              updateResource: this.handleUpdate.bind(this),
-              cancelUpdate: this.handleCancel.bind(this),
-              updateStatus,
-              updateMsg: ''
-            }
             const createAndUpdateControl = {
               createAndUpdateResource: this.handleCreateAndUpdate.bind(this),
               cancelCreateAndUpdate: this.handleCancel.bind(this),
@@ -283,7 +277,6 @@ export class CreationTab extends React.Component {
                 discovered={discoveries}
                 fetchControl={fetchControl}
                 createControl={createControl}
-                updateControl={updateControl}
                 buildControl={buildControl}
                 createAndUpdateControl={createAndUpdateControl}
               />
