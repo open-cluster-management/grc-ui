@@ -141,8 +141,7 @@ export class CreationTab extends React.Component {
         }
       })
     } else {
-      const errorMessage = { code: 400, message: 'Error fetching placement binding' }
-      throw errorMessage
+      throw new Error('Error fetching placement binding')
     }
   }
 
@@ -163,8 +162,7 @@ export class CreationTab extends React.Component {
         }
       })
     } else {
-      const errorMessage = { code: 400, message: 'Error fetching placement rule' }
-      throw errorMessage
+      throw new Error('Error fetching placement rule')
     }
   }
 
