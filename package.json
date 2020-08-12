@@ -129,7 +129,7 @@
     "requestretry": "^4.1.1",
     "reselect": "^4.0.0",
     "sass-loader": "^8.0.2",
-    "security-middleware": "github:open-cluster-management/security-middleware",
+    "security-middleware": "github:open-cluster-management/security-middleware#1.0.0",
     "source-map-loader": "^1.0.1",
     "style-loader": "^1.2.1",
     "svg-sprite-loader": "^5.0.0",
