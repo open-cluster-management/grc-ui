@@ -62,12 +62,12 @@ function fetchHeader(req, res, store, fetchHeaderContext) {
       return res.status(500).send(err)
     }
 
-    const { headerHtml: header, props: propsH, state: stateH, files: filesH, userAccessPermission } = headerRes.body
+    const { headerHtml: header, props: propsH, state: stateH, files: filesH, userAccess } = headerRes.body
     if (!header || !propsH || !stateH || !filesH) {
       logger.err(headerRes.body)
       return res.status(500).send(headerRes.body)
     }
-    logger.info(`userAccessPermission is : ${JSON.stringify(userAccessPermission)}`)
+    logger.info(`userAccess is : ${JSON.stringify(userAccess)}`)
     role = role === undefined ? require('../../src-web/actions/role') : role
     if (stateH.role) {
       store.dispatch(role.roleReceiveSuccess(stateH.role.role))
