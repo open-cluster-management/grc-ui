@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -42,7 +43,16 @@ const diagramIconsInfoStr = '#diagramIcons_info'
 export default class TemplateEditor extends React.Component {
 
   static propTypes = {
+    buildControl: PropTypes.shape({
+      buildResourceLists: PropTypes.func,
+    }),
     controlData: PropTypes.array.isRequired,
+    createAndUpdateControl: PropTypes.shape({
+      createAndUpdateResource: PropTypes.func,
+      cancelCreateAndUpdate: PropTypes.func,
+      createAndUpdateStatus: PropTypes.string,
+      createAndUpdateMsg: PropTypes.string
+    }),
     createControl: PropTypes.shape({
       createResource: PropTypes.func,
       cancelCreate: PropTypes.func,
@@ -58,26 +68,17 @@ export default class TemplateEditor extends React.Component {
     portals: PropTypes.object.isRequired,
     template: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
-    updateControl: PropTypes.shape({
-      updateResource: PropTypes.func,
-      cancelUpdate: PropTypes.func,
-      updateStatus: PropTypes.string,
-      updateMsg: PropTypes.string
-    }),
   }
 
   static getDerivedStateFromProps(props, state) {
-    const {fetchControl, createControl={}, updateControl={}} = props
+    const {fetchControl, createControl={}, createAndUpdateControl={}} = props
     const {isLoaded} = fetchControl || {isLoaded:true}
     const {creationStatus, creationMsg} = createControl
-    const {updateMsg} = updateControl
+    const {createAndUpdateMsg} = createAndUpdateControl
     if (creationStatus === 'ERROR') {
-      if (creationMsg.endsWith('already exists') && (creationMsg !== state.oldCreationMsg || state.canOpenModal)) {
-        return { tryUpdate: true, oldCreationMsg: creationMsg }
-      }
       return {updateMsgKind: 'error', updateMessage: creationMsg}
-    } else if (updateMsg) {
-      return {updateMsgKind: 'error', updateMessage: updateMsg}
+    } else if (createAndUpdateMsg) {
+      return {updateMsgKind: 'error', updateMessage: createAndUpdateMsg}
     } else if (isLoaded) {
       const { template, controlData: initialControlData } = props
       const { isCustomName } = state
@@ -121,7 +122,6 @@ export default class TemplateEditor extends React.Component {
       hasUndo: false,
       hasRedo: false,
       resetInx: 0,
-      tryUpdate: false,
     }
     this.multiSelectCmpMap = {}
     this.parseDebounced = _.debounce(()=>{
@@ -165,10 +165,10 @@ export default class TemplateEditor extends React.Component {
     this.layoutEditors()
   };
 
-  conditionalRenderUpdate = () => {
-    const { tryUpdate, canOpenModal } = this.state
-    if (tryUpdate && canOpenModal) {
-      return this.renderUpdatePrompt()
+  conditionalRenderUpdate = (locale) => {
+    const { canOpenModal } = this.state
+    if (canOpenModal) {
+      return this.renderUpdatePrompt(locale)
     }
     return null
   }
@@ -197,7 +197,7 @@ export default class TemplateEditor extends React.Component {
     })
     return (
       <div key={`key${resetInx}`} className={viewClasses} ref={this.setContainerRef}>
-        {this.conditionalRenderUpdate()}
+        {this.conditionalRenderUpdate(locale)}
         {this.renderEditButton()}
         {this.renderCreateButton()}
         {this.renderCancelButton()}
@@ -799,50 +799,70 @@ export default class TemplateEditor extends React.Component {
     return null
   }
 
-  renderUpdatePrompt() {
+  renderUpdatePrompt(locale) {
+    let msg = ''
+    if (this.state.toCreate && this.state.toUpdate) {
+      if (this.state.toCreate.length > 0) {
+        msg += `${(this.state.toCreate.map((rsc) => rsc.metadata.name)).join(', ')} ${msgs.get('update.list.create', locale)}`
+      }
+      if (this.state.toCreate.length > 0 && this.state.toUpdate.length > 0) {
+        msg += '; '
+      }
+      if (this.state.toUpdate.length > 0) {
+        msg += `${(this.state.toUpdate.map((rsc) => rsc.metadata.name)).join(', ')} ${msgs.get('update.list.update', locale)}`
+      }
+    }
     return (
       <Modal
         danger
         id='policy-update-modal'
-        open={this.state.tryUpdate && this.state.canOpenModal}
-        primaryButtonText={'Apply'}
-        secondaryButtonText={'Cancel'}
-        modalLabel={'Update Existing Policy'}
-        modalHeading={'Update Existing Policy'}
+        open={this.state.canOpenModal}
+        primaryButtonText={msgs.get('update.apply', locale)}
+        secondaryButtonText={msgs.get('update.cancel', locale)}
+        modalLabel={msgs.get('update.existing', locale)}
+        modalHeading={msgs.get('update.existing', locale)}
         onRequestClose={() => {
-          this.setState({ tryUpdate: false, canOpenModal: false })
+          this.setState({ canOpenModal: false })
         }}
         onSecondarySubmit={() => {
-          this.setState({ tryUpdate: false, canOpenModal: false })
+          this.setState({ canOpenModal: false })
         }}
         onRequestSubmit={() => {
-          this.handleUpdateResource()
-          this.setState({ tryUpdate: false, canOpenModal: false })
+          this.handleUpdateResource(this.state.toCreate, this.state.toUpdate)
+          this.setState({ canOpenModal: false })
         }}
         role='region'
         aria-label={'policy-update'}>
-        <p>{'This policy already exists. Apply changes to the existing policy?'}</p>
+        <p>{`${msgs.get('update.question', locale)} ${msg}`}</p>
       </Modal>
     )
   }
 
-  handleCreateResource() {
-    const { createControl } = this.props
+  async handleCreateResource() {
+    const { buildControl, createControl } = this.props
     const {createResource} = createControl
+    const {buildResourceLists} = buildControl
     const resourceJSON = this.getResourceJSON()
     if (resourceJSON) {
-      createResource(resourceJSON)
+      const res = await buildResourceLists(resourceJSON)
+      const create = res.create
+      const update = res.update
+      if (update.length === 0) {
+        createResource(create)
+      } else {
+        this.setState({
+          canOpenModal: true,
+          toCreate: create,
+          toUpdate: update
+        })
+      }
     }
-    this.setState({ canOpenModal: true })
   }
 
-  handleUpdateResource() {
-    const { updateControl } = this.props
-    const {updateResource} = updateControl
-    const resourceJSON = this.getResourceJSON()
-    if (resourceJSON) {
-      updateResource(resourceJSON)
-    }
+  handleUpdateResource(create, update) {
+    const { createAndUpdateControl } = this.props
+    const {createAndUpdateResource} = createAndUpdateControl
+    createAndUpdateResource(create, update)
   }
 
   renderCancelButton() {

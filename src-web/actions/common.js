@@ -158,20 +158,6 @@ export const updateResourceLabels = (resourceType, namespace, name, labels, self
   }
 }
 
-export const editResourceFromCreate = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
-  dispatch(mutateResource(resourceType))
-  return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
-    .then(response => {
-      if (response.errors) {
-        return dispatch(mutateResourceFailure(resourceType, response.errors[0]))
-      } else {
-        dispatch(updateModal({open: false, type: 'resource-edit'}))
-      }
-      dispatch(fetchResources(resourceType))
-      return dispatch(mutateResourceSuccess(resourceType))
-    })
-})
-
 export const editResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(putResource(resourceType))
   return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
@@ -357,6 +343,58 @@ export const createResources = (resourceType, resourceJson) => {
           dispatch(mutateResourceFailure(resourceType, result.data.createResources.errors[0]))
         } else {
           dispatch(mutateResourceSuccess(resourceType))
+        }
+        return result
+      })
+  }
+}
+
+export const createAndUpdateResources = (resourceTypes, createList, updateList) => {
+  return (dispatch) => {
+    resourceTypes.forEach((resourceType) => {
+      dispatch(mutateResource(resourceType))
+    })
+    return GrcApolloClient.createAndUpdateResources(createList, updateList)
+      .then(result => {
+        const errors = {
+          Policy: {
+            resourceType: 'HCMPolicy',
+            error: '',
+          },
+          PlacementRule: {
+            resourceType: 'PlacementRule',
+            error: '',
+          },
+          PlacementBinding: {
+            resourceType: 'PlacementBinding',
+            error: '',
+          }
+        }
+        if (lodash.get(result, 'data.createAndUpdateResources.create.errors') &&
+          lodash.get(result, 'data.createAndUpdateResources.create.errors.length') > 0){
+          lodash.get(result, 'data.createAndUpdateResources.create.errors', []).forEach((error) => {
+            errors[error.kind].error = error.message
+          })
+        }
+        if (lodash.get(result, 'data.createAndUpdateResources.update.errors') &&
+          lodash.get(result, 'data.createAndUpdateResources.update.errors.length') > 0){
+          lodash.get(result, 'data.createAndUpdateResources.update.errors', []).forEach((error) => {
+            errors[error.kind].error = error.message
+          })
+        }
+        let errored = false
+        Object.keys(errors).map((key) => {
+          const resp = errors[key]
+          if (resp.error !== '') {
+            errored = true
+            dispatch(mutateResourceFailure(resp.resourceType, { message: resp.error }))
+          }
+          return key
+        })
+        if (!errored) {
+          resourceTypes.forEach((resourceType) => {
+            dispatch(mutateResourceSuccess(resourceType))
+          })
         }
         return result
       })
