@@ -110,6 +110,7 @@ class PolicyDetail extends React.Component {
                 <Route path={`${url}/violation`} exact render={() => {
                   refreshControl.stopPolling()
                   return <PolicyViolationTab
+                    refreshControl={refreshControl}
                     staticResourceData={staticResourceData}
                     item={items}
                   />}}
@@ -118,6 +119,7 @@ class PolicyDetail extends React.Component {
                   return <PolicyTemplateTab
                     resourceType={resourceType}
                     items={items}
+                    refreshControl={refreshControl}
                     staticResourceData={staticResourceData}
                     loading={loading}
                     error={error}
