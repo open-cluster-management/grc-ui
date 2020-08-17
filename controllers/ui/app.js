@@ -28,6 +28,10 @@ const ReactDOMServer = require('react-dom/server'),
 const log4js = require('log4js'),
       logger = log4js.getLogger('app')
 
+const targetAPI = [
+  'policy.open-cluster-management.io'
+]
+
 let App, Login, reducers, role  //laziy initialize to reduce startup time seen on k8s
 
 router.get('*', (req, res) => {
@@ -49,7 +53,7 @@ router.get('*', (req, res) => {
 function fetchHeader(req, res, store, fetchHeaderContext) {
   const options = {
     method: 'GET',
-    url: `${config.get('headerUrl')}${config.get('headerContextPath')}/api/v1/header?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}`,
+    url: `${config.get('headerUrl')}${config.get('headerContextPath')}/api/v1/header?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}&targetAPI=${targetAPI}`,
     json: true,
     headers: {
       Cookie: req.headers.cookie,
