@@ -14,6 +14,8 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import resources from '../../lib/shared/resources'
+import _ from 'lodash'
+import { updateResourceToolbar } from '../actions/common'
 import PolicyTemplates from '../components/common/PolicyTemplates'
 import { Notification, Loading } from 'carbon-components-react'
 import msgs from '../../nls/platform.properties'
@@ -25,6 +27,14 @@ resources(() => {
 class PolicyTemplateTab extends React.Component{
   constructor(props) {
     super(props)
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const {refreshControl, items, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
+    if (!_.isEqual(refreshControl, this.props.refreshControl) ||
+        !_.isEqual(items, this.props.items)) {
+      localUpdateResourceToolbar(refreshControl, {})
+    }
   }
 
   render() {
@@ -66,8 +76,10 @@ PolicyTemplateTab.propTypes = {
   ]),
   loading: PropTypes.bool,
   params: PropTypes.object,
+  refreshControl: PropTypes.object,
   resourceType: PropTypes.object,
   staticResourceData: PropTypes.object,
+  updateResourceToolbar: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -75,5 +87,11 @@ const mapStateToProps = (state) => {
   return { activeFilters }
 }
 
-export default withRouter( connect(mapStateToProps) (PolicyTemplateTab))
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
+  }
+}
+
+export default withRouter( connect(mapStateToProps, mapDispatchToProps) (PolicyTemplateTab))
 

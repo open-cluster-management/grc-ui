@@ -16,7 +16,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { updateSecondaryHeader } from '../actions/common'
+import { updateSecondaryHeader, updateResourceToolbar } from '../actions/common'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { getPollInterval } from '../components/common/RefreshTimeSelect'
 import ResourceTableModule from '../components/common/ResourceTableModuleFromProps'
@@ -35,6 +35,14 @@ resources(() => {
 class PolicyViolationTab extends React.Component{
   constructor(props) {
     super(props)
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const {refreshControl, item, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
+    if (!lodash.isEqual(refreshControl, this.props.refreshControl) ||
+        !lodash.isEqual(item, this.props.item)) {
+      localUpdateResourceToolbar(refreshControl, {})
+    }
   }
 
   render() {
@@ -83,16 +91,24 @@ PolicyViolationTab.contextTypes = {
 }
 
 PolicyViolationTab.propTypes = {
+  item: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+    PropTypes.array
+  ]),
+  refreshControl: PropTypes.object,
   staticResourceData: PropTypes.object,
-
+  updateResourceToolbar: PropTypes.func
 }
 
-const mapStateToProps = () => {
-  return {}
+const mapStateToProps = (state) => {
+  const {resourceToolbar: {activeFilters}} = state
+  return { activeFilters }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {})),
     updateSecondaryHeader: (title, tabs, breadcrumbItems, links) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links))
   }
 }
