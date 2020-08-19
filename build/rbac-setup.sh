@@ -25,6 +25,7 @@ fi
 
 if ! which htpasswd &>/dev/null; then
   if which apt-get &>/dev/null; then
+    sudo apt-get update
     sudo apt-get install -y apache2-utils
   else
     echo "Error: Package manager apt-get not found. Failed to find or install htpasswd."
