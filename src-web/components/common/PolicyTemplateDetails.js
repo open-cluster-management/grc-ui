@@ -32,9 +32,10 @@ class PolicyTemplateDetails extends React.Component {
         { title: 'Name', transforms: [sortable] },
         { title: 'Namespace', transforms: [sortable] },
         { title: 'Kind', transforms: [sortable] },
-        { title: 'apiVersion', transforms: [sortable] },
-        { title: 'compliant', transforms: [sortable] },
-        { title: 'reason', transforms: [sortable] },
+        { title: 'API version', transforms: [sortable] },
+        { title: 'Compliant', transforms: [sortable] },
+        { title: 'Reason', transforms: [sortable] },
+        { title: '' },
       ],
       sortBy: {
         index: 4,
@@ -55,6 +56,8 @@ class PolicyTemplateDetails extends React.Component {
         lodash.get(o, 'object.apiVersion', '-'),
         lodash.get(o, 'compliant', '-'),
         lodash.get(o, 'reason', '-'),
+        { title: <a target='_blank' rel='noopener noreferrer'
+          href={`/multicloud/details/${lodash.get(template, 'metadata.namespace')}${lodash.get(o, 'object.metadata.selfLink')}`}>view yaml</a> }
       ]
     })
     console.log(rows)
