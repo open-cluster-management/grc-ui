@@ -69,13 +69,14 @@ module.exports = {
         }
       },
       {
-        test: [/\.scss$/],
+        test: [/\.s?css$/],
+        exclude: /node_modules\/(?!(@patternfly)\/).*/,
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader?sourceMap',
+            loader: 'css-loader',
             options: {
-              // minimize: PRODUCTION ? true : false
+              sourceMap: true,
             },
           },
           {
@@ -86,6 +87,12 @@ module.exports = {
                   require('autoprefixer')
                 ]
               },
+            },
+          },
+          {
+            loader: 'resolve-url-loader',
+            options: {
+              sourceMap: true,
             },
           },
           {
@@ -109,19 +116,7 @@ module.exports = {
         test: /\.properties$/,
         loader: 'properties-loader'
       },
-      {
-        test: /\.svg$/,
-        use: [
-          'svg-sprite-loader'
-        ]
-      },
-      {
-        test: /\.(png|jpg)$/,
-        use: [
-          'svg-sprite-loader?symbolId=icon-[name]',
-          'image2svg-loader',
-        ],
-      },
+
       {
         test: [/\.handlebars$/, /\.hbs$/],
         loader: 'handlebars-loader',
@@ -131,7 +126,7 @@ module.exports = {
         loader: 'js-yaml-loader',
       },
       {
-        test: /\.(woff2?|ttf|eot|otf)(\?.*$|$)/,
+        test: /\.(png|jpg|jpeg|gif|svg|woff2?|ttf|eot|otf)(\?.*$|$)/,
         exclude: overpassTest,
         loader: 'file-loader',
         options: {

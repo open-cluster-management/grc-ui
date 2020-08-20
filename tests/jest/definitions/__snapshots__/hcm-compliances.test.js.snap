@@ -33,14 +33,6 @@ exports[`hcm-compliances - createPolicyLink should return valid policy link 1`] 
 />
 `;
 
-exports[`hcm-compliances - formLinkToCISControllerDoc should get -  1`] = `"-"`;
-
-exports[`hcm-compliances - formLinkToCISControllerDoc should get -  2`] = `"-"`;
-
-exports[`hcm-compliances - formLinkToCISControllerDoc should get message without doc link 1`] = `"mapping resource with kind CisPolicy"`;
-
-exports[`hcm-compliances - formLinkToCISControllerDoc should get message without doc link 2`] = `"Testing Policy"`;
-
 exports[`hcm-compliances - formLinkToCluster should get -  1`] = `"-"`;
 
 exports[`hcm-compliances - formLinkToCluster should get -  2`] = `"-"`;
@@ -55,6 +47,21 @@ exports[`hcm-compliances - formLinkToCluster should get formLinkToCluster 1`] = 
 >
   RedHat
 </a>
+`;
+
+exports[`hcm-compliances - formMessageLink should get -  1`] = `"-"`;
+
+exports[`hcm-compliances - formMessageLink should get -  2`] = `"-"`;
+
+exports[`hcm-compliances - formMessageLink should get message view details link 1`] = `
+<div>
+  NonCompliant; violation - k8srequiredlabels \`ns-must-have-gk\` does not exist as specified, and should be created 
+  <Link
+    to="undefined/all/default/policy-gatekeeper/template/calamari/policy.open-cluster-management.io/v1/ConfigurationPolicy/policy-gatekeeper-audit"
+  >
+    View details
+  </Link>
+</div>
 `;
 
 exports[`hcm-compliances - getCategories should return categories status 1`] = `"11, 12, 13, 14, 15"`;

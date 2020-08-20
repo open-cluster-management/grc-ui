@@ -53,24 +53,24 @@ class PolicyViolationTab extends React.Component{
     return (
       <Query query={HCMPolicyViolations} pollInterval={pollInterval} variables={{policyName: policyName, policyNamespace: namespace}}>
         {({ data, loading }) => {
-          if (loading && data && data.violations === undefined) {
+          if (loading || !data || !data.violations) {
             return (<Loading withOverlay={false} className='content-spinner' />)
-          }
-          if( data && data.violations && data.violations.length > 0){
-            return (<div className='policy-violation-tab'>
-              <h5 className='section-title'>Violations</h5>
-              <ResourceTableModule
-                definitionsKey='policyViolations'
-                staticResourceData={staticResourceData}
-                resourceData={data}
-                showModuleHeader={false}
-                showSearch={false}
-                showPagination={false}
-              />
-            </div>)
-          }
-          else {
-            return <NoResource title={msgs.get('table.title.no.violation', this.context.locale)} />
+          } else {
+            if (data.violations.length > 0) {
+              return (<div className='policy-violation-tab'>
+                <h5 className='section-title'>Violations</h5>
+                <ResourceTableModule
+                  definitionsKey='policyViolations'
+                  staticResourceData={staticResourceData}
+                  resourceData={data}
+                  showModuleHeader={false}
+                  showSearch={false}
+                  showPagination={false}
+                />
+              </div>)
+            } else {
+              return <NoResource title={msgs.get('table.title.no.violation', this.context.locale)} />
+            }
           }
         }}
       </Query>

@@ -610,7 +610,7 @@ export default {
         msgKey: 'table.header.message',
         resourceKey: 'message',
         key: 'message',
-        transformFunction: formLinkToCISControllerDoc,
+        transformFunction: formMessageLink,
       },
       {
         msgKey: 'table.header.timestamp',
@@ -1043,9 +1043,15 @@ export function formLinkToCluster(item){
   return '-'
 }
 
-export function formLinkToCISControllerDoc(item){
+export function formMessageLink(item){
+  console.log(item)
   if(item && item.message){
-    return item.message
+    return <div>
+      {`${item.message} `}
+      <Link to={`${config.contextPath}/all/${item.policyNamespace}/${item.policyName}/template/${item.cluster}/${item.apiVersion}/${item.kind}/${item.name}`}>
+        View details
+      </Link>
+    </div>
   }
   return '-'
 }
