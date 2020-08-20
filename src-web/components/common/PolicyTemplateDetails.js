@@ -68,26 +68,32 @@ class PolicyTemplateDetails extends React.Component {
             <DescriptionList>
               <DescriptionListGroup>
                 <DescriptionListTerm>Name</DescriptionListTerm>
-                <DescriptionListDescription>{template.metadata.name}</DescriptionListDescription>
+                <DescriptionListDescription>{lodash.get(template, 'metadata.name', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>Cluster</DescriptionListTerm>
                 <DescriptionListDescription>
-                  {template.metadata.namespace}
+                  {lodash.get(template, 'metadata.namespace', '-')}
                 </DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>Kind</DescriptionListTerm>
-                <DescriptionListDescription>{template.kind}</DescriptionListDescription>
+                <DescriptionListDescription>{lodash.get(template, 'kind', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
-                <DescriptionListTerm>apiVersion</DescriptionListTerm>
-                <DescriptionListDescription>{template.apiVersion}</DescriptionListDescription>
+                <DescriptionListTerm>API Version</DescriptionListTerm>
+                <DescriptionListDescription>{lodash.get(template, 'apiVersion', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
-                <DescriptionListTerm>status</DescriptionListTerm>
+                <DescriptionListTerm>Compliant</DescriptionListTerm>
                 <DescriptionListDescription>
-                  {template.status.compliancyDetails[0].conditions[0].message}
+                  {lodash.get(template, 'status.compliant', '-')}
+                </DescriptionListDescription>
+              </DescriptionListGroup>
+              <DescriptionListGroup>
+                <DescriptionListTerm>Details</DescriptionListTerm>
+                <DescriptionListDescription>
+                  {JSON.stringify(lodash.get(template, 'status.compliancyDetails', '-'))}
                 </DescriptionListDescription>
               </DescriptionListGroup>
             </DescriptionList>
