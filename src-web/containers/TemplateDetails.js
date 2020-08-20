@@ -40,7 +40,7 @@ class TemplateDetails extends React.Component {
   }
 
   UNSAFE_componentWillMount() {
-    console.log(this.props)
+    // console.log(this.props)
     const { updateSecondaryHeader: localUpdateSecondaryHeader, match: { params: { name }} } = this.props
     localUpdateSecondaryHeader(name, null, this.getBreadcrumb())
   }
@@ -51,7 +51,7 @@ class TemplateDetails extends React.Component {
           { locale } = this.context,
           urlSegments = location.pathname.split('/')
     const { match: { params: { name, policyName, policyNamespace, clusterName, kind }} } = this.props
-    console.log(this.props)
+    // console.log(this.props)
 
     // Push only one breadcrumb to overview page
     if (resourceType.name === RESOURCE_TYPES.HCM_COMPLIANCES.name) {
@@ -92,12 +92,12 @@ class TemplateDetails extends React.Component {
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     const { match: { params: { clusterName: cluster, apiGroup, version, kind, name }}} = this.props
     const selfLink = `/apis/${apiGroup}/${version}/namespaces/${cluster}/${kind}/${name}`
-    console.log(selfLink)
+    // console.log(selfLink)
     return (
       <Query query={PolicyTemplateDetail} variables={{name, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {
           const {data={}, loading} = result
-          console.log(result)
+          // console.log(result)
           const { items } = data
           // const error = template ? null : result.error
           const firstLoad = this.firstLoad
@@ -107,7 +107,7 @@ class TemplateDetails extends React.Component {
             this.timestamp = new Date().toString()
           }
           if (items) {
-            items.status.relatedObject = [
+            items.status.relatedObjects = [
               {
                 object: {
                   kind: 'Pod',

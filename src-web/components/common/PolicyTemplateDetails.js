@@ -21,6 +21,7 @@ import {
 } from '@patternfly/react-table'
 // import { PlusCircleIcon } from '@patternfly/react-icons'
 import jsYaml from 'js-yaml'
+import lodash from 'lodash'
 import YamlEditor from '../common/YamlEditor'
 
 class PolicyTemplateDetails extends React.Component {
@@ -28,53 +29,35 @@ class PolicyTemplateDetails extends React.Component {
     super(props)
     this.tableData = {
       columns: [
-        { title: 'Repositories', transforms: [sortable] },
-        'Branches',
-        { title: 'Pull requests', transforms: [sortable] },
-        'Workspaces',
-        'Last Commit'
+        { title: 'Name', transforms: [sortable] },
+        { title: 'Namespace', transforms: [sortable] },
+        { title: 'Kind', transforms: [sortable] },
+        { title: 'apiVersion', transforms: [sortable] },
+        { title: 'compliant', transforms: [sortable] },
+        { title: 'reason', transforms: [sortable] },
       ],
-      rows: [['one', 'two', 'a', 'four', 'five'], ['a', 'two', 'k', 'four', 'five'], ['p', 'two', 'b', 'four', 'five']],
-      sortBy: {}
+      sortBy: {
+        index: 4,
+        direction: 'asc',
+      }
     }
-    this.defaultPerPage = 1
-    this.state = {
-      perPage: this.defaultPerPage,
-      page: 1,
-      rows: this.tableData.rows.slice(0, this.defaultPerPage)
-    }
-  }
-  handleSetPage = (_evt, newPage, perPage, startIdx, endIdx) => {
-    this.setState({
-      page: newPage,
-      rows: this.tableData.rows.slice(startIdx, endIdx)
-    })
   }
 
-  handlePerPageSelect = (_evt, newPerPage, newPage, startIdx, endIdx) => {
-    this.setState({
-      perPage: newPerPage,
-      page: newPage,
-      rows: this.tableData.rows.slice(startIdx, endIdx)
-    })
-  }
-  onSort = (_event, index, direction) => {
-    this.setState(prevState => {
-      const sortedRows = prevState.rows.sort((a, b) => (a[index] < b[index] ? -1 : a[index] > b[index] ? 1 : 0))
-      return {
-        sortBy: {
-          index,
-          direction
-        },
-        rows: direction === SortByDirection.asc ? sortedRows : sortedRows.reverse()
-      }
-    })
-  }
+
   render() {
     const { template } = this.props
-    const rows = this.state.rows.map(row => ({ cells: row }))
-    const { sortBy } = this.state
-    console.log(template)
+    const relatedObjects = lodash.get(template, 'status.relatedObjects', [])
+    const rows = relatedObjects.map(o => {
+      return [
+        lodash.get(o, 'object.metadata.name', '-'),
+        lodash.get(o, 'object.metadata.namespace', '-'),
+        lodash.get(o, 'object.kind', '-'),
+        lodash.get(o, 'object.apiVersion', '-'),
+        lodash.get(o, 'compliant', '-'),
+        lodash.get(o, 'reason', '-'),
+      ]
+    })
+    console.log(rows)
     return (
       <React.Fragment>
         <div className='policy-template-details'>
@@ -115,26 +98,7 @@ class PolicyTemplateDetails extends React.Component {
           </div>
         </div>
         <div className='table'>
-          <Table aria-label="Sortable Table" sortBy={sortBy} onSort={this.onSort} cells={this.tableData.columns} rows={rows}>
-            <TableHeader />
-            <TableBody />
-          </Table>
-          <Pagination
-            itemCount={this.tableData.rows.length}
-            widgetId="pagination-options-menu-bottom"
-            perPage={this.state.perPage}
-            page={this.state.page}
-            variant={PaginationVariant.bottom}
-            onSetPage={this.handleSetPage}
-            onPerPageSelect={this.handlePerPageSelect}
-            perPageOptions={[
-              { title: '1', value: 1 },
-              { title: '5', value: 5 },
-              { title: '10', value: 10 },
-              { title: '20', value: 20},
-              { title: '50', value: 50},
-            ]}
-          />
+          <PatternFlyTable columns={this.tableData.columns} rows={rows} sortBy={this.tableData.sortBy} />
         </div>
 
       </React.Fragment>
@@ -149,3 +113,85 @@ PolicyTemplateDetails.propTypes = {
 }
 
 export default PolicyTemplateDetails
+
+
+class PatternFlyTable extends React.Component {
+  constructor(props) {
+    super(props)
+    console.log(this.props)
+    this.defaultPerPage = 10
+    const { sortBy } = this.props
+    const sortedRows = this.props.rows.sort((a, b) => (a[sortBy.index] < b[sortBy.index] ? -1 : a[sortBy.index] > b[sortBy.index] ? 1 : 0))
+    this.state = {
+      perPage: this.defaultPerPage,
+      page: 1,
+      rows: sortedRows.slice(0, this.defaultPerPage),
+      itemCount: this.props.rows.length,
+      sortBy: this.props.sortBy,
+    }
+  }
+  handleSort = (_event, index, direction) => {
+    console.log(index)
+    this.setState(prevState => {
+      const sortedRows = prevState.rows.sort((a, b) => (a[index] < b[index] ? -1 : a[index] > b[index] ? 1 : 0))
+      return {
+        sortBy: {
+          index,
+          direction
+        },
+        rows: direction === SortByDirection.asc ? sortedRows : sortedRows.reverse()
+      }
+    })
+  }
+  handlePerPageSelect = (_evt, newPerPage, newPage, startIdx, endIdx) => {
+    this.setState({
+      perPage: newPerPage,
+      page: newPage,
+      rows: this.props.rows.slice(startIdx, endIdx)
+    })
+  }
+  handleSetPage = (_evt, newPage, perPage, startIdx, endIdx) => {
+    this.setState({
+      page: newPage,
+      rows: this.props.rows.slice(startIdx, endIdx)
+    })
+  }
+  render() {
+    const { sortBy, rows, itemCount } = this.state
+    const { columns } = this.props
+    console.log(sortBy)
+    return (
+      <React.Fragment>
+        <Table aria-label="Sortable Table" sortBy={sortBy} onSort={this.handleSort} cells={columns} rows={rows}>
+          <TableHeader />
+          <TableBody />
+        </Table>
+        <Pagination
+          itemCount={itemCount}
+          widgetId="pagination-options-menu-bottom"
+          perPage={this.state.perPage}
+          page={this.state.page}
+          variant={PaginationVariant.bottom}
+          onSetPage={this.handleSetPage}
+          onPerPageSelect={this.handlePerPageSelect}
+          perPageOptions={[
+            { title: '5', value: 5 },
+            { title: '10', value: 10 },
+            { title: '20', value: 20},
+            { title: '50', value: 50},
+          ]}
+        />
+      </React.Fragment>
+    )
+
+  }
+}
+
+PatternFlyTable.propTypes = {
+  columns: PropTypes.array,
+  rows: PropTypes.array,
+  sortBy: PropTypes.shape({
+    index: PropTypes.number,
+    direction: PropTypes.oneOf(['asc', 'desc']),
+  }),
+}
