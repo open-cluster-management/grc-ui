@@ -82,16 +82,11 @@ PolicyTemplateTab.propTypes = {
   updateResourceToolbar: PropTypes.func
 }
 
-const mapStateToProps = (state) => {
-  const {resourceToolbar: {activeFilters}} = state
-  return { activeFilters }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
   }
 }
 
-export default withRouter( connect(mapStateToProps, mapDispatchToProps) (PolicyTemplateTab))
+export default withRouter( connect(null, mapDispatchToProps) (PolicyTemplateTab))
 

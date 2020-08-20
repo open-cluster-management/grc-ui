@@ -101,11 +101,6 @@ PolicyViolationTab.propTypes = {
   updateResourceToolbar: PropTypes.func
 }
 
-const mapStateToProps = (state) => {
-  const {resourceToolbar: {activeFilters}} = state
-  return { activeFilters }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {})),
@@ -113,4 +108,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PolicyViolationTab))
+export default withRouter(connect(null, mapDispatchToProps)(PolicyViolationTab))
