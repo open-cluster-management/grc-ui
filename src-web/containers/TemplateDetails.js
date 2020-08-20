@@ -5,6 +5,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Spinner } from '@patternfly/react-core'
 import { updateSecondaryHeader } from '../actions/common'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE, RESOURCE_TYPES } from '../../lib/shared/constants'
@@ -96,16 +97,11 @@ class TemplateDetails extends React.Component {
     return (
       <Query query={PolicyTemplateDetail} variables={{name, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {
-          const {data={}, loading} = result
-          // console.log(result)
-          const { items } = data
-          // const error = template ? null : result.error
-          const firstLoad = this.firstLoad
-          this.firstLoad = false
-          const reloading = !firstLoad && loading
-          if (!reloading) {
-            this.timestamp = new Date().toString()
+          const { data={}, error } = result
+          if(error) {
+            // handle error
           }
+          const { items } = data
           if (items) {
             items.status.relatedObjects = [
               {
@@ -141,7 +137,9 @@ class TemplateDetails extends React.Component {
               </Page>
             )
           } else {
-            return <Page />
+            return (
+              <Spinner className='patternfly-spinner' />
+            )
           }
         }}
       </Query>
