@@ -81,12 +81,14 @@
     }
 
     .refresh-time-container {
-      display: flex;
-      align-items: center;
-      font-size: 0.625rem;
-      height: 1.25rem;
-      margin-right: inherit;
-      white-space: pre;
+      > div {
+        font-size: 0.625rem;
+        display: flex;
+        align-items: center;
+        height: 1.25rem;
+        margin-right: inherit;
+        white-space: pre;
+      }
 
       .bx--loading--small {
         width: 1rem;

@@ -25,6 +25,7 @@ li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, 
 article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary, time, mark, audio, video {
   font-family: RedHatText;
+  font-size: var(--pf-global--FontSize--sm);
 }
 
 .bx--link, .bx--label, .bx--search-input, .bx--overflow-menu-options__btn, 
@@ -34,6 +35,10 @@ menu, nav, output, ruby, section, summary, time, mark, audio, video {
 .bx--tooltip__label, .bx--tag, .bx--pagination, .bx--select, .bx--label, 
 .bx--select-input {
   font-family: RedHatText;
+}
+
+.pf-c-table tr > * {
+  --pf-c-table--cell--FontSize: var(--pf-global--FontSize--sm);
 }
 
 html {
@@ -47,6 +52,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $acm-background-color;
+  
   .bx--data-table-v2{
     thead{
       background-color: $acm-background-color;
