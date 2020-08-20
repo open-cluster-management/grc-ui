@@ -10,13 +10,13 @@
 const config = require('./config'),
       path = require('path'),
       webpack = require('webpack'),
-      MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-      TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
-      WebpackMd5Hash = require('webpack-md5-hash'),
-      FileManagerPlugin = require('filemanager-webpack-plugin-fixed'),
       CompressionPlugin = require('compression-webpack-plugin'),
-      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+      FileManagerPlugin = require('filemanager-webpack-plugin-fixed'),
+      MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin'),
+      TerserPlugin = require('terser-webpack-plugin'),
+      WebpackMd5Hash = require('webpack-md5-hash')
 
 const noOP = () => { /*This is intentional*/},
       PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
