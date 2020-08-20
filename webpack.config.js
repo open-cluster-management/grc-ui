@@ -116,7 +116,13 @@ module.exports = {
         test: /\.properties$/,
         loader: 'properties-loader'
       },
-
+      {
+        test: /\.svg$/,
+        include: path.resolve(__dirname, './graphics'),
+        use: [
+          'svg-sprite-loader'
+        ]
+      },
       {
         test: [/\.handlebars$/, /\.hbs$/],
         loader: 'handlebars-loader',
@@ -127,7 +133,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff2?|ttf|eot|otf)(\?.*$|$)/,
-        exclude: overpassTest,
+        exclude: [overpassTest, path.resolve(__dirname, './graphics')],
         loader: 'file-loader',
         options: {
           name: 'assets/[name].[ext]',
