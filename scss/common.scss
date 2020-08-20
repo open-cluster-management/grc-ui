@@ -182,6 +182,7 @@ body {
       
       & * {
         font-family: unset;
+        font-size: var(--pf-global--FontSize--xs);
       }
     
       .codicon[class*='codicon-'] {
