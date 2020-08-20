@@ -73,17 +73,19 @@ class PolicyTemplates extends React.Component {
         reqErrorMsg: nextProps.reqErrorMsg
       })
     }
-    if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.DONE) {
+    if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.DONE && this.state.updated) {
       this.setState({
-        readOnly: true,
-        updated: true
+        readOnly: true
       })
     }
   }
 
   handleEditBtnClick() {
     this.setState(preState => {
-      return {readOnly: !preState.readOnly}
+      return {
+        readOnly: !preState.readOnly,
+        updated: false
+      }
     })
   }
 
@@ -108,6 +110,9 @@ class PolicyTemplates extends React.Component {
       const selfLink = lodash.get(resourceData, 'complianceSelfLink')
       localEditResource(resourceType, namespace, name, resource, selfLink, resourcePath)
     }
+    this.setState({
+      updated: true
+    })
   }
 
   handleNotificationClosed = () => this.setState({ yamlParsingError: null })
