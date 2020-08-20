@@ -108,6 +108,7 @@ class PolicyDetail extends React.Component {
             return (
               <Switch>
                 <Route path={`${url}/violation`} exact render={() => {
+                  refreshControl.stopPolling()
                   return <PolicyViolationTab
                     refreshControl={refreshControl}
                     staticResourceData={staticResourceData}
@@ -115,6 +116,7 @@ class PolicyDetail extends React.Component {
                   />}}
                 />
                 <Route path={`${url}/yaml`} exact render={() => {
+                  refreshControl.startPolling(pollInterval)
                   return <PolicyTemplateTab
                     resourceType={resourceType}
                     items={items}
@@ -124,15 +126,16 @@ class PolicyDetail extends React.Component {
                     error={error}
                   />}}
                 />
-                <Route path={url} exact render={() => (
-                  <PolicyDetailsOverview
+                <Route path={url} exact render={() => {
+                  refreshControl.startPolling(pollInterval)
+                  return <PolicyDetailsOverview
                     loading={!items && loading}
                     error={error}
                     item={items}
                     refreshControl={refreshControl}
                     resourceType={resourceType}
                     staticResourceData={staticResourceData}
-                  /> )}
+                  />}}
                 />
               </Switch>
             )
