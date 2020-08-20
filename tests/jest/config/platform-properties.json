@@ -473,5 +473,11 @@
   "validation.bad.type": "The '{0}' key must point to this value type: {1}",
   "validation.bad.value": "The '{0}' key must point to one of these values: {1}",
   "tabs.violation": "Violations",
-  "tabs.yaml": "YAML"
+  "tabs.yaml": "YAML",
+  "update.list.create": "will be created",
+  "update.list.update": "will be updated",
+  "update.apply": "Apply",
+  "update.cancel": "Cancel",
+  "update.existing": "Update Existing Policy",
+  "update.question": "Some objects already exist. Apply changes to the existing objects?"
 }

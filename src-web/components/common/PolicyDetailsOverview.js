@@ -255,10 +255,10 @@ export class PolicyDetailsOverview extends React.PureComponent{
           <h5 className='section-title'>{msgs.get('table.header.placement', locale)}</h5>
           {modulesSecond.length > 0 &&
           <div className='overview-content-second'>
-            <div className='overview-content-second-left'>
+            <div className='overview-content-second-cell'>
               {React.cloneElement(modulesSecond[0], { ...staticResourceData.placementPolicyKeys.detailKeys, data:itemPP })}
             </div>
-            <div className='overview-content-second-left'>
+            <div className='overview-content-second-cell'>
               {React.cloneElement(modulesSecond[1], { ...staticResourceData.placementBindingKeys.detailKeys, data:itemPB })}
             </div>
           </div>}

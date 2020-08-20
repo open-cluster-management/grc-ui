@@ -302,7 +302,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
       className="overview-content-second"
     >
       <div
-        className="overview-content-second-left"
+        className="overview-content-second-cell"
       >
         <div
           className="bx--module bx--module--double structured-list-module"
@@ -473,7 +473,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
         </div>
       </div>
       <div
-        className="overview-content-second-left"
+        className="overview-content-second-cell"
       >
         <div
           className="bx--module bx--module--double structured-list-module"
