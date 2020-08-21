@@ -1,6 +1,13 @@
 /* Copyright (c) 2020 Red Hat, Inc.*/
 
 .pattern-fly-table {
+  > input {
+    padding: 5px 8px;
+    height: 100%;
+    border: solid #f0f0f0 1px;
+    border-bottom-color: #8A8D90;
+  }
+
   .pf-c-form-control {
     color: var(--pf-global--Color--100);
     // width: 100%;
@@ -15,10 +22,11 @@
     -webkit-appearance: none; 
   }
   .pf-c-form-control:disabled {
+    border: solid transparent 1px;
+    background-color: #f0f0f0;
     --pf-c-form-control--Color: var(--pf-c-form-control--disabled--Color);
     --pf-c-form-control--BackgroundColor: var(--pf-c-form-control--disabled--BackgroundColor);
     cursor: not-allowed;
-    border-color: var(--pf-c-form-control--disabled--BorderColor); 
   }
 
   .pf-c-form-control:not(textarea) {
