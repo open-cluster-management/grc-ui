@@ -33,10 +33,6 @@
     top: $secondary-header-max-height;
     display: flex;
 
-    .create-policy-nonclickable {
-      background-color: $grc__color__gray;
-    }
-
     .bx--btn--primary, .bx--btn--secondary {
       min-height: 1.875rem;
     }

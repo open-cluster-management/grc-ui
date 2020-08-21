@@ -110,6 +110,10 @@
     min-height: 1.875rem;
   }
 
+  .create-policy-nonclickable {
+    background-color: $grc_color_light_gray;
+  }
+
   .bx--module .bx--module__content {
     display: flex;
     flex-direction: column;
