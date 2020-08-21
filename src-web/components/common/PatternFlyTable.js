@@ -4,7 +4,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  // Button,
   EmptyState,
   EmptyStateVariant,
   EmptyStateIcon,
@@ -19,12 +18,10 @@ import {
   SortByDirection
 } from '@patternfly/react-table'
 import { SearchIcon } from '@patternfly/react-icons'
-// import { PlusCircleIcon } from '@patternfly/react-icons'
 
 class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
     this.defaultPerPage = 10
     const { sortBy } = this.props
     const sortedRows = this.props.rows.sort((a, b) => (a[sortBy.index] < b[sortBy.index] ? -1 : a[sortBy.index] > b[sortBy.index] ? 1 : 0))
@@ -37,7 +34,6 @@ class PatternFlyTable extends React.Component {
     }
   }
     handleSort = (_event, index, direction) => {
-      console.log(index)
       this.setState(prevState => {
         const sortedRows = prevState.rows.sort((a, b) => (a[index] < b[index] ? -1 : a[index] > b[index] ? 1 : 0))
         return {
@@ -65,7 +61,6 @@ class PatternFlyTable extends React.Component {
     render() {
       const { sortBy, rows=[], itemCount } = this.state
       const { columns } = this.props
-      console.log(sortBy)
       return (
         <div className='pattern-fly-table'>
           <Table aria-label="Sortable Table" sortBy={sortBy} onSort={this.handleSort} cells={columns} rows={rows}>

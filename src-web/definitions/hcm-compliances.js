@@ -1044,8 +1044,6 @@ export function formLinkToCluster(item){
 }
 
 export function formMessageLink(item, locale){
-  console.log('formMessageLink')
-  console.log(locale)
   if(item && item.message){
     return <div>
       {`${item.message} `}

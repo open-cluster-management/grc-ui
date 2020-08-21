@@ -4,7 +4,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  // Button,
   DescriptionList,
   DescriptionListTerm,
   DescriptionListGroup,
@@ -14,7 +13,6 @@ import {
 import {
   sortable,
 } from '@patternfly/react-table'
-// import { PlusCircleIcon } from '@patternfly/react-icons'
 import jsYaml from 'js-yaml'
 import lodash from 'lodash'
 import YamlEditor from './YamlEditor'
@@ -30,7 +28,6 @@ class PolicyTemplateDetailsView extends React.Component {
   static contextType = LocaleContext
 
   setContainerRef = container => {
-    console.log(container)
     this.containerRef = container
     this.layoutEditors()
   }
