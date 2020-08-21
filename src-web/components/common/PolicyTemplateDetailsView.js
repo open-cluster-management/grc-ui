@@ -16,32 +16,20 @@ import {
 // import { PlusCircleIcon } from '@patternfly/react-icons'
 import jsYaml from 'js-yaml'
 import lodash from 'lodash'
-import YamlEditor from '../common/YamlEditor'
+import YamlEditor from './YamlEditor'
 import PatternFlyTable from './PatternFlyTable'
+import { LocaleContext } from './LocaleContext'
+import msgs from '../../../nls/platform.properties'
 
-class PolicyTemplateDetails extends React.Component {
+class PolicyTemplateDetailsView extends React.Component {
   constructor(props) {
     super(props)
-    this.tableData = {
-      columns: [
-        { title: 'Name', transforms: [sortable] },
-        { title: 'Namespace', transforms: [sortable] },
-        { title: 'Kind', transforms: [sortable] },
-        { title: 'API version', transforms: [sortable] },
-        { title: 'Compliant', transforms: [sortable] },
-        { title: 'Reason', transforms: [sortable] },
-        { title: '' },
-      ],
-      sortBy: {
-        index: 4,
-        direction: 'asc',
-      }
-    }
   }
 
-
+  static contextType = LocaleContext
   render() {
     const { template } = this.props
+    const { locale } = this.context
     const relatedObjects = lodash.get(template, 'status.relatedObjects', [])
     const rows = relatedObjects.map(o => {
       return [
@@ -52,41 +40,56 @@ class PolicyTemplateDetails extends React.Component {
         lodash.get(o, 'compliant', '-'),
         lodash.get(o, 'reason', '-'),
         { title: <a target='_blank' rel='noopener noreferrer'
-          href={`/multicloud/details/${lodash.get(template, 'metadata.namespace')}${lodash.get(o, 'object.metadata.selfLink')}`}>view</a> }
+          href={`/multicloud/details/${lodash.get(template, 'metadata.namespace')}${lodash.get(o, 'object.metadata.selfLink')}`}>{msgs.get('table.actions.view.yaml', locale)}</a> }
       ]
     })
-    console.log(rows)
+
+    const tableData = {
+      columns: [
+        { title: msgs.get('table.header.name', locale), transforms: [sortable] },
+        { title: msgs.get('table.header.namespace', locale), transforms: [sortable] },
+        { title: msgs.get('table.header.kind', locale), transforms: [sortable] },
+        { title: msgs.get('table.header.apiGroups', locale), transforms: [sortable] },
+        { title: msgs.get('table.header.compliant', locale), transforms: [sortable] },
+        { title: msgs.get('table.header.reason', locale), transforms: [sortable] },
+        { title: '' },
+      ],
+      sortBy: {
+        index: 4,
+        direction: 'asc',
+      }
+    }
     return (
-      <React.Fragment>
-        <div className='policy-template-details'>
+      <div className='policy-template-details-view'>
+        <div className='details'>
           <div className='overview'>
             <DescriptionList>
               <DescriptionListGroup>
-                <DescriptionListTerm>Name</DescriptionListTerm>
+                <DescriptionListTerm>{msgs.get('table.header.name', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>{lodash.get(template, 'metadata.name', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
-                <DescriptionListTerm>Cluster</DescriptionListTerm>
+                <DescriptionListTerm>{msgs.get('table.header.cluster', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>
                   {lodash.get(template, 'metadata.namespace', '-')}
                 </DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
-                <DescriptionListTerm>Kind</DescriptionListTerm>
+                <DescriptionListTerm>{msgs.get('table.header.kind', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>{lodash.get(template, 'kind', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
-                <DescriptionListTerm>API Version</DescriptionListTerm>
+                <DescriptionListTerm>{msgs.get('table.header.apiGroups', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>{lodash.get(template, 'apiVersion', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
-                <DescriptionListTerm>Compliant</DescriptionListTerm>
+                <DescriptionListTerm>{msgs.get('table.header.compliant', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>
                   {lodash.get(template, 'status.compliant', '-')}
                 </DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
-                <DescriptionListTerm>Details</DescriptionListTerm>
+                <DescriptionListTerm>{msgs.get('table.header.violation.detail', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>
                   {JSON.stringify(lodash.get(template, 'status.compliancyDetails', '-'))}
                 </DescriptionListDescription>
@@ -102,18 +105,17 @@ class PolicyTemplateDetails extends React.Component {
           </div>
         </div>
         <div className='table'>
-          <PatternFlyTable columns={this.tableData.columns} rows={rows} sortBy={this.tableData.sortBy} />
+          <PatternFlyTable columns={tableData.columns} rows={rows} sortBy={tableData.sortBy} />
         </div>
-
-      </React.Fragment>
+      </div>
 
     )
   }
 }
 
 
-PolicyTemplateDetails.propTypes = {
+PolicyTemplateDetailsView.propTypes = {
   template: PropTypes.object,
 }
 
-export default PolicyTemplateDetails
+export default PolicyTemplateDetailsView

@@ -1043,13 +1043,14 @@ export function formLinkToCluster(item){
   return '-'
 }
 
-export function formMessageLink(item){
-  console.log(item)
+export function formMessageLink(item, locale){
+  console.log('formMessageLink')
+  console.log(locale)
   if(item && item.message){
     return <div>
       {`${item.message} `}
       <Link to={`${config.contextPath}/all/${item.policyNamespace}/${item.policyName}/template/${item.cluster}/${item.apiVersion}/${item.kind}/${item.name}`}>
-        View details
+        {msgs.get('table.actions.view.details', locale)}
       </Link>
     </div>
   }

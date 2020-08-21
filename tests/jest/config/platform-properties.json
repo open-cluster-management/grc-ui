@@ -339,6 +339,8 @@
   "table.actions.enable": "Enable",
   "table.actions.inform": "Inform",
   "table.actions.enforce": "Enforce",
+  "table.actions.view.yaml": "View yaml",
+  "table.actions.view.details": "View details",
   "table.header.apiGroups": "API groups",
   "table.header.application": "Application name",
   "table.header.categories": "Categories",

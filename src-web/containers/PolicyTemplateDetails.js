@@ -12,7 +12,7 @@ import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
 import { PolicyTemplateDetail } from '../../lib/client/queries'
-import PolicyTemplateDetails from '../components/common/PolicyTemplateDetails'
+import PolicyTemplateDetailsView from '../components/common/PolicyTemplateDetailsView'
 import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
@@ -21,7 +21,7 @@ resources(() => {
   require('../../scss/policy-template-details.scss')
 })
 
-class TemplateDetails extends React.Component {
+class PolicyTemplateDetails extends React.Component {
   static propTypes = {
     location: PropTypes.object,
     match: PropTypes.object,
@@ -61,7 +61,6 @@ class TemplateDetails extends React.Component {
 
   componentDidMount() {
     const { updateSecondaryHeader: localUpdateSecondaryHeader, match: { params: { name }} } = this.props
-    console.log(name)
     localUpdateSecondaryHeader(name, null, this.getBreadcrumb())
   }
 
@@ -80,7 +79,7 @@ class TemplateDetails extends React.Component {
           if (items) {
             return (
               <Page>
-                <PolicyTemplateDetails template={items} />
+                <PolicyTemplateDetailsView template={items} />
               </Page>
             )
           } else {
@@ -100,4 +99,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(TemplateDetails))
+export default withRouter(connect(null, mapDispatchToProps)(PolicyTemplateDetails))

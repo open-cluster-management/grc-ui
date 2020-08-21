@@ -27,6 +27,7 @@ import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
 import { HCMPolicyViolations } from '../../lib/client/queries'
 import NoResource from '../components/common/NoResource'
+import { LocaleContext } from '../components/common/LocaleContext'
 
 resources(() => {
   require('../../scss/policy-violation-tab.scss')
@@ -37,6 +38,8 @@ class PolicyViolationTab extends React.Component{
     super(props)
   }
 
+  static contextType = LocaleContext
+
   render() {
     const url = lodash.get(this.props, 'match.url')
     const item = lodash.get(this.props, 'item',[])
@@ -45,7 +48,6 @@ class PolicyViolationTab extends React.Component{
     const policyName = urlSegments[urlSegments.length - 2]
     const {staticResourceData} = this.props
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
-
     if(namespace === null){
       return (<Loading withOverlay={false} className='content-spinner' />)
     }
@@ -76,10 +78,6 @@ class PolicyViolationTab extends React.Component{
       </Query>
     )
   }
-}
-
-PolicyViolationTab.contextTypes = {
-  locale: PropTypes.string
 }
 
 PolicyViolationTab.propTypes = {
