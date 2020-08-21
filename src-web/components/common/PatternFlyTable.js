@@ -75,7 +75,7 @@ class PatternFlyTable extends React.Component {
           {rows.length == 0 && (
             <EmptyState variant={EmptyStateVariant.small}>
               <EmptyStateIcon icon={SearchIcon} />
-              <Title headingLevel="h2" size="small">
+              <Title headingLevel="h2" size="md">
                 No results found
               </Title>
             </EmptyState>

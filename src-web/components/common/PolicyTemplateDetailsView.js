@@ -9,6 +9,7 @@ import {
   DescriptionListTerm,
   DescriptionListGroup,
   DescriptionListDescription,
+  Title,
 } from '@patternfly/react-core'
 import {
   sortable,
@@ -27,6 +28,31 @@ class PolicyTemplateDetailsView extends React.Component {
   }
 
   static contextType = LocaleContext
+
+  setContainerRef = container => {
+    console.log(container)
+    this.containerRef = container
+    this.layoutEditors()
+  }
+
+  setEditor = (editor) => {
+    this.editor=editor
+    this.layoutEditors()
+  }
+
+  layoutEditors() {
+    if (this.containerRef && this.editor) {
+      const rect = this.containerRef.getBoundingClientRect()
+      const width = rect.width
+      const height = rect.height
+      this.editor.layout({width, height})
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize',  this.layoutEditors.bind(this))
+  }
+
   render() {
     const { template } = this.props
     const { locale } = this.context
@@ -63,6 +89,7 @@ class PolicyTemplateDetailsView extends React.Component {
       <div className='policy-template-details-view'>
         <div className='details'>
           <div className='overview'>
+            <Title headingLevel="h2">Template details</Title>
             <DescriptionList>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.name', locale)}</DescriptionListTerm>
@@ -97,14 +124,19 @@ class PolicyTemplateDetailsView extends React.Component {
             </DescriptionList>
           </div>
           <div className='yaml'>
-            <YamlEditor
-              width={'100%'}
-              height={'500px'}
-              readOnly
-              yaml={jsYaml.safeDump(template)} />
+            <Title headingLevel="h2">Template yaml</Title>
+            <div ref={this.setContainerRef}>
+              <YamlEditor
+                width={'100%'}
+                height={'500px'}
+                readOnly
+                setEditor={this.setEditor}
+                yaml={jsYaml.safeDump(template)} />
+            </div>
           </div>
         </div>
         <div className='table'>
+          <Title headingLevel="h2">Related resources</Title>
           <PatternFlyTable columns={tableData.columns} rows={rows} sortBy={tableData.sortBy} />
         </div>
       </div>
