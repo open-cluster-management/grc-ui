@@ -481,5 +481,8 @@
   "update.apply": "Apply",
   "update.cancel": "Cancel",
   "update.existing": "Update Existing Policy",
-  "update.question": "Some objects already exist. Apply changes to the existing objects?"
+  "update.question": "Some objects already exist. Apply changes to the existing objects?",
+  "panel.header.template.details": "Template details",
+  "panel.header.template.yaml": "Template yaml",
+  "panel.header.related.resources": "Related resources"
 }
