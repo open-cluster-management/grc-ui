@@ -5,7 +5,9 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Spinner } from '@patternfly/react-core'
+import { NotificationDrawer, NotificationDrawerBody,
+  NotificationDrawerList, NotificationDrawerListItem,
+  NotificationDrawerListItemHeader, Spinner } from '@patternfly/react-core'
 import { updateSecondaryHeader } from '../actions/common'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
@@ -72,8 +74,24 @@ class PolicyTemplateDetails extends React.Component {
       <Query query={PolicyTemplateDetail} variables={{name, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {
           const { data={}, error } = result
-          if(error) {
-            // handle error
+          if (error) {
+            return (
+              <Page>
+                <NotificationDrawer>
+                  <NotificationDrawerBody>
+                    <NotificationDrawerList>
+                      <NotificationDrawerListItem variant="danger">
+                        <NotificationDrawerListItemHeader
+                          variant="danger"
+                          title={error.message}
+                          srTitle="Danger notification:"
+                        />
+                      </NotificationDrawerListItem>
+                    </NotificationDrawerList>
+                  </NotificationDrawerBody>
+                </NotificationDrawer>
+              </Page>
+            )
           }
           const { items } = data
           if (items) {
