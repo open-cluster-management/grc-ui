@@ -123,4 +123,20 @@ describe('PolicyTemplateDetailsView component', () => {
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
+
+  it('renders as expected -- relatedObjects field is []', () => {
+    data.status.relatedObjects = []
+    const component = renderer.create(
+      <PolicyTemplateDetailsView template={data} />
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders as expected -- no related object field', () => {
+    delete data.status.relatedObjects
+    const component = renderer.create(
+      <PolicyTemplateDetailsView template={data} />
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
 })
