@@ -5,8 +5,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   // Button,
+  EmptyState,
+  EmptyStateVariant,
+  EmptyStateIcon,
   Pagination,
   PaginationVariant,
+  Title,
 } from '@patternfly/react-core'
 import {
   Table,
@@ -14,6 +18,7 @@ import {
   TableBody,
   SortByDirection
 } from '@patternfly/react-table'
+import { SearchIcon } from '@patternfly/react-icons'
 // import { PlusCircleIcon } from '@patternfly/react-icons'
 
 class PatternFlyTable extends React.Component {
@@ -58,15 +63,23 @@ class PatternFlyTable extends React.Component {
       })
     }
     render() {
-      const { sortBy, rows, itemCount } = this.state
+      const { sortBy, rows=[], itemCount } = this.state
       const { columns } = this.props
       console.log(sortBy)
       return (
-        <React.Fragment>
+        <div className='pattern-fly-table'>
           <Table aria-label="Sortable Table" sortBy={sortBy} onSort={this.handleSort} cells={columns} rows={rows}>
             <TableHeader />
             <TableBody />
           </Table>
+          {rows.length == 0 && (
+            <EmptyState variant={EmptyStateVariant.small}>
+              <EmptyStateIcon icon={SearchIcon} />
+              <Title headingLevel="h2" size="small">
+                No results found
+              </Title>
+            </EmptyState>
+          )}
           <Pagination
             itemCount={itemCount}
             widgetId="pagination-options-menu-bottom"
@@ -82,7 +95,7 @@ class PatternFlyTable extends React.Component {
               { title: '50', value: 50},
             ]}
           />
-        </React.Fragment>
+        </div>
       )
 
     }
