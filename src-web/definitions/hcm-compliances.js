@@ -1049,7 +1049,7 @@ export function formMessageLink(item, locale){
       return <div>
         {item.message}
         <Link to={`${config.contextPath}/all/${item.policyNamespace}/${item.policyName}/template/${item.cluster}/${item.apiVersion}/${item.kind}/${item.name}`}>
-          {msgs.get('table.actions.view.details', locale)}
+          {` ${msgs.get('table.actions.view.details', locale)}`}
         </Link>
       </div>
     }
