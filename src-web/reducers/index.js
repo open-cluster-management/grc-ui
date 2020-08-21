@@ -27,6 +27,7 @@ import lodash from 'lodash'
 
 export { user, loggedIn } from './user'
 export { role } from './role'
+export { access } from './access'
 export { resourceToolbar } from './common'
 export { secondaryHeader } from './common'
 

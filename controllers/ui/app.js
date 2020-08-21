@@ -28,11 +28,11 @@ const ReactDOMServer = require('react-dom/server'),
 const log4js = require('log4js'),
       logger = log4js.getLogger('app')
 
-const targetAPI = [
+const targetAPIGroups = [
   'policy.open-cluster-management.io'
 ]
 
-let App, Login, reducers, role  //laziy initialize to reduce startup time seen on k8s
+let App, Login, reducers, access  //laziy initialize to reduce startup time seen on k8s
 
 router.get('*', (req, res) => {
   reducers = reducers === undefined ? require('../../src-web/reducers') : reducers
@@ -53,7 +53,7 @@ router.get('*', (req, res) => {
 function fetchHeader(req, res, store, fetchHeaderContext) {
   const options = {
     method: 'GET',
-    url: `${config.get('headerUrl')}${config.get('headerContextPath')}/api/v1/header?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}&targetAPI=${targetAPI}`,
+    url: `${config.get('headerUrl')}${config.get('headerContextPath')}/api/v1/header?serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}&targetAPIGroups=${JSON.stringify(targetAPIGroups)}`,
     json: true,
     headers: {
       Cookie: req.headers.cookie,
@@ -71,10 +71,11 @@ function fetchHeader(req, res, store, fetchHeaderContext) {
       logger.err(headerRes.body)
       return res.status(500).send(headerRes.body)
     }
-    logger.info(`userAccess is : ${JSON.stringify(userAccess)}`)
-    role = role === undefined ? require('../../src-web/actions/role') : role
-    if (stateH.role) {
-      store.dispatch(role.roleReceiveSuccess(stateH.role.role))
+
+    access = access === undefined ? require('../../src-web/actions/access') : access
+    if (userAccess) {
+      logger.info(`userAccess is : ${JSON.stringify(userAccess)}`)
+      store.dispatch(access.userAccessSuccess(userAccess))
     }
 
     if(process.env.NODE_ENV === 'development') {
