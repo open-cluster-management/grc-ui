@@ -1,0 +1,15 @@
+/* Copyright (c) 2020 Red Hat, Inc.*/
+
+.pattern-fly-table {
+  .pf-c-form-control:disabled {
+    --pf-c-form-control--Color: var(--pf-c-form-control--disabled--Color);
+    --pf-c-form-control--BackgroundColor: var(--pf-c-form-control--disabled--BackgroundColor);
+    cursor: not-allowed;
+    border-color: var(--pf-c-form-control--disabled--BorderColor); 
+  }
+
+  .pf-c-form-control:not(textarea) {
+    height: var(--pf-c-form-control--Height);
+    text-overflow: ellipsis;
+  }
+}

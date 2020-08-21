@@ -1,6 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -18,6 +19,11 @@ import {
   SortByDirection
 } from '@patternfly/react-table'
 import { SearchIcon } from '@patternfly/react-icons'
+import resources from '../../../lib/shared/resources'
+
+resources(() => {
+  require('../../../scss/pattern-fly-table.scss')
+})
 
 class PatternFlyTable extends React.Component {
   constructor(props) {
