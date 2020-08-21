@@ -29,11 +29,9 @@ class PolicyTemplateTab extends React.Component{
     super(props)
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const {refreshControl, items, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
-    if (!_.isEqual(refreshControl, this.props.refreshControl) ||
-        !_.isEqual(items, this.props.items)) {
-      localUpdateResourceToolbar(refreshControl, {})
+  componentDidUpdate(prevProps) {
+    if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
+      this.props.updateResourceToolbar(this.props.refreshControl, {})
     }
   }
 

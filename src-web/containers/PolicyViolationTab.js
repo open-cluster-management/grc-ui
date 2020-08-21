@@ -16,12 +16,12 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { updateSecondaryHeader, updateResourceToolbar } from '../actions/common'
+import { updateResourceToolbar } from '../actions/common'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { getPollInterval } from '../components/common/RefreshTimeSelect'
 import ResourceTableModule from '../components/common/ResourceTableModuleFromProps'
 import {  Loading } from 'carbon-components-react'
-import lodash from 'lodash'
+import _ from 'lodash'
 import resources from '../../lib/shared/resources'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
@@ -37,18 +37,16 @@ class PolicyViolationTab extends React.Component{
     super(props)
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const {refreshControl, item, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
-    if (!lodash.isEqual(refreshControl, this.props.refreshControl) ||
-        !lodash.isEqual(item, this.props.item)) {
-      localUpdateResourceToolbar(refreshControl, {})
+  componentDidUpdate(prevProps) {
+    if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
+      this.props.updateResourceToolbar(this.props.refreshControl, {})
     }
   }
 
   render() {
-    const url = lodash.get(this.props, 'match.url')
-    const item = lodash.get(this.props, 'item',[])
-    const namespace = lodash.get(item[0], 'metadata.namespace', null)
+    const url = _.get(this.props, 'match.url')
+    const item = _.get(this.props, 'item',[])
+    const namespace = _.get(item[0], 'metadata.namespace', null)
     const urlSegments = url.split('/')
     const policyName = urlSegments[urlSegments.length - 2]
     const {staticResourceData} = this.props
@@ -91,11 +89,6 @@ PolicyViolationTab.contextTypes = {
 }
 
 PolicyViolationTab.propTypes = {
-  item: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.object,
-    PropTypes.array
-  ]),
   refreshControl: PropTypes.object,
   staticResourceData: PropTypes.object,
   updateResourceToolbar: PropTypes.func
@@ -103,8 +96,7 @@ PolicyViolationTab.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {})),
-    updateSecondaryHeader: (title, tabs, breadcrumbItems, links) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links))
+    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
   }
 }
 

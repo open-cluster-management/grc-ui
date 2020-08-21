@@ -116,7 +116,7 @@ class PolicyDetail extends React.Component {
                   />}}
                 />
                 <Route path={`${url}/yaml`} exact render={() => {
-                  refreshControl.startPolling(pollInterval)
+                  pollInterval ? refreshControl.startPolling(pollInterval) : ''
                   return <PolicyTemplateTab
                     resourceType={resourceType}
                     items={items}
@@ -127,7 +127,7 @@ class PolicyDetail extends React.Component {
                   />}}
                 />
                 <Route path={url} exact render={() => {
-                  refreshControl.startPolling(pollInterval)
+                  pollInterval ? refreshControl.startPolling(pollInterval) : ''
                   return <PolicyDetailsOverview
                     loading={!items && loading}
                     error={error}
@@ -192,7 +192,7 @@ class PolicyDetail extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateSecondaryHeader: (title, tabs, breadcrumbs, information) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbs, undefined, information)),
+    updateSecondaryHeader: (title, tabs, breadcrumbs, information) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbs, undefined, information))
   }
 }
 
