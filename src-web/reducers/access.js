@@ -13,7 +13,7 @@ import {
   REQUEST_STATUS
 } from '../actions'
 
-export const access = (state = null, action) => {
+export const userAccess = (state = null, action) => {
   if (action) {
     switch (action.type) {
     case USER_ACCESS_SUCCESS:

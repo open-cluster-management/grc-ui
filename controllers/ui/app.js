@@ -74,7 +74,7 @@ function fetchHeader(req, res, store, fetchHeaderContext) {
 
     access = access === undefined ? require('../../src-web/actions/access') : access
     if (userAccess) {
-      logger.info(`userAccess is : ${JSON.stringify(userAccess)}`)
+      // logger.info(`userAccess is : ${JSON.stringify(userAccess)}`)
       store.dispatch(access.userAccessSuccess(userAccess))
     }
 

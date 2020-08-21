@@ -52,17 +52,17 @@ export class SecondaryHeader extends React.Component {
   }
 
   render() {
-    const { tabs, title, breadcrumbItems, links, description, location } = this.props
+    const { tabs, title, breadcrumbItems, links, description, location, userAccess } = this.props
     const { locale } = this.context
     const displayType = location.pathname.split('/').pop()
-    let showCreationLink
+    let showCreationLink // 0=clickable, 1=non-clickable, 2=hide
     switch(displayType) {
     case 'all':
     default:
-      showCreationLink = true
+      showCreationLink = this.checkCreatePermission(userAccess)
       break
     case 'findings':
-      showCreationLink = false
+      showCreationLink = 2
       break
     }
     if ((tabs && tabs.length > 0) || (breadcrumbItems && breadcrumbItems.length > 0)) {
@@ -89,9 +89,9 @@ export class SecondaryHeader extends React.Component {
               </div>
             </header>
           </div>
-          {showCreationLink && links && links.length>0 &&
+          {showCreationLink !== 2 && links && links.length>0 &&
             <div className='secondary-header-links'>
-              {this.renderLinks()}
+              {this.renderLinks(showCreationLink)}
             </div>
           }
         </div>
@@ -166,7 +166,7 @@ export class SecondaryHeader extends React.Component {
     })
   }
 
-  renderLinks() {
+  renderLinks(showCreationLink) {
     const { links } = this.props,
           { locale } = this.context
     return links.map(link => {
@@ -174,6 +174,12 @@ export class SecondaryHeader extends React.Component {
       // if portal, react component will create the button using a portal
       if (kind==='portal') {
         return <div key={id} id={id} className='portal' />
+      }
+      console.log(JSON.stringify(showCreationLink))
+      if (showCreationLink !== 1) {
+        return <Button className={`${id}-nonclickable`} key={id} id={`${id}-nonclickable`} kind={kind} >
+          {msgs.get(label, locale)}
+        </Button>
       }
       return <Button key={id} id={id} onClick={handleClick} kind={kind} >
         {msgs.get(label, locale)}
@@ -199,6 +205,25 @@ export class SecondaryHeader extends React.Component {
     this.props.history.push(url)
     return url
   }
+
+  checkCreatePermission(userAccess) {
+    let createFlag = 0
+    const policyKey = 'policy.open-cluster-management.io/policies'
+    for (const singleNSAccess of userAccess) {
+      const rules = singleNSAccess.rules
+      if (Array.isArray(rules['*/*']) &&
+            (rules['*/*'].includes('*') || rules['*/*'].includes('create'))) {
+        createFlag = 1
+        break
+      }
+      if (Array.isArray(rules[policyKey]) &&
+            (rules[policyKey].includes('*') || rules[policyKey].includes('create'))) {
+        createFlag = 1
+        break
+      }
+    }
+    return createFlag
+  }
 }
 
 SecondaryHeader.contextTypes = {
@@ -214,6 +239,7 @@ SecondaryHeader.propTypes = {
   location: PropTypes.object,
   tabs: PropTypes.array,
   title: PropTypes.string,
+  userAccess: PropTypes.array
 }
 
 const mapStateToProps = (state) => {
@@ -223,7 +249,7 @@ const mapStateToProps = (state) => {
     breadcrumbItems: state.secondaryHeader.breadcrumbItems,
     links: state.secondaryHeader.links,
     refresh: state.secondaryHeader.refresh,
-    role: state.role && state.role.role,
+    userAccess: state.userAccess.access,
     description: state.secondaryHeader.description,
     information: state.secondaryHeader.information,
   }
