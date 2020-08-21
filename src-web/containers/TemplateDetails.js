@@ -78,34 +78,6 @@ class TemplateDetails extends React.Component {
           }
           const { items } = data
           if (items) {
-            items.status.relatedObjects = [
-              {
-                object: {
-                  kind: 'Pod',
-                  apiVersion: 'v1',
-                  metadata: {
-                    name: 'sample-1',
-                    namespace: 'default',
-                    selfLink: '/api/v1/namespaces/default/pods/sample-nginx-pod'
-                  }
-                },
-                compliant: 'NonCompliant',
-                reason: 'ExistsButDoesNotMatch',
-              },
-              {
-                object: {
-                  kind: 'Pod',
-                  apiVersion: 'v1',
-                  metadata: {
-                    name: 'sample-2',
-                    namespace: 'default',
-                    selfLink: '/api/v1/namespaces/default/pods/sample-nginx-pod'
-                  }
-                },
-                compliant: 'Compliant',
-                reason: 'ExistsAndMatches',
-              },
-            ]
             return (
               <Page>
                 <PolicyTemplateDetails template={items} />

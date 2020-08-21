@@ -52,7 +52,7 @@ class PolicyTemplateDetails extends React.Component {
         lodash.get(o, 'compliant', '-'),
         lodash.get(o, 'reason', '-'),
         { title: <a target='_blank' rel='noopener noreferrer'
-          href={`/multicloud/details/${lodash.get(template, 'metadata.namespace')}${lodash.get(o, 'object.metadata.selfLink')}`}>view yaml</a> }
+          href={`/multicloud/details/${lodash.get(template, 'metadata.namespace')}${lodash.get(o, 'object.metadata.selfLink')}`}>view</a> }
       ]
     })
     console.log(rows)
