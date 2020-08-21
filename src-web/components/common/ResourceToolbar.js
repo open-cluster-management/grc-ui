@@ -23,7 +23,7 @@ import { REFRESH_TIMES, GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/cons
 import '../../../graphics/diagramIcons.svg'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
-import { replaceGrcState } from '../../../lib/client/filter-helper'
+import { saveGrcState } from '../../../lib/client/filter-helper'
 
 resources(() => {
   require('../../../scss/resource-toolbar.scss')
@@ -147,7 +147,7 @@ export class ResourceToolbar extends React.Component {
         activeSet.delete(value)
       }
     }
-    replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
+    saveGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
     localUpdateActiveFilters(activeFilters)
   }
 }
