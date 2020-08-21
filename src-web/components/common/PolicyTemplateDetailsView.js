@@ -78,7 +78,7 @@ class PolicyTemplateDetailsView extends React.Component {
         { title: '' },
       ],
       sortBy: {
-        index: 4,
+        index: 0,
         direction: 'asc',
       }
     }
