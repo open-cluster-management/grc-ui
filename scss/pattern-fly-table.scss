@@ -22,7 +22,7 @@
     -webkit-appearance: none; 
   }
   .pf-c-form-control:disabled {
-    border: solid transparent 1px;
+    border: solid #f0f0f0 1px;
     background-color: #f0f0f0;
     --pf-c-form-control--Color: var(--pf-c-form-control--disabled--Color);
     --pf-c-form-control--BackgroundColor: var(--pf-c-form-control--disabled--BackgroundColor);
