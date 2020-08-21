@@ -175,7 +175,6 @@ export class SecondaryHeader extends React.Component {
       if (kind==='portal') {
         return <div key={id} id={id} className='portal' />
       }
-      console.log(JSON.stringify(showCreationLink))
       if (showCreationLink !== 1) {
         return <Button className={`${id}-nonclickable`} key={id} id={`${id}-nonclickable`} kind={kind} >
           {msgs.get(label, locale)}
@@ -207,6 +206,7 @@ export class SecondaryHeader extends React.Component {
   }
 
   checkCreatePermission(userAccess) {
+    // if create policy permission on any ns, set flag to 1
     let createFlag = 0
     const policyKey = 'policy.open-cluster-management.io/policies'
     for (const singleNSAccess of userAccess) {
