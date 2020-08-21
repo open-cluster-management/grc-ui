@@ -1,6 +1,19 @@
 /* Copyright (c) 2020 Red Hat, Inc.*/
 
 .pattern-fly-table {
+  .pf-c-form-control {
+    color: var(--pf-global--Color--100);
+    // width: 100%;
+    padding: var(--pf-c-form-control--PaddingTop) var(--pf-c-form-control--PaddingRight) var(--pf-c-form-control--PaddingBottom) var(--pf-c-form-control--PaddingLeft);
+    font-size: var(--pf-c-form-control--FontSize);
+    line-height: var(--pf-c-form-control--LineHeight);
+    background-color: var(--pf-c-form-control--BackgroundColor);
+    border: var(--pf-c-form-control--BorderWidth) solid;
+    border-color: var(--pf-c-form-control--BorderTopColor) var(--pf-c-form-control--BorderRightColor) var(--pf-c-form-control--BorderBottomColor) var(--pf-c-form-control--BorderLeftColor);
+    border-radius: var(--pf-c-form-control--BorderRadius);
+    -moz-appearance: none;
+    -webkit-appearance: none; 
+  }
   .pf-c-form-control:disabled {
     --pf-c-form-control--Color: var(--pf-c-form-control--disabled--Color);
     --pf-c-form-control--BackgroundColor: var(--pf-c-form-control--disabled--BackgroundColor);
