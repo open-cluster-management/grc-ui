@@ -80,7 +80,7 @@ exports[`PatternFlyTable component renders as expected 1`] = `
           data-label="Repositories"
           onMouseEnter={[Function]}
         >
-          one
+          p
         </td>
         <td
           className=""
@@ -96,7 +96,7 @@ exports[`PatternFlyTable component renders as expected 1`] = `
           data-label="Pull requests"
           onMouseEnter={[Function]}
         >
-          a
+          b
         </td>
         <td
           className=""
@@ -178,7 +178,7 @@ exports[`PatternFlyTable component renders as expected 1`] = `
           data-label="Repositories"
           onMouseEnter={[Function]}
         >
-          p
+          one
         </td>
         <td
           className=""
@@ -194,7 +194,7 @@ exports[`PatternFlyTable component renders as expected 1`] = `
           data-label="Pull requests"
           onMouseEnter={[Function]}
         >
-          b
+          a
         </td>
         <td
           className=""

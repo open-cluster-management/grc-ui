@@ -1045,12 +1045,18 @@ export function formLinkToCluster(item){
 
 export function formMessageLink(item, locale){
   if(item && item.message){
+    if (item.policyNamespace) {
+      return <div>
+        {item.message}
+        <Link to={`${config.contextPath}/all/${item.policyNamespace}/${item.policyName}/template/${item.cluster}/${item.apiVersion}/${item.kind}/${item.name}`}>
+          {msgs.get('table.actions.view.details', locale)}
+        </Link>
+      </div>
+    }
     return <div>
-      {`${item.message} `}
-      <Link to={`${config.contextPath}/all/${item.policyNamespace}/${item.policyName}/template/${item.cluster}/${item.apiVersion}/${item.kind}/${item.name}`}>
-        {msgs.get('table.actions.view.details', locale)}
-      </Link>
+      {item.message}
     </div>
+
   }
   return '-'
 }
