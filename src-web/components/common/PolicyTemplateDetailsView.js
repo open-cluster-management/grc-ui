@@ -86,7 +86,7 @@ class PolicyTemplateDetailsView extends React.Component {
       <div className='policy-template-details-view'>
         <div className='details'>
           <div className='overview'>
-            <Title headingLevel="h2">Template details</Title>
+            <Title headingLevel="h2">{msgs.get('panel.header.template.details', locale)}</Title>
             <DescriptionList>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.name', locale)}</DescriptionListTerm>
@@ -121,7 +121,7 @@ class PolicyTemplateDetailsView extends React.Component {
             </DescriptionList>
           </div>
           <div className='yaml'>
-            <Title headingLevel="h2">Template yaml</Title>
+            <Title headingLevel="h2">{msgs.get('panel.header.template.yaml', locale)}</Title>
             <div ref={this.setContainerRef}>
               <YamlEditor
                 width={'100%'}
@@ -133,7 +133,7 @@ class PolicyTemplateDetailsView extends React.Component {
           </div>
         </div>
         <div className='table'>
-          <Title headingLevel="h2">Related resources</Title>
+          <Title headingLevel="h2">{msgs.get('panel.header.related.resources', locale)}</Title>
           <PatternFlyTable columns={tableData.columns} rows={rows} sortBy={tableData.sortBy} />
         </div>
       </div>
