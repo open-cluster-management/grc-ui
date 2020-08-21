@@ -28,6 +28,8 @@ class PatternFlyTable extends React.Component {
       rows: [],
       itemCount: 0,
       sortBy: this.props.sortBy || {},
+      startIdx: 0,
+      endIdx: 9
     }
   }
   static getDerivedStateFromProps(props, state) {
@@ -35,7 +37,7 @@ class PatternFlyTable extends React.Component {
     const sortedRows = props.rows.sort((a, b) => (a[sortBy.index] < b[sortBy.index] ? -1 : a[sortBy.index] > b[sortBy.index] ? 1 : 0))
     const sortedRowsByDrection = sortBy.direction === SortByDirection.asc ? sortedRows : sortedRows.reverse()
     return {
-      rows: sortedRowsByDrection.slice(0, state.perPage),
+      rows: sortedRowsByDrection.slice(state.startIdx, state.endIdx),
       itemCount: props.rows.length,
     }
 
@@ -52,13 +54,15 @@ class PatternFlyTable extends React.Component {
     this.setState({
       perPage: newPerPage,
       page: newPage,
-      rows: this.props.rows.slice(startIdx, endIdx)
+      startIdx,
+      endIdx,
     })
   }
   handleSetPage = (_evt, newPage, perPage, startIdx, endIdx) => {
     this.setState({
       page: newPage,
-      rows: this.props.rows.slice(startIdx, endIdx)
+      startIdx,
+      endIdx
     })
   }
   render() {
