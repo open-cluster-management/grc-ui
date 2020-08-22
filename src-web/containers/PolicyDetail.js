@@ -116,7 +116,9 @@ class PolicyDetail extends React.Component {
                   />}}
                 />
                 <Route path={`${url}/yaml`} exact render={() => {
-                  pollInterval ? refreshControl.startPolling(pollInterval) : ''
+                  if (pollInterval) {
+                    refreshControl.startPolling(pollInterval)
+                  }
                   return <PolicyTemplateTab
                     resourceType={resourceType}
                     items={items}
@@ -127,7 +129,9 @@ class PolicyDetail extends React.Component {
                   />}}
                 />
                 <Route path={url} exact render={() => {
-                  pollInterval ? refreshControl.startPolling(pollInterval) : ''
+                  if (pollInterval) {
+                    refreshControl.startPolling(pollInterval)
+                  }
                   return <PolicyDetailsOverview
                     loading={!items && loading}
                     error={error}
