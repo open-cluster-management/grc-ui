@@ -18,7 +18,7 @@ exports[`SecondaryHeader component 1 renders as expected 1`] = `
 </div>
 `;
 
-exports[`SecondaryHeader component 2 renders as expected 1`] = `
+exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
 <div
   aria-label="hello world"
   className="secondary-header-wrapper"
@@ -113,6 +113,245 @@ exports[`SecondaryHeader component 2 renders as expected 1`] = `
         />
       </div>
     </header>
+  </div>
+  <div
+    className="secondary-header-links"
+  >
+    <button
+      className="bx--btn bx--btn--primary"
+      disabled={false}
+      id="create-policy"
+      onClick={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      Create policy
+    </button>
+  </div>
+</div>
+`;
+
+exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
+<div
+  aria-label="hello world"
+  className="secondary-header-wrapper"
+  role="region"
+>
+  <div
+    className="secondary-header secondary-header-grc-overview simple-header"
+  >
+    <header
+      aria-label="Heading: hello world"
+    >
+      <div
+        className="bx--detail-page-header-content"
+      >
+        <div
+          className="bx--detail-page-header-title-container"
+        >
+          <h1
+            className="bx--detail-page-header-title"
+          >
+            hello world
+          </h1>
+        </div>
+        <nav
+          aria-label="hello world undefined"
+          className="bx--tabs"
+          role="navigation"
+          selected={0}
+        >
+          <div
+            aria-label="listbox"
+            className="bx--tabs-trigger"
+            onClick={[Function]}
+            onKeyPress={[Function]}
+            role="listbox"
+            tabIndex={0}
+          >
+            <a
+              className="bx--tabs-trigger-text"
+              href="#"
+              onClick={[Function]}
+              tabIndex={-1}
+            >
+              Application
+            </a>
+            <svg
+              alt="show menu options"
+              aria-label="show menu options"
+              fillRule="evenodd"
+              height="5"
+              role="img"
+              viewBox="0 0 10 5"
+              width="10"
+            >
+              <title>
+                show menu options
+              </title>
+              <path
+                d="M0 0l5 4.998L10 0z"
+              />
+            </svg>
+          </div>
+          <ul
+            className="bx--tabs__nav bx--tabs__nav--hidden"
+            role="tablist"
+          >
+            <li
+              className="bx--tabs__nav-item bx--tabs__nav-item--selected"
+              id="dashboard-application"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="presentation"
+              selected={true}
+              tabIndex={-1}
+            >
+              <a
+                aria-selected={true}
+                className="bx--tabs__nav-link"
+                href="/multicloud/dashboard"
+                role="tab"
+                tabIndex={0}
+              >
+                Application
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div
+          aria-hidden={false}
+          hidden={false}
+          selected={true}
+        />
+      </div>
+    </header>
+  </div>
+  <div
+    className="secondary-header-links"
+  >
+    <button
+      className="bx--btn bx--btn--primary"
+      disabled={false}
+      id="create-policy"
+      onClick={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      Create policy
+    </button>
+  </div>
+</div>
+`;
+
+exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
+<div
+  aria-label="hello world"
+  className="secondary-header-wrapper"
+  role="region"
+>
+  <div
+    className="secondary-header secondary-header-grc-overview simple-header"
+  >
+    <header
+      aria-label="Heading: hello world"
+    >
+      <div
+        className="bx--detail-page-header-content"
+      >
+        <div
+          className="bx--detail-page-header-title-container"
+        >
+          <h1
+            className="bx--detail-page-header-title"
+          >
+            hello world
+          </h1>
+        </div>
+        <nav
+          aria-label="hello world undefined"
+          className="bx--tabs"
+          role="navigation"
+          selected={0}
+        >
+          <div
+            aria-label="listbox"
+            className="bx--tabs-trigger"
+            onClick={[Function]}
+            onKeyPress={[Function]}
+            role="listbox"
+            tabIndex={0}
+          >
+            <a
+              className="bx--tabs-trigger-text"
+              href="#"
+              onClick={[Function]}
+              tabIndex={-1}
+            >
+              Application
+            </a>
+            <svg
+              alt="show menu options"
+              aria-label="show menu options"
+              fillRule="evenodd"
+              height="5"
+              role="img"
+              viewBox="0 0 10 5"
+              width="10"
+            >
+              <title>
+                show menu options
+              </title>
+              <path
+                d="M0 0l5 4.998L10 0z"
+              />
+            </svg>
+          </div>
+          <ul
+            className="bx--tabs__nav bx--tabs__nav--hidden"
+            role="tablist"
+          >
+            <li
+              className="bx--tabs__nav-item bx--tabs__nav-item--selected"
+              id="dashboard-application"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="presentation"
+              selected={true}
+              tabIndex={-1}
+            >
+              <a
+                aria-selected={true}
+                className="bx--tabs__nav-link"
+                href="/multicloud/dashboard"
+                role="tab"
+                tabIndex={0}
+              >
+                Application
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div
+          aria-hidden={false}
+          hidden={false}
+          selected={true}
+        />
+      </div>
+    </header>
+  </div>
+  <div
+    className="secondary-header-links"
+  >
+    <button
+      className="create-policy-nonclickable bx--btn bx--btn--primary"
+      disabled={false}
+      id="create-policy-nonclickable"
+      tabIndex={0}
+      type="button"
+    >
+      Create policy
+    </button>
   </div>
 </div>
 `;
@@ -337,14 +576,14 @@ exports[`SecondaryHeader component 5 renderHeader without description 1`] = `
 </div>
 `;
 
-exports[`SecondaryHeader component 5 renderLinks as expected 1`] = `
+exports[`SecondaryHeader component 5 renderLinks nonclickable as expected 1`] = `
 Array [
   <ForwardRef
+    className="create-policy-nonclickable"
     disabled={false}
     iconDescription="Provide icon description if icon is used"
-    id="create-policy"
+    id="create-policy-nonclickable"
     kind="primary"
-    onClick={[Function]}
     small={false}
     tabIndex={0}
     type="button"

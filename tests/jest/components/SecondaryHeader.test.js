@@ -39,9 +39,83 @@ describe('SecondaryHeader component 2', () => {
   const location = {
     pathname: '/multicloud/policies/all'
   }
-  it('renders as expected', () => {
+  it('renders clickable as expected', () => {
     const component = renderer.create(
-      <SecondaryHeader title='hello world' tabs={tabs} location={location} history={history} />
+      <SecondaryHeader
+        title='hello world'
+        tabs={tabs}
+        location={location} history={history}
+        links={[{'id':'create-policy','label':'button.create.policy','url':'/multicloud/policies/create'}]}
+        userAccess={
+          [
+            {
+              'namespace': 'calamari',
+              'rules': {
+                '*/*': [
+                  '*'
+                ]
+              }
+            },
+          ]
+        }
+      />
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+  it('renders clickable as expected', () => {
+    const component = renderer.create(
+      <SecondaryHeader
+        title='hello world'
+        tabs={tabs}
+        location={location} history={history}
+        links={[{'id':'create-policy','label':'button.create.policy','url':'/multicloud/policies/create'}]}
+        userAccess={
+          [
+            {
+              'namespace': 'calamari',
+              'rules': {
+                'policy.open-cluster-management.io/policies': [
+                  'get',
+                  'list',
+                  'watch',
+                  'update',
+                  'patch',
+                  'create',
+                  'delete',
+                  'deletecollection'
+                ]
+              }
+            },
+          ]
+        }
+      />
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+  it('renders nonclickable as expected', () => {
+    const component = renderer.create(
+      <SecondaryHeader
+        title='hello world'
+        tabs={tabs}
+        location={location} history={history}
+        links={[{'id':'create-policy','label':'button.create.policy','url':'/multicloud/policies/create'}]}
+        userAccess={
+          [
+            {
+              'namespace': 'calamari',
+              'rules': {
+                'policy.open-cluster-management.io/policies': [
+                  'get',
+                  'list',
+                  'watch',
+                  'update',
+                  'patch',
+                ]
+              }
+            },
+          ]
+        }
+      />
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -117,7 +191,7 @@ describe('SecondaryHeader component 5', () => {
     )
     expect(component.instance().renderHeader()).toMatchSnapshot()
   })
-  it('renderLinks as expected', () => {
+  it('renderLinks nonclickable as expected', () => {
     const component = shallow(
       <SecondaryHeader
         title='hello world'
