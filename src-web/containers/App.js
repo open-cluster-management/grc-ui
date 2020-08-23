@@ -21,6 +21,7 @@ import config from '../../lib/shared/config'
 import Modal from '../components/common/Modal'
 import GrcRouter from './GrcRouter'
 import loadable from '@loadable/component'
+import { LocaleContext } from '../components/common/LocaleContext'
 
 export const ResourceToolbar = loadable(() => import(/* webpackChunkName: "ResourceToolbar" */ '../components/common/ResourceToolbar'))
 
@@ -53,28 +54,20 @@ class App extends React.Component {
     const serverProps = this.getServerProps()
     const { match } = this.props
     return (
-      <div className='expand-vertically'>
-        <SecondaryHeader />
-        <ResourceToolbar />
-        <Switch>
-          <Route path={`${match.url}`} render={() => <GrcRouter />} />
-          <Redirect to={`${config.contextPath}`} />
-        </Switch>
-        <Modal locale={serverProps.context.locale} />
-        <input type='hidden' id='app-access' value={serverProps.xsrfToken.toString('base64')} locale={serverProps.context.locale} />
-      </div>
+      <LocaleContext.Provider value={serverProps.context}>
+        <div className='expand-vertically'>
+          <SecondaryHeader />
+          <ResourceToolbar />
+          <Switch>
+            <Route path={`${match.url}`} render={() => <GrcRouter />} />
+            <Redirect to={`${config.contextPath}`} />
+          </Switch>
+          <Modal locale={serverProps.context.locale} />
+          <input type='hidden' id='app-access' value={serverProps.xsrfToken.toString('base64')} locale={serverProps.context.locale} />
+        </div>
+      </LocaleContext.Provider>
     )
   }
-
-  getChildContext() {
-    return {
-      locale: this.getServerProps().context.locale
-    }
-  }
-}
-
-App.childContextTypes = {
-  locale: PropTypes.string
 }
 
 // eslint-disable-next-line react/display-name
