@@ -110,7 +110,6 @@ const controlData = [
     active: 'inform',
     available: ['inform', 'enforce'],  // in template, 'inform'===checkbox unchecked
     reverse: 'Policy[0].spec.remediationAction',
-    mustExist: true,
   },
   {
     name: 'creation.view.policy.disabled',
@@ -126,6 +125,15 @@ const controlData = [
 export default class CreationView extends React.Component {
 
   static propTypes = {
+    buildControl: PropTypes.shape({
+      buildResourceLists: PropTypes.func,
+    }),
+    createAndUpdateControl: PropTypes.shape({
+      createAndUpdateResource: PropTypes.func,
+      cancelCreateAndUpdate: PropTypes.func,
+      createAndUpdateStatus: PropTypes.string,
+      createAndUpdateMsg: PropTypes.string
+    }),
     createControl: PropTypes.shape({
       createResource: PropTypes.func,
       cancelCreate: PropTypes.func,
@@ -152,7 +160,7 @@ export default class CreationView extends React.Component {
   render() {
     hideResourceToolbar()
     const { locale } = this.context
-    const {fetchControl, createControl, updateControl, discovered} = this.props
+    const {fetchControl, createControl, buildControl, updateControl, discovered, createAndUpdateControl} = this.props
     return (
       <TemplateEditor
         template={policyTemplate}
@@ -160,7 +168,9 @@ export default class CreationView extends React.Component {
         portals={Portals}
         fetchControl={fetchControl}
         createControl={createControl}
+        buildControl={buildControl}
         updateControl={updateControl}
+        createAndUpdateControl={createAndUpdateControl}
         type={'policy'}
         locale={locale}
       />

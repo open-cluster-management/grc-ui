@@ -68,6 +68,7 @@ function createPolicy(browser, name, yaml, time) {
   parser.enterTextInYamlEditor(this, browser, yaml, time)
   // this.click('@policyNameInput').clearValue('@policyNameInput')
   // this.setValue('@policyNameInput',`${time}-policy-test`)
+  this.pause(1000)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
