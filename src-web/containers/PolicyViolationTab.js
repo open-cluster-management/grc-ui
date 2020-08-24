@@ -16,12 +16,12 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { updateSecondaryHeader } from '../actions/common'
+import { updateResourceToolbar } from '../actions/common'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { getPollInterval } from '../components/common/RefreshTimeSelect'
 import ResourceTableModule from '../components/common/ResourceTableModuleFromProps'
 import {  Loading } from 'carbon-components-react'
-import lodash from 'lodash'
+import _ from 'lodash'
 import resources from '../../lib/shared/resources'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
@@ -40,10 +40,16 @@ class PolicyViolationTab extends React.Component{
 
   static contextType = LocaleContext
 
+  componentDidUpdate(prevProps) {
+    if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
+      this.props.updateResourceToolbar(this.props.refreshControl, {})
+    }
+  }
+
   render() {
-    const url = lodash.get(this.props, 'match.url')
-    const item = lodash.get(this.props, 'item',[])
-    const namespace = lodash.get(item[0], 'metadata.namespace', null)
+    const url = _.get(this.props, 'match.url')
+    const item = _.get(this.props, 'item',[])
+    const namespace = _.get(item[0], 'metadata.namespace', null)
     const urlSegments = url.split('/')
     const policyName = urlSegments[urlSegments.length - 2]
     const {staticResourceData} = this.props
@@ -81,18 +87,15 @@ class PolicyViolationTab extends React.Component{
 }
 
 PolicyViolationTab.propTypes = {
+  refreshControl: PropTypes.object,
   staticResourceData: PropTypes.object,
-
-}
-
-const mapStateToProps = () => {
-  return {}
+  updateResourceToolbar: PropTypes.func
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateSecondaryHeader: (title, tabs, breadcrumbItems, links) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links))
+    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PolicyViolationTab))
+export default withRouter(connect(null, mapDispatchToProps)(PolicyViolationTab))
