@@ -63,15 +63,12 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   this.waitForElementNotPresent('@spinner')
-  //this.click('.bx--toggle__appearance')
   this.click('@namespaceDropdown')
   this.waitForElementPresent('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.click('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.waitForElementPresent('@yamlMonacoEditor')
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
-  // this.click('@policyNameInput').clearValue('@policyNameInput')
-  // this.setValue('@policyNameInput',`${time}-policy-test`)
   this.pause(1000)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
@@ -141,6 +138,7 @@ function informPolicy(name){
 
 function checkViolations(name, violationExpected, violationText) {
   this.log(`Checking policy: ${name} violationExpected: ${violationExpected}`)
+  this.pause(20000)
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
   this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
@@ -190,7 +188,6 @@ function deletePolicy(name){
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
-  this.clearSearchValue()
   // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
 }
 
