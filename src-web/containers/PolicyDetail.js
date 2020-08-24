@@ -110,28 +110,36 @@ class PolicyDetail extends React.Component {
                 <Route path={`${url}/violation`} exact render={() => {
                   refreshControl.stopPolling()
                   return <PolicyViolationTab
+                    refreshControl={refreshControl}
                     staticResourceData={staticResourceData}
                     item={items}
                   />}}
                 />
                 <Route path={`${url}/yaml`} exact render={() => {
+                  if (pollInterval) {
+                    refreshControl.startPolling(pollInterval)
+                  }
                   return <PolicyTemplateTab
                     resourceType={resourceType}
                     items={items}
+                    refreshControl={refreshControl}
                     staticResourceData={staticResourceData}
                     loading={loading}
                     error={error}
                   />}}
                 />
-                <Route path={url} exact render={() => (
-                  <PolicyDetailsOverview
+                <Route path={url} exact render={() => {
+                  if (pollInterval) {
+                    refreshControl.startPolling(pollInterval)
+                  }
+                  return <PolicyDetailsOverview
                     loading={!items && loading}
                     error={error}
                     item={items}
                     refreshControl={refreshControl}
                     resourceType={resourceType}
                     staticResourceData={staticResourceData}
-                  /> )}
+                  />}}
                 />
               </Switch>
             )
@@ -188,7 +196,7 @@ class PolicyDetail extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateSecondaryHeader: (title, tabs, breadcrumbs, information) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbs, undefined, information)),
+    updateSecondaryHeader: (title, tabs, breadcrumbs, information) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbs, undefined, information))
   }
 }
 
