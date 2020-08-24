@@ -23,7 +23,6 @@ import { Link, withRouter } from 'react-router-dom'
 import lodash from 'lodash'
 import ResourceTableRowExpandableContent from './ResourceTableRowExpandableContent'
 import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
-import constants from '../../../lib/shared/constants'
 import { fliterTableAction } from '../../../lib/client/access-helper'
 
 resources(() => {
@@ -309,11 +308,6 @@ export class ResourceTable extends React.Component {
     return headers
   }
 
-  showTableToobar() {
-    const { userRole } = this.props
-    return userRole !== constants.ROLES.VIEWER
-  }
-
   checkPolicyDisabled(data) {
     return lodash.get(data, 'raw.spec.disabled', false)
   }
@@ -324,9 +318,10 @@ export class ResourceTable extends React.Component {
 
   getRows() {
     const { history, items, itemIds, tableActions, resourceType, staticResourceData, match,
-      getResourceAction, userRole, highLightRowName, autoAction, showSidePanel } = this.props
+      getResourceAction, userAccess, highLightRowName, autoAction, showSidePanel } = this.props
     const { locale } = this.context
     const { normalizedKey } = staticResourceData
+    const userAccessHash = this.formatUserAccess(userAccess)
     const localResources = itemIds &&
       itemIds.map(
         id => items[id] || (Array.isArray(items)
@@ -342,9 +337,10 @@ export class ResourceTable extends React.Component {
             ? `${lodash.get(item, getPrimaryKey(resourceType))}-${lodash.get(item, getSecondaryKey(resourceType))}`
             : lodash.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
         }
-        const menuActions = item.metadata && tableActions && tableActions[item.metadata.namespace] || tableActions
-
-        const fliteredActions = menuActions ? fliterTableAction(menuActions,userRole,resourceType).slice(0) : null
+        const menuActions = item.metadata && item.metadata.namespace && tableActions && tableActions[item.metadata.namespace] || tableActions
+        const fliteredActions = Array.isArray(menuActions)
+          ? fliterTableAction(item.metadata.namespace, menuActions, userAccessHash, resourceType)
+          : []
 
         //This is for grc policy page highlight item auto open side panel
         if(showSidePanel && highLightRowName && autoAction
@@ -374,7 +370,7 @@ export class ResourceTable extends React.Component {
           }
         }
 
-        if (fliteredActions && fliteredActions.length > 0 && this.showTableToobar()) {
+        if (fliteredActions && fliteredActions.length > 0) {
           row.action = (
             <OverflowMenu floatingMenu flipped iconDescription={msgs.get('svg.description.overflowMenu', locale)} ariaLabel='Overflow-menu' tabIndex={0}>
               {fliteredActions.map((action) =>
@@ -431,6 +427,21 @@ export class ResourceTable extends React.Component {
       return undefined
     })
     return indeterminateStatus
+  }
+
+  formatUserAccess(userAccess) {
+    const userAccessHash = {}
+    if(Array.isArray(userAccess) && userAccess.length > 0) {
+      userAccess.forEach((singleNSAccess) => {
+        if (typeof singleNSAccess.rules === 'object') {
+          Object.keys(singleNSAccess.rules).forEach((key) => {
+            // use 'NS+API+Resource' as unique key for looking permission for each record on different NS
+            userAccessHash[`${singleNSAccess.namespace}/${key}`] = singleNSAccess.rules[key]
+          })
+        }
+      })
+    }
+    return userAccessHash
   }
 
 }
@@ -494,14 +505,13 @@ ResourceTable.propTypes = {
   totalFilteredItems: PropTypes.number,
   updateBrowserURL: PropTypes.func,
   updateSecondaryHeader: PropTypes.func,
-  userRole: PropTypes.string,
+  userAccess: PropTypes.array
 }
 
 const mapStateToProps = (state) => {
   const navRoutes = state.nav? (state.nav && state.nav.navItems) : state.nav
-  const userRole = state.role ? state.role.role : state.role
-
-  return { navRoutes, userRole }
+  const userAccess = state.userAccess.access
+  return { navRoutes, userAccess }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
