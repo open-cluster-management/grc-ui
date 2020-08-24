@@ -33,7 +33,6 @@ import msgs from '../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
 import config from '../../lib/shared/config'
-import { logger } from 'handlebars'
 
 resources(() => {
   require('../../scss/grc-view.scss')
