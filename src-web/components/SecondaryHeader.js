@@ -17,6 +17,7 @@ import { Breadcrumb, Button, Tabs, Tab, TooltipIcon } from 'carbon-components-re
 import resources from '../../lib/shared/resources'
 import { withRouter, Link } from 'react-router-dom'
 import msgs from '../../nls/platform.properties'
+import checkCreatePermission from './common/CheckCreatePermission'
 
 resources(() => {
   require('../../scss/secondary-header.scss')
@@ -59,7 +60,7 @@ export class SecondaryHeader extends React.Component {
     switch(displayType) {
     case 'all':
     default:
-      showCreationLink = this.checkCreatePermission(userAccess)
+      showCreationLink = checkCreatePermission(userAccess)
       break
     case 'findings':
       showCreationLink = 2
@@ -203,28 +204,6 @@ export class SecondaryHeader extends React.Component {
   clickTab(url) {
     this.props.history.push(url)
     return url
-  }
-
-  checkCreatePermission(userAccess) {
-    // if create policy permission on any ns, set flag to 1
-    let createFlag = 0
-    if (userAccess && typeof userAccess === 'object') {
-      const policyKey = 'policy.open-cluster-management.io/policies'
-      for (const singleNSAccess of userAccess) {
-        const rules = singleNSAccess.rules
-        if (Array.isArray(rules['*/*']) &&
-              (rules['*/*'].includes('*') || rules['*/*'].includes('create'))) {
-          createFlag = 1
-          break
-        }
-        if (Array.isArray(rules[policyKey]) &&
-              (rules[policyKey].includes('*') || rules[policyKey].includes('create'))) {
-          createFlag = 1
-          break
-        }
-      }
-    }
-    return createFlag
   }
 }
 
