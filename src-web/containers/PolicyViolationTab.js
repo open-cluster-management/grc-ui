@@ -27,6 +27,7 @@ import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
 import { HCMPolicyViolations } from '../../lib/client/queries'
 import NoResource from '../components/common/NoResource'
+import { LocaleContext } from '../components/common/LocaleContext'
 
 resources(() => {
   require('../../scss/policy-violation-tab.scss')
@@ -36,6 +37,8 @@ class PolicyViolationTab extends React.Component{
   constructor(props) {
     super(props)
   }
+
+  static contextType = LocaleContext
 
   componentDidUpdate(prevProps) {
     if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
@@ -51,7 +54,6 @@ class PolicyViolationTab extends React.Component{
     const policyName = urlSegments[urlSegments.length - 2]
     const {staticResourceData} = this.props
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
-
     if(namespace === null){
       return (<Loading withOverlay={false} className='content-spinner' />)
     }
@@ -59,33 +61,29 @@ class PolicyViolationTab extends React.Component{
     return (
       <Query query={HCMPolicyViolations} pollInterval={pollInterval} variables={{policyName: policyName, policyNamespace: namespace}}>
         {({ data, loading }) => {
-          if (loading && data && data.violations === undefined) {
+          if (loading || !data || !data.violations) {
             return (<Loading withOverlay={false} className='content-spinner' />)
-          }
-          if( data && data.violations && data.violations.length > 0){
-            return (<div className='policy-violation-tab'>
-              <h5 className='section-title'>Violations</h5>
-              <ResourceTableModule
-                definitionsKey='policyViolations'
-                staticResourceData={staticResourceData}
-                resourceData={data}
-                showModuleHeader={false}
-                showSearch={false}
-                showPagination={false}
-              />
-            </div>)
-          }
-          else {
-            return <NoResource title={msgs.get('table.title.no.violation', this.context.locale)} />
+          } else {
+            if (data.violations.length > 0) {
+              return (<div className='policy-violation-tab'>
+                <h5 className='section-title'>Violations</h5>
+                <ResourceTableModule
+                  definitionsKey='policyViolations'
+                  staticResourceData={staticResourceData}
+                  resourceData={data}
+                  showModuleHeader={false}
+                  showSearch={false}
+                  showPagination={false}
+                />
+              </div>)
+            } else {
+              return <NoResource title={msgs.get('table.title.no.violation', this.context.locale)} />
+            }
           }
         }}
       </Query>
     )
   }
-}
-
-PolicyViolationTab.contextTypes = {
-  locale: PropTypes.string
 }
 
 PolicyViolationTab.propTypes = {

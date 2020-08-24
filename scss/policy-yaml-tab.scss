@@ -68,6 +68,7 @@
       height: 100%;
       & * {
         font-family: unset;
+        font-size: var(--pf-global--FontSize--xs);
       }
       .codicon[class*='codicon-'] {
         font-family: codicon;

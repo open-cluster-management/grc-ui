@@ -25,6 +25,7 @@ import { updateSecondaryHeader } from '../actions/common'
 import { HCMComplianceList, HCMApplicationList } from '../../lib/client/queries'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
+import { LocaleContext } from '../components/common/LocaleContext'
 
 class PoliciesTab extends React.Component {
   static propTypes = {
@@ -32,6 +33,8 @@ class PoliciesTab extends React.Component {
     showApplications: PropTypes.bool,
     updateSecondaryHeader: PropTypes.func,
   }
+
+  static contextType = LocaleContext
 
   constructor (props) {
     super(props)
