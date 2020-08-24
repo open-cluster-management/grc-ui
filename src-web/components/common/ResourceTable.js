@@ -24,6 +24,7 @@ import lodash from 'lodash'
 import ResourceTableRowExpandableContent from './ResourceTableRowExpandableContent'
 import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
 import { fliterTableAction } from '../../../lib/client/access-helper'
+import { LocaleContext } from './LocaleContext'
 
 resources(() => {
   require('../../../scss/table.scss')
@@ -46,7 +47,7 @@ const {
   TableExpandedRow } = DataTable
 
 export class ResourceTable extends React.Component {
-
+  static contextType = LocaleContext
   render() {
     const { locale } = this.context
     const {
@@ -444,10 +445,6 @@ export class ResourceTable extends React.Component {
     return userAccessHash
   }
 
-}
-
-ResourceTable.contextTypes = {
-  locale: PropTypes.string
 }
 
 ResourceTable.propTypes = {

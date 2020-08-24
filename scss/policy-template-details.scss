@@ -1,0 +1,44 @@
+/* Copyright (c) 2020 Red Hat, Inc. */
+
+@import 'variables';
+
+.page-content-container {
+  .policy-template-details-view {
+    h2 {
+      font-family: RedHatText;
+      font-size: var(--pf-global--FontSize--md);
+      font-weight: var(--pf-global--FontWeight--bold);
+      background-color: $acm-background-color;
+    }
+    .details {
+      display: flex;
+      flex-direction: row;
+      .overview {
+        width: 50%;
+        background: $color__white;
+        margin-right: .75rem;
+        dl {
+          padding: 1rem;
+        }
+      }
+      .yaml {
+        width: 50%;
+        margin-left: .75rem;
+        .yamlEditorContainer {
+          height: 100%;
+          & * {
+            font-family: unset;
+            font-size: var(--pf-global--FontSize--xs);
+          }
+          .codicon[class*='codicon-'] {
+            font-family: codicon;
+          }
+        }
+      }
+    }
+    .table {
+      margin-top: 1.5rem;
+    }
+  }
+}
+

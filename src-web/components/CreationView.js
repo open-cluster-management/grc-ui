@@ -110,7 +110,6 @@ const controlData = [
     active: 'inform',
     available: ['inform', 'enforce'],  // in template, 'inform'===checkbox unchecked
     reverse: 'Policy[0].spec.remediationAction',
-    mustExist: true,
   },
   {
     name: 'creation.view.policy.disabled',
