@@ -52,7 +52,7 @@ router.get('*', (req, res) => {
 
 function fetchHeader(req, res, store, fetchHeaderContext) {
   const optionsUrlPrefix = `${config.get('headerUrl')}${config.get('headerContextPath')}/api/v1/header`
-  const optionsUrlQuery = `serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}&targetAPIGroups=${JSON.stringify(targetAPIGroups)}&raw=true`
+  const optionsUrlQuery = `serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}&targetAPIGroups=${JSON.stringify(targetAPIGroups)}`
   const options = {
     method: 'GET',
     url: `${optionsUrlPrefix}?${optionsUrlQuery}`,
