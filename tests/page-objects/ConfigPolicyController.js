@@ -18,7 +18,8 @@ module.exports = {
     createPolicyButton: '.bx--btn--primary:nth-of-type(1)',
     submitCreatePolicyButton: '#create-button-portal-id',
     yamlMonacoEditor: '.monaco-editor',
-    searchInput: 'input.bx--search-input',
+    searchInput: '#search',
+    searchInputClear: '#search ~ .bx--search-close',
     overflowButton: '.bx--overflow-menu:nth-of-type(1)',
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
@@ -50,6 +51,7 @@ module.exports = {
     deletePolicy,
     checkViolations,
     setSearchValue,
+    clearSearchValue,
     log,
     enforcePolicy,
     informPolicy,
@@ -112,6 +114,7 @@ function enforcePolicy(name){
   this.click('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
+  this.clearSearchValue()
 }
 
 function informPolicy(name){
@@ -133,6 +136,7 @@ function informPolicy(name){
   this.click('#inform-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
+  this.clearSearchValue()
 }
 
 function checkViolations(name, violationExpected, violationText) {
@@ -186,8 +190,17 @@ function deletePolicy(name){
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
-  this.pause(1000)
+  this.clearSearchValue()
   // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
+}
+
+function clearSearchValue(){
+  this.isVisible('@searchInputClear', result => {
+    if (result.value) {
+      this.click('@searchInputClear')
+    }
+  })
+  this.waitForElementNotVisible('@searchInputClear')
 }
 
 function setSearchValue(value){
