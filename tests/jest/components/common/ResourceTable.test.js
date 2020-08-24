@@ -13,26 +13,22 @@ import React from 'react'
 import { ResourceTable } from '../../../../src-web/components/common/ResourceTable'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
-import * as reducers from '../../../../src-web/reducers'
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import thunkMiddleware from 'redux-thunk'
 import GrcApolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
 import { resourceType, resourceType2,
   itemIds, itemIds2, items, items2,
-  items3, staticResourceData, staticResourceData2
+  items3, staticResourceData, staticResourceData2,
 } from './CommonTestingData'
+import configureMockStore from 'redux-mock-store'
+import {  reduxStorePolicyCluster } from '../ComponentsTestingData'
+
+const mockStore = configureMockStore()
+const storePolicyCluster = mockStore(reduxStorePolicyCluster)
 
 describe('ResourceTable no search with console url', () => {
   it('renders as expected', () => {
     const fn = jest.fn()
-    const preloadedState = window.__PRELOADED_STATE__
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
-      applyMiddleware(...middleware)
-    ))
     const history = {
       'length': 50,
       'action': 'POP',
@@ -45,7 +41,7 @@ describe('ResourceTable no search with console url', () => {
     }
     const component = renderer.create(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
-        <Provider store={store}>
+        <Provider store={storePolicyCluster}>
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData2}
@@ -78,12 +74,6 @@ describe('ResourceTable no search with console url', () => {
 describe('ResourceTable no search with empty console url', () => {
   it('renders as expected', () => {
     const fn = jest.fn()
-    const preloadedState = window.__PRELOADED_STATE__
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
-      applyMiddleware(...middleware)
-    ))
     const history = {
       'length': 50,
       'action': 'POP',
@@ -96,7 +86,7 @@ describe('ResourceTable no search with empty console url', () => {
     }
     const component = renderer.create(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
-        <Provider store={store}>
+        <Provider store={storePolicyCluster}>
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData2}
@@ -129,12 +119,6 @@ describe('ResourceTable no search with empty console url', () => {
 describe('ResourceTable no search with empty console url', () => {
   it('renders as expected', () => {
     const fn = jest.fn()
-    const preloadedState = window.__PRELOADED_STATE__
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
-      applyMiddleware(...middleware)
-    ))
     const history = {
       'length': 50,
       'action': 'POP',
@@ -147,7 +131,7 @@ describe('ResourceTable no search with empty console url', () => {
     }
     const component = renderer.create(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
-        <Provider store={store}>
+        <Provider store={storePolicyCluster}>
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData2}
@@ -180,12 +164,6 @@ describe('ResourceTable no search with empty console url', () => {
 describe('ResourceTable no search', () => {
   it('renders as expected', () => {
     const fn = jest.fn()
-    const preloadedState = window.__PRELOADED_STATE__
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
-      applyMiddleware(...middleware)
-    ))
     const history = {
       'length': 50,
       'action': 'POP',
@@ -198,7 +176,7 @@ describe('ResourceTable no search', () => {
     }
     const component = renderer.create(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
-        <Provider store={store}>
+        <Provider store={storePolicyCluster}>
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData}
@@ -231,12 +209,6 @@ describe('ResourceTable no search', () => {
 describe('ResourceTable no search', () => {
   it('renders as expected', () => {
     const fn = jest.fn()
-    const preloadedState = window.__PRELOADED_STATE__
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
-      applyMiddleware(...middleware)
-    ))
     const history = {
       'length': 50,
       'action': 'POP',
@@ -249,7 +221,7 @@ describe('ResourceTable no search', () => {
     }
     const component = renderer.create(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
-        <Provider store={store}>
+        <Provider store={storePolicyCluster}>
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData}
@@ -282,12 +254,6 @@ describe('ResourceTable no search', () => {
 describe('ResourceTable with search', () => {
   it('renders as expected', () => {
     const fn = jest.fn()
-    const preloadedState = window.__PRELOADED_STATE__
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
-      applyMiddleware(...middleware)
-    ))
     const history = {
       'length': 50,
       'action': 'POP',
@@ -300,7 +266,7 @@ describe('ResourceTable with search', () => {
     }
     const component = renderer.create(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
-        <Provider store={store}>
+        <Provider store={storePolicyCluster}>
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData}
@@ -333,12 +299,6 @@ describe('ResourceTable with search', () => {
 describe('ResourceTable not expandable', () => {
   it('renders as expected', () => {
     const fn = jest.fn()
-    const preloadedState = window.__PRELOADED_STATE__
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
-      applyMiddleware(...middleware)
-    ))
     const history = {
       'length': 50,
       'action': 'POP',
@@ -351,7 +311,7 @@ describe('ResourceTable not expandable', () => {
     }
     const component = renderer.create(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
-        <Provider store={store}>
+        <Provider store={storePolicyCluster}>
           <BrowserRouter>
             <ResourceTable
               staticResourceData={staticResourceData}

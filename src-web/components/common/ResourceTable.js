@@ -338,7 +338,7 @@ export class ResourceTable extends React.Component {
             : lodash.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
         }
         const menuActions = item.metadata && item.metadata.namespace && tableActions && tableActions[item.metadata.namespace] || tableActions
-        const fliteredActions = Array.isArray(menuActions)
+        const fliteredActions = (Array.isArray(menuActions) && item.metadata && item.metadata.namespace)
           ? fliterTableAction(item.metadata.namespace, menuActions, userAccessHash, resourceType)
           : []
 
@@ -510,7 +510,7 @@ ResourceTable.propTypes = {
 
 const mapStateToProps = (state) => {
   const navRoutes = state.nav? (state.nav && state.nav.navItems) : state.nav
-  const userAccess = state.userAccess.access
+  const userAccess = state.userAccess ? state.userAccess.access : []
   return { navRoutes, userAccess }
 }
 
