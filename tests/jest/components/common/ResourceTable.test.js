@@ -19,7 +19,10 @@ import thunkMiddleware from 'redux-thunk'
 import GrcApolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
-import { resourceType, resourceType2, itemIds, itemIds2, items, items2, items3, staticResourceData, staticResourceData2 } from './CommonTestingData'
+import { resourceType, resourceType2,
+  itemIds, itemIds2, items, items2,
+  items3, staticResourceData, staticResourceData2
+} from './CommonTestingData'
 
 describe('ResourceTable no search with console url', () => {
   it('renders as expected', () => {

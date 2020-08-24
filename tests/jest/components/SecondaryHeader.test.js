@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -16,7 +17,15 @@ import { shallow } from 'enzyme'
 import { SecondaryHeader } from '../../../src-web/components/SecondaryHeader'
 import { createMemoryHistory } from 'history'
 
-const history = createMemoryHistory({'length':5,'action':'PUSH','location':{'pathname':'/multicloud/policies/all','search':'','hash':''}})
+const history = createMemoryHistory({
+  'length':5,
+  'action':'PUSH',
+  'location':{
+    'pathname':'/multicloud/policies/all',
+    'search':'',
+    'hash':''
+  }
+})
 
 describe('SecondaryHeader component 1', () => {
   const location = {
@@ -45,7 +54,11 @@ describe('SecondaryHeader component 2', () => {
         title='hello world'
         tabs={tabs}
         location={location} history={history}
-        links={[{'id':'create-policy','label':'button.create.policy','url':'/multicloud/policies/create'}]}
+        links={[{
+          'id':'create-policy',
+          'label':'button.create.policy',
+          'url':'/multicloud/policies/create'
+        }]}
         userAccess={
           [
             {
@@ -68,7 +81,11 @@ describe('SecondaryHeader component 2', () => {
         title='hello world'
         tabs={tabs}
         location={location} history={history}
-        links={[{'id':'create-policy','label':'button.create.policy','url':'/multicloud/policies/create'}]}
+        links={[{
+          'id':'create-policy',
+          'label':'button.create.policy',
+          'url':'/multicloud/policies/create'
+        }]}
         userAccess={
           [
             {
@@ -98,7 +115,11 @@ describe('SecondaryHeader component 2', () => {
         title='hello world'
         tabs={tabs}
         location={location} history={history}
-        links={[{'id':'create-policy','label':'button.create.policy','url':'/multicloud/policies/create'}]}
+        links={[{
+          'id':'create-policy',
+          'label':'button.create.policy',
+          'url':'/multicloud/policies/create'
+        }]}
         userAccess={
           [
             {
@@ -139,9 +160,14 @@ describe('SecondaryHeader component 3', () => {
   }
   it('renders as expected', () => {
     const component = renderer.create(
-
-      // eslint-disable-next-line jsx-a11y/aria-role
-      <SecondaryHeader title='hello world' role='Viewer' tabs={tabs} location={location} history={history} />
+      <SecondaryHeader
+        title='hello world'
+        // eslint-disable-next-line jsx-a11y/aria-role
+        role='Viewer'
+        tabs={tabs}
+        location={location}
+        history={history}
+      />
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -153,7 +179,11 @@ describe('SecondaryHeader component 4', () => {
   }
   it('renders as expected', () => {
     const component = renderer.create(
-      <SecondaryHeader title='hello world' location={location} history={history} />
+      <SecondaryHeader
+        title='hello world'
+        location={location}
+        history={history}
+      />
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -197,7 +227,11 @@ describe('SecondaryHeader component 5', () => {
         title='hello world'
         location={location}
         history={history}
-        links={[{'id':'create-policy','label':'button.create.policy','url':'/multicloud/policies/create'}]}
+        links={[{
+          'id':'create-policy',
+          'label':'button.create.policy',
+          'url':'/multicloud/policies/create'
+        }]}
       />
     )
     expect(component.instance().renderLinks()).toMatchSnapshot()
@@ -208,7 +242,26 @@ describe('SecondaryHeader component 5', () => {
         title='hello world'
         location={location}
         history={history}
-        tabs={[{'id':'grc-overview','label':'tabs.grc.overview','url':'/multicloud/policies','index':0},{'id':'grc-all','label':'tabs.grc.all','url':'/multicloud/policies/all','index':1},{'id':'grc-findings','label':'tabs.grc.findings','url':'/multicloud/policies/findings','index':2}]}
+        tabs={[
+          {
+            'id':'grc-overview',
+            'label':'tabs.grc.overview',
+            'url':'/multicloud/policies',
+            'index':0
+          },
+          {
+            'id':'grc-all',
+            'label':'tabs.grc.all',
+            'url':'/multicloud/policies/all',
+            'index':1
+          },
+          {
+            'id':'grc-findings',
+            'label':'tabs.grc.findings',
+            'url':'/multicloud/policies/findings',
+            'index':2
+          }
+        ]}
       />
     )
     expect(component.instance().renderTabs()).toMatchSnapshot()
@@ -241,7 +294,32 @@ describe('SecondaryHeader component 5', () => {
         title='hello world'
         location={location}
         history={history}
-        breadcrumbItems={[{id:'id1', label:'label1', url:'www.test1.com', handleClick:jest.fn(), noLocale:true}, {id:'id2', label:'label2', url:'www.test2.com', noLocale:true}, {id:'id3', label:'label3', url:'www.test3.com', handleClick:jest.fn(), noLocale:false}, {id:'id4', label:'label4', url:'www.test4.com', noLocale:false}]}
+        breadcrumbItems={[
+          {
+            id:'id1',
+            label:'label1',
+            url:'www.test1.com',
+            handleClick:jest.fn(), noLocale:true
+          },
+          {
+            id:'id2',
+            label:'label2',
+            url:'www.test2.com',
+            noLocale:true
+          },
+          {
+            id:'id3',
+            label:'label3',
+            url:'www.test3.com',
+            handleClick:jest.fn(),
+            noLocale:false
+          },
+          {
+            id:'id4',
+            label:'label4',
+            url:'www.test4.com',
+            noLocale:false
+          }]}
       />
     )
     expect(component.instance().renderBreadCrumb()).toMatchSnapshot()

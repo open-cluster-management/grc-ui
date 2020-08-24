@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 /*
@@ -166,7 +167,13 @@ describe('modal reducer', () => {
         }
       }
     }
-    const expectedValue = {'reqCount': 0, 'reqErrCount': 1, 'reqErrorMsg': 'test', 'reqStatus': 'ERROR', 'test': 'test'}
+    const expectedValue = {
+      'reqCount': 0,
+      'reqErrCount': 1,
+      'reqErrorMsg': 'test',
+      'reqStatus': 'ERROR',
+      'test': 'test'
+    }
     expect(modal(state, action)).toEqual(expectedValue)
   })
 
@@ -182,7 +189,13 @@ describe('modal reducer', () => {
         }
       }
     }
-    const expectedValue = {'reqCount': 0, 'reqErrCount': 1, 'reqErrorMsg': 'test', 'reqStatus': 'ERROR', 'test': 'test'}
+    const expectedValue = {
+      'reqCount': 0,
+      'reqErrCount': 1,
+      'reqErrorMsg': 'test',
+      'reqStatus': 'ERROR',
+      'test': 'test'
+    }
     expect(modal(state, action)).toEqual(expectedValue)
   })
 
@@ -194,7 +207,13 @@ describe('modal reducer', () => {
       type: Actions.DEL_RECEIVE_FAILURE,
       err: [{message: 'test'}]
     }
-    const expectedValue = {'reqCount': 0, 'reqErrCount': 1, 'reqErrorMsg': 'test', 'reqStatus': 'ERROR', 'test': 'test'}
+    const expectedValue = {
+      'reqCount': 0,
+      'reqErrCount': 1,
+      'reqErrorMsg': 'test',
+      'reqStatus': 'ERROR',
+      'test': 'test'
+    }
     expect(modal(state, action)).toEqual(expectedValue)
   })
 
@@ -208,7 +227,13 @@ describe('modal reducer', () => {
       type: Actions.DEL_RECEIVE_FAILURE,
       err: [{message: 'test'}]
     }
-    const expectedValue = {'reqCount': 6, 'reqErrCount': 6, 'reqErrorMsg': 'test', 'reqStatus': 'ERROR', 'test': 'test'}
+    const expectedValue = {
+      'reqCount': 6,
+      'reqErrCount': 6,
+      'reqErrorMsg': 'test',
+      'reqStatus': 'ERROR',
+      'test': 'test'
+    }
     expect(modal(state, action)).toEqual(expectedValue)
   })
 

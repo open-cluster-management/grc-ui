@@ -27,7 +27,15 @@ import { createMemoryHistory } from 'history'
 const mockStore = configureMockStore()
 const storePolicyCluster = mockStore(reduxStorePolicyCluster)
 const storeFindingCluster = mockStore(reduxStoreFindingCluster)
-const history = createMemoryHistory({'length':5,'action':'PUSH','location':{'pathname':'/multicloud/policies/all','search':'','hash':''}})
+const history = createMemoryHistory({
+  'length':5,
+  'action':'PUSH',
+  'location':{
+    'pathname':'/multicloud/policies/all',
+    'search':'',
+    'hash':''
+  }
+})
 
 describe('GrcView component 1', () => {
   const location = {
@@ -264,8 +272,10 @@ describe('GrcView handleDrillDownClickGrcView', () => {
         secondaryHeaderProps={GrcViewSecondaryHeaderProps}
       />
     )
-    expect(wrapper.instance().handleDrillDownClickGrcView()).toEqual('card=false&index=0&toggle=false')
-    expect(wrapper.instance().handleDrillDownClickGrcView('standards', 'HIPAA', 'cluster')).toEqual('card=false&index=1&toggle=false')
+    expect(wrapper.instance().handleDrillDownClickGrcView())
+      .toEqual('card=false&index=0&toggle=false')
+    expect(wrapper.instance().handleDrillDownClickGrcView('standards', 'HIPAA', 'cluster'))
+      .toEqual('card=false&index=1&toggle=false')
   })
   it('renders as expected', () => {
     const wrapper = shallow(
@@ -281,8 +291,13 @@ describe('GrcView handleDrillDownClickGrcView', () => {
         secondaryHeaderProps={GrcViewSecondaryHeaderProps}
       />
     )
-    expect(wrapper.instance().handleDrillDownClickGrcView('standards', 'HIPAA', 'policy')).toEqual('card=false&index=0&toggle=false')
-    expect(wrapper.instance().handleDrillDownClickGrcView('categories', 'System And Communications Protections', 'cluster')).toEqual('card=false&index=1&toggle=false')
+    expect(wrapper.instance().handleDrillDownClickGrcView('standards', 'HIPAA', 'policy'))
+      .toEqual('card=false&index=0&toggle=false')
+    expect(wrapper.instance().handleDrillDownClickGrcView(
+      'categories',
+      'System And Communications Protections',
+      'cluster')
+    ).toEqual('card=false&index=1&toggle=false')
   })
   it('renders as expected', () => {
     const wrapper = shallow(
@@ -298,7 +313,11 @@ describe('GrcView handleDrillDownClickGrcView', () => {
         secondaryHeaderProps={GrcViewSecondaryHeaderProps}
       />
     )
-    expect(wrapper.instance().handleDrillDownClickGrcView('categories', 'System And Information Integrity', 'finding')).toEqual('card=false&index=0&toggle=false')
+    expect(wrapper.instance().handleDrillDownClickGrcView(
+      'categories',
+      'System And Information Integrity',
+      'finding')
+    ).toEqual('card=false&index=0&toggle=false')
   })
   it('renders as expected', () => {
     const wrapper = shallow(
@@ -314,7 +333,9 @@ describe('GrcView handleDrillDownClickGrcView', () => {
         secondaryHeaderProps={GrcViewSecondaryHeaderProps}
       />
     )
-    expect(wrapper.instance().handleDrillDownClickGrcView('standards', 'NIST', 'severity', 'High')).toEqual('card=false&index=0&toggle=false')
+    expect(wrapper.instance().handleDrillDownClickGrcView(
+      'standards', 'NIST', 'severity', 'High')
+    ).toEqual('card=false&index=0&toggle=false')
   })
 })
 

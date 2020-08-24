@@ -6,8 +6,13 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
-import {getDefaultSearchField, getDefaultSortField, getLink, getPrimaryKey, getSecondaryKey, getTableKeys, getURIKey } from '../../../src-web/definitions/index'
+import {
+  getDefaultSearchField, getDefaultSortField,
+  getLink, getPrimaryKey, getSecondaryKey,
+  getTableKeys, getURIKey
+} from '../../../src-web/definitions/index'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 
 // eslint-disable-next-line no-console

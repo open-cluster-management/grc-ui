@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -17,7 +18,11 @@ describe('CreateResourceModal modal', () => {
   it('renders as expected', () => {
     const component = shallow(<ResourceModal
       open={true}
-      label={{'primaryBtn':'modal.button.submit','label':'modal.edit-hcmpolicypolicy.label','heading':'modal.edit-hcmpolicypolicy.heading'}}
+      label={{
+        'primaryBtn':'modal.button.submit',
+        'label':'modal.edit-hcmpolicypolicy.label',
+        'heading':'modal.edit-hcmpolicypolicy.heading'
+      }}
       locale={'en-US'}
       resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
       data={resourceModalData}
@@ -29,7 +34,11 @@ describe('CreateResourceModal modal', () => {
     const component = shallow(<ResourceModal
       reqCount={2}
       open={true}
-      label={{'primaryBtn':'modal.button.submit','label':'modal.edit-hcmpolicypolicy.label','heading':'modal.edit-hcmpolicypolicy.heading'}}
+      label={{
+        'primaryBtn':'modal.button.submit',
+        'label':'modal.edit-hcmpolicypolicy.label',
+        'heading':'modal.edit-hcmpolicypolicy.heading'
+      }}
       locale={'en-US'}
       resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
       data={resourceModalData}
@@ -52,7 +61,11 @@ describe('CreateResourceModal modal', () => {
     }
     const component = shallow(<ResourceModal
       open={true}
-      label={{'primaryBtn':'modal.button.submit','label':'modal.edit-hcmpolicypolicy.label','heading':'modal.edit-hcmpolicypolicy.heading'}}
+      label={{
+        'primaryBtn':'modal.button.submit',
+        'label':'modal.edit-hcmpolicypolicy.label',
+        'heading':'modal.edit-hcmpolicypolicy.heading'
+      }}
       locale={'en-US'}
       resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
       clearRequestStatus={jest.fn()}
