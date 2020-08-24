@@ -11,6 +11,7 @@
 @import 'node_modules/carbon-components/scss/globals/scss/styles';
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
 @import 'node_modules/carbon-components/scss/globals/scss/_helper-mixins';
+@import '../node_modules/@patternfly/react-core/dist/styles/base.css';
 @import 'header-carbon-v9-migration';
 @import 'variables';
 @import '_red-hat-font';
@@ -24,6 +25,7 @@ li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, 
 article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary, time, mark, audio, video {
   font-family: RedHatText;
+  font-size: var(--pf-global--FontSize--sm);
 }
 
 .bx--link, .bx--label, .bx--search-input, .bx--overflow-menu-options__btn, 
@@ -33,6 +35,10 @@ menu, nav, output, ruby, section, summary, time, mark, audio, video {
 .bx--tooltip__label, .bx--tag, .bx--pagination, .bx--select, .bx--label, 
 .bx--select-input {
   font-family: RedHatText;
+}
+
+.pf-c-table tr > * {
+  --pf-c-table--cell--FontSize: var(--pf-global--FontSize--sm);
 }
 
 html {
@@ -46,6 +52,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $acm-background-color;
+  
   .bx--data-table-v2{
     thead{
       background-color: $acm-background-color;
@@ -57,6 +64,10 @@ body {
   .bx--tooltip--shown {
     font-size: .875rem;
   }
+}
+
+.patternfly-spinner {
+  margin: 20% 50%;
 }
 
 .page-content-container {
@@ -171,6 +182,7 @@ body {
       
       & * {
         font-family: unset;
+        font-size: var(--pf-global--FontSize--xs);
       }
     
       .codicon[class*='codicon-'] {
@@ -178,4 +190,8 @@ body {
       }
     }
   }
+}
+
+.pattern-fly-table {
+  background-color: white;
 }
