@@ -196,7 +196,7 @@ describe('GrcView component 6', () => {
   })
 })
 
-describe('GrcView component 7', () => {
+describe('GrcView component 7 has create permission', () => {
   const location = {
     pathname: '/multicloud/policies/all',
     search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
@@ -215,6 +215,7 @@ describe('GrcView component 7', () => {
             grcItems={[]}
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
+            access={reduxStorePolicyCluster.userAccess.access}
           />
         </BrowserRouter>
       </Provider>
@@ -223,7 +224,35 @@ describe('GrcView component 7', () => {
   })
 })
 
-describe('GrcView component 8', () => {
+describe('GrcView component 8 has not create permission', () => {
+  const location = {
+    pathname: '/multicloud/policies/all',
+    search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
+  }
+  it('renders as expected', () => {
+    const component = renderer.create(
+      <Provider store={storePolicyCluster}>
+        <BrowserRouter>
+          <GrcView
+            title='Test7'
+            history={history}
+            location={location}
+            loading={false}
+            error={null}
+            activeFilters={{'standards':['HIPAA']}}
+            grcItems={[]}
+            refreshControl={GrcViewRefreshControl}
+            secondaryHeaderProps={GrcViewSecondaryHeaderProps}
+            access={[]}
+          />
+        </BrowserRouter>
+      </Provider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
+
+describe('GrcView component 9', () => {
   const location = {
     pathname: '/multicloud/policies/findings',
     search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'

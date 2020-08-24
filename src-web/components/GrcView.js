@@ -33,6 +33,7 @@ import msgs from '../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
 import config from '../../lib/shared/config'
+import { logger } from 'handlebars'
 
 resources(() => {
   require('../../scss/grc-view.scss')
@@ -128,9 +129,9 @@ export class GrcView extends React.Component {
     const { locale } = this.context
     const showApplications = this.props.showApplications
     const { viewState } = this.state
-    const { 
-      loading, error, grcItems, applications, activeFilters={}, 
-      secondaryHeaderProps, refreshControl, location, userAccess
+    const {
+      loading, error, grcItems, applications, activeFilters={},
+      secondaryHeaderProps, refreshControl, location, access
     } = this.props
     if (loading) {
       return <Loading withOverlay={false} className='content-spinner' />
@@ -147,7 +148,7 @@ export class GrcView extends React.Component {
 
     const displayType = location.pathname.split('/').pop()
     let filterGrcItems, filterToEmpty = false
-    const showCreationLink = checkCreatePermission(userAccess)
+    const showCreationLink = checkCreatePermission(access)
     switch(displayType) {
     case 'all':
     default:
@@ -292,6 +293,7 @@ export class GrcView extends React.Component {
 }
 
 GrcView.propTypes = {
+  access: PropTypes.array,
   activeFilters: PropTypes.object,
   applications: PropTypes.array,
   error: PropTypes.object,
@@ -304,15 +306,15 @@ GrcView.propTypes = {
   showApplications: PropTypes.bool,
   updateActiveFilters: PropTypes.func,
   updateResourceToolbar: PropTypes.func,
-  userAccess: PropTypes.array
 }
 
 const mapStateToProps = (state) => {
   const {
     resourceToolbar: {activeFilters},
-    userAccess: {access}
+    userAccess
   } = state
-  return { activeFilters, userAccess:access}
+  const access = userAccess && userAccess.access ? userAccess.access : []
+  return { activeFilters, access}
 }
 
 const mapDispatchToProps = (dispatch) => {

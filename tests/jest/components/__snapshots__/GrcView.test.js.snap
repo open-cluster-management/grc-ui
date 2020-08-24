@@ -2371,7 +2371,7 @@ exports[`GrcView component 6 renders as expected 1`] = `
 </div>
 `;
 
-exports[`GrcView component 7 renders as expected 1`] = `
+exports[`GrcView component 7 has create permission renders as expected 1`] = `
 <div>
   <div
     className="no-resource"
@@ -2448,7 +2448,56 @@ exports[`GrcView component 7 renders as expected 1`] = `
 </div>
 `;
 
-exports[`GrcView component 8 renders as expected 1`] = `
+exports[`GrcView component 8 has not create permission renders as expected 1`] = `
+<div>
+  <div
+    className="no-resource"
+  >
+    <img
+      alt="No resource"
+      className="no-resource-icon"
+      src="undefined/graphics/no-policy.svg"
+    />
+    <div
+      className="no-resource-text-info"
+    >
+      <div
+        className="no-resource-title"
+      >
+        Get set-up to track your governance and risk.
+      </div>
+      <div
+        className="no-resource-detail"
+      >
+        We noticed that you didn't have any policies created yet. You can view our documentation to see some samples for creating new policies, or you can go ahead and create one now!
+      </div>
+    </div>
+    <div
+      className="button-group"
+    >
+      0
+      <div
+        className="buttons"
+      >
+        <button
+          className="bx--btn bx--btn--sm bx--btn--secondary"
+        >
+          <a
+            aria-describedby="launchWindow"
+            className="doc-link"
+            href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
+            target="doc"
+          >
+            View documentation
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GrcView component 9 renders as expected 1`] = `
 <div>
   <div
     className="no-resource"
