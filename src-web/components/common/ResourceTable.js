@@ -374,22 +374,27 @@ export class ResourceTable extends React.Component {
         if (fliteredActions && fliteredActions.length > 0) {
           row.action = (
             <OverflowMenu floatingMenu flipped iconDescription={msgs.get('svg.description.overflowMenu', locale)} ariaLabel='Overflow-menu' tabIndex={0}>
-              {fliteredActions.map((action) =>
-                <OverflowMenuItem
+              {fliteredActions.map((action) => {
+                const disableFlag = action.includes('disabled.')
+                if (disableFlag) {
+                  action = action.replace('disabled.', '')
+                }
+                return <OverflowMenuItem
+                  disabled={disableFlag}
                   data-table-action={action}
                   isDelete={
                     action ==='table.actions.remove' ||
-                    action ==='table.actions.policy.remove' ||
-                    action ==='table.actions.applications.remove' ||
-                    action ==='table.actions.compliance.remove' ||
-                    action ==='table.actions.finding.remove'
+                                  action ==='table.actions.policy.remove' ||
+                                  action ==='table.actions.applications.remove' ||
+                                  action ==='table.actions.compliance.remove' ||
+                                  action ==='table.actions.finding.remove'
                   }
                   onClick={() => getResourceAction(action, item, null, history, locale)}
                   primaryFocus={true}
                   key={action}
                   itemText={msgs.get(action, locale)}
                 />
-              )}
+              })}
             </OverflowMenu>
           )
         }
