@@ -25,7 +25,7 @@ import { Link, withRouter } from 'react-router-dom'
 import lodash from 'lodash'
 import ResourceTableRowExpandableContent from './ResourceTableRowExpandableContent'
 import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
-import filterTableAction from './filterTableAction'
+import filterUserAction from './FilterUserAction'
 import { LocaleContext } from './LocaleContext'
 import formatUserAccess from './FormatUserAccess'
 
@@ -367,7 +367,7 @@ export class ResourceTable extends React.Component {
         const menuActions = item.metadata && item.metadata.namespace && tableActions
                                 && tableActions[item.metadata.namespace] || tableActions
         const filteredActions = (Array.isArray(menuActions) && menuActions.length > 0)
-          ? filterTableAction(item, menuActions, userAccessHash, resourceType)
+          ? filterUserAction(item, menuActions, userAccessHash, resourceType)
           : []
 
         //This is for grc policy page highlight item auto open side panel

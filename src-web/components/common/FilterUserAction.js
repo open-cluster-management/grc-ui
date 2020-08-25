@@ -1,7 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-const filterTableAction = (data,actions,userAccessHash,resourceType) => {
+const filterUserAction = (data,actions,userAccessHash,resourceType) => {
   let actionList = []
   if(resourceType && resourceType.name && Array.isArray(actions)) {
     let adminRules = [], typeRules = []
@@ -101,4 +101,4 @@ function buildActionList(actions, rulesSet, actionList) {
   return actionList
 }
 
-export default filterTableAction
+export default filterUserAction

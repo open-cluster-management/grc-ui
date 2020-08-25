@@ -24,7 +24,7 @@ import { connect } from 'react-redux'
 import StatusField from '../../components/common/StatusField'
 import _uniqueId from 'lodash/uniqueId'
 import formatUserAccess from './FormatUserAccess'
-import filterTableAction from './filterTableAction'
+import filterUserAction from './FilterUserAction'
 
 resources(() => {
   require('../../../scss/structured-list-with-actions.scss')
@@ -45,7 +45,7 @@ const StructuredListModule = ({
   const resourceType = {name: title}
   const userAccessHash = formatUserAccess(userAccess)
   const filteredActions = (Array.isArray(actions) && actions.length > 0)
-    ? filterTableAction(data, actions, userAccessHash, resourceType)
+    ? filterUserAction(data, actions, userAccessHash, resourceType)
     : []
   if(!data){
     return <Module className='structured-list-module'>
