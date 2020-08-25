@@ -67,13 +67,21 @@ class PolicyTemplates extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.ERROR && (this.state.reqStatus !== nextProps.reqStatus)) {
+    if (
+      nextProps.reqStatus &&
+      nextProps.reqStatus === REQUEST_STATUS.ERROR &&
+      (this.state.reqStatus !== nextProps.reqStatus)
+    ) {
       this.setState({
         reqStatus: nextProps.reqStatus,
         reqErrorMsg: nextProps.reqErrorMsg
       })
     }
-    if (nextProps.reqStatus && nextProps.reqStatus === REQUEST_STATUS.DONE && this.state.updated) {
+    if (
+      nextProps.reqStatus &&
+      nextProps.reqStatus === REQUEST_STATUS.DONE &&
+      this.state.updated
+    ) {
       this.setState({
         readOnly: true
       })
@@ -90,7 +98,12 @@ class PolicyTemplates extends React.Component {
   }
 
   handleSubmitClick() {
-    const { editResource:localEditResource, resourceType, resourceData, resourcePath } = this.props
+    const {
+      editResource:localEditResource,
+      resourceType,
+      resourceData,
+      resourcePath
+    } = this.props
     const { yaml }  = this.state
     let resource
     try {
@@ -124,11 +137,21 @@ class PolicyTemplates extends React.Component {
   render() {
     const { headerKey, editable, reqStatus, className } = this.props
     return (
-      // <Module className='structured-list-module' id={`yaml-template-${headerKey}`}>
-      <Module className={className ? className :'structured-list-module'} id='yaml-template'>
+      <Module
+        className={
+          className
+            ? className
+            :'structured-list-module'
+        }
+        id='yaml-template'
+      >
         <div>
           <ModuleHeader>
-            {`${msgs.get(headerKey, this.context.locale)}${this.state.updated? ' -  updated' : ''}`}
+            {`${
+              msgs.get(headerKey, this.context.locale)}${this.state.updated
+              ? ' -  updated'
+              : ''
+            }`}
           </ModuleHeader>
           {editable &&
           <div className='yaml-editor-button'>

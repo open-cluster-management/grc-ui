@@ -12,7 +12,9 @@
 import React from 'react'
 import resources from '../../../lib/shared/resources'
 import { PAGE_SIZES } from '../../actions/index'
-import { PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox, TooltipIcon } from 'carbon-components-react'
+import {
+  PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox, TooltipIcon
+} from 'carbon-components-react'
 import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import { transform } from '../../../lib/client/resource-helper'
@@ -23,8 +25,9 @@ import { Link, withRouter } from 'react-router-dom'
 import lodash from 'lodash'
 import ResourceTableRowExpandableContent from './ResourceTableRowExpandableContent'
 import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
-import { filterTableAction } from '../../../lib/client/access-helper'
+import filterTableAction from '../../../lib/client/access-helper'
 import { LocaleContext } from './LocaleContext'
+import formatUserAccess from './FormatUserAccess'
 
 resources(() => {
   require('../../../scss/table.scss')
@@ -78,7 +81,9 @@ export class ResourceTable extends React.Component {
 
     const showSearch = lodash.get(this.props, 'showSearch', true)
     const showPagination = lodash.get(this.props, 'showPagination', true)
-    const id = (staticResourceData && staticResourceData.resourceKey) ? `${staticResourceData.resourceKey}-` : ''
+    const id = (staticResourceData && staticResourceData.resourceKey)
+      ? `${staticResourceData.resourceKey}-`
+      : ''
     const firstResKeyStr = 'tableKeys[0].resourceKey'
 
     const PagenationComponent = showPagination ?
@@ -93,10 +98,13 @@ export class ResourceTable extends React.Component {
         disabled={pageSize >= totalFilteredItems}
         isLastPage={pageSize >= totalFilteredItems}
         itemsPerPageText={msgs.get('pagination.itemsPerPage', this.context.locale)}
-        pageRangeText={(current, total) => msgs.get('pagination.pageRange', [current, total], this.context.locale)}
+        pageRangeText={(current, total) =>
+          msgs.get('pagination.pageRange', [current, total], this.context.locale)}
         itemRangeText={(min, max, total) => {
           const itemRange = msgs.get('pagination.itemRange', [min, max], this.context.locale)
-          const itemRangeDescription = msgs.get('pagination.itemRangeDescription', [total], this.context.locale)
+          const itemRangeDescription = msgs.get(
+            'pagination.itemRangeDescription', [total], this.context.locale
+          )
           return `${itemRange} ${itemRangeDescription}`
         }
         }
@@ -131,12 +139,14 @@ export class ResourceTable extends React.Component {
                   {selectableTable &&
                     <th scope='col'>
                       <Checkbox
-                        checked={itemIds && itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length}
+                        checked={itemIds &&
+                          itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length}
                         indeterminate={this.getIndeterminateStatus()}
                         id={'select-all'}
                         name={'select-all'}
                         onChange={onSelectAll}
-                        data-selected={itemIds && itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length}
+                        data-selected={itemIds &&
+                          itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length}
                         labelText={''}
                         aria-label={msgs.get(itemIds.filter(item =>
                           items[item] &&
@@ -153,7 +163,10 @@ export class ResourceTable extends React.Component {
                           <div
                             role={'button'}
                             tabIndex={0}
-                            title={msgs.get(`svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`, this.context.locale)}
+                            title={msgs.get(
+                              `svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`,
+                              this.context.locale
+                            )}
                             onClick={handleSort}
                             onKeyPress={handleSort}
                             className={
@@ -174,7 +187,10 @@ export class ResourceTable extends React.Component {
                             <Icon
                               className='bx--table-sort-v2__icon'
                               name='caret--down'
-                              description={msgs.get(`svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`, this.context.locale)} />
+                              description={msgs.get(
+                                `svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`,
+                                this.context.locale
+                              )} />
                           </div>
                         </th>
                       )
@@ -195,7 +211,9 @@ export class ResourceTable extends React.Component {
                             {...getRowProps(
                               { row,
                                 'data-row-name': lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)),
-                                'aria-hidden': expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0),
+                                'aria-hidden': expandableTable && (
+                                  items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0
+                                ),
                                 className:
                                   (lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)) === highLightRowName)
                                     ? 'high-light'
@@ -216,7 +234,13 @@ export class ResourceTable extends React.Component {
                                   name={`select-checkbox-row-${row.id}`}
                                   onChange={onSelect}
                                   labelText={''}
-                                  aria-label={msgs.get(items[row.id] && items[row.id].selected ? 'unselect' : 'select', this.context.locale)} />
+                                  aria-label={msgs.get(
+                                    items[row.id] &&
+                                    items[row.id].selected
+                                      ? 'unselect'
+                                      : 'select', this.context.locale
+                                  )}
+                                />
                               </TableCell>
                             }
                             {row.cells.map(cell => {
@@ -322,11 +346,13 @@ export class ResourceTable extends React.Component {
       getResourceAction, userAccess, highLightRowName, autoAction, showSidePanel } = this.props
     const { locale } = this.context
     const { normalizedKey } = staticResourceData
-    const userAccessHash = this.formatUserAccess(userAccess)
+    const userAccessHash = formatUserAccess(userAccess)
     const localResources = itemIds &&
       itemIds.map(
         id => items[id] || (Array.isArray(items)
-        && items.find(target =>  (normalizedKey && lodash.get(target, normalizedKey) === id) || (target.name === id)))
+        && items.find(target =>
+          (normalizedKey && lodash.get(target, normalizedKey) === id) || (target.name === id)
+        ))
       )
     if (localResources && localResources.length > 0) {
       return localResources.map((item, index) => {
@@ -338,7 +364,8 @@ export class ResourceTable extends React.Component {
             ? `${lodash.get(item, getPrimaryKey(resourceType))}-${lodash.get(item, getSecondaryKey(resourceType))}`
             : lodash.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
         }
-        const menuActions = item.metadata && item.metadata.namespace && tableActions && tableActions[item.metadata.namespace] || tableActions
+        const menuActions = item.metadata && item.metadata.namespace && tableActions
+                                && tableActions[item.metadata.namespace] || tableActions
         const filteredActions = (Array.isArray(menuActions) && menuActions.length > 0)
           ? filterTableAction(item, menuActions, userAccessHash, resourceType)
           : []
@@ -360,7 +387,7 @@ export class ResourceTable extends React.Component {
         //changes menu item based on whether policy is enabled or disabled
         row.disabled = false
         row.remediation = 'inform'
-        if (filteredActions !== null && filteredActions.length === 5) {
+        if (Array.isArray(filteredActions) && filteredActions.length === 5) {
           if (this.checkPolicyDisabled(item)) {
             filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
             row.disabled = true
@@ -371,9 +398,15 @@ export class ResourceTable extends React.Component {
           }
         }
 
-        if (filteredActions && filteredActions.length > 0) {
+        if (Array.isArray(filteredActions) && filteredActions.length > 0) {
           row.action = (
-            <OverflowMenu floatingMenu flipped iconDescription={msgs.get('svg.description.overflowMenu', locale)} ariaLabel='Overflow-menu' tabIndex={0}>
+            <OverflowMenu
+              floatingMenu
+              flipped
+              iconDescription={msgs.get('svg.description.overflowMenu', locale)}
+              ariaLabel='Overflow-menu'
+              tabIndex={0}
+            >
               {filteredActions.map((action) => {
                 const disableFlag = action.includes('disabled.')
                 if (disableFlag) {
@@ -384,10 +417,10 @@ export class ResourceTable extends React.Component {
                   data-table-action={action}
                   isDelete={
                     action ==='table.actions.remove' ||
-                                  action ==='table.actions.policy.remove' ||
-                                  action ==='table.actions.applications.remove' ||
-                                  action ==='table.actions.compliance.remove' ||
-                                  action ==='table.actions.finding.remove'
+                    action ==='table.actions.policy.remove' ||
+                    action ==='table.actions.applications.remove' ||
+                    action ==='table.actions.compliance.remove' ||
+                    action ==='table.actions.finding.remove'
                   }
                   onClick={() => getResourceAction(action, item, null, history, locale)}
                   primaryFocus={true}
@@ -434,22 +467,6 @@ export class ResourceTable extends React.Component {
     })
     return indeterminateStatus
   }
-
-  formatUserAccess(userAccess) {
-    const userAccessHash = {}
-    if(Array.isArray(userAccess) && userAccess.length > 0) {
-      userAccess.forEach((singleNSAccess) => {
-        if (typeof singleNSAccess.rules === 'object') {
-          Object.keys(singleNSAccess.rules).forEach((key) => {
-            // use 'NS+API+Resource' as unique key for looking permission for each record on different NS
-            userAccessHash[`${singleNSAccess.namespace}/${key}`] = singleNSAccess.rules[key]
-          })
-        }
-      })
-    }
-    return userAccessHash
-  }
-
 }
 
 ResourceTable.propTypes = {
@@ -507,19 +524,19 @@ ResourceTable.propTypes = {
   totalFilteredItems: PropTypes.number,
   updateBrowserURL: PropTypes.func,
   updateSecondaryHeader: PropTypes.func,
-  userAccess: PropTypes.array
+  userAccess: PropTypes.array,
 }
 
 const mapStateToProps = (state) => {
-  const navRoutes = state.nav? (state.nav && state.nav.navItems) : state.nav
   const userAccess = state.userAccess ? state.userAccess.access : []
-  return { navRoutes, userAccess }
+  return { userAccess }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const resourceType = ownProps.subResourceType || ownProps.resourceType
   return {
-    getResourceAction: (action, resource, hasService, history, locale) => resourceActions(action, dispatch, resourceType, resource, hasService, history, locale)
+    getResourceAction: (action, resource, hasService, history, locale) =>
+      resourceActions(action, dispatch, resourceType, resource, hasService, history, locale)
   }
 }
 

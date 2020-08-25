@@ -23,6 +23,8 @@ import { resourceActions } from './ResourceTableRowMenuItemActions'
 import { connect } from 'react-redux'
 import StatusField from '../../components/common/StatusField'
 import _uniqueId from 'lodash/uniqueId'
+import formatUserAccess from './FormatUserAccess'
+import filterTableAction from '../../../lib/client/access-helper'
 
 resources(() => {
   require('../../../scss/structured-list-with-actions.scss')
@@ -38,59 +40,91 @@ const StructuredListModule = ({
   textEditButton,
   getResourceAction,
   clusterStatus,
+  userAccess
 }, context) =>{
+  const resourceType = {name: title}
+  const userAccessHash = formatUserAccess(userAccess)
+  const filteredActions = (Array.isArray(actions) && actions.length > 0)
+    ? filterTableAction(data, actions, userAccessHash, resourceType)
+    : []
   if(!data){
-    return <Module className='structured-list-module'><StructuredListSkeleton className='content-spinner' /></Module>
+    return <Module className='structured-list-module'>
+      <StructuredListSkeleton className='content-spinner' />
+    </Module>
   }
   else{
     return <Module className='structured-list-module' id={id}>
       <div className='bx--module__header' style={{justifyContent: 'space-between'}} >
         <h1 className='bx--module__title'>{msgs.get(title, context.locale)}</h1>
         {
-          actions && actions.length > 0 && (actions.length === 1 && actions[0] === 'table.actions.edit' && textEditButton)
+          Array.isArray(filteredActions) && filteredActions.length > 0 && (filteredActions.length === 1
+            && filteredActions[0].includes('table.actions.edit') && textEditButton)
             ?
             (<Button small
+              disabled={filteredActions[0].includes('disabled.')}
               className='text-edit-button'
-              onClick={() => getResourceAction(actions[0], data, null, history, context.locale)}>
+              onClick={() => getResourceAction(
+                filteredActions[0].replace('disabled.', ''), data, null, history, context.locale
+              )}>
               {msgs.get('table.actions.edit', context.locale)}
             </Button>
             )
             :
-            (<OverflowMenu floatingMenu flipped iconDescription={msgs.get('svg.description.overflowMenu', context.locale)}>
-              {actions.map((action) => (
-                <OverflowMenuItem
+            (<OverflowMenu
+              floatingMenu
+              flipped
+              iconDescription={msgs.get('svg.description.overflowMenu', context.locale)}
+            >
+              {Array.isArray(filteredActions) && filteredActions.map((action) => {
+                const disableFlag = action.includes('disabled.')
+                if (disableFlag) {
+                  action = action.replace('disabled.', '')
+                }
+                return <OverflowMenuItem
+                  disabled={disableFlag}
                   data-table-action={action}
                   isDelete={
                     action ==='table.actions.remove' ||
-                    action ==='table.actions.policy.remove' ||
-                    action ==='table.actions.applications.remove' ||
-                    action ==='table.actions.compliance.remove' ||
-                    action ==='table.actions.finding.remove'
+                  action ==='table.actions.policy.remove' ||
+                  action ==='table.actions.applications.remove' ||
+                  action ==='table.actions.compliance.remove' ||
+                  action ==='table.actions.finding.remove'
                   }
                   onClick={() => getResourceAction(action, data, null, history, context.locale)}
                   key={action}
                   itemText={msgs.get(action, context.locale)}
                 />
-              ))}
+              })}
             </OverflowMenu>)
         }
       </div>
       <ModuleBody>
-        <StructuredListWrapper className='bx--structured-list--condensed' ariaLabel={msgs.get(title, context.locale)}>
+        <StructuredListWrapper
+          className='bx--structured-list--condensed'
+          ariaLabel={msgs.get(title, context.locale)}
+        >
           <StructuredListBody>
             {rows.map(row =>{
               if(row.cells[0].resourceKey === 'policy.pp.details.decisions'){
-                const formatDecisions = StructuredListModule.formatDecisionsWithLinkAndIcon(row.cells[1].resourceKey, data, clusterStatus, location, context)
+                const formatDecisions = StructuredListModule.formatDecisionsWithLinkAndIcon(
+                  row.cells[1].resourceKey, data, clusterStatus, location, context)
                 return (<StructuredListRow key={_uniqueId('SLRow')}>
-                  <StructuredListCell key={_uniqueId('key')}><p>{msgs.get('policy.pp.details.decisions', context.locale)}</p></StructuredListCell>
-                  <StructuredListCell key={_uniqueId('key')}>{formatDecisions}</StructuredListCell>
+                  <StructuredListCell key={_uniqueId('key')}>
+                    <p>{msgs.get('policy.pp.details.decisions', context.locale)}</p>
+                  </StructuredListCell>
+                  <StructuredListCell key={_uniqueId('key')}>
+                    {formatDecisions}
+                  </StructuredListCell>
                 </StructuredListRow>)
               }
               else{
                 return (<StructuredListRow key={_uniqueId('SLRow')}>
                   {row.cells.map((cell, index) =>
                     <StructuredListCell key={_uniqueId('key')}>
-                      { index === 0 ? <p>{transform(data, cell, context.locale)}</p> : transform(data, cell, context.locale)}
+                      { index === 0
+                        ? <p>{transform(data, cell, context.locale)}</p>
+                        : transform(data, cell, context.locale)
+                      }
                     </StructuredListCell>
                   )}
                 </StructuredListRow>)
@@ -104,11 +138,14 @@ const StructuredListModule = ({
 }
 
 StructuredListModule.contextTypes = {
-  locale: PropTypes.string
+  locale: PropTypes.string,
+  userAccess: PropTypes.array
 }
 
 // eslint-disable-next-line react/display-name
-StructuredListModule.formatDecisionsWithLinkAndIcon = (resourceKey, data, clusterStatus, location, context) => {
+StructuredListModule.formatDecisionsWithLinkAndIcon = (
+  resourceKey, data, clusterStatus, location, context
+) => {
   const decisions = _.get(data[resourceKey], 'decisions')
   const hubNamespace = _.get(data,'metadata.namespace')
   const urlSegments = location.pathname.replace(/\/$/, '').split('/')
@@ -132,13 +169,14 @@ StructuredListModule.formatDecisionsWithLinkAndIcon = (resourceKey, data, cluste
   })
   return <div className='cluster-status-container'>{links}</div>
 }
-
-const mapStateToProps = state => ({
-  navRoutes: state.nav && state.nav.navItems
-})
+const mapStateToProps = (state) => {
+  const userAccess = state.userAccess ? state.userAccess.access : []
+  return { userAccess }
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getResourceAction: (action, resource, hasService) => resourceActions(action, dispatch, ownProps.resourceType, resource, hasService)
+  getResourceAction: (action, resource, hasService) =>
+    resourceActions(action, dispatch, ownProps.resourceType, resource, hasService)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StructuredListModule)

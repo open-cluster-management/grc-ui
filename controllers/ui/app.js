@@ -29,7 +29,8 @@ const log4js = require('log4js'),
       logger = log4js.getLogger('app')
 
 const targetAPIGroups = [
-  'policy.open-cluster-management.io'
+  'policy.open-cluster-management.io',
+  'apps.open-cluster-management.io',
 ]
 
 let App, Login, reducers, access  //laziy initialize to reduce startup time seen on k8s
