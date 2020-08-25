@@ -344,9 +344,10 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
     className="secondary-header-links"
   >
     <button
-      className="create-policy-nonclickable bx--btn bx--btn--primary"
-      disabled={false}
-      id="create-policy-nonclickable"
+      className="bx--btn bx--btn--primary bx--btn--disabled"
+      disabled={true}
+      id="create-policy"
+      onClick={[Function]}
       tabIndex={0}
       type="button"
     >
@@ -579,11 +580,11 @@ exports[`SecondaryHeader component 5 renderHeader without description 1`] = `
 exports[`SecondaryHeader component 5 renderLinks nonclickable as expected 1`] = `
 Array [
   <ForwardRef
-    className="create-policy-nonclickable"
-    disabled={false}
+    disabled={true}
     iconDescription="Provide icon description if icon is used"
-    id="create-policy-nonclickable"
+    id="create-policy"
     kind="primary"
+    onClick={[Function]}
     small={false}
     tabIndex={0}
     type="button"
