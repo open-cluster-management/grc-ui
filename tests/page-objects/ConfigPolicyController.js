@@ -153,12 +153,17 @@ function checkViolations(name, violationExpected, violationText) {
     this.click('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3) a')
     this.waitForElementPresent('.policy-template-details-view')
     this.waitForElementPresent('.policy-template-details-view .table')
-    this.expect.elements('.policy-template-details-view .table tbody>tr').count.not.to.equal(0)
+    this.getText('css selector', 'div.pf-c-description-list__group:nth-child(6) > dd:nth-child(2) > div:nth-child(1)', (result) => {
+      if (result.value.includes('No instances of')) {
+        this.expect.elements('.policy-template-details-view .table tbody>tr').count.to.equal(0)
+      } else {
+        this.expect.elements('.policy-template-details-view .table tbody>tr').count.not.to.equal(0)
+      }
+    })
   } else {
     this.waitForElementPresent('.no-resource')
   }
   this.click('.bx--breadcrumb > div:nth-child(1)')
-  this.pause(1000)
 }
 
 function searchPolicy(name, expectToDisplay) {
