@@ -22,8 +22,8 @@ import GrcCardsModule from './modules/GrcCardsModule'
 // eslint-disable-next-line import/no-named-as-default
 import GrcToggleModule from './modules/GrcToggleModule'
 import {
-  filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState,
-  replaceGrcState, combineResourceFilters, saveGrcStatePair
+  filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState,
+  saveGrcState, combineResourceFilters, saveGrcStatePair
 } from '../../lib/client/filter-helper'
 import NoResource from './common/NoResource'
 import createDocLink from './common/CreateDocLink'
@@ -60,7 +60,7 @@ export class GrcView extends React.Component {
     //later when availableGrcFilters initialized, will do further filtering in UNSAFE_componentWillReceiveProps
     const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
     //update sessionStorage
-    replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
+    saveGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
     //update active filters
     updateActiveFilters(combinedFilters)
   }
@@ -98,7 +98,7 @@ export class GrcView extends React.Component {
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
       //update sessionStorage
-      replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
+      saveGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
       //update active filters
       localUpdateActiveFilters(combinedFilters)
     }
@@ -260,8 +260,8 @@ export class GrcView extends React.Component {
       activeSet = activeFilters[type]
       activeSet.add(level)
     }
-    if (activeSet && activeSet.size > 0 && replaceGrcState && localUpdateActiveFilters) {
-      replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
+    if (activeSet && activeSet.size > 0 && saveGrcState && localUpdateActiveFilters) {
+      saveGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
       localUpdateActiveFilters(activeFilters)
     }
 
