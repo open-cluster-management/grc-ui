@@ -22,6 +22,10 @@ module.exports = {
     searchInput: '#search',
     searchInputClear: '#search ~ .bx--search-close',
     searchResult: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td',
+    resourceFilterBar: 'div.resource-filter-bar > span',
+    filterButton: '#resource-toolbar > div > div > div.resource-filter-button',
+    filterMenu: '#resource-toolbar > div.resource-filter-view',
+    filterSectionTitles: '#resource-toolbar > div.resource-filter-view > div.filter-sections-container > div > div.filter-section > div.filter-section-title',
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
     noResource: '.no-resource',
@@ -55,15 +59,16 @@ module.exports = {
     disableCheckbox: '#disabled',
   },
   commands: [{
-    verifySummary,
-    verifyPolicyTable,
-    verifyTable,
-    verifyPagination,
     createTestPolicy,
-    updateYamlEditor,
+    deletePolicy,
     searchPolicy,
     testDetailsPage,
-    deletePolicy,
+    testFilters,
+    updateYamlEditor,
+    verifyPagination,
+    verifyPolicyTable,
+    verifySummary,
+    verifyTable,
   }]
 }
 function verifySummary(browser, url) {
@@ -150,6 +155,58 @@ function verifyPagination() {
   this.click('.bx--pagination__button.bx--pagination__button--backward')
   this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="10"]')
 }
+/* Test policy filters on the policy summary page */
+function testFilters(spec = {}) {
+  const headings = [ 'Standards', 'Categories', 'Controls', 'Type' ]
+  // Open filter menu
+  this.click('@filterButton')
+  this.expect.element('@filterMenu').to.be.present
+  // Wait for filter menu opening animation to finish
+  this.waitForElementVisible('@filterSectionTitles')
+  // Check for proper headings and click checkboxes that match policy
+  for (let i = 0; i < headings.length; i++) {
+    this.isVisible('xpath', `//div[contains(@class,"filter-section-title") and text()="${headings[i]}"]`, (result) => {
+      this.assert.ok(result.value, `Filter heading ${headings[i]} is present`)
+    })
+    if (headings[i] !== 'Type') {
+      const heading = headings[i].toLowerCase()
+      const label = cleanAndCapitalize(spec[heading][0])
+      let labelTrunc
+      if (label.length > 20) {
+        labelTrunc = `${label.substring(0,9)}...${label.substring(label.length-8)}`
+      } else {
+        labelTrunc = label
+      }
+      this.click('xpath', `//div[contains(@class,"filter-section")]//label/span[text()="${label}"]`)
+      this.expect.element(`div.filter-section > div > input[id="${heading}${label}"]`).to.be.selected
+      this.expect.element(`@resourceFilterBar:nth-child(${i + 2})`).text.to.equal(labelTrunc)
+    }
+  }
+  // Expect our policy to still be visible after checking its respective filters
+  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.contain(spec.policyName)
+  // Leave and return to the summary page to make sure the filters are still there
+  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a')
+  this.waitForElementNotPresent('@spinner')
+  this.click('.bx--breadcrumb > div:nth-child(1)')
+  this.waitForElementNotPresent('@spinner')
+  // Check for the filter buttons
+  for (let i = 0; i < headings.length; i++) {
+    if (headings[i] !== 'Type') {
+      const heading = headings[i].toLowerCase()
+      const label = cleanAndCapitalize(spec[heading][0])
+      let labelTrunc
+      if (label.length > 20) {
+        labelTrunc = `${label.substring(0,9)}...${label.substring(label.length-8)}`
+      } else {
+        labelTrunc = label
+      }
+      this.expect.element(`@resourceFilterBar:nth-child(${i + 2})`).text.to.equal(labelTrunc)
+    }
+  }
+  // Clear filters
+  this.click('@resourceFilterBar:last-child')
+  this.expect.element('@resourceFilterBar').to.not.be.present
+}
 /* Helper function to select dropdown options */
 function dropdownSelector(browser, label = '', options = ['']) {
   if (options && options[0] != '') {
@@ -220,9 +277,9 @@ function createTestPolicy(create = true,
     namespace: 'default',
     specification: [''],
     cluster: [''],
-    standard: [''],
-    category: [''],
-    control: [''],
+    standards: [''],
+    categories: [''],
+    controls: [''],
     enforce: false,
     disable: false
   }, templateFile = '') {
@@ -261,11 +318,11 @@ function createTestPolicy(create = true,
     this.click('@templateDropdownBox:nth-child(1)')
     this.waitForElementNotPresent('@templateDropdownBox')
   })
-  /* Select Cluster, Standard, Category, Control dropdowns */
+  /* Select Cluster, Standards, Categories, Controls dropdowns */
   dropdownSelector(this, 'cluster', spec.cluster)
-  dropdownSelector(this, 'standards', spec.standard)
-  dropdownSelector(this, 'categories', spec.category)
-  dropdownSelector(this, 'controls', spec.control)
+  dropdownSelector(this, 'standards', spec.standards)
+  dropdownSelector(this, 'categories', spec.categories)
+  dropdownSelector(this, 'controls', spec.controls)
   /* Enable 'enforce' for policy (instead of 'inform') if indicated */
   if (spec.enforce) {
     this.click('@enforceCheckbox')
