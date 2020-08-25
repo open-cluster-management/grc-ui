@@ -1,7 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-import { fliterTableAction } from '../../../../lib/client/access-helper'
+import { filterTableAction } from '../../../../lib/client/access-helper'
 
 const policyActions = [
   'table.actions.policy.policies.sidepanel',
@@ -31,7 +31,7 @@ const adminAccessDefault = {
 
 describe('adminAccessDefault action list on different namespaces ', () => {
   it('should get all permission on default namespace', () => {
-    expect(fliterTableAction(
+    expect(filterTableAction(
       {
         metadata: {
           namespace: 'default'
@@ -44,7 +44,7 @@ describe('adminAccessDefault action list on different namespaces ', () => {
   })
 
   it('should only get only has view permission on calamari namespace', () => {
-    expect(fliterTableAction(
+    expect(filterTableAction(
       {
         metadata: {
           namespace: 'calamari'
@@ -87,7 +87,7 @@ const test1AccessDefault = {
 
 describe('test1AccessDefault action list on different namespaces ', () => {
   it('should get all permission on calamari namespace', () => {
-    expect(fliterTableAction(
+    expect(filterTableAction(
       {
         metadata: {
           namespace: 'calamari'
@@ -99,7 +99,7 @@ describe('test1AccessDefault action list on different namespaces ', () => {
     )).toMatchSnapshot()
   })
   it('should only get only has edit permission on avengers namespace', () => {
-    expect(fliterTableAction(
+    expect(filterTableAction(
       {
         metadata: {
           namespace: 'avengers'
@@ -111,7 +111,7 @@ describe('test1AccessDefault action list on different namespaces ', () => {
     )).toMatchSnapshot()
   })
   it('should only get only has view permission on ironman namespace', () => {
-    expect(fliterTableAction(
+    expect(filterTableAction(
       {
         metadata: {
           namespace: 'ironman'

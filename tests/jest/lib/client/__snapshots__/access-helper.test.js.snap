@@ -13,39 +13,39 @@ Array [
 exports[`adminAccessDefault action list on different namespaces  should only get only has view permission on calamari namespace 1`] = `
 Array [
   "table.actions.policy.policies.sidepanel",
-  "disabled.table.actions.remove",
   "disabled.table.actions.edit",
   "disabled.table.actions.disable",
   "disabled.table.actions.enforce",
+  "disabled.table.actions.remove",
 ]
 `;
 
 exports[`test1AccessDefault action list on different namespaces  should get all permission on calamari namespace 1`] = `
 Array [
   "table.actions.policy.policies.sidepanel",
-  "table.actions.remove",
   "table.actions.edit",
   "table.actions.disable",
   "table.actions.enforce",
+  "table.actions.remove",
 ]
 `;
 
 exports[`test1AccessDefault action list on different namespaces  should only get only has edit permission on avengers namespace 1`] = `
 Array [
   "table.actions.policy.policies.sidepanel",
-  "disabled.table.actions.remove",
   "table.actions.edit",
   "table.actions.disable",
   "table.actions.enforce",
+  "disabled.table.actions.remove",
 ]
 `;
 
 exports[`test1AccessDefault action list on different namespaces  should only get only has view permission on ironman namespace 1`] = `
 Array [
   "table.actions.policy.policies.sidepanel",
-  "disabled.table.actions.remove",
   "disabled.table.actions.edit",
   "disabled.table.actions.disable",
   "disabled.table.actions.enforce",
+  "disabled.table.actions.remove",
 ]
 `;

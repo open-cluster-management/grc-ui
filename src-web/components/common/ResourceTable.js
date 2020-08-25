@@ -23,7 +23,7 @@ import { Link, withRouter } from 'react-router-dom'
 import lodash from 'lodash'
 import ResourceTableRowExpandableContent from './ResourceTableRowExpandableContent'
 import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
-import { fliterTableAction } from '../../../lib/client/access-helper'
+import { filterTableAction } from '../../../lib/client/access-helper'
 import { LocaleContext } from './LocaleContext'
 
 resources(() => {
@@ -339,8 +339,8 @@ export class ResourceTable extends React.Component {
             : lodash.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
         }
         const menuActions = item.metadata && item.metadata.namespace && tableActions && tableActions[item.metadata.namespace] || tableActions
-        const fliteredActions = (Array.isArray(menuActions) && menuActions.length > 0)
-          ? fliterTableAction(item, menuActions, userAccessHash, resourceType)
+        const filteredActions = (Array.isArray(menuActions) && menuActions.length > 0)
+          ? filterTableAction(item, menuActions, userAccessHash, resourceType)
           : []
 
         //This is for grc policy page highlight item auto open side panel
@@ -350,31 +350,31 @@ export class ResourceTable extends React.Component {
           getResourceAction(autoAction, item, null, history, locale)
         }
 
-        if (item.consoleURL && item.consoleURL === '-' && Array.isArray(fliteredActions)){
-          const removeIndex = fliteredActions.indexOf('table.actions.launch.cluster')
+        if (item.consoleURL && item.consoleURL === '-' && Array.isArray(filteredActions)){
+          const removeIndex = filteredActions.indexOf('table.actions.launch.cluster')
           if (removeIndex > -1) {
-            fliteredActions.splice(removeIndex, 1)
+            filteredActions.splice(removeIndex, 1)
           }
         }
 
         //changes menu item based on whether policy is enabled or disabled
         row.disabled = false
         row.remediation = 'inform'
-        if (fliteredActions !== null && fliteredActions.length === 5) {
+        if (filteredActions !== null && filteredActions.length === 5) {
           if (this.checkPolicyDisabled(item)) {
-            fliteredActions[fliteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
+            filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
             row.disabled = true
           }
           if (this.checkPolicyRemediation(item) === 'enforce') {
-            fliteredActions[fliteredActions.indexOf('table.actions.enforce')] = 'table.actions.inform'
+            filteredActions[filteredActions.indexOf('table.actions.enforce')] = 'table.actions.inform'
             row.remediation = 'enforce'
           }
         }
 
-        if (fliteredActions && fliteredActions.length > 0) {
+        if (filteredActions && filteredActions.length > 0) {
           row.action = (
             <OverflowMenu floatingMenu flipped iconDescription={msgs.get('svg.description.overflowMenu', locale)} ariaLabel='Overflow-menu' tabIndex={0}>
-              {fliteredActions.map((action) => {
+              {filteredActions.map((action) => {
                 const disableFlag = action.includes('disabled.')
                 if (disableFlag) {
                   action = action.replace('disabled.', '')
