@@ -22,6 +22,8 @@ import { withRouter } from 'react-router-dom'
 import { Module, ModuleHeader } from 'carbon-addons-cloud-react'
 import { editResource } from '../../actions/common'
 import {REQUEST_STATUS} from '../../actions'
+import formatUserAccess from './FormatUserAccess'
+import filterTableAction from '../../../lib/client/access-helper'
 
 class PolicyTemplates extends React.Component {
 
@@ -135,7 +137,15 @@ class PolicyTemplates extends React.Component {
   handleEditorChange = (yaml) => this.setState({ yaml })
 
   render() {
-    const { headerKey, editable, reqStatus, className } = this.props
+    const { headerKey, reqStatus, className, userAccess, resourceData } = this.props
+    const resourceType = {name: 'HCMPolicyPolicy'}
+    const userAccessHash = formatUserAccess(userAccess)
+    const actions = ['table.actions.edit']
+    const filteredActions = filterTableAction(resourceData, actions, userAccessHash, resourceType)
+    console.log(JSON.stringify(filteredActions))
+    const disableFlag = Array.isArray(filteredActions)
+      ? filteredActions[0].includes('disabled.')
+      : true
     return (
       <Module
         className={
@@ -153,9 +163,9 @@ class PolicyTemplates extends React.Component {
               : ''
             }`}
           </ModuleHeader>
-          {editable &&
           <div className='yaml-editor-button'>
             <Button
+              disabled={disableFlag}
               icon="add--glyph"
               className={this.state.readOnly ? 'read-only-button' : 'editing-button'}
               small id={'edit-button'}
@@ -164,6 +174,7 @@ class PolicyTemplates extends React.Component {
               {msgs.get('table.actions.edit', this.context.locale)}
             </Button>
             <Button
+              disabled={disableFlag}
               icon="add--glyph" small
               id={'submit-button'}
               key='submit-resource-change'
@@ -171,7 +182,6 @@ class PolicyTemplates extends React.Component {
               {msgs.get('modal.button.submit', this.context.locale)}
             </Button>
           </div>
-          }
         </div>
         {this.state.yamlParsingError &&
         <InlineNotification
@@ -213,20 +223,22 @@ PolicyTemplates.contextTypes = {
 PolicyTemplates.propTypes = {
   className: PropTypes.string,
   editResource: PropTypes.func,
-  editable: PropTypes.bool,
   headerKey: PropTypes.string,
   reqErrorMsg: PropTypes.string,
   reqStatus: PropTypes.string,
   resourceData: PropTypes.any,
   resourcePath: PropTypes.string,
   resourceType: PropTypes.object,
+  userAccess: PropTypes.array,
 }
 
 const mapStateToProps = (state, ownProps) => {
   const { list: typeListName } = ownProps.resourceType
+  const userAccess = state.userAccess ? state.userAccess.access : []
   return {
     reqStatus: state[typeListName].putStatus,
     reqErrorMsg: state[typeListName].putErrorMsg,
+    userAccess: userAccess,
   }
 }
 
