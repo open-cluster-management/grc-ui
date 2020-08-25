@@ -110,7 +110,12 @@
     min-height: 1.875rem;
   }
 
-  .create-policy-nonclickable {
+  .bx--btn--disabled {
+    cursor: no-drop;
+    background-color: $grc_color_light_gray;
+  }
+
+  .bx--btn--primary:disabled:hover, .bx--btn--primary:disabled:focus {
     background-color: $grc_color_light_gray;
   }
 

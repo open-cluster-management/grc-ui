@@ -169,19 +169,21 @@ export class SecondaryHeader extends React.Component {
 
   renderLinks(showCreationLink) {
     const { links } = this.props,
-          { locale } = this.context
+          { locale } = this.context,
+          disableFlag = (showCreationLink !== 1)
     return links.map(link => {
       const {id, label, url, kind='primary', handleClick=(()=> this.props.history.push(url)) } = link
       // if portal, react component will create the button using a portal
       if (kind==='portal') {
         return <div key={id} id={id} className='portal' />
       }
-      if (showCreationLink !== 1) {
-        return <Button className={`${id}-nonclickable`} key={id} id={`${id}-nonclickable`} kind={kind} >
-          {msgs.get(label, locale)}
-        </Button>
-      }
-      return <Button key={id} id={id} onClick={handleClick} kind={kind} >
+      return <Button
+        disabled={disableFlag}
+        key={id}
+        id={id}
+        onClick={handleClick}
+        kind={kind}
+      >
         {msgs.get(label, locale)}
       </Button>
     })
@@ -224,13 +226,16 @@ SecondaryHeader.propTypes = {
 }
 
 const mapStateToProps = (state) => {
+  const userAccess = state.userAccess && state.userAccess.access
+    ? state.userAccess.access
+    : []
   return {
     title: state.secondaryHeader.title,
     tabs: state.secondaryHeader.tabs,
     breadcrumbItems: state.secondaryHeader.breadcrumbItems,
     links: state.secondaryHeader.links,
     refresh: state.secondaryHeader.refresh,
-    userAccess: state.userAccess.access,
+    userAccess: userAccess,
     description: state.secondaryHeader.description,
     information: state.secondaryHeader.information,
   }
