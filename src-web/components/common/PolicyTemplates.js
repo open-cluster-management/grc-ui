@@ -23,7 +23,7 @@ import { Module, ModuleHeader } from 'carbon-addons-cloud-react'
 import { editResource } from '../../actions/common'
 import {REQUEST_STATUS} from '../../actions'
 import formatUserAccess from './FormatUserAccess'
-import filterTableAction from '../../../lib/client/access-helper'
+import filterTableAction from './filterTableAction'
 
 class PolicyTemplates extends React.Component {
 
@@ -143,7 +143,7 @@ class PolicyTemplates extends React.Component {
     const actions = ['table.actions.edit']
     const filteredActions = filterTableAction(resourceData, actions, userAccessHash, resourceType)
     console.log(JSON.stringify(filteredActions))
-    const disableFlag = Array.isArray(filteredActions)
+    const disableFlag = (Array.isArray(filteredActions) && filteredActions[0])
       ? filteredActions[0].includes('disabled.')
       : true
     return (

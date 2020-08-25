@@ -8,7 +8,7 @@
  *******************************************************************************/
 'use strict'
 
-import withAccess from '../../../../src-web/components/common/withAccess'
+import withAccess from '../../../../src-web/components/common/WithAccess'
 import { ROLES } from '../../../../lib/shared/constants'
 import React from 'react'
 

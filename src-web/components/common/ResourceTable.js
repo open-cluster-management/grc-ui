@@ -25,7 +25,7 @@ import { Link, withRouter } from 'react-router-dom'
 import lodash from 'lodash'
 import ResourceTableRowExpandableContent from './ResourceTableRowExpandableContent'
 import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
-import filterTableAction from '../../../lib/client/access-helper'
+import filterTableAction from './filterTableAction'
 import { LocaleContext } from './LocaleContext'
 import formatUserAccess from './FormatUserAccess'
 

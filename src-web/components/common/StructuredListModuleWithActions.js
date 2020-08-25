@@ -24,7 +24,7 @@ import { connect } from 'react-redux'
 import StatusField from '../../components/common/StatusField'
 import _uniqueId from 'lodash/uniqueId'
 import formatUserAccess from './FormatUserAccess'
-import filterTableAction from '../../../lib/client/access-helper'
+import filterTableAction from './filterTableAction'
 
 resources(() => {
   require('../../../scss/structured-list-with-actions.scss')

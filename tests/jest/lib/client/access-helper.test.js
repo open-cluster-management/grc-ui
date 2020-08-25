@@ -1,7 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-import filterTableAction from '../../../../lib/client/access-helper'
+import filterTableAction from '../../../../src-web/components/common/FilterTableAction'
 
 const policyActions = [
   'table.actions.policy.policies.sidepanel',

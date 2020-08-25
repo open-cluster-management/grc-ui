@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2019, 2020. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
@@ -44,8 +36,8 @@ const filterTableAction = (data,actions,userAccessHash,resourceType) => {
     default:
       // do nothing
     }
-    return actionList
   }
+  return actionList
 }
 
 function buildActionByUser(adminRules, typeRules, actions, actionList) {
@@ -64,8 +56,8 @@ function buildActionByUser(adminRules, typeRules, actions, actionList) {
     else { // build action list based user api permission on target NS
       actionList = buildActionList(actions, typeRules, actionList)
     }
-    return actionList
   }
+  return actionList
 }
 
 function buildActionList(actions, rulesSet, actionList) {
