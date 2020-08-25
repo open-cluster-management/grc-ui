@@ -339,8 +339,8 @@ export class ResourceTable extends React.Component {
             : lodash.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
         }
         const menuActions = item.metadata && item.metadata.namespace && tableActions && tableActions[item.metadata.namespace] || tableActions
-        const fliteredActions = (Array.isArray(menuActions) && item.metadata && item.metadata.namespace)
-          ? fliterTableAction(item.metadata.namespace, menuActions, userAccessHash, resourceType)
+        const fliteredActions = (Array.isArray(menuActions) && menuActions.length > 0)
+          ? fliterTableAction(item, menuActions, userAccessHash, resourceType)
           : []
 
         //This is for grc policy page highlight item auto open side panel

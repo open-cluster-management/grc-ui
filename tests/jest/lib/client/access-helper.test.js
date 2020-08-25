@@ -32,7 +32,11 @@ const adminAccessDefault = {
 describe('adminAccessDefault action list on different namespaces ', () => {
   it('should get all permission on default namespace', () => {
     expect(fliterTableAction(
-      'default',
+      {
+        metadata: {
+          namespace: 'default'
+        }
+      },
       policyActions,
       adminAccessDefault,
       resourceType
@@ -41,7 +45,11 @@ describe('adminAccessDefault action list on different namespaces ', () => {
 
   it('should only get only has view permission on calamari namespace', () => {
     expect(fliterTableAction(
-      'calamari',
+      {
+        metadata: {
+          namespace: 'calamari'
+        }
+      },
       policyActions,
       adminAccessDefault,
       resourceType
@@ -80,7 +88,11 @@ const test1AccessDefault = {
 describe('test1AccessDefault action list on different namespaces ', () => {
   it('should get all permission on calamari namespace', () => {
     expect(fliterTableAction(
-      'calamari',
+      {
+        metadata: {
+          namespace: 'calamari'
+        }
+      },
       policyActions,
       test1AccessDefault,
       resourceType
@@ -88,7 +100,11 @@ describe('test1AccessDefault action list on different namespaces ', () => {
   })
   it('should only get only has edit permission on avengers namespace', () => {
     expect(fliterTableAction(
-      'avengers',
+      {
+        metadata: {
+          namespace: 'avengers'
+        }
+      },
       policyActions,
       test1AccessDefault,
       resourceType
@@ -96,7 +112,11 @@ describe('test1AccessDefault action list on different namespaces ', () => {
   })
   it('should only get only has view permission on ironman namespace', () => {
     expect(fliterTableAction(
-      'ironman',
+      {
+        metadata: {
+          namespace: 'ironman'
+        }
+      },
       policyActions,
       test1AccessDefault,
       resourceType
