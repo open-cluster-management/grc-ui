@@ -15,7 +15,6 @@ import msgs from '../../../nls/platform.properties'
 import config from '../../../lib/shared/config'
 // createFlag=0 nonclickable create button, createFlag=1 clickable create button
 const createDocLink = (locale, handleCreateResource, submitBtnTextKey, createFlag=0) => {
-  console.log(createFlag)
   const vNumber = config['ACM_VERSION']
   const rhPath = 'https://access.redhat.com/'
   const acmPath = 'documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/'
