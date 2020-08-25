@@ -10,12 +10,12 @@
 
 var fs = require('fs')
 const path = require('path')
-const DISABLE_CANARY_TEST = process.env.DISABLE_CANARY_TEST ? true : false
+// const DISABLE_CANARY_TEST = process.env.DISABLE_CANARY_TEST ? true : false
 
 let page
 
 module.exports = {
-  '@disabled': DISABLE_CANARY_TEST,
+  '@disabled': false,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
