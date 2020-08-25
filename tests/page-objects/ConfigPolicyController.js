@@ -138,7 +138,6 @@ function informPolicy(name){
 
 function checkViolations(name, violationExpected, violationText) {
   this.log(`Checking policy: ${name} violationExpected: ${violationExpected}`)
-  this.pause(20000)
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
   this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
