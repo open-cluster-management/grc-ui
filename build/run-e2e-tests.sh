@@ -50,7 +50,7 @@ echo "Create RBAC users"
 ${TRAVIS_BUILD_DIR}/build/rbac-setup.sh
 
 make docker/login
-export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:latest-dev
+export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:3.6.0-PR59-ea4fb417593328cdd46e8553398c730eeda2a9f1
 make docker/pull
 
 export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}

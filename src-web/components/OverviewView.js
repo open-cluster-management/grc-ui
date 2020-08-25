@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateResourceToolbar, updateActiveFilters } from '../actions/common'
 import { Loading, Notification } from 'carbon-components-react'
-import { filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState, combineResourceFilters,replaceGrcState } from '../../lib/client/filter-helper'
+import { filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState, combineResourceFilters } from '../../lib/client/filter-helper'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
 import RecentActivityModule from './modules/RecentActivityModule'
 import RecentActivityModuleWithoutFindings from './modules/RecentActivityModuleWithoutFindings'
@@ -55,7 +55,7 @@ export class OverviewView extends React.Component {
     const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
     delete combinedFilters.severity//remove severity filter set during first time render
     //update sessionStorage
-    replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
+    saveGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
     //update active filters
     updateActiveFilters(combinedFilters)
   }
@@ -88,7 +88,7 @@ export class OverviewView extends React.Component {
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
       //update sessionStorage
-      replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
+      saveGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
       //update active filters
       localUpdateActiveFilters(combinedFilters)
     }
