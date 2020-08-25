@@ -81,6 +81,7 @@ module.exports = {
     const kindMustNotHave = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/kind_mustnothave_compliant.yaml'))
     yaml = kindMustNotHave.toString()
     page.createPolicy(browser, 'policy-pod-mustnothave-all-' + time, yaml, time)
+    browser.pause(20000) //Wait until policy acted
     page.checkViolations('policy-pod-mustnothave-all-' + time, false)
     page.deletePolicy('policy-pod-mustnothave-all-' + time)
     //delete ns
