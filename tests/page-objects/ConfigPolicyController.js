@@ -149,6 +149,11 @@ function checkViolations(name, violationExpected, violationText) {
     if (violationText) {
       this.expect.element('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(violationText)
     }
+    this.log('checking view details for violations')
+    this.click('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3) a')
+    this.waitForElementPresent('.policy-template-details-view')
+    this.waitForElementPresent('.policy-template-details-view .table')
+    this.expect.elements('.policy-template-details-view .table tbody>tr').count.not.to.equal(0)
   } else {
     this.waitForElementPresent('.no-resource')
   }
