@@ -11,7 +11,7 @@ WORKDIR /opt/app-root/src/grc-ui
 
 COPY config build nightwatch.conf.js nightwatch.json tests package.json ./
 
-RUN RUN npm install \
+RUN npm install \
     chromedriver \
     geckodriver \
     nightwatch \
