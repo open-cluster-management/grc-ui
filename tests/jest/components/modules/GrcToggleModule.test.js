@@ -6,17 +6,36 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import { policiesTabModuleFilteredPolicies, findingsTestingDataSet1, policiesTabModuleRefreshControl, policiesTabModuleSecondaryHeaderProps } from './ModuleTestingData'
+import { policiesTabModuleFilteredPolicies, findingsTestingDataSet1,
+  policiesTabModuleRefreshControl, policiesTabModuleSecondaryHeaderProps
+} from './ModuleTestingData'
 import { GrcToggleModule } from '../../../../src-web/components/modules/GrcToggleModule'
 import { createMemoryHistory } from 'history'
 
-const history1 = createMemoryHistory({'length':5,'action':'PUSH','location':{'pathname':'/multicloud/policies/all','search':'','hash':''}})
+const history1 = createMemoryHistory({
+  'length':5,
+  'action':'PUSH',
+  'location':{
+    'pathname':'/multicloud/policies/all',
+    'search':'',
+    'hash':''
+  }
+})
 
-const history2 = createMemoryHistory({'length':5,'action':'PUSH','location':{'pathname':'/multicloud/policies/findings','search':'','hash':''}})
+const history2 = createMemoryHistory({
+  'length':5,
+  'action':'PUSH',
+  'location':{
+    'pathname':'/multicloud/policies/findings',
+    'search':'',
+    'hash':''
+  }
+})
 
 const location1 = {
   pathname: '/multicloud/policies/all'
@@ -143,7 +162,9 @@ describe('GrcView toggleClick', () => {
     )
     expect(wrapper.instance().renderTabSwitcher('findings', 0)).toMatchSnapshot()
     expect(wrapper.instance().renderTabSwitcher('findings', 1)).toMatchSnapshot()
-    expect(wrapper.instance().toggleClick()).toEqual('/multicloud/policies/findings?card=false&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&side=true&toggle=false')
+    expect(wrapper.instance().toggleClick()).toEqual(
+      '/multicloud/policies/findings?card=false&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&side=true&toggle=false'
+    )
   })
 })
 

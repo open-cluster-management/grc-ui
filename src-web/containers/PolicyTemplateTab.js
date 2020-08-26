@@ -54,7 +54,6 @@ class PolicyTemplateTab extends React.Component{
         resourceData={item}
         className='compliance-templates'
         headerKey={'table.header.complianceTemplate'}
-        editable={true}
       />
     }
   }

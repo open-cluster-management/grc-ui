@@ -6,13 +6,16 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 import { createComplianceLink } from '../../../src-web/definitions/hcm-policies-policy'
 import { hcmPoliciesPolicyItem } from './DefinitionsTestingData'
 
 describe('createComplianceLink', () => {
   it('Should item.metadata.name', () => {
-    expect(createComplianceLink(hcmPoliciesPolicyItem, 'en-US', 'test', 'grcTest')).toMatchSnapshot()
+    expect(createComplianceLink(
+      hcmPoliciesPolicyItem, 'en-US', 'test', 'grcTest'
+    )).toMatchSnapshot()
   })
   it('Should create policy link', () => {
     expect(createComplianceLink(hcmPoliciesPolicyItem, 'en-US')).toMatchSnapshot()

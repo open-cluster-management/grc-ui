@@ -6,13 +6,16 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
-import { policiesTestingDataSet1, policiesTestingDataSet2, findingsTestingDataSet1 } from './ModuleTestingData'
+import {
+  policiesTestingDataSet1, policiesTestingDataSet2, findingsTestingDataSet1
+} from './ModuleTestingData'
 import TopInformationModule from '../../../../src-web/components/modules/TopInformationModule'
 
 describe('TopInformationModule clusters view without application', () => {

@@ -13,21 +13,31 @@ import React from 'react'
 import { Button } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import config from '../../../lib/shared/config'
-
-const createDocLink = (locale, handleCreateResource, submitBtnTextKey, createFlag=true) => {
+// createFlag=0 nonclickable create button, createFlag=1 clickable create button
+const createDocLink = (locale, handleCreateResource, submitBtnTextKey, createFlag=0) => {
   const vNumber = config['ACM_VERSION']
   const rhPath = 'https://access.redhat.com/'
   const acmPath = 'documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/'
   const grcPath = `${vNumber}/html/security/security#manage-security-policies`
   const docURL = `${rhPath}${acmPath}${grcPath}`
+  const disableFlag = (createFlag !== 1)
   return (
     <div className={'button-group'}>
-      {createFlag && <Button icon="add--glyph" small id='create-resource' onClick={handleCreateResource}>
+      <Button
+        disabled={disableFlag}
+        icon="add--glyph"
+        small id='create-resource'
+        onClick={handleCreateResource}
+      >
         { submitBtnTextKey }
-      </Button>}
+      </Button>
       {<div className={'buttons'}>
         <button className={'bx--btn bx--btn--sm bx--btn--secondary'}>
-          <a href={docURL} className={'doc-link'} target='doc' aria-describedby='launchWindow'>
+          <a href={docURL}
+            className={'doc-link'}
+            target='doc'
+            aria-describedby='launchWindow'
+          >
             {msgs.get('button.view.doc', locale)
             }
           </a>
