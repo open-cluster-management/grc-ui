@@ -22,8 +22,8 @@ exports[`PolicyDetail container test renders as expected 1`] = `
         className="yaml-editor-button"
       >
         <button
-          className="read-only-button bx--btn bx--btn--sm bx--btn--primary"
-          disabled={false}
+          className="read-only-button bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
+          disabled={true}
           id="edit-button"
           onClick={[Function]}
           tabIndex={0}
@@ -51,8 +51,8 @@ exports[`PolicyDetail container test renders as expected 1`] = `
           </svg>
         </button>
         <button
-          className="bx--btn bx--btn--sm bx--btn--primary"
-          disabled={false}
+          className="bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
+          disabled={true}
           id="submit-button"
           onClick={[Function]}
           tabIndex={0}

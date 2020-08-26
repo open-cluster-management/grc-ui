@@ -19,7 +19,7 @@ import { Icon, Tag } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
-import { replaceGrcState } from '../../../lib/client/filter-helper'
+import { saveGrcState } from '../../../lib/client/filter-helper'
 import { GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 import TruncateText from '../../components/common/TruncateText'
 
@@ -106,7 +106,7 @@ class ResourceFilterBar extends React.Component {
       activeSet = activeFilters[key] = new Set()
     }
     activeSet.delete(value)
-    replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
+    saveGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
     localUpdateActiveFilters(activeFilters)
   }
 
@@ -131,7 +131,7 @@ class ResourceFilterBar extends React.Component {
         }
         activeSet.clear()
       })
-      replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
+      saveGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
       localUpdateActiveFilters(activeFilters)
     }
     //step 3 update current url after removing all active filters

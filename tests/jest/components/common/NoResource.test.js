@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -25,7 +26,10 @@ describe('NoResource component', () => {
   it('renders as expected', () => {
     const topButton = <div>topButton</div>
     const component = renderer.create(
-      <NoResource title='title' detail='detailed description' topButton={topButton} filterToEmpty={true}>
+      <NoResource
+        title='title'
+        detail='detailed description'
+        topButton={topButton} filterToEmpty={true}>
         <div className='child'>Test</div>
       </NoResource>
     )
@@ -34,7 +38,13 @@ describe('NoResource component', () => {
   it('renders as expected', () => {
     const topButton = <div>topButton</div>
     const component = renderer.create(
-      <NoResource title='title' detail='detailed description' topButton={topButton} titleClassName={'test-title'} imgClassName={'test-image'} svgName={'test-svg.svg'} alt={'test'}>
+      <NoResource
+        title='title'
+        detail='detailed description'
+        topButton={topButton}
+        titleClassName={'test-title'}
+        imgClassName={'test-image'}
+        svgName={'test-svg.svg'} alt={'test'}>
         <div className='child'>Test</div>
       </NoResource>
     )
@@ -50,7 +60,11 @@ describe('NoResource component', () => {
   })
   it('renders as expected', () => {
     const component = renderer.create(
-      <NoResource className={'test-class'} titleClassName={'test-title'} imgClassName={'test-image'} svgName={'test-svg.svg'} alt={'test'}>
+      <NoResource
+        className={'test-class'}
+        titleClassName={'test-title'}
+        imgClassName={'test-image'}
+        svgName={'test-svg.svg'} alt={'test'}>
         <div className='child'>Test</div>
       </NoResource>
     )

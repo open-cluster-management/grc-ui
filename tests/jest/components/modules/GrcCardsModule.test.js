@@ -6,15 +6,27 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
-import { policiesTestingDataSet1, policiesTestingDataSet2, findingsTestingDataSet1 } from './ModuleTestingData'
+import {
+  policiesTestingDataSet1, policiesTestingDataSet2, findingsTestingDataSet1
+} from './ModuleTestingData'
 import { GrcCardsModule } from '../../../../src-web/components/modules/GrcCardsModule'
 import { shallow } from 'enzyme'
 import { createMemoryHistory } from 'history'
 
-const history = createMemoryHistory({'length':5,'action':'PUSH','location':{'pathname':'/multicloud/policies/all','search':'','hash':''}})
+const history = createMemoryHistory(
+  {
+    'length':5,
+    'action':'PUSH',
+    'location':{
+      'pathname':'/multicloud/policies/all',
+      'search':'','hash':''
+    }
+  }
+)
 
 const location1 = {
   pathname: '/multicloud/policies/all'
@@ -220,8 +232,18 @@ describe('GrcCardsModule collapseClick', () => {
         showGrcCard={true}
         displayType = {'all'}
         handleDrillDownClick={handleDrillDownClick} />)
-    expect(component.instance().onChange({'selectedItem':{'value':'standards','label':'Standards'}})).toMatchSnapshot()
-    expect(component.instance().onChange({'selectedItem':{'value':'categories','label':'Categories'}})).toMatchSnapshot()
+    expect(component.instance().onChange({
+      'selectedItem':{
+        'value':'standards',
+        'label':'Standards'
+      }
+    })).toMatchSnapshot()
+    expect(component.instance().onChange({
+      'selectedItem':{
+        'value':'categories',
+        'label':'Categories'
+      }
+    })).toMatchSnapshot()
   })
 
   it('getPolicyCardChoices as expected', () => {

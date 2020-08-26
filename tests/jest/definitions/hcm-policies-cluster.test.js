@@ -9,7 +9,9 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 
 'use strict'
-import { getClusterViolationLabels, getTruncatedText, createClusterLink } from '../../../src-web/definitions/hcm-policies-cluster'
+import {
+  getClusterViolationLabels, getTruncatedText, createClusterLink
+} from '../../../src-web/definitions/hcm-policies-cluster'
 
 describe('getTruncatedText', () => {
   it('Should return truncated text item', () => {

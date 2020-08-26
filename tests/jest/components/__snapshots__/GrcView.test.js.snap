@@ -651,14 +651,14 @@ exports[`GrcView component 1 renders as expected 1`] = `
               </td>
               <td>
                 <a
-                  href="/undefined/all/mcm/policy-limitrange"
+                  href="/undefined/all/calamari/policy-limitrange"
                   onClick={[Function]}
                 >
                   policy-limitrange
                 </a>
               </td>
               <td>
-                mcm
+                calamari
               </td>
               <td>
                 inform
@@ -749,14 +749,14 @@ exports[`GrcView component 1 renders as expected 1`] = `
               </td>
               <td>
                 <a
-                  href="/undefined/all/mcm/policy-namespace"
+                  href="/undefined/all/calamari/policy-namespace"
                   onClick={[Function]}
                 >
                   policy-namespace
                 </a>
               </td>
               <td>
-                mcm
+                calamari
               </td>
               <td>
                 enforce
@@ -1796,42 +1796,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <td>
                 in an hour
               </td>
-              <td>
-                <div
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="Overflow-menu"
-                  className="bx--overflow-menu"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onClose={[Function]}
-                  onKeyDown={[Function]}
-                  open={false}
-                  role="menu"
-                  tabIndex={0}
-                >
-                  <svg
-                    alt="Open and close list of options"
-                    aria-label="Open and close list of options"
-                    className="bx--overflow-menu__icon"
-                    fillRule="evenodd"
-                    focusable="false"
-                    height="15"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="img"
-                    viewBox="0 0 3 15"
-                    width="3"
-                  >
-                    <title>
-                      Open and close list of options
-                    </title>
-                    <path
-                      d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                    />
-                  </svg>
-                </div>
-              </td>
+              <td />
             </tr>
             <tr
               data-row-name="Policy that is not compliant"
@@ -1860,42 +1825,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <td>
                 in an hour
               </td>
-              <td>
-                <div
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="Overflow-menu"
-                  className="bx--overflow-menu"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onClose={[Function]}
-                  onKeyDown={[Function]}
-                  open={false}
-                  role="menu"
-                  tabIndex={0}
-                >
-                  <svg
-                    alt="Open and close list of options"
-                    aria-label="Open and close list of options"
-                    className="bx--overflow-menu__icon"
-                    fillRule="evenodd"
-                    focusable="false"
-                    height="15"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="img"
-                    viewBox="0 0 3 15"
-                    width="3"
-                  >
-                    <title>
-                      Open and close list of options
-                    </title>
-                    <path
-                      d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                    />
-                  </svg>
-                </div>
-              </td>
+              <td />
             </tr>
             <tr
               data-row-name="Policy that is not compliant"
@@ -1924,42 +1854,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <td>
                 in an hour
               </td>
-              <td>
-                <div
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="Overflow-menu"
-                  className="bx--overflow-menu"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onClose={[Function]}
-                  onKeyDown={[Function]}
-                  open={false}
-                  role="menu"
-                  tabIndex={0}
-                >
-                  <svg
-                    alt="Open and close list of options"
-                    aria-label="Open and close list of options"
-                    className="bx--overflow-menu__icon"
-                    fillRule="evenodd"
-                    focusable="false"
-                    height="15"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="img"
-                    viewBox="0 0 3 15"
-                    width="3"
-                  >
-                    <title>
-                      Open and close list of options
-                    </title>
-                    <path
-                      d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                    />
-                  </svg>
-                </div>
-              </td>
+              <td />
             </tr>
             <tr
               data-row-name="Policy that is not compliant"
@@ -1988,42 +1883,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <td>
                 in an hour
               </td>
-              <td>
-                <div
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="Overflow-menu"
-                  className="bx--overflow-menu"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onClose={[Function]}
-                  onKeyDown={[Function]}
-                  open={false}
-                  role="menu"
-                  tabIndex={0}
-                >
-                  <svg
-                    alt="Open and close list of options"
-                    aria-label="Open and close list of options"
-                    className="bx--overflow-menu__icon"
-                    fillRule="evenodd"
-                    focusable="false"
-                    height="15"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="img"
-                    viewBox="0 0 3 15"
-                    width="3"
-                  >
-                    <title>
-                      Open and close list of options
-                    </title>
-                    <path
-                      d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                    />
-                  </svg>
-                </div>
-              </td>
+              <td />
             </tr>
             <tr
               data-row-name="Policy that is not compliant"
@@ -2052,42 +1912,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <td>
                 in an hour
               </td>
-              <td>
-                <div
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="Overflow-menu"
-                  className="bx--overflow-menu"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onClose={[Function]}
-                  onKeyDown={[Function]}
-                  open={false}
-                  role="menu"
-                  tabIndex={0}
-                >
-                  <svg
-                    alt="Open and close list of options"
-                    aria-label="Open and close list of options"
-                    className="bx--overflow-menu__icon"
-                    fillRule="evenodd"
-                    focusable="false"
-                    height="15"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="img"
-                    viewBox="0 0 3 15"
-                    width="3"
-                  >
-                    <title>
-                      Open and close list of options
-                    </title>
-                    <path
-                      d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                    />
-                  </svg>
-                </div>
-              </td>
+              <td />
             </tr>
             <tr
               data-row-name="Policy that is not compliant"
@@ -2116,42 +1941,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <td>
                 in an hour
               </td>
-              <td>
-                <div
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="Overflow-menu"
-                  className="bx--overflow-menu"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onClose={[Function]}
-                  onKeyDown={[Function]}
-                  open={false}
-                  role="menu"
-                  tabIndex={0}
-                >
-                  <svg
-                    alt="Open and close list of options"
-                    aria-label="Open and close list of options"
-                    className="bx--overflow-menu__icon"
-                    fillRule="evenodd"
-                    focusable="false"
-                    height="15"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="img"
-                    viewBox="0 0 3 15"
-                    width="3"
-                  >
-                    <title>
-                      Open and close list of options
-                    </title>
-                    <path
-                      d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                    />
-                  </svg>
-                </div>
-              </td>
+              <td />
             </tr>
             <tr
               data-row-name="Policy that is not compliant"
@@ -2180,42 +1970,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <td>
                 in an hour
               </td>
-              <td>
-                <div
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="Overflow-menu"
-                  className="bx--overflow-menu"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onClose={[Function]}
-                  onKeyDown={[Function]}
-                  open={false}
-                  role="menu"
-                  tabIndex={0}
-                >
-                  <svg
-                    alt="Open and close list of options"
-                    aria-label="Open and close list of options"
-                    className="bx--overflow-menu__icon"
-                    fillRule="evenodd"
-                    focusable="false"
-                    height="15"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="img"
-                    viewBox="0 0 3 15"
-                    width="3"
-                  >
-                    <title>
-                      Open and close list of options
-                    </title>
-                    <path
-                      d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                    />
-                  </svg>
-                </div>
-              </td>
+              <td />
             </tr>
             <tr
               data-row-name="Policy that is not compliant"
@@ -2244,42 +1999,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <td>
                 in an hour
               </td>
-              <td>
-                <div
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="Overflow-menu"
-                  className="bx--overflow-menu"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onClose={[Function]}
-                  onKeyDown={[Function]}
-                  open={false}
-                  role="menu"
-                  tabIndex={0}
-                >
-                  <svg
-                    alt="Open and close list of options"
-                    aria-label="Open and close list of options"
-                    className="bx--overflow-menu__icon"
-                    fillRule="evenodd"
-                    focusable="false"
-                    height="15"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="img"
-                    viewBox="0 0 3 15"
-                    width="3"
-                  >
-                    <title>
-                      Open and close list of options
-                    </title>
-                    <path
-                      d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                    />
-                  </svg>
-                </div>
-              </td>
+              <td />
             </tr>
             <tr
               data-row-name="Policy that is not compliant"
@@ -2308,42 +2028,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <td>
                 in an hour
               </td>
-              <td>
-                <div
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="Overflow-menu"
-                  className="bx--overflow-menu"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onClose={[Function]}
-                  onKeyDown={[Function]}
-                  open={false}
-                  role="menu"
-                  tabIndex={0}
-                >
-                  <svg
-                    alt="Open and close list of options"
-                    aria-label="Open and close list of options"
-                    className="bx--overflow-menu__icon"
-                    fillRule="evenodd"
-                    focusable="false"
-                    height="15"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="img"
-                    viewBox="0 0 3 15"
-                    width="3"
-                  >
-                    <title>
-                      Open and close list of options
-                    </title>
-                    <path
-                      d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                    />
-                  </svg>
-                </div>
-              </td>
+              <td />
             </tr>
             <tr
               data-row-name="Policy that is not compliant"
@@ -2372,42 +2057,7 @@ exports[`GrcView component 5 renders as expected 1`] = `
               <td>
                 in an hour
               </td>
-              <td>
-                <div
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="Overflow-menu"
-                  className="bx--overflow-menu"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onClose={[Function]}
-                  onKeyDown={[Function]}
-                  open={false}
-                  role="menu"
-                  tabIndex={0}
-                >
-                  <svg
-                    alt="Open and close list of options"
-                    aria-label="Open and close list of options"
-                    className="bx--overflow-menu__icon"
-                    fillRule="evenodd"
-                    focusable="false"
-                    height="15"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="img"
-                    viewBox="0 0 3 15"
-                    width="3"
-                  >
-                    <title>
-                      Open and close list of options
-                    </title>
-                    <path
-                      d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                    />
-                  </svg>
-                </div>
-              </td>
+              <td />
             </tr>
           </tbody>
         </table>
@@ -2721,7 +2371,7 @@ exports[`GrcView component 6 renders as expected 1`] = `
 </div>
 `;
 
-exports[`GrcView component 7 renders as expected 1`] = `
+exports[`GrcView component 7 has create permission renders as expected 1`] = `
 <div>
   <div
     className="no-resource"
@@ -2798,7 +2448,84 @@ exports[`GrcView component 7 renders as expected 1`] = `
 </div>
 `;
 
-exports[`GrcView component 8 renders as expected 1`] = `
+exports[`GrcView component 8 has not create permission renders as expected 1`] = `
+<div>
+  <div
+    className="no-resource"
+  >
+    <img
+      alt="No resource"
+      className="no-resource-icon"
+      src="undefined/graphics/no-policy.svg"
+    />
+    <div
+      className="no-resource-text-info"
+    >
+      <div
+        className="no-resource-title"
+      >
+        Get set-up to track your governance and risk.
+      </div>
+      <div
+        className="no-resource-detail"
+      >
+        We noticed that you didn't have any policies created yet. You can view our documentation to see some samples for creating new policies, or you can go ahead and create one now!
+      </div>
+    </div>
+    <div
+      className="button-group"
+    >
+      <button
+        className="bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
+        disabled={true}
+        id="create-resource"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        Create policy
+        <svg
+          alt="Provide icon description if icon is used"
+          aria-hidden={true}
+          aria-label="Provide icon description if icon is used"
+          className="bx--btn__icon"
+          fillRule="evenodd"
+          height="16"
+          name="add--glyph"
+          role="img"
+          viewBox="0 0 16 16"
+          width="16"
+        >
+          <title>
+            Provide icon description if icon is used
+          </title>
+          <path
+            d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
+          />
+        </svg>
+      </button>
+      <div
+        className="buttons"
+      >
+        <button
+          className="bx--btn bx--btn--sm bx--btn--secondary"
+        >
+          <a
+            aria-describedby="launchWindow"
+            className="doc-link"
+            href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
+            target="doc"
+          >
+            View documentation
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GrcView component 9 renders as expected 1`] = `
 <div>
   <div
     className="no-resource"
@@ -2825,6 +2552,35 @@ exports[`GrcView component 8 renders as expected 1`] = `
     <div
       className="button-group"
     >
+      <button
+        className="bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
+        disabled={true}
+        id="create-resource"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        Create policy
+        <svg
+          alt="Provide icon description if icon is used"
+          aria-hidden={true}
+          aria-label="Provide icon description if icon is used"
+          className="bx--btn__icon"
+          fillRule="evenodd"
+          height="16"
+          name="add--glyph"
+          role="img"
+          viewBox="0 0 16 16"
+          width="16"
+        >
+          <title>
+            Provide icon description if icon is used
+          </title>
+          <path
+            d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
+          />
+        </svg>
+      </button>
       <div
         className="buttons"
       >

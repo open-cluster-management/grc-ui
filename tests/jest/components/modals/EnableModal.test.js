@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -18,7 +19,11 @@ describe('DisableModal modal', () => {
   it('renders as expected', () => {
     const component = shallow(<EnableModal
       open={true}
-      label={{'primaryBtn':'modal.disable-hcmpolicypolicy.heading','label':'modal.disable-hcmpolicypolicy.label','heading':'modal.disable-hcmpolicypolicy.heading'}}
+      label={{
+        'primaryBtn':'modal.disable-hcmpolicypolicy.heading',
+        'label':'modal.disable-hcmpolicypolicy.label',
+        'heading':'modal.disable-hcmpolicypolicy.heading'
+      }}
       locale={'en-US'}
       resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
       data={resourceModalData}
@@ -30,7 +35,11 @@ describe('DisableModal modal', () => {
   it('renders errors as expected', () => {
     const component = shallow(<EnableModal
       open={true}
-      label={{'primaryBtn':'modal.disable-hcmpolicypolicy.heading','label':'modal.disable-hcmpolicypolicy.label','heading':'modal.disable-hcmpolicypolicy.heading'}}
+      label={{
+        'primaryBtn':'modal.disable-hcmpolicypolicy.heading',
+        'label':'modal.disable-hcmpolicypolicy.label',
+        'heading':'modal.disable-hcmpolicypolicy.heading'
+      }}
       locale={'en-US'}
       resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
       data={resourceModalData}
@@ -44,7 +53,11 @@ describe('DisableModal modal', () => {
   it('handleSubmit as expected', () => {
     const component = shallow(<EnableModal
       open={true}
-      label={{'primaryBtn':'modal.disable-hcmpolicypolicy.heading','label':'modal.disable-hcmpolicypolicy.label','heading':'modal.disable-hcmpolicypolicy.heading'}}
+      label={{
+        'primaryBtn':'modal.disable-hcmpolicypolicy.heading',
+        'label':'modal.disable-hcmpolicypolicy.label',
+        'heading':'modal.disable-hcmpolicypolicy.heading'
+      }}
       locale={'en-US'}
       resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
       data={resourceModalData}
