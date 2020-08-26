@@ -15,7 +15,7 @@ COPY tests ./tests
 
 RUN npm install \
     chromedriver \
-    geckodriver \
+    #  \
     nightwatch \
     nightwatch-coverage \
     nconf@0.10.0 \
@@ -23,8 +23,6 @@ RUN npm install \
     del@5.1.0 \ 
     js-yaml@3.13.1
 
-# Install Firefox
-# RUN apt-get update && apt-get install -y firefox-esr
 # Install Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
