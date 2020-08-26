@@ -365,7 +365,7 @@ export class ResourceTable extends React.Component {
             : lodash.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
         }
         const menuActions = item.metadata && item.metadata.namespace && tableActions
-                                && tableActions[item.metadata.namespace] || tableActions
+                                && lodash.clone(tableActions[item.metadata.namespace]) || lodash.clone(tableActions)
         const filteredActions = (Array.isArray(menuActions) && menuActions.length > 0)
           ? filterUserAction(item, menuActions, userAccessHash, resourceType)
           : []
