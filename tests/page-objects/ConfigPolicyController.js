@@ -60,11 +60,12 @@ module.exports = {
 
 function createPolicy(browser, name, yaml, time) {
   this.log(`Creating policy:\n${yaml}`)
+  this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   this.waitForElementNotPresent('@spinner')
   this.click('@namespaceDropdown')
-  this.waitForElementPresent('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
+  this.waitForElementVisible('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.click('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.waitForElementPresent('@yamlMonacoEditor')
   this.click('@yamlMonacoEditor')
@@ -110,6 +111,7 @@ function enforcePolicy(name){
   this.waitForElementVisible('#enforce-resource-modal')
   this.click('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.pause(500) // Wait for DOM update
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
   this.clearSearchValue()
 }
@@ -132,6 +134,8 @@ function informPolicy(name){
   this.waitForElementVisible('#inform-resource-modal')
   this.click('#inform-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.waitForElementVisible('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)')
+  this.pause(500) // Wait for DOM update
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
   this.clearSearchValue()
 }
