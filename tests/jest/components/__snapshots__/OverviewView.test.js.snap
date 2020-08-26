@@ -118,8 +118,8 @@ exports[`OverviewView component 3 renders as expected 1`] = `
       className="button-group"
     >
       <button
-        className="bx--btn bx--btn--sm bx--btn--primary"
-        disabled={false}
+        className="bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
+        disabled={true}
         id="create-resource"
         onClick={[Function]}
         tabIndex={0}

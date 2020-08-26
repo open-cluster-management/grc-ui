@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import * as Actions from '../../../src-web/actions'
@@ -33,7 +34,12 @@ describe('role reducer', () => {
         statusCode: 'errorStatusCode'
       }
     }
-    const expectedValue = {'errorMessage': 'errorDetails', 'status': 'ERROR', 'statusCode': 'errorStatusCode', 'test': 'test'}
+    const expectedValue = {
+      'errorMessage': 'errorDetails',
+      'status': 'ERROR',
+      'statusCode': 'errorStatusCode',
+      'test': 'test'
+    }
     expect(role(state, action)).toEqual(expectedValue)
   })
   it('should return a default state', () => {

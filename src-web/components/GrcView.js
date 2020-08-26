@@ -28,6 +28,7 @@ import {
 import NoResource from './common/NoResource'
 import createDocLink from './common/CreateDocLink'
 import ResourceFilterBar from './common/ResourceFilterBar'
+import checkCreatePermission from './common/CheckCreatePermission'
 import msgs from '../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
@@ -127,7 +128,10 @@ export class GrcView extends React.Component {
     const { locale } = this.context
     const showApplications = this.props.showApplications
     const { viewState } = this.state
-    const { loading, error, grcItems, applications, activeFilters={}, secondaryHeaderProps, refreshControl, location } = this.props
+    const {
+      loading, error, grcItems, applications, activeFilters={},
+      secondaryHeaderProps, refreshControl, location, access
+    } = this.props
     if (loading) {
       return <Loading withOverlay={false} className='content-spinner' />
     }
@@ -143,6 +147,7 @@ export class GrcView extends React.Component {
 
     const displayType = location.pathname.split('/').pop()
     let filterGrcItems, filterToEmpty = false
+    const showCreationLink = checkCreatePermission(access)
     switch(displayType) {
     case 'all':
     default:
@@ -151,7 +156,7 @@ export class GrcView extends React.Component {
           <NoResource
             title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
             detail={msgs.get('no-resource.detail.policy', locale)}>
-            {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale))}
+            {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale), showCreationLink)}
           </NoResource>
         )
       }
@@ -287,6 +292,7 @@ export class GrcView extends React.Component {
 }
 
 GrcView.propTypes = {
+  access: PropTypes.array,
   activeFilters: PropTypes.object,
   applications: PropTypes.array,
   error: PropTypes.object,
@@ -302,8 +308,12 @@ GrcView.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  const {resourceToolbar: {activeFilters}} = state
-  return { activeFilters }
+  const {
+    resourceToolbar: {activeFilters},
+    userAccess
+  } = state
+  const access = userAccess && userAccess.access ? userAccess.access : []
+  return { activeFilters, access}
 }
 
 const mapDispatchToProps = (dispatch) => {

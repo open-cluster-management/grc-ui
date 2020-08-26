@@ -5,7 +5,7 @@ exports[`createDocLink view renders does not show create link as expected 1`] = 
   className="button-group"
 >
   <ForwardRef
-    disabled={false}
+    disabled={true}
     icon="add--glyph"
     iconDescription="Provide icon description if icon is used"
     id="create-resource"
@@ -41,7 +41,7 @@ exports[`createDocLink view renders show create link as expected 1`] = `
   className="button-group"
 >
   <ForwardRef
-    disabled={false}
+    disabled={true}
     icon="add--glyph"
     iconDescription="Provide icon description if icon is used"
     id="create-resource"

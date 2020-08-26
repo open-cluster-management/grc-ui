@@ -6,8 +6,11 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
-import { createApplicationLink, getAppViolationLabels } from '../../../src-web/definitions/hcm-policies-application'
+import {
+  createApplicationLink, getAppViolationLabels
+} from '../../../src-web/definitions/hcm-policies-application'
 
 describe('createClusterLink', () => {
   it('Should return createClusterLink', () => {

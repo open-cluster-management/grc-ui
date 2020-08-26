@@ -249,7 +249,11 @@ describe('hcm-compliances - getDecisions', () => {
   it('should return decisions status', () => {
     const items = {
       status: {
-        decisions: [{clusterName:'clusterName1'}, {clusterName:'clusterName2'}, {clusterName:'clusterName3'}]
+        decisions: [
+          {clusterName:'clusterName1'},
+          {clusterName:'clusterName2'},
+          {clusterName:'clusterName3'}
+        ]
       },
     }
     expect(getDecisions(items)).toMatchSnapshot()

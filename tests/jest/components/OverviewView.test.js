@@ -6,10 +6,14 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
-import { GrcViewPolicyCluster, GrcViewFindingCluster, GrcViewRefreshControl, GrcViewSecondaryHeaderProps } from './ComponentsTestingData'
+import {
+  GrcViewPolicyCluster, GrcViewFindingCluster,
+  GrcViewRefreshControl, GrcViewSecondaryHeaderProps
+} from './ComponentsTestingData'
 //curly braces means pure component without redux
 //which is what we want in unit test
 import { OverviewView } from '../../../src-web/components/OverviewView'
@@ -18,7 +22,14 @@ import { BrowserRouter } from 'react-router-dom'
 import { shallow } from 'enzyme'
 import { createMemoryHistory } from 'history'
 
-const history = createMemoryHistory({'length':4,'action':'POP','location':{'pathname':'/multicloud/policies/','search':'','hash':''}})
+const history = createMemoryHistory({
+  'length':4,
+  'action':'POP',
+  'location':{
+    'pathname':'/multicloud/policies/',
+    'search':'','hash':''
+  }
+})
 
 describe('OverviewView component 1', () => {
   const location = {
@@ -117,21 +128,35 @@ describe('OverviewView handleDrillDownClickOverview 1', () => {
         secondaryHeaderProps={GrcViewSecondaryHeaderProps}
       />
     )
-    expect(wrapper.instance().handleDrillDownClickOverview()).toEqual(undefined)
-    expect(wrapper.instance().handleDrillDownClickOverview(null, 'cluster1')).toEqual(undefined)
-    expect(wrapper.instance().handleDrillDownClickOverview('clusters')).toEqual('all?autoFocus=module-toggle-tab&index=1')
-    expect(wrapper.instance().handleDrillDownClickOverview('clusters', 'cluster1')).toEqual('all?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&index=1')
+    expect(wrapper.instance().handleDrillDownClickOverview())
+      .toEqual(undefined)
+    expect(wrapper.instance().handleDrillDownClickOverview(null, 'cluster1'))
+      .toEqual(undefined)
+    expect(wrapper.instance().handleDrillDownClickOverview('clusters'))
+      .toEqual('all?autoFocus=module-toggle-tab&index=1')
+    expect(wrapper.instance().handleDrillDownClickOverview('clusters', 'cluster1'))
+      .toEqual('all?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&index=1')
     expect(wrapper.instance().handleDrillDownClickOverview('policies')).toEqual('all?autoFocus=module-toggle-tab&index=0')
-    expect(wrapper.instance().handleDrillDownClickOverview('policies', 'policy-iampolicy')).toEqual('all?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22policy-iampolicy%22%5D%7D&index=0')
-    expect(wrapper.instance().handleDrillDownClickOverview('security findings')).toEqual('findings?autoFocus=module-toggle-tab&index=0')
-    expect(wrapper.instance().handleDrillDownClickOverview('security findings', 'Policy that is not compliant')).toEqual('findings?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22Policy%20that%20is%20not%20compliant%22%5D%7D&index=0')
-    expect(wrapper.instance().handleDrillDownClickOverview('finding clusters')).toEqual('findings?autoFocus=module-toggle-tab&index=1')
-    expect(wrapper.instance().handleDrillDownClickOverview('finding clusters', 'cluster1')).toEqual('findings?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&index=1')
-    expect(wrapper.instance().handleDrillDownClickOverview('Policy Violations')).toEqual('all?autoFocus=module-toggle-tab&index=0')
-    expect(wrapper.instance().handleDrillDownClickOverview('Cluster Violations')).toEqual('all?autoFocus=module-toggle-tab&index=1')
-    expect(wrapper.instance().handleDrillDownClickOverview('High')).toEqual('findings?autoFocus=module-toggle-tab&index=0&severity=High')
-    expect(wrapper.instance().handleDrillDownClickOverview('Medium')).toEqual('findings?autoFocus=module-toggle-tab&index=0&severity=Medium')
-    expect(wrapper.instance().handleDrillDownClickOverview('Low')).toEqual('findings?autoFocus=module-toggle-tab&index=0&severity=Low')
+    expect(wrapper.instance().handleDrillDownClickOverview('policies', 'policy-iampolicy'))
+      .toEqual('all?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22policy-iampolicy%22%5D%7D&index=0')
+    expect(wrapper.instance().handleDrillDownClickOverview('security findings'))
+      .toEqual('findings?autoFocus=module-toggle-tab&index=0')
+    expect(wrapper.instance().handleDrillDownClickOverview('security findings', 'Policy that is not compliant'))
+      .toEqual('findings?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22Policy%20that%20is%20not%20compliant%22%5D%7D&index=0')
+    expect(wrapper.instance().handleDrillDownClickOverview('finding clusters'))
+      .toEqual('findings?autoFocus=module-toggle-tab&index=1')
+    expect(wrapper.instance().handleDrillDownClickOverview('finding clusters', 'cluster1'))
+      .toEqual('findings?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&index=1')
+    expect(wrapper.instance().handleDrillDownClickOverview('Policy Violations'))
+      .toEqual('all?autoFocus=module-toggle-tab&index=0')
+    expect(wrapper.instance().handleDrillDownClickOverview('Cluster Violations'))
+      .toEqual('all?autoFocus=module-toggle-tab&index=1')
+    expect(wrapper.instance().handleDrillDownClickOverview('High'))
+      .toEqual('findings?autoFocus=module-toggle-tab&index=0&severity=High')
+    expect(wrapper.instance().handleDrillDownClickOverview('Medium'))
+      .toEqual('findings?autoFocus=module-toggle-tab&index=0&severity=Medium')
+    expect(wrapper.instance().handleDrillDownClickOverview('Low'))
+      .toEqual('findings?autoFocus=module-toggle-tab&index=0&severity=Low')
   })
   it('renders as expected', () => {
     const wrapper = shallow(
@@ -148,20 +173,35 @@ describe('OverviewView handleDrillDownClickOverview 1', () => {
         secondaryHeaderProps={GrcViewSecondaryHeaderProps}
       />
     )
-    expect(wrapper.instance().handleDrillDownClickOverview()).toEqual(undefined)
-    expect(wrapper.instance().handleDrillDownClickOverview(null, 'cluster1')).toEqual(undefined)
-    expect(wrapper.instance().handleDrillDownClickOverview('clusters')).toEqual('/all?autoFocus=module-toggle-tab&index=1')
-    expect(wrapper.instance().handleDrillDownClickOverview('clusters', 'cluster1')).toEqual('/all?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&index=1')
-    expect(wrapper.instance().handleDrillDownClickOverview('policies')).toEqual('/all?autoFocus=module-toggle-tab&index=0')
-    expect(wrapper.instance().handleDrillDownClickOverview('policies', 'policy-iampolicy')).toEqual('/all?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22policy-iampolicy%22%5D%7D&index=0')
-    expect(wrapper.instance().handleDrillDownClickOverview('security findings')).toEqual('/findings?autoFocus=module-toggle-tab&index=0')
-    expect(wrapper.instance().handleDrillDownClickOverview('security findings', 'Policy that is not compliant')).toEqual('/findings?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22Policy%20that%20is%20not%20compliant%22%5D%7D&index=0')
-    expect(wrapper.instance().handleDrillDownClickOverview('finding clusters')).toEqual('/findings?autoFocus=module-toggle-tab&index=1')
-    expect(wrapper.instance().handleDrillDownClickOverview('finding clusters', 'cluster1')).toEqual('/findings?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&index=1')
-    expect(wrapper.instance().handleDrillDownClickOverview('Policy Violations')).toEqual('/all?autoFocus=module-toggle-tab&index=0')
-    expect(wrapper.instance().handleDrillDownClickOverview('Cluster Violations')).toEqual('/all?autoFocus=module-toggle-tab&index=1')
-    expect(wrapper.instance().handleDrillDownClickOverview('High')).toEqual('/findings?autoFocus=module-toggle-tab&index=0&severity=High')
-    expect(wrapper.instance().handleDrillDownClickOverview('Medium')).toEqual('/findings?autoFocus=module-toggle-tab&index=0&severity=Medium')
-    expect(wrapper.instance().handleDrillDownClickOverview('Low')).toEqual('/findings?autoFocus=module-toggle-tab&index=0&severity=Low')
+    expect(wrapper.instance().handleDrillDownClickOverview())
+      .toEqual(undefined)
+    expect(wrapper.instance().handleDrillDownClickOverview(null, 'cluster1'))
+      .toEqual(undefined)
+    expect(wrapper.instance().handleDrillDownClickOverview('clusters'))
+      .toEqual('/all?autoFocus=module-toggle-tab&index=1')
+    expect(wrapper.instance().handleDrillDownClickOverview('clusters', 'cluster1'))
+      .toEqual('/all?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&index=1')
+    expect(wrapper.instance().handleDrillDownClickOverview('policies'))
+      .toEqual('/all?autoFocus=module-toggle-tab&index=0')
+    expect(wrapper.instance().handleDrillDownClickOverview('policies', 'policy-iampolicy'))
+      .toEqual('/all?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22policy-iampolicy%22%5D%7D&index=0')
+    expect(wrapper.instance().handleDrillDownClickOverview('security findings'))
+      .toEqual('/findings?autoFocus=module-toggle-tab&index=0')
+    expect(wrapper.instance().handleDrillDownClickOverview('security findings', 'Policy that is not compliant'))
+      .toEqual('/findings?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22Policy%20that%20is%20not%20compliant%22%5D%7D&index=0')
+    expect(wrapper.instance().handleDrillDownClickOverview('finding clusters'))
+      .toEqual('/findings?autoFocus=module-toggle-tab&index=1')
+    expect(wrapper.instance().handleDrillDownClickOverview('finding clusters', 'cluster1'))
+      .toEqual('/findings?autoFocus=module-toggle-tab&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&index=1')
+    expect(wrapper.instance().handleDrillDownClickOverview('Policy Violations'))
+      .toEqual('/all?autoFocus=module-toggle-tab&index=0')
+    expect(wrapper.instance().handleDrillDownClickOverview('Cluster Violations'))
+      .toEqual('/all?autoFocus=module-toggle-tab&index=1')
+    expect(wrapper.instance().handleDrillDownClickOverview('High'))
+      .toEqual('/findings?autoFocus=module-toggle-tab&index=0&severity=High')
+    expect(wrapper.instance().handleDrillDownClickOverview('Medium'))
+      .toEqual('/findings?autoFocus=module-toggle-tab&index=0&severity=Medium')
+    expect(wrapper.instance().handleDrillDownClickOverview('Low'))
+      .toEqual('/findings?autoFocus=module-toggle-tab&index=0&severity=Low')
   })
 })
