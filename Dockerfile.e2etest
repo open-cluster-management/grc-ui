@@ -9,7 +9,17 @@ RUN mkdir -p /opt/app-root/src/grc-ui
 
 WORKDIR /opt/app-root/src/grc-ui
 
-COPY config build nightwatch.conf.js nightwatch.json tests package.json node_modules ./
+COPY config build nightwatch.conf.js nightwatch.json tests package.json ./
+
+RUN RUN npm install \
+    chromedriver \
+    geckodriver \
+    nightwatch \
+    nightwatch-coverage \
+    nconf@0.10.0 \
+    log4js@2.11.0 \
+    del@5.1.0 \ 
+    js-yaml@3.13.1
 
 # Install Firefox
 # RUN apt-get update && apt-get install -y firefox-esr
