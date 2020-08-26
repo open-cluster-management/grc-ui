@@ -13,15 +13,7 @@ COPY nightwatch.conf.js nightwatch.json package.json ./
 COPY config ./config
 COPY tests ./tests
 
-RUN npm install \
-    chromedriver \
-    geckodriver \
-    nightwatch \
-    nightwatch-coverage \
-    nconf@0.10.0 \
-    log4js@2.11.0 \
-    del@5.1.0 \ 
-    js-yaml@3.13.1
+RUN apt-get update
 
 # Install Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -29,5 +21,14 @@ RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
 # Don't need for now, will need after resume cert-policy test
 # RUN sh ./build/download-clis.sh
+
+RUN npm install \
+    chromedriver \
+    nightwatch \
+    nightwatch-coverage \
+    nconf@0.10.0 \
+    log4js@6.3.0 \
+    del@5.1.0 \ 
+    js-yaml@3.14.0
 
 CMD ["npm", "run", "test:e2e-headless"]
