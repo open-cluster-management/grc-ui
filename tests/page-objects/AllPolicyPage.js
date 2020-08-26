@@ -496,7 +496,7 @@ function testDetailsPage(name, templateFile) {
 function deletePolicy(name) {
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.setValue('@searchInput', name)
+  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
   this.waitForElementNotPresent('bx--overflow-menu-options__option.bx--overflow-menu-options__option--danger')
@@ -509,10 +509,4 @@ function deletePolicy(name) {
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
-  this.pause(2000) // Wait 2s for DOM reload
-  this.isVisible('@searchInputClear', result => {
-    if (result.value) {
-      this.click('@searchInputClear')
-    }
-  })
 }

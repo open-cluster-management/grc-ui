@@ -44,7 +44,7 @@ module.exports = {
 function verifyAllPage(name, nsNum, permissions) {
   // Filter for our RBAC policies
   this.waitForElementVisible('@searchInput')
-  this.setValue('@searchInput', name)
+  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
   this.waitForElementVisible('@allTable')
   // Check that user can see expected number of policies
   this.expect.element('@allTable').to.have.property('childElementCount').equals(nsNum)
@@ -70,14 +70,12 @@ function verifyAllPage(name, nsNum, permissions) {
   } else {
     overflowMenuSection.expect.element('@overflowMenuRemove').to.be.not.enabled
   }
-  // Clear search value in case test is run again
-  this.clearValue('@searchInput')
 }
 
 function verifyPolicyPage(name, permissions) {
   // Filter for our RBAC policies
   this.waitForElementVisible('@searchInput')
-  this.setValue('@searchInput', name)
+  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
   this.waitForElementVisible('@allTable')
   // Navigate to policy page
   this.expect.element('@policyLink').text.to.startWith(name)
