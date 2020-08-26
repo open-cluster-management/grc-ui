@@ -381,42 +381,7 @@ Array [
           <td>
             SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -471,42 +436,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -561,42 +491,7 @@ Array [
           <td>
             SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -651,42 +546,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -741,42 +601,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -831,42 +656,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -921,42 +711,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections,SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -1011,42 +766,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -1101,42 +821,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -1191,42 +876,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
       </tbody>
     </table>
@@ -1832,42 +1482,7 @@ Array [
           <td>
             SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -1922,42 +1537,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -2012,42 +1592,7 @@ Array [
           <td>
             SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -2102,42 +1647,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -2192,42 +1702,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -2282,42 +1757,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -2372,42 +1812,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections,SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -2462,42 +1867,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -2552,42 +1922,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -2642,42 +1977,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
       </tbody>
     </table>
@@ -4919,42 +4219,7 @@ Array [
           <td>
             SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           data-row-name="policy-auditpolicy"
@@ -4977,42 +4242,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           data-row-name="policy-certificatepolicy"
@@ -5035,42 +4265,7 @@ Array [
           <td>
             SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           data-row-name="policy-iampolicy"
@@ -5093,42 +4288,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           data-row-name="policy-image"
@@ -5151,42 +4311,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           data-row-name="policy-limitrange"
@@ -5209,42 +4334,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           data-row-name="policy-namespace"
@@ -5267,42 +4357,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections,SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           data-row-name="policy-pod"
@@ -5325,42 +4380,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           data-row-name="policy-pod-2"
@@ -5383,42 +4403,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           data-row-name="policy-pod-edge"
@@ -5441,42 +4426,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
       </tbody>
     </table>
@@ -6023,42 +4973,7 @@ Array [
           <td>
             SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -6113,42 +5028,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -6203,42 +5083,7 @@ Array [
           <td>
             SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -6293,42 +5138,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -6383,42 +5193,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -6473,42 +5248,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -6563,42 +5303,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections,SystemAndInformationIntegrity
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -6653,42 +5358,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -6743,42 +5413,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
         <tr
           aria-hidden={false}
@@ -6833,42 +5468,7 @@ Array [
           <td>
             SystemAndCommunicationsProtections
           </td>
-          <td>
-            <div
-              aria-expanded={false}
-              aria-haspopup={true}
-              aria-label="Overflow-menu"
-              className="bx--overflow-menu"
-              onBlur={[Function]}
-              onClick={[Function]}
-              onClose={[Function]}
-              onKeyDown={[Function]}
-              open={false}
-              role="menu"
-              tabIndex={0}
-            >
-              <svg
-                alt="Open and close list of options"
-                aria-label="Open and close list of options"
-                className="bx--overflow-menu__icon"
-                fillRule="evenodd"
-                focusable="false"
-                height="15"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="img"
-                viewBox="0 0 3 15"
-                width="3"
-              >
-                <title>
-                  Open and close list of options
-                </title>
-                <path
-                  d="M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0"
-                />
-              </svg>
-            </div>
-          </td>
+          <td />
         </tr>
       </tbody>
     </table>

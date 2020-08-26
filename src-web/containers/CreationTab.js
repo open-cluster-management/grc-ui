@@ -6,9 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
-*/
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -24,6 +22,7 @@ import { GRCCreation } from '../../lib/client/queries'
 import CreationView from '../components/CreationView'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
+import checkCreatePermission from '../components/common/CheckCreatePermission'
 
 export class CreationTab extends React.Component {
 
@@ -45,7 +44,8 @@ export class CreationTab extends React.Component {
     mutateStatus: PropTypes.string,
     secondaryHeaderProps: PropTypes.object,
     updateSecondaryHeader: PropTypes.func,
-    updateStatus: PropTypes.string
+    updateStatus: PropTypes.string,
+    userAccess: PropTypes.array
   }
 
   UNSAFE_componentWillMount() {
@@ -190,8 +190,11 @@ export class CreationTab extends React.Component {
   }
 
   render () {
-    const { mutateStatus, mutateErrorMsg, mutatePBErrorMsg, mutatePRErrorMsg, updateStatus } = this.props
+    const { mutateStatus, mutateErrorMsg, mutatePBErrorMsg, mutatePRErrorMsg, updateStatus, userAccess } = this.props
     const { updateRequested } = this.state
+    if (checkCreatePermission(userAccess) !== 1) {
+      return <Redirect to={`${config.contextPath}/all`} />
+    }
     if ((mutateStatus && mutateStatus === 'DONE') && (!updateRequested || (updateStatus && updateStatus === 'DONE'))) {
       this.props.cleanReqStatus && this.props.cleanReqStatus()
       return <Redirect to={`${config.contextPath}/all`} />
@@ -254,12 +257,16 @@ const mapStateToProps = (state) => {
     && (state['HCMPolicyList'].mutateStatus === 'DONE')) {
     updateState = 'DONE'
   }
+  const userAccess = state.userAccess && state.userAccess.access
+    ? state.userAccess.access
+    : []
   return {
     mutateStatus: state['HCMPolicyList'].mutateStatus,
     mutateErrorMsg: state['HCMPolicyList'].mutateErrorMsg,
     mutatePRErrorMsg: state['PlacementRulesList'].mutateErrorMsg,
     mutatePBErrorMsg: state['PlacementBindingsList'].mutateErrorMsg,
-    updateStatus: updateState
+    updateStatus: updateState,
+    userAccess: userAccess,
   }
 }
 

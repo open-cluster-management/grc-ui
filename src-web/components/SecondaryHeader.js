@@ -17,6 +17,7 @@ import { Breadcrumb, Button, Tabs, Tab, TooltipIcon } from 'carbon-components-re
 import resources from '../../lib/shared/resources'
 import { withRouter, Link } from 'react-router-dom'
 import msgs from '../../nls/platform.properties'
+import checkCreatePermission from './common/CheckCreatePermission'
 
 resources(() => {
   require('../../scss/secondary-header.scss')
@@ -52,17 +53,17 @@ export class SecondaryHeader extends React.Component {
   }
 
   render() {
-    const { tabs, title, breadcrumbItems, links, description, location } = this.props
+    const { tabs, title, breadcrumbItems, links, description, location, userAccess } = this.props
     const { locale } = this.context
     const displayType = location.pathname.split('/').pop()
-    let showCreationLink
+    let showCreationLink // 0=clickable, 1=non-clickable, 2=hide
     switch(displayType) {
     case 'all':
     default:
-      showCreationLink = true
+      showCreationLink = checkCreatePermission(userAccess)
       break
     case 'findings':
-      showCreationLink = false
+      showCreationLink = 2
       break
     }
     if ((tabs && tabs.length > 0) || (breadcrumbItems && breadcrumbItems.length > 0)) {
@@ -89,9 +90,9 @@ export class SecondaryHeader extends React.Component {
               </div>
             </header>
           </div>
-          {showCreationLink && links && links.length>0 &&
+          {showCreationLink !== 2 && links && links.length>0 &&
             <div className='secondary-header-links'>
-              {this.renderLinks()}
+              {this.renderLinks(showCreationLink)}
             </div>
           }
         </div>
@@ -166,16 +167,23 @@ export class SecondaryHeader extends React.Component {
     })
   }
 
-  renderLinks() {
+  renderLinks(showCreationLink) {
     const { links } = this.props,
-          { locale } = this.context
+          { locale } = this.context,
+          disableFlag = (showCreationLink !== 1)
     return links.map(link => {
       const {id, label, url, kind='primary', handleClick=(()=> this.props.history.push(url)) } = link
       // if portal, react component will create the button using a portal
       if (kind==='portal') {
         return <div key={id} id={id} className='portal' />
       }
-      return <Button key={id} id={id} onClick={handleClick} kind={kind} >
+      return <Button
+        disabled={disableFlag}
+        key={id}
+        id={id}
+        onClick={handleClick}
+        kind={kind}
+      >
         {msgs.get(label, locale)}
       </Button>
     })
@@ -214,16 +222,20 @@ SecondaryHeader.propTypes = {
   location: PropTypes.object,
   tabs: PropTypes.array,
   title: PropTypes.string,
+  userAccess: PropTypes.array
 }
 
 const mapStateToProps = (state) => {
+  const userAccess = state.userAccess && state.userAccess.access
+    ? state.userAccess.access
+    : []
   return {
     title: state.secondaryHeader.title,
     tabs: state.secondaryHeader.tabs,
     breadcrumbItems: state.secondaryHeader.breadcrumbItems,
     links: state.secondaryHeader.links,
     refresh: state.secondaryHeader.refresh,
-    role: state.role && state.role.role,
+    userAccess: userAccess,
     description: state.secondaryHeader.description,
     information: state.secondaryHeader.information,
   }
