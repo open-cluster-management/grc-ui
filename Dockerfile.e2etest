@@ -15,6 +15,7 @@ COPY nightwatch.conf.js .
 COPY nightwatch.json .
 COPY tests ./tests
 COPY package.json .
+COPY node_modules .
 
 # Install Firefox
 RUN apt-get update && apt-get install -y firefox-esr
@@ -24,7 +25,5 @@ RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
 # Don't need for now, will need after resume cert-policy test
 # RUN sh ./build/download-clis.sh
-
-RUN npm install
 
 CMD ["npm", "run", "test:e2e-headless"]
