@@ -509,7 +509,7 @@ function deletePolicy(name) {
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
-  this.pause(1000) // Wait 1s for DOM reload
+  this.pause(2000) // Wait 2s for DOM reload
   this.isVisible('@searchInputClear', result => {
     if (result.value) {
       this.click('@searchInputClear')
