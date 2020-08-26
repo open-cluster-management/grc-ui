@@ -15,6 +15,8 @@ module.exports = {
     policyNameInput: '#name',
     namespaceDropdown: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box',
     namespaceDropdownBox: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div',
+    placementRuleEdit: 'div.page-content-container div.overview-content-second > div.overview-content-second-cell:nth-child(1) button.text-edit-button',
+    placementBindingEdit: 'div.page-content-container div.overview-content-second > div.overview-content-second-cell:nth-child(2) button.text-edit-button',
     yamlTab: '#yaml-tab',
     yamlEditor: '.monaco-editor',
     yamlEditButton: '#edit-button',
@@ -77,10 +79,18 @@ function verifyPolicyPage(name, permissions) {
   this.waitForElementVisible('@searchInput')
   this.setValue('@searchInput', name)
   this.waitForElementVisible('@allTable')
-  // Navigate to policy page and YAML tab
+  // Navigate to policy page
   this.expect.element('@policyLink').text.to.startWith(name)
   this.click('@policyLink')
   this.waitForElementNotPresent('@spinner')
+  if (permissions.patch) {
+    this.expect.element('@placementBindingEdit').to.be.enabled
+    this.expect.element('@placementRuleEdit').to.be.enabled
+  } else {
+    this.expect.element('@placementBindingEdit').to.not.be.enabled
+    this.expect.element('@placementRuleEdit').to.not.be.enabled
+  }
+  // Check YAML tab
   this.click('@yamlTab')
   this.waitForElementPresent('@yamlEditor')
   if (permissions.patch) {
