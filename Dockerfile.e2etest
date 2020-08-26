@@ -9,7 +9,9 @@ RUN mkdir -p /opt/app-root/src/grc-ui
 
 WORKDIR /opt/app-root/src/grc-ui
 
-COPY config build nightwatch.conf.js nightwatch.json tests package.json ./
+COPY nightwatch.conf.js nightwatch.json package.json ./
+COPY config ./config
+COPY tests ./tests
 
 RUN npm install \
     chromedriver \
