@@ -127,15 +127,10 @@ function verifyCreatePage(permissions, createPage, policyName = '', ns = [], clu
       createPage.createTestPolicy(true, { policyName: policyName, namespace: ns[0] })
     }
   } else {
-    // TODO: Adjust temporary workaround to button NOT enabled
-    this.expect.element('@createPolicyButton').to.be.enabled//.to.not.be.enabled
+    this.expect.element('@createPolicyButton').to.not.be.enabled
 
     // Make sure users can't navigate to the Create page directly
     this.api.url(`${this.api.launchUrl}${config.get('contextPath')}/create`)
-
-    // TODO: Remove temporary workaround manually redirecting page
-    this.api.url(`${this.api.launchUrl}${config.get('contextPath')}`)
-
     this.waitForElementNotPresent('@spinner')
     this.expect.element('@submitCreatePolicyButton').to.not.be.present
     this.expect.element('@createPolicyButton').to.be.present
