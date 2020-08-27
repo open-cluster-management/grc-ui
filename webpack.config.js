@@ -10,13 +10,13 @@
 const config = require('./config'),
       path = require('path'),
       webpack = require('webpack'),
-      MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-      TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
-      WebpackMd5Hash = require('webpack-md5-hash'),
-      FileManagerPlugin = require('filemanager-webpack-plugin-fixed'),
       CompressionPlugin = require('compression-webpack-plugin'),
-      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+      FileManagerPlugin = require('filemanager-webpack-plugin-fixed'),
+      MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin'),
+      TerserPlugin = require('terser-webpack-plugin'),
+      WebpackMd5Hash = require('webpack-md5-hash')
 
 const noOP = () => { /*This is intentional*/},
       PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
@@ -69,13 +69,14 @@ module.exports = {
         }
       },
       {
-        test: [/\.scss$/],
+        test: [/\.s?css$/],
+        exclude: /node_modules\/(?!(@patternfly)\/).*/,
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader?sourceMap',
+            loader: 'css-loader',
             options: {
-              // minimize: PRODUCTION ? true : false
+              sourceMap: true,
             },
           },
           {
@@ -86,6 +87,12 @@ module.exports = {
                   require('autoprefixer')
                 ]
               },
+            },
+          },
+          {
+            loader: 'resolve-url-loader',
+            options: {
+              sourceMap: true,
             },
           },
           {
@@ -111,16 +118,10 @@ module.exports = {
       },
       {
         test: /\.svg$/,
+        include: path.resolve(__dirname, './graphics'),
         use: [
           'svg-sprite-loader'
         ]
-      },
-      {
-        test: /\.(png|jpg)$/,
-        use: [
-          'svg-sprite-loader?symbolId=icon-[name]',
-          'image2svg-loader',
-        ],
       },
       {
         test: [/\.handlebars$/, /\.hbs$/],
@@ -131,8 +132,8 @@ module.exports = {
         loader: 'js-yaml-loader',
       },
       {
-        test: /\.(woff2?|ttf|eot|otf)(\?.*$|$)/,
-        exclude: overpassTest,
+        test: /\.(png|jpg|jpeg|gif|svg|woff2?|ttf|eot|otf)(\?.*$|$)/,
+        exclude: [overpassTest, path.resolve(__dirname, './graphics')],
         loader: 'file-loader',
         options: {
           name: 'assets/[name].[ext]',

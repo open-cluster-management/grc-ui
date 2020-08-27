@@ -33,6 +33,12 @@ export class PolicyDetailsOverview extends React.PureComponent{
     super(props)
   }
 
+  componentDidUpdate(prevProps) {
+    if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
+      this.props.updateResourceToolbar(this.props.refreshControl, {})
+    }
+  }
+
   static propTypes = {
     error: PropTypes.any,
     item: PropTypes.oneOfType([
@@ -74,14 +80,6 @@ export class PolicyDetailsOverview extends React.PureComponent{
       status[clusterNamespace] = compliant
     })
     return status
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const {refreshControl, item, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
-    if (!_.isEqual(refreshControl, this.props.refreshControl) ||
-        !_.isEqual(item, this.props.item)) {
-      localUpdateResourceToolbar(refreshControl, {})
-    }
   }
 
   render() {
@@ -255,10 +253,10 @@ export class PolicyDetailsOverview extends React.PureComponent{
           <h5 className='section-title'>{msgs.get('table.header.placement', locale)}</h5>
           {modulesSecond.length > 0 &&
           <div className='overview-content-second'>
-            <div className='overview-content-second-left'>
+            <div className='overview-content-second-cell'>
               {React.cloneElement(modulesSecond[0], { ...staticResourceData.placementPolicyKeys.detailKeys, data:itemPP })}
             </div>
-            <div className='overview-content-second-left'>
+            <div className='overview-content-second-cell'>
               {React.cloneElement(modulesSecond[1], { ...staticResourceData.placementBindingKeys.detailKeys, data:itemPB })}
             </div>
           </div>}
@@ -271,15 +269,10 @@ export class PolicyDetailsOverview extends React.PureComponent{
   }
 }
 
-const mapStateToProps = (state) => {
-  const {resourceToolbar: {activeFilters}} = state
-  return { activeFilters }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
-    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {})),
+    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PolicyDetailsOverview))
+export default withRouter(connect(null, mapDispatchToProps)(PolicyDetailsOverview))

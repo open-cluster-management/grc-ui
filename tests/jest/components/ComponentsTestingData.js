@@ -18,8 +18,8 @@ export const GrcViewPolicyCluster = [
   {
     'metadata': {
       'name': 'my-policy',
-      'namespace': 'mcm',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/my-policy',
+      'namespace': 'calamari',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/my-policy',
       'annotations': {
         'policy.open-cluster-management.io/categories': '',
         'policy.open-cluster-management.io/controls': '',
@@ -30,7 +30,7 @@ export const GrcViewPolicyCluster = [
       '__typename': 'Metadata'
     },
     'name': 'my-policy',
-    'namespace': 'mcm',
+    'namespace': 'calamari',
     'raw': {
       'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
@@ -43,13 +43,13 @@ export const GrcViewPolicyCluster = [
         },
         'creationTimestamp': '2019-07-21T15:53:58Z',
         'finalizers': [
-          'propagator.finalizer.mcm.ibm.com'
+          'propagator.finalizer.calamari.ibm.com'
         ],
         'generation': 55,
         'name': 'my-policy',
-        'namespace': 'mcm',
+        'namespace': 'calamari',
         'resourceVersion': '1347399',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/my-policy',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/my-policy',
         'uid': 'c049ec0d-abcf-11e9-8a41-005056a061f1'
       },
       'spec': {
@@ -127,7 +127,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'placement-my-policy',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-my-policy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-my-policy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -137,7 +137,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'binding-my-policy',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-my-policy',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-my-policy',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -148,10 +148,10 @@ export const GrcViewPolicyCluster = [
   {
     'metadata': {
       'name': 'policy-ma',
-      'namespace': 'mcm',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-ma',
+      'namespace': 'calamari',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-ma',
       'annotations': {
-        'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor","policy.open-cluster-management.io/standards":"NIST"},"name":"policy-ma","namespace":"mcm"},"spec":{"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"MutationPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"mutation-policy-example"},"spec":{"conditions":{"ownership":["ReplicaSet","Deployment","DeamonSet","ReplicationController"]},"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}],"remediationAction":"enforce"}}\n',
+        'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor","policy.open-cluster-management.io/standards":"NIST"},"name":"policy-ma","namespace":"calamari"},"spec":{"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"MutationPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"mutation-policy-example"},"spec":{"conditions":{"ownership":["ReplicaSet","Deployment","DeamonSet","ReplicationController"]},"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}],"remediationAction":"enforce"}}\n',
         'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
         'policy.open-cluster-management.io/controls': 'MutationAdvisor',
         'policy.open-cluster-management.io/standards': 'NIST',
@@ -161,13 +161,13 @@ export const GrcViewPolicyCluster = [
       '__typename': 'Metadata'
     },
     'name': 'policy-ma',
-    'namespace': 'mcm',
+    'namespace': 'calamari',
     'raw': {
       'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor","policy.open-cluster-management.io/standards":"NIST"},"name":"policy-ma","namespace":"mcm"},"spec":{"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"MutationPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"mutation-policy-example"},"spec":{"conditions":{"ownership":["ReplicaSet","Deployment","DeamonSet","ReplicationController"]},"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}],"remediationAction":"enforce"}}\n',
+          'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor","policy.open-cluster-management.io/standards":"NIST"},"name":"policy-ma","namespace":"calamari"},"spec":{"policy-templates":[{"objectDefinition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"MutationPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"mutation-policy-example"},"spec":{"conditions":{"ownership":["ReplicaSet","Deployment","DeamonSet","ReplicationController"]},"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}],"remediationAction":"enforce"}}\n',
           'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
           'policy.open-cluster-management.io/controls': 'MutationAdvisor',
           'policy.open-cluster-management.io/standards': 'NIST',
@@ -175,13 +175,13 @@ export const GrcViewPolicyCluster = [
         },
         'creationTimestamp': '2019-07-16T13:18:48Z',
         'finalizers': [
-          'propagator.finalizer.mcm.ibm.com'
+          'propagator.finalizer.calamari.ibm.com'
         ],
         'generation': 45,
         'name': 'policy-ma',
-        'namespace': 'mcm',
+        'namespace': 'calamari',
         'resourceVersion': '1347579',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-ma',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-ma',
         'uid': '3f218d45-a7cc-11e9-8a41-005056a061f1'
       },
       'spec': {
@@ -261,7 +261,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'placement-ma',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-ma',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-ma',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -271,7 +271,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'binding-ma',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-ma',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-ma',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -282,8 +282,8 @@ export const GrcViewPolicyCluster = [
   {
     'metadata': {
       'name': 'policy-pod',
-      'namespace': 'mcm',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-pod',
+      'namespace': 'calamari',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-pod',
       'annotations': {
         'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
         'policy.open-cluster-management.io/controls': 'MutationAdvisor,CertificateManager',
@@ -294,7 +294,7 @@ export const GrcViewPolicyCluster = [
       '__typename': 'Metadata'
     },
     'name': 'policy-pod',
-    'namespace': 'mcm',
+    'namespace': 'calamari',
     'raw': {
       'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
@@ -307,13 +307,13 @@ export const GrcViewPolicyCluster = [
         },
         'creationTimestamp': '2019-07-16T13:16:46Z',
         'finalizers': [
-          'propagator.finalizer.mcm.ibm.com'
+          'propagator.finalizer.calamari.ibm.com'
         ],
         'generation': 19,
         'name': 'policy-pod',
-        'namespace': 'mcm',
+        'namespace': 'calamari',
         'resourceVersion': '1257026',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-pod',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-pod',
         'uid': 'f61a25eb-a7cb-11e9-8a41-005056a061f1'
       },
       'spec': {
@@ -392,7 +392,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'placement-pod',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-pod',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-pod',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -402,7 +402,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'binding-pod',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-pod',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-pod',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -413,10 +413,10 @@ export const GrcViewPolicyCluster = [
   {
     'metadata': {
       'name': 'policy-role',
-      'namespace': 'mcm',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-role',
+      'namespace': 'calamari',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-role',
       'annotations': {
-        'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndCommunicationsProtections,SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor,VA","policy.open-cluster-management.io/standards":"NIST,HIPAA"},"name":"policy-role","namespace":"mcm"},"spec":{"namespaces":{"exclude":["kube*"],"include":["default"]},"remediationAction":"inform","role-templates":[{"apiVersion":"roletemplate.mcm.ibm.com/v1alpha1","complianceType":"musthave","metadata":{"name":"operator-role-policy","namespace":""},"rules":[{"complianceType":"musthave","policyRule":{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","create","delete","patch"]}}],"selector":{"matchLabels":{"dev":"true"}}}]}}\n',
+        'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndCommunicationsProtections,SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor,VA","policy.open-cluster-management.io/standards":"NIST,HIPAA"},"name":"policy-role","namespace":"calamari"},"spec":{"namespaces":{"exclude":["kube*"],"include":["default"]},"remediationAction":"inform","role-templates":[{"apiVersion":"roletemplate.calamari.ibm.com/v1alpha1","complianceType":"musthave","metadata":{"name":"operator-role-policy","namespace":""},"rules":[{"complianceType":"musthave","policyRule":{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","create","delete","patch"]}}],"selector":{"matchLabels":{"dev":"true"}}}]}}\n',
         'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
         'policy.open-cluster-management.io/controls': 'MutationAdvisor,VA',
         'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
@@ -426,13 +426,13 @@ export const GrcViewPolicyCluster = [
       '__typename': 'Metadata'
     },
     'name': 'policy-role',
-    'namespace': 'mcm',
+    'namespace': 'calamari',
     'raw': {
       'apiVersion': 'policy.open-cluster-management.io/v1',
       'kind': 'Policy',
       'metadata': {
         'annotations': {
-          'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndCommunicationsProtections,SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor,VA","policy.open-cluster-management.io/standards":"NIST,HIPAA"},"name":"policy-role","namespace":"mcm"},"spec":{"namespaces":{"exclude":["kube*"],"include":["default"]},"remediationAction":"inform","role-templates":[{"apiVersion":"roletemplate.mcm.ibm.com/v1alpha1","complianceType":"musthave","metadata":{"name":"operator-role-policy","namespace":""},"rules":[{"complianceType":"musthave","policyRule":{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","create","delete","patch"]}}],"selector":{"matchLabels":{"dev":"true"}}}]}}\n',
+          'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndCommunicationsProtections,SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor,VA","policy.open-cluster-management.io/standards":"NIST,HIPAA"},"name":"policy-role","namespace":"calamari"},"spec":{"namespaces":{"exclude":["kube*"],"include":["default"]},"remediationAction":"inform","role-templates":[{"apiVersion":"roletemplate.calamari.ibm.com/v1alpha1","complianceType":"musthave","metadata":{"name":"operator-role-policy","namespace":""},"rules":[{"complianceType":"musthave","policyRule":{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","create","delete","patch"]}}],"selector":{"matchLabels":{"dev":"true"}}}]}}\n',
           'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
           'policy.open-cluster-management.io/controls': 'MutationAdvisor,VA',
           'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
@@ -440,13 +440,13 @@ export const GrcViewPolicyCluster = [
         },
         'creationTimestamp': '2019-07-16T13:19:03Z',
         'finalizers': [
-          'propagator.finalizer.mcm.ibm.com'
+          'propagator.finalizer.calamari.ibm.com'
         ],
         'generation': 16,
         'name': 'policy-role',
-        'namespace': 'mcm',
+        'namespace': 'calamari',
         'resourceVersion': '1201118',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-role',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-role',
         'uid': '47dbc091-a7cc-11e9-8a41-005056a061f1'
       },
       'spec': {
@@ -461,7 +461,7 @@ export const GrcViewPolicyCluster = [
         'remediationAction': 'inform',
         'role-templates': [
           {
-            'apiVersion': 'roletemplate.mcm.ibm.com/v1alpha1',
+            'apiVersion': 'roletemplate.calamari.ibm.com/v1alpha1',
             'complianceType': 'musthave',
             'metadata': {
               'creationTimestamp': null,
@@ -536,7 +536,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'placement-role',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-role',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-role',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementPolicy'
@@ -546,7 +546,7 @@ export const GrcViewPolicyCluster = [
       {
         'metadata': {
           'name': 'binding-role',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-role',
+          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-role',
           '__typename': 'Metadata'
         },
         '__typename': 'PlacementBinding'
@@ -617,10 +617,529 @@ export const reduxStorePolicyCluster = {
     proxy_ingress_https_port: '443',
     version: 'latest'
   },
-  role: {
-    type: 'ROLE_RECEIVE_SUCCESS',
-    role: 'ClusterAdministrator',
-    status: 'DONE'
+  userAccess: {
+    'type': 'USER_ACCESS_SUCCESS',
+    'access': [
+      {
+        'namespace': 'calamari',
+        'rules': {
+          '*/*': [
+            '*'
+          ],
+          'policy.open-cluster-management.io/policies': [
+            'get',
+            'list',
+            'watch',
+            'update',
+            'patch',
+            'create',
+            'delete',
+            'deletecollection'
+          ],
+          'policy.open-cluster-management.io/policies/status': [
+            'get',
+            'list',
+            'watch',
+            'update',
+            'patch',
+            'create',
+            'delete',
+            'deletecollection'
+          ],
+          'policy.open-cluster-management.io/placementbindings': [
+            'get',
+            'list',
+            'watch',
+            'update',
+            'patch',
+            'create',
+            'delete',
+            'deletecollection'
+          ]
+        }
+      },
+      {
+        'namespace': 'default',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'hive',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'kube-node-lease',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'kube-public',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'kube-system',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'open-cluster-management',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'open-cluster-management-hub',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-apiserver',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-apiserver-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-authentication',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-authentication-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-cloud-credential-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-cluster-machine-approver',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-cluster-node-tuning-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-cluster-samples-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-cluster-storage-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-cluster-version',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-config',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-config-managed',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-console',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-console-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-controller-manager',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-controller-manager-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-dns',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-dns-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-etcd',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-etcd-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-image-registry',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-infra',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-ingress',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-ingress-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-insights',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-kni-infra',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-kube-apiserver',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-kube-apiserver-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-kube-controller-manager',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-kube-controller-manager-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-kube-scheduler',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-kube-scheduler-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-kube-storage-version-migrator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-kube-storage-version-migrator-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-machine-api',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-machine-config-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-marketplace',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-monitoring',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-multus',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-network-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-node',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-openstack-infra',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-operator-lifecycle-manager',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-operators',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-ovirt-infra',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-sdn',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-service-ca',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-service-ca-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-service-catalog-apiserver-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-service-catalog-controller-manager-operator',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-user-workload-monitoring',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      },
+      {
+        'namespace': 'openshift-vsphere-infra',
+        'rules': {
+          '*/*': [
+            '*'
+          ]
+        }
+      }
+    ],
+    'status': 'DONE'
   },
   resourceToolbar: {
     refreshControl: {
@@ -719,8 +1238,8 @@ export const reduxStorePolicyCluster = {
       {
         metadata: {
           name: 'policy-limitrange',
-          namespace: 'mcm',
-          selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-limitrange',
+          namespace: 'calamari',
+          selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-limitrange',
           annotations: {
             'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
             'policy.open-cluster-management.io/controls': 'CertManager',
@@ -731,7 +1250,7 @@ export const reduxStorePolicyCluster = {
           __typename: 'Metadata'
         },
         name: 'policy-limitrange',
-        namespace: 'mcm',
+        namespace: 'calamari',
         raw: {
           apiVersion: 'policy.open-cluster-management.io/v1',
           kind: 'Policy',
@@ -744,14 +1263,14 @@ export const reduxStorePolicyCluster = {
             },
             creationTimestamp: '2019-09-04T16:27:02Z',
             finalizers: [
-              'propagator.finalizer.mcm.ibm.com',
+              'propagator.finalizer.calamari.ibm.com',
               'finalizer.policies.ibm.com'
             ],
             generation: 7,
             name: 'policy-limitrange',
-            namespace: 'mcm',
+            namespace: 'calamari',
             resourceVersion: '3489357',
-            selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-limitrange',
+            selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-limitrange',
             uid: 'd358638d-cf30-11e9-a1ed-005056a0b88e'
           },
           spec: {
@@ -827,7 +1346,7 @@ export const reduxStorePolicyCluster = {
           {
             metadata: {
               name: 'placement-policy-limitrange',
-              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-policy-limitrange',
+              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-policy-limitrange',
               __typename: 'Metadata'
             },
             __typename: 'PlacementPolicy'
@@ -837,7 +1356,7 @@ export const reduxStorePolicyCluster = {
           {
             metadata: {
               name: 'binding-policy-limitrange',
-              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-policy-limitrange',
+              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-policy-limitrange',
               __typename: 'Metadata'
             },
             __typename: 'PlacementBinding'
@@ -878,8 +1397,8 @@ export const reduxStorePolicyCluster = {
       {
         metadata: {
           name: 'policy-namespace',
-          namespace: 'mcm',
-          selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-namespace',
+          namespace: 'calamari',
+          selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-namespace',
           annotations: {
             'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
             'policy.open-cluster-management.io/controls': 'MutationAdvisor',
@@ -890,7 +1409,7 @@ export const reduxStorePolicyCluster = {
           __typename: 'Metadata'
         },
         name: 'policy-namespace',
-        namespace: 'mcm',
+        namespace: 'calamari',
         raw: {
           apiVersion: 'policy.open-cluster-management.io/v1',
           kind: 'Policy',
@@ -903,14 +1422,14 @@ export const reduxStorePolicyCluster = {
             },
             creationTimestamp: '2019-09-10T17:55:15Z',
             finalizers: [
-              'propagator.finalizer.mcm.ibm.com',
+              'propagator.finalizer.calamari.ibm.com',
               'finalizer.policies.ibm.com'
             ],
             generation: 9,
             name: 'policy-namespace',
-            namespace: 'mcm',
+            namespace: 'calamari',
             resourceVersion: '4855462',
-            selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/policies/policy-namespace',
+            selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-namespace',
             uid: '2516c2c7-d3f4-11e9-a1ed-005056a0b88e'
           },
           spec: {
@@ -960,7 +1479,7 @@ export const reduxStorePolicyCluster = {
           {
             metadata: {
               name: 'placement-namespace',
-              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementpolicies/placement-namespace',
+              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-namespace',
               __typename: 'Metadata'
             },
             __typename: 'PlacementPolicy'
@@ -970,7 +1489,7 @@ export const reduxStorePolicyCluster = {
           {
             metadata: {
               name: 'binding-namespace',
-              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/mcm/placementbindings/binding-namespace',
+              selfLink: '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-namespace',
               __typename: 'Metadata'
             },
             __typename: 'PlacementBinding'
@@ -1076,7 +1595,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1124,7 +1643,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1172,7 +1691,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1220,7 +1739,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1268,7 +1787,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1316,7 +1835,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1364,7 +1883,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1412,7 +1931,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1460,7 +1979,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1508,7 +2027,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1556,7 +2075,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1604,7 +2123,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1652,7 +2171,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1700,7 +2219,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1748,7 +2267,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1796,7 +2315,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1844,7 +2363,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1892,7 +2411,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1940,7 +2459,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -1988,7 +2507,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2036,7 +2555,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2084,7 +2603,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2132,7 +2651,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2180,7 +2699,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2228,7 +2747,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2276,7 +2795,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2324,7 +2843,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2372,7 +2891,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2420,7 +2939,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2468,7 +2987,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2516,7 +3035,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2564,7 +3083,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2612,7 +3131,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2660,7 +3179,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2710,7 +3229,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2760,7 +3279,7 @@ export const GrcViewFindingCluster = [
       'dataTransferred': null
     },
     'reportedBy': {
-      'id': 'mcm-policy-adapter',
+      'id': 'calamari-policy-adapter',
       'title': 'Security Advisor MCM Policy Findings Adapter',
       'url': null
     },
@@ -2807,7 +3326,7 @@ export const reduxStoreFindingCluster = {
     proxy_ingress_https_port: '443',
     version: 'latest'
   },
-  role: {
+  userAccess: {
     type: 'ROLE_RECEIVE_SUCCESS',
     role: 'ClusterAdministrator',
     status: 'DONE'
@@ -2927,7 +3446,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -2983,7 +3502,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3039,7 +3558,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3095,7 +3614,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3151,7 +3670,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3207,7 +3726,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3263,7 +3782,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3319,7 +3838,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3375,7 +3894,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3431,7 +3950,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3487,7 +4006,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3543,7 +4062,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3599,7 +4118,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3655,7 +4174,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3711,7 +4230,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3767,7 +4286,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3823,7 +4342,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3879,7 +4398,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3935,7 +4454,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -3991,7 +4510,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4047,7 +4566,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4103,7 +4622,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4159,7 +4678,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4215,7 +4734,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4271,7 +4790,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4327,7 +4846,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4383,7 +4902,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4439,7 +4958,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4495,7 +5014,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4551,7 +5070,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4607,7 +5126,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4663,7 +5182,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4719,7 +5238,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4775,7 +5294,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4833,7 +5352,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4891,7 +5410,7 @@ export const reduxStoreFindingCluster = {
           dataTransferred: null
         },
         reportedBy: {
-          id: 'mcm-policy-adapter',
+          id: 'calamari-policy-adapter',
           title: 'Security Advisor MCM Policy Findings Adapter',
           url: null
         },
@@ -4981,7 +5500,7 @@ export const existing =
   'compliances':[
     {
       'name':'grc-policy',
-      'namespace':'mcm',
+      'namespace':'calamari',
       'annotations':{
         'policy.open-cluster-management.io/categories':'',
         'policy.open-cluster-management.io/controls':'',
@@ -5008,7 +5527,7 @@ export const existing =
                 'annotations':{
                   'seccomp.security.alpha.kubernetes.io/allowedProfileNames':'*'
                 },
-                'name':'restricted-mcm'
+                'name':'restricted-calamari'
               },
               'spec':{
                 'allowPrivilegeEscalation':false,
@@ -5055,7 +5574,7 @@ export const existing =
     },
     {
       'name':'grc-policy2',
-      'namespace':'mcm',
+      'namespace':'calamari',
       'annotations':{
         'policy.open-cluster-management.io/categories':'',
         'policy.open-cluster-management.io/controls':'',
@@ -5082,7 +5601,7 @@ export const existing =
                 'annotations':{
                   'seccomp.security.alpha.kubernetes.io/allowedProfileNames':'*'
                 },
-                'name':'restricted-mcm'
+                'name':'restricted-calamari'
               },
               'spec':{
                 'allowPrivilegeEscalation':false,
@@ -5129,9 +5648,9 @@ export const existing =
     },
     {
       'name':'policy-iam',
-      'namespace':'mcm',
+      'namespace':'calamari',
       'annotations':{
-        'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor","policy.open-cluster-management.io/standards":"NIST"},"name":"policy-iam","namespace":"mcm"},"spec":{"policy-templates":[{"objectDefinition":{"apiVersion":"mcm-grcpolicy.ibm.com/v1alpha1","kind":"IamPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"iam-policy-example"},"spec":{"maxClusterRoleBindingUsers":5,"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}]}}\n',
+        'kubectl.kubernetes.io/last-applied-configuration':'{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor","policy.open-cluster-management.io/standards":"NIST"},"name":"policy-iam","namespace":"calamari"},"spec":{"policy-templates":[{"objectDefinition":{"apiVersion":"calamari-grcpolicy.ibm.com/v1alpha1","kind":"IamPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"iam-policy-example"},"spec":{"maxClusterRoleBindingUsers":5,"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}]}}\n',
         'policy.open-cluster-management.io/categories':'SystemAndInformationIntegrity',
         'policy.open-cluster-management.io/controls':'MutationAdvisor',
         'policy.open-cluster-management.io/standards':'NIST',
@@ -5144,7 +5663,7 @@ export const existing =
         'policy-templates':[
           {
             'objectDefinition':{
-              'apiVersion':'mcm-grcpolicy.ibm.com/v1alpha1',
+              'apiVersion':'calamari-grcpolicy.ibm.com/v1alpha1',
               'kind':'IamPolicy',
               'metadata':{
                 'label':{
@@ -5178,7 +5697,7 @@ export const existing =
     },
     {
       'name':'policy-ma',
-      'namespace':'mcm',
+      'namespace':'calamari',
       'annotations':{
         'policy.open-cluster-management.io/categories':'SystemAndInformationIntegrity',
         'policy.open-cluster-management.io/controls':'MutationAdvisor',
@@ -5234,7 +5753,7 @@ export const existing =
     },
     {
       'name':'policy-pod',
-      'namespace':'mcm',
+      'namespace':'calamari',
       'annotations':{
         'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
         'policy.open-cluster-management.io/controls':'MutationAdvisor,VA',
@@ -5287,7 +5806,7 @@ export const existing =
     },
     {
       'name':'policy-role',
-      'namespace':'mcm',
+      'namespace':'calamari',
       'annotations':{
         'policy.open-cluster-management.io/categories':'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
         'policy.open-cluster-management.io/controls':'MutationAdvisor,VA',
@@ -5306,7 +5825,7 @@ export const existing =
         'remediationAction':'inform',
         'role-templates':[
           {
-            'apiVersion':'roletemplate.mcm.ibm.com/v1alpha1',
+            'apiVersion':'roletemplate.calamari.ibm.com/v1alpha1',
             'complianceType':'musthave',
             'metadata':{
               'creationTimestamp':null,
@@ -5351,7 +5870,7 @@ export const existing =
     },
     {
       'name':'policy1',
-      'namespace':'mcm',
+      'namespace':'calamari',
       'annotations':{
         'policy.open-cluster-management.io/categories':'SystemAndInformationIntegrity, RBAC',
         'policy.open-cluster-management.io/controls':'MutationAdvisor',
@@ -5406,7 +5925,7 @@ export const existing =
                 'annotations':{
                   'seccomp.security.alpha.kubernetes.io/allowedProfileNames':'*'
                 },
-                'name':'restricted-mcm'
+                'name':'restricted-calamari'
               },
               'spec':{
                 'allowPrivilegeEscalation':false,
@@ -5510,7 +6029,7 @@ export const existing =
         'remediationAction':'inform',
         'role-templates':[
           {
-            'apiVersion':'roletemplate.mcm.ibm.com/v1alpha1',
+            'apiVersion':'roletemplate.calamari.ibm.com/v1alpha1',
             'complianceType':'musthave',
             'metadata':{
               'creationTimestamp':null,

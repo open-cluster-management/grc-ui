@@ -19,7 +19,11 @@ import thunkMiddleware from 'redux-thunk'
 import GrcApolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
-import { staticResourceDataPolicyOverview, itemPolicyOverview, itemPolicyOverviewError } from './CommonTestingData'
+import {
+  staticResourceDataPolicyOverview,
+  itemPolicyOverview,
+  itemPolicyOverviewError
+} from './CommonTestingData'
 
 describe('PolicyDetailsOverview component', () => {
   it('renders as normal', () => {

@@ -13,7 +13,9 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import renderer from 'react-test-renderer'
-import { policiesTestingDataSet1, policiesTestingDataSet2, policiesTestingDataSet3, findingsTestingDataSet1 } from './ModuleTestingData'
+import { policiesTestingDataSet1, policiesTestingDataSet2,
+  policiesTestingDataSet3, findingsTestingDataSet1
+} from './ModuleTestingData'
 import ImpactedControlsModule from '../../../../src-web/components/modules/ImpactedControlsModule'
 
 describe('ImpactedControlsModule view with Security Findings', () => {

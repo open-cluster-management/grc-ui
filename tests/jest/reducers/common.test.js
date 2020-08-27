@@ -6,13 +6,18 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 /*
 For a given input, a selector should always produce the same output.
  */
 
-import {resourceToolbar, secondaryHeader, resourceReducerFunction, resourceItemByName, INITIAL_STATE} from '../../../src-web/reducers/common'
+import {
+  resourceToolbar, secondaryHeader,
+  resourceReducerFunction,
+  resourceItemByName, INITIAL_STATE
+} from '../../../src-web/reducers/common'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 
 describe('resourceToolbar creation', () => {
@@ -55,7 +60,14 @@ describe('resourceToolbar creation', () => {
 describe('secondaryHeader creation', () => {
   it('should return a default state', () => {
     const action = {}
-    const expectedValue = {title: '', tabs: [], breadcrumbItems: [], links: [], description: {}, information:{}}
+    const expectedValue = {
+      title: '',
+      tabs: [],
+      breadcrumbItems: [],
+      links: [],
+      description: {},
+      information:{}
+    }
     expect(secondaryHeader(undefined, action)).toEqual(expectedValue)
   })
   it('should return a state with title', () => {
@@ -104,7 +116,14 @@ describe('resourceItemByName', () => {
 describe('ResourceReducer creation', () => {
   it('should return a default state', () => {
     const action = {}
-    const expectedValue = {title: '', tabs: [], breadcrumbItems: [], links: [], description: {}, information:{}}
+    const expectedValue = {
+      title: '',
+      tabs: [],
+      breadcrumbItems: [],
+      links: [],
+      description: {},
+      information:{}
+    }
     expect(secondaryHeader(undefined, action)).toEqual(expectedValue)
   })
   it('should return a state with title', () => {
@@ -435,7 +454,24 @@ describe('resourceReducerFunction', () => {
         name: 'HCMPolicy'
       }
     }
-    const expectedValue = {'items': ['test'], 'mutateErrorMsg': null, 'mutateStatus': 'IN_PROGRESS', 'pendingActions': [{'name': 'TEST_RESOURCE_MUTATE'}, {'name': 'TEST_RESOURCE_MUTATE_FAILURE'}, {'action': 'RESOURCE_MUTATE', 'name': 'TEST_RESOURCE_MUTATE'}], 'test': 'test'}
+    const expectedValue = {
+      'items': ['test'],
+      'mutateErrorMsg': null,
+      'mutateStatus': 'IN_PROGRESS',
+      'pendingActions': [
+        {
+          'name': 'TEST_RESOURCE_MUTATE'
+        },
+        {
+          'name': 'TEST_RESOURCE_MUTATE_FAILURE'
+        },
+        {
+          'action': 'RESOURCE_MUTATE',
+          'name': 'TEST_RESOURCE_MUTATE'
+        }
+      ],
+      'test': 'test'
+    }
     expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
   })
   it('should return a state for resource mutate failure action', () => {
@@ -459,7 +495,17 @@ describe('resourceReducerFunction', () => {
         }
       }
     }
-    const expectedValue = {'items': ['test'], 'mutateErrorMsg': 'errorMessage', 'mutateStatus': 'ERROR', 'pendingActions': [{'name': 'TEST_RESOURCE_MUTATE'}], 'test': 'test'}
+    const expectedValue = {
+      'items': ['test'],
+      'mutateErrorMsg': 'errorMessage',
+      'mutateStatus': 'ERROR',
+      'pendingActions': [
+        {
+          'name': 'TEST_RESOURCE_MUTATE'
+        }
+      ],
+      'test': 'test'
+    }
     expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
   })
   it('should return a state for resource mutate success action', () => {
@@ -483,7 +529,16 @@ describe('resourceReducerFunction', () => {
         }
       }
     }
-    const expectedValue =  {'items': ['test'], 'mutateStatus': 'DONE', 'pendingActions': [{'name': 'TEST_RESOURCE_MUTATE'}], 'test': 'test'}
+    const expectedValue =  {
+      'items': ['test'],
+      'mutateStatus': 'DONE',
+      'pendingActions': [
+        {
+          'name': 'TEST_RESOURCE_MUTATE'
+        }
+      ],
+      'test': 'test'
+    }
     expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
   })
   it('should return a state for resource delete action', () => {

@@ -14,6 +14,8 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import resources from '../../lib/shared/resources'
+import _ from 'lodash'
+import { updateResourceToolbar } from '../actions/common'
 import PolicyTemplates from '../components/common/PolicyTemplates'
 import { Notification, Loading } from 'carbon-components-react'
 import msgs from '../../nls/platform.properties'
@@ -25,6 +27,12 @@ resources(() => {
 class PolicyTemplateTab extends React.Component{
   constructor(props) {
     super(props)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
+      this.props.updateResourceToolbar(this.props.refreshControl, {})
+    }
   }
 
   render() {
@@ -46,7 +54,6 @@ class PolicyTemplateTab extends React.Component{
         resourceData={item}
         className='compliance-templates'
         headerKey={'table.header.complianceTemplate'}
-        editable={true}
       />
     }
   }
@@ -66,14 +73,17 @@ PolicyTemplateTab.propTypes = {
   ]),
   loading: PropTypes.bool,
   params: PropTypes.object,
+  refreshControl: PropTypes.object,
   resourceType: PropTypes.object,
   staticResourceData: PropTypes.object,
+  updateResourceToolbar: PropTypes.func
 }
 
-const mapStateToProps = (state) => {
-  const {resourceToolbar: {activeFilters}} = state
-  return { activeFilters }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
+  }
 }
 
-export default withRouter( connect(mapStateToProps) (PolicyTemplateTab))
+export default withRouter( connect(null, mapDispatchToProps) (PolicyTemplateTab))
 

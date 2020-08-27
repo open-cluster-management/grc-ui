@@ -26,7 +26,7 @@ import {
   getSubjects,
   convertToStartCase,
   formLinkToCluster,
-  formLinkToCISControllerDoc,
+  formMessageLink,
 } from '../../../src-web/definitions/hcm-compliances'
 
 describe('hcm-compliances - createComplianceLink', () => {
@@ -249,7 +249,11 @@ describe('hcm-compliances - getDecisions', () => {
   it('should return decisions status', () => {
     const items = {
       status: {
-        decisions: [{clusterName:'clusterName1'}, {clusterName:'clusterName2'}, {clusterName:'clusterName3'}]
+        decisions: [
+          {clusterName:'clusterName1'},
+          {clusterName:'clusterName2'},
+          {clusterName:'clusterName3'}
+        ]
       },
     }
     expect(getDecisions(items)).toMatchSnapshot()
@@ -315,21 +319,27 @@ describe('hcm-compliances - formLinkToCluster', () => {
   })
 })
 
-describe('hcm-compliances - formLinkToCISControllerDoc', () => {
-  it('should get message without doc link', () => {
-    const item = {message:'mapping resource with kind CisPolicy'}
-    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
-  })
-  it('should get message without doc link', () => {
-    const item = {message:'Testing Policy'}
-    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
+describe('hcm-compliances - formMessageLink', () => {
+  it('should get message view details link', () => {
+    const item = {
+      apiVersion: 'policy.open-cluster-management.io/v1',
+      cluster: 'calamari',
+      consoleURL: 'https://console-openshift-console.apps.calamari.dev08.red-chesterfield.com',
+      kind: 'ConfigurationPolicy',
+      message: 'NonCompliant; violation - k8srequiredlabels `ns-must-have-gk` does not exist as specified, and should be created',
+      name: 'policy-gatekeeper-audit',
+      policyName: 'policy-gatekeeper',
+      policyNamespace: 'default',
+      timestamp: '2020-08-20T08:39:17Z',
+    }
+    expect(formMessageLink(item, 'en-US')).toMatchSnapshot()
   })
   it('should get - ', () => {
     const item = {message:''}
-    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
+    expect(formMessageLink(item, 'en-US')).toMatchSnapshot()
   })
   it('should get - ', () => {
     const item = null
-    expect(formLinkToCISControllerDoc(item, 'en-US')).toMatchSnapshot()
+    expect(formMessageLink(item, 'en-US')).toMatchSnapshot()
   })
 })

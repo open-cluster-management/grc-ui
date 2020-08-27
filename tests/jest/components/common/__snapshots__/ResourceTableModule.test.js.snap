@@ -694,7 +694,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                             }
                           }
                           totalFilteredItems={0}
-                          userRole={null}
+                          userAccess={Array []}
                         >
                           <DataTable
                             filterRows={[Function]}

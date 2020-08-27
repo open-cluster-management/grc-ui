@@ -227,7 +227,7 @@ export default class ResourceFilterView extends React.Component {
     const {name, availableSet} = availableFilters
     const multipleChoices = availableSet.size>1
     const other=msgs.get('overview.grc.overview.other', locale)
-    const filters = [...availableSet].map(value=>{
+    const filters = Array.from(availableSet).map(value=>{
       return {
         key: key+value,
         label: value,

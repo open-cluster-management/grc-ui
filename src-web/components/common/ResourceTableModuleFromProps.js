@@ -19,6 +19,7 @@ import msgs from '../../../nls/platform.properties'
 // eslint-disable-next-line import/no-named-as-default
 import ResourceTable from '../../components/common/ResourceTable'
 import TableHelper from '../../util/table-helper'
+import { LocaleContext } from '../../components/common/LocaleContext'
 
 export class ResourceTableModule extends React.Component {
   static propTypes = {
@@ -31,6 +32,8 @@ export class ResourceTableModule extends React.Component {
     subResourceType: PropTypes.object,
     tableResources: PropTypes.array,
   }
+
+  static contextType = LocaleContext
 
   constructor(props) {
     super(props)
@@ -141,10 +144,6 @@ export class ResourceTableModule extends React.Component {
       this.setState({ resourceIds: itemIds, resourceItems: normalizedItems, sortDirection: sortDirection === 'asc' ? 'desc' : 'asc' })
     }
   }
-}
-
-ResourceTableModule.contextTypes = {
-  locale: PropTypes.string
 }
 
 const mapStateToProps = (state, ownProps) => {

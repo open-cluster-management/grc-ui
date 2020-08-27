@@ -52,13 +52,16 @@ module.exports = {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
     const templateFile = 'modifiedIMVP_template.yaml'
-    page.createTestPolicy(true, {
+    const policySpec = {
       policyName: policyName,
       specification: ['ImageManifestVulnPolicy'],
-      standard: ['FISMA'],
-      category: ['PR.DS Data Security'],
-      control: ['DE.CM-7 Monitoring for unauthorized activity']
-    }, templateFile)
+      standards: ['FISMA'],
+      categories: ['PR.DS Data Security'],
+      controls: ['DE.CM-7 Monitoring for unauthorized activity']
+    }
+    page.createTestPolicy(true, policySpec, templateFile)
+    page.searchPolicy(true, policyName)
+    page.testFilters(policySpec)
     page.searchPolicy(true, policyName)
     page.verifyPolicyTable(policyName, templateFile)
     page.testDetailsPage(policyName, templateFile)

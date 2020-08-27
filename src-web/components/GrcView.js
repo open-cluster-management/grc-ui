@@ -22,12 +22,13 @@ import GrcCardsModule from './modules/GrcCardsModule'
 // eslint-disable-next-line import/no-named-as-default
 import GrcToggleModule from './modules/GrcToggleModule'
 import {
-  filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState, saveGrcState,
-  replaceGrcState, combineResourceFilters, saveGrcStatePair
+  filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState,
+  saveGrcState, combineResourceFilters, saveGrcStatePair
 } from '../../lib/client/filter-helper'
 import NoResource from './common/NoResource'
 import createDocLink from './common/CreateDocLink'
 import ResourceFilterBar from './common/ResourceFilterBar'
+import checkCreatePermission from './common/CheckCreatePermission'
 import msgs from '../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
@@ -60,7 +61,7 @@ export class GrcView extends React.Component {
     //later when availableGrcFilters initialized, will do further filtering in UNSAFE_componentWillReceiveProps
     const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
     //update sessionStorage
-    replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
+    saveGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
     //update active filters
     updateActiveFilters(combinedFilters)
   }
@@ -98,7 +99,7 @@ export class GrcView extends React.Component {
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
       //update sessionStorage
-      replaceGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
+      saveGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
       //update active filters
       localUpdateActiveFilters(combinedFilters)
     }
@@ -127,7 +128,10 @@ export class GrcView extends React.Component {
     const { locale } = this.context
     const showApplications = this.props.showApplications
     const { viewState } = this.state
-    const { loading, error, grcItems, applications, activeFilters={}, secondaryHeaderProps, refreshControl, location } = this.props
+    const {
+      loading, error, grcItems, applications, activeFilters={},
+      secondaryHeaderProps, refreshControl, location, access
+    } = this.props
     if (loading) {
       return <Loading withOverlay={false} className='content-spinner' />
     }
@@ -143,6 +147,7 @@ export class GrcView extends React.Component {
 
     const displayType = location.pathname.split('/').pop()
     let filterGrcItems, filterToEmpty = false
+    const showCreationLink = checkCreatePermission(access)
     switch(displayType) {
     case 'all':
     default:
@@ -151,7 +156,7 @@ export class GrcView extends React.Component {
           <NoResource
             title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
             detail={msgs.get('no-resource.detail.policy', locale)}>
-            {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale))}
+            {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale), showCreationLink)}
           </NoResource>
         )
       }
@@ -260,8 +265,8 @@ export class GrcView extends React.Component {
       activeSet = activeFilters[type]
       activeSet.add(level)
     }
-    if (activeSet && activeSet.size > 0 && replaceGrcState && localUpdateActiveFilters) {
-      replaceGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
+    if (activeSet && activeSet.size > 0 && saveGrcState && localUpdateActiveFilters) {
+      saveGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
       localUpdateActiveFilters(activeFilters)
     }
 
@@ -287,6 +292,7 @@ export class GrcView extends React.Component {
 }
 
 GrcView.propTypes = {
+  access: PropTypes.array,
   activeFilters: PropTypes.object,
   applications: PropTypes.array,
   error: PropTypes.object,
@@ -302,8 +308,12 @@ GrcView.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  const {resourceToolbar: {activeFilters}} = state
-  return { activeFilters }
+  const {
+    resourceToolbar: {activeFilters},
+    userAccess
+  } = state
+  const access = userAccess && userAccess.access ? userAccess.access : []
+  return { activeFilters, access}
 }
 
 const mapDispatchToProps = (dispatch) => {

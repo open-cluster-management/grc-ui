@@ -11,8 +11,13 @@
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import { sidePanelPolicies, sidePanelPoliciesAllCompliant, sidePanelResourceTypePolicies, sidePanelClusters, sidePanelResourceTypeClusters } from './ModalsTestingData'
-import PolicySidePanelDetailsModal, { PoliciesTable, ClustersOrApplicationsTable } from '../../../../src-web/components/modals/PolicySidePanelDetailsModal'
+import { sidePanelPolicies, sidePanelPoliciesAllCompliant,
+  sidePanelResourceTypePolicies, sidePanelClusters,
+  sidePanelResourceTypeClusters
+} from './ModalsTestingData'
+import PolicySidePanelDetailsModal, {
+  PoliciesTable, ClustersOrApplicationsTable
+} from '../../../../src-web/components/modals/PolicySidePanelDetailsModal'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
 

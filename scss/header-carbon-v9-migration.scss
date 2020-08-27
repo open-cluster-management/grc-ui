@@ -110,6 +110,15 @@
     min-height: 1.875rem;
   }
 
+  .bx--btn--disabled {
+    cursor: no-drop;
+    background-color: $grc_color_light_gray;
+  }
+
+  .bx--btn--primary:disabled:hover, .bx--btn--primary:disabled:focus {
+    background-color: $grc_color_light_gray;
+  }
+
   .bx--module .bx--module__content {
     display: flex;
     flex-direction: column;

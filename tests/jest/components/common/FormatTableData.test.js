@@ -10,7 +10,11 @@
 'use strict'
 
 import { policies, policies2, policies3, findings } from './CommonTestingData'
-import { formatPoliciesToClustersTableData, formatFindingsToClustersTableData, formatExpandablePolicies } from '../../../../src-web/components/common/FormatTableData'
+import {
+  formatPoliciesToClustersTableData,
+  formatFindingsToClustersTableData,
+  formatExpandablePolicies
+} from '../../../../src-web/components/common/FormatTableData'
 
 describe('formatPoliciesToClustersTableData', () => {
   it('should correctly format', () => {

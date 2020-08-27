@@ -6,9 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc.
-*/
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -24,6 +22,7 @@ import { GRCCreation } from '../../lib/client/queries'
 import CreationView from '../components/CreationView'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
+import checkCreatePermission from '../components/common/CheckCreatePermission'
 
 export class CreationTab extends React.Component {
 
@@ -45,7 +44,8 @@ export class CreationTab extends React.Component {
     mutateStatus: PropTypes.string,
     secondaryHeaderProps: PropTypes.object,
     updateSecondaryHeader: PropTypes.func,
-    updateStatus: PropTypes.string
+    updateStatus: PropTypes.string,
+    userAccess: PropTypes.array
   }
 
   UNSAFE_componentWillMount() {
@@ -164,6 +164,57 @@ export class CreationTab extends React.Component {
     } else {
       throw new Error('Error fetching placement rule')
     }
+    return Promise.resolve()
+  }
+
+  addPBs = (res, pbs, update, create) => {
+    if (res.items.placementBindings) {
+      const resPBs = {}
+      res.items.placementBindings.forEach((b) => {
+        resPBs[b.metadata.name] = b
+      })
+      pbs.forEach((pb) => {
+        const resPB = resPBs[pb.metadata.name]
+        if (resPB) {
+          pb.metadata.selfLink = resPB.metadata.selfLink
+          pb.metadata.resourceVersion = resPB.metadata.resourceVersion
+          update.push(pb)
+        } else {
+          create.push(pb)
+        }
+      })
+    } else {
+      throw new Error('Error fetching placement binding')
+    }
+  }
+
+  addPRs = (res, prs, update, create) => {
+    if (res.items.placementRules) {
+      const resPRs = {}
+      res.items.placementRules.forEach((r) => {
+        resPRs[r.metadata.name] = r
+      })
+      prs.forEach((pr) => {
+        const resPR = resPRs[pr.metadata.name]
+        if (resPR) {
+          pr.metadata.selfLink = resPR.metadata.selfLink
+          pr.metadata.resourceVersion = resPR.metadata.resourceVersion
+          update.push(pr)
+        } else {
+          create.push(pr)
+        }
+      })
+    } else {
+      throw new Error('Error fetching placement rule')
+    }
+  }
+
+  handleCreateAndUpdate = (createList, updateList) => {
+    this.props.handleCreateAndUpdateResources([
+      RESOURCE_TYPES.HCM_POLICIES,
+      RESOURCE_TYPES.PLACEMENT_BINDING,
+      RESOURCE_TYPES.PLACEMENT_RULE
+    ], createList, updateList)
   }
 
   handleCreateAndUpdate = (createList, updateList) => {
@@ -190,8 +241,11 @@ export class CreationTab extends React.Component {
   }
 
   render () {
-    const { mutateStatus, mutateErrorMsg, mutatePBErrorMsg, mutatePRErrorMsg, updateStatus } = this.props
+    const { mutateStatus, mutateErrorMsg, mutatePBErrorMsg, mutatePRErrorMsg, updateStatus, userAccess } = this.props
     const { updateRequested } = this.state
+    if (checkCreatePermission(userAccess) !== 1) {
+      return <Redirect to={`${config.contextPath}/all`} />
+    }
     if ((mutateStatus && mutateStatus === 'DONE') && (!updateRequested || (updateStatus && updateStatus === 'DONE'))) {
       this.props.cleanReqStatus && this.props.cleanReqStatus()
       return <Redirect to={`${config.contextPath}/all`} />
@@ -254,12 +308,16 @@ const mapStateToProps = (state) => {
     && (state['HCMPolicyList'].mutateStatus === 'DONE')) {
     updateState = 'DONE'
   }
+  const userAccess = state.userAccess && state.userAccess.access
+    ? state.userAccess.access
+    : []
   return {
     mutateStatus: state['HCMPolicyList'].mutateStatus,
     mutateErrorMsg: state['HCMPolicyList'].mutateErrorMsg,
     mutatePRErrorMsg: state['PlacementRulesList'].mutateErrorMsg,
     mutatePBErrorMsg: state['PlacementBindingsList'].mutateErrorMsg,
-    updateStatus: updateState
+    updateStatus: updateState,
+    userAccess: userAccess,
   }
 }
 

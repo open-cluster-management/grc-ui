@@ -49,17 +49,22 @@ jobs:
         - echo '"start image pushing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/push
         - echo '"finished image push"' && echo -en 'travis_fold:end:script.build\\r'
-        - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then 
+        - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
+        - if [ "$TRAVIS_PULL_REQUEST" == "false" -a "$TRAVIS_BRANCH" == "master" ]; then 
             COMPONENT_NEWTAG="latest-dev" make component/tag;
             COMPONENT_VERSION="latest" COMPONENT_TAG_EXTENSION="-dev" make component/push;
           fi;
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
-        - echo '"start test image pushing..."' && echo -en 'travis_fold:start:script.build\\r'
+    - stage: build
+      name: "Build the test image"
+      if: type = push AND branch =~ /^release-[0-9]+\..*$/
+      script:
+        - set -e
+        - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - export COMPONENT_BUILD_COMMAND="docker build . -f Dockerfile.e2etest -t "
         - export COMPONENT_NAME="grc-ui-tests"
         - make build-test-image
         - make push-test-image
-        - echo '"finished test image push"' && echo -en 'travis_fold:end:script.build\\r'
     - stage: unit-test
       name: "Build and run unit tests"
       script:

@@ -12,7 +12,9 @@
 import React from 'react'
 import resources from '../../../lib/shared/resources'
 import { PAGE_SIZES } from '../../actions/index'
-import { PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox, TooltipIcon } from 'carbon-components-react'
+import {
+  PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox, TooltipIcon
+} from 'carbon-components-react'
 import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import { transform } from '../../../lib/client/resource-helper'
@@ -23,8 +25,9 @@ import { Link, withRouter } from 'react-router-dom'
 import lodash from 'lodash'
 import ResourceTableRowExpandableContent from './ResourceTableRowExpandableContent'
 import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
-import constants from '../../../lib/shared/constants'
-import { fliterTableAction } from '../../../lib/client/access-helper'
+import filterUserAction from './FilterUserAction'
+import { LocaleContext } from './LocaleContext'
+import formatUserAccess from './FormatUserAccess'
 
 resources(() => {
   require('../../../scss/table.scss')
@@ -47,7 +50,7 @@ const {
   TableExpandedRow } = DataTable
 
 export class ResourceTable extends React.Component {
-
+  static contextType = LocaleContext
   render() {
     const { locale } = this.context
     const {
@@ -78,7 +81,9 @@ export class ResourceTable extends React.Component {
 
     const showSearch = lodash.get(this.props, 'showSearch', true)
     const showPagination = lodash.get(this.props, 'showPagination', true)
-    const id = (staticResourceData && staticResourceData.resourceKey) ? `${staticResourceData.resourceKey}-` : ''
+    const id = (staticResourceData && staticResourceData.resourceKey)
+      ? `${staticResourceData.resourceKey}-`
+      : ''
     const firstResKeyStr = 'tableKeys[0].resourceKey'
 
     const PagenationComponent = showPagination ?
@@ -93,10 +98,13 @@ export class ResourceTable extends React.Component {
         disabled={pageSize >= totalFilteredItems}
         isLastPage={pageSize >= totalFilteredItems}
         itemsPerPageText={msgs.get('pagination.itemsPerPage', this.context.locale)}
-        pageRangeText={(current, total) => msgs.get('pagination.pageRange', [current, total], this.context.locale)}
+        pageRangeText={(current, total) =>
+          msgs.get('pagination.pageRange', [current, total], this.context.locale)}
         itemRangeText={(min, max, total) => {
           const itemRange = msgs.get('pagination.itemRange', [min, max], this.context.locale)
-          const itemRangeDescription = msgs.get('pagination.itemRangeDescription', [total], this.context.locale)
+          const itemRangeDescription = msgs.get(
+            'pagination.itemRangeDescription', [total], this.context.locale
+          )
           return `${itemRange} ${itemRangeDescription}`
         }
         }
@@ -131,12 +139,14 @@ export class ResourceTable extends React.Component {
                   {selectableTable &&
                     <th scope='col'>
                       <Checkbox
-                        checked={itemIds && itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length}
+                        checked={itemIds &&
+                          itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length}
                         indeterminate={this.getIndeterminateStatus()}
                         id={'select-all'}
                         name={'select-all'}
                         onChange={onSelectAll}
-                        data-selected={itemIds && itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length}
+                        data-selected={itemIds &&
+                          itemIds.filter(item => items[item] && items[item].selected).length === itemIds.length}
                         labelText={''}
                         aria-label={msgs.get(itemIds.filter(item =>
                           items[item] &&
@@ -153,7 +163,10 @@ export class ResourceTable extends React.Component {
                           <div
                             role={'button'}
                             tabIndex={0}
-                            title={msgs.get(`svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`, this.context.locale)}
+                            title={msgs.get(
+                              `svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`,
+                              this.context.locale
+                            )}
                             onClick={handleSort}
                             onKeyPress={handleSort}
                             className={
@@ -174,7 +187,10 @@ export class ResourceTable extends React.Component {
                             <Icon
                               className='bx--table-sort-v2__icon'
                               name='caret--down'
-                              description={msgs.get(`svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`, this.context.locale)} />
+                              description={msgs.get(
+                                `svg.description.${!sortColumn || sortDirection === 'desc' ? 'asc' : 'desc'}`,
+                                this.context.locale
+                              )} />
                           </div>
                         </th>
                       )
@@ -195,7 +211,9 @@ export class ResourceTable extends React.Component {
                             {...getRowProps(
                               { row,
                                 'data-row-name': lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)),
-                                'aria-hidden': expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0),
+                                'aria-hidden': expandableTable && (
+                                  items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0
+                                ),
                                 className:
                                   (lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)) === highLightRowName)
                                     ? 'high-light'
@@ -216,7 +234,13 @@ export class ResourceTable extends React.Component {
                                   name={`select-checkbox-row-${row.id}`}
                                   onChange={onSelect}
                                   labelText={''}
-                                  aria-label={msgs.get(items[row.id] && items[row.id].selected ? 'unselect' : 'select', this.context.locale)} />
+                                  aria-label={msgs.get(
+                                    items[row.id] &&
+                                    items[row.id].selected
+                                      ? 'unselect'
+                                      : 'select', this.context.locale
+                                  )}
+                                />
                               </TableCell>
                             }
                             {row.cells.map(cell => {
@@ -309,11 +333,6 @@ export class ResourceTable extends React.Component {
     return headers
   }
 
-  showTableToobar() {
-    const { userRole } = this.props
-    return userRole !== constants.ROLES.VIEWER
-  }
-
   checkPolicyDisabled(data) {
     return lodash.get(data, 'raw.spec.disabled', false)
   }
@@ -324,13 +343,16 @@ export class ResourceTable extends React.Component {
 
   getRows() {
     const { history, items, itemIds, tableActions, resourceType, staticResourceData, match,
-      getResourceAction, userRole, highLightRowName, autoAction, showSidePanel } = this.props
+      getResourceAction, userAccess, highLightRowName, autoAction, showSidePanel } = this.props
     const { locale } = this.context
     const { normalizedKey } = staticResourceData
+    const userAccessHash = formatUserAccess(userAccess)
     const localResources = itemIds &&
       itemIds.map(
         id => items[id] || (Array.isArray(items)
-        && items.find(target =>  (normalizedKey && lodash.get(target, normalizedKey) === id) || (target.name === id)))
+        && items.find(target =>
+          (normalizedKey && lodash.get(target, normalizedKey) === id) || (target.name === id)
+        ))
       )
     if (localResources && localResources.length > 0) {
       return localResources.map((item, index) => {
@@ -342,9 +364,11 @@ export class ResourceTable extends React.Component {
             ? `${lodash.get(item, getPrimaryKey(resourceType))}-${lodash.get(item, getSecondaryKey(resourceType))}`
             : lodash.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
         }
-        const menuActions = item.metadata && tableActions && tableActions[item.metadata.namespace] || tableActions
-
-        const fliteredActions = menuActions ? fliterTableAction(menuActions,userRole,resourceType).slice(0) : null
+        const menuActions = item.metadata && item.metadata.namespace && tableActions
+                                && lodash.clone(tableActions[item.metadata.namespace]) || lodash.clone(tableActions)
+        const filteredActions = (Array.isArray(menuActions) && menuActions.length > 0)
+          ? filterUserAction(item, menuActions, userAccessHash, resourceType)
+          : []
 
         //This is for grc policy page highlight item auto open side panel
         if(showSidePanel && highLightRowName && autoAction
@@ -353,32 +377,43 @@ export class ResourceTable extends React.Component {
           getResourceAction(autoAction, item, null, history, locale)
         }
 
-        if (item.consoleURL && item.consoleURL === '-' && Array.isArray(fliteredActions)){
-          const removeIndex = fliteredActions.indexOf('table.actions.launch.cluster')
+        if (item.consoleURL && item.consoleURL === '-' && Array.isArray(filteredActions)){
+          const removeIndex = filteredActions.indexOf('table.actions.launch.cluster')
           if (removeIndex > -1) {
-            fliteredActions.splice(removeIndex, 1)
+            filteredActions.splice(removeIndex, 1)
           }
         }
 
         //changes menu item based on whether policy is enabled or disabled
         row.disabled = false
         row.remediation = 'inform'
-        if (fliteredActions !== null && fliteredActions.length === 5) {
+        if (Array.isArray(filteredActions) && filteredActions.length === 5) {
           if (this.checkPolicyDisabled(item)) {
-            fliteredActions[fliteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
+            filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
             row.disabled = true
           }
           if (this.checkPolicyRemediation(item) === 'enforce') {
-            fliteredActions[fliteredActions.indexOf('table.actions.enforce')] = 'table.actions.inform'
+            filteredActions[filteredActions.indexOf('table.actions.enforce')] = 'table.actions.inform'
             row.remediation = 'enforce'
           }
         }
 
-        if (fliteredActions && fliteredActions.length > 0 && this.showTableToobar()) {
+        if (Array.isArray(filteredActions) && filteredActions.length > 0) {
           row.action = (
-            <OverflowMenu floatingMenu flipped iconDescription={msgs.get('svg.description.overflowMenu', locale)} ariaLabel='Overflow-menu' tabIndex={0}>
-              {fliteredActions.map((action) =>
-                <OverflowMenuItem
+            <OverflowMenu
+              floatingMenu
+              flipped
+              iconDescription={msgs.get('svg.description.overflowMenu', locale)}
+              ariaLabel='Overflow-menu'
+              tabIndex={0}
+            >
+              {filteredActions.map((action) => {
+                const disableFlag = action.includes('disabled.')
+                if (disableFlag) {
+                  action = action.replace('disabled.', '')
+                }
+                return <OverflowMenuItem
+                  disabled={disableFlag}
                   data-table-action={action}
                   isDelete={
                     action ==='table.actions.remove' ||
@@ -392,7 +427,7 @@ export class ResourceTable extends React.Component {
                   key={action}
                   itemText={msgs.get(action, locale)}
                 />
-              )}
+              })}
             </OverflowMenu>
           )
         }
@@ -432,11 +467,6 @@ export class ResourceTable extends React.Component {
     })
     return indeterminateStatus
   }
-
-}
-
-ResourceTable.contextTypes = {
-  locale: PropTypes.string
 }
 
 ResourceTable.propTypes = {
@@ -494,20 +524,19 @@ ResourceTable.propTypes = {
   totalFilteredItems: PropTypes.number,
   updateBrowserURL: PropTypes.func,
   updateSecondaryHeader: PropTypes.func,
-  userRole: PropTypes.string,
+  userAccess: PropTypes.array,
 }
 
 const mapStateToProps = (state) => {
-  const navRoutes = state.nav? (state.nav && state.nav.navItems) : state.nav
-  const userRole = state.role ? state.role.role : state.role
-
-  return { navRoutes, userRole }
+  const userAccess = state.userAccess ? state.userAccess.access : []
+  return { userAccess }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const resourceType = ownProps.subResourceType || ownProps.resourceType
   return {
-    getResourceAction: (action, resource, hasService, history, locale) => resourceActions(action, dispatch, resourceType, resource, hasService, history, locale)
+    getResourceAction: (action, resource, hasService, history, locale) =>
+      resourceActions(action, dispatch, resourceType, resource, hasService, history, locale)
   }
 }
 

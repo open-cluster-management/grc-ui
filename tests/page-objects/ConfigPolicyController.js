@@ -18,7 +18,8 @@ module.exports = {
     createPolicyButton: '.bx--btn--primary:nth-of-type(1)',
     submitCreatePolicyButton: '#create-button-portal-id',
     yamlMonacoEditor: '.monaco-editor',
-    searchInput: 'input.bx--search-input',
+    searchInput: '#search',
+    searchInputClear: '#search ~ .bx--search-close',
     overflowButton: '.bx--overflow-menu:nth-of-type(1)',
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
@@ -50,24 +51,26 @@ module.exports = {
     deletePolicy,
     checkViolations,
     setSearchValue,
-    log
+    clearSearchValue,
+    log,
+    enforcePolicy,
+    informPolicy,
   }]
 }
 
 function createPolicy(browser, name, yaml, time) {
   this.log(`Creating policy:\n${yaml}`)
+  this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   this.waitForElementNotPresent('@spinner')
-  //this.click('.bx--toggle__appearance')
   this.click('@namespaceDropdown')
-  this.waitForElementPresent('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
+  this.waitForElementVisible('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.click('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.waitForElementPresent('@yamlMonacoEditor')
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
-  // this.click('@policyNameInput').clearValue('@policyNameInput')
-  // this.setValue('@policyNameInput',`${time}-policy-test`)
+  this.pause(1000)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
@@ -90,6 +93,53 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementNotPresent('#spinner')
 }
 
+function enforcePolicy(name){
+  this.log(`Enforcing policy: ${name}`)
+  //verify table/menu exist
+  this.waitForElementVisible('body')
+  this.waitForElementVisible('@searchInput')
+  this.setSearchValue(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
+  //enforce policy
+  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4)')
+  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Enforce')
+  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
+  this.waitForElementVisible('#enforce-resource-modal')
+  this.click('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.pause(500) // Wait for DOM update
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
+  this.clearSearchValue()
+}
+
+function informPolicy(name){
+  this.log(`Informing policy: ${name}`)
+  //verify table/menu exist
+  this.waitForElementVisible('body')
+  this.waitForElementVisible('@searchInput')
+  this.setSearchValue(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
+  //enforce policy
+  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4)')
+  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Inform')
+  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
+  this.waitForElementVisible('#inform-resource-modal')
+  this.click('#inform-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.waitForElementVisible('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)')
+  this.pause(500) // Wait for DOM update
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
+  this.clearSearchValue()
+}
+
 function checkViolations(name, violationExpected, violationText) {
   this.log(`Checking policy: ${name} violationExpected: ${violationExpected}`)
   this.waitForElementVisible('@searchInput')
@@ -103,11 +153,26 @@ function checkViolations(name, violationExpected, violationText) {
     if (violationText) {
       this.expect.element('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(violationText)
     }
+    this.log('checking view details for violations')
+    this.click('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3) a')
+    this.waitForElementPresent('.policy-template-details-view')
+    this.waitForElementPresent('.policy-template-details-view .table')
+    this.getText('css selector', 'div.pf-c-description-list__group:nth-child(3) > dd:nth-child(2) > div:nth-child(1)', (kind) => {
+      if (kind === 'ConfigurationPolicy') {
+        this.getText('css selector', 'div.pf-c-description-list__group:nth-child(6) > dd:nth-child(2) > div:nth-child(1)', (details) => {
+          if (details.value.includes('No instances of')) {
+            this.expect.elements('.policy-template-details-view .table tbody>tr').count.to.equal(0)
+          } else {
+            this.expect.elements('.policy-template-details-view .table tbody>tr').count.not.to.equal(0)
+          }
+        })
+        this.expect.elements('.policy-template-details-view .table tbody>tr').count.to.equal(0)
+      }
+    })
   } else {
     this.waitForElementPresent('.no-resource')
   }
   this.click('.bx--breadcrumb > div:nth-child(1)')
-  this.pause(1000)
 }
 
 function searchPolicy(name, expectToDisplay) {
@@ -141,8 +206,16 @@ function deletePolicy(name){
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
-  this.pause(1000)
   // this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.not.to.equal(name)
+}
+
+function clearSearchValue(){
+  this.isVisible('@searchInputClear', result => {
+    if (result.value) {
+      this.click('@searchInputClear')
+    }
+  })
+  this.waitForElementNotVisible('@searchInputClear')
 }
 
 function setSearchValue(value){
