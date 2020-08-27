@@ -130,7 +130,7 @@ Array [
     "name": "id-mycluster-account/providers/security-advisor/occurrences/clusterhub-policy-0efa8d02-f9ee-11e9-bf6c-005056a0b88e",
     "providerId": "security-advisor",
     "providerName": "id-mycluster-account/providers/security-advisor",
-    "remediation": "pods \`nginx-pod\` is missing, and should be created",
+    "remediation": "pods \`nginx-pod\` is missing",
     "reportedBy": Object {
       "id": "mcm-policy-adapter",
       "title": "Security Advisor Multicloud Manager Policy Findings Adapter",
@@ -178,7 +178,7 @@ Array [
     "name": "id-mycluster-account/providers/security-advisor/occurrences/cluster1-policy-0efa8d02-f9ee-11e9-bf6c-005056a0b88e",
     "providerId": "security-advisor",
     "providerName": "id-mycluster-account/providers/security-advisor",
-    "remediation": "pods \`nginx-pod\` is missing, and should be created",
+    "remediation": "pods \`nginx-pod\` is missing",
     "reportedBy": Object {
       "id": "mcm-policy-adapter",
       "title": "Security Advisor Multicloud Manager Policy Findings Adapter",

@@ -1600,7 +1600,7 @@ export const findingsData = [
     'longDescription': 'The Multicloud Manager Policy violation caused a security finding to be created',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'pods `nginx-pod` is missing, and should be created',
+    'remediation': 'pods `nginx-pod` is missing',
     'updateTime': '2019-10-30T17:18:54.164334Z',
     'finding': {
       'severity': 'HIGH',
@@ -1648,7 +1648,7 @@ export const findingsData = [
     'longDescription': 'The Multicloud Manager Policy violation caused a security finding to be created',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'pods `nginx-pod` is missing, and should be created',
+    'remediation': 'pods `nginx-pod` is missing',
     'updateTime': '2019-10-30T17:18:50.849184Z',
     'finding': {
       'severity': 'HIGH',

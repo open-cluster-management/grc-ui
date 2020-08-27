@@ -1834,7 +1834,7 @@ export const clusterSubResourceListTestingItemData = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-06-12T13:51:59Z',
-                  'message': 'pods `nginx-pod` is missing, and should be created',
+                  'message': 'pods `nginx-pod` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -1857,7 +1857,7 @@ export const clusterSubResourceListTestingItemData = [
         'id': 'nginx-pod',
         'cells': [
           'nginx-pod',
-          'pods `nginx-pod` is missing, and should be created',
+          'pods `nginx-pod` is missing',
           'K8s missing a must have object'
         ]
       }

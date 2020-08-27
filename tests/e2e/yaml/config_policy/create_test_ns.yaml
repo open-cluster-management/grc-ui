@@ -16,6 +16,8 @@ spec:
         kind: ConfigurationPolicy
         metadata:
           name: policy-namespace-create-[TIME]
+          labels:
+            - "gatekeeper"
         spec:
           remediationAction: enforce
           severity: low

@@ -103,7 +103,7 @@ export const sidePanelPolicies = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:49Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -137,7 +137,7 @@ export const sidePanelPolicies = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:49Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -171,7 +171,7 @@ export const sidePanelPolicies = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:49Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -298,7 +298,7 @@ export const sidePanelPolicies = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:54Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -332,7 +332,7 @@ export const sidePanelPolicies = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:54Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -366,7 +366,7 @@ export const sidePanelPolicies = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:54Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -481,7 +481,7 @@ export const sidePanelPoliciesAllCompliant = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:49Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -515,7 +515,7 @@ export const sidePanelPoliciesAllCompliant = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:49Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -549,7 +549,7 @@ export const sidePanelPoliciesAllCompliant = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:49Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -676,7 +676,7 @@ export const sidePanelPoliciesAllCompliant = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:54Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -710,7 +710,7 @@ export const sidePanelPoliciesAllCompliant = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:54Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -744,7 +744,7 @@ export const sidePanelPoliciesAllCompliant = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:54Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -1235,7 +1235,7 @@ export const sidePanelClusters = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:13:52Z',
-                  'message': 'clusterimagepolicies `mongo` is missing, and should be created',
+                  'message': 'clusterimagepolicies `mongo` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -1353,7 +1353,7 @@ export const sidePanelClusters = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:54Z',
-                  'message': 'limitranges `mem-limit-range` is missing, and should be created',
+                  'message': 'limitranges `mem-limit-range` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -1557,7 +1557,7 @@ export const sidePanelClusters = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:52Z',
-                  'message': 'pods `nginx-pod` is missing, and should be created',
+                  'message': 'pods `nginx-pod` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -1672,7 +1672,7 @@ export const sidePanelClusters = [
               'conditions': [
                 {
                   'lastTransitionTime': '2019-09-15T08:12:53Z',
-                  'message': 'rolebindings `operate-pods-rolebinding` is missing, and should be created',
+                  'message': 'rolebindings `operate-pods-rolebinding` is missing',
                   'reason': 'K8s missing a must have object',
                   'status': 'True',
                   'type': 'violation'
@@ -1890,7 +1890,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'clusterimagepolicies `mongo` is missing, and should be created',
+      'remediation': 'clusterimagepolicies `mongo` is missing',
       'updateTime': '2019-09-17T03:49:57.992780Z',
       'finding': {
         'severity': 'HIGH',
@@ -1986,7 +1986,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'pods `nginx-pod` is missing, and should be created',
+      'remediation': 'pods `nginx-pod` is missing',
       'updateTime': '2019-09-17T03:49:54.798180Z',
       'finding': {
         'severity': 'HIGH',
@@ -2034,7 +2034,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'limitranges `mem-limit-range` is missing, and should be created',
+      'remediation': 'limitranges `mem-limit-range` is missing',
       'updateTime': '2019-09-17T03:49:52.077477Z',
       'finding': {
         'severity': 'HIGH',
@@ -2130,7 +2130,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'rolebindings `operate-pods-rolebinding` is missing, and should be created',
+      'remediation': 'rolebindings `operate-pods-rolebinding` is missing',
       'updateTime': '2019-09-17T03:49:48.693675Z',
       'finding': {
         'severity': 'HIGH',
@@ -2178,7 +2178,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'namespaces `prod` is missing, and should be created',
+      'remediation': 'namespaces `prod` is missing',
       'updateTime': '2019-09-16T19:51:43.533264Z',
       'finding': {
         'severity': 'HIGH',
@@ -2226,7 +2226,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'namespaces `prod` is missing, and should be created',
+      'remediation': 'namespaces `prod` is missing',
       'updateTime': '2019-09-16T19:29:20.504573Z',
       'finding': {
         'severity': 'HIGH',
@@ -2274,7 +2274,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'namespaces `prod` is missing, and should be created',
+      'remediation': 'namespaces `prod` is missing',
       'updateTime': '2019-09-16T18:23:38.538343Z',
       'finding': {
         'severity': 'HIGH',
@@ -2322,7 +2322,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'namespaces `prod` is missing, and should be created',
+      'remediation': 'namespaces `prod` is missing',
       'updateTime': '2019-09-16T17:53:02.094098Z',
       'finding': {
         'severity': 'HIGH',
@@ -2370,7 +2370,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'namespaces `prod` is missing, and should be created',
+      'remediation': 'namespaces `prod` is missing',
       'updateTime': '2019-09-16T17:18:03.241122Z',
       'finding': {
         'severity': 'HIGH',
@@ -2418,7 +2418,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'namespaces `prod` is missing, and should be created',
+      'remediation': 'namespaces `prod` is missing',
       'updateTime': '2019-09-12T17:49:18.716240Z',
       'finding': {
         'severity': 'HIGH',
@@ -2466,7 +2466,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'namespaces `prod` is missing, and should be created',
+      'remediation': 'namespaces `prod` is missing',
       'updateTime': '2019-09-12T17:49:17.093456Z',
       'finding': {
         'severity': 'HIGH',
@@ -2514,7 +2514,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'namespaces `prod` is missing, and should be created',
+      'remediation': 'namespaces `prod` is missing',
       'updateTime': '2019-09-12T17:49:12.892542Z',
       'finding': {
         'severity': 'HIGH',
@@ -2562,7 +2562,7 @@ export const sidePanelFindingsClusters = {
       'longDescription': 'MCM Policy that is not compliant',
       'providerId': 'security-advisor',
       'providerName': 'id-mycluster-account/providers/security-advisor',
-      'remediation': 'namespaces `prod` is missing, and should be created',
+      'remediation': 'namespaces `prod` is missing',
       'updateTime': '2019-09-12T17:49:01.556249Z',
       'finding': {
         'severity': 'HIGH',

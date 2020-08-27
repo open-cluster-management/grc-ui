@@ -1109,7 +1109,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'rolebindings `operate-pods-rolebinding` is missing, and should be created',
+    'remediation': 'rolebindings `operate-pods-rolebinding` is missing',
     'updateTime': currentTime,
     'finding': {
       'severity': 'HIGH',
@@ -1205,7 +1205,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'limitranges `mem-limit-range` is missing, and should be created',
+    'remediation': 'limitranges `mem-limit-range` is missing',
     'updateTime': '2019-09-15T14:49:38.406220Z',
     'finding': {
       'severity': 'HIGH',
@@ -1349,7 +1349,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'clusterimagepolicies `mongo` is missing, and should be created',
+    'remediation': 'clusterimagepolicies `mongo` is missing',
     'updateTime': '2019-09-15T14:49:34.546915Z',
     'finding': {
       'severity': 'HIGH',
@@ -1541,7 +1541,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'pods `nginx-pod` is missing, and should be created',
+    'remediation': 'pods `nginx-pod` is missing',
     'updateTime': '2019-09-15T08:12:50.637446Z',
     'finding': {
       'severity': 'HIGH',
@@ -1637,7 +1637,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-12T17:49:18.716240Z',
     'finding': {
       'severity': 'HIGH',
@@ -1685,7 +1685,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-12T17:49:17.093456Z',
     'finding': {
       'severity': 'HIGH',
@@ -1829,7 +1829,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-12T17:49:12.892542Z',
     'finding': {
       'severity': 'HIGH',
@@ -1877,7 +1877,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-12T17:49:01.556249Z',
     'finding': {
       'severity': 'HIGH',
@@ -1973,7 +1973,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-11T13:20:41.695295Z',
     'finding': {
       'severity': 'HIGH',
@@ -2117,7 +2117,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-10T22:16:21.690479Z',
     'finding': {
       'severity': 'HIGH',
@@ -2213,7 +2213,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-10T20:33:43.620675Z',
     'finding': {
       'severity': 'HIGH',
@@ -2309,7 +2309,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-10T20:15:47.094914Z',
     'finding': {
       'severity': 'HIGH',
@@ -2405,7 +2405,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-10T19:32:43.614886Z',
     'finding': {
       'severity': 'HIGH',
@@ -2501,7 +2501,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-10T19:03:05.998427Z',
     'finding': {
       'severity': 'HIGH',
@@ -2597,7 +2597,7 @@ export const GrcViewFindingCluster = [
     'longDescription': 'MCM Policy that is not compliant',
     'providerId': 'security-advisor',
     'providerName': 'id-mycluster-account/providers/security-advisor',
-    'remediation': 'namespaces `prod` is missing, and should be created',
+    'remediation': 'namespaces `prod` is missing',
     'updateTime': '2019-09-10T14:03:25.228534Z',
     'finding': {
       'severity': 'HIGH',
@@ -2968,7 +2968,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'rolebindings `operate-pods-rolebinding` is missing, and should be created',
+        remediation: 'rolebindings `operate-pods-rolebinding` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -3080,7 +3080,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'limitranges `mem-limit-range` is missing, and should be created',
+        remediation: 'limitranges `mem-limit-range` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -3248,7 +3248,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'clusterimagepolicies `mongo` is missing, and should be created',
+        remediation: 'clusterimagepolicies `mongo` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -3472,7 +3472,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'pods `nginx-pod` is missing, and should be created',
+        remediation: 'pods `nginx-pod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -3584,7 +3584,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -3640,7 +3640,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -3808,7 +3808,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -3864,7 +3864,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -3976,7 +3976,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -4144,7 +4144,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -4256,7 +4256,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -4368,7 +4368,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -4480,7 +4480,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -4592,7 +4592,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
@@ -4704,7 +4704,7 @@ export const reduxStoreFindingCluster = {
         longDescription: 'MCM Policy that is not compliant',
         providerId: 'security-advisor',
         providerName: 'id-mycluster-account/providers/security-advisor',
-        remediation: 'namespaces `prod` is missing, and should be created',
+        remediation: 'namespaces `prod` is missing',
         updateTime: currentTime,
         finding: {
           severity: 'HIGH',
