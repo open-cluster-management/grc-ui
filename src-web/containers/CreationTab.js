@@ -164,57 +164,6 @@ export class CreationTab extends React.Component {
     } else {
       throw new Error('Error fetching placement rule')
     }
-    return Promise.resolve()
-  }
-
-  addPBs = (res, pbs, update, create) => {
-    if (res.items.placementBindings) {
-      const resPBs = {}
-      res.items.placementBindings.forEach((b) => {
-        resPBs[b.metadata.name] = b
-      })
-      pbs.forEach((pb) => {
-        const resPB = resPBs[pb.metadata.name]
-        if (resPB) {
-          pb.metadata.selfLink = resPB.metadata.selfLink
-          pb.metadata.resourceVersion = resPB.metadata.resourceVersion
-          update.push(pb)
-        } else {
-          create.push(pb)
-        }
-      })
-    } else {
-      throw new Error('Error fetching placement binding')
-    }
-  }
-
-  addPRs = (res, prs, update, create) => {
-    if (res.items.placementRules) {
-      const resPRs = {}
-      res.items.placementRules.forEach((r) => {
-        resPRs[r.metadata.name] = r
-      })
-      prs.forEach((pr) => {
-        const resPR = resPRs[pr.metadata.name]
-        if (resPR) {
-          pr.metadata.selfLink = resPR.metadata.selfLink
-          pr.metadata.resourceVersion = resPR.metadata.resourceVersion
-          update.push(pr)
-        } else {
-          create.push(pr)
-        }
-      })
-    } else {
-      throw new Error('Error fetching placement rule')
-    }
-  }
-
-  handleCreateAndUpdate = (createList, updateList) => {
-    this.props.handleCreateAndUpdateResources([
-      RESOURCE_TYPES.HCM_POLICIES,
-      RESOURCE_TYPES.PLACEMENT_BINDING,
-      RESOURCE_TYPES.PLACEMENT_RULE
-    ], createList, updateList)
   }
 
   handleCreateAndUpdate = (createList, updateList) => {
