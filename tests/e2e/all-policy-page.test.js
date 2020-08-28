@@ -22,31 +22,31 @@ module.exports = {
     page = browser.page.AllPolicyPage()
   },
 
-  // 'Create policy page: Verify templates': (browser) => {
-  //   const templates = [
-  //     'CertificatePolicy',
-  //     'IamPolicy',
-  //     'ImageManifestVulnPolicy',
-  //     'LimitRange',
-  //     'Namespace',
-  //     'Pod',
-  //     'PodSecurityPolicy',
-  //     'Role',
-  //     'RoleBinding',
-  //     'SecurityContextConstraints'
-  //   ]
-  //   const time = browser.globals.time
-  //   let policyName = '', templateFile = ''
-  //   templates.forEach(t => {
-  //     policyName = `${time}-${t}-policy-test`
-  //     templateFile = `${t}_template.yaml`
-  //     page.createTestPolicy(false, { policyName: policyName, specification: [t] }, templateFile)
-  //   })
-  // },
+  'Create policy page: Verify templates': (browser) => {
+    const templates = [
+      'CertificatePolicy',
+      'IamPolicy',
+      'ImageManifestVulnPolicy',
+      'LimitRange',
+      'Namespace',
+      'Pod',
+      'PodSecurityPolicy',
+      'Role',
+      'RoleBinding',
+      'SecurityContextConstraints'
+    ]
+    const time = browser.globals.time
+    let policyName = '', templateFile = ''
+    templates.forEach(t => {
+      policyName = `${time}-${t}-policy-test`
+      templateFile = `${t}_template.yaml`
+      page.createTestPolicy(false, { policyName: policyName, specification: [t] }, templateFile)
+    })
+  },
 
-  // 'Create policy page: Updating YAML in editor': () => {
-  //   page.updateYamlEditor()
-  // },
+  'Create policy page: Updating YAML in editor': () => {
+    page.updateYamlEditor()
+  },
 
   'All policy page: Create, Search, Verify details of policy': (browser) => {
     const time = browser.globals.time
@@ -68,13 +68,13 @@ module.exports = {
     page.testDetailsPage(policyName, templateFile)
   },
 
-  // 'All policy page: Verify summary table': (browser) => {
-  //   page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
-  // },
+  'All policy page: Verify summary table': (browser) => {
+    page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
+  },
 
-  // 'All policy page: Test pagination': (browser) => {
-  //   page.verifyPagination(browser)
-  // },
+  'All policy page: Test pagination': (browser) => {
+    page.verifyPagination(browser)
+  },
 
   'All policy page: Delete test policy': (browser) => {
     const time = browser.globals.time
