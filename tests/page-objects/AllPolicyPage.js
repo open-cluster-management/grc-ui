@@ -26,6 +26,11 @@ module.exports = {
     filterButton: '#resource-toolbar > div > div > div.resource-filter-button',
     filterMenu: '#resource-toolbar > div.resource-filter-view',
     filterSectionTitles: '#resource-toolbar > div.resource-filter-view > div.filter-sections-container > div > div.filter-section > div.filter-section-title',
+    sidePolicyPanel: 'div.bx--modal-container > div.bx--modal-content',
+    sidePolicyPanelClose: 'div.bx--modal-container > div.bx--modal-header > button.bx--modal-close',
+    sidePolicyPanelClusterLink: 'div.bx--modal-container > div.bx--modal-content a.bx--link',
+    overflowMenu: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
+    overflowViewClusters: 'body > ul.bx--overflow-menu-options > li:nth-child(1) > button',
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
     noResource: '.no-resource',
@@ -64,6 +69,7 @@ module.exports = {
     searchPolicy,
     testDetailsPage,
     testFilters,
+    testPolicySidePanel,
     updateYamlEditor,
     verifyPagination,
     verifyPolicyTable,
@@ -154,6 +160,16 @@ function verifyPagination() {
   this.waitForElementVisible('.bx--pagination__button.bx--pagination__button--backward')
   this.click('.bx--pagination__button.bx--pagination__button--backward')
   this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="10"]')
+}
+/* Test side panel */
+function testPolicySidePanel() {
+  this.click('@overflowMenu')
+  this.click('@overflowViewClusters')
+  this.waitForElementVisible('@sidePolicyPanel')
+  this.expect.element('@sidePolicyPanelClusterLink').text.to.equal('Launch cluster')
+  this.expect.element('@sidePolicyPanelClusterLink').to.have.attribute('href').to.startWith('https://console')
+  this.click('@sidePolicyPanelClose')
+  this.waitForElementNotPresent('@sidePolicyPanel')
 }
 /* Test policy filters on the policy summary page */
 function testFilters(spec = {}) {
