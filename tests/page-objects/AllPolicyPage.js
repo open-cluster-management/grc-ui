@@ -181,8 +181,8 @@ function testFilters(spec = {}) {
   this.waitForElementVisible('@filterSectionTitles')
   // Check for proper headings and click checkboxes that match policy
   for (let i = 0; i < headings.length; i++) {
-    this.isVisible('xpath', `//div[contains(@class,"filter-section-title") and text()="${headings[i]}"]`, (result) => {
-      this.assert.ok(result.value, `Filter heading ${headings[i]} is present`)
+    this.api.element('xpath', `//div[contains(@class,"filter-section-title") and text()="${headings[i]}"]`, (result) => {
+      this.assert.ok(result.status >= 0, `Filter heading ${headings[i]} is present`)
     })
     if (headings[i] !== 'Type') {
       const heading = headings[i].toLowerCase()
