@@ -3,27 +3,23 @@
 exports[`ResourceDetails error renders as expected 1`] = `
 <div>
   <div
-    className="bx--loading-overlay"
+    aria-live="assertive"
+    className="bx--loading resource-detail-content-spinner"
   >
-    <div
-      aria-live="assertive"
-      className="bx--loading resource-detail-content-spinner"
+    <svg
+      className="bx--loading__svg"
+      viewBox="-75 -75 150 150"
     >
-      <svg
-        className="bx--loading__svg"
-        viewBox="-75 -75 150 150"
-      >
-        <title>
-          Active loading indicator
-        </title>
-        <circle
-          className={null}
-          cx="0"
-          cy="0"
-          r="37.5"
-        />
-      </svg>
-    </div>
+      <title>
+        Active loading indicator
+      </title>
+      <circle
+        className={null}
+        cx="0"
+        cy="0"
+        r="37.5"
+      />
+    </svg>
   </div>
 </div>
 `;

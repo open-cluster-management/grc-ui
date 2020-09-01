@@ -210,7 +210,7 @@ class PolicyTemplates extends React.Component {
             onYamlChange={this.handleEditorChange}
             yaml={this.state.yaml} />
         </div>
-        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading />}
+        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading withOverlay={false} />}
       </Module>
     )
   }
