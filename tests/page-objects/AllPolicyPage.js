@@ -524,5 +524,6 @@ function deletePolicy(name) {
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button')
   this.waitForElementVisible('button.bx--btn--danger--primary')
   this.click('button.bx--btn--danger--primary')
+  this.waitForElementNotPresent('button.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
 }
