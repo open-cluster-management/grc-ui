@@ -33,7 +33,7 @@ export class DisableModal extends React.Component {
     const { handleClose, label, locale, open, reqErrorMsg, reqStatus } = this.props
     return (
       <div>
-        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading />}
+        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading withOverlay={false} />}
         <Modal
           danger
           id='disable-resource-modal'

@@ -25,7 +25,7 @@ export class InformModal extends React.Component {
     const { handleClose, locale, label, open, reqErrorMsg, reqStatus } = this.props
     return (
       <div>
-        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading />}
+        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading withOverlay={false} />}
         <Modal
           id='inform-resource-modal'
           open={open}

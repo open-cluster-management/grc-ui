@@ -44,7 +44,7 @@ class PolicyTemplateTab extends React.Component{
         subtitle={msgs.get(error, this.context.locale)}
         kind='error' />
     } else if (loading && items === undefined) {
-      return <Loading className='resource-detail-content-spinner' />
+      return <Loading withOverlay={false} className='resource-detail-content-spinner' />
     } else{
       const item = items[0]
       return <PolicyTemplates
