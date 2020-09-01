@@ -133,7 +133,7 @@ class RemoveResourceModal extends React.Component {
     const { data, handleClose, label, locale, open, reqErrorMsg, reqStatus } = this.props
     return (
       <div>
-        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading />}
+        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading withOverlay={false} />}
         <Modal
           danger
           id='remove-resource-modal'
