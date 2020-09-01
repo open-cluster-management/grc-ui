@@ -75,6 +75,7 @@ export default {
           },
           {
             resourceKey: 'status.consoleURL',
+            transformFunction: createClusterLaunchLink,
           }
         ]
       }
@@ -95,5 +96,18 @@ export function createComplianceLink(item = {}, ...param){
     }
   }
   return undefined
+}
+
+export function createClusterLaunchLink(item = {}, ...param) {
+  if (param[1] === 'status.consoleURL') {
+    const clusterLink = item.status.consoleURL
+    if (clusterLink) {
+      return clusterLink
+    } else {
+      return '-'
+    }
+  } else {
+    return undefined
+  }
 }
 
