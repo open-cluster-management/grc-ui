@@ -52,18 +52,6 @@ class StructuredListModule extends React.Component {
     })
   }
 
-  renderLink = (url, content, target) => {
-    if (target) {
-      return (/^https?:\/\//.test(url)
-        ? <a href={url} target={target} className='bx--link'>{content}</a>
-        : <Link to={url} target={target} className='bx--link'>{content}</Link>)
-    } else {
-      return (/^https?:\/\//.test(url)
-        ? <a href={url} className='bx--link'>{content}</a>
-        : <Link to={url} className='bx--link'>{content}</Link>)
-    }
-  }
-
   render() {
     const { headerRows, data, listSubItems, url, rows:resourceRows, title, subHeaders,
       linkFixedName, emptyColFront } = this.props
@@ -115,9 +103,12 @@ class StructuredListModule extends React.Component {
                             <td key={`${cell.resourceKey}Cell`}>
                               <p>{
                                 (linkFixedName && (cellIndex in linkFixedName) && transform(row, cell, this.context.locale) !== '-')
-                                  ? this.renderLink(transform(row, cell, this.context.locale),
-                                    msgs.get(linkFixedName[cellIndex].fixedName, this.context.locale),
-                                    linkFixedName[cellIndex].urlTarget)
+                                  ? <a
+                                    href={transform(row, cell, this.context.locale)}
+                                    target={linkFixedName[cellIndex].urlTarget}
+                                    className='bx--link'>
+                                    {msgs.get(linkFixedName[cellIndex].fixedName, this.context.locale)}
+                                  </a>
                                   : cell.link && url
                                     ? <Link
                                       to={url}
