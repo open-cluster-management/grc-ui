@@ -118,7 +118,7 @@ export class CreateResourceModal extends React.PureComponent {
             />
           }
           <YamlEditor onYamlChange={this.handleEditorChange} yaml={this.state.yaml} />
-          {this.state.processing && <Loading />}
+          {this.state.processing && <Loading withOverlay={false} />}
         </Modal>}
       </div>
     )
