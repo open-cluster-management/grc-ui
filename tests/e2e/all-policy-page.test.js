@@ -61,6 +61,7 @@ module.exports = {
     }
     page.createTestPolicy(true, policySpec, templateFile)
     page.searchPolicy(true, policyName)
+    page.testPolicySidePanel()
     page.testFilters(policySpec)
     page.searchPolicy(true, policyName)
     page.verifyPolicyTable(policyName, templateFile)
