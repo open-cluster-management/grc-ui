@@ -9,7 +9,7 @@ RUN mkdir -p /opt/app-root/src/grc-ui
 
 WORKDIR /opt/app-root/src/grc-ui
 
-COPY nightwatch.conf.js nightwatch.json package.json ./
+COPY nightwatch.conf.js nightwatch.json package.json makefile ./
 COPY config ./config
 COPY tests ./tests
 
@@ -29,6 +29,7 @@ RUN npm install \
     nconf@0.10.0 \
     log4js@6.3.0 \
     del@5.1.0 \ 
-    js-yaml@3.14.0
+    js-yaml@3.14.0 \
+    @slack/web-api@5.11.0
 
 CMD ["npm", "run", "test:e2e-headless"]
