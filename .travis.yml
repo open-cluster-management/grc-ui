@@ -57,6 +57,18 @@ jobs:
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
     - stage: build
       name: "Build the test image"
+      if: type = push AND branch = master
+      script:
+        - set -e
+        - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
+        - export COMPONENT_BUILD_COMMAND="docker build . -f Dockerfile.e2etest -t "
+        - export COMPONENT_NAME="grc-ui-tests"
+        - export COMPONENT_VERSION="latest" 
+        - export COMPONENT_TAG_EXTENSION="-dev"
+        - make build-test-image
+        - make push-test-image
+    - stage: build
+      name: "Build the test image"
       if: type = push AND branch =~ /^release-[0-9]+\..*$/
       script:
         - set -e
