@@ -166,6 +166,7 @@ function testPolicySidePanel() {
   this.click('@overflowMenu')
   this.click('@overflowViewClusters')
   this.waitForElementVisible('@sidePolicyPanel')
+  this.waitForElementNotPresent('@spinner')
   this.expect.element('@sidePolicyPanelClusterLink').text.to.equal('Launch cluster')
   this.expect.element('@sidePolicyPanelClusterLink').to.have.attribute('href').to.startWith('https://console')
   this.click('@sidePolicyPanelClose')
