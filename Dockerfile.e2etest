@@ -9,7 +9,7 @@ RUN mkdir -p /opt/app-root/src/grc-ui
 
 WORKDIR /opt/app-root/src/grc-ui
 
-COPY nightwatch.conf.js nightwatch.json package.json makefile ./
+COPY nightwatch.conf.js nightwatch.json package.json ./
 COPY config ./config
 COPY tests ./tests
 
