@@ -62,7 +62,6 @@ module.exports = {
     }
     page.createTestPolicy(true, policySpec, templateFile)
     common.checkViolations(policyName, true)
-    // common.searchPolicy(policyName, true)
     common.searchPolicy(policyName, true)
     page.testPolicySidePanel()
     page.testFilters(policySpec)
