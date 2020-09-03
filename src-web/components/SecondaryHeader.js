@@ -62,9 +62,6 @@ export class SecondaryHeader extends React.Component {
     default:
       showCreationLink = checkCreatePermission(userAccess)
       break
-    case 'findings':
-      showCreationLink = 2
-      break
     }
     if ((tabs && tabs.length > 0) || (breadcrumbItems && breadcrumbItems.length > 0)) {
       const midName = (!location.pathname.startsWith('/multicloud/policies/all/') ? 'secondary-header-grc-overview' : '')

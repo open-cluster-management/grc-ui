@@ -36,17 +36,9 @@ export const resourceActions = (action, dispatch, resourceType, data, hasService
         label: { label: `modal.edit-${resourceType.name.toLowerCase()}.label`, heading: `modal.edit-${resourceType.name.toLowerCase()}.heading` },
         data: { kind: resourceType.name, ...data }}))
   }
-  case 'table.actions.finding.securityFindings.sidepanel':
-  case 'table.actions.finding.clusterFindings.sidepanel': {
-    return dispatch(updateModal(
-      { open: true, type: 'finding-side-panel', resourceType,
-        label: { label: `modal.edit-${resourceType.name.toLowerCase()}.label`, heading: `modal.edit-${resourceType.name.toLowerCase()}.heading` },
-        data: { kind: resourceType.name, ...data }}))
-  }
   case 'table.actions.applications.remove':
   case 'table.actions.compliance.remove':
   case 'table.actions.policy.remove':
-  case 'table.actions.finding.remove':
   case 'table.actions.remove': {
     return dispatch(updateModal(
       { open: true, type: 'resource-remove', resourceType,

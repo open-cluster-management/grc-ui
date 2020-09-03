@@ -183,8 +183,6 @@ class ResourceList extends React.Component {
         </NoResource>
       )
     case RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER.name:
-    case RESOURCE_TYPES.HCM_SECURITY_FINDINGS.name:
-    case RESOURCE_TYPES.HCM_CLUSTER_FINDINGS.name:
       return <NoResource
         title={msgs.get(noResourceStr, [msgs.get(routesGrcStr, locale)], locale)}
         detail={msgs.get('no-resource.detail.item', locale)}
@@ -228,10 +226,8 @@ const mapStateToProps = (state, ownProps) => {
       }
     })
   }
-  const userRole = state.role && state.role.role
 
   return {
-    userRole,
     items,
     itemIds: visibleResources.items,
     totalFilteredItems: visibleResources.totalResults,

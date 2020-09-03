@@ -18,9 +18,8 @@ import { ContentSwitcher, Switch } from 'carbon-components-react'
 import getResourceDefinitions from '../../definitions'
 import { makeGetVisibleTableItemsSelector } from '../../reducers/common'
 import ResourceList from '../common/ResourceList'
-import { formatPoliciesToClustersTableData, formatFindingsToClustersTableData,
-  formatExpandablePolicies, formatApplicationTableData } from '../common/FormatTableData'
-import pageWithUrlQuery from '../common/withUrlQuery'
+import { formatPoliciesToClustersTableData, formatExpandablePolicies,
+  formatApplicationTableData } from '../common/FormatTableData'
 import queryString from 'query-string'
 import resources from '../../../lib/shared/resources'
 
@@ -78,29 +77,6 @@ export class GrcToggleModule extends React.Component {
         break
       }
       break
-    case 'findings':
-      switch (grcTabToggleIndex){
-      case 0:
-      default:
-        detailsTabs = ['findings']
-        resourceType = RESOURCE_TYPES.HCM_SECURITY_FINDINGS
-        listData = grcItems
-        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_SECURITY_FINDINGS)
-        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_SECURITY_FINDINGS)
-        placeHolderText = msgs.get('tabs.grc.toggle.securityFindings.placeHolderText', locale)
-        autoAction = 'table.actions.finding.sidepanel'
-        break
-      case 1:
-        detailsTabs = ['cluster-findings']
-        resourceType = RESOURCE_TYPES.HCM_CLUSTER_FINDINGS
-        listData = formatFindingsToClustersTableData(grcItems)
-        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_CLUSTER_FINDINGS)
-        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_CLUSTER_FINDINGS)
-        placeHolderText = msgs.get('tabs.grc.toggle.clusterFindings.placeHolderText', locale)
-        autoAction = 'table.actions.finding.sidepanel'
-        break
-      }
-      break
     }
 
     return (
@@ -140,10 +116,6 @@ export class GrcToggleModule extends React.Component {
       toggleText2 = msgs.get('tabs.grc.toggle.clusterViolations', locale)
       toggleText3 = msgs.get('tabs.grc.toggle.policiesApplications', locale)
       break
-    case 'findings':
-      toggleText1 = msgs.get('tabs.grc.toggle.securityFindings', locale)
-      toggleText2 = msgs.get('tabs.grc.toggle.clusterFindings', locale)
-      break
     }
     return (
       <div className='module-toggle-tab-switch-strip'>
@@ -156,10 +128,6 @@ export class GrcToggleModule extends React.Component {
             <Switch text={toggleText3} onClick={this.toggleClick} />
           </ContentSwitcher>}
           {displayType==='all' && !showApplications && <ContentSwitcher onChange={this.onChange} selectedIndex={grcTabToggleIndex}>
-            <Switch text={toggleText1} onClick={this.toggleClick} />
-            <Switch text={toggleText2} onClick={this.toggleClick} />
-          </ContentSwitcher>}
-          {displayType==='findings' && <ContentSwitcher onChange={this.onChange} selectedIndex={grcTabToggleIndex}>
             <Switch text={toggleText1} onClick={this.toggleClick} />
             <Switch text={toggleText2} onClick={this.toggleClick} />
           </ContentSwitcher>}
@@ -199,4 +167,4 @@ GrcToggleModule.propTypes = {
   showSidePanel: PropTypes.bool,
 }
 
-export default withRouter(pageWithUrlQuery(GrcToggleModule))
+export default withRouter(GrcToggleModule)

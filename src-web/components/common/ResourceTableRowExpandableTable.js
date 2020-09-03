@@ -51,24 +51,6 @@ const ResourceTableRowExpandableTable = ({ items, headers }, context) =>
             </TableRow>
           )
         }
-        else if (row && row.subRowsArray) {//mulit sub rows for cluster finding side panel
-          return row.subRowsArray.map(subRow => {
-            if(subRow && subRow.cells) {
-              return (
-                <TableRow key={subRow.id ? subRow.id : _uniqueId('sidePanelTableRow')}>
-                  {subRow.cells.map((cell, index) => (cell && typeof cell === 'string') ?
-                    <TableCell
-                      key={_uniqueId(cell.substring(0, 21))}
-                      className={`bx--table-subRowsArray-subRow-index-${index}`}>
-                      {cell}
-                    </TableCell> :
-                    <TableCell key={_uniqueId('sidePanelTableCell')}>{'-'}</TableCell>)}
-                </TableRow>
-              )
-            }
-            return null
-          })
-        }
         return null
       })
       }

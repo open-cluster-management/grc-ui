@@ -51,9 +51,6 @@ export class GrcCardsModule extends React.Component {
     default:
       cardData = this.getPolicyCardData()
       break
-    case 'findings':
-      cardData = this.getFindingCardData()
-      break
     }
     return (
       <div className='module-grc-cards'>
@@ -106,9 +103,6 @@ export class GrcCardsModule extends React.Component {
         {cardData.map((data) => {
           let renderCard
           switch(displayType) {
-          case 'findings':
-            renderCard = <FindingCard key={data.name} data={data} locale={locale} handleClick={handleDrillDownClick} />
-            break
           case 'all':
           default:
             renderCard = <PolicyCard key={data.name} data={data} locale={locale} handleClick={handleDrillDownClick} />
@@ -246,119 +240,6 @@ export class GrcCardsModule extends React.Component {
     })
   }
 
-  getFindingCardData = () => {
-    const { locale } = this.context
-    const { grcItems, activeFilters } = this.props
-    const { grcCardChoice } = this.state
-    const other = msgs.get('overview.grc.overview.other', locale)
-
-    //total findings number
-    const totalFindings = grcItems.length
-    // loop thru grcItems under finding display
-    const dataMap = {}
-    //findingSeverityMap = {key:findingName, value:severityLevel}
-    const findingSeverityMap = {}
-    grcItems.map(finding => {
-      // get a finding's standards/categories
-      let types, key
-      const securityClassification = _.get(finding, 'securityClassification', {}) || {}
-      switch (grcCardChoice) {
-      case GrcCardsSelections.standards:
-        types = securityClassification['securityStandards'] || ''
-        key = 'standards'
-        break
-      case GrcCardsSelections.categories:
-      default:
-        types = securityClassification['securityCategories'] || ''
-        key = 'categories'
-        break
-      }
-      // backward compatible and if user doesn't supply securityClassification
-      if (types && types.length===0) {
-        types=[other]
-      }
-      // if securityClassification isn't empty but contains empty categories/standards, replace them to 'other'
-      else if (Array.isArray(types)) {
-        types.forEach((type, index)=>{
-          if(type.length===0) {
-            types[index]=other
-            return types[index]
-          }
-          return undefined
-        })
-      }
-      //for findings, multi categories/standards is an array, rather than a string split with ','
-      types.forEach(type=>{
-        type = type.trim()
-        if (type) {
-          let name = type
-          if (grcCardChoice===GrcCardsSelections.categories || grcCardChoice===GrcCardsSelections.standards || grcCardChoice===GrcCardsSelections.controls ) {
-            name = _.startCase(name)
-          }
-          const filtered = activeFilters[key] &&  activeFilters[key].size>0 && !activeFilters[key].has(name)
-          if (!filtered) {
-            if (!dataMap[name]) {
-              dataMap[name]= {
-                name,
-                rawName: type,
-                choice: grcCardChoice,
-                highSeverity:0,
-                counts: {
-                  finding: {
-                    currentFindings:0,
-                    totalFindings:totalFindings,
-                  },
-                  severity: {
-                    highSeverity:0,
-                    totalSeverity:0,
-                  },
-                }
-              }
-            }
-
-            findingSeverityMap[name] = findingSeverityMap[name] || {}
-            const severity = _.get(finding, 'finding.severity', {})
-            const findingName = _.get(finding, 'name')
-            findingSeverityMap[name][findingName] = severity
-          }
-        }
-      })
-    })
-
-    // tabulate for category or standard by unique finding name
-    Object.keys(findingSeverityMap).forEach(name=>{
-      const data = dataMap[name]
-      const findingSeverity = findingSeverityMap[name]
-      Object.keys(findingSeverity).forEach(findingName=>{
-        // this is a finding with this category/standard
-        data.counts.finding.currentFindings++
-        // this is a severity with this category/standard, no matter severity level
-        data.counts.severity.totalSeverity++
-        // this is a severity with this category/standard has high severity level
-        if (findingSeverity[findingName].toLowerCase() === 'high') {
-          data.counts.severity.highSeverity++
-          data.highSeverity++
-        }
-      })
-    })
-
-    // convert to array and sort
-    return Object.keys(dataMap).map(key=>{
-      return {...dataMap[key]}
-    }).sort(({name:an, highSeverity:aH}, {name:bn, highSeverity:bH})=>{
-      const v = bH-aH
-      if (v===0) {
-        if (an===other && bn!==other) {
-          return 1
-        } else  if (an!==other && bn===other) {
-          return -1
-        }
-        return an.localeCompare(bn)
-      }
-      return v
-    })
-  }
-
   getPolicyCardChoices = (locale) => {
     if (!this.grcCardChoices) {
       this.grcCardChoices = [
@@ -469,109 +350,6 @@ const PolicyCard = ({data, locale, handleClick}) => {
       </div>
     </div>
   )
-}
-
-// functional finding card component
-const FindingCard = ({data, locale, handleClick}) => {
-  const { counts, choice, name } = data
-  //validItemsCount = 0 means there isn't any finding or high severity for single finding card
-  //thus return finding empty state card, otherwise return normal finding card
-  let validItemsCount = 0
-  const countData = Object.keys(counts).map(type=>{
-    validItemsCount += counts[type].currentFindings ? counts[type].currentFindings : 0
-    validItemsCount += counts[type].highSeverity ? counts[type].highSeverity : 0
-    return {
-      ...counts[type],
-      grcType: msgs.get(`overview.${type}.findingCluster`, locale),
-      choice,
-      type,
-    }
-  })
-  return (
-    <div key={name}>
-      <div className='card-container'>
-        <div className='card-content'>
-          <div className='card-name'>
-            <TruncateText maxCharacters={50} text={name} />
-          </div>
-          <div className='card-count-content'>
-            { //normal finding card with at least one finding or high severity
-              validItemsCount > 0 &&
-              countData.map(({currentFindings, totalFindings, highSeverity, totalSeverity, grcType, choice:localChoice, type }) => {
-                const found = currentFindings > 0
-                const high = highSeverity > 0
-                const containerClasses = classNames({
-                  'card-count-container': true,
-                  found,
-                  high,
-                })
-                const onClick = () =>{
-                  if (found) {
-                    handleClick(localChoice, name, type)
-                  }
-                  if (high) {
-                    handleClick(localChoice, name, type, 'High')
-                  }
-                }
-                const onKeyPress = (e) =>{
-                  if ( e.key === 'Enter') {
-                    onClick()
-                  }
-                }
-                return (
-                  <div key={grcType} className={containerClasses} role={'button'}
-                    tabIndex={((type==='finding' && found)||(type==='severity' && high)) ? 0 : -1} onClick={onClick} onKeyPress={onKeyPress}>
-                    {type==='finding' && <div className='finding-cluster'>
-                      <div className='card-count'>
-                        <div className='card-count-informations'>
-                          {currentFindings}
-                        </div>
-                        <div className='card-count-total'>
-                          {`/${totalFindings}`}
-                        </div>
-                      </div>
-                      <div className='card-grc-type'>
-                        {grcType}
-                      </div>
-                    </div>}
-                    {type==='severity' && <div className='high-severity'>
-                      <div className='card-count'>
-                        <div className='card-count-informations'>
-                          {highSeverity}
-                        </div>
-                        <div className='card-count-total'>
-                          {`/${totalSeverity}`}
-                        </div>
-                      </div>
-                      <div className='card-grc-type'>
-                        {grcType}
-                      </div>
-                    </div>}
-                  </div>
-                )
-              })}
-            { //finding empty state card without any finding or high severity
-              validItemsCount === 0 &&
-              <div className='empty-violations-strip'>
-                <NoResource
-                  className={'card-violations empty'}
-                  imgClassName={'empty-violations-img'}
-                  titleClassName={'no-card-violations'}
-                  title={msgs.get('overview.findings.empty', locale)}
-                  svgName={'no-other-violations.svg'}>
-                </NoResource>
-              </div>}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-FindingCard.propTypes = {
-  data: PropTypes.object,
-  handleClick: PropTypes.func,
-  locale: PropTypes.string
 }
 
 PolicyCard.propTypes = {

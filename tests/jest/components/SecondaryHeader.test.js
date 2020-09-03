@@ -163,7 +163,6 @@ describe('SecondaryHeader component 3', () => {
       <SecondaryHeader
         title='hello world'
         // eslint-disable-next-line jsx-a11y/aria-role
-        role='Viewer'
         tabs={tabs}
         location={location}
         history={history}
