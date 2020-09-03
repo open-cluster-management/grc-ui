@@ -12,8 +12,9 @@ WORKDIR /opt/app-root/src/grc-ui
 COPY nightwatch.conf.js nightwatch.json package.json ./
 COPY config ./config
 COPY tests ./tests
+COPY build ./build
 
-RUN apt-get update
+RUN apt-get update && apt-get install -y apache2-utils
 
 # Install Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
