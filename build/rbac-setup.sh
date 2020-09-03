@@ -48,4 +48,4 @@ oc apply --validate=false -k ${RBAC_DIR}
 
 export SELENIUM_USER=e2e-cluster-admin-cluster
 export SELENIUM_PASSWORD=${RBAC_PASS}
-export SELENIUM_USER_SELECT=e2e-htpasswd
+export SELENIUM_USER_SELECT=grc-e2e-htpasswd

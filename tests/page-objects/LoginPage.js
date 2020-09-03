@@ -88,7 +88,7 @@ function waitForLoginForm(rbac_user) {
       // Choose login method
       let login_with
       if (rbac_user) {
-        login_with = 'e2e-htpasswd'
+        login_with = 'grc-e2e-htpasswd'
       } else {
         // select kube:admin if env SELENIUM_USER_SELECT not specified
         login_with = process.env.SELENIUM_USER_SELECT || 'kube:admin'
