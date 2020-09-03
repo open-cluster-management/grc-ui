@@ -243,23 +243,11 @@ describe('SecondaryHeader component 5', () => {
         history={history}
         tabs={[
           {
-            'id':'grc-overview',
-            'label':'tabs.grc.overview',
-            'url':'/multicloud/policies',
-            'index':0
-          },
-          {
             'id':'grc-all',
             'label':'tabs.grc.all',
             'url':'/multicloud/policies/all',
             'index':1
           },
-          {
-            'id':'grc-findings',
-            'label':'tabs.grc.findings',
-            'url':'/multicloud/policies/findings',
-            'index':2
-          }
         ]}
       />
     )
