@@ -13,4 +13,10 @@ if [ ! -d ${RBAC_DIR} ]; then
 fi
 
 oc delete -n openshift-config secret e2e-users || true
+IDPROVIDERS=($(oc get oauth cluster -o jsonpath='{.spec.identityProviders[*].name}'))
+for index in ${!IDPROVIDERS[@]}; do
+  if [ ${IDPROVIDERS[${index}]} == "grc-e2e-htpasswd" ]; then
+    oc patch -n openshift-config oauth cluster --type json -p '[{"op": "remove","path": "/spec/identityProviders/'${index}'"}]'
+  fi
+done
 oc delete -k ${RBAC_DIR} || true

@@ -41,6 +41,9 @@ for access in cluster ns; do
 done
 oc create secret generic e2e-users --from-file=htpasswd=${RBAC_DIR}/htpasswd -n openshift-config || true
 rm ${RBAC_DIR}/htpasswd
+if [ ! $(oc -n openshift-config get oauth cluster -o jsonpath='{.spec.identityProviders[*].name}' | grep -o 'grc-e2e-htpasswd') ]; then
+  oc patch -n openshift-config oauth cluster --type json --patch "$(cat ${RBAC_DIR}/e2e-rbac-auth.json)"
+fi
 oc apply --validate=false -k ${RBAC_DIR}
 
 export SELENIUM_USER=e2e-cluster-admin-cluster
