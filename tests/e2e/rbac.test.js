@@ -1,7 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 
 const policies = [], namespaces = []
-let page, loginPage, createPage, policyName
+let page, loginPage, createPage, policyName, commonPage
 const DISABLE_CANARY_TEST = process.env.DISABLE_CANARY_TEST ? true : false
 const permissions = {
   'clusterAdmin': {
@@ -37,6 +37,7 @@ module.exports = {
     page = browser.page.RbacPage()
     createPage = browser.page.AllPolicyPage()
     loginPage = browser.page.LoginPage()
+    commonPage = browser.page.CommonPage()
     // Login with cluster admin
     loginPage.navigate()
     loginPage.authenticate()
@@ -56,7 +57,7 @@ module.exports = {
     loginPage.authenticate()
     // Delete created policies
     policies.forEach((policy) => {
-      createPage.deletePolicy(policy)
+      commonPage.deletePolicy(policy)
     })
   },
 

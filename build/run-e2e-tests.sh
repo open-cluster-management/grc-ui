@@ -13,7 +13,6 @@ export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
 oc delete policies.policy.open-cluster-management.io -n default --all || true
-# placementbindings.mcm.ibm.com throws error when doesn't exist
 oc delete placementbindings.policy.open-cluster-management.io  -n default --all || true
 oc delete placementrule  -n default --all || true
 
