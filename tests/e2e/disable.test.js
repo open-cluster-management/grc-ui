@@ -29,10 +29,10 @@ module.exports = {
 
     const enforce = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_mustnothave.yaml'))
     var yaml = enforce.toString()
-    page.createPolicy(browser, yaml, time)
+    page.createPolicy(browser, 'policy-pod-'+ time, yaml, time)
     const inform = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_mustnothave_inform.yaml'))
     yaml = inform.toString()
-    page.createPolicy(browser, yaml, time)
+    page.createPolicy(browser, 'policy-pod-inform-'+ time, yaml, time)
     browser.pause(20000)
     page.checkViolations('policy-pod-inform-' + time, false)
 
@@ -40,7 +40,7 @@ module.exports = {
     browser.pause(5000)
     const createPod = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_create.yaml'))
     yaml = createPod.toString()
-    page.createPolicy(browser, yaml, time)
+    page.createPolicy(browser, 'policy-pod-create-'+ time, yaml, time)
     browser.pause(30000) //Wait for pod to be created
     page.checkViolations('policy-pod-create-' + time, false)
     page.checkViolations('policy-pod-inform-' + time, true)
