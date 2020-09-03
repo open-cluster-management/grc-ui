@@ -65,8 +65,6 @@ module.exports = {
   },
   commands: [{
     createTestPolicy,
-    deletePolicy,
-    searchPolicy,
     testDetailsPage,
     testFilters,
     testPolicySidePanel,
@@ -418,17 +416,6 @@ function updateYamlEditor() {
   editYaml(this, 'true', 12, 'disableCheckbox', true)
   editYaml(this, applyTemplate('', 'custom_spec.yaml'), 12, 'templateDropdownInput', true, 'Custom specifications')
 }
-function searchPolicy(expectToDisplay, policyName) {
-  this.waitForElementVisible('@searchInput')
-  this.setValue('@searchInput', policyName)
-  this.waitForElementVisible('@searchInput')
-  if (expectToDisplay) {
-    this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(policyName)
-  } else {
-    this.waitForElementNotPresent('tbody>tr')
-    this.click('@searchInput').clearValue('@searchInput')
-  }
-}
 /* Helper to replace punctuation with spaces and capitalize text */
 function cleanAndCapitalize(str) {
   const punctuation = ['-', '.']
@@ -509,22 +496,4 @@ function testDetailsPage(name, templateFile) {
   this.waitForElementVisible('.yaml-editor-button > button:nth-child(2)')
   // Return to All Policies page
   this.click('.bx--breadcrumb > div:nth-child(1)')
-}
-function deletePolicy(name) {
-  this.waitForElementVisible('body')
-  this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementNotPresent('bx--overflow-menu-options__option.bx--overflow-menu-options__option--danger')
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button').text.to.equal('Remove')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button')
-  this.waitForElementVisible('button.bx--btn--danger--primary')
-  this.click('button.bx--btn--danger--primary')
-  this.waitForElementNotPresent('button.bx--btn--danger--primary')
-  this.waitForElementNotPresent('@spinner')
 }

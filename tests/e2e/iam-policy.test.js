@@ -21,7 +21,7 @@ module.exports = {
     loginPage.navigate()
     loginPage.authenticate()
 
-    page = browser.page.ConfigPolicyController()
+    page = browser.page.CommonPage()
   },
 
   'IAM policy: create iam-policy': (browser) => {
