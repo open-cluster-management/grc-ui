@@ -21,7 +21,7 @@ module.exports = {
     loginPage.navigate()
     loginPage.authenticate()
 
-    page = browser.page.DisablePage()
+    page = browser.page.CommonPage()
   },
 
   'Disable policy: test policy disable + enable': (browser) => {

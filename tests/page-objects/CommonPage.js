@@ -55,6 +55,8 @@ module.exports = {
     log,
     enforcePolicy,
     informPolicy,
+    tryEnable,
+    tryDisable,
   }]
 }
 
@@ -177,8 +179,7 @@ function checkViolations(name, violationExpected, violationText) {
 
 function searchPolicy(name, expectToDisplay) {
   this.waitForElementVisible('@searchInput')
-  // this.click('@searchInput').clearValue('@searchInput')
-  this.setSearchValue(name)
+  this.click('@searchInput').clearValue('@searchInput').setSearchValue(name)
   this.waitForElementVisible('@searchInput')
   if(expectToDisplay){
     this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(name)
@@ -240,4 +241,48 @@ function log(message) {
     // eslint-disable-next-line no-console
     console.log(message)
   })
+}
+
+function tryEnable(name){
+  this.log(`Enabling policy: ${name}`)
+  //verify table/menu exist
+  this.waitForElementVisible('body')
+  this.waitForElementVisible('@searchInput')
+  this.setSearchValue(name)
+  // this.setValue('@searchInput', name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > div:nth-child(1)').text.to.equal(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
+  //enable policy
+  this.waitForElementPresent('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
+  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3)')
+  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Enable')
+  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
+  this.waitForElementVisible('#enable-resource-modal')
+  this.click('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
+  // this.click('@searchInput').clearValue('@searchInput')
+}
+
+function tryDisable(name){
+  this.log(`Disabling policy: ${name}`)
+  //verify table/menu exist
+  this.waitForElementVisible('body')
+  this.waitForElementVisible('@searchInput')
+  this.setSearchValue(name)
+  // this.click('button.bx--search-close')
+  // this.setValue('@searchInput', name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
+  //disable policy
+  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3)')
+  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Disable')
+  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
+  this.waitForElementVisible('#disable-resource-modal')
+  this.click('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
+  // this.click('@searchInput').clearValue('@searchInput')
 }

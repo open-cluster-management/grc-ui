@@ -21,7 +21,7 @@ module.exports = {
     loginPage.navigate()
     loginPage.authenticate()
 
-    page = browser.page.ConfigPolicyController()
+    page = browser.page.CommonPage()
   },
   'config policy: single object check (musthave+inform) and then enforce it using UI': (browser) => {
     const time = browser.globals.time

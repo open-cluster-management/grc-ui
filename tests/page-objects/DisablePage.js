@@ -48,8 +48,8 @@ module.exports = {
   commands: [{
     createPolicy,
     deletePolicy,
-    tryEnable,
-    tryDisable,
+    // tryEnable,
+    // tryDisable,
     checkViolations,
     setSearchValue,
     log

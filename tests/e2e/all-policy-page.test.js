@@ -9,7 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 
 const config = require('../../config')
-let page
+let page, common
 
 module.exports = {
   '@disabled': false,
@@ -20,6 +20,7 @@ module.exports = {
     loginPage.authenticate()
 
     page = browser.page.AllPolicyPage()
+    common = browser.page.CommonPage()
   },
 
   'Create policy page: Verify templates': (browser) => {
@@ -60,10 +61,12 @@ module.exports = {
       controls: ['DE.CM-7 Monitoring for unauthorized activity']
     }
     page.createTestPolicy(true, policySpec, templateFile)
-    page.searchPolicy(true, policyName)
+    common.checkViolations(policyName, true)
+    // common.searchPolicy(policyName, true)
+    common.searchPolicy(policyName, true)
     page.testPolicySidePanel()
     page.testFilters(policySpec)
-    page.searchPolicy(true, policyName)
+    common.searchPolicy(policyName, true)
     page.verifyPolicyTable(policyName, templateFile)
     page.testDetailsPage(policyName, templateFile)
   },
@@ -79,7 +82,7 @@ module.exports = {
   'All policy page: Delete test policy': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
-    page.deletePolicy(policyName, browser)
+    common.deletePolicy(policyName)
   }
 
 }
