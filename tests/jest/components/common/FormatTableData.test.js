@@ -9,10 +9,9 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-import { policies, policies2, policies3, findings } from './CommonTestingData'
+import { policies, policies2, policies3 } from './CommonTestingData'
 import {
   formatPoliciesToClustersTableData,
-  formatFindingsToClustersTableData,
   formatExpandablePolicies
 } from '../../../../src-web/components/common/FormatTableData'
 
@@ -37,18 +36,6 @@ describe('formatPoliciesToClustersTableData', () => {
 describe('formatPoliciesToClustersTableData', () => {
   it('should correctly format', () => {
     expect(formatPoliciesToClustersTableData(null)).toMatchSnapshot()
-  })
-})
-
-describe('formatFindingsToClustersTableData', () => {
-  it('should correctly format', () => {
-    expect(formatFindingsToClustersTableData(findings)).toMatchSnapshot()
-  })
-})
-
-describe('formatFindingsToClustersTableData', () => {
-  it('should correctly format', () => {
-    expect(formatFindingsToClustersTableData(null)).toMatchSnapshot()
   })
 })
 
