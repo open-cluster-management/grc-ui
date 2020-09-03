@@ -11,9 +11,9 @@
 'use strict'
 
 import React from 'react'
-import { GrcViewPolicyCluster, GrcViewPolicyCluster2, GrcViewFindingCluster,
+import { GrcViewPolicyCluster, GrcViewPolicyCluster2,
   GrcViewRefreshControl, GrcViewSecondaryHeaderProps, reduxStorePolicyCluster,
-  reduxStoreFindingCluster } from './ComponentsTestingData'
+} from './ComponentsTestingData'
 //curly braces means pure component without redux
 //which is what we want in unit test
 import { GrcView } from '../../../src-web/components/GrcView'
@@ -26,7 +26,6 @@ import { createMemoryHistory } from 'history'
 
 const mockStore = configureMockStore()
 const storePolicyCluster = mockStore(reduxStorePolicyCluster)
-const storeFindingCluster = mockStore(reduxStoreFindingCluster)
 const history = createMemoryHistory({
   'length':5,
   'action':'PUSH',

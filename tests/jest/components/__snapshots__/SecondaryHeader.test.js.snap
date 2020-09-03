@@ -597,29 +597,9 @@ Array [
 exports[`SecondaryHeader component 5 renderTabs as expected 1`] = `
 Array [
   <Tab
-    href="/multicloud/policies"
-    id="grc-overview"
-    label="Overview"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    role="presentation"
-    selected={false}
-    tabIndex={0}
-  />,
-  <Tab
     href="/multicloud/policies/all"
     id="grc-all"
     label="Policies"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    role="presentation"
-    selected={false}
-    tabIndex={0}
-  />,
-  <Tab
-    href="/multicloud/policies/findings"
-    id="grc-findings"
-    label="Security findings"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="presentation"

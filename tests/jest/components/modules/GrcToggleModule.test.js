@@ -27,23 +27,8 @@ const history1 = createMemoryHistory({
   }
 })
 
-const history2 = createMemoryHistory({
-  'length':5,
-  'action':'PUSH',
-  'location':{
-    'pathname':'/multicloud/policies/findings',
-    'search':'',
-    'hash':''
-  }
-})
-
 const location1 = {
   pathname: '/multicloud/policies/all'
-}
-
-const location2 = {
-  pathname: '/multicloud/policies/findings',
-  search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
 }
 
 describe('GrcToggle view without application', () => {
@@ -141,30 +126,6 @@ describe('GrcToggle view', () => {
       showSidePanel={false}
     />)
     expect(component).toMatchSnapshot()
-  })
-})
-
-describe('GrcView toggleClick', () => {
-  it('renders as expected', () => {
-    const wrapper = shallow(
-      <GrcToggleModule
-        history={history2}
-        location={location2}
-        refreshControl = {findingsTestingDataSet1}
-        grcItems={policiesTabModuleFilteredPolicies}
-        secondaryHeaderProps={policiesTabModuleSecondaryHeaderProps}
-        locale = {'en-US'}
-        grcTabToggleIndex={0}
-        showGrcTabToggle={true}
-        highLightRowName={''}
-        showSidePanel={false}
-      />
-    )
-    expect(wrapper.instance().renderTabSwitcher('findings', 0)).toMatchSnapshot()
-    expect(wrapper.instance().renderTabSwitcher('findings', 1)).toMatchSnapshot()
-    expect(wrapper.instance().toggleClick()).toEqual(
-      '/multicloud/policies/findings?card=false&filters=%7B%22textsearch%22%3A%5B%22cluster1%22%5D%7D&side=true&toggle=false'
-    )
   })
 })
 
