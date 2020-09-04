@@ -48,10 +48,14 @@ export class PolicyActionModal extends React.Component {
     handleSubmit(resourceType, pData.namespace, pData.name, data, pData.metadata.selfLink, resourcePath, dispatchFun)
   }
 
+  handleCloseClick() {
+    const { type:modalType, handleClose } = this.props
+    handleClose(modalType)
+  }
+
   render() {
-    const { type:modalType, handleClose, label, locale, open, reqErrorMsg, reqStatus } = this.props
+    const { type:modalType, label, locale, open, reqErrorMsg, reqStatus } = this.props
     let dangerFlag = false, modalId = '', modalMsg = ''
-    alert(modalType)
     console.log(modalType)
     switch(modalType) {
     case 'resource-disable':
@@ -86,7 +90,7 @@ export class PolicyActionModal extends React.Component {
           secondaryButtonText={msgs.get('modal.button.cancel', locale)}
           modalLabel={msgs.get(label.label, locale)}
           modalHeading={msgs.get(label.heading, locale)}
-          onRequestClose={handleClose(modalType)}
+          onRequestClose={this.handleCloseClick}
           onRequestSubmit={this.handleSubmitClick}
           role='region'
           aria-label={msgs.get(label.heading, locale)}>
