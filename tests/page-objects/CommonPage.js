@@ -113,8 +113,7 @@ function enforcePolicy(name){
   this.waitForElementVisible('#enforce-resource-modal')
   this.click('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this
-  this.pause(500) // Wait for DOM update
+  this.waitForElementNotPresent('#disable-resource-modal')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
   this.clearSearchValue()
 }
@@ -138,7 +137,7 @@ function informPolicy(name){
   this.click('#inform-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.waitForElementVisible('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)')
-  this.pause(500) // Wait for DOM update
+  this.waitForElementNotPresent('#disable-resource-modal')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
   this.clearSearchValue()
 }
