@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`DisableModal modal handleSubmit as expected 1`] = `ShallowWrapper {}`;
-
-exports[`DisableModal modal renders as expected 1`] = `ShallowWrapper {}`;
-
-exports[`DisableModal modal renders errors as expected 1`] = `ShallowWrapper {}`;
