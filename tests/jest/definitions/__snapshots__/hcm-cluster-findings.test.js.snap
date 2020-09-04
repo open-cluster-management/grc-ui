@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`getTruncatedText Should return flatten string from object 1`] = `""`;
-
-exports[`getTruncatedText Should return flatten string from object 2`] = `"Policy that is not compliant (50)"`;
-
-exports[`getTruncatedText Should return flatten string from object 3`] = `"Policy that is not compliant (50), Testing (996)"`;

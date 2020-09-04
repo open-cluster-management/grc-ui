@@ -3,41 +3,35 @@
 exports[` 1`] = `
 Array [
   Object {
-    "msgKey": "table.header.description",
-    "resourceKey": "shortDescription",
-  },
-  Object {
-    "msgKey": "table.header.resources",
-    "resourceKey": "context",
+    "msgKey": "table.header.policy.name",
+    "resourceKey": "metadata.name",
     "transformFunction": [Function],
   },
   Object {
-    "msgKey": "table.header.severity",
-    "resourceKey": "finding.severity",
-    "transformFunction": [Function],
+    "msgKey": "table.header.namespace",
+    "resourceKey": "metadata.namespace",
   },
   Object {
-    "msgKey": "table.header.cluster",
-    "resourceKey": "context.clusterName",
+    "msgKey": "table.header.remediation",
+    "resourceKey": "remediation",
   },
   Object {
-    "msgKey": "table.header.standards",
-    "resourceKey": "securityClassification.securityStandards",
-    "transformFunction": [Function],
+    "msgKey": "table.header.cluster.violation",
+    "resourceKey": "clusterCompliant",
   },
   Object {
     "msgKey": "table.header.controls",
-    "resourceKey": "securityClassification.securityControl",
+    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/controls\\"]",
+    "transformFunction": [Function],
+  },
+  Object {
+    "msgKey": "table.header.standards",
+    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/standards\\"]",
     "transformFunction": [Function],
   },
   Object {
     "msgKey": "table.header.categories",
-    "resourceKey": "securityClassification.securityCategories",
-    "transformFunction": [Function],
-  },
-  Object {
-    "msgKey": "table.header.update.time",
-    "resourceKey": "updateTime",
+    "resourceKey": "metadata.annotations[\\"policy.open-cluster-management.io/categories\\"]",
     "transformFunction": [Function],
   },
 ]

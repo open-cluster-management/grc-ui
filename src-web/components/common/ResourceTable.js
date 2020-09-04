@@ -419,8 +419,7 @@ export class ResourceTable extends React.Component {
                     action ==='table.actions.remove' ||
                     action ==='table.actions.policy.remove' ||
                     action ==='table.actions.applications.remove' ||
-                    action ==='table.actions.compliance.remove' ||
-                    action ==='table.actions.finding.remove'
+                    action ==='table.actions.compliance.remove'
                   }
                   onClick={() => getResourceAction(action, item, null, history, locale)}
                   primaryFocus={true}

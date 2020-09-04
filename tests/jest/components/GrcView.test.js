@@ -11,9 +11,9 @@
 'use strict'
 
 import React from 'react'
-import { GrcViewPolicyCluster, GrcViewPolicyCluster2, GrcViewFindingCluster,
+import { GrcViewPolicyCluster, GrcViewPolicyCluster2,
   GrcViewRefreshControl, GrcViewSecondaryHeaderProps, reduxStorePolicyCluster,
-  reduxStoreFindingCluster } from './ComponentsTestingData'
+} from './ComponentsTestingData'
 //curly braces means pure component without redux
 //which is what we want in unit test
 import { GrcView } from '../../../src-web/components/GrcView'
@@ -26,7 +26,6 @@ import { createMemoryHistory } from 'history'
 
 const mockStore = configureMockStore()
 const storePolicyCluster = mockStore(reduxStorePolicyCluster)
-const storeFindingCluster = mockStore(reduxStoreFindingCluster)
 const history = createMemoryHistory({
   'length':5,
   'action':'PUSH',
@@ -143,59 +142,6 @@ describe('GrcView component 4', () => {
   })
 })
 
-describe('GrcView component 5', () => {
-  const location = {
-    pathname: '/multicloud/policies/findings'
-  }
-  it('renders as expected', () => {
-    const component = renderer.create(
-      <Provider store={storeFindingCluster}>
-        <BrowserRouter>
-          <GrcView
-            title='Test5'
-            history={history}
-            location={location}
-            loading={false}
-            error={null}
-            activeFilters={{}}
-            grcItems={GrcViewFindingCluster}
-            refreshControl={GrcViewRefreshControl}
-            secondaryHeaderProps={GrcViewSecondaryHeaderProps}
-          />
-        </BrowserRouter>
-      </Provider>
-    )
-    expect(component.toJSON()).toMatchSnapshot()
-  })
-})
-
-describe('GrcView component 6', () => {
-  const location = {
-    pathname: '/multicloud/policies/findings',
-    search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
-  }
-  it('renders as expected', () => {
-    const component = renderer.create(
-      <Provider store={storeFindingCluster}>
-        <BrowserRouter>
-          <GrcView
-            title='Test6'
-            history={history}
-            location={location}
-            loading={false}
-            error={null}
-            activeFilters={{'severity':['High']}}
-            grcItems={GrcViewFindingCluster}
-            refreshControl={GrcViewRefreshControl}
-            secondaryHeaderProps={GrcViewSecondaryHeaderProps}
-          />
-        </BrowserRouter>
-      </Provider>
-    )
-    expect(component.toJSON()).toMatchSnapshot()
-  })
-})
-
 describe('GrcView component 7 has create permission', () => {
   const location = {
     pathname: '/multicloud/policies/all',
@@ -244,33 +190,6 @@ describe('GrcView component 8 has not create permission', () => {
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
             access={[]}
-          />
-        </BrowserRouter>
-      </Provider>
-    )
-    expect(component.toJSON()).toMatchSnapshot()
-  })
-})
-
-describe('GrcView component 9', () => {
-  const location = {
-    pathname: '/multicloud/policies/findings',
-    search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
-  }
-  it('renders as expected', () => {
-    const component = renderer.create(
-      <Provider store={storeFindingCluster}>
-        <BrowserRouter>
-          <GrcView
-            title='Test8'
-            history={history}
-            location={location}
-            loading={false}
-            error={null}
-            activeFilters={{'severity':['High']}}
-            grcItems={[]}
-            refreshControl={GrcViewRefreshControl}
-            secondaryHeaderProps={GrcViewSecondaryHeaderProps}
           />
         </BrowserRouter>
       </Provider>

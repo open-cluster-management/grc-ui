@@ -71,48 +71,6 @@ export const formatPoliciesToClustersTableData = (policies) => {
   return result
 }
 
-const formatFindingClusterView = (clusterName, findingsUnderCluster) => {
-  let validNum = 0
-  // let nameSpace
-  const highSeverity = {}
-  findingsUnderCluster.forEach(finding => {
-    // nameSpace = _.get(finding, 'context.namespaceName', '-')
-    const status = _.get(finding, 'finding.severity', '')
-    const isHigh = status.toUpperCase() === 'HIGH' ? true : false
-    if (isHigh) {
-      const description = _.get(finding, 'shortDescription', '-')
-      highSeverity[description] = highSeverity[description] ? highSeverity[description]+1 : 1
-    } else {
-      validNum += 1
-    }
-  })
-  return {
-    cluster: clusterName,
-    // namespace: nameSpace,
-    severity: `${findingsUnderCluster.length-validNum}/${findingsUnderCluster.length}`,
-    highSeverity: highSeverity,
-    findingsUnderCluster: findingsUnderCluster,
-  }
-}
-
-export const formatFindingsToClustersTableData = (findings) => {
-  const result = []
-  const map = new Map()
-  if (findings) {
-    findings.forEach((finding) => {
-      const cluster = _.get(finding, 'context.clusterName', '-')
-      if (!map.has(cluster)) {
-        map.set(cluster, [])
-      }
-      map.get(cluster).push(finding)
-    })
-    for (const [key, value] of map.entries()) {
-      result.push(formatFindingClusterView(key, value))
-    }
-  }
-  return result
-}
-
 export const formatExpandablePolicies = (policies) => {
   const result = []
   if (policies) {

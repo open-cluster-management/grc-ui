@@ -26,7 +26,6 @@ import { RESOURCE_TYPES } from '../../lib/shared/constants'
 import lodash from 'lodash'
 
 export { user, loggedIn } from './user'
-export { role } from './role'
 export { userAccess } from './access'
 export { resourceToolbar } from './common'
 export { secondaryHeader } from './common'
@@ -39,8 +38,6 @@ export const HCMPolicyList = createResourceReducer(resourceReducerFunction, pred
 export const HCMPolicyApplicationList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.HCM_POLICIES_PER_APPLICATION))
 export const HCMPolicyPolicyList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.HCM_POLICIES_PER_POLICY))
 export const HCMPolicyClusterList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER))
-export const HCMSecurityFindingsList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.HCM_SECURITY_FINDINGS))
-export const HCMClusterFindingsList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.HCM_CLUSTER_FINDINGS))
 export const PlacementBindingsList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.PLACEMENT_BINDING))
 export const PlacementRulesList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.PLACEMENT_RULE))
 

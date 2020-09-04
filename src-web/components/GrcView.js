@@ -22,7 +22,7 @@ import GrcCardsModule from './modules/GrcCardsModule'
 // eslint-disable-next-line import/no-named-as-default
 import GrcToggleModule from './modules/GrcToggleModule'
 import {
-  filterPolicies, filterFindings, getAvailableGrcFilters, getSavedGrcState,
+  filterPolicies, getAvailableGrcFilters, getSavedGrcState,
   saveGrcState, combineResourceFilters, saveGrcStatePair
 } from '../../lib/client/filter-helper'
 import NoResource from './common/NoResource'
@@ -88,10 +88,7 @@ export class GrcView extends React.Component {
       switch(displayType) {
       case 'all':
       default:
-        availableGrcFilters = getAvailableGrcFilters(grcItems, [], locale)
-        break
-      case 'findings':
-        availableGrcFilters = getAvailableGrcFilters([], grcItems, locale)
+        availableGrcFilters = getAvailableGrcFilters(grcItems, locale)
         break
       }
       localUpdateResourceToolbar(refreshControl, availableGrcFilters)
@@ -162,23 +159,6 @@ export class GrcView extends React.Component {
       }
       else {
         filterGrcItems = filterPolicies(grcItems, activeFilters, locale, 'metadata.annotations')
-        if (grcItems.length > 0 && filterGrcItems.length === 0) {
-          filterToEmpty = true
-        }
-      }
-      break
-    case 'findings':
-      if (!grcItems || grcItems.length === 0) {
-        return (
-          <NoResource
-            title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
-            detail={msgs.get('no-resource.detail.item', locale)}>
-            {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale), false)}
-          </NoResource>
-        )
-      }
-      else {
-        filterGrcItems = filterFindings(grcItems, activeFilters, locale)
         if (grcItems.length > 0 && filterGrcItems.length === 0) {
           filterToEmpty = true
         }

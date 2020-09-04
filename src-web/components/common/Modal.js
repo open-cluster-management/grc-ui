@@ -14,8 +14,8 @@ import { connect } from 'react-redux'
 import loadable from '@loadable/component'
 
 let RemoveResourceModal, ResourceModal, DescriptionModal,
-    PolicySidePanelDetailsModal, FindingSidePanelDetailsModal,
-    DisableModal, EnableModal, EnforceModal, InformModal
+    PolicySidePanelDetailsModal, DisableModal, EnableModal,
+    EnforceModal, InformModal
 
 const Modal = ({ type, open, ...rest }) => {
   switch (type) {
@@ -27,8 +27,6 @@ const Modal = ({ type, open, ...rest }) => {
     return open && getDescriptionModal({ type, open, ...rest })
   case 'policy-side-panel':
     return open && getPolicySidePanelDetailsModal({ type, open, ...rest })
-  case 'finding-side-panel':
-    return open && getFindingSidePanelDetailsModal({ type, open, ...rest })
   case 'resource-disable':
     return open && getDisableModal({ type, open, ...rest })
   case 'resource-enable':
@@ -96,13 +94,6 @@ const getPolicySidePanelDetailsModal = props => {
     ? loadable(() => import(/* webpackChunkName: "details-policy-side-panel-modal" */ '../modals/PolicySidePanelDetailsModal'))
     : PolicySidePanelDetailsModal
   return getModal(PolicySidePanelDetailsModal, props)
-}
-
-const getFindingSidePanelDetailsModal = props => {
-  FindingSidePanelDetailsModal = FindingSidePanelDetailsModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "details-finding-side-panel-modal" */ '../modals/FindingSidePanelDetailsModal'))
-    : FindingSidePanelDetailsModal
-  return getModal(FindingSidePanelDetailsModal, props)
 }
 
 const getModal = (Component, props) => <Component {...props} />

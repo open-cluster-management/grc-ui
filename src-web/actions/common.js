@@ -142,22 +142,6 @@ export const fetchResource = (resourceType, namespace, name) => {
   }
 }
 
-export const updateResourceLabels = (resourceType, namespace, name, labels, selfLink) => {
-  return (dispatch) => {
-    dispatch(putResource(resourceType))
-    return GrcApolloClient.updateResourceLabels(resourceType.name, namespace, name, labels, selfLink, '/metadata/labels')
-      .then(response => {
-        if (response.errors) {
-          return dispatch(receivePutError(response.errors[0], resourceType))
-        }
-        dispatch(fetchResources(resourceType))
-        dispatch(updateModal({open: false, type: 'label-editing'}))
-        return dispatch(receivePutResource(resourceType))
-      })
-      .catch(err => dispatch(receivePutError(err, resourceType)))
-  }
-}
-
 export const editResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(putResource(resourceType))
   return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
@@ -413,35 +397,5 @@ export const createResource = (resourceType, variables) => {
         return dispatch(receivePostResource(lodash.cloneDeep(response.data.setHelmRepo), resourceType))
       })
       .catch(err => dispatch(receivePostError(err, resourceType)))
-  }
-}
-
-export const createPolicy = (resourceType, resourceJson) => {
-  return (dispatch) => {
-    dispatch(mutateResource(resourceType))
-    return GrcApolloClient.createPolicy(resourceJson)
-      .then(result => {
-        if (result.errors && result.errors.length > 0){
-          dispatch(mutateResourceFailure(resourceType, result.errors[0]))
-        } else {
-          dispatch(mutateResourceSuccess(resourceType))
-        }
-        return result
-      })
-  }
-}
-
-export const createCompliance = (resourceType, resourceJson) => {
-  return (dispatch) => {
-    dispatch(mutateResource(resourceType))
-    return GrcApolloClient.createCompliance(resourceJson)
-      .then(result => {
-        if (result.errors && result.errors.length > 0){
-          dispatch(mutateResourceFailure(resourceType, result.errors[0]))
-        } else {
-          dispatch(mutateResourceSuccess(resourceType))
-        }
-        return result
-      })
   }
 }

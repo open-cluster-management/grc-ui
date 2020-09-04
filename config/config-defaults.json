@@ -4,7 +4,6 @@
     "clusterContextPath": "/multicloud/clusters",
     "docUrl": "https://github.com/open-cluster-management/rhacm-docs",
     "feature_search-api": true,
-    "feature_security-findings": false,
     "feature_applications": false,
     "grcUiApiUrl": "",
     "headerUrl":"https://management-ingress",
