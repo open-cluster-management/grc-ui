@@ -16,8 +16,6 @@ spec:
         kind: ConfigurationPolicy
         metadata:
           name: policy-namespace-create-[TIME]
-          labels:
-            - "gatekeeper"
         spec:
           remediationAction: enforce
           severity: low
@@ -31,6 +29,8 @@ spec:
                 apiVersion: v1
                 metadata:
                   name: e2etest
+                  labels:
+                    gatekeeper: "true"
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
