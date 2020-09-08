@@ -75,7 +75,8 @@ const controlData = [
       'PodSecurityPolicy - no privileged pods',
       'Role - role must follow defined permissions',
       'RoleBinding - role binding must exist',
-      'SecurityContextConstraints - restricted scc'
+      'SecurityContextConstraints - restricted scc',
+      'EtcdEncryption - etcd encryption'
     ],
     'isOneSelection': true,
     'updateNamePrefix': 'policy-',
