@@ -33,4 +33,4 @@ RUN npm install \
     js-yaml@3.14.0 \
     @slack/web-api@5.11.0
 
-CMD ["npm", "run", "test:e2e-headless"]
+CMD ["./build/run-docker-tests.sh"]
