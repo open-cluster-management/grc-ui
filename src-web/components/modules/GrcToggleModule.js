@@ -122,13 +122,13 @@ export class GrcToggleModule extends React.Component {
         </div>
         <div className='module-toggle-tab-switch'>
           {displayType==='all' && showApplications && <ToggleGroup variant='light'>
-            <ToggleGroupItem buttonId={`0 - ${toggleText1}`} onChange={this.toggleClick} isSelected={!grcTabToggleIndex}>{toggleText1}</ToggleGroupItem>
-            <ToggleGroupItem buttonId={`1 - ${toggleText2}`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>{toggleText2}</ToggleGroupItem>
-            <ToggleGroupItem buttonId={`2 - ${toggleText3}`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 2}>{toggleText3}</ToggleGroupItem>
+            <ToggleGroupItem buttonId={`0-${toggleText1.toLowerCase().replace(' ','-')}`} onChange={this.toggleClick} isSelected={!grcTabToggleIndex}>{toggleText1}</ToggleGroupItem>
+            <ToggleGroupItem buttonId={`1-${toggleText2.toLowerCase().replace(' ','-')}`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>{toggleText2}</ToggleGroupItem>
+            <ToggleGroupItem buttonId={`2-${toggleText3.toLowerCase().replace(' ','-')}`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 2}>{toggleText3}</ToggleGroupItem>
           </ToggleGroup>}
           {displayType==='all' && !showApplications && <ToggleGroup variant='light'>
-            <ToggleGroupItem buttonId={`0 - ${toggleText1}`} onChange={this.toggleClick} isSelected={!grcTabToggleIndex}>{toggleText1}</ToggleGroupItem>
-            <ToggleGroupItem buttonId={`1 - ${toggleText2}`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>{toggleText2}</ToggleGroupItem>
+            <ToggleGroupItem buttonId={`0-${toggleText1.toLowerCase().replace(' ','-')}`} onChange={this.toggleClick} isSelected={!grcTabToggleIndex}>{toggleText1}</ToggleGroupItem>
+            <ToggleGroupItem buttonId={`1-${toggleText2.toLowerCase().replace(' ','-')}`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>{toggleText2}</ToggleGroupItem>
           </ToggleGroup>}
         </div>
       </div>
