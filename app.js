@@ -34,6 +34,7 @@ require('node-i18n-util')
 
 process.env.BABEL_ENV = 'server'
 require('@babel/register')
+require('ignore-styles')
 
 const bodyParser = require('body-parser'),
       cookieParser = require('cookie-parser'),

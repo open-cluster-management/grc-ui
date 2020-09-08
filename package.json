@@ -156,6 +156,7 @@
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.0",
     "geckodriver": "^1.20.0",
+    "ignore-styles": "^5.0.1",
     "jest": "^26.4.2",
     "jest-handlebars": "^1.0.1",
     "jest-sonar-reporter": "^2.0.0",
