@@ -14,8 +14,7 @@ import { connect } from 'react-redux'
 import loadable from '@loadable/component'
 
 let RemoveResourceModal, ResourceModal, DescriptionModal,
-    PolicySidePanelDetailsModal, DisableModal, EnableModal,
-    EnforceModal, InformModal
+    PolicySidePanelDetailsModal, PolicyActionModal
 
 const Modal = ({ type, open, ...rest }) => {
   switch (type) {
@@ -28,44 +27,20 @@ const Modal = ({ type, open, ...rest }) => {
   case 'policy-side-panel':
     return open && getPolicySidePanelDetailsModal({ type, open, ...rest })
   case 'resource-disable':
-    return open && getDisableModal({ type, open, ...rest })
   case 'resource-enable':
-    return open && getEnableModal({ type, open, ...rest })
   case 'resource-enforce':
-    return open && getEnforceModal({ type, open, ...rest })
   case 'resource-inform':
-    return open && getInformModal({ type, open, ...rest })
+    return open && getPolicyActionModal({ type, open, ...rest })
   default:
     return null
   }
 }
 
-const getEnforceModal = props => {
-  EnforceModal = EnforceModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "enforce-modal" */ '../modals/EnforceModal'))
-    : EnforceModal
-  return getModal(EnforceModal, props)
-}
-
-const getInformModal = props => {
-  InformModal = InformModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "inform-modal" */ '../modals/InformModal'))
-    : InformModal
-  return getModal(InformModal, props)
-}
-
-const getDisableModal = props => {
-  DisableModal = DisableModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "disable-modal" */ '../modals/DisableModal'))
-    : DisableModal
-  return getModal(DisableModal, props)
-}
-
-const getEnableModal = props => {
-  EnableModal = EnableModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "enable-modal" */ '../modals/EnableModal'))
-    : EnableModal
-  return getModal(EnableModal, props)
+const getPolicyActionModal = props => {
+  PolicyActionModal = PolicyActionModal === undefined
+    ? loadable(() => import(/* webpackChunkName: "policy-action-modal" */ '../modals/PolicyActionModal'))
+    : PolicyActionModal
+  return getModal(PolicyActionModal, props)
 }
 
 const getDescriptionModal = props => {
