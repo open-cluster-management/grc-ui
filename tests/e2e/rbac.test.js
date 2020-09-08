@@ -101,14 +101,14 @@ module.exports = {
     page.verifyPolicyPage(policyName, permissions.view)
   },
 
-  'Cluster-wide view user in a group': () => {
+  'GRC RBAC: Cluster-wide view user in a group': () => {
     loginPage.authenticate('e2e-group-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.view)
     page.verifyCreatePage(permissions.view)
     page.verifyPolicyPage(policyName, permissions.view)
   },
 
-  'Namespaced cluster-admin user': () => {
+  'GRC RBAC: Namespaced cluster-admin user': () => {
     loginPage.authenticate('e2e-cluster-admin-ns')
     page.verifyAllPage(policyName, 1, permissions.clusterAdmin)
     const createdPolicy = `${policyName}-cluster-admin-ns`
