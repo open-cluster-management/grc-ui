@@ -34,7 +34,8 @@ module.exports = {
       'PodSecurityPolicy',
       'Role',
       'RoleBinding',
-      'SecurityContextConstraints'
+      'SecurityContextConstraints',
+      'EtcdEncryption'
     ]
     const time = browser.globals.time
     let policyName = '', templateFile = ''
