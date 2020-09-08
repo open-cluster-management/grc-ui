@@ -7,7 +7,6 @@ oc login ${OC_CLUSTER_URL} --insecure-skip-tls-verify=true -u ${OC_CLUSTER_USER}
 # setup RBAC roles
 if [ -z ${RBAC_PASS} ]; then
   echo "RBAC_PASS not set. Skipping RBAC test"
-  export DISABLE_CANARY_TEST=true
 else
   source ./build/rbac-setup.sh
 fi
