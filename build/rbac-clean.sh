@@ -12,6 +12,11 @@ if [ ! -d ${RBAC_DIR} ]; then
   exit 1
 fi
 
+for access in cluster ns; do
+  for role in cluster-admin admin edit view group; do
+    oc delete user e2e-${role}-${access}
+  done
+done
 oc delete -n openshift-config secret e2e-users || true
 IDPROVIDERS=($(oc get oauth cluster -o jsonpath='{.spec.identityProviders[*].name}'))
 for index in ${!IDPROVIDERS[@]}; do
