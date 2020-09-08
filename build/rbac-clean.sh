@@ -15,6 +15,7 @@ fi
 for access in cluster ns; do
   for role in cluster-admin admin edit view group; do
     oc delete user e2e-${role}-${access}
+    oc delete identity grc-e2e-htpasswd:e2e-${role}-${access}
   done
 done
 oc delete -n openshift-config secret e2e-users || true
