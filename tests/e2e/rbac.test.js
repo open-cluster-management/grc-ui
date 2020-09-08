@@ -2,7 +2,7 @@
 
 const policies = [], namespaces = []
 let page, loginPage, createPage, policyName, commonPage
-const DISABLE_CANARY_TEST = process.env.DISABLE_CANARY_TEST ? true : false
+const RBAC_PASS = process.env.RBAC_PASS ? true : false
 const permissions = {
   'clusterAdmin': {
     'get': true,
@@ -31,7 +31,7 @@ const permissions = {
 }
 
 module.exports = {
-  '@disabled': DISABLE_CANARY_TEST,
+  '@disabled': RBAC_PASS,
 
   before: (browser) => {
     page = browser.page.RbacPage()

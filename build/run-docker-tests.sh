@@ -19,6 +19,7 @@ export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_CLUSTER_PASS}}
 # setup other test envs
 export SKIP_NIGHTWATCH_COVERAGE=${SKIP_NIGHTWATCH_COVERAGE:-true}
 export SKIP_LOG_DELETE=${SKIP_LOG_DELETE:-true}
+export DISABLE_CANARY_TEST=${SKIP_LOG_DELETE:-false}
 
 # run test
 npm run test:e2e-headless
