@@ -2,7 +2,7 @@
 
 const policies = [], namespaces = []
 let page, loginPage, createPage, policyName, commonPage
-const RBAC_PASS = process.env.RBAC_PASS ? true : false
+const DISABLE_RBAC_PASS = process.env.RBAC_PASS == undefined ? true : false
 const permissions = {
   'clusterAdmin': {
     'get': true,
@@ -31,7 +31,7 @@ const permissions = {
 }
 
 module.exports = {
-  '@disabled': RBAC_PASS,
+  '@disabled': DISABLE_RBAC_PASS,
 
   before: (browser) => {
     page = browser.page.RbacPage()
