@@ -24,7 +24,7 @@ module.exports = {
     page = browser.page.CommonPage()
   },
 
-  'Disable policy: test policy disable + enable': (browser) => {
+  'GRC Disable policy: test policy disable + enable': (browser) => {
     const time = browser.globals.time
 
     const enforce = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_mustnothave.yaml'))
