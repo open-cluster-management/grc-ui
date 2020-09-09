@@ -25,8 +25,8 @@ spec:
           object-templates:
             - complianceType: musthave
               objectDefinition:
-                kind: APIServer # etcd encryption
                 apiVersion: config.openshift.io/v1
+                kind: APIServer
                 metadata:
                   name: cluster
                 sepc:
