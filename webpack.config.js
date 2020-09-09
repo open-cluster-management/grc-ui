@@ -12,7 +12,7 @@ const config = require('./config'),
       webpack = require('webpack'),
       AssetsPlugin = require('assets-webpack-plugin'),
       CompressionPlugin = require('compression-webpack-plugin'),
-      FileManagerPlugin = require('filemanager-webpack-plugin-fixed'),
+      CopyPlugin = require('copy-webpack-plugin'),
       MiniCssExtractPlugin = require('mini-css-extract-plugin'),
       MonacoWebpackPlugin = require('monaco-editor-webpack-plugin'),
       TerserPlugin = require('terser-webpack-plugin'),
@@ -211,15 +211,16 @@ module.exports = {
     }),
     PRODUCTION ? new webpack.HashedModuleIdsPlugin() : new webpack.NamedModulesPlugin(),
     new WebpackMd5Hash(),
-    new FileManagerPlugin({
-      onEnd: {
-        copy: [
-          { source: 'node_modules/carbon-icons/dist/carbon-icons.svg', destination: 'public/graphics' },
-          { source: 'graphics/*.svg', destination: 'public/graphics'},
-          { source: 'graphics/*.png', destination: 'public/graphics'},
-          { source: 'fonts', destination: 'public/fonts' },
-        ]
-      }
+    new CopyPlugin({
+      patterns: [
+        { from: 'node_modules/carbon-icons/dist/carbon-icons.svg', to: 'public/graphics' },
+        { from: 'graphics/*.svg', to: 'public/graphics'},
+        { from: 'graphics/*.png', to: 'public/graphics'},
+        { from: 'fonts', to: 'public/fonts' },
+      ],
+      options: {
+        concurrency: 100,
+      },
     })
   ],
 
