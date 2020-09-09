@@ -41,6 +41,9 @@ for access in cluster ns; do
 done
 oc create secret generic e2e-users --from-file=htpasswd=${RBAC_DIR}/htpasswd -n openshift-config || true
 rm ${RBAC_DIR}/htpasswd
+if [[ -z "$(oc -n openshift-config get oauth cluster -o jsonpath='{.spec.identityProviders}')" ]]; then
+  oc patch -n openshift-config oauth cluster --type json --patch '[{"op":"add","path":"/spec/identityProviders","value":[]}]'
+fi
 if [ ! $(oc -n openshift-config get oauth cluster -o jsonpath='{.spec.identityProviders[*].name}' | grep -o 'grc-e2e-htpasswd') ]; then
   oc patch -n openshift-config oauth cluster --type json --patch "$(cat ${RBAC_DIR}/e2e-rbac-auth.json)"
 fi
