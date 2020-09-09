@@ -161,10 +161,10 @@ function checkViolations(name, violationExpected, violationText) {
     this.waitForElementPresent('.policy-template-details-view .table')
     this.getText('css selector', 'div.pf-c-description-list__group:nth-child(3) > dd:nth-child(2) > div:nth-child(1)', (kind) => {
       this.log(kind)
-      if (kind === '-') {
+      if (kind.value === '-') {
         this.assert.fail(`Failed to retrieve policy details: kind=${kind}`)
       }
-      if (kind === 'ConfigurationPolicy') {
+      if (kind.value === 'ConfigurationPolicy') {
         this.getText('css selector', 'div.pf-c-description-list__group:nth-child(6) > dd:nth-child(2) > div:nth-child(1)', (details) => {
           if (details.value.includes('No instances of')) {
             this.expect.elements('.policy-template-details-view .table tbody>tr').count.to.equal(0)
