@@ -49,7 +49,7 @@ jobs:
         - echo '"start image pushing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/push
         - echo '"finished image push"' && echo -en 'travis_fold:end:script.build\\r'
-        - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then 
+        - if [ "$TRAVIS_PULL_REQUEST" == "false" -a "$TRAVIS_BRANCH" == "master" ]; then 
             COMPONENT_NEWTAG="latest-dev" make component/tag;
             COMPONENT_VERSION="latest" COMPONENT_TAG_EXTENSION="-dev" make component/push;
           fi;
