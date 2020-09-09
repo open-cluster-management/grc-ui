@@ -12,15 +12,16 @@ WORKDIR /opt/app-root/src/grc-ui
 COPY nightwatch.conf.js nightwatch.json package.json ./
 COPY config ./config
 COPY tests ./tests
+COPY build ./build
 
-RUN apt-get update
+RUN apt-get update && apt-get install -y apache2-utils
+
 
 # Install Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
-# Don't need for now, will need after resume cert-policy test
-# RUN sh ./build/download-clis.sh
+RUN sh ./build/download-clis.sh
 
 RUN npm install \
     chromedriver \
@@ -32,4 +33,4 @@ RUN npm install \
     js-yaml@3.14.0 \
     @slack/web-api@5.11.0
 
-CMD ["npm", "run", "test:e2e-headless"]
+CMD ["./build/run-docker-tests.sh"]
