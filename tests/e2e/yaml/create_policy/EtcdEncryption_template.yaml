@@ -29,7 +29,7 @@ spec:
                 kind: APIServer
                 metadata:
                   name: cluster
-                sepc:
+                spec:
                   encryption:
                     type: aescbc
 ---
