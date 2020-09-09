@@ -100,12 +100,15 @@ export function createComplianceLink(item = {}, ...param){
 
 export function createClusterLaunchLink(item = {}, ...param) {
   if (param[1] === 'status.consoleURL') {
-    const clusterLink = item.status.consoleURL
-    if (clusterLink) {
-      return clusterLink
-    } else {
-      return '-'
+    // When users don't have access to a cluster, item.status is null
+    if (item.status) {
+      const clusterLink = item.status.consoleURL
+      // If a cluster doesn't have a link, fall back to '-'
+      if (clusterLink) {
+        return clusterLink
+      }
     }
+    return '-'
   } else {
     return undefined
   }
