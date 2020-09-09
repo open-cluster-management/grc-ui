@@ -104,7 +104,7 @@ function waitForLoginForm(rbac_user) {
 }
 
 function logout() {
-  this.click('@userDropdown')
-  this.click('@logout')
+  this.waitForElementVisible('@userDropdown').click('@userDropdown')
+  this.waitForElementVisible('@userDropdown').click('@logout')
   this.waitForElementPresent('@loginPage')
 }
