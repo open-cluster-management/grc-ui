@@ -171,7 +171,6 @@ function checkViolations(name, violationExpected, violationText) {
             this.expect.elements('.policy-template-details-view .table tbody>tr').count.not.to.equal(0)
           }
         })
-        this.expect.elements('.policy-template-details-view .table tbody>tr').count.to.equal(0)
       }
     })
   } else {
