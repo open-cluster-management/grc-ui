@@ -161,6 +161,10 @@ function checkViolations(name, violationExpected, violationText) {
     this.waitForElementPresent('.policy-template-details-view .table')
     this.expect.element('div.pf-c-description-list__group:nth-child(3) > dd:nth-child(2) > div:nth-child(1)').text.to.not.equal('-')
     this.getText('css selector', 'div.pf-c-description-list__group:nth-child(3) > dd:nth-child(2) > div:nth-child(1)', (kind) => {
+      this.log(kind)
+      if (kind === '-') {
+        this.assert.fail(`Failed to retrieve policy details: kind=${kind}`)
+      }
       if (kind === 'ConfigurationPolicy') {
         this.getText('css selector', 'div.pf-c-description-list__group:nth-child(6) > dd:nth-child(2) > div:nth-child(1)', (details) => {
           if (details.value.includes('No instances of')) {
