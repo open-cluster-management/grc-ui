@@ -201,15 +201,15 @@ const getControlData = (discovered, locale) => {
     clusters.available = clusterLabels
     if ((typeof annotations.standards === 'object' && Object.keys(annotations.standards).length > 0)
       || (Array.isArray(annotations.standards) && annotations.standards.length > 0)) {
-      standards.available = [...new Set([...standards.available, ...annotations.standards])]
+      standards.available = _.uniq([...standards.available, ...annotations.standards], true)
     }
     if ((typeof annotations.categories === 'object' && Object.keys(annotations.categories).length > 0)
       || (Array.isArray(annotations.categories) && annotations.categories.length > 0)) {
-      categories.available = [...new Set([...categories.available, ...annotations.categories])]
+      categories.available = _.uniq([...categories.available, ...annotations.categories], true)
     }
     if ((typeof annotations.controls === 'object' && Object.keys(annotations.controls).length > 0)
       || (Array.isArray(annotations.controls) && annotations.controls.length > 0)) {
-      controls.available = [...new Set([...controls.available, ...annotations.controls])]
+      controls.available = _.uniq([...controls.available, ...annotations.controls], true)
     }
 
     // convert message keys
