@@ -16,6 +16,7 @@ module.exports = {
     tableExpandBtn: '.bx--table-expand-v2__button:nth-of-type(1)',
     expandTable: '.bx--expandable-row-v2:nth-of-type(2)',
     createPolicyButton: '.bx--btn--primary:nth-of-type(1)',
+    cancelCreatePolicyButton: '#cancel-button-portal-id',
     submitCreatePolicyButton: '#create-button-portal-id',
     yamlMonacoEditor: '.monaco-editor',
     searchInput: '#search',
@@ -66,6 +67,15 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementVisible('@createPolicyButton')
   this.click('@createPolicyButton')
   this.waitForElementNotPresent('@spinner')
+  // test cancel button for create policy page first and return to main page
+  this.waitForElementVisible('@cancelCreatePolicyButton')
+  this.click('@cancelCreatePolicyButton')
+  // re-entry create policy page from main page
+  this.waitForElementNotPresent('@spinner')
+  this.waitForElementVisible('@createPolicyButton')
+  this.click('@createPolicyButton')
+  this.waitForElementNotPresent('@spinner')
+  // test create policy
   this.click('@namespaceDropdown')
   this.waitForElementVisible('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
   this.click('.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div:nth-child(1)')
