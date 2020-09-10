@@ -16,6 +16,7 @@ import { TemplateEditor } from './TemplateEditor'
 import policyTemplate from './templates/policy-template.hbs'
 import Choices from './templates'
 import msgs from '../../nls/platform.properties'
+import { LocaleContext } from '../components/common/LocaleContext'
 import _ from 'lodash'
 
 // where to put Create/Cancel buttons
@@ -152,6 +153,8 @@ export default class CreationView extends React.Component {
       updateMsg: PropTypes.string
     }),
   }
+
+  static contextType = LocaleContext
 
   componentWillUnmount() {
     showResourceToolbar()
