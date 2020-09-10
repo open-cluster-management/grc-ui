@@ -213,10 +213,9 @@ module.exports = {
     new WebpackMd5Hash(),
     new CopyPlugin({
       patterns: [
-        { from: 'node_modules/carbon-icons/dist/carbon-icons.svg', to: 'public/graphics' },
-        { from: 'graphics/*.svg', to: 'public/graphics'},
-        { from: 'graphics/*.png', to: 'public/graphics'},
-        { from: 'fonts', to: 'public/fonts' },
+        { from: 'node_modules/carbon-icons/dist/carbon-icons.svg', to: 'graphics' },
+        { from: 'graphics', to: 'graphics' },
+        { from: 'fonts', to: 'fonts' },
       ],
       options: {
         concurrency: 100,
