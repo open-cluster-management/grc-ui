@@ -282,7 +282,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     <button
                       aria-pressed={true}
                       className="pf-c-toggle-group__button pf-m-light pf-m-selected"
-                      id="0-policies"
+                      id="policies-0"
                       onClick={[Function]}
                     >
                       <span
@@ -302,7 +302,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     <button
                       aria-pressed={false}
                       className="pf-c-toggle-group__button pf-m-light"
-                      id="1-cluster-violations"
+                      id="cluster-violations-1"
                       onClick={[Function]}
                     >
                       <span
@@ -322,7 +322,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     <button
                       aria-pressed={false}
                       className="pf-c-toggle-group__button pf-m-light"
-                      id="2-applications"
+                      id="applications-2"
                       onClick={[Function]}
                     >
                       <span

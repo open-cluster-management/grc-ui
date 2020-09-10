@@ -26,21 +26,21 @@ exports[`GrcView toggleClick renders as expected 1`] = `
       variant="light"
     >
       <ToggleGroupItem
-        buttonId="0-policies"
+        buttonId="policies-0"
         isSelected={true}
         onChange={[Function]}
       >
         Policies
       </ToggleGroupItem>
       <ToggleGroupItem
-        buttonId="1-cluster-violations"
+        buttonId="cluster-violations-1"
         isSelected={false}
         onChange={[Function]}
       >
         Cluster violations
       </ToggleGroupItem>
       <ToggleGroupItem
-        buttonId="2-applications"
+        buttonId="applications-2"
         isSelected={false}
         onChange={[Function]}
       >
@@ -65,21 +65,21 @@ exports[`GrcView toggleClick renders as expected 2`] = `
       variant="light"
     >
       <ToggleGroupItem
-        buttonId="0-policies"
+        buttonId="policies-0"
         isSelected={false}
         onChange={[Function]}
       >
         Policies
       </ToggleGroupItem>
       <ToggleGroupItem
-        buttonId="1-cluster-violations"
+        buttonId="cluster-violations-1"
         isSelected={true}
         onChange={[Function]}
       >
         Cluster violations
       </ToggleGroupItem>
       <ToggleGroupItem
-        buttonId="2-applications"
+        buttonId="applications-2"
         isSelected={false}
         onChange={[Function]}
       >
