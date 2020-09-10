@@ -23,7 +23,7 @@ module.exports = {
     common = browser.page.CommonPage()
   },
 
-  'Create policy page: Verify templates': (browser) => {
+  'GRC Create policy page: Verify templates': (browser) => {
     const templates = [
       'CertificatePolicy',
       'IamPolicy',
@@ -34,7 +34,8 @@ module.exports = {
       'PodSecurityPolicy',
       'Role',
       'RoleBinding',
-      'SecurityContextConstraints'
+      'SecurityContextConstraints',
+      'EtcdEncryption'
     ]
     const time = browser.globals.time
     let policyName = '', templateFile = ''
@@ -45,11 +46,11 @@ module.exports = {
     })
   },
 
-  'Create policy page: Updating YAML in editor': () => {
+  'GRC Create policy page: Updating YAML in editor': () => {
     page.updateYamlEditor()
   },
 
-  'All policy page: Create, Search, Verify details of policy': (browser) => {
+  'GRC All policy page: Create, Search, Verify details of policy': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
     const templateFile = 'modifiedIMVP_template.yaml'
@@ -70,15 +71,15 @@ module.exports = {
     page.testDetailsPage(policyName, templateFile)
   },
 
-  'All policy page: Verify summary table': (browser) => {
+  'GRC All policy page: Verify summary table': (browser) => {
     page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
   },
 
-  'All policy page: Test pagination': (browser) => {
+  'GRC All policy page: Test pagination': (browser) => {
     page.verifyPagination(browser)
   },
 
-  'All policy page: Delete test policy': (browser) => {
+  'GRC All policy page: Delete test policy': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
     common.deletePolicy(policyName)

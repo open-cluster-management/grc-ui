@@ -11,6 +11,8 @@ module.exports = {
     createPolicyButton: '#create-policy',
     overflowMenu: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
     overflowButtonView: 'body > ul > li > button',
+    sidePolicyPanel: 'div.bx--modal-container > div.bx--modal-content',
+    sidePolicyPanelClose: 'div.bx--modal-container > div.bx--modal-header > button.bx--modal-close',
     submitCreatePolicyButton: '#create-button-portal-id',
     policyNameInput: '#name',
     namespaceDropdown: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box',
@@ -70,6 +72,12 @@ function verifyAllPage(name, nsNum, permissions) {
   } else {
     overflowMenuSection.expect.element('@overflowMenuRemove').to.be.not.enabled
   }
+  // Make sure side panel can open
+  overflowMenuSection.click('@overflowMenuView')
+  this.expect.element('@sidePolicyPanel').to.be.visible
+  this.waitForElementNotPresent('@spinner')
+  this.click('@sidePolicyPanelClose')
+  this.waitForElementNotPresent('@sidePolicyPanel')
 }
 
 function verifyPolicyPage(name, permissions) {

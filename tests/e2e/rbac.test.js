@@ -2,7 +2,7 @@
 
 const policies = [], namespaces = []
 let page, loginPage, createPage, policyName, commonPage
-const DISABLE_CANARY_TEST = process.env.DISABLE_CANARY_TEST ? true : false
+const DISABLE_RBAC_PASS = process.env.RBAC_PASS == undefined ? true : false
 const permissions = {
   'clusterAdmin': {
     'get': true,
@@ -31,7 +31,7 @@ const permissions = {
 }
 
 module.exports = {
-  '@disabled': DISABLE_CANARY_TEST,
+  '@disabled': DISABLE_RBAC_PASS,
 
   before: (browser) => {
     page = browser.page.RbacPage()
@@ -101,14 +101,14 @@ module.exports = {
     page.verifyPolicyPage(policyName, permissions.view)
   },
 
-  'Cluster-wide view user in a group': () => {
+  'GRC RBAC: Cluster-wide view user in a group': () => {
     loginPage.authenticate('e2e-group-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.view)
     page.verifyCreatePage(permissions.view)
     page.verifyPolicyPage(policyName, permissions.view)
   },
 
-  'Namespaced cluster-admin user': () => {
+  'GRC RBAC: Namespaced cluster-admin user': () => {
     loginPage.authenticate('e2e-cluster-admin-ns')
     page.verifyAllPage(policyName, 1, permissions.clusterAdmin)
     const createdPolicy = `${policyName}-cluster-admin-ns`
