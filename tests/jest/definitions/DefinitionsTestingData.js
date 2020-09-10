@@ -310,3 +310,10 @@ export const hcmPoliciesPolicyItem = {
     }
   ]
 }
+
+export const hcmPoliciesPolicyCluster = {
+  'param': 'status.consoleURL',
+  'valid': {'status': {'consoleURL': 'https://console'}},
+  'empty': {'status': {'consoleURL': ''}},
+  'null': {'status': null}
+}

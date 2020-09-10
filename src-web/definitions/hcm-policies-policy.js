@@ -102,7 +102,8 @@ export function createComplianceLink(item = {}, ...param){
 export function createClusterLaunchLink(item = {}, ...param) {
   if (param[1] === 'status.consoleURL') {
     // If a cluster doesn't have a link, fall back to '-'
-    return _.get(item, param[1], '-')
+    const result = _.get(item, param[1], '-')
+    return result !== '' ? result : '-'
   } else {
     return undefined
   }

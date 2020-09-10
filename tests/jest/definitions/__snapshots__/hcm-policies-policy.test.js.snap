@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`createClusterLaunchLink Should return '-' with empty string for URL 1`] = `"-"`;
+
+exports[`createClusterLaunchLink Should return '-' with null status 1`] = `"-"`;
+
+exports[`createClusterLaunchLink Should return a valid cluster link 1`] = `"https://console"`;
+
+exports[`createClusterLaunchLink Should return undefined with incorrect param 1`] = `undefined`;
+
 exports[`createComplianceLink Should create compliance link 1`] = `
 <Link
   to="undefined/all/policy1"
