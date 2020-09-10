@@ -223,18 +223,6 @@ function clearSearchValue(){
 
 function setSearchValue(value){
   this.log(`Searching for policy: ${value}`)
-  // const searchClose = '.bx--search-close.bx--search-close--hidden'
-  // this.api.elements('css selector', searchClose, res => {
-  //   if (res.status < 0 || res.value.length < 1) {
-  //     // clear first
-  //     this.click('button.bx--search-close')
-  //     this.setValue('@searchInput', value)
-  //   }
-  //   else {
-  //     // do nothing already cleared
-  //     this.setValue('@searchInput', value)
-  //   }
-  // })
   this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', value)
 }
 
@@ -274,9 +262,6 @@ function tryDisable(name){
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.setSearchValue(name)
-  // this.click('button.bx--search-close')
-  // this.setValue('@searchInput', name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
