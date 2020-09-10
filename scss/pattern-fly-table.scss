@@ -20,4 +20,11 @@
     height: 100%;
     text-overflow: ellipsis;
   }
+  &-empty-state {
+    h2 {
+      font-family: RedHatText;
+      font-size: var(--pf-global--FontSize--md);
+      font-weight: var(--pf-global--FontWeight--bold);
+    }
+  }
 }
