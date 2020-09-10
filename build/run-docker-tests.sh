@@ -23,8 +23,9 @@ export DISABLE_CANARY_TEST=${DISABLE_CANARY_TEST:-false}
 # show all envs
 printenv
 
-# sleep 20s so that new identity provider could be picked up by OCP
-sleep 20
+# sleep 30s so that new identity provider could be picked up by OCP
+echo sleep 30s...
+sleep 30
 
 # run test
 npm run test:e2e-headless
