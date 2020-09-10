@@ -103,7 +103,7 @@ export function createClusterLaunchLink(item = {}, ...param) {
   if (param[1] === 'status.consoleURL') {
     // If a cluster doesn't have a link, fall back to '-'
     const result = _.get(item, param[1], '-')
-    return result != '' ? result : '-'
+    return result !== '' ? result : '-'
   } else {
     return undefined
   }
