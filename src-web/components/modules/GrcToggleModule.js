@@ -140,7 +140,7 @@ export class GrcToggleModule extends React.Component {
     if (isSelected) {
       const {history, location} = this.props
       const paraURL = queryString.parse(location.search)
-      paraURL.index = parseInt(event.currentTarget.id)
+      paraURL.index = parseInt(event.currentTarget.id.charAt(0), 10)
       const paraURLString = queryString.stringify(paraURL)
       const op = paraURLString && paraURLString.length > 0 ? '?' : ''
       history.push(`${location.pathname}${op}${paraURLString}`)
