@@ -150,6 +150,7 @@ describe('GrcView toggleClick', () => {
     expect(wrapper.instance().renderTabSwitcher('all', 1)).toMatchSnapshot()
     expect(wrapper.instance().renderTabSwitcher('other', 0)).toMatchSnapshot()
     expect(wrapper.instance().renderTabSwitcher('other', 1)).toMatchSnapshot()
-    expect(wrapper.instance().toggleClick()).toEqual('/multicloud/policies/all')
+    expect(wrapper.instance().toggleClick(true, {'currentTarget':{'id':0}})).toEqual('/multicloud/policies/all?index=0')
+    expect(wrapper.instance().toggleClick(true, {'currentTarget':{'id':1}})).toEqual('/multicloud/policies/all?index=1')
   })
 })

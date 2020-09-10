@@ -144,6 +144,7 @@ export class GrcToggleModule extends React.Component {
       const paraURLString = queryString.stringify(paraURL)
       const op = paraURLString && paraURLString.length > 0 ? '?' : ''
       history.push(`${location.pathname}${op}${paraURLString}`)
+      return `${location.pathname}${op}${paraURLString}`
     }
   }
 }

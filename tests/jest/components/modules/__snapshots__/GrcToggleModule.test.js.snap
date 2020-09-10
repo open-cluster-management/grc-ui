@@ -22,35 +22,31 @@ exports[`GrcView toggleClick renders as expected 1`] = `
   <div
     className="module-toggle-tab-switch"
   >
-    <ContentSwitcher
-      onChange={[Function]}
-      selectedIndex={0}
+    <ToggleGroup
+      variant="light"
     >
-      <Switch
-        href=""
-        kind="anchor"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        selected={false}
-        text="Policies"
-      />
-      <Switch
-        href=""
-        kind="anchor"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        selected={false}
-        text="Cluster violations"
-      />
-      <Switch
-        href=""
-        kind="anchor"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        selected={false}
-        text="Applications"
-      />
-    </ContentSwitcher>
+      <ToggleGroupItem
+        buttonId="0-policies"
+        isSelected={true}
+        onChange={[Function]}
+      >
+        Policies
+      </ToggleGroupItem>
+      <ToggleGroupItem
+        buttonId="1-cluster-violations"
+        isSelected={false}
+        onChange={[Function]}
+      >
+        Cluster violations
+      </ToggleGroupItem>
+      <ToggleGroupItem
+        buttonId="2-applications"
+        isSelected={false}
+        onChange={[Function]}
+      >
+        Applications
+      </ToggleGroupItem>
+    </ToggleGroup>
   </div>
 </div>
 `;
@@ -65,35 +61,31 @@ exports[`GrcView toggleClick renders as expected 2`] = `
   <div
     className="module-toggle-tab-switch"
   >
-    <ContentSwitcher
-      onChange={[Function]}
-      selectedIndex={1}
+    <ToggleGroup
+      variant="light"
     >
-      <Switch
-        href=""
-        kind="anchor"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        selected={false}
-        text="Policies"
-      />
-      <Switch
-        href=""
-        kind="anchor"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        selected={false}
-        text="Cluster violations"
-      />
-      <Switch
-        href=""
-        kind="anchor"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        selected={false}
-        text="Applications"
-      />
-    </ContentSwitcher>
+      <ToggleGroupItem
+        buttonId="0-policies"
+        isSelected={false}
+        onChange={[Function]}
+      >
+        Policies
+      </ToggleGroupItem>
+      <ToggleGroupItem
+        buttonId="1-cluster-violations"
+        isSelected={true}
+        onChange={[Function]}
+      >
+        Cluster violations
+      </ToggleGroupItem>
+      <ToggleGroupItem
+        buttonId="2-applications"
+        isSelected={false}
+        onChange={[Function]}
+      >
+        Applications
+      </ToggleGroupItem>
+    </ToggleGroup>
   </div>
 </div>
 `;
