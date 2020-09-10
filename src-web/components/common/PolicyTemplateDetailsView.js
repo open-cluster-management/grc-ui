@@ -11,7 +11,9 @@ import {
   Title,
 } from '@patternfly/react-core'
 import {
+  breakWord,
   sortable,
+  wrappable,
 } from '@patternfly/react-table'
 import jsYaml from 'js-yaml'
 import lodash from 'lodash'
@@ -41,7 +43,7 @@ class PolicyTemplateDetailsView extends React.Component {
     if (this.containerRef && this.editor) {
       const rect = this.containerRef.getBoundingClientRect()
       const width = rect.width
-      const height = rect.height
+      const height = rect.height - 24 // minus height of title
       this.editor.layout({width, height})
     }
   }
@@ -69,12 +71,12 @@ class PolicyTemplateDetailsView extends React.Component {
 
     const tableData = {
       columns: [
-        { title: msgs.get('table.header.name', locale), transforms: [sortable] },
-        { title: msgs.get('table.header.namespace', locale), transforms: [sortable] },
-        { title: msgs.get('table.header.kind', locale), transforms: [sortable] },
-        { title: msgs.get('table.header.apiGroups', locale), transforms: [sortable] },
-        { title: msgs.get('table.header.compliant', locale), transforms: [sortable] },
-        { title: msgs.get('table.header.reason', locale), transforms: [sortable] },
+        { title: msgs.get('table.header.name', locale), transforms: [sortable, wrappable], cellTransforms: [breakWord] },
+        { title: msgs.get('table.header.namespace', locale), transforms: [sortable, wrappable] },
+        { title: msgs.get('table.header.kind', locale), transforms: [sortable, wrappable] },
+        { title: msgs.get('table.header.apiGroups', locale), transforms: [sortable, wrappable], cellTransforms: [breakWord] },
+        { title: msgs.get('table.header.compliant', locale), transforms: [sortable, wrappable] },
+        { title: msgs.get('table.header.reason', locale), transforms: [sortable, wrappable] },
         { title: '' },
       ],
       sortBy: {
@@ -86,7 +88,7 @@ class PolicyTemplateDetailsView extends React.Component {
       <div className='policy-template-details-view'>
         <div className='details'>
           <div className='overview'>
-            <Title headingLevel="h2">{msgs.get('panel.header.template.details', locale)}</Title>
+            <Title className='title' headingLevel="h2">{msgs.get('panel.header.template.details', locale)}</Title>
             <DescriptionList>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.name', locale)}</DescriptionListTerm>
@@ -120,9 +122,9 @@ class PolicyTemplateDetailsView extends React.Component {
               </DescriptionListGroup>
             </DescriptionList>
           </div>
-          <div className='yaml'>
-            <Title headingLevel="h2">{msgs.get('panel.header.template.yaml', locale)}</Title>
-            <div ref={this.setContainerRef}>
+          <div className='yaml' ref={this.setContainerRef}>
+            <Title className='title' headingLevel="h2">{msgs.get('panel.header.template.yaml', locale)}</Title>
+            <div>
               <YamlEditor
                 width={'100%'}
                 height={'500px'}
@@ -133,8 +135,8 @@ class PolicyTemplateDetailsView extends React.Component {
           </div>
         </div>
         <div className='table'>
-          <Title headingLevel="h2">{msgs.get('panel.header.related.resources', locale)}</Title>
-          <PatternFlyTable columns={tableData.columns} rows={rows} sortBy={tableData.sortBy} />
+          <Title className='title' headingLevel="h2">{msgs.get('panel.header.related.resources', locale)}</Title>
+          <PatternFlyTable columns={tableData.columns} rows={rows} sortBy={tableData.sortBy} noResultMsg={msgs.get('table.search.no.results', locale)} />
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-
+import classNames from 'classnames'
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -73,24 +73,25 @@ class PatternFlyTable extends React.Component {
   }
   render() {
     const { sortBy, rows=[], itemCount } = this.state
-    const { columns } = this.props
+    const { columns, className, noResultMsg } = this.props
+    const classes = classNames('pattern-fly-table', className)
     return (
-      <div className='pattern-fly-table'>
-        <Table aria-label="Sortable Table" sortBy={sortBy} onSort={this.handleSort} cells={columns} rows={rows}>
-          <TableHeader />
-          <TableBody />
+      <div className={classes}>
+        <Table aria-label='Sortable Table' sortBy={sortBy} onSort={this.handleSort} cells={columns} rows={rows}>
+          <TableHeader className='pattern-fly-table-header' />
+          <TableBody className='pattern-fly-table-body' />
         </Table>
         {rows.length === 0 && (
-          <EmptyState variant={EmptyStateVariant.small}>
+          <EmptyState className='pattern-fly-table-empty-state' variant={EmptyStateVariant.small}>
             <EmptyStateIcon icon={SearchIcon} />
-            <Title headingLevel="h2" size="md">
-              No results found
+            <Title headingLevel='h2' size='md'>
+              {noResultMsg}
             </Title>
           </EmptyState>
         )}
         <Pagination
           itemCount={itemCount}
-          widgetId="pagination-options-menu-bottom"
+          widgetId='pagination-options-menu-bottom'
           perPage={this.state.perPage}
           page={this.state.page}
           variant={PaginationVariant.bottom}
@@ -110,7 +111,9 @@ class PatternFlyTable extends React.Component {
 }
 
 PatternFlyTable.propTypes = {
+  className: PropTypes.string,
   columns: PropTypes.array,
+  noResultMsg: PropTypes.string,
   rows: PropTypes.array,
   sortBy: PropTypes.shape({
     index: PropTypes.number,

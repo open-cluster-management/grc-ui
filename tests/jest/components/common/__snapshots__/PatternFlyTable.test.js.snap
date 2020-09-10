@@ -13,7 +13,7 @@ exports[`PatternFlyTable component renders as expected 1`] = `
     role="grid"
   >
     <thead
-      className=""
+      className="pattern-fly-table-header"
     >
       <tr>
         <th
@@ -64,7 +64,7 @@ exports[`PatternFlyTable component renders as expected 1`] = `
       </tr>
     </thead>
     <tbody
-      className=""
+      className="pattern-fly-table-body"
     >
       <tr
         className=""
@@ -474,7 +474,7 @@ exports[`PatternFlyTable component renders empty state 1`] = `
     role="grid"
   >
     <thead
-      className=""
+      className="pattern-fly-table-header"
     >
       <tr>
         <th
@@ -525,11 +525,11 @@ exports[`PatternFlyTable component renders empty state 1`] = `
       </tr>
     </thead>
     <tbody
-      className=""
+      className="pattern-fly-table-body"
     />
   </table>
   <div
-    className="pf-c-empty-state pf-m-sm"
+    className="pf-c-empty-state pf-m-sm pattern-fly-table-empty-state"
   >
     <div
       className="pf-c-empty-state__content"
@@ -557,7 +557,7 @@ exports[`PatternFlyTable component renders empty state 1`] = `
       <h2
         className="pf-c-title pf-m-md"
       >
-        No results found
+        
       </h2>
     </div>
   </div>
