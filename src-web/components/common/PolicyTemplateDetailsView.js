@@ -15,7 +15,7 @@ import lodash from 'lodash'
 import YamlEditor from './YamlEditor'
 import PatternFlyTable from './PatternFlyTable'
 import { LocaleContext } from './LocaleContext'
-import policyTemplates from '../../tableDefinitions/policy-templates'
+import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
 
@@ -61,7 +61,7 @@ class PolicyTemplateDetailsView extends React.Component {
         return o
       })
     }
-    const tableData = transform(relatedObjects, policyTemplates, locale)
+    const tableData = transform(relatedObjects, relatedObjectsDef, locale)
 
     return (
       <div className='policy-template-details-view'>
