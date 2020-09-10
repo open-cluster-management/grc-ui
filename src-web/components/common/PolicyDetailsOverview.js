@@ -262,7 +262,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
           <h5 className='section-title'>{msgs.get('table.header.placement', locale)}</h5>
           { itemPP===null && itemPB===null &&
             <div className='bx--module'>
-              <Alert title='Placement rule and binding not found.' isInline='true' />
+              <Alert title={msgs.get('error.no.placement', locale)} isInline='true' />
             </div>
           }
           {itemPP!==null && itemPB!==null && modulesSecond.length > 0 &&
