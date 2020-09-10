@@ -13,6 +13,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import config from '../../lib/shared/config'
 import {getCategories, getControls, getStandards} from './hcm-compliances'
+import _ from 'lodash'
 
 export default {
   defaultSortField: 'metadata.name',
@@ -100,12 +101,8 @@ export function createComplianceLink(item = {}, ...param){
 
 export function createClusterLaunchLink(item = {}, ...param) {
   if (param[1] === 'status.consoleURL') {
-    const clusterLink = item.status.consoleURL
-    if (clusterLink) {
-      return clusterLink
-    } else {
-      return '-'
-    }
+    // If a cluster doesn't have a link, fall back to '-'
+    return _.get(item, param[1], '-')
   } else {
     return undefined
   }
