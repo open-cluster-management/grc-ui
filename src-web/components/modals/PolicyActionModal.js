@@ -16,6 +16,7 @@ export class PolicyActionModal extends React.Component {
   constructor(props) {
     super(props)
     this.handleSubmitClick = this.handleSubmitClick.bind(this)
+    this.handleCloseClick = this.handleCloseClick.bind(this)
   }
 
   handleSubmitClick() {
@@ -56,7 +57,6 @@ export class PolicyActionModal extends React.Component {
   render() {
     const { type:modalType, label, locale, open, reqErrorMsg, reqStatus } = this.props
     let dangerFlag = false, modalId = '', modalMsg = ''
-    console.log(modalType)
     switch(modalType) {
     case 'resource-disable':
       dangerFlag = true
