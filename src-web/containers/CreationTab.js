@@ -23,6 +23,7 @@ import CreationView from '../components/CreationView'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
 import checkCreatePermission from '../components/common/CheckCreatePermission'
+import { LocaleContext } from '../components/common/LocaleContext'
 
 export class CreationTab extends React.Component {
 
@@ -32,6 +33,8 @@ export class CreationTab extends React.Component {
       updateRequested: false
     }
   }
+
+  static contextType = LocaleContext
 
   static propTypes = {
     cleanReqStatus: PropTypes.func,
