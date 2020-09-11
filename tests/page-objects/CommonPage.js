@@ -250,7 +250,6 @@ function tryEnable(name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
-  this.setSearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--secondary) on enable policy modal and return to main page
   this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 3, '#enable-resource-modal', '.bx--btn.bx--btn--secondary')
   //re-entry overflow menu then click enable policy button (.bx--btn.bx--btn--primary)
