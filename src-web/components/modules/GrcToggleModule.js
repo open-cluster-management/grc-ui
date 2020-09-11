@@ -122,13 +122,28 @@ export class GrcToggleModule extends React.Component {
         </div>
         <div className='module-toggle-tab-switch'>
           {displayType==='all' && showApplications && <ToggleGroup variant='light'>
-            <ToggleGroupItem buttonId={`${toggleText1.toLowerCase().replace(' ','-')}-0`} onChange={this.toggleClick} isSelected={!grcTabToggleIndex}>{toggleText1}</ToggleGroupItem>
-            <ToggleGroupItem buttonId={`${toggleText2.toLowerCase().replace(' ','-')}-1`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>{toggleText2}</ToggleGroupItem>
-            <ToggleGroupItem buttonId={`${toggleText3.toLowerCase().replace(' ','-')}-2`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 2}>{toggleText3}</ToggleGroupItem>
+            <ToggleGroupItem
+              buttonId={`${toggleText1.toLowerCase().replace(' ','-')}-0`} onChange={this.toggleClick}  isSelected={!grcTabToggleIndex}>
+              {toggleText1}
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              buttonId={`${toggleText2.toLowerCase().replace(' ','-')}-1`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>
+              {toggleText2}
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              buttonId={`${toggleText3.toLowerCase().replace(' ','-')}-2`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 2}>
+              {toggleText3}
+            </ToggleGroupItem>
           </ToggleGroup>}
           {displayType==='all' && !showApplications && <ToggleGroup variant='light'>
-            <ToggleGroupItem buttonId={`${toggleText1.toLowerCase().replace(' ','-')}-0`} onChange={this.toggleClick} isSelected={!grcTabToggleIndex}>{toggleText1}</ToggleGroupItem>
-            <ToggleGroupItem buttonId={`${toggleText2.toLowerCase().replace(' ','-')}-1`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>{toggleText2}</ToggleGroupItem>
+            <ToggleGroupItem
+              buttonId={`${toggleText1.toLowerCase().replace(' ','-')}-0`} onChange={this.toggleClick} isSelected={!grcTabToggleIndex}>
+              {toggleText1}
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              buttonId={`${toggleText2.toLowerCase().replace(' ','-')}-1`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>
+              {toggleText2}
+            </ToggleGroupItem>
           </ToggleGroup>}
         </div>
       </div>
@@ -145,6 +160,8 @@ export class GrcToggleModule extends React.Component {
       const op = paraURLString && paraURLString.length > 0 ? '?' : ''
       history.push(`${location.pathname}${op}${paraURLString}`)
       return `${location.pathname}${op}${paraURLString}`
+    } else {
+      return null
     }
   }
 }
