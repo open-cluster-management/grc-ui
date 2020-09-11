@@ -121,7 +121,6 @@ function enforcePolicy(name){
   this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Enforce')
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
   this.waitForElementVisible('#enforce-resource-modal')
-  this.waitForElementVisible('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--tertiary')
   this.click('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--tertiary')
   this.waitForElementNotPresent('#enforce-resource-modal')
   //re-entry overflow menu then enforce policy
@@ -134,7 +133,6 @@ function enforcePolicy(name){
   this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Enforce')
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
   this.waitForElementVisible('#enforce-resource-modal')
-  this.waitForElementVisible('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
   this.click('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
   this.waitForElementNotPresent('#enforce-resource-modal')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
@@ -245,7 +243,6 @@ function deletePolicy(name){
   this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button').text.to.equal('Remove')
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button')
   this.waitForElementVisible('#remove-resource-modal')
-  this.waitForElementVisible('#remove-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--tertiary')
   this.click('#remove-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--tertiary')
   this.waitForElementNotPresent('#remove-resource-modal')
   // re-entry delete policy modal then delete policy
@@ -259,7 +256,6 @@ function deletePolicy(name){
   this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button').text.to.equal('Remove')
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button')
   this.waitForElementVisible('#remove-resource-modal')
-  this.waitForElementVisible('#remove-resource-modal > div > .bx--modal-footer > .bx--btn--danger--primary')
   this.click('#remove-resource-modal > div > .bx--modal-footer > .bx--btn--danger--primary')
   this.waitForElementNotPresent('#remove-resource-modal')
   this.waitForElementNotPresent('@spinner')
@@ -303,7 +299,6 @@ function tryEnable(name){
   this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Enable')
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#enable-resource-modal')
-  this.waitForElementVisible('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--secondary')
   this.click('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--secondary')
   this.waitForElementNotPresent('#enable-resource-modal')
   //re-entry enable policy modal and enable policy
@@ -317,7 +312,6 @@ function tryEnable(name){
   this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Enable')
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#enable-resource-modal')
-  this.waitForElementVisible('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
   this.click('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
   this.waitForElementNotPresent('#enable-resource-modal')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
@@ -339,7 +333,6 @@ function tryDisable(name){
   this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Disable')
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#disable-resource-modal')
-  this.waitForElementVisible('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--tertiary')
   this.click('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--tertiary')
   this.waitForElementNotPresent('#disable-resource-modal')
   //re-entry disable policy modal and disable policy
@@ -352,7 +345,6 @@ function tryDisable(name){
   this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Disable')
   this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
   this.waitForElementVisible('#disable-resource-modal')
-  this.waitForElementVisible('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
   this.click('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
   this.waitForElementNotPresent('#disable-resource-modal')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
