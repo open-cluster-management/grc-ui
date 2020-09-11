@@ -1,30 +1,39 @@
 /* Copyright (c) 2020 Red Hat, Inc.*/
 
-.pattern-fly-table {
-  .pf-c-options-menu__menu-item {
-    font-size: var(--pf-global--FontSize--sm);
-  }
-  .pf-c-form-control {
-    padding: 5px 8px;
-    height: 100%;
-    border: solid #f0f0f0 1px;
-    border-bottom-color: #8A8D90;
-  }
-  .pf-c-form-control:disabled {
-    border: solid #f0f0f0 1px;
-    background-color: #f0f0f0;
-    cursor: not-allowed;
+.pattern-fly-table-group {
+
+  .pf-c-search-input {
+    margin: 8px 0 8px 0;
+    width: 248px;
   }
 
-  .pf-c-form-control:not(textarea) {
-    height: 100%;
-    text-overflow: ellipsis;
-  }
-  &-empty-state {
-    h2 {
-      font-family: RedHatText;
-      font-size: var(--pf-global--FontSize--md);
-      font-weight: var(--pf-global--FontWeight--bold);
+  .pattern-fly-table {
+
+    .pf-c-options-menu__menu-item {
+      font-size: var(--pf-global--FontSize--sm);
+    }
+    .pf-c-form-control {
+      padding: 5px 8px;
+      height: 100%;
+      border: solid #f0f0f0 1px;
+      border-bottom-color: #8A8D90;
+    }
+    .pf-c-form-control:disabled {
+      border: solid #f0f0f0 1px;
+      background-color: #f0f0f0;
+      cursor: not-allowed;
+    }
+
+    .pf-c-form-control:not(textarea) {
+      height: 100%;
+      text-overflow: ellipsis;
+    }
+    &-empty-state {
+      h2 {
+        font-family: RedHatText;
+        font-size: var(--pf-global--FontSize--md);
+        font-weight: var(--pf-global--FontWeight--bold);
+      }
     }
   }
 }

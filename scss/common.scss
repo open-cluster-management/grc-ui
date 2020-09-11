@@ -192,6 +192,12 @@ body {
   }
 }
 
-.pattern-fly-table {
-  background-color: white;
+.pattern-fly-table-group {
+  .pf-c-search-input {
+    background-color: white;
+  }
+
+  .pattern-fly-table {
+    background-color: white;
+  }
 }
