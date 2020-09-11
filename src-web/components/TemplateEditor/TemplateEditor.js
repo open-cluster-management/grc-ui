@@ -35,6 +35,7 @@ import YamlEditor from './components/YamlEditor'
 import './scss/template-editor.scss'
 import msgs from '../../../nls/platform.properties'
 import '../../../graphics/diagramIcons.svg'
+import { LocaleContext } from '../../components/common/LocaleContext'
 import _ from 'lodash'
 
 const tempCookie = 'template-editor-open-cookie'
@@ -69,6 +70,8 @@ export default class TemplateEditor extends React.Component {
     template: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
   }
+
+  static contextType = LocaleContext
 
   static getDerivedStateFromProps(props, state) {
     const {fetchControl, createControl={}, createAndUpdateControl={}} = props
