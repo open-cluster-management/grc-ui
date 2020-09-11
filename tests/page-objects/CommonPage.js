@@ -58,7 +58,32 @@ module.exports = {
     informPolicy,
     tryEnable,
     tryDisable,
+    clickButtonOnOverflowModal,
   }]
+}
+
+/*
+* @name - the name of created testing data
+* @nameTarget - DOM target postfix on main page of created testing data
+* @overflowPosition - overflow icon position on main page
+* @actionName - the name of clicked overflow action
+* @actionPosition - the position on overfrlow popup of clicked action
+* @modalName - DOM name of the modal opened from overfrlow popup
+* @clickButtonName - DOM name of clicked button on the opened modal
+*/
+function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionName, actionPosition, modalName, clickButtonName){
+  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.expect.element(`.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > ${nameTarget}`).text.to.equal(name)
+  this.waitForElementVisible(`table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition})`)
+  this.click(`table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition}) > div > svg`)
+  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
+  this.waitForElementVisible(`ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(${actionPosition})`)
+  this.expect.element(`ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(${actionPosition}) > button`).text.to.equal(actionName)
+  this.click(`ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(${actionPosition}) > button`)
+  this.waitForElementVisible(modalName)
+  this.waitForElementVisible(`${modalName} > div > .bx--modal-footer > ${clickButtonName}`)
+  this.click(`${modalName} > div > .bx--modal-footer > ${clickButtonName}`)
+  this.waitForElementNotPresent(modalName)
 }
 
 function createPolicy(browser, name, yaml, time) {
@@ -111,30 +136,10 @@ function enforcePolicy(name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  //verify cancel button on enforce policy modal and return to main page
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Enforce')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
-  this.waitForElementVisible('#enforce-resource-modal')
-  this.click('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--tertiary')
-  this.waitForElementNotPresent('#enforce-resource-modal')
-  //re-entry overflow menu then enforce policy
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Enforce')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
-  this.waitForElementVisible('#enforce-resource-modal')
-  this.click('#enforce-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
-  this.waitForElementNotPresent('#enforce-resource-modal')
+  //verify cancel button (.bx--btn.bx--btn--tertiary) on enforce policy modal and return to main page
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 4, '#enforce-resource-modal', '.bx--btn.bx--btn--tertiary')
+  //re-entry overflow menu then click enforce policy button (.bx--btn.bx--btn--danger--primary)
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 4, '#enforce-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
   this.clearSearchValue()
@@ -146,31 +151,10 @@ function informPolicy(name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  //verify cancel button on inform policy modal and return to main page
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Inform')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
-  this.waitForElementVisible('#inform-resource-modal')
-  this.waitForElementVisible('#inform-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--secondary')
-  this.click('#inform-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--secondary')
-  this.waitForElementNotPresent('#inform-resource-modal')
-  //re-entry overflow menu then inform policy
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button').text.to.equal('Inform')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(4) > button')
-  this.waitForElementVisible('#inform-resource-modal')
-  this.click('#inform-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
-  this.waitForElementNotPresent('#inform-resource-modal')
+  //verify cancel button (.bx--btn.bx--btn--secondary) on inform policy modal and return to main page
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 4, '#inform-resource-modal', '.bx--btn.bx--btn--secondary')
+  //re-entry overflow menu then click inform policy button (.bx--btn.bx--btn--primary)
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 4, '#inform-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.waitForElementVisible('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
@@ -232,32 +216,10 @@ function deletePolicy(name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
-  // test cancel button on delete policy modal then return to main page
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementPresent('bx--overflow-menu-options__option.bx--overflow-menu-options__option--danger')
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button').text.to.equal('Remove')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button')
-  this.waitForElementVisible('#remove-resource-modal')
-  this.click('#remove-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--tertiary')
-  this.waitForElementNotPresent('#remove-resource-modal')
-  // re-entry delete policy modal then delete policy
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementPresent('bx--overflow-menu-options__option.bx--overflow-menu-options__option--danger')
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button').text.to.equal('Remove')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(5) > button')
-  this.waitForElementVisible('#remove-resource-modal')
-  this.click('#remove-resource-modal > div > .bx--modal-footer > .bx--btn--danger--primary')
-  this.waitForElementNotPresent('#remove-resource-modal')
+  //verify cancel button (.bx--btn.bx--btn--tertiary) on delete policy modal and return to main page
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 5, '#remove-resource-modal', '.bx--btn.bx--btn--tertiary')
+  //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 5, '#remove-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
 }
 
@@ -288,32 +250,11 @@ function tryEnable(name){
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > div:nth-child(1)').text.to.equal(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  // test cancel button on enable modal then return to main page
-  this.waitForElementPresent('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Enable')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
-  this.waitForElementVisible('#enable-resource-modal')
-  this.click('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--secondary')
-  this.waitForElementNotPresent('#enable-resource-modal')
-  //re-entry enable policy modal and enable policy
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > div:nth-child(1)').text.to.equal(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  this.waitForElementPresent('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Enable')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
-  this.waitForElementVisible('#enable-resource-modal')
-  this.click('#enable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--primary')
-  this.waitForElementNotPresent('#enable-resource-modal')
+  this.setSearchValue(name)
+  //verify cancel button (.bx--btn.bx--btn--secondary) on enable policy modal and return to main page
+  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 3, '#enable-resource-modal', '.bx--btn.bx--btn--secondary')
+  //re-entry overflow menu then click enable policy button (.bx--btn.bx--btn--primary)
+  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 3, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.clearSearchValue()
 }
@@ -323,30 +264,11 @@ function tryDisable(name){
   //verify table/menu exist
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  // test cancel button on disable modal and return to main page
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Disable')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
-  this.waitForElementVisible('#disable-resource-modal')
-  this.click('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--tertiary')
-  this.waitForElementNotPresent('#disable-resource-modal')
-  //re-entry disable policy modal and disable policy
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9)')
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-  this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3)')
-  this.expect.element('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button').text.to.equal('Disable')
-  this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(3) > button')
-  this.waitForElementVisible('#disable-resource-modal')
-  this.click('#disable-resource-modal > div > .bx--modal-footer > .bx--btn.bx--btn--danger--primary')
-  this.waitForElementNotPresent('#disable-resource-modal')
+  this.setSearchValue(name)
+  //verify cancel button (.bx--btn.bx--btn--tertiary) on disable policy modal and return to main page
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 3, '#disable-resource-modal', '.bx--btn.bx--btn--tertiary')
+  //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 3, '#disable-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.clearSearchValue()
 }
