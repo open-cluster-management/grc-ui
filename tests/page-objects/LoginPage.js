@@ -108,7 +108,8 @@ function waitForLoginForm(rbac_user) {
 function logout() {
   this.waitForElementVisible('@userDropdown').click('@userDropdown')
   this.waitForElementVisible('@logout').click('@logout')
-  this.pause(1000)
+  // wait for url to change
+  this.assert.urlContains('https://oauth-openshift')
 }
 
 function log(message) {
