@@ -55,8 +55,8 @@ function authenticate(username = '') {
     username = process.env.SELENIUM_USER
     password = process.env.SELENIUM_PASSWORD
   }
-  this.log(`Logging in with id provider: ${rbac_user}, username: ${username}, password: ${password}`)
   this.waitForLoginForm(rbac_user)
+  this.log(`Logging in with username: ${username}, password: ${password}`)
   this.inputUsername(username)
   this.inputPassword(password)
   this.submit()
@@ -95,10 +95,11 @@ function waitForLoginForm(rbac_user) {
         login_with = process.env.SELENIUM_USER_SELECT || 'kube:admin'
       }
       const userSelector = `a[title="Log in with ${login_with}"]`
+      this.log(`Logging in with id provider: ${login_with}`)
       this.waitForElementPresent(userSelector)
       this.click(userSelector)
     } else {
-      // do nothing
+      this.log('Logging in with no id provider')
     }
   })
   this.waitForElementVisible('@loginForm')
