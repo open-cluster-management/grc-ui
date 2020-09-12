@@ -27,6 +27,7 @@ export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
 export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_HUB_CLUSTER_PASS}}
 export NODE_ENV=development 
 export API_SERVER_URL=$OC_HUB_CLUSTER_URL
+export headerUrl=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
 
 make docker/login
 export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:latest-dev
