@@ -16,7 +16,7 @@ export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
 export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vendor/oc whoami --show-token`
-echo "SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN"
+export headerUrl=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
 
 echo "Create RBAC users"
 source $DIR/rbac-setup.sh
@@ -27,13 +27,14 @@ export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
 export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_HUB_CLUSTER_PASS}}
 export NODE_ENV=development 
 export API_SERVER_URL=$OC_HUB_CLUSTER_URL
-export headerUrl=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
 
 make docker/login
 export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:latest-dev
 make docker/pull
 
 docker run -d -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$OC_HUB_CLUSTER_URL $DOCKER_URI
+
+printenv
 
 npm run build
 npm run start:instrument &>/dev/null &
