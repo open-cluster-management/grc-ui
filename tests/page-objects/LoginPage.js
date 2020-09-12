@@ -33,7 +33,8 @@ module.exports = {
     authenticate,
     waitForLoginSuccess,
     waitForLoginForm,
-    logout
+    logout,
+    log
   }]
 }
 
@@ -55,6 +56,7 @@ function authenticate(username = '') {
     username = process.env.SELENIUM_USER
     password = process.env.SELENIUM_PASSWORD
   }
+  this.log(`Logging in with id provider: ${rbac_user}, username: ${username}, password: ${password}`)
   this.waitForLoginForm(rbac_user)
   this.inputUsername(username)
   this.inputPassword(password)
@@ -106,5 +108,13 @@ function waitForLoginForm(rbac_user) {
 function logout() {
   this.waitForElementVisible('@userDropdown').click('@userDropdown')
   this.waitForElementVisible('@logout').click('@logout')
-  this.waitForElementPresent('@loginPage')
+  this.pause(1000)
+  // this.waitForElementPresent('@loginPage')
+}
+
+function log(message) {
+  return this.perform(() => {
+    // eslint-disable-next-line no-console
+    console.log(message)
+  })
 }
