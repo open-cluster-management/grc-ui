@@ -20,7 +20,6 @@ module.exports = {
     submit: 'button[type="submit"]',
     error: '.bx--inline-notification--error',
     header: '.app-header',
-    loginPage: 'body > div.pf-c-login',
     loginForm: 'form[role="form"]',
     spinner: '.content-spinner',
     userDropdown: '#acm-user-dropdown > .dropdown-container > .header-action-trigger',
