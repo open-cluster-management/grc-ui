@@ -15,14 +15,14 @@ export OC_CLUSTER_PASS=$OC_MANAGED_CLUSTER_PASS
 make oc/login
 
 $DIR/install-cert-manager.sh
-$DIR/managed-clean-up.sh
+$DIR/cluster-clean-up.sh managed
 
 echo "Login hub"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
 
-$DIR/hub-clean-up.sh
+$DIR/cluster-clean-up.sh hub
 
 $DIR/setup-dev.sh
 
