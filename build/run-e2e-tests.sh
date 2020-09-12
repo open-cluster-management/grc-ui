@@ -11,7 +11,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 $DIR/install-cert-manager.sh $OC_MANAGED_CLUSTER_URL kubeadmin $OC_MANAGED_CLUSTER_PASS
 
-echo "Login hub again"
+echo "Login hub"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
@@ -23,16 +23,17 @@ source $DIR/rbac-setup.sh
 
 $DIR/cluster-clean.sh
 
+export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
+export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_HUB_CLUSTER_PASS}}
+export NODE_ENV=development 
+export API_SERVER_URL=$OC_HUB_CLUSTER_URL
+
 make docker/login
 export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:latest-dev
 make docker/pull
 
-export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
-export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_HUB_CLUSTER_PASS}}
-
 docker run -d -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$OC_HUB_CLUSTER_URL $DOCKER_URI
-export NODE_ENV=development 
-export API_SERVER_URL=$OC_HUB_CLUSTER_URL
+
 npm run build
 npm run start:instrument &>/dev/null &
 sleep 10
