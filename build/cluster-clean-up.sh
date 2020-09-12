@@ -29,7 +29,7 @@ case $1 in
         managed
         ;;
     *)
-        hub()
-        managed()
+        hub
+        managed
         ;;
 esac
