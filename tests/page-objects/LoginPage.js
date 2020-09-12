@@ -108,7 +108,6 @@ function logout() {
   this.waitForElementVisible('@userDropdown').click('@userDropdown')
   this.waitForElementVisible('@logout').click('@logout')
   this.pause(1000)
-  // this.waitForElementPresent('@loginPage')
 }
 
 function log(message) {
