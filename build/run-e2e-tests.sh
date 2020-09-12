@@ -24,6 +24,7 @@ make oc/login
 
 $DIR/hub-cluster-clean-up.sh
 
+$DIR/setup-dev.sh
 
 echo "Create RBAC users"
 source $DIR/rbac-setup.sh
