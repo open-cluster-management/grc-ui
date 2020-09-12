@@ -28,16 +28,16 @@ $DIR/hub-cluster-clean-up.sh
 echo "Create RBAC users"
 source $DIR/rbac-setup.sh
 
-echo "Exporting envs to run e2e"
+echo "Export envs to run e2e"
 export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vendor/oc whoami --show-token`
 export headerUrl=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
-export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
-export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_HUB_CLUSTER_PASS}}
 export NODE_ENV=development 
 export API_SERVER_URL=$OC_HUB_CLUSTER_URL
 export OAUTH2_REDIRECT_URL=${OAUTH2_REDIRECT_URL:-"https://localhost:3000/multicloud/policies/auth/callback"}
 export OAUTH2_CLIENT_ID=${OAUTH2_REDIRECT_URL:-"multicloudingress"}
 export OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET:-"multicloudingresssecret"}
+export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
+export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_HUB_CLUSTER_PASS}}
 
 make docker/login
 export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:latest-dev
