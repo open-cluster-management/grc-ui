@@ -109,7 +109,7 @@ function logout() {
   this.waitForElementVisible('@userDropdown').click('@userDropdown')
   this.waitForElementVisible('@logout').click('@logout')
   // wait for url to change
-  this.assert.urlContains('https://oauth-openshift')
+  this.expect.url().to.contain('https://oauth-openshift')
 }
 
 function log(message) {
