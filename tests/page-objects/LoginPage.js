@@ -56,7 +56,7 @@ function authenticate(username = '') {
     password = process.env.SELENIUM_PASSWORD
   }
   this.waitForLoginForm(rbac_user)
-  this.log(`Logging in with username: ${username}, password: ${password}`)
+  this.log(`Logging in with username: ${username}`)
   this.inputUsername(username)
   this.inputPassword(password)
   this.submit()
