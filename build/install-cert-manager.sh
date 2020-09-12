@@ -4,6 +4,9 @@
 echo "Install cert manager on managed"
 echo "Logging in $1 $2 $3"
 
-oc login $1 --insecure-skip-tls-verify=true -u $2 -p $3
+OC_CLUSTER_URL=$1 OC_CLUSTER_USER=$2 OC_CLUSTER_PASS=$3make oc/login
 oc apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.15.1/cert-manager.yaml
-oc logout
+
+echo "Logout"
+export OC_COMMAND=logout
+make oc/command
