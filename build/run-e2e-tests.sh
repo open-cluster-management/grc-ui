@@ -9,20 +9,28 @@ set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+echo "Login managed"
+export OC_CLUSTER_URL=$OC_MANAGED_CLUSTER_URL
+export OC_CLUSTER_PASS=$OC_MANAGED_CLUSTER_PASS
+make oc/login
+
+$DIR/install-cert-manager.sh
+$DIR/managed-cluster-clean-up.sh
+
 echo "Login hub"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
-export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vendor/oc whoami --show-token`
-export headerUrl=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
 
-$DIR/install-cert-manager.sh
+$DIR/hub-cluster-clean-up.sh
+
 
 echo "Create RBAC users"
 source $DIR/rbac-setup.sh
 
-$DIR/cluster-clean.sh
-
+echo "Exporting envs to run e2e"
+export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vendor/oc whoami --show-token`
+export headerUrl=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
 export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
 export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_HUB_CLUSTER_PASS}}
 export NODE_ENV=development 
