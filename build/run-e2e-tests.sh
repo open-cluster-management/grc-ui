@@ -9,14 +9,14 @@ set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-$DIR/install-cert-manager.sh $OC_MANAGED_CLUSTER_URL kubeadmin $OC_MANAGED_CLUSTER_PASS
-
 echo "Login hub"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
 export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vendor/oc whoami --show-token`
 export headerUrl=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
+
+$DIR/install-cert-manager.sh
 
 echo "Create RBAC users"
 source $DIR/rbac-setup.sh
