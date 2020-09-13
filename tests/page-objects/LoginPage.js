@@ -20,7 +20,6 @@ module.exports = {
     submit: 'button[type="submit"]',
     error: '.bx--inline-notification--error',
     header: '.app-header',
-    loginPage: 'body > div.pf-c-login',
     loginForm: 'form[role="form"]',
     spinner: '.content-spinner',
     userDropdown: '#acm-user-dropdown > .dropdown-container > .header-action-trigger',
@@ -33,7 +32,8 @@ module.exports = {
     authenticate,
     waitForLoginSuccess,
     waitForLoginForm,
-    logout
+    logout,
+    log
   }]
 }
 
@@ -56,6 +56,7 @@ function authenticate(username = '') {
     password = process.env.SELENIUM_PASSWORD
   }
   this.waitForLoginForm(rbac_user)
+  this.log(`Logging in with username: ${username}`)
   this.inputUsername(username)
   this.inputPassword(password)
   this.submit()
@@ -94,10 +95,11 @@ function waitForLoginForm(rbac_user) {
         login_with = process.env.SELENIUM_USER_SELECT || 'kube:admin'
       }
       const userSelector = `a[title="Log in with ${login_with}"]`
+      this.log(`Logging in with id provider: ${login_with}`)
       this.waitForElementPresent(userSelector)
       this.click(userSelector)
     } else {
-      // do nothing
+      this.log('Logging in with no id provider')
     }
   })
   this.waitForElementVisible('@loginForm')
@@ -106,5 +108,13 @@ function waitForLoginForm(rbac_user) {
 function logout() {
   this.waitForElementVisible('@userDropdown').click('@userDropdown')
   this.waitForElementVisible('@logout').click('@logout')
-  this.waitForElementPresent('@loginPage')
+  // wait for url to change
+  this.expect.url().to.contain('https://oauth-openshift')
+}
+
+function log(message) {
+  return this.perform(() => {
+    // eslint-disable-next-line no-console
+    console.log(message)
+  })
 }

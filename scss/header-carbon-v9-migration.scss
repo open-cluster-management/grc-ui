@@ -70,7 +70,7 @@
     color: $color__blue-90;
   }
 
-  .bx--btn {
+  .bx--btn, .pf-c-button {
     font-family: RedHatText;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -84,7 +84,6 @@
     font-weight: 600;
     min-height: 1.875rem;
     padding: 0 1rem;
-    border-radius: 0;
     text-align: center;
     text-decoration: none;
     transition-duration: .25s;
@@ -93,7 +92,7 @@
     line-height: 1rem;
   }
 
-  button.bx--btn {
+  button.bx--btn, button.pf-c-button {
     display: inline-block;
   }
 
