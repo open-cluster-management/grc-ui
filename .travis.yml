@@ -91,7 +91,6 @@ jobs:
         - echo '"start unit testing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/test/unit
         - echo '"finished unit test"' && echo -en 'travis_fold:end:script.build\\r'
-        - make component/pull
         - echo '"start e2e testing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/test/e2e
         - echo '"finished e2e test"' && echo -en 'travis_fold:end:script.build\\r'
