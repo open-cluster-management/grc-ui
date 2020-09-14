@@ -46,12 +46,22 @@ class PatternFlyTable extends React.Component {
     searchPlaceholder: 'table.search.placeholder'
   }
   static getDerivedStateFromProps(props, state) {
-    const { sortBy } = state
-    const sortedRows = props.rows.sort((a, b) => (a[sortBy.index] < b[sortBy.index] ? -1 : a[sortBy.index] > b[sortBy.index] ? 1 : 0))
+    const { searchValue, sortBy } = state
+    const { rows, searchable } = props
+    const rowsFiltered = !searchable || searchValue === ''
+      ? rows
+      : rows.filter(row => {
+        return row.some(item => {
+          if(typeof item === 'string'){
+            return item.toLowerCase().includes(searchValue.toLowerCase())
+          }
+        })
+      })
+    const sortedRows = rowsFiltered.sort((a, b) => (a[sortBy.index] < b[sortBy.index] ? -1 : a[sortBy.index] > b[sortBy.index] ? 1 : 0))
     const sortedRowsByDirection = sortBy.direction === SortByDirection.asc ? sortedRows : sortedRows.reverse()
     return {
       rows: sortedRowsByDirection.slice(state.startIdx, state.endIdx),
-      itemCount: props.rows.length,
+      itemCount: rowsFiltered.length,
     }
   }
   handleSort = (_event, index, direction) => {
@@ -82,19 +92,6 @@ class PatternFlyTable extends React.Component {
       searchValue: value
     })
   }
-  filterRows = (rows, searchValue) => {
-    if (searchValue === '' ) {
-      return rows
-    } else {
-      return rows.filter(row => {
-        return row.some(item => {
-          if(typeof item === 'string'){
-            return item.toLowerCase().includes(searchValue.toLowerCase())
-          }
-        })
-      })
-    }
-  }
   render() {
     const { locale } = this.context
     const { sortBy, rows=[], itemCount, searchValue } = this.state
@@ -110,7 +107,7 @@ class PatternFlyTable extends React.Component {
         />}
         <div className={classes}>
           <Table aria-label='Sortable Table' sortBy={sortBy} onSort={this.handleSort} cells={columns}
-            rows={this.filterRows(rows, searchValue)}>
+            rows={rows}>
             <TableHeader className='pattern-fly-table-header' />
             <TableBody className='pattern-fly-table-body' />
           </Table>
