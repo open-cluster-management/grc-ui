@@ -17,10 +17,10 @@ import { PolicyViolationHistory } from '../../lib/client/queries'
 import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
+import PolicyViolationHistoryView from '../components/common/PolicyViolationHistoryView'
 
 resources(() => {
-  //TODO change scss
-  // require('../../scss/policy-template-details.scss')
+  require('../../scss/policy-violation-history.scss')
 })
 
 class PolicyTemplateDetails extends React.Component {
@@ -42,7 +42,7 @@ class PolicyTemplateDetails extends React.Component {
     const { location } = this.props,
           { locale } = this.context,
           urlSegments = location.pathname.split('/')
-    const { match: { params: { policyName, hubNamespace, cluster }} } = this.props
+    const { match: { params: { policyName, hubNamespace }} } = this.props
     breadcrumbItems.push({
       label: msgs.get('tabs.hcmcompliance', locale),
       noLocale: true,
@@ -54,16 +54,17 @@ class PolicyTemplateDetails extends React.Component {
       url: `${urlSegments.slice(0, 3).join('/')}/all/${hubNamespace}/${policyName}`
     },
     {
-      label: cluster,
+      label: msgs.get('table.header.status', locale),
       noLocale: true,
-      url: `${urlSegments.join('/')}`
+      url: `${urlSegments.slice(0, 3).join('/')}/all/${hubNamespace}/${policyName}/status`
     })
     return breadcrumbItems
   }
 
   componentDidMount() {
-    const { updateSecondaryHeader: localUpdateSecondaryHeader, match: { params: { name }} } = this.props
-    localUpdateSecondaryHeader(name, null, this.getBreadcrumb())
+    const { locale } = this.context
+    const { updateSecondaryHeader: localUpdateSecondaryHeader } = this.props
+    localUpdateSecondaryHeader(msgs.get('panel.header.violation.history', locale), null, this.getBreadcrumb())
   }
 
   render() {
@@ -94,9 +95,13 @@ class PolicyTemplateDetails extends React.Component {
           }
           const { items } = data
           if (items) {
-            console.log(items)
             return (
               <Page>
+                <PolicyViolationHistoryView
+                  history={items}
+                  template={template}
+                  cluster={cluster}
+                />
               </Page>
             )
           } else {

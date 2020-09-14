@@ -1,0 +1,21 @@
+/* Copyright (c) 2020 Red Hat, Inc. */
+
+@import 'variables';
+
+.page-content-container {
+  .policy-violation-history-view {
+    .table {
+      .pattern-fly-table {
+        margin-top: 1.5rem;
+      }
+
+      .pf-c-title.pf-m-md {
+        font-family: RedHatText;
+        font-size: var(--pf-global--FontSize--md);
+        font-weight: var(--pf-global--FontWeight--bold);
+        background-color: $acm-background-color;
+      }
+    }
+  }
+}
+

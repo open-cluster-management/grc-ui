@@ -62,7 +62,7 @@ const CREATION_HEADER_PROPS = {
 
 const GrcRouter = ({ match }) =>
   <Switch>
-    <Route path={`${match.url}/all/:hubNamespace/:policyName/template/:cluster/:apiGroup/:version/:kind/:template/history`}
+    <Route path={`${match.url}/all/:hubNamespace/:policyName/status/:cluster/templates/:template/history`}
       render={() => <PolicyViolationHistory secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <ClusterPolicy secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/all/:policyNamespace/:policyName/template/:clusterName/:apiGroup/:version/:kind/:name`}
