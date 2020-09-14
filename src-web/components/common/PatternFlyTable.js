@@ -20,7 +20,6 @@ import {
   SortByDirection
 } from '@patternfly/react-table'
 import { SearchIcon } from '@patternfly/react-icons'
-import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 
 resources(() => {
@@ -43,7 +42,7 @@ class PatternFlyTable extends React.Component {
   }
   static defaultProps = {
     searchable: true,
-    searchPlaceholder: 'table.search.placeholder'
+    searchPlaceholder: 'Find'
   }
   static getDerivedStateFromProps(props, state) {
     const { searchValue, sortBy } = state
@@ -52,7 +51,7 @@ class PatternFlyTable extends React.Component {
       ? rows
       : rows.filter(row => {
         return row.some(item => {
-          if(typeof item === 'string'){
+          if (typeof item === 'string') {
             return item.toLowerCase().includes(searchValue.toLowerCase())
           }
         })
@@ -93,14 +92,13 @@ class PatternFlyTable extends React.Component {
     })
   }
   render() {
-    const { locale } = this.context
-    const { sortBy, rows=[], itemCount, searchValue } = this.state
+    const { sortBy, rows = [], itemCount, searchValue } = this.state
     const { columns, className, noResultMsg, searchable, searchPlaceholder } = this.props
     const classes = classNames('pattern-fly-table', className)
     return (
       <div className='pattern-fly-table-group'>
         {searchable && <SearchInput
-          placeholder={msgs.get(searchPlaceholder, locale)}
+          placeholder={searchPlaceholder}
           value={searchValue}
           onChange={this.handleSearch}
           onClear={() => this.handleSearch('')}
@@ -130,8 +128,8 @@ class PatternFlyTable extends React.Component {
             perPageOptions={[
               { title: '5', value: 5 },
               { title: '10', value: 10 },
-              { title: '20', value: 20},
-              { title: '50', value: 50},
+              { title: '20', value: 20 },
+              { title: '50', value: 50 },
             ]}
           />
         </div>
