@@ -273,39 +273,65 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 className="module-toggle-tab-switch"
               >
                 <div
-                  className="bx--content-switcher"
-                  onChange={[Function]}
+                  className="pf-c-toggle-group"
+                  role="group"
                 >
-                  <a
-                    className="bx--content-switcher-btn bx--content-switcher--selected"
-                    href=""
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
+                  <div
+                    className="pf-c-toggle-group__item"
                   >
-                    <span>
-                      Policies
-                    </span>
-                  </a>
-                  <a
-                    className="bx--content-switcher-btn"
-                    href=""
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
+                    <button
+                      aria-pressed={true}
+                      className="pf-c-toggle-group__button pf-m-light pf-m-selected"
+                      id="policies-0"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="pf-c-toggle-group__text"
+                      >
+                        Policies
+                      </span>
+                    </button>
+                  </div>
+                  <div
+                    className="pf-c-divider pf-m-vertical"
+                    role="separator"
+                  />
+                  <div
+                    className="pf-c-toggle-group__item"
                   >
-                    <span>
-                      Cluster violations
-                    </span>
-                  </a>
-                  <a
-                    className="bx--content-switcher-btn"
-                    href=""
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
+                    <button
+                      aria-pressed={false}
+                      className="pf-c-toggle-group__button pf-m-light"
+                      id="cluster-violations-1"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="pf-c-toggle-group__text"
+                      >
+                        Cluster violations
+                      </span>
+                    </button>
+                  </div>
+                  <div
+                    className="pf-c-divider pf-m-vertical"
+                    role="separator"
+                  />
+                  <div
+                    className="pf-c-toggle-group__item"
                   >
-                    <span>
-                      Applications
-                    </span>
-                  </a>
+                    <button
+                      aria-pressed={false}
+                      className="pf-c-toggle-group__button pf-m-light"
+                      id="applications-2"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="pf-c-toggle-group__text"
+                      >
+                        Applications
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

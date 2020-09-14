@@ -118,11 +118,15 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
     className="secondary-header-links"
   >
     <button
-      className="bx--btn bx--btn--primary"
+      aria-disabled={false}
+      aria-label={null}
+      className="pf-c-button pf-m-primary"
+      data-ouia-component-id={0}
+      data-ouia-component-type="PF4/Button"
+      data-ouia-safe={true}
       disabled={false}
       id="create-policy"
       onClick={[Function]}
-      tabIndex={0}
       type="button"
     >
       Create policy
@@ -231,11 +235,15 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
     className="secondary-header-links"
   >
     <button
-      className="bx--btn bx--btn--primary"
+      aria-disabled={false}
+      aria-label={null}
+      className="pf-c-button pf-m-primary"
+      data-ouia-component-id={1}
+      data-ouia-component-type="PF4/Button"
+      data-ouia-safe={true}
       disabled={false}
       id="create-policy"
       onClick={[Function]}
-      tabIndex={0}
       type="button"
     >
       Create policy
@@ -344,11 +352,16 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
     className="secondary-header-links"
   >
     <button
-      className="bx--btn bx--btn--primary bx--btn--disabled"
+      aria-disabled={true}
+      aria-label={null}
+      className="pf-c-button pf-m-primary pf-m-disabled"
+      data-ouia-component-id={2}
+      data-ouia-component-type="PF4/Button"
+      data-ouia-safe={true}
       disabled={true}
       id="create-policy"
       onClick={[Function]}
-      tabIndex={0}
+      tabIndex={null}
       type="button"
     >
       Create policy
@@ -579,18 +592,14 @@ exports[`SecondaryHeader component 5 renderHeader without description 1`] = `
 
 exports[`SecondaryHeader component 5 renderLinks nonclickable as expected 1`] = `
 Array [
-  <ForwardRef
-    disabled={true}
-    iconDescription="Provide icon description if icon is used"
+  <Button
     id="create-policy"
-    kind="primary"
+    isDisabled={true}
     onClick={[Function]}
-    small={false}
-    tabIndex={0}
-    type="button"
+    variant="primary"
   >
     Create policy
-  </ForwardRef>,
+  </Button>,
 ]
 `;
 

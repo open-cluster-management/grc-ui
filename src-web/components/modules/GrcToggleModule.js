@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
-import { ContentSwitcher, Switch } from 'carbon-components-react'
+import { ToggleGroup, ToggleGroupItem } from '@patternfly/react-core'
 import getResourceDefinitions from '../../definitions'
 import { makeGetVisibleTableItemsSelector } from '../../reducers/common'
 import ResourceList from '../common/ResourceList'
@@ -33,7 +33,6 @@ export class GrcToggleModule extends React.Component {
 
   constructor (props) {
     super(props)
-    this.onChange = this.onChange.bind(this)
     this.toggleClick = this.toggleClick.bind(this)
   }
 
@@ -122,32 +121,48 @@ export class GrcToggleModule extends React.Component {
         <div className='module-toggle-tab-switch-makeup'>
         </div>
         <div className='module-toggle-tab-switch'>
-          {displayType==='all' && showApplications && <ContentSwitcher onChange={this.onChange} selectedIndex={grcTabToggleIndex}>
-            <Switch text={toggleText1} onClick={this.toggleClick} />
-            <Switch text={toggleText2} onClick={this.toggleClick} />
-            <Switch text={toggleText3} onClick={this.toggleClick} />
-          </ContentSwitcher>}
-          {displayType==='all' && !showApplications && <ContentSwitcher onChange={this.onChange} selectedIndex={grcTabToggleIndex}>
-            <Switch text={toggleText1} onClick={this.toggleClick} />
-            <Switch text={toggleText2} onClick={this.toggleClick} />
-          </ContentSwitcher>}
+          {displayType==='all' && showApplications && <ToggleGroup variant='light'>
+            <ToggleGroupItem
+              buttonId={`${toggleText1.toLowerCase().replace(' ','-')}-0`} onChange={this.toggleClick}  isSelected={!grcTabToggleIndex}>
+              {toggleText1}
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              buttonId={`${toggleText2.toLowerCase().replace(' ','-')}-1`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>
+              {toggleText2}
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              buttonId={`${toggleText3.toLowerCase().replace(' ','-')}-2`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 2}>
+              {toggleText3}
+            </ToggleGroupItem>
+          </ToggleGroup>}
+          {displayType==='all' && !showApplications && <ToggleGroup variant='light'>
+            <ToggleGroupItem
+              buttonId={`${toggleText1.toLowerCase().replace(' ','-')}-0`} onChange={this.toggleClick} isSelected={!grcTabToggleIndex}>
+              {toggleText1}
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              buttonId={`${toggleText2.toLowerCase().replace(' ','-')}-1`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>
+              {toggleText2}
+            </ToggleGroupItem>
+          </ToggleGroup>}
         </div>
       </div>
     )
   }
 
-  onChange() {
-    //current do nothing, just required by carbon ContentSwitcher otherwise error
-  }
-
-  toggleClick({...props}) {
-    const {history, location} = this.props
-    const paraURL = queryString.parse(location.search)
-    paraURL.index = props.index
-    const paraURLString = queryString.stringify(paraURL)
-    const op = paraURLString && paraURLString.length > 0 ? '?' : ''
-    history.push(`${location.pathname}${op}${paraURLString}`)
-    return `${location.pathname}${op}${paraURLString}`
+  toggleClick(isSelected, event) {
+    // !isSelected is passed to this function, so isSelected shows not selected
+    if (isSelected) {
+      const {history, location} = this.props
+      const paraURL = queryString.parse(location.search)
+      paraURL.index = parseInt(event.currentTarget.id.slice(-1), 10)
+      const paraURLString = queryString.stringify(paraURL)
+      const op = paraURLString && paraURLString.length > 0 ? '?' : ''
+      history.push(`${location.pathname}${op}${paraURLString}`)
+      return `${location.pathname}${op}${paraURLString}`
+    } else {
+      return null
+    }
   }
 }
 

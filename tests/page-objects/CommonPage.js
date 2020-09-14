@@ -15,7 +15,7 @@ module.exports = {
     table: '.bx--data-table-v2',
     tableExpandBtn: '.bx--table-expand-v2__button:nth-of-type(1)',
     expandTable: '.bx--expandable-row-v2:nth-of-type(2)',
-    createPolicyButton: '.bx--btn--primary:nth-of-type(1)',
+    createPolicyButton: '#create-policy',
     cancelCreatePolicyButton: '#cancel-button-portal-id',
     submitCreatePolicyButton: '#create-button-portal-id',
     yamlMonacoEditor: '.monaco-editor',

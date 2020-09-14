@@ -13,7 +13,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { Breadcrumb, Button, Tabs, Tab, TooltipIcon } from 'carbon-components-react'
+import { Breadcrumb, Tabs, Tab, TooltipIcon } from 'carbon-components-react'
+import { Button } from '@patternfly/react-core'
 import resources from '../../lib/shared/resources'
 import { withRouter, Link } from 'react-router-dom'
 import msgs from '../../nls/platform.properties'
@@ -175,11 +176,11 @@ export class SecondaryHeader extends React.Component {
         return <div key={id} id={id} className='portal' />
       }
       return <Button
-        disabled={disableFlag}
+        isDisabled={disableFlag}
         key={id}
         id={id}
         onClick={handleClick}
-        kind={kind}
+        variant={kind}
       >
         {msgs.get(label, locale)}
       </Button>
