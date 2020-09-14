@@ -20,6 +20,11 @@
         margin-right: .75rem;
         dl {
           padding: 1rem;
+            dd {
+              > div {
+                overflow-wrap: anywhere
+              }
+            }
         }
       }
       .yaml {
