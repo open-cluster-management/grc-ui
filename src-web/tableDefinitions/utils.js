@@ -32,5 +32,7 @@ export const transform = (items, def, locale) => {
     }
   })
 
-  return {columns, rows, sortBy: def.sortBy}
+  const sortBy = def.sortBy ? def.sortBy : { index: 0, direction: 'asc' } // default if doesn't exist
+
+  return { columns, rows, sortBy }
 }
