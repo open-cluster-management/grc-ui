@@ -2134,7 +2134,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                   />
                 </svg>
                  
-                Non compliant
+                Not compliant
               </div>
             </td>
             <td
@@ -2226,7 +2226,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                   />
                 </svg>
                  
-                Non compliant
+                Not compliant
               </div>
             </td>
             <td
@@ -2318,7 +2318,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                   />
                 </svg>
                  
-                Non compliant
+                Not compliant
               </div>
             </td>
             <td
