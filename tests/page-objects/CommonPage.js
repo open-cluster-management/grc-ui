@@ -15,7 +15,7 @@ module.exports = {
     table: '.bx--data-table-v2',
     tableExpandBtn: '.bx--table-expand-v2__button:nth-of-type(1)',
     expandTable: '.bx--expandable-row-v2:nth-of-type(2)',
-    createPolicyButton: '.bx--btn--primary:nth-of-type(1)',
+    createPolicyButton: '#create-policy',
     cancelCreatePolicyButton: '#cancel-button-portal-id',
     submitCreatePolicyButton: '#create-button-portal-id',
     yamlMonacoEditor: '.monaco-editor',
@@ -64,11 +64,11 @@ module.exports = {
 
 /*
 * @name - the name of created testing data
-* @nameTarget - DOM target postfix on main page of created testing data
+* @nameTarget - DOM target postfix of created testing data on main page
 * @overflowPosition - overflow icon position on main page
-* @actionName - the name of clicked overflow action
-* @actionPosition - the position on overfrlow popup of clicked action
-* @modalName - DOM name of the modal opened from overfrlow popup
+* @actionName - the name of clicked overflow action on overfrlow popup
+* @actionPosition - the position of clicked action on overfrlow popup
+* @modalName - DOM name of the modal which is opened from overfrlow popup
 * @clickButtonName - DOM name of clicked button on the opened modal
 */
 function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionName, actionPosition, modalName, clickButtonName){

@@ -87,6 +87,32 @@ const data = {
         'reason': 'Resource found but not expected'
       },
       {
+        'compliant': 'Compliant',
+        'object': {
+          'apiVersion': '/v1',
+          'kind': 'events',
+          'metadata': {
+            'name': 'openshift-multus.162c757efd7ebb62',
+            'namespace': 'gatekeeper-system',
+            'selfLink': '/api/v1/namespaces/gatekeeper-system/events/openshift-multus.162c757efd7ebb62'
+          }
+        },
+        'reason': 'Resource found and expected'
+      },
+      {
+        'compliant': 'Pending',
+        'object': {
+          'apiVersion': '/v1',
+          'kind': 'events',
+          'metadata': {
+            'name': 'openshift-multus.162c757efd7ebb62',
+            'namespace': 'gatekeeper-system',
+            'selfLink': '/api/v1/namespaces/gatekeeper-system/events/openshift-multus.162c757efd7ebb62'
+          }
+        },
+        'reason': 'No status'
+      },
+      {
         'compliant': 'NonCompliant',
         'object': {
           'apiVersion': '/v1',

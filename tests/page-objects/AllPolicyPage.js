@@ -29,6 +29,10 @@ module.exports = {
     sidePolicyPanel: 'div.bx--modal-container > div.bx--modal-content',
     sidePolicyPanelClose: 'div.bx--modal-container > div.bx--modal-header > button.bx--modal-close',
     sidePolicyPanelClusterLink: 'div.bx--modal-container > div.bx--modal-content a.bx--link',
+    toggleButtonPolicies: '#policies-0',
+    toggleButtonClusterViolations: '#cluster-violations-1',
+    allTableClusterHeading: '.bx--data-table-v2 > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1) > div:nth-child(1) > span:nth-child(1)',
+    allTablePolicyHeading: '.bx--data-table-v2 > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(2) > div:nth-child(1) > span:nth-child(1)',
     overflowMenu: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
     overflowViewClusters: 'body > ul.bx--overflow-menu-options > li:nth-child(1) > button',
     deleteButton: '.bx--overflow-menu-options__option--danger',
@@ -73,6 +77,7 @@ module.exports = {
     verifyPolicyTable,
     verifySummary,
     verifyTable,
+    verifyToggle
   }]
 }
 function verifySummary(browser, url) {
@@ -148,6 +153,15 @@ function verifyTable(browser, cluster) {
       this.waitForElementNotPresent('div.bx--modal.is-visible')
     }
   })
+}
+// Test content toggle
+function verifyToggle() {
+  this.click('@toggleButtonClusterViolations')
+  this.waitForElementVisible('@allTableClusterHeading')
+  this.expect.element('@allTableClusterHeading').text.to.equal('Cluster name')
+  this.click('@toggleButtonPolicies')
+  this.waitForElementVisible('@allTablePolicyHeading')
+  this.expect.element('@allTablePolicyHeading').text.to.equal('Policy name')
 }
 function verifyPagination() {
   const pagination = '.bx--pagination'
