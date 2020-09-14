@@ -9,6 +9,7 @@ import {
   sortable,
   wrappable,
 } from '@patternfly/react-table'
+import { buildCompliantCell } from './utils'
 import msgs from '../../nls/platform.properties'
 
 export default {
@@ -39,6 +40,7 @@ export default {
       msgKey: 'table.header.compliant',
       resourceKey: 'compliant',
       transforms: [sortable, wrappable],
+      transformFunction: buildCompliantCell,
     },
     {
       msgKey: 'table.header.reason',
