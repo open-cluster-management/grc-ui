@@ -10,6 +10,7 @@
       font-weight: var(--pf-global--FontWeight--bold);
       background-color: $acm-background-color;
     }
+    
     .details {
       display: flex;
       flex-direction: row;
@@ -33,6 +34,17 @@
           .codicon[class*='codicon-'] {
             font-family: codicon;
           }
+        }
+      }
+      @media screen and (max-width: 68rem) {
+        flex-direction: column;
+        .overview {
+          width: 100%;
+          margin-right: 0;
+        }
+        .yaml {
+          width: 100%;
+          margin-left: 0;
         }
       }
     }

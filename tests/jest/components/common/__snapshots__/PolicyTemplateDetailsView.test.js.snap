@@ -191,7 +191,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
       <table
         aria-label="Sortable Table"
         className="pf-c-table pf-m-grid-md"
-        data-ouia-component-id={17}
+        data-ouia-component-id={19}
         data-ouia-component-type="PF4/Table"
         data-ouia-safe={true}
         role="grid"
@@ -537,14 +537,14 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
       </div>
       <div
         className="pf-c-pagination pf-m-bottom"
-        data-ouia-component-id={18}
+        data-ouia-component-id={20}
         data-ouia-component-type="PF4/Pagination"
         data-ouia-safe={true}
         id="pagination-options-menu-bottom-2"
       >
         <div
           className="pf-c-options-menu pf-m-top"
-          data-ouia-component-id={19}
+          data-ouia-component-id={21}
           data-ouia-component-type="PF4/PaginationOptionsMenu"
           data-ouia-safe={true}
         >
@@ -615,7 +615,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
               aria-label="Go to first page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="first"
-              data-ouia-component-id={20}
+              data-ouia-component-id={22}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -652,7 +652,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
               aria-label="Go to previous page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="previous"
-              data-ouia-component-id={21}
+              data-ouia-component-id={23}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -710,7 +710,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
               aria-label="Go to next page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="next"
-              data-ouia-component-id={22}
+              data-ouia-component-id={24}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -747,7 +747,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
               aria-label="Go to last page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="last"
-              data-ouia-component-id={23}
+              data-ouia-component-id={25}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -974,7 +974,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
       <table
         aria-label="Sortable Table"
         className="pf-c-table pf-m-grid-md"
-        data-ouia-component-id={10}
+        data-ouia-component-id={12}
         data-ouia-component-type="PF4/Table"
         data-ouia-safe={true}
         role="grid"
@@ -1320,14 +1320,14 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
       </div>
       <div
         className="pf-c-pagination pf-m-bottom"
-        data-ouia-component-id={11}
+        data-ouia-component-id={13}
         data-ouia-component-type="PF4/Pagination"
         data-ouia-safe={true}
         id="pagination-options-menu-bottom-1"
       >
         <div
           className="pf-c-options-menu pf-m-top"
-          data-ouia-component-id={12}
+          data-ouia-component-id={14}
           data-ouia-component-type="PF4/PaginationOptionsMenu"
           data-ouia-safe={true}
         >
@@ -1398,7 +1398,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
               aria-label="Go to first page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="first"
-              data-ouia-component-id={13}
+              data-ouia-component-id={15}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -1435,7 +1435,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
               aria-label="Go to previous page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="previous"
-              data-ouia-component-id={14}
+              data-ouia-component-id={16}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -1493,7 +1493,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
               aria-label="Go to next page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="next"
-              data-ouia-component-id={15}
+              data-ouia-component-id={17}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -1530,7 +1530,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
               aria-label="Go to last page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="last"
-              data-ouia-component-id={16}
+              data-ouia-component-id={18}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -2113,7 +2113,29 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
               data-label="Compliant"
               onMouseEnter={[Function]}
             >
-              NonCompliant
+              <div>
+                <svg
+                  aria-hidden={true}
+                  aria-labelledby={null}
+                  fill="#c9190b"
+                  height="1em"
+                  role="img"
+                  style={
+                    Object {
+                      "verticalAlign": "-0.125em",
+                    }
+                  }
+                  viewBox="0 0 512 512"
+                  width="1em"
+                >
+                  <path
+                    d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    transform=""
+                  />
+                </svg>
+                 
+                Not compliant
+              </div>
             </td>
             <td
               className=""
@@ -2183,7 +2205,29 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
               data-label="Compliant"
               onMouseEnter={[Function]}
             >
-              NonCompliant
+              <div>
+                <svg
+                  aria-hidden={true}
+                  aria-labelledby={null}
+                  fill="#c9190b"
+                  height="1em"
+                  role="img"
+                  style={
+                    Object {
+                      "verticalAlign": "-0.125em",
+                    }
+                  }
+                  viewBox="0 0 512 512"
+                  width="1em"
+                >
+                  <path
+                    d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    transform=""
+                  />
+                </svg>
+                 
+                Not compliant
+              </div>
             </td>
             <td
               className=""
@@ -2253,7 +2297,29 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
               data-label="Compliant"
               onMouseEnter={[Function]}
             >
-              NonCompliant
+              <div>
+                <svg
+                  aria-hidden={true}
+                  aria-labelledby={null}
+                  fill="#c9190b"
+                  height="1em"
+                  role="img"
+                  style={
+                    Object {
+                      "verticalAlign": "-0.125em",
+                    }
+                  }
+                  viewBox="0 0 512 512"
+                  width="1em"
+                >
+                  <path
+                    d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    transform=""
+                  />
+                </svg>
+                 
+                Not compliant
+              </div>
             </td>
             <td
               className=""
@@ -2277,18 +2343,202 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
               </a>
             </td>
           </tr>
+          <tr
+            className=""
+            data-ouia-component-id={4}
+            data-ouia-component-type="PF4/TableRow"
+            data-ouia-safe={true}
+            hidden={false}
+            onMouseDown={[Function]}
+          >
+            <td
+              className="pf-m-break-word"
+              data-key={0}
+              data-label="Name"
+              onMouseEnter={[Function]}
+            >
+              openshift-multus.162c757efd7ebb62
+            </td>
+            <td
+              className=""
+              data-key={1}
+              data-label="Namespace"
+              onMouseEnter={[Function]}
+            >
+              gatekeeper-system
+            </td>
+            <td
+              className=""
+              data-key={2}
+              data-label="Kind"
+              onMouseEnter={[Function]}
+            >
+              events
+            </td>
+            <td
+              className="pf-m-break-word"
+              data-key={3}
+              data-label="API groups"
+              onMouseEnter={[Function]}
+            >
+              /v1
+            </td>
+            <td
+              className=""
+              data-key={4}
+              data-label="Compliant"
+              onMouseEnter={[Function]}
+            >
+              <div>
+                <svg
+                  aria-hidden={true}
+                  aria-labelledby={null}
+                  fill="#467f40"
+                  height="1em"
+                  role="img"
+                  style={
+                    Object {
+                      "verticalAlign": "-0.125em",
+                    }
+                  }
+                  viewBox="0 0 512 512"
+                  width="1em"
+                >
+                  <path
+                    d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
+                    transform=""
+                  />
+                </svg>
+                 
+                Compliant
+              </div>
+            </td>
+            <td
+              className=""
+              data-key={5}
+              data-label="Reason"
+              onMouseEnter={[Function]}
+            >
+              Resource found and expected
+            </td>
+            <td
+              className=""
+              data-key={6}
+              onMouseEnter={[Function]}
+            >
+              <a
+                href="/multicloud/details/calamari/api/v1/namespaces/gatekeeper-system/events/openshift-multus.162c757efd7ebb62"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                View yaml
+              </a>
+            </td>
+          </tr>
+          <tr
+            className=""
+            data-ouia-component-id={5}
+            data-ouia-component-type="PF4/TableRow"
+            data-ouia-safe={true}
+            hidden={false}
+            onMouseDown={[Function]}
+          >
+            <td
+              className="pf-m-break-word"
+              data-key={0}
+              data-label="Name"
+              onMouseEnter={[Function]}
+            >
+              openshift-multus.162c757efd7ebb62
+            </td>
+            <td
+              className=""
+              data-key={1}
+              data-label="Namespace"
+              onMouseEnter={[Function]}
+            >
+              gatekeeper-system
+            </td>
+            <td
+              className=""
+              data-key={2}
+              data-label="Kind"
+              onMouseEnter={[Function]}
+            >
+              events
+            </td>
+            <td
+              className="pf-m-break-word"
+              data-key={3}
+              data-label="API groups"
+              onMouseEnter={[Function]}
+            >
+              /v1
+            </td>
+            <td
+              className=""
+              data-key={4}
+              data-label="Compliant"
+              onMouseEnter={[Function]}
+            >
+              <div>
+                <svg
+                  aria-hidden={true}
+                  aria-labelledby={null}
+                  fill="#f0ab00"
+                  height="1em"
+                  role="img"
+                  style={
+                    Object {
+                      "verticalAlign": "-0.125em",
+                    }
+                  }
+                  viewBox="0 0 576 512"
+                  width="1em"
+                >
+                  <path
+                    d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    transform=""
+                  />
+                </svg>
+                 
+                No status
+              </div>
+            </td>
+            <td
+              className=""
+              data-key={5}
+              data-label="Reason"
+              onMouseEnter={[Function]}
+            >
+              No status
+            </td>
+            <td
+              className=""
+              data-key={6}
+              onMouseEnter={[Function]}
+            >
+              <a
+                href="/multicloud/details/calamari/api/v1/namespaces/gatekeeper-system/events/openshift-multus.162c757efd7ebb62"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                View yaml
+              </a>
+            </td>
+          </tr>
         </tbody>
       </table>
       <div
         className="pf-c-pagination pf-m-bottom"
-        data-ouia-component-id={4}
+        data-ouia-component-id={6}
         data-ouia-component-type="PF4/Pagination"
         data-ouia-safe={true}
         id="pagination-options-menu-bottom-0"
       >
         <div
           className="pf-c-options-menu pf-m-top"
-          data-ouia-component-id={5}
+          data-ouia-component-id={7}
           data-ouia-component-type="PF4/PaginationOptionsMenu"
           data-ouia-safe={true}
         >
@@ -2301,12 +2551,12 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
               <b>
                 1
                  - 
-                3
+                5
               </b>
                
               of 
               <b>
-                3
+                5
               </b>
                
               
@@ -2359,7 +2609,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
               aria-label="Go to first page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="first"
-              data-ouia-component-id={6}
+              data-ouia-component-id={8}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -2396,7 +2646,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
               aria-label="Go to previous page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="previous"
-              data-ouia-component-id={7}
+              data-ouia-component-id={9}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -2454,7 +2704,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
               aria-label="Go to next page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="next"
-              data-ouia-component-id={8}
+              data-ouia-component-id={10}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
@@ -2491,7 +2741,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
               aria-label="Go to last page"
               className="pf-c-button pf-m-plain pf-m-disabled"
               data-action="last"
-              data-ouia-component-id={9}
+              data-ouia-component-id={11}
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={true}
