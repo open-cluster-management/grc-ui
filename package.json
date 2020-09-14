@@ -56,7 +56,6 @@
     "@patternfly/react-table": "^4.16.7",
     "@patternfly/react-tokens": "2.8.13",
     "apollo-client": "^2.6.10",
-    "apollo-link-state": "^0.4.2",
     "assets-webpack-plugin": "^5.1.1",
     "async": "^3.2.0",
     "autoprefixer": "^9.8.6",
