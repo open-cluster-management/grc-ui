@@ -48,12 +48,11 @@ class PatternFlyTable extends React.Component {
   static getDerivedStateFromProps(props, state) {
     const { sortBy } = state
     const sortedRows = props.rows.sort((a, b) => (a[sortBy.index] < b[sortBy.index] ? -1 : a[sortBy.index] > b[sortBy.index] ? 1 : 0))
-    const sortedRowsByDrection = sortBy.direction === SortByDirection.asc ? sortedRows : sortedRows.reverse()
+    const sortedRowsByDirection = sortBy.direction === SortByDirection.asc ? sortedRows : sortedRows.reverse()
     return {
-      rows: sortedRowsByDrection.slice(state.startIdx, state.endIdx),
+      rows: sortedRowsByDirection.slice(state.startIdx, state.endIdx),
       itemCount: props.rows.length,
     }
-
   }
   handleSort = (_event, index, direction) => {
     this.setState({
@@ -83,6 +82,19 @@ class PatternFlyTable extends React.Component {
       searchValue: value
     })
   }
+  filterRows = (rows, searchValue) => {
+    if (searchValue === '' ) {
+      return rows
+    } else {
+      return rows.filter(row => {
+        return row.some(item => {
+          if(typeof item === 'string'){
+            return item.toLowerCase().includes(searchValue.toLowerCase())
+          }
+        })
+      })
+    }
+  }
   render() {
     const { locale } = this.context
     const { sortBy, rows=[], itemCount, searchValue } = this.state
@@ -97,7 +109,8 @@ class PatternFlyTable extends React.Component {
           onClear={() => this.handleSearch('')}
         />}
         <div className={classes}>
-          <Table aria-label='Sortable Table' sortBy={sortBy} onSort={this.handleSort} cells={columns} rows={rows}>
+          <Table aria-label='Sortable Table' sortBy={sortBy} onSort={this.handleSort} cells={columns}
+            rows={this.filterRows(rows, searchValue)}>
             <TableHeader className='pattern-fly-table-header' />
             <TableBody className='pattern-fly-table-body' />
           </Table>
