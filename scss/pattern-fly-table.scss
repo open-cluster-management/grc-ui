@@ -39,6 +39,11 @@
       height: 100%;
       text-overflow: ellipsis;
     }
+
+    .pf-c-empty-state__content {
+      padding-top: 1rem;
+    }
+
     &-empty-state {
       h2 {
         font-family: RedHatText;
