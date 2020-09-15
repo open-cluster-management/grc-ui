@@ -14,6 +14,7 @@
 @import '../node_modules/@patternfly/react-core/dist/styles/base.css';
 @import '../node_modules/@patternfly/patternfly/components/ToggleGroup/toggle-group.css';
 @import '../node_modules/@patternfly/patternfly/components/SearchInput/search-input.css';
+@import '../node_modules/@patternfly/patternfly/components/Pagination/pagination.css';
 @import 'header-carbon-v9-migration';
 @import 'variables';
 @import '_red-hat-font';
@@ -200,6 +201,10 @@ body {
   }
 
   .pattern-fly-table {
+    background-color: white;
+  }
+
+  .pf-c-options-menu__menu {
     background-color: white;
   }
 }

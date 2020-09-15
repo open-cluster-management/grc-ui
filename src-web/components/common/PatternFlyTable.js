@@ -41,12 +41,13 @@ class PatternFlyTable extends React.Component {
     }
   }
   static defaultProps = {
+    pagination: true,
     searchable: true,
     searchPlaceholder: 'Find'
   }
   static getDerivedStateFromProps(props, state) {
     const { searchValue, sortBy } = state
-    const { rows, searchable } = props
+    const { pagination, rows, searchable } = props
     const rowsFiltered = !searchable || searchValue === ''
       ? rows
       : rows.filter(row => {
@@ -59,7 +60,7 @@ class PatternFlyTable extends React.Component {
     const sortedRows = rowsFiltered.sort((a, b) => (a[sortBy.index] < b[sortBy.index] ? -1 : a[sortBy.index] > b[sortBy.index] ? 1 : 0))
     const sortedRowsByDirection = sortBy.direction === SortByDirection.asc ? sortedRows : sortedRows.reverse()
     return {
-      rows: sortedRowsByDirection.slice(state.startIdx, state.endIdx),
+      rows: sortedRowsByDirection.slice(state.startIdx, pagination ? state.endIdx : rowsFiltered.length-1),
       itemCount: rowsFiltered.length,
     }
   }
@@ -93,7 +94,7 @@ class PatternFlyTable extends React.Component {
   }
   render() {
     const { sortBy, rows = [], itemCount, searchValue } = this.state
-    const { columns, className, noResultMsg, searchable, searchPlaceholder } = this.props
+    const { columns, className, noResultMsg, pagination, searchable, searchPlaceholder } = this.props
     const classes = classNames('pattern-fly-table', className)
     return (
       <div className='pattern-fly-table-group'>
@@ -117,7 +118,7 @@ class PatternFlyTable extends React.Component {
               </Title>
             </EmptyState>
           )}
-          <Pagination
+          {pagination && <Pagination
             itemCount={itemCount}
             widgetId='pagination-options-menu-bottom'
             perPage={this.state.perPage}
@@ -131,7 +132,7 @@ class PatternFlyTable extends React.Component {
               { title: '20', value: 20 },
               { title: '50', value: 50 },
             ]}
-          />
+          />}
         </div>
       </div>
     )
@@ -143,6 +144,7 @@ PatternFlyTable.propTypes = {
   className: PropTypes.string,
   columns: PropTypes.array,
   noResultMsg: PropTypes.string,
+  pagination: PropTypes.bool,
   rows: PropTypes.array,
   searchPlaceholder: PropTypes.string,
   searchable: PropTypes.bool,
