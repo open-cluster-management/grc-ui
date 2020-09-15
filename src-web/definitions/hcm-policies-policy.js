@@ -104,10 +104,10 @@ export function getPolicyCompliantStatus(item, locale) {
   const statusArray = _.get(item, 'clusterCompliant').split('/')
   return (
     <div className='violationCell'>
-      { parseInt(statusArray[0]) > 0 ?
+      { parseInt(statusArray[0], 10) > 0 ?
         <RedExclamationCircleIcon /> :
         <GreenCheckCircleIcon /> }
-      { parseInt(statusArray[2]) > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
+      { parseInt(statusArray[2], 10) > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
       {`${statusArray[0]}/${statusArray[1]}`}
     </div>
   )

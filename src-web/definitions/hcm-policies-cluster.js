@@ -14,6 +14,7 @@ import React from 'react'
 import _ from 'lodash'
 import TruncateText from '../components/common/TruncateText'
 import config from '../../lib/shared/config'
+import msgs from '../../nls/platform.properties'
 import {
   GreenCheckCircleIcon,
   RedExclamationCircleIcon,
@@ -70,14 +71,15 @@ export default {
   },
 }
 
-export function getClusterCompliantStatus(item) {
+export function getClusterCompliantStatus(item, locale) {
   const statusArray = _.get(item, 'violation').split('/')
+  const tooltip = msgs.get('table.tooltip.nostatus', locale)
   return (
     <div className='violationCell'>
-      { parseInt(statusArray[0]) > 0 ?
+      { parseInt(statusArray[0], 10) > 0 ?
         <RedExclamationCircleIcon /> :
         <GreenCheckCircleIcon /> }
-      { parseInt(statusArray[2]) > 0 ? <YellowExclamationTriangleIcon /> : null }
+      { parseInt(statusArray[2], 10) > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
       {`${statusArray[0]}/${statusArray[1]}`}
     </div>
   )
