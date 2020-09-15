@@ -41,7 +41,7 @@ export default {
     {
       msgKey: 'table.header.violation',
       resourceKey: 'violation',
-      transformFunction: getCompliantStatus,
+      transformFunction: getClusterCompliantStatus,
     },
     {
       msgKey: 'table.header.violated',
@@ -70,7 +70,7 @@ export default {
   },
 }
 
-export function getCompliantStatus(item) {
+export function getClusterCompliantStatus(item) {
   const statusArray = _.get(item, 'violation').split('/')
   return (
     <div className='violationCell'>

@@ -49,7 +49,7 @@ export default {
     {
       msgKey: 'table.header.cluster.violation',
       resourceKey: 'clusterCompliant',
-      transformFunction: getCompliantStatus
+      transformFunction: getPolicyCompliantStatus
     },
     {
       msgKey: 'table.header.standards',
@@ -90,7 +90,7 @@ export default {
   },
 }
 
-export function getCompliantStatus(item) {
+export function getPolicyCompliantStatus(item) {
   const clusterCompliant =  _.get(item, 'clusterCompliant', '-')
   if (clusterCompliant === '-') {
     return (

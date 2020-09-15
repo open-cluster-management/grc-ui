@@ -75,6 +75,15 @@
       font-size: 0.9375rem;
       font-weight: 700;
       padding-bottom: 1.5rem;
+      display: flex;
+      .violationCell {
+        > svg {
+          margin-right: 0.25rem;
+        }
+      }
+      .violationType {
+        margin-left: 0.25rem;
+      }
     }
   
     .bx--modal-container {
