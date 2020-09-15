@@ -14,6 +14,7 @@ import _ from 'lodash'
 import { Link } from 'react-router-dom'
 import config from '../../lib/shared/config'
 import {getCategories, getControls, getStandards} from './hcm-compliances'
+import msgs from '../../nls/platform.properties'
 import {
   GreenCheckCircleIcon,
   RedExclamationCircleIcon,
@@ -90,12 +91,13 @@ export default {
   },
 }
 
-export function getPolicyCompliantStatus(item) {
+export function getPolicyCompliantStatus(item, locale) {
   const clusterCompliant =  _.get(item, 'clusterCompliant', '-')
+  const tooltip = msgs.get('table.tooltip.nostatus', locale)
   if (clusterCompliant === '-') {
     return (
       <div className='violationCell'>
-        <YellowExclamationTriangleIcon  />{clusterCompliant}
+        <YellowExclamationTriangleIcon tooltip={tooltip} />{clusterCompliant}
       </div>
     )
   }
@@ -105,7 +107,7 @@ export function getPolicyCompliantStatus(item) {
       { parseInt(statusArray[0]) > 0 ?
         <RedExclamationCircleIcon /> :
         <GreenCheckCircleIcon /> }
-      { parseInt(statusArray[2]) > 0 && <YellowExclamationTriangleIcon /> }
+      { parseInt(statusArray[2]) > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
       {`${statusArray[0]}/${statusArray[1]}`}
     </div>
   )

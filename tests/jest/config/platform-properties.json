@@ -420,6 +420,7 @@
   "table.header.object.template.status": "Status",
   "table.search.no.results": "No results found",
   "table.title.no.violation": "No Violations",
+  "table.tooltip.nostatus": "Policy status is unavailable for some clusters",
   "time.days.ago": "{0} days ago",
   "time.hours.ago": "{0} hours ago",
   "time.minutes.ago": "{0} minutes ago",
