@@ -3,14 +3,25 @@
 .pattern-fly-table-group {
 
   .pf-c-search-input {
+    background-color: white;
     margin: 8px 0 8px 0;
     width: 248px;
+
+    .pf-c-button {
+      padding: 0;
+    }
   }
 
   .pattern-fly-table {
+    background-color: white;
 
-    .pf-c-options-menu__menu-item {
-      font-size: var(--pf-global--FontSize--sm);
+    .pf-c-options-menu__menu {
+      background-color: white;
+      padding: 2px;
+
+      .pf-c-options-menu__menu-item {
+        font-size: var(--pf-global--FontSize--sm);
+      }
     }
     .pf-c-form-control {
       padding: 5px 8px;
