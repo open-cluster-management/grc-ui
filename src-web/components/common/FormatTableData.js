@@ -11,7 +11,8 @@
 import _ from 'lodash'
 
 const formatPolicyClusterView = (clusterName, policiesUnderCluster) => {
-  let validNum = 0
+  let compliantNum = 0
+  let noncompliantNum = 0
   let nameSpace = '-'
   let consoleURL = '-'
   const nonCompliant = []
@@ -31,7 +32,10 @@ const formatPolicyClusterView = (clusterName, policiesUnderCluster) => {
         const compliantTemp = _.get(status, 'compliant', '')
         if (clusterNameTemp.trim().toLowerCase() === clusterName.trim().toLowerCase()) {
           if (compliantTemp.trim().toLowerCase() === 'compliant') {
-            validNum += 1
+            compliantNum += 1
+          } else if (compliantTemp.trim().toLowerCase() === 'noncompliant') {
+            noncompliantNum += 1
+            nonCompliant.push(_.get(policy, 'metadata.name', '-'))
           } else {
             nonCompliant.push(_.get(policy, 'metadata.name', '-'))
           }
@@ -43,7 +47,7 @@ const formatPolicyClusterView = (clusterName, policiesUnderCluster) => {
   return {
     cluster: clusterName,
     namespace: nameSpace,
-    violation: `${policiesUnderCluster.length-validNum}/${policiesUnderCluster.length}`,
+    violation: `${noncompliantNum}/${policiesUnderCluster.length}/${policiesUnderCluster.length-compliantNum-noncompliantNum}`,
     nonCompliant: nonCompliant,
     consoleURL: consoleURL,
   }

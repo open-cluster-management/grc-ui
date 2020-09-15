@@ -11,6 +11,15 @@
 'use strict'
 
 import React from 'react'
+import {
+  ExclamationCircleIcon,
+  ExclamationTriangleIcon,
+  CheckCircleIcon,
+} from '@patternfly/react-icons'
+import dangerColor from '@patternfly/react-tokens/dist/js/global_danger_color_100'
+import okColor from '@patternfly/react-tokens/dist/js/global_palette_green_500'
+import warningColor from '@patternfly/react-tokens/dist/js/global_warning_color_100'
+import _ from 'lodash'
 import TruncateText from '../components/common/TruncateText'
 import config from '../../lib/shared/config'
 
@@ -35,6 +44,7 @@ export default {
     {
       msgKey: 'table.header.violation',
       resourceKey: 'violation',
+      transformFunction: getCompliantStatus,
     },
     {
       msgKey: 'table.header.violated',
@@ -61,6 +71,19 @@ export default {
       }
     ]
   },
+}
+
+export function getCompliantStatus(item) {
+  const statusArray = _.get(item, 'violation').split('/')
+  return (
+    <div className='violationCell'>
+      { parseInt(statusArray[0]) > 0 ?
+        <ExclamationCircleIcon color={dangerColor.value} /> :
+        <CheckCircleIcon color={okColor.value} /> }
+      { parseInt(statusArray[2]) > 0 ? <ExclamationTriangleIcon color={warningColor.value} /> : null }
+      {`${statusArray[0]}/${statusArray[1]}`}
+    </div>
+  )
 }
 
 export function getClusterViolationLabels(item) {

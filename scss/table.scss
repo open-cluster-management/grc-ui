@@ -32,6 +32,13 @@
       padding: .825rem;
       padding-left: 0;
     }
+    
+  }
+
+  .violationCell {
+    > svg {
+      margin-right: 0.25rem;
+    }
   }
 
   .row-not-expanded .bx--table-expand-v2__button {
