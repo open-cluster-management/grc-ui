@@ -61,6 +61,8 @@ class PatternFlyTable extends React.Component {
               return item.replace(/<[^>]+>/g, '').toLowerCase().includes(searchValue.toLowerCase())
             }
             return ReactDOMServer.renderToString(item.title).replace(/<[^>]+>/g, '').toLowerCase().includes(searchValue.toLowerCase())
+          } else {
+            return false
           }
         })
       })
