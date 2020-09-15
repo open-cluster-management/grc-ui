@@ -10,16 +10,13 @@ import {
   DescriptionListDescription,
   Title,
 } from '@patternfly/react-core'
-import {
-  breakWord,
-  sortable,
-  wrappable,
-} from '@patternfly/react-table'
 import jsYaml from 'js-yaml'
 import lodash from 'lodash'
 import YamlEditor from './YamlEditor'
 import PatternFlyTable from './PatternFlyTable'
 import { LocaleContext } from './LocaleContext'
+import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
+import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
 
 class PolicyTemplateDetailsView extends React.Component {
@@ -55,35 +52,17 @@ class PolicyTemplateDetailsView extends React.Component {
   render() {
     const { template } = this.props
     const { locale } = this.context
-    const relatedObjects = lodash.get(template, 'status.relatedObjects', [])
-    const rows = relatedObjects.map(o => {
-      return [
-        lodash.get(o, 'object.metadata.name', '-'),
-        lodash.get(o, 'object.metadata.namespace', '-'),
-        lodash.get(o, 'object.kind', '-'),
-        lodash.get(o, 'object.apiVersion', '-'),
-        lodash.get(o, 'compliant', '-'),
-        lodash.get(o, 'reason', '-'),
-        { title: <a target='_blank' rel='noopener noreferrer'
-          href={`/multicloud/details/${lodash.get(template, 'metadata.namespace')}${lodash.get(o, 'object.metadata.selfLink')}`}>{msgs.get('table.actions.view.yaml', locale)}</a> }
-      ]
-    })
+    let relatedObjects = lodash.get(template, 'status.relatedObjects', [])
 
-    const tableData = {
-      columns: [
-        { title: msgs.get('table.header.name', locale), transforms: [sortable, wrappable], cellTransforms: [breakWord] },
-        { title: msgs.get('table.header.namespace', locale), transforms: [sortable, wrappable] },
-        { title: msgs.get('table.header.kind', locale), transforms: [sortable, wrappable] },
-        { title: msgs.get('table.header.apiGroups', locale), transforms: [sortable, wrappable], cellTransforms: [breakWord] },
-        { title: msgs.get('table.header.compliant', locale), transforms: [sortable, wrappable] },
-        { title: msgs.get('table.header.reason', locale), transforms: [sortable, wrappable] },
-        { title: '' },
-      ],
-      sortBy: {
-        index: 0,
-        direction: 'asc',
-      }
+    // inject cluster info into relatedObjects
+    if (relatedObjects.length > 0) {
+      relatedObjects = relatedObjects.map(o => {
+        o.cluster = template.metadata.namespace
+        return o
+      })
     }
+    const tableData = transform(relatedObjects, relatedObjectsDef, locale)
+
     return (
       <div className='policy-template-details-view'>
         <div className='details'>
@@ -136,14 +115,13 @@ class PolicyTemplateDetailsView extends React.Component {
         </div>
         <div className='table'>
           <Title className='title' headingLevel="h2">{msgs.get('panel.header.related.resources', locale)}</Title>
-          <PatternFlyTable columns={tableData.columns} rows={rows} sortBy={tableData.sortBy} noResultMsg={msgs.get('table.search.no.results', locale)} />
+          <PatternFlyTable {...tableData} noResultMsg={msgs.get('table.search.no.results', locale)} />
         </div>
       </div>
 
     )
   }
 }
-
 
 PolicyTemplateDetailsView.propTypes = {
   template: PropTypes.object,

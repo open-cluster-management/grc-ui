@@ -7,7 +7,7 @@
 const fs = require('fs')
 const path = require('path')
 const { WebClient } = require('@slack/web-api')
-const { SLACK_TOKEN, /*USER,*/ TRAVIS_BUILD_WEB_URL, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG, TRAVIS_BRANCH } = process.env
+const { SLACK_TOKEN, SLACK_CHANNEL_NAME='#grc-pr-github-status', /*USER,*/ TRAVIS_BUILD_WEB_URL, TRAVIS_PULL_REQUEST, TRAVIS_REPO_SLUG, TRAVIS_BRANCH } = process.env
 
 const web = new WebClient(SLACK_TOKEN)
 
@@ -19,7 +19,7 @@ async function reportFailure() {
   try {
     const screenshotDir = path.join(process.cwd(), 'test-output', 'e2e', 'screenshots')
     // const userId = await mapSlackUserByGitEmail()
-    const userId = 'GUS1VB8P3'
+    const userId = SLACK_CHANNEL_NAME
     const screenshots = recFindByExt(screenshotDir, 'png')
     screenshots.forEach(screenshot => {
       const pathArray = screenshot.split('/')
