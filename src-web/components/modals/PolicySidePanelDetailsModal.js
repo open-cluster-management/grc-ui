@@ -28,6 +28,8 @@ import {getPollInterval} from '../../components/common/RefreshTimeSelect'
 import { filterPolicies } from '../../../lib/client/filter-helper'
 import _uniqueId from 'lodash/uniqueId'
 import { getAge } from '../../../lib/client/resource-helper'
+import { getPolicyCompliantStatus } from '../../definitions/hcm-policies-policy'
+import { getClusterCompliantStatus } from '../../definitions/hcm-policies-cluster'
 
 resources(() => {
   require('../../../scss/side-panel-modal.scss')
@@ -35,19 +37,20 @@ resources(() => {
 
 function getHeader(data, locale) {
   const kind = _.get(data, 'kind', '')
-  let header = '', descr = '', percent = 0, violation, query, queryPara, hubNamespace
+  let header = '', descr = '', percent = 0, violation, query, queryPara, hubNamespace, subHeader,type
   switch (kind) {
   case 'HCMPolicyPolicy':
   default: {
     header = _.get(data, 'raw.metadata.name', '')
     descr = _.get(data, 'raw.metadata.description', '')
-    violation = _.get(data, 'clusterCompliant', '0/0')
     hubNamespace = _.get(data, 'namespace')
+    violation = _.get(data, 'clusterCompliant', '0/0/0')
     const [vioNum, totalNum] = violation.split('/')
     if (!isNaN(vioNum) && !isNaN(totalNum)) {
       percent = +vioNum / +totalNum
     }
-    violation += ' ' + msgs.get('overview.top.informations.clusters', locale)
+    subHeader = getPolicyCompliantStatus({clusterCompliant: data.clusterCompliant})
+    type = msgs.get('overview.top.informations.clusters', locale)
     queryPara = {policy:data.name, hubNamespace:hubNamespace}
     query = AllClustersInPolicy
     break
@@ -55,12 +58,13 @@ function getHeader(data, locale) {
   case 'HCMPolicyCluster': {
     header = _.get(data, 'cluster', '')
     descr = _.get(data, '', '')
-    violation = _.get(data, 'violation', '0/0')
+    violation = _.get(data, 'violation', '0/0/0')
     const [vioNum, totalNum] = violation.split('/')
     if (!isNaN(vioNum) && !isNaN(totalNum)) {
       percent = +vioNum / +totalNum
     }
-    violation += ' ' + msgs.get('overview.top.informations.policies', locale)
+    subHeader = getClusterCompliantStatus({violation})
+    type = msgs.get('overview.top.informations.policies', locale)
     queryPara = {cluster:data.cluster}
     query = AllPoliciesInCluster
     break
@@ -68,14 +72,14 @@ function getHeader(data, locale) {
   case 'HCMPolicyApplication': {
     header = _.get(data, 'name', '')
     descr = _.get(data, '', '')
-    violation = _.get(data, 'violations', '0')
     percent = 1
-    violation += ' ' + msgs.get('overview.top.informations.policies', locale)
+    subHeader = _.get(data, 'violations', '0')
+    type = msgs.get('overview.top.informations.policies', locale)
     queryPara = {violatedPolicies:data.violatedPolicies}
     query = AllPoliciesInApplication
     break
   }}
-  return {header, kind, descr, percent, violation, query, queryPara}
+  return {header, subHeader, type, kind, descr, percent, query, queryPara }
 }
 class PolicySidePanelDetailsModal extends React.PureComponent {
 
@@ -110,7 +114,7 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
 
   render(){
     const { title, data, resourceType, locale, activeFilters } = this.props
-    const { header, kind, descr, percent, violation, query, queryPara } = getHeader(data, locale)
+    const { header, subHeader, type, kind, descr, percent, query, queryPara } = getHeader(data, locale)
     const inapplicable = msgs.get('table.actions.inapplicable', locale)
     const pollInterval = getPollInterval(GRC_SIDE_PANEL_REFRESH_INTERVAL_COOKIE, 'sidePanel')
     const showFilterInfo = this.state.showFilterInfo
@@ -131,7 +135,10 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
               </div>
               <div className={'bx--modal-content-header-main'}>
                 <ProcessBar percent={percent} />
-                <div className={'bx-modal-content-sub-header'}>{`${violation}`}</div>
+                <div className={'bx-modal-content-sub-header'}>
+                  {subHeader}
+                  <div className='violationType'>{type}</div>
+                </div>
               </div>
             </div>
             {showFilterInfo && this.renderFilterWarning(kind, locale)}

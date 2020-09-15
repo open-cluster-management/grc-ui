@@ -10,10 +10,16 @@
 'use strict'
 
 import React from 'react'
+import _ from 'lodash'
 import { Link } from 'react-router-dom'
 import config from '../../lib/shared/config'
 import {getCategories, getControls, getStandards} from './hcm-compliances'
-import _ from 'lodash'
+import msgs from '../../nls/platform.properties'
+import {
+  GreenCheckCircleIcon,
+  RedExclamationCircleIcon,
+  YellowExclamationTriangleIcon,
+} from '../components/common/Icons'
 
 export default {
   defaultSortField: 'metadata.name',
@@ -44,6 +50,7 @@ export default {
     {
       msgKey: 'table.header.cluster.violation',
       resourceKey: 'clusterCompliant',
+      transformFunction: getPolicyCompliantStatus
     },
     {
       msgKey: 'table.header.standards',
@@ -82,6 +89,28 @@ export default {
       }
     ]
   },
+}
+
+export function getPolicyCompliantStatus(item, locale) {
+  const clusterCompliant =  _.get(item, 'clusterCompliant', '-')
+  const tooltip = msgs.get('table.tooltip.nostatus', locale)
+  if (clusterCompliant === '-') {
+    return (
+      <div className='violationCell'>
+        <YellowExclamationTriangleIcon tooltip={tooltip} />{clusterCompliant}
+      </div>
+    )
+  }
+  const statusArray = _.get(item, 'clusterCompliant').split('/')
+  return (
+    <div className='violationCell'>
+      { parseInt(statusArray[0], 10) > 0 ?
+        <RedExclamationCircleIcon /> :
+        <GreenCheckCircleIcon /> }
+      { parseInt(statusArray[2], 10) > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
+      {`${statusArray[0]}/${statusArray[1]}`}
+    </div>
+  )
 }
 
 export function createComplianceLink(item = {}, ...param){
