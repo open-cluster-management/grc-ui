@@ -3,6 +3,7 @@
 
 import classNames from 'classnames'
 import React from 'react'
+import ReactDOMServer from 'react-dom/server'
 import PropTypes from 'prop-types'
 import {
   EmptyState,
@@ -54,6 +55,11 @@ class PatternFlyTable extends React.Component {
         return row.some(item => {
           if (typeof item === 'string') {
             return item.toLowerCase().includes(searchValue.toLowerCase())
+          } else if (typeof item === 'object' && item.title) {
+            if (typeof item === 'string') {
+              return item.replace(/<[^>]+>/g, '').toLowerCase().includes(searchValue.toLowerCase())
+            }
+            return ReactDOMServer.renderToString(item.title).replace(/<[^>]+>/g, '').toLowerCase().includes(searchValue.toLowerCase())
           }
         })
       })
