@@ -2,28 +2,33 @@
 
 'use strict'
 
+import { getAge, buildCompliantCellFromMessage, parseMessage } from './utils'
 import {
   breakWord,
-  sortable,
   wrappable,
 } from '@patternfly/react-table'
 
 export default {
   tableKeys: [
     {
+      msgKey: 'table.header.status',
+      resourceKey: 'status',
+      transforms: [wrappable],
+      cellTransforms: [breakWord],
+      transformFunction: buildCompliantCellFromMessage
+    },
+    {
       msgKey: 'table.header.message',
       resourceKey: 'message',
-      transforms: [sortable, wrappable],
+      transforms: [wrappable],
       cellTransforms: [breakWord],
+      transformFunction: parseMessage
     },
     {
       msgKey: 'table.header.lastreport',
       resourceKey: 'timestamp',
-      transforms: [sortable, wrappable],
+      transforms: [wrappable],
+      transformFunction: getAge,
     },
-  ],
-  sortBy: {
-    index: 1,
-    direction: 'asc',
-  }
+  ]
 }
