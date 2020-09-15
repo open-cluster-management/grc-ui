@@ -52,7 +52,8 @@ class PatternFlyTable extends React.Component {
     const rowsFiltered = !searchable || searchValue === ''
       ? rows
       : rows.filter(row => {
-        return row.some(item => {
+        const cells = row.cells ? row.cells : row
+        return cells.some(item => {
           if (typeof item === 'string') {
             return item.toLowerCase().includes(searchValue.toLowerCase())
           } else if (typeof item === 'object' && item.title) {
