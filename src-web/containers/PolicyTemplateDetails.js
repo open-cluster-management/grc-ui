@@ -5,9 +5,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { NotificationDrawer, NotificationDrawerBody,
-  NotificationDrawerList, NotificationDrawerListItem,
-  NotificationDrawerListItemHeader, Spinner } from '@patternfly/react-core'
+import { Spinner } from '@patternfly/react-core'
 import { updateSecondaryHeader } from '../actions/common'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
@@ -18,6 +16,7 @@ import PolicyTemplateDetailsView from '../components/common/PolicyTemplateDetail
 import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
+import { DangerNotification } from '../components/common/DangerNotification'
 
 resources(() => {
   require('../../scss/policy-template-details.scss')
@@ -77,19 +76,7 @@ class PolicyTemplateDetails extends React.Component {
           if (error) {
             return (
               <Page>
-                <NotificationDrawer>
-                  <NotificationDrawerBody>
-                    <NotificationDrawerList>
-                      <NotificationDrawerListItem variant="danger">
-                        <NotificationDrawerListItemHeader
-                          variant="danger"
-                          title={error.message}
-                          srTitle="Danger notification:"
-                        />
-                      </NotificationDrawerListItem>
-                    </NotificationDrawerList>
-                  </NotificationDrawerBody>
-                </NotificationDrawer>
+                <DangerNotification error={error} />
               </Page>
             )
           }
