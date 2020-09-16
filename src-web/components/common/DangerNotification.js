@@ -1,3 +1,5 @@
+/* Copyright (c) 2020 Red Hat, Inc. */
+
 import React from 'react'
 import { NotificationDrawer, NotificationDrawerBody,
   NotificationDrawerList, NotificationDrawerListItem,
