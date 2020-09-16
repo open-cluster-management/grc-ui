@@ -19,11 +19,6 @@ class PolicyStatusHistoryView extends React.Component {
 
   static contextType = LocaleContext
 
-  setContainerRef = container => {
-    this.containerRef = container
-    this.layoutEditors()
-  }
-
   setEditor = (editor) => {
     this.editor=editor
     this.layoutEditors()

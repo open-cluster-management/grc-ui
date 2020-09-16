@@ -58,11 +58,11 @@ export const buildCompliantCellFromMessage = (item, locale) => {
   const message = lodash.get(item, 'message', '-')
   const compliant = message.split(';')[0]
   if (compliant.toLowerCase() === 'compliant') {
-    return <div><CheckCircleIcon color={okColor.value} /> {msgs.get('table.cell.compliant', locale)}</div>
+    return <div><GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}</div>
   } else if (compliant.toLowerCase() === 'noncompliant') {
-    return <div><ExclamationCircleIcon color={dangerColor.value} /> {msgs.get('table.cell.noncompliant', locale)}</div>
+    return <div><RedExclamationCircleIcon /> {msgs.get('table.cell.noncompliant', locale)}</div>
   } else {
-    return <div><ExclamationTriangleIcon color={warningColor.value} /> {msgs.get('table.cell.nostatus', locale)}</div>
+    return <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
   }
 }
 
