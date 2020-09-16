@@ -26,7 +26,6 @@ printenv
 i=0
 while true; do 
   IDP=`curl -L -k ${SELENIUM_CLUSTER} | grep ${SELENIUM_USER_SELECT}` || true
-  ((i++))
   if [ -z ${IDP// /} ]; then
     echo "wait for idp ${SELENIUM_USER_SELECT} to take effect..."
     sleep 10
@@ -34,6 +33,7 @@ while true; do
     echo "idp ${SELENIUM_USER_SELECT} has taken effect..."
     break
   fi
+  i=$[i + 1]
   if [[ "$i" == '12' ]]; then
     echo "timeout waiting for idp ${SELENIUM_USER_SELECT}..."
     exit 1
