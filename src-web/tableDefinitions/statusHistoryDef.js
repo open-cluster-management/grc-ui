@@ -6,6 +6,7 @@ import { getAge, buildCompliantCellFromMessage } from './utils'
 import {
   breakWord,
   wrappable,
+  cellWidth
 } from '@patternfly/react-table'
 
 export default {
@@ -20,7 +21,7 @@ export default {
     {
       msgKey: 'table.header.message',
       resourceKey: 'message',
-      transforms: [wrappable],
+      transforms: [cellWidth(80), wrappable],
       cellTransforms: [breakWord],
     },
     {
