@@ -27,7 +27,6 @@ i=0
 while true; do 
   IDP=`curl -L -k ${SELENIUM_CLUSTER} | grep ${SELENIUM_USER_SELECT}` || true
   ((i++))
-  echo "...${IDP// /}"
   if [ -z ${IDP// /} ]; then
     echo "wait for idp ${SELENIUM_USER_SELECT} to take effect..."
     sleep 10
