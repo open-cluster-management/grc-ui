@@ -37,7 +37,7 @@ class PatternFlyTable extends React.Component {
       itemCount: 0,
       sortBy: this.props.sortBy || {},
       startIdx: 0,
-      endIdx: 9,
+      endIdx: 10,
       searchValue: ''
     }
   }
@@ -94,7 +94,7 @@ class PatternFlyTable extends React.Component {
       sortedRows = rowsFiltered
     }
     return {
-      rows: sortedRows.slice(state.startIdx, pagination ? state.endIdx : sortedRows.length-1),
+      rows: sortedRows.slice(state.startIdx, pagination ? state.endIdx : sortedRows.length),
       itemCount: sortedRows.length,
     }
   }
