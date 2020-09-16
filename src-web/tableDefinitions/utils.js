@@ -6,13 +6,10 @@ import React from 'react'
 import moment from 'moment'
 import lodash from 'lodash'
 import {
-  ExclamationCircleIcon,
-  ExclamationTriangleIcon,
-  CheckCircleIcon,
-} from '@patternfly/react-icons'
-import dangerColor from '@patternfly/react-tokens/dist/js/global_danger_color_100'
-import okColor from '@patternfly/react-tokens/dist/js/global_palette_green_500'
-import warningColor from '@patternfly/react-tokens/dist/js/global_warning_color_100'
+  GreenCheckCircleIcon,
+  RedExclamationCircleIcon,
+  YellowExclamationTriangleIcon,
+} from '../components/common/Icons'
 import msgs from '../../nls/platform.properties'
 
 export const transform = (items, def, locale) => {
@@ -49,11 +46,11 @@ export const transform = (items, def, locale) => {
 export const buildCompliantCell = (item, locale) => {
   const compliant = lodash.get(item, 'compliant', '-')
   if (compliant.toLowerCase() === 'compliant') {
-    return <div><CheckCircleIcon color={okColor.value} /> {msgs.get('table.cell.compliant', locale)}</div>
+    return <div><GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}</div>
   } else if (compliant.toLowerCase() === 'noncompliant') {
-    return <div><ExclamationCircleIcon color={dangerColor.value} /> {msgs.get('table.cell.noncompliant', locale)}</div>
+    return <div><RedExclamationCircleIcon /> {msgs.get('table.cell.noncompliant', locale)}</div>
   } else {
-    return <div><ExclamationTriangleIcon color={warningColor.value} /> {msgs.get('table.cell.nostatus', locale)}</div>
+    return <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
   }
 }
 
