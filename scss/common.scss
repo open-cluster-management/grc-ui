@@ -13,6 +13,7 @@
 @import 'node_modules/carbon-components/scss/globals/scss/_helper-mixins';
 @import '../node_modules/@patternfly/react-core/dist/styles/base.css';
 @import '../node_modules/@patternfly/patternfly/components/ToggleGroup/toggle-group.css';
+@import '../node_modules/@patternfly/patternfly/components/SearchInput/search-input.css';
 @import '../node_modules/@patternfly/patternfly/components/Tooltip/tooltip.css';
 @import 'header-carbon-v9-migration';
 @import 'variables';
@@ -194,6 +195,16 @@ body {
   }
 }
 
-.pattern-fly-table {
-  background-color: white;
+.pattern-fly-table-group {
+  // .pf-c-search-input {
+  //   background-color: white;
+  // }
+
+  .pattern-fly-table {
+    background-color: white;
+  }
+
+  .pf-c-options-menu__menu {
+    background-color: white;
+  }
 }
