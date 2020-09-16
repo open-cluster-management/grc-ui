@@ -66,11 +66,6 @@ export const buildCompliantCellFromMessage = (item, locale) => {
   }
 }
 
-export const parseMessage = (item) => {
-  const message = lodash.get(item, 'message', '-')
-  return message.split(' - ')[1]
-}
-
 export const getAge = (item, locale, timestampKey) => {
   const key = timestampKey ? timestampKey : 'timestamp'
   const createdTime = lodash.get(item, key)

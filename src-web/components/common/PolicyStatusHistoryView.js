@@ -47,7 +47,7 @@ class PolicyStatusHistoryView extends React.Component {
       <div className='policy-violation-history-view'>
         <div className='table'>
           <Title className='title' headingLevel="h3">{cluster}</Title>
-          <Title className='title' headingLevel="h4">{'Template: ' + template}</Title>
+          <Title className='title' headingLevel="h4">{`${msgs.get('policy.template', locale)}: ${template}`}</Title>
           <br></br>
           <PatternFlyTable {...tableData} noResultMsg={msgs.get('table.search.no.results', locale)} />
         </div>

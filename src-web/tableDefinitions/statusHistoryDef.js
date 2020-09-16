@@ -2,7 +2,7 @@
 
 'use strict'
 
-import { getAge, buildCompliantCellFromMessage, parseMessage } from './utils'
+import { getAge, buildCompliantCellFromMessage } from './utils'
 import {
   breakWord,
   wrappable,
@@ -22,7 +22,6 @@ export default {
       resourceKey: 'message',
       transforms: [wrappable],
       cellTransforms: [breakWord],
-      transformFunction: parseMessage
     },
     {
       msgKey: 'table.header.lastreport',
