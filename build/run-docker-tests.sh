@@ -36,7 +36,7 @@ while true; do
     break
   fi
   if [[ "$i" == '12' ]]; then
-    echo "timeout waiting for idp...${IDP// /}"
+    echo "timeout waiting for idp ${SELENIUM_USER_SELECT}..."
     exit 1
   fi
 done
