@@ -22,10 +22,23 @@ export DISABLE_CANARY_TEST=${DISABLE_CANARY_TEST:-false}
 
 # show all envs
 printenv
-
-# sleep 30s so that new identity provider could be picked up by OCP
-echo sleep 30s...
-sleep 30
+# test oauth server and see if idp has been setup
+i=0
+while true; do 
+  IDP=`curl -L -k ${SELENIUM_CLUSTER} | grep ${SELENIUM_USER_SELECT}` || true
+  ((i++))
+  if [ -z ${IDP// /} ]; then
+    echo "wait for idp ${SELENIUM_USER_SELECT} to take effect..."
+    sleep 10
+  else
+    echo "idp ${SELENIUM_USER_SELECT} has taken effect..."
+    break
+  fi
+  if [[ "$i" == '12' ]]; then
+    echo "timeout waiting for idp ${SELENIUM_USER_SELECT}..."
+    exit 1
+  fi
+done
 
 # run test
 npm run test:e2e-headless
