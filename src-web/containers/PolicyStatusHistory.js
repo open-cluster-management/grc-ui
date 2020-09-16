@@ -13,11 +13,11 @@ import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
-import { PolicyViolationHistory } from '../../lib/client/queries'
+import { PolicyStatusHistory } from '../../lib/client/queries'
 import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
-import PolicyViolationHistoryView from '../components/common/PolicyViolationHistoryView'
+import PolicyStatusHistoryView from '../components/common/PolicyStatusHistoryView'
 
 resources(() => {
   require('../../scss/policy-violation-history.scss')
@@ -71,7 +71,7 @@ class PolicyTemplateDetails extends React.Component {
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     const { match: { params: { policyName, hubNamespace, cluster, template }}} = this.props
     return (
-      <Query query={PolicyViolationHistory} variables={{policyName, hubNamespace, cluster, template}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+      <Query query={PolicyStatusHistory} variables={{policyName, hubNamespace, cluster, template}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {
           const { data={}, error } = result
           if (error) {
@@ -97,7 +97,7 @@ class PolicyTemplateDetails extends React.Component {
           if (items) {
             return (
               <Page>
-                <PolicyViolationHistoryView
+                <PolicyStatusHistoryView
                   history={items}
                   template={template}
                   cluster={cluster}

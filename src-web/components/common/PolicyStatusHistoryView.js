@@ -8,11 +8,11 @@ import {
 } from '@patternfly/react-core'
 import PatternFlyTable from './PatternFlyTable'
 import { LocaleContext } from './LocaleContext'
-import violationHistoryDef from '../../tableDefinitions/violationHistoryDef'
+import statusHistoryDef from '../../tableDefinitions/statusHistoryDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
 
-class PolicyViolationHistoryView extends React.Component {
+class PolicyStatusHistoryView extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -46,7 +46,7 @@ class PolicyViolationHistoryView extends React.Component {
     const { history, cluster, template } = this.props
     const { locale } = this.context
 
-    const tableData = transform(history, violationHistoryDef, locale)
+    const tableData = transform(history, statusHistoryDef, locale)
 
     return (
       <div className='policy-violation-history-view'>
@@ -62,10 +62,10 @@ class PolicyViolationHistoryView extends React.Component {
   }
 }
 
-PolicyViolationHistoryView.propTypes = {
+PolicyStatusHistoryView.propTypes = {
   cluster: PropTypes.string,
   history: PropTypes.array,
   template: PropTypes.string
 }
 
-export default PolicyViolationHistoryView
+export default PolicyStatusHistoryView
