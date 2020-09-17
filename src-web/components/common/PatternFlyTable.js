@@ -51,21 +51,21 @@ class PatternFlyTable extends React.Component {
   static getDerivedStateFromProps(props, state) {
     const { searchValue, sortBy } = state
     const { pagination, rows, searchable } = props
+    const parseCell = function (cell) {
+      if (typeof cell === 'object' && cell.title) {
+        if (typeof cell.title === 'string') {
+          return cell.title
+        }
+        return ReactDOMServer.renderToString(cell.title).replace(/<[^>]+>/g, '')
+      }
+      return cell
+    }
     const rowsFiltered = !searchable || searchValue === ''
       ? [...rows]
       : rows.filter(row => {
         const cells = row.cells ? row.cells : row
         return cells.some(item => {
-          if (typeof item === 'string') {
-            return item.toLowerCase().includes(searchValue.toLowerCase())
-          } else if (typeof item === 'object' && item.title) {
-            if (typeof item.title === 'string') {
-              return item.title.toLowerCase().includes(searchValue.toLowerCase())
-            }
-            return ReactDOMServer.renderToString(item.title).replace(/<[^>]+>/g, '').toLowerCase().includes(searchValue.toLowerCase())
-          } else {
-            return false
-          }
+          return parseCell(item).toLowerCase().includes(searchValue.toLowerCase())
         })
       })
     const sortedRows = rowsFiltered
@@ -73,19 +73,8 @@ class PatternFlyTable extends React.Component {
       sortedRows.sort((a, b) => {
         const acell = a.cells ? a.cells[sortBy.index] : a[sortBy.index]
         const bcell = b.cells ? b.cells[sortBy.index] : b[sortBy.index]
-        let avalue, bvalue
-        if (typeof acell === 'object' && acell.title && typeof bcell === 'object' && bcell.title) {
-          if (typeof acell.title === 'string' && typeof bcell.title === 'string') {
-            avalue = acell.title
-            bvalue = bcell.title
-          } else {
-            avalue = ReactDOMServer.renderToString(acell.title).replace(/<[^>]+>/g, '')
-            bvalue = ReactDOMServer.renderToString(bcell.title).replace(/<[^>]+>/g, '')
-          }
-        } else {
-          avalue = acell
-          bvalue = bcell
-        }
+        const avalue = parseCell(acell)
+        const bvalue = parseCell(bcell)
         if (sortBy.direction === SortByDirection.asc) {
           return avalue < bvalue ? -1 : avalue > bvalue ? 1 : 0
         } else {
