@@ -642,7 +642,7 @@ exports[`PatternFlyTable component renders empty state 1`] = `
         <h2
           className="pf-c-title pf-m-md"
         >
-          
+          No results found
         </h2>
       </div>
     </div>
