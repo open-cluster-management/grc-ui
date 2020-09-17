@@ -44,6 +44,7 @@ class PatternFlyTable extends React.Component {
   static defaultProps = {
     pagination: true,
     perPage: 10,
+    noResultMsg: 'No results found',
     searchable: true,
     searchPlaceholder: 'Find',
     sortBy: {}
@@ -51,15 +52,18 @@ class PatternFlyTable extends React.Component {
   static getDerivedStateFromProps(props, state) {
     const { searchValue, sortBy } = state
     const { pagination, rows, searchable } = props
+    // Helper function to return the string from the cell
     const parseCell = function (cell) {
       if (typeof cell === 'object' && cell.title) {
         if (typeof cell.title === 'string') {
           return cell.title
         }
+        // It's not a string so render the component and strip HTML tags
         return ReactDOMServer.renderToString(cell.title).replace(/<[^>]+>/g, '')
       }
       return cell
     }
+    // Filter the rows based on given searchValue from user
     const rowsFiltered = !searchable || searchValue === ''
       ? [...rows]
       : rows.filter(row => {
@@ -68,6 +72,7 @@ class PatternFlyTable extends React.Component {
           return parseCell(item).toLowerCase().includes(searchValue.toLowerCase())
         })
       })
+    // Sort the rows based on sortBy prop (if it's not empty)
     const sortedRows = rowsFiltered
     if (Object.keys(sortBy).length !== 0) {
       sortedRows.sort((a, b) => {
@@ -82,6 +87,7 @@ class PatternFlyTable extends React.Component {
         }
       })
     }
+    // Return the filtered and sorted array
     return {
       rows: sortedRows.slice(state.startIdx, pagination ? state.endIdx : sortedRows.length),
       itemCount: sortedRows.length,
@@ -159,19 +165,27 @@ class PatternFlyTable extends React.Component {
         </div>
       </div>
     )
-
   }
 }
 
 PatternFlyTable.propTypes = {
+  /** Add class names in addition to the defaults to the PatternFly table (optional) */
   className: PropTypes.string,
+  /** Table column headings and properties */
   columns: PropTypes.array,
+  /** Message when no results are displayed */
   noResultMsg: PropTypes.string,
+  /** Toggle pagination (optional) */
   pagination: PropTypes.bool,
+  /** Number of rows displayed per page for pagination */
   perPage: PropTypes.number,
+  /** Table row content */
   rows: PropTypes.array,
+  /** Placeholder text for search input field */
   searchPlaceholder: PropTypes.string,
+  /** Toggle search input (optional) */
   searchable: PropTypes.bool,
+  /** Initial table sorting (optional) */
   sortBy: PropTypes.shape({
     index: PropTypes.number,
     direction: PropTypes.oneOf(['asc', 'desc']),
