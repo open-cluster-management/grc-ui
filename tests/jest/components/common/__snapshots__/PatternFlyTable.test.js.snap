@@ -122,7 +122,7 @@ exports[`PatternFlyTable component renders as expected 1`] = `
             data-label="Repositories"
             onMouseEnter={[Function]}
           >
-            p
+            one
           </td>
           <td
             className=""
@@ -138,7 +138,7 @@ exports[`PatternFlyTable component renders as expected 1`] = `
             data-label="Pull requests"
             onMouseEnter={[Function]}
           >
-            b
+            a
           </td>
           <td
             className=""
@@ -220,7 +220,7 @@ exports[`PatternFlyTable component renders as expected 1`] = `
             data-label="Repositories"
             onMouseEnter={[Function]}
           >
-            one
+            p
           </td>
           <td
             className=""
@@ -236,7 +236,7 @@ exports[`PatternFlyTable component renders as expected 1`] = `
             data-label="Pull requests"
             onMouseEnter={[Function]}
           >
-            a
+            b
           </td>
           <td
             className=""
@@ -891,4 +891,836 @@ exports[`PatternFlyTable component renders empty state 1`] = `
     </div>
   </div>
 </div>
+`;
+
+exports[`PatternFlyTable table sorting and filtering should filter text contained in React components with cells 1`] = `
+Object {
+  "itemCount": 1,
+  "rows": Array [
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space1
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             10
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "22 minutes",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`PatternFlyTable table sorting and filtering should filter text contained in React components without cells 1`] = `
+Object {
+  "itemCount": 1,
+  "rows": Array [
+    Array [
+      Object {
+        "props": Object {
+          "component": "th",
+        },
+        "title": <a
+          href="#"
+        >
+          siemur/test-space1
+        </a>,
+      },
+      Object {
+        "title": <React.Fragment>
+          <CodeBranchIcon
+            color="currentColor"
+            noVerticalAlign={false}
+            size="sm"
+          />
+           10
+        </React.Fragment>,
+      },
+      Object {
+        "title": <React.Fragment>
+          <CodeIcon
+            color="currentColor"
+            noVerticalAlign={false}
+            size="sm"
+          />
+           4
+        </React.Fragment>,
+      },
+      Object {
+        "title": <a
+          href="#"
+        >
+          Open in Github
+        </a>,
+      },
+      "22 minutes",
+    ],
+  ],
+}
+`;
+
+exports[`PatternFlyTable table sorting and filtering should not move equivalent React/HTML rows while sorting column 4 1`] = `
+Object {
+  "itemCount": 3,
+  "rows": Array [
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space3
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             7
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "20 minutes",
+        },
+      ],
+    },
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space1
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             10
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "22 minutes",
+        },
+      ],
+    },
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space2
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             3
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "21 minutes",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`PatternFlyTable table sorting and filtering should not move equivalent string rows while sorting column 4 1`] = `
+Object {
+  "itemCount": 12,
+  "rows": Array [
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "one",
+    ],
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "two",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "three",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "four",
+    ],
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "five",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "six",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "seven",
+    ],
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "eight",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "nine",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "ten",
+    ],
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "eleven",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "twelve",
+    ],
+  ],
+}
+`;
+
+exports[`PatternFlyTable table sorting and filtering should return expected values given existent filter for string values 1`] = `
+Object {
+  "itemCount": 4,
+  "rows": Array [
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "three",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "six",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "nine",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "twelve",
+    ],
+  ],
+}
+`;
+
+exports[`PatternFlyTable table sorting and filtering should sort rows by ascending React/HTML in column 1 1`] = `
+Object {
+  "itemCount": 3,
+  "rows": Array [
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space1
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             10
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "22 minutes",
+        },
+      ],
+    },
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space2
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             3
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "21 minutes",
+        },
+      ],
+    },
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space3
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             7
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "20 minutes",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`PatternFlyTable table sorting and filtering should sort rows by ascending strings in column 5 1`] = `
+Object {
+  "itemCount": 12,
+  "rows": Array [
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "eight",
+    ],
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "eleven",
+    ],
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "five",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "four",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "nine",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "one",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "seven",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "six",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "ten",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "three",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "twelve",
+    ],
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "two",
+    ],
+  ],
+}
+`;
+
+exports[`PatternFlyTable table sorting and filtering should sort rows by descending React/HTML in column 1 1`] = `
+Object {
+  "itemCount": 3,
+  "rows": Array [
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space3
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             7
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "20 minutes",
+        },
+      ],
+    },
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space2
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             3
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "21 minutes",
+        },
+      ],
+    },
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space1
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             10
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "22 minutes",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`PatternFlyTable table sorting and filtering should sort rows by descending strings in column 5 1`] = `
+Object {
+  "itemCount": 12,
+  "rows": Array [
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "two",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "twelve",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "three",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "ten",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "six",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "seven",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "one",
+    ],
+    Array [
+      "p",
+      "two",
+      "b",
+      "four",
+      "nine",
+    ],
+    Array [
+      "one",
+      "two",
+      "a",
+      "four",
+      "four",
+    ],
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "five",
+    ],
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "eleven",
+    ],
+    Array [
+      "a",
+      "two",
+      "k",
+      "four",
+      "eight",
+    ],
+  ],
+}
 `;
