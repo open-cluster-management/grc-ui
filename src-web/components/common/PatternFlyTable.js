@@ -52,7 +52,7 @@ class PatternFlyTable extends React.Component {
     const { searchValue, sortBy } = state
     const { pagination, rows, searchable } = props
     const rowsFiltered = !searchable || searchValue === ''
-      ? rows
+      ? [...rows]
       : rows.filter(row => {
         const cells = row.cells ? row.cells : row
         return cells.some(item => {
@@ -68,9 +68,9 @@ class PatternFlyTable extends React.Component {
           }
         })
       })
-    let sortedRows
+    const sortedRows = rowsFiltered
     if (Object.keys(sortBy).length !== 0) {
-      sortedRows = rowsFiltered.sort((a, b) => {
+      sortedRows.sort((a, b) => {
         const acell = a.cells ? a.cells[sortBy.index] : a[sortBy.index]
         const bcell = b.cells ? b.cells[sortBy.index] : b[sortBy.index]
         let avalue, bvalue
@@ -92,8 +92,6 @@ class PatternFlyTable extends React.Component {
           return avalue > bvalue ? -1 : avalue < bvalue ? 1 : 0
         }
       })
-    } else {
-      sortedRows = rowsFiltered
     }
     return {
       rows: sortedRows.slice(state.startIdx, pagination ? state.endIdx : sortedRows.length),
