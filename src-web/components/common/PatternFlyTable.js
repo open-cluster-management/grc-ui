@@ -31,20 +31,22 @@ class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      perPage: 10,
+      perPage: this.props.perPage,
       page: 1,
       rows: [],
       itemCount: 0,
-      sortBy: this.props.sortBy || {},
+      sortBy: this.props.sortBy,
       startIdx: 0,
-      endIdx: 10,
+      endIdx: this.props.perPage,
       searchValue: ''
     }
   }
   static defaultProps = {
     pagination: true,
+    perPage: 10,
     searchable: true,
-    searchPlaceholder: 'Find'
+    searchPlaceholder: 'Find',
+    sortBy: {}
   }
   static getDerivedStateFromProps(props, state) {
     const { searchValue, sortBy } = state
@@ -179,6 +181,7 @@ PatternFlyTable.propTypes = {
   columns: PropTypes.array,
   noResultMsg: PropTypes.string,
   pagination: PropTypes.bool,
+  perPage: PropTypes.number,
   rows: PropTypes.array,
   searchPlaceholder: PropTypes.string,
   searchable: PropTypes.bool,
