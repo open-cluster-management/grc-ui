@@ -173,12 +173,12 @@ PatternFlyTable.propTypes = {
   className: PropTypes.string,
   /** Table column headings and properties */
   columns: PropTypes.array,
-  /** Message when no results are displayed */
+  /** Message when no results are displayed in the table */
   noResultMsg: PropTypes.string,
   /** Toggle pagination (optional) */
   pagination: PropTypes.bool,
   /** Number of rows displayed per page for pagination */
-  perPage: PropTypes.number,
+  perPage: PropTypes.oneOf([5, 10, 20, 50]),
   /** Table row content */
   rows: PropTypes.array,
   /** Placeholder text for search input field */
