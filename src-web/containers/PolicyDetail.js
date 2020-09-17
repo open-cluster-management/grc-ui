@@ -25,7 +25,7 @@ import msgs from '../../nls/platform.properties'
 import getResourceDefinitions from '../definitions'
 // eslint-disable-next-line import/no-named-as-default
 import PolicyDetailsOverview from '../components/common/PolicyDetailsOverview'
-import PolicyViolationTab from './PolicyViolationTab'
+import PolicyStatusTab from './PolicyStatusTab'
 import PolicyTemplateTab from './PolicyTemplateTab'
 
 class PolicyDetail extends React.Component {
@@ -107,9 +107,9 @@ class PolicyDetail extends React.Component {
 
             return (
               <Switch>
-                <Route path={`${url}/violation`} exact render={() => {
+                <Route path={`${url}/status`} exact render={() => {
                   refreshControl.stopPolling()
-                  return <PolicyViolationTab
+                  return <PolicyStatusTab
                     refreshControl={refreshControl}
                     staticResourceData={staticResourceData}
                     item={items}

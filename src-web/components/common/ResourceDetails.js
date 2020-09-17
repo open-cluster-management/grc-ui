@@ -24,7 +24,7 @@ import PolicyClusterDetail from './PolicyClusterDetail'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../../lib/shared/constants'
 import { getPollInterval } from './RefreshTimeSelect'
 import PolicyTemplateTab from '../../containers/PolicyTemplateTab'
-import PolicyViolationTab from '../../containers/PolicyViolationTab'
+import PolicyStatusTab from '../../containers/PolicyStatusTab'
 
 const withResource = (Component) => {
   const mapDispatchToProps = (dispatch, ownProps) => {
@@ -97,11 +97,8 @@ const withResource = (Component) => {
 const OverviewTab = withResource(ResourceOverview)
 
 const components = {
-  // '/diagram': ResourceDiagram,
-  // '/policies': ResourceOverview,
-  // '/compliancePolicy/:policyName': CompliancePolicy,
   '/compliancePolicy/:policyName/:policyNamespace': PolicyClusterDetail,
-  '/violation': PolicyViolationTab,
+  '/status': PolicyStatusTab,
   '/yaml': PolicyTemplateTab,
 }
 
