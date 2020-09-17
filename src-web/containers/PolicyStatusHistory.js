@@ -22,7 +22,7 @@ resources(() => {
   require('../../scss/policy-violation-history.scss')
 })
 
-class PolicyTemplateDetails extends React.Component {
+class PolicyTemplateStatusHistory extends React.Component {
   static propTypes = {
     location: PropTypes.object,
     match: PropTypes.object,
@@ -108,4 +108,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(PolicyTemplateDetails))
+export default withRouter(connect(null, mapDispatchToProps)(PolicyTemplateStatusHistory))
