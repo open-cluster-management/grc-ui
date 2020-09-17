@@ -1493,6 +1493,146 @@ Object {
 }
 `;
 
+exports[`PatternFlyTable table sorting and filtering should sort rows by ascending strings in mixed table in column 5 1`] = `
+Object {
+  "itemCount": 3,
+  "rows": Array [
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space3
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             7
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "20 minutes",
+        },
+      ],
+    },
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space2
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             3
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "21 minutes",
+        },
+      ],
+    },
+    Object {
+      "cells": Array [
+        Object {
+          "props": Object {
+            "component": "th",
+          },
+          "title": <a
+            href="#"
+          >
+            siemur/test-space1
+          </a>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeBranchIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             10
+          </React.Fragment>,
+        },
+        Object {
+          "title": <React.Fragment>
+            <CodeIcon
+              color="currentColor"
+              noVerticalAlign={false}
+              size="sm"
+            />
+             4
+          </React.Fragment>,
+        },
+        Object {
+          "title": <a
+            href="#"
+          >
+            Open in Github
+          </a>,
+        },
+        Object {
+          "title": "22 minutes",
+        },
+      ],
+    },
+  ],
+}
+`;
+
 exports[`PatternFlyTable table sorting and filtering should sort rows by descending React/HTML in column 1 1`] = `
 Object {
   "itemCount": 3,

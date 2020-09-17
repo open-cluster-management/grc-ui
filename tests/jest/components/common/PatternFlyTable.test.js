@@ -143,5 +143,8 @@ describe('PatternFlyTable table sorting and filtering', () => {
   })
   it('should not move equivalent React/HTML rows while sorting column 4', () => {
     expect(filterSort({...tableDataTests.arrayIRowHTMLwCells}, {...state, sortBy:{index: 3, direction: SortByDirection.asc}})).toMatchSnapshot()
+  }),
+  it('should sort rows by ascending strings in mixed table in column 5', () => {
+    expect(filterSort({...tableDataTests.arrayIRowHTMLwCells}, {...state, sortBy:{index: 4, direction: SortByDirection.asc}})).toMatchSnapshot()
   })
 })

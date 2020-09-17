@@ -75,7 +75,7 @@ class PatternFlyTable extends React.Component {
         const bcell = b.cells ? b.cells[sortBy.index] : b[sortBy.index]
         let avalue, bvalue
         if (typeof acell === 'object' && acell.title && typeof bcell === 'object' && bcell.title) {
-          if (typeof item === 'string') {
+          if (typeof acell.title === 'string' && typeof bcell.title === 'string') {
             avalue = acell.title
             bvalue = bcell.title
           } else {
