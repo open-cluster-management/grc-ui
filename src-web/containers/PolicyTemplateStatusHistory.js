@@ -11,18 +11,18 @@ import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
-import { PolicyTemplateDetail } from '../../lib/client/queries'
-import PolicyTemplateDetailsView from '../components/common/PolicyTemplateDetailsView'
+import { PolicyStatusHistory } from '../../lib/client/queries'
 import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
+import PolicyStatusHistoryView from '../components/common/PolicyStatusHistoryView'
 import { DangerNotification } from '../components/common/DangerNotification'
 
 resources(() => {
-  require('../../scss/policy-template-details.scss')
+  require('../../scss/policy-violation-history.scss')
 })
 
-class PolicyTemplateDetails extends React.Component {
+class PolicyTemplateStatusHistory extends React.Component {
   static propTypes = {
     location: PropTypes.object,
     match: PropTypes.object,
@@ -41,7 +41,7 @@ class PolicyTemplateDetails extends React.Component {
     const { location } = this.props,
           { locale } = this.context,
           urlSegments = location.pathname.split('/')
-    const { match: { params: { policyName, policyNamespace, clusterName }} } = this.props
+    const { match: { params: { policyName, hubNamespace }} } = this.props
     breadcrumbItems.push({
       label: msgs.get('tabs.hcmcompliance', locale),
       noLocale: true,
@@ -50,27 +50,27 @@ class PolicyTemplateDetails extends React.Component {
     {
       label: policyName,
       noLocale: true,
-      url: `${urlSegments.slice(0, 3).join('/')}/all/${policyNamespace}/${policyName}`
+      url: `${urlSegments.slice(0, 3).join('/')}/all/${hubNamespace}/${policyName}`
     },
     {
-      label: clusterName,
+      label: msgs.get('table.header.status', locale),
       noLocale: true,
-      url: `${urlSegments.join('/')}`
+      url: `${urlSegments.slice(0, 3).join('/')}/all/${hubNamespace}/${policyName}/status`
     })
     return breadcrumbItems
   }
 
   componentDidMount() {
-    const { updateSecondaryHeader: localUpdateSecondaryHeader, match: { params: { name }} } = this.props
-    localUpdateSecondaryHeader(name, null, this.getBreadcrumb())
+    const { locale } = this.context
+    const { updateSecondaryHeader: localUpdateSecondaryHeader } = this.props
+    localUpdateSecondaryHeader(msgs.get('panel.header.violation.history', locale), null, this.getBreadcrumb())
   }
 
   render() {
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
-    const { match: { params: { clusterName: cluster, apiGroup, version, kind, name }}} = this.props
-    const selfLink = `/apis/${apiGroup}/${version}/namespaces/${cluster}/${kind}/${name}`
+    const { match: { params: { policyName, hubNamespace, cluster, template }}} = this.props
     return (
-      <Query query={PolicyTemplateDetail} variables={{name, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+      <Query query={PolicyStatusHistory} variables={{policyName, hubNamespace, cluster, template}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {
           const { data={}, error } = result
           if (error) {
@@ -84,7 +84,11 @@ class PolicyTemplateDetails extends React.Component {
           if (items) {
             return (
               <Page>
-                <PolicyTemplateDetailsView template={items} />
+                <PolicyStatusHistoryView
+                  history={items}
+                  template={template}
+                  cluster={cluster}
+                />
               </Page>
             )
           } else {
@@ -104,4 +108,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(PolicyTemplateDetails))
+export default withRouter(connect(null, mapDispatchToProps)(PolicyTemplateStatusHistory))

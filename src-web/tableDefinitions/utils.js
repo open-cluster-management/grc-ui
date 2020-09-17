@@ -53,3 +53,26 @@ export const buildCompliantCell = (item, locale) => {
     return <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
   }
 }
+
+export const buildCompliantCellFromMessage = (item, locale) => {
+  const message = lodash.get(item, 'message', '-')
+  const compliant = message.split(';')[0]
+  if (compliant.toLowerCase() === 'compliant') {
+    return <div><GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}</div>
+  } else if (compliant.toLowerCase() === 'noncompliant') {
+    return <div><RedExclamationCircleIcon /> {msgs.get('table.cell.noncompliant', locale)}</div>
+  } else {
+    return <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
+  }
+}
+
+export const getAge = (item, locale, timestampKey) => {
+  const key = timestampKey ? timestampKey : 'timestamp'
+  const createdTime = lodash.get(item, key)
+  if (createdTime && createdTime.includes('T')) {
+    return moment(createdTime, 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
+  } else if (createdTime) {
+    return moment(createdTime, 'YYYY-MM-DD HH:mm:ss').fromNow()
+  }
+  return '-'
+}

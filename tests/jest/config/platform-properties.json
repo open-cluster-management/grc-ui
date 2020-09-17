@@ -246,6 +246,7 @@
   "policy.status.invalid": "invalid",
   "policy.status.noncompliant": "not compliant",
   "policy.status.unknown": "unknown",
+  "policy.template": "Template",
   "policy.template.details": "Template details",
   "policy.template.roleRef": "Role reference",
   "policy.template.roleSubjects": "Role subjects",
@@ -363,6 +364,7 @@
   "table.header.description": "Description",
   "table.header.enforcement": "Enforcement",
   "table.header.kind": "Kind",
+  "table.header.lastreport": "Last Report",
   "table.header.message": "Message",
   "table.header.name": "Name",
   "table.header.policy.name": "Policy name",
@@ -474,5 +476,6 @@
   "update.question": "Some objects already exist. Apply changes to the existing objects?",
   "panel.header.template.details": "Template details",
   "panel.header.template.yaml": "Template yaml",
-  "panel.header.related.resources": "Related resources"
+  "panel.header.related.resources": "Related resources",
+  "panel.header.violation.history": "History"
 }
