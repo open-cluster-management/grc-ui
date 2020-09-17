@@ -54,10 +54,9 @@ class PatternFlyTable extends React.Component {
     const { pagination, rows, searchable } = props
     // Helper function to return the string from the cell
     const parseCell = function (cell) {
-      if (typeof cell === 'object' && cell.title) {
-        if (typeof cell.title === 'string') {
-          return cell.title
-        }
+      if (typeof cell === 'object' && cell.title === 'string') {
+        return cell.title
+      } else if (typeof cell === 'object') {
         // It's not a string so render the component and strip HTML tags
         return ReactDOMServer.renderToString(cell.title).replace(/<[^>]+>/g, '')
       }
@@ -78,13 +77,20 @@ class PatternFlyTable extends React.Component {
       sortedRows.sort((a, b) => {
         const acell = a.cells ? a.cells[sortBy.index] : a[sortBy.index]
         const bcell = b.cells ? b.cells[sortBy.index] : b[sortBy.index]
-        const avalue = parseCell(acell)
-        const bvalue = parseCell(bcell)
+        let avalue, bvalue
         if (sortBy.direction === SortByDirection.asc) {
-          return avalue < bvalue ? -1 : avalue > bvalue ? 1 : 0
+          avalue = parseCell(acell)
+          bvalue = parseCell(bcell)
         } else {
-          return avalue > bvalue ? -1 : avalue < bvalue ? 1 : 0
+          bvalue = parseCell(acell)
+          avalue = parseCell(bcell)
         }
+        if (avalue > bvalue) {
+          return 1
+        } else if (avalue < bvalue) {
+          return -1
+        }
+        return 0
       })
     }
     // Return the filtered and sorted array
