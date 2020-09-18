@@ -57,7 +57,7 @@ NoResource.propTypes = {
   alt: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   className: PropTypes.string,
-  detail: PropTypes.string,
+  detail: PropTypes.array,
   imgClassName: PropTypes.string,
   svgName: PropTypes.string,
   title:PropTypes.string,

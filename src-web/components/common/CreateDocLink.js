@@ -10,11 +10,12 @@
 'use strict'
 
 import React from 'react'
-import { Button } from 'carbon-components-react'
+import { Button } from '@patternfly/react-core'
 import msgs from '../../../nls/platform.properties'
 import config from '../../../lib/shared/config'
+
 // createFlag=0 nonclickable create button, createFlag=1 clickable create button
-const createDocLink = (locale, handleCreateResource, submitBtnTextKey, createFlag=0) => {
+export const createDocLink = (locale, handleCreateResource, submitBtnTextKey, createFlag=0) => {
   const vNumber = config['ACM_VERSION']
   const rhPath = 'https://access.redhat.com/'
   const acmPath = 'documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/'
@@ -23,28 +24,46 @@ const createDocLink = (locale, handleCreateResource, submitBtnTextKey, createFla
   const disableFlag = (createFlag !== 1)
   return (
     <div className={'button-group'}>
-      <Button
-        disabled={disableFlag}
-        icon="add--glyph"
-        small id='create-resource'
-        onClick={handleCreateResource}
-      >
-        { submitBtnTextKey }
-      </Button>
-      {<div className={'buttons'}>
-        <button className={'bx--btn bx--btn--sm bx--btn--secondary'}>
-          <a href={docURL}
-            className={'doc-link'}
-            target='doc'
-            aria-describedby='launchWindow'
-          >
-            {msgs.get('button.view.doc', locale)
-            }
-          </a>
-        </button>
-      </div>}
+      <div className={'button-group-create-resource'}>
+        <Button
+          id='create-resource'
+          variant='primary'
+          isDisabled={disableFlag}
+          isSmall
+          onClick={handleCreateResource}
+        >
+          { submitBtnTextKey }
+        </Button>
+      </div>
+      <div className={'button-group-doc-link'}>
+        <Button
+          id='doc-link'
+          variant='link'
+          component='a'
+          href={docURL}
+          target='doc'
+          aria-describedby='launchWindow'
+          isInline
+        >
+          {msgs.get('button.view.doc', locale)}
+        </Button>
+      </div>
     </div>
   )
 }
 
-export default createDocLink
+export const createDetails = (msgPart1, msgCreate, msgPart2, handleCreateResource) => {
+  return [
+    `${msgPart1} `,
+    <Button
+      key='no-resource-detail__link'
+      variant='link'
+      className='no-resource-detail__link'
+      onClick={handleCreateResource}
+      isInline
+    >
+      {msgCreate}
+    </Button>,
+    ` ${msgPart2}`
+  ]
+}
