@@ -6,7 +6,8 @@ import { getAge, buildCompliantCellFromMessage } from './utils'
 import {
   breakWord,
   wrappable,
-  cellWidth
+  cellWidth,
+  sortable
 } from '@patternfly/react-table'
 
 export default {
@@ -14,21 +15,25 @@ export default {
     {
       msgKey: 'table.header.status',
       resourceKey: 'status',
-      transforms: [wrappable],
+      transforms: [wrappable, sortable],
       cellTransforms: [breakWord],
       transformFunction: buildCompliantCellFromMessage
     },
     {
       msgKey: 'table.header.message',
       resourceKey: 'message',
-      transforms: [cellWidth(80), wrappable],
+      transforms: [cellWidth(80), wrappable, sortable],
       cellTransforms: [breakWord],
     },
     {
       msgKey: 'table.header.lastreport',
       resourceKey: 'timestamp',
-      transforms: [wrappable],
-      transformFunction: getAge,
+      transforms: [wrappable, sortable],
+      transformFunction: getAge
     },
-  ]
+  ],
+  sortBy: {
+    index: 2,
+    direction: 'asc',
+  }
 }

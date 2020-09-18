@@ -27,6 +27,70 @@ resources(() => {
   require('../../../scss/pattern-fly-table.scss')
 })
 
+const colCompare = (aDict, bDict, sortBy) => {
+  let a = aDict[sortBy.index].title ? aDict[sortBy.index].title : aDict[sortBy.index]
+  let b = bDict[sortBy.index].title ? bDict[sortBy.index].title : bDict[sortBy.index]
+  if (a.props && a.props.children && a.props.children.length === 3) {
+    //for comparing status, since value is div
+    a = a.props.children[2]
+    b = b.props.children[2]
+  }
+  if ((typeof a !== 'string') || !(a.endsWith(' ago'))) {
+    //not timestamp, sort normally
+    return (a < b ? -1 : a > b ? 1 : 0)
+  }
+  //timestamp
+  if (a == b) {
+    return 0
+  }
+  const heirarchy = [
+    'a few seconds ago',
+    ' seconds ago',
+    'a minute ago',
+    ' minutes ago',
+    'an hour ago',
+    ' hours ago',
+    'a day ago',
+    ' days ago',
+    'a month ago',
+    ' months ago',
+    'a year ago',
+    ' years ago',
+  ]
+  let aIdx = -1
+  let bIdx = -1
+  for (let i = 0; i < heirarchy.length; i++) {
+    const datestr = heirarchy[i]
+    if (a.endsWith(datestr)) {
+      aIdx = i
+      break
+    }
+  }
+  for (let i = 0; i < heirarchy.length; i++) {
+    const datestr = heirarchy[i]
+    if (b.endsWith(datestr)) {
+      bIdx = i
+      break
+    }
+  }
+  if (aIdx < bIdx) {
+    return -1
+  }
+  if (aIdx > bIdx) {
+    return 1
+  }
+  if (aIdx == bIdx) {
+    const aNum = a.split(' ')[0]
+    const bNum = b.split(' ')[0]
+    if (aNum < bNum) {
+      return -1
+    }
+    if (aNum > bNum) {
+      return 1
+    }
+  }
+}
+
 class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
@@ -66,13 +130,16 @@ class PatternFlyTable extends React.Component {
           }
         })
       })
-    const sortedRows = rowsFiltered.sort((a, b) => (a[sortBy.index] < b[sortBy.index] ? -1 : a[sortBy.index] > b[sortBy.index] ? 1 : 0))
+    const sortedRows = rowsFiltered.sort((a, b) => {
+      return colCompare(a, b, sortBy)
+    })
     const sortedRowsByDirection = sortBy.direction === SortByDirection.asc ? sortedRows : sortedRows.reverse()
     return {
       rows: sortedRowsByDirection.slice(state.startIdx, pagination ? state.endIdx : rowsFiltered.length-1),
       itemCount: rowsFiltered.length,
     }
   }
+
   handleSort = (_event, index, direction) => {
     this.setState({
       sortBy: {
