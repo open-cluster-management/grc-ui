@@ -1217,7 +1217,7 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
     <img
       alt="No resource"
       className="no-resource-icon"
-      src="undefined/graphics/no-policy.svg"
+      src="undefined/graphics/EmptyPagePlanet-illus.png"
     />
     <div
       className="no-resource-text-info"
@@ -1225,61 +1225,60 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
       <div
         className="no-resource-title"
       >
-        Get set-up to track your governance and risk.
+        No policies found
       </div>
       <div
         className="no-resource-detail"
       >
-        We noticed that you didn't have any policies created yet. You can view our documentation to see some samples for creating new policies, or you can go ahead and create one now!
+        You don't have any policies, yet. Use the 
+        <span
+          className="no-resource-detail__link"
+        >
+          create policy
+        </span>
+         button to create the resource or view the documentation to find samples for creating new policies.
       </div>
     </div>
     <div
       className="button-group"
     >
-      <button
-        className="bx--btn bx--btn--sm bx--btn--primary"
-        disabled={false}
-        id="create-resource"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        Create policy
-        <svg
-          alt="Provide icon description if icon is used"
-          aria-hidden={true}
-          aria-label="Provide icon description if icon is used"
-          className="bx--btn__icon"
-          fillRule="evenodd"
-          height="16"
-          name="add--glyph"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-        >
-          <title>
-            Provide icon description if icon is used
-          </title>
-          <path
-            d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
-          />
-        </svg>
-      </button>
       <div
-        className="buttons"
+        className="button-group-create-resource"
       >
         <button
-          className="bx--btn bx--btn--sm bx--btn--secondary"
+          aria-disabled={false}
+          aria-label={null}
+          className="pf-c-button pf-m-primary pf-m-small"
+          data-ouia-component-id={0}
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe={true}
+          disabled={false}
+          id="create-resource"
+          onClick={[Function]}
+          type="button"
         >
-          <a
-            aria-describedby="launchWindow"
-            className="doc-link"
-            href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
-            target="doc"
-          >
-            View documentation
-          </a>
+          Create policy
         </button>
+      </div>
+      <div
+        className="button-group-doc-link"
+      >
+        <a
+          aria-describedby="launchWindow"
+          aria-disabled={false}
+          aria-label={null}
+          className="pf-c-button pf-m-link pf-m-inline"
+          data-ouia-component-id={1}
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe={true}
+          disabled={null}
+          href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
+          id="doc-link"
+          target="doc"
+          type={null}
+        >
+          View documentation
+        </a>
       </div>
     </div>
   </div>
@@ -1294,7 +1293,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
     <img
       alt="No resource"
       className="no-resource-icon"
-      src="undefined/graphics/no-policy.svg"
+      src="undefined/graphics/EmptyPagePlanet-illus.png"
     />
     <div
       className="no-resource-text-info"
@@ -1302,61 +1301,61 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
       <div
         className="no-resource-title"
       >
-        Get set-up to track your governance and risk.
+        No policies found
       </div>
       <div
         className="no-resource-detail"
       >
-        We noticed that you didn't have any policies created yet. You can view our documentation to see some samples for creating new policies, or you can go ahead and create one now!
+        You don't have any policies, yet. Use the 
+        <span
+          className="no-resource-detail__link"
+        >
+          create policy
+        </span>
+         button to create the resource or view the documentation to find samples for creating new policies.
       </div>
     </div>
     <div
       className="button-group"
     >
-      <button
-        className="bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
-        disabled={true}
-        id="create-resource"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        Create policy
-        <svg
-          alt="Provide icon description if icon is used"
-          aria-hidden={true}
-          aria-label="Provide icon description if icon is used"
-          className="bx--btn__icon"
-          fillRule="evenodd"
-          height="16"
-          name="add--glyph"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-        >
-          <title>
-            Provide icon description if icon is used
-          </title>
-          <path
-            d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
-          />
-        </svg>
-      </button>
       <div
-        className="buttons"
+        className="button-group-create-resource"
       >
         <button
-          className="bx--btn bx--btn--sm bx--btn--secondary"
+          aria-disabled={true}
+          aria-label={null}
+          className="pf-c-button pf-m-primary pf-m-disabled pf-m-small"
+          data-ouia-component-id={2}
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe={true}
+          disabled={true}
+          id="create-resource"
+          onClick={[Function]}
+          tabIndex={null}
+          type="button"
         >
-          <a
-            aria-describedby="launchWindow"
-            className="doc-link"
-            href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
-            target="doc"
-          >
-            View documentation
-          </a>
+          Create policy
         </button>
+      </div>
+      <div
+        className="button-group-doc-link"
+      >
+        <a
+          aria-describedby="launchWindow"
+          aria-disabled={false}
+          aria-label={null}
+          className="pf-c-button pf-m-link pf-m-inline"
+          data-ouia-component-id={3}
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe={true}
+          disabled={null}
+          href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
+          id="doc-link"
+          target="doc"
+          type={null}
+        >
+          View documentation
+        </a>
       </div>
     </div>
   </div>

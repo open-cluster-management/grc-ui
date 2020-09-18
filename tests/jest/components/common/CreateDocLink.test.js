@@ -9,7 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-import createDocLink from '../../../../src-web/components/common/CreateDocLink'
+import { createDocLink } from '../../../../src-web/components/common/CreateDocLink'
 
 describe('createDocLink view', () => {
   const handleCreatePolicy = jest.fn()
