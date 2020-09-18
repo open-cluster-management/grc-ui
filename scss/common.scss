@@ -151,12 +151,18 @@ div.no-resource {
     }
   
     .no-resource-detail {
+      color: var(--pf-global--Color--100);
       font-weight: 300;
       font-size: 1rem;
       margin-bottom: 1.75rem;
       max-width: unset;
       text-align: center;
-      color: var(--pf-global--Color--100);
+
+      .no-resource-detail__link {
+        color: var(--pf-global--link--Color);
+        font-size: 1rem;
+        font-weight: bold;
+      }
     }
   }
 

@@ -155,8 +155,7 @@ export class GrcView extends React.Component {
             detail={
               createDetails(msgs.get('no-resource.detail.policy_pt1', locale),
                 msgs.get('routes.create.policy', locale).toLowerCase(),
-                msgs.get('no-resource.detail.policy_pt2', locale),
-                this.handleCreatePolicy)
+                msgs.get('no-resource.detail.policy_pt2', locale))
             }
             svgName='EmptyPagePlanet-illus.png'>
             {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale), showCreationLink)}

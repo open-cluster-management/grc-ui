@@ -52,18 +52,15 @@ export const createDocLink = (locale, handleCreateResource, submitBtnTextKey, cr
   )
 }
 
-export const createDetails = (msgPart1, msgCreate, msgPart2, handleCreateResource) => {
+export const createDetails = (msgPart1, msgCreate, msgPart2) => {
   return [
     `${msgPart1} `,
-    <Button
+    <span
       key='no-resource-detail__link'
-      variant='link'
       className='no-resource-detail__link'
-      onClick={handleCreateResource}
-      isInline
     >
       {msgCreate}
-    </Button>,
+    </span>,
     ` ${msgPart2}`
   ]
 }
