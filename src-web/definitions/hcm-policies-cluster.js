@@ -11,8 +11,15 @@
 'use strict'
 
 import React from 'react'
+import _ from 'lodash'
 import TruncateText from '../components/common/TruncateText'
 import config from '../../lib/shared/config'
+import msgs from '../../nls/platform.properties'
+import {
+  GreenCheckCircleIcon,
+  RedExclamationCircleIcon,
+  YellowExclamationTriangleIcon,
+} from '../components/common/Icons'
 
 export default {
   defaultSortField: 'cluster',
@@ -35,6 +42,7 @@ export default {
     {
       msgKey: 'table.header.violation',
       resourceKey: 'violation',
+      transformFunction: getClusterCompliantStatus,
     },
     {
       msgKey: 'table.header.violated',
@@ -61,6 +69,20 @@ export default {
       }
     ]
   },
+}
+
+export function getClusterCompliantStatus(item, locale) {
+  const statusArray = _.get(item, 'violation').split('/')
+  const tooltip = msgs.get('table.tooltip.nostatus', locale)
+  return (
+    <div className='violationCell'>
+      { parseInt(statusArray[0], 10) > 0 ?
+        <RedExclamationCircleIcon /> :
+        <GreenCheckCircleIcon /> }
+      { parseInt(statusArray[2], 10) > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
+      {`${statusArray[0]}/${statusArray[1]}`}
+    </div>
+  )
 }
 
 export function getClusterViolationLabels(item) {

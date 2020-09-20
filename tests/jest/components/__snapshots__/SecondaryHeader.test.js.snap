@@ -120,7 +120,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
     <button
       aria-disabled={false}
       aria-label={null}
-      className="pf-c-button pf-m-primary"
+      className="pf-c-button pf-m-primary pf-m-small"
       data-ouia-component-id={0}
       data-ouia-component-type="PF4/Button"
       data-ouia-safe={true}
@@ -237,7 +237,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
     <button
       aria-disabled={false}
       aria-label={null}
-      className="pf-c-button pf-m-primary"
+      className="pf-c-button pf-m-primary pf-m-small"
       data-ouia-component-id={1}
       data-ouia-component-type="PF4/Button"
       data-ouia-safe={true}
@@ -354,7 +354,7 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
     <button
       aria-disabled={true}
       aria-label={null}
-      className="pf-c-button pf-m-primary pf-m-disabled"
+      className="pf-c-button pf-m-primary pf-m-disabled pf-m-small"
       data-ouia-component-id={2}
       data-ouia-component-type="PF4/Button"
       data-ouia-safe={true}
@@ -595,6 +595,7 @@ Array [
   <Button
     id="create-policy"
     isDisabled={true}
+    isSmall={true}
     onClick={[Function]}
     variant="primary"
   >

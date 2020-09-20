@@ -181,6 +181,7 @@ export class SecondaryHeader extends React.Component {
         id={id}
         onClick={handleClick}
         variant={kind}
+        isSmall
       >
         {msgs.get(label, locale)}
       </Button>
