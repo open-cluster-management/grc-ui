@@ -40,7 +40,7 @@ class PolicyDetail extends React.Component {
   }
 
   static defaultProps = {
-    tabs: ['detail','violation','yaml'],
+    tabs: ['detail','status','yaml'],
     resourceType: RESOURCE_TYPES.HCM_COMPLIANCES
   }
 
@@ -49,7 +49,7 @@ class PolicyDetail extends React.Component {
     this.firstLoad = true
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     const {
       updateSecondaryHeader:localUpdateSecondaryHeader,
       tabs,
@@ -57,23 +57,12 @@ class PolicyDetail extends React.Component {
       match,
       location
     } = this.props
-    localUpdateSecondaryHeader(this.getPolicyName(location), getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`), this.getBreadcrumb(), launch_links)
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.location !== this.props.location) {
-      const {
-        updateSecondaryHeader:localUpdateSecondaryHeader,
-        tabs,
-        launch_links,
-        match
-      } = this.props
-      localUpdateSecondaryHeader(
-        this.getPolicyName(nextProps.location),
-        getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`),
-        this.getBreadcrumb(nextProps.location), launch_links
-      )
-    }
+    localUpdateSecondaryHeader(
+      this.getPolicyName(location),
+      getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`),
+      this.getBreadcrumb(),
+      launch_links
+    )
   }
 
   render () {
@@ -86,7 +75,12 @@ class PolicyDetail extends React.Component {
 
     return (
       <Page>
-        <Query query={HCMCompliance} variables={{name: policyName, namespace: policyNamespace}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+        <Query
+          query={HCMCompliance}
+          variables={{name: policyName, namespace: policyNamespace}}
+          pollInterval={pollInterval}
+          notifyOnNetworkStatusChange
+        >
           {( result ) => {
             const {data={}, loading, startPolling, stopPolling, refetch} = result
             const { items } = data
@@ -152,6 +146,8 @@ class PolicyDetail extends React.Component {
   getBreadcrumb(location) {
     const breadcrumbItems = []
     location = location || this.props.location
+    console.log('location : '+
+     JSON.stringify(location))
     const { tabs } = this.props,
           { locale } = this.context,
           urlSegments = location.pathname.replace(/\/$/, '').split('/'),
@@ -171,7 +167,7 @@ class PolicyDetail extends React.Component {
       noLocale: true,
       url: currentTab ? location.pathname.replace(`/${currentTab}`, '') : location.pathname
     })
-
+    console.log(JSON.stringify(breadcrumbItems))
     return breadcrumbItems
   }
 

@@ -3,9 +3,9 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Title,
-} from '@patternfly/react-core'
+// import {
+//   Title,
+// } from '@patternfly/react-core'
 import PatternFlyTable from './PatternFlyTable'
 import { LocaleContext } from './LocaleContext'
 import statusDef from '../../tableDefinitions/statusDef'
@@ -20,17 +20,13 @@ class PolicyStatusView extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { history, cluster, template } = this.props
+    const { status } = this.props
     const { locale } = this.context
-
-    const tableData = transform(history, statusDef, locale)
-
+    const tableData = transform(status, statusDef, locale)
+    console.log(JSON.stringify(status))
     return (
       <div className='policy-status-view'>
         <div className='table'>
-          <Title className='title' headingLevel="h3">{cluster}</Title>
-          <Title className='title' headingLevel="h4">{`${msgs.get('policy.template', locale)}: ${template}`}</Title>
-          <br></br>
           <PatternFlyTable {...tableData} noResultMsg={msgs.get('table.search.no.results', locale)} />
         </div>
       </div>
@@ -39,9 +35,7 @@ class PolicyStatusView extends React.Component {
 }
 
 PolicyStatusView.propTypes = {
-  cluster: PropTypes.string,
-  history: PropTypes.array,
-  template: PropTypes.string
+  status: PropTypes.array,
 }
 
 export default PolicyStatusView
