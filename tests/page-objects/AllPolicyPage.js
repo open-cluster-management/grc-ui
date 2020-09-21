@@ -13,7 +13,7 @@ const yaml = require('js-yaml')
 
 module.exports = {
   elements: {
-    spinner: '.content-spinner',
+    spinner: '.patternfly-spinner',
     table: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra',
     createPolicyButton: '#create-policy',
     submitCreatePolicyButton: '#create-button-portal-id',
@@ -499,9 +499,9 @@ function testDetailsPage(name, templateFile) {
   // Check Policy templates
   this.expect.element('.overview-content > div:nth-child(3) > .section-title').text.to.equal('Policy templates')
   // VIOLATION TAB TESTS
-  this.waitForElementVisible('#violation-tab')
-  this.click('#violation-tab')
-  this.waitForElementNotPresent('#spinner')
+  this.waitForElementVisible('#status-tab')
+  this.click('#status-tab')
+  this.waitForElementNotPresent('@spinner')
   // YAML TAB TESTS
   this.waitForElementVisible('#yaml-tab')
   this.click('#yaml-tab')

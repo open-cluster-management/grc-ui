@@ -4,7 +4,7 @@ const config = require('../../config')
 
 module.exports = {
   elements: {
-    spinner: '.content-spinner',
+    spinner: '.patternfly-spinner',
     searchInput: '#search',
     allTable: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody',
     policyLink: '.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a',

@@ -32,6 +32,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "possibleTypes": undefined,
               "typePolicies": Object {},
             },
+            "fuzzySubtypes": Map {},
             "rootIdsByTypename": Object {
               "Mutation": "ROOT_MUTATION",
               "Query": "ROOT_QUERY",
@@ -42,10 +43,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "ROOT_QUERY": "Query",
               "ROOT_SUBSCRIPTION": "Subscription",
             },
-            "storageTrie": KeyTrie {
-              "makeData": [Function],
-              "weakness": true,
-            },
+            "supertypeMap": Map {},
             "typePolicies": Object {},
             "usingPossibleTypes": false,
           },
@@ -58,6 +56,10 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "makeData": [Function],
               "weakness": true,
             },
+          },
+          "storageTrie": KeyTrie {
+            "makeData": [Function],
+            "weakness": true,
           },
           "toReference": [Function],
         },
@@ -84,6 +86,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "possibleTypes": undefined,
               "typePolicies": Object {},
             },
+            "fuzzySubtypes": Map {},
             "rootIdsByTypename": Object {
               "Mutation": "ROOT_MUTATION",
               "Query": "ROOT_QUERY",
@@ -94,10 +97,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "ROOT_QUERY": "Query",
               "ROOT_SUBSCRIPTION": "Subscription",
             },
-            "storageTrie": KeyTrie {
-              "makeData": [Function],
-              "weakness": true,
-            },
+            "supertypeMap": Map {},
             "typePolicies": Object {},
             "usingPossibleTypes": false,
           },
@@ -111,6 +111,10 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "weakness": true,
             },
           },
+          "storageTrie": KeyTrie {
+            "makeData": [Function],
+            "weakness": true,
+          },
           "toReference": [Function],
         },
         "policies": Policies {
@@ -121,6 +125,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
             "possibleTypes": undefined,
             "typePolicies": Object {},
           },
+          "fuzzySubtypes": Map {},
           "rootIdsByTypename": Object {
             "Mutation": "ROOT_MUTATION",
             "Query": "ROOT_QUERY",
@@ -131,10 +136,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
             "ROOT_QUERY": "Query",
             "ROOT_SUBSCRIPTION": "Subscription",
           },
-          "storageTrie": KeyTrie {
-            "makeData": [Function],
-            "weakness": true,
-          },
+          "supertypeMap": Map {},
           "typePolicies": Object {},
           "usingPossibleTypes": false,
         },
@@ -221,6 +223,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "possibleTypes": undefined,
                 "typePolicies": Object {},
               },
+              "fuzzySubtypes": Map {},
               "rootIdsByTypename": Object {
                 "Mutation": "ROOT_MUTATION",
                 "Query": "ROOT_QUERY",
@@ -231,10 +234,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "ROOT_QUERY": "Query",
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
-              "storageTrie": KeyTrie {
-                "makeData": [Function],
-                "weakness": true,
-              },
+              "supertypeMap": Map {},
               "typePolicies": Object {},
               "usingPossibleTypes": false,
             },
@@ -247,6 +247,10 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "makeData": [Function],
                 "weakness": true,
               },
+            },
+            "storageTrie": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
             },
             "toReference": [Function],
           },
@@ -273,6 +277,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "possibleTypes": undefined,
                 "typePolicies": Object {},
               },
+              "fuzzySubtypes": Map {},
               "rootIdsByTypename": Object {
                 "Mutation": "ROOT_MUTATION",
                 "Query": "ROOT_QUERY",
@@ -283,10 +288,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "ROOT_QUERY": "Query",
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
-              "storageTrie": KeyTrie {
-                "makeData": [Function],
-                "weakness": true,
-              },
+              "supertypeMap": Map {},
               "typePolicies": Object {},
               "usingPossibleTypes": false,
             },
@@ -300,6 +302,10 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "weakness": true,
               },
             },
+            "storageTrie": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
+            },
             "toReference": [Function],
           },
           "policies": Policies {
@@ -310,6 +316,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "possibleTypes": undefined,
               "typePolicies": Object {},
             },
+            "fuzzySubtypes": Map {},
             "rootIdsByTypename": Object {
               "Mutation": "ROOT_MUTATION",
               "Query": "ROOT_QUERY",
@@ -320,10 +327,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "ROOT_QUERY": "Query",
               "ROOT_SUBSCRIPTION": "Subscription",
             },
-            "storageTrie": KeyTrie {
-              "makeData": [Function],
-              "weakness": true,
-            },
+            "supertypeMap": Map {},
             "typePolicies": Object {},
             "usingPossibleTypes": false,
           },
@@ -388,6 +392,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "possibleTypes": undefined,
                 "typePolicies": Object {},
               },
+              "fuzzySubtypes": Map {},
               "rootIdsByTypename": Object {
                 "Mutation": "ROOT_MUTATION",
                 "Query": "ROOT_QUERY",
@@ -398,10 +403,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "ROOT_QUERY": "Query",
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
-              "storageTrie": KeyTrie {
-                "makeData": [Function],
-                "weakness": true,
-              },
+              "supertypeMap": Map {},
               "typePolicies": Object {},
               "usingPossibleTypes": false,
             },
@@ -414,6 +416,10 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "makeData": [Function],
                 "weakness": true,
               },
+            },
+            "storageTrie": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
             },
             "toReference": [Function],
           },
@@ -440,6 +446,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "possibleTypes": undefined,
                 "typePolicies": Object {},
               },
+              "fuzzySubtypes": Map {},
               "rootIdsByTypename": Object {
                 "Mutation": "ROOT_MUTATION",
                 "Query": "ROOT_QUERY",
@@ -450,10 +457,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "ROOT_QUERY": "Query",
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
-              "storageTrie": KeyTrie {
-                "makeData": [Function],
-                "weakness": true,
-              },
+              "supertypeMap": Map {},
               "typePolicies": Object {},
               "usingPossibleTypes": false,
             },
@@ -467,6 +471,10 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "weakness": true,
               },
             },
+            "storageTrie": KeyTrie {
+              "makeData": [Function],
+              "weakness": true,
+            },
             "toReference": [Function],
           },
           "policies": Policies {
@@ -477,6 +485,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "possibleTypes": undefined,
               "typePolicies": Object {},
             },
+            "fuzzySubtypes": Map {},
             "rootIdsByTypename": Object {
               "Mutation": "ROOT_MUTATION",
               "Query": "ROOT_QUERY",
@@ -487,10 +496,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "ROOT_QUERY": "Query",
               "ROOT_SUBSCRIPTION": "Subscription",
             },
-            "storageTrie": KeyTrie {
-              "makeData": [Function],
-              "weakness": true,
-            },
+            "supertypeMap": Map {},
             "typePolicies": Object {},
             "usingPossibleTypes": false,
           },
@@ -568,6 +574,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "possibleTypes": undefined,
                   "typePolicies": Object {},
                 },
+                "fuzzySubtypes": Map {},
                 "rootIdsByTypename": Object {
                   "Mutation": "ROOT_MUTATION",
                   "Query": "ROOT_QUERY",
@@ -578,10 +585,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "ROOT_QUERY": "Query",
                   "ROOT_SUBSCRIPTION": "Subscription",
                 },
-                "storageTrie": KeyTrie {
-                  "makeData": [Function],
-                  "weakness": true,
-                },
+                "supertypeMap": Map {},
                 "typePolicies": Object {},
                 "usingPossibleTypes": false,
               },
@@ -594,6 +598,10 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "makeData": [Function],
                   "weakness": true,
                 },
+              },
+              "storageTrie": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
               },
               "toReference": [Function],
             },
@@ -620,6 +628,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "possibleTypes": undefined,
                   "typePolicies": Object {},
                 },
+                "fuzzySubtypes": Map {},
                 "rootIdsByTypename": Object {
                   "Mutation": "ROOT_MUTATION",
                   "Query": "ROOT_QUERY",
@@ -630,10 +639,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "ROOT_QUERY": "Query",
                   "ROOT_SUBSCRIPTION": "Subscription",
                 },
-                "storageTrie": KeyTrie {
-                  "makeData": [Function],
-                  "weakness": true,
-                },
+                "supertypeMap": Map {},
                 "typePolicies": Object {},
                 "usingPossibleTypes": false,
               },
@@ -647,6 +653,10 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "weakness": true,
                 },
               },
+              "storageTrie": KeyTrie {
+                "makeData": [Function],
+                "weakness": true,
+              },
               "toReference": [Function],
             },
             "policies": Policies {
@@ -657,6 +667,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "possibleTypes": undefined,
                 "typePolicies": Object {},
               },
+              "fuzzySubtypes": Map {},
               "rootIdsByTypename": Object {
                 "Mutation": "ROOT_MUTATION",
                 "Query": "ROOT_QUERY",
@@ -667,10 +678,7 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "ROOT_QUERY": "Query",
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
-              "storageTrie": KeyTrie {
-                "makeData": [Function],
-                "weakness": true,
-              },
+              "supertypeMap": Map {},
               "typePolicies": Object {},
               "usingPossibleTypes": false,
             },

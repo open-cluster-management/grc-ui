@@ -11,7 +11,7 @@ const parser = require('../utils/yamlHelper')
 
 module.exports = {
   elements: {
-    spinner: '.content-spinner',
+    spinner: '.patternfly-spinner',
     table: '.bx--data-table-v2',
     tableExpandBtn: '.bx--table-expand-v2__button:nth-of-type(1)',
     expandTable: '.bx--expandable-row-v2:nth-of-type(2)',
@@ -50,7 +50,7 @@ module.exports = {
     createPolicy,
     searchPolicy,
     deletePolicy,
-    checkViolations,
+    checkStatus,
     setSearchValue,
     clearSearchValue,
     log,
@@ -127,7 +127,7 @@ function createPolicy(browser, name, yaml, time) {
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement binding')
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
   this.click('.bx--breadcrumb > div:nth-child(1)')
-  this.waitForElementNotPresent('#spinner')
+  this.waitForElementNotPresent('@spinner')
 }
 
 function enforcePolicy(name){
@@ -161,40 +161,54 @@ function informPolicy(name){
   this.clearSearchValue()
 }
 
-function checkViolations(name, violationExpected, violationText) {
+function checkStatus(name, violationExpected/*, violationText*/) {
   this.log(`Checking policy: ${name} violationExpected: ${violationExpected}`)
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
   this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
-  this.click('tbody>tr>td>a')
-  this.waitForElementPresent('#violation-tab')
-  this.click('#violation-tab')
+  // wait for yellow triangle to disappear
+  this.waitForElementNotPresent('css selector','#table-container .violationCell svg[fill=\'#f0ab00\']')
   if (violationExpected) {
-    this.waitForElementPresent('#violations-table-container')
-    if (violationText) {
-      this.expect.element('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(violationText)
-    }
-    this.log('checking view details for violations')
-    this.click('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3) a')
-    this.waitForElementPresent('.policy-template-details-view')
-    this.waitForElementPresent('.policy-template-details-view .table')
-    this.getText('css selector', 'div.pf-c-description-list__group:nth-child(3) > dd:nth-child(2) > div:nth-child(1)', (kind) => {
-      if (kind.value === '-') {
-        this.assert.fail(`Failed to retrieve policy details: kind=${this.log(kind)}`)
-      }
-      if (kind.value === 'ConfigurationPolicy') {
-        this.getText('css selector', 'div.pf-c-description-list__group:nth-child(6) > dd:nth-child(2) > div:nth-child(1)', (details) => {
-          if (details.value.includes('No instances of')) {
-            this.expect.elements('.policy-template-details-view .table tbody>tr').count.to.equal(0)
-          } else {
-            this.expect.elements('.policy-template-details-view .table tbody>tr').count.not.to.equal(0)
-          }
-        })
-      }
-    })
+    // should show red not compliant
+    this.waitForElementPresent('css selector', '#table-container .violationCell svg[fill=\'#c9190b\']')
   } else {
-    this.waitForElementPresent('.no-resource')
+    // should show green compliant
+    this.waitForElementPresent('css selector', '#table-container .violationCell svg[fill=\'#467f40\']')
   }
+  this.click('tbody>tr>td>a')
+  this.waitForElementPresent('#status-tab')
+  this.click('#status-tab')
+  this.waitForElementPresent('.policy-status-view')
+  // if (violationExpected) {
+  //   this.api.elements('css selector','.pattern-fly-table-body td[data-label=Status] > div', (result) => {
+  //     this.log(result)
+  //     // this.assert.ok(result.value.length, ns.length, `User should only be able to see namespaces: ${ns}`)
+  //   })
+  //   this.waitForElementPresent('#violations-table-container')
+  //   if (violationText) {
+  //     this.expect.element('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(violationText)
+  //   }
+  //   this.log('checking view details for violations')
+  //   this.click('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3) a')
+  //   this.waitForElementPresent('.policy-template-details-view')
+  //   this.waitForElementPresent('.policy-template-details-view .table')
+  //   this.getText('css selector', 'div.pf-c-description-list__group:nth-child(3) > dd:nth-child(2) > div:nth-child(1)', (kind) => {
+  //     if (kind.value === '-') {
+  //       this.assert.fail(`Failed to retrieve policy details: kind=${this.log(kind)}`)
+  //     }
+  //     if (kind.value === 'ConfigurationPolicy') {
+  //       this.getText('css selector', 'div.pf-c-description-list__group:nth-child(6) > dd:nth-child(2) > div:nth-child(1)', (details) => {
+  //         if (details.value.includes('No instances of')) {
+  //           this.expect.elements('.policy-template-details-view .table tbody>tr').count.to.equal(0)
+  //         } else {
+  //           this.expect.elements('.policy-template-details-view .table tbody>tr').count.not.to.equal(0)
+  //         }
+  //       })
+  //     }
+  //   })
+  // } else {
+  //   this.waitForElementPresent('.no-resource')
+  // }
   this.click('.bx--breadcrumb > div:nth-child(1)')
 }
 

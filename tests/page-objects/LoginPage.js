@@ -21,7 +21,7 @@ module.exports = {
     error: '.bx--inline-notification--error',
     header: '.app-header',
     loginForm: 'form[role="form"]',
-    spinner: '.content-spinner',
+    spinner: '.patternfly-spinner',
     userDropdown: '#acm-user-dropdown > .dropdown-container > .header-action-trigger',
     logout: '#logout'
   },

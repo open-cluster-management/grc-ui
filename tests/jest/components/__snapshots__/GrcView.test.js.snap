@@ -709,7 +709,6 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   >
                     <path
                       d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-                      transform=""
                     />
                   </svg>
                   2/2
@@ -830,7 +829,6 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   >
                     <path
                       d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-                      transform=""
                     />
                   </svg>
                   2/2
@@ -1049,25 +1047,21 @@ exports[`GrcView component 1 renders as expected 1`] = `
 `;
 
 exports[`GrcView component 2 renders as expected 1`] = `
-<div
-  aria-live="assertive"
-  className="bx--loading content-spinner"
+<span
+  aria-valuetext="Loading..."
+  className="pf-c-spinner pf-m-xl patternfly-spinner"
+  role="progressbar"
 >
-  <svg
-    className="bx--loading__svg"
-    viewBox="-75 -75 150 150"
-  >
-    <title>
-      Active loading indicator
-    </title>
-    <circle
-      className={null}
-      cx="0"
-      cy="0"
-      r="37.5"
-    />
-  </svg>
-</div>
+  <span
+    className="pf-c-spinner__clipper"
+  />
+  <span
+    className="pf-c-spinner__lead-ball"
+  />
+  <span
+    className="pf-c-spinner__tail-ball"
+  />
+</span>
 `;
 
 exports[`GrcView component 3 renders as expected 1`] = `
@@ -1186,25 +1180,21 @@ exports[`GrcView component 4 renders as expected 1`] = `
   <div
     className="module-toggle-tab"
   >
-    <div
-      aria-live="assertive"
-      className="bx--loading content-spinner"
+    <span
+      aria-valuetext="Loading..."
+      className="pf-c-spinner pf-m-xl patternfly-spinner"
+      role="progressbar"
     >
-      <svg
-        className="bx--loading__svg"
-        viewBox="-75 -75 150 150"
-      >
-        <title>
-          Active loading indicator
-        </title>
-        <circle
-          className={null}
-          cx="0"
-          cy="0"
-          r="37.5"
-        />
-      </svg>
-    </div>
+      <span
+        className="pf-c-spinner__clipper"
+      />
+      <span
+        className="pf-c-spinner__lead-ball"
+      />
+      <span
+        className="pf-c-spinner__tail-ball"
+      />
+    </span>
   </div>
 </div>
 `;
@@ -1249,7 +1239,7 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
           aria-disabled={false}
           aria-label={null}
           className="pf-c-button pf-m-primary pf-m-small"
-          data-ouia-component-id={0}
+          data-ouia-component-id="OUIA-Generated-Button-primary-1"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe={true}
           disabled={false}
@@ -1268,7 +1258,7 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
           aria-disabled={false}
           aria-label={null}
           className="pf-c-button pf-m-link pf-m-inline"
-          data-ouia-component-id={1}
+          data-ouia-component-id="OUIA-Generated-Button-link-1"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe={true}
           disabled={null}
@@ -1325,7 +1315,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
           aria-disabled={true}
           aria-label={null}
           className="pf-c-button pf-m-primary pf-m-disabled pf-m-small"
-          data-ouia-component-id={2}
+          data-ouia-component-id="OUIA-Generated-Button-primary-2"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe={true}
           disabled={true}
@@ -1345,7 +1335,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
           aria-disabled={false}
           aria-label={null}
           className="pf-c-button pf-m-link pf-m-inline"
-          data-ouia-component-id={3}
+          data-ouia-component-id="OUIA-Generated-Button-link-2"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe={true}
           disabled={null}
