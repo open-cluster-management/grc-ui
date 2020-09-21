@@ -41,4 +41,5 @@ while true; do
 done
 
 # run test
+sleep 10
 npm run test:e2e-headless

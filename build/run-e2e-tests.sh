@@ -10,8 +10,8 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 echo "Login managed"
-export OC_CLUSTER_URL=$OC_MANAGED_CLUSTER_URL
-export OC_CLUSTER_PASS=$OC_MANAGED_CLUSTER_PASS
+export OC_CLUSTER_URL=${OC_MANAGED_CLUSTER_URL:-${OC_HUB_CLUSTER_URL}}
+export OC_CLUSTER_PASS=${OC_MANAGED_CLUSTER_PASS:-${OC_HUB_CLUSTER_PASS}}
 make oc/login
 
 $DIR/install-cert-manager.sh
