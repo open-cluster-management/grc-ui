@@ -3,7 +3,6 @@
 'use strict'
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import moment from 'moment'
 import lodash from 'lodash'
 import {
@@ -11,6 +10,7 @@ import {
   RedExclamationCircleIcon,
   YellowExclamationTriangleIcon,
 } from '../components/common/Icons'
+import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../../nls/platform.properties'
 
 export const transform = (items, def, locale) => {
@@ -65,23 +65,6 @@ export const buildCompliantCellFromMessage = (item, locale) => {
   } else {
     return <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
   }
-}
-
-class TableTimestamp extends React.Component {
-  render() {
-    const { timestamp } = this.props
-    let fromNow = 'unknown'
-    if (timestamp && timestamp.includes('T')) {
-      fromNow = moment(timestamp, 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
-    } else if (timestamp) {
-      fromNow = moment(timestamp, 'YYYY-MM-DD HH:mm:ss').fromNow()
-    }
-    return <span>{fromNow}</span>
-  }
-}
-
-TableTimestamp.propTypes = {
-  timestamp: PropTypes.string,
 }
 
 export const buildTimestamp = (item) => {
