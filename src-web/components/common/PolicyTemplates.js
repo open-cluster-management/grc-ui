@@ -142,7 +142,6 @@ class PolicyTemplates extends React.Component {
     const userAccessHash = formatUserAccess(userAccess)
     const actions = ['table.actions.edit']
     const filteredActions = filterUserAction(resourceData, actions, userAccessHash, resourceType)
-    console.log(JSON.stringify(filteredActions))
     const disableFlag = (Array.isArray(filteredActions) && filteredActions[0])
       ? filteredActions[0].includes('disabled.')
       : true

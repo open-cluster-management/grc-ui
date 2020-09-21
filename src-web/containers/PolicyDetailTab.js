@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2017, 2018. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
@@ -17,7 +9,6 @@ import { connect } from 'react-redux'
 import resources from '../../lib/shared/resources'
 import _ from 'lodash'
 import { updateResourceToolbar } from '../actions/common'
-import PolicyTemplates from '../components/common/PolicyTemplates'
 import getResourceDefinitions from '../definitions'
 import { HCMCompliance } from '../../lib/client/queries'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
@@ -25,12 +16,14 @@ import {GRC_REFRESH_INTERVAL_COOKIE} from '../../lib/shared/constants'
 import { Spinner } from '@patternfly/react-core'
 import Page from '../components/common/Page'
 import { DangerNotification } from '../components/common/DangerNotification'
+// eslint-disable-next-line import/no-named-as-default
+import PolicyDetailsOverview from '../components/common/PolicyDetailsOverview'
 
 resources(() => {
   require('../../scss/policy-yaml-tab.scss')
 })
 
-class PolicyTemplateTab extends React.Component{
+class PolicyDetailTab extends React.Component{
   constructor(props) {
     super(props)
   }
@@ -56,9 +49,9 @@ class PolicyTemplateTab extends React.Component{
     >
       {( result ) => {
         const {data={}, loading, startPolling, stopPolling, refetch} = result
+        console.log(JSON.stringify(result.data))
         const { items } = data
         const error = items ? null : result.error
-        console.log(JSON.stringify(result.data))
         const firstLoad = this.firstLoad
         this.firstLoad = false
         const reloading = !firstLoad && loading
@@ -66,12 +59,14 @@ class PolicyTemplateTab extends React.Component{
         if (!reloading) {
           this.timestamp = new Date().toString()
         }
+
         const refreshControl = {
           reloading,
           refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
           startPolling, stopPolling, refetch,
           timestamp: this.timestamp
         }
+
         if (error) {
           return (
             <Page>
@@ -81,16 +76,14 @@ class PolicyTemplateTab extends React.Component{
         } else if (loading && items === undefined) {
           return <Spinner className='patternfly-spinner' />
         } else{
-          if (pollInterval) {
-            refreshControl.startPolling(pollInterval)
-          }
           const item = items[0]
-          return <PolicyTemplates
+          return <PolicyDetailsOverview
+            loading={!items && loading}
+            error={error}
+            item={item}
+            refreshControl={refreshControl}
             resourceType={resourceType}
             staticResourceData={staticResourceData}
-            resourceData={item}
-            className='compliance-templates'
-            headerKey={'table.header.complianceTemplate'}
           />
         }
       }}
@@ -99,11 +92,11 @@ class PolicyTemplateTab extends React.Component{
 
 }
 
-PolicyTemplateTab.contextTypes = {
+PolicyDetailTab.contextTypes = {
   locale: PropTypes.string
 }
 
-PolicyTemplateTab.propTypes = {
+PolicyDetailTab.propTypes = {
   policyName: PropTypes.string,
   policyNamespace: PropTypes.string,
   refreshControl: PropTypes.object,
@@ -117,5 +110,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter( connect(null, mapDispatchToProps) (PolicyTemplateTab))
+export default withRouter( connect(null, mapDispatchToProps) (PolicyDetailTab))
 

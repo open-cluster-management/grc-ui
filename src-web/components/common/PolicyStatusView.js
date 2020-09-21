@@ -23,7 +23,6 @@ class PolicyStatusView extends React.Component {
     const { status } = this.props
     const { locale } = this.context
     const tableData = transform(status, statusDef, locale)
-    console.log(JSON.stringify(status))
     return (
       <div className='policy-status-view'>
         <div className='table'>

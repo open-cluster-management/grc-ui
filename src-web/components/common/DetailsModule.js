@@ -83,19 +83,19 @@ class DetailsModule extends React.PureComponent {
             </td>
           )
           tableCells.push(
-            <td className='structured-list-table-data' key={`list-item-${tableData[row][1]}`} >
+            <td className='structured-list-table-data' key={_uniqueId(`list-item-${tableData[row][1]}`)} >
               {tableData[row][1]}
             </td>
           )
           const tableRow =
-            <tr className = 'new-structured-list-table-row' key={`list-line-${row}-${tableData[row][0]}`} >
+            <tr className = 'new-structured-list-table-row' key={_uniqueId(`list-line-${row}-${tableData[row][0]}`)} >
               {tableCells}
             </tr>
           tableRows.push(tableRow)
         }
       }
       const table =
-        <table className = 'new-structured-list-table' key={`new-structured-list-${tableData[0][1]}`}>
+        <table className = 'new-structured-list-table' key={_uniqueId(`new-structured-list-${tableData[0][1]}`)}>
           <tbody>{tableRows}</tbody>
         </table>
       tables.push(table)
@@ -115,9 +115,9 @@ class DetailsModule extends React.PureComponent {
     const showHeader = _.get(this.props, 'showHeader', true)
     const tablesData = this.formatData()
 
-    return(<Module className='new-structured-list-container' key='new-structured-list'>
+    return(<Module className='new-structured-list-container' key={_uniqueId('new-structured-list')}>
       { showHeader? <ModuleHeader>{msgs.get(title, this.context.locale)}</ModuleHeader> : null}
-      <ModuleBody key='new-structured-list-body'>
+      <ModuleBody key={_uniqueId('new-structured-list-body')}>
         {this.renderStructuredListBody(tablesData)}
       </ModuleBody>
     </Module>)
