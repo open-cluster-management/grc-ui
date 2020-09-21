@@ -91,7 +91,6 @@
     "graphql-tag": "^2.11.0",
     "handlebars": "^4.7.6",
     "handlebars-loader": "^1.7.1",
-    "helmet": "^3.23.3",
     "hoist-non-react-statics": "^3.3.2",
     "http-proxy-middleware": "^1.0.5",
     "ignore-styles": "^5.0.1",
