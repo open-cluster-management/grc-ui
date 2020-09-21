@@ -58,7 +58,6 @@ class PolicyTemplateTab extends React.Component{
         const {data={}, loading, startPolling, stopPolling, refetch} = result
         const { items } = data
         const error = items ? null : result.error
-        console.log(JSON.stringify(result.data))
         const firstLoad = this.firstLoad
         this.firstLoad = false
         const reloading = !firstLoad && loading

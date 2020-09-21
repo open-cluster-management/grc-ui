@@ -10,7 +10,6 @@ import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { Query } from 'react-apollo'
 import { PolicyStatus } from '../../lib/client/queries'
 import Page from '../components/common/Page'
-import { LocaleContext } from '../components/common/LocaleContext'
 import { DangerNotification } from '../components/common/DangerNotification'
 import PolicyStatusView from '../components/common/PolicyStatusView'
 
@@ -28,8 +27,6 @@ class PolicyStatusTab extends React.Component {
     super(props)
   }
 
-  static contextType = LocaleContext
-
   render() {
     const {
       policyName,
@@ -44,26 +41,36 @@ class PolicyStatusTab extends React.Component {
         notifyOnNetworkStatusChange
       >
         {(result) => {
-          const { data={}, error } = result
+          const {data={}, loading, startPolling, stopPolling, refetch} = result
+          const { status } = data
+          const error = status ? null : result.error
+          const firstLoad = this.firstLoad
+          this.firstLoad = false
+          const reloading = !firstLoad && loading
+          const refreshControl = {
+            reloading,
+            refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
+            startPolling, stopPolling, refetch,
+            timestamp: this.timestamp
+          }
           if (error) {
             return (
               <Page>
                 <DangerNotification error={error} />
               </Page>
             )
-          }
-          const { status } = data
-          if (status) {
+          } else if (loading && status === undefined) {
+            return <Spinner className='patternfly-spinner' />
+          } else{
+            if (pollInterval) {
+              refreshControl.startPolling(pollInterval)
+            }
             return (
               <Page>
                 {<PolicyStatusView
                   status={status}
                 />}
               </Page>
-            )
-          } else {
-            return (
-              <Spinner className='patternfly-spinner' />
             )
           }
         }}

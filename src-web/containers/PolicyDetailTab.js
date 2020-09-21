@@ -49,7 +49,6 @@ class PolicyDetailTab extends React.Component{
     >
       {( result ) => {
         const {data={}, loading, startPolling, stopPolling, refetch} = result
-        console.log(JSON.stringify(result.data))
         const { items } = data
         const error = items ? null : result.error
         const firstLoad = this.firstLoad
