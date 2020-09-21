@@ -5,6 +5,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import _ from 'lodash'
+import config from '../../lib/shared/config'
 import {
   GreenCheckCircleIcon,
   RedExclamationCircleIcon,
@@ -79,10 +80,14 @@ export const getAge = (item, locale, timestampKey) => {
 
 export function buildClusterLink(item) {
   const cluster = _.get(item, 'cluster')
-  const consoleURL = _.get(item, 'consoleURL', '-')
-  if (cluster && consoleURL) {
-    return <a target='_blank' rel='noopener noreferrer'
-      href={consoleURL}>{cluster}</a>
+  const clusterNamespace = _.get(item, 'clusterNamespace')
+  if (cluster && clusterNamespace) {
+    const clusterURL = `${config.clusterContextPath}/${clusterNamespace}/${cluster}`
+    return <a
+      rel='noopener noreferrer'
+      href={clusterURL}>
+      {cluster}
+    </a>
   } else if (cluster) {
     return cluster
   }
@@ -96,7 +101,9 @@ export function buildStatusHistoryLink(item, locale) {
   const templateName = _.get(item, 'templateName')
   if (policyName && policyNamespace && cluster && templateName) {
     const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/status/${cluster}/templates/${templateName}/history`
-    return <Link to={statusHistoryURL}>{msgs.get('table.actions.view.details', locale)}</Link>
+    return <Link to={statusHistoryURL}>
+      {msgs.get('table.actions.view.details', locale)}
+    </Link>
   }
   return '-'
 }
@@ -111,7 +118,12 @@ export function buildMessageDetailLink(item, locale) {
   const kind = _.get(item, 'kind')
   if (message && policyName && policyNamespace && cluster && templateName && apiVersion && kind) {
     const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
-    return <div>{`${message} `} <Link to={statusHistoryURL}>{msgs.get('table.actions.view.details', locale)}</Link></div>
+    return <div>
+      {`${message} `}
+      <Link to={statusHistoryURL}>
+        {msgs.get('table.actions.view.details', locale)}
+      </Link>
+    </div>
   }
   return ''
 }
