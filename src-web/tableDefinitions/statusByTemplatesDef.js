@@ -19,7 +19,6 @@ export default {
     {
       msgKey: 'table.header.cluster',
       transforms: [sortable, wrappable],
-      cellTransforms: [breakWord],
       transformFunction: buildClusterLink
     },
     {
@@ -38,7 +37,6 @@ export default {
       msgKey: 'table.header.timestamp',
       resourceKey: 'timestamp',
       transforms: [sortable, wrappable],
-      cellTransforms: [breakWord],
       transformFunction: getAge,
     },
     {
