@@ -3,6 +3,7 @@
 
 import {
   breakWord,
+  cellWidth,
   sortable,
   wrappable,
 } from '@patternfly/react-table'
@@ -19,8 +20,7 @@ export default {
     {
       msgKey: 'table.header.status',
       resourceKey: 'status',
-      transforms: [sortable, wrappable],
-      cellTransforms: [breakWord],
+      transforms: [cellWidth(15), sortable],
       transformFunction: buildCompliantCellFromMessage
     },
     {

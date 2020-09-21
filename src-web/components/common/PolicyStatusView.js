@@ -45,17 +45,19 @@ class PolicyStatusView extends React.Component {
             {msgs.get('tabs.policy.status.toggle.clusters', locale)}
           </ToggleGroupItem>
         </ToggleGroup>
-        {toggleIndex===0 && Object.entries(statusByTemplates).map(([key, value])=> {
-          const tableDataByTemplate = transform(value, statusByTemplatesDef, locale)
-          return <div className='policy-status-by-templates-table' key={_uniqueId('template-index')}>
-            <Title className='title' headingLevel="h4">{key}</Title>
-            <PatternFlyTable {...tableDataByTemplate} noResultMsg={msgs.get('table.search.no.results', locale)} />
-          </div>
-        })}
-        {toggleIndex===1 && <div className='policy-status-by-clusters-table'>
-          <Title className='title' headingLevel="h4">{msgs.get('tabs.policy.status.toggle.clusters', locale)}</Title>
-          <PatternFlyTable {...tableDataByClusters} noResultMsg={msgs.get('table.search.no.results', locale)} />
-        </div>}
+        <div className='policy-status-tab'>
+          {toggleIndex===0 && Object.entries(statusByTemplates).map(([key, value])=> {
+            const tableDataByTemplate = transform(value, statusByTemplatesDef, locale)
+            return <div className='policy-status-by-templates-table' key={_uniqueId('template-index')}>
+              <Title className='title' headingLevel="h4">{key}</Title>
+              <PatternFlyTable {...tableDataByTemplate} noResultMsg={msgs.get('table.search.no.results', locale)} />
+            </div>
+          })}
+          {toggleIndex===1 && <div className='policy-status-by-clusters-table'>
+            <Title className='title' headingLevel="h4">{msgs.get('tabs.policy.status.toggle.clusters', locale)}</Title>
+            <PatternFlyTable {...tableDataByClusters} noResultMsg={msgs.get('table.search.no.results', locale)} />
+          </div>}
+        </div>
       </div>
     )
   }

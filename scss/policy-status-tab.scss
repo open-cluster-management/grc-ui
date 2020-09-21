@@ -4,25 +4,17 @@
  @import 'variables';
 
  .page-content-container{
-  .policy-violation-tab{
-    h5.section-title{
-      padding-left: 0.5rem;
-      margin-top: 2rem;
-    }
-    #policyViolations-module-id{
+   .policy-status-toggle {
+     float: right;
+     padding-bottom: 1rem;
+   }
+   .policy-status-tab {
+     padding-top: 2rem;
+    .policy-status-by-templates-table .policy-status-by-clusters-table {
       max-width: 100%;
-      .bx--module__inner{
-        border: 0;
-        .bx--module__content{
-          padding: 0;
-          .bx--data-table-v2-container{
-            padding: 0;
-            .bx--data-table-v2{
-              border: 0;
-            }
-          }
-        }
+      h4.title{
+        margin-top: 2rem;
       }
     }
-  }
+   }
  }
