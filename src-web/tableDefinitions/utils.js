@@ -67,17 +67,6 @@ export const buildCompliantCellFromMessage = (item, locale) => {
   }
 }
 
-export const getAge = (item, locale, timestampKey) => {
-  const key = timestampKey ? timestampKey : 'timestamp'
-  const createdTime = lodash.get(item, key)
-  if (createdTime && createdTime.includes('T')) {
-    return moment(createdTime, 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
-  } else if (createdTime) {
-    return moment(createdTime, 'YYYY-MM-DD HH:mm:ss').fromNow()
-  }
-  return '-'
-}
-
 class TableTimestamp extends React.Component {
   render() {
     const { timestamp } = this.props
