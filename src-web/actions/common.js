@@ -191,6 +191,7 @@ export const removeResource = (resourceType, vars) => async dispatch => {
     if (response.errors) {
       return dispatch(receiveDelError(response.errors, resourceType))
     }
+    dispatch(fetchResources(resourceType))
     dispatch(receiveDelResource(response, resourceType, vars))
   } catch (err) {
     return dispatch(receiveDelError(err, resourceType))
