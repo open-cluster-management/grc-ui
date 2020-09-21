@@ -18,7 +18,7 @@ import { updateActiveFilters } from '../../actions/common'
 import RefreshTimeSelect from './RefreshTimeSelect'
 import ResourceFilterView from './ResourceFilterView'
 import { CSSTransition } from 'react-transition-group'
-import { Spinner } from '@patternfly/react-core'
+import { Loading } from 'carbon-components-react'
 import { REFRESH_TIMES, GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 import '../../../graphics/diagramIcons.svg'
 import msgs from '../../../nls/platform.properties'
@@ -34,7 +34,7 @@ const RefreshTime = ({ reloading, timestamp, locale }) => {
   const lastUpdate = msgs.get('overview.menu.last.update', [time], locale)
   return (
     <div className='refresh-time-container'>
-      {reloading ? <Spinner className='patternfly-spinner' size='sm' /> : null }
+      {reloading ?<Loading withOverlay={false} small /> : null }
       <div>{lastUpdate}</div>
     </div>
   )
