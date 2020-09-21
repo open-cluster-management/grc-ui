@@ -10,7 +10,6 @@ import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { Query } from 'react-apollo'
 import { PolicyStatus } from '../../lib/client/queries'
-import Page from '../components/common/Page'
 import { DangerNotification } from '../components/common/DangerNotification'
 import PolicyStatusView from '../components/common/PolicyStatusView'
 
@@ -56,9 +55,7 @@ class PolicyStatusTab extends React.Component {
           }
           if (error) {
             return (
-              <Page>
-                <DangerNotification error={error} />
-              </Page>
+              <DangerNotification error={error} />
             )
           } else if (loading && status === undefined) {
             return <Spinner className='patternfly-spinner' />
@@ -67,11 +64,9 @@ class PolicyStatusTab extends React.Component {
               refreshControl.startPolling(pollInterval)
             }
             return (
-              <Page>
-                {<PolicyStatusView
-                  status={status}
-                />}
-              </Page>
+              <PolicyStatusView
+                status={status}
+              />
             )
           }
         }}

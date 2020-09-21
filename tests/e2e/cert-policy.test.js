@@ -30,13 +30,13 @@ module.exports = {
     let yaml = testIssuer.toString()
     page.createPolicy(browser, 'policy-create-issuer-' + time, yaml, time)
     browser.pause(20000) // Wait for policy to create issuer 20s
-    page.checkViolations('policy-create-issuer-' + time, false)
+    page.checkStatus('policy-create-issuer-' + time, false)
 
     const testCertificate = fs.readFileSync(path.join(__dirname, 'yaml/cert_policy/create_test_certificate.yaml'))
     yaml = testCertificate.toString()
     page.createPolicy(browser, 'policy-create-certificate-' + time, yaml, time)
     browser.pause(20000) // Wait for policy to create certificate 20s
-    page.checkViolations('policy-create-certificate-' + time, false)
+    page.checkStatus('policy-create-certificate-' + time, false)
     page.deletePolicy('policy-create-certificate-' + time)
   },
 
@@ -46,7 +46,7 @@ module.exports = {
     const yaml = certPolicy.toString()
     page.createPolicy(browser, 'policy-certificatepolicy-' + time, yaml, time)
     browser.pause(40000) // Wait for cert policy to detect violation 30s
-    page.checkViolations('policy-certificatepolicy-' + time, true)
+    page.checkStatus('policy-certificatepolicy-' + time, true)
   },
 
   'GRC Cert policy: update certificate and secret': (browser) => {
@@ -55,13 +55,13 @@ module.exports = {
     const yaml = updateCertificate.toString()
     page.createPolicy(browser, 'policy-update-certificate-' + time, yaml, time)
     browser.pause(40000) // Wait for policy to update certificate 40s
-    page.checkViolations('policy-update-certificate-' + time, false)
+    page.checkStatus('policy-update-certificate-' + time, false)
     page.deletePolicy('policy-update-certificate-' + time)
   },
 
   'GRC Cert policy: cert policy should show compliant': (browser) => {
     const time = browser.globals.time
-    page.checkViolations('policy-certificatepolicy-' + time, false)
+    page.checkStatus('policy-certificatepolicy-' + time, false)
   },
 
   'GRC Cert policy: clean up': (browser) => {
@@ -73,7 +73,7 @@ module.exports = {
     const yaml = deleteAll.toString()
     page.createPolicy(browser, 'policy-delete-all-' + time, yaml, time)
     browser.pause(20000) // Wait for policy to delete
-    page.checkViolations('policy-delete-all-' + time, false)
+    page.checkStatus('policy-delete-all-' + time, false)
     page.deletePolicy('policy-delete-all-' + time)
   },
 }

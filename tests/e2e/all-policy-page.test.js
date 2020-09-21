@@ -62,7 +62,8 @@ module.exports = {
       controls: ['DE.CM-7 Monitoring for unauthorized activity']
     }
     page.createTestPolicy(true, policySpec, templateFile)
-    common.checkViolations(policyName, true)
+    browser.pause(20000)
+    common.checkStatus(policyName, true)
     common.searchPolicy(policyName, true)
     page.testPolicySidePanel()
     page.testFilters(policySpec)

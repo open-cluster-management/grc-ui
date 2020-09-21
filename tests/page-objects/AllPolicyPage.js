@@ -499,8 +499,8 @@ function testDetailsPage(name, templateFile) {
   // Check Policy templates
   this.expect.element('.overview-content > div:nth-child(3) > .section-title').text.to.equal('Policy templates')
   // VIOLATION TAB TESTS
-  this.waitForElementVisible('#violation-tab')
-  this.click('#violation-tab')
+  this.waitForElementVisible('#status-tab')
+  this.click('#status-tab')
   this.waitForElementNotPresent('#spinner')
   // YAML TAB TESTS
   this.waitForElementVisible('#yaml-tab')
