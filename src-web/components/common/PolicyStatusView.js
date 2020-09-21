@@ -10,9 +10,11 @@ import {
 } from '@patternfly/react-core'
 import PatternFlyTable from './PatternFlyTable'
 import { LocaleContext } from './LocaleContext'
-import statusDef from '../../tableDefinitions/statusDef'
+import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
+import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
+import _uniqueId from 'lodash/uniqueId'
 
 class PolicyStatusView extends React.Component {
   constructor(props) {
@@ -28,28 +30,31 @@ class PolicyStatusView extends React.Component {
   render() {
     const { status } = this.props
     const { locale } = this.context
-    const tableData = transform(status, statusDef, locale)
+    const statusByTemplates = groupByTemplate(status)
+    const tableDataByClusters = transform(status, statusByClustersDef, locale)
     const toggleIndex = this.state.toggleIndex
     return (
       <div className='policy-status-view'>
         <ToggleGroup variant='light'>
           <ToggleGroupItem
             buttonId={'policy-status-templates'} onChange={this.toggleClick} isSelected={toggleIndex===0}>
-            {'templates'}
+            {msgs.get('tabs.policy.status.toggle.templates', locale)}
           </ToggleGroupItem>
           <ToggleGroupItem
             buttonId={'policy-status-clusters'} onChange={this.toggleClick} isSelected={toggleIndex===1}>
-            {'clusters'}
+            {msgs.get('tabs.policy.status.toggle.clusters', locale)}
           </ToggleGroupItem>
         </ToggleGroup>
-        {toggleIndex===0 && <div className='policy-status-per-template-table'>
-          <Title className='title' headingLevel="h4">{`${msgs.get('policy.template', locale)}: ${'template'}`}</Title>
-          <PatternFlyTable {...tableData} noResultMsg={msgs.get('table.search.no.results', locale)} />
-        </div>}
-        {toggleIndex===1 && <div className='policy-status-per-template-table'>
-          <Title className='title' headingLevel="h4">{`${msgs.get('policy.template', locale)}: ${'template'}`}</Title>
-          <PatternFlyTable {...tableData} noResultMsg={msgs.get('table.search.no.results', locale)} />
-          <PatternFlyTable {...tableData} noResultMsg={msgs.get('table.search.no.results', locale)} />
+        {toggleIndex===0 && Object.entries(statusByTemplates).map(([key, value])=> {
+          const tableDataByTemplate = transform(value, statusByTemplatesDef, locale)
+          return <div className='policy-status-by-templates-table' key={_uniqueId('template-index')}>
+            <Title className='title' headingLevel="h4">{key}</Title>
+            <PatternFlyTable {...tableDataByTemplate} noResultMsg={msgs.get('table.search.no.results', locale)} />
+          </div>
+        })}
+        {toggleIndex===1 && <div className='policy-status-by-clusters-table'>
+          <Title className='title' headingLevel="h4">{msgs.get('tabs.policy.status.toggle.clusters', locale)}</Title>
+          <PatternFlyTable {...tableDataByClusters} noResultMsg={msgs.get('table.search.no.results', locale)} />
         </div>}
       </div>
     )
@@ -67,6 +72,22 @@ class PolicyStatusView extends React.Component {
       }
     }
   }
+}
+
+function groupByTemplate(status) {
+  const statusByTemplates = {}
+  if (Array.isArray(status) && status.length > 0){
+    status.forEach((singleStatus) => {
+      const templateName = singleStatus.templateName
+      if (templateName) {
+        if (!Array.isArray(statusByTemplates[templateName])) {
+          statusByTemplates[templateName] = []
+        }
+        statusByTemplates[templateName].push(singleStatus)
+      }
+    })
+  }
+  return statusByTemplates
 }
 
 PolicyStatusView.propTypes = {
