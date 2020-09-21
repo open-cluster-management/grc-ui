@@ -19,14 +19,13 @@ import PolicyStatusHistoryView from '../components/common/PolicyStatusHistoryVie
 import { DangerNotification } from '../components/common/DangerNotification'
 
 resources(() => {
-  require('../../scss/policy-violation-history.scss')
+  require('../../scss/policy-status-history.scss')
 })
 
-class PolicyTemplateStatusHistory extends React.Component {
+class PolicyStatusHistoryTab extends React.Component {
   static propTypes = {
     location: PropTypes.object,
     match: PropTypes.object,
-    // resourceType: PropTypes.object,
     updateSecondaryHeader: PropTypes.func,
   }
 
@@ -70,7 +69,12 @@ class PolicyTemplateStatusHistory extends React.Component {
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     const { match: { params: { policyName, hubNamespace, cluster, template }}} = this.props
     return (
-      <Query query={PolicyStatusHistory} variables={{policyName, hubNamespace, cluster, template}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+      <Query
+        query={PolicyStatusHistory}
+        variables={{policyName, hubNamespace, cluster, template}}
+        pollInterval={pollInterval}
+        notifyOnNetworkStatusChange
+      >
         {(result) => {
           const { data={}, error } = result
           if (error) {
@@ -108,4 +112,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(PolicyTemplateStatusHistory))
+export default withRouter(connect(null, mapDispatchToProps)(PolicyStatusHistoryTab))

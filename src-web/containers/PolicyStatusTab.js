@@ -4,6 +4,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import resources from '../../lib/shared/resources'
 import { Spinner } from '@patternfly/react-core'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
@@ -13,9 +14,9 @@ import Page from '../components/common/Page'
 import { DangerNotification } from '../components/common/DangerNotification'
 import PolicyStatusView from '../components/common/PolicyStatusView'
 
-// resources(() => {
-//   require('../../scss/policy-status.scss')
-// })
+resources(() => {
+  require('../../scss/policy-status-tab.scss')
+})
 
 class PolicyStatusTab extends React.Component {
   static propTypes = {

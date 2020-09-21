@@ -13,7 +13,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import jsYaml from 'js-yaml'
-import YamlEditor from '../common/YamlEditor'
+import YamlEditor from './YamlEditor'
 import lodash from 'lodash'
 import { dumpAndParse } from '../../../lib/client/design-helper'
 import { Button, InlineNotification, Loading } from 'carbon-components-react'
@@ -25,7 +25,7 @@ import {REQUEST_STATUS} from '../../actions'
 import formatUserAccess from './FormatUserAccess'
 import filterUserAction from './FilterUserAction'
 
-class PolicyTemplates extends React.Component {
+class PolicyTemplatesView extends React.Component {
 
   constructor(props) {
     super(props)
@@ -215,11 +215,11 @@ class PolicyTemplates extends React.Component {
   }
 }
 
-PolicyTemplates.contextTypes = {
+PolicyTemplatesView.contextTypes = {
   locale: PropTypes.string
 }
 
-PolicyTemplates.propTypes = {
+PolicyTemplatesView.propTypes = {
   className: PropTypes.string,
   editResource: PropTypes.func,
   headerKey: PropTypes.string,
@@ -249,4 +249,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PolicyTemplates))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PolicyTemplatesView))

@@ -17,7 +17,7 @@ import { connect } from 'react-redux'
 import resources from '../../lib/shared/resources'
 import _ from 'lodash'
 import { updateResourceToolbar } from '../actions/common'
-import PolicyTemplates from '../components/common/PolicyTemplates'
+import PolicyTemplatesView from '../components/common/PolicyTemplatesView'
 import getResourceDefinitions from '../definitions'
 import { HCMCompliance } from '../../lib/client/queries'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
@@ -84,7 +84,7 @@ class PolicyTemplateTab extends React.Component{
             refreshControl.startPolling(pollInterval)
           }
           const item = items[0]
-          return <PolicyTemplates
+          return <PolicyTemplatesView
             resourceType={resourceType}
             staticResourceData={staticResourceData}
             resourceData={item}
