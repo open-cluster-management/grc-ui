@@ -11,7 +11,7 @@ const parser = require('../utils/yamlHelper')
 
 module.exports = {
   elements: {
-    spinner: '.content-spinner',
+    spinner: '.patternfly-spinner',
     table: '.bx--data-table-v2',
     tableExpandBtn: '.bx--table-expand-v2__button:nth-of-type(1)',
     expandTable: '.bx--expandable-row-v2:nth-of-type(2)',
@@ -127,7 +127,7 @@ function createPolicy(browser, name, yaml, time) {
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement binding')
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
   this.click('.bx--breadcrumb > div:nth-child(1)')
-  this.waitForElementNotPresent('#spinner')
+  this.waitForElementNotPresent('@spinner')
 }
 
 function enforcePolicy(name){
