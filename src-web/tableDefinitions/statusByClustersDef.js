@@ -52,7 +52,7 @@ export default {
     },
   ],
   sortBy: {
-    index: 0,
-    direction: 'asc',
+    index: 1,
+    direction: 'desc',
   }
 }
