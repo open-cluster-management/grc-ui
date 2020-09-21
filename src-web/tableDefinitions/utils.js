@@ -94,8 +94,8 @@ export function buildStatusHistoryLink(item, locale) {
   const templateName = _.get(item, 'templateName')
   if (policyName && policyNamespace && cluster && templateName) {
     const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/status/${cluster}/templates/${templateName}/history`
-    return <a target='_blank' rel='noopener noreferrer'
-      href={statusHistoryURL}>{msgs.get('table.header.history', locale)}</a>
+    return <a target='_self' rel='noopener noreferrer'
+      href={statusHistoryURL}>{msgs.get('table.actions.view.details', locale)}</a>
   }
   return ''
 }
