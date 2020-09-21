@@ -2,7 +2,7 @@
 
 'use strict'
 
-import { getAge, buildCompliantCellFromMessage } from './utils'
+import { buildTimestamp, buildCompliantCellFromMessage } from './utils'
 import {
   breakWord,
   wrappable,
@@ -29,11 +29,11 @@ export default {
       msgKey: 'table.header.lastreport',
       resourceKey: 'timestamp',
       transforms: [wrappable, sortable],
-      transformFunction: getAge
+      transformFunction: buildTimestamp
     },
   ],
   sortBy: {
     index: 2,
-    direction: 'asc',
+    direction: 'desc',
   }
 }
