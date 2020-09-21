@@ -12,7 +12,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Loading } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import { connect } from 'react-redux'
 import StructuredListModule from '../../components/common/StructuredListModule'
 import { getSingleResourceItem, resourceItemByName } from '../../reducers/common'
@@ -32,7 +32,7 @@ const ResourceOverview = ({
 }) => {
   localStorage.removeItem(MCM_OPEN_DIAGRAM_TAB_COOKIE)
   if (!item) {
-    return <Loading withOverlay={false} className='content-spinner' />
+    return <Spinner className='patternfly-spinner' />
   }
   const modulesRight = []
   const modulesBottom = []

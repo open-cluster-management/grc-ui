@@ -17,7 +17,6 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {
   Button,
-  Loading,
   Notification,
   TextInput,
   Checkbox,
@@ -26,6 +25,7 @@ import {
   MultiSelect,
   ToggleSmall,
   Modal} from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import { initializeControlData, cacheUserData, updateControls, parseYAML } from './utils/update-controls'
 import { generateYAML, highlightChanges, getUniqueName } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
@@ -182,7 +182,7 @@ export default class TemplateEditor extends React.Component {
     const { showEditor, resetInx } = this.state
 
     if (!isLoaded) {
-      return <Loading withOverlay={false} className='content-spinner' />
+      return <Spinner className='patternfly-spinner' />
     }
 
     if (isFailed) {

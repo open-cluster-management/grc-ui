@@ -15,7 +15,8 @@ import resources from '../../lib/shared/resources'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateResourceToolbar, updateActiveFilters } from '../actions/common'
-import { Loading, Notification } from 'carbon-components-react'
+import { Notification } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
 // eslint-disable-next-line import/no-named-as-default
 import GrcCardsModule from './modules/GrcCardsModule'
@@ -130,7 +131,7 @@ export class GrcView extends React.Component {
       secondaryHeaderProps, refreshControl, location, access
     } = this.props
     if (loading) {
-      return <Loading withOverlay={false} className='content-spinner' />
+      return <Spinner className='patternfly-spinner' />
     }
 
     if (error) {

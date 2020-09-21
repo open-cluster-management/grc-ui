@@ -16,7 +16,8 @@ import jsYaml from 'js-yaml'
 import YamlEditor from './YamlEditor'
 import lodash from 'lodash'
 import { dumpAndParse } from '../../../lib/client/design-helper'
-import { Button, InlineNotification, Loading } from 'carbon-components-react'
+import { Button, InlineNotification } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Module, ModuleHeader } from 'carbon-addons-cloud-react'
@@ -209,7 +210,7 @@ class PolicyTemplatesView extends React.Component {
             onYamlChange={this.handleEditorChange}
             yaml={this.state.yaml} />
         </div>
-        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading withOverlay={false} />}
+        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Spinner className='patternfly-spinner' />}
       </Module>
     )
   }

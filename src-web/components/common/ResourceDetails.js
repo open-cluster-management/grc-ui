@@ -11,7 +11,8 @@
 
 import React from 'react'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
-import { Notification, Loading } from 'carbon-components-react'
+import { Notification } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import { REQUEST_STATUS } from '../../actions/index'
 import { getTabs } from '../../../lib/client/resource-helper'
 import { updateSecondaryHeader, fetchResource } from '../../actions/common'
@@ -87,7 +88,7 @@ const withResource = (Component) => {
           subtitle={msgs.get(`error.${(statusCode === 401 || statusCode === 403) ? 'unauthorized' : 'default'}.description`, this.context.locale)}
           kind='error' />
       } else if (status !== REQUEST_STATUS.DONE && !this.state.xhrPoll) {
-        return <Loading withOverlay={false} className='resource-detail-content-spinner' />
+        return <Spinner className='patternfly-spinner' />
       }
       return <Component  {...this.props} />
     }

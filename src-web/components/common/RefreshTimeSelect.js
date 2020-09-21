@@ -12,7 +12,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import resources from '../../../lib/shared/resources'
-import { DropdownV2, Loading } from 'carbon-components-react'
+import { DropdownV2 } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import '../../../graphics/diagramIcons.svg'
 import { DEFAULT_REFRESH_TIME, DEFAULT_SIDE_PANEL_REFRESH_TIME } from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
@@ -101,7 +102,7 @@ export default class RefreshTimeSelect extends React.Component {
       return (
         <div className='refresh-time-selection' ref={this.setRefresh}>
           {reloading?
-            <Loading withOverlay={false} small /> :
+            <Spinner className='patternfly-spinner' size='sm' /> :
             <div className='button' tabIndex={0} role={'button'}
               title={refresh} aria-label={refresh}
               onClick={this.handleClick} onKeyPress={this.handleKeyPress}>
