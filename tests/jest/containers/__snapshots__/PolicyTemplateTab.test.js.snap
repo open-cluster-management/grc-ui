@@ -1,125 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PolicyDetail container test renders as expected 1`] = `
-<div
-  className="bx--module bx--module--double compliance-templates"
-  id="yaml-template"
+<span
+  aria-valuetext="Loading..."
+  className="pf-c-spinner pf-m-xl patternfly-spinner"
+  role="progressbar"
 >
-  <div
-    className="bx--module__inner"
-  >
-    <div>
-      <div
-        className="bx--module__header"
-      >
-        <h1
-          className="bx--module__title"
-        >
-          Policy YAML template
-        </h1>
-      </div>
-      <div
-        className="yaml-editor-button"
-      >
-        <button
-          className="read-only-button bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
-          disabled={true}
-          id="edit-button"
-          onClick={[Function]}
-          tabIndex={0}
-          type="button"
-        >
-          Edit
-          <svg
-            alt="Provide icon description if icon is used"
-            aria-hidden={true}
-            aria-label="Provide icon description if icon is used"
-            className="bx--btn__icon"
-            fillRule="evenodd"
-            height="16"
-            name="add--glyph"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-          >
-            <title>
-              Provide icon description if icon is used
-            </title>
-            <path
-              d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
-            />
-          </svg>
-        </button>
-        <button
-          className="bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
-          disabled={true}
-          id="submit-button"
-          onClick={[Function]}
-          tabIndex={0}
-          type="button"
-        >
-          Submit
-          <svg
-            alt="Provide icon description if icon is used"
-            aria-hidden={true}
-            aria-label="Provide icon description if icon is used"
-            className="bx--btn__icon"
-            fillRule="evenodd"
-            height="16"
-            name="add--glyph"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-          >
-            <title>
-              Provide icon description if icon is used
-            </title>
-            <path
-              d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
-            />
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div
-      className="yamlEditorContainerContainer"
-    >
-      <div
-        className="yamlEditorContainer"
-      >
-        <div
-          className="react-monaco-editor-container"
-          style={
-            Object {
-              "height": "100%",
-              "width": "100%",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-</div>
+  <span
+    className="pf-c-spinner__clipper"
+  />
+  <span
+    className="pf-c-spinner__lead-ball"
+  />
+  <span
+    className="pf-c-spinner__tail-ball"
+  />
+</span>
 `;
 
 exports[`PolicyDetail container test renders as loading 1`] = `
-<div
-  aria-live="assertive"
-  className="bx--loading resource-detail-content-spinner"
+<span
+  aria-valuetext="Loading..."
+  className="pf-c-spinner pf-m-xl patternfly-spinner"
+  role="progressbar"
 >
-  <svg
-    className="bx--loading__svg"
-    viewBox="-75 -75 150 150"
-  >
-    <title>
-      Active loading indicator
-    </title>
-    <circle
-      className={null}
-      cx="0"
-      cy="0"
-      r="37.5"
-    />
-  </svg>
-</div>
+  <span
+    className="pf-c-spinner__clipper"
+  />
+  <span
+    className="pf-c-spinner__lead-ball"
+  />
+  <span
+    className="pf-c-spinner__tail-ball"
+  />
+</span>
 `;

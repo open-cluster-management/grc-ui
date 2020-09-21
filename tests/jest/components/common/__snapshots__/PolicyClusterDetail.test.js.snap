@@ -69,25 +69,21 @@ exports[`PolicyClusterDetail component renders as error 1`] = `
 `;
 
 exports[`PolicyClusterDetail component renders as loading 1`] = `
-<div
-  aria-live="assertive"
-  className="bx--loading content-spinner"
+<span
+  aria-valuetext="Loading..."
+  className="pf-c-spinner pf-m-xl patternfly-spinner"
+  role="progressbar"
 >
-  <svg
-    className="bx--loading__svg"
-    viewBox="-75 -75 150 150"
-  >
-    <title>
-      Active loading indicator
-    </title>
-    <circle
-      className={null}
-      cx="0"
-      cy="0"
-      r="37.5"
-    />
-  </svg>
-</div>
+  <span
+    className="pf-c-spinner__clipper"
+  />
+  <span
+    className="pf-c-spinner__lead-ball"
+  />
+  <span
+    className="pf-c-spinner__tail-ball"
+  />
+</span>
 `;
 
 exports[`PolicyClusterDetail component renders as normal 1`] = `
