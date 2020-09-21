@@ -68,9 +68,7 @@ class PolicyDetailTab extends React.Component{
 
         if (error) {
           return (
-            <Page>
-              <DangerNotification error={error} />
-            </Page>
+            <DangerNotification error={error} />
           )
         } else if (loading && items === undefined) {
           return <Spinner className='patternfly-spinner' />
