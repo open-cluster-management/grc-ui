@@ -84,7 +84,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- empty list 1
                 Status
               </th>
               <th
-                className="pf-m-width-80 pf-m-wrap"
+                className="pf-m-width-70 pf-m-wrap"
                 data-key={1}
                 data-label="Message"
                 onMouseEnter={[Function]}
@@ -466,7 +466,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 Status
               </th>
               <th
-                className="pf-m-width-80 pf-m-wrap"
+                className="pf-m-width-70 pf-m-wrap"
                 data-key={1}
                 data-label="Message"
                 onMouseEnter={[Function]}
@@ -979,7 +979,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with pagination
                 Status
               </th>
               <th
-                className="pf-m-width-80 pf-m-wrap"
+                className="pf-m-width-70 pf-m-wrap"
                 data-key={1}
                 data-label="Message"
                 onMouseEnter={[Function]}

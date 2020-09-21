@@ -80,9 +80,11 @@ export const getAge = (item, locale, timestampKey) => {
 export function buildClusterLink(item) {
   const cluster = _.get(item, 'cluster')
   const consoleURL = _.get(item, 'consoleURL', '-')
-  if (cluster) {
+  if (cluster && consoleURL) {
     return <a target='_blank' rel='noopener noreferrer'
       href={consoleURL}>{cluster}</a>
+  } else if (cluster) {
+    return cluster
   }
   return '-'
 }
@@ -96,7 +98,7 @@ export function buildStatusHistoryLink(item, locale) {
     const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/status/${cluster}/templates/${templateName}/history`
     return <Link to={statusHistoryURL}>{msgs.get('table.actions.view.details', locale)}</Link>
   }
-  return ''
+  return '-'
 }
 
 export function buildMessageDetailLink(item, locale) {
