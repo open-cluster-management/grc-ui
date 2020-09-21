@@ -31,6 +31,7 @@ while true; do
     sleep 10
   else
     echo "idp ${SELENIUM_USER_SELECT} has taken effect..."
+    echo ${IDP}
     break
   fi
   i=$[i + 1]
@@ -41,4 +42,5 @@ while true; do
 done
 
 # run test
+sleep 10
 npm run test:e2e-headless
