@@ -11,7 +11,8 @@ import {
   getAge,
   buildCompliantCellFromMessage,
   buildClusterLink,
-  buildStatusHistoryLink
+  buildStatusHistoryLink,
+  buildMessageDetailLink
 } from './utils'
 
 export default {
@@ -38,6 +39,7 @@ export default {
       resourceKey: 'message',
       transforms: [sortable, wrappable],
       cellTransforms: [breakWord],
+      transformFunction: buildMessageDetailLink
     },
     {
       msgKey: 'table.header.timestamp',

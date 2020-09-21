@@ -1,8 +1,8 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
-
 'use strict'
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 import moment from 'moment'
 import _ from 'lodash'
 import {
@@ -94,8 +94,22 @@ export function buildStatusHistoryLink(item, locale) {
   const templateName = _.get(item, 'templateName')
   if (policyName && policyNamespace && cluster && templateName) {
     const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/status/${cluster}/templates/${templateName}/history`
-    return <a target='_self' rel='noopener noreferrer'
-      href={statusHistoryURL}>{msgs.get('table.actions.view.details', locale)}</a>
+    return <Link to={statusHistoryURL}>{msgs.get('table.actions.view.details', locale)}</Link>
+  }
+  return ''
+}
+
+export function buildMessageDetailLink(item, locale) {
+  const message = _.get(item, 'message')
+  const policyName = _.get(item, 'policyName')
+  const policyNamespace = _.get(item, 'policyNamespace')
+  const cluster = _.get(item, 'cluster')
+  const templateName = _.get(item, 'templateName')
+  const apiVersion = _.get(item, 'apiVersion')
+  const kind = _.get(item, 'kind')
+  if (message && policyName && policyNamespace && cluster && templateName && apiVersion && kind) {
+    const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/policy.open-cluster-management.io/${apiVersion}/${kind}/${templateName}`
+    return <div>{`${message} `} <Link to={statusHistoryURL}>{msgs.get('table.actions.view.details', locale)}</Link></div>
   }
   return ''
 }
