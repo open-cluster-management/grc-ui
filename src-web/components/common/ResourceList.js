@@ -23,7 +23,7 @@ import { Loading, Notification } from 'carbon-components-react'
 import { withRouter } from 'react-router-dom'
 import msgs from '../../../nls/platform.properties'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
-import createDocLink from '../../components/common/CreateDocLink'
+import { createDocLink } from '../../components/common/CreateDocLink'
 import PropTypes from 'prop-types'
 
 const noResourceStr = 'no-resource.title'

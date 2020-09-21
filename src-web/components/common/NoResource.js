@@ -36,7 +36,7 @@ const NoResource = ({
       <div className={className ? className : 'no-resource'}>
         <img
           className={imgClassName ? imgClassName : 'no-resource-icon'}
-          src={`${config.contextPath}/graphics/${svgName ? svgName : 'no-policy.svg'}`}
+          src={`${config.contextPath}/graphics/${svgName ? svgName : 'EmptyPagePlanet-illus.png'}`}
           alt={alt ? alt : msgs.get('svg.description.noresource', context.locale)} />
         <div className={'no-resource-text-info'}>
           <div className={titleClassName ? titleClassName : 'no-resource-title'}>{title}</div>
@@ -48,7 +48,7 @@ const NoResource = ({
     <div className={className ? className : 'no-resource'}>
       <img
         className={imgClassName ? imgClassName : 'no-resource-icon'}
-        src={`${config.contextPath}/graphics/${svgName ? svgName : 'no-policy.svg'}`}
+        src={`${config.contextPath}/graphics/${svgName ? svgName : 'EmptyPagePlanet-illus.png'}`}
         alt={alt ? alt : msgs.get('svg.description.noresource', context.locale)} />
     </div>
 }
@@ -57,7 +57,7 @@ NoResource.propTypes = {
   alt: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   className: PropTypes.string,
-  detail: PropTypes.string,
+  detail: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   imgClassName: PropTypes.string,
   svgName: PropTypes.string,
   title:PropTypes.string,

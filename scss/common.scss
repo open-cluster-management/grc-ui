@@ -12,6 +12,7 @@
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
 @import 'node_modules/carbon-components/scss/globals/scss/_helper-mixins';
 @import '../node_modules/@patternfly/react-core/dist/styles/base.css';
+@import '../node_modules/@patternfly/patternfly/components/Button/button.css';
 @import '../node_modules/@patternfly/patternfly/components/ToggleGroup/toggle-group.css';
 @import '../node_modules/@patternfly/patternfly/components/SearchInput/search-input.css';
 @import '../node_modules/@patternfly/patternfly/components/Tooltip/tooltip.css';
@@ -117,60 +118,60 @@ body {
   }
 }
 
-.no-resource {
+div.no-resource {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 32.375rem;
   height: 25.6875rem;
-  color: $color__blue-90;
   padding: 1.25rem 2.5rem;
   background-color: transparent;
   box-shadow: none;
   border: none;
   margin: 3rem auto 1rem auto;
 
-  .button-group {
-    display: flex;
-    .buttons {
-      margin: 0 1rem;
-      button:hover {
-        .doc-link {
-          color: white;
-        }
-      }
-      .doc-link {
-        text-decoration: none;
+  div {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .no-resource-icon {
+    width: 19rem;
+    height: unset;
+  }
+
+  .no-resource-text-info {
+
+    .no-resource-title {
+      color: #162E3D;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  
+    .no-resource-detail {
+      color: var(--pf-global--Color--100);
+      font-weight: 300;
+      font-size: 1rem;
+      margin-bottom: 1.75rem;
+      max-width: unset;
+      text-align: center;
+
+      .no-resource-detail__link {
+        color: var(--pf-global--link--Color);
+        font-size: 1rem;
+        font-weight: bold;
       }
     }
   }
 
-  .no-resource-icon {
-    width: 22.5rem;
-    height: 12.5rem;
-  }
+  .button-group {
+    display: flex;
+    flex-direction: column;
 
-  .no-resource-title {
-    font-weight: 500;
-    margin-bottom: 0.5625rem;
-    font-size: 1.8125rem;
-    text-align: center;
-    color: $grc_color_blue;
-  }
-
-  .no-resource-detail {
-    font-weight: 300;
-    font-size: 1rem;
-    margin-bottom: 1.3125rem;
-    text-align: center;
-    line-height: 1.2;
-    color: $color__navy-gray-6;
-
-    > a {
-      font-weight: 700;
-      margin-right: 0.3125rem;
-      font-size: .875rem;
+    div {
+      margin-bottom: 0.75rem;
     }
   }
 }
@@ -192,19 +193,5 @@ body {
         font-family: codicon;
       }
     }
-  }
-}
-
-.pattern-fly-table-group {
-  // .pf-c-search-input {
-  //   background-color: white;
-  // }
-
-  .pattern-fly-table {
-    background-color: white;
-  }
-
-  .pf-c-options-menu__menu {
-    background-color: white;
   }
 }

@@ -95,48 +95,68 @@ class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      perPage: 10,
+      perPage: this.props.perPage,
       page: 1,
       rows: [],
       itemCount: 0,
-      sortBy: this.props.sortBy || {},
+      sortBy: this.props.sortBy,
       startIdx: 0,
-      endIdx: 9,
+      endIdx: this.props.perPage,
       searchValue: ''
     }
   }
   static defaultProps = {
     pagination: true,
+    perPage: 10,
+    noResultMsg: 'No results found',
     searchable: true,
-    searchPlaceholder: 'Find'
+    searchPlaceholder: 'Find',
+    sortBy: {}
   }
   static getDerivedStateFromProps(props, state) {
     const { searchValue, sortBy } = state
     const { pagination, rows, searchable } = props
+    // Helper function to return the string from the cell
+    const parseCell = function (cell) {
+      if (typeof cell === 'object' && cell.title === 'string') {
+        return cell.title
+      } else if (typeof cell === 'object') {
+        // It's not a string so render the component and strip HTML tags
+        return ReactDOMServer.renderToString(cell.title).replace(/<[^>]+>/g, '')
+      }
+      return cell
+    }
+    // Filter the rows based on given searchValue from user
     const rowsFiltered = !searchable || searchValue === ''
-      ? rows
+      ? [...rows]
       : rows.filter(row => {
         const cells = row.cells ? row.cells : row
         return cells.some(item => {
-          if (typeof item === 'string') {
-            return item.toLowerCase().includes(searchValue.toLowerCase())
-          } else if (typeof item === 'object' && item.title) {
-            if (typeof item === 'string') {
-              return item.replace(/<[^>]+>/g, '').toLowerCase().includes(searchValue.toLowerCase())
-            }
-            return ReactDOMServer.renderToString(item.title).replace(/<[^>]+>/g, '').toLowerCase().includes(searchValue.toLowerCase())
-          } else {
-            return false
-          }
+          return parseCell(item).toLowerCase().includes(searchValue.toLowerCase())
         })
       })
-    const sortedRows = rowsFiltered.sort((a, b) => {
-      return colCompare(a, b, sortBy)
-    })
-    const sortedRowsByDirection = sortBy.direction === SortByDirection.asc ? sortedRows : sortedRows.reverse()
+
+    // Sort the rows based on sortBy prop (if it's not empty)
+    const sortedRows = rowsFiltered
+    if (Object.keys(sortBy).length !== 0) {
+      sortedRows.sort((a, b) => {
+        const acell = a.cells ? a.cells[sortBy.index] : a[sortBy.index]
+        const bcell = b.cells ? b.cells[sortBy.index] : b[sortBy.index]
+        let avalue, bvalue
+        if (sortBy.direction === SortByDirection.asc) {
+          avalue = parseCell(acell)
+          bvalue = parseCell(bcell)
+        } else {
+          bvalue = parseCell(acell)
+          avalue = parseCell(bcell)
+        }
+        return colCompare(avalue, bvalue, sortBy)
+      })
+    }
+    // Return the filtered and sorted array
     return {
-      rows: sortedRowsByDirection.slice(state.startIdx, pagination ? state.endIdx : rowsFiltered.length-1),
-      itemCount: rowsFiltered.length,
+      rows: sortedRows.slice(state.startIdx, pagination ? state.endIdx : sortedRows.length),
+      itemCount: sortedRows.length,
     }
   }
 
@@ -212,18 +232,27 @@ class PatternFlyTable extends React.Component {
         </div>
       </div>
     )
-
   }
 }
 
 PatternFlyTable.propTypes = {
+  /** Add class names in addition to the defaults to the PatternFly table (optional) */
   className: PropTypes.string,
+  /** Table column headings and properties */
   columns: PropTypes.array,
+  /** Message when no results are displayed in the table */
   noResultMsg: PropTypes.string,
+  /** Toggle pagination (optional) */
   pagination: PropTypes.bool,
+  /** Number of rows displayed per page for pagination */
+  perPage: PropTypes.oneOf([5, 10, 20, 50]),
+  /** Table row content */
   rows: PropTypes.array,
+  /** Placeholder text for search input field */
   searchPlaceholder: PropTypes.string,
+  /** Toggle search input (optional) */
   searchable: PropTypes.bool,
+  /** Initial table sorting (optional) */
   sortBy: PropTypes.shape({
     index: PropTypes.number,
     direction: PropTypes.oneOf(['asc', 'desc']),

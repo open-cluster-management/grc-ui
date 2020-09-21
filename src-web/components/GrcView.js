@@ -26,7 +26,7 @@ import {
   saveGrcState, combineResourceFilters, saveGrcStatePair
 } from '../../lib/client/filter-helper'
 import NoResource from './common/NoResource'
-import createDocLink from './common/CreateDocLink'
+import { createDocLink, createDetails } from './common/CreateDocLink'
 import ResourceFilterBar from './common/ResourceFilterBar'
 import checkCreatePermission from './common/CheckCreatePermission'
 import msgs from '../../nls/platform.properties'
@@ -152,7 +152,12 @@ export class GrcView extends React.Component {
         return (
           <NoResource
             title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
-            detail={msgs.get('no-resource.detail.policy', locale)}>
+            detail={
+              createDetails(msgs.get('no-resource.detail.policy_pt1', locale),
+                msgs.get('routes.create.policy', locale).toLowerCase(),
+                msgs.get('no-resource.detail.policy_pt2', locale))
+            }
+            svgName='EmptyPagePlanet-illus.png'>
             {createDocLink(locale, this.handleCreatePolicy, msgs.get('routes.create.policy', locale), showCreationLink)}
           </NoResource>
         )
