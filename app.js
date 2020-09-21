@@ -12,8 +12,7 @@
 const log4js = require('log4js'),
       logger = log4js.getLogger('server'),
       mime = require('mime-types'),
-      fs = require('fs'),
-      helmet = require('helmet')
+      fs = require('fs')
 
 const cacheControlStr = 'Cache-Control'
 const acmAccessTokenCookieStr = 'acm-access-token-cookie'
@@ -47,13 +46,6 @@ const consolidate = require('consolidate')
 require('./lib/shared/dust-helpers')
 
 const app = express()
-
-app.use(helmet({ // in production these headers are set by icp-management-ingress
-  hidePoweredBy: true,
-  frameguard: true,
-  noSniff: true,
-  xssFilter: true
-}))
 
 // Remove the X-Powered-By headers.
 app.disable('x-powered-by')
