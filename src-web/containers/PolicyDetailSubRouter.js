@@ -115,7 +115,7 @@ class PolicyDetailSubRouter extends React.Component {
   getPolicyName(location) {
     const urlSegments = location.pathname.split('/')
     const lastSegment = urlSegments[urlSegments.length - 1]
-    if( lastSegment === 'violation'|| lastSegment === 'yaml' ){
+    if( lastSegment === 'status'|| lastSegment === 'yaml' ){
       return urlSegments[urlSegments.length - 2]
     }
     return lastSegment
@@ -124,7 +124,7 @@ class PolicyDetailSubRouter extends React.Component {
   getPolicyNamespace(location) {
     const urlSegments = location.pathname.split('/')
     const lastSegment = urlSegments[urlSegments.length - 1]
-    if( lastSegment === 'violation'|| lastSegment === 'yaml' ){
+    if( lastSegment === 'status'|| lastSegment === 'yaml' ){
       return urlSegments[urlSegments.length - 3]
     }
     return urlSegments[urlSegments.length - 2]
