@@ -35,7 +35,7 @@ class PolicyStatusView extends React.Component {
     const toggleIndex = this.state.toggleIndex
     return (
       <div className='policy-status-view'>
-        <ToggleGroup variant='light'>
+        <ToggleGroup className='policy-status-toggle' variant='light'>
           <ToggleGroupItem
             buttonId={'policy-status-templates'} onChange={this.toggleClick} isSelected={toggleIndex===0}>
             {msgs.get('tabs.policy.status.toggle.templates', locale)}
