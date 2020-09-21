@@ -43,12 +43,13 @@ export default {
     },
     {
       msgKey: 'table.header.history',
+      transforms: [wrappable],
       transformFunction: buildStatusHistoryLink
     },
   ],
   sortBy: {
-    index: 0,
-    direction: 'asc',
+    index: 1,
+    direction: 'desc',
   }
 }
 

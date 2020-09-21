@@ -49,6 +49,7 @@ export default {
     },
     {
       msgKey: 'table.header.history',
+      transforms: [wrappable],
       transformFunction: buildStatusHistoryLink
     },
   ],
