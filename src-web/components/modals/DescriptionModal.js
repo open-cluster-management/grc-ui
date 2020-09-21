@@ -34,11 +34,6 @@ class DescriptionModal extends React.PureComponent {
           primaryButtonDisabled={true}
         >
           <div>
-            {/*<div className={'bx--modal-content-header'}>*/}
-            {/*<div className={'bx--modal-content-header-content'}>*/}
-            {/*<div className={'bx--modal-content-header-main'}>{title}</div>*/}
-            {/*</div>*/}
-            {/*</div>*/}
             <div className={'bx--modal-content-body'}>
               <p>{content}</p>
             </div>
