@@ -7,15 +7,20 @@ import {
   sortable,
   wrappable,
 } from '@patternfly/react-table'
-import { getAge, buildCompliantCellFromMessage } from './utils'
+import {
+  getAge,
+  buildCompliantCellFromMessage,
+  buildClusterLink,
+  buildStatusHistoryLink
+} from './utils'
 
 export default {
   tableKeys: [
     {
       msgKey: 'table.header.cluster',
-      resourceKey: 'cluster',
       transforms: [sortable, wrappable],
       cellTransforms: [breakWord],
+      transformFunction: buildClusterLink
     },
     {
       msgKey: 'table.header.status',
@@ -38,9 +43,7 @@ export default {
     },
     {
       msgKey: 'table.header.history',
-      resourceKey: 'compliant',
-      transforms: [sortable, wrappable],
-      cellTransforms: [breakWord],
+      transformFunction: buildStatusHistoryLink
     },
   ],
   sortBy: {
@@ -48,3 +51,4 @@ export default {
     direction: 'asc',
   }
 }
+
