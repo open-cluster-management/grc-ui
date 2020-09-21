@@ -6,35 +6,41 @@ import {
   sortable,
   wrappable,
 } from '@patternfly/react-table'
+import { getAge, buildCompliantCellFromMessage } from './utils'
 
 export default {
   tableKeys: [
     {
       msgKey: 'table.header.cluster',
-      resourceKey: 'object.metadata.name',
+      resourceKey: 'cluster',
       transforms: [sortable, wrappable],
       cellTransforms: [breakWord],
     },
     {
       msgKey: 'table.header.status',
-      resourceKey: 'object.metadata.namespace',
+      resourceKey: 'status',
       transforms: [sortable, wrappable],
+      cellTransforms: [breakWord],
+      transformFunction: buildCompliantCellFromMessage
     },
     {
       msgKey: 'table.header.message',
-      resourceKey: 'object.kind',
+      resourceKey: 'message',
       transforms: [sortable, wrappable],
+      cellTransforms: [breakWord],
     },
     {
       msgKey: 'table.header.timestamp',
-      resourceKey: 'object.apiVersion',
+      resourceKey: 'timestamp',
       transforms: [sortable, wrappable],
       cellTransforms: [breakWord],
+      transformFunction: getAge,
     },
     {
       msgKey: 'table.header.history',
       resourceKey: 'compliant',
       transforms: [sortable, wrappable],
+      cellTransforms: [breakWord],
     },
   ],
   sortBy: {
