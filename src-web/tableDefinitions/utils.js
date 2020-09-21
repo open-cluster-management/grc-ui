@@ -108,7 +108,7 @@ export function buildMessageDetailLink(item, locale) {
   const apiVersion = _.get(item, 'apiVersion')
   const kind = _.get(item, 'kind')
   if (message && policyName && policyNamespace && cluster && templateName && apiVersion && kind) {
-    const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/policy.open-cluster-management.io/${apiVersion}/${kind}/${templateName}`
+    const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
     return <div>{`${message} `} <Link to={statusHistoryURL}>{msgs.get('table.actions.view.details', locale)}</Link></div>
   }
   return ''
