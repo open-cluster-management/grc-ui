@@ -30,7 +30,7 @@ class PolicyStatusView extends React.Component {
   render() {
     const { status } = this.props
     const { locale } = this.context
-    const statusByTemplates = groupByTemplate(status)
+    const tableDataByTemplate = groupByTemplate(status, locale)
     const tableDataByClusters = transform(status, statusByClustersDef, locale)
     const toggleIndex = this.state.toggleIndex
     return (
@@ -46,11 +46,10 @@ class PolicyStatusView extends React.Component {
           </ToggleGroupItem>
         </ToggleGroup>
         <div className='policy-status-tab'>
-          {toggleIndex===0 && Object.entries(statusByTemplates).map(([key, value])=> {
-            const tableDataByTemplate = transform(value, statusByTemplatesDef, locale)
+          {toggleIndex===0 && tableDataByTemplate.map((data)=> {
             return <div className='policy-status-by-templates-table' key={_uniqueId('template-index')}>
-              <Title className='title' headingLevel="h4">{key}</Title>
-              <PatternFlyTable {...tableDataByTemplate} noResultMsg={msgs.get('table.search.no.results', locale)} />
+              <Title className='title' headingLevel="h4">{data[0]}</Title>
+              <PatternFlyTable {...data[1]} noResultMsg={msgs.get('table.search.no.results', locale)} />
             </div>
           })}
           {toggleIndex===1 && <div className='policy-status-by-clusters-table'>
@@ -76,8 +75,9 @@ class PolicyStatusView extends React.Component {
   }
 }
 
-function groupByTemplate(status) {
+function groupByTemplate(status, locale) {
   const statusByTemplates = {}
+  const tableDataByTemplate = []
   if (Array.isArray(status) && status.length > 0){
     status.forEach((singleStatus) => {
       const templateName = singleStatus.templateName
@@ -88,8 +88,13 @@ function groupByTemplate(status) {
         statusByTemplates[templateName].push(singleStatus)
       }
     })
+    Object.entries(statusByTemplates).forEach(([key, value])=> {
+      const templateName = key
+      const tableData = transform(value, statusByTemplatesDef, locale)
+      tableDataByTemplate.push([templateName, tableData])
+    })
   }
-  return statusByTemplates
+  return tableDataByTemplate
 }
 
 PolicyStatusView.propTypes = {
