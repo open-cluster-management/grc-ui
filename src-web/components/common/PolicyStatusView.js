@@ -64,12 +64,13 @@ class PolicyStatusView extends React.Component {
   toggleClick(isSelected, event) {
     if (isSelected) {
       switch(event.currentTarget.id) {
+      case 'policy-status-clusters':
+        this.setState({toggleIndex: 1})
+        break
       case 'policy-status-templates':
       default:
         this.setState({toggleIndex: 0})
         break
-      case 'policy-status-clusters':
-        this.setState({toggleIndex: 1})
       }
     }
   }
