@@ -6,13 +6,14 @@ import { NotificationDrawer, NotificationDrawerBody,
   NotificationDrawerListItemHeader } from '@patternfly/react-core'
 
 export const DangerNotification = (error) => {
+  const errMsg =  error.message ? error.message : error.error.message
   return <NotificationDrawer>
     <NotificationDrawerBody>
       <NotificationDrawerList>
         <NotificationDrawerListItem variant="danger">
           <NotificationDrawerListItemHeader
             variant="danger"
-            title={error.message}
+            title={errMsg}
             srTitle="Danger notification:"
           />
         </NotificationDrawerListItem>
