@@ -67,17 +67,11 @@ body {
   }
 }
 
-.patternfly-spinner {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-}
-
 .page-content-container {
   display: flex;
   flex-direction: column;
   padding: 1.5rem 5% 3.375rem;
-
+  
   .bx--select--inline{
     svg.bx--select__arrow{
       position: absolute
@@ -96,6 +90,14 @@ body {
 
 .expand-vertically {
   height: 100%;
+  .patternfly-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+  }
+  .side-panel-spinner {
+    left: 75%;
+  }
 }
 
 .nested-expandable-row {

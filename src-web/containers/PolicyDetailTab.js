@@ -71,7 +71,7 @@ class PolicyDetailTab extends React.Component{
           )
         } else if (loading && items === undefined) {
           return <Spinner className='patternfly-spinner' />
-        } else{
+        } else {
           const item = items[0]
           return <PolicyDetailsOverview
             loading={!items && loading}
