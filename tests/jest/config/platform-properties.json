@@ -338,6 +338,7 @@
   "table.actions.enforce": "Enforce",
   "table.actions.view.yaml": "View yaml",
   "table.actions.view.details": "View details",
+  "table.actions.view.history": "View history",
   "table.cell.compliant": "Compliant",
   "table.cell.noncompliant": "Not compliant",
   "table.cell.nostatus": "No status",

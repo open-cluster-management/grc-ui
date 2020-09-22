@@ -23,7 +23,6 @@ import { HCMCompliance } from '../../lib/client/queries'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import {GRC_REFRESH_INTERVAL_COOKIE} from '../../lib/shared/constants'
 import { Spinner } from '@patternfly/react-core'
-import Page from '../components/common/Page'
 import { DangerNotification } from '../components/common/DangerNotification'
 
 resources(() => {
