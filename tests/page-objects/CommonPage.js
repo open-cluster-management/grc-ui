@@ -221,18 +221,14 @@ function checkStatus(name, violationExpected, violationText) {
   this.click('.policy-status-by-clusters-table .pattern-fly-table > table > tbody > tr:nth-child(1) > td:nth-child(4) a')
   this.waitForElementPresent('.policy-template-details-view')
   this.waitForElementPresent('.policy-template-details-view .table')
-  this.getText('css selector', 'div.pf-c-description-list__group:nth-child(3) > dd:nth-child(2) > div:nth-child(1)', (kind) => {
+  this.getText('css selector', '.overview div.pf-c-description-list__group:nth-child(3) > dd:nth-child(2) > div:nth-child(1)', (kind) => {
     if (kind.value === '-') {
       this.assert.fail(`Failed to retrieve policy details: kind=${this.log(kind)}`)
     }
-    if (kind.value === 'ConfigurationPolicy') {
-      this.getText('css selector', 'div.pf-c-description-list__group:nth-child(6) > dd:nth-child(2) > div:nth-child(1)', (details) => {
-        if (details.value.toLowerCase().includes('no instances of') && violationExpected) {
-          this.expect.elements('.policy-template-details-view .table tbody>tr').count.to.equal(0)
-        } else {
-          this.expect.elements('.policy-template-details-view .table tbody>tr').count.not.to.equal(0)
-        }
-      })
+    if (violationExpected) {
+      this.expect.element('.overview div.pf-c-description-list__group:nth-child(5) > dd:nth-child(2) > div:nth-child(1)').text.to.equal('NonCompliant')
+    } else {
+      this.expect.element('.overview div.pf-c-description-list__group:nth-child(5) > dd:nth-child(2) > div:nth-child(1)').text.to.equal('Compliant')
     }
   })
   this.click('.bx--breadcrumb > div:nth-child(1)')
