@@ -264,7 +264,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
               <Notification
                 title=''
                 subtitle={msgs.get('error.no.placement', locale)}
-                kind='warning' />
+                kind='info' />
             </div>
           }
           {itemPP!==null && itemPB!==null && modulesSecond.length > 0 &&
