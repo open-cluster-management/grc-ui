@@ -179,10 +179,28 @@ function checkStatus(name, violationExpected, violationText) {
   this.waitForElementPresent('#status-tab')
   this.click('#status-tab')
   this.waitForElementPresent('.policy-status-view')
+  this.log('Checking policy status by templates')
   this.waitForElementPresent('#policy-status-templates').click('#policy-status-templates')
   this.waitForElementPresent('.policy-status-by-templates-table')
+  this.expect.elements('.policy-status-by-templates-table').count.not.to.equal(0)
+  if (violationExpected) {
+    // should show red not compliant
+    this.expect.elements('.policy-status-by-templates-table td[data-label="Status"] svg[fill="#c9190b"]').count.not.to.equal(0)
+  } else {
+    // should show green compliant
+    this.expect.elements('.policy-status-by-templates-table td[data-label="Status"] svg[fill="#467f40"]').count.not.to.equal(0)
+  }
+  this.log('Checking policy status by clusters')
   this.waitForElementPresent('#policy-status-clusters').click('#policy-status-clusters')
   this.waitForElementPresent('.policy-status-by-clusters-table')
+  if (violationExpected) {
+    // should show red not compliant
+    this.expect.elements('.policy-status-by-clusters-table td[data-label="Status"] svg[fill="#c9190b"]').count.not.to.equal(0)
+  } else {
+    // should show green compliant
+    this.expect.elements('.policy-status-by-clusters-table td[data-label="Status"] svg[fill="#467f40"]').count.not.to.equal(0)
+  }
+
   if (violationExpected) {
     if (violationText) {
       // check for 1st entry in the table
@@ -190,7 +208,16 @@ function checkStatus(name, violationExpected, violationText) {
       this.expect.element('.policy-status-by-clusters-table .pattern-fly-table > table > tbody > tr:nth-child(1) > td:nth-child(4) > div').text.to.equal(violationText)
     }
   }
+
+  this.log('checking view history for policy status history')
+  this.click('.policy-status-by-clusters-table .pattern-fly-table > table > tbody > tr:nth-child(1) > td:nth-child(6) a')
+  this.waitForElementPresent('.policy-status-history-view')
+  this.expect.elements('.policy-status-history-view .table tbody>tr').count.not.to.equal(0)
+
   this.log('checking view details for policy template details')
+  this.click('.bx--breadcrumb > div:nth-child(3)')
+  this.waitForElementPresent('#policy-status-clusters').click('#policy-status-clusters')
+  this.waitForElementPresent('.policy-status-by-clusters-table')
   this.click('.policy-status-by-clusters-table .pattern-fly-table > table > tbody > tr:nth-child(1) > td:nth-child(4) a')
   this.waitForElementPresent('.policy-template-details-view')
   this.waitForElementPresent('.policy-template-details-view .table')
@@ -208,37 +235,6 @@ function checkStatus(name, violationExpected, violationText) {
       })
     }
   })
-  this.log('checking view history for policy status history')
-  // if (violationExpected) {
-  //   this.api.elements('css selector','.pattern-fly-table-body td[data-label=Status] > div', (result) => {
-  //     this.log(result)
-  //     // this.assert.ok(result.value.length, ns.length, `User should only be able to see namespaces: ${ns}`)
-  //   })
-  //   this.waitForElementPresent('#violations-table-container')
-  //   if (violationText) {
-  //     this.expect.element('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(violationText)
-  //   }
-  //   this.log('checking view details for violations')
-  //   this.click('#violations-table-container > table > tbody > tr:nth-child(1) > td:nth-child(3) a')
-  //   this.waitForElementPresent('.policy-template-details-view')
-  //   this.waitForElementPresent('.policy-template-details-view .table')
-  //   this.getText('css selector', 'div.pf-c-description-list__group:nth-child(3) > dd:nth-child(2) > div:nth-child(1)', (kind) => {
-  //     if (kind.value === '-') {
-  //       this.assert.fail(`Failed to retrieve policy details: kind=${this.log(kind)}`)
-  //     }
-  //     if (kind.value === 'ConfigurationPolicy') {
-  //       this.getText('css selector', 'div.pf-c-description-list__group:nth-child(6) > dd:nth-child(2) > div:nth-child(1)', (details) => {
-  //         if (details.value.includes('No instances of')) {
-  //           this.expect.elements('.policy-template-details-view .table tbody>tr').count.to.equal(0)
-  //         } else {
-  //           this.expect.elements('.policy-template-details-view .table tbody>tr').count.not.to.equal(0)
-  //         }
-  //       })
-  //     }
-  //   })
-  // } else {
-  //   this.waitForElementPresent('.no-resource')
-  // }
   this.click('.bx--breadcrumb > div:nth-child(1)')
 }
 
