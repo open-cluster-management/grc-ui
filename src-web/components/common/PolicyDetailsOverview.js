@@ -13,7 +13,6 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Notification, Loading } from 'carbon-components-react'
-import { Alert } from '@patternfly/react-core'
 import { connect } from 'react-redux'
 import { updateResourceToolbar } from '../../actions/common'
 import msgs from '../../../nls/platform.properties'
@@ -264,16 +263,16 @@ export class PolicyDetailsOverview extends React.PureComponent{
             <div className='bx--module'>
               <Notification
                 title=''
-                subtitle={msgs.get('error.no.placemen', locale)}
-                kind='error' />
+                subtitle={msgs.get('error.no.placement', locale)}
+                kind='warning' />
             </div>
           }
           {itemPP!==null && itemPB!==null && modulesSecond.length > 0 &&
             <div className='overview-content-second'>
-              <div className='overview-content-second-cell'>
+              <div className='overview-content-second-left'>
                 {React.cloneElement(modulesSecond[0], { ...staticResourceData.placementPolicyKeys.detailKeys, data:itemPP })}
               </div>
-              <div className='overview-content-second-cell'>
+              <div className='overview-content-second-left'>
                 {React.cloneElement(modulesSecond[1], { ...staticResourceData.placementBindingKeys.detailKeys, data:itemPB })}
               </div>
             </div>
