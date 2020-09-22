@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
@@ -73,16 +72,15 @@ class PolicyDetailTab extends React.Component{
         } else if (loading && items === undefined) {
           return <Spinner className='patternfly-spinner' />
         } else {
-          return <Spinner className='patternfly-spinner' />
-          // const item = items[0]
-          // return <PolicyDetailsOverview
-          //   loading={!items && loading}
-          //   error={error}
-          //   item={item}
-          //   refreshControl={refreshControl}
-          //   resourceType={resourceType}
-          //   staticResourceData={staticResourceData}
-          // />
+          const item = items[0]
+          return <PolicyDetailsOverview
+            loading={!items && loading}
+            error={error}
+            item={item}
+            refreshControl={refreshControl}
+            resourceType={resourceType}
+            staticResourceData={staticResourceData}
+          />
         }
       }}
     </Query>
