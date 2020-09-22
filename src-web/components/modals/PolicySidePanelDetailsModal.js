@@ -18,7 +18,8 @@ import resources from '../../../lib/shared/resources'
 import _ from 'lodash'
 import {AllPoliciesInCluster, AllClustersInPolicy, AllPoliciesInApplication} from '../../../lib/client/queries'
 import { Query } from 'react-apollo'
-import { Modal, Loading, InlineNotification } from 'carbon-components-react'
+import { Modal, InlineNotification } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import ResourceOverviewModule from '../modules/SubResourceListModule'
 import getResourceDefinitions from '../../definitions'
 import msgs from '../../../nls/platform.properties'
@@ -147,7 +148,7 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
                 {( {data:PolicySidePanelData, loading, error} ) => {
                   if (loading) {
                     // spinner if loading
-                    return <Loading withOverlay={false} />
+                    return <Spinner className='patternfly-spinner' />
                   }
                   if (error) {
                     // return inline error

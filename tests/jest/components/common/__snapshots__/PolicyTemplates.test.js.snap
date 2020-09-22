@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PolicyTemplates component renders as expected 1`] = `
+exports[`PolicyTemplatesView component renders as expected 1`] = `
 <div
   className="bx--module bx--module--double compliance-templates"
   id="yaml-template"

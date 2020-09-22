@@ -44,7 +44,7 @@ class PolicyStatusHistoryView extends React.Component {
     const tableData = transform(history, statusHistoryDef, locale)
 
     return (
-      <div className='policy-violation-history-view'>
+      <div className='policy-status-history-view'>
         <div className='table'>
           <Title className='title' headingLevel="h3">{cluster}</Title>
           <Title className='title' headingLevel="h4">{`${msgs.get('policy.template', locale)}: ${template}`}</Title>

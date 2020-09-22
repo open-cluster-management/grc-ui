@@ -4,7 +4,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Modal, Loading, Notification } from 'carbon-components-react'
+import { Modal, Notification } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import msgs from '../../../nls/platform.properties'
 import { withRouter } from 'react-router-dom'
 import { REQUEST_STATUS } from '../../actions/index'
@@ -81,7 +82,7 @@ export class PolicyActionModal extends React.Component {
     }
     return (
       <div>
-        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading />}
+        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Spinner className='patternfly-spinner' />}
         <Modal
           danger={dangerFlag}
           id={modalId}

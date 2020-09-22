@@ -12,7 +12,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Notification, Loading } from 'carbon-components-react'
 import { Alert } from '@patternfly/react-core'
 import { connect } from 'react-redux'
 import { updateResourceToolbar } from '../../actions/common'
@@ -41,13 +40,11 @@ export class PolicyDetailsOverview extends React.PureComponent{
   }
 
   static propTypes = {
-    error: PropTypes.any,
     item: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.object,
       PropTypes.array
     ]),
-    loading: PropTypes.any,
     location: PropTypes.object,
     // params: PropTypes.object,
     refreshControl: PropTypes.object,
@@ -84,21 +81,9 @@ export class PolicyDetailsOverview extends React.PureComponent{
   }
 
   render() {
-    const {staticResourceData, resourceType, error, loading, location} = this.props
-    let { item:localItem } = this.props
+    const {staticResourceData, resourceType, location} = this.props
+    const { item:localItem } = this.props
     const { locale } = this.context
-
-    if(error) {
-      return <Notification
-        title=''
-        className='persistent'
-        subtitle={msgs.get(error, locale)}
-        kind='error' />
-    } else if (loading || !localItem || !Array.isArray(localItem)) {
-      return <Loading withOverlay={false} className='content-spinner' />
-    } else {
-      localItem = localItem[0]
-    }
 
     const clusterStatus = this.getClusterStatus(localItem)
 

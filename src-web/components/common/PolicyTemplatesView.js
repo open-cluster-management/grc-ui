@@ -13,10 +13,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import jsYaml from 'js-yaml'
-import YamlEditor from '../common/YamlEditor'
+import YamlEditor from './YamlEditor'
 import lodash from 'lodash'
 import { dumpAndParse } from '../../../lib/client/design-helper'
-import { Button, InlineNotification, Loading } from 'carbon-components-react'
+import { Button, InlineNotification } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Module, ModuleHeader } from 'carbon-addons-cloud-react'
@@ -25,7 +26,7 @@ import {REQUEST_STATUS} from '../../actions'
 import formatUserAccess from './FormatUserAccess'
 import filterUserAction from './FilterUserAction'
 
-class PolicyTemplates extends React.Component {
+class PolicyTemplatesView extends React.Component {
 
   constructor(props) {
     super(props)
@@ -142,7 +143,6 @@ class PolicyTemplates extends React.Component {
     const userAccessHash = formatUserAccess(userAccess)
     const actions = ['table.actions.edit']
     const filteredActions = filterUserAction(resourceData, actions, userAccessHash, resourceType)
-    console.log(JSON.stringify(filteredActions))
     const disableFlag = (Array.isArray(filteredActions) && filteredActions[0])
       ? filteredActions[0].includes('disabled.')
       : true
@@ -210,17 +210,17 @@ class PolicyTemplates extends React.Component {
             onYamlChange={this.handleEditorChange}
             yaml={this.state.yaml} />
         </div>
-        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Loading withOverlay={false} />}
+        {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Spinner className='patternfly-spinner' />}
       </Module>
     )
   }
 }
 
-PolicyTemplates.contextTypes = {
+PolicyTemplatesView.contextTypes = {
   locale: PropTypes.string
 }
 
-PolicyTemplates.propTypes = {
+PolicyTemplatesView.propTypes = {
   className: PropTypes.string,
   editResource: PropTypes.func,
   headerKey: PropTypes.string,
@@ -250,4 +250,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PolicyTemplates))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PolicyTemplatesView))

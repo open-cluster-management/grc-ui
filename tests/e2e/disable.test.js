@@ -33,23 +33,20 @@ module.exports = {
     const inform = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_mustnothave_inform.yaml'))
     yaml = inform.toString()
     page.createPolicy(browser, 'policy-pod-inform-'+ time, yaml, time)
-    browser.pause(20000)
-    page.checkViolations('policy-pod-inform-' + time, false)
+    page.checkStatus('policy-pod-inform-' + time, false)
 
     page.tryDisable('policy-pod-' + time)
     browser.pause(5000)
     const createPod = fs.readFileSync(path.join(__dirname, 'yaml/disable_test/ed_pod_create.yaml'))
     yaml = createPod.toString()
     page.createPolicy(browser, 'policy-pod-create-'+ time, yaml, time)
-    browser.pause(30000) //Wait for pod to be created
-    page.checkViolations('policy-pod-create-' + time, false)
-    page.checkViolations('policy-pod-inform-' + time, true)
+    page.checkStatus('policy-pod-create-' + time, false)
+    page.checkStatus('policy-pod-inform-' + time, true)
 
     page.deletePolicy('policy-pod-create-' + time)
     page.tryEnable('policy-pod-' + time)
-    browser.pause(30000) //Wait for pod to be deleted
-    page.checkViolations('policy-pod-' + time, false)
-    page.checkViolations('policy-pod-inform-' + time, false)
+    page.checkStatus('policy-pod-' + time, false)
+    page.checkStatus('policy-pod-inform-' + time, false)
 
     page.deletePolicy('policy-pod-inform-' + time)
     page.deletePolicy('policy-pod-' + time)

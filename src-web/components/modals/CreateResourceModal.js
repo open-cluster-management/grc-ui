@@ -13,7 +13,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import jsYaml from 'js-yaml'
-import { Button, InlineNotification, Loading, Modal } from 'carbon-components-react'
+import { Button, InlineNotification, Modal } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import resources from '../../../lib/shared/resources'
 import msgs from '../../../nls/platform.properties'
 import YamlEditor from '../common/YamlEditor'
@@ -118,7 +119,7 @@ export class CreateResourceModal extends React.PureComponent {
             />
           }
           <YamlEditor onYamlChange={this.handleEditorChange} yaml={this.state.yaml} />
-          {this.state.processing && <Loading withOverlay={false} />}
+          {this.state.processing &&  <Spinner className='patternfly-spinner' />}
         </Modal>}
       </div>
     )

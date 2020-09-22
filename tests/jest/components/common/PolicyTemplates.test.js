@@ -10,7 +10,7 @@
 'use strict'
 
 import React from 'react'
-import PolicyTemplates from '../../../../src-web/components/common/PolicyTemplates'
+import PolicyTemplatesView from '../../../../src-web/components/common/PolicyTemplatesView'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
 import * as reducers from '../../../../src-web/reducers'
@@ -20,7 +20,7 @@ import GrcApolloClient from '../../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
 
-describe('PolicyTemplates component', () => {
+describe('PolicyTemplatesView component', () => {
   it('renders as expected', () => {
     const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -582,7 +582,7 @@ describe('PolicyTemplates component', () => {
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
-            <PolicyTemplates
+            <PolicyTemplatesView
               className={'compliance-templates'}
               editResource={jest.fn()}
               editable={true}

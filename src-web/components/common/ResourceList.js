@@ -19,7 +19,8 @@ import { connect } from 'react-redux'
 import { changeTablePage, searchTable, sortTable, receiveResourceSuccess, updateSecondaryHeader } from '../../actions/common'
 import { updateResourceFilters } from '../../actions/filters'
 import TableHelper from '../../util/table-helper'
-import { Loading, Notification } from 'carbon-components-react'
+import { Notification } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import { withRouter } from 'react-router-dom'
 import msgs from '../../../nls/platform.properties'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
@@ -112,7 +113,7 @@ class ResourceList extends React.Component {
     }
 
     if (status !== REQUEST_STATUS.DONE){
-      return <Loading withOverlay={false} className='content-spinner' />
+      return <Spinner className='patternfly-spinner' />
     }
 
     const actions = React.Children.map(children, action => {

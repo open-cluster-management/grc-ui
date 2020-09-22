@@ -29,8 +29,7 @@ module.exports = {
     const createIamPolicy = fs.readFileSync(path.join(__dirname, 'yaml/iam_policy/create_test_iam_policy.yaml'))
     var yaml = createIamPolicy.toString()
     page.createPolicy(browser, 'policy-iampolicy-' + time, yaml, time)
-    browser.pause(30000) // Wait for policy to create iam-policy 30s
-    page.checkViolations('policy-iampolicy-' + time, false)
+    page.checkStatus('policy-iampolicy-' + time, false)
   },
 
   'GRC IAM policy: create clusterrolebinding as should show violation': (browser) => {
@@ -38,10 +37,8 @@ module.exports = {
     const createCRB = fs.readFileSync(path.join(__dirname, 'yaml/iam_policy/create_test_clusterrolebinding.yaml'))
     var yaml = createCRB.toString()
     page.createPolicy(browser, 'policy-clusterrolebinding-test-' + time, yaml, time)
-    browser.pause(20000) // Wait for policy to create clusterrolebinding 20s
-    page.checkViolations('policy-clusterrolebinding-test-' + time, false)
-    browser.pause(20000) // Wait for iam policy to detect change 20s
-    page.checkViolations('policy-iampolicy-' + time, true)
+    page.checkStatus('policy-clusterrolebinding-test-' + time, false)
+    page.checkStatus('policy-iampolicy-' + time, true)
     page.deletePolicy('policy-clusterrolebinding-test-' + time)
   },
 
@@ -50,10 +47,8 @@ module.exports = {
     const deleteCRB = fs.readFileSync(path.join(__dirname, 'yaml/iam_policy/delete_test_clusterrolebinding.yaml'))
     var yaml = deleteCRB.toString()
     page.createPolicy(browser, 'policy-clusterrolebinding-delete-' + time, yaml, time)
-    browser.pause(20000) // Wait for policy to delete clusterrolebinding 20s
-    page.checkViolations('policy-clusterrolebinding-delete-' + time, false)
-    browser.pause(20000) // Wait for iam policy to detect change 20s
-    page.checkViolations('policy-iampolicy-' + time, false)
+    page.checkStatus('policy-clusterrolebinding-delete-' + time, false)
+    page.checkStatus('policy-iampolicy-' + time, false)
     page.deletePolicy('policy-clusterrolebinding-delete-' + time)
   },
 

@@ -42,5 +42,7 @@ while true; do
 done
 
 # run test
-sleep 10
+export PAUSE=${PAUSE:-60}
+echo sleep $PAUSE seconds...
+sleep $PAUSE
 npm run test:e2e-headless

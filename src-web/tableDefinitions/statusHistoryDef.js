@@ -22,7 +22,7 @@ export default {
     {
       msgKey: 'table.header.message',
       resourceKey: 'message',
-      transforms: [cellWidth(80), wrappable, sortable],
+      transforms: [cellWidth(70), wrappable, sortable],
       cellTransforms: [breakWord],
     },
     {

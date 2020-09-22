@@ -11,7 +11,8 @@
 
 import React from 'react'
 import lodash from 'lodash'
-import { Modal, Loading, InlineNotification } from 'carbon-components-react'
+import { Modal, InlineNotification } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import resources from '../../../lib/shared/resources'
 import { clearRequestStatus, editResource, updateModal } from '../../actions/common'
 import { connect } from 'react-redux'
@@ -134,7 +135,7 @@ export class ResourceModal extends React.PureComponent {
         onKeyDown={this.escapeEditor}
         aria-label={msgs.get('a11y.editor.escape', locale)}
       >
-        {reqCount && reqCount > 0 && <Loading />}
+        {reqCount && reqCount > 0 && <Spinner className='patternfly-spinner' />}
         <Modal
           id={`resource-modal-${resourceType.name}`}
           className='resource-modal'

@@ -19,7 +19,7 @@ import GrcApolloClient from '../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
 import { staticResourceData } from './ContainersTestingData'
-import PolicyViolationTab from '../../../src-web/containers/PolicyViolationTab'
+import PolicyStatusTab from '../../../src-web/containers/PolicyStatusTab'
 
 describe('PolicyDetail container test', () => {
   it('renders as expected', () => {
@@ -33,7 +33,7 @@ describe('PolicyDetail container test', () => {
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
-            <PolicyViolationTab
+            <PolicyStatusTab
               staticResourceData={staticResourceData}
             />
           </BrowserRouter>

@@ -12,11 +12,12 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Notification, Loading } from 'carbon-components-react'
+import { Notification } from 'carbon-components-react'
+import { Spinner } from '@patternfly/react-core'
 import { connect } from 'react-redux'
 import StructuredListModule from './StructuredListModule'
 import resources from '../../../lib/shared/resources'
-import PolicyTemplates from './PolicyTemplates'
+import PolicyTemplatesView from './PolicyTemplatesView'
 // eslint-disable-next-line import/no-named-as-default
 import ResourceTableModule from './ResourceTableModuleFromProps'
 import { updateResourceToolbar} from '../../actions/common'
@@ -75,11 +76,11 @@ class PolicyClusterDetail extends React.Component {
         subtitle={msgs.get(error, locale)}
         kind='error' />
     } else if ( loading || !policies || !Array.isArray(policies) ) {
-      return (<Loading withOverlay={false} className='content-spinner' />)
+      return <Spinner className='patternfly-spinner' />
     }
     const policy = policies[0]
     React.Children.map([
-      <PolicyTemplates key='Policy Templates' headerKey='table.header.policyTemplate' right />,
+      <PolicyTemplatesView key='Policy Templates' headerKey='table.header.policyTemplate' right />,
       <ResourceTableModule key='roleTemplates' definitionsKey='policyRoleTemplates' />,
       <ResourceTableModule key='objectTemplates' definitionsKey='policyObjectTemplates' />,
       <ResourceTableModule key='policyTemplates' definitionsKey='policyPolicyTemplates' />,
