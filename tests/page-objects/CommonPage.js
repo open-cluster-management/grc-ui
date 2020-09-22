@@ -72,7 +72,7 @@ module.exports = {
 * @clickButtonName - DOM name of clicked button on the opened modal
 */
 function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionName, actionPosition, modalName, clickButtonName){
-  this.log(`${actionName} policy ${name} button ${clickButtonName}`)
+  this.log(`modal ${modalName} -- ${actionName} policy ${name} button ${clickButtonName}`)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element(`.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > ${nameTarget}`).text.to.equal(name)
   this.waitForElementVisible(`table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition})`)
