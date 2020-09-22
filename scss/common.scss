@@ -71,11 +71,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 1.5rem 5% 3.375rem;
-  .patternfly-spinner {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-  }
+  
   .bx--select--inline{
     svg.bx--select__arrow{
       position: absolute
@@ -94,6 +90,11 @@ body {
 
 .expand-vertically {
   height: 100%;
+  .patternfly-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+  }
 }
 
 .nested-expandable-row {
