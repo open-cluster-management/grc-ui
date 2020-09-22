@@ -161,7 +161,7 @@ function informPolicy(name){
   this.clearSearchValue()
 }
 
-function checkStatus(name, violationExpected/*, violationText*/) {
+function checkStatus(name, violationExpected, violationText) {
   this.log(`Checking policy: ${name} violationExpected: ${violationExpected}`)
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
@@ -179,6 +179,15 @@ function checkStatus(name, violationExpected/*, violationText*/) {
   this.waitForElementPresent('#status-tab')
   this.click('#status-tab')
   this.waitForElementPresent('.policy-status-view')
+  this.waitForElementPresent('#policy-status-templates').click('#policy-status-templates')
+  this.waitForElementPresent('.policy-status-by-templates-table')
+  this.waitForElementPresent('#policy-status-clusters').click('#policy-status-clusters')
+  this.waitForElementPresent('.policy-status-by-clusters-table')
+  if (violationExpected) {
+    if (violationText) {
+      this.expect.element('.policy-status-by-clusters-table .pattern-fly-table > table > tbody > tr:nth-child(1) > td:nth-child(4) > div').text.to.equal(violationText)
+    }
+  }
   // if (violationExpected) {
   //   this.api.elements('css selector','.pattern-fly-table-body td[data-label=Status] > div', (result) => {
   //     this.log(result)
