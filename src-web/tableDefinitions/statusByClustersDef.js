@@ -12,7 +12,7 @@ import {
   buildCompliantCellFromMessage,
   buildClusterLink,
   buildStatusHistoryLink,
-  buildMessageDetailLink
+  buildTemplateDetailLink
 } from './utils'
 
 export default {
@@ -39,7 +39,7 @@ export default {
       resourceKey: 'message',
       transforms: [sortable, wrappable],
       cellTransforms: [breakWord],
-      transformFunction: buildMessageDetailLink
+      transformFunction: buildTemplateDetailLink
     },
     {
       msgKey: 'table.header.timestamp',
