@@ -148,7 +148,7 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
                 {( {data:PolicySidePanelData, loading, error} ) => {
                   if (loading) {
                     // spinner if loading
-                    return <Spinner className='patternfly-spinner' />
+                    return <Spinner className='patternfly-spinner side-panel-spinner' />
                   }
                   if (error) {
                     // return inline error
