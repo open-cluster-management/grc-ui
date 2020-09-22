@@ -185,9 +185,30 @@ function checkStatus(name, violationExpected, violationText) {
   this.waitForElementPresent('.policy-status-by-clusters-table')
   if (violationExpected) {
     if (violationText) {
+      // check for 1st entry in the table
+      // it should be a violation as table are sorted to show Not compliant first
       this.expect.element('.policy-status-by-clusters-table .pattern-fly-table > table > tbody > tr:nth-child(1) > td:nth-child(4) > div').text.to.equal(violationText)
     }
   }
+  this.log('checking view details for policy template details')
+  this.click('.policy-status-by-clusters-table .pattern-fly-table > table > tbody > tr:nth-child(1) > td:nth-child(4) a')
+  this.waitForElementPresent('.policy-template-details-view')
+  this.waitForElementPresent('.policy-template-details-view .table')
+  this.getText('css selector', 'div.pf-c-description-list__group:nth-child(3) > dd:nth-child(2) > div:nth-child(1)', (kind) => {
+    if (kind.value === '-') {
+      this.assert.fail(`Failed to retrieve policy details: kind=${this.log(kind)}`)
+    }
+    if (kind.value === 'ConfigurationPolicy') {
+      this.getText('css selector', 'div.pf-c-description-list__group:nth-child(6) > dd:nth-child(2) > div:nth-child(1)', (details) => {
+        if (details.value.includes('No instances of')) {
+          this.expect.elements('.policy-template-details-view .table tbody>tr').count.to.equal(0)
+        } else {
+          this.expect.elements('.policy-template-details-view .table tbody>tr').count.not.to.equal(0)
+        }
+      })
+    }
+  })
+  this.log('checking view history for policy status history')
   // if (violationExpected) {
   //   this.api.elements('css selector','.pattern-fly-table-body td[data-label=Status] > div', (result) => {
   //     this.log(result)
