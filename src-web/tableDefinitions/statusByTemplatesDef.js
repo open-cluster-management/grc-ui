@@ -8,7 +8,7 @@ import {
   wrappable,
 } from '@patternfly/react-table'
 import {
-  getAge,
+  buildTimestamp,
   buildCompliantCellFromMessage,
   buildClusterLink,
   buildStatusHistoryLink,
@@ -39,7 +39,7 @@ export default {
       msgKey: 'table.header.timestamp',
       resourceKey: 'timestamp',
       transforms: [sortable, wrappable],
-      transformFunction: getAge,
+      transformFunction: buildTimestamp,
     },
     {
       msgKey: 'table.header.history',
