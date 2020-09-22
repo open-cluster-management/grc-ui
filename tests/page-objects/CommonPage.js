@@ -72,6 +72,7 @@ module.exports = {
 * @clickButtonName - DOM name of clicked button on the opened modal
 */
 function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionName, actionPosition, modalName, clickButtonName){
+  this.log(`${actionName} policy ${name} button ${clickButtonName}`)
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element(`.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > ${nameTarget}`).text.to.equal(name)
   this.waitForElementVisible(`table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition})`)
@@ -291,6 +292,7 @@ function tryEnable(name){
   //re-entry overflow menu then click enable policy button (.bx--btn.bx--btn--primary)
   this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 3, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.waitForElementNotPresent('#table-container .disabled-label')
   this.clearSearchValue()
 }
 
@@ -305,5 +307,6 @@ function tryDisable(name){
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 3, '#disable-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.waitForElementPresent('#table-container .disabled-label')
   this.clearSearchValue()
 }
