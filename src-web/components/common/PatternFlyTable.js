@@ -55,11 +55,29 @@ class PatternFlyTable extends React.Component {
     // Helper function to return the string from the cell
     const parseCell = function (cell) {
       if (cell.title && cell.title.props && cell.title.props.timestamp) {
-        return cell.title.props.timestamp
+        return '' // don't search timetamp since it will be transfered by buildTimestamp
       }
       if (typeof cell === 'object' && cell.title === 'string') {
         return cell.title
       } else if (typeof cell === 'object') {
+        // Here is specially skip <Link> for searching , only skip 2-level div depth
+        // Because recursively skipping is too expensive for whole table
+        if (cell.title && cell.title.type && cell.title.type.displayName === 'Link') {
+          return '' // level-1 skipping like <Link>text</Link>
+        }
+        else if (cell.title && cell.title.props
+          && Array.isArray(cell.title.props.children) && cell.title.props.children.length > 0) {
+          let skippedLinkString = ''
+          cell.title.props.children.forEach((child)=>{
+            if (typeof child === 'string') {
+              skippedLinkString = `${skippedLinkString}${child}`
+            }
+            else if (typeof child === 'object' && child.type && child.type.displayName !== 'Link') {
+              skippedLinkString = `${skippedLinkString}${ReactDOMServer.renderToString(child).replace(/<[^>]+>/g, '')}`
+            }
+          })
+          return skippedLinkString // level-1 skipping like <div><Link>text</Link><div>
+        }
         // It's not a string so render the component and strip HTML tags
         return ReactDOMServer.renderToString(cell.title).replace(/<[^>]+>/g, '')
       }
@@ -71,7 +89,7 @@ class PatternFlyTable extends React.Component {
       : rows.filter(row => {
         const cells = row.cells ? row.cells : row
         return cells.some(item => {
-          return parseCell(item).toLowerCase().includes(searchValue.toLowerCase())
+          return parseCell(item).trim().toLowerCase().includes(searchValue.trim().toLowerCase())
         })
       })
 
