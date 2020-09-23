@@ -203,9 +203,8 @@ export const updateActiveFilters = (activeFilters) => ({
   activeFilters,
 })
 
-export const updateResourceToolbar = (refreshControl, availableFilters) => ({
+export const updateResourceToolbar = (availableFilters) => ({
   type: RESOURCE_TOOLBAR_UPDATE,
-  refreshControl,
   availableFilters
 })
 

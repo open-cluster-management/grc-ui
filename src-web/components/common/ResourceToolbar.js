@@ -169,13 +169,12 @@ ResourceToolbar.propTypes = {
   availableFilters: PropTypes.object,
   filterViewOpen: PropTypes.bool,
   location: PropTypes.object,
-  refreshControl: PropTypes.object,
   updateActiveFilters: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {
-  const {resourceToolbar: {availableFilters, activeFilters, refreshControl}} = state
-  return { availableFilters, activeFilters, refreshControl }
+  const {resourceToolbar: {availableFilters, activeFilters}} = state
+  return { availableFilters, activeFilters }
 }
 
 const mapDispatchToProps = (dispatch) => {
