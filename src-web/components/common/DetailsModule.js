@@ -19,6 +19,7 @@ import resources from '../../../lib/shared/resources'
 import _uniqueId from 'lodash/uniqueId'
 import moment from 'moment'
 import { getClusterCompliantStatus } from '../../definitions/hcm-policies-cluster.js'
+import { LocaleContext } from './LocaleContext'
 
 resources(() => {
   require('../../../scss/structured-list.scss')
@@ -49,8 +50,8 @@ class DetailsModule extends React.PureComponent {
           if(item && item.cells[0] && item.cells[0].resourceKey){
             if(item.cells[0].type === 'timestamp') {
               entry[1] = moment(entry[1], 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
-            } else if(item.cells[1].type === 'compliance') {
-              entry[1] = getClusterCompliantStatus({violation: entry[1]}, 'en')
+            } else if(item && item.cells[1] && item.cells[1].resourceKey === 'compliance') {
+              entry[1] = getClusterCompliantStatus({violation: entry[1]}, this.context.locale)
             }
           }
           // third column entry[2] is tooltip inforamtion, if not exist then no tooltip
@@ -129,9 +130,7 @@ class DetailsModule extends React.PureComponent {
 
   }
 
-  static contextTypes = {
-    locale: PropTypes.string
-  }
+  static contextType = LocaleContext
 
   static propTypes = {
     listData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
