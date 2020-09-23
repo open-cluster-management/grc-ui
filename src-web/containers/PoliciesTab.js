@@ -68,19 +68,11 @@ class PoliciesTab extends React.Component {
             if (!reloading) {
               this.timestamp = new Date().toString()
             }
-            // console.log(reloading)
-            // const refreshControl = {
-            //   // reloading,
-            //   refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
-            //   startPolling, stopPolling, refetch,
-            //   // timestamp: this.timestamp
-            // }
             reloadingVar(reloading)
             timestampVar(this.timestamp)
             startPollingFunc(startPolling)
             stopPollingFunc(stopPolling)
             refetchFunc(refetch)
-            // console.log(reloadingVar())
             return (
               showApplications ?
                 <Query query={HCMApplicationList} pollInterval={pollInterval} client={GrcApolloClient.getSearchClient()} notifyOnNetworkStatusChange >
@@ -96,7 +88,6 @@ class PoliciesTab extends React.Component {
                         searchError={searchError}
                         grcItems={items}
                         applications = {applications}
-                        // refreshControl={refreshControl}
                         secondaryHeaderProps={secondaryHeaderProps}
                       />
                     )
@@ -109,7 +100,6 @@ class PoliciesTab extends React.Component {
                   loading={!items && loading}
                   error={error}
                   grcItems={items}
-                  // refreshControl={refreshControl}
                   secondaryHeaderProps={secondaryHeaderProps}
                 />
             )
