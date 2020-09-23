@@ -18,6 +18,8 @@ import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 import _uniqueId from 'lodash/uniqueId'
 import moment from 'moment'
+import { getClusterCompliantStatus } from '../../definitions/hcm-policies-cluster.js'
+import { LocaleContext } from './LocaleContext'
 
 resources(() => {
   require('../../../scss/structured-list.scss')
@@ -45,8 +47,12 @@ class DetailsModule extends React.PureComponent {
           const entryData = item.cells[1] ? _.get(listData, item.cells[1].resourceKey, '-') : '-'
           const replacedData = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
           entry[1] = (typeof(entryData) === 'object'||typeof(entryData) === 'boolean') ? replacedData : entryData
-          if(item && item.cells[0] && item.cells[0].resourceKey && item.cells[0].type === 'timestamp') {
-            entry[1] = moment(entry[1], 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
+          if(item && item.cells[0] && item.cells[0].resourceKey){
+            if(item.cells[0].type === 'timestamp') {
+              entry[1] = moment(entry[1], 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
+            } else if(item.cells[1] && item.cells[1].resourceKey === 'clusterCompliant') {
+              entry[1] = getClusterCompliantStatus({violation: entry[1]}, this.context.locale)
+            }
           }
           // third column entry[2] is tooltip inforamtion, if not exist then no tooltip
           if (item.cells[0].information) {
@@ -124,9 +130,7 @@ class DetailsModule extends React.PureComponent {
 
   }
 
-  static contextTypes = {
-    locale: PropTypes.string
-  }
+  static contextType = LocaleContext
 
   static propTypes = {
     listData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,

@@ -17,7 +17,11 @@
   flex-direction: row;
   margin-left: -.625rem;
   margin-right: -.625rem;
-
+  .violationCell {
+    > svg {
+      margin-right: 0.25rem;
+    }
+  }
   .overview-content-bottom {
     .table-status-row p {
       font-size: .875rem;
