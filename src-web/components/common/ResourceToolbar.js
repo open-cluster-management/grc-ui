@@ -18,7 +18,6 @@ import { updateActiveFilters } from '../../actions/common'
 import RefreshTimeSelect from './RefreshTimeSelect'
 import ResourceFilterView from './ResourceFilterView'
 import { CSSTransition } from 'react-transition-group'
-import { Loading } from 'carbon-components-react'
 import { REFRESH_TIMES, GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 import { GET_REFRESH_CONTROL } from '../../../lib/client/queries'
 import { Query } from 'react-apollo'
@@ -31,12 +30,11 @@ resources(() => {
   require('../../../scss/resource-toolbar.scss')
 })
 
-const RefreshTime = ({ reloading, timestamp, locale }) => {
+const RefreshTime = ({ timestamp, locale }) => {
   const time = new Date(timestamp).toLocaleTimeString(locale)
   const lastUpdate = msgs.get('overview.menu.last.update', [time], locale)
   return (
     <div className='refresh-time-container'>
-      {reloading ?<Loading withOverlay={false} small /> : null }
       <div>{lastUpdate}</div>
     </div>
   )
@@ -44,7 +42,6 @@ const RefreshTime = ({ reloading, timestamp, locale }) => {
 
 RefreshTime.propTypes = {
   locale: PropTypes.string,
-  reloading: PropTypes.bool,
   timestamp: PropTypes.string,
 }
 
@@ -64,16 +61,10 @@ export class ResourceToolbar extends React.Component {
   render() {
     const { locale } = this.context
     const { availableFilters={}, activeFilters={}, location } = this.props
-    // console.log(refreshControl)
-    // if (Object.keys(refreshControl).length===0) {
-    //   return null
-    // }
-    // const { timestamp } = refreshControl
     const { filterViewOpen } = this.state
     return (
       <Query query={GET_REFRESH_CONTROL} notifyOnNetworkStatusChange >
         {({data={}}) => {
-          const {reloading, timestamp} = data
           const refreshControl = data
           return (
             <div id='resource-toolbar' className='resource-toolbar'>
@@ -100,7 +91,7 @@ export class ResourceToolbar extends React.Component {
                       </div>
                   }
                 </div>
-                <RefreshTime timestamp={timestamp} reloading={reloading} />
+                {refreshControl.timestamp && <RefreshTime timestamp={refreshControl.timestamp} />}
               </div>
               <CSSTransition
                 in={filterViewOpen}

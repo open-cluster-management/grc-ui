@@ -10,7 +10,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
           "addTypename": true,
           "dataIdFromObject": [Function],
           "resultCaching": true,
-          "typePolicies": Object {},
+          "typePolicies": Object {
+            "Query": Object {
+              "fields": Object {
+                "refetch": Object {
+                  "read": [Function],
+                },
+                "refreshCookie": Object {
+                  "read": [Function],
+                },
+                "reloading": Object {
+                  "read": [Function],
+                },
+                "startPolling": Object {
+                  "read": [Function],
+                },
+                "stopPolling": Object {
+                  "read": [Function],
+                },
+                "timestamp": Object {
+                  "read": [Function],
+                },
+              },
+            },
+          },
         },
         "data": Root {
           "canRead": [Function],
@@ -30,7 +53,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "cache": [Circular],
               "dataIdFromObject": [Function],
               "possibleTypes": undefined,
-              "typePolicies": Object {},
+              "typePolicies": Object {
+                "Query": Object {
+                  "fields": Object {
+                    "refetch": Object {
+                      "read": [Function],
+                    },
+                    "refreshCookie": Object {
+                      "read": [Function],
+                    },
+                    "reloading": Object {
+                      "read": [Function],
+                    },
+                    "startPolling": Object {
+                      "read": [Function],
+                    },
+                    "stopPolling": Object {
+                      "read": [Function],
+                    },
+                    "timestamp": Object {
+                      "read": [Function],
+                    },
+                  },
+                },
+              },
             },
             "fuzzySubtypes": Map {},
             "rootIdsByTypename": Object {
@@ -44,7 +90,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "ROOT_SUBSCRIPTION": "Subscription",
             },
             "supertypeMap": Map {},
-            "typePolicies": Object {},
+            "typePolicies": Object {
+              "Query": Object {
+                "fields": Object {
+                  "refetch": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "refreshCookie": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "reloading": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "startPolling": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "stopPolling": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "timestamp": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                },
+                "keyFn": undefined,
+              },
+            },
             "usingPossibleTypes": false,
           },
           "refs": Object {},
@@ -84,7 +166,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "cache": [Circular],
               "dataIdFromObject": [Function],
               "possibleTypes": undefined,
-              "typePolicies": Object {},
+              "typePolicies": Object {
+                "Query": Object {
+                  "fields": Object {
+                    "refetch": Object {
+                      "read": [Function],
+                    },
+                    "refreshCookie": Object {
+                      "read": [Function],
+                    },
+                    "reloading": Object {
+                      "read": [Function],
+                    },
+                    "startPolling": Object {
+                      "read": [Function],
+                    },
+                    "stopPolling": Object {
+                      "read": [Function],
+                    },
+                    "timestamp": Object {
+                      "read": [Function],
+                    },
+                  },
+                },
+              },
             },
             "fuzzySubtypes": Map {},
             "rootIdsByTypename": Object {
@@ -98,7 +203,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "ROOT_SUBSCRIPTION": "Subscription",
             },
             "supertypeMap": Map {},
-            "typePolicies": Object {},
+            "typePolicies": Object {
+              "Query": Object {
+                "fields": Object {
+                  "refetch": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "refreshCookie": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "reloading": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "startPolling": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "stopPolling": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "timestamp": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                },
+                "keyFn": undefined,
+              },
+            },
             "usingPossibleTypes": false,
           },
           "refs": Object {},
@@ -123,7 +264,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
             "cache": [Circular],
             "dataIdFromObject": [Function],
             "possibleTypes": undefined,
-            "typePolicies": Object {},
+            "typePolicies": Object {
+              "Query": Object {
+                "fields": Object {
+                  "refetch": Object {
+                    "read": [Function],
+                  },
+                  "refreshCookie": Object {
+                    "read": [Function],
+                  },
+                  "reloading": Object {
+                    "read": [Function],
+                  },
+                  "startPolling": Object {
+                    "read": [Function],
+                  },
+                  "stopPolling": Object {
+                    "read": [Function],
+                  },
+                  "timestamp": Object {
+                    "read": [Function],
+                  },
+                },
+              },
+            },
           },
           "fuzzySubtypes": Map {},
           "rootIdsByTypename": Object {
@@ -137,7 +301,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
             "ROOT_SUBSCRIPTION": "Subscription",
           },
           "supertypeMap": Map {},
-          "typePolicies": Object {},
+          "typePolicies": Object {
+            "Query": Object {
+              "fields": Object {
+                "refetch": Object {
+                  "keyFn": undefined,
+                  "merge": undefined,
+                  "read": [Function],
+                },
+                "refreshCookie": Object {
+                  "keyFn": undefined,
+                  "merge": undefined,
+                  "read": [Function],
+                },
+                "reloading": Object {
+                  "keyFn": undefined,
+                  "merge": undefined,
+                  "read": [Function],
+                },
+                "startPolling": Object {
+                  "keyFn": undefined,
+                  "merge": undefined,
+                  "read": [Function],
+                },
+                "stopPolling": Object {
+                  "keyFn": undefined,
+                  "merge": undefined,
+                  "read": [Function],
+                },
+                "timestamp": Object {
+                  "keyFn": undefined,
+                  "merge": undefined,
+                  "read": [Function],
+                },
+              },
+              "keyFn": undefined,
+            },
+          },
           "usingPossibleTypes": false,
         },
         "storeReader": StoreReader {
@@ -201,7 +401,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
             "addTypename": true,
             "dataIdFromObject": [Function],
             "resultCaching": true,
-            "typePolicies": Object {},
+            "typePolicies": Object {
+              "Query": Object {
+                "fields": Object {
+                  "refetch": Object {
+                    "read": [Function],
+                  },
+                  "refreshCookie": Object {
+                    "read": [Function],
+                  },
+                  "reloading": Object {
+                    "read": [Function],
+                  },
+                  "startPolling": Object {
+                    "read": [Function],
+                  },
+                  "stopPolling": Object {
+                    "read": [Function],
+                  },
+                  "timestamp": Object {
+                    "read": [Function],
+                  },
+                },
+              },
+            },
           },
           "data": Root {
             "canRead": [Function],
@@ -221,7 +444,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "cache": [Circular],
                 "dataIdFromObject": [Function],
                 "possibleTypes": undefined,
-                "typePolicies": Object {},
+                "typePolicies": Object {
+                  "Query": Object {
+                    "fields": Object {
+                      "refetch": Object {
+                        "read": [Function],
+                      },
+                      "refreshCookie": Object {
+                        "read": [Function],
+                      },
+                      "reloading": Object {
+                        "read": [Function],
+                      },
+                      "startPolling": Object {
+                        "read": [Function],
+                      },
+                      "stopPolling": Object {
+                        "read": [Function],
+                      },
+                      "timestamp": Object {
+                        "read": [Function],
+                      },
+                    },
+                  },
+                },
               },
               "fuzzySubtypes": Map {},
               "rootIdsByTypename": Object {
@@ -235,7 +481,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
               "supertypeMap": Map {},
-              "typePolicies": Object {},
+              "typePolicies": Object {
+                "Query": Object {
+                  "fields": Object {
+                    "refetch": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "refreshCookie": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "reloading": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "startPolling": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "stopPolling": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "timestamp": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                  },
+                  "keyFn": undefined,
+                },
+              },
               "usingPossibleTypes": false,
             },
             "refs": Object {},
@@ -275,7 +557,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "cache": [Circular],
                 "dataIdFromObject": [Function],
                 "possibleTypes": undefined,
-                "typePolicies": Object {},
+                "typePolicies": Object {
+                  "Query": Object {
+                    "fields": Object {
+                      "refetch": Object {
+                        "read": [Function],
+                      },
+                      "refreshCookie": Object {
+                        "read": [Function],
+                      },
+                      "reloading": Object {
+                        "read": [Function],
+                      },
+                      "startPolling": Object {
+                        "read": [Function],
+                      },
+                      "stopPolling": Object {
+                        "read": [Function],
+                      },
+                      "timestamp": Object {
+                        "read": [Function],
+                      },
+                    },
+                  },
+                },
               },
               "fuzzySubtypes": Map {},
               "rootIdsByTypename": Object {
@@ -289,7 +594,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
               "supertypeMap": Map {},
-              "typePolicies": Object {},
+              "typePolicies": Object {
+                "Query": Object {
+                  "fields": Object {
+                    "refetch": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "refreshCookie": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "reloading": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "startPolling": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "stopPolling": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "timestamp": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                  },
+                  "keyFn": undefined,
+                },
+              },
               "usingPossibleTypes": false,
             },
             "refs": Object {},
@@ -314,7 +655,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "cache": [Circular],
               "dataIdFromObject": [Function],
               "possibleTypes": undefined,
-              "typePolicies": Object {},
+              "typePolicies": Object {
+                "Query": Object {
+                  "fields": Object {
+                    "refetch": Object {
+                      "read": [Function],
+                    },
+                    "refreshCookie": Object {
+                      "read": [Function],
+                    },
+                    "reloading": Object {
+                      "read": [Function],
+                    },
+                    "startPolling": Object {
+                      "read": [Function],
+                    },
+                    "stopPolling": Object {
+                      "read": [Function],
+                    },
+                    "timestamp": Object {
+                      "read": [Function],
+                    },
+                  },
+                },
+              },
             },
             "fuzzySubtypes": Map {},
             "rootIdsByTypename": Object {
@@ -328,7 +692,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "ROOT_SUBSCRIPTION": "Subscription",
             },
             "supertypeMap": Map {},
-            "typePolicies": Object {},
+            "typePolicies": Object {
+              "Query": Object {
+                "fields": Object {
+                  "refetch": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "refreshCookie": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "reloading": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "startPolling": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "stopPolling": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "timestamp": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                },
+                "keyFn": undefined,
+              },
+            },
             "usingPossibleTypes": false,
           },
           "storeReader": StoreReader {
@@ -370,7 +770,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
             "addTypename": true,
             "dataIdFromObject": [Function],
             "resultCaching": true,
-            "typePolicies": Object {},
+            "typePolicies": Object {
+              "Query": Object {
+                "fields": Object {
+                  "refetch": Object {
+                    "read": [Function],
+                  },
+                  "refreshCookie": Object {
+                    "read": [Function],
+                  },
+                  "reloading": Object {
+                    "read": [Function],
+                  },
+                  "startPolling": Object {
+                    "read": [Function],
+                  },
+                  "stopPolling": Object {
+                    "read": [Function],
+                  },
+                  "timestamp": Object {
+                    "read": [Function],
+                  },
+                },
+              },
+            },
           },
           "data": Root {
             "canRead": [Function],
@@ -390,7 +813,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "cache": [Circular],
                 "dataIdFromObject": [Function],
                 "possibleTypes": undefined,
-                "typePolicies": Object {},
+                "typePolicies": Object {
+                  "Query": Object {
+                    "fields": Object {
+                      "refetch": Object {
+                        "read": [Function],
+                      },
+                      "refreshCookie": Object {
+                        "read": [Function],
+                      },
+                      "reloading": Object {
+                        "read": [Function],
+                      },
+                      "startPolling": Object {
+                        "read": [Function],
+                      },
+                      "stopPolling": Object {
+                        "read": [Function],
+                      },
+                      "timestamp": Object {
+                        "read": [Function],
+                      },
+                    },
+                  },
+                },
               },
               "fuzzySubtypes": Map {},
               "rootIdsByTypename": Object {
@@ -404,7 +850,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
               "supertypeMap": Map {},
-              "typePolicies": Object {},
+              "typePolicies": Object {
+                "Query": Object {
+                  "fields": Object {
+                    "refetch": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "refreshCookie": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "reloading": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "startPolling": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "stopPolling": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "timestamp": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                  },
+                  "keyFn": undefined,
+                },
+              },
               "usingPossibleTypes": false,
             },
             "refs": Object {},
@@ -444,7 +926,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "cache": [Circular],
                 "dataIdFromObject": [Function],
                 "possibleTypes": undefined,
-                "typePolicies": Object {},
+                "typePolicies": Object {
+                  "Query": Object {
+                    "fields": Object {
+                      "refetch": Object {
+                        "read": [Function],
+                      },
+                      "refreshCookie": Object {
+                        "read": [Function],
+                      },
+                      "reloading": Object {
+                        "read": [Function],
+                      },
+                      "startPolling": Object {
+                        "read": [Function],
+                      },
+                      "stopPolling": Object {
+                        "read": [Function],
+                      },
+                      "timestamp": Object {
+                        "read": [Function],
+                      },
+                    },
+                  },
+                },
               },
               "fuzzySubtypes": Map {},
               "rootIdsByTypename": Object {
@@ -458,7 +963,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
               "supertypeMap": Map {},
-              "typePolicies": Object {},
+              "typePolicies": Object {
+                "Query": Object {
+                  "fields": Object {
+                    "refetch": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "refreshCookie": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "reloading": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "startPolling": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "stopPolling": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "timestamp": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                  },
+                  "keyFn": undefined,
+                },
+              },
               "usingPossibleTypes": false,
             },
             "refs": Object {},
@@ -483,7 +1024,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "cache": [Circular],
               "dataIdFromObject": [Function],
               "possibleTypes": undefined,
-              "typePolicies": Object {},
+              "typePolicies": Object {
+                "Query": Object {
+                  "fields": Object {
+                    "refetch": Object {
+                      "read": [Function],
+                    },
+                    "refreshCookie": Object {
+                      "read": [Function],
+                    },
+                    "reloading": Object {
+                      "read": [Function],
+                    },
+                    "startPolling": Object {
+                      "read": [Function],
+                    },
+                    "stopPolling": Object {
+                      "read": [Function],
+                    },
+                    "timestamp": Object {
+                      "read": [Function],
+                    },
+                  },
+                },
+              },
             },
             "fuzzySubtypes": Map {},
             "rootIdsByTypename": Object {
@@ -497,7 +1061,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "ROOT_SUBSCRIPTION": "Subscription",
             },
             "supertypeMap": Map {},
-            "typePolicies": Object {},
+            "typePolicies": Object {
+              "Query": Object {
+                "fields": Object {
+                  "refetch": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "refreshCookie": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "reloading": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "startPolling": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "stopPolling": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                  "timestamp": Object {
+                    "keyFn": undefined,
+                    "merge": undefined,
+                    "read": [Function],
+                  },
+                },
+                "keyFn": undefined,
+              },
+            },
             "usingPossibleTypes": false,
           },
           "storeReader": StoreReader {
@@ -552,7 +1152,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
               "addTypename": true,
               "dataIdFromObject": [Function],
               "resultCaching": true,
-              "typePolicies": Object {},
+              "typePolicies": Object {
+                "Query": Object {
+                  "fields": Object {
+                    "refetch": Object {
+                      "read": [Function],
+                    },
+                    "refreshCookie": Object {
+                      "read": [Function],
+                    },
+                    "reloading": Object {
+                      "read": [Function],
+                    },
+                    "startPolling": Object {
+                      "read": [Function],
+                    },
+                    "stopPolling": Object {
+                      "read": [Function],
+                    },
+                    "timestamp": Object {
+                      "read": [Function],
+                    },
+                  },
+                },
+              },
             },
             "data": Root {
               "canRead": [Function],
@@ -572,7 +1195,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "cache": [Circular],
                   "dataIdFromObject": [Function],
                   "possibleTypes": undefined,
-                  "typePolicies": Object {},
+                  "typePolicies": Object {
+                    "Query": Object {
+                      "fields": Object {
+                        "refetch": Object {
+                          "read": [Function],
+                        },
+                        "refreshCookie": Object {
+                          "read": [Function],
+                        },
+                        "reloading": Object {
+                          "read": [Function],
+                        },
+                        "startPolling": Object {
+                          "read": [Function],
+                        },
+                        "stopPolling": Object {
+                          "read": [Function],
+                        },
+                        "timestamp": Object {
+                          "read": [Function],
+                        },
+                      },
+                    },
+                  },
                 },
                 "fuzzySubtypes": Map {},
                 "rootIdsByTypename": Object {
@@ -586,7 +1232,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "ROOT_SUBSCRIPTION": "Subscription",
                 },
                 "supertypeMap": Map {},
-                "typePolicies": Object {},
+                "typePolicies": Object {
+                  "Query": Object {
+                    "fields": Object {
+                      "refetch": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                      "refreshCookie": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                      "reloading": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                      "startPolling": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                      "stopPolling": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                      "timestamp": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                    },
+                    "keyFn": undefined,
+                  },
+                },
                 "usingPossibleTypes": false,
               },
               "refs": Object {},
@@ -626,7 +1308,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "cache": [Circular],
                   "dataIdFromObject": [Function],
                   "possibleTypes": undefined,
-                  "typePolicies": Object {},
+                  "typePolicies": Object {
+                    "Query": Object {
+                      "fields": Object {
+                        "refetch": Object {
+                          "read": [Function],
+                        },
+                        "refreshCookie": Object {
+                          "read": [Function],
+                        },
+                        "reloading": Object {
+                          "read": [Function],
+                        },
+                        "startPolling": Object {
+                          "read": [Function],
+                        },
+                        "stopPolling": Object {
+                          "read": [Function],
+                        },
+                        "timestamp": Object {
+                          "read": [Function],
+                        },
+                      },
+                    },
+                  },
                 },
                 "fuzzySubtypes": Map {},
                 "rootIdsByTypename": Object {
@@ -640,7 +1345,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                   "ROOT_SUBSCRIPTION": "Subscription",
                 },
                 "supertypeMap": Map {},
-                "typePolicies": Object {},
+                "typePolicies": Object {
+                  "Query": Object {
+                    "fields": Object {
+                      "refetch": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                      "refreshCookie": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                      "reloading": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                      "startPolling": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                      "stopPolling": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                      "timestamp": Object {
+                        "keyFn": undefined,
+                        "merge": undefined,
+                        "read": [Function],
+                      },
+                    },
+                    "keyFn": undefined,
+                  },
+                },
                 "usingPossibleTypes": false,
               },
               "refs": Object {},
@@ -665,7 +1406,30 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "cache": [Circular],
                 "dataIdFromObject": [Function],
                 "possibleTypes": undefined,
-                "typePolicies": Object {},
+                "typePolicies": Object {
+                  "Query": Object {
+                    "fields": Object {
+                      "refetch": Object {
+                        "read": [Function],
+                      },
+                      "refreshCookie": Object {
+                        "read": [Function],
+                      },
+                      "reloading": Object {
+                        "read": [Function],
+                      },
+                      "startPolling": Object {
+                        "read": [Function],
+                      },
+                      "stopPolling": Object {
+                        "read": [Function],
+                      },
+                      "timestamp": Object {
+                        "read": [Function],
+                      },
+                    },
+                  },
+                },
               },
               "fuzzySubtypes": Map {},
               "rootIdsByTypename": Object {
@@ -679,7 +1443,43 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
               "supertypeMap": Map {},
-              "typePolicies": Object {},
+              "typePolicies": Object {
+                "Query": Object {
+                  "fields": Object {
+                    "refetch": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "refreshCookie": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "reloading": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "startPolling": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "stopPolling": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                    "timestamp": Object {
+                      "keyFn": undefined,
+                      "merge": undefined,
+                      "read": [Function],
+                    },
+                  },
+                  "keyFn": undefined,
+                },
+              },
               "usingPossibleTypes": false,
             },
             "storeReader": StoreReader {
