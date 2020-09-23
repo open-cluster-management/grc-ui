@@ -57,7 +57,6 @@ class DetailsModule extends React.PureComponent {
           if (item.cells[0].information) {
             entry[2] = item.cells[0].information
           }
-          console.log(entry)
           oneTableData.push(entry)
         }
       })
