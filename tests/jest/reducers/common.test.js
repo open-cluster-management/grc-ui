@@ -39,22 +39,6 @@ describe('resourceToolbar creation', () => {
     }
     expect(resourceToolbar(state, action)).toEqual(expectedValue)
   })
-  it('should return a state with activeFilters', () => {
-    const state = {
-      refreshControl: 'refreshControl1',
-      availableFilters: 'availableFilters1'
-    }
-    const action = {
-      refreshControl: 'refreshControl2',
-      availableFilters: 'availableFilters2',
-      type: 'RESOURCE_TOOLBAR_UPDATE'
-    }
-    const expectedValue = {
-      refreshControl: 'refreshControl2',
-      availableFilters: 'availableFilters2'
-    }
-    expect(resourceToolbar(state, action)).toEqual(expectedValue)
-  })
 })
 
 describe('secondaryHeader creation', () => {

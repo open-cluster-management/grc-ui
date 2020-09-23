@@ -6,11 +6,14 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
 import { ResourceToolbar } from '../../../../src-web/components/common/ResourceToolbar'
 import renderer from 'react-test-renderer'
+import GrcApolloClient from '../../../../lib/client/apollo-client'
+import { ApolloProvider } from 'react-apollo'
 
 describe('ResourceToolbar component', () => {
   it('renders as expected', () => {
@@ -69,14 +72,16 @@ describe('ResourceToolbar component', () => {
     }
     const fn = jest.fn()
     const component = renderer.create(
-      <ResourceToolbar
-        updateActiveFilters={fn}
-        filterViewOpen={true}
-        location={location}
-        refreshControl={refreshControl}
-        activeFilters={activeFilters}
-        availableFilters={availableFilters}
-      />
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
+        <ResourceToolbar
+          updateActiveFilters={fn}
+          filterViewOpen={true}
+          location={location}
+          refreshControl={refreshControl}
+          activeFilters={activeFilters}
+          availableFilters={availableFilters}
+        />
+      </ApolloProvider>
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -123,14 +128,17 @@ describe('ResourceToolbar component no filter', () => {
     }
     const fn = jest.fn()
     const component = renderer.create(
-      <ResourceToolbar
-        updateActiveFilters={fn}
-        filterViewOpen={false}
-        location={location}
-        refreshControl={{}}
-        activeFilters={{}}
-        availableFilters={availableFilters}
-      />
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
+        <ResourceToolbar
+          updateActiveFilters={fn}
+          filterViewOpen={false}
+          location={location}
+          refreshControl={{}}
+          activeFilters={{}}
+          availableFilters={availableFilters}
+        />
+      </ApolloProvider>
+
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
