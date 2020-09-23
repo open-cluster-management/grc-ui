@@ -40,7 +40,7 @@ spec:
                     categories: 'OpenShift Optional, Security'
                     description: Identify image vulnerabilities in Kubernetes pods
                     olm.operatorGroup: global-operators
-                  name: container-security-operator.v3.3.0
+                  name: container-security-operator.v3.3.1
                   namespace: openshift-operators
                 spec:
                   customresourcedefinitions:
@@ -168,7 +168,7 @@ spec:
                     object.  This Operator requires no additional configuration after
                     deployment, and will begin watching pods and populating `ImageManifestVulns`
                     immediately once installed.
-                  replaces: container-security-operator.v3.3.0
+                  replaces: container-security-operator.v3.3.1
                   selector:
                     matchLabels:
                       alm-owner-container-security-operator: container-security-operator
@@ -201,7 +201,7 @@ spec:
                   name: container-security-operator
                   source: redhat-operators
                   sourceNamespace: openshift-marketplace
-                  startingCSV: container-security-operator.v3.3.0
+                  startingCSV: container-security-operator.v3.3.1
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
