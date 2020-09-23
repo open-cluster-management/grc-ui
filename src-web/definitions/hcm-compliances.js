@@ -468,6 +468,7 @@ export default {
           },
           {
             resourceKey: 'clusterCompliant',
+            type: 'compliance'
           }
         ]
       },
