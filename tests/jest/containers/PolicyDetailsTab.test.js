@@ -10,7 +10,7 @@
 'use strict'
 
 import React from 'react'
-import PolicyDetailTab from '../../../src-web/containers/PolicyDetailTab'
+import PolicyDetailsTab from '../../../src-web/containers/PolicyDetailsTab'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
 import * as reducers from '../../../src-web/reducers'
@@ -56,7 +56,7 @@ describe('PolicyTemplateTab container test', () => {
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
-            <PolicyDetailTab
+            <PolicyDetailsTab
               match={match}
               location={location}
               resourceType={resourceType}

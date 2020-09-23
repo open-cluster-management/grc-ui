@@ -20,7 +20,7 @@ resources(() => {
   require('../../scss/policy-yaml-tab.scss')
 })
 
-class PolicyDetailTab extends React.Component{
+class PolicyDetailsTab extends React.Component{
   constructor(props) {
     super(props)
   }
@@ -78,15 +78,15 @@ class PolicyDetailTab extends React.Component{
 
 }
 
-PolicyDetailTab.contextTypes = {
+PolicyDetailsTab.contextTypes = {
   locale: PropTypes.string
 }
 
-PolicyDetailTab.propTypes = {
+PolicyDetailsTab.propTypes = {
   policyName: PropTypes.string,
   policyNamespace: PropTypes.string,
   resourceType: PropTypes.object,
 }
 
-export default withRouter(PolicyDetailTab)
+export default withRouter(PolicyDetailsTab)
 
