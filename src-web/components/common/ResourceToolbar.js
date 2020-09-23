@@ -20,6 +20,8 @@ import ResourceFilterView from './ResourceFilterView'
 import { CSSTransition } from 'react-transition-group'
 import { Loading } from 'carbon-components-react'
 import { REFRESH_TIMES, GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
+import { GET_REFRESH_CONTROL } from '../../../lib/client/queries'
+import { Query } from 'react-apollo'
 import '../../../graphics/diagramIcons.svg'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
@@ -61,54 +63,64 @@ export class ResourceToolbar extends React.Component {
 
   render() {
     const { locale } = this.context
-    const { availableFilters={}, activeFilters={}, refreshControl={}, location } = this.props
-    if (Object.keys(refreshControl).length===0) {
-      return null
-    }
-    const { reloading, timestamp } = refreshControl
+    const { availableFilters={}, activeFilters={}, location } = this.props
+    // console.log(refreshControl)
+    // if (Object.keys(refreshControl).length===0) {
+    //   return null
+    // }
+    // const { timestamp } = refreshControl
     const { filterViewOpen } = this.state
     return (
-      <div id='resource-toolbar' className='resource-toolbar'>
-        <div className='resource-toolbar-container' >
-          <div className='resource-toolbar-buttons' >
-            {/* refresh time button */}
-            <RefreshTimeSelect
-              locale = {locale}
-              refreshValues = {REFRESH_TIMES}
-              refreshControl = {refreshControl}
-            />
-            {/* filter results button, not dispalyed in details page */}
-            {
-              (location.pathname.startsWith('/multicloud/policies/all/') || location.pathname.startsWith('/multicloud/policies/policy/'))
-                ? null
-                : <div className='resource-filter-button' tabIndex={0} role={'button'}
-                  onClick={this.toggleFilterModel} onKeyPress={this.toggleFilterModelPress}>
-                  <svg className='button-icon'>
-                    <use href={'#diagramIcons_filter'} ></use>
-                  </svg>
-                  <div className='button-label'>
-                    {msgs.get('overview.menu.filter', locale)}
-                  </div>
+      <Query query={GET_REFRESH_CONTROL} notifyOnNetworkStatusChange >
+        {({data={}}) => {
+          const {reloading, timestamp} = data
+          const refreshControl = data
+          return (
+            <div id='resource-toolbar' className='resource-toolbar'>
+              <div className='resource-toolbar-container' >
+                <div className='resource-toolbar-buttons' >
+                  {/* refresh time button */}
+                  <RefreshTimeSelect
+                    locale = {locale}
+                    refreshValues = {REFRESH_TIMES}
+                    refreshControl = {refreshControl}
+                  />
+                  {/* filter results button, not dispalyed in details page */}
+                  {
+                    (location.pathname.startsWith('/multicloud/policies/all/') || location.pathname.startsWith('/multicloud/policies/policy/'))
+                      ? null
+                      : <div className='resource-filter-button' tabIndex={0} role={'button'}
+                        onClick={this.toggleFilterModel} onKeyPress={this.toggleFilterModelPress}>
+                        <svg className='button-icon'>
+                          <use href={'#diagramIcons_filter'} ></use>
+                        </svg>
+                        <div className='button-label'>
+                          {msgs.get('overview.menu.filter', locale)}
+                        </div>
+                      </div>
+                  }
                 </div>
-            }
-          </div>
-          {timestamp&&<RefreshTime timestamp={timestamp} reloading={reloading} />}
-        </div>
-        <CSSTransition
-          in={filterViewOpen}
-          timeout={300}
-          classNames="transition"
-          mountOnEnter={true}
-          unmountOnExit={true}
-        >
-          <ResourceFilterView
-            updateFilters={this.updateFilters}
-            onClose={this.handleFilterClose}
-            activeFilters={activeFilters}
-            availableFilters={availableFilters}
-          />
-        </CSSTransition>
-      </div>)
+                <RefreshTime timestamp={timestamp} reloading={reloading} />
+              </div>
+              <CSSTransition
+                in={filterViewOpen}
+                timeout={300}
+                classNames="transition"
+                mountOnEnter={true}
+                unmountOnExit={true}
+              >
+                <ResourceFilterView
+                  updateFilters={this.updateFilters}
+                  onClose={this.handleFilterClose}
+                  activeFilters={activeFilters}
+                  availableFilters={availableFilters}
+                />
+              </CSSTransition>
+            </div>
+          )
+        }}
+      </Query>
+    )
   }
 
   toggleFilterModel() {

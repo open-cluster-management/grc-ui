@@ -26,7 +26,7 @@ import { HCMComplianceList, HCMApplicationList } from '../../lib/client/queries'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
 import { LocaleContext } from '../components/common/LocaleContext'
-
+import { reloadingVar, timestampVar, startPollingFunc, stopPollingFunc, refetchFunc } from '../../lib/client/reactiveVars'
 class PoliciesTab extends React.Component {
   static propTypes = {
     secondaryHeaderProps: PropTypes.object,
@@ -68,13 +68,19 @@ class PoliciesTab extends React.Component {
             if (!reloading) {
               this.timestamp = new Date().toString()
             }
-            const refreshControl = {
-              reloading,
-              refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
-              startPolling, stopPolling, refetch,
-              timestamp: this.timestamp
-            }
-
+            // console.log(reloading)
+            // const refreshControl = {
+            //   // reloading,
+            //   refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
+            //   startPolling, stopPolling, refetch,
+            //   // timestamp: this.timestamp
+            // }
+            reloadingVar(reloading)
+            timestampVar(this.timestamp)
+            startPollingFunc(startPolling)
+            stopPollingFunc(stopPolling)
+            refetchFunc(refetch)
+            // console.log(reloadingVar())
             return (
               showApplications ?
                 <Query query={HCMApplicationList} pollInterval={pollInterval} client={GrcApolloClient.getSearchClient()} notifyOnNetworkStatusChange >
@@ -90,7 +96,7 @@ class PoliciesTab extends React.Component {
                         searchError={searchError}
                         grcItems={items}
                         applications = {applications}
-                        refreshControl={refreshControl}
+                        // refreshControl={refreshControl}
                         secondaryHeaderProps={secondaryHeaderProps}
                       />
                     )
@@ -103,7 +109,7 @@ class PoliciesTab extends React.Component {
                   loading={!items && loading}
                   error={error}
                   grcItems={items}
-                  refreshControl={refreshControl}
+                  // refreshControl={refreshControl}
                   secondaryHeaderProps={secondaryHeaderProps}
                 />
             )
