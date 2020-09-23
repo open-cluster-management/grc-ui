@@ -3,6 +3,7 @@
 
 import classNames from 'classnames'
 import React from 'react'
+import ReactDOMServer from 'react-dom/server'
 import PropTypes from 'prop-types'
 import {
   EmptyState,
@@ -21,7 +22,6 @@ import {
 } from '@patternfly/react-table'
 import { SearchIcon } from '@patternfly/react-icons'
 import resources from '../../../lib/shared/resources'
-import _ from 'lodash'
 
 resources(() => {
   require('../../../scss/pattern-fly-table.scss')
@@ -61,21 +61,34 @@ class PatternFlyTable extends React.Component {
       if (typeof cell === 'object' && cell.title === 'string') {
         return cell.title
       } else if (typeof cell === 'object') {
-        const getCircularReplacer = () => {
-          const seen = new WeakSet()
-          return (key, value) => {
-            if (typeof value === 'object' && value !== null) {
-              if (seen.has(value)) {
-                return
-              }
-              seen.add(value)
-            }
-            return value
+        // Here is specially skip <Link> for searching , only skip 2-level div depth
+        // Because recursively skipping is too expensive for whole table
+        if (cell.title && cell.title.type && cell.title.type.displayName === 'Link') {
+          if (cell.title.props && typeof cell.title.props.children === 'string') {
+            return cell.title.props.children
+          } else {
+            return ''
           }
         }
-        // parse table cell and remove unnecessary react parts
-        const cleanRegex = /"_owner":{.*}/
-        return _.replace(JSON.stringify(cell.title, getCircularReplacer()), cleanRegex, '')
+        else if (cell.title && cell.title.props
+          && Array.isArray(cell.title.props.children) && cell.title.props.children.length > 0) {
+          let hackLinkString = ''
+          cell.title.props.children.forEach((child)=>{
+            if (typeof child === 'string') {
+              hackLinkString = `${hackLinkString}${child}`
+            }
+            else if (typeof child === 'object' && child.type) {
+              if (child.type.displayName !== 'Link') {
+                hackLinkString = `${hackLinkString}${ReactDOMServer.renderToString(child).replace(/<[^>]+>/g, '')}`
+              } else if (child.props && typeof child.props.children === 'string'){
+                hackLinkString = `${hackLinkString}${child.props.children}`
+              }
+            }
+          })
+          return hackLinkString // level-2 hack <div><Link>text</Link><div>
+        }
+        // It's not a string so render the component and strip HTML tags
+        return ReactDOMServer.renderToString(cell.title).replace(/<[^>]+>/g, '')
       }
       return cell
     }
@@ -85,6 +98,7 @@ class PatternFlyTable extends React.Component {
       : rows.filter(row => {
         const cells = row.cells ? row.cells : row
         return cells.some(item => {
+          console.log(parseCell(item))
           return parseCell(item).trim().toLowerCase().includes(trimmedSearchValue.toLowerCase())
         })
       })
