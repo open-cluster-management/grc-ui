@@ -50,7 +50,7 @@ class DetailsModule extends React.PureComponent {
           if(item && item.cells[0] && item.cells[0].resourceKey){
             if(item.cells[0].type === 'timestamp') {
               entry[1] = moment(entry[1], 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
-            } else if(item && item.cells[1] && item.cells[1].resourceKey === 'compliance') {
+            } else if(item && item.cells[1] && item.cells[1].resourceKey === 'clusterCompliant') {
               entry[1] = getClusterCompliantStatus({violation: entry[1]}, this.context.locale)
             }
           }
