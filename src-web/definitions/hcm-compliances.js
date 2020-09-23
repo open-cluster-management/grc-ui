@@ -467,7 +467,7 @@ export default {
             type: 'i18n'
           },
           {
-            resourceKey: 'clusterCompliant',
+            resourceKey: 'clusterCompliant'
           }
         ]
       },
