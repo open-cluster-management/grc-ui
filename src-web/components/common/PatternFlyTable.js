@@ -51,6 +51,7 @@ class PatternFlyTable extends React.Component {
   }
   static getDerivedStateFromProps(props, state) {
     const { searchValue, sortBy } = state
+    const trimmedSearchValue = (typeof searchValue === 'string') ? searchValue.trim() : ''
     const { pagination, rows, searchable } = props
     // Helper function to return the string from the cell
     const parseCell = function (cell) {
@@ -76,7 +77,7 @@ class PatternFlyTable extends React.Component {
               skippedLinkString = `${skippedLinkString}${ReactDOMServer.renderToString(child).replace(/<[^>]+>/g, '')}`
             }
           })
-          return skippedLinkString // level-1 skipping like <div><Link>text</Link><div>
+          return skippedLinkString // level-2 skipping like <div><Link>text</Link><div>
         }
         // It's not a string so render the component and strip HTML tags
         return ReactDOMServer.renderToString(cell.title).replace(/<[^>]+>/g, '')
@@ -84,12 +85,12 @@ class PatternFlyTable extends React.Component {
       return cell
     }
     // Filter the rows based on given searchValue from user
-    const rowsFiltered = !searchable || searchValue === ''
+    const rowsFiltered = !searchable || trimmedSearchValue === ''
       ? [...rows]
       : rows.filter(row => {
         const cells = row.cells ? row.cells : row
         return cells.some(item => {
-          return parseCell(item).trim().toLowerCase().includes(searchValue.trim().toLowerCase())
+          return parseCell(item).trim().toLowerCase().includes(trimmedSearchValue.toLowerCase())
         })
       })
 
@@ -152,13 +153,14 @@ class PatternFlyTable extends React.Component {
   }
   render() {
     const { sortBy, rows = [], itemCount, searchValue } = this.state
+    const trimmedSearchValue = (typeof searchValue === 'string') ? searchValue.trim() : ''
     const { columns, className, noResultMsg, pagination, searchable, searchPlaceholder } = this.props
     const classes = classNames('pattern-fly-table', className)
     return (
       <div className='pattern-fly-table-group'>
         {searchable && <SearchInput
           placeholder={searchPlaceholder}
-          value={searchValue}
+          value={trimmedSearchValue}
           onChange={this.handleSearch}
           onClear={() => this.handleSearch('')}
         />}
