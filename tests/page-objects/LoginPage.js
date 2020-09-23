@@ -60,7 +60,7 @@ function authenticate(username = '') {
   this.inputUsername(username)
   this.inputPassword(password)
   this.submit()
-  this.waitForLoginSuccess()
+  this.waitForLoginSuccess(username)
 }
 
 function inputUsername(username) {
@@ -78,9 +78,10 @@ function submit() {
     .click('@submit')
 }
 
-function waitForLoginSuccess() {
+function waitForLoginSuccess(name) {
   this.waitForElementPresent('@header')
   this.waitForElementNotPresent('@spinner')
+  this.expect.element('.header-user-info-dropdown').text.to.equal(name)
 }
 
 function waitForLoginForm(rbac_user) {
