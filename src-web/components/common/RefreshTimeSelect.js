@@ -52,7 +52,6 @@ export default class RefreshTimeSelect extends React.Component {
         label = msgs.get('refresh.interval.never', locale)
       }
       pollInterval*=1000
-      console.log({label, pollInterval})
       return {label, pollInterval}
     })
   }
@@ -91,7 +90,6 @@ export default class RefreshTimeSelect extends React.Component {
   render() {
     const { locale } = this.context
     const { pollInterval } = this.state
-    console.log('pollInterval='+pollInterval)
     if (pollInterval!==undefined) {
       const refresh = msgs.get('refresh', this.context.locale)
       const {refreshControl: {reloading}} = this.props
@@ -99,7 +97,6 @@ export default class RefreshTimeSelect extends React.Component {
       const idx = Math.max(0, this.autoRefreshChoices.findIndex(({pollInterval:pi})=>{
         return pollInterval===pi
       }))
-      console.log(idx)
 
       return (
         <div className='refresh-time-selection' ref={this.setRefresh}>

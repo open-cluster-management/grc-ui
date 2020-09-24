@@ -66,6 +66,7 @@ export class ResourceToolbar extends React.Component {
       <Query query={GET_REFRESH_CONTROL} notifyOnNetworkStatusChange >
         {({data={}}) => {
           const refreshControl = data
+          console.log(refreshControl)
           return (
             <div id='resource-toolbar' className='resource-toolbar'>
               <div className='resource-toolbar-container' >
