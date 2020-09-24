@@ -14,14 +14,11 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Notification } from 'carbon-components-react'
 import { Spinner } from '@patternfly/react-core'
-import { connect } from 'react-redux'
 import StructuredListModule from './StructuredListModule'
 import resources from '../../../lib/shared/resources'
 import PolicyTemplatesView from './PolicyTemplatesView'
 // eslint-disable-next-line import/no-named-as-default
 import ResourceTableModule from './ResourceTableModuleFromProps'
-import { updateResourceToolbar} from '../../actions/common'
-import _ from 'lodash'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
 
@@ -39,10 +36,8 @@ class PolicyClusterDetail extends React.Component {
       PropTypes.object,
       PropTypes.array
     ]),
-    refreshControl: PropTypes.object,
     resourceType: PropTypes.object,
     staticResourceData: PropTypes.object,
-    updateResourceToolbar: PropTypes.func,
   }
 
   static defaultProps = {
@@ -55,14 +50,6 @@ class PolicyClusterDetail extends React.Component {
 
   constructor (props) {
     super(props)
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const {refreshControl, policies, updateResourceToolbar:localUpdateResourceToolbar} = nextProps
-    if (!_.isEqual(refreshControl, this.props.refreshControl) ||
-        !_.isEqual(policies, this.props.policies)) {
-      localUpdateResourceToolbar(refreshControl, {})
-    }
   }
 
   render() {
@@ -113,15 +100,4 @@ class PolicyClusterDetail extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const {resourceToolbar: {activeFilters}} = state
-  return { activeFilters }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {})),
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PolicyClusterDetail))
+export default withRouter(PolicyClusterDetail)

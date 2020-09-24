@@ -13,10 +13,7 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import resources from '../../lib/shared/resources'
-import _ from 'lodash'
-import { updateResourceToolbar } from '../actions/common'
 import PolicyTemplatesView from '../components/common/PolicyTemplatesView'
 import getResourceDefinitions from '../definitions'
 import { HCMCompliance } from '../../lib/client/queries'
@@ -24,6 +21,7 @@ import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import {GRC_REFRESH_INTERVAL_COOKIE} from '../../lib/shared/constants'
 import { Spinner } from '@patternfly/react-core'
 import { DangerNotification } from '../components/common/DangerNotification'
+import { setRefreshControl } from '../../lib/client/reactiveVars'
 
 resources(() => {
   require('../../scss/policy-yaml-tab.scss')
@@ -32,12 +30,6 @@ resources(() => {
 class PolicyTemplateTab extends React.Component{
   constructor(props) {
     super(props)
-  }
-
-  componentDidUpdate(prevProps) {
-    if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
-      this.props.updateResourceToolbar(this.props.refreshControl, {})
-    }
   }
 
   render() {
@@ -57,19 +49,11 @@ class PolicyTemplateTab extends React.Component{
         const {data={}, loading, startPolling, stopPolling, refetch} = result
         const { items } = data
         const error = items ? null : result.error
-        const firstLoad = this.firstLoad
-        this.firstLoad = false
-        const reloading = !firstLoad && loading
         const staticResourceData = getResourceDefinitions(resourceType)
-        if (!reloading) {
+        if (!loading) {
           this.timestamp = new Date().toString()
         }
-        const refreshControl = {
-          reloading,
-          refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
-          startPolling, stopPolling, refetch,
-          timestamp: this.timestamp
-        }
+        setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
         if (error) {
           return (
             <DangerNotification error={error} />
@@ -77,9 +61,6 @@ class PolicyTemplateTab extends React.Component{
         } else if (loading && items === undefined) {
           return <Spinner className='patternfly-spinner' />
         } else{
-          if (pollInterval) {
-            refreshControl.startPolling(pollInterval)
-          }
           const item = items[0]
           return <PolicyTemplatesView
             resourceType={resourceType}
@@ -102,16 +83,8 @@ PolicyTemplateTab.contextTypes = {
 PolicyTemplateTab.propTypes = {
   policyName: PropTypes.string,
   policyNamespace: PropTypes.string,
-  refreshControl: PropTypes.object,
   resourceType: PropTypes.object,
-  updateResourceToolbar: PropTypes.func
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
-  }
-}
-
-export default withRouter( connect(null, mapDispatchToProps) (PolicyTemplateTab))
+export default withRouter(PolicyTemplateTab)
 

@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import resources from '../../lib/shared/resources'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { updateResourceToolbar, updateActiveFilters } from '../actions/common'
+import { updateAvailableFilters, updateActiveFilters } from '../actions/common'
 import { Notification } from 'carbon-components-react'
 import { Spinner } from '@patternfly/react-core'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
@@ -69,14 +69,12 @@ export class GrcView extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     const {
-      refreshControl,
       grcItems,
-      updateActiveFilters:localUpdateActiveFilters,
-      updateResourceToolbar:localUpdateResourceToolbar
+      updateAvailableFilters: localUpdateAvailableFilters,
+      updateActiveFilters: localUpdateActiveFilters,
     } = nextProps
 
-    if (!_.isEqual(refreshControl, this.props.refreshControl) ||
-        !_.isEqual(grcItems, this.props.grcItems)) {
+    if (!_.isEqual(grcItems, this.props.grcItems)) {
       const { locale } = this.context
       const displayType = location.pathname.split('/').pop()
       //if url has severity special para, store it into sessionStorage before updating active filters
@@ -92,7 +90,7 @@ export class GrcView extends React.Component {
         availableGrcFilters = getAvailableGrcFilters(grcItems, locale)
         break
       }
-      localUpdateResourceToolbar(refreshControl, availableGrcFilters)
+      localUpdateAvailableFilters(availableGrcFilters)
       const activeFilters = _.cloneDeep(nextProps.activeFilters||{})
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
@@ -128,7 +126,7 @@ export class GrcView extends React.Component {
     const { viewState } = this.state
     const {
       loading, error, grcItems, applications, activeFilters={},
-      secondaryHeaderProps, refreshControl, location, access
+      secondaryHeaderProps, location, access
     } = this.props
     if (loading) {
       return <Spinner className='patternfly-spinner' />
@@ -192,7 +190,6 @@ export class GrcView extends React.Component {
         />
         <GrcToggleModule
           displayType={displayType}
-          refreshControl={refreshControl}
           grcItems={filterGrcItems}
           applications={applications}
           secondaryHeaderProps={secondaryHeaderProps}
@@ -286,11 +283,10 @@ GrcView.propTypes = {
   history: PropTypes.object.isRequired,
   loading: PropTypes.bool,
   location: PropTypes.object,
-  refreshControl: PropTypes.object,
   secondaryHeaderProps: PropTypes.object,
   showApplications: PropTypes.bool,
   updateActiveFilters: PropTypes.func,
-  updateResourceToolbar: PropTypes.func,
+  updateAvailableFilters: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {
@@ -304,7 +300,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateResourceToolbar: (refreshControl, availableFilters) => dispatch(updateResourceToolbar(refreshControl, availableFilters)),
+    updateAvailableFilters: (availableFilters) => dispatch(updateAvailableFilters(availableFilters)),
     updateActiveFilters: (activeFilters) => dispatch(updateActiveFilters(activeFilters))
   }
 }

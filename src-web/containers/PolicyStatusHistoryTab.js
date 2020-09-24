@@ -17,6 +17,7 @@ import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
 import PolicyStatusHistoryView from '../components/common/PolicyStatusHistoryView'
 import { DangerNotification } from '../components/common/DangerNotification'
+import { setRefreshControl } from '../../lib/client/reactiveVars'
 
 resources(() => {
   require('../../scss/policy-status-history.scss')
@@ -76,7 +77,11 @@ class PolicyStatusHistoryTab extends React.Component {
         notifyOnNetworkStatusChange
       >
         {(result) => {
-          const { data={}, error } = result
+          const { data={}, loading, startPolling, stopPolling, refetch, error } = result
+          if (!loading) {
+            this.timestamp = new Date().toString()
+          }
+          setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
           if (error) {
             return (
               <Page>

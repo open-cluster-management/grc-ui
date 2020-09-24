@@ -11,7 +11,7 @@ import Page from '../components/common/Page'
 import {updateSecondaryHeader} from '../actions/common'
 import { getTabs } from '../../lib/client/resource-helper'
 import msgs from '../../nls/platform.properties'
-import PolicyDetailTab from './PolicyDetailTab'
+import PolicyDetailsTab from './PolicyDetailsTab'
 import PolicyStatusTab from './PolicyStatusTab'
 import PolicyTemplateTab from './PolicyTemplateTab'
 
@@ -76,7 +76,7 @@ class PolicyDetailSubRouter extends React.Component {
             />}}
           />
           <Route path={url} exact render={() => {
-            return <PolicyDetailTab
+            return <PolicyDetailsTab
               policyName={policyName}
               policyNamespace={policyNamespace}
               resourceType={resourceType}

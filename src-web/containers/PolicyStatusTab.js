@@ -12,6 +12,8 @@ import { Query } from 'react-apollo'
 import { PolicyStatus } from '../../lib/client/queries'
 import { DangerNotification } from '../components/common/DangerNotification'
 import PolicyStatusView from '../components/common/PolicyStatusView'
+import { setRefreshControl } from '../../lib/client/reactiveVars'
+
 
 resources(() => {
   require('../../scss/policy-status-tab.scss')
@@ -43,16 +45,11 @@ class PolicyStatusTab extends React.Component {
         {(result) => {
           const {data={}, loading, startPolling, stopPolling, refetch} = result
           const { status } = data
-          const error = status ? null : result.error
-          const firstLoad = this.firstLoad
-          this.firstLoad = false
-          const reloading = !firstLoad && loading
-          const refreshControl = {
-            reloading,
-            refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
-            startPolling, stopPolling, refetch,
-            timestamp: this.timestamp
+          if (!loading) {
+            this.timestamp = new Date().toString()
           }
+          setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
+          const error = status ? null : result.error
           if (error) {
             return (
               <DangerNotification error={error} />
@@ -60,9 +57,6 @@ class PolicyStatusTab extends React.Component {
           } else if (loading && status === undefined) {
             return <Spinner className='patternfly-spinner' />
           } else{
-            if (pollInterval) {
-              refreshControl.startPolling(pollInterval)
-            }
             return (
               <PolicyStatusView
                 status={status}

@@ -17,6 +17,7 @@ import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { DangerNotification } from '../components/common/DangerNotification'
+import { setRefreshControl } from '../../lib/client/reactiveVars'
 
 resources(() => {
   require('../../scss/policy-template-details.scss')
@@ -72,7 +73,11 @@ class PolicyTemplateDetails extends React.Component {
     return (
       <Query query={PolicyTemplateDetail} variables={{name, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {
-          const { data={}, error } = result
+          const { data={}, loading, startPolling, stopPolling, refetch, error } = result
+          if (!loading) {
+            this.timestamp = new Date().toString()
+          }
+          setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
           if (error) {
             return (
               <Page>

@@ -22,8 +22,9 @@ import { Query } from 'react-apollo'
 import { HCMPolicy } from '../../lib/client/queries'
 import getResourceDefinitions from '../definitions'
 import PolicyClusterDetail from '../components/common/PolicyClusterDetail'
+import { setRefreshControl } from '../../lib/client/reactiveVars'
 
-class ClusterPolicy extends React.Component {
+class PolicyDetailsByCluster extends React.Component {
   static propTypes = {
     location: PropTypes.object,
     params: PropTypes.object,
@@ -115,18 +116,10 @@ class ClusterPolicy extends React.Component {
           const {data={}, loading, startPolling, stopPolling, refetch} = result
           const { policies } = data
           const error = policies ? null : result.error
-          const firstLoad = this.firstLoad
-          this.firstLoad = false
-          const reloading = !firstLoad && loading
-          if (!reloading) {
+          if (!loading) {
             this.timestamp = new Date().toString()
           }
-          const refreshControl = {
-            reloading,
-            refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
-            startPolling, stopPolling, refetch,
-            timestamp: this.timestamp
-          }
+          setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
 
           return (
             <PolicyClusterDetail
@@ -135,7 +128,6 @@ class ClusterPolicy extends React.Component {
               policies={policies}
               loading={!policies && loading}
               error={error}
-              refreshControl={refreshControl}
               params={params}
             />)
         }}
@@ -150,4 +142,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(ClusterPolicy))
+export default withRouter(connect(null, mapDispatchToProps)(PolicyDetailsByCluster))
