@@ -53,7 +53,17 @@ module.exports = {
     loginPage.logout()
   },
 
-  afterEach: () => {
+  after: () => {
+    loginPage.navigate()
+    loginPage.authenticate()
+    // Delete created policies
+    policies.forEach((policy) => {
+      commonPage.deletePolicy(policy)
+    })
+  },
+
+  afterEach: (browser) => {
+    browser.collectCoverage()
     loginPage.logout()
   },
 
@@ -138,13 +148,4 @@ module.exports = {
     page.verifyCreatePage(permissions.view)
     page.verifyPolicyPage(policyName, permissions.view)
   },
-
-  'GRC RBAC: Clean up': () => {
-    loginPage.navigate()
-    loginPage.authenticate()
-    // Delete created policies
-    policies.forEach((policy) => {
-      commonPage.deletePolicy(policy)
-    })
-  }
 }
