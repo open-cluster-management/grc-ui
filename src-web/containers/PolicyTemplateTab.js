@@ -13,10 +13,10 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import resources from '../../lib/shared/resources'
-import _ from 'lodash'
-import { updateResourceToolbar } from '../actions/common'
+// import _ from 'lodash'
+// import { updateResourceToolbar } from '../actions/common'
 import PolicyTemplatesView from '../components/common/PolicyTemplatesView'
 import getResourceDefinitions from '../definitions'
 import { HCMCompliance } from '../../lib/client/queries'
@@ -32,12 +32,6 @@ resources(() => {
 class PolicyTemplateTab extends React.Component{
   constructor(props) {
     super(props)
-  }
-
-  componentDidUpdate(prevProps) {
-    if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
-      this.props.updateResourceToolbar(this.props.refreshControl, {})
-    }
   }
 
   render() {
@@ -102,16 +96,8 @@ PolicyTemplateTab.contextTypes = {
 PolicyTemplateTab.propTypes = {
   policyName: PropTypes.string,
   policyNamespace: PropTypes.string,
-  refreshControl: PropTypes.object,
   resourceType: PropTypes.object,
-  updateResourceToolbar: PropTypes.func
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
-  }
-}
-
-export default withRouter( connect(null, mapDispatchToProps) (PolicyTemplateTab))
+export default withRouter(PolicyTemplateTab)
 

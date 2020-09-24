@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import resources from '../../lib/shared/resources'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { updateActiveFilters } from '../actions/common'
+import { updateAvailableFilters, updateActiveFilters } from '../actions/common'
 import { Notification } from 'carbon-components-react'
 import { Spinner } from '@patternfly/react-core'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
@@ -70,7 +70,8 @@ export class GrcView extends React.Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     const {
       grcItems,
-      updateActiveFilters:localUpdateActiveFilters,
+      updateAvailableFilters: localUpdateAvailableFilters,
+      updateActiveFilters: localUpdateActiveFilters,
     } = nextProps
 
     if (!_.isEqual(grcItems, this.props.grcItems)) {
@@ -89,6 +90,7 @@ export class GrcView extends React.Component {
         availableGrcFilters = getAvailableGrcFilters(grcItems, locale)
         break
       }
+      localUpdateAvailableFilters(availableGrcFilters)
       const activeFilters = _.cloneDeep(nextProps.activeFilters||{})
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
       const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
@@ -284,6 +286,7 @@ GrcView.propTypes = {
   secondaryHeaderProps: PropTypes.object,
   showApplications: PropTypes.bool,
   updateActiveFilters: PropTypes.func,
+  updateAvailableFilters: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {
@@ -297,6 +300,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    updateAvailableFilters: (availableFilters) => dispatch(updateAvailableFilters(availableFilters)),
     updateActiveFilters: (activeFilters) => dispatch(updateActiveFilters(activeFilters))
   }
 }

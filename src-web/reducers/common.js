@@ -33,7 +33,7 @@ import getResourceDefinitions, {
 } from '../definitions'
 import {
   PAGE_SIZES, CLEAR_REQUEST_STATUS, POST_REQUEST, PUT_REQUEST,
-  PATCH_REQUEST, ACTIVE_FILTER_UPDATE, REQUEST_STATUS, POST_RECEIVE_SUCCESS,
+  PATCH_REQUEST, ACTIVE_FILTER_UPDATE, AVAILABLE_FILTER_UPDATE, REQUEST_STATUS, POST_RECEIVE_SUCCESS,
   PUT_RECEIVE_SUCCESS, PATCH_RECEIVE_SUCCESS, DEL_RECEIVE_SUCCESS,
   POST_RECEIVE_FAILURE, PUT_RECEIVE_FAILURE, PATCH_RECEIVE_FAILURE,
   SORT_DIRECTION_ASCENDING, SORT_DIRECTION_DESCENDING,
@@ -254,6 +254,10 @@ export const resourceToolbar = (state = {}, action) => {
   case ACTIVE_FILTER_UPDATE:
     return Object.assign({}, state, {
       activeFilters: action.activeFilters,
+    })
+  case AVAILABLE_FILTER_UPDATE:
+    return Object.assign({}, state, {
+      availableFilters: action.availableFilters,
     })
   default:
     return state

@@ -13,8 +13,8 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Alert } from '@patternfly/react-core'
-import { connect } from 'react-redux'
-import { updateResourceToolbar } from '../../actions/common'
+// import { connect } from 'react-redux'
+// import { updateResourceToolbar } from '../../actions/common'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 import _ from 'lodash'
@@ -33,11 +33,11 @@ export class PolicyDetailsOverview extends React.PureComponent{
     super(props)
   }
 
-  componentDidUpdate(prevProps) {
-    if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
-      this.props.updateResourceToolbar(this.props.refreshControl, {})
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
+  //     this.props.updateResourceToolbar(this.props.refreshControl, {})
+  //   }
+  // }
 
   static propTypes = {
     item: PropTypes.oneOfType([
@@ -47,10 +47,10 @@ export class PolicyDetailsOverview extends React.PureComponent{
     ]),
     location: PropTypes.object,
     // params: PropTypes.object,
-    refreshControl: PropTypes.object,
+    // refreshControl: PropTypes.object,
     resourceType: PropTypes.object,
     staticResourceData: PropTypes.object,
-    updateResourceToolbar: PropTypes.func,
+    // updateResourceToolbar: PropTypes.func,
   }
 
   static contextTypes = {
@@ -269,10 +269,10 @@ export class PolicyDetailsOverview extends React.PureComponent{
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
+//   }
+// }
 
-export default withRouter(connect(null, mapDispatchToProps)(PolicyDetailsOverview))
+export default withRouter(PolicyDetailsOverview)

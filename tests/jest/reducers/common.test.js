@@ -39,6 +39,19 @@ describe('resourceToolbar creation', () => {
     }
     expect(resourceToolbar(state, action)).toEqual(expectedValue)
   })
+  it('should return a state with availableFilters2', () => {
+    const state = {
+      availableFilters: 'availableFilters1'
+    }
+    const action = {
+      availableFilters: 'availableFilters2',
+      type: 'AVAILABLE_FILTER_UPDATE'
+    }
+    const expectedValue = {
+      availableFilters: 'availableFilters2'
+    }
+    expect(resourceToolbar(state, action)).toEqual(expectedValue)
+  })
 })
 
 describe('secondaryHeader creation', () => {
