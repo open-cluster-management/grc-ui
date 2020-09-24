@@ -59,6 +59,7 @@ class PatternFlyTable extends React.Component {
         return cell.title.props.timestamp
       }
       if (typeof cell === 'object') {
+        // get the pure text from table cell
         return purifyReactNode(cell.title)
       }
       return cell
