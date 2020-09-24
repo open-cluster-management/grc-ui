@@ -107,6 +107,8 @@ function verifyPolicyPage(name, permissions) {
     this.expect.element('@yamlEditButton').to.be.not.enabled
     this.expect.element('@yamlSubmitButton').to.be.not.enabled
   }
+  this.click('.bx--breadcrumb > div:nth-child(1)')
+  this.waitForElementNotPresent('@spinner')
 }
 
 function verifyCreatePage(permissions, createPage, policyName = '', ns = [], clusterwide = false, elevated = false) {
