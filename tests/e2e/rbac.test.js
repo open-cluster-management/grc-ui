@@ -67,6 +67,7 @@ module.exports = {
       browser.collectCoverage()
     }
     loginPage.logout()
+    browser.deleteCookies()
   },
 
   'GRC RBAC: Cluster-wide cluster-admin user': () => {
