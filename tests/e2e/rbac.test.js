@@ -72,7 +72,6 @@ module.exports = {
   },
 
   'GRC RBAC: Cluster-wide admin user': () => {
-    loginPage.logout()
     loginPage.authenticate('e2e-admin-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.admin)
     const createdPolicy = `${policyName}-admin-cluster`
