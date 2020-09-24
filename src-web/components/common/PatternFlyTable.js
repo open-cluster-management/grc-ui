@@ -22,6 +22,7 @@ import {
 } from '@patternfly/react-table'
 import { SearchIcon } from '@patternfly/react-icons'
 import resources from '../../../lib/shared/resources'
+import moment from 'moment'
 
 resources(() => {
   require('../../../scss/pattern-fly-table.scss')
@@ -56,7 +57,10 @@ class PatternFlyTable extends React.Component {
     // Helper function to return the string from the cell
     const parseCell = function (cell) {
       if (cell.title && cell.title.props && cell.title.props.timestamp) {
-        return cell.title.props.timestamp
+        return {
+          timeStamp: cell.title.props.timestamp,
+          fromNow: moment(cell.title.props.timestamp, 'YYYY-MM-DDTHH:mm:ssZ').fromNow().toString()
+        }
       }
       if (typeof cell === 'object') {
         // get the pure text from table cell
@@ -70,7 +74,9 @@ class PatternFlyTable extends React.Component {
       : rows.filter(row => {
         const cells = row.cells ? row.cells : row
         return cells.some(item => {
-          return parseCell(item).trim().toLowerCase().includes(trimmedSearchValue.toLowerCase())
+          let parsedCell = parseCell(item)
+          parsedCell = (typeof parsedCell === 'string') ? parsedCell : parsedCell.fromNow
+          return parsedCell.trim().toLowerCase().includes(trimmedSearchValue.toLowerCase())
         })
       })
 
@@ -88,6 +94,8 @@ class PatternFlyTable extends React.Component {
           bvalue = parseCell(acell)
           avalue = parseCell(bcell)
         }
+        avalue = (typeof avalue === 'string') ? acell : acell.timeStamp
+        bvalue = (typeof bvalue === 'string') ? bcell : bcell.timeStamp
         if (avalue > bvalue) {
           return 1
         } else if (avalue < bvalue) {
