@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import resources from '../../../lib/shared/resources'
 import { DropdownV2, Loading } from 'carbon-components-react'
 import '../../../graphics/diagramIcons.svg'
-import { DEFAULT_REFRESH_TIME, DEFAULT_SIDE_PANEL_REFRESH_TIME } from '../../../lib/shared/constants'
+import { DEFAULT_REFRESH_TIME, DEFAULT_SIDE_PANEL_REFRESH_TIME, GRC_REFRESH_INTERVAL_COOKIE} from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
 import moment from 'moment'
 
@@ -31,7 +31,7 @@ export default class RefreshTimeSelect extends React.Component {
 
   constructor (props) {
     super(props)
-    const { refreshControl: {refreshCookie} } = props
+    const { refreshControl: {refreshCookie=GRC_REFRESH_INTERVAL_COOKIE} } = props
     this.state = {
       pollInterval: getPollInterval(refreshCookie),
     }

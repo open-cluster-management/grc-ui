@@ -26,7 +26,7 @@ import { HCMComplianceList, HCMApplicationList } from '../../lib/client/queries'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
 import { LocaleContext } from '../components/common/LocaleContext'
-
+import { setRefreshControl } from '../../lib/client/reactiveVars'
 class PoliciesTab extends React.Component {
   static propTypes = {
     secondaryHeaderProps: PropTypes.object,
@@ -62,19 +62,10 @@ class PoliciesTab extends React.Component {
               const errorName = complianceResult.error.graphQLErrors[0].name ? complianceResult.error.graphQLErrors[0].name : error.name
               error.name = errorName
             }
-            const firstLoad = this.firstLoad
-            this.firstLoad = false
-            const reloading = !firstLoad && loading
-            if (!reloading) {
+            if (!loading) {
               this.timestamp = new Date().toString()
             }
-            const refreshControl = {
-              reloading,
-              refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
-              startPolling, stopPolling, refetch,
-              timestamp: this.timestamp
-            }
-
+            setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
             return (
               showApplications ?
                 <Query query={HCMApplicationList} pollInterval={pollInterval} client={GrcApolloClient.getSearchClient()} notifyOnNetworkStatusChange >
@@ -90,7 +81,6 @@ class PoliciesTab extends React.Component {
                         searchError={searchError}
                         grcItems={items}
                         applications = {applications}
-                        refreshControl={refreshControl}
                         secondaryHeaderProps={secondaryHeaderProps}
                       />
                     )
@@ -103,7 +93,6 @@ class PoliciesTab extends React.Component {
                   loading={!items && loading}
                   error={error}
                   grcItems={items}
-                  refreshControl={refreshControl}
                   secondaryHeaderProps={secondaryHeaderProps}
                 />
             )

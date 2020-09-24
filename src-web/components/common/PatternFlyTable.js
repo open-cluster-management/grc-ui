@@ -70,7 +70,6 @@ class PatternFlyTable extends React.Component {
       : rows.filter(row => {
         const cells = row.cells ? row.cells : row
         return cells.some(item => {
-          console.log(parseCell(item))
           return parseCell(item).trim().toLowerCase().includes(trimmedSearchValue.toLowerCase())
         })
       })

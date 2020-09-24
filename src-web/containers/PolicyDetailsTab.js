@@ -5,10 +5,7 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import resources from '../../lib/shared/resources'
-import _ from 'lodash'
-import { updateResourceToolbar } from '../actions/common'
 import getResourceDefinitions from '../definitions'
 import { HCMCompliance } from '../../lib/client/queries'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
@@ -17,20 +14,15 @@ import { Spinner } from '@patternfly/react-core'
 import { DangerNotification } from '../components/common/DangerNotification'
 // eslint-disable-next-line import/no-named-as-default
 import PolicyDetailsOverview from '../components/common/PolicyDetailsOverview'
+import { setRefreshControl } from '../../lib/client/reactiveVars'
 
 resources(() => {
   require('../../scss/policy-yaml-tab.scss')
 })
 
-class PolicyDetailTab extends React.Component{
+class PolicyDetailsTab extends React.Component{
   constructor(props) {
     super(props)
-  }
-
-  componentDidUpdate(prevProps) {
-    if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
-      this.props.updateResourceToolbar(this.props.refreshControl, {})
-    }
   }
 
   render() {
@@ -50,20 +42,11 @@ class PolicyDetailTab extends React.Component{
         const {data={}, loading, startPolling, stopPolling, refetch} = result
         const { items } = data
         const error = items ? null : result.error
-        const firstLoad = this.firstLoad
-        this.firstLoad = false
-        const reloading = !firstLoad && loading
         const staticResourceData = getResourceDefinitions(resourceType)
-        if (!reloading) {
+        if (!loading) {
           this.timestamp = new Date().toString()
         }
-
-        const refreshControl = {
-          reloading,
-          refreshCookie: GRC_REFRESH_INTERVAL_COOKIE,
-          startPolling, stopPolling, refetch,
-          timestamp: this.timestamp
-        }
+        setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
 
         if (error) {
           return (
@@ -77,7 +60,6 @@ class PolicyDetailTab extends React.Component{
             loading={!items && loading}
             error={error}
             item={item}
-            refreshControl={refreshControl}
             resourceType={resourceType}
             staticResourceData={staticResourceData}
           />
@@ -88,23 +70,15 @@ class PolicyDetailTab extends React.Component{
 
 }
 
-PolicyDetailTab.contextTypes = {
+PolicyDetailsTab.contextTypes = {
   locale: PropTypes.string
 }
 
-PolicyDetailTab.propTypes = {
+PolicyDetailsTab.propTypes = {
   policyName: PropTypes.string,
   policyNamespace: PropTypes.string,
-  refreshControl: PropTypes.object,
   resourceType: PropTypes.object,
-  updateResourceToolbar: PropTypes.func
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
-  }
-}
-
-export default withRouter( connect(null, mapDispatchToProps) (PolicyDetailTab))
+export default withRouter(PolicyDetailsTab)
 

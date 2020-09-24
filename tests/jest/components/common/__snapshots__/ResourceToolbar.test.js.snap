@@ -1,6 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResourceToolbar component no filter renders as expected 1`] = `null`;
+exports[`ResourceToolbar component no filter renders as expected 1`] = `
+<div
+  className="resource-toolbar"
+  id="resource-toolbar"
+>
+  <div
+    className="resource-toolbar-container"
+  >
+    <div
+      className="resource-toolbar-buttons"
+    >
+      <div
+        className="refresh-time-selection"
+      >
+        <div
+          aria-label="Refresh"
+          className="button"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          role="button"
+          tabIndex={0}
+          title="Refresh"
+        >
+          <svg
+            className="button-icon"
+          >
+            <use
+              href="#diagramIcons_autoRefresh"
+            />
+          </svg>
+        </div>
+        <div
+          aria-label="Choose refresh"
+          className="bx--dropdown selection bx--list-box"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="listbox"
+          tabIndex={null}
+        >
+          <div
+            aria-controls={null}
+            aria-expanded={false}
+            aria-haspopup={true}
+            aria-label="Choose refresh"
+            aria-owns={null}
+            className="bx--list-box__field"
+            data-toggle={true}
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            role="button"
+            tabIndex="0"
+            type="button"
+          >
+            <span
+              className="bx--list-box__label"
+              htmlFor="downshift-1-input"
+            >
+              Refresh every {0}s
+            </span>
+            <div
+              className="bx--list-box__menu-icon"
+            >
+              <svg
+                alt="Open menu"
+                aria-label="Open menu"
+                fillRule="evenodd"
+                focusable="false"
+                height="5"
+                role="img"
+                viewBox="0 0 10 5"
+                width="10"
+              >
+                <title>
+                  Open menu
+                </title>
+                <path
+                  d="M0 0l5 4.998L10 0z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="resource-filter-button"
+        onClick={[Function]}
+        onKeyPress={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <svg
+          className="button-icon"
+        >
+          <use
+            href="#diagramIcons_filter"
+          />
+        </svg>
+        <div
+          className="button-label"
+        >
+          Filter
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
 
 exports[`ResourceToolbar component renders as expected 1`] = `
 <div
@@ -86,13 +194,6 @@ exports[`ResourceToolbar component renders as expected 1`] = `
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div
-      className="refresh-time-container"
-    >
-      <div>
-        Last update:  {0}
       </div>
     </div>
   </div>

@@ -18,7 +18,7 @@ import config from '../../lib/shared/config'
 export const PoliciesTab = loadable(() => import(/* webpackChunkName: "policies" */ './PoliciesTab'))
 export const CreationTab = loadable(() => import(/* webpackChunkName: "creation" */ './CreationTab'))
 export const PolicyDetailSubRouter = loadable(() => import(/* webpackChunkName: "policyDetail" */ './PolicyDetailSubRouter'))
-export const ClusterPolicy = loadable(() => import(/* webpackChunkName: "policyCluster" */ './ClusterPolicy'))
+export const PolicyDetailsByCluster = loadable(() => import(/* webpackChunkName: "policyCluster" */ './PolicyDetailsByCluster'))
 export const PolicyTemplateDetails = loadable(() => import(/* webpackChunkName: "policyTemplateDetails" */ './PolicyTemplateDetails'))
 export const PolicyStatusHistoryTab = loadable(() => import(/* webpackChunkName: "PolicyStatusHistoryTab" */ './PolicyStatusHistoryTab'))
 
@@ -64,7 +64,7 @@ const GrcRouter = ({ match }) =>
   <Switch>
     <Route path={`${match.url}/all/:hubNamespace/:policyName/status/:cluster/templates/:template/history`}
       render={() => <PolicyStatusHistoryTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
-    <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <ClusterPolicy secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
+    <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <PolicyDetailsByCluster secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/all/:policyNamespace/:policyName/template/:clusterName/:apiGroup/:version/:kind/:name`}
       render={() => <PolicyTemplateDetails secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/all/:namespace/:name`} render={() => <PolicyDetailSubRouter secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />

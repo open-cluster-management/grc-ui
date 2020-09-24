@@ -63,7 +63,9 @@ module.exports = {
   },
 
   afterEach: (browser) => {
-    browser.collectCoverage()
+    if(!process.env.SELENIUM_CLUSTER) {
+      browser.collectCoverage()
+    }
     loginPage.logout()
   },
 
