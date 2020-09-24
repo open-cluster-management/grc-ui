@@ -94,8 +94,8 @@ class PatternFlyTable extends React.Component {
           bvalue = parseCell(acell)
           avalue = parseCell(bcell)
         }
-        avalue = (typeof avalue === 'string') ? acell : acell.timeStamp
-        bvalue = (typeof bvalue === 'string') ? bcell : bcell.timeStamp
+        avalue = (typeof avalue === 'string') ? avalue : avalue.timeStamp
+        bvalue = (typeof bvalue === 'string') ? bvalue : bvalue.timeStamp
         if (avalue > bvalue) {
           return 1
         } else if (avalue < bvalue) {
