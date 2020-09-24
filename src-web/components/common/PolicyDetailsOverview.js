@@ -13,8 +13,6 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Alert } from '@patternfly/react-core'
-// import { connect } from 'react-redux'
-// import { updateResourceToolbar } from '../../actions/common'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 import _ from 'lodash'
@@ -33,12 +31,6 @@ export class PolicyDetailsOverview extends React.PureComponent{
     super(props)
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (!_.isEqual(prevProps.refreshControl, this.props.refreshControl)) {
-  //     this.props.updateResourceToolbar(this.props.refreshControl, {})
-  //   }
-  // }
-
   static propTypes = {
     item: PropTypes.oneOfType([
       PropTypes.bool,
@@ -46,11 +38,8 @@ export class PolicyDetailsOverview extends React.PureComponent{
       PropTypes.array
     ]),
     location: PropTypes.object,
-    // params: PropTypes.object,
-    // refreshControl: PropTypes.object,
     resourceType: PropTypes.object,
     staticResourceData: PropTypes.object,
-    // updateResourceToolbar: PropTypes.func,
   }
 
   static contextTypes = {
