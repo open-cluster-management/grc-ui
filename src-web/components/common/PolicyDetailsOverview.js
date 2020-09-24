@@ -258,10 +258,4 @@ export class PolicyDetailsOverview extends React.PureComponent{
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     updateResourceToolbar: (refreshControl) => dispatch(updateResourceToolbar(refreshControl, {}))
-//   }
-// }
-
 export default withRouter(PolicyDetailsOverview)
