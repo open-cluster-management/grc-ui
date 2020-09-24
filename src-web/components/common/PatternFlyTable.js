@@ -3,7 +3,8 @@
 
 import classNames from 'classnames'
 import React from 'react'
-import ReactDOMServer from 'react-dom/server'
+import reactToString from './ReactToString'
+//import reactToString from 'react-to-string'
 import PropTypes from 'prop-types'
 import {
   EmptyState,
@@ -58,37 +59,8 @@ class PatternFlyTable extends React.Component {
       if (cell.title && cell.title.props && cell.title.props.timestamp) {
         return cell.title.props.timestamp
       }
-      if (typeof cell === 'object' && cell.title === 'string') {
-        return cell.title
-      } else if (typeof cell === 'object') {
-        // Here is specially skip <Link> for searching , only skip 2-level div depth
-        // Because recursively skipping is too expensive for whole table
-        if (cell.title && cell.title.type && cell.title.type.displayName === 'Link') {
-          if (cell.title.props && typeof cell.title.props.children === 'string') {
-            return cell.title.props.children
-          } else {
-            return ''
-          }
-        }
-        else if (cell.title && cell.title.props
-          && Array.isArray(cell.title.props.children) && cell.title.props.children.length > 0) {
-          let hackLinkString = ''
-          cell.title.props.children.forEach((child)=>{
-            if (typeof child === 'string') {
-              hackLinkString = `${hackLinkString}${child}`
-            }
-            else if (typeof child === 'object' && child.type) {
-              if (child.type.displayName !== 'Link') {
-                hackLinkString = `${hackLinkString}${ReactDOMServer.renderToString(child).replace(/<[^>]+>/g, '')}`
-              } else if (child.props && typeof child.props.children === 'string'){
-                hackLinkString = `${hackLinkString}${child.props.children}`
-              }
-            }
-          })
-          return hackLinkString // level-2 hack <div><Link>text</Link><div>
-        }
-        // It's not a string so render the component and strip HTML tags
-        return ReactDOMServer.renderToString(cell.title).replace(/<[^>]+>/g, '')
+      if (typeof cell === 'object') {
+        return reactToString(cell.title)
       }
       return cell
     }
