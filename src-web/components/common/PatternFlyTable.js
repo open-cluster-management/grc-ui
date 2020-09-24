@@ -3,8 +3,7 @@
 
 import classNames from 'classnames'
 import React from 'react'
-import reactToString from './ReactToString'
-//import reactToString from 'react-to-string'
+import purifyReactNode from './PurifyReactNode'
 import PropTypes from 'prop-types'
 import {
   EmptyState,
@@ -60,7 +59,7 @@ class PatternFlyTable extends React.Component {
         return cell.title.props.timestamp
       }
       if (typeof cell === 'object') {
-        return reactToString(cell.title)
+        return purifyReactNode(cell.title)
       }
       return cell
     }
