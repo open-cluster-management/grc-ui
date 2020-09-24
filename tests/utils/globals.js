@@ -27,7 +27,11 @@ module.exports = {
 
   // External after hook is ran at the very end of the tests run, after closing the Selenium session
   after: function(done) {
-    coverageReporter.save() // call this function in your global after hook
+    try {
+      coverageReporter.save() // call this function in your global after hook
+    } catch(e) {
+      console.error(e)
+    }
     done()
   },
 
