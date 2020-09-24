@@ -14,7 +14,7 @@ import { Spinner } from '@patternfly/react-core'
 import { DangerNotification } from '../components/common/DangerNotification'
 // eslint-disable-next-line import/no-named-as-default
 import PolicyDetailsOverview from '../components/common/PolicyDetailsOverview'
-import { reloadingVar, timestampVar, startPollingFunc, stopPollingFunc, refetchFunc } from '../../lib/client/reactiveVars'
+import { setRefreshControl } from '../../lib/client/reactiveVars'
 
 resources(() => {
   require('../../scss/policy-yaml-tab.scss')
@@ -42,19 +42,11 @@ class PolicyDetailsTab extends React.Component{
         const {data={}, loading, startPolling, stopPolling, refetch} = result
         const { items } = data
         const error = items ? null : result.error
-        const firstLoad = this.firstLoad
-        this.firstLoad = false
-        const reloading = !firstLoad && loading
         const staticResourceData = getResourceDefinitions(resourceType)
-        if (!reloading) {
+        if (!loading) {
           this.timestamp = new Date().toString()
         }
-
-        reloadingVar(reloading)
-        timestampVar(this.timestamp)
-        startPollingFunc(startPolling)
-        stopPollingFunc(stopPolling)
-        refetchFunc(refetch)
+        setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
 
         if (error) {
           return (
