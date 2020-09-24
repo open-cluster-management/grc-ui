@@ -61,10 +61,6 @@ module.exports = {
     })
   },
 
-  beforeEach: () => {
-    loginPage.navigate()
-  },
-
   afterEach: () => {
     loginPage.logout()
   },
