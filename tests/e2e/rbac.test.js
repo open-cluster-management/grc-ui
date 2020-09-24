@@ -48,6 +48,7 @@ module.exports = {
       namespaces.push(`${ns}-${i}`)
       policies.push(`${policyName}-${ns}-${i}`)
       createPage.createTestPolicy(true, { policyName: policies[policies.length - 1], namespace: namespaces[namespaces.length - 1] })
+      commonPage.searchPolicy(policies[policies.length - 1], true)
     }
     loginPage.logout()
   },
