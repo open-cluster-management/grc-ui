@@ -51,6 +51,7 @@ class PatternFlyTable extends React.Component {
   }
   static getDerivedStateFromProps(props, state) {
     const { searchValue, sortBy } = state
+    const trimmedSearchValue = (typeof searchValue === 'string') ? searchValue.trim() : ''
     const { pagination, rows, searchable } = props
     // Helper function to return the string from the cell
     const parseCell = function (cell) {
@@ -60,18 +61,45 @@ class PatternFlyTable extends React.Component {
       if (typeof cell === 'object' && cell.title === 'string') {
         return cell.title
       } else if (typeof cell === 'object') {
+        // Here is specially skip <Link> for searching , only skip 2-level div depth
+        // Because recursively skipping is too expensive for whole table
+        if (cell.title && cell.title.type && cell.title.type.displayName === 'Link') {
+          if (cell.title.props && typeof cell.title.props.children === 'string') {
+            return cell.title.props.children
+          } else {
+            return ''
+          }
+        }
+        else if (cell.title && cell.title.props
+          && Array.isArray(cell.title.props.children) && cell.title.props.children.length > 0) {
+          let hackLinkString = ''
+          cell.title.props.children.forEach((child)=>{
+            if (typeof child === 'string') {
+              hackLinkString = `${hackLinkString}${child}`
+            }
+            else if (typeof child === 'object' && child.type) {
+              if (child.type.displayName !== 'Link') {
+                hackLinkString = `${hackLinkString}${ReactDOMServer.renderToString(child).replace(/<[^>]+>/g, '')}`
+              } else if (child.props && typeof child.props.children === 'string'){
+                hackLinkString = `${hackLinkString}${child.props.children}`
+              }
+            }
+          })
+          return hackLinkString // level-2 hack <div><Link>text</Link><div>
+        }
         // It's not a string so render the component and strip HTML tags
         return ReactDOMServer.renderToString(cell.title).replace(/<[^>]+>/g, '')
       }
       return cell
     }
     // Filter the rows based on given searchValue from user
-    const rowsFiltered = !searchable || searchValue === ''
+    const rowsFiltered = !searchable || trimmedSearchValue === ''
       ? [...rows]
       : rows.filter(row => {
         const cells = row.cells ? row.cells : row
         return cells.some(item => {
-          return parseCell(item).toLowerCase().includes(searchValue.toLowerCase())
+          console.log(parseCell(item))
+          return parseCell(item).trim().toLowerCase().includes(trimmedSearchValue.toLowerCase())
         })
       })
 

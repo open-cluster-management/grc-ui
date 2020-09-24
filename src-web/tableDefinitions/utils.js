@@ -103,7 +103,7 @@ export function buildStatusHistoryLink(item, locale) {
   return '-'
 }
 
-export function buildMessageDetailLink(item, locale) {
+export function buildTemplateDetailLink(item, locale) {
   const message = _.get(item, 'message')
   const policyName = _.get(item, 'policyName')
   const policyNamespace = _.get(item, 'policyNamespace')

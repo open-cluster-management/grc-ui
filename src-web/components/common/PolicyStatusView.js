@@ -37,24 +37,45 @@ class PolicyStatusView extends React.Component {
       <div className='policy-status-view'>
         <ToggleGroup className='policy-status-toggle' variant='light'>
           <ToggleGroupItem
-            buttonId={'policy-status-templates'} onChange={this.toggleClick} isSelected={toggleIndex===0}>
+            buttonId={'policy-status-templates'}
+            onChange={this.toggleClick}
+            isSelected={toggleIndex===0}>
             {msgs.get('tabs.policy.status.toggle.templates', locale)}
           </ToggleGroupItem>
           <ToggleGroupItem
-            buttonId={'policy-status-clusters'} onChange={this.toggleClick} isSelected={toggleIndex===1}>
+            buttonId={'policy-status-clusters'}
+            onChange={this.toggleClick}
+            isSelected={toggleIndex===1}>
             {msgs.get('tabs.policy.status.toggle.clusters', locale)}
           </ToggleGroupItem>
         </ToggleGroup>
         <div className='policy-status-tab'>
           {toggleIndex===0 && tableDataByTemplate.map((data)=> {
-            return <div className='policy-status-by-templates-table' key={_uniqueId('template-index')}>
-              <Title className='title' headingLevel="h4">{data[0]}</Title>
-              <PatternFlyTable {...data[1]} noResultMsg={msgs.get('table.search.no.results', locale)} />
+            return <div
+              className='policy-status-by-templates-table'
+              key={_uniqueId('template-index')}
+            >
+              <Title
+                className='title'
+                headingLevel="h4">
+                {data[0]}
+              </Title>
+              <PatternFlyTable
+                {...data[1]}
+                noResultMsg={msgs.get('table.search.no.results', locale)}
+              />
             </div>
           })}
           {toggleIndex===1 && <div className='policy-status-by-clusters-table'>
-            <Title className='title' headingLevel="h4">{msgs.get('tabs.policy.status.toggle.clusters', locale)}</Title>
-            <PatternFlyTable {...tableDataByClusters} noResultMsg={msgs.get('table.search.no.results', locale)} />
+            <Title
+              className='title'
+              headingLevel="h4">
+              {msgs.get('tabs.policy.status.toggle.clusters', locale)}
+            </Title>
+            <PatternFlyTable
+              {...tableDataByClusters}
+              noResultMsg={msgs.get('table.search.no.results', locale)}
+            />
           </div>}
         </div>
       </div>
