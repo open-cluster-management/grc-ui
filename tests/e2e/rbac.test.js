@@ -50,6 +50,9 @@ module.exports = {
       createPage.createTestPolicy(true, { policyName: policies[policies.length - 1], namespace: namespaces[namespaces.length - 1] })
       commonPage.searchPolicy(policies[policies.length - 1], true)
     }
+  },
+
+  beforeEach: () => {
     loginPage.logout()
   },
 
@@ -57,7 +60,6 @@ module.exports = {
     if(!process.env.SELENIUM_CLUSTER) {
       browser.collectCoverage()
     }
-    loginPage.logout()
   },
 
   'GRC RBAC: Cluster-wide cluster-admin user': () => {
@@ -70,6 +72,7 @@ module.exports = {
   },
 
   'GRC RBAC: Cluster-wide admin user': () => {
+    loginPage.logout()
     loginPage.authenticate('e2e-admin-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.admin)
     const createdPolicy = `${policyName}-admin-cluster`
@@ -143,7 +146,6 @@ module.exports = {
   },
 
   'GRC RBAC: Clean up': () => {
-    loginPage.navigate()
     loginPage.authenticate()
     // Delete created policies
     policies.forEach((policy) => {
