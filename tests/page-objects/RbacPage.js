@@ -45,7 +45,7 @@ module.exports = {
 }
 /* Verify user can only see policies they should on the summary page */
 function verifyAllPage(name, nsNum, permissions) {
-  this.log(`verify policy: ${name} nsNum: ${nsNum} permissions: ${permissions}`)
+  this.log(`verifyAllPage policy: ${name} nsNum: ${nsNum} permissions: ${{permissions}}`)
   // Filter for our RBAC policies
   this.waitForElementVisible('@searchInput')
   this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
@@ -83,6 +83,7 @@ function verifyAllPage(name, nsNum, permissions) {
 }
 
 function verifyPolicyPage(name, permissions) {
+  this.log(`verifyPolicyPage policy: ${name} permissions: ${{permissions}}`)
   // Filter for our RBAC policies
   this.waitForElementVisible('@searchInput')
   this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
