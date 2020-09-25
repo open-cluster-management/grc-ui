@@ -39,11 +39,13 @@ module.exports = {
   commands: [{
     verifyAllPage,
     verifyCreatePage,
-    verifyPolicyPage
+    verifyPolicyPage,
+    log
   }]
 }
 /* Verify user can only see policies they should on the summary page */
 function verifyAllPage(name, nsNum, permissions) {
+  this.log(`verify policy: ${name} nsNum: ${nsNum} permissions: ${permissions}`)
   // Filter for our RBAC policies
   this.waitForElementVisible('@searchInput')
   this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
@@ -154,4 +156,11 @@ function verifyCreatePage(permissions, createPage, policyName = '', ns = [], clu
     this.expect.element('@submitCreatePolicyButton').to.not.be.present
     this.expect.element('@createPolicyButton').to.be.present
   }
+}
+
+function log(message) {
+  return this.perform(() => {
+    // eslint-disable-next-line no-console
+    console.log(message)
+  })
 }
