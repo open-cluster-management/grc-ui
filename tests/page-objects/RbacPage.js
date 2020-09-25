@@ -80,6 +80,8 @@ function verifyAllPage(name, nsNum, permissions) {
   this.waitForElementNotPresent('@spinner')
   this.click('@sidePolicyPanelClose')
   this.waitForElementNotPresent('@sidePolicyPanel')
+  this.waitForElementVisible('@searchInput')
+  this.click('@searchInput').clearValue('@searchInput')
 }
 
 function verifyPolicyPage(name, permissions) {
@@ -112,6 +114,8 @@ function verifyPolicyPage(name, permissions) {
   }
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
+  this.waitForElementVisible('@searchInput')
+  this.click('@searchInput').clearValue('@searchInput')
 }
 
 function verifyCreatePage(permissions, createPage, policyName = '', ns = [], clusterwide = false, elevated = false) {
