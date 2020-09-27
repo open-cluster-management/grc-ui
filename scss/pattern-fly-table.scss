@@ -10,6 +10,12 @@
     .pf-c-button {
       padding: 0;
     }
+
+    .pf-c-search-input__clear {
+      .pf-c-button {
+        padding: 0.3rem;
+      }
+    }
   }
 
   .pattern-fly-table {
