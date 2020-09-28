@@ -13,7 +13,8 @@ import { PolicyStatus } from '../../lib/client/queries'
 import { DangerNotification } from '../components/common/DangerNotification'
 import PolicyStatusView from '../components/common/PolicyStatusView'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
-
+import NoResource from '../components/common/NoResource'
+import msgs from '../../nls/platform.properties'
 
 resources(() => {
   require('../../scss/policy-status-tab.scss')
@@ -34,6 +35,7 @@ class PolicyStatusTab extends React.Component {
       policyName,
       policyNamespace:hubNamespace,
     } = this.props
+    const { locale } = this.context
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     return (
       <Query
@@ -56,7 +58,12 @@ class PolicyStatusTab extends React.Component {
             )
           } else if (loading && status === undefined) {
             return <Spinner className='patternfly-spinner' />
-          } else{
+          } else if (Array.isArray(status) && status.length === 0) {
+            return <NoResource
+              title={msgs.get('no-status.title', [msgs.get('routes.grc', locale)], locale)}
+              svgName='EmptyPagePlanet-illus.png'>
+            </NoResource>
+          } else {
             return (
               <PolicyStatusView
                 status={status}
