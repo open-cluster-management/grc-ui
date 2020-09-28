@@ -68,6 +68,7 @@ module.exports = {
     const createdPolicy = `${policyName}-cluster-admin-cluster`
     page.verifyCreatePage(permissions.clusterAdmin, createPage, createdPolicy, namespaces, true)
     commonPage.deletePolicy(createdPolicy)
+    commonPage.clearSearchValue()
     page.verifyPolicyPage(policyName, permissions.clusterAdmin)
   },
 
@@ -77,6 +78,7 @@ module.exports = {
     const createdPolicy = `${policyName}-admin-cluster`
     page.verifyCreatePage(permissions.admin, createPage, createdPolicy, namespaces, true)
     commonPage.deletePolicy(createdPolicy)
+    commonPage.clearSearchValue()
     page.verifyPolicyPage(policyName, permissions.admin)
   },
 
@@ -107,6 +109,7 @@ module.exports = {
     const createdPolicy = `${policyName}-cluster-admin-ns`
     page.verifyCreatePage(permissions.clusterAdmin, createPage, createdPolicy, [namespaces[0]], false)
     commonPage.deletePolicy(createdPolicy)
+    commonPage.clearSearchValue()
     page.verifyPolicyPage(policyName, permissions.clusterAdmin)
   },
 
@@ -118,6 +121,7 @@ module.exports = {
     // The ns array would only be namespace 1 but user also has view access to ns 2
     page.verifyCreatePage(permissions.admin, createPage, createdPolicy, namespaces, false, true)
     commonPage.deletePolicy(createdPolicy)
+    commonPage.clearSearchValue()
     // Verify view permissions for this user by filtering for the specific policy
     page.verifyAllPage(`${policyName}-${namespaces[1]}`, 1, permissions.view)
     page.verifyPolicyPage(policyName, permissions.admin)
