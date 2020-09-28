@@ -15,6 +15,14 @@
   .pattern-fly-table {
     background-color: white;
 
+    .pf-c-table {
+      .pattern-fly-table-header {
+        .pf-c-table__button {
+          padding-bottom: 0;
+        }
+      }
+    }
+
     .pf-c-options-menu__menu {
       background-color: white;
       padding: 2px;
