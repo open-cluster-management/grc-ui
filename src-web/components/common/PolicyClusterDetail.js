@@ -23,7 +23,8 @@ import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
 
 resources(() => {
-  require('../../../scss/resource-overview.scss')
+  require('../../../scss/resource-overview.scss'),
+  require('../../../scss/policy-yaml-tab.scss')
 })
 
 class PolicyClusterDetail extends React.Component {
@@ -67,7 +68,7 @@ class PolicyClusterDetail extends React.Component {
     }
     const policy = policies[0]
     React.Children.map([
-      <PolicyTemplatesView key='Policy Templates' headerKey='table.header.policyTemplate' right />,
+      <PolicyTemplatesView key='Policy Templates' headerKey='table.header.policyTemplate' viewOnly right />,
       <ResourceTableModule key='roleTemplates' definitionsKey='policyRoleTemplates' />,
       <ResourceTableModule key='objectTemplates' definitionsKey='policyObjectTemplates' />,
       <ResourceTableModule key='policyTemplates' definitionsKey='policyPolicyTemplates' />,

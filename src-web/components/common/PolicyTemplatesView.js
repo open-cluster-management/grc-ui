@@ -37,6 +37,9 @@ class PolicyTemplatesView extends React.Component {
       yamlParsingError: null,
     }
   }
+  static defaultProps = {
+    viewOnly: false
+  }
 
   UNSAFE_componentWillMount() {
     const { resourceData } = this.props
@@ -138,7 +141,7 @@ class PolicyTemplatesView extends React.Component {
   handleEditorChange = (yaml) => this.setState({ yaml })
 
   render() {
-    const { headerKey, reqStatus, className, userAccess, resourceData } = this.props
+    const { headerKey, reqStatus, className, userAccess, resourceData, viewOnly } = this.props
     const resourceType = {name: 'HCMPolicyPolicy'}
     const userAccessHash = formatUserAccess(userAccess)
     const actions = ['table.actions.edit']
@@ -163,6 +166,7 @@ class PolicyTemplatesView extends React.Component {
               : ''
             }`}
           </ModuleHeader>
+          {!viewOnly &&
           <div className='yaml-editor-button'>
             <Button
               disabled={disableFlag}
@@ -181,7 +185,7 @@ class PolicyTemplatesView extends React.Component {
               onClick={this.handleSubmitClick}>
               {msgs.get('modal.button.submit', this.context.locale)}
             </Button>
-          </div>
+          </div>}
         </div>
         {this.state.yamlParsingError &&
         <InlineNotification
@@ -207,7 +211,7 @@ class PolicyTemplatesView extends React.Component {
             height={'100%'}
             setEditor={this.setEditor}
             readOnly={this.state.readOnly}
-            onYamlChange={this.handleEditorChange}
+            onYamlChange={viewOnly ? undefined : this.handleEditorChange}
             yaml={this.state.yaml} />
         </div>
         {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Spinner className='patternfly-spinner' />}
@@ -230,6 +234,7 @@ PolicyTemplatesView.propTypes = {
   resourcePath: PropTypes.string,
   resourceType: PropTypes.object,
   userAccess: PropTypes.array,
+  viewOnly: PropTypes.bool
 }
 
 const mapStateToProps = (state, ownProps) => {
