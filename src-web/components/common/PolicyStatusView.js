@@ -14,7 +14,6 @@ import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
-import _uniqueId from 'lodash/uniqueId'
 
 class PolicyStatusView extends React.Component {
   constructor(props) {
@@ -51,14 +50,15 @@ class PolicyStatusView extends React.Component {
         </ToggleGroup>
         <div className='policy-status-tab'>
           {toggleIndex===0 && tableDataByTemplate.map((data)=> {
+            const templateName = data[0].toString()
             return <div
               className='policy-status-by-templates-table'
-              key={_uniqueId('template-index')}
+              key={`template-index-${templateName}`}
             >
               <Title
                 className='title'
                 headingLevel="h4">
-                {data[0]}
+                {templateName}
               </Title>
               <PatternFlyTable
                 {...data[1]}
