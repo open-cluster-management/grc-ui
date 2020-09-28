@@ -258,6 +258,7 @@ function deletePolicy(name){
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 5, '#remove-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
+  this.clearSearchValue()
 }
 
 function clearSearchValue(){
