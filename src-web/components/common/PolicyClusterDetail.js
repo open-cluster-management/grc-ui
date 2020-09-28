@@ -23,7 +23,9 @@ import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
 
 resources(() => {
-  require('../../../scss/resource-overview.scss'),
+  require('../../../scss/resource-overview.scss')
+})
+resources(() => {
   require('../../../scss/policy-yaml-tab.scss')
 })
 
