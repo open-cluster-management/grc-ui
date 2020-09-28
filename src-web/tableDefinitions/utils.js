@@ -13,6 +13,7 @@ import {
 } from '../components/common/Icons'
 import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../../nls/platform.properties'
+import { Tooltip } from '@patternfly/react-core'
 
 export const transform = (items, def, locale) => {
   const rows = items.map(item => {
@@ -112,13 +113,40 @@ export function buildTemplateDetailLink(item, locale) {
   const apiVersion = _.get(item, 'apiVersion')
   const kind = _.get(item, 'kind')
   if (message && policyName && policyNamespace && cluster && templateName && apiVersion && kind) {
-    const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
+    const templateDetaiURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
     return <div>
-      {`${message} `}
-      <Link to={statusHistoryURL}>
+      {(typeof message === 'string' && message.length > 200)
+        ? <Tooltip
+          maxWidth = {'80rem'}
+          enableFlip = {false}
+          position = {'bottom'}
+          content = {<div>${message}</div>}
+        >
+          <span>${`${message.substring(0, 200)}...`}</span>
+        </Tooltip>
+        : `${message} `
+      }
+      <Link to={templateDetaiURL}>
         {msgs.get('table.actions.view.details', locale)}
       </Link>
     </div>
   }
   return ''
+}
+
+export function statusHistoryMessageTooltip(item) {
+  const message = _.get(item, 'message', '')
+  return  <div>
+    {(typeof message === 'string' && message.length > 200)
+      ? <Tooltip
+        maxWidth = {'80rem'}
+        enableFlip = {false}
+        position = {'bottom'}
+        content = {<div>${message}</div>}
+      >
+        <span>${`${message.substring(0, 200)}...`}</span>
+      </Tooltip>
+      : `${message}`
+    }
+  </div>
 }

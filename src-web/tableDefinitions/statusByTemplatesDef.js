@@ -31,7 +31,7 @@ export default {
     {
       msgKey: 'table.header.message',
       resourceKey: 'message',
-      transforms: [sortable, wrappable],
+      transforms: [cellWidth(70), sortable, wrappable],
       cellTransforms: [breakWord],
       transformFunction: buildTemplateDetailLink
     },
