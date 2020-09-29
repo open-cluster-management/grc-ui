@@ -81,4 +81,3 @@ PolicyDetailsTab.propTypes = {
 }
 
 export default withRouter(PolicyDetailsTab)
-

@@ -53,7 +53,7 @@ class PolicyDetailSubRouter extends React.Component {
   }
 
   render () {
-    const { resourceType } = this.props
+    const { resourceType, tabs } = this.props
     const url = _.get(this.props, 'match.url')
     const urlSegments = url.split('/')
     const policyName = urlSegments[urlSegments.length - 1]
@@ -66,6 +66,8 @@ class PolicyDetailSubRouter extends React.Component {
             return <PolicyStatusTab
               policyName={policyName}
               policyNamespace={policyNamespace}
+              tabs={tabs}
+              url={url}
             />}}
           />
           <Route path={`${url}/yaml`} exact render={() => {
@@ -73,6 +75,8 @@ class PolicyDetailSubRouter extends React.Component {
               policyName={policyName}
               policyNamespace={policyNamespace}
               resourceType={resourceType}
+              tabs={tabs}
+              url={url}
             />}}
           />
           <Route path={url} exact render={() => {
