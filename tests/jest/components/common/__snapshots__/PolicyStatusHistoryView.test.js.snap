@@ -759,14 +759,11 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-label="Message"
                 onMouseEnter={[Function]}
               >
-                <div>
-                  <span
-                    aria-describedby="pf-tooltip-1"
-                  >
-                    $
-                    NonCompliant; violation - imagemanifestvulns exist: [sha256.483a3d0c52132c7b541af90a73df657388621f57ca3db3c40d28dc8174f5420f, sha256.6d2162915f9513d3f2222ffce9beff3d694093976a368875ead963c6436c0074, sha256.f35ca58473522e3621fb407d0e27df6b5ad12f829126e22cbf15e57447ef9f2f] in namespace open-cluster-ma...
-                  </span>
-                </div>
+                <span
+                  aria-describedby="pf-tooltip-1"
+                >
+                  NonCompliant; violation - imagemanifestvulns exist: [sha256.483a3d0c52132c7b541af90a73df657388621f57ca3db3c40d28dc8174f5420f, sha256.6d2162915f9513d3...pen-cluster-management-agent-addon; [sha256.7613d8f7db639147b91b16b54b24cfa351c3cbde6aa7b7bf1b9c80c260efad06] in namespace openshift-cluster-version
+                </span>
               </td>
               <td
                 className=""
@@ -822,14 +819,11 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-label="Message"
                 onMouseEnter={[Function]}
               >
-                <div>
-                  <span
-                    aria-describedby="pf-tooltip-2"
-                  >
-                    $
-                    NonCompliant; violation - imagemanifestvulns exist: [sha256.483a3d0c52132c7b541af90a73df657388621f57ca3db3c40d28dc8174f5420f, sha256.6d2162915f9513d3f2222ffce9beff3d694093976a368875ead963c6436c0074, sha256.f35ca58473522e3621fb407d0e27df6b5ad12f829126e22cbf15e57447ef9f2f] in namespace open-cluster-ma...
-                  </span>
-                </div>
+                <span
+                  aria-describedby="pf-tooltip-2"
+                >
+                  NonCompliant; violation - imagemanifestvulns exist: [sha256.483a3d0c52132c7b541af90a73df657388621f57ca3db3c40d28dc8174f5420f, sha256.6d2162915f9513d3...pen-cluster-management-agent-addon; [sha256.7613d8f7db639147b91b16b54b24cfa351c3cbde6aa7b7bf1b9c80c260efad06] in namespace openshift-cluster-version
+                </span>
               </td>
               <td
                 className=""
@@ -885,14 +879,11 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-label="Message"
                 onMouseEnter={[Function]}
               >
-                <div>
-                  <span
-                    aria-describedby="pf-tooltip-3"
-                  >
-                    $
-                    NonCompliant; violation - imagemanifestvulns exist: [sha256.483a3d0c52132c7b541af90a73df657388621f57ca3db3c40d28dc8174f5420f, sha256.6d2162915f9513d3f2222ffce9beff3d694093976a368875ead963c6436c0074, sha256.f35ca58473522e3621fb407d0e27df6b5ad12f829126e22cbf15e57447ef9f2f] in namespace open-cluster-ma...
-                  </span>
-                </div>
+                <span
+                  aria-describedby="pf-tooltip-3"
+                >
+                  NonCompliant; violation - imagemanifestvulns exist: [sha256.483a3d0c52132c7b541af90a73df657388621f57ca3db3c40d28dc8174f5420f, sha256.6d2162915f9513d3...pen-cluster-management-agent-addon; [sha256.7613d8f7db639147b91b16b54b24cfa351c3cbde6aa7b7bf1b9c80c260efad06] in namespace openshift-cluster-version
+                </span>
               </td>
               <td
                 className=""

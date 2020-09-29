@@ -33,14 +33,15 @@ class TruncateText extends React.PureComponent {
 
   render() {
     const {text, maxCharacters, maxWidth, position, textEnd} = this.props
+    const postfix = textEnd ? textEnd : ''
     if (!text) {
       return ''
     }
     else if (typeof text !== 'string') {
-      return `${text.toString()}${textEnd}`
+      return `${text.toString()}${postfix}`
     }
     else if (text.length <= maxCharacters){
-      return `${text}${textEnd}`
+      return `${text}${postfix}`
     }
 
     return <Tooltip
@@ -49,7 +50,7 @@ class TruncateText extends React.PureComponent {
       position = {position ? position : 'top'}
       content = {<div>${text}</div>}
     >
-      <span>{`${truncate(text, maxCharacters)}${textEnd}`}</span>
+      <span>{`${truncate(text, maxCharacters)}${postfix}`}</span>
     </Tooltip>
   }
 }
