@@ -42,8 +42,8 @@ class PolicyStatusTab extends React.Component {
     const { location } = this.props,
           { locale } = this.context,
           urlSegments = location.pathname.split('/')
-    const hubNamespace = urlSegments.length > 5 ? urlSegments.slice(4, 5) : ''
-    const policyName = urlSegments.length > 6 ? urlSegments.slice(5, 6) : ''
+    const hubNamespace = urlSegments.length > 4 ? urlSegments.slice(4, 5) : ''
+    const policyName = urlSegments.length > 5 ? urlSegments.slice(5, 6) : ''
     breadcrumbItems.push({
       label: msgs.get('tabs.hcmcompliance', locale),
       noLocale: true,

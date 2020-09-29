@@ -84,6 +84,8 @@ class PolicyDetailSubRouter extends React.Component {
               policyName={policyName}
               policyNamespace={policyNamespace}
               resourceType={resourceType}
+              tabs={tabs}
+              url={url}
             />}}
           />
         </Switch>
