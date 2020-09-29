@@ -18,7 +18,7 @@ import { GrcViewPolicyCluster, GrcViewPolicyCluster2,
 //which is what we want in unit test
 import { GrcView } from '../../../src-web/components/GrcView'
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, MemoryRouter } from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
 import { shallow, mount } from 'enzyme'
 import { createMemoryHistory } from 'history'
@@ -44,7 +44,7 @@ describe('GrcView component 1', () => {
   it('renders as expected', () => {
     const component = mount(
       <Provider store={storePolicyCluster}>
-        <BrowserRouter>
+        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
           <GrcView
             title='Test1'
             history={history}
@@ -57,7 +57,7 @@ describe('GrcView component 1', () => {
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
             showApplications={true}
           />
-        </BrowserRouter>
+        </MemoryRouter>
       </Provider>
     )
     expect(toJson(component)).toMatchSnapshot()
@@ -71,7 +71,7 @@ describe('GrcView component 2', () => {
   it('renders as expected', () => {
     const component = mount(
       <Provider store={storePolicyCluster}>
-        <BrowserRouter>
+        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
           <GrcView
             title='Test2'
             history={history}
@@ -83,7 +83,7 @@ describe('GrcView component 2', () => {
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
           />
-        </BrowserRouter>
+        </MemoryRouter>
       </Provider>
     )
     expect(toJson(component)).toMatchSnapshot()
@@ -97,7 +97,7 @@ describe('GrcView component 3', () => {
   it('renders as expected', () => {
     const component = mount(
       <Provider store={storePolicyCluster}>
-        <BrowserRouter>
+        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
           <GrcView
             title='Test3'
             history={history}
@@ -109,7 +109,7 @@ describe('GrcView component 3', () => {
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
           />
-        </BrowserRouter>
+        </MemoryRouter>
       </Provider>
     )
     expect(toJson(component)).toMatchSnapshot()
@@ -124,7 +124,7 @@ describe('GrcView component 4', () => {
   it('renders as expected', () => {
     const component = mount(
       <Provider store={storePolicyCluster}>
-        <BrowserRouter>
+        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
           <GrcView
             title='Test4'
             history={history}
@@ -136,7 +136,7 @@ describe('GrcView component 4', () => {
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
           />
-        </BrowserRouter>
+        </MemoryRouter>
       </Provider>
     )
     expect(toJson(component)).toMatchSnapshot()
@@ -151,7 +151,7 @@ describe('GrcView component 7 has create permission', () => {
   it('renders as expected', () => {
     const component = mount(
       <Provider store={storePolicyCluster}>
-        <BrowserRouter>
+        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
           <GrcView
             title='Test7'
             history={history}
@@ -164,7 +164,7 @@ describe('GrcView component 7 has create permission', () => {
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
             access={reduxStorePolicyCluster.userAccess.access}
           />
-        </BrowserRouter>
+        </MemoryRouter>
       </Provider>
     )
     expect(toJson(component)).toMatchSnapshot()
@@ -179,7 +179,7 @@ describe('GrcView component 8 has not create permission', () => {
   it('renders as expected', () => {
     const component = mount(
       <Provider store={storePolicyCluster}>
-        <BrowserRouter>
+        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
           <GrcView
             title='Test7'
             history={history}
@@ -192,7 +192,7 @@ describe('GrcView component 8 has not create permission', () => {
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
             access={[]}
           />
-        </BrowserRouter>
+        </MemoryRouter>
       </Provider>
     )
     expect(toJson(component)).toMatchSnapshot()

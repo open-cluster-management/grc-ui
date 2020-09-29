@@ -13,23 +13,42 @@ exports[`GrcView component 1 renders as expected 1`] = `
     }
   }
 >
-  <BrowserRouter>
+  <MemoryRouter
+    initialEntries={
+      Array [
+        Object {
+          "key": "testKey",
+          "pathname": "/",
+        },
+      ]
+    }
+  >
     <Router
       history={
         Object {
           "action": "POP",
           "block": [Function],
+          "canGo": [Function],
           "createHref": [Function],
+          "entries": Array [
+            Object {
+              "hash": "",
+              "key": "testKey",
+              "pathname": "/",
+              "search": "",
+            },
+          ],
           "go": [Function],
           "goBack": [Function],
           "goForward": [Function],
+          "index": 0,
           "length": 1,
           "listen": [Function],
           "location": Object {
             "hash": "",
+            "key": "testKey",
             "pathname": "/",
             "search": "",
-            "state": undefined,
           },
           "push": [Function],
           "replace": [Function],
@@ -345,7 +364,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
             "entries": Array [
               Object {
                 "hash": "",
-                "key": "h4z0ar",
+                "key": "kbkgs6",
                 "pathname": "/",
                 "search": "",
                 "state": undefined,
@@ -359,7 +378,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
             "listen": [Function],
             "location": Object {
               "hash": "",
-              "key": "h4z0ar",
+              "key": "kbkgs6",
               "pathname": "/",
               "search": "",
               "state": undefined,
@@ -426,17 +445,27 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 Object {
                   "action": "POP",
                   "block": [Function],
+                  "canGo": [Function],
                   "createHref": [Function],
+                  "entries": Array [
+                    Object {
+                      "hash": "",
+                      "key": "testKey",
+                      "pathname": "/",
+                      "search": "",
+                    },
+                  ],
                   "go": [Function],
                   "goBack": [Function],
                   "goForward": [Function],
+                  "index": 0,
                   "length": 1,
                   "listen": [Function],
                   "location": Object {
                     "hash": "",
+                    "key": "testKey",
                     "pathname": "/",
                     "search": "",
-                    "state": undefined,
                   },
                   "push": [Function],
                   "replace": [Function],
@@ -445,9 +474,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
               location={
                 Object {
                   "hash": "",
+                  "key": "testKey",
                   "pathname": "/",
                   "search": "",
-                  "state": undefined,
                 }
               }
               match={
@@ -472,17 +501,27 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   Object {
                     "action": "POP",
                     "block": [Function],
+                    "canGo": [Function],
                     "createHref": [Function],
+                    "entries": Array [
+                      Object {
+                        "hash": "",
+                        "key": "testKey",
+                        "pathname": "/",
+                        "search": "",
+                      },
+                    ],
                     "go": [Function],
                     "goBack": [Function],
                     "goForward": [Function],
+                    "index": 0,
                     "length": 1,
                     "listen": [Function],
                     "location": Object {
                       "hash": "",
+                      "key": "testKey",
                       "pathname": "/",
                       "search": "",
-                      "state": undefined,
                     },
                     "push": [Function],
                     "replace": [Function],
@@ -491,9 +530,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 location={
                   Object {
                     "hash": "",
+                    "key": "testKey",
                     "pathname": "/",
                     "search": "",
-                    "state": undefined,
                   }
                 }
                 match={
@@ -1118,17 +1157,27 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 Object {
                   "action": "POP",
                   "block": [Function],
+                  "canGo": [Function],
                   "createHref": [Function],
+                  "entries": Array [
+                    Object {
+                      "hash": "",
+                      "key": "testKey",
+                      "pathname": "/",
+                      "search": "",
+                    },
+                  ],
                   "go": [Function],
                   "goBack": [Function],
                   "goForward": [Function],
+                  "index": 0,
                   "length": 1,
                   "listen": [Function],
                   "location": Object {
                     "hash": "",
+                    "key": "testKey",
                     "pathname": "/",
                     "search": "",
-                    "state": undefined,
                   },
                   "push": [Function],
                   "replace": [Function],
@@ -1137,9 +1186,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
               location={
                 Object {
                   "hash": "",
+                  "key": "testKey",
                   "pathname": "/",
                   "search": "",
-                  "state": undefined,
                 }
               }
               match={
@@ -2128,17 +2177,27 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 Object {
                   "action": "POP",
                   "block": [Function],
+                  "canGo": [Function],
                   "createHref": [Function],
+                  "entries": Array [
+                    Object {
+                      "hash": "",
+                      "key": "testKey",
+                      "pathname": "/",
+                      "search": "",
+                    },
+                  ],
                   "go": [Function],
                   "goBack": [Function],
                   "goForward": [Function],
+                  "index": 0,
                   "length": 1,
                   "listen": [Function],
                   "location": Object {
                     "hash": "",
+                    "key": "testKey",
                     "pathname": "/",
                     "search": "",
-                    "state": undefined,
                   },
                   "push": [Function],
                   "replace": [Function],
@@ -2147,9 +2206,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
               location={
                 Object {
                   "hash": "",
+                  "key": "testKey",
                   "pathname": "/",
                   "search": "",
-                  "state": undefined,
                 }
               }
               match={
@@ -2514,17 +2573,27 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     Object {
                       "action": "POP",
                       "block": [Function],
+                      "canGo": [Function],
                       "createHref": [Function],
+                      "entries": Array [
+                        Object {
+                          "hash": "",
+                          "key": "testKey",
+                          "pathname": "/",
+                          "search": "",
+                        },
+                      ],
                       "go": [Function],
                       "goBack": [Function],
                       "goForward": [Function],
+                      "index": 0,
                       "length": 1,
                       "listen": [Function],
                       "location": Object {
                         "hash": "",
+                        "key": "testKey",
                         "pathname": "/",
                         "search": "",
-                        "state": undefined,
                       },
                       "push": [Function],
                       "replace": [Function],
@@ -2868,9 +2937,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   location={
                     Object {
                       "hash": "",
+                      "key": "testKey",
                       "pathname": "/",
                       "search": "",
-                      "state": undefined,
                     }
                   }
                   match={
@@ -3379,17 +3448,27 @@ exports[`GrcView component 1 renders as expected 1`] = `
                       Object {
                         "action": "POP",
                         "block": [Function],
+                        "canGo": [Function],
                         "createHref": [Function],
+                        "entries": Array [
+                          Object {
+                            "hash": "",
+                            "key": "testKey",
+                            "pathname": "/",
+                            "search": "",
+                          },
+                        ],
                         "go": [Function],
                         "goBack": [Function],
                         "goForward": [Function],
+                        "index": 0,
                         "length": 1,
                         "listen": [Function],
                         "location": Object {
                           "hash": "",
+                          "key": "testKey",
                           "pathname": "/",
                           "search": "",
-                          "state": undefined,
                         },
                         "push": [Function],
                         "replace": [Function],
@@ -3733,9 +3812,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
                     location={
                       Object {
                         "hash": "",
+                        "key": "testKey",
                         "pathname": "/",
                         "search": "",
-                        "state": undefined,
                       }
                     }
                     match={
@@ -4246,17 +4325,27 @@ exports[`GrcView component 1 renders as expected 1`] = `
                         Object {
                           "action": "POP",
                           "block": [Function],
+                          "canGo": [Function],
                           "createHref": [Function],
+                          "entries": Array [
+                            Object {
+                              "hash": "",
+                              "key": "testKey",
+                              "pathname": "/",
+                              "search": "",
+                            },
+                          ],
                           "go": [Function],
                           "goBack": [Function],
                           "goForward": [Function],
+                          "index": 0,
                           "length": 1,
                           "listen": [Function],
                           "location": Object {
                             "hash": "",
+                            "key": "testKey",
                             "pathname": "/",
                             "search": "",
-                            "state": undefined,
                           },
                           "push": [Function],
                           "replace": [Function],
@@ -4872,9 +4961,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
                       location={
                         Object {
                           "hash": "",
+                          "key": "testKey",
                           "pathname": "/",
                           "search": "",
-                          "state": undefined,
                         }
                       }
                       match={
@@ -5555,17 +5644,27 @@ exports[`GrcView component 1 renders as expected 1`] = `
                               Object {
                                 "action": "POP",
                                 "block": [Function],
+                                "canGo": [Function],
                                 "createHref": [Function],
+                                "entries": Array [
+                                  Object {
+                                    "hash": "",
+                                    "key": "testKey",
+                                    "pathname": "/",
+                                    "search": "",
+                                  },
+                                ],
                                 "go": [Function],
                                 "goBack": [Function],
                                 "goForward": [Function],
+                                "index": 0,
                                 "length": 1,
                                 "listen": [Function],
                                 "location": Object {
                                   "hash": "",
+                                  "key": "testKey",
                                   "pathname": "/",
                                   "search": "",
-                                  "state": undefined,
                                 },
                                 "push": [Function],
                                 "replace": [Function],
@@ -5847,9 +5946,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
                             location={
                               Object {
                                 "hash": "",
+                                "key": "testKey",
                                 "pathname": "/",
                                 "search": "",
-                                "state": undefined,
                               }
                             }
                             match={
@@ -6015,17 +6114,27 @@ exports[`GrcView component 1 renders as expected 1`] = `
                                 Object {
                                   "action": "POP",
                                   "block": [Function],
+                                  "canGo": [Function],
                                   "createHref": [Function],
+                                  "entries": Array [
+                                    Object {
+                                      "hash": "",
+                                      "key": "testKey",
+                                      "pathname": "/",
+                                      "search": "",
+                                    },
+                                  ],
                                   "go": [Function],
                                   "goBack": [Function],
                                   "goForward": [Function],
+                                  "index": 0,
                                   "length": 1,
                                   "listen": [Function],
                                   "location": Object {
                                     "hash": "",
+                                    "key": "testKey",
                                     "pathname": "/",
                                     "search": "",
-                                    "state": undefined,
                                   },
                                   "push": [Function],
                                   "replace": [Function],
@@ -6307,9 +6416,9 @@ exports[`GrcView component 1 renders as expected 1`] = `
                               location={
                                 Object {
                                   "hash": "",
+                                  "key": "testKey",
                                   "pathname": "/",
                                   "search": "",
-                                  "state": undefined,
                                 }
                               }
                               match={
@@ -8912,7 +9021,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
         </div>
       </GrcView>
     </Router>
-  </BrowserRouter>
+  </MemoryRouter>
 </Provider>
 `;
 
@@ -8929,23 +9038,42 @@ exports[`GrcView component 2 renders as expected 1`] = `
     }
   }
 >
-  <BrowserRouter>
+  <MemoryRouter
+    initialEntries={
+      Array [
+        Object {
+          "key": "testKey",
+          "pathname": "/",
+        },
+      ]
+    }
+  >
     <Router
       history={
         Object {
           "action": "POP",
           "block": [Function],
+          "canGo": [Function],
           "createHref": [Function],
+          "entries": Array [
+            Object {
+              "hash": "",
+              "key": "testKey",
+              "pathname": "/",
+              "search": "",
+            },
+          ],
           "go": [Function],
           "goBack": [Function],
           "goForward": [Function],
+          "index": 0,
           "length": 1,
           "listen": [Function],
           "location": Object {
             "hash": "",
+            "key": "testKey",
             "pathname": "/",
             "search": "",
-            "state": undefined,
           },
           "push": [Function],
           "replace": [Function],
@@ -9511,7 +9639,7 @@ exports[`GrcView component 2 renders as expected 1`] = `
             "entries": Array [
               Object {
                 "hash": "",
-                "key": "h4z0ar",
+                "key": "kbkgs6",
                 "pathname": "/",
                 "search": "",
                 "state": undefined,
@@ -9525,7 +9653,7 @@ exports[`GrcView component 2 renders as expected 1`] = `
             "listen": [Function],
             "location": Object {
               "hash": "",
-              "key": "h4z0ar",
+              "key": "kbkgs6",
               "pathname": "/",
               "search": "",
               "state": undefined,
@@ -9603,7 +9731,7 @@ exports[`GrcView component 2 renders as expected 1`] = `
         </Spinner>
       </GrcView>
     </Router>
-  </BrowserRouter>
+  </MemoryRouter>
 </Provider>
 `;
 
@@ -9620,23 +9748,42 @@ exports[`GrcView component 3 renders as expected 1`] = `
     }
   }
 >
-  <BrowserRouter>
+  <MemoryRouter
+    initialEntries={
+      Array [
+        Object {
+          "key": "testKey",
+          "pathname": "/",
+        },
+      ]
+    }
+  >
     <Router
       history={
         Object {
           "action": "POP",
           "block": [Function],
+          "canGo": [Function],
           "createHref": [Function],
+          "entries": Array [
+            Object {
+              "hash": "",
+              "key": "testKey",
+              "pathname": "/",
+              "search": "",
+            },
+          ],
           "go": [Function],
           "goBack": [Function],
           "goForward": [Function],
+          "index": 0,
           "length": 1,
           "listen": [Function],
           "location": Object {
             "hash": "",
+            "key": "testKey",
             "pathname": "/",
             "search": "",
-            "state": undefined,
           },
           "push": [Function],
           "replace": [Function],
@@ -10202,7 +10349,7 @@ exports[`GrcView component 3 renders as expected 1`] = `
             "entries": Array [
               Object {
                 "hash": "",
-                "key": "h4z0ar",
+                "key": "kbkgs6",
                 "pathname": "/",
                 "search": "",
                 "state": undefined,
@@ -10216,7 +10363,7 @@ exports[`GrcView component 3 renders as expected 1`] = `
             "listen": [Function],
             "location": Object {
               "hash": "",
-              "key": "h4z0ar",
+              "key": "kbkgs6",
               "pathname": "/",
               "search": "",
               "state": undefined,
@@ -10428,7 +10575,7 @@ exports[`GrcView component 3 renders as expected 1`] = `
         </Notification>
       </GrcView>
     </Router>
-  </BrowserRouter>
+  </MemoryRouter>
 </Provider>
 `;
 
@@ -10445,23 +10592,42 @@ exports[`GrcView component 4 renders as expected 1`] = `
     }
   }
 >
-  <BrowserRouter>
+  <MemoryRouter
+    initialEntries={
+      Array [
+        Object {
+          "key": "testKey",
+          "pathname": "/",
+        },
+      ]
+    }
+  >
     <Router
       history={
         Object {
           "action": "POP",
           "block": [Function],
+          "canGo": [Function],
           "createHref": [Function],
+          "entries": Array [
+            Object {
+              "hash": "",
+              "key": "testKey",
+              "pathname": "/",
+              "search": "",
+            },
+          ],
           "go": [Function],
           "goBack": [Function],
           "goForward": [Function],
+          "index": 0,
           "length": 1,
           "listen": [Function],
           "location": Object {
             "hash": "",
+            "key": "testKey",
             "pathname": "/",
             "search": "",
-            "state": undefined,
           },
           "push": [Function],
           "replace": [Function],
@@ -11033,7 +11199,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
             "entries": Array [
               Object {
                 "hash": "",
-                "key": "h4z0ar",
+                "key": "kbkgs6",
                 "pathname": "/",
                 "search": "",
                 "state": undefined,
@@ -11047,7 +11213,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
             "listen": [Function],
             "location": Object {
               "hash": "",
-              "key": "h4z0ar",
+              "key": "kbkgs6",
               "pathname": "/",
               "search": "",
               "state": undefined,
@@ -11114,17 +11280,27 @@ exports[`GrcView component 4 renders as expected 1`] = `
                 Object {
                   "action": "POP",
                   "block": [Function],
+                  "canGo": [Function],
                   "createHref": [Function],
+                  "entries": Array [
+                    Object {
+                      "hash": "",
+                      "key": "testKey",
+                      "pathname": "/",
+                      "search": "",
+                    },
+                  ],
                   "go": [Function],
                   "goBack": [Function],
                   "goForward": [Function],
+                  "index": 0,
                   "length": 1,
                   "listen": [Function],
                   "location": Object {
                     "hash": "",
+                    "key": "testKey",
                     "pathname": "/",
                     "search": "",
-                    "state": undefined,
                   },
                   "push": [Function],
                   "replace": [Function],
@@ -11133,9 +11309,9 @@ exports[`GrcView component 4 renders as expected 1`] = `
               location={
                 Object {
                   "hash": "",
+                  "key": "testKey",
                   "pathname": "/",
                   "search": "",
-                  "state": undefined,
                 }
               }
               match={
@@ -11160,17 +11336,27 @@ exports[`GrcView component 4 renders as expected 1`] = `
                   Object {
                     "action": "POP",
                     "block": [Function],
+                    "canGo": [Function],
                     "createHref": [Function],
+                    "entries": Array [
+                      Object {
+                        "hash": "",
+                        "key": "testKey",
+                        "pathname": "/",
+                        "search": "",
+                      },
+                    ],
                     "go": [Function],
                     "goBack": [Function],
                     "goForward": [Function],
+                    "index": 0,
                     "length": 1,
                     "listen": [Function],
                     "location": Object {
                       "hash": "",
+                      "key": "testKey",
                       "pathname": "/",
                       "search": "",
-                      "state": undefined,
                     },
                     "push": [Function],
                     "replace": [Function],
@@ -11179,9 +11365,9 @@ exports[`GrcView component 4 renders as expected 1`] = `
                 location={
                   Object {
                     "hash": "",
+                    "key": "testKey",
                     "pathname": "/",
                     "search": "",
-                    "state": undefined,
                   }
                 }
                 match={
@@ -12318,17 +12504,27 @@ exports[`GrcView component 4 renders as expected 1`] = `
                 Object {
                   "action": "POP",
                   "block": [Function],
+                  "canGo": [Function],
                   "createHref": [Function],
+                  "entries": Array [
+                    Object {
+                      "hash": "",
+                      "key": "testKey",
+                      "pathname": "/",
+                      "search": "",
+                    },
+                  ],
                   "go": [Function],
                   "goBack": [Function],
                   "goForward": [Function],
+                  "index": 0,
                   "length": 1,
                   "listen": [Function],
                   "location": Object {
                     "hash": "",
+                    "key": "testKey",
                     "pathname": "/",
                     "search": "",
-                    "state": undefined,
                   },
                   "push": [Function],
                   "replace": [Function],
@@ -12337,9 +12533,9 @@ exports[`GrcView component 4 renders as expected 1`] = `
               location={
                 Object {
                   "hash": "",
+                  "key": "testKey",
                   "pathname": "/",
                   "search": "",
-                  "state": undefined,
                 }
               }
               match={
@@ -13552,17 +13748,27 @@ exports[`GrcView component 4 renders as expected 1`] = `
                 Object {
                   "action": "POP",
                   "block": [Function],
+                  "canGo": [Function],
                   "createHref": [Function],
+                  "entries": Array [
+                    Object {
+                      "hash": "",
+                      "key": "testKey",
+                      "pathname": "/",
+                      "search": "",
+                    },
+                  ],
                   "go": [Function],
                   "goBack": [Function],
                   "goForward": [Function],
+                  "index": 0,
                   "length": 1,
                   "listen": [Function],
                   "location": Object {
                     "hash": "",
+                    "key": "testKey",
                     "pathname": "/",
                     "search": "",
-                    "state": undefined,
                   },
                   "push": [Function],
                   "replace": [Function],
@@ -13571,9 +13777,9 @@ exports[`GrcView component 4 renders as expected 1`] = `
               location={
                 Object {
                   "hash": "",
+                  "key": "testKey",
                   "pathname": "/",
                   "search": "",
-                  "state": undefined,
                 }
               }
               match={
@@ -14187,17 +14393,27 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     Object {
                       "action": "POP",
                       "block": [Function],
+                      "canGo": [Function],
                       "createHref": [Function],
+                      "entries": Array [
+                        Object {
+                          "hash": "",
+                          "key": "testKey",
+                          "pathname": "/",
+                          "search": "",
+                        },
+                      ],
                       "go": [Function],
                       "goBack": [Function],
                       "goForward": [Function],
+                      "index": 0,
                       "length": 1,
                       "listen": [Function],
                       "location": Object {
                         "hash": "",
+                        "key": "testKey",
                         "pathname": "/",
                         "search": "",
-                        "state": undefined,
                       },
                       "push": [Function],
                       "replace": [Function],
@@ -14217,9 +14433,9 @@ exports[`GrcView component 4 renders as expected 1`] = `
                   location={
                     Object {
                       "hash": "",
+                      "key": "testKey",
                       "pathname": "/",
                       "search": "",
-                      "state": undefined,
                     }
                   }
                   match={
@@ -14921,17 +15137,27 @@ exports[`GrcView component 4 renders as expected 1`] = `
                       Object {
                         "action": "POP",
                         "block": [Function],
+                        "canGo": [Function],
                         "createHref": [Function],
+                        "entries": Array [
+                          Object {
+                            "hash": "",
+                            "key": "testKey",
+                            "pathname": "/",
+                            "search": "",
+                          },
+                        ],
                         "go": [Function],
                         "goBack": [Function],
                         "goForward": [Function],
+                        "index": 0,
                         "length": 1,
                         "listen": [Function],
                         "location": Object {
                           "hash": "",
+                          "key": "testKey",
                           "pathname": "/",
                           "search": "",
-                          "state": undefined,
                         },
                         "push": [Function],
                         "replace": [Function],
@@ -14951,9 +15177,9 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     location={
                       Object {
                         "hash": "",
+                        "key": "testKey",
                         "pathname": "/",
                         "search": "",
-                        "state": undefined,
                       }
                     }
                     match={
@@ -15657,17 +15883,27 @@ exports[`GrcView component 4 renders as expected 1`] = `
                         Object {
                           "action": "POP",
                           "block": [Function],
+                          "canGo": [Function],
                           "createHref": [Function],
+                          "entries": Array [
+                            Object {
+                              "hash": "",
+                              "key": "testKey",
+                              "pathname": "/",
+                              "search": "",
+                            },
+                          ],
                           "go": [Function],
                           "goBack": [Function],
                           "goForward": [Function],
+                          "index": 0,
                           "length": 1,
                           "listen": [Function],
                           "location": Object {
                             "hash": "",
+                            "key": "testKey",
                             "pathname": "/",
                             "search": "",
-                            "state": undefined,
                           },
                           "push": [Function],
                           "replace": [Function],
@@ -15688,9 +15924,9 @@ exports[`GrcView component 4 renders as expected 1`] = `
                       location={
                         Object {
                           "hash": "",
+                          "key": "testKey",
                           "pathname": "/",
                           "search": "",
-                          "state": undefined,
                         }
                       }
                       match={
@@ -15867,7 +16103,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
         </div>
       </GrcView>
     </Router>
-  </BrowserRouter>
+  </MemoryRouter>
 </Provider>
 `;
 
@@ -15884,23 +16120,42 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
     }
   }
 >
-  <BrowserRouter>
+  <MemoryRouter
+    initialEntries={
+      Array [
+        Object {
+          "key": "testKey",
+          "pathname": "/",
+        },
+      ]
+    }
+  >
     <Router
       history={
         Object {
           "action": "POP",
           "block": [Function],
+          "canGo": [Function],
           "createHref": [Function],
+          "entries": Array [
+            Object {
+              "hash": "",
+              "key": "testKey",
+              "pathname": "/",
+              "search": "",
+            },
+          ],
           "go": [Function],
           "goBack": [Function],
           "goForward": [Function],
+          "index": 0,
           "length": 1,
           "listen": [Function],
           "location": Object {
             "hash": "",
+            "key": "testKey",
             "pathname": "/",
             "search": "",
-            "state": undefined,
           },
           "push": [Function],
           "replace": [Function],
@@ -16448,7 +16703,7 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
             "entries": Array [
               Object {
                 "hash": "",
-                "key": "h4z0ar",
+                "key": "kbkgs6",
                 "pathname": "/",
                 "search": "",
                 "state": undefined,
@@ -16462,7 +16717,7 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
             "listen": [Function],
             "location": Object {
               "hash": "",
-              "key": "h4z0ar",
+              "key": "kbkgs6",
               "pathname": "/",
               "search": "",
               "state": undefined,
@@ -16630,7 +16885,7 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
         </NoResource>
       </GrcView>
     </Router>
-  </BrowserRouter>
+  </MemoryRouter>
 </Provider>
 `;
 
@@ -16647,23 +16902,42 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
     }
   }
 >
-  <BrowserRouter>
+  <MemoryRouter
+    initialEntries={
+      Array [
+        Object {
+          "key": "testKey",
+          "pathname": "/",
+        },
+      ]
+    }
+  >
     <Router
       history={
         Object {
           "action": "POP",
           "block": [Function],
+          "canGo": [Function],
           "createHref": [Function],
+          "entries": Array [
+            Object {
+              "hash": "",
+              "key": "testKey",
+              "pathname": "/",
+              "search": "",
+            },
+          ],
           "go": [Function],
           "goBack": [Function],
           "goForward": [Function],
+          "index": 0,
           "length": 1,
           "listen": [Function],
           "location": Object {
             "hash": "",
+            "key": "testKey",
             "pathname": "/",
             "search": "",
-            "state": undefined,
           },
           "push": [Function],
           "replace": [Function],
@@ -16690,7 +16964,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
             "entries": Array [
               Object {
                 "hash": "",
-                "key": "h4z0ar",
+                "key": "kbkgs6",
                 "pathname": "/",
                 "search": "",
                 "state": undefined,
@@ -16704,7 +16978,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
             "listen": [Function],
             "location": Object {
               "hash": "",
-              "key": "h4z0ar",
+              "key": "kbkgs6",
               "pathname": "/",
               "search": "",
               "state": undefined,
@@ -16873,6 +17147,6 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
         </NoResource>
       </GrcView>
     </Router>
-  </BrowserRouter>
+  </MemoryRouter>
 </Provider>
 `;
