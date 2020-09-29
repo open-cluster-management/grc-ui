@@ -49,10 +49,7 @@ require('./lib/shared/dust-helpers')
 const app = express()
 
 app.use(helmet({ // in production these headers are set by icp-management-ingress
-  hidePoweredBy: true,
-  frameguard: true,
-  noSniff: true,
-  xssFilter: true
+  frameguard: false
 }))
 
 // Remove the X-Powered-By headers.
