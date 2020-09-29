@@ -115,14 +115,14 @@ export function buildTemplateDetailLink(item, locale) {
   if (message && policyName && policyNamespace && cluster && templateName && apiVersion && kind) {
     const templateDetaiURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
     return <div>
-      {(typeof message === 'string' && message.length > 200)
+      {(typeof message === 'string' && message.length > 300)
         ? <Tooltip
           maxWidth = {'80rem'}
           enableFlip = {false}
-          position = {'bottom'}
+          position = {'top'}
           content = {<div>${message}</div>}
         >
-          <span>${`${message.substring(0, 200)}...`}</span>
+          <span>${`${message.substring(0, 300)}...`}</span>
         </Tooltip>
         : `${message} `
       }
@@ -137,14 +137,14 @@ export function buildTemplateDetailLink(item, locale) {
 export function statusHistoryMessageTooltip(item) {
   const message = _.get(item, 'message', '')
   return  <div>
-    {(typeof message === 'string' && message.length > 200)
+    {(typeof message === 'string' && message.length > 300)
       ? <Tooltip
         maxWidth = {'80rem'}
         enableFlip = {false}
-        position = {'bottom'}
+        position = {'top'}
         content = {<div>${message}</div>}
       >
-        <span>${`${message.substring(0, 200)}...`}</span>
+        <span>${`${message.substring(0, 300)}...`}</span>
       </Tooltip>
       : `${message}`
     }

@@ -7,7 +7,6 @@ import {
   Title,
 } from '@patternfly/react-core'
 import PatternFlyTable from './PatternFlyTable'
-import { LocaleContext } from './LocaleContext'
 import statusHistoryDef from '../../tableDefinitions/statusHistoryDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
@@ -15,26 +14,6 @@ import msgs from '../../../nls/platform.properties'
 class PolicyStatusHistoryView extends React.Component {
   constructor(props) {
     super(props)
-  }
-
-  static contextType = LocaleContext
-
-  setEditor = (editor) => {
-    this.editor=editor
-    this.layoutEditors()
-  }
-
-  layoutEditors() {
-    if (this.containerRef && this.editor) {
-      const rect = this.containerRef.getBoundingClientRect()
-      const width = rect.width
-      const height = rect.height - 24 // minus height of title
-      this.editor.layout({width, height})
-    }
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize',  this.layoutEditors.bind(this))
   }
 
   render() {
