@@ -18,7 +18,7 @@ import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 import _uniqueId from 'lodash/uniqueId'
 import moment from 'moment'
-import { getClusterCompliantStatus } from '../../definitions/hcm-policies-cluster.js'
+import { getPolicyCompliantStatus } from '../../definitions/hcm-policies-policy'
 import { LocaleContext } from './LocaleContext'
 
 resources(() => {
@@ -51,7 +51,7 @@ class DetailsModule extends React.PureComponent {
             if(item.cells[0].type === 'timestamp') {
               entry[1] = moment(entry[1], 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
             } else if(item.cells[1] && item.cells[1].resourceKey === 'clusterCompliant') {
-              entry[1] = getClusterCompliantStatus({violation: entry[1]}, this.context.locale)
+              entry[1] = getPolicyCompliantStatus({clusterCompliant: entry[1]}, this.context.locale)
             }
           }
           // third column entry[2] is tooltip inforamtion, if not exist then no tooltip
