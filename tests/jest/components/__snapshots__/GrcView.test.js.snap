@@ -694,6 +694,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   className="violationCell"
                 >
                   <svg
+                    aria-describedby="pf-tooltip-1"
                     aria-hidden={true}
                     aria-labelledby={null}
                     fill="#c9190b"
@@ -814,6 +815,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
                   className="violationCell"
                 >
                   <svg
+                    aria-describedby="pf-tooltip-2"
                     aria-hidden={true}
                     aria-labelledby={null}
                     fill="#c9190b"
