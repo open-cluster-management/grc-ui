@@ -73,13 +73,13 @@ export default {
 
 export function getClusterCompliantStatus(item, locale) {
   const statusArray = _.get(item, 'violation').split('/')
-  const tooltip = msgs.get('table.tooltip.nostatus', locale)
   return (
     <div className='violationCell'>
       { parseInt(statusArray[0], 10) > 0 ?
-        <RedExclamationCircleIcon /> :
-        <GreenCheckCircleIcon /> }
-      { parseInt(statusArray[2], 10) > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
+        <RedExclamationCircleIcon tooltip={msgs.get('table.tooltip.noncompliant', locale)} /> :
+        <GreenCheckCircleIcon tooltip={msgs.get('table.tooltip.compliant', locale)} /> }
+      { parseInt(statusArray[2], 10) > 0 &&
+        <YellowExclamationTriangleIcon tooltip={msgs.get('table.tooltip.nostatus', locale)} /> }
       {`${statusArray[0]}/${statusArray[1]}`}
     </div>
   )

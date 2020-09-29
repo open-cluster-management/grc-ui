@@ -105,8 +105,8 @@ export function getPolicyCompliantStatus(item, locale) {
   return (
     <div className='violationCell'>
       { parseInt(statusArray[0], 10) > 0 ?
-        <RedExclamationCircleIcon /> :
-        <GreenCheckCircleIcon /> }
+        <RedExclamationCircleIcon tooltip={msgs.get('table.tooltip.noncompliant', locale)} /> :
+        <GreenCheckCircleIcon tooltip={msgs.get('table.tooltip.compliant', locale)} /> }
       { parseInt(statusArray[2], 10) > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
       {`${statusArray[0]}/${statusArray[1]}`}
     </div>
