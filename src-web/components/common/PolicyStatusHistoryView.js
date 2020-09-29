@@ -7,6 +7,7 @@ import {
   Title,
 } from '@patternfly/react-core'
 import PatternFlyTable from './PatternFlyTable'
+import { LocaleContext } from './LocaleContext'
 import statusHistoryDef from '../../tableDefinitions/statusHistoryDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
@@ -15,6 +16,8 @@ class PolicyStatusHistoryView extends React.Component {
   constructor(props) {
     super(props)
   }
+
+  static contextType = LocaleContext
 
   render() {
     const { history, cluster, template } = this.props

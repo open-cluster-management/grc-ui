@@ -113,7 +113,7 @@ export function buildTemplateDetailLink(item, locale) {
   const apiVersion = _.get(item, 'apiVersion')
   const kind = _.get(item, 'kind')
   if (message && policyName && policyNamespace && cluster && templateName && apiVersion && kind) {
-    const templateDetaiURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
+    const templateDetailURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
     return <div>
       {(typeof message === 'string' && message.length > 300)
         ? <Tooltip
@@ -126,7 +126,7 @@ export function buildTemplateDetailLink(item, locale) {
         </Tooltip>
         : `${message} `
       }
-      <Link to={templateDetaiURL}>
+      <Link to={templateDetailURL}>
         {msgs.get('table.actions.view.details', locale)}
       </Link>
     </div>
