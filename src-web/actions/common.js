@@ -190,9 +190,10 @@ export const removeResource = (resourceType, vars) => async dispatch => {
     const response = await GrcApolloClient.remove(vars)
     if (response.errors) {
       return dispatch(receiveDelError(response.errors, resourceType))
+    } else {
+      dispatch(receiveDelResource(response, resourceType, vars))
     }
     dispatch(fetchResources(resourceType))
-    dispatch(receiveDelResource(response, resourceType, vars))
   } catch (err) {
     return dispatch(receiveDelError(err, resourceType))
   }
