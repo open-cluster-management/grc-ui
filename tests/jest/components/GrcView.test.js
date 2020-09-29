@@ -17,12 +17,12 @@ import { GrcViewPolicyCluster, GrcViewPolicyCluster2,
 //curly braces means pure component without redux
 //which is what we want in unit test
 import { GrcView } from '../../../src-web/components/GrcView'
-import renderer from 'react-test-renderer'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { createMemoryHistory } from 'history'
+import toJson from 'enzyme-to-json'
 
 const mockStore = configureMockStore()
 const storePolicyCluster = mockStore(reduxStorePolicyCluster)
@@ -36,12 +36,13 @@ const history = createMemoryHistory({
   }
 })
 
+
 describe('GrcView component 1', () => {
   const location = {
     pathname: '/multicloud/policies/all'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -59,7 +60,7 @@ describe('GrcView component 1', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -68,7 +69,7 @@ describe('GrcView component 2', () => {
     pathname: '/multicloud/policies/all'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -85,7 +86,7 @@ describe('GrcView component 2', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -94,7 +95,7 @@ describe('GrcView component 3', () => {
     pathname: '/multicloud/policies/all'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -111,7 +112,7 @@ describe('GrcView component 3', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -121,7 +122,7 @@ describe('GrcView component 4', () => {
     search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -138,7 +139,7 @@ describe('GrcView component 4', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -148,7 +149,7 @@ describe('GrcView component 7 has create permission', () => {
     search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -166,7 +167,7 @@ describe('GrcView component 7 has create permission', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -176,7 +177,7 @@ describe('GrcView component 8 has not create permission', () => {
     search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -194,7 +195,7 @@ describe('GrcView component 8 has not create permission', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
