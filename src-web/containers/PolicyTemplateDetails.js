@@ -42,7 +42,19 @@ class PolicyTemplateDetails extends React.Component {
     const { location } = this.props,
           { locale } = this.context,
           urlSegments = location.pathname.split('/')
-    const { match: { params: { policyName, policyNamespace, clusterName }} } = this.props
+    const {
+      match: {
+        params: {
+          policyName,
+          policyNamespace,
+          clusterName,
+          apiGroup,
+          version,
+          kind,
+          name,
+        }
+      }
+    } = this.props
     breadcrumbItems.push({
       label: msgs.get('tabs.hcmcompliance', locale),
       noLocale: true,
@@ -54,9 +66,14 @@ class PolicyTemplateDetails extends React.Component {
       url: `${urlSegments.slice(0, 3).join('/')}/all/${policyNamespace}/${policyName}`
     },
     {
-      label: clusterName,
+      label: msgs.get('table.header.status', locale),
       noLocale: true,
-      url: `${urlSegments.join('/')}`
+      url: `${urlSegments.slice(0, 3).join('/')}/all/${policyNamespace}/${policyName}/status`
+    },
+    {
+      label: msgs.get('table.header.template', locale),
+      noLocale: true,
+      url: `${urlSegments.slice(0, 3).join('/')}/all/${policyNamespace}/${policyName}/template/${clusterName}/${apiGroup}/${version}/${kind}/${name}`
     })
     return breadcrumbItems
   }
