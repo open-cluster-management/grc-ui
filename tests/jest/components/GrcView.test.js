@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2018, 2019. All Rights Reserved.
@@ -23,6 +24,11 @@ import { BrowserRouter } from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import { createMemoryHistory } from 'history'
+import {
+  ExclamationCircleIcon as MockExclamationCircleIcon,
+  ExclamationTriangleIcon as MockExclamationTriangleIcon,
+  CheckCircleIcon as MockCheckCircleIcon,
+} from '@patternfly/react-icons'
 
 const mockStore = configureMockStore()
 const storePolicyCluster = mockStore(reduxStorePolicyCluster)
@@ -33,6 +39,17 @@ const history = createMemoryHistory({
     'pathname':'/multicloud/policies/all',
     'search':'',
     'hash':''
+  }
+})
+
+// mock Icons so that tooltip won't render in any cases
+// otherwise it is going to throw TypeError: element.addEventListener is not a function
+// because renderer doesn't have dom
+jest.mock('../../../src-web/components/common/Icons', () => {
+  return {
+    GreenCheckCircleIcon: () => <MockCheckCircleIcon color='#467f40' />,
+    RedExclamationCircleIcon: () => <MockExclamationCircleIcon color='#c9190b' />,
+    YellowExclamationTriangleIcon: () => <MockExclamationTriangleIcon color='#f0ab00' />,
   }
 })
 
