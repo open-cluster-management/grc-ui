@@ -88,6 +88,10 @@
         margin-bottom: 1.5rem; //TODO: decide what to do when there's no tab. Hack to display the title at same location
       }
 
+      &.no-breadcrumb {
+        margin-top: 3rem;
+      }
+
       .info-icon {
         margin-left: 0.7rem;
         margin-top: 0.7rem;
@@ -230,11 +234,6 @@
   width: 100%;
   height: $secondary-header-max-height;
   z-index: 1000;
-}
-
-.secondary-header-wrapper-min {
-  @extend .secondary-header-wrapper;
-  height: $secondary-header-min-height;
 }
 
 @media screen and (max-width: 48rem) {
