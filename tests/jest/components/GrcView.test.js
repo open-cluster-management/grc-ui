@@ -17,12 +17,12 @@ import { GrcViewPolicyCluster, GrcViewPolicyCluster2,
 //curly braces means pure component without redux
 //which is what we want in unit test
 import { GrcView } from '../../../src-web/components/GrcView'
+import renderer from 'react-test-renderer'
 import { Provider } from 'react-redux'
-import { BrowserRouter, MemoryRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
-import { shallow, mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import { createMemoryHistory } from 'history'
-import toJson from 'enzyme-to-json'
 
 const mockStore = configureMockStore()
 const storePolicyCluster = mockStore(reduxStorePolicyCluster)
@@ -36,15 +36,14 @@ const history = createMemoryHistory({
   }
 })
 
-
 describe('GrcView component 1', () => {
   const location = {
     pathname: '/multicloud/policies/all'
   }
   it('renders as expected', () => {
-    const component = mount(
+    const component = renderer.create(
       <Provider store={storePolicyCluster}>
-        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
+        <BrowserRouter>
           <GrcView
             title='Test1'
             history={history}
@@ -57,10 +56,10 @@ describe('GrcView component 1', () => {
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
             showApplications={true}
           />
-        </MemoryRouter>
+        </BrowserRouter>
       </Provider>
     )
-    expect(toJson(component)).toMatchSnapshot()
+    expect(component.toJSON()).toMatchSnapshot()
   })
 })
 
@@ -69,9 +68,9 @@ describe('GrcView component 2', () => {
     pathname: '/multicloud/policies/all'
   }
   it('renders as expected', () => {
-    const component = mount(
+    const component = renderer.create(
       <Provider store={storePolicyCluster}>
-        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
+        <BrowserRouter>
           <GrcView
             title='Test2'
             history={history}
@@ -83,10 +82,10 @@ describe('GrcView component 2', () => {
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
           />
-        </MemoryRouter>
+        </BrowserRouter>
       </Provider>
     )
-    expect(toJson(component)).toMatchSnapshot()
+    expect(component.toJSON()).toMatchSnapshot()
   })
 })
 
@@ -95,9 +94,9 @@ describe('GrcView component 3', () => {
     pathname: '/multicloud/policies/all'
   }
   it('renders as expected', () => {
-    const component = mount(
+    const component = renderer.create(
       <Provider store={storePolicyCluster}>
-        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
+        <BrowserRouter>
           <GrcView
             title='Test3'
             history={history}
@@ -109,10 +108,10 @@ describe('GrcView component 3', () => {
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
           />
-        </MemoryRouter>
+        </BrowserRouter>
       </Provider>
     )
-    expect(toJson(component)).toMatchSnapshot()
+    expect(component.toJSON()).toMatchSnapshot()
   })
 })
 
@@ -122,9 +121,9 @@ describe('GrcView component 4', () => {
     search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
   }
   it('renders as expected', () => {
-    const component = mount(
+    const component = renderer.create(
       <Provider store={storePolicyCluster}>
-        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
+        <BrowserRouter>
           <GrcView
             title='Test4'
             history={history}
@@ -136,10 +135,10 @@ describe('GrcView component 4', () => {
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
           />
-        </MemoryRouter>
+        </BrowserRouter>
       </Provider>
     )
-    expect(toJson(component)).toMatchSnapshot()
+    expect(component.toJSON()).toMatchSnapshot()
   })
 })
 
@@ -149,9 +148,9 @@ describe('GrcView component 7 has create permission', () => {
     search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
   }
   it('renders as expected', () => {
-    const component = mount(
+    const component = renderer.create(
       <Provider store={storePolicyCluster}>
-        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
+        <BrowserRouter>
           <GrcView
             title='Test7'
             history={history}
@@ -164,10 +163,10 @@ describe('GrcView component 7 has create permission', () => {
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
             access={reduxStorePolicyCluster.userAccess.access}
           />
-        </MemoryRouter>
+        </BrowserRouter>
       </Provider>
     )
-    expect(toJson(component)).toMatchSnapshot()
+    expect(component.toJSON()).toMatchSnapshot()
   })
 })
 
@@ -177,9 +176,9 @@ describe('GrcView component 8 has not create permission', () => {
     search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
   }
   it('renders as expected', () => {
-    const component = mount(
+    const component = renderer.create(
       <Provider store={storePolicyCluster}>
-        <MemoryRouter initialEntries={[ { pathname: '/', key: 'testKey' } ]}>
+        <BrowserRouter>
           <GrcView
             title='Test7'
             history={history}
@@ -192,10 +191,10 @@ describe('GrcView component 8 has not create permission', () => {
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
             access={[]}
           />
-        </MemoryRouter>
+        </BrowserRouter>
       </Provider>
     )
-    expect(toJson(component)).toMatchSnapshot()
+    expect(component.toJSON()).toMatchSnapshot()
   })
 })
 
