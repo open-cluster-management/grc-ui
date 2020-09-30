@@ -45,7 +45,7 @@ describe('GrcToggle view without application', () => {
         highLightRowName={''}
         showSidePanel={false}
       />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
   it('renders expand as expected', () => {
     const component = shallow(
@@ -60,7 +60,7 @@ describe('GrcToggle view without application', () => {
         highLightRowName={''}
         showSidePanel={false}
       />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })
 
@@ -78,7 +78,7 @@ describe('GrcToggle view with application', () => {
         highLightRowName={''}
         showSidePanel={false}
       />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
   it('renders expand as expected', () => {
     const component = shallow(
@@ -93,7 +93,7 @@ describe('GrcToggle view with application', () => {
         highLightRowName={''}
         showSidePanel={false}
       />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })
 
@@ -111,7 +111,7 @@ describe('GrcToggle view', () => {
         highLightRowName={''}
         showSidePanel={false}
       />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
   it('renders expand as expected', () => {
     const component = shallow(<GrcToggleModule
@@ -125,7 +125,7 @@ describe('GrcToggle view', () => {
       highLightRowName={''}
       showSidePanel={false}
     />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })
 
