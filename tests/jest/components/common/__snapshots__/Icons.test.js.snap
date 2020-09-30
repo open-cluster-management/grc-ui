@@ -1,127 +1,418 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test coponent GreenCheckCircleIcon renders as expected 1`] = `
-<svg
-  aria-hidden={true}
-  aria-labelledby={null}
-  fill="#467f40"
-  height="1em"
-  role="img"
-  style={
-    Object {
-      "verticalAlign": "-0.125em",
-    }
-  }
-  viewBox="0 0 512 512"
-  width="1em"
->
-  <path
-    d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
-  />
-</svg>
+<GreenCheckCircleIcon>
+  <CheckCircleIcon
+    color="#467f40"
+    noVerticalAlign={false}
+    size="sm"
+  >
+    <svg
+      aria-hidden={true}
+      aria-labelledby={null}
+      fill="#467f40"
+      height="1em"
+      role="img"
+      style={
+        Object {
+          "verticalAlign": "-0.125em",
+        }
+      }
+      viewBox="0 0 512 512"
+      width="1em"
+    >
+      <path
+        d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
+      />
+    </svg>
+  </CheckCircleIcon>
+</GreenCheckCircleIcon>
 `;
 
 exports[`test coponent GreenCheckCircleIcon renders tooltip as expected 1`] = `
-<svg
-  aria-hidden={true}
-  aria-labelledby={null}
-  fill="#467f40"
-  height="1em"
-  role="img"
-  style={
-    Object {
-      "verticalAlign": "-0.125em",
-    }
-  }
-  viewBox="0 0 512 512"
-  width="1em"
+<GreenCheckCircleIcon
+  tooltip="aaaa"
 >
-  <path
-    d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
-  />
-</svg>
+  <Tooltip
+    content={
+      <div>
+        aaaa
+      </div>
+    }
+  >
+    <Popper
+      appendTo={[Function]}
+      distance={15}
+      enableFlip={true}
+      flipBehavior={
+        Array [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "top",
+          "right",
+          "bottom",
+        ]
+      }
+      isVisible={false}
+      onBlur={[Function]}
+      onDocumentClick={false}
+      onDocumentKeyDown={[Function]}
+      onFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onTriggerEnter={[Function]}
+      placement="top"
+      popper={
+        <div
+          className="pf-c-tooltip"
+          id="pf-tooltip-1"
+          role="tooltip"
+          style={
+            Object {
+              "maxWidth": null,
+              "opacity": 0,
+              "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
+            }
+          }
+        >
+          <TooltipArrow />
+          <TooltipContent
+            isLeftAligned={false}
+          >
+            <div>
+              aaaa
+            </div>
+          </TooltipContent>
+        </div>
+      }
+      popperMatchesTriggerWidth={false}
+      positionModifiers={
+        Object {
+          "bottom": "pf-m-bottom",
+          "left": "pf-m-left",
+          "right": "pf-m-right",
+          "top": "pf-m-top",
+        }
+      }
+      trigger={
+        <CheckCircleIcon
+          aria-describedby="pf-tooltip-1"
+          color="#467f40"
+          noVerticalAlign={false}
+          size="sm"
+        />
+      }
+      zIndex={9999}
+    >
+      <FindRefWrapper
+        onFoundRef={[Function]}
+      >
+        <CheckCircleIcon
+          aria-describedby="pf-tooltip-1"
+          color="#467f40"
+          noVerticalAlign={false}
+          size="sm"
+        >
+          <svg
+            aria-describedby="pf-tooltip-1"
+            aria-hidden={true}
+            aria-labelledby={null}
+            fill="#467f40"
+            height="1em"
+            role="img"
+            style={
+              Object {
+                "verticalAlign": "-0.125em",
+              }
+            }
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
+            />
+          </svg>
+        </CheckCircleIcon>
+      </FindRefWrapper>
+    </Popper>
+  </Tooltip>
+</GreenCheckCircleIcon>
 `;
 
 exports[`test coponent RedExclamationCircleIcon renders as expected 1`] = `
-<svg
-  aria-hidden={true}
-  aria-labelledby={null}
-  fill="#c9190b"
-  height="1em"
-  role="img"
-  style={
-    Object {
-      "verticalAlign": "-0.125em",
-    }
-  }
-  viewBox="0 0 512 512"
-  width="1em"
->
-  <path
-    d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-  />
-</svg>
+<RedExclamationCircleIcon>
+  <ExclamationCircleIcon
+    color="#c9190b"
+    noVerticalAlign={false}
+    size="sm"
+  >
+    <svg
+      aria-hidden={true}
+      aria-labelledby={null}
+      fill="#c9190b"
+      height="1em"
+      role="img"
+      style={
+        Object {
+          "verticalAlign": "-0.125em",
+        }
+      }
+      viewBox="0 0 512 512"
+      width="1em"
+    >
+      <path
+        d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+      />
+    </svg>
+  </ExclamationCircleIcon>
+</RedExclamationCircleIcon>
 `;
 
 exports[`test coponent RedExclamationCircleIcon renders tooltip as expected 1`] = `
-<svg
-  aria-hidden={true}
-  aria-labelledby={null}
-  fill="#c9190b"
-  height="1em"
-  role="img"
-  style={
-    Object {
-      "verticalAlign": "-0.125em",
-    }
-  }
-  viewBox="0 0 512 512"
-  width="1em"
+<RedExclamationCircleIcon
+  tooltip="aaaa"
 >
-  <path
-    d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-  />
-</svg>
+  <Tooltip
+    content="aaaa"
+  >
+    <Popper
+      appendTo={[Function]}
+      distance={15}
+      enableFlip={true}
+      flipBehavior={
+        Array [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "top",
+          "right",
+          "bottom",
+        ]
+      }
+      isVisible={false}
+      onBlur={[Function]}
+      onDocumentClick={false}
+      onDocumentKeyDown={[Function]}
+      onFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onTriggerEnter={[Function]}
+      placement="top"
+      popper={
+        <div
+          className="pf-c-tooltip"
+          id="pf-tooltip-2"
+          role="tooltip"
+          style={
+            Object {
+              "maxWidth": null,
+              "opacity": 0,
+              "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
+            }
+          }
+        >
+          <TooltipArrow />
+          <TooltipContent
+            isLeftAligned={false}
+          >
+            aaaa
+          </TooltipContent>
+        </div>
+      }
+      popperMatchesTriggerWidth={false}
+      positionModifiers={
+        Object {
+          "bottom": "pf-m-bottom",
+          "left": "pf-m-left",
+          "right": "pf-m-right",
+          "top": "pf-m-top",
+        }
+      }
+      trigger={
+        <ExclamationCircleIcon
+          aria-describedby="pf-tooltip-2"
+          color="#c9190b"
+          noVerticalAlign={false}
+          size="sm"
+        />
+      }
+      zIndex={9999}
+    >
+      <FindRefWrapper
+        onFoundRef={[Function]}
+      >
+        <ExclamationCircleIcon
+          aria-describedby="pf-tooltip-2"
+          color="#c9190b"
+          noVerticalAlign={false}
+          size="sm"
+        >
+          <svg
+            aria-describedby="pf-tooltip-2"
+            aria-hidden={true}
+            aria-labelledby={null}
+            fill="#c9190b"
+            height="1em"
+            role="img"
+            style={
+              Object {
+                "verticalAlign": "-0.125em",
+              }
+            }
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+            />
+          </svg>
+        </ExclamationCircleIcon>
+      </FindRefWrapper>
+    </Popper>
+  </Tooltip>
+</RedExclamationCircleIcon>
 `;
 
 exports[`test coponent YellowExclamationTriangleIcon renders as expected 1`] = `
-<svg
-  aria-hidden={true}
-  aria-labelledby={null}
-  fill="#f0ab00"
-  height="1em"
-  role="img"
-  style={
-    Object {
-      "verticalAlign": "-0.125em",
-    }
-  }
-  viewBox="0 0 576 512"
-  width="1em"
+<YellowExclamationTriangleIcon
+  tooltip="aaaa"
 >
-  <path
-    d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-  />
-</svg>
+  <Tooltip
+    content={
+      <div>
+        aaaa
+      </div>
+    }
+  >
+    <Popper
+      appendTo={[Function]}
+      distance={15}
+      enableFlip={true}
+      flipBehavior={
+        Array [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "top",
+          "right",
+          "bottom",
+        ]
+      }
+      isVisible={false}
+      onBlur={[Function]}
+      onDocumentClick={false}
+      onDocumentKeyDown={[Function]}
+      onFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onTriggerEnter={[Function]}
+      placement="top"
+      popper={
+        <div
+          className="pf-c-tooltip"
+          id="pf-tooltip-3"
+          role="tooltip"
+          style={
+            Object {
+              "maxWidth": null,
+              "opacity": 0,
+              "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
+            }
+          }
+        >
+          <TooltipArrow />
+          <TooltipContent
+            isLeftAligned={false}
+          >
+            <div>
+              aaaa
+            </div>
+          </TooltipContent>
+        </div>
+      }
+      popperMatchesTriggerWidth={false}
+      positionModifiers={
+        Object {
+          "bottom": "pf-m-bottom",
+          "left": "pf-m-left",
+          "right": "pf-m-right",
+          "top": "pf-m-top",
+        }
+      }
+      trigger={
+        <ExclamationTriangleIcon
+          aria-describedby="pf-tooltip-3"
+          color="#f0ab00"
+          noVerticalAlign={false}
+          size="sm"
+        />
+      }
+      zIndex={9999}
+    >
+      <FindRefWrapper
+        onFoundRef={[Function]}
+      >
+        <ExclamationTriangleIcon
+          aria-describedby="pf-tooltip-3"
+          color="#f0ab00"
+          noVerticalAlign={false}
+          size="sm"
+        >
+          <svg
+            aria-describedby="pf-tooltip-3"
+            aria-hidden={true}
+            aria-labelledby={null}
+            fill="#f0ab00"
+            height="1em"
+            role="img"
+            style={
+              Object {
+                "verticalAlign": "-0.125em",
+              }
+            }
+            viewBox="0 0 576 512"
+            width="1em"
+          >
+            <path
+              d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+            />
+          </svg>
+        </ExclamationTriangleIcon>
+      </FindRefWrapper>
+    </Popper>
+  </Tooltip>
+</YellowExclamationTriangleIcon>
 `;
 
 exports[`test coponent YellowExclamationTriangleIcon renders tooltip as expected 1`] = `
-<svg
-  aria-hidden={true}
-  aria-labelledby={null}
-  fill="#f0ab00"
-  height="1em"
-  role="img"
-  style={
-    Object {
-      "verticalAlign": "-0.125em",
-    }
-  }
-  viewBox="0 0 576 512"
-  width="1em"
->
-  <path
-    d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-  />
-</svg>
+<YellowExclamationTriangleIcon>
+  <ExclamationTriangleIcon
+    color="#f0ab00"
+    noVerticalAlign={false}
+    size="sm"
+  >
+    <svg
+      aria-hidden={true}
+      aria-labelledby={null}
+      fill="#f0ab00"
+      height="1em"
+      role="img"
+      style={
+        Object {
+          "verticalAlign": "-0.125em",
+        }
+      }
+      viewBox="0 0 576 512"
+      width="1em"
+    >
+      <path
+        d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+      />
+    </svg>
+  </ExclamationTriangleIcon>
+</YellowExclamationTriangleIcon>
 `;

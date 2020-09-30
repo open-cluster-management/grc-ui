@@ -2,56 +2,57 @@
 'use strict'
 
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { mount } from 'enzyme'
 import {
   GreenCheckCircleIcon,
   RedExclamationCircleIcon,
   YellowExclamationTriangleIcon,
 } from '../../../../src-web/components/common/Icons'
+import toJson from 'enzyme-to-json'
 
 describe('test coponent GreenCheckCircleIcon', () => {
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <GreenCheckCircleIcon />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
   it('renders tooltip as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <GreenCheckCircleIcon tooltip='aaaa' />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 
 })
 
 describe('test coponent RedExclamationCircleIcon', () => {
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <RedExclamationCircleIcon />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
   it('renders tooltip as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <RedExclamationCircleIcon tooltip='aaaa' />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
 
 describe('test coponent YellowExclamationTriangleIcon', () => {
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <YellowExclamationTriangleIcon tooltip='aaaa' />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
   it('renders tooltip as expected', () => {
-    const component = renderer.create(
+    const component = mount(
       <YellowExclamationTriangleIcon />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
