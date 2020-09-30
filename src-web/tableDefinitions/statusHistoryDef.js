@@ -2,7 +2,11 @@
 
 'use strict'
 
-import { buildTimestamp, buildCompliantCellFromMessage } from './utils'
+import {
+  buildTimestamp,
+  buildCompliantCellFromMessage,
+  statusHistoryMessageTooltip,
+} from './utils'
 import {
   breakWord,
   wrappable,
@@ -24,6 +28,7 @@ export default {
       resourceKey: 'message',
       transforms: [cellWidth(70), wrappable, sortable],
       cellTransforms: [breakWord],
+      transformFunction: statusHistoryMessageTooltip
     },
     {
       msgKey: 'table.header.lastreport',

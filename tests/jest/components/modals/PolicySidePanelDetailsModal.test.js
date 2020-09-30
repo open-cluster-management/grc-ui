@@ -20,6 +20,7 @@ import PolicySidePanelDetailsModal, {
 } from '../../../../src-web/components/modals/PolicySidePanelDetailsModal'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
+import toJson from 'enzyme-to-json'
 
 describe('PoliciesView view', () => {
   const updateModal = jest.fn()
@@ -32,7 +33,7 @@ describe('PoliciesView view', () => {
       open = {true}
       updateModal = {updateModal}
     />)
-    expect(component).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -47,7 +48,7 @@ describe('PoliciesView view', () => {
       open = {true}
       updateModal = {updateModal}
     />)
-    expect(component).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -64,7 +65,7 @@ describe('ClustersView view', () => {
         updateModal = {updateModal}
       />
     )
-    expect(component).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 

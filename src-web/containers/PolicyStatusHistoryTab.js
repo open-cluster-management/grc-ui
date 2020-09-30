@@ -41,7 +41,7 @@ class PolicyStatusHistoryTab extends React.Component {
     const { location } = this.props,
           { locale } = this.context,
           urlSegments = location.pathname.split('/')
-    const { match: { params: { policyName, hubNamespace }} } = this.props
+    const { match: { params: { policyName, hubNamespace, cluster, template }} } = this.props
     breadcrumbItems.push({
       label: msgs.get('tabs.hcmcompliance', locale),
       noLocale: true,
@@ -56,6 +56,11 @@ class PolicyStatusHistoryTab extends React.Component {
       label: msgs.get('table.header.status', locale),
       noLocale: true,
       url: `${urlSegments.slice(0, 3).join('/')}/all/${hubNamespace}/${policyName}/status`
+    },
+    {
+      label: msgs.get('table.header.history', locale),
+      noLocale: true,
+      url: `${urlSegments.slice(0, 3).join('/')}/all/${hubNamespace}/${policyName}/status/${cluster}/templates/${template}/history`
     })
     return breadcrumbItems
   }

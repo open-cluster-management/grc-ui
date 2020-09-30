@@ -52,8 +52,8 @@ describe('NestedTable component 1', () => {
     const component = shallow(
       <NestedTable  {...tagFilterProps} header={'header'} selectionChanged={fn} />
     )
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
     component.find('.nest-table-expand-icon').at(0).simulate('click')
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })
