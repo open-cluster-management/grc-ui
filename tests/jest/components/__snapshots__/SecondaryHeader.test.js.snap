@@ -16,7 +16,7 @@ exports[`SecondaryHeader component 1 renders as expected 1`] = `
         className="bx--detail-page-header-content"
       >
         <div
-          className="bx--detail-page-header-title-container"
+          className="bx--detail-page-header-title-container no-breadcrumb"
         >
           <h1
             className="bx--detail-page-header-title"
@@ -46,7 +46,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
         className="bx--detail-page-header-content"
       >
         <div
-          className="bx--detail-page-header-title-container"
+          className="bx--detail-page-header-title-container no-breadcrumb"
         >
           <h1
             className="bx--detail-page-header-title"
@@ -163,7 +163,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
         className="bx--detail-page-header-content"
       >
         <div
-          className="bx--detail-page-header-title-container"
+          className="bx--detail-page-header-title-container no-breadcrumb"
         >
           <h1
             className="bx--detail-page-header-title"
@@ -280,7 +280,7 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
         className="bx--detail-page-header-content"
       >
         <div
-          className="bx--detail-page-header-title-container"
+          className="bx--detail-page-header-title-container no-breadcrumb"
         >
           <h1
             className="bx--detail-page-header-title"
@@ -398,7 +398,7 @@ exports[`SecondaryHeader component 3 renders as expected 1`] = `
         className="bx--detail-page-header-content"
       >
         <div
-          className="bx--detail-page-header-title-container"
+          className="bx--detail-page-header-title-container no-breadcrumb"
         >
           <h1
             className="bx--detail-page-header-title"
@@ -521,7 +521,7 @@ exports[`SecondaryHeader component 4 renders as expected 1`] = `
         className="bx--detail-page-header-content"
       >
         <div
-          className="bx--detail-page-header-title-container"
+          className="bx--detail-page-header-title-container no-breadcrumb"
         >
           <h1
             className="bx--detail-page-header-title"
@@ -584,7 +584,7 @@ Array [
 
 exports[`SecondaryHeader component 5 renderHeader with description 1`] = `
 <div
-  className="bx--detail-page-header-title-container"
+  className="bx--detail-page-header-title-container no-breadcrumb"
 >
   <h1
     className="bx--detail-page-header-title"
@@ -604,7 +604,7 @@ exports[`SecondaryHeader component 5 renderHeader with description 1`] = `
 
 exports[`SecondaryHeader component 5 renderHeader without description 1`] = `
 <div
-  className="bx--detail-page-header-title-container"
+  className="bx--detail-page-header-title-container no-breadcrumb"
 >
   <h1
     className="bx--detail-page-header-title"

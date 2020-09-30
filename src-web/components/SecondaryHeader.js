@@ -69,7 +69,7 @@ export class SecondaryHeader extends React.Component {
       <div className='secondary-header-wrapper' role='region' aria-label={title}>
         <div className={`secondary-header ${midName} simple-header${this.state.shadowPresent ? '-with-shadow' : ''}${description ? ' special-layout': ''}`}>
           <header aria-label={`Heading: ${title}`}>
-            <div className="bx--detail-page-header-content">
+            <div className='bx--detail-page-header-content'>
               {breadcrumbItems &&
                 (
                   <Breadcrumb>
@@ -77,7 +77,7 @@ export class SecondaryHeader extends React.Component {
                   </Breadcrumb>
                 )
               }
-              {this.renderHeader()}
+              {this.renderHeader(Boolean(breadcrumbItems))}
               {tabs && tabs.length > 0 &&
                 <Tabs selected={this.getSelectedTab() || 0} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
                   {this.renderTabs()}
@@ -95,20 +95,20 @@ export class SecondaryHeader extends React.Component {
     )
   }
 
-  renderHeader() {
+  renderHeader(hasBreadcrumb) {
     const { title:headerTitle, description, information, links=[] } = this.props
     if (description) {
       /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
       return (
-        <div className="bx--detail-page-header-title-container">
-          <h1 className="bx--detail-page-header-title">{headerTitle}</h1>
-          <div className="detail-page-header-title-button" onClick={description.action}><p>{description.display}</p></div>
+        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': ' no-breadcrumb'}`}>
+          <h1 className='bx--detail-page-header-title'>{headerTitle}</h1>
+          <div className='detail-page-header-title-button' onClick={description.action}><p>{description.display}</p></div>
         </div>
       )
     } else {
       return (
-        <div className="bx--detail-page-header-title-container">
-          <h1 className="bx--detail-page-header-title">{headerTitle}</h1>
+        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': ' no-breadcrumb'}`}>
+          <h1 className='bx--detail-page-header-title'>{headerTitle}</h1>
           {information &&
             <TooltipIcon align='end' tooltipText={information}>
               <svg className='info-icon'>
