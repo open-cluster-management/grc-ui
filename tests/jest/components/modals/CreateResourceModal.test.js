@@ -16,7 +16,7 @@ describe('CreateResourceModal modal', () => {
   it('renders as expected', () => {
     const component = shallow(<CreateResourceModal
     />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
   it('handleModalOpen as expected', () => {
     const component = shallow(<CreateResourceModal

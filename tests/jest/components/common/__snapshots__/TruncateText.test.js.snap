@@ -1,18 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TruncateText renders as expected for non truncated text 1`] = `"NonTruncateText"`;
+exports[`TruncateText renders as expected for array 1`] = `
+Object {
+  "maxCharacters": 25,
+  "text": Array [
+    1,
+    2,
+    3,
+  ],
+}
+`;
+
+exports[`TruncateText renders as expected for non truncated text 1`] = `
+Object {
+  "maxCharacters": 25,
+  "text": "NonTruncateText",
+}
+`;
+
+exports[`TruncateText renders as expected for null 1`] = `
+Object {
+  "maxCharacters": 25,
+  "text": null,
+}
+`;
 
 exports[`TruncateText renders as expected for truncated text 1`] = `
 Object {
-  "children": <span>
-    Tr...xt
-  </span>,
-  "content": <div>
-    $
-    TruncateText
-  </div>,
-  "enableFlip": false,
-  "maxWidth": "80rem",
-  "position": "top",
+  "maxCharacters": 7,
+  "text": "TruncateText",
+}
+`;
+
+exports[`TruncateText renders as expected for truncated text 2`] = `
+Object {
+  "maxCharacters": 5,
+  "maxWidth": "30rem",
+  "position": "bottom",
+  "text": "TruncateText",
+  "textEnd": ".",
 }
 `;

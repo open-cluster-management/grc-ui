@@ -27,7 +27,7 @@ describe('CreateResourceModal modal', () => {
       resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
       data={resourceModalData}
     />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected', () => {
@@ -43,7 +43,7 @@ describe('CreateResourceModal modal', () => {
       resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
       data={resourceModalData}
     />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('onChange as expected', () => {

@@ -11,22 +11,52 @@
 
 import React from 'react'
 import TruncateText from '../../../../src-web/components/common/TruncateText'
-import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
 
 describe('TruncateText', () => {
   it('renders as expected for truncated text', () => {
     const props = { maxCharacters: 7, text: 'TruncateText'}
-    const component = renderer.create(
+    const component = shallow(
       <TruncateText  {...props} />
     )
-    expect(component.getInstance().render().props).toMatchSnapshot()
+    expect(component.instance().props).toMatchSnapshot()
+  })
+
+  it('renders as expected for truncated text', () => {
+    const props = {
+      maxCharacters: 5,
+      text: 'TruncateText',
+      position: 'bottom',
+      textEnd: '.',
+      maxWidth: '30rem'
+    }
+    const component = shallow(
+      <TruncateText  {...props} />
+    )
+    expect(component.instance().props).toMatchSnapshot()
   })
 
   it('renders as expected for non truncated text', () => {
     const props = { maxCharacters: 25, text: 'NonTruncateText'}
-    const component = renderer.create(
+    const component = shallow(
       <TruncateText  {...props} />
     )
-    expect(component).toMatchSnapshot()
+    expect(component.instance().props).toMatchSnapshot()
+  })
+
+  it('renders as expected for null', () => {
+    const props = { maxCharacters: 25, text: null}
+    const component = shallow(
+      <TruncateText  {...props} />
+    )
+    expect(component.instance().props).toMatchSnapshot()
+  })
+
+  it('renders as expected for array', () => {
+    const props = { maxCharacters: 25, text: [1,2,3]}
+    const component = shallow(
+      <TruncateText  {...props} />
+    )
+    expect(component.instance().props).toMatchSnapshot()
   })
 })

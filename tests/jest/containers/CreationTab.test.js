@@ -19,7 +19,7 @@ describe('CreationTab container', () => {
       updateSecondaryHeader={jest.fn()}
       mutateStatus={'DONE'}
     />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected', () => {
@@ -28,7 +28,7 @@ describe('CreationTab container', () => {
       updateSecondaryHeader={jest.fn()}
       handleCreateResources={jest.fn()}
     />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
     component.instance().handleCreate()
     component.instance().handleCancel()
   })
