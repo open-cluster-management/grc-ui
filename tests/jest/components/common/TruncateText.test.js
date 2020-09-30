@@ -19,7 +19,7 @@ describe('TruncateText', () => {
     const component = shallow(
       <TruncateText  {...props} />
     )
-    expect(component.instance().props).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected for truncated text', () => {
@@ -33,7 +33,7 @@ describe('TruncateText', () => {
     const component = shallow(
       <TruncateText  {...props} />
     )
-    expect(component.instance().props).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected for non truncated text', () => {
@@ -41,7 +41,7 @@ describe('TruncateText', () => {
     const component = shallow(
       <TruncateText  {...props} />
     )
-    expect(component.instance().props).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected for null', () => {
@@ -49,7 +49,7 @@ describe('TruncateText', () => {
     const component = shallow(
       <TruncateText  {...props} />
     )
-    expect(component.instance().props).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected for array', () => {
@@ -57,6 +57,6 @@ describe('TruncateText', () => {
     const component = shallow(
       <TruncateText  {...props} />
     )
-    expect(component.instance().props).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })
