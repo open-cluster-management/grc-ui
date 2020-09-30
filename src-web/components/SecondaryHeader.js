@@ -64,46 +64,35 @@ export class SecondaryHeader extends React.Component {
       showCreationLink = checkCreatePermission(userAccess)
       break
     }
-    if ((tabs && tabs.length > 0) || (breadcrumbItems && breadcrumbItems.length > 0)) {
-      const midName = (!location.pathname.startsWith('/multicloud/policies/all/') ? 'secondary-header-grc-overview' : '')
-      return (
-        <div className='secondary-header-wrapper' role='region' aria-label={title}>
-          <div className={`secondary-header ${midName} simple-header${this.state.shadowPresent ? '-with-shadow' : ''}${description ? ' special-layout': ''}`
-          }>
-            <header aria-label={`Heading: ${title}`}>
-              <div className="bx--detail-page-header-content">
-                {breadcrumbItems &&
-                  (
-                    <Breadcrumb>
-                      {this.renderBreadCrumb()}
-                    </Breadcrumb>
-                  )
-                }
-                {this.renderHeader()}
-                {tabs && tabs.length > 0 &&
-                  <Tabs selected={this.getSelectedTab() || 0} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
-                    {this.renderTabs()}
-                  </Tabs>
-                }
-              </div>
-            </header>
-          </div>
-          {showCreationLink !== 2 && links && links.length>0 &&
-            <div className='secondary-header-links'>
-              {this.renderLinks(showCreationLink)}
+    const midName = (!location.pathname.startsWith('/multicloud/policies/all/') ? 'secondary-header-grc-overview' : '')
+    return (
+      <div className='secondary-header-wrapper' role='region' aria-label={title}>
+        <div className={`secondary-header ${midName} simple-header${this.state.shadowPresent ? '-with-shadow' : ''}${description ? ' special-layout': ''}`}>
+          <header aria-label={`Heading: ${title}`}>
+            <div className="bx--detail-page-header-content">
+              {breadcrumbItems &&
+                (
+                  <Breadcrumb>
+                    {this.renderBreadCrumb()}
+                  </Breadcrumb>
+                )
+              }
+              {this.renderHeader()}
+              {tabs && tabs.length > 0 &&
+                <Tabs selected={this.getSelectedTab() || 0} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
+                  {this.renderTabs()}
+                </Tabs>
+              }
             </div>
-          }
+          </header>
         </div>
-      )
-    } else {
-      return (
-        <div className='secondary-header-wrapper-min' role='region' aria-label={`${title} ${msgs.get('secondaryHeader', locale)}`}>
-          <div className='secondary-header simple-header'>
-            <h1 className='bx--detail-page-header-title'>{decodeURIComponent(title)}</h1>
+        {showCreationLink !== 2 && links && links.length>0 &&
+          <div className='secondary-header-links'>
+            {this.renderLinks(showCreationLink)}
           </div>
-        </div>
-      )
-    }
+        }
+      </div>
+    )
   }
 
   renderHeader() {

@@ -33,13 +33,6 @@ const SECONDARY_HEADER_PROPS = {
       label: 'button.create.policy',
       url: `${BASE_PAGE_PATH}/create`
     }
-  ],
-  tabs: [
-    {
-      id: 'grc-all',
-      label: 'tabs.grc.all',
-      url: `${BASE_PAGE_PATH}/all`
-    },
   ]
 }
 
