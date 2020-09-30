@@ -434,9 +434,6 @@ export class ResourceTable extends React.Component {
           row[key.resourceKey] = (key.link) ?
             <Link to={`${match.url}${getLink(key.link, item)}`}>{transform(item, key, locale)}</Link> :
             transform(item, key, locale)
-          if (key.resourceKey === 'metadata.name' && row.disabled) {
-            row[key.resourceKey] = lodash.get(item, key.resourceKey)
-          }
           if (key.resourceKey === 'objectDefinition.metadata.name' && row[key.resourceKey] === '-') {
             row[key.resourceKey] = lodash.get(item, 'objectDefinition.kind')
           }
