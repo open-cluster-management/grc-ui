@@ -84,9 +84,6 @@
     .bx--detail-page-header-title-container {
       display: flex;
 
-      &:last-child {
-        margin-bottom: 1.5rem; //TODO: decide what to do when there's no tab. Hack to display the title at same location
-
       &.no-breadcrumb {
         margin-top: 3rem;
       }
@@ -124,6 +121,20 @@
     &-with-shadow{
       @extend .simple-header;
       box-shadow: 0 0.1875rem 0.5rem 0 rgba(0,0,0,0.05);
+
+      .bx--detail-page-header-title-container {
+          &.no-breadcrumb {
+          margin-top: 0;
+        }
+      }
+
+      & .bx--tabs {
+        visibility: hidden;
+      }
+
+      & ~ .secondary-header-links {
+        visibility: hidden;
+      }
 
       &.special-layout {
         header {
