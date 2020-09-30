@@ -42,6 +42,9 @@ const history = createMemoryHistory({
   }
 })
 
+// mock Icons so that tooltip won't render in any cases
+// otherwise it is going to throw TypeError: element.addEventListener is not a function
+// because renderer doesn't have dom
 jest.mock('../../../src-web/components/common/Icons', () => {
   return {
     GreenCheckCircleIcon: () => <MockCheckCircleIcon color='#467f40' />,
