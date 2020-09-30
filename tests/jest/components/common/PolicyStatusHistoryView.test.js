@@ -106,7 +106,7 @@ describe('PolicyTemplateDetailsView component', () => {
         cluster={'ironman'}
       />
     )
-    expect(component.instance()._rendered).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected with pagination', () => {
@@ -117,7 +117,7 @@ describe('PolicyTemplateDetailsView component', () => {
         cluster={'ironman'}
       />
     )
-    expect(component.instance()._rendered).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected -- empty list', () => {
@@ -128,6 +128,6 @@ describe('PolicyTemplateDetailsView component', () => {
         cluster={'ironman'}
       />
     )
-    expect(component.instance()._rendered).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })
