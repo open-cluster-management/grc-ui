@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2018, 2019. All Rights Reserved.
@@ -39,7 +40,6 @@ _uniqueId.mockImplementation(() => `mockLodashID-${mockId++}`)
 
 jest.mock('../../../src-web/components/common/Icons', () => {
   return {
-    __esModule: true,
     GreenCheckCircleIcon: () => <MockCheckCircleIcon color='#467f40' />,
     RedExclamationCircleIcon: () => <MockExclamationCircleIcon color='#c9190b' />,
     YellowExclamationTriangleIcon: () => <MockExclamationTriangleIcon color='#f0ab00' />,
