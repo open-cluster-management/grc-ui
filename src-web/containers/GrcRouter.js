@@ -55,6 +55,10 @@ const CREATION_HEADER_PROPS = {
 
 const GrcRouter = ({ match }) =>
   <Switch>
+    {/* Removes trailing slashes */}
+    <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
+    {/* Removes duplicate slashes in the middle of the URL */}
+    <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
     <Route path={`${match.url}/all/:hubNamespace/:policyName/status/:cluster/templates/:template/history`}
       render={() => <PolicyStatusHistoryTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <PolicyDetailsByCluster secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
@@ -63,7 +67,7 @@ const GrcRouter = ({ match }) =>
     <Route path={`${match.url}/all/:namespace/:name`} render={() => <PolicyDetailSubRouter secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/all`} exact render={() => <PoliciesTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/create`} render={() => <CreationTab secondaryHeaderProps={CREATION_HEADER_PROPS} />} />
-    <Redirect to={`${match.url.endsWith('/') ? match.url.substring(0, match.url.length-1) : match.url}/all`} />
+    <Redirect to={`${match.url}/all`} />
   </Switch>
 
 GrcRouter.propTypes = {

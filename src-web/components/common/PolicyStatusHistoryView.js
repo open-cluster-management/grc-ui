@@ -19,24 +19,6 @@ class PolicyStatusHistoryView extends React.Component {
 
   static contextType = LocaleContext
 
-  setEditor = (editor) => {
-    this.editor=editor
-    this.layoutEditors()
-  }
-
-  layoutEditors() {
-    if (this.containerRef && this.editor) {
-      const rect = this.containerRef.getBoundingClientRect()
-      const width = rect.width
-      const height = rect.height - 24 // minus height of title
-      this.editor.layout({width, height})
-    }
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize',  this.layoutEditors.bind(this))
-  }
-
   render() {
     const { history, cluster, template } = this.props
     const { locale } = this.context

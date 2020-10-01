@@ -9,11 +9,10 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 
 import React from 'react'
+import { Tooltip } from '@patternfly/react-core'
 import PropTypes from 'prop-types'
-import { Tooltip } from 'carbon-components-react'
 import resources from '../../../lib/shared/resources'
 import truncate from '../../util/truncate-middle'
-import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/textWithTruncation.scss')
@@ -22,7 +21,10 @@ resources(() => {
 class TruncateText extends React.PureComponent {
   static propTypes = {
     maxCharacters: PropTypes.number,
+    maxWidth: PropTypes.number,
+    position: PropTypes.string,
     text: PropTypes.string.isRequired,
+    textEnd: PropTypes.string
   }
 
   static defaultProps ={
@@ -30,23 +32,26 @@ class TruncateText extends React.PureComponent {
   }
 
   render() {
-    const {maxCharacters, text} = this.props
-    if (text.length <= maxCharacters){
-      return text
+    const {text, maxCharacters, maxWidth, position, textEnd} = this.props
+    const postfix = textEnd ? textEnd : ''
+    if (!text) {
+      return ''
+    }
+    else if (typeof text !== 'string') {
+      return `${text.toString()}${postfix}`
+    }
+    else if (text.length <= maxCharacters){
+      return `${text}${postfix}`
     }
 
-    return (
-      <div className='policyViolations'>
-        <Tooltip
-          triggerClassName="textWithTruncation"
-          showIcon={false}
-          triggerId={_uniqueId('Tooltip')}
-          text={text}
-          triggerText={truncate(text, maxCharacters)} >
-          {text}
-        </Tooltip>
-      </div>
-    )
+    return <Tooltip
+      maxWidth = {maxWidth ? maxWidth : '80rem'}
+      enableFlip = {false}
+      position = {position ? position : 'top'}
+      content = {<div>${text}</div>}
+    >
+      <span>{`${truncate(text, maxCharacters)}${postfix}`}</span>
+    </Tooltip>
   }
 }
 

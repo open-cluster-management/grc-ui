@@ -97,6 +97,7 @@
   "error.permission.denied": "You do not have permission to show policies for this namespace",
   "error.permission.denied.create": "You do not have permission to create policies in this namespace",
   "error.no.placement": "Placement rule and binding not found.",
+  "error.not.found": "Resource not found",
   "error.create.policy": "Create error:",
   "error.create.policy.exceptions": "The policy yaml has exceptions",
   "error.create.policy.noname": "Missing name",

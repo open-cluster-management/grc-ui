@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import resources from '../../lib/shared/resources'
 import { Spinner } from '@patternfly/react-core'
+import { connect } from 'react-redux'
+import { updateSecondaryHeader } from '../actions/common'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { Query } from 'react-apollo'
@@ -14,6 +16,8 @@ import { DangerNotification } from '../components/common/DangerNotification'
 import PolicyStatusView from '../components/common/PolicyStatusView'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
 import NoResource from '../components/common/NoResource'
+import { getTabs } from '../../lib/client/resource-helper'
+import { LocaleContext } from '../components/common/LocaleContext'
 import msgs from '../../nls/platform.properties'
 
 resources(() => {
@@ -22,12 +26,53 @@ resources(() => {
 
 class PolicyStatusTab extends React.Component {
   static propTypes = {
+    location: PropTypes.object,
     policyName: PropTypes.string,
     policyNamespace: PropTypes.string,
+    tabs: PropTypes.array,
+    updateSecondaryHeader: PropTypes.func,
+    url: PropTypes.string,
   }
 
   constructor (props) {
     super(props)
+  }
+
+  static contextType = LocaleContext
+
+  getBreadcrumb() {
+    const breadcrumbItems = []
+    const { location } = this.props,
+          { locale } = this.context,
+          urlSegments = location.pathname.split('/')
+    const hubNamespace = urlSegments.length > 4 ? urlSegments.slice(4, 5) : ''
+    const policyName = urlSegments.length > 5 ? urlSegments.slice(5, 6) : ''
+    breadcrumbItems.push({
+      label: msgs.get('tabs.hcmcompliance', locale),
+      noLocale: true,
+      url: `${urlSegments.slice(0, 3).join('/')}/all`
+    },
+    {
+      label: policyName,
+      noLocale: true,
+      url: `${urlSegments.slice(0, 3).join('/')}/all/${hubNamespace}/${policyName}`
+    },
+    {
+      label: msgs.get('table.header.status', locale),
+      noLocale: true,
+      url: `${urlSegments.slice(0, 3).join('/')}/all/${hubNamespace}/${policyName}/status`
+    })
+    return breadcrumbItems
+  }
+
+  componentDidMount() {
+    const { policyName } = this.props
+    const { tabs, url, updateSecondaryHeader: localUpdateSecondaryHeader } = this.props
+    localUpdateSecondaryHeader(
+      policyName,
+      getTabs(tabs, (tab, index) => index === 0 ? url : `${url}/${tab}`),
+      this.getBreadcrumb()
+    )
   }
 
   render() {
@@ -76,4 +121,10 @@ class PolicyStatusTab extends React.Component {
   }
 }
 
-export default withRouter(PolicyStatusTab)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateSecondaryHeader: (title, tabs, breadcrumbItems, links) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links))
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(PolicyStatusTab))

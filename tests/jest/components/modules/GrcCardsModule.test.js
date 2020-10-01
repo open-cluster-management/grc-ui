@@ -57,7 +57,7 @@ describe('GrcCardsModule policies page categories view', () => {
         showGrcCard={true}
         displayType = {'all'}
         handleDrillDownClick={handleDrillDownClick} />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders collapse as expected', () => {
@@ -70,7 +70,7 @@ describe('GrcCardsModule policies page categories view', () => {
         showGrcCard={false}
         displayType = {'other'}
         handleDrillDownClick={handleDrillDownClick} />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })
 
@@ -89,7 +89,7 @@ describe('GrcCardsModule policies page standards view', () => {
         showGrcCard={true}
         displayType = {'all'}
         handleDrillDownClick={handleDrillDownClick} />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders collapse as expected', () => {
@@ -102,7 +102,7 @@ describe('GrcCardsModule policies page standards view', () => {
         showGrcCard={false}
         displayType = {'other'}
         handleDrillDownClick={handleDrillDownClick} />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })
 
@@ -121,7 +121,7 @@ describe('GrcCardsModule findings page categories view', () => {
         showGrcCard={true}
         displayType = {'findings'}
         handleDrillDownClick={handleDrillDownClick} />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders collapse as expected', () => {
@@ -134,7 +134,7 @@ describe('GrcCardsModule findings page categories view', () => {
         showGrcCard={false}
         displayType = {'findings'}
         handleDrillDownClick={handleDrillDownClick} />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })
 
@@ -153,7 +153,7 @@ describe('GrcCardsModule findings page standards view', () => {
         showGrcCard={true}
         displayType = {'findings'}
         handleDrillDownClick={handleDrillDownClick} />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders collapse as expected', () => {
@@ -166,7 +166,7 @@ describe('GrcCardsModule findings page standards view', () => {
         showGrcCard={false}
         displayType = {'findings'}
         handleDrillDownClick={handleDrillDownClick} />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })
 

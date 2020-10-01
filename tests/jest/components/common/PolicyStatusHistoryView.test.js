@@ -1,7 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
 import React from 'react'
 import PolicyStatusHistoryView from '../../../../src-web/components/common/PolicyStatusHistoryView'
 
@@ -99,35 +99,35 @@ const longData =  [
 
 describe('PolicyTemplateDetailsView component', () => {
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = shallow(
       <PolicyStatusHistoryView
         history={data}
         template={'policy-imagemanifestvulnpolicy'}
         cluster={'ironman'}
       />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected with pagination', () => {
-    const component = renderer.create(
+    const component = shallow(
       <PolicyStatusHistoryView
         history={longData}
         template={'policy-imagemanifestvulnpolicy'}
         cluster={'ironman'}
       />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected -- empty list', () => {
-    const component = renderer.create(
+    const component = shallow(
       <PolicyStatusHistoryView
         history={[]}
         template={'policy-imagemanifestvulnpolicy'}
         cluster={'ironman'}
       />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 })

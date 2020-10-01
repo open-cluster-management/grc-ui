@@ -1,5 +1,431 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NestedTable component 1 renders as expected 1`] = `ShallowWrapper {}`;
+exports[`NestedTable component 1 renders as expected 1`] = `
+NestedTable {
+  "context": Object {},
+  "createTableSelectRow": [Function],
+  "getItemCheckedState": [Function],
+  "getToggleState": [Function],
+  "props": Object {
+    "availableItems": Array [
+      Object {
+        "key": "clusterLabel",
+        "value": Array [
+          Object {
+            "id": "cloud=IBM",
+            "key": "cloud",
+            "name": "cloud=IBM",
+            "type": "clusterLabel",
+            "value": "IBM",
+          },
+          Object {
+            "id": "clusterip=9.42.23.230",
+            "key": "clusterip",
+            "name": "clusterip=9.42.23.230",
+            "type": "clusterLabel",
+            "value": "9.42.23.230",
+          },
+        ],
+      },
+    ],
+    "header": "header",
+    "selectedItems": Array [
+      Object {
+        "id": "cloud=IBM",
+        "key": "cloud",
+        "name": "cloud=IBM",
+        "type": "clusterLabel",
+        "value": "IBM",
+      },
+    ],
+    "selectionChanged": [MockFunction],
+  },
+  "refs": Object {},
+  "setState": [Function],
+  "state": Object {
+    "toggle": Array [],
+  },
+  "toggleRow": [Function],
+  "updateSelectedState": [Function],
+  "updater": Updater {
+    "_callbacks": Array [],
+    "_renderer": ReactShallowRenderer {
+      "_context": Object {},
+      "_didScheduleRenderPhaseUpdate": false,
+      "_dispatcher": Object {
+        "readContext": [Function],
+        "useCallback": [Function],
+        "useContext": [Function],
+        "useDebugValue": [Function],
+        "useDeferredValue": [Function],
+        "useEffect": [Function],
+        "useImperativeHandle": [Function],
+        "useLayoutEffect": [Function],
+        "useMemo": [Function],
+        "useReducer": [Function],
+        "useRef": [Function],
+        "useResponder": [Function],
+        "useState": [Function],
+        "useTransition": [Function],
+      },
+      "_element": <NestedTable
+        availableItems={
+          Array [
+            Object {
+              "key": "clusterLabel",
+              "value": Array [
+                Object {
+                  "id": "cloud=IBM",
+                  "key": "cloud",
+                  "name": "cloud=IBM",
+                  "type": "clusterLabel",
+                  "value": "IBM",
+                },
+                Object {
+                  "id": "clusterip=9.42.23.230",
+                  "key": "clusterip",
+                  "name": "clusterip=9.42.23.230",
+                  "type": "clusterLabel",
+                  "value": "9.42.23.230",
+                },
+              ],
+            },
+          ]
+        }
+        header="header"
+        selectedItems={
+          Array [
+            Object {
+              "id": "cloud=IBM",
+              "key": "cloud",
+              "name": "cloud=IBM",
+              "type": "clusterLabel",
+              "value": "IBM",
+            },
+          ]
+        }
+        selectionChanged={[MockFunction]}
+      />,
+      "_firstWorkInProgressHook": null,
+      "_forcedUpdate": false,
+      "_instance": [Circular],
+      "_isReRender": false,
+      "_newState": null,
+      "_numberOfReRenders": 0,
+      "_renderPhaseUpdates": null,
+      "_rendered": <div
+        className="nested-table-main"
+      >
+        <Table>
+          <TableHead>
+            <TableRow
+              className="nested-table-header-row"
+              header={true}
+            >
+              <TableHeader
+                iconDescriptionAscending="ascending sort"
+                iconDescriptionDescending="descending sort"
+              />
+              <TableHeader
+                className="nested-table-header"
+                iconDescriptionAscending="ascending sort"
+                iconDescriptionDescending="descending sort"
+              >
+                <p>
+                  header
+                    
+                </p>
+                <p>
+                  (
+                  1
+                   
+                  Selected
+                  )
+                </p>
+              </TableHeader>
+            </TableRow>
+          </TableHead>
+          <TableBody
+            className="nested-table-body"
+          >
+            <TableRow
+              className="nested-table-select-row"
+              even={false}
+              header={false}
+            >
+              <TableData
+                className="nest-table-expand-icon"
+                expanded={false}
+                iconDescription="expand row"
+                onClick={[Function]}
+              />
+              <TableData
+                className="nest-table-expand-name"
+                iconDescription="expand row"
+              />
+            </TableRow>
+            <TableRowExpanded
+              colSpan={4}
+              expanded={false}
+            >
+              <Table>
+                <TableBody>
+                  <TableRow
+                    even={false}
+                    header={false}
+                  >
+                    <TableSelectRow
+                      ariaLabel="tableSelectRow"
+                      checked={true}
+                      id="cloud=IBM"
+                      name="cloud=IBM"
+                      onSelect={[Function]}
+                    />
+                    <TableCell>
+                      cloud=IBM
+                    </TableCell>
+                  </TableRow>
+                  <TableRow
+                    even={false}
+                    header={false}
+                  >
+                    <TableSelectRow
+                      ariaLabel="tableSelectRow"
+                      checked={false}
+                      id="clusterip=9.42.23.230"
+                      name="clusterip=9.42.23.230"
+                      onSelect={[Function]}
+                    />
+                    <TableCell>
+                      clusterip=9.42.23.230
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableRowExpanded>
+          </TableBody>
+        </Table>
+      </div>,
+      "_rendering": false,
+      "_updater": [Circular],
+      "_workInProgressHook": null,
+    },
+  },
+}
+`;
 
-exports[`NestedTable component 1 renders as expected 2`] = `ShallowWrapper {}`;
+exports[`NestedTable component 1 renders as expected 2`] = `
+NestedTable {
+  "context": Object {},
+  "createTableSelectRow": [Function],
+  "getItemCheckedState": [Function],
+  "getToggleState": [Function],
+  "props": Object {
+    "availableItems": Array [
+      Object {
+        "key": "clusterLabel",
+        "value": Array [
+          Object {
+            "id": "cloud=IBM",
+            "key": "cloud",
+            "name": "cloud=IBM",
+            "type": "clusterLabel",
+            "value": "IBM",
+          },
+          Object {
+            "id": "clusterip=9.42.23.230",
+            "key": "clusterip",
+            "name": "clusterip=9.42.23.230",
+            "type": "clusterLabel",
+            "value": "9.42.23.230",
+          },
+        ],
+      },
+    ],
+    "header": "header",
+    "selectedItems": Array [
+      Object {
+        "id": "cloud=IBM",
+        "key": "cloud",
+        "name": "cloud=IBM",
+        "type": "clusterLabel",
+        "value": "IBM",
+      },
+    ],
+    "selectionChanged": [MockFunction],
+  },
+  "refs": Object {},
+  "setState": [Function],
+  "state": Object {
+    "toggle": Array [
+      true,
+    ],
+  },
+  "toggleRow": [Function],
+  "updateSelectedState": [Function],
+  "updater": Updater {
+    "_callbacks": Array [],
+    "_renderer": ReactShallowRenderer {
+      "_context": Object {},
+      "_didScheduleRenderPhaseUpdate": false,
+      "_dispatcher": Object {
+        "readContext": [Function],
+        "useCallback": [Function],
+        "useContext": [Function],
+        "useDebugValue": [Function],
+        "useDeferredValue": [Function],
+        "useEffect": [Function],
+        "useImperativeHandle": [Function],
+        "useLayoutEffect": [Function],
+        "useMemo": [Function],
+        "useReducer": [Function],
+        "useRef": [Function],
+        "useResponder": [Function],
+        "useState": [Function],
+        "useTransition": [Function],
+      },
+      "_element": <NestedTable
+        availableItems={
+          Array [
+            Object {
+              "key": "clusterLabel",
+              "value": Array [
+                Object {
+                  "id": "cloud=IBM",
+                  "key": "cloud",
+                  "name": "cloud=IBM",
+                  "type": "clusterLabel",
+                  "value": "IBM",
+                },
+                Object {
+                  "id": "clusterip=9.42.23.230",
+                  "key": "clusterip",
+                  "name": "clusterip=9.42.23.230",
+                  "type": "clusterLabel",
+                  "value": "9.42.23.230",
+                },
+              ],
+            },
+          ]
+        }
+        header="header"
+        selectedItems={
+          Array [
+            Object {
+              "id": "cloud=IBM",
+              "key": "cloud",
+              "name": "cloud=IBM",
+              "type": "clusterLabel",
+              "value": "IBM",
+            },
+          ]
+        }
+        selectionChanged={[MockFunction]}
+      />,
+      "_firstWorkInProgressHook": null,
+      "_forcedUpdate": false,
+      "_instance": [Circular],
+      "_isReRender": false,
+      "_newState": null,
+      "_numberOfReRenders": 0,
+      "_renderPhaseUpdates": null,
+      "_rendered": <div
+        className="nested-table-main"
+      >
+        <Table>
+          <TableHead>
+            <TableRow
+              className="nested-table-header-row"
+              header={true}
+            >
+              <TableHeader
+                iconDescriptionAscending="ascending sort"
+                iconDescriptionDescending="descending sort"
+              />
+              <TableHeader
+                className="nested-table-header"
+                iconDescriptionAscending="ascending sort"
+                iconDescriptionDescending="descending sort"
+              >
+                <p>
+                  header
+                    
+                </p>
+                <p>
+                  (
+                  1
+                   
+                  Selected
+                  )
+                </p>
+              </TableHeader>
+            </TableRow>
+          </TableHead>
+          <TableBody
+            className="nested-table-body"
+          >
+            <TableRow
+              className="nested-table-select-row"
+              even={false}
+              header={false}
+            >
+              <TableData
+                className="nest-table-expand-icon"
+                expanded={true}
+                iconDescription="expand row"
+                onClick={[Function]}
+              />
+              <TableData
+                className="nest-table-expand-name"
+                iconDescription="expand row"
+              />
+            </TableRow>
+            <TableRowExpanded
+              colSpan={4}
+              expanded={true}
+            >
+              <Table>
+                <TableBody>
+                  <TableRow
+                    even={false}
+                    header={false}
+                  >
+                    <TableSelectRow
+                      ariaLabel="tableSelectRow"
+                      checked={true}
+                      id="cloud=IBM"
+                      name="cloud=IBM"
+                      onSelect={[Function]}
+                    />
+                    <TableCell>
+                      cloud=IBM
+                    </TableCell>
+                  </TableRow>
+                  <TableRow
+                    even={false}
+                    header={false}
+                  >
+                    <TableSelectRow
+                      ariaLabel="tableSelectRow"
+                      checked={false}
+                      id="clusterip=9.42.23.230"
+                      name="clusterip=9.42.23.230"
+                      onSelect={[Function]}
+                    />
+                    <TableCell>
+                      clusterip=9.42.23.230
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableRowExpanded>
+          </TableBody>
+        </Table>
+      </div>,
+      "_rendering": false,
+      "_updater": [Circular],
+      "_workInProgressHook": null,
+    },
+  },
+}
+`;

@@ -21,6 +21,8 @@ import { Provider } from 'react-redux'
 import { staticResourceData } from './ContainersTestingData'
 import PolicyStatusTab from '../../../src-web/containers/PolicyStatusTab'
 
+const tabs = ['detail','status','yaml']
+const url = '/multicloud/policies/all/default/policy-gatekeeper'
 describe('PolicyDetail container test', () => {
   it('renders as expected', () => {
     const preloadedState = window.__PRELOADED_STATE__
@@ -35,6 +37,8 @@ describe('PolicyDetail container test', () => {
           <BrowserRouter>
             <PolicyStatusTab
               staticResourceData={staticResourceData}
+              tabs={tabs}
+              url={url}
             />
           </BrowserRouter>
         </Provider>
