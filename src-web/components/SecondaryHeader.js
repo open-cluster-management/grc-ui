@@ -55,6 +55,7 @@ export class SecondaryHeader extends React.Component {
 
   render() {
     const { tabs, title, breadcrumbItems, links, description, location, userAccess } = this.props
+    const { shadowPresent: scrolled } = this.state
     const { locale } = this.context
     const displayType = location.pathname.split('/').pop()
     let showCreationLink // 0=clickable, 1=non-clickable, 2=hide
@@ -65,20 +66,27 @@ export class SecondaryHeader extends React.Component {
       break
     }
     const midName = (!location.pathname.startsWith('/multicloud/policies/all/') ? 'secondary-header-grc-overview' : '')
+    const hasTabs = Boolean(tabs && tabs.length>0)
+    const hasBreadcrumb = Boolean(breadcrumbItems)
+    const hasButtons = Boolean(showCreationLink !== 2 && links && links.length>0)
     return (
-      <div className='secondary-header-wrapper' role='region' aria-label={title}>
-        <div className={`secondary-header ${midName} simple-header${this.state.shadowPresent ? '-with-shadow' : ''}${description ? ' special-layout': ''}`}>
+      <div
+        className={`secondary-header-wrapper${scrolled?' scrolled':''}${hasTabs?'':' no-tabs'}${hasBreadcrumb?'':' no-breadcrumb'}${hasButtons?'':' no-buttons'}`}
+        role='region'
+        aria-label={title}
+      >
+        <div className={`secondary-header ${midName} simple-header${scrolled ? '-with-shadow' : ''}${description ? ' special-layout': ''}`}>
           <header aria-label={`Heading: ${title}`}>
             <div className='bx--detail-page-header-content'>
-              {breadcrumbItems &&
+              {hasBreadcrumb &&
                 (
                   <Breadcrumb>
                     {this.renderBreadCrumb()}
                   </Breadcrumb>
                 )
               }
-              {this.renderHeader(Boolean(breadcrumbItems))}
-              {tabs && tabs.length > 0 &&
+              {this.renderHeader(hasBreadcrumb)}
+              {hasTabs &&
                 <Tabs selected={this.getSelectedTab() || 0} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
                   {this.renderTabs()}
                 </Tabs>
@@ -86,7 +94,7 @@ export class SecondaryHeader extends React.Component {
             </div>
           </header>
         </div>
-        {showCreationLink !== 2 && links && links.length>0 &&
+        {hasButtons &&
           <div className='secondary-header-links'>
             {this.renderLinks(showCreationLink)}
           </div>
