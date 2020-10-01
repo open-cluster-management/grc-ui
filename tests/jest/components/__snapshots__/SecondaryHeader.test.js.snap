@@ -3,7 +3,7 @@
 exports[`SecondaryHeader component 1 renders as expected 1`] = `
 <div
   aria-label="hello world"
-  className="secondary-header-wrapper"
+  className="secondary-header-wrapper no-tabs no-breadcrumb no-buttons"
   role="region"
 >
   <div
@@ -33,7 +33,7 @@ exports[`SecondaryHeader component 1 renders as expected 1`] = `
 exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
 <div
   aria-label="hello world"
-  className="secondary-header-wrapper"
+  className="secondary-header-wrapper no-breadcrumb"
   role="region"
 >
   <div
@@ -150,7 +150,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
 exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
 <div
   aria-label="hello world"
-  className="secondary-header-wrapper"
+  className="secondary-header-wrapper no-breadcrumb"
   role="region"
 >
   <div
@@ -267,7 +267,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
 exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
 <div
   aria-label="hello world"
-  className="secondary-header-wrapper"
+  className="secondary-header-wrapper no-breadcrumb"
   role="region"
 >
   <div
@@ -385,7 +385,7 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
 exports[`SecondaryHeader component 3 renders as expected 1`] = `
 <div
   aria-label="hello world"
-  className="secondary-header-wrapper"
+  className="secondary-header-wrapper no-breadcrumb no-buttons"
   role="region"
 >
   <div
@@ -508,7 +508,7 @@ exports[`SecondaryHeader component 3 renders as expected 1`] = `
 exports[`SecondaryHeader component 4 renders as expected 1`] = `
 <div
   aria-label="hello world"
-  className="secondary-header-wrapper"
+  className="secondary-header-wrapper no-tabs no-breadcrumb no-buttons"
   role="region"
 >
   <div
