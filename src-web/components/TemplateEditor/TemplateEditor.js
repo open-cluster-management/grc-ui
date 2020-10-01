@@ -225,7 +225,7 @@ export default class TemplateEditor extends React.Component {
         {showEditor ? (
           <SplitPane
             split="vertical"
-            minSize={50}
+            minSize={300}
             maxSize={maxSize}
             ref={this.setSplitPaneRef}
             defaultSize={this.handleSplitterDefault()}
