@@ -75,7 +75,6 @@ class PolicyTemplateTab extends React.Component{
     )
   }
 
-
   render() {
     const {
       policyName,

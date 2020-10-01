@@ -17,6 +17,7 @@ import PolicyStatusView from '../components/common/PolicyStatusView'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
 import NoResource from '../components/common/NoResource'
 import { getTabs } from '../../lib/client/resource-helper'
+import { LocaleContext } from '../components/common/LocaleContext'
 import msgs from '../../nls/platform.properties'
 
 resources(() => {
@@ -36,6 +37,8 @@ class PolicyStatusTab extends React.Component {
   constructor (props) {
     super(props)
   }
+
+  static contextType = LocaleContext
 
   getBreadcrumb() {
     const breadcrumbItems = []
