@@ -56,18 +56,9 @@ const CREATION_HEADER_PROPS = {
 const GrcRouter = ({ match }) =>
   <Switch>
     {/* Removes trailing slashes */}
-    <Route
-      path="/:url*(/+)" exact strict render={({ location }) => (
-        <Redirect to={location.pathname.replace(/\/+$/, '')} />
-      )}
-    />
+    <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
     {/* Removes duplicate slashes in the middle of the URL */}
-    <Route
-      path="/:url(.*//+.*)" exact strict
-      render={({ match }) => (
-        <Redirect to={`/${match.params.url.replace(/\/\/+/, '/')}`} />
-      )}
-    />
+    <Route path="/:url(.*//+.*)" exact strict render={({ match }) => <Redirect to={`/${match.params.url.replace(/\/\/+/, '/')}`} />} />
     <Route path={`${match.url}/all/:hubNamespace/:policyName/status/:cluster/templates/:template/history`}
       render={() => <PolicyStatusHistoryTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <PolicyDetailsByCluster secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
