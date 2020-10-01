@@ -215,18 +215,13 @@ export default class TemplateEditor extends React.Component {
       'creation-view-split-container': true,
       showEditor
     })
-    let maxSize
-    const page = document.getElementById('page')
-    if (page) {
-      maxSize = page.getBoundingClientRect().width*8/10
-    }
     return (
       <div className={editorClasses}>
         {showEditor ? (
           <SplitPane
             split="vertical"
             minSize={300}
-            maxSize={maxSize}
+            maxSize={-500}
             ref={this.setSplitPaneRef}
             defaultSize={this.handleSplitterDefault()}
             onChange={this.handleSplitterChange}
