@@ -116,14 +116,12 @@ div.no-resource {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 32.375rem;
-  height: 25.6875rem;
-  padding: 1.25rem 2.5rem;
+  padding: 0 2.5rem;
   background-color: transparent;
   box-shadow: none;
   border: none;
-  margin: 3rem auto 1rem auto;
+  margin: 1.5rem auto;
 
   div {
     margin-left: auto;
@@ -132,15 +130,17 @@ div.no-resource {
 
   .no-resource-icon {
     width: 19rem;
-    height: unset;
   }
 
   .no-resource-text-info {
 
     .no-resource-title {
       color: #162E3D;
-      font-size: 1.75rem;
+      font-family: RedHatText;
+      font-size: 1.5rem;
+      font-weight: 600;
       margin-bottom: 1rem;
+      margin-top: 1.5rem;
       text-align: center;
     }
   
@@ -148,7 +148,8 @@ div.no-resource {
       color: var(--pf-global--Color--100);
       font-weight: 300;
       font-size: 1rem;
-      margin-bottom: 1.75rem;
+      line-height: 1.5rem;
+      margin-bottom: 2rem;
       max-width: unset;
       text-align: center;
 
@@ -165,7 +166,7 @@ div.no-resource {
     flex-direction: column;
 
     div {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.875rem;
     }
   }
 }
