@@ -26,6 +26,8 @@ import { DangerNotification } from '../components/common/DangerNotification'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
 import { getTabs } from '../../lib/client/resource-helper'
 import msgs from '../../nls/platform.properties'
+import { LocaleContext } from '../components/common/LocaleContext'
+import NoResource from '../components/common/NoResource'
 
 resources(() => {
   require('../../scss/policy-yaml-tab.scss')
@@ -35,6 +37,8 @@ class PolicyTemplateTab extends React.Component{
   constructor(props) {
     super(props)
   }
+
+  static contextType = LocaleContext
 
   getBreadcrumb() {
     const breadcrumbItems = []
@@ -100,7 +104,12 @@ class PolicyTemplateTab extends React.Component{
           )
         } else if (loading && items === undefined) {
           return <Spinner className='patternfly-spinner' />
-        } else{
+        } else if (items.length === 0){
+          return <NoResource
+            title={msgs.get('error.not.found', this.context.locale)}
+            svgName='EmptyPagePlanet-illus.png'>
+          </NoResource>
+        } else {
           const item = items[0]
           return <PolicyTemplatesView
             resourceType={resourceType}
@@ -114,10 +123,6 @@ class PolicyTemplateTab extends React.Component{
     </Query>
   }
 
-}
-
-PolicyTemplateTab.contextTypes = {
-  locale: PropTypes.string
 }
 
 PolicyTemplateTab.propTypes = {
