@@ -54,10 +54,10 @@ class PolicyDetailsTab extends React.Component{
   }
 
   componentDidMount() {
-    const { locale } = this.context
+    const { policyName } = this.props
     const { tabs, url, updateSecondaryHeader: localUpdateSecondaryHeader } = this.props
     localUpdateSecondaryHeader(
-      msgs.get('panel.header.violation.history', locale),
+      policyName,
       getTabs(tabs, (tab, index) => index === 0 ? url : `${url}/${tab}`),
       this.getBreadcrumb()
     )
