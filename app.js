@@ -93,6 +93,7 @@ function setReq(req) {
 
 const { createProxyMiddleware } = require('http-proxy-middleware')
 app.use(`${appConfig.get('contextPath')}/graphql`, cookieParser(), csrfMiddleware, (req, res, next) => {
+  console.log(res.statusCode)
   res = setRes(res)
   req = setReq(req)
   next()
