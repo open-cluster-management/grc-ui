@@ -69,9 +69,10 @@ export class SecondaryHeader extends React.Component {
     const hasTabs = Boolean(tabs && tabs.length>0)
     const hasBreadcrumb = Boolean(breadcrumbItems)
     const hasButtons = Boolean(showCreationLink !== 2 && links && links.length>0)
+    const noBreadcrumbClass = ' no-breadcrumb'
     return (
       <div
-        className={`secondary-header-wrapper${scrolled?' scrolled':''}${hasTabs?'':' no-tabs'}${hasBreadcrumb?'':' no-breadcrumb'}${hasButtons?'':' no-buttons'}`}
+        className={`secondary-header-wrapper${scrolled?' scrolled':''}${hasTabs?'':' no-tabs'}${hasBreadcrumb?'':noBreadcrumbClass}${hasButtons?'':' no-buttons'}`}
         role='region'
         aria-label={title}
       >
@@ -85,7 +86,7 @@ export class SecondaryHeader extends React.Component {
                   </Breadcrumb>
                 )
               }
-              {this.renderHeader(hasBreadcrumb)}
+              {this.renderHeader(hasBreadcrumb, noBreadcrumbClass)}
               {hasTabs &&
                 <Tabs selected={this.getSelectedTab() || 0} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
                   {this.renderTabs()}
@@ -103,19 +104,19 @@ export class SecondaryHeader extends React.Component {
     )
   }
 
-  renderHeader(hasBreadcrumb) {
+  renderHeader(hasBreadcrumb, breadcrumbClass) {
     const { title:headerTitle, description, information, links=[] } = this.props
     if (description) {
       /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
       return (
-        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': ' no-breadcrumb'}`}>
+        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': breadcrumbClass}`}>
           <h1 className='bx--detail-page-header-title'>{headerTitle}</h1>
           <div className='detail-page-header-title-button' onClick={description.action}><p>{description.display}</p></div>
         </div>
       )
     } else {
       return (
-        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': ' no-breadcrumb'}`}>
+        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': breadcrumbClass}`}>
           <h1 className='bx--detail-page-header-title'>{headerTitle}</h1>
           {information &&
             <TooltipIcon align='end' tooltipText={information}>
