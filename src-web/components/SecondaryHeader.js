@@ -104,19 +104,19 @@ export class SecondaryHeader extends React.Component {
     )
   }
 
-  renderHeader(hasBreadcrumb, breadcrumbClass) {
+  renderHeader(hasBreadcrumb = false, noBreadcrumbClass = ' no-breadcrumb') {
     const { title:headerTitle, description, information, links=[] } = this.props
     if (description) {
       /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
       return (
-        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': breadcrumbClass}`}>
+        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': noBreadcrumbClass}`}>
           <h1 className='bx--detail-page-header-title'>{headerTitle}</h1>
           <div className='detail-page-header-title-button' onClick={description.action}><p>{description.display}</p></div>
         </div>
       )
     } else {
       return (
-        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': breadcrumbClass}`}>
+        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': noBreadcrumbClass}`}>
           <h1 className='bx--detail-page-header-title'>{headerTitle}</h1>
           {information &&
             <TooltipIcon align='end' tooltipText={information}>
