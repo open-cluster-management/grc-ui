@@ -81,69 +81,56 @@
       .pf-c-accordion {
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 
-        .pf-c-accordion__toggle-icon {
-          position: absolute;
-          top: 0;
-          right: 0;
-          margin-bottom: auto;
-          padding: 1rem;
-        }
+        & > dt {
+          padding: 0.5rem;
 
-        .pf-c-accordion__toggle {
+          .pf-c-accordion__toggle {
+            outline: none;
+            &::before {
+              background-color: unset;
+            }
+            &:hover {
+              background-color: unset;
+            }
+
+            .pf-c-accordion__toggle-text {
+              color: unset;
+              font-size: 1rem;
+              font-weight: 600;
+              text-align: left;
+            }
+          }
+        }
+        .pf-c-accordion__expanded-content-body {
+          border-top: 1px solid #DFE3E6;
+          display: flex;
           padding: 0;
+
           &::before {
             background-color: unset;
           }
-          &:hover {
-            background-color: unset;
-          }
-  
-          .pf-c-accordion__toggle-text {
-            color: unset;
-            font-weight: 600;
-            max-width: unset;
-            text-align: left;
-            width: 100%;
 
-            .pf-c-accordion__toggle-title {
-              font-size: 16px;
-              padding: 1rem;
-            }
-                
-            .pf-c-accordion__expanded-content-body {
-              border-top: 1px solid #DFE3E6;
-              display: flex;
-              padding: 0;
+          .pf-c-description-list {
+            color: #151515;
+            margin: 1.5rem;
+            width: 50%;
 
-              &::before {
-                background-color: unset;
-                width: 0;
+            .pf-c-description-list__group {  
+              .pf-c-description-list__term {
+                .info-icon {
+                  margin-left: 0.5rem;
+                  margin-right: 0.1rem;
+                  outline: none;
+                  width: 1rem;
+                  height: 1rem;
+                  fill: $color__blue-51;
+                }
               }
 
-              .pf-c-description-list {
-                color: #151515;
-                display: flex;
-                flex-direction: column;
-                margin: 1.5rem;
-                width: 50%;
-  
-                .pf-c-description-list__group {  
-                  .pf-c-description-list__term {
-                    .info-icon {
-                      margin-left: 0.5rem;
-                      margin-right: 0.1rem;
-                      width: 1rem;
-                      height: 1rem;
-                      fill: $color__blue-51;
-                    }
-                  }
-
-                  .pf-c-description-list__description {
-                    font-weight: normal;
-                    white-space: normal;
-                    word-wrap: break-word;
-                  }
-                }
+              .pf-c-description-list__description {
+                font-weight: normal;
+                white-space: normal;
+                word-wrap: break-word;
               }
             }
           }

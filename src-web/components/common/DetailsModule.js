@@ -137,17 +137,16 @@ class DetailsModule extends React.PureComponent {
     return(<Accordion>
       <AccordionItem>
         <AccordionToggle
+          className='section-title'
           id={`${id}-toggle`}
           onClick={() => {this.onToggle(`${id}-toggle`)}}
           isExpanded={this.state.expanded===`${id}-toggle`}
         >
-          <div id={`${id}-title`} className='section-title pf-c-accordion__toggle-title'>
-            {msgs.get(title, this.context.locale)}
-          </div>
-          <AccordionContent id={`${id}-expand`} isHidden={this.state.expanded !== `${id}-toggle`}>
-            {this.renderDescriptionListBody(renderedData)}
-          </AccordionContent>
+          {msgs.get(title, this.context.locale)}
         </AccordionToggle>
+        <AccordionContent id={`${id}-expand`} isHidden={this.state.expanded !== `${id}-toggle`}>
+          {this.renderDescriptionListBody(renderedData)}
+        </AccordionContent>
       </AccordionItem>
     </Accordion>)
 
