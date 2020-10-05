@@ -13,7 +13,8 @@ const log4js = require('log4js'),
       logger = log4js.getLogger('server'),
       mime = require('mime-types'),
       fs = require('fs'),
-      helmet = require('helmet')
+      helmet = require('helmet'),
+      crypto = require('crypto')
 
 const cacheControlStr = 'Cache-Control'
 const acmAccessTokenCookieStr = 'acm-access-token-cookie'
@@ -45,6 +46,12 @@ const bodyParser = require('body-parser'),
       controllers = require('./controllers')
 
 const app = express()
+
+// Generate CSP with nonce for inline scripts
+app.use((req, res, next) => {
+  res.locals.nonce = crypto.randomBytes(16).toString('base64')
+  next()
+})
 
 app.use(helmet({ // in production these headers are set by icp-management-ingress
   frameguard: false
