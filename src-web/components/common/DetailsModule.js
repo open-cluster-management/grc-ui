@@ -12,8 +12,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { Module, ModuleBody, ModuleHeader } from 'carbon-addons-cloud-react'
-import { TooltipIcon } from 'carbon-components-react'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionContent,
+  AccordionToggle,
+  Tooltip
+} from '@patternfly/react-core'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 import _uniqueId from 'lodash/uniqueId'
@@ -32,8 +37,10 @@ const VerticalDivider = (key) => {
 class DetailsModule extends React.PureComponent {
   constructor(props) {
     super(props)
+    this.state = {
+      expanded: `${props.title.toLowerCase().replace(/ /g,'-')}-toggle`
+    }
   }
-
   formatData() {
     const { numRows, listData, listItem} = this.props
     const tablesData = []
@@ -54,7 +61,7 @@ class DetailsModule extends React.PureComponent {
               entry[1] = getPolicyCompliantStatus({clusterCompliant: entry[1]}, this.context.locale)
             }
           }
-          // third column entry[2] is tooltip inforamtion, if not exist then no tooltip
+          // third column entry[2] is tooltip information, if not exist then no tooltip
           if (item.cells[0].information) {
             entry[2] = item.cells[0].information
           }
@@ -80,11 +87,11 @@ class DetailsModule extends React.PureComponent {
               <div className='structured-list-table-item-header'>
                 <div className='structured-list-table-item-name'>{msgs.get(tableData[row][0], this.context.locale)}</div>
                 {tableData[row][2] && // no third column no tooltip
-                  <TooltipIcon align='end' tooltipText={msgs.get(tableData[row][2], this.context.locale)}>
+                  <Tooltip content={msgs.get(tableData[row][2], this.context.locale)}>
                     <svg className='info-icon'>
                       <use href={'#diagramIcons_info'} ></use>
                     </svg>
-                  </TooltipIcon>}
+                  </Tooltip>}
               </div>
             </td>
           )
@@ -116,17 +123,34 @@ class DetailsModule extends React.PureComponent {
     return React.createElement('div',{className: 'new-structured-list'}, moduleBody)
   }
 
+  onToggle(id) {
+    if (id === this.state.expanded) {
+      this.setState({expanded: ''})
+    } else {
+      this.setState({expanded: id })
+    }
+  }
+
   render() {
     const { title } = this.props
-    const showHeader = _.get(this.props, 'showHeader', true)
     const tablesData = this.formatData()
+    const id = title.toLowerCase().replace(/ /g,'-')
 
-    return(<Module className='new-structured-list-container' key={_uniqueId('new-structured-list')}>
-      { showHeader? <ModuleHeader>{msgs.get(title, this.context.locale)}</ModuleHeader> : null}
-      <ModuleBody key={_uniqueId('new-structured-list-body')}>
-        {this.renderStructuredListBody(tablesData)}
-      </ModuleBody>
-    </Module>)
+    return(<Accordion className='new-structured-list-container' key={_uniqueId('new-structured-list')}>
+      <AccordionItem key={_uniqueId('new-structured-list-body')}>
+        <AccordionToggle
+          onClick={() => {this.onToggle(`${id}-toggle`)}}
+          isExpanded={this.state.expanded===`${id}-toggle`}
+        >
+          <div className='section-title pf-c-accordion__toggle-title'>
+            {msgs.get(title, this.context.locale)}
+          </div>
+          <AccordionContent id={`${id}-expand`} isHidden={this.state.expanded !== `${id}-toggle`}>
+            {this.renderStructuredListBody(tablesData)}
+          </AccordionContent>
+        </AccordionToggle>
+      </AccordionItem>
+    </Accordion>)
 
   }
 

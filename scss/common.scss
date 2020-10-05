@@ -62,7 +62,8 @@ body {
   .bx--data-table-v2--zebra tbody tr:nth-child(2n) {
     background-color: $color__white;
   }
-  .bx--tooltip--shown {
+  .bx--tooltip--shown, .pf-c-tooltip__content {
+    border-radius: 3px;
     font-size: .875rem;
   }
 }
