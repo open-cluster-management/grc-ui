@@ -477,12 +477,12 @@ function testDetailsPage(name, templateFile) {
   // Check policy details
   this.expect.element('.bx--detail-page-header-title').text.to.equal(name)
   this.expect.element('.section-title:nth-of-type(1)').text.to.equal('Policy details')
-  this.expect.element('.new-structured-list > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(name)
-  this.expect.element('.new-structured-list > table:nth-child(1) > tbody > tr:nth-child(3) > td:nth-child(2)').text.to.equal(data[0].spec.remediationAction)
-  this.expect.element('.new-structured-list > table:nth-child(1) > tbody > tr:nth-child(4) > td:nth-child(2)').text.to.equal(data[0].spec.disabled.toString())
-  this.expect.element('.new-structured-list > table:nth-child(3) > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/categories'])
-  this.expect.element('.new-structured-list > table:nth-child(3) > tbody > tr:nth-child(2) > td:nth-child(2)').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/controls'])
-  this.expect.element('.new-structured-list > table:nth-child(3) > tbody > tr:nth-child(3) > td:nth-child(2)').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/standards'])
+  this.expect.element('.pf-c-description-list:nth-child(1) > .pf-c-description-list__group:nth-child(1) > .pf-c-description-list__description > .pf-c-description-list__text').text.to.equal(name)
+  this.expect.element('.pf-c-description-list:nth-child(1) > .pf-c-description-list__group:nth-child(3) > .pf-c-description-list__description > .pf-c-description-list__text').text.to.equal(data[0].spec.remediationAction)
+  this.expect.element('.pf-c-description-list:nth-child(1) > .pf-c-description-list__group:nth-child(4) > .pf-c-description-list__description > .pf-c-description-list__text').text.to.equal(data[0].spec.disabled.toString())
+  this.expect.element('.pf-c-description-list:nth-child(3) > .pf-c-description-list__group:nth-child(1) > .pf-c-description-list__description > .pf-c-description-list__text').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/categories'])
+  this.expect.element('.pf-c-description-list:nth-child(3) > .pf-c-description-list__group:nth-child(2) > .pf-c-description-list__description > .pf-c-description-list__text').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/controls'])
+  this.expect.element('.pf-c-description-list:nth-child(3) > .pf-c-description-list__group:nth-child(3) > .pf-c-description-list__description > .pf-c-description-list__text').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/standards'])
   // Check Placement rule
   this.expect.element('.overview-content > div:nth-child(2) > .section-title').text.to.equal('Placement')
   this.waitForElementVisible('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title')
