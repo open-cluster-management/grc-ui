@@ -17,11 +17,15 @@ import {
   AccordionItem,
   AccordionContent,
   AccordionToggle,
-  Tooltip
+  DescriptionList,
+  DescriptionListGroup,
+  DescriptionListTerm,
+  DescriptionListDescription,
+  Tooltip,
+  Divider
 } from '@patternfly/react-core'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
-import _uniqueId from 'lodash/uniqueId'
 import moment from 'moment'
 import { getPolicyCompliantStatus } from '../../definitions/hcm-policies-policy'
 import { LocaleContext } from './LocaleContext'
@@ -30,10 +34,6 @@ resources(() => {
   require('../../../scss/structured-list.scss')
 })
 
-const VerticalDivider = (key) => {
-  return <span className="vertical-divider" key={key} />
-}
-
 class DetailsModule extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -41,13 +41,17 @@ class DetailsModule extends React.PureComponent {
       expanded: `${props.title.toLowerCase().replace(/ /g,'-')}-toggle`
     }
   }
+  static defaultProps = {
+    colSize: 'default',
+    numColumns: 2
+  }
   formatData() {
-    const { numRows, listData, listItem} = this.props
-    const tablesData = []
-    const itemsForEachTable = _.chunk(listItem, numRows)
-    _.forEach(itemsForEachTable, (items) => {
-      const oneTableData = []
-      _.forEach(items, (item) => {
+    const { listData, listItem, numColumns } = this.props
+    const colData = []
+    const itemsForEachColumn = _.chunk(listItem, Math.ceil(listItem.length / numColumns))
+    itemsForEachColumn.forEach((col) => {
+      const oneColData = []
+      col.forEach((item) => {
         if (Array.isArray(item.cells) && item.cells[0]) {
           const entry = []
           entry[0] = item.cells[0].resourceKey ? item.cells[0].resourceKey : '-'
@@ -65,62 +69,56 @@ class DetailsModule extends React.PureComponent {
           if (item.cells[0].information) {
             entry[2] = item.cells[0].information
           }
-          oneTableData.push(entry)
+          oneColData.push(entry)
         }
       })
-      tablesData.push(oneTableData)
+      colData.push(oneColData)
     })
-    return tablesData
+    return colData
   }
 
-  renderStructuredListBody(tablesData) {
-    const { numRows, numColumns } = this.props
-    const tables = []
-    for( let column=0; column < numColumns; column++ ) {
-      const tableData = tablesData[column]
-      const tableRows = []
-      for( let row=0; row < numRows; row++){
-        if(tableData[row]){
-          const tableCells = []
-          tableCells.push(
-            <td className='structured-list-table-item' key={`list-item-${tableData[row][0]}`} >
-              <div className='structured-list-table-item-header'>
-                <div className='structured-list-table-item-name'>{msgs.get(tableData[row][0], this.context.locale)}</div>
-                {tableData[row][2] && // no third column no tooltip
-                  <Tooltip content={msgs.get(tableData[row][2], this.context.locale)}>
+  renderDescriptionListBody(renderedData) {
+    const renderedDescriptionList = []
+    renderedData.forEach((col, index) => {
+      const colData = []
+      col.forEach((row) => {
+        if (row) {
+          const rowData = []
+          rowData.push(
+            <DescriptionListGroup key={`description-list-item-${row[0]}-group`} >
+              <DescriptionListTerm key={`description-list-item-${row[0]}-term`}>
+                {msgs.get(row[0], this.context.locale)}
+                {row[2] && // no third item no tooltip
+                  <Tooltip content={msgs.get(row[2], this.context.locale)}>
                     <svg className='info-icon'>
                       <use href={'#diagramIcons_info'} ></use>
                     </svg>
                   </Tooltip>}
-              </div>
-            </td>
+              </DescriptionListTerm>
+              <DescriptionListDescription key={`description-list-item-${row[0]}-description`}>
+                {row[1]}
+              </DescriptionListDescription>
+            </DescriptionListGroup>
           )
-          tableCells.push(
-            <td className='structured-list-table-data' key={_uniqueId(`list-item-${tableData[row][1]}`)} >
-              {tableData[row][1]}
-            </td>
-          )
-          const tableRow =
-            <tr className = 'new-structured-list-table-row' key={_uniqueId(`list-line-${row}-${tableData[row][0]}`)} >
-              {tableCells}
-            </tr>
-          tableRows.push(tableRow)
+          colData.push(rowData)
         }
+      })
+      renderedDescriptionList.push(
+        <DescriptionList
+          columnModifier={{[this.props.colSize]: '1Col'}}
+          isHorizontal
+          key={`description-list-${Math.random().toString(36).substr(2, 9)}`}
+        >
+          {colData}
+        </DescriptionList>
+      )
+      if (index < renderedData.length - 1) {
+        renderedDescriptionList.push(
+          <Divider isVertical key={`divider-${Math.random().toString(36).substr(2, 9)}`} />
+        )
       }
-      const table =
-        <table className = 'new-structured-list-table' key={_uniqueId(`new-structured-list-${tableData[0][1]}`)}>
-          <tbody>{tableRows}</tbody>
-        </table>
-      tables.push(table)
-    }
-    const moduleBody = []
-    for( let i=0; i<tables.length; i++){
-      moduleBody.push(tables[i])
-      if(i !== tables.length -1 ) {
-        moduleBody.push(<VerticalDivider key={_uniqueId('VerticalDivider')} />)
-      }
-    }
-    return React.createElement('div',{className: 'new-structured-list'}, moduleBody)
+    })
+    return renderedDescriptionList
   }
 
   onToggle(id) {
@@ -133,20 +131,21 @@ class DetailsModule extends React.PureComponent {
 
   render() {
     const { title } = this.props
-    const tablesData = this.formatData()
+    const renderedData = this.formatData()
     const id = title.toLowerCase().replace(/ /g,'-')
 
-    return(<Accordion className='new-structured-list-container' key={_uniqueId('new-structured-list')}>
-      <AccordionItem key={_uniqueId('new-structured-list-body')}>
+    return(<Accordion>
+      <AccordionItem>
         <AccordionToggle
+          id={`${id}-toggle`}
           onClick={() => {this.onToggle(`${id}-toggle`)}}
           isExpanded={this.state.expanded===`${id}-toggle`}
         >
-          <div className='section-title pf-c-accordion__toggle-title'>
+          <div id={`${id}-title`} className='section-title pf-c-accordion__toggle-title'>
             {msgs.get(title, this.context.locale)}
           </div>
           <AccordionContent id={`${id}-expand`} isHidden={this.state.expanded !== `${id}-toggle`}>
-            {this.renderStructuredListBody(tablesData)}
+            {this.renderDescriptionListBody(renderedData)}
           </AccordionContent>
         </AccordionToggle>
       </AccordionItem>
@@ -157,10 +156,10 @@ class DetailsModule extends React.PureComponent {
   static contextType = LocaleContext
 
   static propTypes = {
+    colSize: PropTypes.oneOf(['default', 'md', 'lg', 'xl', '2xl']),
     listData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
     listItem: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
     numColumns: PropTypes.number.isRequired,
-    numRows: PropTypes.number.isRequired,
     title: PropTypes.string,
   }
 }

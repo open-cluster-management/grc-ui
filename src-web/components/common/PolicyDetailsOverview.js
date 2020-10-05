@@ -221,8 +221,6 @@ export class PolicyDetailsOverview extends React.PureComponent{
       <div className='overview-content'>
         <div className='vertical-expend'>
           <DetailsModule
-            numRows = {5}
-            numColumns = {2}
             listData = {localItem}
             listItem = {staticResourceData.detailKeys.rows}
             title = {staticResourceData.detailKeys.title}
