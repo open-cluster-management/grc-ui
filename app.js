@@ -25,6 +25,7 @@ log4js.configure(log4jsConfig || 'config/log4js.json')
 logger.info(`[pid ${process.pid}] [env ${process.env.NODE_ENV}] started.`)
 
 const express = require('express'),
+      exphbs  = require('express-handlebars'),
       path = require('path'),
       appConfig = require('./config'),
       appUtil = require('./lib/server/app-util')
@@ -41,10 +42,6 @@ const bodyParser = require('body-parser'),
       csurf = require('csurf'),
       requestLogger = require('./middleware/request-logger'),
       controllers = require('./controllers')
-
-const consolidate = require('consolidate')
-
-require('./lib/shared/dust-helpers')
 
 const app = express()
 
@@ -159,10 +156,10 @@ if (process.env.NODE_ENV === 'development') {
   }))
 }
 
-app.engine('dust', consolidate.dust)
+app.engine('handlebars', exphbs())
 app.set('env', 'production')
 app.set('views', `${__dirname}/views`)
-app.set('view engine', 'dust')
+app.set('view engine', 'handlebars')
 app.set('view cache', true)
 
 appUtil.app(app)

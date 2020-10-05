@@ -253,7 +253,7 @@
            }
 
            .card-grc-type {
-            text-transform: uppercase;
+            text-transform: capitalize;
            }
 
            &.violated:hover, &.found:hover, &.high:hover {
