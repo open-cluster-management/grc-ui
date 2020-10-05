@@ -21,8 +21,7 @@ import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
 import {
   staticResourceDataPolicyOverview,
-  itemPolicyOverview,
-  itemPolicyOverviewError
+  itemPolicyOverview
 } from './CommonTestingData'
 
 describe('PolicyDetailsOverview component', () => {
