@@ -26,6 +26,7 @@ logger.info(`[pid ${process.pid}] [env ${process.env.NODE_ENV}] started.`)
 
 const express = require('express'),
       exphbs  = require('express-handlebars'),
+      handlebarsHelpers = require('./lib/shared/handlebarsHelpers'),
       path = require('path'),
       appConfig = require('./config'),
       appUtil = require('./lib/server/app-util')
@@ -156,7 +157,14 @@ if (process.env.NODE_ENV === 'development') {
   }))
 }
 
-app.engine('handlebars', exphbs())
+const hbs = exphbs.create({
+  // Specify helpers which are only registered on this instance.
+  helpers: {
+    properties: handlebarsHelpers,
+  }
+})
+
+app.engine('handlebars', hbs.engine)
 app.set('env', 'production')
 app.set('views', `${__dirname}/views`)
 app.set('view engine', 'handlebars')
