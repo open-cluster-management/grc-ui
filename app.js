@@ -53,9 +53,28 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use(helmet({ // in production these headers are set by icp-management-ingress
-  frameguard: false
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ['\'none\''],
+    fontSrc: ['\'self\''],
+    scriptSrc: [
+      (req, res) => `'nonce-${res.locals.nonce}'`,
+      '\'self\'',
+      'blob:',
+      'cdn.segment.com',
+      'fast.appcues.com'
+    ],
+    connectSrc: ['\'self\'', 'https://api.segment.io', 'wss://api.appcues.net', 'https://notify.bugsnag.com'],
+    imgSrc: ['\'self\'', 'data:'],
+    frameSrc: ['\'self\'', 'https://my.appcues.com'],
+    frameAncestors: ['\'self\''],
+    styleSrc: ['\'unsafe-inline\'',  '\'self\'', 'https://fast.appcues.com'],
+  }
 }))
+
+// app.use(helmet({ // in production these headers are set by icp-management-ingress
+//   frameguard: false
+// }))
 
 // Remove the X-Powered-By headers.
 app.disable('x-powered-by')
