@@ -70,7 +70,6 @@ class PolicyDetailsTab extends React.Component{
       resourceType
     } = this.props
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
-    console.log(this.props)
     return <Query
       query={HCMCompliance}
       variables={{name: policyName, namespace: policyNamespace}}
@@ -78,7 +77,6 @@ class PolicyDetailsTab extends React.Component{
       notifyOnNetworkStatusChange
     >
       {( result ) => {
-        console.log(result)
         const {data={}, loading, startPolling, stopPolling, refetch} = result
         const { items } = data
         const error = items ? null : result.error
