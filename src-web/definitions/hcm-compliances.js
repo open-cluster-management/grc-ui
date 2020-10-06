@@ -452,28 +452,6 @@ export default {
       {
         cells: [
           {
-            resourceKey: 'description.title.createdAt',
-            type: 'timestamp'
-          },
-          {
-            resourceKey: 'metadata.creationTimestamp'
-          }
-        ]
-      },
-      {
-        cells: [
-          {
-            resourceKey: 'table.header.cluster.violation',
-            type: 'i18n'
-          },
-          {
-            resourceKey: 'clusterCompliant'
-          }
-        ]
-      },
-      {
-        cells: [
-          {
             resourceKey: 'description.title.enforcement',
             information: 'grc.remediation.tooltip',
             type: 'i18n'
@@ -491,6 +469,17 @@ export default {
           },
           {
             resourceKey: 'raw.spec.disabled'
+          }
+        ]
+      },
+      {
+        cells: [
+          {
+            resourceKey: 'table.header.cluster.violation',
+            type: 'i18n'
+          },
+          {
+            resourceKey: 'clusterCompliant'
           }
         ]
       },
@@ -524,6 +513,17 @@ export default {
           },
           {
             resourceKey: 'metadata.annotations["policy.open-cluster-management.io/standards"]',
+          }
+        ]
+      },
+      {
+        cells: [
+          {
+            resourceKey: 'description.title.created',
+            type: 'timestamp'
+          },
+          {
+            resourceKey: 'metadata.creationTimestamp'
           }
         ]
       },

@@ -120,7 +120,7 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementNotPresent('@spinner')
   this.expect.element('.bx--detail-page-header-title').text.to.equal(name)
   this.expect.element('.section-title:nth-of-type(1)').text.to.equal('Policy details')
-  this.expect.element('.new-structured-list > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(name)
+  this.expect.element('.pf-c-description-list:nth-child(1) > .pf-c-description-list__group:nth-child(1) > .pf-c-description-list__description > .pf-c-description-list__text').text.to.equal(name)
   this.expect.element('.overview-content > div:nth-child(2) > .section-title').text.to.equal('Placement')
   this.waitForElementVisible('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title')
   this.expect.element('.overview-content-second > div:nth-child(1) > div > div > div:nth-child(1) > .bx--module__title').text.to.equal('Placement rule')

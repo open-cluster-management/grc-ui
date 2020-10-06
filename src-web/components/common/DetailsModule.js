@@ -12,11 +12,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { Module, ModuleBody, ModuleHeader } from 'carbon-addons-cloud-react'
-import { TooltipIcon } from 'carbon-components-react'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionContent,
+  AccordionToggle,
+  DescriptionList,
+  DescriptionListGroup,
+  DescriptionListTerm,
+  DescriptionListDescription,
+  Tooltip,
+  Divider
+} from '@patternfly/react-core'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
-import _uniqueId from 'lodash/uniqueId'
 import moment from 'moment'
 import { getPolicyCompliantStatus } from '../../definitions/hcm-policies-policy'
 import { LocaleContext } from './LocaleContext'
@@ -25,22 +34,24 @@ resources(() => {
   require('../../../scss/structured-list.scss')
 })
 
-const VerticalDivider = (key) => {
-  return <span className="vertical-divider" key={key} />
-}
-
 class DetailsModule extends React.PureComponent {
   constructor(props) {
     super(props)
+    this.state = {
+      expanded: `${props.title.toLowerCase().replace(/ /g,'-')}-toggle`
+    }
   }
-
+  static defaultProps = {
+    colSize: 'default',
+    numColumns: 2
+  }
   formatData() {
-    const { numRows, listData, listItem} = this.props
-    const tablesData = []
-    const itemsForEachTable = _.chunk(listItem, numRows)
-    _.forEach(itemsForEachTable, (items) => {
-      const oneTableData = []
-      _.forEach(items, (item) => {
+    const { listData, listItem, numColumns } = this.props
+    const colData = []
+    const itemsForEachColumn = _.chunk(listItem, Math.ceil(listItem.length / numColumns))
+    itemsForEachColumn.forEach((col) => {
+      const oneColData = []
+      col.forEach((item) => {
         if (Array.isArray(item.cells) && item.cells[0]) {
           const entry = []
           entry[0] = item.cells[0].resourceKey ? item.cells[0].resourceKey : '-'
@@ -54,89 +65,111 @@ class DetailsModule extends React.PureComponent {
               entry[1] = getPolicyCompliantStatus({clusterCompliant: entry[1]}, this.context.locale)
             }
           }
-          // third column entry[2] is tooltip inforamtion, if not exist then no tooltip
+          // third column entry[2] is tooltip information, if not exist then no tooltip
           if (item.cells[0].information) {
             entry[2] = item.cells[0].information
           }
-          oneTableData.push(entry)
+          oneColData.push(entry)
         }
       })
-      tablesData.push(oneTableData)
+      colData.push(oneColData)
     })
-    return tablesData
+    return colData
   }
 
-  renderStructuredListBody(tablesData) {
-    const { numRows, numColumns } = this.props
-    const tables = []
-    for( let column=0; column < numColumns; column++ ) {
-      const tableData = tablesData[column]
-      const tableRows = []
-      for( let row=0; row < numRows; row++){
-        if(tableData[row]){
-          const tableCells = []
-          tableCells.push(
-            <td className='structured-list-table-item' key={`list-item-${tableData[row][0]}`} >
-              <div className='structured-list-table-item-header'>
-                <div className='structured-list-table-item-name'>{msgs.get(tableData[row][0], this.context.locale)}</div>
-                {tableData[row][2] && // no third column no tooltip
-                  <TooltipIcon align='end' tooltipText={msgs.get(tableData[row][2], this.context.locale)}>
+  renderDescriptionListBody(renderedData) {
+    let maxRows = 0
+    const renderedDescriptionList = []
+    renderedData.forEach((col, index) => {
+      const colData = []
+      col.forEach((row) => {
+        if (row) {
+          const rowData = []
+          rowData.push(
+            <DescriptionListGroup key={`description-list-item-${row[0]}-group`} >
+              <DescriptionListTerm key={`description-list-item-${row[0]}-term`}>
+                {msgs.get(row[0], this.context.locale)}
+                {row[2] && // no third item no tooltip
+                  <Tooltip content={msgs.get(row[2], this.context.locale)}>
                     <svg className='info-icon'>
                       <use href={'#diagramIcons_info'} ></use>
                     </svg>
-                  </TooltipIcon>}
-              </div>
-            </td>
+                  </Tooltip>}
+              </DescriptionListTerm>
+              <DescriptionListDescription key={`description-list-item-${row[0]}-description`}>
+                {row[1]}
+              </DescriptionListDescription>
+            </DescriptionListGroup>
           )
-          tableCells.push(
-            <td className='structured-list-table-data' key={_uniqueId(`list-item-${tableData[row][1]}`)} >
-              {tableData[row][1]}
-            </td>
+          colData.push(rowData)
+        }
+      })
+      // Push empty rows into DescriptionList in order to even up columns
+      if (colData.length > maxRows) {
+        maxRows = colData.length
+      } else {
+        for (let i = colData.length; i < maxRows; i++) {
+          colData.push(
+            <div>&nbsp;</div>
           )
-          const tableRow =
-            <tr className = 'new-structured-list-table-row' key={_uniqueId(`list-line-${row}-${tableData[row][0]}`)} >
-              {tableCells}
-            </tr>
-          tableRows.push(tableRow)
         }
       }
-      const table =
-        <table className = 'new-structured-list-table' key={_uniqueId(`new-structured-list-${tableData[0][1]}`)}>
-          <tbody>{tableRows}</tbody>
-        </table>
-      tables.push(table)
-    }
-    const moduleBody = []
-    for( let i=0; i<tables.length; i++){
-      moduleBody.push(tables[i])
-      if(i !== tables.length -1 ) {
-        moduleBody.push(<VerticalDivider key={_uniqueId('VerticalDivider')} />)
+      renderedDescriptionList.push(
+        <DescriptionList
+          columnModifier={{[this.props.colSize]: '1Col'}}
+          isHorizontal
+          key={`description-list-${Math.random().toString(36).substr(2, 9)}`}
+        >
+          {colData}
+        </DescriptionList>
+      )
+      if (index < renderedData.length - 1) {
+        renderedDescriptionList.push(
+          <Divider isVertical key={`divider-${Math.random().toString(36).substr(2, 9)}`} />
+        )
       }
+    })
+    return renderedDescriptionList
+  }
+
+  onToggle(id) {
+    if (id === this.state.expanded) {
+      this.setState({expanded: ''})
+    } else {
+      this.setState({expanded: id })
     }
-    return React.createElement('div',{className: 'new-structured-list'}, moduleBody)
   }
 
   render() {
     const { title } = this.props
-    const showHeader = _.get(this.props, 'showHeader', true)
-    const tablesData = this.formatData()
+    const renderedData = this.formatData()
+    const id = title.toLowerCase().replace(/ /g,'-')
 
-    return(<Module className='new-structured-list-container' key={_uniqueId('new-structured-list')}>
-      { showHeader? <ModuleHeader>{msgs.get(title, this.context.locale)}</ModuleHeader> : null}
-      <ModuleBody key={_uniqueId('new-structured-list-body')}>
-        {this.renderStructuredListBody(tablesData)}
-      </ModuleBody>
-    </Module>)
+    return(<Accordion>
+      <AccordionItem>
+        <AccordionToggle
+          className='section-title'
+          id={`${id}-toggle`}
+          onClick={() => {this.onToggle(`${id}-toggle`)}}
+          isExpanded={this.state.expanded===`${id}-toggle`}
+        >
+          {msgs.get(title, this.context.locale)}
+        </AccordionToggle>
+        <AccordionContent id={`${id}-expand`} isHidden={this.state.expanded !== `${id}-toggle`}>
+          {this.renderDescriptionListBody(renderedData)}
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>)
 
   }
 
   static contextType = LocaleContext
 
   static propTypes = {
+    colSize: PropTypes.oneOf(['default', 'md', 'lg', 'xl', '2xl']),
     listData: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
     listItem: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
     numColumns: PropTypes.number.isRequired,
-    numRows: PropTypes.number.isRequired,
     title: PropTypes.string,
   }
 }
