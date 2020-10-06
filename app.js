@@ -187,6 +187,9 @@ const hbs = exphbs.create({
   // Specify helpers which are only registered on this instance.
   helpers: {
     properties: handlebarsHelpers,
+    json: function(context) {
+      return JSON.stringify(context)
+    }
   }
 })
 

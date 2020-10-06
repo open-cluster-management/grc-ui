@@ -9,19 +9,19 @@
     </div>
     {{{body}}}
     <script nonce='{{{consoleNonce}}}' charset="UTF-8">
-        window.__PRELOADED_STATE__= {{{stateH}}}
+        window.__PRELOADED_STATE__= {{{json stateH}}}
     </script>
-    <script id='config' nonce='{{{consoleNonce}}}' type='application/json'>{{{config}}}</script>
-    <script id='context' nonce='{{{consoleNonce}}}' type='application/json'>{{{context}}}</script>
-    <script id='propshcm' nonce='{{{consoleNonce}}}' type='application/json'>{{{props}}}</script>
+    <script id='config' nonce='{{{consoleNonce}}}' type='application/json'>{{{json config}}}</script>
+    <script id='context' nonce='{{{consoleNonce}}}' type='application/json'>{{{json context}}}</script>
+    <script id='propshcm' nonce='{{{consoleNonce}}}' type='application/json'>{{{json props}}}</script>
     <script nonce='{{{consoleNonce}}}' src="{{contextPath}}/{{manifest.vendorhcm.js}}"></script>
-    <script id='props' nonce='{{{consoleNonce}}}' type='application/json'>{{{propsH}}}</script>
+    <script id='props' nonce='{{{consoleNonce}}}' type='application/json'>{{{json propsH}}}</script>
     <script nonce='{{{consoleNonce}}}' src="{{filesH.nls.path}}"></script>
     <script nonce='{{{consoleNonce}}}' src="{{filesH.dll.path}}"></script>
     <script nonce='{{{consoleNonce}}}' src="{{filesH.js.path}}"></script>
-    <script nonce='{{{consoleNonce}}}' src="{{properties}} href='nls/platform.properties' locale={{context.locale}}"></script>
+    <script nonce='{{{consoleNonce}}}' src="{{{properties href='nls/platform.properties' locale=context.locale}}}"></script>
     <script nonce='{{{consoleNonce}}}' charset="UTF-8">
-        window.__PRELOADED_STATE__= {{{state}}}
+        window.__PRELOADED_STATE__= {{{json state}}}
     </script>
     <script nonce='{{{consoleNonce}}}'src="{{contextPath}}/{{manifest.main.js}}"></script>
 </body>
