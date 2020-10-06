@@ -63,6 +63,7 @@ module.exports = {
     }
     page.createTestPolicy(true, policySpec, templateFile)
     common.checkStatus(policyName, true)
+    this.pause(30*60*1000)
     common.searchPolicy(policyName, true)
     page.testPolicySidePanel()
     page.testFilters(policySpec)
