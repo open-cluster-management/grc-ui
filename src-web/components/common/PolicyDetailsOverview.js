@@ -73,7 +73,6 @@ export class PolicyDetailsOverview extends React.PureComponent{
     const {staticResourceData, resourceType, location} = this.props
     const { item:localItem } = this.props
     const { locale } = this.context
-
     const clusterStatus = this.getClusterStatus(localItem)
 
     const modulesSecond = [
@@ -221,10 +220,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
     return (
       <div className='overview-content'>
         <div className='vertical-expend'>
-          <h5 className='section-title'>{msgs.get('table.header.policyDetails', locale)}</h5>
           <DetailsModule
-            numRows = {3}
-            numColumns = {3}
             listData = {localItem}
             listItem = {staticResourceData.detailKeys.rows}
             title = {staticResourceData.detailKeys.title}
