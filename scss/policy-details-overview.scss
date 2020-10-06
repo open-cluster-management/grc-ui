@@ -47,6 +47,9 @@
           display: flex;
           flex-grow: 1;
         }
+        .overview-content-second-cell + .overview-content-second-cell {
+          padding-left: 1.25rem;
+        }
       }
 
       .module-container{
@@ -85,11 +88,10 @@
           padding: 0.5rem;
 
           .pf-c-accordion__toggle {
+            background-color: unset;
             outline: none;
+
             &::before {
-              background-color: unset;
-            }
-            &:hover {
               background-color: unset;
             }
 

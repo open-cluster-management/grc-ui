@@ -78,6 +78,7 @@ class DetailsModule extends React.PureComponent {
   }
 
   renderDescriptionListBody(renderedData) {
+    let maxRows = 0
     const renderedDescriptionList = []
     renderedData.forEach((col, index) => {
       const colData = []
@@ -103,6 +104,16 @@ class DetailsModule extends React.PureComponent {
           colData.push(rowData)
         }
       })
+      // Push empty rows into DescriptionList in order to even up columns
+      if (colData.length > maxRows) {
+        maxRows = colData.length
+      } else {
+        for (let i = colData.length; i < maxRows; i++) {
+          colData.push(
+            <div>&nbsp;</div>
+          )
+        }
+      }
       renderedDescriptionList.push(
         <DescriptionList
           columnModifier={{[this.props.colSize]: '1Col'}}
