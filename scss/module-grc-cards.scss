@@ -158,15 +158,16 @@
       .card-content {
         display: flex;
         flex-direction: column;
-        height: 12.5rem;
+        height: 12.75rem;
         min-width: 23.125rem;
         background-color: white;
         box-shadow: rgba(0, 0, 0, 0.1) 0rem 0.0625rem 0.125rem 0rem;
 
         .card-name {
-          font-weight: bold;
-          padding: 1.25rem;
+          height: 3.75rem;
+          padding: 1.5rem;
           font-size: 1rem;
+          font-weight: bold;
           .textWithTruncation {
             font-weight: bold;
             font-size: 1rem;
