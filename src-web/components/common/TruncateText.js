@@ -48,9 +48,9 @@ class TruncateText extends React.PureComponent {
       maxWidth = {maxWidth ? maxWidth : '80rem'}
       enableFlip = {false}
       position = {position ? position : 'top'}
-      content = {<div>${text}</div>}
+      content = {<div>{text}</div>}
     >
-      <span>{`${truncate(text, maxCharacters)}${postfix}`}</span>
+      <span className='textWithTruncation'>{`${truncate(text, maxCharacters)}${postfix}`}</span>
     </Tooltip>
   }
 }
