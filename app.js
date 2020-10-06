@@ -55,8 +55,8 @@ app.use((req, res, next) => {
 
 app.use(helmet.contentSecurityPolicy({
   directives: {
-    defaultSrc: ['\'none\''],
-    fontSrc: ['\'self\''],
+    defaultSrc: ['\'self\'', 'data:'],
+    fontSrc: ['\'self\'', 'data:'],
     scriptSrc: [
       (req, res) => `'nonce-${res.locals.nonce}'`,
       '\'self\'',
