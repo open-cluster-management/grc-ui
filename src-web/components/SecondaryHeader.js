@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { Breadcrumb, Tabs, Tab, TooltipIcon } from 'carbon-components-react'
-import { Button } from '@patternfly/react-core'
+import { Button, Tooltip } from '@patternfly/react-core'
 import resources from '../../lib/shared/resources'
 import { withRouter, Link } from 'react-router-dom'
 import msgs from '../../nls/platform.properties'
@@ -173,7 +173,7 @@ export class SecondaryHeader extends React.Component {
       if (kind==='portal') {
         return <div key={id} id={id} className='portal' />
       }
-      return <Button
+      const buttonItem = (<Button
         isDisabled={disableFlag}
         key={id}
         id={id}
@@ -182,7 +182,15 @@ export class SecondaryHeader extends React.Component {
         isSmall
       >
         {msgs.get(label, locale)}
-      </Button>
+      </Button>)
+      if (disableFlag){
+        // Tooltips will not show for disabled elements, so we need to wrap the button
+        return (<Tooltip content={msgs.get('error.permission.disabled', locale)} key={`${id}-tooltip`}>
+          <div>{buttonItem}</div>
+        </Tooltip>)
+      } else {
+        return (buttonItem)
+      }
     })
   }
 
