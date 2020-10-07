@@ -387,7 +387,7 @@ export class ResourceTable extends React.Component {
         //changes menu item based on whether policy is enabled or disabled
         row.disabled = false
         row.remediation = 'inform'
-        if (Array.isArray(filteredActions) && filteredActions.length === 5) {
+        if (Array.isArray(filteredActions) && filteredActions.length === 4) {
           if (this.checkPolicyDisabled(item)) {
             filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
             row.disabled = true
