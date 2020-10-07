@@ -106,7 +106,7 @@ function fetchHeader(req, res, store, fetchHeaderContext) {
         propsH: propsH,
         stateH: stateH,
         filesH: filesH,
-        consoleNonce: res.locals.nonce,
+        // consoleNonce: res.locals.nonce,
       }, fetchHeaderContext))
     } catch(e) {
       //eslint-disable-next-line no-console

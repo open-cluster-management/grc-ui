@@ -49,33 +49,33 @@ const app = express()
 
 // Generate CSP with nonce for inline scripts
 app.use((req, res, next) => {
-  res.locals.nonce = crypto.randomBytes(16).toString('base64')
+  // res.locals.nonce = crypto.randomBytes(16).toString('base64')
   next()
 })
 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ['\'self\'', 'data:'],
-    fontSrc: ['\'self\'', 'data:'],
-    scriptSrc: [
-      (req, res) => `'nonce-${res.locals.nonce}'`,
-      '\'self\'',
-      '\'unsafe-eval\'',
-      'blob:',
-      'cdn.segment.com',
-      'fast.appcues.com'
-    ],
-    connectSrc: ['\'self\'', 'https://api.segment.io', 'wss://api.appcues.net', 'https://notify.bugsnag.com'],
-    imgSrc: ['\'self\'', 'data:'],
-    frameSrc: ['\'self\'', 'https://my.appcues.com'],
-    frameAncestors: ['\'self\''],
-    styleSrc: ['\'unsafe-inline\'',  '\'self\'', 'https://fast.appcues.com'],
-  }
-}))
-
-// app.use(helmet({ // in production these headers are set by icp-management-ingress
-//   frameguard: false
+// app.use(helmet.contentSecurityPolicy({
+//   directives: {
+//     defaultSrc: ['\'self\'', 'data:'],
+//     fontSrc: ['\'self\'', 'data:'],
+//     scriptSrc: [
+//       (req, res) => `'nonce-${res.locals.nonce}'`,
+//       '\'self\'',
+//       '\'unsafe-eval\'',
+//       'blob:',
+//       'cdn.segment.com',
+//       'fast.appcues.com'
+//     ],
+//     connectSrc: ['\'self\'', 'https://api.segment.io', 'wss://api.appcues.net', 'https://notify.bugsnag.com'],
+//     imgSrc: ['\'self\'', 'data:'],
+//     frameSrc: ['\'self\'', 'https://my.appcues.com'],
+//     frameAncestors: ['\'self\''],
+//     styleSrc: ['\'unsafe-inline\'',  '\'self\'', 'https://fast.appcues.com'],
+//   }
 // }))
+
+app.use(helmet({ // in production these headers are set by icp-management-ingress
+  frameguard: false
+}))
 
 // Remove the X-Powered-By headers.
 app.disable('x-powered-by')
