@@ -808,7 +808,6 @@ GrcToggleModule {
               "primaryKey": "metadata.name",
               "secondaryKey": "metadata.namespace",
               "tableActions": Array [
-                "table.actions.policy.policies.sidepanel",
                 "table.actions.edit",
                 "table.actions.disable",
                 "table.actions.enforce",
@@ -1716,7 +1715,6 @@ GrcToggleModule {
               "primaryKey": "metadata.name",
               "secondaryKey": "metadata.namespace",
               "tableActions": Array [
-                "table.actions.policy.policies.sidepanel",
                 "table.actions.edit",
                 "table.actions.disable",
                 "table.actions.enforce",
@@ -4272,7 +4270,6 @@ GrcToggleModule {
               "primaryKey": "metadata.name",
               "secondaryKey": "metadata.namespace",
               "tableActions": Array [
-                "table.actions.policy.policies.sidepanel",
                 "table.actions.edit",
                 "table.actions.disable",
                 "table.actions.enforce",
@@ -6850,7 +6847,6 @@ GrcToggleModule {
               "primaryKey": "metadata.name",
               "secondaryKey": "metadata.namespace",
               "tableActions": Array [
-                "table.actions.policy.policies.sidepanel",
                 "table.actions.edit",
                 "table.actions.disable",
                 "table.actions.enforce",
@@ -9406,7 +9402,6 @@ GrcToggleModule {
               "primaryKey": "metadata.name",
               "secondaryKey": "metadata.namespace",
               "tableActions": Array [
-                "table.actions.policy.policies.sidepanel",
                 "table.actions.edit",
                 "table.actions.disable",
                 "table.actions.enforce",
@@ -11984,7 +11979,6 @@ GrcToggleModule {
               "primaryKey": "metadata.name",
               "secondaryKey": "metadata.namespace",
               "tableActions": Array [
-                "table.actions.policy.policies.sidepanel",
                 "table.actions.edit",
                 "table.actions.disable",
                 "table.actions.enforce",
