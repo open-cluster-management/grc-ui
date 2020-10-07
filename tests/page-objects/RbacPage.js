@@ -28,11 +28,11 @@ module.exports = {
     overflowMenuBody: {
       selector: 'body > ul.bx--overflow-menu-options',
       elements: {
-        overflowMenuView: 'li:nth-child(1) > button',
-        overflowMenuEdit: 'li:nth-child(2) > button',
-        overflowMenuDisable: 'li:nth-child(3) > button',
-        overflowMenuEnforce: 'li:nth-child(4) > button',
-        overflowMenuRemove: 'li:nth-child(5) > button'
+        overflowMenuView: 'li:nth-child(0) > button',
+        overflowMenuEdit: 'li:nth-child(1) > button',
+        overflowMenuDisable: 'li:nth-child(2) > button',
+        overflowMenuEnforce: 'li:nth-child(3) > button',
+        overflowMenuRemove: 'li:nth-child(4) > button'
       }
     }
   },
@@ -57,7 +57,7 @@ function verifyAllPage(name, nsNum, permissions) {
   this.expect.section('@overflowMenuBody').to.be.visible
   const overflowMenuSection = this.section.overflowMenuBody
   // All users should be able to view
-  overflowMenuSection.expect.element('@overflowMenuView').to.be.enabled
+  // overflowMenuSection.expect.element('@overflowMenuView').to.be.enabled
   // Check for edit/disable/enforce permissions
   if (permissions.patch) {
     overflowMenuSection.expect.element('@overflowMenuEdit').to.be.enabled
@@ -75,11 +75,11 @@ function verifyAllPage(name, nsNum, permissions) {
     overflowMenuSection.expect.element('@overflowMenuRemove').to.be.not.enabled
   }
   // Make sure side panel can open
-  overflowMenuSection.click('@overflowMenuView')
-  this.expect.element('@sidePolicyPanel').to.be.visible
-  this.waitForElementNotPresent('@spinner')
-  this.click('@sidePolicyPanelClose')
-  this.waitForElementNotPresent('@sidePolicyPanel')
+  // overflowMenuSection.click('@overflowMenuView')
+  // this.expect.element('@sidePolicyPanel').to.be.visible
+  // this.waitForElementNotPresent('@spinner')
+  // this.click('@sidePolicyPanelClose')
+  // this.waitForElementNotPresent('@sidePolicyPanel')
   this.waitForElementVisible('@searchInput')
   this.click('@searchInput').clearValue('@searchInput')
 }
