@@ -60,6 +60,7 @@ app.use(helmet.contentSecurityPolicy({
     scriptSrc: [
       (req, res) => `'nonce-${res.locals.nonce}'`,
       '\'self\'',
+      '\'unsafe-eval\'',
       'blob:',
       'cdn.segment.com',
       'fast.appcues.com'
