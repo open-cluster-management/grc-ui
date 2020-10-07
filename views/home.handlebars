@@ -1,16 +1,10 @@
 {{!-- Copyright (c) 2020 Red Hat, Inc. --}}
 
 <body class="bx--global-light-ui" aria-label={{title}}>
-   <div id="header">
-     {{{header}}}
-    </div>
-    <div id="page">
-     {{{content}}}
-    </div>
+    <div id="header">{{{header}}}</div>
+    <div id="page">{{{content}}}</div>
     {{{body}}}
-    <script nonce='{{{consoleNonce}}}' charset="UTF-8">
-        window.__PRELOADED_STATE__= {{{json stateH}}}
-    </script>
+    <script nonce='{{{consoleNonce}}}' charset="UTF-8">window.__PRELOADED_STATE__= {{{json stateH}}}</script>
     <script id='config' nonce='{{{consoleNonce}}}' type='application/json'>{{{json config}}}</script>
     <script id='context' nonce='{{{consoleNonce}}}' type='application/json'>{{{json context}}}</script>
     <script id='propshcm' nonce='{{{consoleNonce}}}' type='application/json'>{{{json props}}}</script>
@@ -20,8 +14,6 @@
     <script src="{{filesH.dll.path}}"></script>
     <script src="{{filesH.js.path}}"></script>
     <script src="{{contextPath}}/{{{properties 'nls/platform.properties' context.locale}}}"></script>
-    <script nonce='{{{consoleNonce}}}' charset="UTF-8">
-        window.__PRELOADED_STATE__= {{{json state}}}
-    </script>
+    <script nonce='{{{consoleNonce}}}' charset="UTF-8">window.__PRELOADED_STATE__= {{{json state}}}</script>
     <script src="{{contextPath}}/{{manifest.main.js}}"></script>
 </body>
