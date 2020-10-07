@@ -138,9 +138,9 @@ function enforcePolicy(name){
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--tertiary) on enforce policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 4, '#enforce-resource-modal', '.bx--btn.bx--btn--tertiary')
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click enforce policy button (.bx--btn.bx--btn--danger--primary)
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 4, '#enforce-resource-modal', '.bx--btn.bx--btn--danger--primary')
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
   this.clearSearchValue()
@@ -153,9 +153,9 @@ function informPolicy(name){
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--secondary) on inform policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 4, '#inform-resource-modal', '.bx--btn.bx--btn--secondary')
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 3, '#inform-resource-modal', '.bx--btn.bx--btn--secondary')
   //re-entry overflow menu then click inform policy button (.bx--btn.bx--btn--primary)
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 4, '#inform-resource-modal', '.bx--btn.bx--btn--primary')
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 3, '#inform-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.waitForElementVisible('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
@@ -254,9 +254,9 @@ function deletePolicy(name){
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--tertiary) on delete policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 5, '#remove-resource-modal', '.bx--btn.bx--btn--tertiary')
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 3, '#remove-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 5, '#remove-resource-modal', '.bx--btn.bx--btn--danger--primary')
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 3, '#remove-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
 }
 
@@ -288,9 +288,9 @@ function tryEnable(name){
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--secondary) on enable policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 3, '#enable-resource-modal', '.bx--btn.bx--btn--secondary')
+  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--secondary')
   //re-entry overflow menu then click enable policy button (.bx--btn.bx--btn--primary)
-  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 3, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
+  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.waitForElementNotPresent('#table-container .disabled-label')
   this.clearSearchValue()
@@ -303,9 +303,9 @@ function tryDisable(name){
   this.waitForElementVisible('@searchInput')
   this.setSearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--tertiary) on disable policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 3, '#disable-resource-modal', '.bx--btn.bx--btn--tertiary')
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 2, '#disable-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 3, '#disable-resource-modal', '.bx--btn.bx--btn--danger--primary')
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 2, '#disable-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
   this.waitForElementPresent('#table-container .disabled-label')
   this.clearSearchValue()
