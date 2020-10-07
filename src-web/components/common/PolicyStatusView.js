@@ -36,20 +36,31 @@ class PolicyStatusView extends React.Component {
       <div className='policy-status-view'>
         <ToggleGroup className='policy-status-toggle' variant='light'>
           <ToggleGroupItem
-            buttonId={'policy-status-templates'}
-            onChange={this.toggleClick}
-            isSelected={toggleIndex===0}>
-            {msgs.get('tabs.policy.status.toggle.templates', locale)}
-          </ToggleGroupItem>
-          <ToggleGroupItem
             buttonId={'policy-status-clusters'}
             onChange={this.toggleClick}
-            isSelected={toggleIndex===1}>
+            isSelected={toggleIndex===0}>
             {msgs.get('tabs.policy.status.toggle.clusters', locale)}
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            buttonId={'policy-status-templates'}
+            onChange={this.toggleClick}
+            isSelected={toggleIndex===1}>
+            {msgs.get('tabs.policy.status.toggle.templates', locale)}
           </ToggleGroupItem>
         </ToggleGroup>
         <div className='policy-status-tab'>
-          {toggleIndex===0 && tableDataByTemplate.map((data)=> {
+          {toggleIndex===0 && <div className='policy-status-by-clusters-table'>
+            <Title
+              className='title'
+              headingLevel="h4">
+              {msgs.get('tabs.policy.status.toggle.clusters', locale)}
+            </Title>
+            <PatternFlyTable
+              {...tableDataByClusters}
+              noResultMsg={msgs.get('table.search.no.results', locale)}
+            />
+          </div>}
+          {toggleIndex===1 && tableDataByTemplate.map((data)=> {
             const templateName = data[0].toString()
             return <div
               className='policy-status-by-templates-table'
@@ -66,17 +77,6 @@ class PolicyStatusView extends React.Component {
               />
             </div>
           })}
-          {toggleIndex===1 && <div className='policy-status-by-clusters-table'>
-            <Title
-              className='title'
-              headingLevel="h4">
-              {msgs.get('tabs.policy.status.toggle.clusters', locale)}
-            </Title>
-            <PatternFlyTable
-              {...tableDataByClusters}
-              noResultMsg={msgs.get('table.search.no.results', locale)}
-            />
-          </div>}
         </div>
       </div>
     )
@@ -85,10 +85,10 @@ class PolicyStatusView extends React.Component {
   toggleClick(isSelected, event) {
     if (isSelected) {
       switch(event.currentTarget.id) {
-      case 'policy-status-clusters':
+      case 'policy-status-templates':
         this.setState({toggleIndex: 1})
         break
-      case 'policy-status-templates':
+      case 'policy-status-clusters':
       default:
         this.setState({toggleIndex: 0})
         break
