@@ -315,6 +315,7 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
   >
     <Tooltip
       content="You do not have the required permissions to take this action."
+      zIndex={10001}
     >
       <div>
         <Button
@@ -568,6 +569,7 @@ exports[`SecondaryHeader component 5 renderLinks nonclickable as expected 1`] = 
 Array [
   <Tooltip
     content="You do not have the required permissions to take this action."
+    zIndex={10001}
   >
     <div>
       <Button

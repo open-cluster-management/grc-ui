@@ -15,8 +15,8 @@ import { PAGE_SIZES } from '../../actions/index'
 import {
   PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox, TooltipIcon
 } from 'carbon-components-react'
-import { Tooltip } from '@patternfly/react-core'
 import PropTypes from 'prop-types'
+import { createDisableTooltip } from './DisableTooltip'
 import msgs from '../../../nls/platform.properties'
 import { transform } from '../../../lib/client/resource-helper'
 import { resourceActions } from './ResourceTableRowMenuItemActions'
@@ -425,17 +425,7 @@ export class ResourceTable extends React.Component {
                   onClick={() => getResourceAction(action, item, null, history, locale)}
                   primaryFocus={true}
                   key={action}
-                  // Tooltips will not show for disabled elements, so we need to wrap the element
-                  itemText={ disableFlag ?
-                    <Tooltip
-                      content={msgs.get('error.permission.disabled', locale)}
-                      key={`${action}-tooltip`}
-                      zIndex={10001}
-                    >
-                      <div>{msgs.get(action, locale)}</div>
-                    </Tooltip>
-                    :
-                    msgs.get(action, locale)}
+                  itemText={createDisableTooltip(disableFlag, action, locale, msgs.get(action, locale))}
                 />)
               })}
             </OverflowMenu>

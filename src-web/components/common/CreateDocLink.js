@@ -11,6 +11,7 @@
 
 import React from 'react'
 import { Button } from '@patternfly/react-core'
+import { createDisableTooltip } from './DisableTooltip'
 import msgs from '../../../nls/platform.properties'
 import config from '../../../lib/shared/config'
 
@@ -22,18 +23,19 @@ export const createDocLink = (locale, handleCreateResource, submitBtnTextKey, cr
   const grcPath = `${vNumber}/html/security/security#manage-security-policies`
   const docURL = `${rhPath}${acmPath}${grcPath}`
   const disableFlag = (createFlag !== 1)
+  const createButton = (<Button
+    id='create-resource'
+    variant='primary'
+    isDisabled={disableFlag}
+    isSmall
+    onClick={handleCreateResource}
+  >
+    { submitBtnTextKey }
+  </Button>)
   return (
     <div className={'button-group'}>
       <div className={'button-group-create-resource'}>
-        <Button
-          id='create-resource'
-          variant='primary'
-          isDisabled={disableFlag}
-          isSmall
-          onClick={handleCreateResource}
-        >
-          { submitBtnTextKey }
-        </Button>
+        {createDisableTooltip(disableFlag, 'create-resource', locale, createButton)}
       </div>
       <div className={'button-group-doc-link'}>
         <Button

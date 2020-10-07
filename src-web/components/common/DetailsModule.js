@@ -110,7 +110,7 @@ class DetailsModule extends React.PureComponent {
       } else {
         for (let i = colData.length; i < maxRows; i++) {
           colData.push(
-            <div>&nbsp;</div>
+            <div key={`empty-cell-${i}`}>&nbsp;</div>
           )
         }
       }
