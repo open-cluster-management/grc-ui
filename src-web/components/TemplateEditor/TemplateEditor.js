@@ -21,11 +21,10 @@ import {
   TextInput,
   Checkbox,
   DropdownV2,
-  TooltipIcon,
   MultiSelect,
   ToggleSmall,
   Modal} from 'carbon-components-react'
-import { Spinner } from '@patternfly/react-core'
+import { Spinner, Tooltip } from '@patternfly/react-core'
 import { initializeControlData, cacheUserData, updateControls, parseYAML } from './utils/update-controls'
 import { generateYAML, highlightChanges, getUniqueName } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
@@ -354,11 +353,11 @@ export default class TemplateEditor extends React.Component {
             checked={active}
             onChange={this.onChange.bind(this, id)} />
           <div>{name}</div>
-          <TooltipIcon direction='top' tooltipText={description}>
+          <Tooltip content={description}>
             <svg className='info-icon'>
               <use href={diagramIconsInfoStr} ></use>
             </svg>
-          </TooltipIcon>
+          </Tooltip>
         </div>
       </React.Fragment>
     )
@@ -378,11 +377,11 @@ export default class TemplateEditor extends React.Component {
           <div className="creation-view-controls-multiselect-title">
             {name}
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
-            <TooltipIcon direction='top' tooltipText={description}>
+            <Tooltip content={description}>
               <svg className='info-icon'>
                 <use href={diagramIconsInfoStr} ></use>
               </svg>
-            </TooltipIcon>
+            </Tooltip>
           </div>
           <DropdownV2
             aria-label={id}
@@ -438,11 +437,11 @@ export default class TemplateEditor extends React.Component {
           <div className="creation-view-controls-multiselect-title">
             {name}
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
-            <TooltipIcon direction='top' tooltipText={description}>
+            <Tooltip content={description}>
               <svg className='info-icon'>
                 <use href={diagramIconsInfoStr} ></use>
               </svg>
-            </TooltipIcon>
+            </Tooltip>
           </div>
           <MultiSelect.Filterable
             aria-label={id}

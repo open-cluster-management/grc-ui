@@ -13,8 +13,9 @@ import React from 'react'
 import resources from '../../../lib/shared/resources'
 import { PAGE_SIZES } from '../../actions/index'
 import {
-  PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox, TooltipIcon
+  PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox
 } from 'carbon-components-react'
+import { Tooltip } from '@patternfly/react-core'
 import PropTypes from 'prop-types'
 import { createDisableTooltip } from './DisableTooltip'
 import msgs from '../../../nls/platform.properties'
@@ -179,11 +180,11 @@ export class ResourceTable extends React.Component {
                             data-default-key={staticResourceData.defaultSortField}>
                             <span className='bx--table-header-label'>{header.header}</span>
                             { header.information &&
-                            <TooltipIcon align='end' tooltipText={header.information}>
+                            <Tooltip content={header.information}>
                               <svg className='info-icon'>
                                 <use href={'#diagramIcons_info'} ></use>
                               </svg>
-                            </TooltipIcon>
+                            </Tooltip>
                             }
                             <Icon
                               className='bx--table-sort-v2__icon'

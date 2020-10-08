@@ -58,7 +58,7 @@ describe('GrcView component 1', () => {
     pathname: '/multicloud/policies/all'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = shallow(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -76,7 +76,7 @@ describe('GrcView component 1', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(component.html()).toMatchSnapshot()
   })
 })
 
