@@ -113,6 +113,10 @@ body {
   }
 }
 
+div.disable-tooltip {
+  cursor: not-allowed;
+}
+
 div.no-resource {
   display: flex;
   flex-direction: column;
