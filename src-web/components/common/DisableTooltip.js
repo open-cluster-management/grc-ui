@@ -13,7 +13,7 @@ export const createDisableTooltip = (isDisabled, label, locale, component) => {
       key={`${label}-tooltip`}
       zIndex={10001}
     >
-      <div>{component}</div>
+      <div className='disable-tooltip'>{component}</div>
     </Tooltip>)
   } else {
     return component

@@ -23,6 +23,7 @@ exports[`PolicyTemplatesView component renders as expected 1`] = `
       >
         <div
           aria-describedby="pf-tooltip-1"
+          className="disable-tooltip"
         >
           <button
             className="read-only-button bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
@@ -56,6 +57,7 @@ exports[`PolicyTemplatesView component renders as expected 1`] = `
         </div>
         <div
           aria-describedby="pf-tooltip-2"
+          className="disable-tooltip"
         >
           <button
             className="bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"

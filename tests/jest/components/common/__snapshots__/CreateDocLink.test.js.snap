@@ -11,7 +11,9 @@ exports[`createDocLink view renders does not show create link as expected 1`] = 
       content="You do not have the required permissions to take this action."
       zIndex={10001}
     >
-      <div>
+      <div
+        className="disable-tooltip"
+      >
         <Button
           id="create-resource"
           isDisabled={true}
@@ -53,7 +55,9 @@ exports[`createDocLink view renders show create link as expected 1`] = `
       content="You do not have the required permissions to take this action."
       zIndex={10001}
     >
-      <div>
+      <div
+        className="disable-tooltip"
+      >
         <Button
           id="create-resource"
           isDisabled={true}
