@@ -15,6 +15,7 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { Breadcrumb, Tabs, Tab, TooltipIcon } from 'carbon-components-react'
 import { Button } from '@patternfly/react-core'
+import { createDisableTooltip } from './common/DisableTooltip'
 import resources from '../../lib/shared/resources'
 import { withRouter, Link } from 'react-router-dom'
 import msgs from '../../nls/platform.properties'
@@ -55,6 +56,7 @@ export class SecondaryHeader extends React.Component {
 
   render() {
     const { tabs, title, breadcrumbItems, links, description, location, userAccess } = this.props
+    const { shadowPresent: scrolled } = this.state
     const { locale } = this.context
     const displayType = location.pathname.split('/').pop()
     let showCreationLink // 0=clickable, 1=non-clickable, 2=hide
@@ -64,62 +66,59 @@ export class SecondaryHeader extends React.Component {
       showCreationLink = checkCreatePermission(userAccess)
       break
     }
-    if ((tabs && tabs.length > 0) || (breadcrumbItems && breadcrumbItems.length > 0)) {
-      const midName = (!location.pathname.startsWith('/multicloud/policies/all/') ? 'secondary-header-grc-overview' : '')
-      return (
-        <div className='secondary-header-wrapper' role='region' aria-label={title}>
-          <div className={`secondary-header ${midName} simple-header${this.state.shadowPresent ? '-with-shadow' : ''}${description ? ' special-layout': ''}`
-          }>
-            <header aria-label={`Heading: ${title}`}>
-              <div className="bx--detail-page-header-content">
-                {breadcrumbItems &&
-                  (
-                    <Breadcrumb>
-                      {this.renderBreadCrumb()}
-                    </Breadcrumb>
-                  )
-                }
-                {this.renderHeader()}
-                {tabs && tabs.length > 0 &&
-                  <Tabs selected={this.getSelectedTab() || 0} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
-                    {this.renderTabs()}
-                  </Tabs>
-                }
-              </div>
-            </header>
-          </div>
-          {showCreationLink !== 2 && links && links.length>0 &&
-            <div className='secondary-header-links'>
-              {this.renderLinks(showCreationLink)}
+    const midName = (!location.pathname.startsWith('/multicloud/policies/all/') ? 'secondary-header-grc-overview' : '')
+    const hasTabs = Boolean(tabs && tabs.length>0)
+    const hasBreadcrumb = Boolean(breadcrumbItems)
+    const hasButtons = Boolean(showCreationLink !== 2 && links && links.length>0)
+    const noBreadcrumbClass = ' no-breadcrumb'
+    return (
+      <div
+        className={`secondary-header-wrapper${scrolled?' scrolled':''}${hasTabs?'':' no-tabs'}${hasBreadcrumb?'':noBreadcrumbClass}${hasButtons?'':' no-buttons'}`}
+        role='region'
+        aria-label={title}
+      >
+        <div className={`secondary-header ${midName} simple-header${scrolled ? '-with-shadow' : ''}${description ? ' special-layout': ''}`}>
+          <header aria-label={`Heading: ${title}`}>
+            <div className='bx--detail-page-header-content'>
+              {hasBreadcrumb &&
+                (
+                  <Breadcrumb>
+                    {this.renderBreadCrumb()}
+                  </Breadcrumb>
+                )
+              }
+              {this.renderHeader(hasBreadcrumb, noBreadcrumbClass)}
+              {hasTabs &&
+                <Tabs selected={this.getSelectedTab() || 0} aria-label={`${title} ${msgs.get('tabs.label', locale)}`}>
+                  {this.renderTabs()}
+                </Tabs>
+              }
             </div>
-          }
+          </header>
         </div>
-      )
-    } else {
-      return (
-        <div className='secondary-header-wrapper-min' role='region' aria-label={`${title} ${msgs.get('secondaryHeader', locale)}`}>
-          <div className='secondary-header simple-header'>
-            <h1 className='bx--detail-page-header-title'>{decodeURIComponent(title)}</h1>
+        {hasButtons &&
+          <div className='secondary-header-links'>
+            {this.renderLinks(showCreationLink)}
           </div>
-        </div>
-      )
-    }
+        }
+      </div>
+    )
   }
 
-  renderHeader() {
+  renderHeader(hasBreadcrumb = false, noBreadcrumbClass = ' no-breadcrumb') {
     const { title:headerTitle, description, information, links=[] } = this.props
     if (description) {
       /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
       return (
-        <div className="bx--detail-page-header-title-container">
-          <h1 className="bx--detail-page-header-title">{headerTitle}</h1>
-          <div className="detail-page-header-title-button" onClick={description.action}><p>{description.display}</p></div>
+        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': noBreadcrumbClass}`}>
+          <h1 className='bx--detail-page-header-title'>{headerTitle}</h1>
+          <div className='detail-page-header-title-button' onClick={description.action}><p>{description.display}</p></div>
         </div>
       )
     } else {
       return (
-        <div className="bx--detail-page-header-title-container">
-          <h1 className="bx--detail-page-header-title">{headerTitle}</h1>
+        <div className={`bx--detail-page-header-title-container${hasBreadcrumb ? '': noBreadcrumbClass}`}>
+          <h1 className='bx--detail-page-header-title'>{headerTitle}</h1>
           {information &&
             <TooltipIcon align='end' tooltipText={information}>
               <svg className='info-icon'>
@@ -175,7 +174,7 @@ export class SecondaryHeader extends React.Component {
       if (kind==='portal') {
         return <div key={id} id={id} className='portal' />
       }
-      return <Button
+      const buttonItem = (<Button
         isDisabled={disableFlag}
         key={id}
         id={id}
@@ -184,7 +183,8 @@ export class SecondaryHeader extends React.Component {
         isSmall
       >
         {msgs.get(label, locale)}
-      </Button>
+      </Button>)
+      return createDisableTooltip(disableFlag, id, locale, buttonItem)
     })
   }
 

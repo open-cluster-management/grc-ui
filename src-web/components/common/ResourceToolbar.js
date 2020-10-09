@@ -70,12 +70,6 @@ export class ResourceToolbar extends React.Component {
             <div id='resource-toolbar' className='resource-toolbar'>
               <div className='resource-toolbar-container' >
                 <div className='resource-toolbar-buttons' >
-                  {/* refresh time button */}
-                  <RefreshTimeSelect
-                    locale = {locale}
-                    refreshValues = {REFRESH_TIMES}
-                    refreshControl = {refreshControl}
-                  />
                   {/* filter results button, not dispalyed in details page */}
                   {
                     (location.pathname.startsWith('/multicloud/policies/all/') || location.pathname.startsWith('/multicloud/policies/policy/'))
@@ -90,6 +84,12 @@ export class ResourceToolbar extends React.Component {
                         </div>
                       </div>
                   }
+                  {/* refresh time button */}
+                  <RefreshTimeSelect
+                    locale = {locale}
+                    refreshValues = {REFRESH_TIMES}
+                    refreshControl = {refreshControl}
+                  />
                 </div>
                 {refreshControl.timestamp && <RefreshTime timestamp={refreshControl.timestamp} />}
               </div>

@@ -87,7 +87,7 @@ function fetchHeader(req, res, store, fetchHeaderContext) {
       })
     }
     try {
-      res.render('main', Object.assign({
+      res.render('home', Object.assign({
         manifest: appUtil.app().locals.manifest,
         content: ReactDOMServer.renderToString(
           <Provider store={store}>

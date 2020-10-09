@@ -14,6 +14,7 @@ import PropTypes from 'prop-types'
 import { StructuredListWrapper, StructuredListRow, StructuredListCell, StructuredListBody,
   OverflowMenu, OverflowMenuItem, StructuredListSkeleton, Button } from 'carbon-components-react'
 import { Module, ModuleBody } from 'carbon-addons-cloud-react'
+import { createDisableTooltip } from './DisableTooltip'
 import _ from 'lodash'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
@@ -53,22 +54,23 @@ const StructuredListModule = ({
     </Module>
   }
   else{
+    const editAction = 'table.actions.edit'
     return <Module className='structured-list-module' id={id}>
       <div className='bx--module__header' style={{justifyContent: 'space-between'}} >
         <h1 className='bx--module__title'>{msgs.get(title, context.locale)}</h1>
         {
           Array.isArray(filteredActions) && filteredActions.length > 0 && (filteredActions.length === 1
-            && filteredActions[0].includes('table.actions.edit') && textEditButton)
+            && filteredActions[0].includes(editAction) && textEditButton)
             ?
-            (<Button small
-              disabled={filteredActions[0].includes('disabled.')}
-              className='text-edit-button'
-              onClick={() => getResourceAction(
-                filteredActions[0].replace('disabled.', ''), data, null, history, context.locale
-              )}>
-              {msgs.get('table.actions.edit', context.locale)}
-            </Button>
-            )
+            (createDisableTooltip(filteredActions[0].includes('disabled.'), editAction, context.locale,
+              (<Button small
+                disabled={filteredActions[0].includes('disabled.')}
+                className='text-edit-button'
+                onClick={() => getResourceAction(
+                  filteredActions[0].replace('disabled.', ''), data, null, history, context.locale
+                )}>
+                {msgs.get(editAction, context.locale)}
+              </Button>)))
             :
             (<OverflowMenu
               floatingMenu
@@ -91,7 +93,7 @@ const StructuredListModule = ({
                   }
                   onClick={() => getResourceAction(action, data, null, history, context.locale)}
                   key={action}
-                  itemText={msgs.get(action, context.locale)}
+                  itemText={createDisableTooltip(disableFlag, action, msgs.get(action, context.locale), context.locale)}
                 />
               })}
             </OverflowMenu>)

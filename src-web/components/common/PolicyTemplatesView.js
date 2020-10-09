@@ -22,6 +22,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Module, ModuleHeader } from 'carbon-addons-cloud-react'
 import { editResource } from '../../actions/common'
+import { createDisableTooltip } from './DisableTooltip'
 import {REQUEST_STATUS} from '../../actions'
 import formatUserAccess from './FormatUserAccess'
 import filterUserAction from './FilterUserAction'
@@ -168,23 +169,25 @@ class PolicyTemplatesView extends React.Component {
           </ModuleHeader>
           {!viewOnly &&
           <div className='yaml-editor-button'>
-            <Button
-              disabled={disableFlag}
-              icon="add--glyph"
-              className={this.state.readOnly ? 'read-only-button' : 'editing-button'}
-              small id={'edit-button'}
-              key='edit-resource'
-              onClick={this.handleEditBtnClick}>
-              {msgs.get('table.actions.edit', this.context.locale)}
-            </Button>
-            <Button
-              disabled={disableFlag}
-              icon="add--glyph" small
-              id={'submit-button'}
-              key='submit-resource-change'
-              onClick={this.handleSubmitClick}>
-              {msgs.get('modal.button.submit', this.context.locale)}
-            </Button>
+            {createDisableTooltip(disableFlag, 'edit-resource', this.context.locale,
+              (<Button
+                disabled={disableFlag}
+                icon="add--glyph"
+                className={this.state.readOnly ? 'read-only-button' : 'editing-button'}
+                small id={'edit-button'}
+                key='edit-resource'
+                onClick={this.handleEditBtnClick}>
+                {msgs.get('table.actions.edit', this.context.locale)}
+              </Button>))}
+            {createDisableTooltip(disableFlag, 'submit-button', this.context.locale,
+              (<Button
+                disabled={disableFlag}
+                icon="add--glyph" small
+                id={'submit-button'}
+                key='submit-resource-change'
+                onClick={this.handleSubmitClick}>
+                {msgs.get('modal.button.submit', this.context.locale)}
+              </Button>))}
           </div>}
         </div>
         {this.state.yamlParsingError &&

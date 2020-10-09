@@ -30,7 +30,7 @@
   &-links {
     position: fixed;
     right: 5%;
-    top: $secondary-header-max-height;
+    top: 8rem;
     display: flex;
 
     .bx--btn--primary, .bx--btn--secondary {
@@ -49,20 +49,28 @@
     }
 
     .bx--detail-page-header-content {
-      margin-top: 1.12rem;
       margin-bottom: 1rem;
 
-      .bx--tabs__nav-link:focus, .bx--tabs__nav-link:active {
-        box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
-        outline: 0.0625rem solid transparent;
-        border: none;
+      .bx--tabs__nav {
+        margin-left: 0;
+        margin-top: .25rem;
+
+        .bx--tabs__nav-item {
+          padding: 1rem 0;
+
+          .bx--tabs__nav-link:focus, .bx--tabs__nav-link:active {
+            box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
+            outline: 0.0625rem solid transparent;
+            border: none;
+          }
+        }
       }
     }
 
     .bx--breadcrumb {
       min-height: 0.9375rem;
       padding-bottom: 0;
-      margin-bottom: 1rem;
+      margin-bottom: .375rem;
 
       .bx--link:focus {
         box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
@@ -84,8 +92,8 @@
     .bx--detail-page-header-title-container {
       display: flex;
 
-      &:last-child {
-        margin-bottom: 1.5rem; //TODO: decide what to do when there's no tab. Hack to display the title at same location
+      &.no-breadcrumb {
+        margin-top: 1.5rem;
       }
 
       .info-icon {
@@ -121,6 +129,20 @@
     &-with-shadow{
       @extend .simple-header;
       box-shadow: 0 0.1875rem 0.5rem 0 rgba(0,0,0,0.05);
+
+      .bx--detail-page-header-title-container {
+          &.no-breadcrumb {
+          margin-top: .5rem;
+        }
+      }
+
+      & .bx--tabs {
+        visibility: hidden;
+      }
+
+      & ~ .secondary-header-links {
+        visibility: hidden;
+      }
 
       &.special-layout {
         header {
@@ -196,18 +218,6 @@
   }
 }
 .secondary-header-grc-overview{
-  .bx--tabs {
-    .bx--tabs__nav-item {
-      margin-top: 2rem;
-    }
-  }
-
-  .bx--tabs__nav-link:focus {
-    box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
-    outline: 0.0625rem solid transparent;
-    border: none;
-  }
-
   .bx--tooltip--icon__bottom:focus {
     box-shadow: none;
     outline: none;
@@ -230,11 +240,22 @@
   width: 100%;
   height: $secondary-header-max-height;
   z-index: 1000;
-}
 
-.secondary-header-wrapper-min {
-  @extend .secondary-header-wrapper;
-  height: $secondary-header-min-height;
+  &.no-tabs {
+    height: calc(#{$secondary-header-max-height} - 1rem);
+
+    &.no-buttons {
+      height: calc(#{$secondary-header-max-height} - 2.25rem);
+    }
+  }
+
+  &.scrolled {
+    height: calc(#{$secondary-header-min-height} + 1rem);
+
+    &.no-breadcrumb {
+      height: $secondary-header-min-height;
+    }
+  }
 }
 
 @media screen and (max-width: 48rem) {

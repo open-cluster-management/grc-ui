@@ -21,7 +21,6 @@
       font-size: 0.875rem;
       font-weight: 600;
       padding-right: 0.625rem;
-      border-right: 0.0625rem solid $color__gray-1;
       line-height: 1.4375rem
     }
 
@@ -157,17 +156,19 @@
       padding: 0.625rem calc(1.25rem * var(--need-right-padding)) 0.625rem 0;
 
       .card-content {
+        color: var(--pf-global--palette--black-900);
         display: flex;
         flex-direction: column;
-        height: 10rem;
+        height: 12.75rem;
         min-width: 23.125rem;
         background-color: white;
         box-shadow: rgba(0, 0, 0, 0.1) 0rem 0.0625rem 0.125rem 0rem;
 
         .card-name {
-          font-weight: bold;
-          padding: 1.25rem;
+          height: 3.75rem;
+          padding: 1.5rem;
           font-size: 1rem;
+          font-weight: bold;
           .textWithTruncation {
             font-weight: bold;
             font-size: 1rem;
@@ -176,7 +177,7 @@
 
        .card-count-content {
          display: flex;
-         padding: 0.625rem;
+         padding: 2rem 1.5rem;
          height: 100%;
          border-top: 0.0625rem solid $color__gray-1;
          align-items: center;
@@ -221,19 +222,12 @@
           }
         }
 
-         > div:first-child:not(.empty-violations-strip) {
-           border-right: 0.0625rem solid $color__gray-1;
-         }
-
          .card-count-container {
            display: flex;
            flex-direction: column;
-           align-items: center;
            height: 100%;
-           font-weight: bold;
            font-size: 0.75rem;
-           color: $color__navy-gray-6;
-           padding: 0.625rem 0;
+           padding-top: 0.75rem;
            outline: none;
 
            &:focus {
@@ -245,15 +239,14 @@
            &.violated, &.found, &.high {
             .card-count {
                .card-count-informations {
-                 font-size: 2.125rem;
-                 padding-right: 0.1875rem;
+                 font-size: 2.25rem;
+                 padding-right: 0.75rem;
                  color: $color__red-50;
                }
+               .card-count-total {
+                 font-size: 1.75rem;
+               }
              }
-           }
-
-           .card-grc-type {
-            text-transform: uppercase;
            }
 
            &.violated:hover, &.found:hover, &.high:hover {
@@ -268,10 +261,12 @@
              display: flex;
              height: 3rem;
              line-height: 2.125rem;
-            //  align-items: flex-end;
              padding-bottom: 1rem;
              align-items: baseline;
-             justify-content: center;
+           }
+
+           .card-grc-type {
+             font-weight: bold;
            }
          }
         }

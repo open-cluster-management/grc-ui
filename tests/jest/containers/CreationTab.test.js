@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -19,7 +20,7 @@ describe('CreationTab container', () => {
       updateSecondaryHeader={jest.fn()}
       mutateStatus={'DONE'}
     />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
 
   it('renders as expected', () => {
@@ -28,7 +29,7 @@ describe('CreationTab container', () => {
       updateSecondaryHeader={jest.fn()}
       handleCreateResources={jest.fn()}
     />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
     component.instance().handleCreate()
     component.instance().handleCancel()
   })

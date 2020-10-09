@@ -352,7 +352,11 @@ exports[`ClustersOrApplicationsTable 2 renders expand as expected 1`] = `
 </div>
 `;
 
-exports[`ClustersView view renders expand as expected 1`] = `ShallowWrapper {}`;
+exports[`ClustersView view renders expand as expected 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
 
 exports[`PoliciesTable 1 renders expand as expected 1`] = `
 <div
@@ -569,6 +573,14 @@ exports[`PoliciesTable 3 renders expand as expected 1`] = `
 </div>
 `;
 
-exports[`PoliciesView view renders expand as expected 1`] = `ShallowWrapper {}`;
+exports[`PoliciesView view renders expand as expected 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
 
-exports[`PoliciesView view renders expand as expected 2`] = `ShallowWrapper {}`;
+exports[`PoliciesView view renders expand as expected 2`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

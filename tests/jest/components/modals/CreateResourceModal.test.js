@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -16,7 +17,7 @@ describe('CreateResourceModal modal', () => {
   it('renders as expected', () => {
     const component = shallow(<CreateResourceModal
     />)
-    expect(component).toMatchSnapshot()
+    expect(component.instance()).toMatchSnapshot()
   })
   it('handleModalOpen as expected', () => {
     const component = shallow(<CreateResourceModal

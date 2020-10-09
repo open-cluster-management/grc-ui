@@ -7,15 +7,24 @@ exports[`createDocLink view renders does not show create link as expected 1`] = 
   <div
     className="button-group-create-resource"
   >
-    <Button
-      id="create-resource"
-      isDisabled={true}
-      isSmall={true}
-      onClick={[MockFunction]}
-      variant="primary"
+    <Tooltip
+      content="You do not have the required permissions to take this action."
+      zIndex={10001}
     >
-      does not show create link
-    </Button>
+      <div
+        className="disable-tooltip"
+      >
+        <Button
+          id="create-resource"
+          isDisabled={true}
+          isSmall={true}
+          onClick={[MockFunction]}
+          variant="primary"
+        >
+          does not show create link
+        </Button>
+      </div>
+    </Tooltip>
   </div>
   <div
     className="button-group-doc-link"
@@ -42,15 +51,24 @@ exports[`createDocLink view renders show create link as expected 1`] = `
   <div
     className="button-group-create-resource"
   >
-    <Button
-      id="create-resource"
-      isDisabled={true}
-      isSmall={true}
-      onClick={[MockFunction]}
-      variant="primary"
+    <Tooltip
+      content="You do not have the required permissions to take this action."
+      zIndex={10001}
     >
-      show create link
-    </Button>
+      <div
+        className="disable-tooltip"
+      >
+        <Button
+          id="create-resource"
+          isDisabled={true}
+          isSmall={true}
+          onClick={[MockFunction]}
+          variant="primary"
+        >
+          show create link
+        </Button>
+      </div>
+    </Tooltip>
   </div>
   <div
     className="button-group-doc-link"

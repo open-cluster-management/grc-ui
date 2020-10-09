@@ -13,6 +13,7 @@ import {
 } from '../components/common/Icons'
 import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../../nls/platform.properties'
+import TruncateText from '../components/common/TruncateText'
 
 export const transform = (items, def, locale) => {
   const rows = items.map(item => {
@@ -112,13 +113,18 @@ export function buildTemplateDetailLink(item, locale) {
   const apiVersion = _.get(item, 'apiVersion')
   const kind = _.get(item, 'kind')
   if (message && policyName && policyNamespace && cluster && templateName && apiVersion && kind) {
-    const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
+    const templateDetailURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
     return <div>
-      {`${message} `}
-      <Link to={statusHistoryURL}>
+      <TruncateText text={message} maxCharacters={300} textEnd={' '} />
+      <Link to={templateDetailURL}>
         {msgs.get('table.actions.view.details', locale)}
       </Link>
     </div>
   }
   return ''
+}
+
+export function statusHistoryMessageTooltip(item) {
+  const message = _.get(item, 'message')
+  return  <TruncateText text={message} maxCharacters={300} />
 }

@@ -16,6 +16,7 @@ import {
   PaginationV2, DataTable, OverflowMenu, OverflowMenuItem, Icon, Checkbox, TooltipIcon
 } from 'carbon-components-react'
 import PropTypes from 'prop-types'
+import { createDisableTooltip } from './DisableTooltip'
 import msgs from '../../../nls/platform.properties'
 import { transform } from '../../../lib/client/resource-helper'
 import { resourceActions } from './ResourceTableRowMenuItemActions'
@@ -387,7 +388,7 @@ export class ResourceTable extends React.Component {
         //changes menu item based on whether policy is enabled or disabled
         row.disabled = false
         row.remediation = 'inform'
-        if (Array.isArray(filteredActions) && filteredActions.length === 5) {
+        if (Array.isArray(filteredActions) && filteredActions.length === 4) {
           if (this.checkPolicyDisabled(item)) {
             filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
             row.disabled = true
@@ -412,7 +413,7 @@ export class ResourceTable extends React.Component {
                 if (disableFlag) {
                   action = action.replace('disabled.', '')
                 }
-                return <OverflowMenuItem
+                return (<OverflowMenuItem
                   disabled={disableFlag}
                   data-table-action={action}
                   isDelete={
@@ -424,8 +425,8 @@ export class ResourceTable extends React.Component {
                   onClick={() => getResourceAction(action, item, null, history, locale)}
                   primaryFocus={true}
                   key={action}
-                  itemText={msgs.get(action, locale)}
-                />
+                  itemText={createDisableTooltip(disableFlag, action, locale, msgs.get(action, locale))}
+                />)
               })}
             </OverflowMenu>
           )
@@ -434,9 +435,6 @@ export class ResourceTable extends React.Component {
           row[key.resourceKey] = (key.link) ?
             <Link to={`${match.url}${getLink(key.link, item)}`}>{transform(item, key, locale)}</Link> :
             transform(item, key, locale)
-          if (key.resourceKey === 'metadata.name' && row.disabled) {
-            row[key.resourceKey] = lodash.get(item, key.resourceKey)
-          }
           if (key.resourceKey === 'objectDefinition.metadata.name' && row[key.resourceKey] === '-') {
             row[key.resourceKey] = lodash.get(item, 'objectDefinition.kind')
           }

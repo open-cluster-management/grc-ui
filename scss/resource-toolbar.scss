@@ -28,11 +28,10 @@
   .resource-toolbar-container {
     position: fixed;
     right: 5%;
-    top: $secondary-header-max-height - 3.375rem;
     display: flex;
     min-height: $secondary-header-min-height;
     flex-direction: column;
-    justify-content: center;
+    padding-top: .625rem;
 
     > div {
       display: flex;
@@ -77,7 +76,8 @@
       }
 
       > div:last-child {
-        padding-left: 1.25rem;
+        padding-left: 0.66rem;
+        margin-right: -1.5rem;
       }
     }
 

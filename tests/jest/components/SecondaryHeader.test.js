@@ -17,6 +17,7 @@ import { shallow } from 'enzyme'
 import { SecondaryHeader } from '../../../src-web/components/SecondaryHeader'
 import { createMemoryHistory } from 'history'
 
+
 const history = createMemoryHistory({
   'length':5,
   'action':'PUSH',
@@ -110,7 +111,7 @@ describe('SecondaryHeader component 2', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })
   it('renders nonclickable as expected', () => {
-    const component = renderer.create(
+    const component = shallow(
       <SecondaryHeader
         title='hello world'
         tabs={tabs}
@@ -138,7 +139,7 @@ describe('SecondaryHeader component 2', () => {
         }
       />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(component.instance().render()).toMatchSnapshot()
   })
 })
 
