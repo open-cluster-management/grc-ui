@@ -27,6 +27,11 @@ module.exports = {
     namespaceDropdownBox: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div',
     placementRuleEdit: 'div.page-content-container div.overview-content-second > div.overview-content-second-cell:nth-child(1) button.text-edit-button',
     placementBindingEdit: 'div.page-content-container div.overview-content-second > div.overview-content-second-cell:nth-child(2) button.text-edit-button',
+    statusTab: '#status-tab',
+    statusTable: '.pattern-fly-table',
+    statusDetailsLink: 'tr:first-child div.policy-details-message > *',
+    statusClusterToggle_templates: '#policy-status-templates',
+    statusClusterToggle_clusters: '#policy-status-clusters',
     yamlTab: '#yaml-tab',
     yamlEditor: '.monaco-editor',
     yamlEditButton: '#edit-button',
@@ -89,7 +94,7 @@ function verifyAllPage(name, nsNum, permissions) {
   this.click('@searchInput').clearValue('@searchInput')
 }
 
-function verifyPolicyPage(name, permissions) {
+function verifyPolicyPage(name, permissions, namespaced=false) {
   this.log(`verifyPolicyPage policy: ${name} permissions: ${{permissions}}`)
   // Filter for our RBAC policies
   this.waitForElementVisible('@searchInput')
@@ -108,6 +113,31 @@ function verifyPolicyPage(name, permissions) {
     checkTooltip(this, '@placementBindingEdit', disableMsg)
     this.expect.element('@placementRuleEdit').to.not.be.enabled
     checkTooltip(this, '@placementRuleEdit', disableMsg)
+  }
+  // Check Status tab
+  //
+  // Only clusterwide users will have access to cluster information, so we don't
+  // run these tests for namespaced users
+  if (!namespaced) {
+    this.click('@statusTab')
+    this.waitForElementPresent('@statusTable')
+    // The "View details" link should be disabled with a tooltip since it requires
+    // permissions to create a managedClusterView
+    this.click('@statusClusterToggle_clusters')
+    if (permissions.create) {
+      this.expect.element('@statusDetailsLink').to.have.property('href')
+    } else {
+      this.expect.element('@statusDetailsLink').to.not.have.property('href')
+      checkTooltip(this, '@statusDetailsLink', disableMsg)
+    }
+    this.click('@statusClusterToggle_templates')
+    this.waitForElementPresent('@statusTable')
+    if (permissions.create) {
+      this.expect.element('@statusDetailsLink').to.have.property('href')
+    } else {
+      this.expect.element('@statusDetailsLink').to.not.have.property('href')
+      checkTooltip(this, '@statusDetailsLink', disableMsg)
+    }
   }
   // Check YAML tab
   this.click('@yamlTab')
