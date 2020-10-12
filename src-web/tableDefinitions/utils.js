@@ -112,13 +112,20 @@ export function buildTemplateDetailLink(item, locale) {
   const templateName = _.get(item, 'templateName')
   const apiVersion = _.get(item, 'apiVersion')
   const kind = _.get(item, 'kind')
+  const showDetailsLink = _.get(item, 'showDetailsLink', true)
   if (message && policyName && policyNamespace && cluster && templateName && apiVersion && kind) {
     const templateDetailURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
     return <div>
       <TruncateText text={message} maxCharacters={300} textEnd={' '} />
-      <Link to={templateDetailURL}>
-        {msgs.get('table.actions.view.details', locale)}
-      </Link>
+      {showDetailsLink ?
+        <Link to={templateDetailURL}>
+          {msgs.get('table.actions.view.details', locale)}
+        </Link>
+        :
+        <span className='link-disabled'>
+          {msgs.get('table.actions.view.details', locale)}
+        </span>
+      }
     </div>
   }
   return ''
