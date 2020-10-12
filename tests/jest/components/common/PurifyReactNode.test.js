@@ -45,11 +45,11 @@ describe('test purifyReactNode', () => {
         children: {
           props: {
             children: [
-              'object3child1',
+              'object3->child1',
               {
                 props: {
-                  name: 'object4',
-                  children: 'object4child1'
+                  name: 'object3->child1',
+                  children: 'object3->child1->grandchild1'
                 }
               }
             ]
@@ -58,5 +58,26 @@ describe('test purifyReactNode', () => {
       }
     }
     expect(purifyReactNode(object3)).toMatchSnapshot()
+  })
+  it('renders object4', () => {
+    const object4 = {
+      props: {
+        name: 'object4',
+        children: {
+          props: {
+            children: [
+              'object4->child1',
+              {
+                props: {
+                  'text': 'NonCompliant; violation - namespaces `prod` does not exist as specified',
+                  'maxCharacters': 300,
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+    expect(purifyReactNode(object4)).toMatchSnapshot()
   })
 })
