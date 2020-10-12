@@ -12,6 +12,10 @@
      padding-top: 2rem;
     .pattern-fly-table-group {
       margin-top: 1.5rem;
+      .link-disabled {
+        color: var(--pf-global--disabled-color--200);
+        cursor: not-allowed;
+      }
     }
     .pf-c-title.pf-m-lg {
       margin-top: 2rem;

@@ -3,6 +3,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import {
   Title,
   ToggleGroup,
@@ -13,6 +14,7 @@ import { LocaleContext } from './LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import { transform } from '../../tableDefinitions/utils'
+import checkCreatePermission from './CheckCreatePermission'
 import msgs from '../../../nls/platform.properties'
 
 class PolicyStatusView extends React.Component {
@@ -27,10 +29,15 @@ class PolicyStatusView extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { status } = this.props
+    const { status, userAccess } = this.props
     const { locale } = this.context
-    const tableDataByTemplate = groupByTemplate(status, locale)
-    const tableDataByClusters = transform(status, statusByClustersDef, locale)
+    // Check for "create" permissions in order to determine whether to enable
+    // the "View Details" link, which requires creating a managedClusterView
+    // (See https://github.com/open-cluster-management/backlog/issues/6135)
+    const showDetailsLink = checkCreatePermission(userAccess)
+    const statusAccess = status.map(item => ({...item, showDetailsLink: showDetailsLink}))
+    const tableDataByTemplate = groupByTemplate(statusAccess, locale)
+    const tableDataByClusters = transform(statusAccess, statusByClustersDef, locale)
     const toggleIndex = this.state.toggleIndex
     return (
       <div className='policy-status-view'>
@@ -121,6 +128,17 @@ function groupByTemplate(status, locale) {
 
 PolicyStatusView.propTypes = {
   status: PropTypes.array,
+  userAccess: PropTypes.array
 }
 
-export default PolicyStatusView
+const mapStateToProps = (state) => {
+  const userAccess = state.userAccess && state.userAccess.access
+    ? state.userAccess.access
+    : []
+  return {
+    userAccess: userAccess
+  }
+}
+
+export default connect(mapStateToProps)(PolicyStatusView)
+
