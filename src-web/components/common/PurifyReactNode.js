@@ -9,6 +9,8 @@ export default function purifyReactNode(reactNode) {
     return reactNode
   } else if (typeof reactNode === 'number') {
     return reactNode.toString()
+  } else if (reactNode.props && reactNode.props.text) {
+    return purifyReactNode(reactNode.props.text)
   } else if (reactNode.props && reactNode.props.children) {
     return purifyReactNode(reactNode.props.children)
   } else if (Array.isArray(reactNode) && reactNode.length > 0) {
