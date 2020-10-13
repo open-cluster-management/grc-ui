@@ -12,7 +12,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { DropdownV2, Icon } from 'carbon-components-react'
 import {
   Accordion, AccordionItem, AccordionToggle, AccordionContent,
   Dropdown, DropdownToggle, DropdownItem,
@@ -32,9 +31,9 @@ resources(() => {
 })
 
 const GrcCardsSelections = Object.freeze({
-  categories: 'categories',
-  standards: 'standards',
-  controls: 'controls',
+  categories: 0,
+  standards: 1,
+  controls: 2,
 })
 
 export class GrcCardsModule extends React.Component {
@@ -43,7 +42,7 @@ export class GrcCardsModule extends React.Component {
     super(props)
     const {viewState: {grcCardChoice=GrcCardsSelections.standards}} = props
     this.state = {
-      grcCardChoice,
+      grcCardChoice: grcCardChoice,
       isDropdownOpen: false
     }
     this.collapseClick = this.collapseClick.bind(this)
@@ -57,10 +56,6 @@ export class GrcCardsModule extends React.Component {
     const { locale } = this.context
     const title = msgs.get('overview.grc.overview.title', locale)
     const choices = this.getPolicyCardChoices(locale)
-    const { isDropdownOpen, grcCardChoice } = this.state
-    const idx = Math.max(0, choices.findIndex(({value})=>{
-      return grcCardChoice===value
-    }))
     let cardData
     switch(displayType) {
     case 'all':
@@ -82,27 +77,7 @@ export class GrcCardsModule extends React.Component {
                 <Label className='grc-cards-count'>{cardData.length}</Label>
               </div>
             </AccordionToggle>
-            {showGrcCard &&
-              <div className='header-options'>
-                <div className='header-divider'>
-                  <Divider isVertical />
-                </div>
-                <Dropdown
-                  onSelect={this.onDropdownSelect}
-                  toggle={
-                    <DropdownToggle id='grc-cards-toggle' onToggle={this.onDropdownToggle} toggleIndicator={CaretDownIcon}>
-                      {choices[idx].label}
-                    </DropdownToggle>
-                  }
-                  isOpen={isDropdownOpen}
-                  isPlain
-                  dropdownItems={
-                    choices.map(choice => {
-                      return (<DropdownItem key={`${choice.label}-dropdownitem`}>{choice.label}</DropdownItem>)
-                    })
-                  }
-                />
-              </div>}
+            {showGrcCard && this.renderDropdown(choices)}
             <AccordionContent
               className='grc-cards-container'
               isHidden={!showGrcCard}
@@ -115,39 +90,29 @@ export class GrcCardsModule extends React.Component {
     )
   }
 
-  renderHeader() {
-    const { locale } = this.context
-    const collapseHintCollapse = msgs.get('overview.grc.cards.collapseHint.collapse', locale)
-    const collapseHintExpand = msgs.get('overview.grc.cards.collapseHint.expand', locale)
-    const collapseButtonCollapse = msgs.get('overview.grc.cards.collapseButton.collapse', locale)
-    const collapseButtonExpand = msgs.get('overview.grc.cards.collapseButton.expand', locale)
-    const { grcCardChoice } = this.state
-    const { showGrcCard } = this.props
-    const choices = this.getPolicyCardChoices(locale)
-    const title = msgs.get('overview.grc.overview.title', locale)
-    const idx = Math.max(0, choices.findIndex(({value})=>{
-      return grcCardChoice===value
-    }))
+  renderDropdown(choices) {
+    const { isDropdownOpen, grcCardChoice } = this.state
     return (
-      <div className={showGrcCard ? 'header-container' : 'header-container card-collapsed'}>
-        {showGrcCard && <div className='header-title'>{title}</div>}
-        {showGrcCard &&
-        <div>
-          <DropdownV2 className='selection'
-            label={title}
-            ariaLabel={title}
-            onChange={this.onChange}
-            inline={true}
-            initialSelectedItem={choices[idx].label}
-            items={choices} />
-        </div>}
-        <button className='collapse' onClick={this.collapseClick}>
-          <span className='collapse-hint'>{showGrcCard?collapseHintCollapse:collapseHintExpand}</span>
-          <span className='collapse-button'>{showGrcCard?collapseButtonCollapse:collapseButtonExpand}</span>
-          {showGrcCard ? <Icon name='chevron--up' className='arrow-up' description='collapse' /> : <Icon name='chevron--down' className='arrow-down' description='expand' />}
-        </button>
-      </div>
-    )
+      <div className='header-options'>
+        <div className='header-divider'>
+          <Divider isVertical />
+        </div>
+        <Dropdown
+          onSelect={this.onDropdownSelect}
+          toggle={
+            <DropdownToggle id='grc-cards-toggle' onToggle={this.onDropdownToggle} toggleIndicator={CaretDownIcon}>
+              {choices[grcCardChoice].label}
+            </DropdownToggle>
+          }
+          isOpen={isDropdownOpen}
+          isPlain
+          dropdownItems={
+            choices.map(choice => {
+              return (<DropdownItem key={`${choice.label}-dropdownitem`} tabIndex={choice.value}>{choice.label}</DropdownItem>)
+            })
+          }
+        />
+      </div>)
   }
 
   renderCards(cardData, displayType) {
@@ -314,7 +279,7 @@ export class GrcCardsModule extends React.Component {
   }
 
   onDropdownSelect = (event) => {
-    const value = event.target.text.toLowerCase()
+    const value = event.target.tabIndex
     this.props.updateViewState({grcCardChoice: value})
     this.setState((prevState) => ({
       isDropdownOpen: !prevState.isDropdownOpen,
