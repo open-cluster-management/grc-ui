@@ -317,7 +317,9 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
       content="You do not have the required permissions to take this action."
       zIndex={10001}
     >
-      <div>
+      <div
+        className="disable-tooltip"
+      >
         <Button
           id="create-policy"
           isDisabled={true}
@@ -571,7 +573,9 @@ Array [
     content="You do not have the required permissions to take this action."
     zIndex={10001}
   >
-    <div>
+    <div
+      className="disable-tooltip"
+    >
       <Button
         id="create-policy"
         isDisabled={true}

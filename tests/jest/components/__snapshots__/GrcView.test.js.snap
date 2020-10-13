@@ -269,6 +269,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
       >
         <div
           aria-describedby="pf-tooltip-2"
+          className="disable-tooltip"
         >
           <button
             aria-disabled={true}

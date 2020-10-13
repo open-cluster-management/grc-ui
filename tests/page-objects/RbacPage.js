@@ -2,15 +2,23 @@
 
 const config = require('../../config')
 
+const disableMsg = 'You do not have the required permissions to take this action.'
+
 module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
+    tooltip: '.pf-c-tooltip',
     searchInput: '#search',
     allTable: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody',
     policyLink: '.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a',
     createPolicyButton: '#create-policy',
     overflowMenu: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
-    overflowButtonView: 'body > ul > li > button',
+    overflowMenuBody: 'body > ul.bx--overflow-menu-options',
+    overflowMenuBody_View: 'body > ul.bx--overflow-menu-options > li:nth-child(0) > button',
+    overflowMenuBody_Edit: 'body > ul.bx--overflow-menu-options > li:nth-child(1) > button',
+    overflowMenuBody_Disable: 'body > ul.bx--overflow-menu-options > li:nth-child(2) > button',
+    overflowMenuBody_Enforce: 'body > ul.bx--overflow-menu-options > li:nth-child(3) > button',
+    overflowMenuBody_Remove: 'body > ul.bx--overflow-menu-options > li:nth-child(4) > button',
     sidePolicyPanel: 'div.bx--modal-container > div.bx--modal-content',
     sidePolicyPanelClose: 'div.bx--modal-container > div.bx--modal-header > button.bx--modal-close',
     submitCreatePolicyButton: '#create-button-portal-id',
@@ -19,22 +27,15 @@ module.exports = {
     namespaceDropdownBox: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div',
     placementRuleEdit: 'div.page-content-container div.overview-content-second > div.overview-content-second-cell:nth-child(1) button.text-edit-button',
     placementBindingEdit: 'div.page-content-container div.overview-content-second > div.overview-content-second-cell:nth-child(2) button.text-edit-button',
+    statusTab: '#status-tab',
+    statusTable: '.pattern-fly-table',
+    statusDetailsLink: 'tr:first-child div.policy-details-message > *',
+    statusClusterToggle_templates: '#policy-status-templates',
+    statusClusterToggle_clusters: '#policy-status-clusters',
     yamlTab: '#yaml-tab',
     yamlEditor: '.monaco-editor',
     yamlEditButton: '#edit-button',
     yamlSubmitButton: '#submit-button'
-  },
-  sections: {
-    overflowMenuBody: {
-      selector: 'body > ul.bx--overflow-menu-options',
-      elements: {
-        overflowMenuView: 'li:nth-child(0) > button',
-        overflowMenuEdit: 'li:nth-child(1) > button',
-        overflowMenuDisable: 'li:nth-child(2) > button',
-        overflowMenuEnforce: 'li:nth-child(3) > button',
-        overflowMenuRemove: 'li:nth-child(4) > button'
-      }
-    }
   },
   commands: [{
     verifyAllPage,
@@ -42,6 +43,11 @@ module.exports = {
     verifyPolicyPage,
     log
   }]
+}
+/* Helper for checking Tooltip on elements */
+function checkTooltip(browser, selector, message) {
+  browser.moveToElement(selector, undefined, undefined)
+  browser.expect.element('@tooltip').text.to.equal(message)
 }
 /* Verify user can only see policies they should on the summary page */
 function verifyAllPage(name, nsNum, permissions) {
@@ -54,25 +60,29 @@ function verifyAllPage(name, nsNum, permissions) {
   this.expect.element('@allTable').to.have.property('childElementCount').equals(nsNum)
   // Check overflow menu for first policy
   this.click('@overflowMenu')
-  this.expect.section('@overflowMenuBody').to.be.visible
-  const overflowMenuSection = this.section.overflowMenuBody
+  this.expect.element('@overflowMenuBody').to.be.visible
   // All users should be able to view
-  // overflowMenuSection.expect.element('@overflowMenuView').to.be.enabled
+  // this.expect.element('@overflowMenuBody_View').to.be.enabled
   // Check for edit/disable/enforce permissions
+  // Disabled elements should also have a tooltip saying so
   if (permissions.patch) {
-    overflowMenuSection.expect.element('@overflowMenuEdit').to.be.enabled
-    overflowMenuSection.expect.element('@overflowMenuDisable').to.be.enabled
-    overflowMenuSection.expect.element('@overflowMenuEnforce').to.be.enabled
+    this.expect.element('@overflowMenuBody_Edit').to.be.enabled
+    this.expect.element('@overflowMenuBody_Disable').to.be.enabled
+    this.expect.element('@overflowMenuBody_Enforce').to.be.enabled
   } else {
-    overflowMenuSection.expect.element('@overflowMenuEdit').to.be.not.enabled
-    overflowMenuSection.expect.element('@overflowMenuDisable').to.be.not.enabled
-    overflowMenuSection.expect.element('@overflowMenuEnforce').to.be.not.enabled
+    this.expect.element('@overflowMenuBody_Edit').to.be.not.enabled
+    checkTooltip(this, '@overflowMenuBody_Edit', disableMsg)
+    this.expect.element('@overflowMenuBody_Disable').to.be.not.enabled
+    checkTooltip(this, '@overflowMenuBody_Disable', disableMsg)
+    this.expect.element('@overflowMenuBody_Enforce').to.be.not.enabled
+    checkTooltip(this, '@overflowMenuBody_Enforce', disableMsg)
   }
   // Check for remove permissions
   if (permissions.delete) {
-    overflowMenuSection.expect.element('@overflowMenuRemove').to.be.enabled
+    this.expect.element('@overflowMenuBody_Remove').to.be.enabled
   } else {
-    overflowMenuSection.expect.element('@overflowMenuRemove').to.be.not.enabled
+    this.expect.element('@overflowMenuBody_Remove').to.be.not.enabled
+    checkTooltip(this, '@overflowMenuBody_Remove', disableMsg)
   }
   // Make sure side panel can open
   // overflowMenuSection.click('@overflowMenuView')
@@ -84,7 +94,7 @@ function verifyAllPage(name, nsNum, permissions) {
   this.click('@searchInput').clearValue('@searchInput')
 }
 
-function verifyPolicyPage(name, permissions) {
+function verifyPolicyPage(name, permissions, namespaced=false) {
   this.log(`verifyPolicyPage policy: ${name} permissions: ${{permissions}}`)
   // Filter for our RBAC policies
   this.waitForElementVisible('@searchInput')
@@ -100,7 +110,34 @@ function verifyPolicyPage(name, permissions) {
     this.expect.element('@placementRuleEdit').to.be.enabled
   } else {
     this.expect.element('@placementBindingEdit').to.not.be.enabled
+    checkTooltip(this, '@placementBindingEdit', disableMsg)
     this.expect.element('@placementRuleEdit').to.not.be.enabled
+    checkTooltip(this, '@placementRuleEdit', disableMsg)
+  }
+  // Check Status tab
+  //
+  // Only clusterwide users will have access to cluster information, so we don't
+  // run these tests for namespaced users
+  if (!namespaced) {
+    this.click('@statusTab')
+    this.waitForElementPresent('@statusTable')
+    // The "View details" link should be disabled with a tooltip since it requires
+    // permissions to create a managedClusterView
+    this.click('@statusClusterToggle_clusters')
+    if (permissions.create) {
+      this.expect.element('@statusDetailsLink').to.have.property('href')
+    } else {
+      this.expect.element('@statusDetailsLink').to.not.have.property('href')
+      checkTooltip(this, '@statusDetailsLink', disableMsg)
+    }
+    this.click('@statusClusterToggle_templates')
+    this.waitForElementPresent('@statusTable')
+    if (permissions.create) {
+      this.expect.element('@statusDetailsLink').to.have.property('href')
+    } else {
+      this.expect.element('@statusDetailsLink').to.not.have.property('href')
+      checkTooltip(this, '@statusDetailsLink', disableMsg)
+    }
   }
   // Check YAML tab
   this.click('@yamlTab')
@@ -110,7 +147,9 @@ function verifyPolicyPage(name, permissions) {
     this.expect.element('@yamlSubmitButton').to.be.enabled
   } else {
     this.expect.element('@yamlEditButton').to.be.not.enabled
+    checkTooltip(this, '@yamlEditButton', disableMsg)
     this.expect.element('@yamlSubmitButton').to.be.not.enabled
+    checkTooltip(this, '@yamlSubmitButton', disableMsg)
   }
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
@@ -154,6 +193,7 @@ function verifyCreatePage(permissions, createPage, policyName = '', ns = [], clu
     }
   } else {
     this.expect.element('@createPolicyButton').to.not.be.enabled
+    checkTooltip(this, '@createPolicyButton', disableMsg)
 
     // Make sure users can't navigate to the Create page directly
     this.api.url(`${this.api.launchUrl}${config.get('contextPath')}/create`)

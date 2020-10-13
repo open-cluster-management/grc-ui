@@ -14,6 +14,8 @@ exports[`test purifyReactNode renders object1 1`] = `""`;
 
 exports[`test purifyReactNode renders object2 1`] = `"object2child1"`;
 
-exports[`test purifyReactNode renders object3 1`] = `"object3child1object4child1"`;
+exports[`test purifyReactNode renders object3 1`] = `"object3->child1object3->child1->grandchild1"`;
+
+exports[`test purifyReactNode renders object4 1`] = `"object4->child1NonCompliant; violation - namespaces \`prod\` does not exist as specified"`;
 
 exports[`test purifyReactNode renders string 1`] = `"Red Hat"`;

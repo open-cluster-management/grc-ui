@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import _ from 'lodash'
 import config from '../../lib/shared/config'
+import { Tooltip } from '@patternfly/react-core'
 import {
   GreenCheckCircleIcon,
   RedExclamationCircleIcon,
@@ -112,13 +113,22 @@ export function buildTemplateDetailLink(item, locale) {
   const templateName = _.get(item, 'templateName')
   const apiVersion = _.get(item, 'apiVersion')
   const kind = _.get(item, 'kind')
+  const showDetailsLink = _.get(item, 'showDetailsLink', true)
   if (message && policyName && policyNamespace && cluster && templateName && apiVersion && kind) {
     const templateDetailURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
-    return <div>
+    return <div className='policy-details-message'>
       <TruncateText text={message} maxCharacters={300} textEnd={' '} />
-      <Link to={templateDetailURL}>
-        {msgs.get('table.actions.view.details', locale)}
-      </Link>
+      {showDetailsLink ?
+        <Link to={templateDetailURL}>
+          {msgs.get('table.actions.view.details', locale)}
+        </Link>
+        :
+        <Tooltip content={msgs.get('error.permission.disabled', locale)}>
+          <span className='link-disabled'>
+            {msgs.get('table.actions.view.details', locale)}
+          </span>
+        </Tooltip>
+      }
     </div>
   }
   return ''

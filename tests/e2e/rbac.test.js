@@ -110,7 +110,7 @@ module.exports = {
     page.verifyCreatePage(permissions.clusterAdmin, createPage, createdPolicy, [namespaces[0]], false)
     commonPage.deletePolicy(createdPolicy)
     commonPage.clearSearchValue()
-    page.verifyPolicyPage(policyName, permissions.clusterAdmin)
+    page.verifyPolicyPage(policyName, permissions.clusterAdmin, true)
   },
 
   'GRC RBAC: Namespaced admin user': () => {
@@ -124,28 +124,28 @@ module.exports = {
     commonPage.clearSearchValue()
     // Verify view permissions for this user by filtering for the specific policy
     page.verifyAllPage(`${policyName}-${namespaces[1]}`, 1, permissions.view)
-    page.verifyPolicyPage(policyName, permissions.admin)
+    page.verifyPolicyPage(policyName, permissions.admin, true)
   },
 
   'GRC RBAC: Namespaced edit user': () => {
     loginPage.authenticate('e2e-edit-ns')
     page.verifyAllPage(policyName, 1, permissions.edit)
     page.verifyCreatePage(permissions.edit)
-    page.verifyPolicyPage(policyName, permissions.edit)
+    page.verifyPolicyPage(policyName, permissions.edit, true)
   },
 
   'GRC RBAC: Namespaced view user': () => {
     loginPage.authenticate('e2e-view-ns')
     page.verifyAllPage(policyName, 1, permissions.view)
     page.verifyCreatePage(permissions.view)
-    page.verifyPolicyPage(policyName, permissions.view)
+    page.verifyPolicyPage(policyName, permissions.view, true)
   },
 
   'GRC RBAC: Namespaced view user in a group': () => {
     loginPage.authenticate('e2e-group-ns')
     page.verifyAllPage(policyName, 1, permissions.view)
     page.verifyCreatePage(permissions.view)
-    page.verifyPolicyPage(policyName, permissions.view)
+    page.verifyPolicyPage(policyName, permissions.view, true)
   },
 
   'GRC RBAC: Clean up': () => {
