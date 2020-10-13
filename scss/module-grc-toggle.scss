@@ -54,6 +54,9 @@
   }
 
   .bx--table-toolbar {
+    display: flex;
+    align-items: center;
+    
     .bx--search--sm .bx--search-input {
       height: 2rem;
       &:focus {
@@ -62,10 +65,6 @@
         border: none;
       } 
     }
-  }
-
-  .module-toggle-tab-switch-makeup {
-    height: 2rem;
   }
 
   .bx--content-switcher {

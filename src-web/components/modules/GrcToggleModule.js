@@ -118,8 +118,6 @@ export class GrcToggleModule extends React.Component {
     }
     return (
       <div className='module-toggle-tab-switch-strip'>
-        <div className='module-toggle-tab-switch-makeup'>
-        </div>
         <div className='module-toggle-tab-switch'>
           {displayType==='all' && showApplications && <ToggleGroup variant='light'>
             <ToggleGroupItem
