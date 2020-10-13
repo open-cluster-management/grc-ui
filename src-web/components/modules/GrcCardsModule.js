@@ -13,6 +13,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { DropdownV2, Icon } from 'carbon-components-react'
+import {
+  Accordion, AccordionItem, AccordionToggle, AccordionContent,
+  Dropdown, DropdownToggle, DropdownItem,
+  Divider, Label
+} from '@patternfly/react-core'
+import CaretDownIcon from '@patternfly/react-icons/dist/js/icons/caret-down-icon'
 import resources from '../../../lib/shared/resources'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
@@ -38,13 +44,23 @@ export class GrcCardsModule extends React.Component {
     const {viewState: {grcCardChoice=GrcCardsSelections.standards}} = props
     this.state = {
       grcCardChoice,
+      isDropdownOpen: false
     }
-    this.onChange = this.onChange.bind(this)
     this.collapseClick = this.collapseClick.bind(this)
+    this.onDropdownToggle = this.onDropdownToggle.bind(this)
+    this.onDropdownSelect = this.onDropdownSelect.bind(this)
+    this.onDropdownFocus = this.onDropdownFocus.bind(this)
   }
 
   render() {
     const { displayType, showGrcCard } = this.props
+    const { locale } = this.context
+    const title = msgs.get('overview.grc.overview.title', locale)
+    const choices = this.getPolicyCardChoices(locale)
+    const { isDropdownOpen, grcCardChoice } = this.state
+    const idx = Math.max(0, choices.findIndex(({value})=>{
+      return grcCardChoice===value
+    }))
     let cardData
     switch(displayType) {
     case 'all':
@@ -54,8 +70,47 @@ export class GrcCardsModule extends React.Component {
     }
     return (
       <div className='module-grc-cards'>
-        {this.renderHeader()}
-        {showGrcCard && this.renderCards(cardData, displayType)}
+        <Accordion>
+          <AccordionItem>
+            <AccordionToggle
+              className='header-container'
+              onClick={this.collapseClick}
+              isExpanded={showGrcCard}
+            >
+              <div className='header-title'>
+                {title}
+                <Label className='grc-cards-count'>{cardData.length}</Label>
+              </div>
+            </AccordionToggle>
+            {showGrcCard &&
+              <div className='header-options'>
+                <div className='header-divider'>
+                  <Divider isVertical />
+                </div>
+                <Dropdown
+                  onSelect={this.onDropdownSelect}
+                  toggle={
+                    <DropdownToggle id='grc-cards-toggle' onToggle={this.onDropdownToggle} toggleIndicator={CaretDownIcon}>
+                      {choices[idx].label}
+                    </DropdownToggle>
+                  }
+                  isOpen={isDropdownOpen}
+                  isPlain
+                  dropdownItems={
+                    choices.map(choice => {
+                      return (<DropdownItem key={`${choice.label}-dropdownitem`}>{choice.label}</DropdownItem>)
+                    })
+                  }
+                />
+              </div>}
+            <AccordionContent
+              className='grc-cards-container'
+              isHidden={!showGrcCard}
+            >
+              {this.renderCards(cardData, displayType)}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     )
   }
@@ -98,20 +153,16 @@ export class GrcCardsModule extends React.Component {
   renderCards(cardData, displayType) {
     const { locale } = this.context
     const { handleDrillDownClick } = this.props
-    return (
-      <div className='card-container-container' >
-        {cardData.map((data) => {
-          let renderCard
-          switch(displayType) {
-          case 'all':
-          default:
-            renderCard = <PolicyCard key={data.name} data={data} locale={locale} handleClick={handleDrillDownClick} />
-            break
-          }
-          return renderCard
-        })}
-      </div>
-    )
+    return (cardData.map((data) => {
+      let renderCard
+      switch(displayType) {
+      case 'all':
+      default:
+        renderCard = <PolicyCard key={data.name} data={data} locale={locale} handleClick={handleDrillDownClick} />
+        break
+      }
+      return renderCard
+    }))
   }
 
   getPolicyCardData = () => {
@@ -256,12 +307,25 @@ export class GrcCardsModule extends React.Component {
     return this.grcCardChoices
   }
 
-  onChange = (e) => {
-    const {selectedItem: {value}} = e
-    this.props.updateViewState({grcCardChoice: value})
-    this.setState(()=>{
-      return {grcCardChoice: value}
+  onDropdownToggle = (isDropdownOpen) => {
+    this.setState({
+      isDropdownOpen
     })
+  }
+
+  onDropdownSelect = (event) => {
+    const value = event.target.text.toLowerCase()
+    this.props.updateViewState({grcCardChoice: value})
+    this.setState((prevState) => ({
+      isDropdownOpen: !prevState.isDropdownOpen,
+      grcCardChoice: value
+    }))
+    this.onDropdownFocus()
+  }
+
+  onDropdownFocus = () => {
+    const element = document.getElementById('grc-cards-toggle')
+    element.focus()
   }
 
   collapseClick() {
