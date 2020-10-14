@@ -1,6 +1,422 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GrcView component 1 renders as expected 1`] = `"<div class=\\"grc-view\\"><div class=\\"module-grc-cards\\"><div class=\\"header-container\\"><div class=\\"header-title\\">Summary</div><div><div role=\\"listbox\\" aria-label=\\"Summary\\" class=\\"bx--dropdown selection bx--list-box\\"><div role=\\"button\\" class=\\"bx--list-box__field\\" tabindex=\\"0\\" type=\\"button\\" aria-label=\\"Summary\\" aria-expanded=\\"false\\" aria-haspopup=\\"true\\" data-toggle=\\"true\\"><span class=\\"bx--list-box__label\\" for=\\"downshift-0-input\\">Standards</span><div class=\\"bx--list-box__menu-icon\\"><svg fill-rule=\\"evenodd\\" height=\\"5\\" role=\\"img\\" viewBox=\\"0 0 10 5\\" width=\\"10\\" alt=\\"Open menu\\" focusable=\\"false\\" aria-label=\\"Open menu\\"><title>Open menu</title><path d=\\"M0 0l5 4.998L10 0z\\"></path></svg></div></div></div></div><button class=\\"collapse\\"><span class=\\"collapse-hint\\">Want to see less information?</span><span class=\\"collapse-button\\">Collapse summary</span><svg class=\\"arrow-up\\" fill-rule=\\"evenodd\\" height=\\"7\\" name=\\"chevron--up\\" role=\\"img\\" viewBox=\\"0 0 12 7\\" width=\\"12\\" aria-label=\\"collapse\\" alt=\\"collapse\\"><title>collapse</title><path d=\\"M5.994 1.45L.726 7 0 6.315 5.994 0l6.002 6.315L11.27 7z\\"></path></svg></button></div><div class=\\"card-container-container\\"><div><div class=\\"card-container\\"><div class=\\"card-content\\"><div class=\\"card-name\\">NIST CSF</div><div class=\\"card-count-content\\"><div class=\\"card-count-container violated\\" role=\\"button\\" tabindex=\\"0\\"><div class=\\"card-count\\"><div class=\\"card-count-informations\\">1</div><div class=\\"card-count-total\\">/1</div></div><div class=\\"card-grc-type\\">Cluster violations</div></div><div class=\\"card-count-container violated\\" role=\\"button\\" tabindex=\\"0\\"><div class=\\"card-count\\"><div class=\\"card-count-informations\\">2</div><div class=\\"card-count-total\\">/2</div></div><div class=\\"card-grc-type\\">Policy violations</div></div></div></div></div></div></div></div><div class=\\"module-toggle-tab\\"><div><div id=\\"table-container\\" class=\\"bx--data-table-v2-container\\"><section aria-label=\\"search\\" role=\\"region\\" class=\\"bx--table-toolbar\\"><div class=\\"bx--toolbar-search-container\\"><div class=\\"bx--search bx--search--sm bx--search--light\\" role=\\"search\\" aria-labelledby=\\"search-label\\"><svg class=\\"bx--search-magnifier\\" fill-rule=\\"evenodd\\" height=\\"16\\" role=\\"img\\" viewBox=\\"0 0 16 16\\" width=\\"16\\" aria-label=\\"Filter table\\" alt=\\"Filter table\\"><title>Filter table</title><path d=\\"M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z\\"></path></svg><label id=\\"search-label\\" for=\\"search\\" class=\\"bx--label\\">Filter table</label><input type=\\"text\\" value=\\"\\" aria-label=\\"search\\" class=\\"bx--search-input\\" id=\\"search\\" placeholder=\\"Find policies\\"/><button class=\\"bx--search-close bx--search-close--hidden\\" type=\\"button\\"><svg fill-rule=\\"evenodd\\" height=\\"16\\" role=\\"img\\" viewBox=\\"0 0 16 16\\" width=\\"16\\" aria-label=\\"Provide a description that will be used as the title\\" alt=\\"Provide a description that will be used as the title\\"><title>Provide a description that will be used as the title</title><path d=\\"M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\\"></path></svg></button></div></div><div class=\\"bx--toolbar-content\\"><div class=\\"module-toggle-tab-switch-strip\\"><div class=\\"module-toggle-tab-switch-makeup\\"></div><div class=\\"module-toggle-tab-switch\\"><div class=\\"pf-c-toggle-group\\" role=\\"group\\"><div class=\\"pf-c-toggle-group__item\\"><button class=\\"pf-c-toggle-group__button pf-m-light pf-m-selected\\" aria-pressed=\\"true\\" id=\\"policies-0\\"><span class=\\"pf-c-toggle-group__text\\">Policies</span></button></div><div class=\\"pf-c-divider pf-m-vertical\\" role=\\"separator\\"></div><div class=\\"pf-c-toggle-group__item\\"><button class=\\"pf-c-toggle-group__button pf-m-light\\" aria-pressed=\\"false\\" id=\\"cluster-violations-1\\"><span class=\\"pf-c-toggle-group__text\\">Cluster violations</span></button></div><div class=\\"pf-c-divider pf-m-vertical\\" role=\\"separator\\"></div><div class=\\"pf-c-toggle-group__item\\"><button class=\\"pf-c-toggle-group__button pf-m-light\\" aria-pressed=\\"false\\" id=\\"applications-2\\"><span class=\\"pf-c-toggle-group__text\\">Applications</span></button></div></div></div></div></div></section><table class=\\"bx--data-table-v2 resource-table bx--data-table-v2--zebra\\"><thead><tr><th scope=\\"col\\"></th><th scope=\\"col\\"><div role=\\"button\\" tabindex=\\"0\\" title=\\"Sort rows by this header in ascending order.\\" class=\\"bx--table-sort-v2 bx--table-sort-v2--ascending\\" data-key=\\"metadata.name\\" data-default-key=\\"metadata.name\\"><span class=\\"bx--table-header-label\\">Policy name</span><svg class=\\"bx--table-sort-v2__icon\\" fill-rule=\\"evenodd\\" height=\\"5\\" name=\\"caret--down\\" role=\\"img\\" viewBox=\\"0 0 10 5\\" width=\\"10\\" aria-label=\\"Sort rows by this header in ascending order.\\" alt=\\"Sort rows by this header in ascending order.\\"><title>Sort rows by this header in ascending order.</title><path d=\\"M0 0l5 4.998L10 0z\\"></path></svg></div></th><th scope=\\"col\\"><div role=\\"button\\" tabindex=\\"0\\" title=\\"Sort rows by this header in ascending order.\\" class=\\"bx--table-sort-v2 bx--table-sort-v2--ascending\\" data-key=\\"namespace\\" data-default-key=\\"metadata.name\\"><span class=\\"bx--table-header-label\\">Namespace</span><svg class=\\"bx--table-sort-v2__icon\\" fill-rule=\\"evenodd\\" height=\\"5\\" name=\\"caret--down\\" role=\\"img\\" viewBox=\\"0 0 10 5\\" width=\\"10\\" aria-label=\\"Sort rows by this header in ascending order.\\" alt=\\"Sort rows by this header in ascending order.\\"><title>Sort rows by this header in ascending order.</title><path d=\\"M0 0l5 4.998L10 0z\\"></path></svg></div></th><th scope=\\"col\\"><div role=\\"button\\" tabindex=\\"0\\" title=\\"Sort rows by this header in ascending order.\\" class=\\"bx--table-sort-v2 bx--table-sort-v2--ascending\\" data-key=\\"remediation\\" data-default-key=\\"metadata.name\\"><span class=\\"bx--table-header-label\\">Remediation</span><svg class=\\"info-icon\\" aria-describedby=\\"pf-tooltip-1\\"><use href=\\"#diagramIcons_info\\"></use></svg><svg class=\\"bx--table-sort-v2__icon\\" fill-rule=\\"evenodd\\" height=\\"5\\" name=\\"caret--down\\" role=\\"img\\" viewBox=\\"0 0 10 5\\" width=\\"10\\" aria-label=\\"Sort rows by this header in ascending order.\\" alt=\\"Sort rows by this header in ascending order.\\"><title>Sort rows by this header in ascending order.</title><path d=\\"M0 0l5 4.998L10 0z\\"></path></svg></div></th><th scope=\\"col\\"><div role=\\"button\\" tabindex=\\"0\\" title=\\"Sort rows by this header in ascending order.\\" class=\\"bx--table-sort-v2 bx--table-sort-v2--ascending\\" data-key=\\"clusterCompliant\\" data-default-key=\\"metadata.name\\"><span class=\\"bx--table-header-label\\">Cluster violations</span><svg class=\\"bx--table-sort-v2__icon\\" fill-rule=\\"evenodd\\" height=\\"5\\" name=\\"caret--down\\" role=\\"img\\" viewBox=\\"0 0 10 5\\" width=\\"10\\" aria-label=\\"Sort rows by this header in ascending order.\\" alt=\\"Sort rows by this header in ascending order.\\"><title>Sort rows by this header in ascending order.</title><path d=\\"M0 0l5 4.998L10 0z\\"></path></svg></div></th><th scope=\\"col\\"><div role=\\"button\\" tabindex=\\"0\\" title=\\"Sort rows by this header in ascending order.\\" class=\\"bx--table-sort-v2 bx--table-sort-v2--ascending\\" data-key=\\"metadata.annotations[&quot;policy.open-cluster-management.io/standards&quot;]\\" data-default-key=\\"metadata.name\\"><span class=\\"bx--table-header-label\\">Standards</span><svg class=\\"bx--table-sort-v2__icon\\" fill-rule=\\"evenodd\\" height=\\"5\\" name=\\"caret--down\\" role=\\"img\\" viewBox=\\"0 0 10 5\\" width=\\"10\\" aria-label=\\"Sort rows by this header in ascending order.\\" alt=\\"Sort rows by this header in ascending order.\\"><title>Sort rows by this header in ascending order.</title><path d=\\"M0 0l5 4.998L10 0z\\"></path></svg></div></th><th scope=\\"col\\"><div role=\\"button\\" tabindex=\\"0\\" title=\\"Sort rows by this header in ascending order.\\" class=\\"bx--table-sort-v2 bx--table-sort-v2--ascending\\" data-key=\\"metadata.annotations[&quot;policy.open-cluster-management.io/categories&quot;]\\" data-default-key=\\"metadata.name\\"><span class=\\"bx--table-header-label\\">Categories</span><svg class=\\"bx--table-sort-v2__icon\\" fill-rule=\\"evenodd\\" height=\\"5\\" name=\\"caret--down\\" role=\\"img\\" viewBox=\\"0 0 10 5\\" width=\\"10\\" aria-label=\\"Sort rows by this header in ascending order.\\" alt=\\"Sort rows by this header in ascending order.\\"><title>Sort rows by this header in ascending order.</title><path d=\\"M0 0l5 4.998L10 0z\\"></path></svg></div></th><th scope=\\"col\\"><div role=\\"button\\" tabindex=\\"0\\" title=\\"Sort rows by this header in ascending order.\\" class=\\"bx--table-sort-v2 bx--table-sort-v2--ascending\\" data-key=\\"metadata.annotations[&quot;policy.open-cluster-management.io/controls&quot;]\\" data-default-key=\\"metadata.name\\"><span class=\\"bx--table-header-label\\">Controls</span><svg class=\\"bx--table-sort-v2__icon\\" fill-rule=\\"evenodd\\" height=\\"5\\" name=\\"caret--down\\" role=\\"img\\" viewBox=\\"0 0 10 5\\" width=\\"10\\" aria-label=\\"Sort rows by this header in ascending order.\\" alt=\\"Sort rows by this header in ascending order.\\"><title>Sort rows by this header in ascending order.</title><path d=\\"M0 0l5 4.998L10 0z\\"></path></svg></div></th><th scope=\\"col\\"></th></tr></thead><tbody><tr data-row-name=\\"policy-limitrange\\" aria-hidden=\\"false\\" class=\\"bx--parent-row-v2\\" data-parent-row=\\"true\\"><td headers=\\"expand\\" class=\\"bx--table-expand-v2\\"><button class=\\"bx--table-expand-v2__button\\" aria-label=\\"TableExpandRow\\"><svg class=\\"bx--table-expand-v2__svg\\" fill-rule=\\"evenodd\\" height=\\"12\\" role=\\"img\\" viewBox=\\"0 0 7 12\\" width=\\"7\\" aria-label=\\"Provide a description that will be used as the title\\" alt=\\"Provide a description that will be used as the title\\"><title>Provide a description that will be used as the title</title><path d=\\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\\"></path></svg></button></td><td><a href=\\"/undefined/all/calamari/policy-limitrange\\">policy-limitrange</a></td><td>calamari</td><td>inform</td><td><div class=\\"violationCell\\"><svg style=\\"vertical-align:-0.125em\\" fill=\\"#c9190b\\" height=\\"1em\\" width=\\"1em\\" viewBox=\\"0 0 512 512\\" aria-hidden=\\"true\\" role=\\"img\\"><path d=\\"M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z\\"></path></svg>2/2</div></td><td>HIPAA</td><td>System And Communications Protections</td><td>Cert Manager</td><td><div role=\\"menu\\" aria-haspopup=\\"true\\" aria-expanded=\\"false\\" class=\\"bx--overflow-menu\\" aria-label=\\"Overflow-menu\\" tabindex=\\"0\\"><svg class=\\"bx--overflow-menu__icon\\" fill-rule=\\"evenodd\\" height=\\"15\\" role=\\"img\\" viewBox=\\"0 0 3 15\\" width=\\"3\\" focusable=\\"false\\" aria-label=\\"Actions\\" alt=\\"Actions\\"><title>Actions</title><path d=\\"M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0\\"></path></svg></div></td></tr><tr data-row-name=\\"policy-namespace\\" aria-hidden=\\"false\\" class=\\"bx--parent-row-v2\\" data-parent-row=\\"true\\"><td headers=\\"expand\\" class=\\"bx--table-expand-v2\\"><button class=\\"bx--table-expand-v2__button\\" aria-label=\\"TableExpandRow\\"><svg class=\\"bx--table-expand-v2__svg\\" fill-rule=\\"evenodd\\" height=\\"12\\" role=\\"img\\" viewBox=\\"0 0 7 12\\" width=\\"7\\" aria-label=\\"Provide a description that will be used as the title\\" alt=\\"Provide a description that will be used as the title\\"><title>Provide a description that will be used as the title</title><path d=\\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\\"></path></svg></button></td><td><a href=\\"/undefined/all/calamari/policy-namespace\\">policy-namespace</a></td><td>calamari</td><td>enforce</td><td><div class=\\"violationCell\\"><svg style=\\"vertical-align:-0.125em\\" fill=\\"#c9190b\\" height=\\"1em\\" width=\\"1em\\" viewBox=\\"0 0 512 512\\" aria-hidden=\\"true\\" role=\\"img\\"><path d=\\"M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z\\"></path></svg>2/2</div></td><td>NIST, HIPAA</td><td>System And Communications Protections, System And Information Integrity</td><td>Mutation Advisor</td><td><div role=\\"menu\\" aria-haspopup=\\"true\\" aria-expanded=\\"false\\" class=\\"bx--overflow-menu\\" aria-label=\\"Overflow-menu\\" tabindex=\\"0\\"><svg class=\\"bx--overflow-menu__icon\\" fill-rule=\\"evenodd\\" height=\\"15\\" role=\\"img\\" viewBox=\\"0 0 3 15\\" width=\\"3\\" focusable=\\"false\\" aria-label=\\"Actions\\" alt=\\"Actions\\"><title>Actions</title><path d=\\"M0 1.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0M0 13.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 1 1-3 0\\"></path></svg></div></td></tr></tbody></table></div><div class=\\"bx--pagination\\" disabled=\\"\\"><div class=\\"bx--pagination__left\\"><span class=\\"bx--pagination__text\\">items per page</span><div class=\\"bx--form-item\\"><div class=\\"bx--select bx--select--inline\\"><label for=\\"bx-pagination-select-resource-table-pagination\\" class=\\"bx--label bx--visually-hidden\\">items per page</label><select id=\\"bx-pagination-select-resource-table-pagination\\" class=\\"bx--select-input\\"><option class=\\"bx--select-option\\" value=\\"5\\">5</option><option selected=\\"\\" class=\\"bx--select-option\\" value=\\"10\\">10</option><option class=\\"bx--select-option\\" value=\\"20\\">20</option><option class=\\"bx--select-option\\" value=\\"50\\">50</option><option class=\\"bx--select-option\\" value=\\"75\\">75</option><option class=\\"bx--select-option\\" value=\\"100\\">100</option></select><svg class=\\"bx--select__arrow\\" fill-rule=\\"evenodd\\" height=\\"5\\" role=\\"img\\" viewBox=\\"0 0 10 5\\" width=\\"10\\" aria-label=\\"open list of options\\" alt=\\"open list of options\\"><title>open list of options</title><path d=\\"M0 0l5 4.998L10 0z\\"></path></svg></div></div><span class=\\"bx--pagination__text\\"> |  {0}-{1} of {0} items</span></div><div class=\\"bx--pagination__right bx--pagination--inline\\"><button class=\\"bx--pagination__button bx--pagination__button--backward bx--pagination__button--no-index\\" aria-label=\\"Previous page\\" disabled=\\"\\"><svg class=\\"bx--pagination__button-icon\\" fill-rule=\\"evenodd\\" height=\\"12\\" role=\\"img\\" viewBox=\\"0 0 7 12\\" width=\\"7\\" aria-label=\\"Previous page\\" alt=\\"Previous page\\"><title>Previous page</title><path d=\\"M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z\\"></path></svg></button><button class=\\"bx--pagination__button bx--pagination__button--forward\\" aria-label=\\"Next page\\" disabled=\\"\\"><svg class=\\"bx--pagination__button-icon\\" fill-rule=\\"evenodd\\" height=\\"12\\" role=\\"img\\" viewBox=\\"0 0 7 12\\" width=\\"7\\" aria-label=\\"Next page\\" alt=\\"Next page\\"><title>Next page</title><path d=\\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\\"></path></svg></button></div></div></div></div></div>"`;
+exports[`GrcView component 1 renders as expected 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
+      },
+    }
+  }
+>
+  <BrowserRouter>
+    <GrcView
+      activeFilters={Object {}}
+      error={null}
+      grcItems={
+        Array [
+          Object {
+            "__typename": "Compliance",
+            "clusterCompliant": "1/1",
+            "clusterConsoleURL": Object {
+              "calamari": "https://console-openshift-console.apps.calamari.dev08.red-chesterfield.com",
+            },
+            "clusterNS": Object {
+              "calamari": "calamari",
+            },
+            "metadata": Object {
+              "__typename": "Metadata",
+              "annotations": Object {
+                "kubectl.kubernetes.io/last-applied-configuration": "{\\"apiVersion\\":\\"policy.open-cluster-management.io/v1\\",\\"kind\\":\\"Policy\\",\\"metadata\\":{\\"annotations\\":{\\"policy.open-cluster-management.io/categories\\":\\"PR.DS Data Security\\",\\"policy.open-cluster-management.io/controls\\":\\"PR.DS-2 Data-in-transit\\",\\"policy.open-cluster-management.io/standards\\":\\"NIST-CSF\\"},\\"name\\":\\"case6-test-policy\\",\\"namespace\\":\\"default\\"},\\"spec\\":{\\"disabled\\":false,\\"policy-templates\\":[{\\"objectDefinition\\":{\\"apiVersion\\":\\"policies.ibm.com/v1alpha1\\",\\"kind\\":\\"TrustedContainerPolicy\\",\\"metadata\\":{\\"name\\":\\"case6-test-policy-trustedcontainerpolicy\\"},\\"spec\\":{\\"imageRegistry\\":\\"quay.io\\",\\"namespaceSelector\\":{\\"exclude\\":[\\"kube-system\\",\\"default\\"],\\"include\\":[\\"e2e-test\\"]},\\"remediationAction\\":\\"inform\\",\\"severity\\":\\"low\\"}}},{\\"objectDefinition\\":{\\"apiVersion\\":\\"policy.open-cluster-management.io/v1\\",\\"kind\\":\\"ConfigurationPolicy\\",\\"metadata\\":{\\"name\\":\\"case6-policy-role-example\\"},\\"spec\\":{\\"namespaceSelector\\":{\\"exclude\\":[\\"kube-*\\"],\\"include\\":[\\"default\\"]},\\"object-templates\\":[{\\"complianceType\\":\\"mustonlyhave\\",\\"objectDefinition\\":{\\"apiVersion\\":\\"rbac.authorization.k8s.io/v1\\",\\"kind\\":\\"Role\\",\\"metadata\\":{\\"name\\":\\"policy-role-example\\"},\\"rules\\":[{\\"apiGroups\\":[\\"extensions\\",\\"apps\\"],\\"resources\\":[\\"deployments\\"],\\"verbs\\":[\\"get\\",\\"list\\",\\"watch\\",\\"delete\\",\\"patch\\"]}]}}],\\"remediationAction\\":\\"inform\\",\\"severity\\":\\"high\\"}}}],\\"remediationAction\\":\\"inform\\"}}
+",
+                "policy.open-cluster-management.io/categories": "PR.DS Data Security",
+                "policy.open-cluster-management.io/controls": "PR.DS-2 Data-in-transit",
+                "policy.open-cluster-management.io/standards": "NIST-CSF",
+              },
+              "name": "case6-test-policy",
+              "namespace": "default",
+              "resourceVersion": "37198197",
+              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/case6-test-policy",
+            },
+            "name": "case6-test-policy",
+            "namespace": "default",
+            "placementBindings": Array [
+              Object {
+                "__typename": "PlacementBinding",
+                "metadata": Object {
+                  "__typename": "Metadata",
+                  "name": "case6-test-policy-pb",
+                  "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/case6-test-policy-pb",
+                },
+              },
+            ],
+            "placementPolicies": Array [
+              Object {
+                "__typename": "PlacementPolicy",
+                "metadata": Object {
+                  "__typename": "Metadata",
+                  "name": "case6-test-policy-plr",
+                  "selfLink": "/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/case6-test-policy-plr",
+                },
+              },
+            ],
+            "policyCompliant": "0/0",
+            "raw": Object {
+              "apiVersion": "policy.open-cluster-management.io/v1",
+              "kind": "Policy",
+              "metadata": Object {
+                "annotations": Object {
+                  "kubectl.kubernetes.io/last-applied-configuration": "{\\"apiVersion\\":\\"policy.open-cluster-management.io/v1\\",\\"kind\\":\\"Policy\\",\\"metadata\\":{\\"annotations\\":{\\"policy.open-cluster-management.io/categories\\":\\"PR.DS Data Security\\",\\"policy.open-cluster-management.io/controls\\":\\"PR.DS-2 Data-in-transit\\",\\"policy.open-cluster-management.io/standards\\":\\"NIST-CSF\\"},\\"name\\":\\"case6-test-policy\\",\\"namespace\\":\\"default\\"},\\"spec\\":{\\"disabled\\":false,\\"policy-templates\\":[{\\"objectDefinition\\":{\\"apiVersion\\":\\"policies.ibm.com/v1alpha1\\",\\"kind\\":\\"TrustedContainerPolicy\\",\\"metadata\\":{\\"name\\":\\"case6-test-policy-trustedcontainerpolicy\\"},\\"spec\\":{\\"imageRegistry\\":\\"quay.io\\",\\"namespaceSelector\\":{\\"exclude\\":[\\"kube-system\\",\\"default\\"],\\"include\\":[\\"e2e-test\\"]},\\"remediationAction\\":\\"inform\\",\\"severity\\":\\"low\\"}}},{\\"objectDefinition\\":{\\"apiVersion\\":\\"policy.open-cluster-management.io/v1\\",\\"kind\\":\\"ConfigurationPolicy\\",\\"metadata\\":{\\"name\\":\\"case6-policy-role-example\\"},\\"spec\\":{\\"namespaceSelector\\":{\\"exclude\\":[\\"kube-*\\"],\\"include\\":[\\"default\\"]},\\"object-templates\\":[{\\"complianceType\\":\\"mustonlyhave\\",\\"objectDefinition\\":{\\"apiVersion\\":\\"rbac.authorization.k8s.io/v1\\",\\"kind\\":\\"Role\\",\\"metadata\\":{\\"name\\":\\"policy-role-example\\"},\\"rules\\":[{\\"apiGroups\\":[\\"extensions\\",\\"apps\\"],\\"resources\\":[\\"deployments\\"],\\"verbs\\":[\\"get\\",\\"list\\",\\"watch\\",\\"delete\\",\\"patch\\"]}]}}],\\"remediationAction\\":\\"inform\\",\\"severity\\":\\"high\\"}}}],\\"remediationAction\\":\\"inform\\"}}
+",
+                  "policy.open-cluster-management.io/categories": "PR.DS Data Security",
+                  "policy.open-cluster-management.io/controls": "PR.DS-2 Data-in-transit",
+                  "policy.open-cluster-management.io/standards": "NIST-CSF",
+                },
+                "creationTimestamp": "2020-05-27T14:36:05Z",
+                "generation": 1,
+                "name": "case6-test-policy",
+                "namespace": "default",
+                "resourceVersion": "37198197",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/case6-test-policy",
+                "uid": "ed964170-b17d-4e23-880e-575be3eac901",
+              },
+              "spec": Object {
+                "disabled": false,
+                "policy-templates": Array [
+                  Object {
+                    "objectDefinition": Object {
+                      "apiVersion": "policies.ibm.com/v1alpha1",
+                      "kind": "TrustedContainerPolicy",
+                      "metadata": Object {
+                        "name": "case6-test-policy-trustedcontainerpolicy",
+                      },
+                      "spec": Object {
+                        "imageRegistry": "quay.io",
+                        "namespaceSelector": Object {
+                          "exclude": Array [
+                            "kube-system",
+                            "default",
+                          ],
+                          "include": Array [
+                            "e2e-test",
+                          ],
+                        },
+                        "remediationAction": "inform",
+                        "severity": "low",
+                      },
+                    },
+                  },
+                  Object {
+                    "objectDefinition": Object {
+                      "apiVersion": "policy.open-cluster-management.io/v1",
+                      "kind": "ConfigurationPolicy",
+                      "metadata": Object {
+                        "name": "case6-policy-role-example",
+                      },
+                      "spec": Object {
+                        "namespaceSelector": Object {
+                          "exclude": Array [
+                            "kube-*",
+                          ],
+                          "include": Array [
+                            "default",
+                          ],
+                        },
+                        "object-templates": Array [
+                          Object {
+                            "complianceType": "mustonlyhave",
+                            "objectDefinition": Object {
+                              "apiVersion": "rbac.authorization.k8s.io/v1",
+                              "kind": "Role",
+                              "metadata": Object {
+                                "name": "policy-role-example",
+                              },
+                              "rules": Array [
+                                Object {
+                                  "apiGroups": Array [
+                                    "extensions",
+                                    "apps",
+                                  ],
+                                  "resources": Array [
+                                    "deployments",
+                                  ],
+                                  "verbs": Array [
+                                    "get",
+                                    "list",
+                                    "watch",
+                                    "delete",
+                                    "patch",
+                                  ],
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                        "remediationAction": "inform",
+                        "severity": "high",
+                      },
+                    },
+                  },
+                ],
+                "remediationAction": "inform",
+              },
+              "status": Object {
+                "placement": Array [
+                  Object {
+                    "placementBinding": "case6-test-policy-pb",
+                    "placementRule": "case6-test-policy-plr",
+                  },
+                ],
+                "status": Array [
+                  Object {
+                    "clustername": "calamari",
+                    "clusternamespace": "calamari",
+                    "compliant": "NonCompliant",
+                  },
+                ],
+              },
+            },
+            "remediation": "inform",
+          },
+          Object {
+            "__typename": "Compliance",
+            "clusterCompliant": "1/1",
+            "clusterConsoleURL": Object {
+              "calamari": "https://console-openshift-console.apps.calamari.dev08.red-chesterfield.com",
+            },
+            "clusterNS": Object {
+              "calamari": "calamari",
+            },
+            "metadata": Object {
+              "__typename": "Metadata",
+              "annotations": Object {
+                "policy.open-cluster-management.io/categories": "PR.AC Identity Management Authentication and Access Control",
+                "policy.open-cluster-management.io/controls": "PR.AC-4 Access Control",
+                "policy.open-cluster-management.io/standards": "NIST-CSF",
+              },
+              "name": "policy-rolebinding",
+              "namespace": "default",
+              "resourceVersion": "37491359",
+              "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-rolebinding",
+            },
+            "name": "policy-rolebinding",
+            "namespace": "default",
+            "placementBindings": Array [
+              Object {
+                "__typename": "PlacementBinding",
+                "metadata": Object {
+                  "__typename": "Metadata",
+                  "name": "binding-policy-rolebinding",
+                  "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-policy-rolebinding",
+                },
+              },
+            ],
+            "placementPolicies": Array [
+              Object {
+                "__typename": "PlacementPolicy",
+                "metadata": Object {
+                  "__typename": "Metadata",
+                  "name": "placement-policy-rolebinding",
+                  "selfLink": "/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/placement-policy-rolebinding",
+                },
+              },
+            ],
+            "policyCompliant": "0/0",
+            "raw": Object {
+              "apiVersion": "policy.open-cluster-management.io/v1",
+              "kind": "Policy",
+              "metadata": Object {
+                "annotations": Object {
+                  "policy.open-cluster-management.io/categories": "PR.AC Identity Management Authentication and Access Control",
+                  "policy.open-cluster-management.io/controls": "PR.AC-4 Access Control",
+                  "policy.open-cluster-management.io/standards": "NIST-CSF",
+                },
+                "creationTimestamp": "2020-05-27T13:23:03Z",
+                "generation": 7,
+                "name": "policy-rolebinding",
+                "namespace": "default",
+                "resourceVersion": "37491359",
+                "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-rolebinding",
+                "uid": "f5f5ad1b-8acc-4814-9560-9edd3ace6fba",
+              },
+              "spec": Object {
+                "disabled": false,
+                "policy-templates": Array [
+                  Object {
+                    "objectDefinition": Object {
+                      "apiVersion": "policy.open-cluster-management.io/v1",
+                      "kind": "ConfigurationPolicy",
+                      "metadata": Object {
+                        "name": "policy-rolebinding-example",
+                      },
+                      "spec": Object {
+                        "namespaceSelector": Object {
+                          "exclude": Array [
+                            "kube-*",
+                          ],
+                          "include": Array [
+                            "default",
+                          ],
+                        },
+                        "object-templates": Array [
+                          Object {
+                            "complianceType": "musthave",
+                            "objectDefinition": Object {
+                              "apiVersion": "rbac.authorization.k8s.io/v1",
+                              "kind": "RoleBinding",
+                              "metadata": Object {
+                                "name": "operate-pods-rolebinding",
+                              },
+                              "roleRef": Object {
+                                "apiGroup": "rbac.authorization.k8s.io",
+                                "kind": "Role",
+                                "name": "operator",
+                              },
+                              "subjects": Array [
+                                Object {
+                                  "apiGroup": "rbac.authorization.k8s.io",
+                                  "kind": "User",
+                                  "name": "admin",
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                        "remediationAction": "inform",
+                        "severity": "high",
+                      },
+                    },
+                  },
+                ],
+                "remediationAction": "inform",
+              },
+              "status": Object {
+                "placement": Array [
+                  Object {
+                    "placementBinding": "binding-policy-rolebinding",
+                    "placementRule": "placement-policy-rolebinding",
+                  },
+                ],
+                "status": Array [
+                  Object {
+                    "clustername": "calamari",
+                    "clusternamespace": "calamari",
+                    "compliant": "NonCompliant",
+                  },
+                ],
+              },
+            },
+            "remediation": "inform",
+          },
+        ]
+      }
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "canGo": [Function],
+          "createHref": [Function],
+          "entries": Array [
+            Object {
+              "hash": "",
+              "key": "s4wxvc",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+          ],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "index": 0,
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "s4wxvc",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+      loading={false}
+      location={
+        Object {
+          "pathname": "/multicloud/policies/all",
+        }
+      }
+      refreshControl={
+        Object {
+          "refreshCookie": "grc-refresh-interval-cookie",
+          "reloading": false,
+          "timestamp": "Tue Jul 23 2019 01:13:42 GMT-0400 (Eastern Daylight Time)",
+        }
+      }
+      secondaryHeaderProps={
+        Object {
+          "information": "grc.header.tooltip",
+          "links": Array [
+            Object {
+              "id": "create-policy",
+              "label": "button.create.policy",
+              "url": "/multicloud/policies/create",
+            },
+          ],
+          "tabs": Array [
+            Object {
+              "id": "grc-overview",
+              "index": 0,
+              "label": "tabs.grc.overview",
+              "url": "/multicloud/policies",
+            },
+            Object {
+              "id": "grc-all",
+              "index": 1,
+              "label": "tabs.grc.all",
+              "url": "/multicloud/policies/all",
+            },
+            Object {
+              "id": "grc-findings",
+              "index": 2,
+              "label": "tabs.grc.findings",
+              "url": "/multicloud/policies/findings",
+            },
+          ],
+          "title": "routes.grc",
+        }
+      }
+      showApplications={true}
+      title="Test1"
+    />
+  </BrowserRouter>
+</ContextProvider>
+`;
 
 exports[`GrcView component 2 renders as expected 1`] = `
 <span
@@ -95,43 +511,216 @@ exports[`GrcView component 4 renders as expected 1`] = `
   <div
     className="module-grc-cards"
   >
-    <div
-      className="header-container card-collapsed"
+    <dl
+      aria-label=""
+      className="pf-c-accordion"
     >
-      <button
-        className="collapse"
-        onClick={[Function]}
+      <dt>
+        <button
+          aria-expanded={false}
+          className="pf-c-accordion__toggle header-container"
+          onClick={[Function]}
+        >
+          <span
+            className="pf-c-accordion__toggle-text"
+          >
+            <div
+              className="header-title"
+            >
+              Summary
+              <span
+                className="pf-c-label grc-cards-count"
+              >
+                <span
+                  className="pf-c-label__content"
+                >
+                  2
+                </span>
+              </span>
+            </div>
+          </span>
+          <span
+            className="pf-c-accordion__toggle-icon"
+          >
+            <svg
+              aria-hidden={true}
+              aria-labelledby={null}
+              fill="currentColor"
+              height="1em"
+              role="img"
+              style={
+                Object {
+                  "verticalAlign": "-0.125em",
+                }
+              }
+              viewBox="0 0 256 512"
+              width="1em"
+            >
+              <path
+                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+              />
+            </svg>
+          </span>
+        </button>
+      </dt>
+      <dd
+        aria-label=""
+        className="pf-c-accordion__expanded-content grc-cards-container"
+        hidden={true}
+        id=""
       >
-        <span
-          className="collapse-hint"
+        <div
+          className="pf-c-accordion__expanded-content-body"
         >
-          Want to see your summary cards?
-        </span>
-        <span
-          className="collapse-button"
-        >
-          Expand summary
-        </span>
-        <svg
-          alt="expand"
-          aria-label="expand"
-          className="arrow-down"
-          fillRule="evenodd"
-          height="7"
-          name="chevron--down"
-          role="img"
-          viewBox="0 0 12 7"
-          width="12"
-        >
-          <title>
-            expand
-          </title>
-          <path
-            d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z"
-          />
-        </svg>
-      </button>
-    </div>
+          <div>
+            <div
+              className="card-container"
+            >
+              <div
+                className="card-content"
+              >
+                <div
+                  className="card-name"
+                >
+                  NIST
+                </div>
+                <div
+                  className="card-count-content"
+                >
+                  <div
+                    className="card-count-container violated"
+                    onClick={[Function]}
+                    onKeyPress={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <div
+                      className="card-count"
+                    >
+                      <div
+                        className="card-count-informations"
+                      >
+                        2
+                      </div>
+                      <div
+                        className="card-count-total"
+                      >
+                        /2
+                      </div>
+                    </div>
+                    <div
+                      className="card-grc-type"
+                    >
+                      Cluster violations
+                    </div>
+                  </div>
+                  <div
+                    className="card-count-container violated"
+                    onClick={[Function]}
+                    onKeyPress={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <div
+                      className="card-count"
+                    >
+                      <div
+                        className="card-count-informations"
+                      >
+                        3
+                      </div>
+                      <div
+                        className="card-count-total"
+                      >
+                        /3
+                      </div>
+                    </div>
+                    <div
+                      className="card-grc-type"
+                    >
+                      Policy violations
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div
+              className="card-container"
+            >
+              <div
+                className="card-content"
+              >
+                <div
+                  className="card-name"
+                >
+                  HIPAA
+                </div>
+                <div
+                  className="card-count-content"
+                >
+                  <div
+                    className="card-count-container violated"
+                    onClick={[Function]}
+                    onKeyPress={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <div
+                      className="card-count"
+                    >
+                      <div
+                        className="card-count-informations"
+                      >
+                        1
+                      </div>
+                      <div
+                        className="card-count-total"
+                      >
+                        /2
+                      </div>
+                    </div>
+                    <div
+                      className="card-grc-type"
+                    >
+                      Cluster violations
+                    </div>
+                  </div>
+                  <div
+                    className="card-count-container violated"
+                    onClick={[Function]}
+                    onKeyPress={[Function]}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <div
+                      className="card-count"
+                    >
+                      <div
+                        className="card-count-informations"
+                      >
+                        2
+                      </div>
+                      <div
+                        className="card-count-total"
+                      >
+                        /2
+                      </div>
+                    </div>
+                    <div
+                      className="card-grc-type"
+                    >
+                      Policy violations
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dd>
+    </dl>
   </div>
   <div
     className="module-toggle-tab"
@@ -268,7 +857,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
         className="button-group-create-resource"
       >
         <div
-          aria-describedby="pf-tooltip-2"
+          aria-describedby="pf-tooltip-1"
           className="disable-tooltip"
         >
           <button

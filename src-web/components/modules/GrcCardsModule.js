@@ -290,7 +290,9 @@ export class GrcCardsModule extends React.Component {
 
   onDropdownFocus = () => {
     const element = document.getElementById('grc-cards-toggle')
-    element.focus()
+    if (element) {
+      element.focus()
+    }
   }
 
   collapseClick() {

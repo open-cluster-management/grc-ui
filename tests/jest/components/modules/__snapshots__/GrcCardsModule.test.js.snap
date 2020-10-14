@@ -10,11 +10,11 @@ exports[`GrcCardsModule collapseClick getPolicyCardChoices as expected 1`] = `
 Array [
   Object {
     "label": "Categories",
-    "value": "categories",
+    "value": 0,
   },
   Object {
     "label": "Standards",
-    "value": "standards",
+    "value": 1,
   },
 ]
 `;
@@ -23,18 +23,14 @@ exports[`GrcCardsModule collapseClick getPolicyCardChoices as expected 2`] = `
 Array [
   Object {
     "label": "Categories",
-    "value": "categories",
+    "value": 0,
   },
   Object {
     "label": "Standards",
-    "value": "standards",
+    "value": 1,
   },
 ]
 `;
-
-exports[`GrcCardsModule collapseClick onChange as expected 1`] = `undefined`;
-
-exports[`GrcCardsModule collapseClick onChange as expected 2`] = `undefined`;
 
 exports[`GrcCardsModule findings page categories view renders collapse as expected 1`] = `
 GrcCardsModule {
@@ -45,14 +41,16 @@ GrcCardsModule {
   "grcCardChoices": Array [
     Object {
       "label": "Categories",
-      "value": "categories",
+      "value": 0,
     },
     Object {
       "label": "Standards",
-      "value": "standards",
+      "value": 1,
     },
   ],
-  "onChange": [Function],
+  "onDropdownFocus": [Function],
+  "onDropdownSelect": [Function],
+  "onDropdownToggle": [Function],
   "props": Object {
     "activeFilters": Object {
       "activeFilters": Object {},
@@ -204,7 +202,8 @@ GrcCardsModule {
   "refs": Object {},
   "setState": [Function],
   "state": Object {
-    "grcCardChoice": "standards",
+    "grcCardChoice": 1,
+    "isDropdownOpen": false,
   },
   "updater": Updater {
     "_callbacks": Array [],
@@ -391,32 +390,30 @@ GrcCardsModule {
       "_rendered": <div
         className="module-grc-cards"
       >
-        <div
-          className="header-container card-collapsed"
-        >
-          <button
-            className="collapse"
-            onClick={[Function]}
-          >
-            <span
-              className="collapse-hint"
+        <Accordion>
+          <AccordionItem>
+            <AccordionToggle
+              className="header-container"
+              isExpanded={false}
+              onClick={[Function]}
             >
-              Want to see your summary cards?
-            </span>
-            <span
-              className="collapse-button"
-            >
-              Expand summary
-            </span>
-            <Icon
-              className="arrow-down"
-              description="expand"
-              fillRule="evenodd"
-              name="chevron--down"
-              role="img"
+              <div
+                className="header-title"
+              >
+                Summary
+                <Label
+                  className="grc-cards-count"
+                >
+                  0
+                </Label>
+              </div>
+            </AccordionToggle>
+            <AccordionContent
+              className="grc-cards-container"
+              isHidden={true}
             />
-          </button>
-        </div>
+          </AccordionItem>
+        </Accordion>
       </div>,
       "_rendering": false,
       "_updater": [Circular],
@@ -435,14 +432,16 @@ GrcCardsModule {
   "grcCardChoices": Array [
     Object {
       "label": "Categories",
-      "value": "categories",
+      "value": 0,
     },
     Object {
       "label": "Standards",
-      "value": "standards",
+      "value": 1,
     },
   ],
-  "onChange": [Function],
+  "onDropdownFocus": [Function],
+  "onDropdownSelect": [Function],
+  "onDropdownToggle": [Function],
   "props": Object {
     "activeFilters": Object {
       "activeFilters": Object {},
@@ -594,7 +593,8 @@ GrcCardsModule {
   "refs": Object {},
   "setState": [Function],
   "state": Object {
-    "grcCardChoice": "standards",
+    "grcCardChoice": 1,
+    "isDropdownOpen": false,
   },
   "updater": Updater {
     "_callbacks": Array [],
@@ -781,69 +781,69 @@ GrcCardsModule {
       "_rendered": <div
         className="module-grc-cards"
       >
-        <div
-          className="header-container"
-        >
-          <div
-            className="header-title"
-          >
-            Summary
-          </div>
-          <div>
-            <DropdownV2
-              ariaLabel="Summary"
-              className="selection"
-              disabled={false}
-              helperText=""
-              initialSelectedItem="Standards"
-              inline={true}
-              itemToElement={null}
-              itemToString={[Function]}
-              items={
-                Array [
-                  Object {
-                    "label": "Categories",
-                    "value": "categories",
-                  },
-                  Object {
-                    "label": "Standards",
-                    "value": "standards",
-                  },
-                ]
-              }
-              label="Summary"
-              light={false}
-              onChange={[Function]}
-              titleText=""
-              type="default"
-            />
-          </div>
-          <button
-            className="collapse"
-            onClick={[Function]}
-          >
-            <span
-              className="collapse-hint"
+        <Accordion>
+          <AccordionItem>
+            <AccordionToggle
+              className="header-container"
+              isExpanded={true}
+              onClick={[Function]}
             >
-              Want to see less information?
-            </span>
-            <span
-              className="collapse-button"
+              <div
+                className="header-title"
+              >
+                Summary
+                <Label
+                  className="grc-cards-count"
+                >
+                  0
+                </Label>
+              </div>
+            </AccordionToggle>
+            <div
+              className="header-options"
             >
-              Collapse summary
-            </span>
-            <Icon
-              className="arrow-up"
-              description="collapse"
-              fillRule="evenodd"
-              name="chevron--up"
-              role="img"
+              <div
+                className="header-divider"
+              >
+                <Divider
+                  isVertical={true}
+                />
+              </div>
+              <Dropdown
+                dropdownItems={
+                  Array [
+                    <DropdownItem
+                      tabIndex={0}
+                    >
+                      Categories
+                    </DropdownItem>,
+                    <DropdownItem
+                      tabIndex={1}
+                    >
+                      Standards
+                    </DropdownItem>,
+                  ]
+                }
+                isOpen={false}
+                isPlain={true}
+                onSelect={[Function]}
+                toggle={
+                  <DropdownToggle
+                    id="grc-cards-toggle"
+                    onToggle={[Function]}
+                    toggleIndicator={[Function]}
+                  >
+                    Standards
+                  </DropdownToggle>
+                }
+              />
+            </div>
+            <AccordionContent
+              className="grc-cards-container"
+              isHidden={false}
             />
-          </button>
-        </div>
-        <div
-          className="card-container-container"
-        />
+          </AccordionItem>
+        </Accordion>
       </div>,
       "_rendering": false,
       "_updater": [Circular],
@@ -862,14 +862,16 @@ GrcCardsModule {
   "grcCardChoices": Array [
     Object {
       "label": "Categories",
-      "value": "categories",
+      "value": 0,
     },
     Object {
       "label": "Standards",
-      "value": "standards",
+      "value": 1,
     },
   ],
-  "onChange": [Function],
+  "onDropdownFocus": [Function],
+  "onDropdownSelect": [Function],
+  "onDropdownToggle": [Function],
   "props": Object {
     "activeFilters": Object {
       "activeFilters": Object {},
@@ -1021,7 +1023,8 @@ GrcCardsModule {
   "refs": Object {},
   "setState": [Function],
   "state": Object {
-    "grcCardChoice": "standards",
+    "grcCardChoice": 1,
+    "isDropdownOpen": false,
   },
   "updater": Updater {
     "_callbacks": Array [],
@@ -1208,32 +1211,30 @@ GrcCardsModule {
       "_rendered": <div
         className="module-grc-cards"
       >
-        <div
-          className="header-container card-collapsed"
-        >
-          <button
-            className="collapse"
-            onClick={[Function]}
-          >
-            <span
-              className="collapse-hint"
+        <Accordion>
+          <AccordionItem>
+            <AccordionToggle
+              className="header-container"
+              isExpanded={false}
+              onClick={[Function]}
             >
-              Want to see your summary cards?
-            </span>
-            <span
-              className="collapse-button"
-            >
-              Expand summary
-            </span>
-            <Icon
-              className="arrow-down"
-              description="expand"
-              fillRule="evenodd"
-              name="chevron--down"
-              role="img"
+              <div
+                className="header-title"
+              >
+                Summary
+                <Label
+                  className="grc-cards-count"
+                >
+                  0
+                </Label>
+              </div>
+            </AccordionToggle>
+            <AccordionContent
+              className="grc-cards-container"
+              isHidden={true}
             />
-          </button>
-        </div>
+          </AccordionItem>
+        </Accordion>
       </div>,
       "_rendering": false,
       "_updater": [Circular],
@@ -1252,14 +1253,16 @@ GrcCardsModule {
   "grcCardChoices": Array [
     Object {
       "label": "Categories",
-      "value": "categories",
+      "value": 0,
     },
     Object {
       "label": "Standards",
-      "value": "standards",
+      "value": 1,
     },
   ],
-  "onChange": [Function],
+  "onDropdownFocus": [Function],
+  "onDropdownSelect": [Function],
+  "onDropdownToggle": [Function],
   "props": Object {
     "activeFilters": Object {
       "activeFilters": Object {},
@@ -1411,7 +1414,8 @@ GrcCardsModule {
   "refs": Object {},
   "setState": [Function],
   "state": Object {
-    "grcCardChoice": "standards",
+    "grcCardChoice": 1,
+    "isDropdownOpen": false,
   },
   "updater": Updater {
     "_callbacks": Array [],
@@ -1598,69 +1602,69 @@ GrcCardsModule {
       "_rendered": <div
         className="module-grc-cards"
       >
-        <div
-          className="header-container"
-        >
-          <div
-            className="header-title"
-          >
-            Summary
-          </div>
-          <div>
-            <DropdownV2
-              ariaLabel="Summary"
-              className="selection"
-              disabled={false}
-              helperText=""
-              initialSelectedItem="Standards"
-              inline={true}
-              itemToElement={null}
-              itemToString={[Function]}
-              items={
-                Array [
-                  Object {
-                    "label": "Categories",
-                    "value": "categories",
-                  },
-                  Object {
-                    "label": "Standards",
-                    "value": "standards",
-                  },
-                ]
-              }
-              label="Summary"
-              light={false}
-              onChange={[Function]}
-              titleText=""
-              type="default"
-            />
-          </div>
-          <button
-            className="collapse"
-            onClick={[Function]}
-          >
-            <span
-              className="collapse-hint"
+        <Accordion>
+          <AccordionItem>
+            <AccordionToggle
+              className="header-container"
+              isExpanded={true}
+              onClick={[Function]}
             >
-              Want to see less information?
-            </span>
-            <span
-              className="collapse-button"
+              <div
+                className="header-title"
+              >
+                Summary
+                <Label
+                  className="grc-cards-count"
+                >
+                  0
+                </Label>
+              </div>
+            </AccordionToggle>
+            <div
+              className="header-options"
             >
-              Collapse summary
-            </span>
-            <Icon
-              className="arrow-up"
-              description="collapse"
-              fillRule="evenodd"
-              name="chevron--up"
-              role="img"
+              <div
+                className="header-divider"
+              >
+                <Divider
+                  isVertical={true}
+                />
+              </div>
+              <Dropdown
+                dropdownItems={
+                  Array [
+                    <DropdownItem
+                      tabIndex={0}
+                    >
+                      Categories
+                    </DropdownItem>,
+                    <DropdownItem
+                      tabIndex={1}
+                    >
+                      Standards
+                    </DropdownItem>,
+                  ]
+                }
+                isOpen={false}
+                isPlain={true}
+                onSelect={[Function]}
+                toggle={
+                  <DropdownToggle
+                    id="grc-cards-toggle"
+                    onToggle={[Function]}
+                    toggleIndicator={[Function]}
+                  >
+                    Standards
+                  </DropdownToggle>
+                }
+              />
+            </div>
+            <AccordionContent
+              className="grc-cards-container"
+              isHidden={false}
             />
-          </button>
-        </div>
-        <div
-          className="card-container-container"
-        />
+          </AccordionItem>
+        </Accordion>
       </div>,
       "_rendering": false,
       "_updater": [Circular],
@@ -1679,14 +1683,16 @@ GrcCardsModule {
   "grcCardChoices": Array [
     Object {
       "label": "Categories",
-      "value": "categories",
+      "value": 0,
     },
     Object {
       "label": "Standards",
-      "value": "standards",
+      "value": 1,
     },
   ],
-  "onChange": [Function],
+  "onDropdownFocus": [Function],
+  "onDropdownSelect": [Function],
+  "onDropdownToggle": [Function],
   "props": Object {
     "activeFilters": Object {
       "activeFilters": Object {},
@@ -2279,7 +2285,8 @@ GrcCardsModule {
   "refs": Object {},
   "setState": [Function],
   "state": Object {
-    "grcCardChoice": "standards",
+    "grcCardChoice": 1,
+    "isDropdownOpen": false,
   },
   "updater": Updater {
     "_callbacks": Array [],
@@ -2907,32 +2914,73 @@ GrcCardsModule {
       "_rendered": <div
         className="module-grc-cards"
       >
-        <div
-          className="header-container card-collapsed"
-        >
-          <button
-            className="collapse"
-            onClick={[Function]}
-          >
-            <span
-              className="collapse-hint"
+        <Accordion>
+          <AccordionItem>
+            <AccordionToggle
+              className="header-container"
+              isExpanded={false}
+              onClick={[Function]}
             >
-              Want to see your summary cards?
-            </span>
-            <span
-              className="collapse-button"
+              <div
+                className="header-title"
+              >
+                Summary
+                <Label
+                  className="grc-cards-count"
+                >
+                  2
+                </Label>
+              </div>
+            </AccordionToggle>
+            <AccordionContent
+              className="grc-cards-container"
+              isHidden={true}
             >
-              Expand summary
-            </span>
-            <Icon
-              className="arrow-down"
-              description="expand"
-              fillRule="evenodd"
-              name="chevron--down"
-              role="img"
-            />
-          </button>
-        </div>
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": 1,
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                    },
+                    "name": "NIST",
+                    "rawName": "NIST",
+                    "violations": 4,
+                  }
+                }
+                handleClick={[MockFunction]}
+              />
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": 1,
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 1,
+                        "violations": 1,
+                      },
+                    },
+                    "name": "HIPAA",
+                    "rawName": "HIPAA",
+                    "violations": 3,
+                  }
+                }
+                handleClick={[MockFunction]}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>,
       "_rendering": false,
       "_updater": [Circular],
@@ -2951,14 +2999,16 @@ GrcCardsModule {
   "grcCardChoices": Array [
     Object {
       "label": "Categories",
-      "value": "categories",
+      "value": 0,
     },
     Object {
       "label": "Standards",
-      "value": "standards",
+      "value": 1,
     },
   ],
-  "onChange": [Function],
+  "onDropdownFocus": [Function],
+  "onDropdownSelect": [Function],
+  "onDropdownToggle": [Function],
   "props": Object {
     "activeFilters": Object {
       "activeFilters": Object {},
@@ -3551,7 +3601,8 @@ GrcCardsModule {
   "refs": Object {},
   "setState": [Function],
   "state": Object {
-    "grcCardChoice": "standards",
+    "grcCardChoice": 1,
+    "isDropdownOpen": false,
   },
   "updater": Updater {
     "_callbacks": Array [],
@@ -4179,112 +4230,112 @@ GrcCardsModule {
       "_rendered": <div
         className="module-grc-cards"
       >
-        <div
-          className="header-container"
-        >
-          <div
-            className="header-title"
-          >
-            Summary
-          </div>
-          <div>
-            <DropdownV2
-              ariaLabel="Summary"
-              className="selection"
-              disabled={false}
-              helperText=""
-              initialSelectedItem="Standards"
-              inline={true}
-              itemToElement={null}
-              itemToString={[Function]}
-              items={
-                Array [
-                  Object {
-                    "label": "Categories",
-                    "value": "categories",
-                  },
-                  Object {
-                    "label": "Standards",
-                    "value": "standards",
-                  },
-                ]
-              }
-              label="Summary"
-              light={false}
-              onChange={[Function]}
-              titleText=""
-              type="default"
-            />
-          </div>
-          <button
-            className="collapse"
-            onClick={[Function]}
-          >
-            <span
-              className="collapse-hint"
+        <Accordion>
+          <AccordionItem>
+            <AccordionToggle
+              className="header-container"
+              isExpanded={true}
+              onClick={[Function]}
             >
-              Want to see less information?
-            </span>
-            <span
-              className="collapse-button"
+              <div
+                className="header-title"
+              >
+                Summary
+                <Label
+                  className="grc-cards-count"
+                >
+                  2
+                </Label>
+              </div>
+            </AccordionToggle>
+            <div
+              className="header-options"
             >
-              Collapse summary
-            </span>
-            <Icon
-              className="arrow-up"
-              description="collapse"
-              fillRule="evenodd"
-              name="chevron--up"
-              role="img"
-            />
-          </button>
-        </div>
-        <div
-          className="card-container-container"
-        >
-          <PolicyCard
-            data={
-              Object {
-                "choice": "standards",
-                "counts": Object {
-                  "cluster": Object {
-                    "total": 2,
-                    "violations": 2,
-                  },
-                  "policy": Object {
-                    "total": 2,
-                    "violations": 2,
-                  },
-                },
-                "name": "NIST",
-                "rawName": "NIST",
-                "violations": 4,
-              }
-            }
-            handleClick={[MockFunction]}
-          />
-          <PolicyCard
-            data={
-              Object {
-                "choice": "standards",
-                "counts": Object {
-                  "cluster": Object {
-                    "total": 2,
-                    "violations": 2,
-                  },
-                  "policy": Object {
-                    "total": 1,
-                    "violations": 1,
-                  },
-                },
-                "name": "HIPAA",
-                "rawName": "HIPAA",
-                "violations": 3,
-              }
-            }
-            handleClick={[MockFunction]}
-          />
-        </div>
+              <div
+                className="header-divider"
+              >
+                <Divider
+                  isVertical={true}
+                />
+              </div>
+              <Dropdown
+                dropdownItems={
+                  Array [
+                    <DropdownItem
+                      tabIndex={0}
+                    >
+                      Categories
+                    </DropdownItem>,
+                    <DropdownItem
+                      tabIndex={1}
+                    >
+                      Standards
+                    </DropdownItem>,
+                  ]
+                }
+                isOpen={false}
+                isPlain={true}
+                onSelect={[Function]}
+                toggle={
+                  <DropdownToggle
+                    id="grc-cards-toggle"
+                    onToggle={[Function]}
+                    toggleIndicator={[Function]}
+                  >
+                    Standards
+                  </DropdownToggle>
+                }
+              />
+            </div>
+            <AccordionContent
+              className="grc-cards-container"
+              isHidden={false}
+            >
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": 1,
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                    },
+                    "name": "NIST",
+                    "rawName": "NIST",
+                    "violations": 4,
+                  }
+                }
+                handleClick={[MockFunction]}
+              />
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": 1,
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 1,
+                        "violations": 1,
+                      },
+                    },
+                    "name": "HIPAA",
+                    "rawName": "HIPAA",
+                    "violations": 3,
+                  }
+                }
+                handleClick={[MockFunction]}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>,
       "_rendering": false,
       "_updater": [Circular],
@@ -4303,14 +4354,16 @@ GrcCardsModule {
   "grcCardChoices": Array [
     Object {
       "label": "Categories",
-      "value": "categories",
+      "value": 0,
     },
     Object {
       "label": "Standards",
-      "value": "standards",
+      "value": 1,
     },
   ],
-  "onChange": [Function],
+  "onDropdownFocus": [Function],
+  "onDropdownSelect": [Function],
+  "onDropdownToggle": [Function],
   "props": Object {
     "activeFilters": Object {
       "activeFilters": Object {},
@@ -4865,7 +4918,8 @@ GrcCardsModule {
   "refs": Object {},
   "setState": [Function],
   "state": Object {
-    "grcCardChoice": "standards",
+    "grcCardChoice": 1,
+    "isDropdownOpen": false,
   },
   "updater": Updater {
     "_callbacks": Array [],
@@ -5455,32 +5509,94 @@ GrcCardsModule {
       "_rendered": <div
         className="module-grc-cards"
       >
-        <div
-          className="header-container card-collapsed"
-        >
-          <button
-            className="collapse"
-            onClick={[Function]}
-          >
-            <span
-              className="collapse-hint"
+        <Accordion>
+          <AccordionItem>
+            <AccordionToggle
+              className="header-container"
+              isExpanded={false}
+              onClick={[Function]}
             >
-              Want to see your summary cards?
-            </span>
-            <span
-              className="collapse-button"
+              <div
+                className="header-title"
+              >
+                Summary
+                <Label
+                  className="grc-cards-count"
+                >
+                  3
+                </Label>
+              </div>
+            </AccordionToggle>
+            <AccordionContent
+              className="grc-cards-container"
+              isHidden={true}
             >
-              Expand summary
-            </span>
-            <Icon
-              className="arrow-down"
-              description="expand"
-              fillRule="evenodd"
-              name="chevron--down"
-              role="img"
-            />
-          </button>
-        </div>
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": 1,
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 3,
+                        "violations": 2,
+                      },
+                    },
+                    "name": "NIST",
+                    "rawName": "NIST",
+                    "violations": 4,
+                  }
+                }
+                handleClick={[MockFunction]}
+              />
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": 1,
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 3,
+                        "violations": 2,
+                      },
+                    },
+                    "name": "NIST CSF",
+                    "rawName": "NIST CSF",
+                    "violations": 4,
+                  }
+                }
+                handleClick={[MockFunction]}
+              />
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": 1,
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 1,
+                        "violations": 1,
+                      },
+                    },
+                    "name": "HIPAA",
+                    "rawName": "HIPAA",
+                    "violations": 3,
+                  }
+                }
+                handleClick={[MockFunction]}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>,
       "_rendering": false,
       "_updater": [Circular],
@@ -5499,14 +5615,16 @@ GrcCardsModule {
   "grcCardChoices": Array [
     Object {
       "label": "Categories",
-      "value": "categories",
+      "value": 0,
     },
     Object {
       "label": "Standards",
-      "value": "standards",
+      "value": 1,
     },
   ],
-  "onChange": [Function],
+  "onDropdownFocus": [Function],
+  "onDropdownSelect": [Function],
+  "onDropdownToggle": [Function],
   "props": Object {
     "activeFilters": Object {
       "activeFilters": Object {},
@@ -6061,7 +6179,8 @@ GrcCardsModule {
   "refs": Object {},
   "setState": [Function],
   "state": Object {
-    "grcCardChoice": "standards",
+    "grcCardChoice": 1,
+    "isDropdownOpen": false,
   },
   "updater": Updater {
     "_callbacks": Array [],
@@ -6651,133 +6770,133 @@ GrcCardsModule {
       "_rendered": <div
         className="module-grc-cards"
       >
-        <div
-          className="header-container"
-        >
-          <div
-            className="header-title"
-          >
-            Summary
-          </div>
-          <div>
-            <DropdownV2
-              ariaLabel="Summary"
-              className="selection"
-              disabled={false}
-              helperText=""
-              initialSelectedItem="Standards"
-              inline={true}
-              itemToElement={null}
-              itemToString={[Function]}
-              items={
-                Array [
-                  Object {
-                    "label": "Categories",
-                    "value": "categories",
-                  },
-                  Object {
-                    "label": "Standards",
-                    "value": "standards",
-                  },
-                ]
-              }
-              label="Summary"
-              light={false}
-              onChange={[Function]}
-              titleText=""
-              type="default"
-            />
-          </div>
-          <button
-            className="collapse"
-            onClick={[Function]}
-          >
-            <span
-              className="collapse-hint"
+        <Accordion>
+          <AccordionItem>
+            <AccordionToggle
+              className="header-container"
+              isExpanded={true}
+              onClick={[Function]}
             >
-              Want to see less information?
-            </span>
-            <span
-              className="collapse-button"
+              <div
+                className="header-title"
+              >
+                Summary
+                <Label
+                  className="grc-cards-count"
+                >
+                  3
+                </Label>
+              </div>
+            </AccordionToggle>
+            <div
+              className="header-options"
             >
-              Collapse summary
-            </span>
-            <Icon
-              className="arrow-up"
-              description="collapse"
-              fillRule="evenodd"
-              name="chevron--up"
-              role="img"
-            />
-          </button>
-        </div>
-        <div
-          className="card-container-container"
-        >
-          <PolicyCard
-            data={
-              Object {
-                "choice": "standards",
-                "counts": Object {
-                  "cluster": Object {
-                    "total": 2,
-                    "violations": 2,
-                  },
-                  "policy": Object {
-                    "total": 3,
-                    "violations": 2,
-                  },
-                },
-                "name": "NIST",
-                "rawName": "NIST",
-                "violations": 4,
-              }
-            }
-            handleClick={[MockFunction]}
-          />
-          <PolicyCard
-            data={
-              Object {
-                "choice": "standards",
-                "counts": Object {
-                  "cluster": Object {
-                    "total": 2,
-                    "violations": 2,
-                  },
-                  "policy": Object {
-                    "total": 3,
-                    "violations": 2,
-                  },
-                },
-                "name": "NIST CSF",
-                "rawName": "NIST CSF",
-                "violations": 4,
-              }
-            }
-            handleClick={[MockFunction]}
-          />
-          <PolicyCard
-            data={
-              Object {
-                "choice": "standards",
-                "counts": Object {
-                  "cluster": Object {
-                    "total": 2,
-                    "violations": 2,
-                  },
-                  "policy": Object {
-                    "total": 1,
-                    "violations": 1,
-                  },
-                },
-                "name": "HIPAA",
-                "rawName": "HIPAA",
-                "violations": 3,
-              }
-            }
-            handleClick={[MockFunction]}
-          />
-        </div>
+              <div
+                className="header-divider"
+              >
+                <Divider
+                  isVertical={true}
+                />
+              </div>
+              <Dropdown
+                dropdownItems={
+                  Array [
+                    <DropdownItem
+                      tabIndex={0}
+                    >
+                      Categories
+                    </DropdownItem>,
+                    <DropdownItem
+                      tabIndex={1}
+                    >
+                      Standards
+                    </DropdownItem>,
+                  ]
+                }
+                isOpen={false}
+                isPlain={true}
+                onSelect={[Function]}
+                toggle={
+                  <DropdownToggle
+                    id="grc-cards-toggle"
+                    onToggle={[Function]}
+                    toggleIndicator={[Function]}
+                  >
+                    Standards
+                  </DropdownToggle>
+                }
+              />
+            </div>
+            <AccordionContent
+              className="grc-cards-container"
+              isHidden={false}
+            >
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": 1,
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 3,
+                        "violations": 2,
+                      },
+                    },
+                    "name": "NIST",
+                    "rawName": "NIST",
+                    "violations": 4,
+                  }
+                }
+                handleClick={[MockFunction]}
+              />
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": 1,
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 3,
+                        "violations": 2,
+                      },
+                    },
+                    "name": "NIST CSF",
+                    "rawName": "NIST CSF",
+                    "violations": 4,
+                  }
+                }
+                handleClick={[MockFunction]}
+              />
+              <PolicyCard
+                data={
+                  Object {
+                    "choice": 1,
+                    "counts": Object {
+                      "cluster": Object {
+                        "total": 2,
+                        "violations": 2,
+                      },
+                      "policy": Object {
+                        "total": 1,
+                        "violations": 1,
+                      },
+                    },
+                    "name": "HIPAA",
+                    "rawName": "HIPAA",
+                    "violations": 3,
+                  }
+                }
+                handleClick={[MockFunction]}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>,
       "_rendering": false,
       "_updater": [Circular],

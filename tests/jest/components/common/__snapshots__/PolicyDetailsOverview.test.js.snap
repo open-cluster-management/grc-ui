@@ -14,7 +14,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
       <dt>
         <button
           aria-expanded={true}
-          className="pf-c-accordion__toggle pf-m-expanded section-title"
+          className="pf-c-accordion__toggle pf-m-expanded header-container"
           id="compliance.details-toggle"
           onClick={[Function]}
         >

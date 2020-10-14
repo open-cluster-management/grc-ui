@@ -220,7 +220,7 @@ describe('GrcCardsModule collapseClick', () => {
     expect(component.instance().collapseClick()).toMatchSnapshot()
   })
 
-  it('onChange as expected', () => {
+  it('onDropdownSelect as expected', () => {
     const component = shallow(
       <GrcCardsModule
         history={history}
@@ -232,18 +232,18 @@ describe('GrcCardsModule collapseClick', () => {
         showGrcCard={true}
         displayType = {'all'}
         handleDrillDownClick={handleDrillDownClick} />)
-    expect(component.instance().onChange({
-      'selectedItem':{
-        'value':'standards',
-        'label':'Standards'
+    component.instance().onDropdownSelect({
+      'target':{
+        'tabIndex':0
       }
-    })).toMatchSnapshot()
-    expect(component.instance().onChange({
-      'selectedItem':{
-        'value':'categories',
-        'label':'Categories'
+    })
+    expect(component.instance().state.grcCardChoice).toEqual(0)
+    component.instance().onDropdownSelect({
+      'target':{
+        'tabIndex':1
       }
-    })).toMatchSnapshot()
+    })
+    expect(component.instance().state.grcCardChoice).toEqual(1)
   })
 
   it('getPolicyCardChoices as expected', () => {
