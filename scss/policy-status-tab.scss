@@ -16,6 +16,11 @@
         color: var(--pf-global--disabled-color--200);
         cursor: not-allowed;
       }
+      .pattern-fly-table-empty-state {
+        .pf-c-title {
+          background-color: unset;
+        }
+      }
     }
     .pf-c-title.pf-m-lg {
       margin-top: 2rem;
