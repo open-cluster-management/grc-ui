@@ -1,0 +1,34 @@
+/* Copyright (c) 2020 Red Hat, Inc. */
+ 
+@import 'node_modules/carbon-components/scss/globals/scss/_colors';
+@import 'variables';
+
+.page-content-container{
+  .grc-toggle-button {
+    float: right;
+    padding-bottom: 1rem;
+  }
+  .resource-table {
+    padding-top: 2rem;
+   .pattern-fly-table-group {
+     margin-top: 1.5rem;
+     .link-disabled {
+       color: var(--pf-global--disabled-color--200);
+       cursor: not-allowed;
+     }
+   }
+   .pf-c-title.pf-m-lg {
+     margin-top: 2rem;
+     font-family: RedHatText;
+     font-size: var(--pf-global--FontSize--md);
+     font-weight: var(--pf-global--FontWeight--bold);
+     background-color: $acm-background-color;
+   }
+   .pf-c-title.pf-m-md {
+     margin-top: 2rem;
+     font-family: RedHatText;
+     font-size: var(--pf-global--FontSize--md);
+     background-color: $acm-background-color;
+   }
+  }
+}

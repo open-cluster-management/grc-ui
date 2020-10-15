@@ -71,7 +71,7 @@ export const buildCompliantCellFromMessage = (item, locale) => {
 }
 
 export const buildTimestamp = (item) => {
-  const createdTime = _.get(item, 'timestamp')
+  const createdTime = _.get(item, 'timestamp') ? _.get(item, 'timestamp') : _.get(item, 'raw.metadata.creationTimestamp')
   return <TableTimestamp timestamp={createdTime} />
 }
 
@@ -137,4 +137,69 @@ export function buildTemplateDetailLink(item, locale) {
 export function statusHistoryMessageTooltip(item) {
   const message = _.get(item, 'message')
   return  <TruncateText text={message} maxCharacters={300} />
+}
+
+export function createComplianceLink(item = {}, ...param){
+  if (param[2]) {
+    return item.metadata.name
+  } else if (item && item.metadata)
+  {
+    if (item.raw.kind === 'Compliance') {
+      return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name} (Deprecated)</Link>
+    }
+    else {
+      return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.namespace)}/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
+    }
+  }
+  return undefined
+}
+
+export function getPolicyCompliantStatus(item, locale) {
+  const clusterCompliant =  _.get(item, 'clusterCompliant', '-')
+  const tooltip = msgs.get('table.tooltip.nostatus', locale)
+  if (clusterCompliant === '-') {
+    return (
+      <div className='violationCell'>
+        <YellowExclamationTriangleIcon tooltip={tooltip} />{clusterCompliant}
+      </div>
+    )
+  }
+  const statusArray = _.get(item, 'clusterCompliant').split('/')
+  return (
+    <div className='violationCell'>
+      { parseInt(statusArray[0], 10) > 0 ?
+        <RedExclamationCircleIcon tooltip={msgs.get('table.tooltip.noncompliant', locale)} /> :
+        <GreenCheckCircleIcon tooltip={msgs.get('table.tooltip.compliant', locale)} /> }
+      { parseInt(statusArray[2], 10) > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
+      {`${statusArray[0]}/${statusArray[1]}`}
+    </div>
+  )
+}
+
+export function createClusterLink(item){
+  if (item && item.cluster && item.namespace) {
+    return <a href={`${config.clusterContextPath}/${item.namespace}/${item.cluster}`}>{item.cluster}</a>
+  }
+  else if (item && item.cluster) {
+    return item.cluster
+  }
+  return '-'
+}
+
+export function getClusterCompliantStatus(item, locale) {
+  const statusArray = _.get(item, 'violation').split('/')
+  return (
+    <div className='violationCell'>
+      { parseInt(statusArray[0], 10) > 0 ?
+        <RedExclamationCircleIcon tooltip={msgs.get('table.tooltip.noncompliant', locale)} /> :
+        <GreenCheckCircleIcon tooltip={msgs.get('table.tooltip.compliant', locale)} /> }
+      { parseInt(statusArray[2], 10) > 0 &&
+        <YellowExclamationTriangleIcon tooltip={msgs.get('table.tooltip.nostatus', locale)} /> }
+      {`${statusArray[0]}/${statusArray[1]}`}
+    </div>
+  )
+}
+
+export function getClusterViolationLabels(item) {
+  return <TruncateText text={item.nonCompliant.join(', ')} />
 }

@@ -20,7 +20,6 @@ import { Spinner } from '@patternfly/react-core'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
 // eslint-disable-next-line import/no-named-as-default
 import GrcCardsModule from './modules/GrcCardsModule'
-// eslint-disable-next-line import/no-named-as-default
 import GrcToggleModule from './modules/GrcToggleModule'
 import {
   filterPolicies, getAvailableGrcFilters, getSavedGrcState,
