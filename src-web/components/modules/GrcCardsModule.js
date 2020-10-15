@@ -69,6 +69,7 @@ export class GrcCardsModule extends React.Component {
           <AccordionItem>
             <AccordionToggle
               className='header-container'
+              id={`${title.toLowerCase().replace(/ /g,'-')}-toggle`}
               onClick={this.collapseClick}
               isExpanded={showGrcCard}
             >

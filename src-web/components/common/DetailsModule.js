@@ -148,7 +148,7 @@ class DetailsModule extends React.PureComponent {
     return(<Accordion>
       <AccordionItem>
         <AccordionToggle
-          className='header-container'
+          className='section-title'
           id={`${id}-toggle`}
           onClick={() => {this.onToggle(`${id}-toggle`)}}
           isExpanded={this.state.expanded===`${id}-toggle`}
