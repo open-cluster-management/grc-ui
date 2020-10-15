@@ -42,6 +42,7 @@ module.exports = {
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
     noResource: '.no-resource',
+    summaryCardCount: 'button#summary-toggle .grc-cards-count > .pf-c-label__content',
     summaryCollapse: 'button#summary-toggle > span.pf-c-accordion__toggle-icon',
     summaryInfoContainer: 'div.module-grc-cards > dl > dd.grc-cards-container',
     summaryOptions: 'div.module-grc-cards > dl > div.header-options',
@@ -119,7 +120,10 @@ function verifySummary(url) {
 function checkPolicySummaryCards(browser) {
   // Get all cards and iterate over them
   browser.api.elements('@summaryCards', (cards) => {
-    for (let cardNum = 1; cardNum < cards.value.length + 1; cardNum++) {
+    const numCards = cards.value.length
+    // Check number displayed matches number of cards
+    browser.expect.element('@summaryCardCount').text.to.equal(numCards.toString())
+    for (let cardNum = 1; cardNum <= numCards; cardNum++) {
       const cardInfo = browser.dynamicSelector('summaryCardsInfo', cardNum)
       browser.waitForElementVisible(cardInfo)
       // Check to make sure it's not a card with no violations
