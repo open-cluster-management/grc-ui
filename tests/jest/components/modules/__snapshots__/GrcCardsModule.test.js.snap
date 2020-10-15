@@ -394,6 +394,7 @@ GrcCardsModule {
           <AccordionItem>
             <AccordionToggle
               className="header-container"
+              id="summary-toggle"
               isExpanded={false}
               onClick={[Function]}
             >
@@ -785,6 +786,7 @@ GrcCardsModule {
           <AccordionItem>
             <AccordionToggle
               className="header-container"
+              id="summary-toggle"
               isExpanded={true}
               onClick={[Function]}
             >
@@ -1215,6 +1217,7 @@ GrcCardsModule {
           <AccordionItem>
             <AccordionToggle
               className="header-container"
+              id="summary-toggle"
               isExpanded={false}
               onClick={[Function]}
             >
@@ -1606,6 +1609,7 @@ GrcCardsModule {
           <AccordionItem>
             <AccordionToggle
               className="header-container"
+              id="summary-toggle"
               isExpanded={true}
               onClick={[Function]}
             >
@@ -2918,6 +2922,7 @@ GrcCardsModule {
           <AccordionItem>
             <AccordionToggle
               className="header-container"
+              id="summary-toggle"
               isExpanded={false}
               onClick={[Function]}
             >
@@ -4234,6 +4239,7 @@ GrcCardsModule {
           <AccordionItem>
             <AccordionToggle
               className="header-container"
+              id="summary-toggle"
               isExpanded={true}
               onClick={[Function]}
             >
@@ -5513,6 +5519,7 @@ GrcCardsModule {
           <AccordionItem>
             <AccordionToggle
               className="header-container"
+              id="summary-toggle"
               isExpanded={false}
               onClick={[Function]}
             >
@@ -6774,6 +6781,7 @@ GrcCardsModule {
           <AccordionItem>
             <AccordionToggle
               className="header-container"
+              id="summary-toggle"
               isExpanded={true}
               onClick={[Function]}
             >

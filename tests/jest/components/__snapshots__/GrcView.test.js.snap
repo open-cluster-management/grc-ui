@@ -519,6 +519,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
         <button
           aria-expanded={false}
           className="pf-c-accordion__toggle header-container"
+          id="summary-toggle"
           onClick={[Function]}
         >
           <span
