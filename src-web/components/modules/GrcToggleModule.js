@@ -33,15 +33,14 @@ class GrcToggleModule extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { grcItems } = this.props
-    console.log(JSON.stringify(grcItems))
+    const { grcItems, showGrcTabToggle } = this.props
     const { locale } = this.context
     const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
     const tableDataByCLusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
     const toggleIndex = this.state.toggleIndex
     return (
       <div className='grc-toggle'>
-        <ToggleGroup className='grc-toggle-button' variant='light'>
+        {showGrcTabToggle && <ToggleGroup className='grc-toggle-button' variant='light'>
           <ToggleGroupItem
             buttonId={'grc-policies-view'}
             onChange={this.toggleClick}
@@ -54,7 +53,7 @@ class GrcToggleModule extends React.Component {
             isSelected={toggleIndex===1}>
             {msgs.get('tabs.grc.toggle.clusterViolations', locale)}
           </ToggleGroupItem>
-        </ToggleGroup>
+        </ToggleGroup>}
         <div className='resource-table'>
           {toggleIndex===0 && <div className='grc-view-by-policies-table'>
             <PatternFlyTable
@@ -91,6 +90,7 @@ class GrcToggleModule extends React.Component {
 
 GrcToggleModule.propTypes = {
   grcItems: PropTypes.array,
+  showGrcTabToggle: PropTypes.bool,
   userAccess: PropTypes.array
 }
 

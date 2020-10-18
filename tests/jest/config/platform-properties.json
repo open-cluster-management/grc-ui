@@ -369,7 +369,7 @@
   "table.header.description": "Description",
   "table.header.enforcement": "Enforcement",
   "table.header.kind": "Kind",
-  "table.header.lastreport": "Last Report",
+  "table.header.lastReport": "Last Report",
   "table.header.message": "Message",
   "table.header.name": "Name",
   "table.header.policy.name": "Policy name",

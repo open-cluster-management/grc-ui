@@ -121,7 +121,6 @@ export class GrcView extends React.Component {
 
   render() {
     const { locale } = this.context
-    const showApplications = this.props.showApplications
     const { viewState } = this.state
     const {
       loading, error, grcItems, applications, activeFilters={},
@@ -193,7 +192,6 @@ export class GrcView extends React.Component {
           applications={applications}
           secondaryHeaderProps={secondaryHeaderProps}
           locale={locale}
-          showApplications={showApplications}
           grcTabToggleIndex={grcTabToggleIndex}
           showGrcTabToggle={showGrcTabToggle}
           highLightRowName={highLightRowName}
@@ -283,7 +281,6 @@ GrcView.propTypes = {
   loading: PropTypes.bool,
   location: PropTypes.object,
   secondaryHeaderProps: PropTypes.object,
-  showApplications: PropTypes.bool,
   updateActiveFilters: PropTypes.func,
   updateAvailableFilters: PropTypes.func,
 }

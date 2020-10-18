@@ -67,7 +67,7 @@ export default {
       transformFunction: getControls,
     },
     {
-      msgKey: 'table.header.timestamp',
+      msgKey: 'table.header.lastUpdate',
       resourceKey: 'raw.metadata.creationTimestamp',
       transforms: [sortable, wrappable],
       transformFunction: buildTimestamp,

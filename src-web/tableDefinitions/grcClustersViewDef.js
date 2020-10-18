@@ -38,6 +38,8 @@ export default {
     {
       msgKey: 'table.header.violated',
       resourceKey: 'nonCompliant',
+      transforms: [wrappable, sortable],
+      cellTransforms: [breakWord],
       transformFunction: getClusterViolationLabels,
     },
   ],

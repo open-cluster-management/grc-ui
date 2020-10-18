@@ -31,7 +31,7 @@ export default {
       transformFunction: statusHistoryMessageTooltip
     },
     {
-      msgKey: 'table.header.lastreport',
+      msgKey: 'table.header.lastReport',
       resourceKey: 'timestamp',
       transforms: [wrappable, sortable],
       transformFunction: buildTimestamp

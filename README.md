@@ -175,8 +175,7 @@ View the full list of npm scripts that are described in the following table:
 
 These are a few useful links that provide technical reference and best practices when developing for the platform.
 
-- [Carbon Components](https://github.com/carbon-design-system/carbon-components)
-- [Carbon React Components](https://github.com/carbon-design-system/carbon-components-react)
+- [Patternfly](https://www.patternfly.org/v4/)
 - [Webpack](https://webpack.js.org)
 - [React Docs](https://facebook.github.io/react/docs/hello-world.html)
 - [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html)

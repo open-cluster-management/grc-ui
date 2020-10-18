@@ -94,7 +94,7 @@ PolicyStatusHistoryView {
                   ],
                 },
                 Object {
-                  "msgKey": "table.header.lastreport",
+                  "msgKey": "table.header.lastReport",
                   "resourceKey": "timestamp",
                   "title": "Last Report",
                   "transformFunction": [Function],
@@ -250,7 +250,7 @@ PolicyStatusHistoryView {
                   ],
                 },
                 Object {
-                  "msgKey": "table.header.lastreport",
+                  "msgKey": "table.header.lastReport",
                   "resourceKey": "timestamp",
                   "title": "Last Report",
                   "transformFunction": [Function],
@@ -589,7 +589,7 @@ PolicyStatusHistoryView {
                   ],
                 },
                 Object {
-                  "msgKey": "table.header.lastreport",
+                  "msgKey": "table.header.lastReport",
                   "resourceKey": "timestamp",
                   "title": "Last Report",
                   "transformFunction": [Function],

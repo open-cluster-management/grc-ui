@@ -14,7 +14,7 @@ import { shallow } from 'enzyme'
 import { policiesTabModuleFilteredPolicies, findingsTestingDataSet1,
   policiesTabModuleRefreshControl, policiesTabModuleSecondaryHeaderProps
 } from './ModuleTestingData'
-import { GrcToggleModule } from '../../../../src-web/components/modules/GrcToggleModule'
+import GrcToggleModule from '../../../../src-web/components/modules/GrcToggleModule'
 import { createMemoryHistory } from 'history'
 
 const history1 = createMemoryHistory({
