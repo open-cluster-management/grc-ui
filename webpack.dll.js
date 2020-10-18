@@ -24,6 +24,7 @@ const overpassTest = /overpass-.*\.(woff2?|ttf|eot|otf)(\?.*$|$)/
 module.exports = {
   entry: {
     'vendorhcm': [
+      'carbon-components-react',
       'd3',
       '@loadable/component',
       'lodash',

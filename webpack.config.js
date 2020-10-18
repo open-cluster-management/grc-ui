@@ -213,6 +213,7 @@ module.exports = {
     new WebpackMd5Hash(),
     new CopyPlugin({
       patterns: [
+        { from: 'node_modules/carbon-icons/dist/carbon-icons.svg', to: 'graphics' },
         { from: 'graphics', to: 'graphics' },
         { from: 'fonts', to: 'fonts' },
       ],
