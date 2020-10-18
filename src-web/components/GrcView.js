@@ -123,7 +123,7 @@ export class GrcView extends React.Component {
     const { locale } = this.context
     const { viewState } = this.state
     const {
-      loading, error, grcItems, applications, activeFilters={},
+      loading, error, grcItems, activeFilters={},
       secondaryHeaderProps, location, access
     } = this.props
     if (loading) {
@@ -189,7 +189,6 @@ export class GrcView extends React.Component {
         <GrcToggleModule
           displayType={displayType}
           grcItems={filterGrcItems}
-          applications={applications}
           secondaryHeaderProps={secondaryHeaderProps}
           locale={locale}
           grcTabToggleIndex={grcTabToggleIndex}
@@ -274,7 +273,6 @@ export class GrcView extends React.Component {
 GrcView.propTypes = {
   access: PropTypes.array,
   activeFilters: PropTypes.object,
-  applications: PropTypes.array,
   error: PropTypes.object,
   grcItems: PropTypes.array,
   history: PropTypes.object.isRequired,

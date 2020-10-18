@@ -419,7 +419,6 @@ export class ResourceTable extends React.Component {
                   isDelete={
                     action ==='table.actions.remove' ||
                     action ==='table.actions.policy.remove' ||
-                    action ==='table.actions.applications.remove' ||
                     action ==='table.actions.compliance.remove'
                   }
                   onClick={() => getResourceAction(action, item, null, history, locale)}

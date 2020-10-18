@@ -16,7 +16,7 @@ import {connect} from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import resources from '../../../lib/shared/resources'
 import _ from 'lodash'
-import {AllPoliciesInCluster, AllClustersInPolicy, AllPoliciesInApplication} from '../../../lib/client/queries'
+import {AllPoliciesInCluster, AllClustersInPolicy} from '../../../lib/client/queries'
 import { Query } from 'react-apollo'
 import { Modal, InlineNotification } from 'carbon-components-react'
 import { Spinner } from '@patternfly/react-core'
@@ -68,16 +68,6 @@ function getHeader(data, locale) {
     type = msgs.get('overview.top.informations.policies', locale)
     queryPara = {cluster:data.cluster}
     query = AllPoliciesInCluster
-    break
-  }
-  case 'HCMPolicyApplication': {
-    header = _.get(data, 'name', '')
-    descr = _.get(data, '', '')
-    percent = 1
-    subHeader = _.get(data, 'violations', '0')
-    type = msgs.get('overview.top.informations.policies', locale)
-    queryPara = {violatedPolicies:data.violatedPolicies}
-    query = AllPoliciesInApplication
     break
   }}
   return {header, subHeader, type, kind, descr, percent, query, queryPara }
@@ -178,12 +168,6 @@ class PolicySidePanelDetailsModal extends React.PureComponent {
                     else { filterSidePanelItems = items }
                     return (
                       <ClustersOrApplicationsTable items={filterSidePanelItems} staticResourceData={staticResourceData.clusterViolatedSidePanel} inapplicable={inapplicable} />
-                    )
-                  }
-                  case 'HCMPolicyApplication': {
-                    // current no filter for both application card and its side panel, may add future
-                    return (
-                      <ClustersOrApplicationsTable items={items} staticResourceData={staticResourceData.applicationViolatedSidePanel} inapplicable={inapplicable} />
                     )
                   }}
                 }

@@ -28,7 +28,6 @@ export const resourceActions = (action, dispatch, resourceType, data, hasService
     window.open(`${data.consoleURL}`, '_blank')
     return
   }
-  case 'table.actions.policy.applications.sidepanel':
   case 'table.actions.policy.policies.sidepanel':
   case 'table.actions.policy.clusters.sidepanel': {
     return dispatch(updateModal(
@@ -36,7 +35,6 @@ export const resourceActions = (action, dispatch, resourceType, data, hasService
         label: { label: `modal.edit-${resourceType.name.toLowerCase()}.label`, heading: `modal.edit-${resourceType.name.toLowerCase()}.heading` },
         data: { kind: resourceType.name, ...data }}))
   }
-  case 'table.actions.applications.remove':
   case 'table.actions.compliance.remove':
   case 'table.actions.policy.remove':
   case 'table.actions.remove': {

@@ -88,7 +88,6 @@ const StructuredListModule = ({
                   isDelete={
                     action ==='table.actions.remove' ||
                   action ==='table.actions.policy.remove' ||
-                  action ==='table.actions.applications.remove' ||
                   action ==='table.actions.compliance.remove'
                   }
                   onClick={() => getResourceAction(action, data, null, history, context.locale)}
