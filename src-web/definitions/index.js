@@ -13,14 +13,10 @@ import lodash from 'lodash'
 
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
 
-import hcmpoliciescluster from './hcm-policies-cluster'
-import hcmpoliciespolicy from './hcm-policies-policy'
 import hcmcompliances from './hcm-compliances'
 import hcmpolicies from './hcm-policies'
 
 const resourceData = {
-  [RESOURCE_TYPES.HCM_POLICIES_PER_POLICY.name]: hcmpoliciespolicy,
-  [RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER.name]: hcmpoliciescluster,
   [RESOURCE_TYPES.HCM_COMPLIANCES.name]: hcmcompliances,
   [RESOURCE_TYPES.HCM_POLICIES.name]: hcmpolicies,
 }
