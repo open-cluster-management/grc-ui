@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResourceFilterBar no filters applied renders as expected 1`] = `null`;
+exports[`ResourceFilterBar no filters applied will return null renders as expected 1`] = `null`;
 
 exports[`ResourceFilterBar w/ filter applied renders as expected 1`] = `null`;

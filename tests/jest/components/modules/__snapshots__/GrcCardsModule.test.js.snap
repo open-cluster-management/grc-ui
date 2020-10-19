@@ -195,7 +195,7 @@ GrcCardsModule {
     "updateViewState": [MockFunction],
     "viewState": Object {
       "viewState": Object {
-        "grcCardChoice": "categories",
+        "grcCardChoice": 0,
       },
     },
   },
@@ -375,7 +375,7 @@ GrcCardsModule {
         viewState={
           Object {
             "viewState": Object {
-              "grcCardChoice": "categories",
+              "grcCardChoice": 0,
             },
           }
         }
@@ -587,7 +587,7 @@ GrcCardsModule {
     "updateViewState": [MockFunction],
     "viewState": Object {
       "viewState": Object {
-        "grcCardChoice": "categories",
+        "grcCardChoice": 0,
       },
     },
   },
@@ -767,7 +767,7 @@ GrcCardsModule {
         viewState={
           Object {
             "viewState": Object {
-              "grcCardChoice": "categories",
+              "grcCardChoice": 0,
             },
           }
         }
@@ -1018,7 +1018,7 @@ GrcCardsModule {
     "updateViewState": [MockFunction],
     "viewState": Object {
       "viewState": Object {
-        "grcCardChoice": "standards",
+        "grcCardChoice": 1,
       },
     },
   },
@@ -1198,7 +1198,7 @@ GrcCardsModule {
         viewState={
           Object {
             "viewState": Object {
-              "grcCardChoice": "standards",
+              "grcCardChoice": 1,
             },
           }
         }
@@ -1410,7 +1410,7 @@ GrcCardsModule {
     "updateViewState": [MockFunction],
     "viewState": Object {
       "viewState": Object {
-        "grcCardChoice": "standards",
+        "grcCardChoice": 1,
       },
     },
   },
@@ -1590,7 +1590,7 @@ GrcCardsModule {
         viewState={
           Object {
             "viewState": Object {
-              "grcCardChoice": "standards",
+              "grcCardChoice": 1,
             },
           }
         }
@@ -2282,7 +2282,7 @@ GrcCardsModule {
     "updateViewState": [MockFunction],
     "viewState": Object {
       "viewState": Object {
-        "grcCardChoice": "categories",
+        "grcCardChoice": 0,
       },
     },
   },
@@ -2903,7 +2903,7 @@ GrcCardsModule {
         viewState={
           Object {
             "viewState": Object {
-              "grcCardChoice": "categories",
+              "grcCardChoice": 0,
             },
           }
         }
@@ -3599,7 +3599,7 @@ GrcCardsModule {
     "updateViewState": [MockFunction],
     "viewState": Object {
       "viewState": Object {
-        "grcCardChoice": "categories",
+        "grcCardChoice": 0,
       },
     },
   },
@@ -4220,7 +4220,7 @@ GrcCardsModule {
         viewState={
           Object {
             "viewState": Object {
-              "grcCardChoice": "categories",
+              "grcCardChoice": 0,
             },
           }
         }
@@ -4917,7 +4917,7 @@ GrcCardsModule {
     "updateViewState": [MockFunction],
     "viewState": Object {
       "viewState": Object {
-        "grcCardChoice": "standards",
+        "grcCardChoice": 1,
       },
     },
   },
@@ -5500,7 +5500,7 @@ GrcCardsModule {
         viewState={
           Object {
             "viewState": Object {
-              "grcCardChoice": "standards",
+              "grcCardChoice": 1,
             },
           }
         }
@@ -6179,7 +6179,7 @@ GrcCardsModule {
     "updateViewState": [MockFunction],
     "viewState": Object {
       "viewState": Object {
-        "grcCardChoice": "standards",
+        "grcCardChoice": 1,
       },
     },
   },
@@ -6762,7 +6762,7 @@ GrcCardsModule {
         viewState={
           Object {
             "viewState": Object {
-              "grcCardChoice": "standards",
+              "grcCardChoice": 1,
             },
           }
         }

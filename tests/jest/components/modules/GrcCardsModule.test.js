@@ -43,7 +43,7 @@ const location3 = {
 }
 
 describe('GrcCardsModule policies page categories view', () => {
-  const viewState = {viewState: {grcCardChoice:'categories'}}
+  const viewState = {viewState: {grcCardChoice:0}}
   const activeFilters = {activeFilters:{}}
   const updateViewState = jest.fn()
   const handleDrillDownClick = jest.fn()
@@ -75,7 +75,7 @@ describe('GrcCardsModule policies page categories view', () => {
 })
 
 describe('GrcCardsModule policies page standards view', () => {
-  const viewState = {viewState: {grcCardChoice:'standards'}}
+  const viewState = {viewState: {grcCardChoice:1}}
   const activeFilters = {activeFilters:{}}
   const updateViewState = jest.fn()
   const handleDrillDownClick = jest.fn()
@@ -107,7 +107,7 @@ describe('GrcCardsModule policies page standards view', () => {
 })
 
 describe('GrcCardsModule findings page categories view', () => {
-  const viewState = {viewState: {grcCardChoice:'categories'}}
+  const viewState = {viewState: {grcCardChoice:0}}
   const activeFilters = {activeFilters:{}}
   const updateViewState = jest.fn()
   const handleDrillDownClick = jest.fn()
@@ -139,7 +139,7 @@ describe('GrcCardsModule findings page categories view', () => {
 })
 
 describe('GrcCardsModule findings page standards view', () => {
-  const viewState = {viewState: {grcCardChoice:'standards'}}
+  const viewState = {viewState: {grcCardChoice:1}}
   const activeFilters = {activeFilters:{}}
   const updateViewState = jest.fn()
   const handleDrillDownClick = jest.fn()
@@ -171,7 +171,7 @@ describe('GrcCardsModule findings page standards view', () => {
 })
 
 describe('GrcCardsModule collapseClick', () => {
-  const viewState = {viewState: {grcCardChoice:'categories'}}
+  const viewState = {viewState: {grcCardChoice:0}}
   const activeFilters = {activeFilters:{}}
   const updateViewState = jest.fn()
   const handleDrillDownClick = jest.fn()

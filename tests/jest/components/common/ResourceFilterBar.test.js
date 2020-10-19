@@ -21,7 +21,7 @@ import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
 import { updateActiveFilters } from '../../../../src-web/actions/common'
 
-describe('ResourceFilterBar no filters applied', () => {
+describe('ResourceFilterBar no filters applied will return null', () => {
   it('renders as expected', () => {
     const history = {
       'length': 50,
