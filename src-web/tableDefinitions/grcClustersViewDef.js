@@ -14,6 +14,10 @@ import {
 } from '@patternfly/react-table'
 
 export default {
+  tableActions: [
+    // 'table.actions.policy.clusters.sidepanel',
+    'table.actions.launch.cluster'
+  ],
   tableKeys: [
     {
       msgKey: 'table.header.cluster.name',

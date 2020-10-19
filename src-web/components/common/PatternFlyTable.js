@@ -141,7 +141,18 @@ class PatternFlyTable extends React.Component {
   }
   render() {
     const { sortBy, rows = [], itemCount, searchValue } = this.state
-    const { columns, className, noResultMsg, pagination, searchable, searchPlaceholder } = this.props
+    const {
+      columns,
+      className,
+      noResultMsg,
+      pagination,
+      searchable,
+      searchPlaceholder,
+      actionResolver,
+      areActionsDisabled,
+      dropdownPosition,
+      dropdownDirection
+    } = this.props
     const classes = classNames('pattern-fly-table', className)
     return (
       <div className='pattern-fly-table-group'>
@@ -152,8 +163,17 @@ class PatternFlyTable extends React.Component {
           onClear={() => this.handleSearch('')}
         />}
         <div className={classes}>
-          <Table aria-label='Sortable Table' sortBy={sortBy} onSort={this.handleSort} cells={columns}
-            rows={rows}>
+          <Table
+            aria-label='Sortable Table'
+            sortBy={sortBy}
+            onSort={this.handleSort}
+            cells={columns}
+            rows={rows}
+            actionResolver={actionResolver}
+            areActionsDisabled={areActionsDisabled}
+            dropdownPosition={dropdownPosition}
+            dropdownDirection={dropdownDirection}
+          >
             <TableHeader className='pattern-fly-table-header' />
             <TableBody className='pattern-fly-table-body' />
           </Table>
@@ -187,23 +207,33 @@ class PatternFlyTable extends React.Component {
 }
 
 PatternFlyTable.propTypes = {
-  /** Add class names in addition to the defaults to the PatternFly table (optional) */
+  /* Resolver for the given action (optional) */
+  actionResolver: PropTypes.func,
+  /* Specifies if the Kebab for actions is disabled (optional) */
+  areActionsDisabled: PropTypes.bool,
+  /* Add class names in addition to the defaults to the PatternFly table (optional) */
   className: PropTypes.string,
-  /** Table column headings and properties */
+  /* Table column headings and properties */
   columns: PropTypes.array,
-  /** Message when no results are displayed in the table */
+  /* The desired direction to show the dropdown when clicking on the actions Kebab.
+  Can only be used together with `actions` property (optional) */
+  dropdownDirection: PropTypes.string,
+  /* The desired position to show the dropdown when clicking on the actions Kebab.
+  Can only be used together with `actions` property (optional) */
+  dropdownPosition: PropTypes.string,
+  /* Message when no results are displayed in the table */
   noResultMsg: PropTypes.string,
-  /** Toggle pagination (optional) */
+  /* Toggle pagination (optional) */
   pagination: PropTypes.bool,
-  /** Number of rows displayed per page for pagination */
+  /* Number of rows displayed per page for pagination */
   perPage: PropTypes.oneOf([5, 10, 20, 50]),
-  /** Table row content */
+  /* Table row content */
   rows: PropTypes.array,
-  /** Placeholder text for search input field */
+  /* Placeholder text for search input field */
   searchPlaceholder: PropTypes.string,
-  /** Toggle search input (optional) */
+  /* Toggle search input (optional) */
   searchable: PropTypes.bool,
-  /** Initial table sorting (optional) */
+  /* Initial table sorting (optional) */
   sortBy: PropTypes.shape({
     index: PropTypes.number,
     direction: PropTypes.oneOf(['asc', 'desc']),

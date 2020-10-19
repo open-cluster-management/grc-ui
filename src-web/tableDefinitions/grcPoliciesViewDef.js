@@ -20,6 +20,13 @@ import {
 } from '../definitions/hcm-compliances'
 
 export default {
+  tableActions: [
+    // 'table.actions.policy.policies.sidepanel',
+    'table.actions.edit',
+    'table.actions.disable',
+    'table.actions.enforce',
+    'table.actions.remove',
+  ],
   tableKeys: [
     {
       msgKey: 'table.header.policy.name',
