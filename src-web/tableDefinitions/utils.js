@@ -16,6 +16,7 @@ import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
 
+// use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
   const rows = items.map(item => {
     return def.tableKeys.map(key => {
