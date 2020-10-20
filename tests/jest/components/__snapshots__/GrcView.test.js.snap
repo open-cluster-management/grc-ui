@@ -418,7 +418,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
 </ContextProvider>
 `;
 
-exports[`GrcView component 2 renders as expected 1`] = `
+exports[`GrcView component 2 shows loading when given loading:true 1`] = `
 <span
   aria-valuetext="Loading..."
   className="pf-c-spinner pf-m-xl patternfly-spinner"
@@ -436,7 +436,7 @@ exports[`GrcView component 2 renders as expected 1`] = `
 </span>
 `;
 
-exports[`GrcView component 3 renders as expected 1`] = `
+exports[`GrcView component 3 gives an error notification given an error object 1`] = `
 <div
   className="bx--inline-notification bx--inline-notification--error overview-notification"
   kind="error"
@@ -508,6 +508,80 @@ exports[`GrcView component 4 renders as expected 1`] = `
 <div
   className="grc-view"
 >
+  <div
+    className="resource-filter-bar"
+  >
+    <span
+      className="title"
+    >
+      Filters:
+    </span>
+    <span
+      className="bx--tag bx--tag--custom"
+      onKeyPress={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      NIST
+      <svg
+        alt="Remove filter"
+        aria-label="Remove filter"
+        className="closeIcon"
+        fillRule="evenodd"
+        height="10"
+        name="icon--close"
+        onClick={[Function]}
+        role="img"
+        viewBox="0 0 10 10"
+        width="10"
+      >
+        <title>
+          Remove filter
+        </title>
+        <path
+          d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+        />
+      </svg>
+    </span>
+    <span
+      className="bx--tag bx--tag--custom"
+      onKeyPress={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      HIPAA
+      <svg
+        alt="Remove filter"
+        aria-label="Remove filter"
+        className="closeIcon"
+        fillRule="evenodd"
+        height="10"
+        name="icon--close"
+        onClick={[Function]}
+        role="img"
+        viewBox="0 0 10 10"
+        width="10"
+      >
+        <title>
+          Remove filter
+        </title>
+        <path
+          d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+        />
+      </svg>
+    </span>
+    <span
+      aria-label="Clear all"
+      className="button"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      role="button"
+      tabIndex={0}
+      title="Clear all"
+    >
+      Clear all
+    </span>
+  </div>
   <div
     className="module-grc-cards"
   >
