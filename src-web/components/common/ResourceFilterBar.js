@@ -18,7 +18,6 @@ import { updateActiveFilters } from '../../actions/common'
 import { Icon, Tag } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
-import queryString from 'query-string'
 import { saveGrcState } from '../../../lib/client/filter-helper'
 import { GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 import TruncateText from '../../components/common/TruncateText'
@@ -30,9 +29,6 @@ resources(() => {
 class ResourceFilterBar extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      restoreURL: false,
-    }
   }
 
   render() {
@@ -56,11 +52,8 @@ class ResourceFilterBar extends React.Component {
         })
       }
     })
-    // clear all tag
     if (clearFilters.length>0) {
-      if (!this.state.restoreURL) {
-        this.setURLState(true)
-      }
+      // clear all tag
       const clearAll = msgs.get('filter.remove.all', locale)
       return (
         <div className='resource-filter-bar'>
@@ -78,83 +71,52 @@ class ResourceFilterBar extends React.Component {
           })}
           <span className='button' tabIndex={0} role={'button'}
             title={clearAll} aria-label={clearAll}
-            onClick={this.handleClearClick.bind(this, clearFilters)}
-            onKeyPress={this.handleClearKeyPress.bind(this, clearFilters)} >
+            onClick={this.handleClearClick.bind(this)}
+            onKeyPress={this.handleClearKeyPress.bind(this)} >
             {clearAll}
           </span>
         </div>
       )
     }
-    else if (this.state.restoreURL && clearFilters.length===0) {
-      this.removeAllActiveFilter() //this is just used to restore url and page layout when clearFilters is empty
-      this.setURLState(false)
-    }
     return null
-  }
-
-  setURLState(restore) {
-    this.setState(()=>{
-      return {restoreURL: restore}
-    })
   }
 
   removeActiveFilter = (key, value) => {
     const {updateActiveFilters:localUpdateActiveFilters} = this.props
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})
-    let activeSet = activeFilters[key]
-    if (!activeSet) {
-      activeSet = activeFilters[key] = new Set()
-    }
+    const activeSet = _.get(activeFilters, key, new Set())
     activeSet.delete(value)
-    saveGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
-    localUpdateActiveFilters(activeFilters)
-  }
-
-  handleClearClick = (clearFilters) => {
-    this.removeAllActiveFilter(clearFilters)
-  }
-
-  handleClearKeyPress(clearFilters) {
-    this.handleClearClick(clearFilters)
-  }
-
-  removeAllActiveFilter = (clearFilters) => {
-    //step 1 clear up stored active filters in sessionStorage
-    //step 2 clear up active filters in resource filter
-    const {updateActiveFilters:localUpdateActiveFilters, location, history } = this.props
-    if (clearFilters) {
-      const activeFilters = _.cloneDeep(this.props.activeFilters||{})
-      clearFilters.forEach(key=> {
-        let activeSet = activeFilters[key]
-        if (!activeSet) {
-          activeSet = activeFilters[key] = new Set()
-        }
-        activeSet.clear()
-      })
+    if (activeSet.size===0) {
+      delete activeFilters[key]
+    }
+    if (_.isEmpty(activeFilters)) {
+      this.removeAllActiveFilters()
+    } else {
       saveGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
       localUpdateActiveFilters(activeFilters)
     }
-    //step 3 update current url after removing all active filters
-    //text search input filter will not be removed, which is controled by itself
-    const paraURL = {}
-    let op = ''
-    const curentURL = queryString.parse(location.search)
-    if(curentURL.index) {
-      paraURL.index = curentURL.index
-      op = '?'
-    }
-    if(curentURL.filters) {
-      paraURL.filters = curentURL.filters
-      op = '?'
-    }
-    history.push(`${location.pathname}${op}${queryString.stringify(paraURL)}`)
+  }
+
+  handleClearClick = () => {
+    this.removeAllActiveFilters()
+  }
+
+  handleClearKeyPress() {
+    this.handleClearClick()
+  }
+
+  removeAllActiveFilters = () => {
+    //step 1 clear up stored active filters in sessionStorage
+    //step 2 clear up active filters in resource filter
+    const { updateActiveFilters:localUpdateActiveFilters } = this.props
+    const emptyFilters = {}
+    saveGrcState(GRC_FILTER_STATE_COOKIE, emptyFilters)
+    localUpdateActiveFilters(emptyFilters)
   }
 }
 
 ResourceFilterBar.propTypes = {
   activeFilters: PropTypes.object,
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object,
   updateActiveFilters: PropTypes.func,
 }
 
