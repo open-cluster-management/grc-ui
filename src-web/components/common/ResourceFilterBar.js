@@ -115,10 +115,8 @@ class ResourceFilterBar extends React.Component {
     localUpdateActiveFilters(emptyFilters)
     //step 3 make sure url doesn't have toggle removed and restore if it does
     const newURL = queryString.parse(location.search)
-    console.log('Old:', newURL)
     if(newURL.toggle) {
       delete newURL.toggle
-      console.log('New:', newURL)
       const op = '?'
       history.push(`${location.pathname}${op}${queryString.stringify(newURL)}`)
     }
