@@ -289,6 +289,7 @@ function testPolicyStatusTabSearching(){
     if (result && result.value ) {
       // get policy status tab message field text
       const policyStatusMessage = result.value
+      policyStatusMessage.replace('View details', '')
       if (typeof policyStatusMessage === 'string' && policyStatusMessage.length > 0) {
         this.setPatternFlySearchValue(policyStatusMessage)
         this.waitForElementNotPresent('@PatternFlyTabEmptyState')
