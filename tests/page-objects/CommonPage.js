@@ -290,13 +290,14 @@ function testPolicyStatusTabSearching(){
       // get policy status tab message field text
       let policyStatusMessage = result.value
       if (typeof policyStatusMessage === 'string' && policyStatusMessage.length > 0) {
+        this.log(`searching text is ${policyStatusMessage}`)
+        this.setPatternFlySearchValue(policyStatusMessage)
+        this.waitForElementPresent('@PatternFlyTabEmptyState')
+        this.clearPatternFlySearchValue()
         policyStatusMessage = policyStatusMessage.replace('View details', '')
         this.log(`searching text is ${policyStatusMessage}`)
         this.setPatternFlySearchValue(policyStatusMessage)
         this.waitForElementNotPresent('@PatternFlyTabEmptyState')
-        this.clearPatternFlySearchValue()
-        this.setPatternFlySearchValue(`${policyStatusMessage}s@!#NoSuchString`)
-        this.waitForElementPresent('@PatternFlyTabEmptyState')
         this.clearPatternFlySearchValue()
       }
     }
