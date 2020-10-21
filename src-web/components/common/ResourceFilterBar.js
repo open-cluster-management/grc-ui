@@ -18,6 +18,7 @@ import { updateActiveFilters } from '../../actions/common'
 import { Icon, Tag } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
+import queryString from 'query-string'
 import { saveGrcState } from '../../../lib/client/filter-helper'
 import { GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 import TruncateText from '../../components/common/TruncateText'
@@ -108,15 +109,26 @@ class ResourceFilterBar extends React.Component {
   removeAllActiveFilters = () => {
     //step 1 clear up stored active filters in sessionStorage
     //step 2 clear up active filters in resource filter
-    const { updateActiveFilters:localUpdateActiveFilters } = this.props
+    const { updateActiveFilters:localUpdateActiveFilters, location, history } = this.props
     const emptyFilters = {}
     saveGrcState(GRC_FILTER_STATE_COOKIE, emptyFilters)
     localUpdateActiveFilters(emptyFilters)
+    //step 3 make sure url doesn't have toggle removed and restore if it does
+    const newURL = queryString.parse(location.search)
+    console.log('Old:', newURL)
+    if(newURL.toggle) {
+      delete newURL.toggle
+      console.log('New:', newURL)
+      const op = '?'
+      history.push(`${location.pathname}${op}${queryString.stringify(newURL)}`)
+    }
   }
 }
 
 ResourceFilterBar.propTypes = {
   activeFilters: PropTypes.object,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object,
   updateActiveFilters: PropTypes.func,
 }
 
