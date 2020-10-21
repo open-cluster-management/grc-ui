@@ -86,7 +86,7 @@ class ResourceFilterBar extends React.Component {
     const activeFilters = _.cloneDeep(this.props.activeFilters||{})
     const activeSet = _.get(activeFilters, key, new Set())
     activeSet.delete(value)
-    if (activeSet.size===0) {
+    if (activeSet.size===0 && activeFilters[key]) {
       delete activeFilters[key]
     }
     if (_.isEmpty(activeFilters)) {
