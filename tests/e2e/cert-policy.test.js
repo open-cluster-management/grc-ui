@@ -12,7 +12,6 @@ const path = require('path')
 const DISABLE_CANARY_TEST = process.env.DISABLE_CANARY_TEST == 'true' ? true : false
 
 let page
-
 module.exports = {
   '@disabled': DISABLE_CANARY_TEST,
 
