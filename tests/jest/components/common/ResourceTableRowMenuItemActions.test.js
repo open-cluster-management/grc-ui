@@ -50,30 +50,6 @@ describe('ResourceTableRowMenuItemActions component table.actions.policy.edit', 
   })
 })
 
-describe('ResourceTableRowMenuItemActions component table.actions.finding.sidepanel', () => {
-  it('renders as expected', () => {
-    const action = 'table.actions.finding.sidepanel'
-    const resourceType = {
-      'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
-    }
-    const dispatch = jest.fn()
-    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toMatchSnapshot()
-  })
-})
-
-describe('ResourceTableRowMenuItemActions component table.actions.applications.remove', () => {
-  it('renders as expected', () => {
-    const action = 'table.actions.applications.remove'
-    const resourceType = {
-      'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
-    }
-    const dispatch = jest.fn()
-    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toMatchSnapshot()
-  })
-})
-
 describe('ResourceTableRowMenuItemActions component table.actions.compliance.remove', () => {
   it('renders as expected', () => {
     const action = 'table.actions.compliance.remove'
@@ -101,54 +77,6 @@ describe('ResourceTableRowMenuItemActions component table.actions.policy.remove'
 describe('ResourceTableRowMenuItemActions component table.actions.remove', () => {
   it('renders as expected', () => {
     const action = 'table.actions.remove'
-    const resourceType = {
-      'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
-    }
-    const dispatch = jest.fn()
-    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toMatchSnapshot()
-  })
-})
-
-describe('ResourceTableRowMenuItemActions component table.actions.cluster.view.nodes', () => {
-  it('renders as expected', () => {
-    const action = 'table.actions.cluster.view.nodes'
-    const resourceType = {
-      'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
-    }
-    const dispatch = jest.fn()
-    expect(resourceActions(action, dispatch, resourceType, {'metadata': {'name': 'cluster1'}}, true, [])).toMatchSnapshot()
-  })
-})
-
-describe('ResourceTableRowMenuItemActions component table.actions.cluster.view.pods', () => {
-  it('renders as expected', () => {
-    const action = 'table.actions.cluster.view.pods'
-    const resourceType = {
-      'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
-    }
-    const dispatch = jest.fn()
-    expect(resourceActions(action, dispatch, resourceType, {'metadata': {'name': 'cluster1'}}, true, [])).toMatchSnapshot()
-  })
-})
-
-describe('ResourceTableRowMenuItemActions component table.actions.cluster.edit.labels', () => {
-  it('renders as expected', () => {
-    const action = 'table.actions.cluster.edit.labels'
-    const resourceType = {
-      'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
-    }
-    const dispatch = jest.fn()
-    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toMatchSnapshot()
-  })
-})
-
-describe('ResourceTableRowMenuItemActions component table.actions.pod.logs', () => {
-  it('renders as expected', () => {
-    const action = 'table.actions.pod.logs'
     const resourceType = {
       'name': 'HCMCompliance',
       'list': 'HCMComplianceList'
