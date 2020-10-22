@@ -12,7 +12,7 @@ const config = require('../../config')
 let page, common
 
 module.exports = {
-  '@disabled': false,
+  '@disabled': true,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()

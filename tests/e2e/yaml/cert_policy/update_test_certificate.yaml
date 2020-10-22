@@ -69,4 +69,4 @@ spec:
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      []
+      [LABEL]

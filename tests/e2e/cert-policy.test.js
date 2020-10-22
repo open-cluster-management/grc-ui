@@ -9,12 +9,10 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 const fs = require('fs')
 const path = require('path')
-const DISABLE_CANARY_TEST = process.env.DISABLE_CANARY_TEST == 'true' ? true : false
-
 let page
 
 module.exports = {
-  '@disabled': DISABLE_CANARY_TEST,
+  '@disabled': false,
 
   before: (browser) => {
     const loginPage = browser.page.LoginPage()
