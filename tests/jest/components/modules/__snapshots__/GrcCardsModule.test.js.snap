@@ -2944,7 +2944,7 @@ GrcCardsModule {
               <PolicyCard
                 data={
                   Object {
-                    "choice": 1,
+                    "choice": "standards",
                     "counts": Object {
                       "cluster": Object {
                         "total": 2,
@@ -2965,7 +2965,7 @@ GrcCardsModule {
               <PolicyCard
                 data={
                   Object {
-                    "choice": 1,
+                    "choice": "standards",
                     "counts": Object {
                       "cluster": Object {
                         "total": 2,
@@ -4300,7 +4300,7 @@ GrcCardsModule {
               <PolicyCard
                 data={
                   Object {
-                    "choice": 1,
+                    "choice": "standards",
                     "counts": Object {
                       "cluster": Object {
                         "total": 2,
@@ -4321,7 +4321,7 @@ GrcCardsModule {
               <PolicyCard
                 data={
                   Object {
-                    "choice": 1,
+                    "choice": "standards",
                     "counts": Object {
                       "cluster": Object {
                         "total": 2,
@@ -5541,7 +5541,7 @@ GrcCardsModule {
               <PolicyCard
                 data={
                   Object {
-                    "choice": 1,
+                    "choice": "standards",
                     "counts": Object {
                       "cluster": Object {
                         "total": 2,
@@ -5562,7 +5562,7 @@ GrcCardsModule {
               <PolicyCard
                 data={
                   Object {
-                    "choice": 1,
+                    "choice": "standards",
                     "counts": Object {
                       "cluster": Object {
                         "total": 2,
@@ -5583,7 +5583,7 @@ GrcCardsModule {
               <PolicyCard
                 data={
                   Object {
-                    "choice": 1,
+                    "choice": "standards",
                     "counts": Object {
                       "cluster": Object {
                         "total": 2,
@@ -6842,7 +6842,7 @@ GrcCardsModule {
               <PolicyCard
                 data={
                   Object {
-                    "choice": 1,
+                    "choice": "standards",
                     "counts": Object {
                       "cluster": Object {
                         "total": 2,
@@ -6863,7 +6863,7 @@ GrcCardsModule {
               <PolicyCard
                 data={
                   Object {
-                    "choice": 1,
+                    "choice": "standards",
                     "counts": Object {
                       "cluster": Object {
                         "total": 2,
@@ -6884,7 +6884,7 @@ GrcCardsModule {
               <PolicyCard
                 data={
                   Object {
-                    "choice": 1,
+                    "choice": "standards",
                     "counts": Object {
                       "cluster": Object {
                         "total": 2,

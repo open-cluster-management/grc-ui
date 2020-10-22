@@ -9,6 +9,9 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
+// Policy data was generated from a running cluster by logging the `policies`
+// input to `FormatTableData` and includes compliant, noncompliant, and
+// pending (just created) data
 import { policies, policies2, policies3 } from './CommonTestingData'
 import {
   formatPoliciesToClustersTableData,
@@ -16,44 +19,35 @@ import {
 } from '../../../../src-web/components/common/FormatTableData'
 
 describe('formatPoliciesToClustersTableData', () => {
+  // Tests whether policy data can be consolidated from individual policies to
+  // cluster data containing an overview for each cluster specifically
   it('should correctly format', () => {
     expect(formatPoliciesToClustersTableData(policies)).toMatchSnapshot()
   })
-})
-
-describe('formatPoliciesToClustersTableData', () => {
   it('should correctly format', () => {
     expect(formatPoliciesToClustersTableData(policies2)).toMatchSnapshot()
   })
-})
-
-describe('formatPoliciesToClustersTableData', () => {
   it('should correctly format', () => {
     expect(formatPoliciesToClustersTableData(policies3)).toMatchSnapshot()
   })
-})
-
-describe('formatPoliciesToClustersTableData', () => {
-  it('should correctly format', () => {
-    expect(formatPoliciesToClustersTableData(null)).toMatchSnapshot()
+  it('should return an empty array given nothing', () => {
+    expect(formatPoliciesToClustersTableData(null)).toEqual([])
   })
 })
 
 describe('formatExpandablePolicies', () => {
-  it('should correctly format', () => {
-    expect(formatExpandablePolicies(policies)).toMatchSnapshot()
+  // Should inject additional data for expandable rows of the policies table
+  it('should correctly add expandable data for table', () => {
+    const result = formatExpandablePolicies(policies)
+    expect(result).toMatchSnapshot()
+    result.forEach(item => {
+      expect(item.subItems.length).toEqual(2)
+      expect(item.subItems[0].name).toEqual('policy.pb')
+      expect(item.subItems[1].name).toEqual('policy.pp')
+    })
   })
-})
-
-describe('formatExpandablePolicies', () => {
-  it('should correctly format', () => {
-    expect(formatExpandablePolicies(null)).toMatchSnapshot()
-  })
-})
-
-describe('formatExpandablePolicies', () => {
-  it('should correctly format', () => {
-    expect(formatExpandablePolicies([null, null])).toMatchSnapshot()
+  it('should return an empty array given nothing', () => {
+    expect(formatExpandablePolicies(null)).toEqual([])
   })
 })
 
