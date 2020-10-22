@@ -174,7 +174,7 @@ export class GrcCardsModule extends React.Component {
               dataMap[name] = {
                 name,
                 rawName: type,
-                choice: grcCardChoice,
+                choice: key,
                 violations: 0,
                 counts: {
                   cluster: {

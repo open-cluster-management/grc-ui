@@ -255,7 +255,7 @@ describe('SecondaryHeader component 5', () => {
     expect(component.instance().renderTabs()).toMatchSnapshot()
   })
 
-  it('renderBreadCrumb1 as expected', () => {
+  it('renderBreadCrumb should return undefined given no breadcrumbItems', () => {
     const component = shallow(
       <SecondaryHeader
         title='hello world'
@@ -263,9 +263,9 @@ describe('SecondaryHeader component 5', () => {
         history={history}
       />
     )
-    expect(component.instance().renderBreadCrumb()).toMatchSnapshot()
+    expect(component.instance().renderBreadCrumb()).toBeUndefined()
   })
-  it('renderBreadCrumb2 as expected', () => {
+  it('renderBreadCrumb should return an empty array given an empty array of breadcrumbItems', () => {
     const component = shallow(
       <SecondaryHeader
         title='hello world'
@@ -276,7 +276,7 @@ describe('SecondaryHeader component 5', () => {
     )
     expect(component.instance().renderBreadCrumb()).toMatchSnapshot()
   })
-  it('renderBreadCrumb3 as expected', () => {
+  it('renderBreadCrumb should return an array of links given an array of breadcrumbItems', () => {
     const component = shallow(
       <SecondaryHeader
         title='hello world'

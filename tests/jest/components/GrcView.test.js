@@ -87,7 +87,7 @@ describe('GrcView component 2', () => {
   const location = {
     pathname: '/multicloud/policies/all'
   }
-  it('renders as expected', () => {
+  it('shows loading when given loading:true', () => {
     const component = renderer.create(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
@@ -113,7 +113,7 @@ describe('GrcView component 3', () => {
   const location = {
     pathname: '/multicloud/policies/all'
   }
-  it('renders as expected', () => {
+  it('gives an error notification given an error object', () => {
     const component = renderer.create(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>

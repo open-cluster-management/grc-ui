@@ -189,1602 +189,1594 @@ export const user1Access = [
   }
 ]
 
-export const policies = [
-  {
-    'metadata': {
-      'name': 'my-policy-test',
-      'namespace': 'calamari',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/my-policy-test',
-      'annotations': {
-        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
-        'policy.open-cluster-management.io/controls': 'VA',
-        'policy.open-cluster-management.io/standards': 'BSA',
-        'seed-generation': '1'
-      },
-      'resourceVersion': '1524346',
-      '__typename': 'Metadata'
-    },
+export const policies = [{
+  '__typename': 'Compliance',
+  'metadata': {
+    '__typename': 'Metadata',
     'name': 'my-policy-test',
-    'namespace': 'calamari',
-    'raw': {
-      'apiVersion': 'policy.open-cluster-management.io/v1',
-      'kind': 'Policy',
-      'metadata': {
-        'annotations': {
-          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
-          'policy.open-cluster-management.io/controls': 'VA',
-          'policy.open-cluster-management.io/standards': 'BSA',
-          'seed-generation': '1'
-        },
-        'creationTimestamp': '2019-07-23T21:12:04Z',
-        'finalizers': [
-          'propagator.finalizer.calamari.ibm.com'
-        ],
-        'generation': 7,
-        'name': 'my-policy-test',
-        'namespace': 'calamari',
-        'resourceVersion': '1524346',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/my-policy-test',
-        'uid': '85840587-ad8e-11e9-8a41-005056a061f1'
-      },
-      'spec': {
-        'complianceType': 'musthave',
-        'namespaces': {
-          'exclude': [
-            'kube-*'
-          ],
-          'include': [
-            'default'
-          ]
-        },
-        '-templates': [
-          {
-            'complianceType': 'musthave',
-            'Definition': {
-              'apiVersion': 'v1',
-              'kind': 'Pod',
-              'metadata': {
-                'name': 'nginx-pod'
-              },
-              'spec': {
-                'containers': [
-                  {
-                    'image': 'nginx:1.7.9',
-                    'name': 'nginx',
-                    'ports': [
-                      {
-                        'containerPort': 80
-                      }
-                    ]
-                  }
-                ]
-              }
-            },
-            'status': {
-              'Validity': {}
-            }
-          }
-        ],
-        'policy-templates': [
-          {
-            'Definition': {
-              'apiVersion': 'policies.ibm.com/v1alpha1',
-              'kind': 'MutationPolicy',
-              'metadata': {
-                'label': {
-                  'category': 'System-Integrity'
-                },
-                'name': 'mutation-policy-example'
-              },
-              'spec': {
-                'conditions': {
-                  'ownership': [
-                    'ReplicaSet',
-                    'Deployment',
-                    'DeamonSet',
-                    'ReplicationController'
-                  ]
-                },
-                'namespaceSelector': {
-                  'exclude': [
-                    'kube-system'
-                  ],
-                  'include': [
-                    'default',
-                    'kube-*'
-                  ]
-                },
-                'remediationAction': 'enforce'
-              }
-            },
-            'status': {
-              'Validity': {}
-            }
-          }
-        ],
-        'remediationAction': 'enforce'
-      },
-      'status': {
-        'placementBindings': [
-          'binding-my-policy-test'
-        ],
-        'placementPolicies': [
-          'placement-my-policy-test'
-        ],
-        'status': {
-          'cluster1': {
-            'aggregatePoliciesStatus': {
-              'my-policy-test': {
-                'compliant': 'Compliant'
-              }
-            },
-            'clustername': 'cluster1',
-            'compliant': 'Compliant'
-          },
-          'clusterhub': {
-            'aggregatePoliciesStatus': {
-              'my-policy-test': {
-                'compliant': 'Compliant'
-              }
-            },
-            'clustername': 'clusterhub',
-            'compliant': 'Compliant'
-          }
-        }
-      }
+    'namespace': 'e2e-rbac-test-1',
+    'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-policy-test',
+    'annotations': {
+      'policy.open-cluster-management.io/categories': 'PR.PT Protective Technology, PR.IP Information Protection Processes and Procedures, PR.DS Data Security',
+      'policy.open-cluster-management.io/controls': 'PR.PT-3 Least Functionality, PR.IP-1 Baseline Configuration, PR.DS-2 Data-in-transit',
+      'policy.open-cluster-management.io/standards': 'NIST-CSF'
     },
-    'remediation': 'enforce',
-    'policyCompliant': '0/2',
-    'clusterCompliant': '0/2',
-    'placementPolicies': [
-      {
-        'metadata': {
-          'name': 'placement-my-policy-test',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-my-policy-test',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementPolicy'
-      }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-my-policy-test',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-my-policy-test',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementBinding'
-      }
-    ],
-    '__typename': 'Compliance'
+    'resourceVersion': '13096493'
   },
-  {
+  'name': 'my-policy-test',
+  'namespace': 'e2e-rbac-test-1',
+  'raw': {
+    'apiVersion': 'policy.open-cluster-management.io/v1',
+    'kind': 'Policy',
     'metadata': {
-      'name': 'policy-ma',
-      'namespace': 'calamari',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-ma',
       'annotations': {
-        'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor","policy.open-cluster-management.io/standards":"NIST"},"name":"policy-ma","namespace":"calamari"},"spec":{"policy-templates":[{"Definition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"MutationPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"mutation-policy-example"},"spec":{"conditions":{"ownership":["ReplicaSet","Deployment","DeamonSet","ReplicationController"]},"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}],"remediationAction":"enforce"}}\n',
-        'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
-        'policy.open-cluster-management.io/controls': 'MutationAdvisor',
-        'policy.open-cluster-management.io/standards': 'NIST',
-        'seed-generation': '1'
+        'policy.open-cluster-management.io/categories': 'PR.PT Protective Technology, PR.IP Information Protection Processes and Procedures, PR.DS Data Security',
+        'policy.open-cluster-management.io/controls': 'PR.PT-3 Least Functionality, PR.IP-1 Baseline Configuration, PR.DS-2 Data-in-transit',
+        'policy.open-cluster-management.io/standards': 'NIST-CSF'
       },
-      'resourceVersion': '1347579',
-      '__typename': 'Metadata'
-    },
-    'name': 'policy-ma',
-    'namespace': 'calamari',
-    'raw': {
-      'apiVersion': 'policy.open-cluster-management.io/v1',
-      'kind': 'Policy',
-      'metadata': {
-        'annotations': {
-          'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor","policy.open-cluster-management.io/standards":"NIST"},"name":"policy-ma","namespace":"calamari"},"spec":{"policy-templates":[{"Definition":{"apiVersion":"policies.ibm.com/v1alpha1","kind":"MutationPolicy","metadata":{"label":{"category":"System-Integrity"},"name":"mutation-policy-example"},"spec":{"conditions":{"ownership":["ReplicaSet","Deployment","DeamonSet","ReplicationController"]},"namespaceSelector":{"exclude":["kube-system"],"include":["default","kube-*"]},"remediationAction":"enforce"}}}],"remediationAction":"enforce"}}\n',
-          'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity',
-          'policy.open-cluster-management.io/controls': 'MutationAdvisor',
-          'policy.open-cluster-management.io/standards': 'NIST',
-          'seed-generation': '1'
-        },
-        'creationTimestamp': '2019-07-16T13:18:48Z',
-        'finalizers': [
-          'propagator.finalizer.calamari.ibm.com'
-        ],
-        'generation': 45,
-        'name': 'policy-ma',
-        'namespace': 'calamari',
-        'resourceVersion': '1347579',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-ma',
-        'uid': '3f218d45-a7cc-11e9-8a41-005056a061f1'
-      },
-      'spec': {
-        'namespaces': {},
-        'policy-templates': [
-          {
-            'Definition': {
-              'apiVersion': 'policies.ibm.com/v1alpha1',
-              'kind': 'MutationPolicy',
-              'metadata': {
-                'label': {
-                  'category': 'System-Integrity'
-                },
-                'name': 'mutation-policy-example'
-              },
-              'spec': {
-                'conditions': {
-                  'ownership': [
-                    'ReplicaSet',
-                    'Deployment',
-                    'DeamonSet',
-                    'ReplicationController'
-                  ]
-                },
-                'namespaceSelector': {
-                  'exclude': [
-                    'kube-system'
-                  ],
-                  'include': [
-                    'default',
-                    'kube-*'
-                  ]
-                },
-                'remediationAction': 'enforce'
+      'creationTimestamp': '2020-10-20T21:38:16Z',
+      'generation': 1,
+      'managedFields': [
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:metadata': {
+              'f:annotations': {
+                '.': {},
+                'f:policy.open-cluster-management.io/categories': {},
+                'f:policy.open-cluster-management.io/controls': {},
+                'f:policy.open-cluster-management.io/standards': {}
               }
             },
-            'status': {
-              'Validity': {}
+            'f:spec': {
+              '.': {},
+              'f:disabled': {},
+              'f:policy-templates': {},
+              'f:remediationAction': {}
             }
-          }
-        ],
-        'remediationAction': 'enforce'
-      },
-      'status': {
-        'placementBindings': [
-          'binding-ma'
-        ],
-        'placementPolicies': [
-          'placement-ma'
-        ],
-        'status': {
-          'cluster1': {
-            'aggregatePoliciesStatus': {
-              'policy-ma': {
-                'compliant': 'NonCompliant'
-              }
-            },
-            'clustername': 'cluster1',
-            'compliant': 'NonCompliant'
           },
-          'clusterhub': {
-            'aggregatePoliciesStatus': {
-              'policy-ma': {
-                'compliant': 'Compliant'
-              }
-            },
-            'clustername': 'clusterhub',
-            'compliant': 'Compliant'
-          }
-        }
-      }
-    },
-    'remediation': 'enforce',
-    'policyCompliant': '1/2',
-    'clusterCompliant': '1/2',
-    'placementPolicies': [
-      {
-        'metadata': {
-          'name': 'placement-ma',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-ma',
-          '__typename': 'Metadata'
+          'manager': 'unknown',
+          'operation': 'Update',
+          'time': '2020-10-20T21:38:16Z'
         },
-        '__typename': 'PlacementPolicy'
-      }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-ma',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-ma',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementBinding'
-      }
-    ],
-    '__typename': 'Compliance'
-  },
-  {
-    'metadata': {
-      'name': 'policy-pod',
-      'namespace': 'calamari',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-pod',
-      'annotations': {
-        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.open-cluster-management.io/controls': 'MutationAdvisor,CertificateManager',
-        'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
-        'seed-generation': '1'
-      },
-      'resourceVersion': '1524369',
-      '__typename': 'Metadata'
-    },
-    'name': 'policy-pod',
-    'namespace': 'calamari',
-    'raw': {
-      'apiVersion': 'policy.open-cluster-management.io/v1',
-      'kind': 'Policy',
-      'metadata': {
-        'annotations': {
-          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.open-cluster-management.io/controls': 'MutationAdvisor,CertificateManager',
-          'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
-          'seed-generation': '1'
-        },
-        'creationTimestamp': '2019-07-16T13:16:46Z',
-        'finalizers': [
-          'propagator.finalizer.calamari.ibm.com'
-        ],
-        'generation': 20,
-        'name': 'policy-pod',
-        'namespace': 'calamari',
-        'resourceVersion': '1524369',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-pod',
-        'uid': 'f61a25eb-a7cb-11e9-8a41-005056a061f1'
-      },
-      'spec': {
-        'complianceType': 'musthave',
-        'namespaces': {
-          'exclude': [
-            'kube*'
-          ],
-          'include': [
-            'default'
-          ]
-        },
-        '-templates': [
-          {
-            'complianceType': 'musthave',
-            'Definition': {
-              'apiVersion': 'v1',
-              'kind': 'Pod',
-              'metadata': {
-                'name': 'nginx-pod'
-              },
-              'spec': {
-                'containers': [
-                  {
-                    'image': 'nginx:1.7.9',
-                    'name': 'nginx',
-                    'ports': [
-                      {
-                        'containerPort': 80
-                      }
-                    ]
-                  }
-                ]
-              }
-            },
-            'status': {
-              'Validity': {}
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:status': {
+              '.': {},
+              'f:placement': {},
+              'f:status': {}
             }
-          }
-        ],
-        'remediationAction': 'inform'
-      },
-      'status': {
-        'placementBindings': [
-          'binding-pod'
-        ],
-        'placementPolicies': [
-          'placement-pod'
-        ],
-        'status': {
-          'cluster1': {
-            'aggregatePoliciesStatus': {
-              'policy-pod': {
-                'compliant': 'Compliant'
-              }
-            },
-            'clustername': 'cluster1',
-            'compliant': 'Compliant'
           },
-          'clusterhub': {
-            'aggregatePoliciesStatus': {
-              'policy-pod': {
-                'compliant': 'Compliant'
-              }
-            },
-            'clustername': 'clusterhub',
-            'compliant': 'Compliant'
-          }
+          'manager': 'governance-policy-propagator',
+          'operation': 'Update',
+          'time': '2020-10-20T21:38:50Z'
         }
-      }
+      ],
+      'name': 'my-policy-test',
+      'namespace': 'e2e-rbac-test-1',
+      'resourceVersion': '13096493',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-policy-test',
+      'uid': '2ef56c99-355a-4162-bc7c-9ce07677b400'
     },
-    'remediation': 'inform',
-    'policyCompliant': '0/2',
-    'clusterCompliant': '0/2',
-    'placementPolicies': [
-      {
-        'metadata': {
-          'name': 'placement-pod',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-pod',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementPolicy'
-      }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-pod',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-pod',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementBinding'
-      }
-    ],
-    '__typename': 'Compliance'
-  },
-  {
-    'metadata': {
-      'name': 'policy-role',
-      'namespace': 'calamari',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-role',
-      'annotations': {
-        'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndCommunicationsProtections,SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor,VA","policy.open-cluster-management.io/standards":"NIST,HIPAA"},"name":"policy-role","namespace":"calamari"},"spec":{"namespaces":{"exclude":["kube*"],"include":["default"]},"remediationAction":"inform","role-templates":[{"apiVersion":"roletemplate.calamari.ibm.com/v1alpha1","complianceType":"musthave","metadata":{"name":"operator-role-policy","namespace":""},"rules":[{"complianceType":"musthave","policyRule":{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","create","delete","patch"]}}],"selector":{"matchLabels":{"dev":"true"}}}]}}\n',
-        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-        'policy.open-cluster-management.io/controls': 'MutationAdvisor,VA',
-        'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
-        'seed-generation': '1'
-      },
-      'resourceVersion': '1513562',
-      '__typename': 'Metadata'
-    },
-    'name': 'policy-role',
-    'namespace': 'calamari',
-    'raw': {
-      'apiVersion': 'policy.open-cluster-management.io/v1',
-      'kind': 'Policy',
-      'metadata': {
-        'annotations': {
-          'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"policy.open-cluster-management.io/v1","kind":"Policy","metadata":{"annotations":{"policy.open-cluster-management.io/categories":"SystemAndCommunicationsProtections,SystemAndInformationIntegrity","policy.open-cluster-management.io/controls":"MutationAdvisor,VA","policy.open-cluster-management.io/standards":"NIST,HIPAA"},"name":"policy-role","namespace":"calamari"},"spec":{"namespaces":{"exclude":["kube*"],"include":["default"]},"remediationAction":"inform","role-templates":[{"apiVersion":"roletemplate.calamari.ibm.com/v1alpha1","complianceType":"musthave","metadata":{"name":"operator-role-policy","namespace":""},"rules":[{"complianceType":"musthave","policyRule":{"apiGroups":["extensions","apps"],"resources":["deployments"],"verbs":["get","list","watch","create","delete","patch"]}}],"selector":{"matchLabels":{"dev":"true"}}}]}}\n',
-          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections,SystemAndInformationIntegrity',
-          'policy.open-cluster-management.io/controls': 'MutationAdvisor,VA',
-          'policy.open-cluster-management.io/standards': 'NIST,HIPAA',
-          'seed-generation': '1'
-        },
-        'creationTimestamp': '2019-07-16T13:19:03Z',
-        'finalizers': [
-          'propagator.finalizer.calamari.ibm.com'
-        ],
-        'generation': 17,
-        'name': 'policy-role',
-        'namespace': 'calamari',
-        'resourceVersion': '1513562',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-role',
-        'uid': '47dbc091-a7cc-11e9-8a41-005056a061f1'
-      },
-      'spec': {
-        'namespaces': {
-          'exclude': [
-            'kube*'
-          ],
-          'include': [
-            'default'
-          ]
-        },
-        'remediationAction': 'inform',
-        'role-templates': [
-          {
-            'apiVersion': 'roletemplate.calamari.ibm.com/v1alpha1',
-            'complianceType': 'musthave',
+    'spec': {
+      'disabled': false,
+      'policy-templates': [
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'ConfigurationPolicy',
             'metadata': {
-              'creationTimestamp': null,
-              'name': 'operator-role-policy'
+              'name': 'my-policy-test-sample-nginx-pod'
             },
-            'rules': [
-              {
-                'complianceType': 'musthave',
-                'policyRule': {
-                  'apiGroups': [
-                    'extensions',
-                    'apps'
-                  ],
-                  'resources': [
-                    'deployments'
-                  ],
-                  'verbs': [
-                    'get',
-                    'list',
-                    'watch',
-                    'create',
-                    'delete',
-                    'patch'
-                  ]
-                }
-              }
-            ],
-            'selector': {
-              'matchLabels': {
-                'dev': 'true'
-              }
-            },
-            'status': {
-              'Validity': {}
-            }
-          }
-        ]
-      },
-      'status': {
-        'placementBindings': [
-          'binding-role'
-        ],
-        'placementPolicies': [
-          'placement-role'
-        ],
-        'status': {
-          'cluster1': {
-            'aggregatePoliciesStatus': {
-              'policy-role': {
-                'compliant': 'Compliant'
-              }
-            },
-            'clustername': 'cluster1',
-            'compliant': 'Compliant'
-          },
-          'clusterhub': {
-            'aggregatePoliciesStatus': {
-              'policy-role': {
-                'compliant': 'Compliant'
-              }
-            },
-            'clustername': 'clusterhub',
-            'compliant': 'Compliant'
-          }
-        }
-      }
-    },
-    'remediation': 'inform',
-    'policyCompliant': '0/2',
-    'clusterCompliant': '0/2',
-    'placementPolicies': [
-      {
-        'metadata': {
-          'name': 'placement-role',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-role',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementPolicy'
-      }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-role',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-role',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementBinding'
-      }
-    ],
-    '__typename': 'Compliance'
-  }
-]
-
-export const policies2 = [
-  {
-    'metadata': {
-      'name': 'my-policy-test',
-      'namespace': 'calamari',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/my-policy-test',
-      'annotations': {
-        'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
-        'policy.open-cluster-management.io/controls': 'VA',
-        'policy.open-cluster-management.io/standards': 'BSA',
-        'seed-generation': '1'
-      },
-      'resourceVersion': '1524346',
-      '__typename': 'Metadata'
-    },
-    'name': 'my-policy-test',
-    'namespace': 'calamari',
-    'raw': {
-      'apiVersion': 'policy.open-cluster-management.io/v1',
-      'kind': 'Policy',
-      'metadata': {
-        'annotations': {
-          'policy.open-cluster-management.io/categories': 'SystemAndCommunicationsProtections',
-          'policy.open-cluster-management.io/controls': 'VA',
-          'policy.open-cluster-management.io/standards': 'BSA',
-          'seed-generation': '1'
-        },
-        'creationTimestamp': '2019-07-23T21:12:04Z',
-        'finalizers': [
-          'propagator.finalizer.calamari.ibm.com'
-        ],
-        'generation': 7,
-        'name': 'my-policy-test',
-        'namespace': 'calamari',
-        'resourceVersion': '1524346',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/my-policy-test',
-        'uid': '85840587-ad8e-11e9-8a41-005056a061f1'
-      },
-      'spec': {
-        'complianceType': 'musthave',
-        'namespaces': {
-          'exclude': [
-            'kube-*'
-          ],
-          'include': [
-            'default'
-          ]
-        },
-        '-templates': [
-          {
-            'complianceType': 'musthave',
-            'Definition': {
-              'apiVersion': 'v1',
-              'kind': 'Pod',
-              'metadata': {
-                'name': 'nginx-pod'
-              },
-              'spec': {
-                'containers': [
-                  {
-                    'image': 'nginx:1.7.9',
-                    'name': 'nginx',
-                    'ports': [
-                      {
-                        'containerPort': 80
-                      }
-                    ]
-                  }
+            'spec': {
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*'
+                ],
+                'include': [
+                  'default'
                 ]
-              }
-            },
-            'status': {
-              'Validity': {}
-            }
-          }
-        ],
-        'policy-templates': [
-          {
-            'Definition': {
-              'apiVersion': 'policies.ibm.com/v1alpha1',
-              'kind': 'MutationPolicy',
-              'metadata': {
-                'label': {
-                  'category': 'System-Integrity'
-                },
-                'name': 'mutation-policy-example'
               },
-              'spec': {
-                'conditions': {
-                  'ownership': [
-                    'ReplicaSet',
-                    'Deployment',
-                    'DeamonSet',
-                    'ReplicationController'
-                  ]
-                },
-                'namespaceSelector': {
-                  'exclude': [
-                    'kube-system'
-                  ],
-                  'include': [
-                    'default',
-                    'kube-*'
-                  ]
-                },
-                'remediationAction': 'enforce'
-              }
-            },
-            'status': {
-              'Validity': {}
+              'object-templates': [
+                {
+                  'complianceType': 'musthave',
+                  'objectDefinition': {
+                    'apiVersion': 'v1',
+                    'kind': 'Pod',
+                    'metadata': {
+                      'name': 'sample-nginx-pod'
+                    },
+                    'spec': {
+                      'containers': [
+                        {
+                          'image': 'nginx:1.7.9',
+                          'name': 'nginx',
+                          'ports': [
+                            {
+                              'containerPort': 80
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              'remediationAction': 'inform',
+              'severity': 'low'
             }
           }
-        ],
-        'remediationAction': 'enforce'
-      },
-      'status': {
-        'placementBindings': [
-          'binding-my-policy-test'
-        ],
-        'placementPolicies': [
-          'placement-my-policy-test'
-        ],
-        'status': {
-          'cluster1': 'Compliant',
-          'clusterhub': 'Compliant'
+        },
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'CertificatePolicy',
+            'metadata': {
+              'name': 'my-policy-test-example'
+            },
+            'spec': {
+              'minimumDuration': '300h',
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*'
+                ],
+                'include': [
+                  'default'
+                ]
+              },
+              'remediationAction': 'inform',
+              'severity': 'low'
+            }
+          }
         }
-      }
+      ],
+      'remediationAction': 'enforce'
     },
-    'remediation': 'enforce',
-    'policyCompliant': '0/2',
-    'clusterCompliant': '0/2',
-    'placementPolicies': [
-      {
-        'metadata': {
-          'name': 'placement-my-policy-test',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-my-policy-test',
-          '__typename': 'Metadata'
+    'status': {
+      'placement': [
+        {
+          'placementBinding': 'binding-my-policy-test',
+          'placementRule': 'placement-my-policy-test'
+        }
+      ],
+      'status': [
+        {
+          'clustername': 'local-cluster',
+          'clusternamespace': 'local-cluster',
+          'compliant': 'Compliant'
         },
-        '__typename': 'PlacementPolicy'
-      }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-my-policy-test',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-my-policy-test',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementBinding'
-      }
-    ],
-    '__typename': 'Compliance'
+        {
+          'clustername': 'managed01',
+          'clusternamespace': 'managed01',
+          'compliant': 'Compliant'
+        }
+      ]
+    }
   },
-]
-
-export const policies3 = [
-  {
+  'remediation': 'enforce',
+  'policyCompliant': '0/0',
+  'clusterCompliant': '0/2/0',
+  'clusterNS': {
+    'managed01': 'managed01',
+    'local-cluster': 'local-cluster'
+  },
+  'clusterConsoleURL': {
+    'managed01': 'https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com',
+    'local-cluster': 'https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com'
+  },
+  'placementPolicies': [
+    {
+      '__typename': 'PlacementPolicy',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'placement-my-policy-test',
+        'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementrules/placement-my-policy-test'
+      }
+    }
+  ],
+  'placementBindings': [
+    {
+      '__typename': 'PlacementBinding',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'binding-my-policy-test',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementbindings/binding-my-policy-test'
+      }
+    }
+  ]
+},
+{
+  '__typename': 'Compliance',
+  'metadata': {
+    '__typename': 'Metadata',
+    'name': 'my-test-policy-pod',
+    'namespace': 'e2e-rbac-test-1',
+    'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-test-policy-pod',
+    'annotations': {
+      'policy.open-cluster-management.io/categories': 'PR.PT Protective Technology',
+      'policy.open-cluster-management.io/controls': 'PR.PT-3 Least Functionality',
+      'policy.open-cluster-management.io/standards': 'NIST-CSF'
+    },
+    'resourceVersion': '13096967'
+  },
+  'name': 'my-test-policy-pod',
+  'namespace': 'e2e-rbac-test-1',
+  'raw': {
+    'apiVersion': 'policy.open-cluster-management.io/v1',
+    'kind': 'Policy',
     'metadata': {
-      'name': 'policy-crontab',
-      'namespace': 'default',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-crontab',
       'annotations': {
         'policy.open-cluster-management.io/categories': 'PR.PT Protective Technology',
         'policy.open-cluster-management.io/controls': 'PR.PT-3 Least Functionality',
-        'policy.open-cluster-management.io/standards': 'NIST-CSF',
-        'seed-generation': '4'
+        'policy.open-cluster-management.io/standards': 'NIST-CSF'
       },
-      'resourceVersion': '1518782',
-      '__typename': 'Metadata'
-    },
-    'name': 'policy-crontab',
-    'namespace': 'default',
-    'raw': {
-      'apiVersion': 'policy.open-cluster-management.io/v1',
-      'kind': 'Policy',
-      'metadata': {
-        'annotations': {
-          'policy.open-cluster-management.io/categories': 'PR.PT Protective Technology',
-          'policy.open-cluster-management.io/controls': 'PR.PT-3 Least Functionality',
-          'policy.open-cluster-management.io/standards': 'NIST-CSF',
-          'seed-generation': '4'
-        },
-        'creationTimestamp': '2020-04-01T13:57:41Z',
-        'finalizers': [
-          'propagator.finalizer.calamari.ibm.com'
-        ],
-        'generation': 17,
-        'name': 'policy-crontab',
-        'namespace': 'default',
-        'resourceVersion': '1518782',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-crontab',
-        'uid': '19df3a72-e844-46b3-b231-96b55111c9eb'
-      },
-      'spec': {
-        'complianceType': 'musthave',
-        'disabled': false,
-        'namespaces': {
-          'exclude': [
-            'kube-*'
-          ],
-          'include': [
-            'default'
-          ]
-        },
-        'object-templates': [
-          {
-            'complianceType': 'musthave',
-            'objectDefinition': {
-              'apiVersion': 'stable.example.com/v1',
-              'kind': 'CronTab',
-              'metadata': {
-                'name': 'my-new-cron-object'
-              },
-              'spec': {
-                'image': 'test'
+      'creationTimestamp': '2020-10-20T21:39:11Z',
+      'generation': 1,
+      'managedFields': [
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:metadata': {
+              'f:annotations': {
+                '.': {},
+                'f:policy.open-cluster-management.io/categories': {},
+                'f:policy.open-cluster-management.io/controls': {},
+                'f:policy.open-cluster-management.io/standards': {}
               }
             },
-            'status': {
-              'Validity': {}
+            'f:spec': {
+              '.': {},
+              'f:disabled': {},
+              'f:policy-templates': {},
+              'f:remediationAction': {}
+            }
+          },
+          'manager': 'unknown',
+          'operation': 'Update',
+          'time': '2020-10-20T21:39:11Z'
+        },
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:status': {
+              '.': {},
+              'f:placement': {},
+              'f:status': {}
+            }
+          },
+          'manager': 'governance-policy-propagator',
+          'operation': 'Update',
+          'time': '2020-10-20T21:39:28Z'
+        }
+      ],
+      'name': 'my-test-policy-pod',
+      'namespace': 'e2e-rbac-test-1',
+      'resourceVersion': '13096967',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-test-policy-pod',
+      'uid': 'd2e23078-5701-4df1-9d58-56a8f6b40777'
+    },
+    'spec': {
+      'disabled': false,
+      'policy-templates': [
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'ConfigurationPolicy',
+            'metadata': {
+              'name': 'my-test-policy-pod-sample-nginx-pod'
+            },
+            'spec': {
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*'
+                ],
+                'include': [
+                  'default'
+                ]
+              },
+              'object-templates': [
+                {
+                  'complianceType': 'musthave',
+                  'objectDefinition': {
+                    'apiVersion': 'v1',
+                    'kind': 'Pod',
+                    'metadata': {
+                      'name': 'sample-nginx-pod'
+                    },
+                    'spec': {
+                      'containers': [
+                        {
+                          'image': 'nginx:1.7.9',
+                          'name': 'nginx',
+                          'ports': [
+                            {
+                              'containerPort': 80
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              'remediationAction': 'inform',
+              'severity': 'low'
             }
           }
-        ],
-        'remediationAction': 'enforce'
+        }
+      ],
+      'remediationAction': 'inform'
+    },
+    'status': {
+      'placement': [
+        {
+          'placementBinding': 'binding-my-test-policy-pod',
+          'placementRule': 'placement-my-test-policy-pod'
+        }
+      ],
+      'status': [
+        {
+          'clustername': 'managed01',
+          'clusternamespace': 'managed01',
+          'compliant': 'Compliant'
+        }
+      ]
+    }
+  },
+  'remediation': 'inform',
+  'policyCompliant': '0/0',
+  'clusterCompliant': '0/1/0',
+  'clusterNS': {
+    'managed01': 'managed01',
+    'local-cluster': 'local-cluster'
+  },
+  'clusterConsoleURL': {
+    'managed01': 'https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com',
+    'local-cluster': 'https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com'
+  },
+  'placementPolicies': [
+    {
+      '__typename': 'PlacementPolicy',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'placement-my-test-policy-pod',
+        'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementrules/placement-my-test-policy-pod'
+      }
+    }
+  ],
+  'placementBindings': [
+    {
+      '__typename': 'PlacementBinding',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'binding-my-test-policy-pod',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementbindings/binding-my-test-policy-pod'
+      }
+    }
+  ]
+},
+{
+  '__typename': 'Compliance',
+  'metadata': {
+    '__typename': 'Metadata',
+    'name': 'my-test-policy-cert',
+    'namespace': 'e2e-rbac-test-1',
+    'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-test-policy-cert',
+    'annotations': {
+      'policy.open-cluster-management.io/categories': 'PR.DS Data Security',
+      'policy.open-cluster-management.io/controls': 'PR.DS-2 Data-in-transit',
+      'policy.open-cluster-management.io/standards': 'NIST-CSF'
+    },
+    'resourceVersion': '13097316'
+  },
+  'name': 'my-test-policy-cert',
+  'namespace': 'e2e-rbac-test-1',
+  'raw': {
+    'apiVersion': 'policy.open-cluster-management.io/v1',
+    'kind': 'Policy',
+    'metadata': {
+      'annotations': {
+        'policy.open-cluster-management.io/categories': 'PR.DS Data Security',
+        'policy.open-cluster-management.io/controls': 'PR.DS-2 Data-in-transit',
+        'policy.open-cluster-management.io/standards': 'NIST-CSF'
       },
-      'status': {
-        'placementBindings': [
-          'binding-policy-crontab'
-        ],
-        'placementPolicies': [
-          'placement-policy-crontab'
-        ],
-        'status': {
-          'calamari': {
-            'aggregatePoliciesStatus': {
-              'default.policy-crontab': {
-                'compliant': 'Compliant'
+      'creationTimestamp': '2020-10-20T21:39:41Z',
+      'generation': 1,
+      'managedFields': [
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:metadata': {
+              'f:annotations': {
+                '.': {},
+                'f:policy.open-cluster-management.io/categories': {},
+                'f:policy.open-cluster-management.io/controls': {},
+                'f:policy.open-cluster-management.io/standards': {}
               }
             },
-            'clustername': 'calamari',
-            'compliant': 'Compliant'
+            'f:spec': {
+              '.': {},
+              'f:disabled': {},
+              'f:policy-templates': {},
+              'f:remediationAction': {}
+            }
+          },
+          'manager': 'unknown',
+          'operation': 'Update',
+          'time': '2020-10-20T21:39:41Z'
+        },
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:status': {
+              '.': {},
+              'f:placement': {},
+              'f:status': {}
+            }
+          },
+          'manager': 'governance-policy-propagator',
+          'operation': 'Update',
+          'time': '2020-10-20T21:39:50Z'
+        }
+      ],
+      'name': 'my-test-policy-cert',
+      'namespace': 'e2e-rbac-test-1',
+      'resourceVersion': '13097316',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-test-policy-cert',
+      'uid': '300dfae4-0977-4339-857d-91e48452a5e6'
+    },
+    'spec': {
+      'disabled': false,
+      'policy-templates': [
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'CertificatePolicy',
+            'metadata': {
+              'name': 'my-test-policy-cert-example'
+            },
+            'spec': {
+              'minimumDuration': '300h',
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*'
+                ],
+                'include': [
+                  'default'
+                ]
+              },
+              'remediationAction': 'inform',
+              'severity': 'low'
+            }
           }
         }
-      }
+      ],
+      'remediationAction': 'enforce'
     },
-    'remediation': 'enforce',
-    'policyCompliant': '0/1',
-    'clusterCompliant': '0/1',
-    'clusterNS': {
-      'calamari': 'calamari'
-    },
-    'clusterConsoleURL': {
-      'calamari': 'https://console-openshift-console.apps.calamari.dev08.red-chesterfield.com'
-    },
-    'placementPolicies': [
-      {
-        'metadata': {
-          'name': 'placement-policy-crontab',
-          'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/placement-policy-crontab',
-          '__typename': 'Metadata'
+    'status': {
+      'placement': [
+        {
+          'placementBinding': 'binding-my-test-policy-cert',
+          'placementRule': 'placement-my-test-policy-cert'
+        }
+      ],
+      'status': [
+        {
+          'clustername': 'local-cluster',
+          'clusternamespace': 'local-cluster',
+          'compliant': 'Compliant'
         },
-        '__typename': 'PlacementPolicy'
-      }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-policy-crontab',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-policy-crontab',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementBinding'
-      }
-    ],
-    '__typename': 'Compliance'
+        {
+          'clustername': 'managed01',
+          'clusternamespace': 'managed01',
+          'compliant': 'Compliant'
+        }
+      ]
+    }
   },
-  {
-    'metadata': {
-      'name': 'policy-imagemanifestvulnpolicy',
-      'namespace': 'default',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-imagemanifestvulnpolicy',
-      'annotations': {
-        'policy.open-cluster-management.io/categories': 'PR.AC Identity Management Authentication and Access Control, PR.IP Information Protection Processes and Procedures',
-        'policy.open-cluster-management.io/controls': 'PR.AC-4 Access Control, DE.CM-8 Vulnerability scans',
-        'policy.open-cluster-management.io/standards': 'NIST-CSF',
-        'seed-generation': '3'
-      },
-      'resourceVersion': '2282859',
-      '__typename': 'Metadata'
-    },
-    'name': 'policy-imagemanifestvulnpolicy',
-    'namespace': 'default',
-    'raw': {
-      'apiVersion': 'policy.open-cluster-management.io/v1',
-      'kind': 'Policy',
+  'remediation': 'enforce',
+  'policyCompliant': '0/0',
+  'clusterCompliant': '0/2/0',
+  'clusterNS': {
+    'managed01': 'managed01',
+    'local-cluster': 'local-cluster'
+  },
+  'clusterConsoleURL': {
+    'managed01': 'https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com',
+    'local-cluster': 'https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com'
+  },
+  'placementPolicies': [
+    {
+      '__typename': 'PlacementPolicy',
       'metadata': {
-        'annotations': {
-          'policy.open-cluster-management.io/categories': 'PR.AC Identity Management Authentication and Access Control, PR.IP Information Protection Processes and Procedures',
-          'policy.open-cluster-management.io/controls': 'PR.AC-4 Access Control, DE.CM-8 Vulnerability scans',
-          'policy.open-cluster-management.io/standards': 'NIST-CSF',
-          'seed-generation': '3'
-        },
-        'creationTimestamp': '2020-04-02T17:47:25Z',
-        'finalizers': [
-          'propagator.finalizer.calamari.ibm.com'
-        ],
-        'generation': 16,
-        'name': 'policy-imagemanifestvulnpolicy',
-        'namespace': 'default',
-        'resourceVersion': '2282859',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-imagemanifestvulnpolicy',
-        'uid': '311f9bb7-f4e5-456b-a2d1-f97fd2c807ef'
+        '__typename': 'Metadata',
+        'name': 'placement-my-test-policy-cert',
+        'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementrules/placement-my-test-policy-cert'
+      }
+    }
+  ],
+  'placementBindings': [
+    {
+      '__typename': 'PlacementBinding',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'binding-my-test-policy-cert',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementbindings/binding-my-test-policy-cert'
+      }
+    }
+  ]
+}]
+
+export const policies2 = [{
+  '__typename': 'Compliance',
+  'metadata': {
+    '__typename': 'Metadata',
+    'name': 'my-test-policy-cert',
+    'namespace': 'e2e-rbac-test-1',
+    'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-test-policy-cert',
+    'annotations': {
+      'policy.open-cluster-management.io/categories': 'PR.DS Data Security',
+      'policy.open-cluster-management.io/controls': 'PR.DS-2 Data-in-transit',
+      'policy.open-cluster-management.io/standards': 'NIST-CSF'
+    },
+    'resourceVersion': '13097316'
+  },
+  'name': 'my-test-policy-cert',
+  'namespace': 'e2e-rbac-test-1',
+  'raw': {
+    'apiVersion': 'policy.open-cluster-management.io/v1',
+    'kind': 'Policy',
+    'metadata': {
+      'annotations': {
+        'policy.open-cluster-management.io/categories': 'PR.DS Data Security',
+        'policy.open-cluster-management.io/controls': 'PR.DS-2 Data-in-transit',
+        'policy.open-cluster-management.io/standards': 'NIST-CSF'
       },
-      'spec': {
-        'complianceType': 'musthave',
-        'disabled': false,
-        'namespaces': {
-          'exclude': [
-            'kube-*'
-          ],
-          'include': [
-            'default'
-          ]
+      'creationTimestamp': '2020-10-20T21:39:41Z',
+      'generation': 1,
+      'managedFields': [
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:metadata': {
+              'f:annotations': {
+                '.': {},
+                'f:policy.open-cluster-management.io/categories': {},
+                'f:policy.open-cluster-management.io/controls': {},
+                'f:policy.open-cluster-management.io/standards': {}
+              }
+            },
+            'f:spec': {
+              '.': {},
+              'f:disabled': {},
+              'f:policy-templates': {},
+              'f:remediationAction': {}
+            }
+          },
+          'manager': 'unknown',
+          'operation': 'Update',
+          'time': '2020-10-20T21:39:41Z'
         },
-        'object-templates': [
-          {
-            'complianceType': 'musthave',
-            'objectDefinition': {
-              'apiVersion': 'operators.coreos.com/v1alpha1',
-              'kind': 'ClusterServiceVersion',
-              'metadata': {
-                'annotations': {
-                  'capabilities': 'Full Lifecycle',
-                  'categories': 'Security',
-                  'containerImage': 'quay.io/quay/container-security-operator@sha256:15a4b50d847512b5f404ec1cf72c30c98e073a7f26f1588213bd2e8b6331f016',
-                  'createdAt': '2019-11-16T01:03:00.000Z',
-                  'description': 'Identify image vulnerabilities in Kubernetes pods',
-                  'olm.targetNamespaces': 'default',
-                  'repository': 'https://github.com/quay/container-security-operator',
-                  'tectonic-visibility': 'ocs'
-                },
-                'name': 'container-security-operator.v1.0.1',
-                'namespace': 'openshift-operators'
-              },
-              'spec': {
-                'customresourcedefinitions': {
-                  'owned': [
-                    {
-                      'description': 'Represents a set of vulnerabilities in an image manifest.',
-                      'displayName': 'Image Manifest Vulnerability',
-                      'kind': 'ImageManifestVuln',
-                      'name': 'imagemanifestvulns.secscan.quay.redhat.com',
-                      'version': 'v1alpha1'
-                    }
-                  ]
-                },
-                'description': 'The Container Security Operator (CSO) brings Quay and Clair metadata to Kubernetes / OpenShift. Starting with vulnerability information the scope will get expanded over time. If it runs on OpenShift, the corresponding vulnerability information is shown inside the OCP Console. The Container Security Operator enables cluster administrators to monitor known container image vulnerabilities in pods running on their Kubernetes cluster. The controller sets up a watch on pods in the specified namespace(s) and queries the container registry for vulnerability information. If the container registry supports image scanning, such as [Quay](https://github.com/quay/quay) with [Clair](https://github.com/quay/clair), then the Operator will expose any vulnerabilities found via the Kubernetes API in an `ImageManifestVuln` object.  This Operator requires no additional configuration after deployment, and will begin watching pods and populating `ImageManifestVulns` immediately once installed.',
-                'displayName': 'Container Security',
-                'icon': [
-                  {
-                    'base64data': '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',
-                    'mediatype': 'image/png'
-                  }
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:status': {
+              '.': {},
+              'f:placement': {},
+              'f:status': {}
+            }
+          },
+          'manager': 'governance-policy-propagator',
+          'operation': 'Update',
+          'time': '2020-10-20T21:39:50Z'
+        }
+      ],
+      'name': 'my-test-policy-cert',
+      'namespace': 'e2e-rbac-test-1',
+      'resourceVersion': '13097316',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-test-policy-cert',
+      'uid': '300dfae4-0977-4339-857d-91e48452a5e6'
+    },
+    'spec': {
+      'disabled': false,
+      'policy-templates': [
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'CertificatePolicy',
+            'metadata': {
+              'name': 'my-test-policy-cert-example'
+            },
+            'spec': {
+              'minimumDuration': '300h',
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*'
                 ],
-                'install': {
-                  'spec': {
-                    'deployments': [
-                      {
-                        'name': 'container-security-operator',
+                'include': [
+                  'default'
+                ]
+              },
+              'remediationAction': 'inform',
+              'severity': 'low'
+            }
+          }
+        }
+      ],
+      'remediationAction': 'enforce'
+    },
+    'status': {
+      'placement': [
+        {
+          'placementBinding': 'binding-my-test-policy-cert',
+          'placementRule': 'placement-my-test-policy-cert'
+        }
+      ],
+      'status': [
+        {
+          'clustername': 'local-cluster',
+          'clusternamespace': 'local-cluster',
+          'compliant': 'Compliant'
+        },
+        {
+          'clustername': 'managed01',
+          'clusternamespace': 'managed01',
+          'compliant': 'Compliant'
+        }
+      ]
+    }
+  },
+  'remediation': 'enforce',
+  'policyCompliant': '0/0',
+  'clusterCompliant': '0/2/0',
+  'clusterNS': {
+    'managed01': 'managed01',
+    'local-cluster': 'local-cluster'
+  },
+  'clusterConsoleURL': {
+    'managed01': 'https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com',
+    'local-cluster': 'https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com'
+  },
+  'placementPolicies': [
+    {
+      '__typename': 'PlacementPolicy',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'placement-my-test-policy-cert',
+        'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementrules/placement-my-test-policy-cert'
+      }
+    }
+  ],
+  'placementBindings': [
+    {
+      '__typename': 'PlacementBinding',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'binding-my-test-policy-cert',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementbindings/binding-my-test-policy-cert'
+      }
+    }
+  ]
+}]
+
+export const policies3 = [{
+  '__typename': 'Compliance',
+  'metadata': {
+    '__typename': 'Metadata',
+    'name': 'my-test-policy-etcdencryption',
+    'namespace': 'default',
+    'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/my-test-policy-etcdencryption',
+    'annotations': {
+      'policy.open-cluster-management.io/categories': 'PR.DS Data Security',
+      'policy.open-cluster-management.io/controls': 'PR.DS-2 Data-at-rest',
+      'policy.open-cluster-management.io/standards': 'NIST-CSF'
+    },
+    'resourceVersion': '13955717'
+  },
+  'name': 'my-test-policy-etcdencryption',
+  'namespace': 'default',
+  'raw': {
+    'apiVersion': 'policy.open-cluster-management.io/v1',
+    'kind': 'Policy',
+    'metadata': {
+      'annotations': {
+        'policy.open-cluster-management.io/categories': 'PR.DS Data Security',
+        'policy.open-cluster-management.io/controls': 'PR.DS-2 Data-at-rest',
+        'policy.open-cluster-management.io/standards': 'NIST-CSF'
+      },
+      'creationTimestamp': '2020-10-21T16:28:54Z',
+      'generation': 1,
+      'managedFields': [
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:status': {}
+          },
+          'manager': 'governance-policy-propagator',
+          'operation': 'Update',
+          'time': '2020-10-21T16:28:54Z'
+        },
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:metadata': {
+              'f:annotations': {
+                '.': {},
+                'f:policy.open-cluster-management.io/categories': {},
+                'f:policy.open-cluster-management.io/controls': {},
+                'f:policy.open-cluster-management.io/standards': {}
+              }
+            },
+            'f:spec': {
+              '.': {},
+              'f:disabled': {},
+              'f:policy-templates': {},
+              'f:remediationAction': {}
+            }
+          },
+          'manager': 'unknown',
+          'operation': 'Update',
+          'time': '2020-10-21T16:28:54Z'
+        }
+      ],
+      'name': 'my-test-policy-etcdencryption',
+      'namespace': 'default',
+      'resourceVersion': '13955717',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/my-test-policy-etcdencryption',
+      'uid': '1e463461-d1ab-45dd-94ed-0d1524874443'
+    },
+    'spec': {
+      'disabled': true,
+      'policy-templates': [
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'ConfigurationPolicy',
+            'metadata': {
+              'name': 'my-test-policy-etcdencryption-example'
+            },
+            'spec': {
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*'
+                ],
+                'include': [
+                  'default'
+                ]
+              },
+              'object-templates': [
+                {
+                  'complianceType': 'musthave',
+                  'objectDefinition': {
+                    'apiVersion': 'config.openshift.io/v1',
+                    'kind': 'APIServer',
+                    'metadata': {
+                      'name': 'cluster'
+                    },
+                    'spec': {
+                      'encryption': {
+                        'type': 'aescbc'
+                      }
+                    }
+                  }
+                }
+              ],
+              'remediationAction': 'inform',
+              'severity': 'med'
+            }
+          }
+        }
+      ],
+      'remediationAction': 'enforce'
+    },
+    'status': {}
+  },
+  'remediation': 'enforce',
+  'policyCompliant': '0/0',
+  'clusterCompliant': '-',
+  'clusterNS': {
+    'local-cluster': 'local-cluster',
+    'managed01': 'managed01'
+  },
+  'clusterConsoleURL': {
+    'local-cluster': 'https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com',
+    'managed01': 'https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com'
+  },
+  'placementPolicies': [],
+  'placementBindings': []
+},
+{
+  '__typename': 'Compliance',
+  'metadata': {
+    '__typename': 'Metadata',
+    'name': 'my-test-policy-imagemanifestvulnpolicy',
+    'namespace': 'default',
+    'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/my-test-policy-imagemanifestvulnpolicy',
+    'annotations': {
+      'policy.open-cluster-management.io/categories': 'DE.CM Security Continuous Monitoring',
+      'policy.open-cluster-management.io/controls': 'DE.CM-8 Vulnerability scans',
+      'policy.open-cluster-management.io/standards': 'NIST-CSF'
+    },
+    'resourceVersion': '13954653'
+  },
+  'name': 'my-test-policy-imagemanifestvulnpolicy',
+  'namespace': 'default',
+  'raw': {
+    'apiVersion': 'policy.open-cluster-management.io/v1',
+    'kind': 'Policy',
+    'metadata': {
+      'annotations': {
+        'policy.open-cluster-management.io/categories': 'DE.CM Security Continuous Monitoring',
+        'policy.open-cluster-management.io/controls': 'DE.CM-8 Vulnerability scans',
+        'policy.open-cluster-management.io/standards': 'NIST-CSF'
+      },
+      'creationTimestamp': '2020-10-21T16:27:19Z',
+      'generation': 1,
+      'managedFields': [
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:metadata': {
+              'f:annotations': {
+                '.': {},
+                'f:policy.open-cluster-management.io/categories': {},
+                'f:policy.open-cluster-management.io/controls': {},
+                'f:policy.open-cluster-management.io/standards': {}
+              }
+            },
+            'f:spec': {
+              '.': {},
+              'f:disabled': {},
+              'f:policy-templates': {},
+              'f:remediationAction': {}
+            }
+          },
+          'manager': 'unknown',
+          'operation': 'Update',
+          'time': '2020-10-21T16:27:19Z'
+        },
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:status': {
+              '.': {},
+              'f:placement': {},
+              'f:status': {}
+            }
+          },
+          'manager': 'governance-policy-propagator',
+          'operation': 'Update',
+          'time': '2020-10-21T16:27:33Z'
+        }
+      ],
+      'name': 'my-test-policy-imagemanifestvulnpolicy',
+      'namespace': 'default',
+      'resourceVersion': '13954653',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/my-test-policy-imagemanifestvulnpolicy',
+      'uid': '2575fc89-12da-43b2-a692-5a0d5ceae343'
+    },
+    'spec': {
+      'disabled': false,
+      'policy-templates': [
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'ConfigurationPolicy',
+            'metadata': {
+              'name': 'my-test-policy-imagemanifestvulnpolicy-example-csv'
+            },
+            'spec': {
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*'
+                ],
+                'include': [
+                  '*'
+                ]
+              },
+              'object-templates': [
+                {
+                  'complianceType': 'musthave',
+                  'objectDefinition': {
+                    'apiVersion': 'operators.coreos.com/v1alpha1',
+                    'kind': 'ClusterServiceVersion',
+                    'metadata': {
+                      'annotations': {
+                        'capabilities': 'Full Lifecycle',
+                        'categories': 'OpenShift Optional, Security',
+                        'containerImage': 'registry.redhat.io/quay/quay-container-security-rhel8-operator@sha256:ecf1e5ad2616ace76253403b66858af7485810ad5972a08b0aecbd0cfd77caaa',
+                        'createdAt': '2020-05-20 17:15:55',
+                        'description': 'Identify image vulnerabilities in Kubernetes pods',
+                        'olm.operatorGroup': 'global-operators',
+                        'olm.operatorNamespace': 'openshift-operators',
+                        'olm.targetNamespaces': '',
+                        'repository': 'https://github.com/quay/container-security-operator',
+                        'tectonic-visibility': 'ocs'
+                      },
+                      'name': 'container-security-operator.v3.3.1',
+                      'namespace': 'openshift-operators'
+                    },
+                    'spec': {
+                      'apiservicedefinitions': {},
+                      'customresourcedefinitions': {
+                        'owned': [
+                          {
+                            'description': 'Represents a set of vulnerabilities in an image manifest.',
+                            'displayName': 'Image Manifest Vulnerability',
+                            'kind': 'ImageManifestVuln',
+                            'name': 'imagemanifestvulns.secscan.quay.redhat.com',
+                            'version': 'v1alpha1'
+                          }
+                        ]
+                      },
+                      'description': 'The Quay Container Security Operator (CSO) brings Quay and Clair metadata to Kubernetes / OpenShift. Starting with vulnerability information the scope will get expanded over time. If it runs on OpenShift, the corresponding vulnerability information is shown inside the OCP Console. The Quay Container Security Operator enables cluster administrators to monitor known container image vulnerabilities in pods running on their Kubernetes cluster. The controller sets up a watch on pods in the specified namespace(s) and queries the container registry for vulnerability information. If the container registry supports image scanning, such as [Quay](https://github.com/quay/quay) with [Clair](https://github.com/quay/clair), then the Operator will expose any vulnerabilities found via the Kubernetes API in an `ImageManifestVuln` object.  This Operator requires no additional configuration after deployment, and will begin watching pods and populating `ImageManifestVulns` immediately once installed.',
+                      'displayName': 'Quay Container Security',
+                      'icon': [
+                        {
+                          'base64data': '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',
+                          'mediatype': 'image/png'
+                        }
+                      ],
+                      'install': {
                         'spec': {
-                          'replicas': 1,
-                          'selector': {
-                            'matchLabels': {
-                              'name': 'container-security-operator-alm-owned'
+                          'deployments': [
+                            {
+                              'name': 'container-security-operator',
+                              'spec': {
+                                'replicas': 1,
+                                'selector': {
+                                  'matchLabels': {
+                                    'name': 'container-security-operator-alm-owned'
+                                  }
+                                },
+                                'strategy': {},
+                                'template': {
+                                  'metadata': {
+                                    'creationTimestamp': null,
+                                    'labels': {
+                                      'name': 'container-security-operator-alm-owned'
+                                    },
+                                    'name': 'container-security-operator-alm-owned'
+                                  },
+                                  'spec': {
+                                    'containers': [
+                                      {
+                                        'command': [
+                                          '/bin/security-labeller',
+                                          '--namespaces=$(WATCH_NAMESPACE)',
+                                          '--extraCerts=/extra-certs'
+                                        ],
+                                        'env': [
+                                          {
+                                            'name': 'MY_POD_NAMESPACE',
+                                            'valueFrom': {
+                                              'fieldRef': {
+                                                'fieldPath': 'metadata.namespace'
+                                              }
+                                            }
+                                          },
+                                          {
+                                            'name': 'MY_POD_NAME',
+                                            'valueFrom': {
+                                              'fieldRef': {
+                                                'fieldPath': 'metadata.name'
+                                              }
+                                            }
+                                          },
+                                          {
+                                            'name': 'WATCH_NAMESPACE',
+                                            'valueFrom': {
+                                              'fieldRef': {
+                                                'fieldPath': 'metadata.annotations["olm.targetNamespaces"]'
+                                              }
+                                            }
+                                          }
+                                        ],
+                                        'image': 'registry.redhat.io/quay/quay-container-security-rhel8-operator@sha256:ecf1e5ad2616ace76253403b66858af7485810ad5972a08b0aecbd0cfd77caaa',
+                                        'name': 'container-security-operator',
+                                        'resources': {},
+                                        'volumeMounts': [
+                                          {
+                                            'mountPath': '/extra-certs',
+                                            'name': 'extra-certs',
+                                            'readOnly': true
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    'serviceAccountName': 'container-security-operator',
+                                    'volumes': [
+                                      {
+                                        'name': 'extra-certs',
+                                        'secret': {
+                                          'optional': true,
+                                          'secretName': 'container-security-operator-extra-certs'
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
                             }
-                          },
-                          'template': {
-                            'metadata': {
-                              'labels': {
-                                'name': 'container-security-operator-alm-owned'
-                              },
-                              'name': 'container-security-operator-alm-owned'
-                            },
-                            'spec': {
-                              'containers': [
+                          ],
+                          'permissions': [
+                            {
+                              'rules': [
                                 {
-                                  'command': [
-                                    '/bin/security-labeller',
-                                    '--namespaces=$(WATCH_NAMESPACE)'
+                                  'apiGroups': [
+                                    'secscan.quay.redhat.com'
                                   ],
-                                  'env': [
-                                    {
-                                      'name': 'MY_POD_NAMESPACE',
-                                      'valueFrom': {
-                                        'fieldRef': {
-                                          'fieldPath': 'metadata.namespace'
-                                        }
-                                      }
-                                    },
-                                    {
-                                      'name': 'MY_POD_NAME',
-                                      'valueFrom': {
-                                        'fieldRef': {
-                                          'fieldPath': 'metadata.name'
-                                        }
-                                      }
-                                    },
-                                    {
-                                      'name': 'WATCH_NAMESPACE',
-                                      'valueFrom': {
-                                        'fieldRef': {
-                                          'fieldPath': 'metadata.annotations[\'olm.targetNamespaces\']'
-                                        }
-                                      }
-                                    }
+                                  'resources': [
+                                    'imagemanifestvulns',
+                                    'imagemanifestvulns/status'
                                   ],
-                                  'image': 'quay.io/quay/container-security-operator@sha256:15a4b50d847512b5f404ec1cf72c30c98e073a7f26f1588213bd2e8b6331f016',
-                                  'name': 'container-security-operator'
+                                  'verbs': [
+                                    '*'
+                                  ]
+                                },
+                                {
+                                  'apiGroups': [
+                                    ''
+                                  ],
+                                  'resources': [
+                                    'pods',
+                                    'events'
+                                  ],
+                                  'verbs': [
+                                    '*'
+                                  ]
+                                },
+                                {
+                                  'apiGroups': [
+                                    ''
+                                  ],
+                                  'resources': [
+                                    'secrets'
+                                  ],
+                                  'verbs': [
+                                    'get'
+                                  ]
                                 }
                               ],
                               'serviceAccountName': 'container-security-operator'
                             }
-                          }
+                          ]
+                        },
+                        'strategy': 'deployment'
+                      },
+                      'installModes': [
+                        {
+                          'supported': true,
+                          'type': 'OwnNamespace'
+                        },
+                        {
+                          'supported': true,
+                          'type': 'SingleNamespace'
+                        },
+                        {
+                          'supported': true,
+                          'type': 'MultiNamespace'
+                        },
+                        {
+                          'supported': true,
+                          'type': 'AllNamespaces'
                         }
-                      }
-                    ],
-                    'permissions': [
-                      {
-                        'rules': [
-                          {
-                            'apiGroups': [
-                              'secscan.quay.redhat.com'
-                            ],
-                            'resources': [
-                              'imagemanifestvulns',
-                              'imagemanifestvulns/status'
-                            ],
-                            'verbs': [
-                              '*'
-                            ]
-                          },
-                          {
-                            'apiGroups': [
-                              ''
-                            ],
-                            'resources': [
-                              'pods',
-                              'events'
-                            ],
-                            'verbs': [
-                              '*'
-                            ]
-                          },
-                          {
-                            'apiGroups': [
-                              ''
-                            ],
-                            'resources': [
-                              'secrets'
-                            ],
-                            'verbs': [
-                              'get'
-                            ]
-                          }
-                        ],
-                        'serviceAccountName': 'container-security-operator'
-                      }
-                    ]
-                  },
-                  'strategy': 'deployment'
-                },
-                'installModes': [
-                  {
-                    'supported': true,
-                    'type': 'OwnNamespace'
-                  },
-                  {
-                    'supported': true,
-                    'type': 'SingleNamespace'
-                  },
-                  {
-                    'supported': true,
-                    'type': 'MultiNamespace'
-                  },
-                  {
-                    'supported': true,
-                    'type': 'AllNamespaces'
+                      ],
+                      'keywords': [
+                        'open source',
+                        'containers',
+                        'security'
+                      ],
+                      'labels': {
+                        'alm-owner-container-security-operator': 'container-security-operator',
+                        'operated-by': 'container-security-operator'
+                      },
+                      'links': [
+                        {
+                          'name': 'Source Code',
+                          'url': 'https://github.com/quay/container-security-operator'
+                        }
+                      ],
+                      'maintainers': [
+                        {
+                          'email': 'quay-devel@redhat.com',
+                          'name': 'Quay Engineering Team'
+                        }
+                      ],
+                      'maturity': 'alpha',
+                      'provider': {
+                        'name': 'Red Hat'
+                      },
+                      'selector': {
+                        'matchLabels': {
+                          'alm-owner-container-security-operator': 'container-security-operator',
+                          'operated-by': 'container-security-operator'
+                        }
+                      },
+                      'version': '3.3.1'
+                    }
                   }
-                ],
-                'keywords': [
-                  'open source',
-                  'containers',
-                  'security'
-                ],
-                'labels': {
-                  'alm-owner-container-security-operator': 'container-security-operator',
-                  'operated-by': 'container-security-operator'
-                },
-                'links': [
-                  {
-                    'name': 'Operator Source Code',
-                    'url': 'https://github.com/quay/container-security-operator'
-                  },
-                  {
-                    'name': 'Source Code',
-                    'url': 'https://github.com/quay/container-security-operator'
-                  }
-                ],
-                'maintainers': [
-                  {
-                    'email': 'quay-devel@redhat.com',
-                    'name': 'Quay Engineering Team'
-                  }
-                ],
-                'maturity': 'alpha',
-                'provider': {
-                  'name': 'Red Hat'
-                },
-                'replaces': 'container-security-operator.v1.0.0',
-                'selector': {
-                  'matchLabels': {
-                    'alm-owner-container-security-operator': 'container-security-operator',
-                    'operated-by': 'container-security-operator'
-                  }
-                },
-                'version': '1.0.1'
-              }
-            },
-            'status': {
-              'Validity': {}
-            }
-          },
-          {
-            'complianceType': 'musthave',
-            'objectDefinition': {
-              'apiVersion': 'operators.coreos.com/v1alpha1',
-              'kind': 'Subscription',
-              'metadata': {
-                'name': 'container-security-operator',
-                'namespace': 'openshift-operators'
-              },
-              'spec': {
-                'channel': 'alpha',
-                'installPlanApproval': 'Automatic',
-                'name': 'container-security-operator',
-                'source': 'community-operators',
-                'sourceNamespace': 'openshift-marketplace',
-                'startingCSV': 'container-security-operator.v1.0.1'
-              }
-            },
-            'status': {
-              'Validity': {}
-            }
-          },
-          {
-            'complianceType': 'mustnothave',
-            'objectDefinition': {
-              'apiVersion': 'secscan.quay.redhat.com/v1alpha1',
-              'kind': 'ImageManifestVuln'
-            },
-            'status': {
-              'Validity': {}
-            }
-          }
-        ],
-        'remediationAction': 'enforce'
-      },
-      'status': {
-        'placementBindings': [
-          'binding-policy-imagemanifestvulnpolicy'
-        ],
-        'placementPolicies': [
-          'placement-policy-imagemanifestvulnpolicy'
-        ],
-        'status': {
-          'calamari': {
-            'aggregatePoliciesStatus': {
-              'default.policy-imagemanifestvulnpolicy': {
-                'compliant': 'NonCompliant'
-              }
-            },
-            'clustername': 'calamari',
-            'compliant': 'NonCompliant'
-          }
-        }
-      }
-    },
-    'remediation': 'enforce',
-    'policyCompliant': '1/1',
-    'clusterCompliant': '1/1',
-    'clusterNS': {
-      'calamari': 'calamari'
-    },
-    'clusterConsoleURL': {
-      'calamari': 'https://console-openshift-console.apps.calamari.dev08.red-chesterfield.com'
-    },
-    'placementPolicies': [
-      {
-        'metadata': {
-          'name': 'placement-policy-imagemanifestvulnpolicy',
-          'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/placement-policy-imagemanifestvulnpolicy',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementPolicy'
-      }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-policy-imagemanifestvulnpolicy',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-policy-imagemanifestvulnpolicy',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementBinding'
-      }
-    ],
-    '__typename': 'Compliance'
-  },
-  {
-    'metadata': {
-      'name': 'policy-trustedcontainer',
-      'namespace': 'default',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-trustedcontainer',
-      'annotations': {
-        'policy.open-cluster-management.io/categories': 'PR.PT Protective Technology',
-        'policy.open-cluster-management.io/controls': 'PR.PT-3 Least Functionality',
-        'policy.open-cluster-management.io/standards': 'NIST-CSF',
-        'seed-generation': '1'
-      },
-      'resourceVersion': '1660137',
-      '__typename': 'Metadata'
-    },
-    'name': 'policy-trustedcontainer',
-    'namespace': 'default',
-    'raw': {
-      'apiVersion': 'policy.open-cluster-management.io/v1',
-      'kind': 'Policy',
-      'metadata': {
-        'annotations': {
-          'policy.open-cluster-management.io/categories': 'PR.PT Protective Technology',
-          'policy.open-cluster-management.io/controls': 'PR.PT-3 Least Functionality',
-          'policy.open-cluster-management.io/standards': 'NIST-CSF',
-          'seed-generation': '1'
-        },
-        'creationTimestamp': '2020-04-01T18:24:54Z',
-        'finalizers': [
-          'propagator.finalizer.calamari.ibm.com'
-        ],
-        'generation': 15,
-        'name': 'policy-trustedcontainer',
-        'namespace': 'default',
-        'resourceVersion': '1660137',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-trustedcontainer',
-        'uid': '5d69a681-0662-42c2-a1b1-559af4e48263'
-      },
-      'spec': {
-        'complianceType': 'musthave',
-        'disabled': false,
-        'namespaces': {
-          'exclude': [
-            'kube-*'
-          ],
-          'include': [
-            'default'
-          ]
-        },
-        'policy-templates': [
-          {
-            'objectDefinition': {
-              'apiVersion': 'policies.ibm.com/v1alpha1',
-              'kind': 'TrustedContainerPolicy',
-              'metadata': {
-                'name': 'example-trustedcontainerpolicy'
-              },
-              'spec': {
-                'imageRegistry': 'quay.io',
-                'namespaceSelector': {
-                  'exclude': [
-                    'kube-system'
-                  ],
-                  'include': [
-                    'default'
-                  ]
-                },
-                'remediationAction': 'inform',
-                'severity': 'low'
-              }
-            },
-            'status': {
-              'Validity': {}
-            }
-          }
-        ],
-        'remediationAction': 'inform'
-      },
-      'status': {
-        'placementBindings': [
-          'binding-policy-trustedcontainer'
-        ],
-        'placementPolicies': [
-          'placement-policy-trustedcontainer'
-        ],
-        'status': {
-          'calamari': {
-            'aggregatePoliciesStatus': {
-              'default.policy-trustedcontainer': {
-                'compliant': 'Compliant'
-              }
-            },
-            'clustername': 'calamari',
-            'compliant': 'Compliant'
-          }
-        }
-      }
-    },
-    'remediation': 'inform',
-    'policyCompliant': '0/1',
-    'clusterCompliant': '0/1',
-    'clusterNS': {
-      'calamari': 'calamari'
-    },
-    'clusterConsoleURL': {
-      'calamari': 'https://console-openshift-console.apps.calamari.dev08.red-chesterfield.com'
-    },
-    'placementPolicies': [
-      {
-        'metadata': {
-          'name': 'placement-policy-trustedcontainer',
-          'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/placement-policy-trustedcontainer',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementPolicy'
-      }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-policy-trustedcontainer',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-policy-trustedcontainer',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementBinding'
-      }
-    ],
-    '__typename': 'Compliance'
-  },
-  {
-    'metadata': {
-      'name': 'policy2',
-      'namespace': 'default',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy2',
-      'annotations': {
-        'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity, RBAC, PR.PT Protective Technology',
-        'policy.open-cluster-management.io/controls': 'MutationAdvisor, PR.PT-3 Least Functionality',
-        'policy.open-cluster-management.io/standards': 'NIST, NIST-CSF',
-        'seed-generation': '1'
-      },
-      'resourceVersion': '1522048',
-      '__typename': 'Metadata'
-    },
-    'name': 'policy2',
-    'namespace': 'default',
-    'raw': {
-      'apiVersion': 'policy.open-cluster-management.io/v1',
-      'kind': 'Policy',
-      'metadata': {
-        'annotations': {
-          'policy.open-cluster-management.io/categories': 'SystemAndInformationIntegrity, RBAC, PR.PT Protective Technology',
-          'policy.open-cluster-management.io/controls': 'MutationAdvisor, PR.PT-3 Least Functionality',
-          'policy.open-cluster-management.io/standards': 'NIST, NIST-CSF',
-          'seed-generation': '1'
-        },
-        'creationTimestamp': '2020-04-01T16:03:32Z',
-        'finalizers': [
-          'propagator.finalizer.calamari.ibm.com'
-        ],
-        'generation': 5,
-        'name': 'policy2',
-        'namespace': 'default',
-        'resourceVersion': '1522048',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy2',
-        'uid': '1f9f4400-9acf-4301-960d-e1036721f250'
-      },
-      'spec': {
-        'complianceType': 'musthave',
-        'disabled': false,
-        'namespaces': {
-          'exclude': [
-            'kube-*'
-          ],
-          'include': [
-            'default'
-          ]
-        },
-        'object-templates': [
-          {
-            'complianceType': 'musthave',
-            'objectDefinition': {
-              'apiVersion': 'stable.example.com/v1',
-              'kind': 'Arik',
-              'metadata': {
-                'name': 'arik'
-              },
-              'spec': {
-                'team': 'kni'
-              }
-            },
-            'status': {
-              'Validity': {}
-            }
-          }
-        ],
-        'remediationAction': 'enforce'
-      },
-      'status': {
-        'placementBindings': [
-          'binding-policy2'
-        ],
-        'placementPolicies': [
-          'placement-policy2'
-        ],
-        'status': {
-          'calamari': {
-            'aggregatePoliciesStatus': {
-              'default.policy2': {
-                'compliant': 'Compliant'
-              }
-            },
-            'clustername': 'calamari',
-            'compliant': 'Compliant'
-          }
-        }
-      }
-    },
-    'remediation': 'enforce',
-    'policyCompliant': '0/1',
-    'clusterCompliant': '0/1',
-    'clusterNS': {
-      'calamari': 'calamari'
-    },
-    'clusterConsoleURL': {
-      'calamari': 'https://console-openshift-console.apps.calamari.dev08.red-chesterfield.com'
-    },
-    'placementPolicies': [
-      {
-        'metadata': {
-          'name': 'placement-policy2',
-          'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/placement-policy2',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementPolicy'
-      }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-policy2',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-policy2',
-          '__typename': 'Metadata'
-        },
-        '__typename': 'PlacementBinding'
-      }
-    ],
-    '__typename': 'Compliance'
-  },
-  {
-    'metadata': {
-      'name': 'policy-auth-provider',
-      'namespace': 'open-cluster-management-policies',
-      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/open-cluster-management-policies/policies/policy-auth-provider',
-      'annotations': {
-        'policy.open-cluster-management.io/categories': 'PR.IP Information Protection Processes and Procedures',
-        'policy.open-cluster-management.io/controls': 'PR.IP-1 Baseline Configuration',
-        'policy.open-cluster-management.io/standards': 'NIST-CSF',
-        'seed-generation': '1'
-      },
-      'resourceVersion': '1512420',
-      '__typename': 'Metadata'
-    },
-    'name': 'policy-auth-provider',
-    'namespace': 'open-cluster-management-policies',
-    'raw': {
-      'apiVersion': 'policy.open-cluster-management.io/v1',
-      'kind': 'Policy',
-      'metadata': {
-        'annotations': {
-          'policy.open-cluster-management.io/categories': 'PR.IP Information Protection Processes and Procedures',
-          'policy.open-cluster-management.io/controls': 'PR.IP-1 Baseline Configuration',
-          'policy.open-cluster-management.io/standards': 'NIST-CSF',
-          'seed-generation': '1'
-        },
-        'creationTimestamp': '2020-04-01T15:44:21Z',
-        'finalizers': [
-          'propagator.finalizer.calamari.ibm.com'
-        ],
-        'generation': 5,
-        'name': 'policy-auth-provider',
-        'namespace': 'open-cluster-management-policies',
-        'resourceVersion': '1512420',
-        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/open-cluster-management-policies/policies/policy-auth-provider',
-        'uid': '354c89ce-8b4e-41a0-aaae-6d5518f891da'
-      },
-      'spec': {
-        'complianceType': 'musthave',
-        'disabled': false,
-        'namespaces': {
-          'exclude': [
-            'kube-*'
-          ],
-          'include': [
-            'openshift-config'
-          ]
-        },
-        'object-templates': [
-          {
-            'complianceType': 'musthave',
-            'objectDefinition': {
-              'apiVersion': 'config.openshift.io/v1',
-              'kind': 'OAuth',
-              'metadata': {
-                'name': 'cluster'
-              },
-              'spec': {
-                'identityProviders': [
-                  {
-                    'htpasswd': {
-                      'fileData': {
-                        'name': 'htpass-secret'
-                      }
-                    },
-                    'mappingMethod': 'claim',
-                    'name': 'htpassidp',
-                    'type': 'HTPasswd'
-                  }
-                ],
-                'tokenConfig': {
-                  'accessTokenMaxAgeSeconds': 7776000
                 }
-              }
-            },
-            'status': {
-              'Validity': {}
-            }
-          },
-          {
-            'complianceType': 'musthave',
-            'objectDefinition': {
-              'apiVersion': 'v1',
-              'data': {
-                'htpasswd': 'am9obmRvZTokYXByMSQvNldoZnh0diRncXpoSUZZSkd5Uk10TWQvNXFDei4uCm1kZWxkZXI6JGFwcjEkLzZXaGZ4dHYkZ3F6aElGWUpHeVJNdE1kLzVxQ3ouLgo='
-              },
-              'kind': 'Secret',
-              'metadata': {
-                'name': 'htpass-secret',
-                'namespace': 'openshift-config'
-              },
-              'type': 'Opaque'
-            },
-            'status': {
-              'Validity': {}
+              ],
+              'remediationAction': 'inform',
+              'severity': 'high'
             }
           }
-        ],
-        'remediationAction': 'enforce'
-      },
-      'status': {
-        'placementBindings': [
-          'binding-policy-auth-provider'
-        ],
-        'placementPolicies': [
-          'placement-policy-oauth-provider'
-        ],
-        'status': {
-          'calamari': {
-            'aggregatePoliciesStatus': {
-              'open-cluster-management-policies.policy-auth-provider': {
-                'compliant': 'Compliant'
-              }
+        },
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'ConfigurationPolicy',
+            'metadata': {
+              'name': 'my-test-policy-imagemanifestvulnpolicy-example-sub'
             },
-            'clustername': 'calamari',
-            'compliant': 'Compliant'
+            'spec': {
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*'
+                ],
+                'include': [
+                  '*'
+                ]
+              },
+              'object-templates': [
+                {
+                  'complianceType': 'musthave',
+                  'objectDefinition': {
+                    'apiVersion': 'operators.coreos.com/v1alpha1',
+                    'kind': 'Subscription',
+                    'metadata': {
+                      'name': 'container-security-operator',
+                      'namespace': 'openshift-operators'
+                    },
+                    'spec': {
+                      'channel': 'quay-v3.3',
+                      'installPlanApproval': 'Automatic',
+                      'name': 'container-security-operator',
+                      'source': 'redhat-operators',
+                      'sourceNamespace': 'openshift-marketplace',
+                      'startingCSV': 'container-security-operator.v3.3.1'
+                    }
+                  }
+                }
+              ],
+              'remediationAction': 'inform',
+              'severity': 'high'
+            }
+          }
+        },
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'ConfigurationPolicy',
+            'metadata': {
+              'name': 'my-test-policy-imagemanifestvulnpolicy-example-imv'
+            },
+            'spec': {
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*'
+                ],
+                'include': [
+                  '*'
+                ]
+              },
+              'object-templates': [
+                {
+                  'complianceType': 'mustnothave',
+                  'objectDefinition': {
+                    'apiVersion': 'secscan.quay.redhat.com/v1alpha1',
+                    'kind': 'ImageManifestVuln'
+                  }
+                }
+              ],
+              'remediationAction': 'inform',
+              'severity': 'high'
+            }
           }
         }
-      }
+      ],
+      'remediationAction': 'inform'
     },
-    'remediation': 'enforce',
-    'policyCompliant': '0/1',
-    'clusterCompliant': '0/1',
-    'clusterNS': {
-      'calamari': 'calamari'
-    },
-    'clusterConsoleURL': {
-      'calamari': 'https://console-openshift-console.apps.calamari.dev08.red-chesterfield.com'
-    },
-    'placementPolicies': [
-      {
-        'metadata': {
-          'name': 'placement-policy-oauth-provider',
-          'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/open-cluster-management-policies/placementrules/placement-policy-oauth-provider',
-          '__typename': 'Metadata'
+    'status': {
+      'placement': [
+        {
+          'placementBinding': 'binding-my-test-policy-imagemanifestvulnpolicy',
+          'placementRule': 'placement-my-test-policy-imagemanifestvulnpolicy'
+        }
+      ],
+      'status': [
+        {
+          'clustername': 'local-cluster',
+          'clusternamespace': 'local-cluster',
+          'compliant': 'NonCompliant'
         },
-        '__typename': 'PlacementPolicy'
+        {
+          'clustername': 'managed01',
+          'clusternamespace': 'managed01',
+          'compliant': 'NonCompliant'
+        }
+      ]
+    }
+  },
+  'remediation': 'inform',
+  'policyCompliant': '0/0',
+  'clusterCompliant': '2/2/0',
+  'clusterNS': {
+    'local-cluster': 'local-cluster',
+    'managed01': 'managed01'
+  },
+  'clusterConsoleURL': {
+    'local-cluster': 'https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com',
+    'managed01': 'https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com'
+  },
+  'placementPolicies': [
+    {
+      '__typename': 'PlacementPolicy',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'placement-my-test-policy-imagemanifestvulnpolicy',
+        'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/placement-my-test-policy-imagemanifestvulnpolicy'
       }
-    ],
-    'placementBindings': [
-      {
-        'metadata': {
-          'name': 'binding-policy-auth-provider',
-          'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/open-cluster-management-policies/placementbindings/binding-policy-auth-provider',
-          '__typename': 'Metadata'
+    }
+  ],
+  'placementBindings': [
+    {
+      '__typename': 'PlacementBinding',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'binding-my-test-policy-imagemanifestvulnpolicy',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-my-test-policy-imagemanifestvulnpolicy'
+      }
+    }
+  ]
+},
+{
+  '__typename': 'Compliance',
+  'metadata': {
+    '__typename': 'Metadata',
+    'name': 'my-test-policy-securitycontextconstraints',
+    'namespace': 'default',
+    'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/my-test-policy-securitycontextconstraints',
+    'annotations': {
+      'policy.open-cluster-management.io/categories': 'SI System and Information Integrity',
+      'policy.open-cluster-management.io/controls': 'SI-3 Malicious Code Protection',
+      'policy.open-cluster-management.io/standards': 'NIST SP 800-53'
+    },
+    'resourceVersion': '13957135'
+  },
+  'name': 'my-test-policy-securitycontextconstraints',
+  'namespace': 'default',
+  'raw': {
+    'apiVersion': 'policy.open-cluster-management.io/v1',
+    'kind': 'Policy',
+    'metadata': {
+      'annotations': {
+        'policy.open-cluster-management.io/categories': 'SI System and Information Integrity',
+        'policy.open-cluster-management.io/controls': 'SI-3 Malicious Code Protection',
+        'policy.open-cluster-management.io/standards': 'NIST SP 800-53'
+      },
+      'creationTimestamp': '2020-10-21T16:30:42Z',
+      'generation': 1,
+      'managedFields': [
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:status': {
+              '.': {},
+              'f:placement': {}
+            }
+          },
+          'manager': 'governance-policy-propagator',
+          'operation': 'Update',
+          'time': '2020-10-21T16:30:42Z'
         },
-        '__typename': 'PlacementBinding'
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:metadata': {
+              'f:annotations': {
+                '.': {},
+                'f:policy.open-cluster-management.io/categories': {},
+                'f:policy.open-cluster-management.io/controls': {},
+                'f:policy.open-cluster-management.io/standards': {}
+              }
+            },
+            'f:spec': {
+              '.': {},
+              'f:disabled': {},
+              'f:policy-templates': {},
+              'f:remediationAction': {}
+            }
+          },
+          'manager': 'unknown',
+          'operation': 'Update',
+          'time': '2020-10-21T16:30:42Z'
+        }
+      ],
+      'name': 'my-test-policy-securitycontextconstraints',
+      'namespace': 'default',
+      'resourceVersion': '13957135',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/my-test-policy-securitycontextconstraints',
+      'uid': '8a78588e-de6b-4582-b2f5-73ea8e498cf8'
+    },
+    'spec': {
+      'disabled': false,
+      'policy-templates': [
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'ConfigurationPolicy',
+            'metadata': {
+              'name': 'policy-securitycontextconstraints-example'
+            },
+            'spec': {
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*'
+                ],
+                'include': [
+                  'default'
+                ]
+              },
+              'object-templates': [
+                {
+                  'complianceType': 'musthave',
+                  'objectDefinition': {
+                    'allowHostDirVolumePlugin': false,
+                    'allowHostIPC': false,
+                    'allowHostNetwork': false,
+                    'allowHostPID': false,
+                    'allowHostPorts': false,
+                    'allowPrivilegeEscalation': true,
+                    'allowPrivilegedContainer': false,
+                    'allowedCapabilities': [],
+                    'apiVersion': 'security.openshift.io/v1',
+                    'defaultAddCapabilities': [],
+                    'fsGroup': {
+                      'type': 'MustRunAs'
+                    },
+                    'groups': [
+                      'system:authenticated'
+                    ],
+                    'kind': 'SecurityContextConstraints',
+                    'metadata': {
+                      'annotations': {
+                        'kubernetes.io/description': 'restricted denies access to all host features and requires pods to be run with a UID, and SELinux context that are allocated to the namespace.  This is the most restrictive SCC and it is used by default for authenticated users.'
+                      },
+                      'name': 'sample-restricted-scc'
+                    },
+                    'priority': 10,
+                    'readOnlyRootFilesystem': false,
+                    'requiredDropCapabilities': [
+                      'KILL',
+                      'MKNOD',
+                      'SETUID',
+                      'SETGID'
+                    ],
+                    'runAsUser': {
+                      'type': 'MustRunAsRange'
+                    },
+                    'seLinuxContext': {
+                      'type': 'MustRunAs'
+                    },
+                    'supplementalGroups': {
+                      'type': 'RunAsAny'
+                    },
+                    'users': [],
+                    'volumes': [
+                      'configMap',
+                      'downwardAPI',
+                      'emptyDir',
+                      'persistentVolumeClaim',
+                      'projected',
+                      'secret'
+                    ]
+                  }
+                }
+              ],
+              'remediationAction': 'inform',
+              'severity': 'high'
+            }
+          }
+        }
+      ],
+      'remediationAction': 'inform'
+    },
+    'status': {
+      'placement': [
+        {
+          'placementBinding': 'binding-my-test-policy-securitycontextconstraints'
+        }
+      ]
+    }
+  },
+  'remediation': 'inform',
+  'policyCompliant': '0/0',
+  'clusterCompliant': '-',
+  'clusterNS': {
+    'local-cluster': 'local-cluster',
+    'managed01': 'managed01'
+  },
+  'clusterConsoleURL': {
+    'local-cluster': 'https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com',
+    'managed01': 'https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com'
+  },
+  'placementPolicies': [],
+  'placementBindings': [
+    {
+      '__typename': 'PlacementBinding',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'binding-my-test-policy-securitycontextconstraints',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-my-test-policy-securitycontextconstraints'
       }
-    ],
-    '__typename': 'Compliance'
-  }
-]
+    }
+  ]
+},
+{
+  '__typename': 'Compliance',
+  'metadata': {
+    '__typename': 'Metadata',
+    'name': 'my-test-policy-iampolicy',
+    'namespace': 'default',
+    'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/my-test-policy-iampolicy',
+    'annotations': {
+      'policy.open-cluster-management.io/categories': 'PR.AC Identity Management Authentication and Access Control',
+      'policy.open-cluster-management.io/controls': 'PR.AC-4 Access Control',
+      'policy.open-cluster-management.io/standards': 'NIST-CSF'
+    },
+    'resourceVersion': '13972498'
+  },
+  'name': 'my-test-policy-iampolicy',
+  'namespace': 'default',
+  'raw': {
+    'apiVersion': 'policy.open-cluster-management.io/v1',
+    'kind': 'Policy',
+    'metadata': {
+      'annotations': {
+        'policy.open-cluster-management.io/categories': 'PR.AC Identity Management Authentication and Access Control',
+        'policy.open-cluster-management.io/controls': 'PR.AC-4 Access Control',
+        'policy.open-cluster-management.io/standards': 'NIST-CSF'
+      },
+      'creationTimestamp': '2020-10-21T16:50:52Z',
+      'generation': 1,
+      'managedFields': [
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:status': {
+              '.': {},
+              'f:placement': {},
+              'f:status': {}
+            }
+          },
+          'manager': 'governance-policy-propagator',
+          'operation': 'Update',
+          'time': '2020-10-21T16:50:52Z'
+        },
+        {
+          'apiVersion': 'policy.open-cluster-management.io/v1',
+          'fieldsType': 'FieldsV1',
+          'fieldsV1': {
+            'f:metadata': {
+              'f:annotations': {
+                '.': {},
+                'f:policy.open-cluster-management.io/categories': {},
+                'f:policy.open-cluster-management.io/controls': {},
+                'f:policy.open-cluster-management.io/standards': {}
+              }
+            },
+            'f:spec': {
+              '.': {},
+              'f:disabled': {},
+              'f:policy-templates': {},
+              'f:remediationAction': {}
+            }
+          },
+          'manager': 'unknown',
+          'operation': 'Update',
+          'time': '2020-10-21T16:50:52Z'
+        }
+      ],
+      'name': 'my-test-policy-iampolicy',
+      'namespace': 'default',
+      'resourceVersion': '13972498',
+      'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/my-test-policy-iampolicy',
+      'uid': 'ed06b1fd-48fb-417f-ad9e-642ca88159a2'
+    },
+    'spec': {
+      'disabled': false,
+      'policy-templates': [
+        {
+          'objectDefinition': {
+            'apiVersion': 'policy.open-cluster-management.io/v1',
+            'kind': 'IamPolicy',
+            'metadata': {
+              'name': 'my-test-policy-iampolicy-example'
+            },
+            'spec': {
+              'maxClusterRoleBindingUsers': 5,
+              'namespaceSelector': {
+                'exclude': [
+                  'kube-*',
+                  'openshift-*'
+                ],
+                'include': [
+                  '*'
+                ]
+              },
+              'remediationAction': 'inform',
+              'severity': 'medium'
+            }
+          }
+        }
+      ],
+      'remediationAction': 'inform'
+    },
+    'status': {
+      'placement': [
+        {
+          'placementBinding': 'binding-my-test-policy-iampolicy',
+          'placementRule': 'placement-my-test-policy-iampolicy'
+        }
+      ],
+      'status': [
+        {
+          'clustername': 'local-cluster',
+          'clusternamespace': 'local-cluster'
+        }
+      ]
+    }
+  },
+  'remediation': 'inform',
+  'policyCompliant': '0/0',
+  'clusterCompliant': '0/1/1',
+  'clusterNS': {
+    'managed01': 'managed01',
+    'local-cluster': 'local-cluster'
+  },
+  'clusterConsoleURL': {
+    'managed01': 'https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com',
+    'local-cluster': 'https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com'
+  },
+  'placementPolicies': [
+    {
+      '__typename': 'PlacementPolicy',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'placement-my-test-policy-iampolicy',
+        'selfLink': '/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/placement-my-test-policy-iampolicy'
+      }
+    }
+  ],
+  'placementBindings': [
+    {
+      '__typename': 'PlacementBinding',
+      'metadata': {
+        '__typename': 'Metadata',
+        'name': 'binding-my-test-policy-iampolicy',
+        'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/placementbindings/binding-my-test-policy-iampolicy'
+      }
+    }
+  ]
+}]
 
 export const findings = [
   {
