@@ -16,6 +16,7 @@ import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
 import { formatPoliciesToClustersTableData } from '../common/FormatTableData'
 import resources from '../../../lib/shared/resources'
+import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 
 resources(() => {
   require('../../../scss/grc-toggle-module.scss')
@@ -58,13 +59,23 @@ class GrcToggleModule extends React.Component {
           {toggleIndex===0 && <div className='grc-view-by-policies-table'>
             <PatternFlyTable
               {...tableDataByPolicies}
+              searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
               noResultMsg={msgs.get('table.search.no.results', locale)}
+              areActionsDisabled={false}
+              dropdownPosition={'right'}
+              dropdownDirection={'up'}
+              resourceType={RESOURCE_TYPES.HCM_POLICIES_PER_POLICY}
             />
           </div>}
           {toggleIndex===1 && <div className='grc-view-by-clusters-table'>
             <PatternFlyTable
               {...tableDataByCLusters}
+              searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
               noResultMsg={msgs.get('table.search.no.results', locale)}
+              areActionsDisabled={false}
+              dropdownPosition={'right'}
+              dropdownDirection={'up'}
+              resourceType={RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER}
             />
           </div>}
         </div>
