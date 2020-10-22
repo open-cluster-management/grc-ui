@@ -488,11 +488,7 @@ exports[`SecondaryHeader component 4 renders as expected 1`] = `
 </div>
 `;
 
-exports[`SecondaryHeader component 5 renderBreadCrumb1 as expected 1`] = `undefined`;
-
-exports[`SecondaryHeader component 5 renderBreadCrumb2 as expected 1`] = `Array []`;
-
-exports[`SecondaryHeader component 5 renderBreadCrumb3 as expected 1`] = `
+exports[`SecondaryHeader component 5 renderBreadCrumb should return an array of links given an array of breadcrumbItems 1`] = `
 Array [
   <div
     className="bx--breadcrumb-item"
@@ -534,6 +530,8 @@ Array [
   </div>,
 ]
 `;
+
+exports[`SecondaryHeader component 5 renderBreadCrumb should return an empty array given an empty array of breadcrumbItems 1`] = `Array []`;
 
 exports[`SecondaryHeader component 5 renderHeader with description 1`] = `
 <div

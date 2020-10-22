@@ -133,6 +133,7 @@ function checkPolicySummaryCards(browser) {
           // Verify and iterate over two violation links on card: 1) Cluster 2) Policy
           browser.expect.element(cardInfo).to.have.property('childElementCount').equals(2)
           for (let i = 1; i <= 2; i++) {
+            browser.waitForElementVisible(browser.dynamicSelector('summaryCardsInfo_Content', cardNum, i))
             browser.click(browser.dynamicSelector('summaryCardsInfo_Content', cardNum, i))
             // Check to see whether filters were applied on click
             browser.api.element('@resourceFilterBarClear', (result2) => {
@@ -140,6 +141,10 @@ function checkPolicySummaryCards(browser) {
                 // First violation selection of each card is cluster (no expandable row), second is policy
                 verifyTable(browser, i === 1)
                 browser.click('@resourceFilterBarClear')
+                // Clicking a card collapses the cards, so we need to re-expand them
+                browser.expect.element('@summaryInfoContainer').to.not.be.visible
+                browser.click('@summaryCollapse')
+                browser.waitForElementVisible('@summaryInfoContainer')
               } else {
                 browser.assert.fail(`Filters should have appeared after clicking part ${i} of GRC card ${cardNum} but were not present.`)
               }
