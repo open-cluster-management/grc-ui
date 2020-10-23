@@ -8,8 +8,7 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 const parser = require('../utils/yamlHelper')
-
-import truncate from '../../src-web/util/truncate-middle'
+const truncate = require('../../src-web/util/truncate-middle')
 
 module.exports = {
   elements: {
