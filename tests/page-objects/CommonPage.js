@@ -9,6 +9,8 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 const parser = require('../utils/yamlHelper')
 
+import truncate from '../../src-web/util/truncate-middle'
+
 module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
@@ -288,7 +290,7 @@ function testPolicyStatusTabSearching(){
   this.api.getText('.policy-details-message', (result) => {
     if (result && result.value ) {
       // get policy status tab message field text
-      let policyStatusMessage = result.value
+      let policyStatusMessage = truncate(result.value, 300)
       if (typeof policyStatusMessage === 'string' && policyStatusMessage.length > 0) {
         this.log(`searching text is ${policyStatusMessage}`)
         this.setPatternFlySearchValue(policyStatusMessage)
