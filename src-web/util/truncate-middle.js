@@ -9,7 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-module.exports.truncate = function (fullStr, strLen, separator) {
+module.exports = function (fullStr, strLen, separator) {
   if (fullStr === null || typeof fullStr === 'undefined') {
     return fullStr
   }
