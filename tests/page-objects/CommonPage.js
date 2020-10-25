@@ -289,6 +289,7 @@ function testPolicyStatusTabSearching(){
   this.api.getText('.policy-details-message', (result) => {
     if (result && result.value ) {
       // get policy status tab message field text
+      this.log(`searching text before truncate is ${result.value}`)
       let policyStatusMessage = truncate(result.value, 300)
       if (typeof policyStatusMessage === 'string' && policyStatusMessage.length > 0) {
         this.log(`searching text is ${policyStatusMessage}`)
