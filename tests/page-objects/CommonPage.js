@@ -292,7 +292,7 @@ function testPolicyStatusTabSearching(){
       let policyStatusMessage = result.value
       this.log(`searching text before truncate is ${policyStatusMessage}`)
       if (typeof policyStatusMessage === 'string' && policyStatusMessage.length > 0) {
-        policyStatusMessage = truncate(result.value, 300).replace('View details', '')
+        policyStatusMessage = truncate(policyStatusMessage.replace('View details', ''), 300)
         this.log(`searching text after truncate is ${policyStatusMessage}`)
         this.setPatternFlySearchValue(policyStatusMessage)
         this.waitForElementNotPresent('@PatternFlyTabEmptyState')
