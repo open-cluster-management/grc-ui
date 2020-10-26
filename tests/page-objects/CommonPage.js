@@ -21,6 +21,9 @@ module.exports = {
     yamlMonacoEditor: '.monaco-editor',
     searchInput: '#search',
     searchInputClear: '#search ~ .bx--search-close',
+    searchPatternFlyInput: '.pf-c-search-input__text-input',
+    searchPatternFlyInputClear: '.pattern-fly-table-group .pf-c-search-input .pf-c-search-input__clear .pf-c-button',
+    PatternFlyTabEmptyState: '.pattern-fly-table-group .pattern-fly-table .pf-c-empty-state__content',
     overflowButton: '.bx--overflow-menu:nth-of-type(1)',
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
@@ -52,10 +55,13 @@ module.exports = {
     deletePolicy,
     checkStatus,
     setSearchValue,
+    setPatternFlySearchValue,
     clearSearchValue,
+    clearPatternFlySearchValue,
     log,
     enforcePolicy,
     informPolicy,
+    testPolicyStatusTabSearching,
     tryEnable,
     tryDisable,
     clickButtonOnOverflowModal,
@@ -180,6 +186,7 @@ function checkStatus(name, violationExpected, violationText) {
   this.waitForElementPresent('#status-tab')
   this.click('#status-tab')
   this.waitForElementPresent('.policy-status-view')
+  this.testPolicyStatusTabSearching()
   this.log('Checking policy status by templates')
   this.waitForElementPresent('#policy-status-templates').click('#policy-status-templates')
   this.waitForElementPresent('.policy-status-by-templates-table')
@@ -236,15 +243,13 @@ function checkStatus(name, violationExpected, violationText) {
 }
 
 function searchPolicy(name, expectToDisplay) {
-  this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput').setSearchValue(name)
-  this.waitForElementVisible('@searchInput')
+  this.setSearchValue(name)
   if(expectToDisplay){
     this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(name)
-    this.click('@searchInput').clearValue('@searchInput')
+    this.clearSearchValue()
   } else{
     this.waitForElementNotPresent('tbody>tr')
-    this.click('@searchInput').clearValue('@searchInput')
+    this.clearSearchValue()
   }
 }
 
@@ -269,9 +274,45 @@ function clearSearchValue(){
   this.waitForElementNotVisible('@searchInputClear')
 }
 
+function clearPatternFlySearchValue(){
+  this.isVisible('@searchPatternFlyInputClear', result => {
+    if (result.value) {
+      this.click('@searchPatternFlyInputClear')
+    }
+  })
+  this.waitForElementNotPresent('@searchPatternFlyInputClear')
+}
+
+function testPolicyStatusTabSearching(){
+  this.log('Testing PsatternFly tab searching bar on policy status tab message field')
+  this.api.getText('.policy-details-message', (result) => {
+    if (result && result.value ) {
+      // get policy status tab message field text
+      let policyStatusMessage = result.value
+      this.log(`searching text before truncate is ${policyStatusMessage}`)
+      if (typeof policyStatusMessage === 'string' && policyStatusMessage.length > 0) {
+        policyStatusMessage = policyStatusMessage.replace('View details', '')
+        this.log(`searching text after truncate is ${policyStatusMessage}`)
+        this.setPatternFlySearchValue(policyStatusMessage)
+        this.waitForElementNotPresent('@PatternFlyTabEmptyState')
+        this.clearPatternFlySearchValue()
+      }
+    }
+  })
+}
+
 function setSearchValue(value){
   this.log(`Searching for policy: ${value}`)
+  this.waitForElementVisible('@searchInput')
   this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', value)
+  this.waitForElementVisible('@searchInput')
+}
+
+function setPatternFlySearchValue(value){
+  this.log(`Searching for PatternFly table: ${value}`)
+  this.waitForElementVisible('@searchPatternFlyInput')
+  this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput').setValue('@searchPatternFlyInput', value)
+  this.waitForElementVisible('@searchPatternFlyInput')
 }
 
 function log(message) {
