@@ -12,7 +12,7 @@ import React from 'react'
 import { Tooltip } from '@patternfly/react-core'
 import PropTypes from 'prop-types'
 import resources from '../../../lib/shared/resources'
-const truncate = require('../../util/truncate-middle')
+import truncate from '../../util/truncate-middle'
 
 resources(() => {
   require('../../../scss/textWithTruncation.scss')

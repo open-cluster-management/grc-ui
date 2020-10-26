@@ -9,7 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-module.exports = function (fullStr, strLen, separator) {
+const truncate = function (fullStr, strLen, separator) {
   if (fullStr === null || typeof fullStr === 'undefined') {
     return fullStr
   }
@@ -27,3 +27,5 @@ module.exports = function (fullStr, strLen, separator) {
 
   return fullStr.substr(0, frontChars) + separator + fullStr.substr(fullStr.length - backChars)
 }
+
+export default truncate

@@ -8,7 +8,6 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 const parser = require('../utils/yamlHelper')
-const truncate = require('../../src-web/util/truncate-middle')
 
 module.exports = {
   elements: {
@@ -292,7 +291,7 @@ function testPolicyStatusTabSearching(){
       let policyStatusMessage = result.value
       this.log(`searching text before truncate is ${policyStatusMessage}`)
       if (typeof policyStatusMessage === 'string' && policyStatusMessage.length > 0) {
-        policyStatusMessage = truncate(policyStatusMessage.replace('View details', ''), 300)
+        policyStatusMessage = policyStatusMessage.replace('View details', '')
         this.log(`searching text after truncate is ${policyStatusMessage}`)
         this.setPatternFlySearchValue(policyStatusMessage)
         this.waitForElementNotPresent('@PatternFlyTabEmptyState')
