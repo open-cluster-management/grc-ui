@@ -23,6 +23,8 @@ import {
 import { SearchIcon } from '@patternfly/react-icons'
 import resources from '../../../lib/shared/resources'
 import moment from 'moment'
+import {connect} from 'react-redux'
+import { resourceActions } from './ResourceTableRowMenuItemActions'
 
 resources(() => {
   require('../../../scss/pattern-fly-table.scss')
@@ -41,6 +43,7 @@ class PatternFlyTable extends React.Component {
       endIdx: this.props.perPage,
       searchValue: ''
     }
+    this.tableActionResolver = this.tableActionResolver.bind(this)
   }
   static defaultProps = {
     pagination: true,
@@ -139,6 +142,25 @@ class PatternFlyTable extends React.Component {
       searchValue: value
     })
   }
+  tableActionResolver(rowData) {
+    const { getResourceAction, resourceType} = this.props
+    const viewClusterAction =
+    rowData
+      ? [
+        {
+          isSeparator: true
+        },
+        {
+          title: 'Third action',
+          onClick: () =>
+            getResourceAction('table.actions.enforce', rowData, resourceType)
+        }
+      ]
+      : []
+    return [
+      ...viewClusterAction
+    ]
+  }
   render() {
     const { sortBy, rows = [], itemCount, searchValue } = this.state
     const {
@@ -148,10 +170,9 @@ class PatternFlyTable extends React.Component {
       pagination,
       searchable,
       searchPlaceholder,
-      actionResolver,
       areActionsDisabled,
       dropdownPosition,
-      dropdownDirection
+      dropdownDirection,
     } = this.props
     const classes = classNames('pattern-fly-table', className)
     return (
@@ -169,7 +190,7 @@ class PatternFlyTable extends React.Component {
             onSort={this.handleSort}
             cells={columns}
             rows={rows}
-            actionResolver={actionResolver}
+            actionResolver={this.tableActionResolver}
             areActionsDisabled={areActionsDisabled}
             dropdownPosition={dropdownPosition}
             dropdownDirection={dropdownDirection}
@@ -207,8 +228,6 @@ class PatternFlyTable extends React.Component {
 }
 
 PatternFlyTable.propTypes = {
-  /* Resolver for the given action (optional) */
-  actionResolver: PropTypes.func,
   /* Specifies if the Kebab for actions is disabled (optional) */
   areActionsDisabled: PropTypes.bool,
   /* Add class names in addition to the defaults to the PatternFly table (optional) */
@@ -221,12 +240,14 @@ PatternFlyTable.propTypes = {
   /* The desired position to show the dropdown when clicking on the actions Kebab.
   Can only be used together with `actions` property (optional) */
   dropdownPosition: PropTypes.string,
+  getResourceAction: PropTypes.func,
   /* Message when no results are displayed in the table */
   noResultMsg: PropTypes.string,
   /* Toggle pagination (optional) */
   pagination: PropTypes.bool,
   /* Number of rows displayed per page for pagination */
   perPage: PropTypes.oneOf([5, 10, 20, 50]),
+  resourceType: PropTypes.object,
   /* Table row content */
   rows: PropTypes.array,
   /* Placeholder text for search input field */
@@ -240,4 +261,11 @@ PatternFlyTable.propTypes = {
   }),
 }
 
-export default PatternFlyTable
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getResourceAction: (action, resource, resourceType) =>
+      resourceActions(action, dispatch, resourceType, resource)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(PatternFlyTable)
