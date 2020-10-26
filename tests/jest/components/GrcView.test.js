@@ -23,6 +23,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
+import toJson from 'enzyme-to-json'
 import { createMemoryHistory } from 'history'
 import {
   ExclamationCircleIcon as MockExclamationCircleIcon,
@@ -41,6 +42,8 @@ const history = createMemoryHistory({
     'hash':''
   }
 })
+// Set key so that it's not regenerated every time
+history.location.key='s4wxvc'
 
 // mock Icons so that tooltip won't render in any cases
 // otherwise it is going to throw TypeError: element.addEventListener is not a function
@@ -58,7 +61,7 @@ describe('GrcView component 1', () => {
     pathname: '/multicloud/policies/all'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = shallow(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -76,7 +79,7 @@ describe('GrcView component 1', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -84,7 +87,7 @@ describe('GrcView component 2', () => {
   const location = {
     pathname: '/multicloud/policies/all'
   }
-  it('renders as expected', () => {
+  it('shows loading when given loading:true', () => {
     const component = renderer.create(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
@@ -110,7 +113,7 @@ describe('GrcView component 3', () => {
   const location = {
     pathname: '/multicloud/policies/all'
   }
-  it('renders as expected', () => {
+  it('gives an error notification given an error object', () => {
     const component = renderer.create(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>

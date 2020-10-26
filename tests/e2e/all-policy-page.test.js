@@ -73,7 +73,7 @@ module.exports = {
   },
 
   'GRC All policy page: Verify summary table': (browser) => {
-    page.verifySummary(browser, `${browser.launch_url}${config.get('contextPath')}/all`)
+    page.verifySummary(`${browser.launch_url}${config.get('contextPath')}/all`)
   },
 
   'GRC All policy page: Test pagination': (browser) => {

@@ -15,6 +15,8 @@ module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
     table: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra',
+    tableExpandableRowButton: 'button.bx--table-expand-v2__button:nth-of-type(1)',
+    tableExpandedRow: 'tr.bx--expandable-row-v2:nth-of-type(2)',
     createPolicyButton: '#create-policy',
     submitCreatePolicyButton: '#create-button-portal-id',
     resetEditor: 'div.creation-view-yaml-header div.editor-bar-button[title="Reset"]',
@@ -23,6 +25,7 @@ module.exports = {
     searchInputClear: '#search ~ .bx--search-close',
     searchResult: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td',
     resourceFilterBar: 'div.resource-filter-bar > span',
+    resourceFilterBarClear: 'div.resource-filter-bar > span.button',
     filterButton: '#resource-toolbar > div > div > div.resource-filter-button',
     filterMenu: '#resource-toolbar > div.resource-filter-view',
     filterSectionTitles: '#resource-toolbar > div.resource-filter-view > div.filter-sections-container > div > div.filter-section > div.filter-section-title',
@@ -33,14 +36,22 @@ module.exports = {
     toggleButtonClusterViolations: '#cluster-violations-1',
     allTableClusterHeading: '.bx--data-table-v2 > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1) > div:nth-child(1) > span:nth-child(1)',
     allTablePolicyHeading: '.bx--data-table-v2 > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(2) > div:nth-child(1) > span:nth-child(1)',
-    overflowMenu: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
+    overflowMenuToggle: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
+    overflowMenuBox: 'body > ul.bx--overflow-menu-options',
     overflowViewClusters: 'body > ul.bx--overflow-menu-options > li:nth-child(1) > button',
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
     noResource: '.no-resource',
-    summaryInfoContainer: 'div.module-grc-cards > div.card-container-container',
-    summaryDropdown: 'div.module-grc-cards > div:nth-child(1) > div:nth-child(2) > div > div:nth-child(1)',
-    summaryDropdownBox: 'div.module-grc-cards > div:nth-child(1) > div:nth-child(2) > div > div:nth-child(2) > div',
+    summaryCardCount: 'button#summary-toggle .grc-cards-count > .pf-c-label__content',
+    summaryCollapse: 'button#summary-toggle > span.pf-c-accordion__toggle-icon',
+    summaryInfoContainer: 'div.module-grc-cards > dl > dd.grc-cards-container',
+    summaryOptions: 'div.module-grc-cards > dl > div.header-options',
+    summaryDropdown: 'div.module-grc-cards > dl > div.header-options > .pf-c-dropdown > button#grc-cards-toggle',
+    summaryDropdownBox: 'div.module-grc-cards > dl > div.header-options > .pf-c-dropdown > ul > li',
+    summaryCards: 'div.module-grc-cards > dl > dd > div > div',
+    summaryCardsInfo: 'div.module-grc-cards > dl > dd > div > div:nth-child(%s) > div.card-container > div.card-content > div:nth-child(2)',
+    summaryCardsInfo_Empty: 'div.module-grc-cards > dl > dd > div > div:nth-child(%s) > div.card-container > div.card-content > div:nth-child(2) > .empty-violations-strip',
+    summaryCardsInfo_Content: 'div.module-grc-cards > dl > dd > div > div:nth-child(%s) > div.card-container > div.card-content > div:nth-child(2) > div:nth-child(%s)',
     policyNameInput: '#name',
     namespaceDropdown: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box',
     namespaceDropdownBox: '.creation-view-controls-container > div > div:nth-child(2) > div.bx--list-box > div.bx--list-box__menu > div',
@@ -68,6 +79,11 @@ module.exports = {
     disableCheckbox: '#disabled',
   },
   commands: [{
+    dynamicSelector(selectorRef, ...params) {
+      let selectorStr = this.elements[selectorRef].selector
+      params.forEach(param => selectorStr = selectorStr.replace('%s', param))
+      return selectorStr
+    },
     createTestPolicy,
     testDetailsPage,
     testFilters,
@@ -80,77 +96,97 @@ module.exports = {
     verifyToggle
   }]
 }
-function verifySummary(browser, url) {
-  this.waitForElementVisible('button.collapse > span.collapse-button')
+function verifySummary(url) {
+  this.waitForElementVisible('@summaryCollapse')
   this.waitForElementVisible('@summaryInfoContainer')
+  // Collapse the cards (both the cards and the dropdown should disappear)
   this.navigate(url + '?card=false&index=0')
   this.waitForElementNotPresent('@summaryInfoContainer')
+  this.waitForElementNotPresent('@summaryOptions')
+  // Expand the cards
   this.navigate(url + '?card=true&index=0')
   this.waitForElementVisible('@summaryInfoContainer')
-  //standards summary
+  // Standards summary
   this.waitForElementVisible('@summaryDropdown')
   this.click('@summaryDropdown')
-  browser.pause(1000)//wait 1s for every click
-  //Categories summary
+  // Select 'Categories' in the cards dropdown
   this.click('@summaryDropdownBox:nth-child(1)')
-  browser.pause(1000)
-  checkPolicySummaryCards.call(this, browser)
-  browser.pause(1000)//wait 1s for checkPolicySummaryCards func
-  //Standards summary
+  checkPolicySummaryCards(this)
+  // Select 'Standards' in the cards dropdown
   this.click('@summaryDropdown')
-  browser.pause(1000)
   this.click('@summaryDropdownBox:nth-child(2)')
-  browser.pause(1000)
-  checkPolicySummaryCards.call(this, browser)
+  checkPolicySummaryCards(this)
 }
 function checkPolicySummaryCards(browser) {
-  browser.elements('css selector', 'div.module-grc-cards > div:nth-child(2) > div', (cards) => {
-    for (let cardNum = 1; cardNum < cards.value.length + 1; cardNum++) {
-      for (let i = 1; i <= 2; i++) {
-        const cardInfo = `div.module-grc-cards > div:nth-child(2) > div:nth-child(${cardNum}) > div > div > div:nth-child(2)`
-        this.waitForElementVisible(cardInfo)
-        browser.element('css selector', cardInfo + ' > .empty-violations-strip', function (result) {
-          if (result.value === false) {
-            this.click(cardInfo + ` > div:nth-child(${i})`)
-            browser.pause(1000)
-            browser.element('css selector', '.resource-filter-bar > span.button', function (result2) {
-              if (result2.value !== false) {
-                //first card of each category is cluster (no drop-down), second is policy
-                verifyTable(browser, (i % 2 !== 0))
-                this.click('div.resource-filter-bar > span.button')
-                browser.pause(1000)//wait 1s for cleaning resource filters
+  // Get all cards and iterate over them
+  browser.api.elements('@summaryCards', (cards) => {
+    const numCards = cards.value.length
+    // Check number displayed matches number of cards
+    browser.expect.element('@summaryCardCount').text.to.equal(numCards.toString())
+    for (let cardNum = 1; cardNum <= numCards; cardNum++) {
+      const cardInfo = browser.dynamicSelector('summaryCardsInfo', cardNum)
+      browser.waitForElementVisible(cardInfo)
+      // Check to make sure it's not a card with no violations
+      const emptyCard = browser.dynamicSelector('summaryCardsInfo_Empty', cardNum)
+      browser.api.element('css selector', emptyCard, (result) => {
+        if (result.status === -1) {
+          // Verify and iterate over two violation links on card: 1) Cluster 2) Policy
+          browser.expect.element(cardInfo).to.have.property('childElementCount').equals(2)
+          for (let i = 1; i <= 2; i++) {
+            browser.waitForElementVisible(browser.dynamicSelector('summaryCardsInfo_Content', cardNum, i))
+            browser.click(browser.dynamicSelector('summaryCardsInfo_Content', cardNum, i))
+            // Check to see whether filters were applied on click
+            browser.api.element('@resourceFilterBarClear', (result2) => {
+              if (result2.status !== -1) {
+                // First violation selection of each card is cluster (no expandable row), second is policy
+                verifyTable(browser, i === 1)
+                browser.click('@resourceFilterBarClear')
+                // Clicking a card collapses the cards, so we need to re-expand them
+                browser.expect.element('@summaryInfoContainer').to.not.be.visible
+                browser.click('@summaryCollapse')
+                browser.waitForElementVisible('@summaryInfoContainer')
+              } else {
+                browser.assert.fail(`Filters should have appeared after clicking part ${i} of GRC card ${cardNum} but were not present.`)
               }
             })
           }
-        })
-      }
+        } else {
+          browser.assert.ok(true, `GRC Card ${cardNum} has no violations.`)
+        }
+      })
     }
   })
 }
 function verifyTable(browser, cluster) {
-  browser.element('css selector', 'div.no-resource', function (result) {
-    if (result.status !== -1) {
-      this.waitForElementVisible('div.no-resource')
-    }
-    else {
-      this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  browser.api.element('@noResource', (result) => {
+    if (result.status === -1) {
+      browser.waitForElementVisible('@table')
+      // For policy table, check that rows expand to show placement
       if (!cluster) {
-        this.click('button.bx--table-expand-v2__button:nth-of-type(1)')
-        this.waitForElementVisible('tr.bx--expandable-row-v2:nth-of-type(2)')
-        this.click('button.bx--table-expand-v2__button:nth-of-type(1)')
-        this.waitForElementVisible('tr.bx--expandable-row-v2:nth-of-type(2)')
-        this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(9) > div > svg')
-        this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-        this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(1)')
+        browser.click('@tableExpandableRowButton')
+        browser.waitForElementVisible('@tableExpandedRow')
+        browser.expect.element('@tableExpandedRow').to.have.attribute('data-child-row').equals('true')
+        browser.click('@tableExpandableRowButton')
+        browser.waitForElementNotPresent('@tableExpandedRow')
       }
-      else {
-        this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(5) > div > svg')
-        this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
-        this.click('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(1)')
+      // Check side panel
+      browser.click('@overflowMenuToggle')
+      // *** SIDE PANEL IS CURRENTLY DISABLED ***
+      // this.click('@overflowViewClusters')
+      // browser.waitForElementVisible('@sidePolicyPanel')
+      // browser.click('@sidePolicyPanelClose')
+      // browser.waitForElementNotPresent('@sidePolicyPanel')
+
+      // *** TEMPORARY TEST WITHOUT SIDE PANEL ***
+      // Open overflow, verify it's not "View", and close overflow menu
+      browser.expect.element('@overflowMenuBox').to.be.present
+      if (cluster) {
+        browser.expect.element('@overflowViewClusters').text.to.equal('Launch cluster')
+      } else {
+        browser.expect.element('@overflowViewClusters').text.to.equal('Edit')
       }
-      this.waitForElementVisible('div.bx--modal.is-visible')
-      this.click('button.bx--modal-close')
-      this.waitForElementNotPresent('div.bx--modal.is-visible')
+      browser.click('@overflowMenuToggle')
+      browser.expect.element('@overflowMenuBox').to.not.be.present
     }
   })
 }
@@ -175,7 +211,7 @@ function verifyPagination() {
 }
 /* Test side panel */
 function testPolicySidePanel() {
-  this.click('@overflowMenu')
+  this.click('@overflowMenuToggle')
   this.click('@overflowViewClusters')
   this.waitForElementVisible('@sidePolicyPanel')
   this.waitForElementNotPresent('@spinner')

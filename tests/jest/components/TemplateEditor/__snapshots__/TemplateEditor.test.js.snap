@@ -90,22 +90,14 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 >
                   *
                 </div>
-                <div
-                  className="bx--tooltip-icon"
+                <svg
+                  aria-describedby="pf-tooltip-1"
+                  className="info-icon"
                 >
-                  <button
-                    aria-label="The namespace to create and store the policy on the hub cluster."
-                    className="bx--tooltip__trigger bx--tooltip--icon__top"
-                  >
-                    <svg
-                      className="info-icon"
-                    >
-                      <use
-                        href="#diagramIcons_info"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
               <div
                 aria-label="Choose an item"
@@ -173,22 +165,14 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 >
                   *
                 </div>
-                <div
-                  className="bx--tooltip-icon"
+                <svg
+                  aria-describedby="pf-tooltip-2"
+                  className="info-icon"
                 >
-                  <button
-                    aria-label="The parameter section that describes which set of rules will validate a cluster."
-                    className="bx--tooltip__trigger bx--tooltip--icon__top"
-                  >
-                    <svg
-                      className="info-icon"
-                    >
-                      <use
-                        href="#diagramIcons_info"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
               <div
                 aria-label="specs"
@@ -288,22 +272,14 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="creation-view-controls-multiselect-title"
               >
                 Cluster binding
-                <div
-                  className="bx--tooltip-icon"
+                <svg
+                  aria-describedby="pf-tooltip-3"
+                  className="info-icon"
                 >
-                  <button
-                    aria-label="Fill the required parameter field to select the cluster where your policy is applied. The placement policy and placement binding are required, and added into the YAML file."
-                    className="bx--tooltip__trigger bx--tooltip--icon__top"
-                  >
-                    <svg
-                      className="info-icon"
-                    >
-                      <use
-                        href="#diagramIcons_info"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
               <div
                 aria-label="clusters"
@@ -403,22 +379,14 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="creation-view-controls-multiselect-title"
               >
                 Standards
-                <div
-                  className="bx--tooltip-icon"
+                <svg
+                  aria-describedby="pf-tooltip-4"
+                  className="info-icon"
                 >
-                  <button
-                    aria-label="The name or names of security standards your policy should validate. You can only create a new label by adding it directly into the YAML file."
-                    className="bx--tooltip__trigger bx--tooltip--icon__top"
-                  >
-                    <svg
-                      className="info-icon"
-                    >
-                      <use
-                        href="#diagramIcons_info"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
               <div
                 aria-label="standards"
@@ -518,22 +486,14 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="creation-view-controls-multiselect-title"
               >
                 Categories
-                <div
-                  className="bx--tooltip-icon"
+                <svg
+                  aria-describedby="pf-tooltip-5"
+                  className="info-icon"
                 >
-                  <button
-                    aria-label="A security control category represent specific requirements for one or more standards. You can only create a new label by adding it directly into the YAML file."
-                    className="bx--tooltip__trigger bx--tooltip--icon__top"
-                  >
-                    <svg
-                      className="info-icon"
-                    >
-                      <use
-                        href="#diagramIcons_info"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
               <div
                 aria-label="categories"
@@ -633,22 +593,14 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 className="creation-view-controls-multiselect-title"
               >
                 Controls
-                <div
-                  className="bx--tooltip-icon"
+                <svg
+                  aria-describedby="pf-tooltip-6"
+                  className="info-icon"
                 >
-                  <button
-                    aria-label="The control contains the instructions for ensuring that a policy meets the security requirements for one or more standards. You can only create a new label by adding it directly into the YAML file."
-                    className="bx--tooltip__trigger bx--tooltip--icon__top"
-                  >
-                    <svg
-                      className="info-icon"
-                    >
-                      <use
-                        href="#diagramIcons_info"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
               <div
                 aria-label="controls"
@@ -770,22 +722,14 @@ exports[`TemplateEditor component renders as expected 1`] = `
               <div>
                 Enforce if supported
               </div>
-              <div
-                className="bx--tooltip-icon"
+              <svg
+                aria-describedby="pf-tooltip-7"
+                className="info-icon"
               >
-                <button
-                  aria-label="Select Enforce, if the feature is supported for your policy, to update remediationAction. When Enforce is not selected, the parameter value for remediationAction is inform."
-                  className="bx--tooltip__trigger bx--tooltip--icon__top"
-                >
-                  <svg
-                    className="info-icon"
-                  >
-                    <use
-                      href="#diagramIcons_info"
-                    />
-                  </svg>
-                </button>
-              </div>
+                <use
+                  href="#diagramIcons_info"
+                />
+              </svg>
             </div>
             <div
               className="creation-view-controls-checkbox"
@@ -816,22 +760,14 @@ exports[`TemplateEditor component renders as expected 1`] = `
               <div>
                 Disable policy
               </div>
-              <div
-                className="bx--tooltip-icon"
+              <svg
+                aria-describedby="pf-tooltip-8"
+                className="info-icon"
               >
-                <button
-                  aria-label="Select to disable the policy from being propagated to the managed cluster. If selected, the policy can be re-enabled from the dropdown menu in the policies table."
-                  className="bx--tooltip__trigger bx--tooltip--icon__top"
-                >
-                  <svg
-                    className="info-icon"
-                  >
-                    <use
-                      href="#diagramIcons_info"
-                    />
-                  </svg>
-                </button>
-              </div>
+                <use
+                  href="#diagramIcons_info"
+                />
+              </svg>
             </div>
           </div>
         </div>

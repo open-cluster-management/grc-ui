@@ -1,32 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`formatExpandablePolicies should correctly format 1`] = `
+exports[`formatExpandablePolicies should correctly add expandable data for table 1`] = `
 Array [
   Object {
     "__typename": "Compliance",
-    "clusterCompliant": "0/2",
+    "clusterCompliant": "0/2/0",
+    "clusterConsoleURL": Object {
+      "local-cluster": "https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com",
+      "managed01": "https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com",
+    },
+    "clusterNS": Object {
+      "local-cluster": "local-cluster",
+      "managed01": "managed01",
+    },
     "metadata": Object {
       "__typename": "Metadata",
       "annotations": Object {
-        "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-        "policy.open-cluster-management.io/controls": "VA",
-        "policy.open-cluster-management.io/standards": "BSA",
-        "seed-generation": "1",
+        "policy.open-cluster-management.io/categories": "PR.PT Protective Technology, PR.IP Information Protection Processes and Procedures, PR.DS Data Security",
+        "policy.open-cluster-management.io/controls": "PR.PT-3 Least Functionality, PR.IP-1 Baseline Configuration, PR.DS-2 Data-in-transit",
+        "policy.open-cluster-management.io/standards": "NIST-CSF",
       },
       "name": "my-policy-test",
-      "namespace": "calamari",
-      "resourceVersion": "1524346",
-      "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/my-policy-test",
+      "namespace": "e2e-rbac-test-1",
+      "resourceVersion": "13096493",
+      "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-policy-test",
     },
     "name": "my-policy-test",
-    "namespace": "calamari",
+    "namespace": "e2e-rbac-test-1",
     "placementBindings": Array [
       Object {
         "__typename": "PlacementBinding",
         "metadata": Object {
           "__typename": "Metadata",
           "name": "binding-my-policy-test",
-          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-my-policy-test",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementbindings/binding-my-policy-test",
         },
       },
     ],
@@ -36,136 +43,160 @@ Array [
         "metadata": Object {
           "__typename": "Metadata",
           "name": "placement-my-policy-test",
-          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-my-policy-test",
+          "selfLink": "/apis/apps.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementrules/placement-my-policy-test",
         },
       },
     ],
-    "policyCompliant": "0/2",
+    "policyCompliant": "0/0",
     "raw": Object {
       "apiVersion": "policy.open-cluster-management.io/v1",
       "kind": "Policy",
       "metadata": Object {
         "annotations": Object {
-          "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections",
-          "policy.open-cluster-management.io/controls": "VA",
-          "policy.open-cluster-management.io/standards": "BSA",
-          "seed-generation": "1",
+          "policy.open-cluster-management.io/categories": "PR.PT Protective Technology, PR.IP Information Protection Processes and Procedures, PR.DS Data Security",
+          "policy.open-cluster-management.io/controls": "PR.PT-3 Least Functionality, PR.IP-1 Baseline Configuration, PR.DS-2 Data-in-transit",
+          "policy.open-cluster-management.io/standards": "NIST-CSF",
         },
-        "creationTimestamp": "2019-07-23T21:12:04Z",
-        "finalizers": Array [
-          "propagator.finalizer.calamari.ibm.com",
+        "creationTimestamp": "2020-10-20T21:38:16Z",
+        "generation": 1,
+        "managedFields": Array [
+          Object {
+            "apiVersion": "policy.open-cluster-management.io/v1",
+            "fieldsType": "FieldsV1",
+            "fieldsV1": Object {
+              "f:metadata": Object {
+                "f:annotations": Object {
+                  ".": Object {},
+                  "f:policy.open-cluster-management.io/categories": Object {},
+                  "f:policy.open-cluster-management.io/controls": Object {},
+                  "f:policy.open-cluster-management.io/standards": Object {},
+                },
+              },
+              "f:spec": Object {
+                ".": Object {},
+                "f:disabled": Object {},
+                "f:policy-templates": Object {},
+                "f:remediationAction": Object {},
+              },
+            },
+            "manager": "unknown",
+            "operation": "Update",
+            "time": "2020-10-20T21:38:16Z",
+          },
+          Object {
+            "apiVersion": "policy.open-cluster-management.io/v1",
+            "fieldsType": "FieldsV1",
+            "fieldsV1": Object {
+              "f:status": Object {
+                ".": Object {},
+                "f:placement": Object {},
+                "f:status": Object {},
+              },
+            },
+            "manager": "governance-policy-propagator",
+            "operation": "Update",
+            "time": "2020-10-20T21:38:50Z",
+          },
         ],
-        "generation": 7,
         "name": "my-policy-test",
-        "namespace": "calamari",
-        "resourceVersion": "1524346",
-        "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/my-policy-test",
-        "uid": "85840587-ad8e-11e9-8a41-005056a061f1",
+        "namespace": "e2e-rbac-test-1",
+        "resourceVersion": "13096493",
+        "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-policy-test",
+        "uid": "2ef56c99-355a-4162-bc7c-9ce07677b400",
       },
       "spec": Object {
-        "-templates": Array [
-          Object {
-            "Definition": Object {
-              "apiVersion": "v1",
-              "kind": "Pod",
-              "metadata": Object {
-                "name": "nginx-pod",
-              },
-              "spec": Object {
-                "containers": Array [
-                  Object {
-                    "image": "nginx:1.7.9",
-                    "name": "nginx",
-                    "ports": Array [
-                      Object {
-                        "containerPort": 80,
-                      },
-                    ],
-                  },
-                ],
-              },
-            },
-            "complianceType": "musthave",
-            "status": Object {
-              "Validity": Object {},
-            },
-          },
-        ],
-        "complianceType": "musthave",
-        "namespaces": Object {
-          "exclude": Array [
-            "kube-*",
-          ],
-          "include": Array [
-            "default",
-          ],
-        },
+        "disabled": false,
         "policy-templates": Array [
           Object {
-            "Definition": Object {
-              "apiVersion": "policies.ibm.com/v1alpha1",
-              "kind": "MutationPolicy",
+            "objectDefinition": Object {
+              "apiVersion": "policy.open-cluster-management.io/v1",
+              "kind": "ConfigurationPolicy",
               "metadata": Object {
-                "label": Object {
-                  "category": "System-Integrity",
-                },
-                "name": "mutation-policy-example",
+                "name": "my-policy-test-sample-nginx-pod",
               },
               "spec": Object {
-                "conditions": Object {
-                  "ownership": Array [
-                    "ReplicaSet",
-                    "Deployment",
-                    "DeamonSet",
-                    "ReplicationController",
-                  ],
-                },
                 "namespaceSelector": Object {
                   "exclude": Array [
-                    "kube-system",
+                    "kube-*",
                   ],
                   "include": Array [
                     "default",
-                    "kube-*",
                   ],
                 },
-                "remediationAction": "enforce",
+                "object-templates": Array [
+                  Object {
+                    "complianceType": "musthave",
+                    "objectDefinition": Object {
+                      "apiVersion": "v1",
+                      "kind": "Pod",
+                      "metadata": Object {
+                        "name": "sample-nginx-pod",
+                      },
+                      "spec": Object {
+                        "containers": Array [
+                          Object {
+                            "image": "nginx:1.7.9",
+                            "name": "nginx",
+                            "ports": Array [
+                              Object {
+                                "containerPort": 80,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+                "remediationAction": "inform",
+                "severity": "low",
               },
             },
-            "status": Object {
-              "Validity": Object {},
+          },
+          Object {
+            "objectDefinition": Object {
+              "apiVersion": "policy.open-cluster-management.io/v1",
+              "kind": "CertificatePolicy",
+              "metadata": Object {
+                "name": "my-policy-test-example",
+              },
+              "spec": Object {
+                "minimumDuration": "300h",
+                "namespaceSelector": Object {
+                  "exclude": Array [
+                    "kube-*",
+                  ],
+                  "include": Array [
+                    "default",
+                  ],
+                },
+                "remediationAction": "inform",
+                "severity": "low",
+              },
             },
           },
         ],
         "remediationAction": "enforce",
       },
       "status": Object {
-        "placementBindings": Array [
-          "binding-my-policy-test",
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-my-policy-test",
+            "placementRule": "placement-my-policy-test",
+          },
         ],
-        "placementPolicies": Array [
-          "placement-my-policy-test",
-        ],
-        "status": Object {
-          "cluster1": Object {
-            "aggregatePoliciesStatus": Object {
-              "my-policy-test": Object {
-                "compliant": "Compliant",
-              },
-            },
-            "clustername": "cluster1",
+        "status": Array [
+          Object {
+            "clustername": "local-cluster",
+            "clusternamespace": "local-cluster",
             "compliant": "Compliant",
           },
-          "clusterhub": Object {
-            "aggregatePoliciesStatus": Object {
-              "my-policy-test": Object {
-                "compliant": "Compliant",
-              },
-            },
-            "clustername": "clusterhub",
+          Object {
+            "clustername": "managed01",
+            "clusternamespace": "managed01",
             "compliant": "Compliant",
           },
-        },
+        ],
       },
     },
     "remediation": "enforce",
@@ -186,31 +217,36 @@ Array [
   },
   Object {
     "__typename": "Compliance",
-    "clusterCompliant": "1/2",
+    "clusterCompliant": "0/1/0",
+    "clusterConsoleURL": Object {
+      "local-cluster": "https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com",
+      "managed01": "https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com",
+    },
+    "clusterNS": Object {
+      "local-cluster": "local-cluster",
+      "managed01": "managed01",
+    },
     "metadata": Object {
       "__typename": "Metadata",
       "annotations": Object {
-        "kubectl.kubernetes.io/last-applied-configuration": "{\\"apiVersion\\":\\"policy.open-cluster-management.io/v1\\",\\"kind\\":\\"Policy\\",\\"metadata\\":{\\"annotations\\":{\\"policy.open-cluster-management.io/categories\\":\\"SystemAndInformationIntegrity\\",\\"policy.open-cluster-management.io/controls\\":\\"MutationAdvisor\\",\\"policy.open-cluster-management.io/standards\\":\\"NIST\\"},\\"name\\":\\"policy-ma\\",\\"namespace\\":\\"calamari\\"},\\"spec\\":{\\"policy-templates\\":[{\\"Definition\\":{\\"apiVersion\\":\\"policies.ibm.com/v1alpha1\\",\\"kind\\":\\"MutationPolicy\\",\\"metadata\\":{\\"label\\":{\\"category\\":\\"System-Integrity\\"},\\"name\\":\\"mutation-policy-example\\"},\\"spec\\":{\\"conditions\\":{\\"ownership\\":[\\"ReplicaSet\\",\\"Deployment\\",\\"DeamonSet\\",\\"ReplicationController\\"]},\\"namespaceSelector\\":{\\"exclude\\":[\\"kube-system\\"],\\"include\\":[\\"default\\",\\"kube-*\\"]},\\"remediationAction\\":\\"enforce\\"}}}],\\"remediationAction\\":\\"enforce\\"}}
-",
-        "policy.open-cluster-management.io/categories": "SystemAndInformationIntegrity",
-        "policy.open-cluster-management.io/controls": "MutationAdvisor",
-        "policy.open-cluster-management.io/standards": "NIST",
-        "seed-generation": "1",
+        "policy.open-cluster-management.io/categories": "PR.PT Protective Technology",
+        "policy.open-cluster-management.io/controls": "PR.PT-3 Least Functionality",
+        "policy.open-cluster-management.io/standards": "NIST-CSF",
       },
-      "name": "policy-ma",
-      "namespace": "calamari",
-      "resourceVersion": "1347579",
-      "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-ma",
+      "name": "my-test-policy-pod",
+      "namespace": "e2e-rbac-test-1",
+      "resourceVersion": "13096967",
+      "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-test-policy-pod",
     },
-    "name": "policy-ma",
-    "namespace": "calamari",
+    "name": "my-test-policy-pod",
+    "namespace": "e2e-rbac-test-1",
     "placementBindings": Array [
       Object {
         "__typename": "PlacementBinding",
         "metadata": Object {
           "__typename": "Metadata",
-          "name": "binding-ma",
-          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-ma",
+          "name": "binding-my-test-policy-pod",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementbindings/binding-my-test-policy-pod",
         },
       },
     ],
@@ -219,421 +255,314 @@ Array [
         "__typename": "PlacementPolicy",
         "metadata": Object {
           "__typename": "Metadata",
-          "name": "placement-ma",
-          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-ma",
+          "name": "placement-my-test-policy-pod",
+          "selfLink": "/apis/apps.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementrules/placement-my-test-policy-pod",
         },
       },
     ],
-    "policyCompliant": "1/2",
+    "policyCompliant": "0/0",
     "raw": Object {
       "apiVersion": "policy.open-cluster-management.io/v1",
       "kind": "Policy",
       "metadata": Object {
         "annotations": Object {
-          "kubectl.kubernetes.io/last-applied-configuration": "{\\"apiVersion\\":\\"policy.open-cluster-management.io/v1\\",\\"kind\\":\\"Policy\\",\\"metadata\\":{\\"annotations\\":{\\"policy.open-cluster-management.io/categories\\":\\"SystemAndInformationIntegrity\\",\\"policy.open-cluster-management.io/controls\\":\\"MutationAdvisor\\",\\"policy.open-cluster-management.io/standards\\":\\"NIST\\"},\\"name\\":\\"policy-ma\\",\\"namespace\\":\\"calamari\\"},\\"spec\\":{\\"policy-templates\\":[{\\"Definition\\":{\\"apiVersion\\":\\"policies.ibm.com/v1alpha1\\",\\"kind\\":\\"MutationPolicy\\",\\"metadata\\":{\\"label\\":{\\"category\\":\\"System-Integrity\\"},\\"name\\":\\"mutation-policy-example\\"},\\"spec\\":{\\"conditions\\":{\\"ownership\\":[\\"ReplicaSet\\",\\"Deployment\\",\\"DeamonSet\\",\\"ReplicationController\\"]},\\"namespaceSelector\\":{\\"exclude\\":[\\"kube-system\\"],\\"include\\":[\\"default\\",\\"kube-*\\"]},\\"remediationAction\\":\\"enforce\\"}}}],\\"remediationAction\\":\\"enforce\\"}}
-",
-          "policy.open-cluster-management.io/categories": "SystemAndInformationIntegrity",
-          "policy.open-cluster-management.io/controls": "MutationAdvisor",
-          "policy.open-cluster-management.io/standards": "NIST",
-          "seed-generation": "1",
+          "policy.open-cluster-management.io/categories": "PR.PT Protective Technology",
+          "policy.open-cluster-management.io/controls": "PR.PT-3 Least Functionality",
+          "policy.open-cluster-management.io/standards": "NIST-CSF",
         },
-        "creationTimestamp": "2019-07-16T13:18:48Z",
-        "finalizers": Array [
-          "propagator.finalizer.calamari.ibm.com",
+        "creationTimestamp": "2020-10-20T21:39:11Z",
+        "generation": 1,
+        "managedFields": Array [
+          Object {
+            "apiVersion": "policy.open-cluster-management.io/v1",
+            "fieldsType": "FieldsV1",
+            "fieldsV1": Object {
+              "f:metadata": Object {
+                "f:annotations": Object {
+                  ".": Object {},
+                  "f:policy.open-cluster-management.io/categories": Object {},
+                  "f:policy.open-cluster-management.io/controls": Object {},
+                  "f:policy.open-cluster-management.io/standards": Object {},
+                },
+              },
+              "f:spec": Object {
+                ".": Object {},
+                "f:disabled": Object {},
+                "f:policy-templates": Object {},
+                "f:remediationAction": Object {},
+              },
+            },
+            "manager": "unknown",
+            "operation": "Update",
+            "time": "2020-10-20T21:39:11Z",
+          },
+          Object {
+            "apiVersion": "policy.open-cluster-management.io/v1",
+            "fieldsType": "FieldsV1",
+            "fieldsV1": Object {
+              "f:status": Object {
+                ".": Object {},
+                "f:placement": Object {},
+                "f:status": Object {},
+              },
+            },
+            "manager": "governance-policy-propagator",
+            "operation": "Update",
+            "time": "2020-10-20T21:39:28Z",
+          },
         ],
-        "generation": 45,
-        "name": "policy-ma",
-        "namespace": "calamari",
-        "resourceVersion": "1347579",
-        "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-ma",
-        "uid": "3f218d45-a7cc-11e9-8a41-005056a061f1",
+        "name": "my-test-policy-pod",
+        "namespace": "e2e-rbac-test-1",
+        "resourceVersion": "13096967",
+        "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-test-policy-pod",
+        "uid": "d2e23078-5701-4df1-9d58-56a8f6b40777",
       },
       "spec": Object {
-        "namespaces": Object {},
+        "disabled": false,
         "policy-templates": Array [
           Object {
-            "Definition": Object {
-              "apiVersion": "policies.ibm.com/v1alpha1",
-              "kind": "MutationPolicy",
+            "objectDefinition": Object {
+              "apiVersion": "policy.open-cluster-management.io/v1",
+              "kind": "ConfigurationPolicy",
               "metadata": Object {
-                "label": Object {
-                  "category": "System-Integrity",
-                },
-                "name": "mutation-policy-example",
+                "name": "my-test-policy-pod-sample-nginx-pod",
               },
               "spec": Object {
-                "conditions": Object {
-                  "ownership": Array [
-                    "ReplicaSet",
-                    "Deployment",
-                    "DeamonSet",
-                    "ReplicationController",
-                  ],
-                },
                 "namespaceSelector": Object {
                   "exclude": Array [
-                    "kube-system",
+                    "kube-*",
                   ],
                   "include": Array [
                     "default",
-                    "kube-*",
                   ],
                 },
-                "remediationAction": "enforce",
+                "object-templates": Array [
+                  Object {
+                    "complianceType": "musthave",
+                    "objectDefinition": Object {
+                      "apiVersion": "v1",
+                      "kind": "Pod",
+                      "metadata": Object {
+                        "name": "sample-nginx-pod",
+                      },
+                      "spec": Object {
+                        "containers": Array [
+                          Object {
+                            "image": "nginx:1.7.9",
+                            "name": "nginx",
+                            "ports": Array [
+                              Object {
+                                "containerPort": 80,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+                "remediationAction": "inform",
+                "severity": "low",
               },
             },
-            "status": Object {
-              "Validity": Object {},
+          },
+        ],
+        "remediationAction": "inform",
+      },
+      "status": Object {
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-my-test-policy-pod",
+            "placementRule": "placement-my-test-policy-pod",
+          },
+        ],
+        "status": Array [
+          Object {
+            "clustername": "managed01",
+            "clusternamespace": "managed01",
+            "compliant": "Compliant",
+          },
+        ],
+      },
+    },
+    "remediation": "inform",
+    "subItems": Array [
+      Object {
+        "items": Array [
+          "binding-my-test-policy-pod",
+        ],
+        "name": "policy.pb",
+      },
+      Object {
+        "items": Array [
+          "placement-my-test-policy-pod",
+        ],
+        "name": "policy.pp",
+      },
+    ],
+  },
+  Object {
+    "__typename": "Compliance",
+    "clusterCompliant": "0/2/0",
+    "clusterConsoleURL": Object {
+      "local-cluster": "https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com",
+      "managed01": "https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com",
+    },
+    "clusterNS": Object {
+      "local-cluster": "local-cluster",
+      "managed01": "managed01",
+    },
+    "metadata": Object {
+      "__typename": "Metadata",
+      "annotations": Object {
+        "policy.open-cluster-management.io/categories": "PR.DS Data Security",
+        "policy.open-cluster-management.io/controls": "PR.DS-2 Data-in-transit",
+        "policy.open-cluster-management.io/standards": "NIST-CSF",
+      },
+      "name": "my-test-policy-cert",
+      "namespace": "e2e-rbac-test-1",
+      "resourceVersion": "13097316",
+      "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-test-policy-cert",
+    },
+    "name": "my-test-policy-cert",
+    "namespace": "e2e-rbac-test-1",
+    "placementBindings": Array [
+      Object {
+        "__typename": "PlacementBinding",
+        "metadata": Object {
+          "__typename": "Metadata",
+          "name": "binding-my-test-policy-cert",
+          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementbindings/binding-my-test-policy-cert",
+        },
+      },
+    ],
+    "placementPolicies": Array [
+      Object {
+        "__typename": "PlacementPolicy",
+        "metadata": Object {
+          "__typename": "Metadata",
+          "name": "placement-my-test-policy-cert",
+          "selfLink": "/apis/apps.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/placementrules/placement-my-test-policy-cert",
+        },
+      },
+    ],
+    "policyCompliant": "0/0",
+    "raw": Object {
+      "apiVersion": "policy.open-cluster-management.io/v1",
+      "kind": "Policy",
+      "metadata": Object {
+        "annotations": Object {
+          "policy.open-cluster-management.io/categories": "PR.DS Data Security",
+          "policy.open-cluster-management.io/controls": "PR.DS-2 Data-in-transit",
+          "policy.open-cluster-management.io/standards": "NIST-CSF",
+        },
+        "creationTimestamp": "2020-10-20T21:39:41Z",
+        "generation": 1,
+        "managedFields": Array [
+          Object {
+            "apiVersion": "policy.open-cluster-management.io/v1",
+            "fieldsType": "FieldsV1",
+            "fieldsV1": Object {
+              "f:metadata": Object {
+                "f:annotations": Object {
+                  ".": Object {},
+                  "f:policy.open-cluster-management.io/categories": Object {},
+                  "f:policy.open-cluster-management.io/controls": Object {},
+                  "f:policy.open-cluster-management.io/standards": Object {},
+                },
+              },
+              "f:spec": Object {
+                ".": Object {},
+                "f:disabled": Object {},
+                "f:policy-templates": Object {},
+                "f:remediationAction": Object {},
+              },
+            },
+            "manager": "unknown",
+            "operation": "Update",
+            "time": "2020-10-20T21:39:41Z",
+          },
+          Object {
+            "apiVersion": "policy.open-cluster-management.io/v1",
+            "fieldsType": "FieldsV1",
+            "fieldsV1": Object {
+              "f:status": Object {
+                ".": Object {},
+                "f:placement": Object {},
+                "f:status": Object {},
+              },
+            },
+            "manager": "governance-policy-propagator",
+            "operation": "Update",
+            "time": "2020-10-20T21:39:50Z",
+          },
+        ],
+        "name": "my-test-policy-cert",
+        "namespace": "e2e-rbac-test-1",
+        "resourceVersion": "13097316",
+        "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/e2e-rbac-test-1/policies/my-test-policy-cert",
+        "uid": "300dfae4-0977-4339-857d-91e48452a5e6",
+      },
+      "spec": Object {
+        "disabled": false,
+        "policy-templates": Array [
+          Object {
+            "objectDefinition": Object {
+              "apiVersion": "policy.open-cluster-management.io/v1",
+              "kind": "CertificatePolicy",
+              "metadata": Object {
+                "name": "my-test-policy-cert-example",
+              },
+              "spec": Object {
+                "minimumDuration": "300h",
+                "namespaceSelector": Object {
+                  "exclude": Array [
+                    "kube-*",
+                  ],
+                  "include": Array [
+                    "default",
+                  ],
+                },
+                "remediationAction": "inform",
+                "severity": "low",
+              },
             },
           },
         ],
         "remediationAction": "enforce",
       },
       "status": Object {
-        "placementBindings": Array [
-          "binding-ma",
-        ],
-        "placementPolicies": Array [
-          "placement-ma",
-        ],
-        "status": Object {
-          "cluster1": Object {
-            "aggregatePoliciesStatus": Object {
-              "policy-ma": Object {
-                "compliant": "NonCompliant",
-              },
-            },
-            "clustername": "cluster1",
-            "compliant": "NonCompliant",
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-my-test-policy-cert",
+            "placementRule": "placement-my-test-policy-cert",
           },
-          "clusterhub": Object {
-            "aggregatePoliciesStatus": Object {
-              "policy-ma": Object {
-                "compliant": "Compliant",
-              },
-            },
-            "clustername": "clusterhub",
+        ],
+        "status": Array [
+          Object {
+            "clustername": "local-cluster",
+            "clusternamespace": "local-cluster",
             "compliant": "Compliant",
           },
-        },
+          Object {
+            "clustername": "managed01",
+            "clusternamespace": "managed01",
+            "compliant": "Compliant",
+          },
+        ],
       },
     },
     "remediation": "enforce",
     "subItems": Array [
       Object {
         "items": Array [
-          "binding-ma",
+          "binding-my-test-policy-cert",
         ],
         "name": "policy.pb",
       },
       Object {
         "items": Array [
-          "placement-ma",
-        ],
-        "name": "policy.pp",
-      },
-    ],
-  },
-  Object {
-    "__typename": "Compliance",
-    "clusterCompliant": "0/2",
-    "metadata": Object {
-      "__typename": "Metadata",
-      "annotations": Object {
-        "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-        "policy.open-cluster-management.io/controls": "MutationAdvisor,CertificateManager",
-        "policy.open-cluster-management.io/standards": "NIST,HIPAA",
-        "seed-generation": "1",
-      },
-      "name": "policy-pod",
-      "namespace": "calamari",
-      "resourceVersion": "1524369",
-      "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-pod",
-    },
-    "name": "policy-pod",
-    "namespace": "calamari",
-    "placementBindings": Array [
-      Object {
-        "__typename": "PlacementBinding",
-        "metadata": Object {
-          "__typename": "Metadata",
-          "name": "binding-pod",
-          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-pod",
-        },
-      },
-    ],
-    "placementPolicies": Array [
-      Object {
-        "__typename": "PlacementPolicy",
-        "metadata": Object {
-          "__typename": "Metadata",
-          "name": "placement-pod",
-          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-pod",
-        },
-      },
-    ],
-    "policyCompliant": "0/2",
-    "raw": Object {
-      "apiVersion": "policy.open-cluster-management.io/v1",
-      "kind": "Policy",
-      "metadata": Object {
-        "annotations": Object {
-          "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-          "policy.open-cluster-management.io/controls": "MutationAdvisor,CertificateManager",
-          "policy.open-cluster-management.io/standards": "NIST,HIPAA",
-          "seed-generation": "1",
-        },
-        "creationTimestamp": "2019-07-16T13:16:46Z",
-        "finalizers": Array [
-          "propagator.finalizer.calamari.ibm.com",
-        ],
-        "generation": 20,
-        "name": "policy-pod",
-        "namespace": "calamari",
-        "resourceVersion": "1524369",
-        "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-pod",
-        "uid": "f61a25eb-a7cb-11e9-8a41-005056a061f1",
-      },
-      "spec": Object {
-        "-templates": Array [
-          Object {
-            "Definition": Object {
-              "apiVersion": "v1",
-              "kind": "Pod",
-              "metadata": Object {
-                "name": "nginx-pod",
-              },
-              "spec": Object {
-                "containers": Array [
-                  Object {
-                    "image": "nginx:1.7.9",
-                    "name": "nginx",
-                    "ports": Array [
-                      Object {
-                        "containerPort": 80,
-                      },
-                    ],
-                  },
-                ],
-              },
-            },
-            "complianceType": "musthave",
-            "status": Object {
-              "Validity": Object {},
-            },
-          },
-        ],
-        "complianceType": "musthave",
-        "namespaces": Object {
-          "exclude": Array [
-            "kube*",
-          ],
-          "include": Array [
-            "default",
-          ],
-        },
-        "remediationAction": "inform",
-      },
-      "status": Object {
-        "placementBindings": Array [
-          "binding-pod",
-        ],
-        "placementPolicies": Array [
-          "placement-pod",
-        ],
-        "status": Object {
-          "cluster1": Object {
-            "aggregatePoliciesStatus": Object {
-              "policy-pod": Object {
-                "compliant": "Compliant",
-              },
-            },
-            "clustername": "cluster1",
-            "compliant": "Compliant",
-          },
-          "clusterhub": Object {
-            "aggregatePoliciesStatus": Object {
-              "policy-pod": Object {
-                "compliant": "Compliant",
-              },
-            },
-            "clustername": "clusterhub",
-            "compliant": "Compliant",
-          },
-        },
-      },
-    },
-    "remediation": "inform",
-    "subItems": Array [
-      Object {
-        "items": Array [
-          "binding-pod",
-        ],
-        "name": "policy.pb",
-      },
-      Object {
-        "items": Array [
-          "placement-pod",
-        ],
-        "name": "policy.pp",
-      },
-    ],
-  },
-  Object {
-    "__typename": "Compliance",
-    "clusterCompliant": "0/2",
-    "metadata": Object {
-      "__typename": "Metadata",
-      "annotations": Object {
-        "kubectl.kubernetes.io/last-applied-configuration": "{\\"apiVersion\\":\\"policy.open-cluster-management.io/v1\\",\\"kind\\":\\"Policy\\",\\"metadata\\":{\\"annotations\\":{\\"policy.open-cluster-management.io/categories\\":\\"SystemAndCommunicationsProtections,SystemAndInformationIntegrity\\",\\"policy.open-cluster-management.io/controls\\":\\"MutationAdvisor,VA\\",\\"policy.open-cluster-management.io/standards\\":\\"NIST,HIPAA\\"},\\"name\\":\\"policy-role\\",\\"namespace\\":\\"calamari\\"},\\"spec\\":{\\"namespaces\\":{\\"exclude\\":[\\"kube*\\"],\\"include\\":[\\"default\\"]},\\"remediationAction\\":\\"inform\\",\\"role-templates\\":[{\\"apiVersion\\":\\"roletemplate.calamari.ibm.com/v1alpha1\\",\\"complianceType\\":\\"musthave\\",\\"metadata\\":{\\"name\\":\\"operator-role-policy\\",\\"namespace\\":\\"\\"},\\"rules\\":[{\\"complianceType\\":\\"musthave\\",\\"policyRule\\":{\\"apiGroups\\":[\\"extensions\\",\\"apps\\"],\\"resources\\":[\\"deployments\\"],\\"verbs\\":[\\"get\\",\\"list\\",\\"watch\\",\\"create\\",\\"delete\\",\\"patch\\"]}}],\\"selector\\":{\\"matchLabels\\":{\\"dev\\":\\"true\\"}}}]}}
-",
-        "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-        "policy.open-cluster-management.io/controls": "MutationAdvisor,VA",
-        "policy.open-cluster-management.io/standards": "NIST,HIPAA",
-        "seed-generation": "1",
-      },
-      "name": "policy-role",
-      "namespace": "calamari",
-      "resourceVersion": "1513562",
-      "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-role",
-    },
-    "name": "policy-role",
-    "namespace": "calamari",
-    "placementBindings": Array [
-      Object {
-        "__typename": "PlacementBinding",
-        "metadata": Object {
-          "__typename": "Metadata",
-          "name": "binding-role",
-          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementbindings/binding-role",
-        },
-      },
-    ],
-    "placementPolicies": Array [
-      Object {
-        "__typename": "PlacementPolicy",
-        "metadata": Object {
-          "__typename": "Metadata",
-          "name": "placement-role",
-          "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/placementpolicies/placement-role",
-        },
-      },
-    ],
-    "policyCompliant": "0/2",
-    "raw": Object {
-      "apiVersion": "policy.open-cluster-management.io/v1",
-      "kind": "Policy",
-      "metadata": Object {
-        "annotations": Object {
-          "kubectl.kubernetes.io/last-applied-configuration": "{\\"apiVersion\\":\\"policy.open-cluster-management.io/v1\\",\\"kind\\":\\"Policy\\",\\"metadata\\":{\\"annotations\\":{\\"policy.open-cluster-management.io/categories\\":\\"SystemAndCommunicationsProtections,SystemAndInformationIntegrity\\",\\"policy.open-cluster-management.io/controls\\":\\"MutationAdvisor,VA\\",\\"policy.open-cluster-management.io/standards\\":\\"NIST,HIPAA\\"},\\"name\\":\\"policy-role\\",\\"namespace\\":\\"calamari\\"},\\"spec\\":{\\"namespaces\\":{\\"exclude\\":[\\"kube*\\"],\\"include\\":[\\"default\\"]},\\"remediationAction\\":\\"inform\\",\\"role-templates\\":[{\\"apiVersion\\":\\"roletemplate.calamari.ibm.com/v1alpha1\\",\\"complianceType\\":\\"musthave\\",\\"metadata\\":{\\"name\\":\\"operator-role-policy\\",\\"namespace\\":\\"\\"},\\"rules\\":[{\\"complianceType\\":\\"musthave\\",\\"policyRule\\":{\\"apiGroups\\":[\\"extensions\\",\\"apps\\"],\\"resources\\":[\\"deployments\\"],\\"verbs\\":[\\"get\\",\\"list\\",\\"watch\\",\\"create\\",\\"delete\\",\\"patch\\"]}}],\\"selector\\":{\\"matchLabels\\":{\\"dev\\":\\"true\\"}}}]}}
-",
-          "policy.open-cluster-management.io/categories": "SystemAndCommunicationsProtections,SystemAndInformationIntegrity",
-          "policy.open-cluster-management.io/controls": "MutationAdvisor,VA",
-          "policy.open-cluster-management.io/standards": "NIST,HIPAA",
-          "seed-generation": "1",
-        },
-        "creationTimestamp": "2019-07-16T13:19:03Z",
-        "finalizers": Array [
-          "propagator.finalizer.calamari.ibm.com",
-        ],
-        "generation": 17,
-        "name": "policy-role",
-        "namespace": "calamari",
-        "resourceVersion": "1513562",
-        "selfLink": "/apis/policy.open-cluster-management.io/v1/namespaces/calamari/policies/policy-role",
-        "uid": "47dbc091-a7cc-11e9-8a41-005056a061f1",
-      },
-      "spec": Object {
-        "namespaces": Object {
-          "exclude": Array [
-            "kube*",
-          ],
-          "include": Array [
-            "default",
-          ],
-        },
-        "remediationAction": "inform",
-        "role-templates": Array [
-          Object {
-            "apiVersion": "roletemplate.calamari.ibm.com/v1alpha1",
-            "complianceType": "musthave",
-            "metadata": Object {
-              "creationTimestamp": null,
-              "name": "operator-role-policy",
-            },
-            "rules": Array [
-              Object {
-                "complianceType": "musthave",
-                "policyRule": Object {
-                  "apiGroups": Array [
-                    "extensions",
-                    "apps",
-                  ],
-                  "resources": Array [
-                    "deployments",
-                  ],
-                  "verbs": Array [
-                    "get",
-                    "list",
-                    "watch",
-                    "create",
-                    "delete",
-                    "patch",
-                  ],
-                },
-              },
-            ],
-            "selector": Object {
-              "matchLabels": Object {
-                "dev": "true",
-              },
-            },
-            "status": Object {
-              "Validity": Object {},
-            },
-          },
-        ],
-      },
-      "status": Object {
-        "placementBindings": Array [
-          "binding-role",
-        ],
-        "placementPolicies": Array [
-          "placement-role",
-        ],
-        "status": Object {
-          "cluster1": Object {
-            "aggregatePoliciesStatus": Object {
-              "policy-role": Object {
-                "compliant": "Compliant",
-              },
-            },
-            "clustername": "cluster1",
-            "compliant": "Compliant",
-          },
-          "clusterhub": Object {
-            "aggregatePoliciesStatus": Object {
-              "policy-role": Object {
-                "compliant": "Compliant",
-              },
-            },
-            "clustername": "clusterhub",
-            "compliant": "Compliant",
-          },
-        },
-      },
-    },
-    "remediation": "inform",
-    "subItems": Array [
-      Object {
-        "items": Array [
-          "binding-role",
-        ],
-        "name": "policy.pb",
-      },
-      Object {
-        "items": Array [
-          "placement-role",
+          "placement-my-test-policy-cert",
         ],
         "name": "policy.pp",
       },
@@ -642,14 +571,64 @@ Array [
 ]
 `;
 
-exports[`formatExpandablePolicies should correctly format 2`] = `Array []`;
+exports[`formatPoliciesToClustersTableData should correctly format 1`] = `
+Array [
+  Object {
+    "cluster": "local-cluster",
+    "consoleURL": "https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com",
+    "namespace": "local-cluster",
+    "nonCompliant": Array [],
+    "violation": "0/2/0",
+  },
+  Object {
+    "cluster": "managed01",
+    "consoleURL": "https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com",
+    "namespace": "managed01",
+    "nonCompliant": Array [],
+    "violation": "0/3/0",
+  },
+]
+`;
 
-exports[`formatExpandablePolicies should correctly format 3`] = `Array []`;
+exports[`formatPoliciesToClustersTableData should correctly format 2`] = `
+Array [
+  Object {
+    "cluster": "local-cluster",
+    "consoleURL": "https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com",
+    "namespace": "local-cluster",
+    "nonCompliant": Array [],
+    "violation": "0/1/0",
+  },
+  Object {
+    "cluster": "managed01",
+    "consoleURL": "https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com",
+    "namespace": "managed01",
+    "nonCompliant": Array [],
+    "violation": "0/1/0",
+  },
+]
+`;
 
-exports[`formatPoliciesToClustersTableData should correctly format 1`] = `Array []`;
-
-exports[`formatPoliciesToClustersTableData should correctly format 2`] = `Array []`;
-
-exports[`formatPoliciesToClustersTableData should correctly format 3`] = `Array []`;
-
-exports[`formatPoliciesToClustersTableData should correctly format 4`] = `Array []`;
+exports[`formatPoliciesToClustersTableData should correctly format 3`] = `
+Array [
+  Object {
+    "cluster": "local-cluster",
+    "consoleURL": "https://console-openshift-console.apps.mycluster-hub.dev08.red-chesterfield.com",
+    "namespace": "local-cluster",
+    "nonCompliant": Array [
+      "my-test-policy-imagemanifestvulnpolicy",
+      "my-test-policy-iampolicy",
+    ],
+    "violation": "1/2/1",
+  },
+  Object {
+    "cluster": "managed01",
+    "consoleURL": "https://console-openshift-console.apps.mycluster-managed01.dev08.red-chesterfield.com",
+    "namespace": "managed01",
+    "nonCompliant": Array [
+      "my-test-policy-imagemanifestvulnpolicy",
+    ],
+    "violation": "1/1/0",
+  },
+]
+`;

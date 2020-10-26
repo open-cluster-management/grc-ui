@@ -86,31 +86,11 @@
 
         & > dt {
           padding: 0.5rem;
-
-          .pf-c-accordion__toggle {
-            background-color: unset;
-            outline: none;
-
-            &::before {
-              background-color: unset;
-            }
-
-            .pf-c-accordion__toggle-text {
-              color: unset;
-              font-size: 1rem;
-              font-weight: 600;
-              text-align: left;
-            }
-          }
         }
         .pf-c-accordion__expanded-content-body {
           border-top: 1px solid #DFE3E6;
           display: flex;
           padding: 0;
-
-          &::before {
-            background-color: unset;
-          }
 
           .pf-c-description-list {
             color: #151515;

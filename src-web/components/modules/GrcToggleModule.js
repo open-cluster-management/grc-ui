@@ -98,7 +98,6 @@ class GrcToggleModule extends React.Component {
   }
 }
 
-
 GrcToggleModule.propTypes = {
   grcItems: PropTypes.array,
   showGrcTabToggle: PropTypes.bool,

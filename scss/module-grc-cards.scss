@@ -11,100 +11,60 @@
 @import 'variables';
 
 .module-grc-cards {
-  padding-top: 0.0625rem;
+  margin-bottom: 1.875rem;
+  padding-top: 0.5rem;
 
   .header-container {
-    display: flex;
-    align-items: center;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    height: 3.75rem;
 
-    .header-title {
-      font-size: 0.875rem;
-      font-weight: 600;
-      padding-right: 0.625rem;
-      line-height: 1.4375rem
-    }
+    .pf-c-accordion__toggle-text {
+      display: flex;
+      align-items: center;
 
-    .bx--dropdown {
-      font-size: 0.875rem;
-      background-color: transparent;
-      box-shadow: none;
-      white-space: nowrap;
-      width: auto;
+      .header-title {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.1875rem;
 
-      .bx--list-box__label {
-        color: $color__blue-51;
-        padding-right: 2rem;
-        padding-top: 0.1rem;
-      }
+        .grc-cards-count {
+          margin-left: 0.5rem;
 
-      .bx--list-box__field {
-        padding: 0 0.5rem;
-        &:focus {
-          box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
-          outline: 0.0625rem solid transparent;
-          border: none;
-       }
-      }
-
-      .bx--list-box__menu-item {
-        color: $color__blue-90;
-        padding: 0.875rem;
-        height: 1.625rem;
-        font-weight: normal;
-
-        &:hover, .bx--list-box__menu-item--highlighted {
-          text-decoration: none;
+          .pf-c-label__content {
+            justify-content: center;
+            min-width: 1rem;
+          }
         }
       }
-
-      .bx--list-box__menu {
-        max-height: 30rem;
-      }
+    }
+  }
+  .header-options {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: -1.9375rem;
+    left: 9.5rem;
+    height: 0;
+    
+    .header-divider {
+      height: 1.5rem;
+      padding-right: 1rem;
     }
 
-    .collapse {
-      background: transparent;
-      border: none;
-      outline: none;
-      font-size: 0.875rem;
-      display: flex;
-      margin-left: auto;
-      font-family: RedHatText;
+    .pf-c-dropdown__toggle {
+      // Make the dropdown toggle tall so that a click doesn't accidentally collapse the cards
+      height: 3.5rem;
+      outline: 0;
 
-      .collapse-hint {
-        color: $color__navy-gray-6;
-        font-weight: 400;
-        padding-right: 0.5rem;
+      .pf-c-dropdown__toggle-text, .pf-c-dropdown__menu-item{
+        color: var(	--pf-global--Color--100);
+        font-size: 1rem;
+        line-height: 1.5rem;
       }
-
-      .collapse-button {
-        color: $color__blue-51;
-        font-weight: 600;
-        padding-right: 0.5rem;
-      }
-
-      .arrow-up {
-        margin-top:0.4rem
-      }
-
-      .arrow-down {
-        margin-top:0.4rem
-      }
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      &:hover>.collapse-button {
-          color: $grc_color_dark_blue;
-          text-decoration: underline;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
-        outline: 0.0625rem solid transparent;
-        border: none;
-      }
+    }
+    .pf-c-dropdown__menu {
+      // Move the menu to the position we want since the toggle is taller
+      top: 3rem;
     }
   }
 
@@ -112,163 +72,167 @@
     margin-bottom: 1.875rem;
   }
 
-  .card-container-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 1.875rem;
+  .grc-cards-container {
+    background-color: var(--pf-global--BackgroundColor--200);
 
-    @media screen and (min-width: 81.25rem) {
-      > div {
-        flex-basis: 33.3%;
-        --need-right-padding: 1;
+    .pf-c-accordion__expanded-content-body {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+
+      @media screen and (min-width: 81.25rem) {
+        > div {
+          flex-basis: 33.3%;
+          --need-right-padding: 1;
+        }
+
+        > div:nth-child(3n+3) {
+          flex-basis: 33.3%;
+          --need-right-padding: 0;
+          flex-grow: 1;
+        }
       }
 
-      > div:nth-child(3n+3) {
-        flex-basis: 33.3%;
-        --need-right-padding: 0;
-        flex-grow: 1;
+      @media screen and (min-width: 52.8125rem) and (max-width: 81.25rem) {
+        > div {
+          flex-basis: 50%;
+          --need-right-padding: 1;
+        }
+
+        > div:nth-child(2n+2) {
+          flex-basis: 50%;
+          --need-right-padding: 0;
+          flex-grow: 1;
+        }
       }
-    }
 
-    @media screen and (min-width: 52.8125rem) and (max-width: 81.25rem) {
-      > div {
-        flex-basis: 50%;
-        --need-right-padding: 1;
+      @media screen and (max-width: 52.8125rem) {
+        > div {
+          --need-right-padding: 0;
+          flex-grow: 1;
+        }
       }
 
-      > div:nth-child(2n+2) {
-        flex-basis: 50%;
-        --need-right-padding: 0;
-        flex-grow: 1;
-      }
-    }
+      .card-container {
+        //--need-right-padding = 0 means last item in each line so no right padding
+        //here need to dynamically calculate item numbers on each line after resizing
+        padding: 0.625rem calc(1.25rem * var(--need-right-padding)) 0.625rem 0;
 
-    @media screen and (max-width: 52.8125rem) {
-      > div {
-        --need-right-padding: 0;
-        flex-grow: 1;
-      }
-    }
+        .card-content {
+          color: var(--pf-global--palette--black-900);
+          display: flex;
+          flex-direction: column;
+          height: 12.75rem;
+          min-width: 23.125rem;
+          background-color: white;
+          box-shadow: rgba(0, 0, 0, 0.1) 0rem 0.0625rem 0.125rem 0rem;
 
-    .card-container {
-      //--need-right-padding = 0 means last item in each line so no right padding
-      //here need to dynamically calculate item numbers on each line after resizing
-      padding: 0.625rem calc(1.25rem * var(--need-right-padding)) 0.625rem 0;
-
-      .card-content {
-        color: var(--pf-global--palette--black-900);
-        display: flex;
-        flex-direction: column;
-        height: 12.75rem;
-        min-width: 23.125rem;
-        background-color: white;
-        box-shadow: rgba(0, 0, 0, 0.1) 0rem 0.0625rem 0.125rem 0rem;
-
-        .card-name {
-          height: 3.75rem;
-          padding: 1.5rem;
-          font-size: 1rem;
-          font-weight: bold;
-          .textWithTruncation {
-            font-weight: bold;
+          .card-name {
+            height: 3.75rem;
+            padding: 1.5rem;
             font-size: 1rem;
-          }
-        }
-
-       .card-count-content {
-         display: flex;
-         padding: 2rem 1.5rem;
-         height: 100%;
-         border-top: 0.0625rem solid $color__gray-1;
-         align-items: center;
-
-         > div {
-           flex-basis: 50%;
-         }
-         
-         .empty-violations-strip {
-          flex-basis: auto;
-          .empty {
-            display: flex;
-            .empty-violations-img{
-              max-width: 5rem;
-              max-height: 5rem;
-              display: block;
-              margin-left: 0.75rem;
-              margin-right: auto;
-              margin-bottom: 0.25rem;
-            }
-          }
-          .no-resource-text-info {
-            display: block;
-            margin-left: 0.875rem;
-            margin-right: auto;
-            .no-card-violations {
-              text-align: left;
+            font-weight: bold;
+            .textWithTruncation {
               font-weight: bold;
-              font-size: 0.875rem;
-              margin-top: 0.8rem;
-              margin-right: auto;
-              color: $color__navy-gray-6;
-            }
-            .no-resource-detail {
-              font-size: 0.75rem;
-              margin-top: 0.625rem;
-              margin-right: auto;
-              font-weight: 400;
-              word-break: break-word;
-              color: $color__navy-gray-6;
+              font-size: 1rem;
             }
           }
-        }
 
-         .card-count-container {
-           display: flex;
-           flex-direction: column;
-           height: 100%;
-           font-size: 0.75rem;
-           padding-top: 0.75rem;
-           outline: none;
+        .card-count-content {
+          display: flex;
+          padding: 2rem 1.5rem;
+          height: 100%;
+          border-top: 0.0625rem solid $color__gray-1;
+          align-items: center;
 
-           &:focus {
-            box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
-            outline: 0.0625rem solid transparent;
-            border: none;
+          > div {
+            flex-basis: 50%;
+          }
+          
+          .empty-violations-strip {
+            flex-basis: auto;
+            .empty {
+              display: flex;
+              .empty-violations-img{
+                max-width: 5rem;
+                max-height: 5rem;
+                display: block;
+                margin-left: 0.75rem;
+                margin-right: auto;
+                margin-bottom: 0.25rem;
+              }
+            }
+            .no-resource-text-info {
+              display: block;
+              margin-left: 0.875rem;
+              margin-right: auto;
+              .no-card-violations {
+                text-align: left;
+                font-weight: bold;
+                font-size: 0.875rem;
+                margin-top: 0.8rem;
+                margin-right: auto;
+                color: $color__navy-gray-6;
+              }
+              .no-resource-detail {
+                font-size: 0.75rem;
+                margin-top: 0.625rem;
+                margin-right: auto;
+                font-weight: 400;
+                word-break: break-word;
+                color: $color__navy-gray-6;
+              }
+            }
           }
 
-           &.violated, &.found, &.high {
+          .card-count-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            font-size: 0.75rem;
+            padding-top: 0.75rem;
+            outline: none;
+
+            &:focus {
+              box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
+              outline: 0.0625rem solid transparent;
+              border: none;
+            }
+
+            &.violated, &.found, &.high {
+              .card-count {
+                .card-count-informations {
+                  font-size: 2.25rem;
+                  padding-right: 0.75rem;
+                  color: $color__red-50;
+                }
+                .card-count-total {
+                  font-size: 1.75rem;
+                }
+              }
+            }
+
+            &.violated:hover, &.found:hover, &.high:hover {
+              cursor: pointer;
+              .card-grc-type {
+                color: $color__blue-51;
+                text-decoration: underline;
+              }
+            }
+
             .card-count {
-               .card-count-informations {
-                 font-size: 2.25rem;
-                 padding-right: 0.75rem;
-                 color: $color__red-50;
-               }
-               .card-count-total {
-                 font-size: 1.75rem;
-               }
-             }
-           }
-
-           &.violated:hover, &.found:hover, &.high:hover {
-             cursor: pointer;
-             .card-grc-type {
-               color: $color__blue-51;
-               text-decoration: underline;
+              display: flex;
+              height: 3rem;
+              line-height: 2.125rem;
+              padding-bottom: 1rem;
+              align-items: baseline;
             }
-           }
 
-          .card-count {
-             display: flex;
-             height: 3rem;
-             line-height: 2.125rem;
-             padding-bottom: 1rem;
-             align-items: baseline;
-           }
-
-           .card-grc-type {
-             font-weight: bold;
-           }
-         }
+            .card-grc-type {
+              font-weight: bold;
+            }
+          }
+          }
         }
       }
     }

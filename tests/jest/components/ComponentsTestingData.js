@@ -1185,10 +1185,10 @@ export const reduxStorePolicyCluster = {
       }
     },
     activeFilters: {
-      standards: [
+      standards: new Set([
         'NIST',
         'HIPAA'
-      ]
+      ])
     }
   },
   secondaryHeader: {
@@ -3365,7 +3365,7 @@ export const reduxStoreFindingCluster = {
       }
     },
     activeFilters: {
-      severity: []
+      severity: new Set([])
     }
   },
   secondaryHeader: {
