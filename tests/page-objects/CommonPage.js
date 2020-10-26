@@ -289,15 +289,11 @@ function testPolicyStatusTabSearching(){
   this.api.getText('.policy-details-message', (result) => {
     if (result && result.value ) {
       // get policy status tab message field text
-      this.log(`searching text before truncate is ${result.value}`)
-      let policyStatusMessage = truncate(result.value, 300)
+      let policyStatusMessage = result.value
+      this.log(`searching text before truncate is ${policyStatusMessage}`)
       if (typeof policyStatusMessage === 'string' && policyStatusMessage.length > 0) {
+        policyStatusMessage = truncate(result.value, 300).replace('View details', '')
         this.log(`searching text after truncate is ${policyStatusMessage}`)
-        this.setPatternFlySearchValue(policyStatusMessage)
-        this.waitForElementPresent('@PatternFlyTabEmptyState')
-        this.clearPatternFlySearchValue()
-        policyStatusMessage = policyStatusMessage.replace('View details', '')
-        this.log(`searching text without 'View details' is ${policyStatusMessage}`)
         this.setPatternFlySearchValue(policyStatusMessage)
         this.waitForElementNotPresent('@PatternFlyTabEmptyState')
         this.clearPatternFlySearchValue()
