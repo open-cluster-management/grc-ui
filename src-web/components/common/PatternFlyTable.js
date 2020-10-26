@@ -52,7 +52,9 @@ class PatternFlyTable extends React.Component {
   }
   static getDerivedStateFromProps(props, state) {
     const { searchValue, sortBy } = state
-    const trimmedSearchValue = (typeof searchValue === 'string') ? searchValue.trim() : ''
+    let trimmedSearchValue = (typeof searchValue === 'string') ? searchValue.trim() : ''
+    // also able to search truncated text
+    trimmedSearchValue = trimmedSearchValue.split('...')[0]
     const { pagination, rows, searchable } = props
     // Helper function to return the string from the cell
     const parseCell = function (cell) {
