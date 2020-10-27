@@ -25,6 +25,8 @@ import resources from '../../../lib/shared/resources'
 import moment from 'moment'
 import {connect} from 'react-redux'
 import { resourceActions } from './ResourceTableRowMenuItemActions'
+import msgs from '../../../nls/platform.properties'
+import _ from 'lodash'
 
 resources(() => {
   require('../../../scss/pattern-fly-table.scss')
@@ -144,24 +146,29 @@ class PatternFlyTable extends React.Component {
       searchValue: value
     })
   }
-  tableActionResolver(rowData) {
-    const { getResourceAction, resourceType} = this.props
-    const viewClusterAction =
-    rowData
-      ? [
-        {
-          isSeparator: true
-        },
-        {
-          title: 'Third action',
-          onClick: () =>
-            getResourceAction('table.actions.enforce', rowData, resourceType)
-        }
-      ]
-      : []
-    return [
-      ...viewClusterAction
-    ]
+  tableActionResolver() {
+    const { getResourceAction, resourceType, tableActions, rows} = this.props
+    const { locale } = this.context
+    const row = _.get(rows, ['0', '0', 'title', '_owner', 'stateNode', 'props', 'grcItems', '0'])
+    const filteredActions = []
+    if (_.get(row, 'raw.spec.disabled', false)) {
+      tableActions[tableActions.indexOf('table.actions.disable')] = 'table.actions.enable'
+    }
+    if (_.get(row, 'raw.spec.remediationAction', 'inform') === 'enforce') {
+      tableActions[tableActions.indexOf('table.actions.enforce', locale)] = 'table.actions.inform'
+    }
+    if (Array.isArray(tableActions) && tableActions.length > 0) {
+      tableActions.forEach((action) => {
+        filteredActions.push(
+          {
+            title: msgs.get(action, locale),
+            onClick: () =>
+              getResourceAction(action, row, resourceType)
+          }
+        )
+      })
+    }
+    return filteredActions
   }
   render() {
     const { sortBy, rows = [], itemCount, searchValue } = this.state
@@ -261,6 +268,8 @@ PatternFlyTable.propTypes = {
     index: PropTypes.number,
     direction: PropTypes.oneOf(['asc', 'desc']),
   }),
+  /* Available table actions (optional) */
+  tableActions: PropTypes.array
 }
 
 const mapDispatchToProps = (dispatch) => {
