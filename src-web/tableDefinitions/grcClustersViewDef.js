@@ -15,7 +15,6 @@ import {
 
 export default {
   tableActions: [
-    // 'table.actions.policy.clusters.sidepanel',
     'table.actions.launch.cluster'
   ],
   tableKeys: [

@@ -77,6 +77,7 @@ class GrcToggleModule extends React.Component {
               dropdownPosition={'right'}
               dropdownDirection={'up'}
               resourceType={RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER}
+              tableActions={grcClustersViewDef.tableActions}
             />
           </div>}
         </div>
