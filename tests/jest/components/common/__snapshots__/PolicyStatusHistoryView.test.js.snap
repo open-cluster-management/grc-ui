@@ -63,7 +63,7 @@ PolicyStatusHistoryView {
             Template: policy-imagemanifestvulnpolicy
           </Title>
           <br />
-          <PatternFlyTable
+          <Memo(Connect(PatternFlyTable))
             columns={
               Array [
                 Object {
@@ -106,11 +106,7 @@ PolicyStatusHistoryView {
               ]
             }
             noResultMsg="No results found"
-            pagination={true}
-            perPage={10}
             rows={Array []}
-            searchPlaceholder="Find"
-            searchable={true}
             sortBy={
               Object {
                 "direction": "desc",
@@ -219,7 +215,7 @@ PolicyStatusHistoryView {
             Template: policy-imagemanifestvulnpolicy
           </Title>
           <br />
-          <PatternFlyTable
+          <Memo(Connect(PatternFlyTable))
             columns={
               Array [
                 Object {
@@ -262,8 +258,6 @@ PolicyStatusHistoryView {
               ]
             }
             noResultMsg="No results found"
-            pagination={true}
-            perPage={10}
             rows={
               Array [
                 Array [
@@ -328,8 +322,6 @@ PolicyStatusHistoryView {
                 ],
               ]
             }
-            searchPlaceholder="Find"
-            searchable={true}
             sortBy={
               Object {
                 "direction": "desc",
@@ -558,7 +550,7 @@ PolicyStatusHistoryView {
             Template: policy-imagemanifestvulnpolicy
           </Title>
           <br />
-          <PatternFlyTable
+          <Memo(Connect(PatternFlyTable))
             columns={
               Array [
                 Object {
@@ -601,8 +593,6 @@ PolicyStatusHistoryView {
               ]
             }
             noResultMsg="No results found"
-            pagination={true}
-            perPage={10}
             rows={
               Array [
                 Array [
@@ -967,8 +957,6 @@ PolicyStatusHistoryView {
                 ],
               ]
             }
-            searchPlaceholder="Find"
-            searchable={true}
             sortBy={
               Object {
                 "direction": "desc",

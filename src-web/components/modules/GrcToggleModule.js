@@ -22,7 +22,7 @@ resources(() => {
   require('../../../scss/grc-toggle-module.scss')
 })
 
-class GrcToggleModule extends React.Component {
+export class GrcToggleModule extends React.Component {
   constructor(props) {
     super(props)
     this.state= {

@@ -32,7 +32,7 @@ resources(() => {
   require('../../../scss/pattern-fly-table.scss')
 })
 
-class PatternFlyTable extends React.Component {
+export class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

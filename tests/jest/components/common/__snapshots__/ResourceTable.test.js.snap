@@ -2453,10 +2453,8 @@ Array [
       </thead>
       <tbody>
         <tr
-          aria-hidden={true}
-          className="bx--parent-row-v2 row-not-expanded"
+          className="bx--parent-row-v2"
           data-parent-row={true}
-          data-row-name="calamari"
           disabled={false}
         >
           <td
@@ -3010,10 +3008,8 @@ Array [
       </thead>
       <tbody>
         <tr
-          aria-hidden={true}
-          className="bx--parent-row-v2 row-not-expanded"
+          className="bx--parent-row-v2"
           data-parent-row={true}
-          data-row-name="calamari"
           disabled={false}
         >
           <td
@@ -3567,10 +3563,8 @@ Array [
       </thead>
       <tbody>
         <tr
-          aria-hidden={true}
-          className="bx--parent-row-v2 row-not-expanded"
+          className="bx--parent-row-v2"
           data-parent-row={true}
-          data-row-name="calamari"
           disabled={false}
         >
           <td

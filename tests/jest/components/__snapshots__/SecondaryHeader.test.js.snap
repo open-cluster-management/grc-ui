@@ -74,7 +74,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
               onClick={[Function]}
               tabIndex={-1}
             >
-              Application
+              provide a label
             </a>
             <svg
               alt="show menu options"
@@ -113,7 +113,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
                 role="tab"
                 tabIndex={0}
               >
-                Application
+                provide a label
               </a>
             </li>
           </ul>
@@ -191,7 +191,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
               onClick={[Function]}
               tabIndex={-1}
             >
-              Application
+              provide a label
             </a>
             <svg
               alt="show menu options"
@@ -230,7 +230,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
                 role="tab"
                 tabIndex={0}
               >
-                Application
+                provide a label
               </a>
             </li>
           </ul>
@@ -299,7 +299,7 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
           <Tab
             href="/multicloud/dashboard"
             id="dashboard-application"
-            label="Application"
+            label="provide a label"
             onClick={[Function]}
             onKeyDown={[Function]}
             role="presentation"
@@ -379,7 +379,7 @@ exports[`SecondaryHeader component 3 renders as expected 1`] = `
               onClick={[Function]}
               tabIndex={-1}
             >
-              Application
+              provide a label
             </a>
             <svg
               alt="show menu options"
@@ -418,7 +418,7 @@ exports[`SecondaryHeader component 3 renders as expected 1`] = `
                 role="tab"
                 tabIndex={0}
               >
-                Application
+                provide a label
               </a>
             </li>
             <li

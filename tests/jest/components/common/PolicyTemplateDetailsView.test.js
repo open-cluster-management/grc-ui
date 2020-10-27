@@ -3,7 +3,8 @@
 
 import renderer from 'react-test-renderer'
 import React from 'react'
-import PolicyTemplateDetailsView from '../../../../src-web/components/common/PolicyTemplateDetailsView'
+import { shallow } from 'enzyme'
+import { PolicyTemplateDetailsView } from '../../../../src-web/components/common/PolicyTemplateDetailsView'
 
 const data = {
   'apiVersion': 'policy.open-cluster-management.io/v1',
@@ -144,25 +145,25 @@ const data = {
 
 describe('PolicyTemplateDetailsView component', () => {
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = shallow(
       <PolicyTemplateDetailsView template={data} />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(component.instance().render()).toMatchSnapshot()
   })
 
   it('renders as expected -- relatedObjects field is []', () => {
     data.status.relatedObjects = []
-    const component = renderer.create(
+    const component = shallow(
       <PolicyTemplateDetailsView template={data} />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(component.instance().render()).toMatchSnapshot()
   })
 
   it('renders as expected -- no related object field', () => {
     delete data.status.relatedObjects
-    const component = renderer.create(
+    const component = shallow(
       <PolicyTemplateDetailsView template={data} />
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(component.instance().render()).toMatchSnapshot()
   })
 })

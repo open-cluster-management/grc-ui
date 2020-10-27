@@ -41,17 +41,6 @@ describe('ResourceTableRowMenuItemActions', () => {
     expect(window.open.mock.calls[0]).toMatchSnapshot()
     window.open.mockClear()
   })
-  it('table.actions.policy.applications.sidepanel is called as expected', () => {
-    const action = 'table.actions.policy.applications.sidepanel'
-    const resourceType = {
-      'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
-    }
-    const dispatch = jest.fn()
-    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
-    expect(dispatch).toHaveBeenCalledTimes(1)
-    expect(dispatch.mock.calls[0]).toMatchSnapshot()
-  })
 })
 
 describe('ResourceTableRowMenuItemActions component table.actions.compliance.remove', () => {

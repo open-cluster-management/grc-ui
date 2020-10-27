@@ -3,10 +3,20 @@
 
 import renderer from 'react-test-renderer'
 import React from 'react'
-import PatternFlyTable from '../../../../src-web/components/common/PatternFlyTable'
+import PatternFlyTableWithRedux from '../../../../src-web/components/common/PatternFlyTable'
+import { PatternFlyTable }  from '../../../../src-web/components/common/PatternFlyTable'
 import { SortByDirection } from '@patternfly/react-table'
 import CodeBranchIcon from '@patternfly/react-icons/dist/js/icons/code-branch-icon'
 import CodeIcon from '@patternfly/react-icons/dist/js/icons/code-icon'
+import { ApolloProvider } from 'react-apollo'
+import GrcApolloClient from '../../../../lib/client/apollo-client'
+import { BrowserRouter } from 'react-router-dom'
+import configureMockStore from 'redux-mock-store'
+import { reduxStorePolicyCluster } from '../ComponentsTestingData'
+import { Provider } from 'react-redux'
+
+const mockStore = configureMockStore()
+const storePolicyCluster = mockStore(reduxStorePolicyCluster)
 
 const tableData = {
   columns: [
@@ -87,7 +97,13 @@ const tableDataTests = {
 describe('PatternFlyTable component', () => {
   it('renders as expected', () => {
     const component = renderer.create(
-      <PatternFlyTable {...tableData} />
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
+        <Provider store={storePolicyCluster}>
+          <BrowserRouter>
+            <PatternFlyTableWithRedux {...tableData} />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -96,7 +112,13 @@ describe('PatternFlyTable component', () => {
 describe('PatternFlyTable component', () => {
   it('renders empty state', () => {
     const component = renderer.create(
-      <PatternFlyTable columns={tableData.columns} sortBy={tableData.sortBy} rows={[]} />
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
+        <Provider store={storePolicyCluster}>
+          <BrowserRouter>
+            <PatternFlyTableWithRedux columns={tableData.columns} sortBy={tableData.sortBy} rows={[]} />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -113,37 +135,37 @@ describe('PatternFlyTable table sorting and filtering', () => {
   })
   it('should show all rows of a large table unpaginated', () => {
     expect(filterSort({pagination: false, ...tableDataTests.arrayLarge}, {...state, sortBy:{}}).rows.length).toEqual(12)
-  }),
+  })
   it('should return no values given nonexistent filter for string values', () => {
     expect(filterSort({searchable: true, ...tableDataTests.arrayLarge}, {...state, searchValue:'not here', sortBy:{}}).rows.length).toEqual(0)
-  }),
+  })
   it('should return expected values given existent filter for string values', () => {
     expect(filterSort({searchable: true, ...tableDataTests.arrayLarge}, {...state, searchValue:'b', sortBy:{}})).toMatchSnapshot()
-  }),
+  })
   it('should filter text contained in React components with cells', () => {
     expect(filterSort({searchable: true, ...tableDataTests.arrayIRowHTMLwCells}, {...state, searchValue:'space1', sortBy:{}})).toMatchSnapshot()
-  }),
+  })
   it('should filter text contained in React components without cells', () => {
     expect(filterSort({searchable: true, ...tableDataTests.arrayIRowHTMLwoCells}, {...state, searchValue:'space1', sortBy:{}})).toMatchSnapshot()
-  }),
+  })
   it('should sort rows by ascending strings in column 5', () => {
     expect(filterSort({...tableDataTests.arrayLarge}, {...state, sortBy:{index: 4, direction: SortByDirection.asc}})).toMatchSnapshot()
-  }),
+  })
   it('should sort rows by descending strings in column 5', () => {
     expect(filterSort({...tableDataTests.arrayLarge}, {...state, sortBy:{index: 4, direction: SortByDirection.desc}})).toMatchSnapshot()
-  }),
+  })
   it('should not move equivalent string rows while sorting column 4', () => {
     expect(filterSort({...tableDataTests.arrayLarge}, {...state, sortBy:{index: 3, direction: SortByDirection.asc}})).toMatchSnapshot()
-  }),
+  })
   it('should sort rows by ascending React/HTML in column 1', () => {
     expect(filterSort({...tableDataTests.arrayIRowHTMLwCells}, {...state, sortBy:{index: 0, direction: SortByDirection.asc}})).toMatchSnapshot()
-  }),
+  })
   it('should sort rows by descending React/HTML in column 1', () => {
     expect(filterSort({...tableDataTests.arrayIRowHTMLwCells}, {...state, sortBy:{index: 0, direction: SortByDirection.desc}})).toMatchSnapshot()
   })
   it('should not move equivalent React/HTML rows while sorting column 4', () => {
     expect(filterSort({...tableDataTests.arrayIRowHTMLwCells}, {...state, sortBy:{index: 3, direction: SortByDirection.asc}})).toMatchSnapshot()
-  }),
+  })
   it('should sort rows by ascending strings in mixed table in column 5', () => {
     expect(filterSort({...tableDataTests.arrayIRowHTMLwCells}, {...state, sortBy:{index: 4, direction: SortByDirection.asc}})).toMatchSnapshot()
   })
