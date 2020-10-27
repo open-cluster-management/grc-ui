@@ -10,6 +10,7 @@
 'use strict'
 
 import { updateModal } from '../../actions/common'
+import _ from 'lodash'
 
 export const resourceActions = (action, dispatch, resourceType, data) => {
   switch (action) {
@@ -24,7 +25,7 @@ export const resourceActions = (action, dispatch, resourceType, data) => {
         data: { kind: resourceType.name, ...data }}))
   }
   case 'table.actions.launch.cluster':{
-    window.open(`${data.consoleURL}`, '_blank')
+    window.open(`${_.get(data, 'clusterConsoleURL.local-cluster', 'consoleURL')}`, '_blank')
     return
   }
   case 'table.actions.policy.policies.sidepanel':
