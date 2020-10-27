@@ -27,6 +27,9 @@ import {connect} from 'react-redux'
 import { resourceActions } from './ResourceTableRowMenuItemActions'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
+import formatUserAccess from './FormatUserAccess'
+import filterUserAction from './FilterUserAction'
+import circular from 'circular'
 
 resources(() => {
   require('../../../scss/pattern-fly-table.scss')
@@ -146,29 +149,40 @@ export class PatternFlyTable extends React.Component {
       searchValue: value
     })
   }
-  tableActionResolver() {
-    const { getResourceAction, resourceType, tableActions, rows} = this.props
+  tableActionResolver(rowData) {
+    const { getResourceAction, resourceType, tableActions, userAccess} = this.props
     const { locale } = this.context
-    const row = _.get(rows, ['0', '0', 'title', '_owner', 'stateNode', 'props', 'grcItems', '0'])
-    const filteredActions = []
-    if (_.get(row, 'raw.spec.disabled', false)) {
-      tableActions[tableActions.indexOf('table.actions.disable')] = 'table.actions.enable'
+    // console.log(`rowData is : ${JSON.stringify(rowData, circular())}`)
+    // console.log(`userAccess is : ${JSON.stringify(userAccess)}`)
+    const userAccessHash = formatUserAccess(userAccess)
+    const actionsList = []
+    const rowName = _.get(rowData, ['0', 'title', 'props', 'children'])
+    const rowArray = _.get(rowData, ['0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
+    if (rowName && Array.isArray(rowArray) && rowArray.length > 0) {
+      const row = rowArray.find(arrElement => _.get(arrElement, 'metadata.name') === rowName)
+      // console.log(`row is : ${JSON.stringify(row, circular())}`)
+      const filteredActions = (Array.isArray(tableActions) && tableActions.length > 0)
+        ? filterUserAction(row, tableActions, userAccessHash, resourceType)
+        : []
+      if (_.get(row, 'raw.spec.disabled', false)) {
+        filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
+      }
+      if (_.get(row, 'raw.spec.remediationAction', 'inform') === 'enforce') {
+        filteredActions[filteredActions.indexOf('table.actions.enforce', locale)] = 'table.actions.inform'
+      }
+      if (filteredActions.length > 0) {
+        filteredActions.forEach((action) => {
+          actionsList.push(
+            {
+              title: msgs.get(action, locale),
+              onClick: () =>
+                getResourceAction(action, row, resourceType)
+            }
+          )
+        })
+      }
     }
-    if (_.get(row, 'raw.spec.remediationAction', 'inform') === 'enforce') {
-      tableActions[tableActions.indexOf('table.actions.enforce', locale)] = 'table.actions.inform'
-    }
-    if (Array.isArray(tableActions) && tableActions.length > 0) {
-      tableActions.forEach((action) => {
-        filteredActions.push(
-          {
-            title: msgs.get(action, locale),
-            onClick: () =>
-              getResourceAction(action, row, resourceType)
-          }
-        )
-      })
-    }
-    return filteredActions
+    return actionsList
   }
   render() {
     const { sortBy, rows = [], itemCount, searchValue } = this.state
@@ -269,7 +283,14 @@ PatternFlyTable.propTypes = {
     direction: PropTypes.oneOf(['asc', 'desc']),
   }),
   /* Available table actions (optional) */
-  tableActions: PropTypes.array
+  tableActions: PropTypes.array,
+  /* user access permission */
+  userAccess: PropTypes.array
+}
+
+const mapStateToProps = (state) => {
+  const userAccess = state.userAccess ? state.userAccess.access : []
+  return { userAccess }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -279,4 +300,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(PatternFlyTable)
+export default connect(mapStateToProps, mapDispatchToProps)(PatternFlyTable)
