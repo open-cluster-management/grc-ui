@@ -79,10 +79,10 @@ module.exports = {
 */
 function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionName, actionPosition, modalName, clickButtonName){
   this.log(`modal ${modalName} -- ${actionName} policy ${name} button ${clickButtonName}`)
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.waitForElementVisible('.pf-c-table')
   this.expect.element(`.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > ${nameTarget}`).text.to.equal(name)
-  this.waitForElementVisible(`table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition})`)
-  this.click(`table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition}) > div > svg`)
+  this.waitForElementVisible(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition})`)
+  this.click(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition}) > div > svg`)
   this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
   this.waitForElementVisible(`ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(${actionPosition})`)
   this.expect.element(`ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(${actionPosition}) > button`).text.to.equal(actionName)
@@ -147,7 +147,7 @@ function enforcePolicy(name){
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click enforce policy button (.bx--btn.bx--btn--danger--primary)
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--danger--primary')
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.waitForElementVisible('.pf-c-table')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
   this.clearSearchValue()
 }
@@ -162,7 +162,7 @@ function informPolicy(name){
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 3, '#inform-resource-modal', '.bx--btn.bx--btn--secondary')
   //re-entry overflow menu then click inform policy button (.bx--btn.bx--btn--primary)
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 3, '#inform-resource-modal', '.bx--btn.bx--btn--primary')
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.waitForElementVisible('.pf-c-table')
   this.waitForElementVisible('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)')
   this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
   this.clearSearchValue()
@@ -332,7 +332,7 @@ function tryEnable(name){
   this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--secondary')
   //re-entry overflow menu then click enable policy button (.bx--btn.bx--btn--primary)
   this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.waitForElementVisible('.pf-c-table')
   this.waitForElementNotPresent('#table-container .disabled-label')
   this.clearSearchValue()
 }
@@ -347,7 +347,7 @@ function tryDisable(name){
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 2, '#disable-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 2, '#disable-resource-modal', '.bx--btn.bx--btn--danger--primary')
-  this.waitForElementVisible('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra')
+  this.waitForElementVisible('.pf-c-table')
   this.waitForElementPresent('#table-container .disabled-label')
   this.clearSearchValue()
 }

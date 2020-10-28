@@ -14,7 +14,7 @@ const yaml = require('js-yaml')
 module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
-    table: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra',
+    table: 'pf-c-table',
     tableExpandableRowButton: 'button.bx--table-expand-v2__button:nth-of-type(1)',
     tableExpandedRow: 'tr.bx--expandable-row-v2:nth-of-type(2)',
     createPolicyButton: '#create-policy',
@@ -23,7 +23,6 @@ module.exports = {
     yamlMonacoEditor: '.monaco-editor',
     searchInput: '#search',
     searchInputClear: '#search ~ .bx--search-close',
-    searchResult: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td',
     resourceFilterBar: 'div.resource-filter-bar > span',
     resourceFilterBarClear: 'div.resource-filter-bar > span.button',
     filterButton: '#resource-toolbar > div > div > div.resource-filter-button',
@@ -36,7 +35,7 @@ module.exports = {
     toggleButtonClusterViolations: '#cluster-violations-1',
     allTableClusterHeading: '.bx--data-table-v2 > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1) > div:nth-child(1) > span:nth-child(1)',
     allTablePolicyHeading: '.bx--data-table-v2 > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(2) > div:nth-child(1) > span:nth-child(1)',
-    overflowMenuToggle: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
+    overflowMenuToggle: '.pf-c-table > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
     overflowMenuBox: 'body > ul.bx--overflow-menu-options',
     overflowViewClusters: 'body > ul.bx--overflow-menu-options > li:nth-child(1) > button',
     deleteButton: '.bx--overflow-menu-options__option--danger',
@@ -248,9 +247,9 @@ function testFilters(spec = {}) {
     }
   }
   // Expect our policy to still be visible after checking its respective filters
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.contain(spec.policyName)
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.contain(spec.policyName)
   // Leave and return to the summary page to make sure the filters are still there
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a')
+  this.click('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2) > a')
   this.waitForElementNotPresent('@spinner')
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
@@ -482,22 +481,22 @@ function verifyPolicyTable(name, templateFile) {
   const file = applyTemplate(name, templateFile)
   const data = yaml.safeLoadAll(file)
   // Verify summary table fields
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
   if (data[0].metadata.annotations['policy.open-cluster-management.io/standards']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/standards']))
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/standards']))
   } else {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal('-')
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal('-')
   }
   if (data[0].metadata.annotations['policy.open-cluster-management.io/controls']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/categories']))
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/categories']))
   } else {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal('-')
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal('-')
   }
   if (data[0].metadata.annotations['policy.open-cluster-management.io/categories']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/controls']))
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/controls']))
   } else {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal('-')
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal('-')
   }
 }
 function testDetailsPage(name, templateFile) {
@@ -505,9 +504,9 @@ function testDetailsPage(name, templateFile) {
   const file = applyTemplate(name, templateFile)
   const data = yaml.safeLoadAll(file)
   // Verify and click policy name in policy table
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a')
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
+  this.click('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2) > a')
   this.waitForElementNotPresent('@spinner')
   // DETAILS TAB TESTS
   // Check policy details
