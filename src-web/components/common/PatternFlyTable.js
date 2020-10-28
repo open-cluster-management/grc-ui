@@ -23,19 +23,11 @@ import {
 import { SearchIcon } from '@patternfly/react-icons'
 import resources from '../../../lib/shared/resources'
 import moment from 'moment'
-import {connect} from 'react-redux'
-import { resourceActions } from './ResourceTableRowMenuItemActions'
-import msgs from '../../../nls/platform.properties'
-import _ from 'lodash'
-import formatUserAccess from './FormatUserAccess'
-import filterUserAction from './FilterUserAction'
-import circular from 'circular'
 
 resources(() => {
   require('../../../scss/pattern-fly-table.scss')
 })
-
-export class PatternFlyTable extends React.Component {
+class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -48,7 +40,6 @@ export class PatternFlyTable extends React.Component {
       endIdx: this.props.perPage,
       searchValue: ''
     }
-    this.tableActionResolver = this.tableActionResolver.bind(this)
   }
   static defaultProps = {
     pagination: true,
@@ -149,41 +140,7 @@ export class PatternFlyTable extends React.Component {
       searchValue: value
     })
   }
-  tableActionResolver(rowData) {
-    const { getResourceAction, resourceType, tableActions, userAccess} = this.props
-    const { locale } = this.context
-    // console.log(`rowData is : ${JSON.stringify(rowData, circular())}`)
-    // console.log(`userAccess is : ${JSON.stringify(userAccess)}`)
-    const userAccessHash = formatUserAccess(userAccess)
-    const actionsList = []
-    const rowName = _.get(rowData, ['0', 'title', 'props', 'children'])
-    const rowArray = _.get(rowData, ['0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
-    if (rowName && Array.isArray(rowArray) && rowArray.length > 0) {
-      const row = rowArray.find(arrElement => _.get(arrElement, 'metadata.name') === rowName)
-      // console.log(`row is : ${JSON.stringify(row, circular())}`)
-      const filteredActions = (Array.isArray(tableActions) && tableActions.length > 0)
-        ? filterUserAction(row, tableActions, userAccessHash, resourceType)
-        : []
-      if (_.get(row, 'raw.spec.disabled', false)) {
-        filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
-      }
-      if (_.get(row, 'raw.spec.remediationAction', 'inform') === 'enforce') {
-        filteredActions[filteredActions.indexOf('table.actions.enforce', locale)] = 'table.actions.inform'
-      }
-      if (filteredActions.length > 0) {
-        filteredActions.forEach((action) => {
-          actionsList.push(
-            {
-              title: msgs.get(action, locale),
-              onClick: () =>
-                getResourceAction(action, row, resourceType)
-            }
-          )
-        })
-      }
-    }
-    return actionsList
-  }
+
   render() {
     const { sortBy, rows = [], itemCount, searchValue } = this.state
     const {
@@ -193,9 +150,9 @@ export class PatternFlyTable extends React.Component {
       pagination,
       searchable,
       searchPlaceholder,
-      areActionsDisabled,
       dropdownPosition,
       dropdownDirection,
+      tableActionResolver,
     } = this.props
     const classes = classNames('pattern-fly-table', className)
     return (
@@ -213,8 +170,7 @@ export class PatternFlyTable extends React.Component {
             onSort={this.handleSort}
             cells={columns}
             rows={rows}
-            actionResolver={this.tableActionResolver}
-            areActionsDisabled={areActionsDisabled}
+            actionResolver={tableActionResolver}
             dropdownPosition={dropdownPosition}
             dropdownDirection={dropdownDirection}
           >
@@ -251,8 +207,6 @@ export class PatternFlyTable extends React.Component {
 }
 
 PatternFlyTable.propTypes = {
-  /* Specifies if the Kebab for actions is disabled (optional) */
-  areActionsDisabled: PropTypes.bool,
   /* Add class names in addition to the defaults to the PatternFly table (optional) */
   className: PropTypes.string,
   /* Table column headings and properties */
@@ -263,14 +217,12 @@ PatternFlyTable.propTypes = {
   /* The desired position to show the dropdown when clicking on the actions Kebab.
   Can only be used together with `actions` property (optional) */
   dropdownPosition: PropTypes.string,
-  getResourceAction: PropTypes.func,
   /* Message when no results are displayed in the table */
   noResultMsg: PropTypes.string,
   /* Toggle pagination (optional) */
   pagination: PropTypes.bool,
   /* Number of rows displayed per page for pagination */
   perPage: PropTypes.oneOf([5, 10, 20, 50]),
-  resourceType: PropTypes.object,
   /* Table row content */
   rows: PropTypes.array,
   /* Placeholder text for search input field */
@@ -282,22 +234,8 @@ PatternFlyTable.propTypes = {
     index: PropTypes.number,
     direction: PropTypes.oneOf(['asc', 'desc']),
   }),
-  /* Available table actions (optional) */
-  tableActions: PropTypes.array,
-  /* user access permission */
-  userAccess: PropTypes.array
+  /* call back function to pass in and handle table action in patternfly table*/
+  tableActionResolver: PropTypes.func
 }
 
-const mapStateToProps = (state) => {
-  const userAccess = state.userAccess ? state.userAccess.access : []
-  return { userAccess }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getResourceAction: (action, resource, resourceType) =>
-      resourceActions(action, dispatch, resourceType, resource)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PatternFlyTable)
+export default PatternFlyTable

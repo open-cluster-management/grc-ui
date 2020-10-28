@@ -17,6 +17,10 @@ import msgs from '../../../nls/platform.properties'
 import { formatPoliciesToClustersTableData } from '../common/FormatTableData'
 import resources from '../../../lib/shared/resources'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
+import _ from 'lodash'
+import { resourceActions } from '../common/ResourceTableRowMenuItemActions'
+import formatUserAccess from '../common/FormatUserAccess'
+import filterUserAction from '../common/FilterUserAction'
 
 resources(() => {
   require('../../../scss/grc-toggle-module.scss')
@@ -26,9 +30,10 @@ export class GrcToggleModule extends React.Component {
   constructor(props) {
     super(props)
     this.state= {
-      toggleIndex: 0
+      toggleIndex: 0,
+      resourceType: RESOURCE_TYPES.HCM_POLICIES_PER_POLICY,
+      tableActions: grcPoliciesViewDef.tableActions
     }
-    this.toggleClick = this.toggleClick.bind(this)
   }
 
   static contextType = LocaleContext
@@ -63,9 +68,8 @@ export class GrcToggleModule extends React.Component {
               noResultMsg={msgs.get('table.search.no.results', locale)}
               areActionsDisabled={false}
               dropdownPosition={'right'}
-              dropdownDirection={'up'}
-              resourceType={RESOURCE_TYPES.HCM_POLICIES_PER_POLICY}
-              tableActions={grcPoliciesViewDef.tableActions}
+              dropdownDirection={'down'}
+              tableActionResolver={this.tableActionResolver}
             />
           </div>}
           {toggleIndex===1 && <div className='grc-view-by-clusters-table'>
@@ -75,9 +79,8 @@ export class GrcToggleModule extends React.Component {
               noResultMsg={msgs.get('table.search.no.results', locale)}
               areActionsDisabled={false}
               dropdownPosition={'right'}
-              dropdownDirection={'up'}
-              resourceType={RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER}
-              tableActions={grcClustersViewDef.tableActions}
+              dropdownDirection={'down'}
+              tableActionResolver={this.tableActionResolver}
             />
           </div>}
         </div>
@@ -85,34 +88,87 @@ export class GrcToggleModule extends React.Component {
     )
   }
 
-  toggleClick(isSelected, event) {
+  toggleClick = (isSelected, event) => {
     if (isSelected) {
       switch(event.currentTarget.id) {
       case 'grc-policies-view':
-        this.setState({toggleIndex: 0})
+        this.setState({
+          toggleIndex: 0,
+          resourceType: RESOURCE_TYPES.HCM_POLICIES_PER_POLICY,
+          tableActions: grcPoliciesViewDef.tableActions
+        })
         break
       case 'grc-cluster-view':
       default:
-        this.setState({toggleIndex: 1})
+        this.setState({
+          toggleIndex: 1,
+          resourceType: RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER,
+          tableActions: grcClustersViewDef.tableActions
+        })
         break
       }
     }
   }
-}
 
-GrcToggleModule.propTypes = {
-  grcItems: PropTypes.array,
-  showGrcTabToggle: PropTypes.bool,
-  userAccess: PropTypes.array
-}
-
-const mapStateToProps = (state) => {
-  const userAccess = state.userAccess && state.userAccess.access
-    ? state.userAccess.access
-    : []
-  return {
-    userAccess: userAccess
+  tableActionResolver = (rowData) => {
+    const { getResourceAction, userAccess} = this.props
+    const { resourceType, tableActions } = this.state
+    const { locale } = this.context
+    const userAccessHash = formatUserAccess(userAccess)
+    const actionsList = []
+    const rowName = _.get(rowData, ['0', 'title', 'props', 'children'])
+    const rowArray = _.get(rowData, ['0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
+    if (rowName && Array.isArray(rowArray) && rowArray.length > 0) {
+      const row = rowArray.find(arrElement => _.get(arrElement, 'metadata.name') === rowName)
+      const filteredActions = (Array.isArray(tableActions) && tableActions.length > 0)
+        ? filterUserAction(row, tableActions, userAccessHash, resourceType)
+        : []
+      if (_.get(row, 'raw.spec.disabled', false)) {
+        filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
+      }
+      if (_.get(row, 'raw.spec.remediationAction', 'inform') === 'enforce') {
+        filteredActions[filteredActions.indexOf('table.actions.enforce', locale)] = 'table.actions.inform'
+      }
+      if (filteredActions.length > 0) {
+        filteredActions.forEach((action) => {
+          if (action === 'table.actions.remove') {
+            actionsList.push(
+              {
+                isSeparator: true
+              }
+            )
+          }
+          actionsList.push(
+            {
+              title: msgs.get(action, locale),
+              onClick: () =>
+                getResourceAction(action, row, resourceType)
+            }
+          )
+        })
+      }
+    }
+    return actionsList
   }
 }
 
-export default connect(mapStateToProps)(GrcToggleModule)
+GrcToggleModule.propTypes = {
+  getResourceAction: PropTypes.func,
+  grcItems: PropTypes.array,
+  showGrcTabToggle: PropTypes.bool,
+  userAccess: PropTypes.array,
+}
+
+const mapStateToProps = (state) => {
+  const userAccess = state.userAccess ? state.userAccess.access : []
+  return { userAccess }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getResourceAction: (action, resource, resourceType) =>
+      resourceActions(action, dispatch, resourceType, resource)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GrcToggleModule)
