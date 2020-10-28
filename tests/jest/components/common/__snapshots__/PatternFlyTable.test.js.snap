@@ -102,14 +102,6 @@ exports[`PatternFlyTable component renders as expected 1`] = `
           >
             Last Commit
           </th>
-          <td
-            className=""
-            data-key={5}
-            data-label=""
-            onMouseEnter={[Function]}
-          >
-            
-          </td>
         </tr>
       </thead>
       <tbody
@@ -163,11 +155,6 @@ exports[`PatternFlyTable component renders as expected 1`] = `
           >
             five
           </td>
-          <td
-            className="pf-c-table__action"
-            data-key={5}
-            onMouseEnter={[Function]}
-          />
         </tr>
         <tr
           className=""
@@ -217,11 +204,6 @@ exports[`PatternFlyTable component renders as expected 1`] = `
           >
             five
           </td>
-          <td
-            className="pf-c-table__action"
-            data-key={5}
-            onMouseEnter={[Function]}
-          />
         </tr>
         <tr
           className=""
@@ -271,11 +253,6 @@ exports[`PatternFlyTable component renders as expected 1`] = `
           >
             five
           </td>
-          <td
-            className="pf-c-table__action"
-            data-key={5}
-            onMouseEnter={[Function]}
-          />
         </tr>
       </tbody>
     </table>
@@ -622,14 +599,6 @@ exports[`PatternFlyTable component renders empty state 1`] = `
           >
             Last Commit
           </th>
-          <td
-            className=""
-            data-key={5}
-            data-label=""
-            onMouseEnter={[Function]}
-          >
-            
-          </td>
         </tr>
       </thead>
       <tbody

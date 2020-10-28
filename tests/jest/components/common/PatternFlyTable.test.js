@@ -3,20 +3,10 @@
 
 import renderer from 'react-test-renderer'
 import React from 'react'
-import PatternFlyTableWithRedux from '../../../../src-web/components/common/PatternFlyTable'
-import { PatternFlyTable }  from '../../../../src-web/components/common/PatternFlyTable'
+import PatternFlyTable from '../../../../src-web/components/common/PatternFlyTable'
 import { SortByDirection } from '@patternfly/react-table'
 import CodeBranchIcon from '@patternfly/react-icons/dist/js/icons/code-branch-icon'
 import CodeIcon from '@patternfly/react-icons/dist/js/icons/code-icon'
-import { ApolloProvider } from 'react-apollo'
-import GrcApolloClient from '../../../../lib/client/apollo-client'
-import { BrowserRouter } from 'react-router-dom'
-import configureMockStore from 'redux-mock-store'
-import { reduxStorePolicyCluster } from '../ComponentsTestingData'
-import { Provider } from 'react-redux'
-
-const mockStore = configureMockStore()
-const storePolicyCluster = mockStore(reduxStorePolicyCluster)
 
 const tableData = {
   columns: [
@@ -97,13 +87,7 @@ const tableDataTests = {
 describe('PatternFlyTable component', () => {
   it('renders as expected', () => {
     const component = renderer.create(
-      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
-        <Provider store={storePolicyCluster}>
-          <BrowserRouter>
-            <PatternFlyTableWithRedux {...tableData} />
-          </BrowserRouter>
-        </Provider>
-      </ApolloProvider>
+      <PatternFlyTable {...tableData} />
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -112,13 +96,7 @@ describe('PatternFlyTable component', () => {
 describe('PatternFlyTable component', () => {
   it('renders empty state', () => {
     const component = renderer.create(
-      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
-        <Provider store={storePolicyCluster}>
-          <BrowserRouter>
-            <PatternFlyTableWithRedux columns={tableData.columns} sortBy={tableData.sortBy} rows={[]} />
-          </BrowserRouter>
-        </Provider>
-      </ApolloProvider>
+      <PatternFlyTable columns={tableData.columns} sortBy={tableData.sortBy} rows={[]} />
     )
     expect(component.toJSON()).toMatchSnapshot()
   })

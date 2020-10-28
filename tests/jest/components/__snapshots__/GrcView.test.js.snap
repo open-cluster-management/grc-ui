@@ -1358,7 +1358,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     onMouseEnter={[Function]}
                   >
                     <div
-                      className="pf-c-dropdown pf-m-top pf-m-align-right"
+                      className="pf-c-dropdown pf-m-align-right"
                       data-ouia-component-id="OUIA-Generated-Dropdown-1"
                       data-ouia-component-type="PF4/Dropdown"
                       data-ouia-safe={true}
@@ -1503,7 +1503,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     onMouseEnter={[Function]}
                   >
                     <div
-                      className="pf-c-dropdown pf-m-top pf-m-align-right"
+                      className="pf-c-dropdown pf-m-align-right"
                       data-ouia-component-id="OUIA-Generated-Dropdown-2"
                       data-ouia-component-type="PF4/Dropdown"
                       data-ouia-safe={true}
@@ -1648,7 +1648,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     onMouseEnter={[Function]}
                   >
                     <div
-                      className="pf-c-dropdown pf-m-top pf-m-align-right"
+                      className="pf-c-dropdown pf-m-align-right"
                       data-ouia-component-id="OUIA-Generated-Dropdown-3"
                       data-ouia-component-type="PF4/Dropdown"
                       data-ouia-safe={true}
@@ -1793,7 +1793,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     onMouseEnter={[Function]}
                   >
                     <div
-                      className="pf-c-dropdown pf-m-top pf-m-align-right"
+                      className="pf-c-dropdown pf-m-align-right"
                       data-ouia-component-id="OUIA-Generated-Dropdown-4"
                       data-ouia-component-type="PF4/Dropdown"
                       data-ouia-safe={true}
