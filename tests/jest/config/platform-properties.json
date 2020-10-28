@@ -294,6 +294,7 @@
   "time.seconds.ago": "{0} seconds ago",
   "time.just.now": "just now",
   "type": "Type",
+  "tabs.dashboard.application": "Application",
   "tabs.hcmcompliance": "Policies",
   "tabs.grc.overview": "Overview",
   "tabs.grc.all": "Policies",
