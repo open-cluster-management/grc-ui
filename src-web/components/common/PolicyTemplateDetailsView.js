@@ -19,7 +19,7 @@ import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
 
-export class PolicyTemplateDetailsView extends React.Component {
+class PolicyTemplateDetailsView extends React.Component {
   constructor(props) {
     super(props)
   }

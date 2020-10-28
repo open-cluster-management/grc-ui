@@ -68,7 +68,6 @@
     "carbon-components": "^9.91.5",
     "carbon-components-react": "^6.116.4",
     "carbon-icons": "^7.0.7",
-    "circular": "^1.0.5",
     "classnames": "^2.2.6",
     "compression-webpack-plugin": "^4.0.1",
     "cookie-parser": "^1.4.5",
