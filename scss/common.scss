@@ -72,6 +72,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 1.5rem 5% 3.375rem;
+  width: fit-content;
   
   .bx--select--inline{
     svg.bx--select__arrow{
