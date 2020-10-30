@@ -116,8 +116,12 @@ export class GrcToggleModule extends React.Component {
     const { locale } = this.context
     const userAccessHash = formatUserAccess(userAccess)
     const actionsList = []
-    const rowName = _.get(rowData, ['0', 'title', 'props', 'children'])
+    const rowName = typeof _.get(rowData, ['0', 'title', 'props', 'children']) === 'string'
+      ? _.get(rowData, ['0', 'title', 'props', 'children'])
+      : _.get(rowData, ['0', 'title', 'props', 'children', '0', 'props', 'children'])
     const rowArray = _.get(rowData, ['0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
+      ? _.get(rowData, ['0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
+      : _.get(rowData, ['0', 'title', 'props', 'children[0]', '_owner', 'stateNode', 'props', 'grcItems'])
     if (rowName && Array.isArray(rowArray) && rowArray.length > 0) {
       const row = rowArray.find(arrElement => _.get(arrElement, 'metadata.name') === rowName)
       const filteredActions = (Array.isArray(tableActions) && tableActions.length > 0)

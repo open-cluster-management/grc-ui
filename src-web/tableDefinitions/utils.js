@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import _ from 'lodash'
 import config from '../../lib/shared/config'
-import { Tooltip } from '@patternfly/react-core'
+import { Tooltip, Label } from '@patternfly/react-core'
 import {
   GreenCheckCircleIcon,
   RedExclamationCircleIcon,
@@ -15,6 +15,8 @@ import {
 import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
+import { LocaleContext } from '../components/common/LocaleContext'
+import InfoCircleIcon from '@patternfly/react-icons/dist/js/icons/info-circle-icon'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
@@ -141,18 +143,25 @@ export function statusHistoryMessageTooltip(item) {
 }
 
 export function createComplianceLink(item = {}, ...param){
+  let policyName = '-'
   if (param[2]) {
-    return item.metadata.name
+    policyName = item.metadata.name
   } else if (item && item.metadata)
   {
-    if (item.raw.kind === 'Compliance') {
-      return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name} (Deprecated)</Link>
+    if (_.get(item, 'raw.kind') === 'Compliance') {
+      policyName = <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name} (Deprecated)</Link>
     }
     else {
-      return <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.namespace)}/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
+      policyName =  <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.namespace)}/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
     }
   }
-  return undefined
+  if (_.get(item, 'raw.spec.disabled')) {
+    policyName = <div className='policy-table-name-ctr'>
+      {policyName}{' '} {' '}
+      <Label icon={<InfoCircleIcon />}>{msgs.get('policy.disabled.label', LocaleContext.locale)}</Label>
+    </div>
+  }
+  return policyName
 }
 
 export function getPolicyCompliantStatus(item, locale) {

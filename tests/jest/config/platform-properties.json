@@ -84,7 +84,7 @@
   "link.more.info": "More information",
   "modal.createresource.policy": "Paste content from your policy YAML file in the editor.",
   "modal.remove-hcmpolicy.heading": "Remove Policy",
-  "modal.remove-hcmpolicy.label": "Policy",
+  "modal.remove.policy.confirm": "Removing {0} is irreversible. Select any associated resources that need to be deleted in addition to {0}.",
   "modal.remove.confirm": "Removing {0} is irreversible. Are you sure you want to continue?",
   "modal.resource-filter.label": "Resource filter",
   "modal.remove-hcmcompliance.heading": "Remove policy",
