@@ -20,22 +20,6 @@
   .pattern-fly-table {
     background-color: white;
 
-    .resource-table {
-      th:not(:last-child), td:not(:last-child) {
-        padding-right: 1px;
-        margin-right: 1px;
-      }
-    }
-
-    .pf-c-dropdown__menu :nth-child(5) {
-      .pf-c-dropdown__menu-item {
-        &:hover {
-          background-color: var(--pf-global--danger-color--100);
-          color: var(--pf-global--palette--white);
-        }
-      }
-    }
-
     .pf-c-dropdown__menu-item {
       font-size: var(--pf-global--FontSize--sm);
       &:hover {
