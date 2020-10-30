@@ -21,7 +21,7 @@
     background-color: white;
 
     .resource-table {
-      th, td {
+      th:not(:last-child), td:not(:last-child) {
         padding-right: 1px;
         margin-right: 1px;
       }
