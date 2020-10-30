@@ -1,5 +1,4 @@
 /* Copyright (c) 2020 Red Hat, Inc.*/
-@import 'variables';
 .pattern-fly-table-group {
 
   .pf-c-search-input {
@@ -24,7 +23,8 @@
     .pf-c-dropdown__menu :nth-child(5) {
       .pf-c-dropdown__menu-item {
         &:hover {
-          background-color: $color__red-50;
+          background-color: var(--pf-global--danger-color--100);
+          color: var(--pf-global--palette--white);
         }
       }
     }
