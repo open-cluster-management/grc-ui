@@ -20,9 +20,11 @@
   .pattern-fly-table {
     background-color: white;
 
-    th, td {
-      padding-right: 1px;
-      margin-right: 1px;
+    .resource-table {
+      th, td {
+        padding-right: 1px;
+        margin-right: 1px;
+      }
     }
 
     .pf-c-dropdown__menu :nth-child(5) {
