@@ -129,9 +129,13 @@ export class GrcToggleModule extends React.Component {
         : []
       if (_.get(row, 'raw.spec.disabled', false)) {
         filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
+      } else {
+        filteredActions[filteredActions.indexOf('table.actions.enable')] = 'table.actions.disable'
       }
       if (_.get(row, 'raw.spec.remediationAction', 'inform') === 'enforce') {
         filteredActions[filteredActions.indexOf('table.actions.enforce', locale)] = 'table.actions.inform'
+      } else {
+        filteredActions[filteredActions.indexOf('table.actions.inform')] = 'table.actions.enforce'
       }
       if (filteredActions.length > 0) {
         filteredActions.forEach((action) => {
