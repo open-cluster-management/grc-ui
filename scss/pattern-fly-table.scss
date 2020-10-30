@@ -20,6 +20,11 @@
   .pattern-fly-table {
     background-color: white;
 
+    th, td {
+      padding-right: 1px;
+      margin-right: 1px;
+    }
+
     .pf-c-dropdown__menu :nth-child(5) {
       .pf-c-dropdown__menu-item {
         &:hover {
@@ -43,11 +48,9 @@
         }
         .pf-c-table__button {
           padding-bottom: 0;
-          .pf-c-table__text {
-            min-width: 8rem;
-          }
           .pf-c-table__sort-indicator {
             margin: auto;
+            margin-bottom: 0px;
           }
         }
       }
