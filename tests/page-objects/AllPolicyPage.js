@@ -15,8 +15,6 @@ module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
     table: '.pf-c-table',
-    tableExpandableRowButton: 'button.bx--table-expand-v2__button:nth-of-type(1)',
-    tableExpandedRow: 'tr.bx--expandable-row-v2:nth-of-type(2)',
     createPolicyButton: '#create-policy',
     submitCreatePolicyButton: '#create-button-portal-id',
     resetEditor: 'div.creation-view-yaml-header div.editor-bar-button[title="Reset"]',
@@ -159,22 +157,8 @@ function verifyTable(browser, cluster) {
   browser.api.element('@noResource', (result) => {
     if (result.status === -1) {
       browser.waitForElementVisible('@table')
-      // For policy table, check that rows expand to show placement
-      if (!cluster) {
-        browser.click('@tableExpandableRowButton')
-        browser.waitForElementVisible('@tableExpandedRow')
-        browser.expect.element('@tableExpandedRow').to.have.attribute('data-child-row').equals('true')
-        browser.click('@tableExpandableRowButton')
-        browser.waitForElementNotPresent('@tableExpandedRow')
-      }
       // Check side panel
       browser.click('@overflowMenuToggle')
-      // *** SIDE PANEL IS CURRENTLY DISABLED ***
-      // this.click('@overflowViewClusters')
-      // browser.waitForElementVisible('@sidePolicyPanel')
-      // browser.click('@sidePolicyPanelClose')
-      // browser.waitForElementNotPresent('@sidePolicyPanel')
-
       // *** TEMPORARY TEST WITHOUT SIDE PANEL ***
       // Open overflow, verify it's not "View", and close overflow menu
       browser.expect.element('@overflowMenuBox').to.be.present
