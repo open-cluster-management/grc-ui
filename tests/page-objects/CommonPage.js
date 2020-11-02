@@ -118,7 +118,7 @@ function createPolicy(browser, name, yaml, time) {
   this.expect.element('@table').to.be.present
   this.waitForElementVisible('@searchPatternFlyInput')
   this.setPatternFlySearchValue(name)
-  this.click('tbody>tr>td>a')
+  this.click('tbody tr > *:first-child > a')
   this.waitForElementNotPresent('@spinner')
   this.expect.element('.bx--detail-page-header-title').text.to.equal(name)
   this.expect.element('.section-title:nth-of-type(1)').text.to.equal('Policy details')
@@ -168,7 +168,7 @@ function checkStatus(name, violationExpected, violationText) {
   this.log(`Checking policy: ${name} violationExpected: ${violationExpected}`)
   this.waitForElementVisible('@searchPatternFlyInput')
   this.setPatternFlySearchValue(name)
-  this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
+  this.expect.elements('tbody tr > *:first-child > a').count.to.equal(1).before(2000)
   // wait for yellow triangle to disappear
   this.waitForElementNotPresent('css selector','.pf-c-table .violationCell svg[fill=\'#f0ab00\']')
   if (violationExpected) {
@@ -178,7 +178,7 @@ function checkStatus(name, violationExpected, violationText) {
     // should show green compliant
     this.waitForElementPresent('css selector', '.pf-c-table .violationCell svg[fill=\'#467f40\']')
   }
-  this.click('tbody>tr>td>a')
+  this.click('tbody tr > *:first-child > a')
   this.waitForElementPresent('#status-tab')
   this.click('#status-tab')
   this.waitForElementPresent('.policy-status-view')

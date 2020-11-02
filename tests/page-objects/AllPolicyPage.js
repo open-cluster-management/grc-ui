@@ -31,11 +31,10 @@ module.exports = {
     sidePolicyPanel: 'div.bx--modal-container > div.bx--modal-content',
     sidePolicyPanelClose: 'div.bx--modal-container > div.bx--modal-header > button.bx--modal-close',
     sidePolicyPanelClusterLink: 'div.bx--modal-container > div.bx--modal-content a.bx--link',
-    toggleButtonPolicies: '#policies-0',
-    toggleButtonClusterViolations: '#cluster-violations-1',
-    allTableClusterHeading: '.bx--data-table-v2 > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1) > div:nth-child(1) > span:nth-child(1)',
-    allTablePolicyHeading: '.bx--data-table-v2 > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(2) > div:nth-child(1) > span:nth-child(1)',
-    overflowMenuToggle: '.pf-c-table > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
+    toggleButtonPolicies: '.pf-c-toggle-group__item:first-child .pf-c-toggle-group__button',
+    toggleButtonCluster: '.pf-c-toggle-group__item:last-child .pf-c-toggle-group__button',
+    allTableHeading: '.pf-c-table__button-content .pf-c-table__text, .pf-c-table__column-help .pf-c-table__text',
+    overflowMenuToggle: '.pf-c-table  .pf-c-dropdown__toggle',
     overflowMenuBox: 'body > ul.bx--overflow-menu-options',
     overflowViewClusters: 'body > ul.bx--overflow-menu-options > li:nth-child(1) > button',
     deleteButton: '.bx--overflow-menu-options__option--danger',
@@ -88,7 +87,7 @@ module.exports = {
     testFilters,
     testPolicySidePanel,
     updateYamlEditor,
-    verifyPagination,
+    // verifyPagination,
     verifyPolicyTable,
     verifySummary,
     verifyTable,
@@ -191,23 +190,23 @@ function verifyTable(browser, cluster) {
 }
 // Test content toggle
 function verifyToggle() {
-  this.click('@toggleButtonClusterViolations')
-  this.waitForElementVisible('@allTableClusterHeading')
-  this.expect.element('@allTableClusterHeading').text.to.equal('Cluster name')
+  this.click('@toggleButtonCluster')
+  this.waitForElementVisible('@allTableHeading')
+  this.expect.element('@allTableHeading').text.to.equal('Cluster name')
   this.click('@toggleButtonPolicies')
-  this.waitForElementVisible('@allTablePolicyHeading')
-  this.expect.element('@allTablePolicyHeading').text.to.equal('Policy name')
+  this.waitForElementVisible('@allTableHeading')
+  this.expect.element('@allTableHeading').text.to.equal('Policy name')
 }
-function verifyPagination() {
-  const pagination = '.bx--pagination'
-  this.waitForElementVisible(pagination)
-  this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="5"]')
-  this.waitForElementVisible('.bx--pagination__button.bx--pagination__button--forward')
-  this.click('.bx--pagination__button.bx--pagination__button--forward')
-  this.waitForElementVisible('.bx--pagination__button.bx--pagination__button--backward')
-  this.click('.bx--pagination__button.bx--pagination__button--backward')
-  this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="10"]')
-}
+// function verifyPagination() {
+//   const pagination = '.bx--pagination'
+//   this.waitForElementVisible(pagination)
+//   this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="5"]')
+//   this.waitForElementVisible('.bx--pagination__button.bx--pagination__button--forward')
+//   this.click('.bx--pagination__button.bx--pagination__button--forward')
+//   this.waitForElementVisible('.bx--pagination__button.bx--pagination__button--backward')
+//   this.click('.bx--pagination__button.bx--pagination__button--backward')
+//   this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="10"]')
+// }
 /* Test side panel */
 function testPolicySidePanel() {
   this.click('@overflowMenuToggle')
