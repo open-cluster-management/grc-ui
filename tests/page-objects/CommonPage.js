@@ -76,7 +76,7 @@ module.exports = {
 function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionName, actionPosition, modalName, clickButtonName){
   this.log(`modal ${modalName} -- ${actionName} policy ${name} button ${clickButtonName}`)
   this.waitForElementVisible('.pf-c-table')
-  this.expect.element(`.pf-c-table.resource-table.pf-c-table--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > ${nameTarget}`).text.to.equal(name)
+  this.expect.element(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1) > ${nameTarget}`).text.to.equal(name)
   this.waitForElementVisible(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition})`)
   this.click(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition}) > div > svg`)
   this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
@@ -140,11 +140,11 @@ function enforcePolicy(name){
   this.waitForElementVisible('@searchPatternFlyInput')
   this.setPatternFlySearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--tertiary) on enforce policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--tertiary')
+  this.clickButtonOnOverflowModal(name, 'a', 8, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click enforce policy button (.bx--btn.bx--btn--danger--primary)
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--danger--primary')
+  this.clickButtonOnOverflowModal(name, 'a', 8, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('.pf-c-table')
-  this.expect.element('.pf-c-table.resource-table.pf-c-table--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
+  this.expect.element('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
   this.clearPatternFlySearchValue()
 }
 
@@ -155,12 +155,12 @@ function informPolicy(name){
   this.waitForElementVisible('@searchPatternFlyInput')
   this.setPatternFlySearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--secondary) on inform policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 3, '#inform-resource-modal', '.bx--btn.bx--btn--secondary')
+  this.clickButtonOnOverflowModal(name, 'a', 8, 'Inform', 3, '#inform-resource-modal', '.bx--btn.bx--btn--secondary')
   //re-entry overflow menu then click inform policy button (.bx--btn.bx--btn--primary)
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 3, '#inform-resource-modal', '.bx--btn.bx--btn--primary')
+  this.clickButtonOnOverflowModal(name, 'a', 8, 'Inform', 3, '#inform-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('.pf-c-table')
-  this.waitForElementVisible('.pf-c-table.resource-table.pf-c-table--zebra > tbody > tr:nth-child(1) > td:nth-child(4)')
-  this.expect.element('.pf-c-table.resource-table.pf-c-table--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
+  this.waitForElementVisible('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(4)')
+  this.expect.element('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
   this.clearPatternFlySearchValue()
 }
 
@@ -255,9 +255,9 @@ function deletePolicy(name){
   this.waitForElementVisible('@searchPatternFlyInput')
   this.setPatternFlySearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--tertiary) on delete policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 4, '#remove-resource-modal', '.bx--btn.bx--btn--tertiary')
+  this.clickButtonOnOverflowModal(name, 'a', 8, 'Remove', 4, '#remove-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 4, '#remove-resource-modal', '.bx--btn.bx--btn--danger--primary')
+  this.clickButtonOnOverflowModal(name, 'a', 8, 'Remove', 4, '#remove-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
 }
 
@@ -309,9 +309,9 @@ function tryEnable(name){
   this.waitForElementVisible('@searchPatternFlyInput')
   this.setPatternFlySearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--secondary) on enable policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--secondary')
+  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 8, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--secondary')
   //re-entry overflow menu then click enable policy button (.bx--btn.bx--btn--primary)
-  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
+  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 8, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('.pf-c-table')
   this.waitForElementNotPresent('.pf-c-table .disabled-label')
   this.clearPatternFlySearchValue()
@@ -324,9 +324,9 @@ function tryDisable(name){
   this.waitForElementVisible('@searchPatternFlyInput')
   this.setPatternFlySearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--tertiary) on disable policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 2, '#disable-resource-modal', '.bx--btn.bx--btn--tertiary')
+  this.clickButtonOnOverflowModal(name, 'a', 8, 'Disable', 2, '#disable-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 2, '#disable-resource-modal', '.bx--btn.bx--btn--danger--primary')
+  this.clickButtonOnOverflowModal(name, 'a', 8, 'Disable', 2, '#disable-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('.pf-c-table')
   this.waitForElementPresent('.pf-c-table .disabled-label')
   this.clearPatternFlySearchValue()
