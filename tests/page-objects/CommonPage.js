@@ -78,7 +78,7 @@ function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionNa
   this.waitForElementVisible('.pf-c-table')
   this.expect.element(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1) > ${nameTarget}`).text.to.equal(name)
   this.waitForElementVisible(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition})`)
-  this.click(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition}) > div > svg`)
+  this.click(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition}) > div > button`)
   this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
   this.waitForElementVisible(`ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(${actionPosition})`)
   this.expect.element(`ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open > li:nth-child(${actionPosition}) > button`).text.to.equal(actionName)
