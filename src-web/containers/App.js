@@ -11,7 +11,9 @@
 
 import React from 'react'
 import resources from '../../lib/shared/resources'
-resources(() => { require('../../scss/common.scss') })
+resources(() => {
+  require('../../scss/common.scss')
+})
 import PropTypes from 'prop-types'
 // without curly braces means component with redux
 // eslint-disable-next-line import/no-named-as-default
