@@ -480,22 +480,22 @@ function verifyPolicyTable(name, templateFile) {
   const file = applyTemplate(name, templateFile)
   const data = yaml.safeLoadAll(file)
   // Verify summary table fields
-  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1) > a').text.to.equal(name)
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(data[0].metadata.namespace)
   if (data[0].metadata.annotations['policy.open-cluster-management.io/standards']) {
-    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/standards']))
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(5)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/standards']))
+  } else {
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(5)').text.to.equal('-')
+  }
+  if (data[0].metadata.annotations['policy.open-cluster-management.io/controls']) {
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/categories']))
   } else {
     this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal('-')
   }
-  if (data[0].metadata.annotations['policy.open-cluster-management.io/controls']) {
-    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/categories']))
+  if (data[0].metadata.annotations['policy.open-cluster-management.io/categories']) {
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/controls']))
   } else {
     this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal('-')
-  }
-  if (data[0].metadata.annotations['policy.open-cluster-management.io/categories']) {
-    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/controls']))
-  } else {
-    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal('-')
   }
 }
 function testDetailsPage(name, templateFile) {
@@ -503,9 +503,9 @@ function testDetailsPage(name, templateFile) {
   const file = applyTemplate(name, templateFile)
   const data = yaml.safeLoadAll(file)
   // Verify and click policy name in policy table
-  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
-  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.click('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2) > a')
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(data[0].metadata.namespace)
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1) > a').text.to.equal(name)
+  this.click('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1 > a')
   this.waitForElementNotPresent('@spinner')
   // DETAILS TAB TESTS
   // Check policy details
