@@ -35,8 +35,8 @@ module.exports = {
     toggleButtonCluster: '.pf-c-toggle-group__item:last-child .pf-c-toggle-group__button',
     allTableHeading: '.pf-c-table__button-content .pf-c-table__text, .pf-c-table__column-help .pf-c-table__text',
     overflowMenuToggle: '.pf-c-table  .pf-c-dropdown__toggle',
-    overflowMenuBox: 'body > ul.bx--overflow-menu-options',
-    overflowViewClusters: 'body > ul.bx--overflow-menu-options > li:nth-child(1) > button',
+    overflowMenuBox: '.bx--overflow-menu-options--open',
+    overflowViewClusters: '.bx--overflow-menu-options--open > li:nth-child(1) > button',
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
     noResource: '.no-resource',
@@ -505,7 +505,7 @@ function testDetailsPage(name, templateFile) {
   // Verify and click policy name in policy table
   this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(data[0].metadata.namespace)
   this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1) > a').text.to.equal(name)
-  this.click('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1 > a')
+  this.click('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1) > a')
   this.waitForElementNotPresent('@spinner')
   // DETAILS TAB TESTS
   // Check policy details

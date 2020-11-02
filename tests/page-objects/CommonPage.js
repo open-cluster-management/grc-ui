@@ -12,7 +12,7 @@ const parser = require('../utils/yamlHelper')
 module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
-    table: '.bx--data-table-v2',
+    table: '.pf-c-table',
     tableExpandBtn: '.bx--table-expand-v2__button:nth-of-type(1)',
     expandTable: '.bx--expandable-row-v2:nth-of-type(2)',
     createPolicyButton: '#create-policy',
@@ -76,7 +76,7 @@ module.exports = {
 function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionName, actionPosition, modalName, clickButtonName){
   this.log(`modal ${modalName} -- ${actionName} policy ${name} button ${clickButtonName}`)
   this.waitForElementVisible('.pf-c-table')
-  this.expect.element(`.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > ${nameTarget}`).text.to.equal(name)
+  this.expect.element(`.pf-c-table.resource-table.pf-c-table--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > ${nameTarget}`).text.to.equal(name)
   this.waitForElementVisible(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition})`)
   this.click(`.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(${overflowPosition}) > div > svg`)
   this.waitForElementVisible('ul.bx--overflow-menu-options.bx--overflow-menu--flip.bx--overflow-menu-options--open')
@@ -144,7 +144,7 @@ function enforcePolicy(name){
   //re-entry overflow menu then click enforce policy button (.bx--btn.bx--btn--danger--primary)
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('.pf-c-table')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
+  this.expect.element('.pf-c-table.resource-table.pf-c-table--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
   this.clearPatternFlySearchValue()
 }
 
@@ -159,8 +159,8 @@ function informPolicy(name){
   //re-entry overflow menu then click inform policy button (.bx--btn.bx--btn--primary)
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 3, '#inform-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('.pf-c-table')
-  this.waitForElementVisible('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)')
-  this.expect.element('.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
+  this.waitForElementVisible('.pf-c-table.resource-table.pf-c-table--zebra > tbody > tr:nth-child(1) > td:nth-child(4)')
+  this.expect.element('.pf-c-table.resource-table.pf-c-table--zebra > tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
   this.clearPatternFlySearchValue()
 }
 
