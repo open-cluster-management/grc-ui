@@ -8,7 +8,7 @@ module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
     tooltip: '.pf-c-tooltip',
-    searchInput: '#search',
+    searchInput: '.pf-c-search-input__text',
     allTable: '.pf-c-table > tbody',
     policyLink: '.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a',
     createPolicyButton: '#create-policy',

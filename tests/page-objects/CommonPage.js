@@ -19,8 +19,8 @@ module.exports = {
     cancelCreatePolicyButton: '#cancel-button-portal-id',
     submitCreatePolicyButton: '#create-button-portal-id',
     yamlMonacoEditor: '.monaco-editor',
-    searchInput: '#search',
-    searchInputClear: '#search ~ .bx--search-close',
+    searchInput: '.pf-c-search-input__text',
+    searchInputClear: '.pf-c-search-input__clear',
     searchPatternFlyInput: '.pf-c-search-input__text-input',
     searchPatternFlyInputClear: '.pattern-fly-table-group .pf-c-search-input .pf-c-search-input__clear .pf-c-button',
     PatternFlyTabEmptyState: '.pattern-fly-table-group .pattern-fly-table .pf-c-empty-state__content',
@@ -174,13 +174,13 @@ function checkStatus(name, violationExpected, violationText) {
   this.setSearchValue(name)
   this.expect.elements('tbody>tr>td>a').count.to.equal(1).before(2000)
   // wait for yellow triangle to disappear
-  this.waitForElementNotPresent('css selector','#table-container .violationCell svg[fill=\'#f0ab00\']')
+  this.waitForElementNotPresent('css selector','.pf-c-table .violationCell svg[fill=\'#f0ab00\']')
   if (violationExpected) {
     // should show red not compliant
-    this.waitForElementPresent('css selector', '#table-container .violationCell svg[fill=\'#c9190b\']')
+    this.waitForElementPresent('css selector', '.pf-c-table .violationCell svg[fill=\'#c9190b\']')
   } else {
     // should show green compliant
-    this.waitForElementPresent('css selector', '#table-container .violationCell svg[fill=\'#467f40\']')
+    this.waitForElementPresent('css selector', '.pf-c-table .violationCell svg[fill=\'#467f40\']')
   }
   this.click('tbody>tr>td>a')
   this.waitForElementPresent('#status-tab')
@@ -333,7 +333,7 @@ function tryEnable(name){
   //re-entry overflow menu then click enable policy button (.bx--btn.bx--btn--primary)
   this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('.pf-c-table')
-  this.waitForElementNotPresent('#table-container .disabled-label')
+  this.waitForElementNotPresent('.pf-c-table .disabled-label')
   this.clearSearchValue()
 }
 
@@ -348,6 +348,6 @@ function tryDisable(name){
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 2, '#disable-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('.pf-c-table')
-  this.waitForElementPresent('#table-container .disabled-label')
+  this.waitForElementPresent('.pf-c-table .disabled-label')
   this.clearSearchValue()
 }

@@ -14,15 +14,15 @@ const yaml = require('js-yaml')
 module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
-    table: 'pf-c-table',
+    table: '.pf-c-table',
     tableExpandableRowButton: 'button.bx--table-expand-v2__button:nth-of-type(1)',
     tableExpandedRow: 'tr.bx--expandable-row-v2:nth-of-type(2)',
     createPolicyButton: '#create-policy',
     submitCreatePolicyButton: '#create-button-portal-id',
     resetEditor: 'div.creation-view-yaml-header div.editor-bar-button[title="Reset"]',
     yamlMonacoEditor: '.monaco-editor',
-    searchInput: '#search',
-    searchInputClear: '#search ~ .bx--search-close',
+    searchInput: '.pf-c-search-input__text',
+    searchInputClear: '.pf-c-search-input__clear',
     resourceFilterBar: 'div.resource-filter-bar > span',
     resourceFilterBarClear: 'div.resource-filter-bar > span.button',
     filterButton: '#resource-toolbar > div > div > div.resource-filter-button',
