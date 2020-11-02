@@ -247,9 +247,9 @@ function testFilters(spec = {}) {
     }
   }
   // Expect our policy to still be visible after checking its respective filters
-  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.contain(spec.policyName)
+  this.expect.element('tbody tr > *:first-child > a').text.to.contain(spec.policyName)
   // Leave and return to the summary page to make sure the filters are still there
-  this.click('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2) > a')
+  this.click('tbody tr > *:first-child > a')
   this.waitForElementNotPresent('@spinner')
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
