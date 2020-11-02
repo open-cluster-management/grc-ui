@@ -65,7 +65,7 @@ export class GrcCardsModule extends React.Component {
     }
     return (
       <div className='module-grc-cards'>
-        <Accordion>
+        <Accordion className='accordion-header'>
           <AccordionItem>
             <AccordionToggle
               className='header-container'

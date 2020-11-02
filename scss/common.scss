@@ -88,30 +88,30 @@ body {
   z-index: 10002; // need higher z-index with modals open
 }
 
-// Style Accordion elements with:
+// Style Accordion elements with class 'accordion-header' with:
 // - no leading blue line when selected
 // - white background always
 // - Bold 16px left-aligned font on toggle title
-.pf-c-accordion {
+.accordion-header.pf-c-accordion {
   .pf-c-accordion__toggle {
-    background-color: unset     !important;
-    outline: none               !important;
+    background-color: unset;
+    outline: none;
 
     &::before {
-      background-color: unset   !important;
+      background-color: unset;
     }
 
     .pf-c-accordion__toggle-text {
-      color: unset              !important;
-      font-size: 1rem           !important;
-      font-weight: 600          !important;
-      text-align: left          !important;
+      color: unset;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
     }
   }
 
   .pf-c-accordion__expanded-content-body {
     &::before {
-      background-color: unset   !important;
+      background-color: unset;
     }
   }
 }

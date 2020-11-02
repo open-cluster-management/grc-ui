@@ -145,7 +145,7 @@ class DetailsModule extends React.PureComponent {
     const renderedData = this.formatData()
     const id = title.toLowerCase().replace(/ /g,'-')
 
-    return(<Accordion>
+    return(<Accordion className='accordion-header'>
       <AccordionItem>
         <AccordionToggle
           className='section-title'
