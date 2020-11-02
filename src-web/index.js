@@ -8,6 +8,7 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 import React from 'react'
+import '../node_modules/@patternfly/react-core/dist/styles/base.css'
 import { hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'

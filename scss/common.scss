@@ -12,7 +12,6 @@
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
 @import 'node_modules/carbon-components/scss/globals/scss/_helper-mixins';
 @import '../node_modules/@patternfly/react-core/dist/styles/base.css';
-@import '../node_modules/@patternfly/patternfly/patternfly.css';
 @import 'header-carbon-v9-migration';
 @import 'variables';
 @import '_red-hat-font';
@@ -95,24 +94,24 @@ body {
 // - Bold 16px left-aligned font on toggle title
 .pf-c-accordion {
   .pf-c-accordion__toggle {
-    background-color: unset;
-    outline: none;
+    background-color: unset     !important;
+    outline: none               !important;
 
     &::before {
-      background-color: unset;
+      background-color: unset   !important;
     }
 
     .pf-c-accordion__toggle-text {
-      color: unset;
-      font-size: 1rem;
-      font-weight: 600;
-      text-align: left;
+      color: unset              !important;
+      font-size: 1rem           !important;
+      font-weight: 600          !important;
+      text-align: left          !important;
     }
   }
 
   .pf-c-accordion__expanded-content-body {
     &::before {
-      background-color: unset;
+      background-color: unset   !important;
     }
   }
 }
