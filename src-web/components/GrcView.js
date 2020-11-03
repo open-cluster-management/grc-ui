@@ -123,8 +123,7 @@ export class GrcView extends React.Component {
     const { locale } = this.context
     const { viewState } = this.state
     const {
-      loading, error, grcItems, activeFilters={},
-      secondaryHeaderProps, location, access
+      loading, error, grcItems, activeFilters={}, location, access
     } = this.props
     if (loading) {
       return <Spinner className='patternfly-spinner' />
@@ -172,8 +171,6 @@ export class GrcView extends React.Component {
     const showGrcCard = urlParams.card==='false' ? false : true
     const grcTabToggleIndex = urlParams.index ? Number(urlParams.index) : 0
     const showGrcTabToggle = urlParams.toggle==='false' ? false : true
-    const highLightRowName = urlParams.name ? urlParams.name : ''
-    const showSidePanel = urlParams.side==='true' ? true : false
     return (
       <div className='grc-view'>
         <ResourceFilterBar />
@@ -187,16 +184,10 @@ export class GrcView extends React.Component {
           handleDrillDownClick={this.handleDrillDownClickGrcView}
         />
         <GrcToggleModule
-          displayType={displayType}
           grcItems={filterGrcItems}
-          secondaryHeaderProps={secondaryHeaderProps}
-          locale={locale}
           grcTabToggleIndex={grcTabToggleIndex}
           showGrcTabToggle={showGrcTabToggle}
-          highLightRowName={highLightRowName}
-          showSidePanel={showSidePanel}
-          filterToEmpty={filterToEmpty}
-          handleCreatePolicy={this.handleCreatePolicy} />
+          filterToEmpty={filterToEmpty} />
       </div>
     )
   }
@@ -278,7 +269,6 @@ GrcView.propTypes = {
   history: PropTypes.object.isRequired,
   loading: PropTypes.bool,
   location: PropTypes.object,
-  secondaryHeaderProps: PropTypes.object,
   updateActiveFilters: PropTypes.func,
   updateAvailableFilters: PropTypes.func,
 }

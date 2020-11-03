@@ -39,11 +39,11 @@ export class GrcToggleModule extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { grcItems, showGrcTabToggle } = this.props
+    const { grcItems, showGrcTabToggle, grcTabToggleIndex } = this.props
     const { locale } = this.context
     const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
     const tableDataByCLusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
-    const toggleIndex = this.state.toggleIndex
+    const toggleIndex = (!showGrcTabToggle) ? grcTabToggleIndex : this.state.toggleIndex
     return (
       <div className='grc-toggle'>
         {showGrcTabToggle && <ToggleGroup className='grc-toggle-button' variant='light'>
@@ -163,6 +163,7 @@ export class GrcToggleModule extends React.Component {
 GrcToggleModule.propTypes = {
   getResourceAction: PropTypes.func,
   grcItems: PropTypes.array,
+  grcTabToggleIndex: PropTypes.number,
   showGrcTabToggle: PropTypes.bool,
   userAccess: PropTypes.array,
 }
