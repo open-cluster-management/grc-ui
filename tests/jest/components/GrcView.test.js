@@ -138,7 +138,7 @@ describe('GrcView component 3', () => {
 describe('GrcView component 4', () => {
   const location = {
     pathname: '/multicloud/policies/all',
-    search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
+    search: '?index=0&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
   }
   it('renders as expected', () => {
     const component = renderer.create(
