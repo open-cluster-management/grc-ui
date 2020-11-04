@@ -13,12 +13,11 @@ module.exports = {
     policyLink: '.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a',
     createPolicyButton: '#create-policy',
     overflowMenu: '.pf-c-table > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
-    overflowMenuBody: 'body > ul.bx--overflow-menu-options',
-    overflowMenuBody_View: 'body > ul.bx--overflow-menu-options > li:nth-child(0) > button',
-    overflowMenuBody_Edit: 'body > ul.bx--overflow-menu-options > li:nth-child(1) > button',
-    overflowMenuBody_Disable: 'body > ul.bx--overflow-menu-options > li:nth-child(2) > button',
-    overflowMenuBody_Enforce: 'body > ul.bx--overflow-menu-options > li:nth-child(3) > button',
-    overflowMenuBody_Remove: 'body > ul.bx--overflow-menu-options > li:nth-child(4) > button',
+    overflowMenuBody: '.pf-c-dropdown__menu',
+    overflowMenuBody_Edit: '.pf-c-dropdown__menu > li:nth-child(1) > button',
+    overflowMenuBody_Disable: '.pf-c-dropdown__menu > li:nth-child(2) > button',
+    overflowMenuBody_Enforce: '.pf-c-dropdown__menu > li:nth-child(3) > button',
+    overflowMenuBody_Remove: '.pf-c-dropdown__menu > li:nth-child(5) > button',
     sidePolicyPanel: 'div.bx--modal-container > div.bx--modal-content',
     sidePolicyPanelClose: 'div.bx--modal-container > div.bx--modal-header > button.bx--modal-close',
     submitCreatePolicyButton: '#create-button-portal-id',
@@ -62,9 +61,6 @@ function verifyAllPage(name, nsNum, permissions) {
   this.click('@overflowMenu')
   this.expect.element('@overflowMenuBody').to.be.visible
   // All users should be able to view
-  // this.expect.element('@overflowMenuBody_View').to.be.enabled
-  // Check for edit/disable/enforce permissions
-  // Disabled elements should also have a tooltip saying so
   if (permissions.patch) {
     this.expect.element('@overflowMenuBody_Edit').to.be.enabled
     this.expect.element('@overflowMenuBody_Disable').to.be.enabled
