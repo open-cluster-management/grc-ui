@@ -309,9 +309,9 @@ function tryEnable(name){
   this.waitForElementVisible('@searchPatternFlyInput')
   this.setPatternFlySearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--secondary) on enable policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--secondary')
+  this.clickButtonOnOverflowModal(name, 'div:nth-child(1) > a', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--secondary')
   //re-entry overflow menu then click enable policy button (.bx--btn.bx--btn--primary)
-  this.clickButtonOnOverflowModal(name, 'div:nth-child(1)', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
+  this.clickButtonOnOverflowModal(name, 'div:nth-child(1) > a', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('.pf-c-table')
   this.waitForElementNotPresent('.pf-c-table .disabled-label')
   this.clearPatternFlySearchValue()
