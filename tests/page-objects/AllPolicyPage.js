@@ -162,7 +162,7 @@ function verifyTable(browser, cluster) {
       // *** TEMPORARY TEST WITHOUT SIDE PANEL ***
       // Open overflow, verify it's not "View", and close overflow menu
       browser.expect.element('@overflowMenuBox').to.be.present
-      if (!cluster) {
+      if (cluster) {
         browser.expect.element('@overflowViewClusters').text.to.equal('Launch cluster')
       } else {
         browser.expect.element('@overflowViewClusters').text.to.equal('Edit')

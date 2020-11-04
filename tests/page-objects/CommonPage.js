@@ -144,7 +144,7 @@ function enforcePolicy(name){
   //re-entry overflow menu then click enforce policy button (.bx--btn.bx--btn--danger--primary)
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('.pf-c-table')
-  this.expect.element('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('enforce')
+  this.expect.element('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal('enforce')
   this.clearPatternFlySearchValue()
 }
 
@@ -159,8 +159,8 @@ function informPolicy(name){
   //re-entry overflow menu then click inform policy button (.bx--btn.bx--btn--primary)
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Inform', 3, '#inform-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('.pf-c-table')
-  this.waitForElementVisible('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(4)')
-  this.expect.element('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(4)').text.to.equal('inform')
+  this.waitForElementVisible('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(3)')
+  this.expect.element('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal('inform')
   this.clearPatternFlySearchValue()
 }
 
@@ -255,9 +255,9 @@ function deletePolicy(name){
   this.waitForElementVisible('@searchPatternFlyInput')
   this.setPatternFlySearchValue(name)
   //verify cancel button (.bx--btn.bx--btn--tertiary) on delete policy modal and return to main page
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 4, '#remove-resource-modal', '.bx--btn.bx--btn--tertiary')
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 5, '#remove-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
-  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 4, '#remove-resource-modal', '.bx--btn.bx--btn--danger--primary')
+  this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 5, '#remove-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementNotPresent('@spinner')
 }
 
