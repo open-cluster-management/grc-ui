@@ -29,39 +29,33 @@ resources(() => {
 export class GrcToggleModule extends React.Component {
   constructor(props) {
     super(props)
-    this.state= {
-      toggleIndex: 0,
-      resourceType: RESOURCE_TYPES.HCM_POLICIES_PER_POLICY,
-      tableActions: grcPoliciesViewDef.tableActions
-    }
   }
 
   static contextType = LocaleContext
 
   render() {
-    const { grcItems, showGrcTabToggle, grcTabToggleIndex } = this.props
+    const { grcItems, showGrcTabToggle, grcTabToggleIndex, handleToggleClick } = this.props
     const { locale } = this.context
     const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
     const tableDataByCLusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
-    const toggleIndex = (!showGrcTabToggle) ? grcTabToggleIndex : this.state.toggleIndex
     return (
       <div className='grc-toggle'>
         {showGrcTabToggle && <ToggleGroup className='grc-toggle-button' variant='light'>
           <ToggleGroupItem
             buttonId={'grc-policies-view'}
-            onChange={this.toggleClick}
-            isSelected={toggleIndex===0}>
+            onChange={handleToggleClick}
+            isSelected={grcTabToggleIndex===0}>
             {msgs.get('tabs.grc.toggle.allPolicies', locale)}
           </ToggleGroupItem>
           <ToggleGroupItem
             buttonId={'grc-cluster-view'}
-            onChange={this.toggleClick}
-            isSelected={toggleIndex===1}>
+            onChange={handleToggleClick}
+            isSelected={grcTabToggleIndex===1}>
             {msgs.get('tabs.grc.toggle.clusterViolations', locale)}
           </ToggleGroupItem>
         </ToggleGroup>}
         <div className='resource-table'>
-          {toggleIndex===0 && <div className='grc-view-by-policies-table'>
+          {grcTabToggleIndex===0 && <div className='grc-view-by-policies-table'>
             <PatternFlyTable
               {...tableDataByPolicies}
               searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
@@ -72,7 +66,7 @@ export class GrcToggleModule extends React.Component {
               tableActionResolver={this.tableActionResolver}
             />
           </div>}
-          {toggleIndex===1 && <div className='grc-view-by-clusters-table'>
+          {grcTabToggleIndex===1 && <div className='grc-view-by-clusters-table'>
             <PatternFlyTable
               {...tableDataByCLusters}
               searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
@@ -88,31 +82,14 @@ export class GrcToggleModule extends React.Component {
     )
   }
 
-  toggleClick = (isSelected, event) => {
-    if (isSelected) {
-      switch(event.currentTarget.id) {
-      case 'grc-policies-view':
-        this.setState({
-          toggleIndex: 0,
-          resourceType: RESOURCE_TYPES.HCM_POLICIES_PER_POLICY,
-          tableActions: grcPoliciesViewDef.tableActions
-        })
-        break
-      case 'grc-cluster-view':
-      default:
-        this.setState({
-          toggleIndex: 1,
-          resourceType: RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER,
-          tableActions: grcClustersViewDef.tableActions
-        })
-        break
-      }
-    }
-  }
-
   tableActionResolver = (rowData) => {
-    const { getResourceAction, userAccess} = this.props
-    const { resourceType, tableActions } = this.state
+    const { getResourceAction, userAccess, grcTabToggleIndex} = this.props
+    let resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_POLICY
+    let tableActions = grcPoliciesViewDef.tableActions
+    if (grcTabToggleIndex === 1) {
+      resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER
+      tableActions = grcClustersViewDef.tableActions
+    }
     const { locale } = this.context
     const userAccessHash = formatUserAccess(userAccess)
     const actionsList = []
@@ -164,6 +141,7 @@ GrcToggleModule.propTypes = {
   getResourceAction: PropTypes.func,
   grcItems: PropTypes.array,
   grcTabToggleIndex: PropTypes.number,
+  handleToggleClick: PropTypes.func,
   showGrcTabToggle: PropTypes.bool,
   userAccess: PropTypes.array,
 }

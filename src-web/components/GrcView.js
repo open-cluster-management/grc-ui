@@ -53,6 +53,7 @@ export class GrcView extends React.Component {
     this.handleCreatePolicy = this.handleCreatePolicy.bind(this)
     this.updateViewState = this.updateViewState.bind(this)
     this.handleDrillDownClickGrcView = this.handleDrillDownClickGrcView.bind(this)
+    this.handleToggleClick = this.handleToggleClick.bind(this)
   }
 
   UNSAFE_componentWillMount() {
@@ -187,7 +188,9 @@ export class GrcView extends React.Component {
           grcItems={filterGrcItems}
           grcTabToggleIndex={grcTabToggleIndex}
           showGrcTabToggle={showGrcTabToggle}
-          filterToEmpty={filterToEmpty} />
+          filterToEmpty={filterToEmpty}
+          handleToggleClick={this.handleToggleClick}
+        />
       </div>
     )
   }
@@ -258,6 +261,23 @@ export class GrcView extends React.Component {
 
   handleCreatePolicy(){
     this.props.history.push(`${config.contextPath}/create`)
+  }
+
+  handleToggleClick = (isSelected, event) => {
+    if (isSelected) {
+      const urlParams = queryString.parse(location.search)
+      switch(event.currentTarget.id) {
+      case 'grc-policies-view':
+        urlParams.index = 0
+        break
+      case 'grc-cluster-view':
+      default:
+        urlParams.index = 1
+        break
+      }
+      if (this.props.history) {
+        this.props.history.push(`${this.props.location.pathname}?${queryString.stringify(urlParams)}`)}
+    }
   }
 }
 
