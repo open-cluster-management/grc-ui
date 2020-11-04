@@ -10,7 +10,7 @@ module.exports = {
     tooltip: '.pf-c-tooltip',
     searchPatternFlyInput: '.pf-c-search-input__text-input',
     allTable: '.pf-c-table > tbody',
-    policyLink: '.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a',
+    policyLink: '.pattern-fly-table-body > tr:nth-child(1) > td:nth-child(1) > a',
     createPolicyButton: '#create-policy',
     overflowMenu: '.pf-c-table  .pf-c-dropdown__toggle',
     overflowMenuBody: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu',

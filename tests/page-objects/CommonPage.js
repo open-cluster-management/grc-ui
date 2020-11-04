@@ -13,8 +13,6 @@ module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
     table: '.pf-c-table',
-    tableExpandBtn: '.bx--table-expand-v2__button:nth-of-type(1)',
-    expandTable: '.bx--expandable-row-v2:nth-of-type(2)',
     createPolicyButton: '#create-policy',
     cancelCreatePolicyButton: '#cancel-button-portal-id',
     submitCreatePolicyButton: '#create-button-portal-id',
