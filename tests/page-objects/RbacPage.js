@@ -8,7 +8,7 @@ module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
     tooltip: '.pf-c-tooltip',
-    searchInput: '.pf-c-search-input__text',
+    searchPatternFlyInput: '.pf-c-search-input__text-input',
     allTable: '.pf-c-table > tbody',
     policyLink: '.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a',
     createPolicyButton: '#create-policy',
@@ -52,8 +52,8 @@ function checkTooltip(browser, selector, message) {
 function verifyAllPage(name, nsNum, permissions) {
   this.log(`verifyAllPage policy: ${name} nsNum: ${nsNum} permissions: ${{permissions}}`)
   // Filter for our RBAC policies
-  this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
+  this.waitForElementVisible('@searchPatternFlyInput')
+  this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput').setValue('@searchPatternFlyInput', name)
   this.waitForElementVisible('@allTable')
   // Check that user can see expected number of policies
   this.expect.element('@allTable').to.have.property('childElementCount').equals(nsNum)
@@ -80,21 +80,15 @@ function verifyAllPage(name, nsNum, permissions) {
     this.expect.element('@overflowMenuBody_Remove').to.be.not.enabled
     checkTooltip(this, '@overflowMenuBody_Remove', disableMsg)
   }
-  // Make sure side panel can open
-  // overflowMenuSection.click('@overflowMenuView')
-  // this.expect.element('@sidePolicyPanel').to.be.visible
-  // this.waitForElementNotPresent('@spinner')
-  // this.click('@sidePolicyPanelClose')
-  // this.waitForElementNotPresent('@sidePolicyPanel')
-  this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput')
+  this.waitForElementVisible('@searchPatternFlyInput')
+  this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput')
 }
 
 function verifyPolicyPage(name, permissions, namespaced=false) {
   this.log(`verifyPolicyPage policy: ${name} permissions: ${{permissions}}`)
   // Filter for our RBAC policies
-  this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
+  this.waitForElementVisible('@searchPatternFlyInput')
+  this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput').setValue('@searchPatternFlyInput', name)
   this.waitForElementVisible('@allTable')
   // Navigate to policy page
   this.expect.element('@policyLink').text.to.startWith(name)
@@ -149,8 +143,8 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
   }
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
-  this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput')
+  this.waitForElementVisible('@searchPatternFlyInput')
+  this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput')
 }
 
 function verifyCreatePage(permissions, createPage, policyName = '', ns = [], clusterwide = false, elevated = false) {
