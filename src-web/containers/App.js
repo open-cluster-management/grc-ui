@@ -10,12 +10,15 @@
 'use strict'
 
 import React from 'react'
+import resources from '../../lib/shared/resources'
+resources(() => {
+  require('../../scss/common.scss')
+})
 import PropTypes from 'prop-types'
 // without curly braces means component with redux
 // eslint-disable-next-line import/no-named-as-default
 import SecondaryHeader from '../components/SecondaryHeader'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import resources from '../../lib/shared/resources'
 import client from '../../lib/shared/client'
 import config from '../../lib/shared/config'
 import Modal from '../components/common/Modal'
@@ -24,10 +27,6 @@ import loadable from '@loadable/component'
 import { LocaleContext } from '../components/common/LocaleContext'
 
 export const ResourceToolbar = loadable(() => import(/* webpackChunkName: "ResourceToolbar" */ '../components/common/ResourceToolbar'))
-
-resources(() => {
-  require('../../scss/common.scss')
-})
 
 class App extends React.Component {
 

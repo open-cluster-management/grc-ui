@@ -587,7 +587,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
   >
     <dl
       aria-label=""
-      className="pf-c-accordion"
+      className="pf-c-accordion accordion-header"
     >
       <dt>
         <button

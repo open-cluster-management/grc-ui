@@ -9,7 +9,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
   >
     <dl
       aria-label=""
-      className="pf-c-accordion"
+      className="pf-c-accordion accordion-header"
     >
       <dt>
         <button
