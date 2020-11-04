@@ -12,7 +12,7 @@ module.exports = {
     allTable: '.pf-c-table > tbody',
     policyLink: '.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a',
     createPolicyButton: '#create-policy',
-    overflowMenu: '.pf-c-table > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
+    overflowMenu: '.pf-c-table  .pf-c-dropdown__toggle',
     overflowMenuBody: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu',
     overflowMenuBody_Edit: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu > li:nth-child(1) > button',
     overflowMenuBody_Disable: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu > li:nth-child(2) > button',
@@ -58,6 +58,7 @@ function verifyAllPage(name, nsNum, permissions) {
   // Check that user can see expected number of policies
   this.expect.element('@allTable').to.have.property('childElementCount').equals(nsNum)
   // Check overflow menu for first policy
+  this.expect.element('@overflowMenu').to.be.visible
   this.click('@overflowMenu')
   this.expect.element('@overflowMenuBody').to.be.visible
   // All users should be able to view
