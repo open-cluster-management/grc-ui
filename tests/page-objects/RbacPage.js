@@ -97,15 +97,15 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
   this.waitForElementNotPresent('@spinner')
   this.waitForElementPresent('.bx--tabs__nav')
   this.waitForElementPresent('@placementBindingEdit')
-  // if (permissions.patch) {
-  //   this.expect.element('@placementBindingEdit').to.be.enabled
-  //   this.expect.element('@placementRuleEdit').to.be.enabled
-  // } else {
-  //   this.expect.element('@placementBindingEdit').to.not.be.enabled
-  //   checkTooltip(this, '@placementBindingEdit', disableMsg)
-  //   this.expect.element('@placementRuleEdit').to.not.be.enabled
-  //   checkTooltip(this, '@placementRuleEdit', disableMsg)
-  // }
+  if (permissions.patch) {
+    this.expect.element('@placementBindingEdit').to.be.enabled
+    this.expect.element('@placementRuleEdit').to.be.enabled
+  } else {
+    this.expect.element('@placementBindingEdit').to.not.be.enabled
+    checkTooltip(this, '@placementBindingEdit', disableMsg)
+    this.expect.element('@placementRuleEdit').to.not.be.enabled
+    checkTooltip(this, '@placementRuleEdit', disableMsg)
+  }
   // Check Status tab
   //
   // Only clusterwide users will have access to cluster information, so we don't
