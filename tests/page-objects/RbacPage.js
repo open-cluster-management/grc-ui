@@ -92,7 +92,7 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
   this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput').setValue('@searchPatternFlyInput', name)
   this.waitForElementVisible('@allTable')
   // Navigate to policy page
-  this.expect.element('@policyLink').text.to.equal(name)
+  this.expect.element('@policyLink').text.to.startWith(name)
   this.click('@policyLink')
   this.waitForElementNotPresent('@spinner')
   this.waitForElementPresent('.bx--tabs__nav')
