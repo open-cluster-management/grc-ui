@@ -40,7 +40,6 @@ export class GrcToggleModule extends React.Component {
     const { locale } = this.context
     const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
     const tableDataByCLusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
-    alert(status)
     if (status !== REQUEST_STATUS.INCEPTION && status !== REQUEST_STATUS.DONE){
       return <Spinner className='patternfly-spinner' />
     }
