@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import {
   ToggleGroup,
   ToggleGroupItem,
+  Spinner
 } from '@patternfly/react-core'
 import PatternFlyTable from '../common/PatternFlyTable'
 import { LocaleContext } from '../common/LocaleContext'
@@ -21,6 +22,7 @@ import _ from 'lodash'
 import { resourceActions } from '../common/ResourceTableRowMenuItemActions'
 import formatUserAccess from '../common/FormatUserAccess'
 import filterUserAction from '../common/FilterUserAction'
+import { REQUEST_STATUS } from '../../actions/index'
 
 resources(() => {
   require('../../../scss/grc-toggle-module.scss')
@@ -34,10 +36,14 @@ export class GrcToggleModule extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { grcItems, showGrcTabToggle, grcTabToggleIndex, handleToggleClick } = this.props
+    const { grcItems, showGrcTabToggle, grcTabToggleIndex, handleToggleClick, status } = this.props
     const { locale } = this.context
     const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
     const tableDataByCLusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
+    alert(status)
+    if (status !== REQUEST_STATUS.INCEPTION && status !== REQUEST_STATUS.DONE){
+      return <Spinner className='patternfly-spinner' />
+    }
     return (
       <div className='grc-toggle'>
         {showGrcTabToggle && <ToggleGroup className='grc-toggle-button' variant='light'>
@@ -143,12 +149,22 @@ GrcToggleModule.propTypes = {
   grcTabToggleIndex: PropTypes.number,
   handleToggleClick: PropTypes.func,
   showGrcTabToggle: PropTypes.bool,
+  status: PropTypes.string,
   userAccess: PropTypes.array,
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const { grcTabToggleIndex } = ownProps
+  const typeListName = (grcTabToggleIndex === 0 )
+    ? RESOURCE_TYPES.HCM_POLICIES_PER_POLICY.list
+    : RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER.list
+
   const userAccess = state.userAccess ? state.userAccess.access : []
-  return { userAccess }
+
+  return {
+    status: state[typeListName].status,
+    userAccess
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
