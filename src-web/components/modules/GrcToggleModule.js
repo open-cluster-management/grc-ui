@@ -28,7 +28,7 @@ resources(() => {
   require('../../../scss/grc-toggle-module.scss')
 })
 
-export class GrcToggleModule extends React.Component {
+class GrcToggleModule extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -121,6 +121,10 @@ export class GrcToggleModule extends React.Component {
       }
       if (filteredActions.length > 0) {
         filteredActions.forEach((action) => {
+          const disableFlag = action.includes('disabled.')
+          if (disableFlag) {
+            action = action.replace('disabled.', '')
+          }
           if (action === 'table.actions.remove') {
             actionsList.push(
               {
@@ -131,8 +135,9 @@ export class GrcToggleModule extends React.Component {
           actionsList.push(
             {
               title: msgs.get(action, locale),
+              isDisabled: disableFlag ? true : false,
               onClick: () =>
-                getResourceAction(action, row, resourceType)
+                (disableFlag ? null : getResourceAction(action, row, resourceType))
             }
           )
         })
