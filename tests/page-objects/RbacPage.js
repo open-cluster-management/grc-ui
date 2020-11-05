@@ -95,7 +95,7 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
   this.expect.element('@policyLink').text.to.startWith(name)
   this.click('@policyLink')
   this.waitForElementNotPresent('@spinner')
-  this.waitForElementNotPresent('.overview-content-second')
+  this.waitForElementPresent('.overview-content-second')
   this.waitForElementPresent('@placementBindingEdit')
   if (permissions.patch) {
     this.expect.element('@placementBindingEdit').to.be.enabled
