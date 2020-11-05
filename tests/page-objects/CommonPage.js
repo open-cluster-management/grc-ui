@@ -260,6 +260,7 @@ function deletePolicy(name){
 }
 
 function clearPatternFlySearchValue(){
+  this.waitForElementVisible('@searchPatternFlyInputClear')
   this.isVisible('@searchPatternFlyInputClear', result => {
     if (result.value) {
       this.click('@searchPatternFlyInputClear')

@@ -23,6 +23,7 @@ import { resourceActions } from '../common/ResourceTableRowMenuItemActions'
 import formatUserAccess from '../common/FormatUserAccess'
 import filterUserAction from '../common/FilterUserAction'
 import { REQUEST_STATUS } from '../../actions/index'
+import { createDisableTooltip } from '../common/DisableTooltip'
 
 resources(() => {
   require('../../../scss/grc-toggle-module.scss')
@@ -134,7 +135,7 @@ class GrcToggleModule extends React.Component {
           }
           actionsList.push(
             {
-              title: msgs.get(action, locale),
+              title: createDisableTooltip(disableFlag, action, locale, msgs.get(action, locale)),
               isDisabled: disableFlag ? true : false,
               onClick: () =>
                 (disableFlag ? null : getResourceAction(action, row, resourceType))
