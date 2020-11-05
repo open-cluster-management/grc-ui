@@ -85,7 +85,6 @@ function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionNa
   this.waitForElementVisible(`${modalName} > div > .bx--modal-footer > ${clickButtonName}`)
   this.click(`${modalName} > div > .bx--modal-footer > ${clickButtonName}`)
   this.waitForElementNotPresent(modalName)
-  this.waitForElementVisible('.pf-c-table')
 }
 
 function createPolicy(browser, name, yaml, time) {
