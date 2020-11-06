@@ -155,8 +155,6 @@ describe('PolicyTemplatesView component', () => {
               }
             ]
           },
-          'clusterReplicas': null,
-          'resourceSelector': {},
           'status': {
             'decisions': [
               {

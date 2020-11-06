@@ -179,19 +179,9 @@ describe('ResourceDetails error', () => {
             'msgKey': 'table.header.namespace'
           },
           {
-            'key': 'replicas',
-            'resourceKey': 'clusterReplicas',
-            'msgKey': 'table.header.replicas'
-          },
-          {
             'key': 'clusterSelector',
             'resourceKey': 'clusterLabels',
             'msgKey': 'table.header.cluster.selector'
-          },
-          {
-            'key': 'resourceSelector',
-            'resourceKey': 'resourceSelector',
-            'msgKey': 'table.header.resource.selector'
           },
           {
             'key': 'decisions',
