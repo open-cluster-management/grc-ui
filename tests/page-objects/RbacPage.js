@@ -2,7 +2,7 @@
 
 const config = require('../../config')
 
-const disableMsg = 'You do not have the required permissions to take this action.'
+// const disableMsg = 'You do not have the required permissions to take this action.'
 
 module.exports = {
   elements: {
@@ -44,10 +44,10 @@ module.exports = {
   }]
 }
 /* Helper for checking Tooltip on elements */
-function checkTooltip(browser, selector, message) {
-  browser.moveToElement(selector, undefined, undefined)
-  browser.expect.element('@tooltip').text.to.equal(message)
-}
+// function checkTooltip(browser, selector, message) {
+//   browser.moveToElement(selector, undefined, undefined)
+//   browser.expect.element('@tooltip').text.to.equal(message)
+// }
 /* Verify user can only see policies they should on the summary page */
 function verifyAllPage(name, nsNum, permissions) {
   this.log(`verifyAllPage policy: ${name} nsNum: ${nsNum} permissions: ${{permissions}}`)
@@ -68,18 +68,18 @@ function verifyAllPage(name, nsNum, permissions) {
     this.expect.element('@overflowMenuBody_Enforce').to.be.enabled
   } else {
     this.expect.element('@overflowMenuBody_Edit').to.be.not.enabled
-    checkTooltip(this, '@overflowMenuBody_Edit', disableMsg)
+    // checkTooltip(this, '@overflowMenuBody_Edit', disableMsg)
     this.expect.element('@overflowMenuBody_Disable').to.be.not.enabled
-    checkTooltip(this, '@overflowMenuBody_Disable', disableMsg)
+    // checkTooltip(this, '@overflowMenuBody_Disable', disableMsg)
     this.expect.element('@overflowMenuBody_Enforce').to.be.not.enabled
-    checkTooltip(this, '@overflowMenuBody_Enforce', disableMsg)
+    // checkTooltip(this, '@overflowMenuBody_Enforce', disableMsg)
   }
   // Check for remove permissions
   if (permissions.delete) {
     this.expect.element('@overflowMenuBody_Remove').to.be.enabled
   } else {
     this.expect.element('@overflowMenuBody_Remove').to.be.not.enabled
-    checkTooltip(this, '@overflowMenuBody_Remove', disableMsg)
+    // checkTooltip(this, '@overflowMenuBody_Remove', disableMsg)
   }
   this.waitForElementVisible('@searchPatternFlyInput')
   this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput')
@@ -102,9 +102,9 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
     this.expect.element('@placementRuleEdit').to.be.enabled
   } else {
     this.expect.element('@placementBindingEdit').to.not.be.enabled
-    checkTooltip(this, '@placementBindingEdit', disableMsg)
+    // checkTooltip(this, '@placementBindingEdit', disableMsg)
     this.expect.element('@placementRuleEdit').to.not.be.enabled
-    checkTooltip(this, '@placementRuleEdit', disableMsg)
+    // checkTooltip(this, '@placementRuleEdit', disableMsg)
   }
   // Check Status tab
   //
@@ -120,7 +120,7 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
       this.expect.element('@statusDetailsLink').to.have.property('href')
     } else {
       this.expect.element('@statusDetailsLink').to.not.have.property('href')
-      checkTooltip(this, '@statusDetailsLink', disableMsg)
+      // checkTooltip(this, '@statusDetailsLink', disableMsg)
     }
     this.click('@statusClusterToggle_templates')
     this.waitForElementPresent('@statusTable')
@@ -128,7 +128,7 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
       this.expect.element('@statusDetailsLink').to.have.property('href')
     } else {
       this.expect.element('@statusDetailsLink').to.not.have.property('href')
-      checkTooltip(this, '@statusDetailsLink', disableMsg)
+      // checkTooltip(this, '@statusDetailsLink', disableMsg)
     }
   }
   // Check YAML tab
@@ -139,9 +139,9 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
     this.expect.element('@yamlSubmitButton').to.be.enabled
   } else {
     this.expect.element('@yamlEditButton').to.be.not.enabled
-    checkTooltip(this, '@yamlEditButton', disableMsg)
+    // checkTooltip(this, '@yamlEditButton', disableMsg)
     this.expect.element('@yamlSubmitButton').to.be.not.enabled
-    checkTooltip(this, '@yamlSubmitButton', disableMsg)
+    // checkTooltip(this, '@yamlSubmitButton', disableMsg)
   }
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
@@ -185,7 +185,7 @@ function verifyCreatePage(permissions, createPage, policyName = '', ns = [], clu
     }
   } else {
     this.expect.element('@createPolicyButton').to.not.be.enabled
-    checkTooltip(this, '@createPolicyButton', disableMsg)
+    // checkTooltip(this, '@createPolicyButton', disableMsg)
 
     // Make sure users can't navigate to the Create page directly
     this.api.url(`${this.api.launchUrl}${config.get('contextPath')}/create`)
