@@ -50,7 +50,7 @@ module.exports = {
 // }
 /* Verify user can only see policies they should on the summary page */
 function verifyAllPage(name, nsNum, permissions) {
-  this.log(`verifyAllPage policy: ${name} nsNum: ${nsNum} permissions: ${{permissions}}`)
+  this.log(`verifyAllPage policy: ${name} nsNum: ${nsNum} permissions: ${JSON.stringify(permissions)}`)
   // Filter for our RBAC policies
   this.waitForElementVisible('@searchPatternFlyInput')
   this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput').setValue('@searchPatternFlyInput', name)
