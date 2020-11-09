@@ -129,7 +129,7 @@ module.exports = {
 
   'GRC RBAC: Namespaced edit user': () => {
     loginPage.authenticate('e2e-edit-ns')
-    page.verifyAllPage(`${policyName}`, 1, permissions.edit)
+    page.verifyAllPage(policyName, 1, permissions.edit)
     page.verifyCreatePage(permissions.edit)
     page.verifyPolicyPage(policyName, permissions.edit, true)
   },
