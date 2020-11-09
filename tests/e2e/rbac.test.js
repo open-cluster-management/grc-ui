@@ -137,9 +137,9 @@ module.exports = {
 
   'GRC RBAC: Namespaced view user': () => {
     loginPage.authenticate('e2e-view-ns')
-    page.verifyAllPage(`${policyName}-${namespaces[1]}`, 1, permissions.view)
+    page.verifyAllPage(`${policyName}-${namespaces[0]}`, 1, permissions.view)
     page.verifyCreatePage(permissions.view)
-    page.verifyPolicyPage(`${policyName}-${namespaces[1]}`, permissions.view, true)
+    page.verifyPolicyPage(`${policyName}-${namespaces[0]}`, permissions.view, true)
   },
 
   'GRC RBAC: Namespaced view user in a group': () => {
