@@ -116,7 +116,7 @@ module.exports = {
   'GRC RBAC: Namespaced admin user': () => {
     loginPage.authenticate('e2e-admin-ns')
     // This would be 1, but admin user also has view access to namespace 2
-    page.verifyAllPage(`${policyName}-e2e-rbac-test1`, 2, permissions.admin)
+    page.verifyAllPage(`${policyName}-e2e-rbac-test-1`, 2, permissions.admin)
     const createdPolicy = `${policyName}-admin-ns`
     // The ns array would only be namespace 1 but user also has view access to ns 2
     page.verifyCreatePage(permissions.admin, createPage, createdPolicy, namespaces, false, true)
