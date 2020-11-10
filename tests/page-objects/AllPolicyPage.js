@@ -384,7 +384,6 @@ function testCreateCustomSelections(templates) {
   // Clear Standards and make sure it's working as expected
   this.click('@standardsDropdownClearAll')
   this.expect.element('@standardsDropdownInput').to.have.attribute('placeholder').that.equals('Begin typing to search for label to select')
-  this.pause()
 }
 /* Helper function to edit YAML in editor and verify fields changed */
 function editYaml(browser, content, line, element, clear = false, expected = content) {
