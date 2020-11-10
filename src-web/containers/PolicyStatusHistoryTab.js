@@ -15,7 +15,7 @@ import { PolicyStatusHistory } from '../../lib/client/queries'
 import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
-import PolicyStatusHistoryView from '../components/common/PolicyStatusHistoryView'
+import PolicyStatusHistoryView from '../components/modules/PolicyStatusHistoryView'
 import { DangerNotification } from '../components/common/DangerNotification'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
 

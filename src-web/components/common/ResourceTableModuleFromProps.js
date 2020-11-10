@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Module, ModuleHeader, ModuleBody } from 'carbon-addons-cloud-react'
-import lodash from 'lodash'
+import _ from 'lodash'
 import msgs from '../../../nls/platform.properties'
 // eslint-disable-next-line import/no-named-as-default
 import ResourceTable from '../../components/common/ResourceTable'
@@ -64,7 +64,7 @@ export class ResourceTableModule extends React.Component {
     const { staticResourceData, definitionsKey, resourceType, subResourceType, showSearch, showPagination } = this.props
     const keys = staticResourceData[definitionsKey]
     const { resourceItems, resourceIds, searchValue, sortDirection } = this.state
-    const showModuleHeader = lodash.get(this.props, 'showModuleHeader', true)
+    const showModuleHeader = _.get(this.props, 'showModuleHeader', true)
 
     return (
       (resourceItems && Object.keys(resourceItems).length > 0 || searchValue)? <Module id={`${definitionsKey}-module-id`}>
@@ -93,7 +93,7 @@ export class ResourceTableModule extends React.Component {
 
   createNormalizedItems(input, normalizedKey) {
     if (input) {
-      return lodash.keyBy(input, repo => normalizedKey? `${lodash.get(repo, normalizedKey)}${lodash.get(repo, 'cluster', '')}`: lodash.get(repo, 'name', ''))
+      return _.keyBy(input, repo => normalizedKey? `${_.get(repo, normalizedKey)}${_.get(repo, 'cluster', '')}`: _.get(repo, 'name', ''))
     }
     return []
   }
@@ -109,7 +109,7 @@ export class ResourceTableModule extends React.Component {
     let itemIds = Object.keys(normalizedItems)
     if (searchValue) {
       itemIds = itemIds.filter(repo => repo.includes(searchValue))
-      normalizedItems = lodash.pick(normalizedItems, itemIds)
+      normalizedItems = _.pick(normalizedItems, itemIds)
     }
     this.setState({ resourceItems: normalizedItems, resourceIds: itemIds })
   }
@@ -123,7 +123,7 @@ export class ResourceTableModule extends React.Component {
       let resItems = prevState.resourceItems
       let resIds = prevState.resourceIds
       resIds = resIds.filter(repo => repo.includes(searchValue))
-      resItems = lodash.pick(resItems, resIds)
+      resItems = _.pick(resItems, resIds)
       return { resourceItems: resItems, resourceIds: resIds, searchValue }
     })
     return undefined
@@ -136,7 +136,7 @@ export class ResourceTableModule extends React.Component {
       const resourceKeys = staticResourceData[definitionsKey]
       const { resourceItems, sortDirection } = this.state
       const sortKey = resourceKeys.tableKeys.find(tableKey => tableKey.resourceKey === selectedKey).resourceKey
-      const sortedRes = lodash.orderBy(resourceItems, [sortKey], [sortDirection])
+      const sortedRes = _.orderBy(resourceItems, [sortKey], [sortDirection])
 
       const { normalizedKey } = resourceKeys
       const normalizedItems = this.createNormalizedItems(sortedRes, normalizedKey)
