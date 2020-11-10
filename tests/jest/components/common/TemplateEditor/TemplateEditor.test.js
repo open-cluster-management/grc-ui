@@ -10,9 +10,9 @@
 'use strict'
 
 import React from 'react'
-import {TemplateEditor} from '../../../../src-web/components/TemplateEditor'
+import {TemplateEditor} from '../../../../../src-web/components/TemplateEditor'
 import renderer from 'react-test-renderer'
-import policyTemplate from '../../../../src-web/components/templates/policy-template.hbs'
+import policyTemplate from '../../../../../src-web/components/templates/policy-template.hbs'
 import { shallow } from 'enzyme'
 import _ from 'lodash'
 //import { existing } from '../ComponentsTestingData'
