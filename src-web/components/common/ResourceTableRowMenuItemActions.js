@@ -10,9 +10,9 @@
 'use strict'
 
 import { updateModal } from '../../actions/common'
-import config from '../../../lib/shared/config'
+import _ from 'lodash'
 
-export const resourceActions = (action, dispatch, resourceType, data, hasService, history) => {
+export const resourceActions = (action, dispatch, resourceType, data) => {
   switch (action) {
   case 'table.actions.edit': {
     return dispatch(updateModal(
@@ -25,10 +25,9 @@ export const resourceActions = (action, dispatch, resourceType, data, hasService
         data: { kind: resourceType.name, ...data }}))
   }
   case 'table.actions.launch.cluster':{
-    window.open(`${data.consoleURL}`, '_blank')
+    window.open(`${_.get(data, 'clusterConsoleURL.local-cluster', 'consoleURL')}`, '_blank')
     return
   }
-  case 'table.actions.policy.applications.sidepanel':
   case 'table.actions.policy.policies.sidepanel':
   case 'table.actions.policy.clusters.sidepanel': {
     return dispatch(updateModal(
@@ -36,7 +35,6 @@ export const resourceActions = (action, dispatch, resourceType, data, hasService
         label: { label: `modal.edit-${resourceType.name.toLowerCase()}.label`, heading: `modal.edit-${resourceType.name.toLowerCase()}.heading` },
         data: { kind: resourceType.name, ...data }}))
   }
-  case 'table.actions.applications.remove':
   case 'table.actions.compliance.remove':
   case 'table.actions.policy.remove':
   case 'table.actions.remove': {
@@ -88,28 +86,6 @@ export const resourceActions = (action, dispatch, resourceType, data, hasService
           heading: `modal.inform-${resourceType.name.toLowerCase()}.heading`
         },
         data: { apiVersion: resourceType.api_version, kind: resourceType.name, ...data }}))
-  }
-  case 'table.actions.cluster.view.nodes':{
-    history.push(`${config.contextPath}/nodes?filters={"cluster":["${data.metadata.name}"]}`)
-    return
-  }
-  case 'table.actions.cluster.view.pods': {
-    history.push(`${config.contextPath}/pods?filters={"cluster":["${data.metadata.name}"]}`)
-    return
-  }
-  case 'table.actions.cluster.edit.labels': {
-    const _data = { ...data }
-    return dispatch(updateModal(
-      { open: true, type: 'label-editing', action: 'put', resourceType,
-        label: {
-          primaryBtn: 'modal.button.submit',
-          label: `modal.edit-${resourceType.name.toLowerCase()}.label`,
-          heading: `modal.edit-${resourceType.name.toLowerCase()}.heading`
-        },
-        data: { apiVersion: resourceType.api_version, resourceType: resourceType.name, ..._data }}))
-  }
-  case 'table.actions.pod.logs': {
-    return dispatch(updateModal({ open: true, type: 'view-logs', resourceType, data }))
   }
   default:
     return undefined

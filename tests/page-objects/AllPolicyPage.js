@@ -14,16 +14,13 @@ const yaml = require('js-yaml')
 module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
-    table: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra',
-    tableExpandableRowButton: 'button.bx--table-expand-v2__button:nth-of-type(1)',
-    tableExpandedRow: 'tr.bx--expandable-row-v2:nth-of-type(2)',
+    table: '.pf-c-table',
     createPolicyButton: '#create-policy',
     submitCreatePolicyButton: '#create-button-portal-id',
     resetEditor: 'div.creation-view-yaml-header div.editor-bar-button[title="Reset"]',
     yamlMonacoEditor: '.monaco-editor',
-    searchInput: '#search',
-    searchInputClear: '#search ~ .bx--search-close',
-    searchResult: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td',
+    searchInput: '.pf-c-search-input__text',
+    searchInputClear: '.pf-c-search-input__clear',
     resourceFilterBar: 'div.resource-filter-bar > span',
     resourceFilterBarClear: 'div.resource-filter-bar > span.button',
     filterButton: '#resource-toolbar > div > div > div.resource-filter-button',
@@ -32,13 +29,12 @@ module.exports = {
     sidePolicyPanel: 'div.bx--modal-container > div.bx--modal-content',
     sidePolicyPanelClose: 'div.bx--modal-container > div.bx--modal-header > button.bx--modal-close',
     sidePolicyPanelClusterLink: 'div.bx--modal-container > div.bx--modal-content a.bx--link',
-    toggleButtonPolicies: '#policies-0',
-    toggleButtonClusterViolations: '#cluster-violations-1',
-    allTableClusterHeading: '.bx--data-table-v2 > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1) > div:nth-child(1) > span:nth-child(1)',
-    allTablePolicyHeading: '.bx--data-table-v2 > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(2) > div:nth-child(1) > span:nth-child(1)',
-    overflowMenuToggle: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
-    overflowMenuBox: 'body > ul.bx--overflow-menu-options',
-    overflowViewClusters: 'body > ul.bx--overflow-menu-options > li:nth-child(1) > button',
+    toggleButtonPolicies: '.pf-c-toggle-group__item:first-child .pf-c-toggle-group__button',
+    toggleButtonCluster: '.pf-c-toggle-group__item:last-child .pf-c-toggle-group__button',
+    allTableHeading: '.pf-c-table__button-content .pf-c-table__text, .pf-c-table__column-help .pf-c-table__text',
+    overflowMenuToggle: '.pf-c-table  .pf-c-dropdown__toggle',
+    overflowMenuBox: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu',
+    overflowViewClusters: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu > li:nth-child(1) > button',
     deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
     noResource: '.no-resource',
@@ -89,7 +85,7 @@ module.exports = {
     testFilters,
     testPolicySidePanel,
     updateYamlEditor,
-    verifyPagination,
+    // verifyPagination,
     verifyPolicyTable,
     verifySummary,
     verifyTable,
@@ -161,22 +157,8 @@ function verifyTable(browser, cluster) {
   browser.api.element('@noResource', (result) => {
     if (result.status === -1) {
       browser.waitForElementVisible('@table')
-      // For policy table, check that rows expand to show placement
-      if (!cluster) {
-        browser.click('@tableExpandableRowButton')
-        browser.waitForElementVisible('@tableExpandedRow')
-        browser.expect.element('@tableExpandedRow').to.have.attribute('data-child-row').equals('true')
-        browser.click('@tableExpandableRowButton')
-        browser.waitForElementNotPresent('@tableExpandedRow')
-      }
       // Check side panel
       browser.click('@overflowMenuToggle')
-      // *** SIDE PANEL IS CURRENTLY DISABLED ***
-      // this.click('@overflowViewClusters')
-      // browser.waitForElementVisible('@sidePolicyPanel')
-      // browser.click('@sidePolicyPanelClose')
-      // browser.waitForElementNotPresent('@sidePolicyPanel')
-
       // *** TEMPORARY TEST WITHOUT SIDE PANEL ***
       // Open overflow, verify it's not "View", and close overflow menu
       browser.expect.element('@overflowMenuBox').to.be.present
@@ -192,23 +174,23 @@ function verifyTable(browser, cluster) {
 }
 // Test content toggle
 function verifyToggle() {
-  this.click('@toggleButtonClusterViolations')
-  this.waitForElementVisible('@allTableClusterHeading')
-  this.expect.element('@allTableClusterHeading').text.to.equal('Cluster name')
+  this.click('@toggleButtonCluster')
+  this.waitForElementVisible('@allTableHeading')
+  this.expect.element('@allTableHeading').text.to.equal('Cluster name')
   this.click('@toggleButtonPolicies')
-  this.waitForElementVisible('@allTablePolicyHeading')
-  this.expect.element('@allTablePolicyHeading').text.to.equal('Policy name')
+  this.waitForElementVisible('@allTableHeading')
+  this.expect.element('@allTableHeading').text.to.equal('Policy name')
 }
-function verifyPagination() {
-  const pagination = '.bx--pagination'
-  this.waitForElementVisible(pagination)
-  this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="5"]')
-  this.waitForElementVisible('.bx--pagination__button.bx--pagination__button--forward')
-  this.click('.bx--pagination__button.bx--pagination__button--forward')
-  this.waitForElementVisible('.bx--pagination__button.bx--pagination__button--backward')
-  this.click('.bx--pagination__button.bx--pagination__button--backward')
-  this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="10"]')
-}
+// function verifyPagination() {
+//   const pagination = '.bx--pagination'
+//   this.waitForElementVisible(pagination)
+//   this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="5"]')
+//   this.waitForElementVisible('.bx--pagination__button.bx--pagination__button--forward')
+//   this.click('.bx--pagination__button.bx--pagination__button--forward')
+//   this.waitForElementVisible('.bx--pagination__button.bx--pagination__button--backward')
+//   this.click('.bx--pagination__button.bx--pagination__button--backward')
+//   this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="10"]')
+// }
 /* Test side panel */
 function testPolicySidePanel() {
   this.click('@overflowMenuToggle')
@@ -248,9 +230,9 @@ function testFilters(spec = {}) {
     }
   }
   // Expect our policy to still be visible after checking its respective filters
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.contain(spec.policyName)
+  this.expect.element('tbody tr > *:first-child > a').text.to.contain(spec.policyName)
   // Leave and return to the summary page to make sure the filters are still there
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a')
+  this.click('tbody tr > *:first-child > a')
   this.waitForElementNotPresent('@spinner')
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
@@ -482,22 +464,22 @@ function verifyPolicyTable(name, templateFile) {
   const file = applyTemplate(name, templateFile)
   const data = yaml.safeLoadAll(file)
   // Verify summary table fields
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1) > a').text.to.equal(name)
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(data[0].metadata.namespace)
   if (data[0].metadata.annotations['policy.open-cluster-management.io/standards']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/standards']))
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(5)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/standards']))
   } else {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal('-')
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(5)').text.to.equal('-')
   }
   if (data[0].metadata.annotations['policy.open-cluster-management.io/controls']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/categories']))
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/categories']))
   } else {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal('-')
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal('-')
   }
   if (data[0].metadata.annotations['policy.open-cluster-management.io/categories']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/controls']))
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/controls']))
   } else {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal('-')
+    this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal('-')
   }
 }
 function testDetailsPage(name, templateFile) {
@@ -505,9 +487,9 @@ function testDetailsPage(name, templateFile) {
   const file = applyTemplate(name, templateFile)
   const data = yaml.safeLoadAll(file)
   // Verify and click policy name in policy table
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
-  this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
-  this.click('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a')
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(2)').text.to.equal(data[0].metadata.namespace)
+  this.expect.element('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1) > a').text.to.equal(name)
+  this.click('.pf-c-table > tbody > tr:nth-child(1) > td:nth-child(1) > a')
   this.waitForElementNotPresent('@spinner')
   // DETAILS TAB TESTS
   // Check policy details

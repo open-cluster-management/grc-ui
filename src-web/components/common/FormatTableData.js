@@ -88,4 +88,3 @@ export const formatExpandablePolicies = (policies) => {
   }
   return result
 }
-

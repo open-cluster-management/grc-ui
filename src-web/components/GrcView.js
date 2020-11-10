@@ -18,9 +18,7 @@ import { updateAvailableFilters, updateActiveFilters } from '../actions/common'
 import { Notification } from 'carbon-components-react'
 import { Spinner } from '@patternfly/react-core'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
-// eslint-disable-next-line import/no-named-as-default
 import GrcCardsModule from './modules/GrcCardsModule'
-// eslint-disable-next-line import/no-named-as-default
 import GrcToggleModule from './modules/GrcToggleModule'
 import {
   filterPolicies, getAvailableGrcFilters, getSavedGrcState,
@@ -54,6 +52,7 @@ export class GrcView extends React.Component {
     this.handleCreatePolicy = this.handleCreatePolicy.bind(this)
     this.updateViewState = this.updateViewState.bind(this)
     this.handleDrillDownClickGrcView = this.handleDrillDownClickGrcView.bind(this)
+    this.handleToggleClick = this.handleToggleClick.bind(this)
   }
 
   UNSAFE_componentWillMount() {
@@ -122,11 +121,9 @@ export class GrcView extends React.Component {
 
   render() {
     const { locale } = this.context
-    const showApplications = this.props.showApplications
     const { viewState } = this.state
     const {
-      loading, error, grcItems, applications, activeFilters={},
-      secondaryHeaderProps, location, access
+      loading, error, grcItems, activeFilters={}, location, access
     } = this.props
     if (loading) {
       return <Spinner className='patternfly-spinner' />
@@ -174,8 +171,6 @@ export class GrcView extends React.Component {
     const showGrcCard = urlParams.card==='false' ? false : true
     const grcTabToggleIndex = urlParams.index ? Number(urlParams.index) : 0
     const showGrcTabToggle = urlParams.toggle==='false' ? false : true
-    const highLightRowName = urlParams.name ? urlParams.name : ''
-    const showSidePanel = urlParams.side==='true' ? true : false
     return (
       <div className='grc-view'>
         <ResourceFilterBar />
@@ -189,18 +184,12 @@ export class GrcView extends React.Component {
           handleDrillDownClick={this.handleDrillDownClickGrcView}
         />
         <GrcToggleModule
-          displayType={displayType}
           grcItems={filterGrcItems}
-          applications={applications}
-          secondaryHeaderProps={secondaryHeaderProps}
-          locale={locale}
-          showApplications={showApplications}
           grcTabToggleIndex={grcTabToggleIndex}
           showGrcTabToggle={showGrcTabToggle}
-          highLightRowName={highLightRowName}
-          showSidePanel={showSidePanel}
           filterToEmpty={filterToEmpty}
-          handleCreatePolicy={this.handleCreatePolicy} />
+          handleToggleClick={this.handleToggleClick}
+        />
       </div>
     )
   }
@@ -272,19 +261,33 @@ export class GrcView extends React.Component {
   handleCreatePolicy(){
     this.props.history.push(`${config.contextPath}/create`)
   }
+
+  handleToggleClick = (isSelected, event) => {
+    if (isSelected) {
+      const urlParams = queryString.parse(location.search)
+      switch(event.currentTarget.id) {
+      case 'grc-policies-view':
+        urlParams.index = 0
+        break
+      case 'grc-cluster-view':
+      default:
+        urlParams.index = 1
+        break
+      }
+      if (this.props.history) {
+        this.props.history.push(`${this.props.location.pathname}?${queryString.stringify(urlParams)}`)}
+    }
+  }
 }
 
 GrcView.propTypes = {
   access: PropTypes.array,
   activeFilters: PropTypes.object,
-  applications: PropTypes.array,
   error: PropTypes.object,
   grcItems: PropTypes.array,
   history: PropTypes.object.isRequired,
   loading: PropTypes.bool,
   location: PropTypes.object,
-  secondaryHeaderProps: PropTypes.object,
-  showApplications: PropTypes.bool,
   updateActiveFilters: PropTypes.func,
   updateAvailableFilters: PropTypes.func,
 }

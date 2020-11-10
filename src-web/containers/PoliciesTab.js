@@ -12,7 +12,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
-import GrcApolloClient from '../../lib/client/apollo-client'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
@@ -22,15 +21,13 @@ import Page from '../components/common/Page'
 // eslint-disable-next-line import/no-named-as-default
 import GrcView from '../components/GrcView'
 import { updateSecondaryHeader } from '../actions/common'
-import { HCMComplianceList, HCMApplicationList } from '../../lib/client/queries'
+import { HCMComplianceList } from '../../lib/client/queries'
 import msgs from '../../nls/platform.properties'
-import config from '../../lib/shared/config'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
 class PoliciesTab extends React.Component {
   static propTypes = {
     secondaryHeaderProps: PropTypes.object,
-    showApplications: PropTypes.bool,
     updateSecondaryHeader: PropTypes.func,
   }
 
@@ -50,7 +47,6 @@ class PoliciesTab extends React.Component {
   render () {
     const { secondaryHeaderProps } = this.props
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
-    const showApplications = this.props.showApplications === undefined ? config['feature_applications'] : this.props.showApplications
     return (
       <Page>
         <Query query={HCMComplianceList} pollInterval={pollInterval} notifyOnNetworkStatusChange >
@@ -66,36 +62,13 @@ class PoliciesTab extends React.Component {
               this.timestamp = new Date().toString()
             }
             setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
-            return (
-              showApplications ?
-                <Query query={HCMApplicationList} pollInterval={pollInterval} client={GrcApolloClient.getSearchClient()} notifyOnNetworkStatusChange >
-                  {( applicationResult ) => {
-                    const {applicationsData={}} = applicationResult
-                    const { applications } = applicationsData
-                    const searchError = applications ? null : applicationResult.error
-                    return (
-                      <GrcView
-                        showApplications={showApplications}
-                        loading={!items && loading}
-                        error={error}
-                        searchError={searchError}
-                        grcItems={items}
-                        applications = {applications}
-                        secondaryHeaderProps={secondaryHeaderProps}
-                      />
-                    )
-                  }
-                  }
-                </Query>
-                :
-                <GrcView
-                  showApplications={showApplications}
-                  loading={!items && loading}
-                  error={error}
-                  grcItems={items}
-                  secondaryHeaderProps={secondaryHeaderProps}
-                />
-            )
+            return <GrcView
+              loading={!items && loading}
+              error={error}
+              grcItems={items}
+              secondaryHeaderProps={secondaryHeaderProps}
+            />
+
           }
           }
         </Query>

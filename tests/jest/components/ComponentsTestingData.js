@@ -1200,17 +1200,6 @@ export const reduxStorePolicyCluster = {
     information: {}
   },
   modal: {},
-  HCMApplicationList: {
-    items: [],
-    itemsPerPage: 10,
-    page: 1,
-    search: '',
-    sortDirection: 'asc',
-    status: 'INCEPTION',
-    putErrorMsg: '',
-    postErrorMsg: '',
-    pendingActions: []
-  },
   HCMComplianceList: {
     items: [],
     itemsPerPage: 10,
@@ -3412,17 +3401,6 @@ export const reduxStoreFindingCluster = {
     information: 'A core service that enables operators to define multicluster policies needed to meet enterprise requirements and standards.'
   },
   modal: {},
-  HCMApplicationList: {
-    items: [],
-    itemsPerPage: 10,
-    page: 1,
-    search: '',
-    sortDirection: 'asc',
-    status: 'INCEPTION',
-    putErrorMsg: '',
-    postErrorMsg: '',
-    pendingActions: []
-  },
   HCMSecurityFindingsList: {
     items: [
       {

@@ -1,5 +1,4 @@
 /* Copyright (c) 2020 Red Hat, Inc.*/
-
 .pattern-fly-table-group {
 
   .pf-c-search-input {
@@ -21,10 +20,24 @@
   .pattern-fly-table {
     background-color: white;
 
+    .pf-c-dropdown__menu-item {
+      font-size: var(--pf-global--FontSize--sm);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
     .pf-c-table {
-      .pattern-fly-table-header {
+      .pattern-fly-table-header { 
+        th {
+          vertical-align: bottom;
+        }
         .pf-c-table__button {
           padding-bottom: 0;
+          .pf-c-table__sort-indicator {
+            margin: auto;
+            margin-bottom: 0px;
+          }
         }
       }
     }

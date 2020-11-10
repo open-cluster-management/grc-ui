@@ -68,7 +68,7 @@ module.exports = {
     const createdPolicy = `${policyName}-cluster-admin-cluster`
     page.verifyCreatePage(permissions.clusterAdmin, createPage, createdPolicy, namespaces, true)
     commonPage.deletePolicy(createdPolicy)
-    commonPage.clearSearchValue()
+    // commonPage.clearPatternFlySearchValue()
     page.verifyPolicyPage(policyName, permissions.clusterAdmin)
   },
 
@@ -78,7 +78,7 @@ module.exports = {
     const createdPolicy = `${policyName}-admin-cluster`
     page.verifyCreatePage(permissions.admin, createPage, createdPolicy, namespaces, true)
     commonPage.deletePolicy(createdPolicy)
-    commonPage.clearSearchValue()
+    // commonPage.clearPatternFlySearchValue()
     page.verifyPolicyPage(policyName, permissions.admin)
   },
 
@@ -109,43 +109,44 @@ module.exports = {
     const createdPolicy = `${policyName}-cluster-admin-ns`
     page.verifyCreatePage(permissions.clusterAdmin, createPage, createdPolicy, [namespaces[0]], false)
     commonPage.deletePolicy(createdPolicy)
-    commonPage.clearSearchValue()
+    // commonPage.clearPatternFlySearchValue()
     page.verifyPolicyPage(policyName, permissions.clusterAdmin, true)
   },
 
   'GRC RBAC: Namespaced admin user': () => {
     loginPage.authenticate('e2e-admin-ns')
     // This would be 1, but admin user also has view access to namespace 2
-    page.verifyAllPage(policyName, 2, permissions.admin)
+    // Verify admin permissions for this user by filtering for the specific policys
+    page.verifyAllPage(`${policyName}-${namespaces[0]}`, 1, permissions.admin)
     const createdPolicy = `${policyName}-admin-ns`
     // The ns array would only be namespace 1 but user also has view access to ns 2
     page.verifyCreatePage(permissions.admin, createPage, createdPolicy, namespaces, false, true)
     commonPage.deletePolicy(createdPolicy)
-    commonPage.clearSearchValue()
+    // commonPage.clearPatternFlySearchValue()
     // Verify view permissions for this user by filtering for the specific policy
     page.verifyAllPage(`${policyName}-${namespaces[1]}`, 1, permissions.view)
-    page.verifyPolicyPage(policyName, permissions.admin, true)
+    page.verifyPolicyPage(`${policyName}-${namespaces[0]}`, permissions.admin, true)
   },
 
   'GRC RBAC: Namespaced edit user': () => {
     loginPage.authenticate('e2e-edit-ns')
-    page.verifyAllPage(policyName, 1, permissions.edit)
+    page.verifyAllPage(`${policyName}-${namespaces[0]}`, 1, permissions.edit)
     page.verifyCreatePage(permissions.edit)
-    page.verifyPolicyPage(policyName, permissions.edit, true)
+    page.verifyPolicyPage(`${policyName}-${namespaces[0]}`, permissions.edit, true)
   },
 
   'GRC RBAC: Namespaced view user': () => {
     loginPage.authenticate('e2e-view-ns')
-    page.verifyAllPage(policyName, 1, permissions.view)
+    page.verifyAllPage(`${policyName}-${namespaces[0]}`, 1, permissions.view)
     page.verifyCreatePage(permissions.view)
-    page.verifyPolicyPage(policyName, permissions.view, true)
+    page.verifyPolicyPage(`${policyName}-${namespaces[0]}`, permissions.view, true)
   },
 
   'GRC RBAC: Namespaced view user in a group': () => {
     loginPage.authenticate('e2e-group-ns')
-    page.verifyAllPage(policyName, 1, permissions.view)
+    page.verifyAllPage(`${policyName}-${namespaces[0]}`, 1, permissions.view)
     page.verifyCreatePage(permissions.view)
-    page.verifyPolicyPage(policyName, permissions.view, true)
+    page.verifyPolicyPage(`${policyName}-${namespaces[0]}`, permissions.view, true)
   },
 
   'GRC RBAC: Clean up': () => {

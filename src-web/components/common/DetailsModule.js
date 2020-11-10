@@ -27,7 +27,7 @@ import {
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 import moment from 'moment'
-import { getPolicyCompliantStatus } from '../../definitions/hcm-policies-policy'
+import { getPolicyCompliantStatus } from '../../tableDefinitions/utils'
 import { LocaleContext } from './LocaleContext'
 
 resources(() => {

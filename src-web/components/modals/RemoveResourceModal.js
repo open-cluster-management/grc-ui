@@ -101,7 +101,7 @@ class RemoveResourceModal extends React.Component {
       return this.state.selected.length > 0
         ? <div className='remove-app-modal-content' >
           <div className='remove-app-modal-content-text' >
-            {msgs.get('modal.remove.application.confirm', [data.name || data.Name || data.metadata.name], locale)}
+            {msgs.get('modal.remove.policy.confirm', [data.name || data.Name || data.metadata.name], locale)}
           </div>
           <div>
             {this.state.selected.map((child) => {

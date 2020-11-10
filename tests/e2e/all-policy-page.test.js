@@ -76,9 +76,9 @@ module.exports = {
     page.verifySummary(`${browser.launch_url}${config.get('contextPath')}/all`)
   },
 
-  'GRC All policy page: Test pagination': (browser) => {
-    page.verifyPagination(browser)
-  },
+  // 'GRC All policy page: Test pagination': (browser) => {
+  //   page.verifyPagination(browser)
+  // },
 
   'GRC All policy page: Delete test policy': (browser) => {
     const time = browser.globals.time

@@ -1,173 +1,182 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
-import { RESOURCE_TYPES } from '../../../lib/shared/constants'
+import { connect } from 'react-redux'
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+  Spinner
+} from '@patternfly/react-core'
+import PatternFlyTable from '../common/PatternFlyTable'
+import { LocaleContext } from '../common/LocaleContext'
+import grcPoliciesViewDef from '../../tableDefinitions/grcPoliciesViewDef'
+import grcClustersViewDef from '../../tableDefinitions/grcClustersViewDef'
+import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
-import { ToggleGroup, ToggleGroupItem } from '@patternfly/react-core'
-import getResourceDefinitions from '../../definitions'
-import { makeGetVisibleTableItemsSelector } from '../../reducers/common'
-import ResourceList from '../common/ResourceList'
-import { formatPoliciesToClustersTableData, formatExpandablePolicies } from '../common/FormatTableData'
-import queryString from 'query-string'
+import { formatPoliciesToClustersTableData } from '../common/FormatTableData'
 import resources from '../../../lib/shared/resources'
+import { RESOURCE_TYPES } from '../../../lib/shared/constants'
+import _ from 'lodash'
+import { resourceActions } from '../common/ResourceTableRowMenuItemActions'
+import formatUserAccess from '../common/FormatUserAccess'
+import filterUserAction from '../common/FilterUserAction'
+import { REQUEST_STATUS } from '../../actions/index'
+import { createDisableTooltip } from '../common/DisableTooltip'
 
 resources(() => {
-  require('../../../scss/module-grc-toggle.scss')
+  require('../../../scss/grc-toggle-module.scss')
 })
 
-const policySidepanelActionStr = 'table.actions.policy.sidepanel'
-
-export class GrcToggleModule extends React.Component {
-
-  constructor (props) {
+class GrcToggleModule extends React.Component {
+  constructor(props) {
     super(props)
-    this.toggleClick = this.toggleClick.bind(this)
   }
+
+  static contextType = LocaleContext
 
   render() {
+    const { grcItems, showGrcTabToggle, grcTabToggleIndex, handleToggleClick, status } = this.props
     const { locale } = this.context
-    const { displayType, grcItems, secondaryHeaderProps, showGrcTabToggle, grcTabToggleIndex,
-      highLightRowName, showSidePanel, handleCreatePolicy, filterToEmpty } = this.props
-    const grcTabSwitcher = showGrcTabToggle ? this.renderTabSwitcher(displayType, grcTabToggleIndex) : []
-    let detailsTabs, resourceType, listData, staticResourceData, getVisibleResources, placeHolderText, autoAction
-    switch (displayType) {
-    case 'all':
-    default:
-      switch (grcTabToggleIndex){
-      case 0:
-      default:
-        detailsTabs = ['policies']
-        resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_POLICY
-        listData = formatExpandablePolicies(grcItems)
-        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
-        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_POLICY)
-        placeHolderText = msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)
-        autoAction = policySidepanelActionStr
-        break
-      case 1:
-        detailsTabs = ['clusters']
-        resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER
-        listData = formatPoliciesToClustersTableData(grcItems)
-        staticResourceData = getResourceDefinitions(RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER)
-        getVisibleResources = makeGetVisibleTableItemsSelector(RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER)
-        placeHolderText = msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)
-        autoAction = policySidepanelActionStr
-        break
-      }
-      break
-    }
-
-    return (
-      <div className='module-toggle-tab'>
-        <ResourceList
-          {...this.props}
-          detailsTabs={detailsTabs}
-          filterToEmpty={filterToEmpty}
-          resourceType={resourceType}
-          listData={listData}
-          staticResourceData={staticResourceData}
-          getVisibleResources={getVisibleResources}
-          tabs={secondaryHeaderProps.tabs}
-          links={secondaryHeaderProps.links}
-          title={secondaryHeaderProps.title}
-          information={secondaryHeaderProps.information}
-          placeHolderText={placeHolderText}
-          autoAction={autoAction}
-          highLightRowName={highLightRowName}
-          showSidePanel={showSidePanel}
-          handleCreatePolicy={handleCreatePolicy}
-          topButton={grcTabSwitcher}>
-          {grcTabSwitcher}
-        </ResourceList>
-      </div>
-    )
-  }
-
-  renderTabSwitcher(displayType, grcTabToggleIndex) {
-    const { locale } = this.context
-    const { showApplications } = this.props
-    let toggleText1, toggleText2, toggleText3
-    switch(displayType) {
-    case 'all':
-    default:
-      toggleText1 = msgs.get('tabs.grc.toggle.allPolicies', locale)
-      toggleText2 = msgs.get('tabs.grc.toggle.clusterViolations', locale)
-      toggleText3 = msgs.get('tabs.grc.toggle.policiesApplications', locale)
-      break
+    const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
+    const tableDataByCLusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
+    if (status !== REQUEST_STATUS.INCEPTION && status !== REQUEST_STATUS.DONE){
+      return <Spinner className='patternfly-spinner' />
     }
     return (
-      <div className='module-toggle-tab-switch-strip'>
-        <div className='module-toggle-tab-switch'>
-          {displayType==='all' && showApplications && <ToggleGroup variant='light'>
-            <ToggleGroupItem
-              buttonId={`${toggleText1.toLowerCase().replace(' ','-')}-0`} onChange={this.toggleClick}  isSelected={!grcTabToggleIndex}>
-              {toggleText1}
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              buttonId={`${toggleText2.toLowerCase().replace(' ','-')}-1`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>
-              {toggleText2}
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              buttonId={`${toggleText3.toLowerCase().replace(' ','-')}-2`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 2}>
-              {toggleText3}
-            </ToggleGroupItem>
-          </ToggleGroup>}
-          {displayType==='all' && !showApplications && <ToggleGroup variant='light'>
-            <ToggleGroupItem
-              buttonId={`${toggleText1.toLowerCase().replace(' ','-')}-0`} onChange={this.toggleClick} isSelected={!grcTabToggleIndex}>
-              {toggleText1}
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              buttonId={`${toggleText2.toLowerCase().replace(' ','-')}-1`} onChange={this.toggleClick} isSelected={grcTabToggleIndex === 1}>
-              {toggleText2}
-            </ToggleGroupItem>
-          </ToggleGroup>}
+      <div className='grc-toggle'>
+        {showGrcTabToggle && <ToggleGroup className='grc-toggle-button' variant='light'>
+          <ToggleGroupItem
+            buttonId={'grc-policies-view'}
+            onChange={handleToggleClick}
+            isSelected={grcTabToggleIndex===0}>
+            {msgs.get('tabs.grc.toggle.allPolicies', locale)}
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            buttonId={'grc-cluster-view'}
+            onChange={handleToggleClick}
+            isSelected={grcTabToggleIndex===1}>
+            {msgs.get('tabs.grc.toggle.clusterViolations', locale)}
+          </ToggleGroupItem>
+        </ToggleGroup>}
+        <div className='resource-table'>
+          {grcTabToggleIndex===0 && <div className='grc-view-by-policies-table'>
+            <PatternFlyTable
+              {...tableDataByPolicies}
+              searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
+              noResultMsg={msgs.get('table.search.no.results', locale)}
+              areActionsDisabled={false}
+              dropdownPosition={'right'}
+              dropdownDirection={'down'}
+              tableActionResolver={this.tableActionResolver}
+            />
+          </div>}
+          {grcTabToggleIndex===1 && <div className='grc-view-by-clusters-table'>
+            <PatternFlyTable
+              {...tableDataByCLusters}
+              searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
+              noResultMsg={msgs.get('table.search.no.results', locale)}
+              areActionsDisabled={false}
+              dropdownPosition={'right'}
+              dropdownDirection={'down'}
+              tableActionResolver={this.tableActionResolver}
+            />
+          </div>}
         </div>
       </div>
     )
   }
 
-  toggleClick(isSelected, event) {
-    // !isSelected is passed to this function, so isSelected shows not selected
-    if (isSelected) {
-      const {history, location} = this.props
-      const paraURL = queryString.parse(location.search)
-      paraURL.index = parseInt(event.currentTarget.id.slice(-1), 10)
-      const paraURLString = queryString.stringify(paraURL)
-      const op = paraURLString && paraURLString.length > 0 ? '?' : ''
-      history.push(`${location.pathname}${op}${paraURLString}`)
-      return `${location.pathname}${op}${paraURLString}`
-    } else {
-      return null
+  tableActionResolver = (rowData) => {
+    const { getResourceAction, userAccess, grcTabToggleIndex} = this.props
+    let resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_POLICY
+    let tableActions = grcPoliciesViewDef.tableActions
+    if (grcTabToggleIndex === 1) {
+      resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER
+      tableActions = grcClustersViewDef.tableActions
     }
+    const { locale } = this.context
+    const userAccessHash = formatUserAccess(userAccess)
+    const actionsList = []
+    const rowName = typeof _.get(rowData, ['0', 'title', 'props', 'children']) === 'string'
+      ? _.get(rowData, ['0', 'title', 'props', 'children'])
+      : _.get(rowData, ['0', 'title', 'props', 'children', '0', 'props', 'children'])
+    const rowArray = _.get(rowData, ['0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
+      ? _.get(rowData, ['0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
+      : _.get(rowData, ['0', 'title', 'props', 'children[0]', '_owner', 'stateNode', 'props', 'grcItems'])
+    if (rowName && Array.isArray(rowArray) && rowArray.length > 0) {
+      const row = rowArray.find(arrElement => _.get(arrElement, 'metadata.name') === rowName)
+      const filteredActions = (Array.isArray(tableActions) && tableActions.length > 0)
+        ? filterUserAction(row, tableActions, userAccessHash, resourceType)
+        : []
+      if (_.get(row, 'raw.spec.disabled', false)) {
+        filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
+      } else {
+        filteredActions[filteredActions.indexOf('table.actions.enable')] = 'table.actions.disable'
+      }
+      if (_.get(row, 'raw.spec.remediationAction', 'inform') === 'enforce') {
+        filteredActions[filteredActions.indexOf('table.actions.enforce', locale)] = 'table.actions.inform'
+      } else {
+        filteredActions[filteredActions.indexOf('table.actions.inform')] = 'table.actions.enforce'
+      }
+      if (filteredActions.length > 0) {
+        filteredActions.forEach((action) => {
+          const disableFlag = action.includes('disabled.')
+          if (disableFlag) {
+            action = action.replace('disabled.', '')
+          }
+          if (action === 'table.actions.remove') {
+            actionsList.push(
+              {
+                isSeparator: true
+              }
+            )
+          }
+          actionsList.push(
+            {
+              title: createDisableTooltip(disableFlag, action, locale, msgs.get(action, locale)),
+              isDisabled: disableFlag ? true : false,
+              onClick: () =>
+                (disableFlag ? null : getResourceAction(action, row, resourceType))
+            }
+          )
+        })
+      }
+    }
+    return actionsList
   }
 }
 
 GrcToggleModule.propTypes = {
-  applications: PropTypes.array,
-  displayType: PropTypes.string,
-  filterToEmpty: PropTypes.bool,
+  getResourceAction: PropTypes.func,
   grcItems: PropTypes.array,
   grcTabToggleIndex: PropTypes.number,
-  handleCreatePolicy: PropTypes.func,
-  highLightRowName: PropTypes.string,
-  history: PropTypes.object,
-  location: PropTypes.object,
-  secondaryHeaderProps: PropTypes.object,
-  showApplications: PropTypes.bool,
+  handleToggleClick: PropTypes.func,
   showGrcTabToggle: PropTypes.bool,
-  showSidePanel: PropTypes.bool,
+  status: PropTypes.string,
+  userAccess: PropTypes.array,
 }
 
-export default withRouter(GrcToggleModule)
+const mapStateToProps = (state, ownProps) => {
+  const { grcTabToggleIndex } = ownProps
+  const typeListName = (grcTabToggleIndex === 0 )
+    ? RESOURCE_TYPES.HCM_POLICIES_PER_POLICY.list
+    : RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER.list
+
+  const userAccess = state.userAccess ? state.userAccess.access : []
+
+  return {
+    status: state[typeListName].status,
+    userAccess
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getResourceAction: (action, resource, resourceType) =>
+      resourceActions(action, dispatch, resourceType, resource)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GrcToggleModule)

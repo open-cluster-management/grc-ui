@@ -2,23 +2,22 @@
 
 const config = require('../../config')
 
-const disableMsg = 'You do not have the required permissions to take this action.'
+// const disableMsg = 'You do not have the required permissions to take this action.'
 
 module.exports = {
   elements: {
     spinner: '.patternfly-spinner',
     tooltip: '.pf-c-tooltip',
-    searchInput: '#search',
-    allTable: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody',
-    policyLink: '.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a',
+    searchPatternFlyInput: '.pf-c-search-input__text-input',
+    allTable: '.pf-c-table > tbody',
+    policyLink: '.pattern-fly-table-body > tr:nth-child(1) > td:nth-child(1) > a',
     createPolicyButton: '#create-policy',
-    overflowMenu: 'table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td > div.bx--overflow-menu',
-    overflowMenuBody: 'body > ul.bx--overflow-menu-options',
-    overflowMenuBody_View: 'body > ul.bx--overflow-menu-options > li:nth-child(0) > button',
-    overflowMenuBody_Edit: 'body > ul.bx--overflow-menu-options > li:nth-child(1) > button',
-    overflowMenuBody_Disable: 'body > ul.bx--overflow-menu-options > li:nth-child(2) > button',
-    overflowMenuBody_Enforce: 'body > ul.bx--overflow-menu-options > li:nth-child(3) > button',
-    overflowMenuBody_Remove: 'body > ul.bx--overflow-menu-options > li:nth-child(4) > button',
+    overflowMenu: '.pf-c-table  .pf-c-dropdown__toggle',
+    overflowMenuBody: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu',
+    overflowMenuBody_Edit: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu > li:nth-child(1) > button',
+    overflowMenuBody_Disable: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu > li:nth-child(2) > button',
+    overflowMenuBody_Enforce: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu > li:nth-child(3) > button',
+    overflowMenuBody_Remove: '.pattern-fly-table-body > tr:nth-child(1) .pf-c-dropdown__menu > li:nth-child(5) > button',
     sidePolicyPanel: 'div.bx--modal-container > div.bx--modal-content',
     sidePolicyPanelClose: 'div.bx--modal-container > div.bx--modal-header > button.bx--modal-close',
     submitCreatePolicyButton: '#create-button-portal-id',
@@ -45,74 +44,67 @@ module.exports = {
   }]
 }
 /* Helper for checking Tooltip on elements */
-function checkTooltip(browser, selector, message) {
-  browser.moveToElement(selector, undefined, undefined)
-  browser.expect.element('@tooltip').text.to.equal(message)
-}
+// function checkTooltip(browser, selector, message) {
+//   browser.moveToElement(selector, undefined, undefined)
+//   browser.expect.element('@tooltip').text.to.equal(message)
+// }
 /* Verify user can only see policies they should on the summary page */
 function verifyAllPage(name, nsNum, permissions) {
-  this.log(`verifyAllPage policy: ${name} nsNum: ${nsNum} permissions: ${{permissions}}`)
+  this.log(`verifyAllPage policy: ${name} nsNum: ${nsNum} permissions: ${JSON.stringify(permissions)}`)
   // Filter for our RBAC policies
-  this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
+  this.waitForElementVisible('@searchPatternFlyInput')
+  this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput').setValue('@searchPatternFlyInput', name)
   this.waitForElementVisible('@allTable')
   // Check that user can see expected number of policies
   this.expect.element('@allTable').to.have.property('childElementCount').equals(nsNum)
   // Check overflow menu for first policy
+  this.expect.element('@overflowMenu').to.be.visible
   this.click('@overflowMenu')
   this.expect.element('@overflowMenuBody').to.be.visible
   // All users should be able to view
-  // this.expect.element('@overflowMenuBody_View').to.be.enabled
-  // Check for edit/disable/enforce permissions
-  // Disabled elements should also have a tooltip saying so
   if (permissions.patch) {
     this.expect.element('@overflowMenuBody_Edit').to.be.enabled
     this.expect.element('@overflowMenuBody_Disable').to.be.enabled
     this.expect.element('@overflowMenuBody_Enforce').to.be.enabled
   } else {
     this.expect.element('@overflowMenuBody_Edit').to.be.not.enabled
-    checkTooltip(this, '@overflowMenuBody_Edit', disableMsg)
+    // checkTooltip(this, '@overflowMenuBody_Edit', disableMsg)
     this.expect.element('@overflowMenuBody_Disable').to.be.not.enabled
-    checkTooltip(this, '@overflowMenuBody_Disable', disableMsg)
+    // checkTooltip(this, '@overflowMenuBody_Disable', disableMsg)
     this.expect.element('@overflowMenuBody_Enforce').to.be.not.enabled
-    checkTooltip(this, '@overflowMenuBody_Enforce', disableMsg)
+    // checkTooltip(this, '@overflowMenuBody_Enforce', disableMsg)
   }
   // Check for remove permissions
   if (permissions.delete) {
     this.expect.element('@overflowMenuBody_Remove').to.be.enabled
   } else {
     this.expect.element('@overflowMenuBody_Remove').to.be.not.enabled
-    checkTooltip(this, '@overflowMenuBody_Remove', disableMsg)
+    // checkTooltip(this, '@overflowMenuBody_Remove', disableMsg)
   }
-  // Make sure side panel can open
-  // overflowMenuSection.click('@overflowMenuView')
-  // this.expect.element('@sidePolicyPanel').to.be.visible
-  // this.waitForElementNotPresent('@spinner')
-  // this.click('@sidePolicyPanelClose')
-  // this.waitForElementNotPresent('@sidePolicyPanel')
-  this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput')
+  this.waitForElementVisible('@searchPatternFlyInput')
+  this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput')
 }
 
 function verifyPolicyPage(name, permissions, namespaced=false) {
   this.log(`verifyPolicyPage policy: ${name} permissions: ${{permissions}}`)
   // Filter for our RBAC policies
-  this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', name)
+  this.waitForElementVisible('@searchPatternFlyInput')
+  this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput').setValue('@searchPatternFlyInput', name)
   this.waitForElementVisible('@allTable')
   // Navigate to policy page
   this.expect.element('@policyLink').text.to.startWith(name)
   this.click('@policyLink')
   this.waitForElementNotPresent('@spinner')
+  this.waitForElementPresent('.bx--tabs__nav')
   this.waitForElementPresent('@placementBindingEdit')
   if (permissions.patch) {
     this.expect.element('@placementBindingEdit').to.be.enabled
     this.expect.element('@placementRuleEdit').to.be.enabled
   } else {
     this.expect.element('@placementBindingEdit').to.not.be.enabled
-    checkTooltip(this, '@placementBindingEdit', disableMsg)
+    // checkTooltip(this, '@placementBindingEdit', disableMsg)
     this.expect.element('@placementRuleEdit').to.not.be.enabled
-    checkTooltip(this, '@placementRuleEdit', disableMsg)
+    // checkTooltip(this, '@placementRuleEdit', disableMsg)
   }
   // Check Status tab
   //
@@ -128,7 +120,7 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
       this.expect.element('@statusDetailsLink').to.have.property('href')
     } else {
       this.expect.element('@statusDetailsLink').to.not.have.property('href')
-      checkTooltip(this, '@statusDetailsLink', disableMsg)
+      // checkTooltip(this, '@statusDetailsLink', disableMsg)
     }
     this.click('@statusClusterToggle_templates')
     this.waitForElementPresent('@statusTable')
@@ -136,7 +128,7 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
       this.expect.element('@statusDetailsLink').to.have.property('href')
     } else {
       this.expect.element('@statusDetailsLink').to.not.have.property('href')
-      checkTooltip(this, '@statusDetailsLink', disableMsg)
+      // checkTooltip(this, '@statusDetailsLink', disableMsg)
     }
   }
   // Check YAML tab
@@ -147,14 +139,14 @@ function verifyPolicyPage(name, permissions, namespaced=false) {
     this.expect.element('@yamlSubmitButton').to.be.enabled
   } else {
     this.expect.element('@yamlEditButton').to.be.not.enabled
-    checkTooltip(this, '@yamlEditButton', disableMsg)
+    // checkTooltip(this, '@yamlEditButton', disableMsg)
     this.expect.element('@yamlSubmitButton').to.be.not.enabled
-    checkTooltip(this, '@yamlSubmitButton', disableMsg)
+    // checkTooltip(this, '@yamlSubmitButton', disableMsg)
   }
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
-  this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput')
+  this.waitForElementVisible('@searchPatternFlyInput')
+  this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput')
 }
 
 function verifyCreatePage(permissions, createPage, policyName = '', ns = [], clusterwide = false, elevated = false) {
@@ -193,7 +185,7 @@ function verifyCreatePage(permissions, createPage, policyName = '', ns = [], clu
     }
   } else {
     this.expect.element('@createPolicyButton').to.not.be.enabled
-    checkTooltip(this, '@createPolicyButton', disableMsg)
+    // checkTooltip(this, '@createPolicyButton', disableMsg)
 
     // Make sure users can't navigate to the Create page directly
     this.api.url(`${this.api.launchUrl}${config.get('contextPath')}/create`)

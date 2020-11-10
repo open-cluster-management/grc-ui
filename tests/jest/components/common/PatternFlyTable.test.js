@@ -113,37 +113,37 @@ describe('PatternFlyTable table sorting and filtering', () => {
   })
   it('should show all rows of a large table unpaginated', () => {
     expect(filterSort({pagination: false, ...tableDataTests.arrayLarge}, {...state, sortBy:{}}).rows.length).toEqual(12)
-  }),
+  })
   it('should return no values given nonexistent filter for string values', () => {
     expect(filterSort({searchable: true, ...tableDataTests.arrayLarge}, {...state, searchValue:'not here', sortBy:{}}).rows.length).toEqual(0)
-  }),
+  })
   it('should return expected values given existent filter for string values', () => {
     expect(filterSort({searchable: true, ...tableDataTests.arrayLarge}, {...state, searchValue:'b', sortBy:{}})).toMatchSnapshot()
-  }),
+  })
   it('should filter text contained in React components with cells', () => {
     expect(filterSort({searchable: true, ...tableDataTests.arrayIRowHTMLwCells}, {...state, searchValue:'space1', sortBy:{}})).toMatchSnapshot()
-  }),
+  })
   it('should filter text contained in React components without cells', () => {
     expect(filterSort({searchable: true, ...tableDataTests.arrayIRowHTMLwoCells}, {...state, searchValue:'space1', sortBy:{}})).toMatchSnapshot()
-  }),
+  })
   it('should sort rows by ascending strings in column 5', () => {
     expect(filterSort({...tableDataTests.arrayLarge}, {...state, sortBy:{index: 4, direction: SortByDirection.asc}})).toMatchSnapshot()
-  }),
+  })
   it('should sort rows by descending strings in column 5', () => {
     expect(filterSort({...tableDataTests.arrayLarge}, {...state, sortBy:{index: 4, direction: SortByDirection.desc}})).toMatchSnapshot()
-  }),
+  })
   it('should not move equivalent string rows while sorting column 4', () => {
     expect(filterSort({...tableDataTests.arrayLarge}, {...state, sortBy:{index: 3, direction: SortByDirection.asc}})).toMatchSnapshot()
-  }),
+  })
   it('should sort rows by ascending React/HTML in column 1', () => {
     expect(filterSort({...tableDataTests.arrayIRowHTMLwCells}, {...state, sortBy:{index: 0, direction: SortByDirection.asc}})).toMatchSnapshot()
-  }),
+  })
   it('should sort rows by descending React/HTML in column 1', () => {
     expect(filterSort({...tableDataTests.arrayIRowHTMLwCells}, {...state, sortBy:{index: 0, direction: SortByDirection.desc}})).toMatchSnapshot()
   })
   it('should not move equivalent React/HTML rows while sorting column 4', () => {
     expect(filterSort({...tableDataTests.arrayIRowHTMLwCells}, {...state, sortBy:{index: 3, direction: SortByDirection.asc}})).toMatchSnapshot()
-  }),
+  })
   it('should sort rows by ascending strings in mixed table in column 5', () => {
     expect(filterSort({...tableDataTests.arrayIRowHTMLwCells}, {...state, sortBy:{index: 4, direction: SortByDirection.asc}})).toMatchSnapshot()
   })

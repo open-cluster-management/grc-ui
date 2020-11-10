@@ -13,8 +13,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import loadable from '@loadable/component'
 
-let RemoveResourceModal, ResourceModal, DescriptionModal,
-    PolicySidePanelDetailsModal, PolicyActionModal
+let RemoveResourceModal, ResourceModal, DescriptionModal, PolicyActionModal
 
 const Modal = ({ type, open, ...rest }) => {
   switch (type) {
@@ -24,8 +23,6 @@ const Modal = ({ type, open, ...rest }) => {
     return open && getResourceModal({ type, open, ...rest })
   case 'description':
     return open && getDescriptionModal({ type, open, ...rest })
-  case 'policy-side-panel':
-    return open && getPolicySidePanelDetailsModal({ type, open, ...rest })
   case 'resource-disable':
   case 'resource-enable':
   case 'resource-enforce':
@@ -62,13 +59,6 @@ const getRemoveResourceModal = props => {
     ? loadable(() => import(/* webpackChunkName: "remove-resource-modal" */ '../modals/RemoveResourceModal'))
     : RemoveResourceModal
   return getModal(RemoveResourceModal, props)
-}
-
-const getPolicySidePanelDetailsModal = props => {
-  PolicySidePanelDetailsModal = PolicySidePanelDetailsModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "details-policy-side-panel-modal" */ '../modals/PolicySidePanelDetailsModal'))
-    : PolicySidePanelDetailsModal
-  return getModal(PolicySidePanelDetailsModal, props)
 }
 
 const getModal = (Component, props) => <Component {...props} />
