@@ -4700,19 +4700,9 @@ export const staticResourceDataPolicyOverview = {
         'msgKey': 'table.header.namespace'
       },
       {
-        'key': 'replicas',
-        'resourceKey': 'clusterReplicas',
-        'msgKey': 'table.header.replicas'
-      },
-      {
         'key': 'clusterSelector',
         'resourceKey': 'clusterLabels',
         'msgKey': 'table.header.cluster.selector'
-      },
-      {
-        'key': 'resourceSelector',
-        'resourceKey': 'resourceSelector',
-        'msgKey': 'table.header.resource.selector'
       },
       {
         'key': 'decisions',
@@ -5668,8 +5658,6 @@ export const itemPolicyOverview = [
           'selfLink':'/apis/apps.open-cluster-management.io/v1/namespaces/default/placementrules/case6-test-policy-plr',
           '__typename':'Metadata'
         },
-        'clusterReplicas':null,
-        'resourceSelector':null,
         'status':{
           'decisions':[
             {
@@ -6390,19 +6378,9 @@ export const staticResourceDataPolicyCluster = {
         'msgKey':'table.header.namespace'
       },
       {
-        'key':'replicas',
-        'resourceKey':'clusterReplicas',
-        'msgKey':'table.header.replicas'
-      },
-      {
         'key':'clusterSelector',
         'resourceKey':'clusterLabels',
         'msgKey':'table.header.cluster.selector'
-      },
-      {
-        'key':'resourceSelector',
-        'resourceKey':'resourceSelector',
-        'msgKey':'table.header.resource.selector'
       },
       {
         'key':'decisions',
