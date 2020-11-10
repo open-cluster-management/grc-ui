@@ -9,20 +9,18 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-import lodash from 'lodash'
+import _ from 'lodash'
 
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
 
 import hcmcompliances from './hcm-compliances'
-import hcmpolicies from './hcm-policies'
 
 const resourceData = {
   [RESOURCE_TYPES.HCM_COMPLIANCES.name]: hcmcompliances,
-  [RESOURCE_TYPES.HCM_POLICIES.name]: hcmpolicies,
 }
 
 // diagram tabs
-function getResourceData(resourceType) {
+export function getResourceData(resourceType) {
   // main Topology tab
   const def = resourceData[resourceType.name]
   if (!def) {
@@ -31,8 +29,6 @@ function getResourceData(resourceType) {
   }
   return def
 }
-
-export default getResourceData
 
 export function getPrimaryKey(resourceType) {
   let pk = 'metadata.uid'
@@ -105,7 +101,7 @@ export function getLink(link, resource) {
     const parts = link.split('/')
     let path = ''
     parts.forEach(part => {
-      const value = lodash.get(resource, part)
+      const value = _.get(resource, part)
       path += `/${encodeURIComponent(value)}`
     })
     return path

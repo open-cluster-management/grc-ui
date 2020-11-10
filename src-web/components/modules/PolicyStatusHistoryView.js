@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 import {
   Title,
 } from '@patternfly/react-core'
-import PatternFlyTable from './PatternFlyTable'
-import { LocaleContext } from './LocaleContext'
+import PatternFlyTable from '../common/PatternFlyTable'
+import { LocaleContext } from '../common/LocaleContext'
 import statusHistoryDef from '../../tableDefinitions/statusHistoryDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'

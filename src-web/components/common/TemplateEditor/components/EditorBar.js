@@ -14,8 +14,8 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Search } from 'carbon-components-react'
 import '../scss/editor-bar.scss'
-import '../../../../graphics/diagramIcons.svg'
-import msgs from '../../../../nls/platform.properties'
+import '../../../../../graphics/diagramIcons.svg'
+import msgs from '../../../../../nls/platform.properties'
 
 class EditorButton extends React.Component {
   static propTypes = {

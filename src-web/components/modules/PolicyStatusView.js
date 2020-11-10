@@ -9,12 +9,12 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from '@patternfly/react-core'
-import PatternFlyTable from './PatternFlyTable'
-import { LocaleContext } from './LocaleContext'
+import PatternFlyTable from '../common/PatternFlyTable'
+import { LocaleContext } from '../common/LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import { transform } from '../../tableDefinitions/utils'
-import checkCreatePermission from './CheckCreatePermission'
+import checkCreatePermission from '../common/CheckCreatePermission'
 import msgs from '../../../nls/platform.properties'
 
 class PolicyStatusView extends React.Component {

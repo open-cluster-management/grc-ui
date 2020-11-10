@@ -11,7 +11,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import '../scss/editor-header.scss'
-import msgs from '../../../../nls/platform.properties'
+import msgs from '../../../../../nls/platform.properties'
 
 class EditorHeader extends React.Component {
 

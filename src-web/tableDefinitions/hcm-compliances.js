@@ -15,7 +15,6 @@ import _ from 'lodash'
 import msgs from '../../nls/platform.properties'
 import { getAge, getLabelsToList } from '../../lib/client/resource-helper'
 import { Icon } from 'carbon-components-react'
-import {getAPIGroups, getExcludeNamespace, getIncludeNamespace, getRuleVerbs} from './hcm-policies'
 import { Link } from 'react-router-dom'
 import StatusField from '../components/common/StatusField'
 import config from '../../lib/shared/config'
@@ -1063,4 +1062,36 @@ export function getAggregatedMessage(item) {
     }
   })
   return message
+}
+
+export function getAPIGroups(item) {
+  const apiGroups = _.get(item, 'apiGroups')
+  if (apiGroups) {
+    return apiGroups.join(', ')
+  }
+  return '-'
+}
+
+export function getRuleVerbs(item) {
+  const verbs = _.get(item, 'verbs')
+  if (verbs) {
+    return verbs.join(', ')
+  }
+  return '-'
+}
+
+export function getExcludeNamespace(item) {
+  const namespace = _.get(item, 'detail.exclude_namespace')
+  if (namespace) {
+    return namespace.join(', ')
+  }
+  return '-'
+}
+
+export function getIncludeNamespace(item) {
+  const namespace = _.get(item, 'detail.include_namespace')
+  if (namespace) {
+    return namespace.join(', ')
+  }
+  return '-'
 }

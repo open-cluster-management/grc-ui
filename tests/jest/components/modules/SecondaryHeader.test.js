@@ -14,7 +14,7 @@ import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 //curly braces means pure component without redux
 //which is what we want in unit test
-import { SecondaryHeader } from '../../../src-web/components/SecondaryHeader'
+import { SecondaryHeader } from '../../../../src-web/components/modules/SecondaryHeader'
 import { createMemoryHistory } from 'history'
 
 

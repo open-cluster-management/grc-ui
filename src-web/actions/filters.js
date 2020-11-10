@@ -7,7 +7,7 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
-import lodash from 'lodash'
+import _ from 'lodash'
 
 import GrcApolloClient from '../../lib/client/apollo-client'
 import { receiveResourceError, requestResource}  from './common'
@@ -44,8 +44,8 @@ export const fetchFilters = (inputType) => {
             return dispatch(receiveResourceError(response.errors[0], resourceType))
           }
           return dispatch(receiveFiltersSuccess({
-            clusterLabels: lodash.get(response, 'data.filters.clusterLabels'),
-            clusterNames: lodash.get(response, 'data.filters.clusterNames'),
+            clusterLabels: _.get(response, 'data.filters.clusterLabels'),
+            clusterNames: _.get(response, 'data.filters.clusterNames'),
           }, resourceType))
         })
         .catch(err => dispatch(receiveResourceError(err, resourceType)))

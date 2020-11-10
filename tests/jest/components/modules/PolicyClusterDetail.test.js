@@ -10,7 +10,7 @@
 'use strict'
 
 import React from 'react'
-import PolicyClusterDetail from '../../../../src-web/components/common/PolicyClusterDetail'
+import PolicyClusterDetail from '../../../../src-web/components/modules/PolicyClusterDetail'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
 import * as reducers from '../../../../src-web/reducers'
@@ -23,7 +23,7 @@ import {
   policiesClusterDetail,
   staticResourceDataPolicyCluster,
   policiesClusterDetailError
-} from './CommonTestingData'
+} from '../common/CommonTestingData'
 
 describe('PolicyClusterDetail component', () => {
   it('renders as loading', () => {

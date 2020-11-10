@@ -11,10 +11,10 @@ import {
   Title,
 } from '@patternfly/react-core'
 import jsYaml from 'js-yaml'
-import lodash from 'lodash'
-import YamlEditor from './YamlEditor'
-import PatternFlyTable from './PatternFlyTable'
-import { LocaleContext } from './LocaleContext'
+import _ from 'lodash'
+import YamlEditor from '../common/YamlEditor'
+import PatternFlyTable from '../common/PatternFlyTable'
+import { LocaleContext } from '../common/LocaleContext'
 import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
@@ -53,7 +53,7 @@ class PolicyTemplateDetailsView extends React.Component {
     const { template } = this.props
     const { locale } = this.context
     // clone and inject cluster info into relatedObjects
-    let relatedObjects = lodash.get(lodash.cloneDeep(template), 'status.relatedObjects', [])
+    let relatedObjects = _.get(_.cloneDeep(template), 'status.relatedObjects', [])
     if (relatedObjects.length > 0) {
       relatedObjects = relatedObjects.map(o => {
         o.cluster = template.metadata.namespace
@@ -70,32 +70,32 @@ class PolicyTemplateDetailsView extends React.Component {
             <DescriptionList>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.name', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>{lodash.get(template, 'metadata.name', '-')}</DescriptionListDescription>
+                <DescriptionListDescription>{_.get(template, 'metadata.name', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.cluster', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>
-                  {lodash.get(template, 'metadata.namespace', '-')}
+                  {_.get(template, 'metadata.namespace', '-')}
                 </DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.kind', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>{lodash.get(template, 'kind', '-')}</DescriptionListDescription>
+                <DescriptionListDescription>{_.get(template, 'kind', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.apiGroups', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>{lodash.get(template, 'apiVersion', '-')}</DescriptionListDescription>
+                <DescriptionListDescription>{_.get(template, 'apiVersion', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.compliant', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>
-                  {lodash.get(template, 'status.compliant', '-')}
+                  {_.get(template, 'status.compliant', '-')}
                 </DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.violation.detail', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>
-                  {JSON.stringify(lodash.get(template, 'status.compliancyDetails', '-'))}
+                  {JSON.stringify(_.get(template, 'status.compliancyDetails', '-'))}
                 </DescriptionListDescription>
               </DescriptionListGroup>
             </DescriptionList>

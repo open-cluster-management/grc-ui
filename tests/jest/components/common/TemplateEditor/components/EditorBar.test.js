@@ -10,7 +10,7 @@
 'use strict'
 
 import React from 'react'
-import EditorBar from '../../../../../../src-web/components/TemplateEditor/components/EditorBar'
+import EditorBar from '../../../../../../src-web/components/common/TemplateEditor/components/EditorBar'
 import renderer from 'react-test-renderer'
 
 describe('EditorBar component', () => {

@@ -10,7 +10,7 @@
 'use strict'
 
 import React from 'react'
-import PolicyTemplatesView from '../../../../src-web/components/common/PolicyTemplatesView'
+import PolicyTemplatesView from '../../../../src-web/components/modules/PolicyTemplatesView'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
 import * as reducers from '../../../../src-web/reducers'

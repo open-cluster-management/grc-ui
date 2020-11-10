@@ -15,14 +15,14 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { Breadcrumb, Tabs, Tab } from 'carbon-components-react'
 import { Button, Tooltip } from '@patternfly/react-core'
-import { createDisableTooltip } from './common/DisableTooltip'
-import resources from '../../lib/shared/resources'
+import { createDisableTooltip } from '../common/DisableTooltip'
+import resources from '../../../lib/shared/resources'
 import { withRouter, Link } from 'react-router-dom'
-import msgs from '../../nls/platform.properties'
-import checkCreatePermission from './common/CheckCreatePermission'
+import msgs from '../../../nls/platform.properties'
+import checkCreatePermission from '../common/CheckCreatePermission'
 
 resources(() => {
-  require('../../scss/secondary-header.scss')
+  require('../../../scss/secondary-header.scss')
 })
 
 export class SecondaryHeader extends React.Component {

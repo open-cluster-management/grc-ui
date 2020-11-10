@@ -13,8 +13,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import jsYaml from 'js-yaml'
-import YamlEditor from './YamlEditor'
-import lodash from 'lodash'
+import YamlEditor from '../common/YamlEditor'
+import _ from 'lodash'
 import { dumpAndParse } from '../../../lib/client/design-helper'
 import { Button, InlineNotification } from 'carbon-components-react'
 import { Spinner } from '@patternfly/react-core'
@@ -22,10 +22,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Module, ModuleHeader } from 'carbon-addons-cloud-react'
 import { editResource } from '../../actions/common'
-import { createDisableTooltip } from './DisableTooltip'
+import { createDisableTooltip } from '../common/DisableTooltip'
 import {REQUEST_STATUS} from '../../actions'
-import formatUserAccess from './FormatUserAccess'
-import filterUserAction from './FilterUserAction'
+import formatUserAccess from '../common/FormatUserAccess'
+import filterUserAction from '../common/FilterUserAction'
 
 class PolicyTemplatesView extends React.Component {
 
@@ -120,14 +120,14 @@ class PolicyTemplatesView extends React.Component {
       return
     }
     if (resourceData.__typename === 'Compliance') {
-      const namespace = lodash.get(resourceData, 'metadata.namespace')
-      const name = lodash.get(resourceData, 'metadata.name')
-      const selfLink = lodash.get(resourceData, 'metadata.selfLink')
+      const namespace = _.get(resourceData, 'metadata.namespace')
+      const name = _.get(resourceData, 'metadata.name')
+      const selfLink = _.get(resourceData, 'metadata.selfLink')
       localEditResource(resourceType, namespace, name, resource, selfLink)
     } else if (resourceData.__typename === 'PolicyClusterDetail') {
-      const namespace = lodash.get(resourceData, 'complianceNamespace')
-      const name = lodash.get(resourceData, 'complianceName')
-      const selfLink = lodash.get(resourceData, 'complianceSelfLink')
+      const namespace = _.get(resourceData, 'complianceNamespace')
+      const name = _.get(resourceData, 'complianceName')
+      const selfLink = _.get(resourceData, 'complianceSelfLink')
       localEditResource(resourceType, namespace, name, resource, selfLink, resourcePath)
     }
     this.setState({

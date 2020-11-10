@@ -10,7 +10,7 @@
 'use strict'
 
 import React from 'react'
-import { PolicyDetailsOverview } from '../../../../src-web/components/common/PolicyDetailsOverview'
+import { PolicyDetailsOverview } from '../../../../src-web/components/modules/PolicyDetailsOverview'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
 import * as reducers from '../../../../src-web/reducers'
@@ -22,7 +22,7 @@ import { Provider } from 'react-redux'
 import {
   staticResourceDataPolicyOverview,
   itemPolicyOverview
-} from './CommonTestingData'
+} from '../common/CommonTestingData'
 
 describe('PolicyDetailsOverview component', () => {
   it('renders as normal', () => {

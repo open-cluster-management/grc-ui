@@ -3,7 +3,7 @@
 'use strict'
 
 import React from 'react'
-import lodash from 'lodash'
+import _ from 'lodash'
 import {
   breakWord,
   sortable,
@@ -58,10 +58,10 @@ export default {
 }
 
 function buildViewYamlLink(item, locale) {
-  const selfLink = lodash.get(item, 'object.metadata.selfLink')
+  const selfLink = _.get(item, 'object.metadata.selfLink')
   if (selfLink) {
     return <a target='_blank' rel='noopener noreferrer'
-      href={`/multicloud/details/${lodash.get(item, 'cluster')}${selfLink}`}>{msgs.get('table.actions.view.yaml', locale)}</a>
+      href={`/multicloud/details/${_.get(item, 'cluster')}${selfLink}`}>{msgs.get('table.actions.view.yaml', locale)}</a>
   }
   return ''
 }

@@ -12,7 +12,7 @@ import {
   getDefaultSearchField, getDefaultSortField,
   getLink, getPrimaryKey, getSecondaryKey,
   getTableKeys, getURIKey
-} from '../../../src-web/definitions/index'
+} from '../../../src-web/tableDefinitions/index'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 
 // eslint-disable-next-line no-console
@@ -24,8 +24,8 @@ describe('definitions/index', () => {
   describe('#getDefaultSearchField', () => {
     it('should return the default search field of node', () => {
       const resourceType = {
-        list: 'HCMPolicyList',
-        name: 'HCMPolicy'
+        list: 'HCMComplianceList',
+        name: 'HCMCompliance'
       }
       expect(getDefaultSearchField(resourceType)).toBe('metadata.name')
     })
@@ -39,8 +39,8 @@ describe('definitions/index', () => {
   describe('#getDefaultSortField', () => {
     it('should return the default sort field of node', () => {
       const item = {
-        list: 'HCMPolicyList',
-        name: 'HCMPolicy'
+        list: 'HCMComplianceList',
+        name: 'HCMCompliance'
       }
       expect(getDefaultSortField(item)).toBe('metadata.name')
     })
@@ -90,8 +90,8 @@ describe('definitions/index', () => {
   describe('#getPrimaryKey', () => {
     it('should return the primary key of node', () => {
       const item = {
-        list: 'HCMPolicyList',
-        name: 'HCMPolicy'
+        list: 'HCMComplianceList',
+        name: 'HCMCompliance'
       }
       expect(getPrimaryKey(item)).toBe('metadata.name')
     })
@@ -105,8 +105,8 @@ describe('definitions/index', () => {
   describe('#getSecondaryKey', () => {
     it('should return the secondary key of node', () => {
       const item = {
-        list: 'HCMPolicyList',
-        name: 'HCMPolicy'
+        list: 'HCMComplianceList',
+        name: 'HCMCompliance'
       }
       expect(getSecondaryKey(item)).toBe('metadata.namespace')
     })
@@ -124,8 +124,8 @@ describe('definitions/index', () => {
   describe('#getURIKey', () => {
     it('should return the default sort field of node', () => {
       const item = {
-        list: 'HCMPolicyList',
-        name: 'HCMPolicy'
+        list: 'HCMComplianceList',
+        name: 'HCMCompliance'
       }
       expect(getURIKey(item)).toBe('metadata.name')
     })

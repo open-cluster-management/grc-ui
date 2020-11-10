@@ -11,30 +11,30 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import resources from '../../lib/shared/resources'
+import resources from '../../../lib/shared/resources'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { updateAvailableFilters, updateActiveFilters } from '../actions/common'
+import { updateAvailableFilters, updateActiveFilters } from '../../actions/common'
 import { Notification } from 'carbon-components-react'
 import { Spinner } from '@patternfly/react-core'
-import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../lib/shared/constants'
-import GrcCardsModule from './modules/GrcCardsModule'
-import GrcToggleModule from './modules/GrcToggleModule'
+import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
+import GrcCardsModule from '../modules/GrcCardsModule'
+import GrcToggleModule from '../modules/GrcToggleModule'
 import {
   filterPolicies, getAvailableGrcFilters, getSavedGrcState,
   saveGrcState, combineResourceFilters, saveGrcStatePair
-} from '../../lib/client/filter-helper'
-import NoResource from './common/NoResource'
-import { createDocLink, createDetails } from './common/CreateDocLink'
-import ResourceFilterBar from './common/ResourceFilterBar'
-import checkCreatePermission from './common/CheckCreatePermission'
-import msgs from '../../nls/platform.properties'
+} from '../../../lib/client/filter-helper'
+import NoResource from '../common/NoResource'
+import { createDocLink, createDetails } from '../common/CreateDocLink'
+import ResourceFilterBar from '../common/ResourceFilterBar'
+import checkCreatePermission from '../common/CheckCreatePermission'
+import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
-import config from '../../lib/shared/config'
+import config from '../../../lib/shared/config'
 
 resources(() => {
-  require('../../scss/grc-view.scss')
+  require('../../../scss/grc-view.scss')
 })
 
 export class GrcView extends React.Component {
@@ -247,7 +247,11 @@ export class GrcView extends React.Component {
       card: false,
       toggle: false,
     }
-    type && type.toLowerCase()==='cluster' ? paraURL.index=1 : paraURL.index=0
+    if (type && type.toLowerCase()==='cluster') {
+      paraURL.index=1
+    } else {
+      paraURL.index=0
+    }
     let urlString = queryString.stringify(paraURL)
     //also append GrcToggleModule search input filter to the end of url if existing
     const curentURL = queryString.parse(location.search)

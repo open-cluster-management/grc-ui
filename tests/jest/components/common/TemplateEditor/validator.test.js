@@ -8,7 +8,7 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
-import { validateYAML } from '../../../../../src-web/components/TemplateEditor/utils/validate-yaml'
+import { validateYAML } from '../../../../../src-web/components/common/TemplateEditor/utils/validate-yaml'
 
 //parsed, exceptions, locale
 describe('truncate middle', () => {

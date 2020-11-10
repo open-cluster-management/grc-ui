@@ -9,7 +9,7 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 'use strict'
-import msgs from '../../../../nls/platform.properties'
+import msgs from '../../../../../nls/platform.properties'
 import _ from 'lodash'
 
 export function validateYAML(parsed, controlData, exceptions, locale) {

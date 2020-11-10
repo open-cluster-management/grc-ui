@@ -3,7 +3,7 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
-import PolicyStatusHistoryView from '../../../../src-web/components/common/PolicyStatusHistoryView'
+import PolicyStatusHistoryView from '../../../../src-web/components/modules/PolicyStatusHistoryView'
 
 Date.now = jest.fn(() => 1600291034000)
 

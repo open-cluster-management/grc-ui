@@ -3,7 +3,7 @@
 
 import renderer from 'react-test-renderer'
 import React from 'react'
-import PolicyTemplateDetailsView from '../../../../src-web/components/common/PolicyTemplateDetailsView'
+import PolicyTemplateDetailsView from '../../../../src-web/components/modules/PolicyTemplateDetailsView'
 
 const data = {
   'apiVersion': 'policy.open-cluster-management.io/v1',

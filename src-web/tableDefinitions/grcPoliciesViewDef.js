@@ -17,7 +17,7 @@ import {
   getCategories,
   getControls,
   getStandards
-} from '../definitions/hcm-compliances'
+} from './hcm-compliances'
 
 export default {
   tableActions: [

@@ -16,10 +16,9 @@ import { Alert } from '@patternfly/react-core'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 import _ from 'lodash'
-import DetailsModule from './DetailsModule'
-import SimpleTable from './SimpleTable'
-// eslint-disable-next-line import/no-named-as-default
-import ResourceTableModule from './ResourceTableModuleFromProps'
+import DetailsModule from '../common/DetailsModule'
+import SimpleTable from '../common/SimpleTable'
+import ResourceTableModule from '../common/ResourceTableModuleFromProps'
 import StructuredListModule from '../../components/common/StructuredListModuleWithActions'
 
 resources(() => {

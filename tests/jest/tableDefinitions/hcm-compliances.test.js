@@ -27,7 +27,7 @@ import {
   convertToStartCase,
   formLinkToCluster,
   formMessageLink,
-} from '../../../src-web/definitions/hcm-compliances'
+} from '../../../src-web/tableDefinitions/hcm-compliances'
 
 describe('hcm-compliances - createComplianceLink', () => {
   it('should return valid compliance link', () => {

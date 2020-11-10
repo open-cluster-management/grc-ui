@@ -14,10 +14,10 @@
 import React from 'react'
 import { GrcViewPolicyCluster, GrcViewPolicyCluster2,
   GrcViewRefreshControl, GrcViewSecondaryHeaderProps, reduxStorePolicyCluster,
-} from './ComponentsTestingData'
+} from '../ComponentsTestingData'
 //curly braces means pure component without redux
 //which is what we want in unit test
-import { GrcView } from '../../../src-web/components/GrcView'
+import { GrcView } from '../../../../src-web/components/modules/GrcView'
 import renderer from 'react-test-renderer'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
@@ -48,7 +48,7 @@ history.location.key='s4wxvc'
 // mock Icons so that tooltip won't render in any cases
 // otherwise it is going to throw TypeError: element.addEventListener is not a function
 // because renderer doesn't have dom
-jest.mock('../../../src-web/components/common/Icons', () => {
+jest.mock('../../../../src-web/components/common/Icons', () => {
   return {
     GreenCheckCircleIcon: () => <MockCheckCircleIcon color='#467f40' />,
     RedExclamationCircleIcon: () => <MockExclamationCircleIcon color='#c9190b' />,

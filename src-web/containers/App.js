@@ -17,7 +17,7 @@ resources(() => {
 import PropTypes from 'prop-types'
 // without curly braces means component with redux
 // eslint-disable-next-line import/no-named-as-default
-import SecondaryHeader from '../components/SecondaryHeader'
+import SecondaryHeader from '../components/modules/SecondaryHeader'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import client from '../../lib/shared/client'
 import config from '../../lib/shared/config'

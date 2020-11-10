@@ -9,7 +9,7 @@
 'use strict'
 
 import React from 'react'
-import YamlEditor from '../../../../../src-web/components/TemplateEditor/components/YamlEditor'
+import YamlEditor from '../../../../../../src-web/components/common/TemplateEditor/components/YamlEditor'
 import renderer from 'react-test-renderer'
 
 describe('YamlEditor', () => {
