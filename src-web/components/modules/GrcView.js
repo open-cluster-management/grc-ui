@@ -247,7 +247,11 @@ export class GrcView extends React.Component {
       card: false,
       toggle: false,
     }
-    type && type.toLowerCase()==='cluster' ? paraURL.index=1 : paraURL.index=0
+    if (type && type.toLowerCase()==='cluster') {
+      paraURL.index=1
+    } else {
+      paraURL.index=0
+    }
     let urlString = queryString.stringify(paraURL)
     //also append GrcToggleModule search input filter to the end of url if existing
     const curentURL = queryString.parse(location.search)
