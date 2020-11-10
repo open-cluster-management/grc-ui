@@ -368,13 +368,12 @@ export const createAndUpdateResources = (resourceTypes, createList, updateList) 
           })
         }
         let errored = false
-        Object.keys(errors).map((key) => {
+        Object.keys(errors).forEach((key) => {
           const resp = errors[key]
           if (resp.error !== '') {
             errored = true
             dispatch(mutateResourceFailure(resp.resourceType, { message: resp.error }))
           }
-          return key
         })
         if (!errored) {
           resourceTypes.forEach((resourceType) => {
