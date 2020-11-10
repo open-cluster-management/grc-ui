@@ -63,6 +63,7 @@ module.exports = {
     standardsDropdownBox: '.creation-view-controls-container > div > div:nth-child(5) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div',
     standardsDropdownInput: '.creation-view-controls-container > div > div:nth-child(5) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > input',
     standardsDropdownClearValue: '.creation-view-controls-container > div > div:nth-child(5) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > div.bx--list-box__selection[title="Clear selected item"]',
+    standardsDropdownClearAll: '.creation-view-controls-container > div > div:nth-child(5) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > div.bx--list-box__selection[title="Clear all selected items"]',
     categoriesDropdown: '.creation-view-controls-container > div > div:nth-child(6) > div.bx--multi-select.bx--list-box',
     categoriesDropdownBox: '.creation-view-controls-container > div > div:nth-child(6) > div.bx--multi-select.bx--list-box > div.bx--list-box__menu > div',
     categoriesDropdownInput: '.creation-view-controls-container > div > div:nth-child(6) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > input',
@@ -81,6 +82,7 @@ module.exports = {
       return selectorStr
     },
     createTestPolicy,
+    testCreateCustomSelections,
     testDetailsPage,
     testFilters,
     testPolicySidePanel,
@@ -354,12 +356,12 @@ function createTestPolicy(create = true,
   this.click('xpath', `//div[contains(@class,"bx--list-box__menu-item") and text()="${spec.namespace}"]`)
   this.waitForElementNotPresent('@namespaceDropdownBox')
   /* Select Specification template */
-  this.click('@templateDropdown')
-  this.waitForElementVisible('@templateDropdownBox')
   if (!spec.specification) {
     spec.specification = ['']
   }
   spec.specification.forEach(item => {
+    this.click('@templateDropdown')
+    this.waitForElementVisible('@templateDropdownBox')
     this.setValue('@templateDropdownInput', item + ' - ')
     this.expect.element('@templateDropdownBox:nth-child(1)').text.to.startWith(item)
     this.click('@templateDropdownBox:nth-child(1)')
@@ -392,6 +394,15 @@ function createTestPolicy(create = true,
     this.click('@submitCreatePolicyButton')
     this.expect.element('@table').to.be.present
   }
+}
+/* Test whether customizing selections works as expected */
+function testCreateCustomSelections(templates) {
+  // Set up a policy with multiple specifications
+  this.createTestPolicy(false, {specification: templates})
+  // Clear Standards and make sure it's working as expected
+  this.click('@standardsDropdownClearAll')
+  this.expect.element('@standardsDropdownInput').to.have.attribute('placeholder').that.equals('Begin typing to search for label to select')
+  this.pause()
 }
 /* Helper function to edit YAML in editor and verify fields changed */
 function editYaml(browser, content, line, element, clear = false, expected = content) {
