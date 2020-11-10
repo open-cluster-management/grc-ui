@@ -96,6 +96,7 @@ export const generateYAML = (template, controlData) => {
                 arr.push(snippet)
                 controlMap[id].active = arr
               }
+              console.log(wasSet)
               // Whether data was set or not (due to duplication), we need to
               // record the template that set it
               wasSet.add(key)
