@@ -11,10 +11,11 @@ export const oauthIssuer = (token) => {
     url: apiUrl + '/.well-known/oauth-authorization-server',
     headers: {
       Authorization: 'Bearer ' + token,
-              'Content-Type': 'application/json',
-              Accept: 'application/json'
-          }
-      }).then(resp => { 
-          return resp.body['issuer']
-      })
-  }
+      'Content-Type': 'application/json',
+      Accept: 'application/json'
+    }
+  }).then(resp => {
+    return resp.body['issuer']
+  })
+}
+                        

@@ -5,7 +5,8 @@
         "node": true,
         "commonjs": true,
         "jest": true,
-        "cypress/globals": true
+        "cypress/globals": true,
+        "mocha": true
     },
     "extends": [
         "eslint:recommended",
@@ -13,7 +14,9 @@
         "plugin:import/errors",
         "plugin:import/warnings",
         "plugin:jsx-a11y/recommended",
-        "plugin:cypress/recommended"
+        "plugin:cypress/recommended",
+        "plugin:mocha/recommended"
+
     ],
     "parser": "babel-eslint",
     "parserOptions": {
@@ -28,7 +31,8 @@
         "html",
         "import",
         "jsx-a11y",
-        "cypress"
+        "cypress",
+        "mocha"
     ],
     "settings": {
         "react": {
