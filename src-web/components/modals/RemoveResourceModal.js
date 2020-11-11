@@ -44,7 +44,6 @@ class RemoveResourceModal extends React.Component {
         selfLink: `/apis/apps.open-cluster-management.io/v1/namespaces/${data.namespace}/placementrules/${placement.placementRule}`,
       }
     })
-    console.log(data)
     const children = []
     // Create object specifying Application resources that can be deleted
     _.map(data.deployables, (curr, idx) => {
