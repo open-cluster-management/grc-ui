@@ -1,3 +1,7 @@
+/** *****************************************************************************
+ * Licensed Materials - Property of Red Hat, Inc.
+ * Copyright (c) 2020 Red Hat, Inc.
+ ****************************************************************************** */
 /// <reference types="cypress" />
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
