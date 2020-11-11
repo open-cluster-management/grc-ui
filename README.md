@@ -93,6 +93,8 @@ npm run test:unit
 ```bash
 npm install chromedriver
 ```
+### Cypress Tests
+**Note**: To run Cypress tests, you'll need to add necessary values in `options.yaml` file. e.g. `multicloud-console.apps.{BASE_DOMAIN}`.
 
 **Note**: It is required that the UI runs locally or can target a remote cluster to start the selenium based tests.
 
