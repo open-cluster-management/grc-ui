@@ -26,7 +26,8 @@
         "react",
         "html",
         "import",
-        "jsx-a11y"
+        "jsx-a11y",
+        "cypress"
     ],
     "settings": {
         "react": {
