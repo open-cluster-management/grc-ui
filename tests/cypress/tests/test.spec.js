@@ -4,15 +4,14 @@
  ****************************************************************************** */
 /// <reference types="cypress" />
 // This is the demo test
-describe('Login', function() {
-  before(function() {
+describe('Login', () => {
+  before(() => {
     cy.login()
   })
-  after(function() {
+  after(() => {
     cy.logout()
   })
-  it('should load the home page', function() {
+  it('should load the home page', () => {
     cy.get('#header').should('exist')
   })
 })
-      
