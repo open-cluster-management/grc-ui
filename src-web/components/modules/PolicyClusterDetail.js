@@ -17,6 +17,7 @@ import { Spinner } from '@patternfly/react-core'
 import StructuredListModule from '../common/StructuredListModule'
 import resources from '../../../lib/shared/resources'
 import PolicyTemplatesView from './PolicyTemplatesView'
+// eslint-disable-next-line import/no-named-as-default
 import ResourceTableModule from '../common/ResourceTableModuleFromProps'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
