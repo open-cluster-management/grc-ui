@@ -66,6 +66,36 @@ spec:
                   - name: e2e-user-10
                     apiGroup: rbac.authorization.k8s.io
                     kind: User
+                  - name: e2e-user-11
+                    apiGroup: rbac.authorization.k8s.io
+                    kind: User
+                  - name: e2e-user-12
+                    apiGroup: rbac.authorization.k8s.io
+                    kind: User
+                  - name: e2e-user-13
+                    apiGroup: rbac.authorization.k8s.io
+                    kind: User
+                  - name: e2e-user-14
+                    apiGroup: rbac.authorization.k8s.io
+                    kind: User
+                  - name: e2e-user-15
+                    apiGroup: rbac.authorization.k8s.io
+                    kind: User
+                  - name: e2e-user-16
+                    apiGroup: rbac.authorization.k8s.io
+                    kind: User
+                  - name: e2e-user-17
+                    apiGroup: rbac.authorization.k8s.io
+                    kind: User
+                  - name: e2e-user-18
+                    apiGroup: rbac.authorization.k8s.io
+                    kind: User
+                  - name: e2e-user-19
+                    apiGroup: rbac.authorization.k8s.io
+                    kind: User
+                  - name: e2e-user-20
+                    apiGroup: rbac.authorization.k8s.io
+                    kind: User
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
