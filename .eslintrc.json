@@ -5,8 +5,7 @@
         "node": true,
         "commonjs": true,
         "jest": true,
-        "cypress/globals": true,
-        "mocha": true
+        "cypress/globals": true
     },
     "extends": [
         "eslint:recommended",
@@ -14,8 +13,7 @@
         "plugin:import/errors",
         "plugin:import/warnings",
         "plugin:jsx-a11y/recommended",
-        "plugin:cypress/recommended",
-        "plugin:mocha/recommended"
+        "plugin:cypress/recommended"
 
     ],
     "parser": "babel-eslint",
@@ -31,8 +29,7 @@
         "html",
         "import",
         "jsx-a11y",
-        "cypress",
-        "mocha"
+        "cypress"
     ],
     "settings": {
         "react": {
@@ -54,9 +51,6 @@
         "eol-last": ["error", "always"],
         "semi": ["error", "never"],
         "prefer-arrow-callback": ["error"],
-        "mocha/no-mocha-arrows": "off",
-        "mocha/no-hooks-for-single-case": "off",
-        "mocha/no-top-level-hooks": "off",
         "no-trailing-spaces": "error",
         "no-unused-vars": "error",
         "prefer-const": "error",
