@@ -18,7 +18,7 @@
     "lint:fix": "eslint --ext .jsx,.js --fix .",
     "test:unit": "jest --colors",
     "test": "jest --silent",
-    "test:headed": "export LIVE_MODE=true && export BROWSER=chrome && ./start-tests.sh",
+    "test:cypress": "export LIVE_MODE=true && export BROWSER=chrome && ./tests/cypress/start-cypress-tests.sh",
     "test:watch": "jest --watch",
     "test:e2e": "nightwatch ./tests/e2e -e chrome",
     "test:e2e-headless": "nightwatch ./tests/e2e -e chrome.headless",
