@@ -40,7 +40,7 @@ class RemoveResourceModal extends React.Component {
     })
     const placementRules = placements.map(placement => {
       return {
-        name: placement.placementBinding,
+        name: placement.placementRule,
         selfLink: `/apis/apps.open-cluster-management.io/v1/namespaces/${data.namespace}/placementrules/${placement.placementRule}`,
       }
     })
