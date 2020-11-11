@@ -18,4 +18,3 @@ export const oauthIssuer = (token) => {
     return resp.body['issuer']
   })
 }
-                
