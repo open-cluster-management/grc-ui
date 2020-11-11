@@ -5,15 +5,13 @@
 /// <reference types="cypress" />
 // This is the demo test
 describe('Login', function() {
-
-    before(function() {
-      cy.login()
-
+  before(function() {
+    cy.login()
     })
-    after(function() {
-      cy.logout()
+  after(function() {
+    cy.logout()
     })
     it('should load the home page', function() {
-        cy.get('#header').should('exist')
-      })
+  cy.get('#header').should('exist')
+  })
 })

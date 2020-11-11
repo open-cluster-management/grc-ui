@@ -35,9 +35,9 @@ import 'cypress-wait-until'
 import { oauthIssuer } from '../views/resource'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
-  var user = OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER');
-  var password = OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD');
-  var idp = OC_IDP || Cypress.env('OC_IDP');
+  var user = OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
+  var password = OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
+  var idp = OC_IDP || Cypress.env('OC_IDP')
   cy.visit('/multicloud/welcome')
   cy.get('body').then(body => {
     // Check if logged in
@@ -79,15 +79,15 @@ Cypress.Commands.add('reloadUntil', (condition, options) => {
 })
 
 Cypress.Commands.add('waitUntilContains', (selector, text, options) => {
-  cy.waitUntil(() => cy.ifContains(selector, text), options);
+  cy.waitUntil(() => cy.ifContains(selector, text), options)
 })
 
 Cypress.Commands.add('waitUntilNotContains', (selector, text, options) => {
-  cy.waitUntil(() => cy.ifNotContains(selector, text), options);
+  cy.waitUntil(() => cy.ifNotContains(selector, text), options)
 })
 
 Cypress.Commands.add('waitUntilAttrIs', (selector, attr, value, options) => {
-  cy.waitUntil(() => cy.ifAttrIs(selector, attr, value), options);
+  cy.waitUntil(() => cy.ifAttrIs(selector, attr, value), options)
 })
 
 Cypress.Commands.add('ifAttrIs', (selector, attr, value, action) => {
@@ -126,7 +126,7 @@ Cypress.Commands.add('forEach', (selector, action, options) => {
       action($elems.get(0))
       cy.forEach(selector, action)
     }
-  });
+  })
 })
 
 Cypress.Commands.add('logout', () => {
@@ -138,7 +138,7 @@ Cypress.Commands.add('logout', () => {
 })
 
 Cypress.Commands.add('generateNamespace', () => {
-  return 'search-' + Date.now();
+  return 'search-' + Date.now()
 })
 
 Cypress.Commands.add('waitUsingSLA', () => {

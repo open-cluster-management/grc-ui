@@ -4,7 +4,8 @@
         "es6": true,
         "node": true,
         "commonjs": true,
-        "jest": true
+        "jest": true,
+        "cypress/globals": true
     },
     "extends": [
         "eslint:recommended",
@@ -49,6 +50,8 @@
         "eol-last": ["error", "always"],
         "semi": ["error", "never"],
         "prefer-arrow-callback": ["error"],
+        "cypress/prefer-arrow-callback": ["error", "never"],
+        "cypress/eol-last": ["error", "never"],
         "no-trailing-spaces": "error",
         "no-unused-vars": "error",
         "prefer-const": "error",
