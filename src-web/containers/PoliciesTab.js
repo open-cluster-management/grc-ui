@@ -19,7 +19,7 @@ import { getPollInterval } from '../components/common/RefreshTimeSelect'
 import Page from '../components/common/Page'
 // without curly braces means component with redux
 // eslint-disable-next-line import/no-named-as-default
-import GrcView from '../components/GrcView'
+import GrcView from '../components/modules/GrcView'
 import { updateSecondaryHeader } from '../actions/common'
 import { HCMComplianceList } from '../../lib/client/queries'
 import msgs from '../../nls/platform.properties'

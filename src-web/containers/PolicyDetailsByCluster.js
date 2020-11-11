@@ -15,13 +15,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { updateSecondaryHeader} from '../actions/common'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
-import lodash from 'lodash'
+import _ from 'lodash'
 import { GRC_REFRESH_INTERVAL_COOKIE, RESOURCE_TYPES } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
 import { HCMPolicy } from '../../lib/client/queries'
-import getResourceDefinitions from '../definitions'
-import PolicyClusterDetail from '../components/common/PolicyClusterDetail'
+import { getResourceData } from '../tableDefinitions'
+import PolicyClusterDetail from '../components/modules/PolicyClusterDetail'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
 
 class PolicyDetailsByCluster extends React.Component {
@@ -103,13 +103,13 @@ class PolicyDetailsByCluster extends React.Component {
   }
 
   render() {
-    const url = lodash.get(this.props, 'location.pathname')
+    const url = _.get(this.props, 'location.pathname')
     const urlSegments = url.split('/')
     const policyName = urlSegments[urlSegments.length - 1]
     const policyNamespace = urlSegments[urlSegments.length - 2]
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     const {params, resourceType} = this.props
-    const staticResourceData = getResourceDefinitions(resourceType)
+    const staticResourceData = getResourceData(resourceType)
     return (
       <Query query={HCMPolicy} variables={{name: policyName, clusterName: policyNamespace}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {

@@ -7,7 +7,7 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
-import lodash from 'lodash'
+import _ from 'lodash'
 
 import GrcApolloClient from '../../lib/client/apollo-client'
 import { formatExpandablePolicies } from '../components/common/FormatTableData'
@@ -46,7 +46,7 @@ export const receiveResourceSuccess = (response, resourceType) => ({
   type: RESOURCE_RECEIVE_SUCCESS,
   status: REQUEST_STATUS.DONE,
   items: response.items,
-  resourceVersion: lodash.get(response, 'metadata.resourceVersion'), //only supported on k8s resoruces
+  resourceVersion: _.get(response, 'metadata.resourceVersion'), //only supported on k8s resoruces
   resourceType
 })
 
@@ -108,7 +108,7 @@ export const fetchResources = (resourceType, vars) => {
         if (response.errors) {
           return dispatch(receiveResourceError(response.errors[0], resourceType))
         }
-        return dispatch(receiveResourceSuccess({items: lodash.cloneDeep(formatExpandablePolicies(response.data.items))}, resourceType))
+        return dispatch(receiveResourceSuccess({items: _.cloneDeep(formatExpandablePolicies(response.data.items))}, resourceType))
       })
       .catch(err => dispatch(receiveResourceError(err, resourceType)))
   }
@@ -122,7 +122,7 @@ export const fetchSingleResource = (resourceType, args) => {
         if (response.errors) {
           return dispatch(receiveResourceError(response.errors[0], resourceType))
         }
-        return dispatch(receiveResourceSuccess({items: lodash.cloneDeep(response.data)}, resourceType))
+        return dispatch(receiveResourceSuccess({items: _.cloneDeep(response.data)}, resourceType))
       })
       .catch(err => dispatch(receiveResourceError(err, resourceType)))
   }
@@ -136,7 +136,7 @@ export const fetchResource = (resourceType, namespace, name) => {
         if (response.errors) {
           return dispatch(receiveResourceError(response.errors[0], resourceType))
         }
-        return dispatch(receiveResourceSuccess({items: lodash.cloneDeep(response.data.items)}, resourceType))
+        return dispatch(receiveResourceSuccess({items: _.cloneDeep(response.data.items)}, resourceType))
       })
       .catch(err => dispatch(receiveResourceError(err, resourceType)))
   }
@@ -355,26 +355,25 @@ export const createAndUpdateResources = (resourceTypes, createList, updateList) 
             error: '',
           }
         }
-        if (lodash.get(result, 'data.createAndUpdateResources.create.errors') &&
-          lodash.get(result, 'data.createAndUpdateResources.create.errors.length') > 0){
-          lodash.get(result, 'data.createAndUpdateResources.create.errors', []).forEach((error) => {
+        if (_.get(result, 'data.createAndUpdateResources.create.errors') &&
+          _.get(result, 'data.createAndUpdateResources.create.errors.length') > 0){
+          _.get(result, 'data.createAndUpdateResources.create.errors', []).forEach((error) => {
             errors[error.kind].error = error.message
           })
         }
-        if (lodash.get(result, 'data.createAndUpdateResources.update.errors') &&
-          lodash.get(result, 'data.createAndUpdateResources.update.errors.length') > 0){
-          lodash.get(result, 'data.createAndUpdateResources.update.errors', []).forEach((error) => {
+        if (_.get(result, 'data.createAndUpdateResources.update.errors') &&
+          _.get(result, 'data.createAndUpdateResources.update.errors.length') > 0){
+          _.get(result, 'data.createAndUpdateResources.update.errors', []).forEach((error) => {
             errors[error.kind].error = error.message
           })
         }
         let errored = false
-        Object.keys(errors).map((key) => {
+        Object.keys(errors).forEach((key) => {
           const resp = errors[key]
           if (resp.error !== '') {
             errored = true
             dispatch(mutateResourceFailure(resp.resourceType, { message: resp.error }))
           }
-          return key
         })
         if (!errored) {
           resourceTypes.forEach((resourceType) => {
@@ -395,7 +394,7 @@ export const createResource = (resourceType, variables) => {
           return dispatch(receivePostError(response.errors[0], resourceType))
         }
 
-        return dispatch(receivePostResource(lodash.cloneDeep(response.data.setHelmRepo), resourceType))
+        return dispatch(receivePostResource(_.cloneDeep(response.data.setHelmRepo), resourceType))
       })
       .catch(err => dispatch(receivePostError(err, resourceType)))
   }

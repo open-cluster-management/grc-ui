@@ -6,7 +6,7 @@ import { Query } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import resources from '../../lib/shared/resources'
-import getResourceDefinitions from '../definitions'
+import { getResourceData } from '../tableDefinitions'
 import { connect } from 'react-redux'
 import { updateSecondaryHeader } from '../actions/common'
 import { HCMCompliance } from '../../lib/client/queries'
@@ -15,7 +15,7 @@ import {GRC_REFRESH_INTERVAL_COOKIE} from '../../lib/shared/constants'
 import { Spinner } from '@patternfly/react-core'
 import { DangerNotification } from '../components/common/DangerNotification'
 // eslint-disable-next-line import/no-named-as-default
-import PolicyDetailsOverview from '../components/common/PolicyDetailsOverview'
+import PolicyDetailsOverview from '../components/modules/PolicyDetailsOverview'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
 import { getTabs } from '../../lib/client/resource-helper'
 import msgs from '../../nls/platform.properties'
@@ -80,7 +80,7 @@ class PolicyDetailsTab extends React.Component{
         const {data={}, loading, startPolling, stopPolling, refetch} = result
         const { items } = data
         const error = items ? null : result.error
-        const staticResourceData = getResourceDefinitions(resourceType)
+        const staticResourceData = getResourceData(resourceType)
         if (!loading) {
           this.timestamp = new Date().toString()
         }
