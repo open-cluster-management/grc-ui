@@ -1,31 +1,36 @@
 {
+  "retries": {
+    "runMode": 1,
+    "openMode": 1
+  },
   "chromeWebSecurity": false,
   "defaultCommandTimeout": 10000,
   "integrationFolder": "tests/cypress/tests",
   "ignoreTestFiles": "**/ignoredTestFiles/*.spec.js",
   "fixturesFolder": "tests/cypress/fixtures",
   "pluginsFile": "tests/cypress/plugins/index.js",
-  "screenshotsFolder" : "results/screenshots",
+  "screenshotsFolder" : "test-output/cypress/screenshots",
   "supportFile": "tests/cypress/support/index.js",
-  "videosFolder": "results/videos",
+  "videosFolder": "test-output/cypress/videos",
   "videoUploadOnPasses": false,
   "watchForFileChanges": true,
   "nodeVersion": "system",
   "env": {
-    "OC_IDP": "kube:admin"
+    "OC_IDP": "kube:admin",
+    "OC_CLUSTER_USER": "kubeadmin"
   },
   "reporter": "cypress-multi-reporters",
   "reporterOptions": {
     "reporterEnabled": "mochawesome, mocha-junit-reporter",
     "mochawesomeReporterOptions": {
-      "reportDir": "results/json",
+      "reportDir": "test-output/cypress/json",
       "reportFilename": "mochawesome-report.json",
       "overwrite": false,
       "html": false,
       "json": true
     },
     "mochaJunitReporterReporterOptions": {
-      "mochaFile": "results/cypress-[hash].xml"
+      "mochaFile": "test-output/cypress/cypress-[hash].xml"
     }
   },
   "viewportHeight": 1050,
