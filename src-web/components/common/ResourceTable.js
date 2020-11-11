@@ -22,9 +22,9 @@ import msgs from '../../../nls/platform.properties'
 import { transform } from '../../../lib/client/resource-helper'
 import { resourceActions } from './ResourceTableRowMenuItemActions'
 import { connect } from 'react-redux'
-import { getLink, getPrimaryKey, getSecondaryKey } from '../../definitions'
+import { getLink, getPrimaryKey, getSecondaryKey } from '../../tableDefinitions/index'
 import { Link, withRouter } from 'react-router-dom'
-import lodash from 'lodash'
+import _ from 'lodash'
 import ResourceTableRowExpandableContent from './ResourceTableRowExpandableContent'
 import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
 import filterUserAction from './FilterUserAction'
@@ -81,8 +81,8 @@ export class ResourceTable extends React.Component {
       highLightRowName,
     } = this.props
 
-    const showSearch = lodash.get(this.props, 'showSearch', true)
-    const showPagination = lodash.get(this.props, 'showPagination', true)
+    const showSearch = _.get(this.props, 'showSearch', true)
+    const showPagination = _.get(this.props, 'showPagination', true)
     const id = (staticResourceData && staticResourceData.resourceKey)
       ? `${staticResourceData.resourceKey}-`
       : ''
@@ -212,12 +212,12 @@ export class ResourceTable extends React.Component {
                           <TableExpandRow
                             {...getRowProps(
                               { row,
-                                'data-row-name': lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)),
+                                'data-row-name': _.get(items[row.id], _.get(staticResourceData, firstResKeyStr)),
                                 'aria-hidden': expandableTable && (
                                   items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0
                                 ),
                                 className:
-                                  (lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)) === highLightRowName)
+                                  (_.get(items[row.id], _.get(staticResourceData, firstResKeyStr)) === highLightRowName)
                                     ? 'high-light'
                                     : expandableTable && (items[row.id] && !items[row.id].subItems || items[row.id] && items[row.id].subItems.length === 0)
                                       ? 'row-not-expanded'
@@ -292,9 +292,9 @@ export class ResourceTable extends React.Component {
                         return (
                           <TableRow
                             key={row.id}
-                            data-row-name={lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr))}
+                            data-row-name={_.get(items[row.id], _.get(staticResourceData, firstResKeyStr))}
                             className={
-                              lodash.get(items[row.id], lodash.get(staticResourceData, firstResKeyStr)) === highLightRowName
+                              _.get(items[row.id], _.get(staticResourceData, firstResKeyStr)) === highLightRowName
                                 ? 'high-light'
                                 : ''
                             }
@@ -331,16 +331,16 @@ export class ResourceTable extends React.Component {
       header: tableKey.dropdown ? '' : msgs.get(tableKey.msgKey, locale),
       information: tableKey.information ? msgs.get(tableKey.information, locale) : ''
     }))
-    tableActions && !lodash.isEmpty(tableActions) && headers.push({ key: 'action', header: ''})
+    tableActions && !_.isEmpty(tableActions) && headers.push({ key: 'action', header: ''})
     return headers
   }
 
   checkPolicyDisabled(data) {
-    return lodash.get(data, 'raw.spec.disabled', false)
+    return _.get(data, 'raw.spec.disabled', false)
   }
 
   checkPolicyRemediation(data) {
-    return lodash.get(data, 'raw.spec.remediationAction', 'inform')
+    return _.get(data, 'raw.spec.remediationAction', 'inform')
   }
 
   getRows() {
@@ -353,21 +353,21 @@ export class ResourceTable extends React.Component {
       itemIds.map(
         id => items[id] || (Array.isArray(items)
         && items.find(target =>
-          (normalizedKey && lodash.get(target, normalizedKey) === id) || (target.name === id)
+          (normalizedKey && _.get(target, normalizedKey) === id) || (target.name === id)
         ))
       )
     if (localResources && localResources.length > 0) {
       return localResources.map((item, index) => {
         const row = {}
         if (normalizedKey) {
-          row.id = `${lodash.get(item, normalizedKey)}${lodash.get(item, 'cluster', '')}`
+          row.id = `${_.get(item, normalizedKey)}${_.get(item, 'cluster', '')}`
         } else {
           row.id = getSecondaryKey(resourceType)
-            ? `${lodash.get(item, getPrimaryKey(resourceType))}-${lodash.get(item, getSecondaryKey(resourceType))}`
-            : lodash.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
+            ? `${_.get(item, getPrimaryKey(resourceType))}-${_.get(item, getSecondaryKey(resourceType))}`
+            : _.get(item, getPrimaryKey(resourceType)) || `table-row-${index}`
         }
         const menuActions = item.metadata && item.metadata.namespace && tableActions
-                                && lodash.clone(tableActions[item.metadata.namespace]) || lodash.clone(tableActions)
+                                && _.clone(tableActions[item.metadata.namespace]) || _.clone(tableActions)
         const filteredActions = (Array.isArray(menuActions) && menuActions.length > 0)
           ? filterUserAction(item, menuActions, userAccessHash, resourceType)
           : []
@@ -436,7 +436,7 @@ export class ResourceTable extends React.Component {
             <Link to={`${match.url}${getLink(key.link, item)}`}>{transform(item, key, locale)}</Link> :
             transform(item, key, locale)
           if (key.resourceKey === 'objectDefinition.metadata.name' && row[key.resourceKey] === '-') {
-            row[key.resourceKey] = lodash.get(item, 'objectDefinition.kind')
+            row[key.resourceKey] = _.get(item, 'objectDefinition.kind')
           }
           if (key.resourceKey === 'remediation') {
             row[key.resourceKey] = msgs.get('policy.remediation.' + row[key.resourceKey], locale)

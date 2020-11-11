@@ -23,7 +23,7 @@
 
 import { createResourceReducer, resourceReducerFunction } from './common'
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
-import lodash from 'lodash'
+import _ from 'lodash'
 
 export { user, loggedIn } from './user'
 export { userAccess } from './access'
@@ -42,10 +42,10 @@ export const PlacementRulesList = createResourceReducer(resourceReducerFunction,
 export { resourceFilters } from './filter'
 
 export function predicate(resourceType, action) {
-  if (lodash.isEqual(resourceType, action.resourceType)) {
+  if (_.isEqual(resourceType, action.resourceType)) {
     return true
   }
-  const result = lodash.find(lodash.values(resourceType), type => {
+  const result = _.find(_.values(resourceType), type => {
     if (typeof type === 'string') {
       return type.indexOf(action.resourceType) > -1
     }

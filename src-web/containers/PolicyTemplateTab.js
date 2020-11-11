@@ -16,8 +16,8 @@ import { connect } from 'react-redux'
 import { updateSecondaryHeader } from '../actions/common'
 import PropTypes from 'prop-types'
 import resources from '../../lib/shared/resources'
-import PolicyTemplatesView from '../components/common/PolicyTemplatesView'
-import getResourceDefinitions from '../definitions'
+import PolicyTemplatesView from '../components/modules/PolicyTemplatesView'
+import { getResourceData } from '../tableDefinitions'
 import { HCMCompliance } from '../../lib/client/queries'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import {GRC_REFRESH_INTERVAL_COOKIE} from '../../lib/shared/constants'
@@ -92,7 +92,7 @@ class PolicyTemplateTab extends React.Component{
         const {data={}, loading, startPolling, stopPolling, refetch} = result
         const { items } = data
         const error = items ? null : result.error
-        const staticResourceData = getResourceDefinitions(resourceType)
+        const staticResourceData = getResourceData(resourceType)
         if (!loading) {
           this.timestamp = new Date().toString()
         }

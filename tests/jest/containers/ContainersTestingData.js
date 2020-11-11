@@ -155,19 +155,9 @@ export const staticResourceData = {
         'msgKey': 'table.header.namespace'
       },
       {
-        'key': 'replicas',
-        'resourceKey': 'clusterReplicas',
-        'msgKey': 'table.header.replicas'
-      },
-      {
         'key': 'clusterSelector',
         'resourceKey': 'clusterLabels',
         'msgKey': 'table.header.cluster.selector'
-      },
-      {
-        'key': 'resourceSelector',
-        'resourceKey': 'resourceSelector',
-        'msgKey': 'table.header.resource.selector'
       },
       {
         'key': 'decisions',
@@ -1067,8 +1057,6 @@ export const items = [
             }
           ]
         },
-        'clusterReplicas': null,
-        'resourceSelector': {},
         'status': {
           'decisions': [
             {
