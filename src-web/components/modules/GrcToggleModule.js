@@ -162,7 +162,7 @@ const mapStateToProps = (state) => {
   const userAccess = state.userAccess ? state.userAccess.access : []
 
   return {
-    status: state[RESOURCE_TYPES.POLICIES_BY_POLICY.list].status,
+    status: state[RESOURCE_TYPES.POLICIES_BY_POLICY.query].status,
     userAccess
   }
 }
