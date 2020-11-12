@@ -6,6 +6,7 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+/* Copyright (c) 2020 Red Hat, Inc. */
 import {
   USER_LOGIN_RECEIVE_SUCCESS,
   USER_LOGOUT_RECEIVE_SUCCESS,
