@@ -165,7 +165,6 @@ export const disableResource = (resourceType, namespace, name, body, selfLink, r
       } else {
         dispatch(updateModal({open: false, type: 'resource-disable'}))
       }
-      console.log(resourceType)
       dispatch(fetchResources(resourceType))
       return dispatch(receivePatchResource(response, resourceType))
     })
