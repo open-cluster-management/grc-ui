@@ -20,11 +20,11 @@ describe('CreateResourceModal modal', () => {
       open={true}
       label={{
         'primaryBtn':'modal.button.submit',
-        'label':'modal.edit-hcmpolicypolicy.label',
-        'heading':'modal.edit-hcmpolicypolicy.heading'
+        'label':'modal.edit-hcmcompliance.label',
+        'heading':'modal.edit-hcmcompliance.heading'
       }}
       locale={'en-US'}
-      resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
+      resourceType={{'name':'HCMCompliance','list':'HCMComplianceList'}}
       data={resourceModalData}
     />)
     expect(component.instance()).toMatchSnapshot()
@@ -36,11 +36,11 @@ describe('CreateResourceModal modal', () => {
       open={true}
       label={{
         'primaryBtn':'modal.button.submit',
-        'label':'modal.edit-hcmpolicypolicy.label',
-        'heading':'modal.edit-hcmpolicypolicy.heading'
+        'label':'modal.edit-hcmcompliance.label',
+        'heading':'modal.edit-hcmcompliance.heading'
       }}
       locale={'en-US'}
-      resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
+      resourceType={{'name':'HCMCompliance','list':'HCMComplianceList'}}
       data={resourceModalData}
     />)
     expect(component.instance()).toMatchSnapshot()
@@ -63,11 +63,11 @@ describe('CreateResourceModal modal', () => {
       open={true}
       label={{
         'primaryBtn':'modal.button.submit',
-        'label':'modal.edit-hcmpolicypolicy.label',
-        'heading':'modal.edit-hcmpolicypolicy.heading'
+        'label':'modal.edit-hcmcompliance.label',
+        'heading':'modal.edit-hcmcompliance.heading'
       }}
       locale={'en-US'}
-      resourceType={{'name':'HCMPolicyPolicy','list':'HCMPolicyPolicyList'}}
+      resourceType={{'name':'HCMCompliance','list':'HCMComplianceList'}}
       clearRequestStatus={jest.fn()}
       handleClose={jest.fn()}
       data={resourceModalData}

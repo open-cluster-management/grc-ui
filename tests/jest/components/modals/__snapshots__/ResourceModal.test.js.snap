@@ -21,7 +21,7 @@ Object {
         "ref": null,
       },
     },
-    "kind": "HCMPolicyPolicy",
+    "kind": "HCMCompliance",
     "metadata": Object {
       "__typename": "Metadata",
       "annotations": Object {
@@ -206,7 +206,7 @@ ResourceModal {
           "ref": null,
         },
       },
-      "kind": "HCMPolicyPolicy",
+      "kind": "HCMCompliance",
       "metadata": Object {
         "__typename": "Metadata",
         "annotations": Object {
@@ -361,15 +361,15 @@ ResourceModal {
       ],
     },
     "label": Object {
-      "heading": "modal.edit-hcmpolicypolicy.heading",
-      "label": "modal.edit-hcmpolicypolicy.label",
+      "heading": "modal.edit-hcmcompliance.heading",
+      "label": "modal.edit-hcmcompliance.label",
       "primaryBtn": "modal.button.submit",
     },
     "locale": "en-US",
     "open": true,
     "resourceType": Object {
-      "list": "HCMPolicyPolicyList",
-      "name": "HCMPolicyPolicy",
+      "list": "HCMComplianceList",
+      "name": "HCMCompliance",
     },
   },
   "refs": Object {},
@@ -476,7 +476,7 @@ spec:
                 "ref": null,
               },
             },
-            "kind": "HCMPolicyPolicy",
+            "kind": "HCMCompliance",
             "metadata": Object {
               "__typename": "Metadata",
               "annotations": Object {
@@ -633,8 +633,8 @@ spec:
         }
         label={
           Object {
-            "heading": "modal.edit-hcmpolicypolicy.heading",
-            "label": "modal.edit-hcmpolicypolicy.label",
+            "heading": "modal.edit-hcmcompliance.heading",
+            "label": "modal.edit-hcmcompliance.label",
             "primaryBtn": "modal.button.submit",
           }
         }
@@ -642,8 +642,8 @@ spec:
         open={true}
         resourceType={
           Object {
-            "list": "HCMPolicyPolicyList",
-            "name": "HCMPolicyPolicy",
+            "list": "HCMComplianceList",
+            "name": "HCMCompliance",
           }
         }
       />,
@@ -665,7 +665,7 @@ spec:
           className="resource-modal"
           focusTrap={true}
           iconDescription="close the modal"
-          id="resource-modal-HCMPolicyPolicy"
+          id="resource-modal-HCMCompliance"
           modalHeading="Edit policy"
           modalLabel="Edit policy"
           onKeyDown={[Function]}
@@ -785,7 +785,7 @@ ResourceModal {
           "ref": null,
         },
       },
-      "kind": "HCMPolicyPolicy",
+      "kind": "HCMCompliance",
       "metadata": Object {
         "__typename": "Metadata",
         "annotations": Object {
@@ -940,16 +940,16 @@ ResourceModal {
       ],
     },
     "label": Object {
-      "heading": "modal.edit-hcmpolicypolicy.heading",
-      "label": "modal.edit-hcmpolicypolicy.label",
+      "heading": "modal.edit-hcmcompliance.heading",
+      "label": "modal.edit-hcmcompliance.label",
       "primaryBtn": "modal.button.submit",
     },
     "locale": "en-US",
     "open": true,
     "reqCount": 2,
     "resourceType": Object {
-      "list": "HCMPolicyPolicyList",
-      "name": "HCMPolicyPolicy",
+      "list": "HCMComplianceList",
+      "name": "HCMCompliance",
     },
   },
   "refs": Object {},
@@ -1056,7 +1056,7 @@ spec:
                 "ref": null,
               },
             },
-            "kind": "HCMPolicyPolicy",
+            "kind": "HCMCompliance",
             "metadata": Object {
               "__typename": "Metadata",
               "annotations": Object {
@@ -1213,8 +1213,8 @@ spec:
         }
         label={
           Object {
-            "heading": "modal.edit-hcmpolicypolicy.heading",
-            "label": "modal.edit-hcmpolicypolicy.label",
+            "heading": "modal.edit-hcmcompliance.heading",
+            "label": "modal.edit-hcmcompliance.label",
             "primaryBtn": "modal.button.submit",
           }
         }
@@ -1223,8 +1223,8 @@ spec:
         reqCount={2}
         resourceType={
           Object {
-            "list": "HCMPolicyPolicyList",
-            "name": "HCMPolicyPolicy",
+            "list": "HCMComplianceList",
+            "name": "HCMCompliance",
           }
         }
       />,
@@ -1249,7 +1249,7 @@ spec:
           className="resource-modal"
           focusTrap={true}
           iconDescription="close the modal"
-          id="resource-modal-HCMPolicyPolicy"
+          id="resource-modal-HCMCompliance"
           modalHeading="Edit policy"
           modalLabel="Edit policy"
           onKeyDown={[Function]}

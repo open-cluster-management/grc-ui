@@ -154,9 +154,9 @@ const controlData = [
       'Policy[0].$raw.metadata.annotations["policy.open-cluster-management.io/standards"]'
     ],
     'cacheUserValueKey': 'create.policy.standards',
-    'wasSet': [
+    'wasSet': new Set([
       'CertificatePolicy - cert management expiration'
-    ],
+    ]),
     'active': [
       'NIST-CSF'
     ]
@@ -178,9 +178,9 @@ const controlData = [
       'Policy[0].$raw.metadata.annotations["policy.open-cluster-management.io/categories"]'
     ],
     'cacheUserValueKey': 'create.policy.categories',
-    'wasSet': [
+    'wasSet': new Set([
       'CertificatePolicy - cert management expiration'
-    ],
+    ]),
     'active': [
       'PR.DS Data Security'
     ]
@@ -206,9 +206,9 @@ const controlData = [
       'Policy[0].$raw.metadata.annotations["policy.open-cluster-management.io/controls"]'
     ],
     'cacheUserValueKey': 'create.policy.controls',
-    'wasSet': [
+    'wasSet': new Set([
       'CertificatePolicy - cert management expiration'
-    ],
+    ]),
     'active': [
       'PR.DS-2 Data-in-transit'
     ]

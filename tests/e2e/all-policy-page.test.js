@@ -44,6 +44,7 @@ module.exports = {
       templateFile = `${t}_template.yaml`
       page.createTestPolicy(false, { policyName: policyName, specification: [t] }, templateFile)
     })
+    page.testCreateCustomSelections(templates.slice(0,3))
   },
 
   'GRC Create policy page: Updating YAML in editor': () => {

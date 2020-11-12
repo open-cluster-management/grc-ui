@@ -81,18 +81,25 @@ export const generateYAML = (template, controlData) => {
               const snippetKey = `____${id}-${idx}____`
               snippetMap[snippetKey] = snippet
               arr.push(snippetKey)
-            } else if (!arr.includes(snippet)) {
+            } else {
+              // Establish new wasSet or else remove unchecked specs from wasSet
               let wasSet = controlMap[id].wasSet
               if (!wasSet) {
                 wasSet = controlMap[id].wasSet = new Set()
+              } else {
+                const removedSpec = _.difference(Array.from(wasSet), active)
+                removedSpec.forEach(spec => wasSet.delete(spec))
               }
               // if this control has already been set by this selection
               // don't do it again in case user unselected it
-              if (typeof wasSet.has === 'function' && !wasSet.has(key)) {
+              if (!arr.includes(snippet) && typeof wasSet.has === 'function' && !wasSet.has(key)) {
                 arr.push(snippet)
                 controlMap[id].active = arr
-                wasSet.add(key)
               }
+              console.log(wasSet)
+              // Whether data was set or not (due to duplication), we need to
+              // record the template that set it
+              wasSet.add(key)
             }
           })
         })
