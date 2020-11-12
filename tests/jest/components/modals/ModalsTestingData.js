@@ -765,7 +765,7 @@ export const sidePanelPoliciesAllCompliant = [
 
 export const sidePanelResourceTypePolicies = {
   'name': 'HCMCompliance',
-  'list': 'ALL_POLICIES'
+  'query': 'ALL_POLICIES'
 }
 
 export const sidePanelClusters = [
@@ -1813,7 +1813,7 @@ export const sidePanelClusters = [
 
 export const sidePanelResourceTypeClusters = {
   'name': 'HCMPolicyCluster',
-  'list': 'HCMPolicyClusterList'
+  'query': 'HCMPolicyClusterList'
 }
 
 export const sidePanelSecurityFindings = {
@@ -2675,7 +2675,7 @@ export const findingsSidePanelData = {
 
 export const resourceType = {
   'name': 'HCMSecurityFindings',
-  'list': 'HCMSecurityFindingsList'
+  'query': 'HCMSecurityFindingsList'
 }
 
 export const resourceModalLabels = {

@@ -1583,8 +1583,8 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
           normalizedKey="key"
           resourceType={
             Object {
-              "list": "ALL_POLICIES",
               "name": "HCMCompliance",
+              "query": "ALL_POLICIES",
             }
           }
           sortDirection="asc"
@@ -1715,8 +1715,8 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                       items={Object {}}
                       resourceType={
                         Object {
-                          "list": "ALL_POLICIES",
                           "name": "HCMCompliance",
+                          "query": "ALL_POLICIES",
                         }
                       }
                       searchValue=""
@@ -1823,8 +1823,8 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                         }
                         resourceType={
                           Object {
-                            "list": "ALL_POLICIES",
                             "name": "HCMCompliance",
+                            "query": "ALL_POLICIES",
                           }
                         }
                         searchValue=""
@@ -1932,8 +1932,8 @@ exports[`ResourceTableModule component test renders as expected 1`] = `
                           }
                           resourceType={
                             Object {
-                              "list": "ALL_POLICIES",
                               "name": "HCMCompliance",
+                              "query": "ALL_POLICIES",
                             }
                           }
                           searchValue=""

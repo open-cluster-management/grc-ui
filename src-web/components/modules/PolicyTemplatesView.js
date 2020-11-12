@@ -111,7 +111,6 @@ class PolicyTemplatesView extends React.Component {
       editResource:localEditResource,
       resourceType,
       resourceData,
-      resourcePath
     } = this.props
     const { yaml }  = this.state
     let resource
@@ -121,17 +120,10 @@ class PolicyTemplatesView extends React.Component {
       this.setState({ yamlParsingError: e })
       return
     }
-    if (resourceData.__typename === 'Compliance') {
-      const namespace = _.get(resourceData, 'metadata.namespace')
-      const name = _.get(resourceData, 'metadata.name')
-      const selfLink = _.get(resourceData, 'metadata.selfLink')
-      localEditResource(resourceType, namespace, name, resource, selfLink)
-    } else if (resourceData.__typename === 'PolicyClusterDetail') {
-      const namespace = _.get(resourceData, 'complianceNamespace')
-      const name = _.get(resourceData, 'complianceName')
-      const selfLink = _.get(resourceData, 'complianceSelfLink')
-      localEditResource(resourceType, namespace, name, resource, selfLink, resourcePath)
-    }
+    const namespace = _.get(resourceData, 'metadata.namespace')
+    const name = _.get(resourceData, 'metadata.name')
+    const selfLink = _.get(resourceData, 'metadata.selfLink')
+    localEditResource(resourceType, namespace, name, resource, selfLink)
     this.setState({
       updated: true
     })
@@ -235,7 +227,6 @@ PolicyTemplatesView.propTypes = {
   reqErrorMsg: PropTypes.string,
   reqStatus: PropTypes.string,
   resourceData: PropTypes.any,
-  resourcePath: PropTypes.string,
   resourceType: PropTypes.object,
   userAccess: PropTypes.array,
   viewOnly: PropTypes.bool
@@ -253,8 +244,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editResource: (resourceType, namespace, name, data, selfLink, resourcePath) => {
-      dispatch(editResource(resourceType, namespace, name, data, selfLink, resourcePath))
+    editResource: (resourceType, namespace, name, data, selfLink) => {
+      dispatch(editResource(resourceType, namespace, name, data, selfLink))
     },
   }
 }

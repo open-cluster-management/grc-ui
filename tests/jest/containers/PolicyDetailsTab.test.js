@@ -44,7 +44,7 @@ describe('PolicyTemplateTab container test', () => {
     }
     const resourceType = {
       'name': 'HCMCompliance',
-      'list': 'ALL_POLICIES'
+      'query': 'ALL_POLICIES'
     }
     const tabs = [
       'detail',

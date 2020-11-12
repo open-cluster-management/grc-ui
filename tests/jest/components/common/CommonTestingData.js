@@ -4545,12 +4545,12 @@ export const itemIds2 = ['calamari-undefined']
 
 export const resourceType = {
   'name': 'HCMCompliance',
-  'list': 'ALL_POLICIES'
+  'query': 'ALL_POLICIES'
 }
 
 export const resourceType2 = {
   'name': 'HCMPolicyCluster',
-  'list': 'HCMPolicyClusterList'
+  'query': 'HCMPolicyClusterList'
 }
 
 export const staticResourceDataPolicyOverview = {

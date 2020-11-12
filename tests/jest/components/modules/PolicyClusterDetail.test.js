@@ -64,7 +64,7 @@ describe('PolicyClusterDetail component', () => {
     }
     const resourceType = {
       'name': 'HCMCompliance',
-      'list': 'ALL_POLICIES'
+      'query': 'ALL_POLICIES'
     }
     const component = renderer.create(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
