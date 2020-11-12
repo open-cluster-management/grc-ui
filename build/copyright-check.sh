@@ -36,7 +36,6 @@ for f in $FILES_TO_SCAN; do
 
   # Flags that indicate the licenses to check for
   must_have_redhat_license=false
-  flag_redhat_license=false
 
   FILETYPE=$(basename ${f##*.})
   case "${FILETYPE}" in
@@ -62,10 +61,6 @@ for f in $FILES_TO_SCAN; do
   if [[ "${must_have_redhat_license}" == "true" ]] && [[ "$header" != *"${lic_redhat_identifier}"* ]]; then
     printf " Missing copyright\n >> Could not find [${lic_redhat_identifier}] in the file.\n"
     ERROR=1
-  fi
-
-  if [[ "${flag_redhat_license}" == "true" ]] && [[ "$header" == *"${lic_redhat_identifier}"* ]]; then 
-    printf " Warning: Older file, may not include Red Hat license.\n"
   fi
 
   #Add a status message of OK, if all copyright lines are found
