@@ -1211,7 +1211,7 @@ export const reduxStorePolicyCluster = {
     postErrorMsg: '',
     pendingActions: []
   },
-  HCMComplianceList: {
+  ALL_POLICIES: {
     items: [
       {
         metadata: {

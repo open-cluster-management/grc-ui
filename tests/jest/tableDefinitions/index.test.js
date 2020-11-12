@@ -24,7 +24,7 @@ describe('definitions/index', () => {
   describe('#getDefaultSearchField', () => {
     it('should return the default search field of node', () => {
       const resourceType = {
-        list: 'HCMComplianceList',
+        list: 'ALL_POLICIES',
         name: 'HCMCompliance'
       }
       expect(getDefaultSearchField(resourceType)).toBe('metadata.name')
@@ -39,7 +39,7 @@ describe('definitions/index', () => {
   describe('#getDefaultSortField', () => {
     it('should return the default sort field of node', () => {
       const item = {
-        list: 'HCMComplianceList',
+        list: 'ALL_POLICIES',
         name: 'HCMCompliance'
       }
       expect(getDefaultSortField(item)).toBe('metadata.name')
@@ -90,7 +90,7 @@ describe('definitions/index', () => {
   describe('#getPrimaryKey', () => {
     it('should return the primary key of node', () => {
       const item = {
-        list: 'HCMComplianceList',
+        list: 'ALL_POLICIES',
         name: 'HCMCompliance'
       }
       expect(getPrimaryKey(item)).toBe('metadata.name')
@@ -105,7 +105,7 @@ describe('definitions/index', () => {
   describe('#getSecondaryKey', () => {
     it('should return the secondary key of node', () => {
       const item = {
-        list: 'HCMComplianceList',
+        list: 'ALL_POLICIES',
         name: 'HCMCompliance'
       }
       expect(getSecondaryKey(item)).toBe('metadata.namespace')
@@ -124,7 +124,7 @@ describe('definitions/index', () => {
   describe('#getURIKey', () => {
     it('should return the default sort field of node', () => {
       const item = {
-        list: 'HCMComplianceList',
+        list: 'ALL_POLICIES',
         name: 'HCMCompliance'
       }
       expect(getURIKey(item)).toBe('metadata.name')

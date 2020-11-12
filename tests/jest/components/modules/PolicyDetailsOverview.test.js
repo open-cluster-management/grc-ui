@@ -40,7 +40,7 @@ describe('PolicyDetailsOverview component', () => {
     }
     const resourceType = {
       'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
+      'list': 'ALL_POLICIES'
     }
     const refreshControl = {
       'reloading': false,

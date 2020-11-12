@@ -368,7 +368,7 @@ ResourceModal {
     "locale": "en-US",
     "open": true,
     "resourceType": Object {
-      "list": "HCMComplianceList",
+      "list": "ALL_POLICIES",
       "name": "HCMCompliance",
     },
   },
@@ -642,7 +642,7 @@ spec:
         open={true}
         resourceType={
           Object {
-            "list": "HCMComplianceList",
+            "list": "ALL_POLICIES",
             "name": "HCMCompliance",
           }
         }
@@ -948,7 +948,7 @@ ResourceModal {
     "open": true,
     "reqCount": 2,
     "resourceType": Object {
-      "list": "HCMComplianceList",
+      "list": "ALL_POLICIES",
       "name": "HCMCompliance",
     },
   },
@@ -1223,7 +1223,7 @@ spec:
         reqCount={2}
         resourceType={
           Object {
-            "list": "HCMComplianceList",
+            "list": "ALL_POLICIES",
             "name": "HCMCompliance",
           }
         }

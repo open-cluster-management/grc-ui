@@ -15,7 +15,7 @@ Array [
       },
       "open": true,
       "resourceType": Object {
-        "list": "HCMComplianceList",
+        "list": "ALL_POLICIES",
         "name": "HCMCompliance",
       },
       "type": "resource-remove",
@@ -40,7 +40,7 @@ Array [
       },
       "open": true,
       "resourceType": Object {
-        "list": "HCMComplianceList",
+        "list": "ALL_POLICIES",
         "name": "HCMCompliance",
       },
       "type": "resource-remove",
@@ -65,7 +65,7 @@ Array [
       },
       "open": true,
       "resourceType": Object {
-        "list": "HCMComplianceList",
+        "list": "ALL_POLICIES",
         "name": "HCMCompliance",
       },
       "type": "resource-remove",
@@ -91,7 +91,7 @@ Array [
       },
       "open": true,
       "resourceType": Object {
-        "list": "HCMComplianceList",
+        "list": "ALL_POLICIES",
         "name": "HCMCompliance",
       },
       "type": "resource-edit",

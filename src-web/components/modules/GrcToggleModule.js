@@ -158,16 +158,11 @@ GrcToggleModule.propTypes = {
   userAccess: PropTypes.array,
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const { grcTabToggleIndex } = ownProps
-  const typeListName = (grcTabToggleIndex === 0 )
-    ? RESOURCE_TYPES.POLICIES_BY_POLICY.list
-    : RESOURCE_TYPES.POLICIES_BY_CLUSTER.list
-
+const mapStateToProps = (state) => {
   const userAccess = state.userAccess ? state.userAccess.access : []
 
   return {
-    status: state[typeListName].status,
+    status: state[RESOURCE_TYPES.POLICIES_BY_POLICY.list].status,
     userAccess
   }
 }

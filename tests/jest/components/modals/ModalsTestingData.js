@@ -765,7 +765,7 @@ export const sidePanelPoliciesAllCompliant = [
 
 export const sidePanelResourceTypePolicies = {
   'name': 'HCMCompliance',
-  'list': 'HCMComplianceList'
+  'list': 'ALL_POLICIES'
 }
 
 export const sidePanelClusters = [

@@ -32,7 +32,7 @@ export { secondaryHeader } from './common'
 
 export { modal } from './modal'
 
-export const HCMComplianceList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.POLICIES_BY_POLICY))
+export const ALL_POLICIES = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.POLICIES_BY_POLICY))
 export const HCMPolicyClusterList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.POLICIES_BY_CLUSTER))
 export const PoliciesList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.POLICY))
 export const PlacementBindingsList = createResourceReducer(resourceReducerFunction, predicate.bind(null, RESOURCE_TYPES.PLACEMENT_BINDING))

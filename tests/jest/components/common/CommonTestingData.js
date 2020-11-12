@@ -4545,7 +4545,7 @@ export const itemIds2 = ['calamari-undefined']
 
 export const resourceType = {
   'name': 'HCMCompliance',
-  'list': 'HCMComplianceList'
+  'list': 'ALL_POLICIES'
 }
 
 export const resourceType2 = {

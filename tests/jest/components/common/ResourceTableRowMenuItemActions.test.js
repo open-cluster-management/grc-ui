@@ -17,7 +17,7 @@ describe('ResourceTableRowMenuItemActions', () => {
     const action = 'table.actions.edit'
     const resourceType = {
       'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
+      'list': 'ALL_POLICIES'
     }
     const dispatch = jest.fn()
     expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
@@ -48,7 +48,7 @@ describe('ResourceTableRowMenuItemActions component table.actions.compliance.rem
     const action = 'table.actions.compliance.remove'
     const resourceType = {
       'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
+      'list': 'ALL_POLICIES'
     }
     const dispatch = jest.fn()
     expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
@@ -59,7 +59,7 @@ describe('ResourceTableRowMenuItemActions component table.actions.compliance.rem
     const action = 'table.actions.policy.remove'
     const resourceType = {
       'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
+      'list': 'ALL_POLICIES'
     }
     const dispatch = jest.fn()
     expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
@@ -70,7 +70,7 @@ describe('ResourceTableRowMenuItemActions component table.actions.compliance.rem
     const action = 'table.actions.remove'
     const resourceType = {
       'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
+      'list': 'ALL_POLICIES'
     }
     const dispatch = jest.fn()
     expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()

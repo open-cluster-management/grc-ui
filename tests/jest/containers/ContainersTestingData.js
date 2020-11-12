@@ -1491,7 +1491,7 @@ export const items = [
 
 export const resourceType = {
   'name': 'HCMCompliance',
-  'list': 'HCMComplianceList'
+  'list': 'ALL_POLICIES'
 }
 
 export const findingsData = [
