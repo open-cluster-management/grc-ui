@@ -55,20 +55,24 @@ class RemoveResourceModal extends React.Component {
       })
     })
     _.map(placementBindings, (curr, idx) => {
-      children.push({
-        id: idx + '-placementBinding-' + curr.name,
-        selfLink: curr.selfLink,
-        label: curr.name + ' [PlacementBinding]',
-        selected: true
-      })
+      if (curr.name !== 'undefined') {
+        children.push({
+          id: idx + '-placementBinding-' + curr.name,
+          selfLink: curr.selfLink,
+          label: curr.name + ' [PlacementBinding]',
+          selected: true
+        })
+      }
     })
     _.map(placementRules, (curr, idx) => {
-      children.push({
-        id: idx + '-placementPolicy-' + curr.name,
-        selfLink: curr.selfLink,
-        label: curr.name + ' [PlacementPolicy]',
-        selected: true
-      })
+      if (curr.name !== 'undefined') {
+        children.push({
+          id: idx + '-placementPolicy-' + curr.name,
+          selfLink: curr.selfLink,
+          label: curr.name + ' [PlacementPolicy]',
+          selected: true
+        })
+      }
     })
     _.map(data.applicationRelationships, (curr, idx) => {
       children.push({
