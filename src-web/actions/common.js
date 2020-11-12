@@ -115,6 +115,7 @@ export const fetchResources = (resourceType, vars) => {
 }
 
 export const fetchSingleResource = (resourceType, args) => {
+  console.log(resourceType)
   return (dispatch) => {
     dispatch(requestResource(resourceType))
     return GrcApolloClient.getResource(resourceType, args)
@@ -343,7 +344,7 @@ export const createAndUpdateResources = (resourceTypes, createList, updateList) 
       .then(result => {
         const errors = {
           Policy: {
-            resourceType: 'HCMPolicy',
+            resourceType: 'Policy',
             error: '',
           },
           PlacementRule: {

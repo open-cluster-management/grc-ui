@@ -18,7 +18,7 @@ import PropTypes from 'prop-types'
 import resources from '../../lib/shared/resources'
 import PolicyTemplatesView from '../components/modules/PolicyTemplatesView'
 import { getResourceData } from '../tableDefinitions'
-import { HCMCompliance } from '../../lib/client/queries'
+import { SINGLE_POLICY } from '../../lib/client/queries'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import {GRC_REFRESH_INTERVAL_COOKIE} from '../../lib/shared/constants'
 import { Spinner } from '@patternfly/react-core'
@@ -83,7 +83,7 @@ class PolicyTemplateTab extends React.Component{
     } = this.props
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     return <Query
-      query={HCMCompliance}
+      query={SINGLE_POLICY}
       variables={{name: policyName, namespace: policyNamespace}}
       pollInterval={pollInterval}
       notifyOnNetworkStatusChange

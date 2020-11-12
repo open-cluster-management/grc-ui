@@ -118,7 +118,7 @@ describe('definitions/index', () => {
   })
 
   describe('#getTableKeys', () => {
-    expect(getTableKeys(RESOURCE_TYPES.HCM_COMPLIANCES)).toMatchSnapshot()
+    expect(getTableKeys(RESOURCE_TYPES.POLICIES_BY_POLICY)).toMatchSnapshot()
   })
 
   describe('#getURIKey', () => {

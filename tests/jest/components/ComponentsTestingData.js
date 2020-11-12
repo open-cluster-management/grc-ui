@@ -1200,7 +1200,7 @@ export const reduxStorePolicyCluster = {
     information: {}
   },
   modal: {},
-  HCMPolicyList: {
+  PoliciesList: {
     items: [],
     itemsPerPage: 10,
     page: 1,

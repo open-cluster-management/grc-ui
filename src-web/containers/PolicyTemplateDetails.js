@@ -11,7 +11,7 @@ import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
-import { PolicyTemplateDetail } from '../../lib/client/queries'
+import { POLICY_TEMPLATE_DETAILS } from '../../lib/client/queries'
 import PolicyTemplateDetailsView from '../components/modules/PolicyTemplateDetailsView'
 import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
@@ -88,7 +88,7 @@ class PolicyTemplateDetails extends React.Component {
     const { match: { params: { clusterName: cluster, apiGroup, version, kind, name }}} = this.props
     const selfLink = `/apis/${apiGroup}/${version}/namespaces/${cluster}/${kind}/${name}`
     return (
-      <Query query={PolicyTemplateDetail} variables={{name, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+      <Query query={POLICY_TEMPLATE_DETAILS} variables={{name, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {
           const { data={}, loading, startPolling, stopPolling, refetch, error } = result
           if (!loading) {

@@ -43,7 +43,7 @@ class PolicyClusterDetail extends React.Component {
   }
 
   static defaultProps = {
-    resourceType: RESOURCE_TYPES.HCM_COMPLIANCES,
+    resourceType: RESOURCE_TYPES.POLICIES_BY_POLICY,
   }
 
   static contextTypes = {
