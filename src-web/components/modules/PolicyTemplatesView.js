@@ -23,9 +23,10 @@ import { withRouter } from 'react-router-dom'
 import { Module, ModuleHeader } from 'carbon-addons-cloud-react'
 import { editResource } from '../../actions/common'
 import { createDisableTooltip } from '../common/DisableTooltip'
-import {REQUEST_STATUS} from '../../actions'
+import { REQUEST_STATUS } from '../../actions'
 import formatUserAccess from '../common/FormatUserAccess'
 import filterUserAction from '../common/FilterUserAction'
+import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 
 class PolicyTemplatesView extends React.Component {
 
@@ -39,7 +40,8 @@ class PolicyTemplatesView extends React.Component {
     }
   }
   static defaultProps = {
-    viewOnly: false
+    viewOnly: false,
+    resourceType: RESOURCE_TYPES.POLICIES_BY_POLICY,
   }
 
   UNSAFE_componentWillMount() {
@@ -142,8 +144,7 @@ class PolicyTemplatesView extends React.Component {
   handleEditorChange = (yaml) => this.setState({ yaml })
 
   render() {
-    const { headerKey, reqStatus, className, userAccess, resourceData, viewOnly } = this.props
-    const resourceType = {name: 'HCMCompliance'}
+    const { headerKey, reqStatus, className, userAccess, resourceData, viewOnly, resourceType } = this.props
     const userAccessHash = formatUserAccess(userAccess)
     const actions = ['table.actions.edit']
     const filteredActions = filterUserAction(resourceData, actions, userAccessHash, resourceType)
@@ -241,7 +242,7 @@ PolicyTemplatesView.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { list: typeListName } = ownProps.resourceType
+  const { query: typeListName } = ownProps.resourceType
   const userAccess = state.userAccess ? state.userAccess.access : []
   return {
     reqStatus: state[typeListName].putStatus,

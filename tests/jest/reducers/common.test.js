@@ -427,7 +427,7 @@ describe('resourceReducerFunction', () => {
     const action = {
       type: 'RESOURCE_MODIFY',
       resourceType:{
-        list: 'PoliciesList',
+        query: 'PoliciesList',
         name: 'Policy'
       }
     }
@@ -447,7 +447,7 @@ describe('resourceReducerFunction', () => {
       resourceName: 'TEST_RESOURCE_MUTATE',
       type: 'RESOURCE_MUTATE',
       resourceType:{
-        list: 'PoliciesList',
+        query: 'PoliciesList',
         name: 'Policy'
       }
     }
@@ -481,7 +481,7 @@ describe('resourceReducerFunction', () => {
       resourceName: 'TEST_RESOURCE_MUTATE_FAILURE',
       type: 'RESOURCE_MUTATE_FAILURE',
       resourceType:{
-        list: 'PoliciesList',
+        query: 'PoliciesList',
         name: 'Policy'
       },
       err:{
@@ -515,7 +515,7 @@ describe('resourceReducerFunction', () => {
       resourceName: 'TEST_RESOURCE_MUTATE_FAILURE',
       type: 'RESOURCE_MUTATE_SUCCESS',
       resourceType:{
-        list: 'PoliciesList',
+        query: 'PoliciesList',
         name: 'Policy'
       },
       err:{
