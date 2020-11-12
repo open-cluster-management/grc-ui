@@ -115,7 +115,6 @@ export const fetchResources = (resourceType, vars) => {
 }
 
 export const fetchSingleResource = (resourceType, args) => {
-  console.log(resourceType)
   return (dispatch) => {
     dispatch(requestResource(resourceType))
     return GrcApolloClient.getResource(resourceType, args)
