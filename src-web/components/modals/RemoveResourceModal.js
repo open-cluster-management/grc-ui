@@ -46,14 +46,6 @@ class RemoveResourceModal extends React.Component {
     })
     const children = []
     // Create object specifying Application resources that can be deleted
-    _.map(data.deployables, (curr, idx) => {
-      children.push({
-        id: idx + '-deployable-' + curr.metadata.name,
-        selfLink: curr.metadata.selfLink,
-        label: curr.metadata.name + ' [Deployable]',
-        selected: true
-      })
-    })
     _.map(placementBindings, (curr, idx) => {
       if (curr.name) {
         children.push({
@@ -67,20 +59,12 @@ class RemoveResourceModal extends React.Component {
     _.map(placementRules, (curr, idx) => {
       if (curr.name) {
         children.push({
-          id: idx + '-placementPolicy-' + curr.name,
+          id: idx + '-placementRule-' + curr.name,
           selfLink: curr.selfLink,
-          label: curr.name + ' [PlacementPolicy]',
+          label: curr.name + ' [PlacementRule]',
           selected: true
         })
       }
-    })
-    _.map(data.applicationRelationships, (curr, idx) => {
-      children.push({
-        id: idx + '-appRelationship-' + curr.metadata.name,
-        selfLink: curr.metadata.selfLink,
-        label: curr.metadata.name + ' [ApplicationRelationship]',
-        selected: true
-      })
     })
     if (children.length > 0 && this.state.selected.length < 1) {
       this.setState({selected: children})
