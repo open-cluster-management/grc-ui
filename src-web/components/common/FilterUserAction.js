@@ -10,7 +10,6 @@ const filterUserAction = (data,actions,userAccessHash,resourceType) => {
       : ''
     switch (resourceType.name) {
     case 'HCMCompliance':
-    case 'HCMPolicyPolicy':
       if (namespace) {
         adminRules = userAccessHash[`${namespace}/*/*`]
         typeRules = userAccessHash[`${namespace}/policy.open-cluster-management.io/policies`]

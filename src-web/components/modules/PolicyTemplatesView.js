@@ -143,7 +143,7 @@ class PolicyTemplatesView extends React.Component {
 
   render() {
     const { headerKey, reqStatus, className, userAccess, resourceData, viewOnly } = this.props
-    const resourceType = {name: 'HCMPolicyPolicy'}
+    const resourceType = {name: 'HCMCompliance'}
     const userAccessHash = formatUserAccess(userAccess)
     const actions = ['table.actions.edit']
     const filteredActions = filterUserAction(resourceData, actions, userAccessHash, resourceType)

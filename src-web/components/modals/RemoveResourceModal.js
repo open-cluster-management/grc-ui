@@ -98,7 +98,6 @@ class RemoveResourceModal extends React.Component {
     switch (label.label) {
     case 'modal.remove-hcmapplication.label':
     case 'modal.remove-hcmcompliance.label':
-    case 'modal.remove-hcmpolicypolicy.label':
       return this.state.selected.length > 0
         ? <div className='remove-app-modal-content' >
           <div className='remove-app-modal-content-text' >

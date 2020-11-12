@@ -419,7 +419,6 @@ export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
     switch (action.resourceType) {
     case RESOURCE_TYPES.HCM_COMPLIANCES:
     case RESOURCE_TYPES.HCM_POLICIES:
-    case RESOURCE_TYPES.HCM_POLICIES_PER_POLICY:
       const policy = _.get(action, 'resource')
       index = _.findIndex(items, { 'name':policy.name, 'namespace':policy.namespace })
       break
