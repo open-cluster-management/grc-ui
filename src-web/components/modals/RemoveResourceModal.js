@@ -31,6 +31,19 @@ class RemoveResourceModal extends React.Component {
 
   UNSAFE_componentWillMount() {
     const { data } = this.props
+    const placements = _.get(data, 'raw.status.placement', [])
+    const placementBindings = placements.map(placement => {
+      return {
+        name: placement.placementBinding,
+        selfLink: `/apis/policy.open-cluster-management.io/v1/namespaces/${data.namespace}/placementbindings/${placement.placementBinding}`,
+      }
+    })
+    const placementRules = placements.map(placement => {
+      return {
+        name: placement.placementRule,
+        selfLink: `/apis/apps.open-cluster-management.io/v1/namespaces/${data.namespace}/placementrules/${placement.placementRule}`,
+      }
+    })
     const children = []
     // Create object specifying Application resources that can be deleted
     _.map(data.deployables, (curr, idx) => {
@@ -41,21 +54,25 @@ class RemoveResourceModal extends React.Component {
         selected: true
       })
     })
-    _.map(data.placementBindings, (curr, idx) => {
-      children.push({
-        id: idx + '-placementBinding-' + curr.metadata.name,
-        selfLink: curr.metadata.selfLink,
-        label: curr.metadata.name + ' [PlacementBinding]',
-        selected: true
-      })
+    _.map(placementBindings, (curr, idx) => {
+      if (curr.name) {
+        children.push({
+          id: idx + '-placementBinding-' + curr.name,
+          selfLink: curr.selfLink,
+          label: curr.name + ' [PlacementBinding]',
+          selected: true
+        })
+      }
     })
-    _.map(data.placementPolicies, (curr, idx) => {
-      children.push({
-        id: idx + '-placementPolicy-' + curr.metadata.name,
-        selfLink: curr.metadata.selfLink,
-        label: curr.metadata.name + ' [PlacementPolicy]',
-        selected: true
-      })
+    _.map(placementRules, (curr, idx) => {
+      if (curr.name) {
+        children.push({
+          id: idx + '-placementPolicy-' + curr.name,
+          selfLink: curr.selfLink,
+          label: curr.name + ' [PlacementPolicy]',
+          selected: true
+        })
+      }
     })
     _.map(data.applicationRelationships, (curr, idx) => {
       children.push({
@@ -165,10 +182,8 @@ RemoveResourceModal.propTypes = {
   data: PropTypes.shape({
     deployables: PropTypes.object,
     name: PropTypes.string,
-    placementBindings: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    placementPolicie: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    namespace: PropTypes.string,
     applicationRelationships: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    placementPolicies: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     selected: PropTypes.array,
   }),
   handleClose: PropTypes.func,
