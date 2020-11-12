@@ -55,7 +55,7 @@ class RemoveResourceModal extends React.Component {
       })
     })
     _.map(placementBindings, (curr, idx) => {
-      if (curr.name !== 'undefined') {
+      if (curr.name) {
         children.push({
           id: idx + '-placementBinding-' + curr.name,
           selfLink: curr.selfLink,
@@ -65,7 +65,7 @@ class RemoveResourceModal extends React.Component {
       }
     })
     _.map(placementRules, (curr, idx) => {
-      if (curr.name !== 'undefined') {
+      if (curr.name) {
         children.push({
           id: idx + '-placementPolicy-' + curr.name,
           selfLink: curr.selfLink,
