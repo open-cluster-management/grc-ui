@@ -35,8 +35,8 @@ import 'cypress-wait-until'
 import { oauthIssuer } from '../views/resource'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
-  var user = OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
-  var password = OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
+  var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
+  var password = process.env.SELENIUM_PASSWORD || OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
   var idp = OC_IDP || Cypress.env('OC_IDP')
   cy.visit('/multicloud/welcome')
   cy.get('body').then(body => {

@@ -1,5 +1,5 @@
 options:
   hub:
-    baseDomain: e2ehub.dev08.red-chesterfield.com
-    user: kubeadmin
-    password: hqmjC-n65jx-wJMsh-y5veK
+    baseDomain: BASE_DOMAIN
+    user: BASE_USER
+    password: BASE_PASSWORD
