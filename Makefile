@@ -22,6 +22,7 @@ default::
 
 install:
 	npm install
+	brew install yq
 
 copyright-check:
 	./build/copyright-check.sh $(TRAVIS_BRANCH)
