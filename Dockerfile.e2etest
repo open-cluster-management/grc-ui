@@ -1,8 +1,5 @@
 # Copyright (c) 2020 Red Hat, Inc.
 FROM node:erbium
-FROM golang:1.14 as builder
-# get yq
-RUN go get github.com/mikefarah/yq
 
 ENV NODE_ENV=development
 
@@ -17,8 +14,8 @@ COPY config ./config
 COPY tests ./tests
 COPY build ./build
 
-RUN apt-get update && apt-get install -y apache2-utils
-RUN apt-get install -y yq
+RUN apt-get update && apt-get install -y apache2-utils && apt-get install -y yq
+
 
 # Install Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -36,7 +33,4 @@ RUN npm install \
     js-yaml@3.14.0 \
     @slack/web-api@5.11.0
 
-# get yq
-RUN go get github.com/mikefarah/yq
-RUN apt-get update && apt-get install -y yq
 CMD ["./build/run-docker-tests.sh"]
