@@ -14,7 +14,7 @@ COPY config ./config
 COPY tests ./tests
 COPY build ./build
 
-RUN apt-get update && apt-get install -y apache2-utils
+RUN apt-get update && apt-get install -y apache2-utils && apt-get install -y yq
 
 
 # Install Chrome
