@@ -1515,17 +1515,6 @@ export const reduxStorePolicyCluster = {
     postErrorMsg: '',
     pendingActions: []
   },
-  HCMPolicyClusterList: {
-    items: [],
-    itemsPerPage: 10,
-    page: 1,
-    search: '',
-    sortDirection: 'asc',
-    status: 'INCEPTION',
-    putErrorMsg: '',
-    postErrorMsg: '',
-    pendingActions: []
-  },
   HCMSecurityFindingsList: {
     items: [],
     itemsPerPage: 10,

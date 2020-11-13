@@ -1812,8 +1812,8 @@ export const sidePanelClusters = [
 ]
 
 export const sidePanelResourceTypeClusters = {
-  'name': 'HCMPolicyCluster',
-  'query': 'HCMPolicyClusterList'
+  'name': 'PoliciesByCluster',
+  'query': 'ALL_POLICIES'
 }
 
 export const sidePanelSecurityFindings = {

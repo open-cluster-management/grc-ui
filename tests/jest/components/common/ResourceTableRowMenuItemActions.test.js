@@ -27,8 +27,8 @@ describe('ResourceTableRowMenuItemActions', () => {
   it('table.actions.launch.cluster is called as expected', () => {
     const action = 'table.actions.launch.cluster'
     const resourceType = {
-      'name': 'HCMPolicyCluster',
-      'query': 'HCMPolicyClusterList'
+      'name': 'PoliciesByCluster',
+      'query': 'ALL_POLICIES'
     }
     const data = {
       consoleURL: 'website'

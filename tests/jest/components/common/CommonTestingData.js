@@ -4549,8 +4549,8 @@ export const resourceType = {
 }
 
 export const resourceType2 = {
-  'name': 'HCMPolicyCluster',
-  'query': 'HCMPolicyClusterList'
+  'name': 'PoliciesByCluster',
+  'query': 'ALL_POLICIES'
 }
 
 export const staticResourceDataPolicyOverview = {
