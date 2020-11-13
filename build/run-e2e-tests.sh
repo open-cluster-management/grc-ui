@@ -51,6 +51,8 @@ printenv
 npm run build
 npm run start:instrument &>/dev/null &
 sleep 10
+npm run test:cypress-headless
+sleep 10
 npm run test:e2e-headless
 
 # kill the node process to let nyc generate coverage report
