@@ -144,7 +144,7 @@ export const fetchResource = (resourceType, namespace, name) => {
 
 export const editResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(putResource(resourceType))
-  return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
+  return GrcApolloClient.updateResource(namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
         return dispatch(receivePutError(response.errors[0], resourceType))
@@ -158,7 +158,7 @@ export const editResource = (resourceType, namespace, name, body, selfLink, reso
 
 export const disableResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(patchResource(resourceType))
-  return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
+  return GrcApolloClient.updateResource(namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
         return dispatch(receivePatchError(response.errors[0], resourceType))
@@ -172,7 +172,7 @@ export const disableResource = (resourceType, namespace, name, body, selfLink, r
 
 export const enforcResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
   dispatch(patchResource(resourceType))
-  return GrcApolloClient.updateResource(resourceType.name, namespace, name, body, selfLink, resourcePath)
+  return GrcApolloClient.updateResource(namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
         return dispatch(receivePatchError(response.errors[0], resourceType))
