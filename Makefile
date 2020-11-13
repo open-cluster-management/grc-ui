@@ -22,12 +22,10 @@ default::
 
 install:
 	npm install
+	brew install yq
 
 copyright-check:
 	./build/copyright-check.sh $(TRAVIS_BRANCH)
-
-yq:
-	brew install yq
 
 lint:
 	npm run lint

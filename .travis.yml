@@ -34,7 +34,6 @@ stages:
  
 before_script:
   - make init
-  - make yq
 
 jobs:
   include:
