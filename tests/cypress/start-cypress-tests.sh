@@ -10,13 +10,6 @@ if [ -z "$BROWSER" ]; then
   export BROWSER="chrome"
 fi
 
-export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
-export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
-
-echo -e "\tCYPRESS_OPTIONS_HUB_USER       : $OC_CLUSTER_USER"
-echo -e "\tTesting password       : $OC_HUB_CLUSTER_PASS"
-echo -e "\tTesting password       : $OC_CLUSTER_PASS"
-
 # Load test config mounted at /resources/options.yaml
 OPTIONS_FILE=/resources/options.yaml
 USER_OPTIONS_FILE=./options.yaml
