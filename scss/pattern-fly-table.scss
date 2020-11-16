@@ -40,6 +40,11 @@
           }
         }
       }
+      .violationCell {
+        > svg {
+          margin-right: 0.25rem;
+        }
+      }
     }
 
     .pf-c-options-menu__menu {

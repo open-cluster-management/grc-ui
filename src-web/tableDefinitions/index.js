@@ -16,7 +16,7 @@ import { RESOURCE_TYPES } from '../../lib/shared/constants'
 import hcmcompliances from './hcm-compliances'
 
 const resourceData = {
-  [RESOURCE_TYPES.HCM_COMPLIANCES.name]: hcmcompliances,
+  [RESOURCE_TYPES.POLICIES_BY_POLICY.name]: hcmcompliances,
 }
 
 // diagram tabs

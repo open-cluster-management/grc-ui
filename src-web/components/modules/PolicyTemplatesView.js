@@ -23,9 +23,10 @@ import { withRouter } from 'react-router-dom'
 import { Module, ModuleHeader } from 'carbon-addons-cloud-react'
 import { editResource } from '../../actions/common'
 import { createDisableTooltip } from '../common/DisableTooltip'
-import {REQUEST_STATUS} from '../../actions'
+import { REQUEST_STATUS } from '../../actions'
 import formatUserAccess from '../common/FormatUserAccess'
 import filterUserAction from '../common/FilterUserAction'
+import { RESOURCE_TYPES } from '../../../lib/shared/constants'
 
 class PolicyTemplatesView extends React.Component {
 
@@ -39,7 +40,8 @@ class PolicyTemplatesView extends React.Component {
     }
   }
   static defaultProps = {
-    viewOnly: false
+    viewOnly: false,
+    resourceType: RESOURCE_TYPES.POLICIES_BY_POLICY,
   }
 
   UNSAFE_componentWillMount() {
@@ -109,7 +111,6 @@ class PolicyTemplatesView extends React.Component {
       editResource:localEditResource,
       resourceType,
       resourceData,
-      resourcePath
     } = this.props
     const { yaml }  = this.state
     let resource
@@ -119,17 +120,10 @@ class PolicyTemplatesView extends React.Component {
       this.setState({ yamlParsingError: e })
       return
     }
-    if (resourceData.__typename === 'Compliance') {
-      const namespace = _.get(resourceData, 'metadata.namespace')
-      const name = _.get(resourceData, 'metadata.name')
-      const selfLink = _.get(resourceData, 'metadata.selfLink')
-      localEditResource(resourceType, namespace, name, resource, selfLink)
-    } else if (resourceData.__typename === 'PolicyClusterDetail') {
-      const namespace = _.get(resourceData, 'complianceNamespace')
-      const name = _.get(resourceData, 'complianceName')
-      const selfLink = _.get(resourceData, 'complianceSelfLink')
-      localEditResource(resourceType, namespace, name, resource, selfLink, resourcePath)
-    }
+    const namespace = _.get(resourceData, 'metadata.namespace')
+    const name = _.get(resourceData, 'metadata.name')
+    const selfLink = _.get(resourceData, 'metadata.selfLink')
+    localEditResource(resourceType, namespace, name, resource, selfLink)
     this.setState({
       updated: true
     })
@@ -142,8 +136,7 @@ class PolicyTemplatesView extends React.Component {
   handleEditorChange = (yaml) => this.setState({ yaml })
 
   render() {
-    const { headerKey, reqStatus, className, userAccess, resourceData, viewOnly } = this.props
-    const resourceType = {name: 'HCMCompliance'}
+    const { headerKey, reqStatus, className, userAccess, resourceData, viewOnly, resourceType } = this.props
     const userAccessHash = formatUserAccess(userAccess)
     const actions = ['table.actions.edit']
     const filteredActions = filterUserAction(resourceData, actions, userAccessHash, resourceType)
@@ -234,14 +227,13 @@ PolicyTemplatesView.propTypes = {
   reqErrorMsg: PropTypes.string,
   reqStatus: PropTypes.string,
   resourceData: PropTypes.any,
-  resourcePath: PropTypes.string,
   resourceType: PropTypes.object,
   userAccess: PropTypes.array,
   viewOnly: PropTypes.bool
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { list: typeListName } = ownProps.resourceType
+  const { query: typeListName } = ownProps.resourceType
   const userAccess = state.userAccess ? state.userAccess.access : []
   return {
     reqStatus: state[typeListName].putStatus,
@@ -252,8 +244,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editResource: (resourceType, namespace, name, data, selfLink, resourcePath) => {
-      dispatch(editResource(resourceType, namespace, name, data, selfLink, resourcePath))
+    editResource: (resourceType, namespace, name, data, selfLink) => {
+      dispatch(editResource(resourceType, namespace, name, data, selfLink))
     },
   }
 }

@@ -13,7 +13,7 @@ const policyActions = [
 
 const resourceType = {
   'name':'HCMCompliance',
-  'list':'HCMComplianceList'
+  'list':'ALL_POLICIES'
 }
 
 // adminAccessDefault has all permission on default namespace

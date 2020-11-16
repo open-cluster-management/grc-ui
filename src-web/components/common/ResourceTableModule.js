@@ -130,7 +130,7 @@ ResourceTableModule.contextTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const { resourceType, params: {name, namespace}, staticResourceData, definitionsKey } = ownProps
-  const resourceItem = getSingleResourceItem(state, { storeRoot: resourceType.list, name, resourceType, predicate: resourceItemByName, namespace })
+  const resourceItem = getSingleResourceItem(state, { storeRoot: resourceType.query, name, resourceType, predicate: resourceItemByName, namespace })
   const resourceKey = staticResourceData[definitionsKey].resourceKey
   const normalizedKey = staticResourceData[definitionsKey].normalizedKey
   const tableResources = resourceItem[resourceKey]

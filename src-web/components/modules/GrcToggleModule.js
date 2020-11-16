@@ -90,10 +90,10 @@ class GrcToggleModule extends React.Component {
 
   tableActionResolver = (rowData) => {
     const { getResourceAction, userAccess, grcTabToggleIndex} = this.props
-    let resourceType = RESOURCE_TYPES.HCM_COMPLIANCES
+    let resourceType = RESOURCE_TYPES.POLICIES_BY_POLICY
     let tableActions = grcPoliciesViewDef.tableActions
     if (grcTabToggleIndex === 1) {
-      resourceType = RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER
+      resourceType = RESOURCE_TYPES.POLICIES_BY_CLUSTER
       tableActions = grcClustersViewDef.tableActions
     }
     const { locale } = this.context
@@ -158,16 +158,11 @@ GrcToggleModule.propTypes = {
   userAccess: PropTypes.array,
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const { grcTabToggleIndex } = ownProps
-  const typeListName = (grcTabToggleIndex === 0 )
-    ? RESOURCE_TYPES.HCM_COMPLIANCES.list
-    : RESOURCE_TYPES.HCM_POLICIES_PER_CLUSTER.list
-
+const mapStateToProps = (state) => {
   const userAccess = state.userAccess ? state.userAccess.access : []
 
   return {
-    status: state[typeListName].status,
+    status: state[RESOURCE_TYPES.POLICIES_BY_POLICY.query].status,
     userAccess
   }
 }

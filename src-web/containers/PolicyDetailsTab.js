@@ -9,9 +9,9 @@ import resources from '../../lib/shared/resources'
 import { getResourceData } from '../tableDefinitions'
 import { connect } from 'react-redux'
 import { updateSecondaryHeader } from '../actions/common'
-import { HCMCompliance } from '../../lib/client/queries'
-import {getPollInterval} from '../components/common/RefreshTimeSelect'
-import {GRC_REFRESH_INTERVAL_COOKIE} from '../../lib/shared/constants'
+import { SINGLE_POLICY } from '../../lib/client/queries'
+import { getPollInterval } from '../components/common/RefreshTimeSelect'
+import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { Spinner } from '@patternfly/react-core'
 import { DangerNotification } from '../components/common/DangerNotification'
 // eslint-disable-next-line import/no-named-as-default
@@ -71,7 +71,7 @@ class PolicyDetailsTab extends React.Component{
     } = this.props
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     return <Query
-      query={HCMCompliance}
+      query={SINGLE_POLICY}
       variables={{name: policyName, namespace: policyNamespace}}
       pollInterval={pollInterval}
       notifyOnNetworkStatusChange

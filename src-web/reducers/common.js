@@ -417,8 +417,8 @@ export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
   case DEL_RECEIVE_SUCCESS:
     items = [...state.items]
     switch (action.resourceType) {
-    case RESOURCE_TYPES.HCM_COMPLIANCES:
-    case RESOURCE_TYPES.HCM_POLICIES:
+    case RESOURCE_TYPES.POLICIES_BY_POLICY:
+    case RESOURCE_TYPES.POLICY:
       const policy = _.get(action, 'resource')
       index = _.findIndex(items, { 'name':policy.name, 'namespace':policy.namespace })
       break

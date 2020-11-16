@@ -19,7 +19,7 @@ import _ from 'lodash'
 import { GRC_REFRESH_INTERVAL_COOKIE, RESOURCE_TYPES } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
-import { HCMPolicy } from '../../lib/client/queries'
+import { POLICY_DETAILS_FOR_CLUSTER } from '../../lib/client/queries'
 import { getResourceData } from '../tableDefinitions'
 import PolicyClusterDetail from '../components/modules/PolicyClusterDetail'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
@@ -33,7 +33,7 @@ class PolicyDetailsByCluster extends React.Component {
   }
 
   static defaultProps = {
-    resourceType: RESOURCE_TYPES.HCM_COMPLIANCES,
+    resourceType: RESOURCE_TYPES.POLICIES_BY_POLICY,
   }
 
   static contextTypes = {
@@ -81,7 +81,7 @@ class PolicyDetailsByCluster extends React.Component {
           urlSegments = location.pathname.split('/')
 
     // Push only one breadcrumb to overview page
-    if (resourceType.name === RESOURCE_TYPES.HCM_COMPLIANCES.name) {
+    if (resourceType.name === RESOURCE_TYPES.POLICIES_BY_POLICY.name) {
       breadcrumbItems.push({
         label: msgs.get('tabs.hcmcompliance', locale),
         noLocale: true,
@@ -111,7 +111,7 @@ class PolicyDetailsByCluster extends React.Component {
     const {params, resourceType} = this.props
     const staticResourceData = getResourceData(resourceType)
     return (
-      <Query query={HCMPolicy} variables={{name: policyName, clusterName: policyNamespace}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+      <Query query={POLICY_DETAILS_FOR_CLUSTER} variables={{name: policyName, clusterName: policyNamespace}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {
           const {data={}, loading, startPolling, stopPolling, refetch} = result
           const { policies } = data
