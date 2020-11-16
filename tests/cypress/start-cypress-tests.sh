@@ -24,22 +24,23 @@ elif [ -f $USER_OPTIONS_FILE ]; then
   export CYPRESS_OPTIONS_HUB_USER=`yq r $USER_OPTIONS_FILE 'options.hub.user'`
   export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $USER_OPTIONS_FILE 'options.hub.password'`
 else
-  echo -e "Options file does not exist, using test config from environment variables.\n"
-  # Here is from travis e2e testing configuration
+  echo -e "Options file does not exist, using test config from travis e2e testing environment variables.\n"
   export CYPRESS_OPTIONS_HUB_BASEDOMAIN=$CYPRESS_BASE_DOMAIN
-  export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
-  export CYPRESS_OPTIONS_HUB_PASSWORD=$OC_HUB_CLUSTER_PASS
+  export CYPRESS_OPTIONS_HUB_USER=$CYPRESS_HUB_CLUSTER_USER
+  export CYPRESS_OPTIONS_HUB_PASSWORD=$CYPRESS_HUB_CLUSTER_PASS
 fi
 
-export CYPRESS_BASE_URL=https://multicloud-console.apps.$CYPRESS_OPTIONS_HUB_BASEDOMAIN
+export CYPRESS_OPTIONS_BASE_URL=https://multicloud-console.apps.$CYPRESS_OPTIONS_HUB_BASEDOMAIN
+export CYPRESS_OPTIONS_HUB_CLUSTER_URL=https://api.${CYPRESS_OPTIONS_HUB_BASEDOMAIN}:6443
 
 echo -e "Running tests with the following environment:\n"
 echo -e "\tCYPRESS_OPTIONS_HUB_BASEDOMAIN : $CYPRESS_OPTIONS_HUB_BASEDOMAIN"
-echo -e "\tCYPRESS_OPTIONS_HUB_BASE_URL   : $CYPRESS_BASE_URL"
+echo -e "\tCYPRESS_OPTIONS_BASE_URL   : $CYPRESS_OPTIONS_BASE_URL"
+echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL   : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_USER       : $CYPRESS_OPTIONS_HUB_USER"
 
 echo -e "\nLogging into Kube API server\n"
-oc login --server=https://api.${CYPRESS_OPTIONS_HUB_BASEDOMAIN}:6443 -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
+oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
 
 testCode=0
 
