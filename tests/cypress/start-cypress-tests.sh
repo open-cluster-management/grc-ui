@@ -10,11 +10,11 @@ if [ -z "$BROWSER" ]; then
   export BROWSER="chrome"
 fi
 
-# Load test config mounted at /resources/options.yaml
-OPTIONS_FILE=/resources/options.yaml
-USER_OPTIONS_FILE=./options.yaml
+# Load test config mounted at /resources/cypressEnvConfig.yaml
+OPTIONS_FILE=/resources/cypressEnvConfig.yaml
+USER_OPTIONS_FILE=./cypressEnvConfig.yaml
 if [ -f $OPTIONS_FILE ]; then
-  echo "Using test config from '/resources/options.yaml' file."
+  echo "Using test config from '/resources/cypressEnvConfig.yaml' file."
   export CYPRESS_OPTIONS_HUB_BASEDOMAIN=`yq r $OPTIONS_FILE 'options.hub.baseDomain'`
   export CYPRESS_OPTIONS_HUB_USER=`yq r $OPTIONS_FILE 'options.hub.user'`
   export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $OPTIONS_FILE 'options.hub.password'`
