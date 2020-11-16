@@ -10,7 +10,7 @@ if [ -z "$BROWSER" ]; then
   export BROWSER="chrome"
 fi
 
-if [ -n "$BASE_DOMAIN" && -n "$OC_CLUSTER_USER" && -n "$OC_HUB_CLUSTER_PASS"]; then
+if [ ! -z "$BASE_DOMAIN" ] && [ ! -z "$OC_CLUSTER_USER" ] && [ ! -z "$OC_HUB_CLUSTER_PASS" ]; then
   echo -e "Using cypess config from system env variables(Travis or someplace else).\n"
   export CYPRESS_OPTIONS_HUB_BASEDOMAIN=$BASE_DOMAIN
   export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
