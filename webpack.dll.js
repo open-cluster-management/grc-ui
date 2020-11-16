@@ -25,13 +25,11 @@ module.exports = {
   entry: {
     'vendorhcm': [
       'carbon-components-react',
-      'd3',
       '@loadable/component',
       'lodash',
       'moment',
       'normalizr',
       'prop-types',
-      'react-d3-radar',
       'react-dom',
       'react-dom/server',
       'react-monaco-editor',
