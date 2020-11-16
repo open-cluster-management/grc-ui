@@ -25,6 +25,10 @@ elif [ -f $USER_OPTIONS_FILE ]; then
   export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $USER_OPTIONS_FILE 'options.hub.password'`
 else
   echo -e "Options file does not exist, using test config from environment variables.\n"
+  # Here is from travis e2e testing configuration
+  export CYPRESS_OPTIONS_HUB_BASEDOMAIN=$CYPRESS_BASE_DOMAIN
+  export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
+  export CYPRESS_OPTIONS_HUB_PASSWORD=$OC_HUB_CLUSTER_PASS
 fi
 
 export CYPRESS_BASE_URL=https://multicloud-console.apps.$CYPRESS_OPTIONS_HUB_BASEDOMAIN
