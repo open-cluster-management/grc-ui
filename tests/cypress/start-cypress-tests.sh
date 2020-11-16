@@ -25,7 +25,7 @@ elif [ -f $USER_OPTIONS_FILE ]; then
   export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $USER_OPTIONS_FILE 'options.hub.password'`
 else
   echo -e "Options file does not exist, using test config from travis e2e testing environment variables.\n"
-  export CYPRESS_OPTIONS_HUB_BASEDOMAIN=$CYPRESS_BASE_DOMAIN
+  export CYPRESS_OPTIONS_HUB_BASEDOMAIN=$BASE_DOMAIN
   export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
   export CYPRESS_OPTIONS_HUB_PASSWORD=$OC_HUB_CLUSTER_PASS
 fi
