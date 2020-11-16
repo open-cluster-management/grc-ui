@@ -21,5 +21,3 @@ test-report.xml
 .nyc_output
 lcov-merged.info
 tests/e2e/yaml/rbac_test/htpasswd
-cypressEnvConfig.yaml
-/resources/cypressEnvConfig.yaml

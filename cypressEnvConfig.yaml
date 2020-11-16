@@ -1,0 +1,5 @@
+options:
+  hub:
+    baseDomain: #set baseDomain for local cypress testing
+    user: #set user for local cypress testing
+    password: #set password for local cypress testing
