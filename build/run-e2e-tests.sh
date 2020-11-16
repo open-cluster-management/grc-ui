@@ -41,7 +41,7 @@ export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
 export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_HUB_CLUSTER_PASS}}
 
 make docker/login
-export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:latest-dev
+export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:${GRCUIAPI_VERSION:-"latest-dev"}
 make docker/pull
 
 docker run -d -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$API_SERVER_URL $DOCKER_URI
