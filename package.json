@@ -19,7 +19,7 @@
     "test:unit": "jest --colors",
     "test": "jest --silent",
     "test:cypress": "export LIVE_MODE=true && export BROWSER=chrome && ./tests/cypress/start-cypress-tests.sh",
-    "test:cypress-headless": "export video=false && export BROWSER=chrome && ./tests/cypress/start-cypress-tests.sh",
+    "test:cypress-headless": "export BROWSER=chrome && ./tests/cypress/start-cypress-tests.sh",
     "test:watch": "jest --watch",
     "test:e2e": "nightwatch ./tests/e2e -e chrome",
     "test:e2e-headless": "nightwatch ./tests/e2e -e chrome.headless",
