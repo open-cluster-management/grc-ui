@@ -16,7 +16,7 @@ const filterUserAction = (data,actions,userAccessHash,resourceType) => {
         actionList = buildActionByUser(adminRules, typeRules, actions, actionList)
       }
       break
-    case 'HCMPolicyCluster':
+    case 'PoliciesByCluster':
       return actions // all kind of cluster actions are available
     case 'policy.pp.details.title':
       if (namespace) {

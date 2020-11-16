@@ -18,7 +18,7 @@ import { createResources, createAndUpdateResources, updateSecondaryHeader,
 import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Page from '../components/common/Page'
-import { GRCCreation } from '../../lib/client/queries'
+import { CREATE_POLICY_DISCOVERY } from '../../lib/client/queries'
 import CreationView from '../components/modules/CreationView'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
@@ -74,7 +74,7 @@ export class CreationTab extends React.Component {
   handleCreate = (resourceJSON) => {
     if (resourceJSON) {
       const {handleCreateResources} = this.props
-      handleCreateResources(RESOURCE_TYPES.HCM_POLICIES, resourceJSON)
+      handleCreateResources(RESOURCE_TYPES.POLICY, resourceJSON)
     }
   }
 
@@ -96,7 +96,7 @@ export class CreationTab extends React.Component {
             prs.push(resourceJSON[i])
           }
         }
-        handleFetchResource(RESOURCE_TYPES.HCM_POLICIES, {
+        handleFetchResource(RESOURCE_TYPES.POLICY, {
           clusterName: plc.metadata.namespace,
           name: plc.metadata.name
         }).then((res) => {
@@ -171,7 +171,7 @@ export class CreationTab extends React.Component {
 
   handleCreateAndUpdate = (createList, updateList) => {
     this.props.handleCreateAndUpdateResources([
-      RESOURCE_TYPES.HCM_POLICIES,
+      RESOURCE_TYPES.POLICY,
       RESOURCE_TYPES.PLACEMENT_BINDING,
       RESOURCE_TYPES.PLACEMENT_RULE
     ], createList, updateList)
@@ -204,7 +204,7 @@ export class CreationTab extends React.Component {
     }
     return (
       <Page>
-        <Query query={GRCCreation}>
+        <Query query={CREATE_POLICY_DISCOVERY}>
           {( result ) => {
             const { loading } = result
             const { data={} } = result
@@ -254,18 +254,18 @@ export class CreationTab extends React.Component {
 
 const mapStateToProps = (state) => {
   let updateState = 'IN_PROGRESS'
-  if ((state['PlacementRulesList'].mutateStatus === 'ERROR') || (state['PlacementBindingsList'].mutateStatus === 'ERROR') || (state['HCMPolicyList'].mutateStatus === 'ERROR')) {
+  if ((state['PlacementRulesList'].mutateStatus === 'ERROR') || (state['PlacementBindingsList'].mutateStatus === 'ERROR') || (state['PoliciesList'].mutateStatus === 'ERROR')) {
     updateState = 'ERROR'
   } else if ((state['PlacementRulesList'].mutateStatus === 'DONE') && (state['PlacementBindingsList'].mutateStatus === 'DONE')
-    && (state['HCMPolicyList'].mutateStatus === 'DONE')) {
+    && (state['PoliciesList'].mutateStatus === 'DONE')) {
     updateState = 'DONE'
   }
   const userAccess = state.userAccess && state.userAccess.access
     ? state.userAccess.access
     : []
   return {
-    mutateStatus: state['HCMPolicyList'].mutateStatus,
-    mutateErrorMsg: state['HCMPolicyList'].mutateErrorMsg,
+    mutateStatus: state['PoliciesList'].mutateStatus,
+    mutateErrorMsg: state['PoliciesList'].mutateErrorMsg,
     mutatePRErrorMsg: state['PlacementRulesList'].mutateErrorMsg,
     mutatePBErrorMsg: state['PlacementBindingsList'].mutateErrorMsg,
     updateStatus: updateState,
@@ -280,7 +280,7 @@ const mapDispatchToProps = (dispatch) => {
     handleCreateAndUpdateResources: (types, create, update) => dispatch(createAndUpdateResources(types, create, update)),
     handleFetchResource: (type, json) => dispatch(fetchSingleResource(type, json)),
     cleanReqStatus: () => {
-      dispatch(clearRequestStatus(RESOURCE_TYPES.HCM_POLICIES))
+      dispatch(clearRequestStatus(RESOURCE_TYPES.POLICY))
       dispatch(clearRequestStatus(RESOURCE_TYPES.PLACEMENT_RULE))
       dispatch(clearRequestStatus(RESOURCE_TYPES.PLACEMENT_BINDING))
     }

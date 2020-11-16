@@ -21,7 +21,7 @@ import Page from '../components/common/Page'
 // eslint-disable-next-line import/no-named-as-default
 import GrcView from '../components/modules/GrcView'
 import { updateSecondaryHeader } from '../actions/common'
-import { HCMComplianceList } from '../../lib/client/queries'
+import { ALL_POLICIES } from '../../lib/client/queries'
 import msgs from '../../nls/platform.properties'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
@@ -49,7 +49,7 @@ class PoliciesTab extends React.Component {
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     return (
       <Page>
-        <Query query={HCMComplianceList} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+        <Query query={ALL_POLICIES} pollInterval={pollInterval} notifyOnNetworkStatusChange >
           {( complianceResult ) => {
             const {data={}, loading, startPolling, stopPolling, refetch} = complianceResult
             const { items } = data

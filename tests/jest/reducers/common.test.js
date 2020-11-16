@@ -88,7 +88,7 @@ describe('secondaryHeader creation', () => {
 
 describe('resourceItemByName', () => {
   it('should resourceItemByName', () => {
-    const items = {'HCM_COMPLIANCES':'test'}
+    const items = {'POLICIES_BY_POLICY':'test'}
     const props = {
       resourceType:{name:'HCMCompliance'},
     }
@@ -99,7 +99,7 @@ describe('resourceItemByName', () => {
 
 describe('resourceItemByName', () => {
   it('should resourceItemByName', () => {
-    const items = {'HCM_COMPLIANCES':'test'}
+    const items = {'POLICIES_BY_POLICY':'test'}
     const props = {
       resourceType:{name:'JustTesting'},
     }
@@ -427,8 +427,8 @@ describe('resourceReducerFunction', () => {
     const action = {
       type: 'RESOURCE_MODIFY',
       resourceType:{
-        list: 'HCMPolicyList',
-        name: 'HCMPolicy'
+        query: 'PoliciesList',
+        name: 'Policy'
       }
     }
     const expectedValue = {
@@ -447,8 +447,8 @@ describe('resourceReducerFunction', () => {
       resourceName: 'TEST_RESOURCE_MUTATE',
       type: 'RESOURCE_MUTATE',
       resourceType:{
-        list: 'HCMPolicyList',
-        name: 'HCMPolicy'
+        query: 'PoliciesList',
+        name: 'Policy'
       }
     }
     const expectedValue = {
@@ -481,8 +481,8 @@ describe('resourceReducerFunction', () => {
       resourceName: 'TEST_RESOURCE_MUTATE_FAILURE',
       type: 'RESOURCE_MUTATE_FAILURE',
       resourceType:{
-        list: 'HCMPolicyList',
-        name: 'HCMPolicy'
+        query: 'PoliciesList',
+        name: 'Policy'
       },
       err:{
         message:'errorMessage',
@@ -515,8 +515,8 @@ describe('resourceReducerFunction', () => {
       resourceName: 'TEST_RESOURCE_MUTATE_FAILURE',
       type: 'RESOURCE_MUTATE_SUCCESS',
       resourceType:{
-        list: 'HCMPolicyList',
-        name: 'HCMPolicy'
+        query: 'PoliciesList',
+        name: 'Policy'
       },
       err:{
         message:'errorMessage',
@@ -573,7 +573,7 @@ describe('resourceReducerFunction', () => {
     }
     const action = {
       type: 'DEL_RECEIVE_SUCCESS',
-      resourceType: RESOURCE_TYPES.HCM_COMPLIANCES,
+      resourceType: RESOURCE_TYPES.POLICIES_BY_POLICY,
       resource: {
         namespace: 'namespace',
         name: 'name'

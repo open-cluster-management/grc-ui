@@ -11,7 +11,7 @@ import { updateSecondaryHeader } from '../actions/common'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { Query } from 'react-apollo'
-import { PolicyStatus } from '../../lib/client/queries'
+import { POLICY_STATUS } from '../../lib/client/queries'
 import { DangerNotification } from '../components/common/DangerNotification'
 import PolicyStatusView from '../components/modules/PolicyStatusView'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
@@ -84,7 +84,7 @@ class PolicyStatusTab extends React.Component {
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     return (
       <Query
-        query={PolicyStatus}
+        query={POLICY_STATUS}
         variables={{policyName, hubNamespace}}
         pollInterval={pollInterval}
         notifyOnNetworkStatusChange

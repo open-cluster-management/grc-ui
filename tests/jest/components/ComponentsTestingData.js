@@ -1200,7 +1200,7 @@ export const reduxStorePolicyCluster = {
     information: {}
   },
   modal: {},
-  HCMPolicyList: {
+  PoliciesList: {
     items: [],
     itemsPerPage: 10,
     page: 1,
@@ -1211,7 +1211,7 @@ export const reduxStorePolicyCluster = {
     postErrorMsg: '',
     pendingActions: []
   },
-  HCMComplianceList: {
+  ALL_POLICIES: {
     items: [
       {
         metadata: {
@@ -1511,17 +1511,6 @@ export const reduxStorePolicyCluster = {
     search: '',
     sortDirection: 'asc',
     status: 'DONE',
-    putErrorMsg: '',
-    postErrorMsg: '',
-    pendingActions: []
-  },
-  HCMPolicyClusterList: {
-    items: [],
-    itemsPerPage: 10,
-    page: 1,
-    search: '',
-    sortDirection: 'asc',
-    status: 'INCEPTION',
     putErrorMsg: '',
     postErrorMsg: '',
     pendingActions: []

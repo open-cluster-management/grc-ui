@@ -24,7 +24,7 @@ describe('CreateResourceModal modal', () => {
         'heading':'modal.edit-hcmcompliance.heading'
       }}
       locale={'en-US'}
-      resourceType={{'name':'HCMCompliance','list':'HCMComplianceList'}}
+      resourceType={{'name':'HCMCompliance','list':'ALL_POLICIES'}}
       data={resourceModalData}
     />)
     expect(component.instance()).toMatchSnapshot()
@@ -40,7 +40,7 @@ describe('CreateResourceModal modal', () => {
         'heading':'modal.edit-hcmcompliance.heading'
       }}
       locale={'en-US'}
-      resourceType={{'name':'HCMCompliance','list':'HCMComplianceList'}}
+      resourceType={{'name':'HCMCompliance','list':'ALL_POLICIES'}}
       data={resourceModalData}
     />)
     expect(component.instance()).toMatchSnapshot()
@@ -67,7 +67,7 @@ describe('CreateResourceModal modal', () => {
         'heading':'modal.edit-hcmcompliance.heading'
       }}
       locale={'en-US'}
-      resourceType={{'name':'HCMCompliance','list':'HCMComplianceList'}}
+      resourceType={{'name':'HCMCompliance','list':'ALL_POLICIES'}}
       clearRequestStatus={jest.fn()}
       handleClose={jest.fn()}
       data={resourceModalData}
