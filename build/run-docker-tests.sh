@@ -43,6 +43,9 @@ done
 
 # run test
 export PAUSE=${PAUSE:-60}
-echo sleep $PAUSE seconds...
+echo sleep $PAUSE seconds cypress ...
+sleep $PAUSE
+npm run test:cypress-headless
+echo sleep $PAUSE seconds selenium ...
 sleep $PAUSE
 npm run test:e2e-headless
