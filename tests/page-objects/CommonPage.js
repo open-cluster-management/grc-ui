@@ -143,7 +143,7 @@ function enforcePolicy(name){
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Enforce', 3, '#enforce-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('.pf-c-table')
   this.expect.element('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal('enforce')
-  // this.clearPatternFlySearchValue()
+  this.clearPatternFlySearchValue()
 }
 
 function informPolicy(name){
@@ -159,7 +159,7 @@ function informPolicy(name){
   this.waitForElementVisible('.pf-c-table')
   this.waitForElementVisible('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(3)')
   this.expect.element('.pf-c-table> tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal('inform')
-  // this.clearPatternFlySearchValue()
+  this.clearPatternFlySearchValue()
 }
 
 function checkStatus(name, violationExpected, violationText) {
@@ -313,7 +313,7 @@ function tryEnable(name){
   this.clickButtonOnOverflowModal(name, 'div:nth-child(1) > a', 9, 'Enable', 2, '#enable-resource-modal', '.bx--btn.bx--btn--primary')
   this.waitForElementVisible('.pf-c-table')
   this.waitForElementNotPresent('.pf-c-table .disabled-label')
-  // this.clearPatternFlySearchValue()
+  this.clearPatternFlySearchValue()
 }
 
 function tryDisable(name){
@@ -328,5 +328,5 @@ function tryDisable(name){
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Disable', 2, '#disable-resource-modal', '.bx--btn.bx--btn--danger--primary')
   this.waitForElementVisible('.pf-c-table')
   this.waitForElementPresent('.pf-c-table .disabled-label')
-  // this.clearPatternFlySearchValue()
+  this.clearPatternFlySearchValue()
 }
