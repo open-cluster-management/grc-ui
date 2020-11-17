@@ -17,7 +17,7 @@ import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
 import { formatPoliciesToClustersTableData } from '../common/FormatTableData'
 import resources from '../../../lib/shared/resources'
-import { RESOURCE_TYPES, GRC_MODULE_SEARCH_COOKIE } from '../../../lib/shared/constants'
+import { RESOURCE_TYPES, GRC_SEARCH_STATE_COOKIE } from '../../../lib/shared/constants'
 import _ from 'lodash'
 import { resourceActions } from '../common/ResourceTableRowMenuItemActions'
 import formatUserAccess from '../common/FormatUserAccess'
@@ -25,20 +25,20 @@ import filterUserAction from '../common/FilterUserAction'
 import { REQUEST_STATUS } from '../../actions/index'
 import { createDisableTooltip } from '../common/DisableTooltip'
 import {
-  getSavedGrcState, saveGrcState
+  getSavedGrcState, saveGrcStatePair
 } from '../../../lib/client/filter-helper'
 
 resources(() => {
   require('../../../scss/grc-toggle-module.scss')
 })
 
+const componentName = 'GrcToggleModule'
+
 class GrcToggleModule extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchValue : getSavedGrcState(GRC_MODULE_SEARCH_COOKIE, true)
-        ? getSavedGrcState(GRC_MODULE_SEARCH_COOKIE, true)
-        : ''
+      searchValue : _.get(getSavedGrcState(GRC_SEARCH_STATE_COOKIE), componentName, '')
     }
   }
 
@@ -103,7 +103,7 @@ class GrcToggleModule extends React.Component {
 
   handleSearch = (value) => {
     if (typeof value === 'string') {
-      saveGrcState(GRC_MODULE_SEARCH_COOKIE, value, true)
+      saveGrcStatePair(GRC_SEARCH_STATE_COOKIE, componentName, value, true)
       this.setState({
         searchValue: value
       })
