@@ -24,6 +24,9 @@ import formatUserAccess from '../common/FormatUserAccess'
 import filterUserAction from '../common/FilterUserAction'
 import { REQUEST_STATUS } from '../../actions/index'
 import { createDisableTooltip } from '../common/DisableTooltip'
+import {
+  getSavedGrcState, saveGrcState
+} from '../../../lib/client/filter-helper'
 
 resources(() => {
   require('../../../scss/grc-toggle-module.scss')
@@ -32,6 +35,11 @@ resources(() => {
 class GrcToggleModule extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      searchValue : getSavedGrcState(GRC_MODULE_SEARCH_COOKIE, true)
+        ? getSavedGrcState(GRC_MODULE_SEARCH_COOKIE, true)
+        : ''
+    }
   }
 
   static contextType = LocaleContext
@@ -39,6 +47,7 @@ class GrcToggleModule extends React.Component {
   render() {
     const { grcItems, showGrcTabToggle, grcTabToggleIndex, handleToggleClick, status } = this.props
     const { locale } = this.context
+    const { searchValue } = this.state
     const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
     const tableDataByCLusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
     if (status !== REQUEST_STATUS.INCEPTION && status !== REQUEST_STATUS.DONE){
@@ -70,8 +79,8 @@ class GrcToggleModule extends React.Component {
               dropdownPosition={'right'}
               dropdownDirection={'down'}
               tableActionResolver={this.tableActionResolver}
-              setSeachInputSession={this.setSeachInputSession}
-              pfSearchValue={sessionStorage.getItem(GRC_MODULE_SEARCH_COOKIE)}
+              handleSearch={this.handleSearch}
+              searchValue={searchValue}
             />
           </div>}
           {grcTabToggleIndex===1 && <div className='grc-view-by-clusters-table'>
@@ -83,8 +92,8 @@ class GrcToggleModule extends React.Component {
               dropdownPosition={'right'}
               dropdownDirection={'down'}
               tableActionResolver={this.tableActionResolver}
-              setSeachInputSession={this.setSeachInputSession}
-              pfSearchValue={sessionStorage.getItem(GRC_MODULE_SEARCH_COOKIE)}
+              handleSearch={this.handleSearch}
+              searchValue={searchValue}
             />
           </div>}
         </div>
@@ -92,8 +101,13 @@ class GrcToggleModule extends React.Component {
     )
   }
 
-  setSeachInputSession = (searchValue) => {
-    sessionStorage.setItem(GRC_MODULE_SEARCH_COOKIE, searchValue)
+  handleSearch = (value) => {
+    if (typeof value === 'string') {
+      saveGrcState(GRC_MODULE_SEARCH_COOKIE, value, true)
+      this.setState({
+        searchValue: value
+      })
+    }
   }
 
   tableActionResolver = (rowData) => {

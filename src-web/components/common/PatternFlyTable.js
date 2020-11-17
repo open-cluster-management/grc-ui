@@ -30,7 +30,6 @@ resources(() => {
 class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
-    const { pfSearchValue } = props
     this.state = {
       perPage: this.props.perPage,
       page: 1,
@@ -39,7 +38,6 @@ class PatternFlyTable extends React.Component {
       sortBy: this.props.sortBy,
       startIdx: 0,
       endIdx: this.props.perPage,
-      searchValue: pfSearchValue ? pfSearchValue : ''
     }
   }
   static defaultProps = {
@@ -51,13 +49,13 @@ class PatternFlyTable extends React.Component {
     sortBy: {}
   }
   static getDerivedStateFromProps(props, state) {
-    const { searchValue, sortBy } = state
-    const { pagination, rows, searchable, setSeachInputSession } = props
+    const { sortBy } = state
+    const { searchValue, pagination, rows, searchable, handleSearch } = props
     let trimmedSearchValue = ''
     if (typeof searchValue === 'string' && searchValue.length > 0) {
       trimmedSearchValue = searchValue.trim()
       if (typeof setSeachInputSession === 'function') {
-        setSeachInputSession(trimmedSearchValue)
+        handleSearch(trimmedSearchValue)
       }
     }
     // also able to search truncated text
@@ -142,17 +140,9 @@ class PatternFlyTable extends React.Component {
       endIdx
     })
   }
-  handleSearch = (value, setSeachInputSession) => {
-    if (typeof setSeachInputSession === 'function') {
-      setSeachInputSession(value)
-    }
-    this.setState({
-      searchValue: value
-    })
-  }
 
   render() {
-    const { sortBy, rows = [], itemCount, searchValue } = this.state
+    const { sortBy, rows = [], itemCount } = this.state
     const {
       columns,
       className,
@@ -160,10 +150,11 @@ class PatternFlyTable extends React.Component {
       pagination,
       searchable,
       searchPlaceholder,
+      searchValue,
       dropdownPosition,
       dropdownDirection,
       tableActionResolver,
-      setSeachInputSession
+      handleSearch
     } = this.props
     const classes = classNames('pattern-fly-table', className)
     return (
@@ -171,8 +162,8 @@ class PatternFlyTable extends React.Component {
         {searchable && <SearchInput
           placeholder={searchPlaceholder}
           value={searchValue}
-          onChange={this.handleSearch}
-          onClear={() => this.handleSearch('', setSeachInputSession)}
+          onChange={handleSearch}
+          onClear={() => handleSearch('')}
         />}
         <div className={classes}>
           <Table
@@ -228,22 +219,22 @@ PatternFlyTable.propTypes = {
   /* The desired position to show the dropdown when clicking on the actions Kebab.
   Can only be used together with `actions` property (optional) */
   dropdownPosition: PropTypes.string,
+  /* Callback function from parent to handle search action */
+  handleSearch: PropTypes.func,
   /* Message when no results are displayed in the table */
   noResultMsg: PropTypes.string,
   /* Toggle pagination (optional) */
   pagination: PropTypes.bool,
   /* Number of rows displayed per page for pagination */
   perPage: PropTypes.oneOf([5, 10, 20, 50]),
-  /* Initial search value from parent props */
-  pfSearchValue: PropTypes.string,
   /* Table row content */
   rows: PropTypes.array,
   /* Placeholder text for search input field */
   searchPlaceholder: PropTypes.string,
+  /* Initial search value from parent props */
+  searchValue: PropTypes.string,
   /* Toggle search input (optional) */
   searchable: PropTypes.bool,
-  /* Callback function from parent to store current search value */
-  setSeachInputSession: PropTypes.func,
   /* Initial table sorting (optional) */
   sortBy: PropTypes.shape({
     index: PropTypes.number,
