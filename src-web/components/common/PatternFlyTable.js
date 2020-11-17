@@ -24,6 +24,8 @@ import { SearchIcon } from '@patternfly/react-icons'
 import resources from '../../../lib/shared/resources'
 import moment from 'moment'
 
+const seachInputSession = 'pf-table-search-value-session'
+
 resources(() => {
   require('../../../scss/pattern-fly-table.scss')
 })
@@ -38,7 +40,9 @@ class PatternFlyTable extends React.Component {
       sortBy: this.props.sortBy,
       startIdx: 0,
       endIdx: this.props.perPage,
-      searchValue: ''
+      searchValue: sessionStorage.getItem(seachInputSession)
+        ? sessionStorage.getItem(seachInputSession)
+        : ''
     }
   }
   static defaultProps = {
@@ -51,7 +55,11 @@ class PatternFlyTable extends React.Component {
   }
   static getDerivedStateFromProps(props, state) {
     const { searchValue, sortBy } = state
-    let trimmedSearchValue = (typeof searchValue === 'string') ? searchValue.trim() : ''
+    let trimmedSearchValue = ''
+    if (typeof searchValue === 'string') {
+      trimmedSearchValue = searchValue.trim()
+      sessionStorage.setItem(seachInputSession, trimmedSearchValue)
+    }
     // also able to search truncated text
     trimmedSearchValue = trimmedSearchValue.split('...')[0]
     const { pagination, rows, searchable } = props
