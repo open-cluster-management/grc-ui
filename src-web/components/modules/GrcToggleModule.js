@@ -37,7 +37,11 @@ class GrcToggleModule extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { grcItems, showGrcTabToggle, grcTabToggleIndex, handleToggleClick, status } = this.props
+    const {
+      grcItems, showGrcTabToggle, grcTabToggleIndex,
+      handleToggleClick, status, setSeachInputSession,
+      pfSearchValue
+    } = this.props
     const { locale } = this.context
     const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
     const tableDataByCLusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
@@ -70,6 +74,8 @@ class GrcToggleModule extends React.Component {
               dropdownPosition={'right'}
               dropdownDirection={'down'}
               tableActionResolver={this.tableActionResolver}
+              setSeachInputSession={setSeachInputSession}
+              pfSearchValue={pfSearchValue}
             />
           </div>}
           {grcTabToggleIndex===1 && <div className='grc-view-by-clusters-table'>
@@ -81,6 +87,8 @@ class GrcToggleModule extends React.Component {
               dropdownPosition={'right'}
               dropdownDirection={'down'}
               tableActionResolver={this.tableActionResolver}
+              setSeachInputSession={this.setSeachInputSession}
+              pfSearchValue={pfSearchValue}
             />
           </div>}
         </div>
@@ -153,6 +161,8 @@ GrcToggleModule.propTypes = {
   grcItems: PropTypes.array,
   grcTabToggleIndex: PropTypes.number,
   handleToggleClick: PropTypes.func,
+  pfSearchValue: PropTypes.string,
+  setSeachInputSession: PropTypes.func,
   showGrcTabToggle: PropTypes.bool,
   status: PropTypes.string,
   userAccess: PropTypes.array,
