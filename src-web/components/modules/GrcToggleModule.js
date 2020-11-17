@@ -37,10 +37,7 @@ class GrcToggleModule extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const {
-      grcItems, showGrcTabToggle, grcTabToggleIndex,
-      handleToggleClick, status,
-    } = this.props
+    const { grcItems, showGrcTabToggle, grcTabToggleIndex, handleToggleClick, status } = this.props
     const { locale } = this.context
     const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
     const tableDataByCLusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
