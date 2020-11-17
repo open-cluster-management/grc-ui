@@ -3,8 +3,9 @@
  * Copyright (c) 2020 Red Hat, Inc.
  ****************************************************************************** */
 /// <reference types="cypress" />
-var apiUrl =
-Cypress.config().baseUrl.replace('multicloud-console.apps', 'api') + ':6443'
+var apiUrl = (Cypress.config().baseUrl && typeof Cypress.config().baseUrl === 'string')
+  ? `${Cypress.config().baseUrl.replace('multicloud-console.apps', 'api')}:6443`
+  : ''
 
 export const oauthIssuer = (token) => {
   return cy.request({

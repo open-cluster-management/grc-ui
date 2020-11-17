@@ -75,7 +75,7 @@ export class ResourceToolbar extends React.Component {
                     (location.pathname.startsWith('/multicloud/policies/all/') || location.pathname.startsWith('/multicloud/policies/policy/'))
                       ? null
                       : <div className='resource-filter-button' tabIndex={0} role={'button'}
-                        onClick={this.toggleFilterModel} onKeyPress={this.toggleFilterModelPress}>
+                          onClick={this.toggleFilterModel} onKeyPress={this.toggleFilterModelPress}>
                         <svg className='button-icon'>
                           <use href={'#diagramIcons_filter'} ></use>
                         </svg>

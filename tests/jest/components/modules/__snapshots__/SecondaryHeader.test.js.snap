@@ -139,6 +139,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
       disabled={false}
       id="create-policy"
       onClick={[Function]}
+      role={null}
       type="button"
     >
       Create policy
@@ -256,6 +257,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
       disabled={false}
       id="create-policy"
       onClick={[Function]}
+      role={null}
       type="button"
     >
       Create policy
@@ -314,7 +316,7 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
     className="secondary-header-links"
   >
     <Tooltip
-      content="You do not have the required permissions to take this action."
+      content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
       zIndex={10001}
     >
       <div
@@ -568,7 +570,7 @@ exports[`SecondaryHeader component 5 renderHeader without description 1`] = `
 exports[`SecondaryHeader component 5 renderLinks nonclickable as expected 1`] = `
 Array [
   <Tooltip
-    content="You do not have the required permissions to take this action."
+    content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
     zIndex={10001}
   >
     <div
