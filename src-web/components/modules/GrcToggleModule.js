@@ -17,7 +17,7 @@ import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
 import { formatPoliciesToClustersTableData } from '../common/FormatTableData'
 import resources from '../../../lib/shared/resources'
-import { RESOURCE_TYPES } from '../../../lib/shared/constants'
+import { RESOURCE_TYPES, GRC_MODULE_SEARCH_COOKIE } from '../../../lib/shared/constants'
 import _ from 'lodash'
 import { resourceActions } from '../common/ResourceTableRowMenuItemActions'
 import formatUserAccess from '../common/FormatUserAccess'
@@ -39,8 +39,7 @@ class GrcToggleModule extends React.Component {
   render() {
     const {
       grcItems, showGrcTabToggle, grcTabToggleIndex,
-      handleToggleClick, status, setSeachInputSession,
-      pfSearchValue
+      handleToggleClick, status,
     } = this.props
     const { locale } = this.context
     const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
@@ -74,8 +73,8 @@ class GrcToggleModule extends React.Component {
               dropdownPosition={'right'}
               dropdownDirection={'down'}
               tableActionResolver={this.tableActionResolver}
-              setSeachInputSession={setSeachInputSession}
-              pfSearchValue={pfSearchValue}
+              setSeachInputSession={this.setSeachInputSession}
+              pfSearchValue={sessionStorage.getItem(GRC_MODULE_SEARCH_COOKIE)}
             />
           </div>}
           {grcTabToggleIndex===1 && <div className='grc-view-by-clusters-table'>
@@ -88,12 +87,16 @@ class GrcToggleModule extends React.Component {
               dropdownDirection={'down'}
               tableActionResolver={this.tableActionResolver}
               setSeachInputSession={this.setSeachInputSession}
-              pfSearchValue={pfSearchValue}
+              pfSearchValue={sessionStorage.getItem(GRC_MODULE_SEARCH_COOKIE)}
             />
           </div>}
         </div>
       </div>
     )
+  }
+
+  setSeachInputSession = (searchValue) => {
+    sessionStorage.setItem(GRC_MODULE_SEARCH_COOKIE, searchValue)
   }
 
   tableActionResolver = (rowData) => {
@@ -161,8 +164,6 @@ GrcToggleModule.propTypes = {
   grcItems: PropTypes.array,
   grcTabToggleIndex: PropTypes.number,
   handleToggleClick: PropTypes.func,
-  pfSearchValue: PropTypes.string,
-  setSeachInputSession: PropTypes.func,
   showGrcTabToggle: PropTypes.bool,
   status: PropTypes.string,
   userAccess: PropTypes.array,

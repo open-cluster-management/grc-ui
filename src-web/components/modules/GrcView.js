@@ -17,11 +17,7 @@ import { withRouter } from 'react-router-dom'
 import { updateAvailableFilters, updateActiveFilters } from '../../actions/common'
 import { Notification } from 'carbon-components-react'
 import { Spinner } from '@patternfly/react-core'
-import {
-  GRC_VIEW_STATE_COOKIE,
-  GRC_FILTER_STATE_COOKIE,
-  GRC_MODULE_SEARCH_COOKIE
-} from '../../../lib/shared/constants'
+import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 // eslint-disable-next-line import/no-named-as-default
 import GrcCardsModule from '../modules/GrcCardsModule'
 import GrcToggleModule from '../modules/GrcToggleModule'
@@ -194,8 +190,6 @@ export class GrcView extends React.Component {
           showGrcTabToggle={showGrcTabToggle}
           filterToEmpty={filterToEmpty}
           handleToggleClick={this.handleToggleClick}
-          setSeachInputSession={this.setSeachInputSession}
-          pfSearchValue={sessionStorage.getItem(GRC_MODULE_SEARCH_COOKIE)}
         />
       </div>
     )
@@ -214,10 +208,6 @@ export class GrcView extends React.Component {
       const contentRect = contentRef.getBoundingClientRect()
       headerRef.classList.toggle('bottom-border', contentRect.top<180)
     }
-  }
-
-  setSeachInputSession = (searchValue) => {
-    sessionStorage.setItem(GRC_MODULE_SEARCH_COOKIE, searchValue)
   }
 
   onUnload() {//saved grc view ui setting
