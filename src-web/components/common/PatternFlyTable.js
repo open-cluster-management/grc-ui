@@ -234,6 +234,7 @@ PatternFlyTable.propTypes = {
   pagination: PropTypes.bool,
   /* Number of rows displayed per page for pagination */
   perPage: PropTypes.oneOf([5, 10, 20, 50]),
+  /* Initial search value from parent props */
   pfSearchValue: PropTypes.string,
   /* Table row content */
   rows: PropTypes.array,
@@ -241,6 +242,7 @@ PatternFlyTable.propTypes = {
   searchPlaceholder: PropTypes.string,
   /* Toggle search input (optional) */
   searchable: PropTypes.bool,
+  /* callback function from parent to store current search value */
   setSeachInputSession: PropTypes.func,
   /* Initial table sorting (optional) */
   sortBy: PropTypes.shape({
