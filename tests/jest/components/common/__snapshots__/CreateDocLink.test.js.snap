@@ -8,7 +8,7 @@ exports[`createDocLink view renders does not show create link as expected 1`] = 
     className="button-group-create-resource"
   >
     <Tooltip
-      content="You do not have the required permissions to take this action."
+      content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
       zIndex={10001}
     >
       <div
@@ -52,7 +52,7 @@ exports[`createDocLink view renders show create link as expected 1`] = `
     className="button-group-create-resource"
   >
     <Tooltip
-      content="You do not have the required permissions to take this action."
+      content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
       zIndex={10001}
     >
       <div

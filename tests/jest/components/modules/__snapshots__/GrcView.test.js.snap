@@ -2112,7 +2112,7 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
         >
           create policy
         </span>
-         button to create the resource or view the documentation to find samples for creating new policies.
+         button to create your resource. View the documentation for more information
       </div>
     </div>
     <div
@@ -2190,7 +2190,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
         >
           create policy
         </span>
-         button to create the resource or view the documentation to find samples for creating new policies.
+         button to create your resource. View the documentation for more information
       </div>
     </div>
     <div
