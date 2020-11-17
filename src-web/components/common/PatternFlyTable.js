@@ -242,7 +242,7 @@ PatternFlyTable.propTypes = {
   searchPlaceholder: PropTypes.string,
   /* Toggle search input (optional) */
   searchable: PropTypes.bool,
-  /* callback function from parent to store current search value */
+  /* Callback function from parent to store current search value */
   setSeachInputSession: PropTypes.func,
   /* Initial table sorting (optional) */
   sortBy: PropTypes.shape({
