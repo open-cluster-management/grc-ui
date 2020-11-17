@@ -1868,6 +1868,9 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     aria-expanded={false}
                     aria-label="Items per page"
                     className="  pf-c-options-menu__toggle-button"
+                    data-ouia-component-id="OUIA-Generated-DropdownToggle-1"
+                    data-ouia-component-type="PF4/DropdownToggle"
+                    data-ouia-safe={true}
                     disabled={false}
                     id="pagination-options-menu-bottom-toggle-0"
                     onClick={[Function]}
@@ -1916,6 +1919,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     data-ouia-safe={true}
                     disabled={true}
                     onClick={[Function]}
+                    role={null}
                     tabIndex={null}
                     type="button"
                   >
@@ -1952,6 +1956,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     data-ouia-safe={true}
                     disabled={true}
                     onClick={[Function]}
+                    role={null}
                     tabIndex={null}
                     type="button"
                   >
@@ -2009,6 +2014,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     data-ouia-safe={true}
                     disabled={true}
                     onClick={[Function]}
+                    role={null}
                     tabIndex={null}
                     type="button"
                   >
@@ -2045,6 +2051,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     data-ouia-safe={true}
                     disabled={true}
                     onClick={[Function]}
+                    role={null}
                     tabIndex={null}
                     type="button"
                   >
@@ -2105,7 +2112,7 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
         >
           create policy
         </span>
-         button to create the resource or view the documentation to find samples for creating new policies.
+         button to create your resource. View the documentation for more information
       </div>
     </div>
     <div
@@ -2124,6 +2131,7 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
           disabled={false}
           id="create-resource"
           onClick={[Function]}
+          role={null}
           type="button"
         >
           Create policy
@@ -2143,6 +2151,7 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
           disabled={null}
           href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
           id="doc-link"
+          role={null}
           target="doc"
           type={null}
         >
@@ -2181,7 +2190,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
         >
           create policy
         </span>
-         button to create the resource or view the documentation to find samples for creating new policies.
+         button to create your resource. View the documentation for more information
       </div>
     </div>
     <div
@@ -2204,6 +2213,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
             disabled={true}
             id="create-resource"
             onClick={[Function]}
+            role={null}
             tabIndex={null}
             type="button"
           >
@@ -2225,6 +2235,7 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
           disabled={null}
           href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/security/security#manage-security-policies"
           id="doc-link"
+          role={null}
           target="doc"
           type={null}
         >
