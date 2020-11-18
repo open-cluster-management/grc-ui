@@ -148,7 +148,8 @@ class PatternFlyTable extends React.Component {
       dropdownPosition,
       dropdownDirection,
       tableActionResolver,
-      handleSearch
+      handleSearch,
+      handleClear
     } = this.props
     const classes = classNames('pattern-fly-table', className)
     return (
@@ -157,7 +158,7 @@ class PatternFlyTable extends React.Component {
           placeholder={searchPlaceholder}
           value={searchValue}
           onChange={handleSearch}
-          onClear={() => handleSearch('')}
+          onClear={handleClear}
         />}
         <div className={classes}>
           <Table
@@ -213,6 +214,8 @@ PatternFlyTable.propTypes = {
   /* The desired position to show the dropdown when clicking on the actions Kebab.
   Can only be used together with `actions` property (optional) */
   dropdownPosition: PropTypes.string,
+  /* Callback function from parent to handle clean search input action */
+  handleClear: PropTypes.func,
   /* Callback function from parent to handle search action */
   handleSearch: PropTypes.func,
   /* Message when no results are displayed in the table */

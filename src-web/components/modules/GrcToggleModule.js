@@ -79,6 +79,7 @@ class GrcToggleModule extends React.Component {
               dropdownPosition={'right'}
               dropdownDirection={'down'}
               tableActionResolver={this.tableActionResolver}
+              handleClear={this.handleSearch}
               handleSearch={this.handleSearch}
               searchValue={searchValue}
             />
@@ -92,6 +93,7 @@ class GrcToggleModule extends React.Component {
               dropdownPosition={'right'}
               dropdownDirection={'down'}
               tableActionResolver={this.tableActionResolver}
+              handleClear={this.handleSearch}
               handleSearch={this.handleSearch}
               searchValue={searchValue}
             />
@@ -102,12 +104,11 @@ class GrcToggleModule extends React.Component {
   }
 
   handleSearch = (value) => {
-    if (typeof value === 'string') {
-      replaceSessionPair(GRC_SEARCH_STATE_COOKIE, componentName, value, true)
-      this.setState({
-        searchValue: value
-      })
-    }
+    const searchValue = (typeof value === 'string') ? value : ''
+    replaceSessionPair(GRC_SEARCH_STATE_COOKIE, componentName, searchValue, true)
+    this.setState({
+      searchValue: searchValue
+    })
   }
 
   tableActionResolver = (rowData) => {
