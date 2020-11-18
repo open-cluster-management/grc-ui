@@ -16,18 +16,11 @@ import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import { transform } from '../../tableDefinitions/utils'
 import checkCreatePermission from '../common/CheckCreatePermission'
 import msgs from '../../../nls/platform.properties'
-import _ from 'lodash'
-import { GRC_SEARCH_STATE_COOKIE } from '../../../lib/shared/constants'
-import {
-  getSavedGrcState, saveGrcStatePair
-} from '../../../lib/client/filter-helper'
 
-const componentName = 'PolicyStatusView'
 class PolicyStatusView extends React.Component {
   constructor(props) {
     super(props)
     this.state= {
-      searchValue : _.get(getSavedGrcState(GRC_SEARCH_STATE_COOKIE), componentName, ''),
       toggleIndex: 0
     }
     this.toggleClick = this.toggleClick.bind(this)
@@ -45,7 +38,7 @@ class PolicyStatusView extends React.Component {
     const statusAccess = status.map(item => ({...item, showDetailsLink: showDetailsLink}))
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
     const tableDataByClusters = transform(statusAccess, statusByClustersDef, locale)
-    const { toggleIndex, searchValue } = this.state
+    const toggleIndex = this.state.toggleIndex
     return (
       <div className='policy-status-view'>
         <ToggleGroup className='policy-status-toggle' variant='light'>
@@ -72,8 +65,6 @@ class PolicyStatusView extends React.Component {
             <PatternFlyTable
               {...tableDataByClusters}
               noResultMsg={msgs.get('table.search.no.results', locale)}
-              handleSearch={this.handleSearch}
-              searchValue={searchValue}
             />
           </div>}
           {toggleIndex===1 && tableDataByTemplate.map((data)=> {
@@ -90,23 +81,12 @@ class PolicyStatusView extends React.Component {
               <PatternFlyTable
                 {...data[1]}
                 noResultMsg={msgs.get('table.search.no.results', locale)}
-                handleSearch={this.handleSearch}
-                searchValue={searchValue}
               />
             </div>
           })}
         </div>
       </div>
     )
-  }
-
-  handleSearch = (value) => {
-    if (typeof value === 'string') {
-      saveGrcStatePair(GRC_SEARCH_STATE_COOKIE, componentName, value, true)
-      this.setState({
-        searchValue: value
-      })
-    }
   }
 
   toggleClick(isSelected, event) {
