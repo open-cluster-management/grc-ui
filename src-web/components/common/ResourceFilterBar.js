@@ -19,7 +19,7 @@ import { Icon, Tag } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
-import { saveGrcState } from '../../../lib/client/filter-helper'
+import { saveSessionState } from '../../components/common/AccessStorage'
 import { GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 import TruncateText from '../../components/common/TruncateText'
 
@@ -93,7 +93,7 @@ class ResourceFilterBar extends React.Component {
     if (_.isEmpty(activeFilters)) {
       this.removeAllActiveFilters()
     } else {
-      saveGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
+      saveSessionState(GRC_FILTER_STATE_COOKIE, activeFilters)
       localUpdateActiveFilters(activeFilters)
     }
   }
@@ -111,7 +111,7 @@ class ResourceFilterBar extends React.Component {
     //step 2 clear up active filters in resource filter
     const { updateActiveFilters:localUpdateActiveFilters, location, history } = this.props
     const emptyFilters = {}
-    saveGrcState(GRC_FILTER_STATE_COOKIE, emptyFilters)
+    saveSessionState(GRC_FILTER_STATE_COOKIE, emptyFilters)
     localUpdateActiveFilters(emptyFilters)
     //step 3 make sure url doesn't have toggle removed and restore if it does
     const newURL = queryString.parse(location.search)

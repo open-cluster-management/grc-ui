@@ -25,8 +25,8 @@ import filterUserAction from '../common/FilterUserAction'
 import { REQUEST_STATUS } from '../../actions/index'
 import { createDisableTooltip } from '../common/DisableTooltip'
 import {
-  getSavedGrcState, saveGrcStatePair
-} from '../../../lib/client/filter-helper'
+  getSessionState, replaceSessionPair
+} from '../common/AccessStorage'
 
 resources(() => {
   require('../../../scss/grc-toggle-module.scss')
@@ -38,7 +38,7 @@ class GrcToggleModule extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchValue : _.get(getSavedGrcState(GRC_SEARCH_STATE_COOKIE), componentName, '')
+      searchValue : _.get(getSessionState(GRC_SEARCH_STATE_COOKIE), componentName, '')
     }
   }
 
@@ -103,7 +103,7 @@ class GrcToggleModule extends React.Component {
 
   handleSearch = (value) => {
     if (typeof value === 'string') {
-      saveGrcStatePair(GRC_SEARCH_STATE_COOKIE, componentName, value, true)
+      replaceSessionPair(GRC_SEARCH_STATE_COOKIE, componentName, value, true)
       this.setState({
         searchValue: value
       })

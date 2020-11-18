@@ -24,7 +24,7 @@ import { Query } from 'react-apollo'
 import '../../../graphics/diagramIcons.svg'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
-import { saveGrcState } from '../../../lib/client/filter-helper'
+import { saveSessionState } from '../../components/common/AccessStorage'
 
 resources(() => {
   require('../../../scss/resource-toolbar.scss')
@@ -150,7 +150,7 @@ export class ResourceToolbar extends React.Component {
         activeSet.delete(value)
       }
     }
-    saveGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
+    saveSessionState(GRC_FILTER_STATE_COOKIE, activeFilters)
     localUpdateActiveFilters(activeFilters)
   }
 }

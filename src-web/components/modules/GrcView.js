@@ -22,8 +22,7 @@ import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../../lib/sha
 import GrcCardsModule from '../modules/GrcCardsModule'
 import GrcToggleModule from '../modules/GrcToggleModule'
 import {
-  filterPolicies, getAvailableGrcFilters, getSavedGrcState,
-  saveGrcState, combineResourceFilters, saveGrcStatePair
+  filterPolicies, getAvailableGrcFilters, combineResourceFilters
 } from '../../../lib/client/filter-helper'
 import NoResource from '../common/NoResource'
 import { createDocLink, createDetails } from '../common/CreateDocLink'
@@ -33,6 +32,9 @@ import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
 import config from '../../../lib/shared/config'
+import {
+  getSessionState, saveSessionState, addSessionPair
+} from '../common/AccessStorage'
 
 resources(() => {
   require('../../../scss/grc-view.scss')
@@ -43,7 +45,7 @@ export class GrcView extends React.Component {
   constructor (props) {
     super(props)
     this.state= {
-      viewState: getSavedGrcState(GRC_VIEW_STATE_COOKIE)
+      viewState: getSessionState(GRC_VIEW_STATE_COOKIE)
     }
     this.scroll = _.debounce(()=>{
       this.scrollView()
@@ -60,9 +62,9 @@ export class GrcView extends React.Component {
     const { activeFilters={} } = this.props
     //get (activeFilters ∪ storedFilters) only since availableGrcFilters is uninitialized at this stage
     //later when availableGrcFilters initialized, will do further filtering in UNSAFE_componentWillReceiveProps
-    const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE))
+    const combinedFilters = combineResourceFilters(activeFilters, getSessionState(GRC_FILTER_STATE_COOKIE))
     //update sessionStorage
-    saveGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
+    saveSessionState(GRC_FILTER_STATE_COOKIE, combinedFilters)
     //update active filters
     updateActiveFilters(combinedFilters)
   }
@@ -80,7 +82,7 @@ export class GrcView extends React.Component {
       //if url has severity special para, store it into sessionStorage before updating active filters
       const urlParams = queryString.parse(location.search)
       if (urlParams.severity) {
-        saveGrcStatePair(GRC_FILTER_STATE_COOKIE, 'severity', urlParams.severity)
+        addSessionPair(GRC_FILTER_STATE_COOKIE, 'severity', urlParams.severity)
       }
 
       let availableGrcFilters
@@ -93,9 +95,9 @@ export class GrcView extends React.Component {
       localUpdateAvailableFilters(availableGrcFilters)
       const activeFilters = _.cloneDeep(nextProps.activeFilters||{})
       //get (activeFilters ∪ storedFilters) ∩ availableGrcFilters
-      const combinedFilters = combineResourceFilters(activeFilters, getSavedGrcState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
+      const combinedFilters = combineResourceFilters(activeFilters, getSessionState(GRC_FILTER_STATE_COOKIE), availableGrcFilters)
       //update sessionStorage
-      saveGrcState(GRC_FILTER_STATE_COOKIE, combinedFilters)
+      saveSessionState(GRC_FILTER_STATE_COOKIE, combinedFilters)
       //update active filters
       localUpdateActiveFilters(combinedFilters)
     }
@@ -211,7 +213,7 @@ export class GrcView extends React.Component {
   }
 
   onUnload() {//saved grc view ui setting
-    saveGrcState(GRC_VIEW_STATE_COOKIE, this.state.viewState)
+    saveSessionState(GRC_VIEW_STATE_COOKIE, this.state.viewState)
   }
 
   handleDrillDownClickGrcView(key, value, type, level){
@@ -238,8 +240,8 @@ export class GrcView extends React.Component {
       activeSet = activeFilters[type]
       activeSet.add(level)
     }
-    if (activeSet && activeSet.size > 0 && saveGrcState && localUpdateActiveFilters) {
-      saveGrcState(GRC_FILTER_STATE_COOKIE, activeFilters)
+    if (activeSet && activeSet.size > 0 && saveSessionState && localUpdateActiveFilters) {
+      saveSessionState(GRC_FILTER_STATE_COOKIE, activeFilters)
       localUpdateActiveFilters(activeFilters)
     }
 
