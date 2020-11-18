@@ -290,11 +290,11 @@ Array [
         "remediationAction": "enforce",
       },
       "status": Object {
-        "placementBindings": Array [
-          "binding-ma",
-        ],
-        "placementPolicies": Array [
-          "placement-ma",
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-ma",
+            "placementRule": "placement-ma",
+          },
         ],
         "status": Object {
           "cluster1": Object {
@@ -321,11 +321,15 @@ Array [
     "remediation": "enforce",
     "subItems": Array [
       Object {
-        "items": Array [],
+        "items": Array [
+          "binding-ma",
+        ],
         "name": "policy.pb",
       },
       Object {
-        "items": Array [],
+        "items": Array [
+          "placement-ma",
+        ],
         "name": "policy.pp",
       },
     ],
@@ -431,11 +435,11 @@ Array [
         "remediationAction": "inform",
       },
       "status": Object {
-        "placementBindings": Array [
-          "binding-pod",
-        ],
-        "placementPolicies": Array [
-          "placement-pod",
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-pod",
+            "placementRule": "placement-pod",
+          },
         ],
         "status": Object {
           "cluster1": Object {
@@ -462,11 +466,15 @@ Array [
     "remediation": "inform",
     "subItems": Array [
       Object {
-        "items": Array [],
+        "items": Array [
+          "binding-pod",
+        ],
         "name": "policy.pb",
       },
       Object {
-        "items": Array [],
+        "items": Array [
+          "placement-pod",
+        ],
         "name": "policy.pp",
       },
     ],
@@ -587,11 +595,11 @@ Array [
         ],
       },
       "status": Object {
-        "placementBindings": Array [
-          "binding-role",
-        ],
-        "placementPolicies": Array [
-          "placement-role",
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-role",
+            "placementRule": "placement-role",
+          },
         ],
         "status": Object {
           "cluster1": Object {
@@ -618,11 +626,15 @@ Array [
     "remediation": "inform",
     "subItems": Array [
       Object {
-        "items": Array [],
+        "items": Array [
+          "binding-role",
+        ],
         "name": "policy.pb",
       },
       Object {
-        "items": Array [],
+        "items": Array [
+          "placement-role",
+        ],
         "name": "policy.pp",
       },
     ],
