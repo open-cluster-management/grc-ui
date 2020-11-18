@@ -25,10 +25,6 @@ RUN sh ./build/download-clis.sh
 
 RUN npm install \
     chromedriver \
-    cypress \
-    cypress-multi-reporters \
-    cypress-terminal-report \
-    cypress-wait-until \
     nightwatch \
     nightwatch-coverage \
     nconf@0.10.0 \
