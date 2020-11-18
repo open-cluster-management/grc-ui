@@ -29,6 +29,8 @@ RUN npm install \
     cypress-terminal-report \
     cypress-wait-until \
     mocha \
+    mocha-junit-reporter \
+    mochawesome \
     nightwatch \
     nightwatch-coverage \
     nconf@0.10.0 \
