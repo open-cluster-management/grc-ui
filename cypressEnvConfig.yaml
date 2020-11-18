@@ -1,5 +1,5 @@
 options:
   hub:
-    baseDomain: #set baseDomain for local cypress testing
+    hubClusterURL: #set hubClusterURL for local cypress testing
     user: #set user for local cypress testing
     password: #set password for local cypress testing
