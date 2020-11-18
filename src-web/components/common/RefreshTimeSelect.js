@@ -16,7 +16,6 @@ import { DropdownV2, Loading } from 'carbon-components-react'
 import '../../../graphics/diagramIcons.svg'
 import { DEFAULT_REFRESH_TIME, DEFAULT_SIDE_PANEL_REFRESH_TIME, GRC_REFRESH_INTERVAL_COOKIE} from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
-import moment from 'moment'
 
 resources(() => {
   require('../../../scss/refresh-time-select.scss')
@@ -165,28 +164,3 @@ export const getPollInterval = (cookieKey, displayType) => {
 export const savePollInterval = (cookieKey, pollInterval) => {
   localStorage.setItem(cookieKey, JSON.stringify({pollInterval}))
 }
-
-export const getTimeAgoMsg = (msgKey, startTime, endTime, locale) => {
-  let ago = ''
-  const seconds = Math.abs(moment(new Date(startTime)).diff(new Date(endTime))) / 1000
-  let interval = Math.floor(seconds / 86400)
-  if (interval >= 1) {
-    ago = msgs.get('time.days.ago', [interval], locale)
-  } else {
-    interval = Math.floor(seconds / 3600)
-    if (interval >= 1) {
-      ago = msgs.get('time.hours.ago', [interval], locale)
-    } else {
-      interval = Math.floor(seconds / 60)
-      if (interval >= 1) {
-        ago = msgs.get('time.minutes.ago', [interval], locale)
-      } else if (seconds>1) {
-        ago = msgs.get('time.seconds.ago', [seconds], locale)
-      } else {
-        ago = msgs.get('time.just.now', locale)
-      }
-    }
-  }
-  return msgs.get(msgKey, [ago], locale)
-}
-
