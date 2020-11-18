@@ -13,14 +13,6 @@ import renderer from 'react-test-renderer'
 const mockStore = configureMockStore()
 const storePolicyCluster = mockStore(reduxStorePolicyCluster)
 
-jest.mock('@patternfly/react-core', () => {
-  const { Spinner } = jest.requireActual('@patternfly/react-core')
-  return {
-    Spinner,
-    Tooltip: function mockTooltip() { return <div data-testid='mockTooltip'>This is a tooltip</div> },
-  }
-})
-
 const emptyDiscoveries = {
   '__typename': 'Discoveries',
   'clusterLabels': [],

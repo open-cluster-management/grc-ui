@@ -91,9 +91,16 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   *
                 </div>
                 <div
+                  content="The namespace to create and store the policy on the hub cluster."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -163,9 +170,16 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   *
                 </div>
                 <div
+                  content="The parameter section that describes which set of rules will validate a cluster."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -240,9 +254,16 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
               >
                 Cluster binding
                 <div
+                  content="Fill the required parameter field to select the cluster where your policy is applied. The placement policy and placement binding are required, and added into the YAML file."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -317,9 +338,16 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
               >
                 Standards
                 <div
+                  content="The name or names of security standards your policy should validate. You can only create a new label by adding it directly into the YAML file."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -394,9 +422,16 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
               >
                 Categories
                 <div
+                  content="A security control category represent specific requirements for one or more standards. You can only create a new label by adding it directly into the YAML file."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -471,9 +506,16 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
               >
                 Controls
                 <div
+                  content="The control contains the instructions for ensuring that a policy meets the security requirements for one or more standards. You can only create a new label by adding it directly into the YAML file."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -570,9 +612,16 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 Enforce if supported
               </div>
               <div
+                content="Select Enforce, if the feature is supported for your policy, to update remediationAction. When Enforce is not selected, the parameter value for remediationAction is inform."
                 data-testid="mockTooltip"
               >
-                This is a tooltip
+                <svg
+                  className="info-icon"
+                >
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
             </div>
             <div
@@ -605,9 +654,16 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 Disable policy
               </div>
               <div
+                content="Select to disable the policy from being propagated to the managed cluster. If selected, the policy can be re-enabled from the dropdown menu in the policies table."
                 data-testid="mockTooltip"
               >
-                This is a tooltip
+                <svg
+                  className="info-icon"
+                >
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
             </div>
           </div>
@@ -947,9 +1003,16 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   *
                 </div>
                 <div
+                  content="The namespace to create and store the policy on the hub cluster."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -1019,9 +1082,16 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   *
                 </div>
                 <div
+                  content="The parameter section that describes which set of rules will validate a cluster."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -1096,9 +1166,16 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
               >
                 Cluster binding
                 <div
+                  content="Fill the required parameter field to select the cluster where your policy is applied. The placement policy and placement binding are required, and added into the YAML file."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -1173,9 +1250,16 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
               >
                 Standards
                 <div
+                  content="The name or names of security standards your policy should validate. You can only create a new label by adding it directly into the YAML file."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -1250,9 +1334,16 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
               >
                 Categories
                 <div
+                  content="A security control category represent specific requirements for one or more standards. You can only create a new label by adding it directly into the YAML file."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -1327,9 +1418,16 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
               >
                 Controls
                 <div
+                  content="The control contains the instructions for ensuring that a policy meets the security requirements for one or more standards. You can only create a new label by adding it directly into the YAML file."
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -1426,9 +1524,16 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 Enforce if supported
               </div>
               <div
+                content="Select Enforce, if the feature is supported for your policy, to update remediationAction. When Enforce is not selected, the parameter value for remediationAction is inform."
                 data-testid="mockTooltip"
               >
-                This is a tooltip
+                <svg
+                  className="info-icon"
+                >
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
             </div>
             <div
@@ -1461,9 +1566,16 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 Disable policy
               </div>
               <div
+                content="Select to disable the policy from being propagated to the managed cluster. If selected, the policy can be re-enabled from the dropdown menu in the policies table."
                 data-testid="mockTooltip"
               >
-                This is a tooltip
+                <svg
+                  className="info-icon"
+                >
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
             </div>
           </div>
@@ -1803,9 +1915,16 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   *
                 </div>
                 <div
+                  content="policy.create.namespace.tooltip"
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -1875,9 +1994,16 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   *
                 </div>
                 <div
+                  content="policy.create.specs.tooltip"
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -1952,9 +2078,16 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
               >
                 creation.view.policy.binding
                 <div
+                  content="policy.create.selectors.tooltip"
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -2029,9 +2162,16 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
               >
                 creation.view.policy.standards
                 <div
+                  content="policy.create.standards.tooltip"
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -2106,9 +2246,16 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
               >
                 creation.view.policy.categories
                 <div
+                  content="policy.create.categories.tooltip"
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -2183,9 +2330,16 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
               >
                 creation.view.policy.controls
                 <div
+                  content="policy.create.controls.tooltip"
                   data-testid="mockTooltip"
                 >
-                  This is a tooltip
+                  <svg
+                    className="info-icon"
+                  >
+                    <use
+                      href="#diagramIcons_info"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
@@ -2282,9 +2436,16 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 creation.view.policy.enforce
               </div>
               <div
+                content="policy.create.enforce.tooltip"
                 data-testid="mockTooltip"
               >
-                This is a tooltip
+                <svg
+                  className="info-icon"
+                >
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
             </div>
             <div
@@ -2317,9 +2478,16 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 creation.view.policy.disabled
               </div>
               <div
+                content="policy.create.disabled.tooltip"
                 data-testid="mockTooltip"
               >
-                This is a tooltip
+                <svg
+                  className="info-icon"
+                >
+                  <use
+                    href="#diagramIcons_info"
+                  />
+                </svg>
               </div>
             </div>
           </div>

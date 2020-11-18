@@ -315,7 +315,7 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
   <div
     className="secondary-header-links"
   >
-    <Tooltip
+    <mockTooltip
       content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
       zIndex={10001}
     >
@@ -332,7 +332,7 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
           Create policy
         </Button>
       </div>
-    </Tooltip>
+    </mockTooltip>
   </div>
 </div>
 `;
@@ -569,7 +569,7 @@ exports[`SecondaryHeader component 5 renderHeader without description 1`] = `
 
 exports[`SecondaryHeader component 5 renderLinks nonclickable as expected 1`] = `
 Array [
-  <Tooltip
+  <mockTooltip
     content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
     zIndex={10001}
   >
@@ -586,7 +586,7 @@ Array [
         Create policy
       </Button>
     </div>
-  </Tooltip>,
+  </mockTooltip>,
 ]
 `;
 
