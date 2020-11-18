@@ -2678,11 +2678,36 @@ export const resourceType = {
   'query': 'HCMSecurityFindingsList'
 }
 
-export const resourceModalLabels = {
+export const editResourceModalLabels = {
   'primaryBtn': 'modal.button.submit',
   'label': 'modal.edit-hcmcompliance.label',
   'heading': 'modal.edit-hcmcompliance.heading'
 }
+
+export const disableResourceModalLabels = {
+  'primaryBtn': 'modal.disable-hcmcompliance.heading',
+  'label': 'modal.disable-hcmcompliance.heading',
+  'heading': 'modal.disable-hcmcompliance.heading'
+}
+
+export const enableResourceModalLabels = {
+  'primaryBtn': 'modal.enable-hcmcompliance.heading',
+  'label': 'modal.enable-hcmcompliance.label',
+  'heading': 'modal.enable-hcmcompliance.heading'
+}
+
+export const enforceResourceModalLabels = {
+  'primaryBtn': 'modal.enforce-hcmcompliance.heading',
+  'label': 'modal.enforce-hcmcompliance.label',
+  'heading': 'modal.enforce-hcmcompliance.heading'
+}
+
+export const informResourceModalLabels = {
+  'primaryBtn': 'modal.inform-hcmcompliance.heading',
+  'label': 'modal.inform-hcmcompliance.label',
+  'heading': 'modal.inform-hcmcompliance.heading'
+}
+
 export const availableFilters = {
   standards: {
     name: 'Standards',

@@ -15,7 +15,7 @@ import { mount } from 'enzyme'
 import * as reducers from '../../../../src-web/reducers'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { resourceModalData, resourceModalLabels } from './ModalsTestingData'
+import { resourceModalData, editResourceModalLabels } from './ModalsTestingData'
 import toJson from 'enzyme-to-json'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -33,7 +33,7 @@ describe('RemoveResourceModal test', () => {
           data={resourceModalData}
           handleClose={jest.fn()}
           handleSubmit={jest.fn()}
-          label={resourceModalLabels}
+          label={editResourceModalLabels}
           locale={'en'}
           open={true}
           store={store}
