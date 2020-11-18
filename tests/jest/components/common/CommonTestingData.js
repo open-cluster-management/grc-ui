@@ -305,11 +305,11 @@ export const policies = [
         'remediationAction': 'enforce'
       },
       'status': {
-        'placementBindings': [
-          'binding-my-policy-test'
-        ],
-        'placementPolicies': [
-          'placement-my-policy-test'
+        'placement': [
+          {
+            'placementBinding': 'binding-my-policy-test',
+            'placementRule': 'placement-my-policy-test',
+          },
         ],
         'status': {
           'cluster1': {
@@ -885,11 +885,11 @@ export const policies2 = [
         'remediationAction': 'enforce'
       },
       'status': {
-        'placementBindings': [
-          'binding-my-policy-test'
-        ],
-        'placementPolicies': [
-          'placement-my-policy-test'
+        'placement': [
+          {
+            'placementBinding': 'binding-my-policy-test',
+            'placementRule': 'placement-my-policy-test',
+          },
         ],
         'status': {
           'cluster1': 'Compliant',

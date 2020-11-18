@@ -140,11 +140,11 @@ Array [
         "remediationAction": "enforce",
       },
       "status": Object {
-        "placementBindings": Array [
-          "binding-my-policy-test",
-        ],
-        "placementPolicies": Array [
-          "placement-my-policy-test",
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-my-policy-test",
+            "placementRule": "placement-my-policy-test",
+          },
         ],
         "status": Object {
           "cluster1": Object {
@@ -321,15 +321,11 @@ Array [
     "remediation": "enforce",
     "subItems": Array [
       Object {
-        "items": Array [
-          "binding-ma",
-        ],
+        "items": Array [],
         "name": "policy.pb",
       },
       Object {
-        "items": Array [
-          "placement-ma",
-        ],
+        "items": Array [],
         "name": "policy.pp",
       },
     ],
@@ -466,15 +462,11 @@ Array [
     "remediation": "inform",
     "subItems": Array [
       Object {
-        "items": Array [
-          "binding-pod",
-        ],
+        "items": Array [],
         "name": "policy.pb",
       },
       Object {
-        "items": Array [
-          "placement-pod",
-        ],
+        "items": Array [],
         "name": "policy.pp",
       },
     ],
@@ -626,15 +618,11 @@ Array [
     "remediation": "inform",
     "subItems": Array [
       Object {
-        "items": Array [
-          "binding-role",
-        ],
+        "items": Array [],
         "name": "policy.pb",
       },
       Object {
-        "items": Array [
-          "placement-role",
-        ],
+        "items": Array [],
         "name": "policy.pp",
       },
     ],

@@ -402,12 +402,12 @@ export const policiesTestingDataSet1 = [
           }
         ]
       },
-      'status':{
-        'placementBindings':[
-          'binding-comp'
-        ],
-        'placementPolicies':[
-          'placement-comp'
+      'status': {
+        'placement': [
+          {
+            'placementBinding': 'binding-comp',
+            'placementRule': 'placement-comp',
+          },
         ],
         'status':{
           'cluster1':{
@@ -545,12 +545,12 @@ export const policiesTestingDataSet1 = [
         ],
         'remediationAction':'enforce'
       },
-      'status':{
-        'placementBindings':[
-          'binding-ma'
-        ],
-        'placementPolicies':[
-          'placement-ma'
+      'status': {
+        'placement': [
+          {
+            'placementBinding': 'binding-ma',
+            'placementRule': 'placement-ma',
+          },
         ],
         'status':{
           'cluster1':{
@@ -1093,12 +1093,12 @@ export const policiesTestingDataSet2 = [
         ],
         'remediationAction':'enforce'
       },
-      'status':{
-        'placementBindings':[
-          'binding-ma'
-        ],
-        'placementPolicies':[
-          'placement-ma'
+      'status': {
+        'placement': [
+          {
+            'placementBinding': 'binding-ma',
+            'placementRule': 'placement-ma',
+          },
         ],
         'status':{
           'cluster1':{
@@ -2081,11 +2081,11 @@ export const policiesTabModuleFilteredPolicies = [
         'remediationAction': 'enforce'
       },
       'status': {
-        'placementBindings': [
-          'binding-my-policy'
-        ],
-        'placementPolicies': [
-          'placement-my-policy'
+        'placement': [
+          {
+            'placementBinding': 'binding-my-policy',
+            'placementRule': 'placement-my-policy',
+          },
         ],
         'status': {
           'cluster1': {
@@ -2215,11 +2215,11 @@ export const policiesTabModuleFilteredPolicies = [
         'remediationAction': 'enforce'
       },
       'status': {
-        'placementBindings': [
-          'binding-ma'
-        ],
-        'placementPolicies': [
-          'placement-ma'
+        'placement': [
+          {
+            'placementBinding': 'binding-ma',
+            'placementRule': 'placement-ma',
+          },
         ],
         'status': {
           'cluster1': {
@@ -2346,11 +2346,11 @@ export const policiesTabModuleFilteredPolicies = [
         'remediationAction': 'inform'
       },
       'status': {
-        'placementBindings': [
-          'binding-pod'
-        ],
-        'placementPolicies': [
-          'placement-pod'
+        'placement': [
+          {
+            'placementBinding': 'binding-pod',
+            'placementRule': 'placement-pod',
+          },
         ],
         'status': {
           'cluster1': {
@@ -2490,11 +2490,11 @@ export const policiesTabModuleFilteredPolicies = [
         ]
       },
       'status': {
-        'placementBindings': [
-          'binding-role'
-        ],
-        'placementPolicies': [
-          'placement-role'
+        'placement': [
+          {
+            'placementBinding': 'binding-role',
+            'placementRule': 'placement-role',
+          },
         ],
         'status': {
           'cluster1': {
