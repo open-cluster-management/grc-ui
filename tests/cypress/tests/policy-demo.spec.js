@@ -11,7 +11,7 @@
 /// <reference types="cypress" />
 
 import { pageLoader } from '../views/common'
-import { createPolicy, verifyPolicyInListing, deletePolicyInListing } from '../views/policy'
+import { createPolicy, verifyPolicyInListing, verifyPolicyNotInListing, deletePolicyInListing } from '../views/policy'
 import { formatResourceName } from '../scripts/utils'
 
 const { policies } = JSON.parse(Cypress.env('TEST_CONFIG'))
@@ -47,6 +47,11 @@ describe('Clusters', () => {
     it(`Policy ${frname} can be deleted in the policy listing`, () => {
       cy.visit('/multicloud/policies/all')
       deletePolicyInListing(name)
+    })
+
+    it(`Deleted policy ${frname} is not present in the policy listing`, () => {
+      cy.visit('/multicloud/policies/all')
+      verifyPolicyNotInListing(name)
     })
 
   }

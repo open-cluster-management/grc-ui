@@ -99,6 +99,12 @@ export const verifyPolicyInListing = ({ name, create=false, ...policyConfig }) =
   })
 }
 
+export const verifyPolicyNotInListing = (name) => {
+  name = formatResourceName(name)
+  cy.get('#table-container').within(() => {
+    cy.get(`tr[data-row-name="${name}"]`).should('not.exist')
+  })
+}
 
 export const doPolicyActionInListing = (name, action, cancel=false) => {
   name = formatResourceName(name)
