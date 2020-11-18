@@ -9,8 +9,6 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
 import renderer from 'react-test-renderer'
-import { mount } from 'enzyme'
-import toJson from 'enzyme-to-json'
 
 const mockStore = configureMockStore()
 const storePolicyCluster = mockStore(reduxStorePolicyCluster)
