@@ -80,7 +80,6 @@ export const formatExpandablePolicies = (policies) => {
   if (policies) {
     policies.forEach(policy => {
       if(policy) {
-        console.log(policy)
         const placements = _.get(policy, 'raw.status.placement', [])
         const subItems = [{name: 'policy.pb', items: placements.map(placement => placement.placementBinding)},
           {name: 'policy.pp', items: placements.map(placement => placement.placementRule)}]
