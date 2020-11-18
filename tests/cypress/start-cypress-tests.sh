@@ -10,32 +10,38 @@ if [ -z "$BROWSER" ]; then
   export BROWSER="chrome"
 fi
 
-# Load test config mounted at /resources/options.yaml
-OPTIONS_FILE=/resources/options.yaml
-USER_OPTIONS_FILE=./options.yaml
-if [ -f $OPTIONS_FILE ]; then
-  echo "Using test config from '/resources/options.yaml' file."
-  export CYPRESS_OPTIONS_HUB_BASEDOMAIN=`yq r $OPTIONS_FILE 'options.hub.baseDomain'`
-  export CYPRESS_OPTIONS_HUB_USER=`yq r $OPTIONS_FILE 'options.hub.user'`
-  export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $OPTIONS_FILE 'options.hub.password'`
-elif [ -f $USER_OPTIONS_FILE ]; then
-  echo "Using test config from '$USER_OPTIONS_FILE' file."
-  export CYPRESS_OPTIONS_HUB_BASEDOMAIN=`yq r $USER_OPTIONS_FILE 'options.hub.baseDomain'`
-  export CYPRESS_OPTIONS_HUB_USER=`yq r $USER_OPTIONS_FILE 'options.hub.user'`
-  export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $USER_OPTIONS_FILE 'options.hub.password'`
+if [ ! -z "$BASE_DOMAIN" ] && [ ! -z "$OC_CLUSTER_USER" ] && [ ! -z "$OC_HUB_CLUSTER_PASS" ]; then
+  echo -e "Using cypess config from system env variables(Travis or someplace else).\n"
+  export CYPRESS_OPTIONS_HUB_BASEDOMAIN=$BASE_DOMAIN
+  export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
+  export CYPRESS_OPTIONS_HUB_PASSWORD=$OC_HUB_CLUSTER_PASS
 else
-  echo -e "Options file does not exist, using test config from environment variables.\n"
+  USER_OPTIONS_FILE=./cypressEnvConfig.yaml
+  echo -e "System env variables don't exist, loading local config from '$USER_OPTIONS_FILE' file.\n"
+  if [ -f $USER_OPTIONS_FILE ]; then
+    echo "Using cypess config from '$USER_OPTIONS_FILE' file."
+    export CYPRESS_OPTIONS_HUB_BASEDOMAIN=`yq r $USER_OPTIONS_FILE 'options.hub.baseDomain'`
+    export CYPRESS_OPTIONS_HUB_USER=`yq r $USER_OPTIONS_FILE 'options.hub.user'`
+    export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $USER_OPTIONS_FILE 'options.hub.password'`
+  else
+    echo "Can't find '$USER_OPTIONS_FILE' locally and set all cypess config to empty."
+    export CYPRESS_OPTIONS_HUB_BASEDOMAIN=""
+    export CYPRESS_OPTIONS_HUB_USER=""
+    export CYPRESS_OPTIONS_HUB_PASSWORD=""
+  fi
 fi
 
 export CYPRESS_BASE_URL=https://multicloud-console.apps.$CYPRESS_OPTIONS_HUB_BASEDOMAIN
+export CYPRESS_OPTIONS_HUB_CLUSTER_URL=https://api.${CYPRESS_OPTIONS_HUB_BASEDOMAIN}:6443
 
-echo -e "Running tests with the following environment:\n"
+echo -e "Running cypess tests with the following environment:\n"
 echo -e "\tCYPRESS_OPTIONS_HUB_BASEDOMAIN : $CYPRESS_OPTIONS_HUB_BASEDOMAIN"
-echo -e "\tCYPRESS_OPTIONS_HUB_BASE_URL   : $CYPRESS_BASE_URL"
+echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL)  : $CYPRESS_BASE_URL"
+echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL   : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_USER       : $CYPRESS_OPTIONS_HUB_USER"
 
 echo -e "\nLogging into Kube API server\n"
-oc login --server=https://api.${CYPRESS_OPTIONS_HUB_BASEDOMAIN}:6443 -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
+oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
 
 testCode=0
 
@@ -43,6 +49,9 @@ testCode=0
 HEADLESS="--headless"
 if [[ "$LIVE_MODE" == true ]]; then
   HEADLESS=""
+  echo "Running cypess under browser headful model."
+else
+  echo "Running cypess under browser headless model."
 fi
 
 if [ "$NODE_ENV" == "dev" ]; then

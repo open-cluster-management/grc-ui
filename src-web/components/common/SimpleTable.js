@@ -104,16 +104,16 @@ class StructuredListModule extends React.Component {
                               <p>{
                                 (linkFixedName && (cellIndex in linkFixedName) && transform(row, cell, this.context.locale) !== '-')
                                   ? <a
-                                    href={transform(row, cell, this.context.locale)}
-                                    target={linkFixedName[cellIndex].urlTarget}
-                                    className='bx--link'>
+                                      href={transform(row, cell, this.context.locale)}
+                                      target={linkFixedName[cellIndex].urlTarget}
+                                      className='bx--link'>
                                     {msgs.get(linkFixedName[cellIndex].fixedName, this.context.locale)}
                                   </a>
                                   : cell.link && url
                                     ? <Link
-                                      to={url}
-                                      className='bx--link'>
-                                      {transform(row, cell, this.context.locale)}
+                                        to={url}
+                                        className='bx--link'>
+                                        {transform(row, cell, this.context.locale)}
                                     </Link>
                                     : transform(row, cell, this.context.locale)
                               }</p>

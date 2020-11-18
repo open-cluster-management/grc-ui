@@ -11,7 +11,7 @@ import {getPollInterval} from '../components/common/RefreshTimeSelect'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
-import { PolicyStatusHistory } from '../../lib/client/queries'
+import { POLICY_STATUS_HISTORY } from '../../lib/client/queries'
 import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
@@ -76,7 +76,7 @@ class PolicyStatusHistoryTab extends React.Component {
     const { match: { params: { policyName, hubNamespace, cluster, template }}} = this.props
     return (
       <Query
-        query={PolicyStatusHistory}
+        query={POLICY_STATUS_HISTORY}
         variables={{policyName, hubNamespace, cluster, template}}
         pollInterval={pollInterval}
         notifyOnNetworkStatusChange

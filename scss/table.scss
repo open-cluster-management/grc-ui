@@ -8,7 +8,6 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
-@import './dashboard-card';
 @import 'variables';
 
 .resource-table {
@@ -33,12 +32,6 @@
       padding-left: 0;
     }
     
-  }
-
-  .violationCell {
-    > svg {
-      margin-right: 0.25rem;
-    }
   }
 
   .row-not-expanded .bx--table-expand-v2__button {
@@ -69,10 +62,10 @@
   height: 1rem;
   .table-status {
     &__compliant {
-      fill: $healthy
+      fill: $color__green-40
     }
     &__not_compliant {
-      fill: $critical
+      fill: $grc__color__critical
     }
   }
 }
@@ -86,16 +79,16 @@
       margin-right: 0.4rem;
       margin-top: 0.2rem;
       &__healthy {
-        fill: $healthy
+        fill: $color__green-40
       }
       &__critical {
-        fill: $critical
+        fill: $grc__color__critical
       }
       &__warning {
-        fill: $warning
+        fill: $color__yellow-30
       }
       &__failed {
-        fill: $critical
+        fill: $grc__color__critical
       }
     }
     p {

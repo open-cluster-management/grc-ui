@@ -30,7 +30,7 @@ describe('PolicyTemplatesView component', () => {
     ))
     const resourceType = {
       'name': 'HCMCompliance',
-      'list': 'HCMComplianceList'
+      'query': 'ALL_POLICIES'
     }
     const resourceData = {
       'raw': {

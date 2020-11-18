@@ -28,7 +28,7 @@ class PolicyDetailSubRouter extends React.Component {
 
   static defaultProps = {
     tabs: ['detail','status','yaml'],
-    resourceType: RESOURCE_TYPES.HCM_COMPLIANCES
+    resourceType: RESOURCE_TYPES.POLICIES_BY_POLICY
   }
 
   constructor (props) {
