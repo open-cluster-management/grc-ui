@@ -11,9 +11,10 @@ else
   source ./build/rbac-setup.sh
 fi
 
+#Get env from Docker arguments
 export SELENIUM_CLUSTER=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
 export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
-export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_HUB_CLUSTER_PASS}}
+export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_CLUSTER_PASS}}
 
 # setup other test envs
 export SKIP_NIGHTWATCH_COVERAGE=${SKIP_NIGHTWATCH_COVERAGE:-true}

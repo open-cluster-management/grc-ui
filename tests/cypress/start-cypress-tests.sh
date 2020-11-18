@@ -11,10 +11,15 @@ if [ -z "$BROWSER" ]; then
 fi
 
 if [ ! -z "$OC_HUB_CLUSTER_URL" ] && [ ! -z "$OC_CLUSTER_USER" ] && [ ! -z "$OC_HUB_CLUSTER_PASS" ]; then
-  echo -e "Using cypess config from system env variables(Travis or someplace else).\n"
+  echo -e "Using cypess config from Travis env variables.\n"
   export CYPRESS_OPTIONS_HUB_CLUSTER_URL=$OC_HUB_CLUSTER_URL
   export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
   export CYPRESS_OPTIONS_HUB_PASSWORD=$OC_HUB_CLUSTER_PASS
+elif [ ! -z "$OC_CLUSTER_URL" ] && [ ! -z "$OC_CLUSTER_USER" ] && [ ! -z "$OC_CLUSTER_PASS" ]; then
+  echo -e "Using cypess config from Docker env variables.\n"
+  export CYPRESS_OPTIONS_HUB_CLUSTER_URL=$OC_CLUSTER_URL
+  export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
+  export CYPRESS_OPTIONS_HUB_PASSWORD=$OC_CLUSTER_PASS
 else
   USER_OPTIONS_FILE=./cypressEnvConfig.yaml
   echo -e "System env variables don't exist, loading local config from '$USER_OPTIONS_FILE' file.\n"
