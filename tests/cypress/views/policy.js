@@ -65,9 +65,7 @@ export const createPolicy = ({ name, create=false, ...policyConfig }) => {
     })
 }
 
-
-
-export const verifyPolicyListing = ({ name, create=false, ...policyConfig }) => {
+export const verifyPolicyInListing = ({ name, create=false, ...policyConfig }) => {
   name = formatResourceName(name)
   cy.get('#table-container').within(() => {
     cy.get(`tr[data-row-name="${name}"]>td`).as('cells')
@@ -99,4 +97,30 @@ export const verifyPolicyListing = ({ name, create=false, ...policyConfig }) => 
       }
     })
   })
+}
+
+
+export const doPolicyActionInListing = (name, action, cancel=false) => {
+  name = formatResourceName(name)
+  cy.get('#table-container').within(() => {
+    cy.get(`tr[data-row-name="${name}"]>td`)
+      .last()
+      .click()
+  })
+  .then(() => {
+    cy.get('button').contains(action).click()
+  })
+  .then(() => {
+    cy.get('.bx--modal-container').within(() => {
+      if (cancel) {
+        cy.get('button').contains('Cancel').click()
+      } else {
+        cy.get('button').contains(action).click()
+      }
+    })
+  })
+}
+
+export const deletePolicyInListing = (name) => {
+  doPolicyActionInListing(name, 'Remove')
 }
