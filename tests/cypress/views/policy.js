@@ -6,7 +6,7 @@
 /// <reference types="cypress" />
 
 
-import { pageLoader, selectItems } from './common'
+import { selectItems } from './common'
 import { formatResourceName } from '../scripts/utils'
 
 export const createPolicy = ({ name, create=false, ...policyConfig }) => {
@@ -60,12 +60,12 @@ export const createPolicy = ({ name, create=false, ...policyConfig }) => {
   // create
     .then(() => {
       if (create) {
-        cy.get("#create-button-portal-id-btn").click()
+        cy.get('#create-button-portal-id-btn').click()
       }
     })
 }
 
-export const verifyPolicyInListing = ({ name, create=false, ...policyConfig }) => {
+export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
   name = formatResourceName(name)
   cy.get('#table-container').within(() => {
     cy.get(`tr[data-row-name="${name}"]>td`).as('cells')
@@ -81,19 +81,19 @@ export const verifyPolicyInListing = ({ name, create=false, ...policyConfig }) =
         cy.wrap(remediation).contains('inform')
       }
       // standard
-      for (let std of policyConfig['standards']) {
+      for (const std of policyConfig['standards']) {
         // replace() below is a workaround for bz#1896399
-        cy.wrap(standards).contains(std.replace(/[\.\-]/g, ' '))
+        cy.wrap(standards).contains(std.replace(/[.-]/g, ' '))
       }
       // categories
-      for (let cat of policyConfig['categories']) {
+      for (const cat of policyConfig['categories']) {
         // replace() below is a workaround for bz#1896399
-        cy.wrap(categories).contains(cat.replace(/[\.\-]/g, ' '))
+        cy.wrap(categories).contains(cat.replace(/[.-]/g, ' '))
       }
       // controls
-      for (let ctl of policyConfig['controls']) {
+      for (const ctl of policyConfig['controls']) {
         // replace() and matchCase:false below is a workaround for bz#1896399
-        cy.wrap(controls).contains(ctl.replace(/[\.\-]/g, ' '), { matchCase: false})
+        cy.wrap(controls).contains(ctl.replace(/[.-]/g, ' '), { matchCase: false})
       }
     })
   })

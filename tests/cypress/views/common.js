@@ -5,7 +5,6 @@
 
 /// <reference types="cypress" />
 
-const clickDelay = 0
 const closeMenuQuery = 'svg[aria-label="Close menu"]'
 const clearAllBtnQuery = 'svg[aria-label="Clear all selected items"]'
 const selectItemQuery = 'input[type="checkbox"]'
@@ -17,7 +16,7 @@ export const pageLoader = {
 
 export const uncheckAllItems = (listQuery, itemQuery=selectItemQuery, useClearAllBtn=true) => {
   // we should use a promise to complete this task first prior moving on
-  return new Cypress.Promise((resolve, reject) => {
+  return new Cypress.Promise((resolve) => {
     cy.then(() => {
       if (!useClearAllBtn) { // uncheck items one by one
       cy.get(listQuery)
@@ -69,11 +68,11 @@ export const uncheckAllItems = (listQuery, itemQuery=selectItemQuery, useClearAl
 
 export const checkItems = (labels, listQuery, itemQuery=selectItemQuery, labelQuery='label') => {
   // we should use a promise to complete this task first prior moving on
-  return new Cypress.Promise((resolve, reject) => {
+  return new Cypress.Promise((resolve) => {
     // now check all the required values
     cy.get(listQuery)
       .then(() => {
-      for (let label of labels) {
+      for (const label of labels) {
         cy.get(listQuery)
           .click()
           .get(listQuery).within( () => {
