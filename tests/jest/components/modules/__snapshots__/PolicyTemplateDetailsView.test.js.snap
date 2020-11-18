@@ -604,9 +604,6 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
                 aria-expanded={false}
                 aria-label="Items per page"
                 className="  pf-c-options-menu__toggle-button"
-                data-ouia-component-id="OUIA-Generated-DropdownToggle-3"
-                data-ouia-component-type="PF4/DropdownToggle"
-                data-ouia-safe={true}
                 disabled={true}
                 id="pagination-options-menu-bottom-toggle-2"
                 onClick={[Function]}
@@ -655,7 +652,6 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -692,7 +688,6 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -750,7 +745,6 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -787,7 +781,6 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -1423,9 +1416,6 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
                 aria-expanded={false}
                 aria-label="Items per page"
                 className="  pf-c-options-menu__toggle-button"
-                data-ouia-component-id="OUIA-Generated-DropdownToggle-2"
-                data-ouia-component-type="PF4/DropdownToggle"
-                data-ouia-safe={true}
                 disabled={true}
                 id="pagination-options-menu-bottom-toggle-1"
                 onClick={[Function]}
@@ -1474,7 +1464,6 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -1511,7 +1500,6 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -1569,7 +1557,6 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -1606,7 +1593,6 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -2666,9 +2652,6 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 aria-expanded={false}
                 aria-label="Items per page"
                 className="  pf-c-options-menu__toggle-button"
-                data-ouia-component-id="OUIA-Generated-DropdownToggle-1"
-                data-ouia-component-type="PF4/DropdownToggle"
-                data-ouia-safe={true}
                 disabled={false}
                 id="pagination-options-menu-bottom-toggle-0"
                 onClick={[Function]}
@@ -2717,7 +2700,6 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -2754,7 +2736,6 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -2812,7 +2793,6 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >
@@ -2849,7 +2829,6 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-ouia-safe={true}
                 disabled={true}
                 onClick={[Function]}
-                role={null}
                 tabIndex={null}
                 type="button"
               >

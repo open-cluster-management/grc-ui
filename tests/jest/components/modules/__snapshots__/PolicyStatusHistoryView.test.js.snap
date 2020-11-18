@@ -3,6 +3,7 @@
 exports[`PolicyTemplateDetailsView component renders as expected -- empty list 1`] = `
 PolicyStatusHistoryView {
   "context": Object {},
+  "handleSearch": [Function],
   "props": Object {
     "cluster": "ironman",
     "history": Array [],
@@ -10,7 +11,9 @@ PolicyStatusHistoryView {
   },
   "refs": Object {},
   "setState": [Function],
-  "state": null,
+  "state": Object {
+    "searchValue": "",
+  },
   "updater": Updater {
     "_callbacks": Array [],
     "_renderer": ReactShallowRenderer {
@@ -105,11 +108,13 @@ PolicyStatusHistoryView {
                 },
               ]
             }
+            handleSearch={[Function]}
             noResultMsg="No results found"
             pagination={true}
             perPage={10}
             rows={Array []}
             searchPlaceholder="Find"
+            searchValue=""
             searchable={true}
             sortBy={
               Object {
@@ -131,6 +136,7 @@ PolicyStatusHistoryView {
 exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
 PolicyStatusHistoryView {
   "context": Object {},
+  "handleSearch": [Function],
   "props": Object {
     "cluster": "ironman",
     "history": Array [
@@ -151,7 +157,9 @@ PolicyStatusHistoryView {
   },
   "refs": Object {},
   "setState": [Function],
-  "state": null,
+  "state": Object {
+    "searchValue": "",
+  },
   "updater": Updater {
     "_callbacks": Array [],
     "_renderer": ReactShallowRenderer {
@@ -261,6 +269,7 @@ PolicyStatusHistoryView {
                 },
               ]
             }
+            handleSearch={[Function]}
             noResultMsg="No results found"
             pagination={true}
             perPage={10}
@@ -329,6 +338,7 @@ PolicyStatusHistoryView {
               ]
             }
             searchPlaceholder="Find"
+            searchValue=""
             searchable={true}
             sortBy={
               Object {
@@ -350,6 +360,7 @@ PolicyStatusHistoryView {
 exports[`PolicyTemplateDetailsView component renders as expected with pagination 1`] = `
 PolicyStatusHistoryView {
   "context": Object {},
+  "handleSearch": [Function],
   "props": Object {
     "cluster": "ironman",
     "history": Array [
@@ -430,7 +441,9 @@ PolicyStatusHistoryView {
   },
   "refs": Object {},
   "setState": [Function],
-  "state": null,
+  "state": Object {
+    "searchValue": "",
+  },
   "updater": Updater {
     "_callbacks": Array [],
     "_renderer": ReactShallowRenderer {
@@ -600,6 +613,7 @@ PolicyStatusHistoryView {
                 },
               ]
             }
+            handleSearch={[Function]}
             noResultMsg="No results found"
             pagination={true}
             perPage={10}
@@ -968,6 +982,7 @@ PolicyStatusHistoryView {
               ]
             }
             searchPlaceholder="Find"
+            searchValue=""
             searchable={true}
             sortBy={
               Object {

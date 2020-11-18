@@ -139,7 +139,6 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
       disabled={false}
       id="create-policy"
       onClick={[Function]}
-      role={null}
       type="button"
     >
       Create policy
@@ -257,7 +256,6 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
       disabled={false}
       id="create-policy"
       onClick={[Function]}
-      role={null}
       type="button"
     >
       Create policy
