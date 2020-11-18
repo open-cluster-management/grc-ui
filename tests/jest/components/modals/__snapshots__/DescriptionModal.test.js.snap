@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`DescriptionModal render test shallow wrapper Stateless instance should be null since react 16 1`] = `null`;

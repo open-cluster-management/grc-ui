@@ -12,19 +12,17 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { ResourceModal } from '../../../../src-web/components/modals/ResourceModal'
-import { resourceModalData, resourceModalYAML } from './ModalsTestingData'
+import {
+  resourceModalData, resourceModalYAML, editResourceModalLabels, resourceType
+} from './ModalsTestingData'
 
 describe('CreateResourceModal modal', () => {
   it('renders as expected', () => {
     const component = shallow(<ResourceModal
       open={true}
-      label={{
-        'primaryBtn':'modal.button.submit',
-        'label':'modal.edit-hcmcompliance.label',
-        'heading':'modal.edit-hcmcompliance.heading'
-      }}
+      label={editResourceModalLabels}
       locale={'en-US'}
-      resourceType={{'name':'HCMCompliance','list':'ALL_POLICIES'}}
+      resourceType={resourceType}
       data={resourceModalData}
     />)
     expect(component.instance()).toMatchSnapshot()
@@ -34,13 +32,9 @@ describe('CreateResourceModal modal', () => {
     const component = shallow(<ResourceModal
       reqCount={2}
       open={true}
-      label={{
-        'primaryBtn':'modal.button.submit',
-        'label':'modal.edit-hcmcompliance.label',
-        'heading':'modal.edit-hcmcompliance.heading'
-      }}
+      label={editResourceModalLabels}
       locale={'en-US'}
-      resourceType={{'name':'HCMCompliance','list':'ALL_POLICIES'}}
+      resourceType={resourceType}
       data={resourceModalData}
     />)
     expect(component.instance()).toMatchSnapshot()
@@ -61,13 +55,9 @@ describe('CreateResourceModal modal', () => {
     }
     const component = shallow(<ResourceModal
       open={true}
-      label={{
-        'primaryBtn':'modal.button.submit',
-        'label':'modal.edit-hcmcompliance.label',
-        'heading':'modal.edit-hcmcompliance.heading'
-      }}
+      label={editResourceModalLabels}
       locale={'en-US'}
-      resourceType={{'name':'HCMCompliance','list':'ALL_POLICIES'}}
+      resourceType={resourceType}
       clearRequestStatus={jest.fn()}
       handleClose={jest.fn()}
       data={resourceModalData}
