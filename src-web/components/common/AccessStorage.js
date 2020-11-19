@@ -50,9 +50,7 @@ export const replaceSessionPair = (sessionName, key, value) => {
 // append session value on the given key
 export const addSessionPair = (sessionName, key, value) => {
   const state = getSessionState(sessionName)
-  if (key) {
-    state[key] ? state[key] = new Set(state[key]) : state[key] = new Set()
-    state[key].add(value)
-  }
+  state[key] = new Set(state[key])
+  state[key].add(value)
   saveSessionState(sessionName, state)
 }
