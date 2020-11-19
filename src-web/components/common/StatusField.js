@@ -10,41 +10,44 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from 'carbon-components-react'
+import {
+  GreenCheckCircleIcon,
+  YellowExclamationTriangleIcon,
+  RedExclamationCircleIcon
+} from './Icons'
 
 class StatusField extends React.PureComponent {
   static propTypes = {
-    status: PropTypes.oneOf(['ok', 'warning', 'failed', 'critical', 'offline', 'unknown']),
+    status: PropTypes.oneOf(['ok', 'warning', 'failed', 'critical', 'offline', 'unknown', 'invalid', 'compliant', 'noncompliant']),
     text: PropTypes.string
   }
 
   render() {
-    let iconName
-    let className
-    switch (this.props.status) {
+    let IconName
+    const status = this.props.status
+    const className = status
+    switch (status) {
     case 'ok':
-      iconName = 'icon--checkmark--glyph'
-      className = 'healthy'
-      break
-    case 'warning':
-      iconName = 'icon--warning--glyph'
-      className = 'warning'
+    case 'compliant':
+      IconName = GreenCheckCircleIcon
       break
     case 'failed':
     case 'critical':
-    case 'offline':
-      iconName = 'icon--error--glyph'
-      className = 'critical'
+    case 'noncompliant':
+      IconName = RedExclamationCircleIcon
       break
+    case 'warning':
+    case 'offline':
+    case 'invalid':
     case 'unknown':
     default :
-      className = 'unknown'
+      IconName = YellowExclamationTriangleIcon
       break
     }
     return (
       <div className='table-status-row'>
-        <div className='table-status-icon'>
-          {iconName && <Icon className={`table-status-icon__${className}`} name={iconName} description='Status Icon' /> }
+        <div className={`table-status-icon table-status-icon__${className}`}>
+          {<IconName /> }
         </div>
         <p>{this.props.text}</p>
       </div>

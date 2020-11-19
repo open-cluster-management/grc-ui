@@ -141,6 +141,7 @@
   "policy.details": "Policy details",
   "policy.status.compliant": "compliant",
   "policy.status.noncompliant": "not compliant",
+  "policy.status.unknown": "no status",
   "policy.template": "Template",
   "policy.template.details": "Template details",
   "grc.header.tooltip": "A core service that enables operators to define multicluster policies needed to meet enterprise requirements and standards.",

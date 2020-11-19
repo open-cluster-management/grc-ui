@@ -176,13 +176,16 @@ export function getPolicyCompliantStatus(item, locale) {
     )
   }
   const statusArray = _.get(item, 'clusterCompliant').split('/')
+  const violationCount = parseInt(statusArray[0], 10)
+  const totalCount = parseInt(statusArray[1], 10)
+  const unknownCount = statusArray.length === 3 ? parseInt(statusArray[2], 10) : 0
   return (
     <div className='violationCell'>
-      { parseInt(statusArray[0], 10) > 0 ?
+      { violationCount > 0 ?
         <RedExclamationCircleIcon tooltip={msgs.get('table.tooltip.noncompliant', locale)} /> :
-        <GreenCheckCircleIcon tooltip={msgs.get('table.tooltip.compliant', locale)} /> }
-      { parseInt(statusArray[2], 10) > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
-      {`${statusArray[0]}/${statusArray[1]}`}
+        totalCount > unknownCount && <GreenCheckCircleIcon tooltip={msgs.get('table.tooltip.compliant', locale)} />}
+      { unknownCount > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
+      {`${violationCount}/${totalCount}`}
     </div>
   )
 }
