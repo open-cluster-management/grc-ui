@@ -18,7 +18,6 @@ let RemoveResourceModal, ResourceModal, PolicyActionModal
 const Modal = ({ type, open, ...rest }) => {
   switch (type) {
   case 'resource-remove':
-    console.log(open && getRemoveResourceModal({ type, open, ...rest }))
     return open && getRemoveResourceModal({ type, open, ...rest })
   case 'resource-edit':
     return open && getResourceModal({ type, open, ...rest })
