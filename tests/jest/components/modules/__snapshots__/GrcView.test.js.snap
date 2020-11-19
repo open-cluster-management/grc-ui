@@ -401,17 +401,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
               "label": "tabs.grc.all",
               "url": "/multicloud/policies/all",
             },
-            Object {
-              "id": "grc-findings",
-              "index": 2,
-              "label": "tabs.grc.findings",
-              "url": "/multicloud/policies/findings",
-            },
           ],
           "title": "routes.grc",
         }
       }
-      showApplications={true}
       title="Test1"
     />
   </BrowserRouter>
