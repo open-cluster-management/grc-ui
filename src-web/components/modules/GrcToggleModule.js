@@ -59,14 +59,16 @@ class GrcToggleModule extends React.Component {
           <ToggleGroupItem
             buttonId={'grc-policies-view'}
             onChange={handleToggleClick}
-            isSelected={grcTabToggleIndex===0}>
-            {msgs.get('tabs.grc.toggle.allPolicies', locale)}
+            isSelected={grcTabToggleIndex===0}
+            text={msgs.get('tabs.grc.toggle.allPolicies', locale)}
+            >
           </ToggleGroupItem>
           <ToggleGroupItem
             buttonId={'grc-cluster-view'}
             onChange={handleToggleClick}
-            isSelected={grcTabToggleIndex===1}>
-            {msgs.get('tabs.grc.toggle.clusterViolations', locale)}
+            isSelected={grcTabToggleIndex===1}
+            text={msgs.get('tabs.grc.toggle.clusterViolations', locale)}
+          >
           </ToggleGroupItem>
         </ToggleGroup>}
         <div className='resource-table'>
