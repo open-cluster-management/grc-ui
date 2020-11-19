@@ -25,11 +25,6 @@ import configureMockStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import { createMemoryHistory } from 'history'
-import {
-  ExclamationCircleIcon as MockExclamationCircleIcon,
-  ExclamationTriangleIcon as MockExclamationTriangleIcon,
-  CheckCircleIcon as MockCheckCircleIcon,
-} from '@patternfly/react-icons'
 
 const mockStore = configureMockStore()
 const storePolicyCluster = mockStore(reduxStorePolicyCluster)
@@ -44,17 +39,6 @@ const history = createMemoryHistory({
 })
 // Set key so that it's not regenerated every time
 history.location.key='s4wxvc'
-
-// mock Icons so that tooltip won't render in any cases
-// otherwise it is going to throw TypeError: element.addEventListener is not a function
-// because renderer doesn't have dom
-jest.mock('../../../../src-web/components/common/Icons', () => {
-  return {
-    GreenCheckCircleIcon: () => <MockCheckCircleIcon color='#467f40' />,
-    RedExclamationCircleIcon: () => <MockExclamationCircleIcon color='#c9190b' />,
-    YellowExclamationTriangleIcon: () => <MockExclamationTriangleIcon color='#f0ab00' />,
-  }
-})
 
 describe('GrcView component 1', () => {
   const location = {
@@ -74,7 +58,6 @@ describe('GrcView component 1', () => {
             grcItems={GrcViewPolicyCluster2}
             refreshControl={GrcViewRefreshControl}
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
-            showApplications={true}
           />
         </BrowserRouter>
       </Provider>

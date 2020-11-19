@@ -10,7 +10,7 @@ import {
 } from '../../../../src-web/components/common/Icons'
 import toJson from 'enzyme-to-json'
 
-describe('test coponent GreenCheckCircleIcon', () => {
+describe('test component GreenCheckCircleIcon', () => {
   it('renders as expected', () => {
     const component = mount(
       <GreenCheckCircleIcon />
@@ -26,7 +26,7 @@ describe('test coponent GreenCheckCircleIcon', () => {
 
 })
 
-describe('test coponent RedExclamationCircleIcon', () => {
+describe('test component RedExclamationCircleIcon', () => {
   it('renders as expected', () => {
     const component = mount(
       <RedExclamationCircleIcon />
@@ -42,7 +42,7 @@ describe('test coponent RedExclamationCircleIcon', () => {
 })
 
 
-describe('test coponent YellowExclamationTriangleIcon', () => {
+describe('test component YellowExclamationTriangleIcon', () => {
   it('renders as expected', () => {
     const component = mount(
       <YellowExclamationTriangleIcon tooltip='aaaa' />

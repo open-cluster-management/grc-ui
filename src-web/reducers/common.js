@@ -77,7 +77,6 @@ export const INITIAL_STATE = {
   postStatusCode: undefined,
   postErrorMsg: '',
   pendingActions: [],
-  clientSideFilters: undefined,
 }
 
 function searchTableCell(item, tableKey, context, searchText){

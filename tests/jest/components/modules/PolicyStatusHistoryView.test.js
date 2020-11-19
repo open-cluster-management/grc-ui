@@ -97,7 +97,7 @@ const longData =  [
   },
 ]
 
-describe('PolicyTemplateDetailsView component', () => {
+describe('PolicyStatusHistoryView component', () => {
   it('renders as expected', () => {
     const component = shallow(
       <PolicyStatusHistoryView

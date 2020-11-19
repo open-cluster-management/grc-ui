@@ -85,7 +85,6 @@ module.exports = {
     testCreateCustomSelections,
     testDetailsPage,
     testFilters,
-    testPolicySidePanel,
     updateYamlEditor,
     // verifyPagination,
     verifyPolicyTable,
@@ -193,17 +192,6 @@ function verifyToggle() {
 //   this.click('.bx--pagination__button.bx--pagination__button--backward')
 //   this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="10"]')
 // }
-/* Test side panel */
-function testPolicySidePanel() {
-  this.click('@overflowMenuToggle')
-  this.click('@overflowViewClusters')
-  this.waitForElementVisible('@sidePolicyPanel')
-  this.waitForElementNotPresent('@spinner')
-  this.expect.element('@sidePolicyPanelClusterLink').text.to.equal('Launch cluster')
-  this.expect.element('@sidePolicyPanelClusterLink').to.have.attribute('href').to.startWith('https://console')
-  this.click('@sidePolicyPanelClose')
-  this.waitForElementNotPresent('@sidePolicyPanel')
-}
 /* Test policy filters on the policy summary page */
 function testFilters(spec = {}) {
   const headings = [ 'Standards', 'Categories', 'Controls', 'Type' ]
@@ -212,6 +200,7 @@ function testFilters(spec = {}) {
   this.expect.element('@filterMenu').to.be.present
   // Wait for filter menu opening animation to finish
   this.waitForElementVisible('@filterSectionTitles')
+  this.pause(500)
   // Check for proper headings and click checkboxes that match policy
   for (let i = 0; i < headings.length; i++) {
     this.api.element('xpath', `//div[contains(@class,"filter-section-title") and text()="${headings[i]}"]`, (result) => {

@@ -74,7 +74,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
               onClick={[Function]}
               tabIndex={-1}
             >
-              Application
+              Policies
             </a>
             <svg
               alt="show menu options"
@@ -99,7 +99,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
           >
             <li
               className="bx--tabs__nav-item bx--tabs__nav-item--selected"
-              id="dashboard-application"
+              id="grc-all"
               onClick={[Function]}
               onKeyDown={[Function]}
               role="presentation"
@@ -109,11 +109,11 @@ exports[`SecondaryHeader component 2 renders clickable as expected 1`] = `
               <a
                 aria-selected={true}
                 className="bx--tabs__nav-link"
-                href="/multicloud/dashboard"
+                href="/multicloud/policies/all"
                 role="tab"
                 tabIndex={0}
               >
-                Application
+                Policies
               </a>
             </li>
           </ul>
@@ -192,7 +192,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
               onClick={[Function]}
               tabIndex={-1}
             >
-              Application
+              Policies
             </a>
             <svg
               alt="show menu options"
@@ -217,7 +217,7 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
           >
             <li
               className="bx--tabs__nav-item bx--tabs__nav-item--selected"
-              id="dashboard-application"
+              id="grc-all"
               onClick={[Function]}
               onKeyDown={[Function]}
               role="presentation"
@@ -227,11 +227,11 @@ exports[`SecondaryHeader component 2 renders clickable as expected 2`] = `
               <a
                 aria-selected={true}
                 className="bx--tabs__nav-link"
-                href="/multicloud/dashboard"
+                href="/multicloud/policies/all"
                 role="tab"
                 tabIndex={0}
               >
-                Application
+                Policies
               </a>
             </li>
           </ul>
@@ -299,9 +299,9 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
           triggerHref="#"
         >
           <Tab
-            href="/multicloud/dashboard"
-            id="dashboard-application"
-            label="Application"
+            href="/multicloud/policies/all"
+            id="grc-all"
+            label="Policies"
             onClick={[Function]}
             onKeyDown={[Function]}
             role="presentation"
@@ -315,7 +315,7 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
   <div
     className="secondary-header-links"
   >
-    <Tooltip
+    <mockTooltip
       content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
       zIndex={10001}
     >
@@ -332,7 +332,7 @@ exports[`SecondaryHeader component 2 renders nonclickable as expected 1`] = `
           Create policy
         </Button>
       </div>
-    </Tooltip>
+    </mockTooltip>
   </div>
 </div>
 `;
@@ -381,7 +381,7 @@ exports[`SecondaryHeader component 3 renders as expected 1`] = `
               onClick={[Function]}
               tabIndex={-1}
             >
-              Application
+              Policies
             </a>
             <svg
               alt="show menu options"
@@ -406,7 +406,7 @@ exports[`SecondaryHeader component 3 renders as expected 1`] = `
           >
             <li
               className="bx--tabs__nav-item bx--tabs__nav-item--selected"
-              id="logs-tab1"
+              id="logs-tab2"
               onClick={[Function]}
               onKeyDown={[Function]}
               role="presentation"
@@ -416,30 +416,11 @@ exports[`SecondaryHeader component 3 renders as expected 1`] = `
               <a
                 aria-selected={true}
                 className="bx--tabs__nav-link"
-                href="/multicloud/dashboard"
+                href="/hello"
                 role="tab"
                 tabIndex={0}
               >
-                Application
-              </a>
-            </li>
-            <li
-              className="bx--tabs__nav-item"
-              id="logs-tab2"
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              role="presentation"
-              selected={false}
-              tabIndex={-1}
-            >
-              <a
-                aria-selected={false}
-                className="bx--tabs__nav-link"
-                href="/hello"
-                role="tab"
-                tabIndex={-1}
-              >
-                provide a label
+                Policies
               </a>
             </li>
           </ul>
@@ -448,11 +429,6 @@ exports[`SecondaryHeader component 3 renders as expected 1`] = `
           aria-hidden={false}
           hidden={false}
           selected={true}
-        />
-        <div
-          aria-hidden={true}
-          hidden={true}
-          selected={false}
         />
       </div>
     </header>
@@ -569,7 +545,7 @@ exports[`SecondaryHeader component 5 renderHeader without description 1`] = `
 
 exports[`SecondaryHeader component 5 renderLinks nonclickable as expected 1`] = `
 Array [
-  <Tooltip
+  <mockTooltip
     content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
     zIndex={10001}
   >
@@ -586,7 +562,7 @@ Array [
         Create policy
       </Button>
     </div>
-  </Tooltip>,
+  </mockTooltip>,
 ]
 `;
 

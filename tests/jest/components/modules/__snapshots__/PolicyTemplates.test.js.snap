@@ -22,72 +22,80 @@ exports[`PolicyTemplatesView component renders as expected 1`] = `
         className="yaml-editor-button"
       >
         <div
-          aria-describedby="pf-tooltip-1"
-          className="disable-tooltip"
+          content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
+          data-testid="mockTooltip"
         >
-          <button
-            className="read-only-button bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
-            disabled={true}
-            id="edit-button"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
+          <div
+            className="disable-tooltip"
           >
-            Edit
-            <svg
-              alt="Provide icon description if icon is used"
-              aria-hidden={true}
-              aria-label="Provide icon description if icon is used"
-              className="bx--btn__icon"
-              fillRule="evenodd"
-              height="16"
-              name="add--glyph"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
+            <button
+              className="read-only-button bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
+              disabled={true}
+              id="edit-button"
+              onClick={[Function]}
+              tabIndex={0}
+              type="button"
             >
-              <title>
-                Provide icon description if icon is used
-              </title>
-              <path
-                d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
-              />
-            </svg>
-          </button>
+              Edit
+              <svg
+                alt="Provide icon description if icon is used"
+                aria-hidden={true}
+                aria-label="Provide icon description if icon is used"
+                className="bx--btn__icon"
+                fillRule="evenodd"
+                height="16"
+                name="add--glyph"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+              >
+                <title>
+                  Provide icon description if icon is used
+                </title>
+                <path
+                  d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
         <div
-          aria-describedby="pf-tooltip-2"
-          className="disable-tooltip"
+          content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
+          data-testid="mockTooltip"
         >
-          <button
-            className="bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
-            disabled={true}
-            id="submit-button"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
+          <div
+            className="disable-tooltip"
           >
-            Submit
-            <svg
-              alt="Provide icon description if icon is used"
-              aria-hidden={true}
-              aria-label="Provide icon description if icon is used"
-              className="bx--btn__icon"
-              fillRule="evenodd"
-              height="16"
-              name="add--glyph"
-              role="img"
-              viewBox="0 0 16 16"
-              width="16"
+            <button
+              className="bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
+              disabled={true}
+              id="submit-button"
+              onClick={[Function]}
+              tabIndex={0}
+              type="button"
             >
-              <title>
-                Provide icon description if icon is used
-              </title>
-              <path
-                d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
-              />
-            </svg>
-          </button>
+              Submit
+              <svg
+                alt="Provide icon description if icon is used"
+                aria-hidden={true}
+                aria-label="Provide icon description if icon is used"
+                className="bx--btn__icon"
+                fillRule="evenodd"
+                height="16"
+                name="add--glyph"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+              >
+                <title>
+                  Provide icon description if icon is used
+                </title>
+                <path
+                  d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
