@@ -85,7 +85,6 @@ module.exports = {
     testCreateCustomSelections,
     testDetailsPage,
     testFilters,
-    testPolicySidePanel,
     updateYamlEditor,
     // verifyPagination,
     verifyPolicyTable,
@@ -193,17 +192,6 @@ function verifyToggle() {
 //   this.click('.bx--pagination__button.bx--pagination__button--backward')
 //   this.click('select[id="bx-pagination-select-resource-table-pagination"] option[value="10"]')
 // }
-/* Test side panel */
-function testPolicySidePanel() {
-  this.click('@overflowMenuToggle')
-  this.click('@overflowViewClusters')
-  this.waitForElementVisible('@sidePolicyPanel')
-  this.waitForElementNotPresent('@spinner')
-  this.expect.element('@sidePolicyPanelClusterLink').text.to.equal('Launch cluster')
-  this.expect.element('@sidePolicyPanelClusterLink').to.have.attribute('href').to.startWith('https://console')
-  this.click('@sidePolicyPanelClose')
-  this.waitForElementNotPresent('@sidePolicyPanel')
-}
 /* Test policy filters on the policy summary page */
 function testFilters(spec = {}) {
   const headings = [ 'Standards', 'Categories', 'Controls', 'Type' ]

@@ -21,7 +21,6 @@ import {
 
 export default {
   tableActions: [
-    // 'table.actions.policy.policies.sidepanel',
     'table.actions.edit',
     'table.actions.disable',
     'table.actions.enforce',
