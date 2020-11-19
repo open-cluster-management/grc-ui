@@ -200,6 +200,7 @@ function testFilters(spec = {}) {
   this.expect.element('@filterMenu').to.be.present
   // Wait for filter menu opening animation to finish
   this.waitForElementVisible('@filterSectionTitles')
+  this.pause(500)
   // Check for proper headings and click checkboxes that match policy
   for (let i = 0; i < headings.length; i++) {
     this.api.element('xpath', `//div[contains(@class,"filter-section-title") and text()="${headings[i]}"]`, (result) => {
