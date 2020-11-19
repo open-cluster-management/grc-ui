@@ -140,11 +140,11 @@ Array [
         "remediationAction": "enforce",
       },
       "status": Object {
-        "placementBindings": Array [
-          "binding-my-policy-test",
-        ],
-        "placementPolicies": Array [
-          "placement-my-policy-test",
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-my-policy-test",
+            "placementRule": "placement-my-policy-test",
+          },
         ],
         "status": Object {
           "cluster1": Object {
@@ -290,11 +290,11 @@ Array [
         "remediationAction": "enforce",
       },
       "status": Object {
-        "placementBindings": Array [
-          "binding-ma",
-        ],
-        "placementPolicies": Array [
-          "placement-ma",
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-ma",
+            "placementRule": "placement-ma",
+          },
         ],
         "status": Object {
           "cluster1": Object {
@@ -435,11 +435,11 @@ Array [
         "remediationAction": "inform",
       },
       "status": Object {
-        "placementBindings": Array [
-          "binding-pod",
-        ],
-        "placementPolicies": Array [
-          "placement-pod",
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-pod",
+            "placementRule": "placement-pod",
+          },
         ],
         "status": Object {
           "cluster1": Object {
@@ -595,11 +595,11 @@ Array [
         ],
       },
       "status": Object {
-        "placementBindings": Array [
-          "binding-role",
-        ],
-        "placementPolicies": Array [
-          "placement-role",
+        "placement": Array [
+          Object {
+            "placementBinding": "binding-role",
+            "placementRule": "placement-role",
+          },
         ],
         "status": Object {
           "cluster1": Object {

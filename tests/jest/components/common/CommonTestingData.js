@@ -305,11 +305,11 @@ export const policies = [
         'remediationAction': 'enforce'
       },
       'status': {
-        'placementBindings': [
-          'binding-my-policy-test'
-        ],
-        'placementPolicies': [
-          'placement-my-policy-test'
+        'placement': [
+          {
+            'placementBinding': 'binding-my-policy-test',
+            'placementRule': 'placement-my-policy-test',
+          },
         ],
         'status': {
           'cluster1': {
@@ -439,11 +439,11 @@ export const policies = [
         'remediationAction': 'enforce'
       },
       'status': {
-        'placementBindings': [
-          'binding-ma'
-        ],
-        'placementPolicies': [
-          'placement-ma'
+        'placement': [
+          {
+            'placementBinding': 'binding-ma',
+            'placementRule': 'placement-ma',
+          },
         ],
         'status': {
           'cluster1': {
@@ -570,11 +570,11 @@ export const policies = [
         'remediationAction': 'inform'
       },
       'status': {
-        'placementBindings': [
-          'binding-pod'
-        ],
-        'placementPolicies': [
-          'placement-pod'
+        'placement': [
+          {
+            'placementBinding': 'binding-pod',
+            'placementRule': 'placement-pod',
+          },
         ],
         'status': {
           'cluster1': {
@@ -714,11 +714,11 @@ export const policies = [
         ]
       },
       'status': {
-        'placementBindings': [
-          'binding-role'
-        ],
-        'placementPolicies': [
-          'placement-role'
+        'placement': [
+          {
+            'placementBinding': 'binding-role',
+            'placementRule': 'placement-role',
+          },
         ],
         'status': {
           'cluster1': {
@@ -885,11 +885,11 @@ export const policies2 = [
         'remediationAction': 'enforce'
       },
       'status': {
-        'placementBindings': [
-          'binding-my-policy-test'
-        ],
-        'placementPolicies': [
-          'placement-my-policy-test'
+        'placement': [
+          {
+            'placementBinding': 'binding-my-policy-test',
+            'placementRule': 'placement-my-policy-test',
+          },
         ],
         'status': {
           'cluster1': 'Compliant',
@@ -994,11 +994,11 @@ export const policies3 = [
         'remediationAction': 'enforce'
       },
       'status': {
-        'placementBindings': [
-          'binding-policy-crontab'
-        ],
-        'placementPolicies': [
-          'placement-policy-crontab'
+        'placement': [
+          {
+            'placementBinding': 'binding-crontab',
+            'placementRule': 'placement-crontab',
+          },
         ],
         'status': {
           'calamari': {
@@ -1336,11 +1336,11 @@ export const policies3 = [
         'remediationAction': 'enforce'
       },
       'status': {
-        'placementBindings': [
-          'binding-policy-imagemanifestvulnpolicy'
-        ],
-        'placementPolicies': [
-          'placement-policy-imagemanifestvulnpolicy'
+        'placement': [
+          {
+            'placementBinding': 'binding-imagemanifestvulnpolicy',
+            'placementRule': 'placement-imagemanifestvulnpolicy',
+          },
         ],
         'status': {
           'calamari': {

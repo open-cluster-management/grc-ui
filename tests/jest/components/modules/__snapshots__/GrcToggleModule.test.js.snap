@@ -1897,11 +1897,11 @@ GrcToggleModule {
             "remediationAction": "enforce",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-my-policy",
-            ],
-            "placementPolicies": Array [
-              "placement-my-policy",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-my-policy",
+                "placementRule": "placement-my-policy",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -2033,11 +2033,11 @@ GrcToggleModule {
             "remediationAction": "enforce",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-ma",
-            ],
-            "placementPolicies": Array [
-              "placement-ma",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-ma",
+                "placementRule": "placement-ma",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -2164,11 +2164,11 @@ GrcToggleModule {
             "remediationAction": "inform",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-pod",
-            ],
-            "placementPolicies": Array [
-              "placement-pod",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-pod",
+                "placementRule": "placement-pod",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -2310,11 +2310,11 @@ GrcToggleModule {
             ],
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-role",
-            ],
-            "placementPolicies": Array [
-              "placement-role",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-role",
+                "placementRule": "placement-role",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -2512,11 +2512,11 @@ GrcToggleModule {
                   "remediationAction": "enforce",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-my-policy",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-my-policy",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-my-policy",
+                      "placementRule": "placement-my-policy",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -2648,11 +2648,11 @@ GrcToggleModule {
                   "remediationAction": "enforce",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-ma",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-ma",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-ma",
+                      "placementRule": "placement-ma",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -2779,11 +2779,11 @@ GrcToggleModule {
                   "remediationAction": "inform",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-pod",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-pod",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-pod",
+                      "placementRule": "placement-pod",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -2925,11 +2925,11 @@ GrcToggleModule {
                   ],
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-role",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-role",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-role",
+                      "placementRule": "placement-role",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -3124,11 +3124,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-my-policy",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-my-policy",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-my-policy",
+                        "placementRule": "placement-my-policy",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -3260,11 +3260,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-ma",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-ma",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-ma",
+                        "placementRule": "placement-ma",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -3391,11 +3391,11 @@ GrcToggleModule {
                     "remediationAction": "inform",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-pod",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-pod",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-pod",
+                        "placementRule": "placement-pod",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -3537,11 +3537,11 @@ GrcToggleModule {
                     ],
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-role",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-role",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-role",
+                        "placementRule": "placement-role",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -3683,11 +3683,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-my-policy",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-my-policy",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-my-policy",
+                        "placementRule": "placement-my-policy",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -3833,11 +3833,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-ma",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-ma",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-ma",
+                        "placementRule": "placement-ma",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -3978,11 +3978,11 @@ GrcToggleModule {
                     "remediationAction": "inform",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-pod",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-pod",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-pod",
+                        "placementRule": "placement-pod",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -4138,11 +4138,11 @@ GrcToggleModule {
                     ],
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-role",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-role",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-role",
+                        "placementRule": "placement-role",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -4474,11 +4474,11 @@ GrcToggleModule {
             "remediationAction": "enforce",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-my-policy",
-            ],
-            "placementPolicies": Array [
-              "placement-my-policy",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-my-policy",
+                "placementRule": "placement-my-policy",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -4610,11 +4610,11 @@ GrcToggleModule {
             "remediationAction": "enforce",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-ma",
-            ],
-            "placementPolicies": Array [
-              "placement-ma",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-ma",
+                "placementRule": "placement-ma",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -4741,11 +4741,11 @@ GrcToggleModule {
             "remediationAction": "inform",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-pod",
-            ],
-            "placementPolicies": Array [
-              "placement-pod",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-pod",
+                "placementRule": "placement-pod",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -4887,11 +4887,11 @@ GrcToggleModule {
             ],
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-role",
-            ],
-            "placementPolicies": Array [
-              "placement-role",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-role",
+                "placementRule": "placement-role",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -5089,11 +5089,11 @@ GrcToggleModule {
                   "remediationAction": "enforce",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-my-policy",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-my-policy",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-my-policy",
+                      "placementRule": "placement-my-policy",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -5225,11 +5225,11 @@ GrcToggleModule {
                   "remediationAction": "enforce",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-ma",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-ma",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-ma",
+                      "placementRule": "placement-ma",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -5356,11 +5356,11 @@ GrcToggleModule {
                   "remediationAction": "inform",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-pod",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-pod",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-pod",
+                      "placementRule": "placement-pod",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -5502,11 +5502,11 @@ GrcToggleModule {
                   ],
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-role",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-role",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-role",
+                      "placementRule": "placement-role",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -5701,11 +5701,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-my-policy",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-my-policy",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-my-policy",
+                        "placementRule": "placement-my-policy",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -5837,11 +5837,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-ma",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-ma",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-ma",
+                        "placementRule": "placement-ma",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -5968,11 +5968,11 @@ GrcToggleModule {
                     "remediationAction": "inform",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-pod",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-pod",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-pod",
+                        "placementRule": "placement-pod",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -6114,11 +6114,11 @@ GrcToggleModule {
                     ],
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-role",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-role",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-role",
+                        "placementRule": "placement-role",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -6260,11 +6260,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-my-policy",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-my-policy",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-my-policy",
+                        "placementRule": "placement-my-policy",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -6410,11 +6410,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-ma",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-ma",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-ma",
+                        "placementRule": "placement-ma",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -6555,11 +6555,11 @@ GrcToggleModule {
                     "remediationAction": "inform",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-pod",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-pod",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-pod",
+                        "placementRule": "placement-pod",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -6715,11 +6715,11 @@ GrcToggleModule {
                     ],
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-role",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-role",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-role",
+                        "placementRule": "placement-role",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -7029,11 +7029,11 @@ GrcToggleModule {
             "remediationAction": "enforce",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-my-policy",
-            ],
-            "placementPolicies": Array [
-              "placement-my-policy",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-my-policy",
+                "placementRule": "placement-my-policy",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -7165,11 +7165,11 @@ GrcToggleModule {
             "remediationAction": "enforce",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-ma",
-            ],
-            "placementPolicies": Array [
-              "placement-ma",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-ma",
+                "placementRule": "placement-ma",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -7296,11 +7296,11 @@ GrcToggleModule {
             "remediationAction": "inform",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-pod",
-            ],
-            "placementPolicies": Array [
-              "placement-pod",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-pod",
+                "placementRule": "placement-pod",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -7442,11 +7442,11 @@ GrcToggleModule {
             ],
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-role",
-            ],
-            "placementPolicies": Array [
-              "placement-role",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-role",
+                "placementRule": "placement-role",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -7644,11 +7644,11 @@ GrcToggleModule {
                   "remediationAction": "enforce",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-my-policy",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-my-policy",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-my-policy",
+                      "placementRule": "placement-my-policy",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -7780,11 +7780,11 @@ GrcToggleModule {
                   "remediationAction": "enforce",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-ma",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-ma",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-ma",
+                      "placementRule": "placement-ma",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -7911,11 +7911,11 @@ GrcToggleModule {
                   "remediationAction": "inform",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-pod",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-pod",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-pod",
+                      "placementRule": "placement-pod",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -8057,11 +8057,11 @@ GrcToggleModule {
                   ],
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-role",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-role",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-role",
+                      "placementRule": "placement-role",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -8256,11 +8256,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-my-policy",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-my-policy",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-my-policy",
+                        "placementRule": "placement-my-policy",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -8392,11 +8392,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-ma",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-ma",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-ma",
+                        "placementRule": "placement-ma",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -8523,11 +8523,11 @@ GrcToggleModule {
                     "remediationAction": "inform",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-pod",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-pod",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-pod",
+                        "placementRule": "placement-pod",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -8669,11 +8669,11 @@ GrcToggleModule {
                     ],
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-role",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-role",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-role",
+                        "placementRule": "placement-role",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -8815,11 +8815,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-my-policy",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-my-policy",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-my-policy",
+                        "placementRule": "placement-my-policy",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -8965,11 +8965,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-ma",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-ma",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-ma",
+                        "placementRule": "placement-ma",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -9110,11 +9110,11 @@ GrcToggleModule {
                     "remediationAction": "inform",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-pod",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-pod",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-pod",
+                        "placementRule": "placement-pod",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -9270,11 +9270,11 @@ GrcToggleModule {
                     ],
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-role",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-role",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-role",
+                        "placementRule": "placement-role",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -9606,11 +9606,11 @@ GrcToggleModule {
             "remediationAction": "enforce",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-my-policy",
-            ],
-            "placementPolicies": Array [
-              "placement-my-policy",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-my-policy",
+                "placementRule": "placement-my-policy",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -9742,11 +9742,11 @@ GrcToggleModule {
             "remediationAction": "enforce",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-ma",
-            ],
-            "placementPolicies": Array [
-              "placement-ma",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-ma",
+                "placementRule": "placement-ma",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -9873,11 +9873,11 @@ GrcToggleModule {
             "remediationAction": "inform",
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-pod",
-            ],
-            "placementPolicies": Array [
-              "placement-pod",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-pod",
+                "placementRule": "placement-pod",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -10019,11 +10019,11 @@ GrcToggleModule {
             ],
           },
           "status": Object {
-            "placementBindings": Array [
-              "binding-role",
-            ],
-            "placementPolicies": Array [
-              "placement-role",
+            "placement": Array [
+              Object {
+                "placementBinding": "binding-role",
+                "placementRule": "placement-role",
+              },
             ],
             "status": Object {
               "cluster1": Object {
@@ -10221,11 +10221,11 @@ GrcToggleModule {
                   "remediationAction": "enforce",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-my-policy",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-my-policy",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-my-policy",
+                      "placementRule": "placement-my-policy",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -10357,11 +10357,11 @@ GrcToggleModule {
                   "remediationAction": "enforce",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-ma",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-ma",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-ma",
+                      "placementRule": "placement-ma",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -10488,11 +10488,11 @@ GrcToggleModule {
                   "remediationAction": "inform",
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-pod",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-pod",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-pod",
+                      "placementRule": "placement-pod",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -10634,11 +10634,11 @@ GrcToggleModule {
                   ],
                 },
                 "status": Object {
-                  "placementBindings": Array [
-                    "binding-role",
-                  ],
-                  "placementPolicies": Array [
-                    "placement-role",
+                  "placement": Array [
+                    Object {
+                      "placementBinding": "binding-role",
+                      "placementRule": "placement-role",
+                    },
                   ],
                   "status": Object {
                     "cluster1": Object {
@@ -10833,11 +10833,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-my-policy",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-my-policy",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-my-policy",
+                        "placementRule": "placement-my-policy",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -10969,11 +10969,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-ma",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-ma",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-ma",
+                        "placementRule": "placement-ma",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -11100,11 +11100,11 @@ GrcToggleModule {
                     "remediationAction": "inform",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-pod",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-pod",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-pod",
+                        "placementRule": "placement-pod",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -11246,11 +11246,11 @@ GrcToggleModule {
                     ],
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-role",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-role",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-role",
+                        "placementRule": "placement-role",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -11392,11 +11392,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-my-policy",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-my-policy",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-my-policy",
+                        "placementRule": "placement-my-policy",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -11542,11 +11542,11 @@ GrcToggleModule {
                     "remediationAction": "enforce",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-ma",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-ma",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-ma",
+                        "placementRule": "placement-ma",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -11687,11 +11687,11 @@ GrcToggleModule {
                     "remediationAction": "inform",
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-pod",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-pod",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-pod",
+                        "placementRule": "placement-pod",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
@@ -11847,11 +11847,11 @@ GrcToggleModule {
                     ],
                   },
                   "status": Object {
-                    "placementBindings": Array [
-                      "binding-role",
-                    ],
-                    "placementPolicies": Array [
-                      "placement-role",
+                    "placement": Array [
+                      Object {
+                        "placementBinding": "binding-role",
+                        "placementRule": "placement-role",
+                      },
                     ],
                     "status": Object {
                       "cluster1": Object {
