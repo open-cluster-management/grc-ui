@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PolicyTemplateDetailsView component renders as expected -- empty list 1`] = `
+exports[`PolicyStatusHistoryView component renders as expected -- empty list 1`] = `
 PolicyStatusHistoryView {
   "context": Object {},
   "props": Object {
@@ -128,7 +128,7 @@ PolicyStatusHistoryView {
 }
 `;
 
-exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
+exports[`PolicyStatusHistoryView component renders as expected 1`] = `
 PolicyStatusHistoryView {
   "context": Object {},
   "props": Object {
@@ -347,7 +347,7 @@ PolicyStatusHistoryView {
 }
 `;
 
-exports[`PolicyTemplateDetailsView component renders as expected with pagination 1`] = `
+exports[`PolicyStatusHistoryView component renders as expected with pagination 1`] = `
 PolicyStatusHistoryView {
   "context": Object {},
   "props": Object {

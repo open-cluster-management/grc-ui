@@ -64,9 +64,6 @@ function buildActionList(actions, rulesSet, actionList) {
   const editFlag = actions.includes('table.actions.edit')
   const disableFlag = actions.includes('table.actions.disable')
   const enforceFlag = actions.includes('table.actions.enforce')
-  if (actions.includes('table.actions.policy.policies.sidepanel')) {
-    actionList.push('table.actions.policy.policies.sidepanel')
-  }
   if (rulesSet.includes('update') || rulesSet.includes('patch')) {
     if (editFlag) {
       actionList.push('table.actions.edit')

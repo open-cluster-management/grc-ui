@@ -60,14 +60,6 @@
 .compliance-table-status {
   display: flex;
   height: 1rem;
-  .table-status {
-    &__compliant {
-      fill: $color__green-40
-    }
-    &__not_compliant {
-      fill: $grc__color__critical
-    }
-  }
 }
 
 .table-status-row {
@@ -77,19 +69,6 @@
       height: 1rem;
       margin-left: 0.2rem;
       margin-right: 0.4rem;
-      margin-top: 0.2rem;
-      &__healthy {
-        fill: $color__green-40
-      }
-      &__critical {
-        fill: $grc__color__critical
-      }
-      &__warning {
-        fill: $color__yellow-30
-      }
-      &__failed {
-        fill: $grc__color__critical
-      }
     }
     p {
       text-transform: capitalize;

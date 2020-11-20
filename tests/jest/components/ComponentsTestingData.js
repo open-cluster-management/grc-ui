@@ -589,12 +589,6 @@ export const GrcViewSecondaryHeaderProps =  {
       'label': 'tabs.grc.all',
       'url': '/multicloud/policies/all',
       'index': 1
-    },
-    {
-      'id': 'grc-findings',
-      'label': 'tabs.grc.findings',
-      'url': '/multicloud/policies/findings',
-      'index': 2
     }
   ]
 }

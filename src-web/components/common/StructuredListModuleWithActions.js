@@ -156,11 +156,10 @@ StructuredListModule.formatDecisionsWithLinkAndIcon = (
     const cluster = _.get(item, 'clusterName')
     const status = clusterStatus[cluster] ? clusterStatus[cluster].toLowerCase() : 'undefined'
     let statusIcon
-    if(status === 'compliant'){
-      statusIcon = <StatusField status='ok' text={msgs.get('policy.status.compliant',context.locale)} />
-    }
-    else {
-      statusIcon = <StatusField status='critical' text={msgs.get('policy.status.noncompliant',context.locale)} />
+    if (status === 'compliant' || status === 'noncompliant') {
+      statusIcon = <StatusField status={status} text={msgs.get(`policy.status.${status}`,context.locale)} />
+    } else {
+      statusIcon = <StatusField status='unknown' text={msgs.get('policy.status.unknown',context.locale)} />
     }
     links.push(<div className='one-cluster-status' key={`${cluster}-container`}>
       <Link to= {`${baseUrl}/policy/${cluster}/${hubNamespace}.${policyName}`} >{cluster}</Link>

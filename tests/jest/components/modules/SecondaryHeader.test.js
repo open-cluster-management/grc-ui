@@ -42,10 +42,11 @@ describe('SecondaryHeader component 1', () => {
 
 describe('SecondaryHeader component 2', () => {
   const tabs = [{
-    id: 'dashboard-application',
-    label: 'tabs.dashboard.application',
-    url: '/multicloud/dashboard',
-  }]
+      'id': 'grc-all',
+      'label': 'tabs.grc.all',
+      'url': '/multicloud/policies/all',
+      'index': 0
+    }]
   const location = {
     pathname: '/multicloud/policies/all'
   }
@@ -146,18 +147,13 @@ describe('SecondaryHeader component 2', () => {
 describe('SecondaryHeader component 3', () => {
   const tabs = [
     {
-      id: 'logs-tab1',
-      label: 'tabs.dashboard.application',
-      url: '/multicloud/dashboard',
-    },
-    {
       id: 'logs-tab2',
-      label: 'tabs.dashboard',
+      label: 'tabs.grc.all',
       url: '/hello',
     }
   ]
   const location = {
-    pathname: '/multicloud/policies/findings'
+    pathname: '/multicloud/policies/all'
   }
   it('renders as expected', () => {
     const component = renderer.create(
@@ -175,7 +171,7 @@ describe('SecondaryHeader component 3', () => {
 
 describe('SecondaryHeader component 4', () => {
   const location = {
-    pathname: '/multicloud/policies/findings'
+    pathname: '/multicloud/policies/all'
   }
   it('renders as expected', () => {
     const component = renderer.create(
@@ -191,7 +187,7 @@ describe('SecondaryHeader component 4', () => {
 
 describe('SecondaryHeader component 5', () => {
   const location = {
-    pathname: '/multicloud/policies/findings'
+    pathname: '/multicloud/policies/all'
   }
   it('clickTab as expected', () => {
     const component = shallow(

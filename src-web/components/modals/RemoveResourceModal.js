@@ -96,7 +96,6 @@ class RemoveResourceModal extends React.Component {
 
   modalBody = (data, label, locale) => {
     switch (label.label) {
-    case 'modal.remove-hcmapplication.label':
     case 'modal.remove-hcmcompliance.label':
       return this.state.selected.length > 0
         ? <div className='remove-app-modal-content' >
@@ -166,7 +165,6 @@ RemoveResourceModal.propTypes = {
     deployables: PropTypes.object,
     name: PropTypes.string,
     namespace: PropTypes.string,
-    applicationRelationships: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     selected: PropTypes.array,
   }),
   handleClose: PropTypes.func,

@@ -205,7 +205,7 @@ TruncateText {
       "_newState": null,
       "_numberOfReRenders": 0,
       "_renderPhaseUpdates": null,
-      "_rendered": <Tooltip
+      "_rendered": <mockTooltip
         content={
           <div>
             TruncateText
@@ -220,7 +220,7 @@ TruncateText {
         >
           Tr...xt
         </span>
-      </Tooltip>,
+      </mockTooltip>,
       "_rendering": false,
       "_updater": [Circular],
       "_workInProgressHook": null,
@@ -277,7 +277,7 @@ TruncateText {
       "_newState": null,
       "_numberOfReRenders": 0,
       "_renderPhaseUpdates": null,
-      "_rendered": <Tooltip
+      "_rendered": <mockTooltip
         content={
           <div>
             TruncateText
@@ -292,7 +292,7 @@ TruncateText {
         >
           T...t.
         </span>
-      </Tooltip>,
+      </mockTooltip>,
       "_rendering": false,
       "_updater": [Circular],
       "_workInProgressHook": null,

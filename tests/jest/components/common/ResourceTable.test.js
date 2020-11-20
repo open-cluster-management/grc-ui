@@ -116,51 +116,6 @@ describe('ResourceTable no search with empty console url', () => {
   })
 })
 
-describe('ResourceTable no search with empty console url', () => {
-  it('renders as expected', () => {
-    const fn = jest.fn()
-    const history = {
-      'length': 50,
-      'action': 'POP',
-      'location': {
-        'pathname': '/multicloud/policies/all?index=1',
-        'search': '',
-        'hash': '',
-        'key': 's4wxvc'
-      }
-    }
-    const component = renderer.create(
-      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
-        <Provider store={storePolicyCluster}>
-          <BrowserRouter>
-            <ResourceTable
-              staticResourceData={staticResourceData2}
-              tableActions={['table.actions.policy.clusters.sidepanel']}
-              page={1}
-              pageSize={10}
-              sortDirection={'asc'}
-              handleSort={fn}
-              totalFilteredItems={13}
-              changeTablePage={fn}
-              handleSearch={fn}
-              searchValue={''}
-              items={items3}
-              itemIds={itemIds2}
-              expandableTable={true}
-              listSubItems={true}
-              placeHolderText={'Find clusters'}
-              highLightRowName={''}
-              history={history}
-              resourceType={resourceType2}
-            />
-          </BrowserRouter>
-        </Provider>
-      </ApolloProvider>
-    )
-    expect(component.toJSON()).toMatchSnapshot()
-  })
-})
-
 describe('ResourceTable no search', () => {
   it('renders as expected', () => {
     const fn = jest.fn()

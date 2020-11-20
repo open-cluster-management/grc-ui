@@ -65,7 +65,6 @@ module.exports = {
     page.createTestPolicy(true, policySpec, templateFile)
     common.checkStatus(policyName, true)
     common.searchPolicy(policyName, true)
-    // page.testPolicySidePanel()
     page.testFilters(policySpec)
     page.verifyToggle()
     common.searchPolicy(policyName, true)

@@ -11,7 +11,8 @@
 
 import React from 'react'
 import PolicyDetailsTab from '../../../src-web/containers/PolicyDetailsTab'
-import renderer from 'react-test-renderer'
+import { mount } from 'enzyme'
+import toJson from 'enzyme-to-json'
 import { BrowserRouter } from 'react-router-dom'
 import * as reducers from '../../../src-web/reducers'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
@@ -52,7 +53,7 @@ describe('PolicyTemplateTab container test', () => {
       'yaml'
     ]
     const updateSecondaryHeader = jest.fn()
-    const component = renderer.create(
+    const component = mount(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
@@ -67,6 +68,6 @@ describe('PolicyTemplateTab container test', () => {
         </Provider>
       </ApolloProvider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component.find(PolicyDetailsTab))).toMatchSnapshot()
   })
 })

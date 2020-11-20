@@ -9,6 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
+import React from 'react'
 import { configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import 'cross-fetch/polyfill'
@@ -22,6 +23,19 @@ jest.mock('../../../nls/platform.properties', () => ({
     return msgs[key]
   })
 }))
+
+// mock Tooltip otherwise it is going to throw:
+// TypeError: element.addEventListener is not a function
+// because renderer doesn't have dom
+jest.mock('@patternfly/react-core', () => {
+  const actualPatternfly = jest.requireActual('@patternfly/react-core')
+  return {
+    ...actualPatternfly,
+    Tooltip: function mockTooltip(args) {
+      return <div content={args.content} data-testid='mockTooltip'>{args.children}</div>
+    },
+  }
+})
 
 // this mock lodash uniqueId for all unit testing
 // will return fixed incremental id number rather than real random id number

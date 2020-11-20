@@ -28,13 +28,6 @@ export const resourceActions = (action, dispatch, resourceType, data) => {
     window.open(`${_.get(data, 'clusterConsoleURL.local-cluster', 'consoleURL')}`, '_blank')
     return
   }
-  case 'table.actions.policy.policies.sidepanel':
-  case 'table.actions.policy.clusters.sidepanel': {
-    return dispatch(updateModal(
-      { open: true, type: 'policy-side-panel', resourceType,
-        label: { label: `modal.edit-${resourceType.name.toLowerCase()}.label`, heading: `modal.edit-${resourceType.name.toLowerCase()}.heading` },
-        data: { kind: resourceType.name, ...data }}))
-  }
   case 'table.actions.compliance.remove':
   case 'table.actions.policy.remove':
   case 'table.actions.remove': {

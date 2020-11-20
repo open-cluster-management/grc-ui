@@ -7,7 +7,7 @@ exports[`createDocLink view renders does not show create link as expected 1`] = 
   <div
     className="button-group-create-resource"
   >
-    <Tooltip
+    <mockTooltip
       content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
       zIndex={10001}
     >
@@ -24,7 +24,7 @@ exports[`createDocLink view renders does not show create link as expected 1`] = 
           does not show create link
         </Button>
       </div>
-    </Tooltip>
+    </mockTooltip>
   </div>
   <div
     className="button-group-doc-link"
@@ -51,7 +51,7 @@ exports[`createDocLink view renders show create link as expected 1`] = `
   <div
     className="button-group-create-resource"
   >
-    <Tooltip
+    <mockTooltip
       content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
       zIndex={10001}
     >
@@ -68,7 +68,7 @@ exports[`createDocLink view renders show create link as expected 1`] = `
           show create link
         </Button>
       </div>
-    </Tooltip>
+    </mockTooltip>
   </div>
   <div
     className="button-group-doc-link"

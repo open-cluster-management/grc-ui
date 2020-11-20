@@ -60,7 +60,11 @@ function authenticate(username = '') {
   this.inputUsername(username)
   this.inputPassword(password)
   this.submit()
-  this.waitForLoginSuccess(username)
+  if (username === 'kubeadmin') {
+    this.waitForLoginSuccess('kube:admin')
+  } else {
+    this.waitForLoginSuccess(username)
+  }
 }
 
 function inputUsername(username) {
