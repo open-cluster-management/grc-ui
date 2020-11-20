@@ -281,7 +281,7 @@ function testPolicyStatusTabSearching(){
         this.log(`searching text after truncate is ${policyStatusMessage}`)
         this.setPatternFlySearchValue(policyStatusMessage)
         this.waitForElementNotPresent('@PatternFlyTabEmptyState')
-        // this.clearPatternFlySearchValue()
+        this.clearPatternFlySearchValue()
       }
     }
   })
