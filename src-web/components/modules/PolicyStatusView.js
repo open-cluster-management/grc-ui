@@ -19,15 +19,15 @@ import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
 import { GRC_SEARCH_STATE_COOKIE } from '../../../lib/shared/constants'
 import {
-  getSavedGrcState, saveGrcStatePair
-} from '../../../lib/client/filter-helper'
+  getSessionState, addSessionPair
+} from '../common/AccessStorage'
 
 const componentName = 'PolicyStatusView'
 class PolicyStatusView extends React.Component {
   constructor(props) {
     super(props)
     this.state= {
-      searchValue : _.get(getSavedGrcState(GRC_SEARCH_STATE_COOKIE), componentName, ''),
+      searchValue : _.get(getSessionState(GRC_SEARCH_STATE_COOKIE), componentName, ''),
       toggleIndex: 0
     }
     this.toggleClick = this.toggleClick.bind(this)
@@ -104,7 +104,7 @@ class PolicyStatusView extends React.Component {
 
   handleSearch = (value) => {
     if (typeof value === 'string') {
-      saveGrcStatePair(GRC_SEARCH_STATE_COOKIE, componentName, value, true)
+      addSessionPair(GRC_SEARCH_STATE_COOKIE, componentName, value, true)
       this.setState({
         searchValue: value
       })
