@@ -5,12 +5,14 @@
 /// <reference types="cypress" />
 // This is the demo test
 describe('Login', () => {
-  before(() => {
+/* // disable login() and logout() as this is called outside the test
+    before(() => {
     cy.login()
   })
   after(() => {
     cy.logout()
   })
+*/
   it('should load the home page', () => {
     cy.get('#header').should('exist')
   })
