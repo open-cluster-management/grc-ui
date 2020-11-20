@@ -67,11 +67,8 @@ export const createPolicy = ({ name, create=false, ...policyConfig }) => {
 
 export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
   name = formatResourceName(name)
-  cy.get('#table-container').within(() => {
-    cy.get(`tr[data-row-name="${name}"]>td`).as('cells')
-    cy.get('@cells').spread((dropdown, policyname, namespace, remediation, violations, standards, categories, controls) => {
-      // policy nanme
-      cy.wrap(policyname).contains(name)
+  cy.get('.grc-view-by-policies-table').within(() => {
+    cy.get('a').contains(name).parent('td').siblings('td').spread((namespace, remediation, violations, standards, categories, controls) => {
       // namespace
       cy.wrap(namespace).contains(policyConfig['namespace'])
       // enforce/inform
@@ -101,16 +98,23 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
 
 export const verifyPolicyNotInListing = (name) => {
   name = formatResourceName(name)
-  cy.get('#table-container').within(() => {
-    cy.get(`tr[data-row-name="${name}"]`)
-      .should('not.exist')
-  })
+  // either there are no policies at all or there are some policies listed
+  if (!Cypress.$('#page').find('div.no-resouce'.length)) {
+    cy.get('.grc-view-by-policies-table').within(() => {
+      cy.get('a')
+        .contains(name)
+        .should('not.exist')
+    })
+  }
 }
 
 export const doPolicyActionInListing = (name, action, cancel=false) => {
   name = formatResourceName(name)
-  cy.get('#table-container').within(() => {
-    cy.get(`tr[data-row-name="${name}"]>td`)
+  cy.get('.grc-view-by-policies-table').within(() => {
+    cy.get('a')
+      .contains(name)
+      .parent('td')
+      .siblings('td')
       .last()
       .click()
   })

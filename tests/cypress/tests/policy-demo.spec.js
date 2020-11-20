@@ -48,6 +48,5 @@ describe('Clusters', () => {
       cy.visit('/multicloud/policies/all')
       verifyPolicyNotInListing(name)
     })
-
   }
 })
