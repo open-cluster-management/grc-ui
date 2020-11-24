@@ -345,7 +345,7 @@ export class ResourceTable extends React.Component {
 
   getRows() {
     const { history, items, itemIds, tableActions, resourceType, staticResourceData, match,
-      getResourceAction, userAccess, highLightRowName, autoAction, showSidePanel } = this.props
+      getResourceAction, userAccess } = this.props
     const { locale } = this.context
     const { normalizedKey } = staticResourceData
     const userAccessHash = formatUserAccess(userAccess)
@@ -371,13 +371,6 @@ export class ResourceTable extends React.Component {
         const filteredActions = (Array.isArray(menuActions) && menuActions.length > 0)
           ? filterUserAction(item, menuActions, userAccessHash, resourceType)
           : []
-
-        //This is for grc policy page highlight item auto open side panel
-        if(showSidePanel && highLightRowName && autoAction
-          && (item.metadata && item.metadata.name && item.metadata.name === highLightRowName)
-          || (item.cluster && item.cluster === highLightRowName)){
-          getResourceAction(autoAction, item, null, history, locale)
-        }
 
         if (item.consoleURL && item.consoleURL === '-' && Array.isArray(filteredActions)){
           const removeIndex = filteredActions.indexOf('table.actions.launch.cluster')
@@ -472,7 +465,6 @@ ResourceTable.propTypes = {
   autoAction: PropTypes.string,
   changeTablePage: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  clientSideFilters: PropTypes.string,
   darkSearchBox: PropTypes.bool,
   deleteResource: PropTypes.func,
   err: PropTypes.object,
@@ -507,7 +499,6 @@ ResourceTable.propTypes = {
   searchValue: PropTypes.string,
   selectableTable: PropTypes.bool,
   selectedFilters: PropTypes.object,
-  showSidePanel: PropTypes.bool,
   sortColumn: PropTypes.string,
   sortDirection: PropTypes.string,
   sortTable: PropTypes.func,

@@ -206,9 +206,9 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
       handleSubmit={[MockFunction]}
       label={
         Object {
-          "heading": "modal.edit-hcmcompliance.heading",
-          "label": "modal.edit-hcmcompliance.label",
-          "primaryBtn": "modal.button.submit",
+          "heading": "modal.remove-hcmcompliance.heading",
+          "label": "modal.remove-hcmcompliance.label",
+          "primaryBtn": "modal.remove-hcmcompliance.heading",
         }
       }
       locale="en"
@@ -423,9 +423,9 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
         }
         label={
           Object {
-            "heading": "modal.edit-hcmcompliance.heading",
-            "label": "modal.edit-hcmcompliance.label",
-            "primaryBtn": "modal.button.submit",
+            "heading": "modal.remove-hcmcompliance.heading",
+            "label": "modal.remove-hcmcompliance.label",
+            "primaryBtn": "modal.remove-hcmcompliance.heading",
           }
         }
         locale="en"
@@ -656,9 +656,9 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
           }
           label={
             Object {
-              "heading": "modal.edit-hcmcompliance.heading",
-              "label": "modal.edit-hcmcompliance.label",
-              "primaryBtn": "modal.button.submit",
+              "heading": "modal.remove-hcmcompliance.heading",
+              "label": "modal.remove-hcmcompliance.label",
+              "primaryBtn": "modal.remove-hcmcompliance.heading",
             }
           }
           locale="en"
@@ -692,20 +692,20 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
         >
           <div>
             <Modal
-              aria-label="Edit policy"
+              aria-label="Remove policy"
               danger={true}
               focusTrap={true}
               iconDescription="close the modal"
               id="remove-resource-modal"
-              modalHeading="Edit policy"
-              modalLabel="Edit policy"
+              modalHeading="Remove policy"
+              modalLabel="Remove policy"
               onKeyDown={[Function]}
               onRequestClose={[Function]}
               onRequestSubmit={[Function]}
               open={true}
               passiveModal={false}
               primaryButtonDisabled={false}
-              primaryButtonText="Submit"
+              primaryButtonText="Remove policy"
               role="region"
               secondaryButtonText="Cancel"
               selectorPrimaryFocus="[data-modal-primary-focus]"
@@ -721,7 +721,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                 paused={false}
               >
                 <div
-                  aria-label="Edit policy"
+                  aria-label="Remove policy"
                   className="bx--modal bx--modal-tall is-visible bx--modal--danger"
                   id="remove-resource-modal"
                   onBlur={[Function]}
@@ -742,12 +742,12 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                       <p
                         className="bx--modal-header__label"
                       >
-                        Edit policy
+                        Remove policy
                       </p>
                       <p
                         className="bx--modal-header__heading"
                       >
-                        Edit policy
+                        Remove policy
                       </p>
                       <button
                         className="bx--modal-close"
@@ -846,7 +846,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                               tabindex="0"
                               type="button"
                             >
-                              Submit
+                              Remove policy
                             </button>,
                           }
                         }
@@ -863,7 +863,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                           tabIndex={0}
                           type="button"
                         >
-                          Submit
+                          Remove policy
                         </button>
                       </ForwardRef>
                     </div>
@@ -1083,9 +1083,9 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
       handleSubmit={[MockFunction]}
       label={
         Object {
-          "heading": "modal.edit-hcmcompliance.heading",
-          "label": "modal.edit-hcmcompliance.label",
-          "primaryBtn": "modal.button.submit",
+          "heading": "modal.remove-hcmcompliance.heading",
+          "label": "modal.remove-hcmcompliance.label",
+          "primaryBtn": "modal.remove-hcmcompliance.heading",
         }
       }
       locale="en"
@@ -1300,9 +1300,9 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
         }
         label={
           Object {
-            "heading": "modal.edit-hcmcompliance.heading",
-            "label": "modal.edit-hcmcompliance.label",
-            "primaryBtn": "modal.button.submit",
+            "heading": "modal.remove-hcmcompliance.heading",
+            "label": "modal.remove-hcmcompliance.label",
+            "primaryBtn": "modal.remove-hcmcompliance.heading",
           }
         }
         locale="en"
@@ -1533,9 +1533,9 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
           }
           label={
             Object {
-              "heading": "modal.edit-hcmcompliance.heading",
-              "label": "modal.edit-hcmcompliance.label",
-              "primaryBtn": "modal.button.submit",
+              "heading": "modal.remove-hcmcompliance.heading",
+              "label": "modal.remove-hcmcompliance.label",
+              "primaryBtn": "modal.remove-hcmcompliance.heading",
             }
           }
           locale="en"
@@ -1569,20 +1569,20 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
         >
           <div>
             <Modal
-              aria-label="Edit policy"
+              aria-label="Remove policy"
               danger={true}
               focusTrap={true}
               iconDescription="close the modal"
               id="remove-resource-modal"
-              modalHeading="Edit policy"
-              modalLabel="Edit policy"
+              modalHeading="Remove policy"
+              modalLabel="Remove policy"
               onKeyDown={[Function]}
               onRequestClose={[Function]}
               onRequestSubmit={[Function]}
               open={true}
               passiveModal={false}
               primaryButtonDisabled={false}
-              primaryButtonText="Submit"
+              primaryButtonText="Remove policy"
               role="region"
               secondaryButtonText="Cancel"
               selectorPrimaryFocus="[data-modal-primary-focus]"
@@ -1598,7 +1598,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                 paused={false}
               >
                 <div
-                  aria-label="Edit policy"
+                  aria-label="Remove policy"
                   className="bx--modal bx--modal-tall is-visible bx--modal--danger"
                   id="remove-resource-modal"
                   onBlur={[Function]}
@@ -1619,12 +1619,12 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                       <p
                         className="bx--modal-header__label"
                       >
-                        Edit policy
+                        Remove policy
                       </p>
                       <p
                         className="bx--modal-header__heading"
                       >
-                        Edit policy
+                        Remove policy
                       </p>
                       <button
                         className="bx--modal-close"
@@ -1723,7 +1723,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                               tabindex="0"
                               type="button"
                             >
-                              Submit
+                              Remove policy
                             </button>,
                           }
                         }
@@ -1740,7 +1740,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                           tabIndex={0}
                           type="button"
                         >
-                          Submit
+                          Remove policy
                         </button>
                       </ForwardRef>
                     </div>

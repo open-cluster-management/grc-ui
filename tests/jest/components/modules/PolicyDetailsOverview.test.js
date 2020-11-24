@@ -21,7 +21,7 @@ import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
 import {
   staticResourceDataPolicyOverview,
-  itemPolicyOverview
+  itemPolicyOverview_extra
 } from '../common/CommonTestingData'
 
 describe('PolicyDetailsOverview component', () => {
@@ -52,7 +52,7 @@ describe('PolicyDetailsOverview component', () => {
         <Provider store={store}>
           <BrowserRouter>
             <PolicyDetailsOverview
-              item={itemPolicyOverview}
+              item={itemPolicyOverview_extra}
               updateResourceToolbar={jest.fn()}
               staticResourceData={staticResourceDataPolicyOverview}
               location={location}

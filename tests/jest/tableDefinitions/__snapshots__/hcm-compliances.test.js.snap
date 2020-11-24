@@ -70,29 +70,15 @@ exports[`hcm-compliances - getClusterCount should return cluster count 1`] = `"7
 
 exports[`hcm-compliances - getCompliancePolicyStatus should return compliance policy status 1`] = `
 <StatusField
-  status="critical"
+  status="noncompliant"
   text="not compliant"
 />
 `;
 
 exports[`hcm-compliances - getCompliancePolicyStatus should return compliance policy status 2`] = `
 <StatusField
-  status="ok"
+  status="compliant"
   text="compliant"
-/>
-`;
-
-exports[`hcm-compliances - getComplianceStatusIcon should return compliance status incon 1`] = `
-<StatusField
-  status="ok"
-  text="compliant"
-/>
-`;
-
-exports[`hcm-compliances - getComplianceStatusIcon should return compliance status incon 2`] = `
-<StatusField
-  status="critical"
-  text="not compliant"
 />
 `;
 
@@ -106,61 +92,19 @@ exports[`hcm-compliances - getStandards should return standards status 1`] = `"6
 
 exports[`hcm-compliances - getStatus should return compliant status 1`] = `
 <StatusField
-  status="ok"
+  status="compliant"
   text="compliant"
 />
 `;
 
 exports[`hcm-compliances - getStatus should return compliant status 2`] = `
 <StatusField
-  status="critical"
+  status="noncompliant"
   text="not compliant"
 />
 `;
 
 exports[`hcm-compliances - getStatusCount should return status count 1`] = `"5/10"`;
-
-exports[`hcm-compliances - getStatusIcon should return compliant status 1`] = `
-<StatusField
-  status="ok"
-  text="compliant"
-/>
-`;
-
-exports[`hcm-compliances - getStatusIcon should return noncompliant status 1`] = `
-<StatusField
-  status="critical"
-  text="not compliant"
-/>
-`;
-
-exports[`hcm-compliances - getStatusIconForPolicy should return compliant status 1`] = `
-<div
-  className="compliance-table-status"
->
-  <Icon
-    className="table-status__compliant"
-    description=""
-    fillRule="evenodd"
-    name="icon--checkmark--glyph"
-    role="img"
-  />
-</div>
-`;
-
-exports[`hcm-compliances - getStatusIconForPolicy should return noncompliant status 1`] = `
-<div
-  className="compliance-table-status"
->
-  <Icon
-    className="table-status__not_compliant"
-    description=""
-    fillRule="evenodd"
-    name="icon--error--glyph"
-    role="img"
-  />
-</div>
-`;
 
 exports[`hcm-compliances - getSubjects should get ""  1`] = `""`;
 

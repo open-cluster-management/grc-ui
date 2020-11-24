@@ -38,7 +38,7 @@ describe('StructuredListModule component test', () => {
               title={staticResourceData.detailKeys.title}
               headerRows={staticResourceData.detailKeys.headerRows}
               rows={staticResourceData.detailKeys.rows}
-              data={itemPolicyOverview}
+              data={[itemPolicyOverview]}
             />
           </BrowserRouter>
         </Provider>

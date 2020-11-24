@@ -13,9 +13,6 @@ import {
   createPolicyLink,
   createCompliancePolicyLink,
   getStatus,
-  getStatusIcon,
-  getStatusIconForPolicy,
-  getComplianceStatusIcon,
   getCompliancePolicyStatus,
   getStatusCount,
   getClusterCount,
@@ -61,25 +58,6 @@ describe('hcm-compliances - createComplianceLink', () => {
       }
     }
     expect(createComplianceLink(item3)).toMatchSnapshot()
-  })
-})
-
-describe('hcm-compliances - getComplianceStatusIcon', () => {
-  it('should return compliance status incon', () => {
-    const item1 = {
-      status: 'compliant'
-    }
-    expect(getComplianceStatusIcon(item1, 'en-US')).toMatchSnapshot()
-
-    const item2 = {
-      status: 'noncompliant'
-    }
-    expect(getComplianceStatusIcon(item2, 'en-US')).toMatchSnapshot()
-
-    const item3 = {
-      status: null
-    }
-    expect(getComplianceStatusIcon(item3, 'en-US')).toBe('-')
   })
 })
 
@@ -140,46 +118,6 @@ describe('hcm-compliances - getStatus', () => {
     const item = {
     }
     expect(getStatus(item, 'en-US')).toBe('-')
-  })
-})
-
-describe('hcm-compliances - getStatusIcon', () => {
-  it('should return compliant status', () => {
-    const item = {
-      compliant: 'compliant'
-    }
-    expect(getStatusIcon(item, 'en-US')).toMatchSnapshot()
-  })
-  it('should return noncompliant status', () => {
-    const item = {
-      compliant: 'noncompliant'
-    }
-    expect(getStatusIcon(item, 'en-US')).toMatchSnapshot()
-  })
-  it('should return "-"', () => {
-    const item = {
-    }
-    expect(getStatusIcon(item, 'en-US')).toBe('-')
-  })
-})
-
-describe('hcm-compliances - getStatusIconForPolicy', () => {
-  it('should return compliant status', () => {
-    const item = {
-      status: 'compliant'
-    }
-    expect(getStatusIconForPolicy(item, 'en-US')).toMatchSnapshot()
-  })
-  it('should return noncompliant status', () => {
-    const item = {
-      status: 'noncompliant'
-    }
-    expect(getStatusIconForPolicy(item, 'en-US')).toMatchSnapshot()
-  })
-  it('should return "-"', () => {
-    const item = {
-    }
-    expect(getStatusIconForPolicy(item, 'en-US')).toBe('-')
   })
 })
 

@@ -41,10 +41,7 @@ describe('ResourceTableRowMenuItemActions', () => {
     expect(window.open.mock.calls[0]).toMatchSnapshot()
     window.open.mockClear()
   })
-})
-
-describe('ResourceTableRowMenuItemActions component table.actions.compliance.remove', () => {
-  it('renders as expected', () => {
+  it('table.actions.compliance.remove is called as expected', () => {
     const action = 'table.actions.compliance.remove'
     const resourceType = {
       'name': 'HCMCompliance',
@@ -76,5 +73,60 @@ describe('ResourceTableRowMenuItemActions component table.actions.compliance.rem
     expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
     expect(dispatch).toHaveBeenCalledTimes(1)
     expect(dispatch.mock.calls[0]).toMatchSnapshot()
+  })
+  it('table.actions.disable is called as expected', () => {
+    const action = 'table.actions.disable'
+    const resourceType = {
+      'name': 'HCMCompliance',
+      'query': 'ALL_POLICIES'
+    }
+    const dispatch = jest.fn()
+    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
+    expect(dispatch).toHaveBeenCalledTimes(1)
+    expect(dispatch.mock.calls[0]).toMatchSnapshot()
+  })
+  it('table.actions.enable is called as expected', () => {
+    const action = 'table.actions.enable'
+    const resourceType = {
+      'name': 'HCMCompliance',
+      'query': 'ALL_POLICIES'
+    }
+    const dispatch = jest.fn()
+    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
+    expect(dispatch).toHaveBeenCalledTimes(1)
+    expect(dispatch.mock.calls[0]).toMatchSnapshot()
+  })
+  it('table.actions.enforce is called as expected', () => {
+    const action = 'table.actions.enforce'
+    const resourceType = {
+      'name': 'HCMCompliance',
+      'query': 'ALL_POLICIES'
+    }
+    const dispatch = jest.fn()
+    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
+    expect(dispatch).toHaveBeenCalledTimes(1)
+    expect(dispatch.mock.calls[0]).toMatchSnapshot()
+  })
+  it('table.actions.inform is called as expected', () => {
+    const action = 'table.actions.inform'
+    const resourceType = {
+      'name': 'HCMCompliance',
+      'query': 'ALL_POLICIES'
+    }
+    const dispatch = jest.fn()
+    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
+    expect(dispatch).toHaveBeenCalledTimes(1)
+    expect(dispatch.mock.calls[0]).toMatchSnapshot()
+  })
+  it('does nothing and returns undefined given invalid action', () => {
+    const action = 'not.an.action'
+    const resourceType = {
+      'name': 'HCMCompliance',
+      'query': 'ALL_POLICIES'
+    }
+    const dispatch = jest.fn()
+    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
+    expect(dispatch).toHaveBeenCalledTimes(0)
+    expect(dispatch.mock.calls[0]).toBeUndefined()
   })
 })

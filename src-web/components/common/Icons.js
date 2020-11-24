@@ -21,7 +21,7 @@ export const GreenCheckCircleIcon = ({tooltip}) => {
       </Tooltip>
     )
   }
-  return <CheckCircleIcon  color={okColor.value} />
+  return <CheckCircleIcon color={okColor.value} />
 }
 
 GreenCheckCircleIcon.propTypes = {

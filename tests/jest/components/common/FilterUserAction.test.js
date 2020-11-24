@@ -4,7 +4,6 @@
 import filterUserAction from '../../../../src-web/components/common/FilterUserAction'
 
 const policyActions = [
-  'table.actions.policy.policies.sidepanel',
   'table.actions.edit',
   'table.actions.disable',
   'table.actions.enforce',

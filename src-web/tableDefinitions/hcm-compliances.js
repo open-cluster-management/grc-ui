@@ -14,7 +14,6 @@ import React from 'react'
 import _ from 'lodash'
 import msgs from '../../nls/platform.properties'
 import { getAge, getLabelsToList } from '../../lib/client/resource-helper'
-import { Icon } from 'carbon-components-react'
 import { Link } from 'react-router-dom'
 import StatusField from '../components/common/StatusField'
 import config from '../../lib/shared/config'
@@ -882,70 +881,19 @@ export function createComplianceLink(item = {}, ...param){
 
 export function getStatus(item, locale) {
   const status = _.get(item, 'status', '-')
-  const expectedStatuses = [ 'compliant', 'notcompliant', 'noncompliant', 'invalid', 'unknown']
-  if (status.compliant&&expectedStatuses.indexOf(status.compliant.toLowerCase()) > -1){
-    if (status.compliant.toLowerCase() === 'compliant') {
-      return <StatusField status='ok' text={msgs.get('policy.status.compliant', locale)} />
-    } else {
-      return <StatusField status='critical' text={msgs.get(`policy.status.${status.compliant.toLowerCase()}`, locale)} />
-    }
-  } else if (status&&typeof(status)==='string'&&expectedStatuses.indexOf(status.toLowerCase()) > -1){
-    if (status.toLowerCase() === 'compliant') {
-      return <StatusField status='ok' text={msgs.get('policy.status.compliant', locale)} />
-    } else {
-      return <StatusField status='critical' text={msgs.get(`policy.status.${status.toLowerCase()}`, locale)} />
-    }
-  }
-  return '-'
-}
-
-export function getStatusIconForPolicy(item) {
-  const expectedStatuses = [ 'compliant', 'notcompliant', 'noncompliant', 'invalid']
-  if (item.status&&expectedStatuses.indexOf(item.status.toLowerCase()) > -1){
-    if (item.status.toLowerCase() === 'compliant') {
-      return (
-        <div className='compliance-table-status'>
-          <Icon className={'table-status__compliant'} name={'icon--checkmark--glyph'} description='' />
-        </div>
-      )
-    } else {
-      return (
-        <div className='compliance-table-status'>
-          <Icon className={'table-status__not_compliant'} name={'icon--error--glyph'} description='' />
-        </div>
-      )
-    }
-  }
-  return '-'
-}
-
-export function getStatusIcon(item, locale) {
-  if (item.compliant){
-    if (item.compliant.toLowerCase() === 'compliant') {
-      return <StatusField status='ok' text={msgs.get('policy.status.compliant', locale)} />
-    } else {
-      return <StatusField status='critical' text={msgs.get('policy.status.noncompliant', locale)} />
-    }
-  }
-  return '-'
-}
-
-export function getComplianceStatusIcon(item, locale) {
-  if (item.status){
-    if (item.status.toLowerCase() === 'compliant') {
-      return <StatusField status='ok' text={msgs.get('policy.status.compliant', locale)} />
-    } else {
-      return <StatusField status='critical' text={msgs.get('policy.status.noncompliant', locale)} />
-    }
+  if (status.compliant){
+    return <StatusField status={status.compliant.toLowerCase()} text={msgs.get(`policy.status.${status.compliant.toLowerCase()}`, locale)} />
+  } else if (status && typeof(status)==='string' && status !== '-'){
+    return <StatusField status={status.toLowerCase()} text={msgs.get(`policy.status.${status.toLowerCase()}`, locale)} />
   }
   return '-'
 }
 
 export function getCompliancePolicyStatus(item, locale) {
   if (item.clusterNotCompliant && item.clusterNotCompliant.length > 0){
-    return <StatusField status='critical' text={msgs.get('policy.status.noncompliant', locale)} />
+    return <StatusField status='noncompliant' text={msgs.get('policy.status.noncompliant', locale)} />
   }
-  return <StatusField status='ok' text={msgs.get('policy.status.compliant', locale)} />
+  return <StatusField status='compliant' text={msgs.get('policy.status.compliant', locale)} />
 }
 
 export function createCompliancePolicyLink(item = {}, ...param){
