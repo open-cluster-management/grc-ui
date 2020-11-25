@@ -11,7 +11,7 @@ import { formatResourceName } from '../scripts/utils'
 
 const { policies } = JSON.parse(Cypress.env('TEST_CONFIG'))
 
-describe('Clusters', () => {
+describe('Policy can be created and deleted', () => {
 
   it ('/policies/all page should load', () => {
     cy.visit('/multicloud/policies/all')
