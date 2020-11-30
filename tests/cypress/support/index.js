@@ -25,6 +25,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED='0'
 
 before(() => {
   cy.clearCookies()
+  cy.login()
 })
 
 beforeEach(() => {
@@ -32,4 +33,6 @@ beforeEach(() => {
 })
 
 after(()=> {
+  cy.logout()
+  cy.clearCookies()
 })
