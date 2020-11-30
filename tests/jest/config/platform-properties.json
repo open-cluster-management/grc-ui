@@ -233,7 +233,6 @@
   "table.header.enforcement": "Enforcement",
   "table.header.kind": "Kind",
   "table.header.lastReport": "Last Report",
-  "table.header.lastUpdate": "Last Updated",
   "table.header.message": "Message",
   "table.header.name": "Name",
   "table.header.policy.name": "Policy name",
