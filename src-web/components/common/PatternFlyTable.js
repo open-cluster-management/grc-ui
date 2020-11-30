@@ -38,6 +38,7 @@ class PatternFlyTable extends React.Component {
       sortBy: this.props.sortBy,
       startIdx: 0,
       endIdx: this.props.perPage,
+      searchState: this.trimSearchText(this.props.searchValue)
     }
   }
   static defaultProps = {
@@ -49,9 +50,11 @@ class PatternFlyTable extends React.Component {
     sortBy: {}
   }
   static getDerivedStateFromProps(props, state) {
-    const { sortBy } = state
-    const { searchValue, pagination, rows, searchable } = props
-    let trimmedSearchValue = (typeof searchValue === 'string') ? searchValue.trim() : ''
+    const { searchState, sortBy } = state
+    const { searchValue, handleSearch, handleClear, pagination, rows, searchable } = props
+    let trimmedSearchValue = (typeof handleSearch === 'function' && typeof handleClear === 'function')
+      ? this.trimSearchText(searchValue)
+      : searchState
     // also able to search truncated text
     trimmedSearchValue = trimmedSearchValue.split('...')[0]
     // Helper function to return the string from the cell
@@ -134,9 +137,25 @@ class PatternFlyTable extends React.Component {
       endIdx
     })
   }
+  handleSearch = (value) => {
+    this.setState({
+      searchState: this.trimSearchText(value)
+    })
+  }
+  handleClear = () => {
+    this.setState({
+      searchState: ''
+    })
+  }
+  trimSearchText = (value) => {
+    if(typeof value === 'string' && value.trim().length > 0) {
+      return value.trim()
+    }
+    return ''
+  }
 
   render() {
-    const { sortBy, rows = [], itemCount } = this.state
+    const { sortBy, rows = [], itemCount, searchState } = this.state
     const {
       columns,
       className,
@@ -152,13 +171,23 @@ class PatternFlyTable extends React.Component {
       handleClear
     } = this.props
     const classes = classNames('pattern-fly-table', className)
+    // if not pass in handleSearch, use build in handleSearch
+    let handleSearchFunc = this.handleSearch
+    // if not pass in handleClear, use build in handleClear
+    let handleClearFunc = this.handleClear
+    let searchText = searchState
+    if (typeof handleSearch === 'function' && typeof handleClear === 'function') {
+      handleSearchFunc = handleSearch
+      handleClearFunc = handleClear
+      searchText = searchValue
+    }
     return (
       <div className='pattern-fly-table-group'>
         {searchable && <SearchInput
           placeholder={searchPlaceholder}
-          value={searchValue}
-          onChange={handleSearch}
-          onClear={handleClear}
+          value={searchText}
+          onChange={handleSearchFunc}
+          onClear={handleClearFunc}
         />}
         <div className={classes}>
           <Table

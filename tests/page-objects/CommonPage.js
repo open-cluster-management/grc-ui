@@ -21,7 +21,6 @@ module.exports = {
     searchPatternFlyInputClear: '.pattern-fly-table-group .pf-c-search-input .pf-c-search-input__clear .pf-c-button',
     PatternFlyTabEmptyState: '.pattern-fly-table-group .pattern-fly-table .pf-c-empty-state__content',
     overflowButton: '.bx--overflow-menu:nth-of-type(1)',
-    deleteButton: '.bx--overflow-menu-options__option--danger',
     confirmDeleteButton: '.bx--btn--danger--primary',
     noResource: '.no-resource',
     policyStatus: '#complianceStatus-module-id',
