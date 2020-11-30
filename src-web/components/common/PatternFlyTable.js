@@ -57,7 +57,7 @@ class PatternFlyTable extends React.Component {
   static getDerivedStateFromProps(props, state) {
     const { searchState, sortBy } = state
     const { searchValue, handleSearch, handleClear, pagination, rows, searchable } = props
-    let trimmedSearchValue = typeof searchState === 'string' ? searchState : ''
+    let trimmedSearchValue = typeof searchState === 'string' ? searchState.trim() : ''
     if (typeof handleSearch === 'function' && typeof handleClear === 'function' && typeof searchValue === 'string') {
       trimmedSearchValue = searchValue.trim()
     }
@@ -85,7 +85,7 @@ class PatternFlyTable extends React.Component {
         return cells.some(item => {
           let parsedCell = parseCell(item)
           parsedCell = (typeof parsedCell === 'string') ? parsedCell : parsedCell.fromNow
-          return parsedCell.trim().toLowerCase().includes(trimmedSearchValue.toLowerCase())
+          return parsedCell.toLowerCase().includes(trimmedSearchValue.toLowerCase())
         })
       })
 
@@ -145,7 +145,7 @@ class PatternFlyTable extends React.Component {
   }
   handleSearch = (value) => {
     this.setState({
-      searchState: value.trim()
+      searchState: value
     })
   }
   handleClear = () => {
