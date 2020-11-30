@@ -30,11 +30,6 @@ resources(() => {
 class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
-    const { searchValue, handleSearch, handleClear } = props
-    let searchText = ''
-    if (typeof handleSearch === 'function' && typeof handleClear === 'function' && typeof searchValue === 'string') {
-      searchText = searchValue.trim()
-    }
     this.state = {
       perPage: this.props.perPage,
       page: 1,
@@ -43,7 +38,7 @@ class PatternFlyTable extends React.Component {
       sortBy: this.props.sortBy,
       startIdx: 0,
       endIdx: this.props.perPage,
-      searchState: searchText
+      searchState: this.trimSearchText(this.props.searchValue)
     }
   }
   static defaultProps = {
@@ -57,10 +52,9 @@ class PatternFlyTable extends React.Component {
   static getDerivedStateFromProps(props, state) {
     const { searchState, sortBy } = state
     const { searchValue, handleSearch, handleClear, pagination, rows, searchable } = props
-    let trimmedSearchValue = typeof searchState === 'string' ? searchState : ''
-    if (typeof handleSearch === 'function' && typeof handleClear === 'function' && typeof searchValue === 'string') {
-      trimmedSearchValue = searchValue.trim()
-    }
+    let trimmedSearchValue = (typeof handleSearch === 'function' && typeof handleClear === 'function')
+      ? this.trimSearchText(searchValue)
+      : searchState
     // also able to search truncated text
     trimmedSearchValue = trimmedSearchValue.split('...')[0]
     // Helper function to return the string from the cell
@@ -145,13 +139,19 @@ class PatternFlyTable extends React.Component {
   }
   handleSearch = (value) => {
     this.setState({
-      searchState: value.trim()
+      searchState: this.trimSearchText(value)
     })
   }
   handleClear = () => {
     this.setState({
       searchState: ''
     })
+  }
+  trimSearchText = (value) => {
+    if(typeof value === 'string' && value.trim().length > 0) {
+      return value.trim()
+    }
+    return ''
   }
 
   render() {
@@ -176,10 +176,10 @@ class PatternFlyTable extends React.Component {
     // if not pass in handleClear, use build in handleClear
     let handleClearFunc = this.handleClear
     let searchText = searchState
-    if (typeof handleSearch === 'function' && typeof handleClear === 'function' && typeof searchValue === 'string') {
+    if (typeof handleSearch === 'function' && typeof handleClear === 'function') {
       handleSearchFunc = handleSearch
       handleClearFunc = handleClear
-      searchText = searchValue.trim()
+      searchText = searchValue
     }
     return (
       <div className='pattern-fly-table-group'>
