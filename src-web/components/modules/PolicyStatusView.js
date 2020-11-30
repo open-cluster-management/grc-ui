@@ -45,14 +45,16 @@ class PolicyStatusView extends React.Component {
           <ToggleGroupItem
             buttonId={'policy-status-clusters'}
             onChange={this.toggleClick}
-            isSelected={toggleIndex===0}>
-            {msgs.get('tabs.policy.status.toggle.clusters', locale)}
+            isSelected={toggleIndex===0}
+            text={msgs.get('tabs.policy.status.toggle.clusters', locale)}
+            >
           </ToggleGroupItem>
           <ToggleGroupItem
             buttonId={'policy-status-templates'}
             onChange={this.toggleClick}
-            isSelected={toggleIndex===1}>
-            {msgs.get('tabs.policy.status.toggle.templates', locale)}
+            isSelected={toggleIndex===1}
+            text={msgs.get('tabs.policy.status.toggle.templates', locale)}
+            >
           </ToggleGroupItem>
         </ToggleGroup>
         <div className='policy-status-tab'>
