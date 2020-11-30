@@ -9,7 +9,7 @@ import { pageLoader } from '../views/common'
 import { createPolicy, verifyPolicyInListing, verifyPolicyNotInListing, deletePolicyInListing } from '../views/policy'
 import { formatResourceName } from '../scripts/utils'
 
-const { policies } = JSON.parse(Cypress.env('TEST_CONFIG'))
+const { policies } = JSON.parse(Cypress.env('TEST_CONFIG_DEMO'))
 
 describe('Policy can be created and deleted', () => {
 
