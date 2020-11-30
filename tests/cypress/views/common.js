@@ -1,8 +1,4 @@
-/** *****************************************************************************
- * Licensed Materials - Property of Red Hat, Inc.
- * Copyright (c) 2020 Red Hat, Inc.
- ****************************************************************************** */
-
+/* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
 
 const closeMenuQuery = 'svg[aria-label="Close menu"]'
@@ -121,4 +117,3 @@ export const selectItems = async (labels, listQuery, itemQuery='input[type="chec
   })
   //.then(() => { uncheckAllItems(listQuery, itemQuery) })  // this is here just if needed to test that uncheck works
 }
-
