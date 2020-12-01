@@ -6,7 +6,7 @@ import { createPolicy, verifyPolicyInListing, verifyPolicyNotInListing, deletePo
 import { formatResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
 
- 
+
 //const { policies } = JSON.parse(Cypress.env('TEST_CONFIG_DEMO'))
 const { policies } = getConfigObject('demo')
 
