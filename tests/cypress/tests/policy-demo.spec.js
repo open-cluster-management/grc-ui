@@ -4,8 +4,11 @@
 import { pageLoader } from '../views/common'
 import { createPolicy, verifyPolicyInListing, verifyPolicyNotInListing, deletePolicyInListing } from '../views/policy'
 import { formatResourceName } from '../scripts/utils'
+import { getConfigObject } from '../config'
 
-const { policies } = JSON.parse(Cypress.env('TEST_CONFIG_DEMO'))
+
+//const { policies } = JSON.parse(Cypress.env('TEST_CONFIG_DEMO'))
+const { policies } = getConfigObject('demo')
 
 describe('Policy can be created and deleted', () => {
 
