@@ -13,3 +13,7 @@ exports.getConfig = (filepath) => {
   }
   return JSON.stringify(config)
 }
+
+exports.getConfigObject = (prefix) => {
+  return JSON.parse(Cypress.env('TEST_CONFIG_'+prefix.toUpperCase()))
+}
