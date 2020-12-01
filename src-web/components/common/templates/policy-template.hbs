@@ -14,12 +14,13 @@ spec:
   remediationAction: {{#if enforce}}enforce{{else}}inform{{/if}}
   disabled: {{#if disabled}}true{{else}}false{{/if}}
   {{! If user modifies one of these specs, editor captures those changes and will insert here on re-render}}
-  {{#if policyTemplates.length}}
-  policy-templates:
+  policy-templates:{{#unless policyTemplates.length}} []
+  {{else}}
+
     {{#each policyTemplates}}
     {{{ this }}}
     {{/each}}
-  {{/if}}
+  {{/unless}}
   {{/if}}
 ---
 apiVersion: policy.open-cluster-management.io/v1
