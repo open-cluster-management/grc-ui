@@ -7,6 +7,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED='0'
 before(() => {
   cy.clearCookies()
   cy.login()
+  cy.goToGRCPage()
 })
 
 beforeEach(() => {
