@@ -113,3 +113,32 @@ Cypress.Commands.add('generateNamespace', () => {
 Cypress.Commands.add('waitUsingSLA', () => {
   return cy.wait(parseInt(Cypress.env('SERVICE_SLA'), 10) || 5000)
 })
+
+// set the YAML editor visibility to a desired state
+// requires an element with 'switch-label' class being available in the page
+Cypress.Commands.add('toggleYAMLeditor', (state = undefined) => {
+  const err = 'Invalid parameter: Parameter "state" can be either "On" or "Off" or undefined'
+  if (state != undefined && state != 'On' && state != 'Off') { throw err }
+  cy.get('.switch-label').spread( (e) => {
+    if ((state == undefined) ||
+        (e.textContent.indexOf('Off') > 0 && state == 'On') ||
+        (e.textContent.indexOf('On') > 0 && state == 'Off'))
+    {
+      cy.get('#edit-yaml').next('label').click()
+    }
+    return cy
+  })
+})
+
+// return the Cypress wrapped object of the monaco editor
+Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
+  cy.get('textarea.inputarea') // make sure the element is there first
+    .then(() => {
+      if (uri) {
+        return cy.window().its('monaco').its('editor').invoke('getModel', uri).then((ed) => { cy.wrap(ed) })
+      } else {
+        return cy.window().its('monaco').its('editor').invoke('getModels').spread((ed) => { cy.wrap(ed) })
+      }
+  })
+})
+
