@@ -35,6 +35,15 @@ describe('Policy can be created and deleted', () => {
       verifyPolicyInListing({ name, ...policyDetails})
     })
 
+    it(`Policy status becomes available`, () => {
+      cy.visit(`/multicloud/policies/all/${policies[name]['namespace']}/${frname}`)
+      // or
+      // cy.visit('/multicloud/policies/all')
+      // both pages should be supported
+      cy.waitForPolicyStatus(name)
+        //.wait(3000)  // just to give user some time to see the change
+    })
+
     it(`Policy ${frname} can be deleted in the policy listing`, () => {
       cy.visit('/multicloud/policies/all')
       deletePolicyInListing(name)
