@@ -130,7 +130,6 @@ Cypress.Commands.add('toggleYAMLeditor', (state = undefined) => {
   })
 })
 
-// return the Cypress wrapped object of the monaco editor
 Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
   cy.get('textarea.inputarea') // make sure the element is there first
     .then(() => {
@@ -142,3 +141,10 @@ Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
   })
 })
 
+Cypress.Commands.add('goToGRCPage', () => {
+  cy.get('#hamburger', { timeout: 20000 }).should('exist')
+  cy.get('#hamburger').click()
+  cy.get('#grc', { timeout: 20000 }).should('exist')
+  cy.get('#grc').click()
+  cy.get('.bx--detail-page-header-title').contains('Governance and risk')
+})
