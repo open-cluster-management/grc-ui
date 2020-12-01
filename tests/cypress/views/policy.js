@@ -1,9 +1,13 @@
-/* Copyright (c) 2020 Red Hat, Inc. */
+/** *****************************************************************************
+ * Licensed Materials - Property of Red Hat, Inc.
+ * Copyright (c) 2020 Red Hat, Inc.
+ ****************************************************************************** */
+
 /// <reference types="cypress" />
 import { selectItems } from './common'
 import { formatResourceName } from '../scripts/utils'
 
-export const createPolicy = ({ name, create=false, ...policyConfig }) => {
+export const createPolicy = ({ name, create=false, valid=true, ...policyConfig }) => {
   name = formatResourceName(name)
   // fill the form
   // name
@@ -53,11 +57,20 @@ export const createPolicy = ({ name, create=false, ...policyConfig }) => {
     })
   // create
     .then(() => {
-      if (create) {
+      if (create && valid) {
         cy.get('#create-button-portal-id-btn').click()
       }
+      if(!valid)
+      {
+        cy.get('.react-monaco-editor-container').click().focused().type(name+'-invalid{enter}', { delay: 100 })
+        cy.get('#create-button-portal-id-btn').click()
+        cy.get('.bx--inline-notification__title').contains('Create error:')
+        cy.get('.bx--inline-notification__subtitle').should('exist')
+      }
     })
-}
+    cy.get('.react-monaco-editor-container').click().focused().type(Cypress.platform !== 'darwin' ? '{ctrl}a' : '{meta}a')
+  }
+
 
 export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
   name = formatResourceName(name)

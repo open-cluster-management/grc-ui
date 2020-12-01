@@ -44,5 +44,11 @@ describe('Policy can be created and deleted', () => {
       cy.visit('/multicloud/policies/all')
       verifyPolicyNotInListing(name)
     })
+
+    it.only(`Create policy named ${frname}-invalid with invalid YAML content or format, it should not allow to create policy `, () => {
+      cy.visit('/multicloud/policies/create')
+      pageLoader.shouldNotExist()
+      createPolicy({ name, create:true, valid:false, ...policyDetails})
+    })
   }
 })
