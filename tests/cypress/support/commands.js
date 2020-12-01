@@ -120,3 +120,11 @@ Cypress.Commands.add('waitUsingSLA', () => {
 Cypress.Commands.add('waitForPolicyStatus', (name) => {
   cy.waitUntil(() => isPolicyStatusAvailable(name), {'interval': 5000, 'timeout':60000})
 })
+
+Cypress.Commands.add('goToGRCPage', () => {
+  cy.get('#hamburger', { timeout: 20000 }).should('exist')
+  cy.get('#hamburger').click()
+  cy.get('#grc', { timeout: 20000 }).should('exist')
+  cy.get('#grc').click()
+  cy.get('.bx--detail-page-header-title').contains('Governance and risk')
+})

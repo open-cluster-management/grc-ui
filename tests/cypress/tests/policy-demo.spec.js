@@ -11,13 +11,6 @@ import { getConfigObject } from '../config'
 const { policies } = getConfigObject('demo')
 
 describe('Policy can be created and deleted', () => {
-
-  it ('/policies/all page should load', () => {
-    cy.visit('/multicloud/policies/all')
-      .then(() => { pageLoader.shouldNotExist()
-    })
-  })
-
   for (const name in policies) {
     const policyDetails = policies[name]
     const frname = formatResourceName(name)
