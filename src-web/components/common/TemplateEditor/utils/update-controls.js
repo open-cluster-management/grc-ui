@@ -221,10 +221,10 @@ const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newPar
     control.hasCapturedUserSource = false
   }
 
-  // if user has manually changed the objects, save their changes to stuff back into template
+  // if user has manually changed the objects, save their changes and remove all active selected templates
   if (control.hasCapturedUserSource) {
     control.userData = getTemplateSource(reverse, newParsed)
-    control.active = control.userData
+    control.active = []
   } else {
     delete control.userData
   }
