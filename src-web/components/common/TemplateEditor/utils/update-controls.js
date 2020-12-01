@@ -229,6 +229,7 @@ const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newPar
     delete control.userData
   }
 }
+
 const getTemplateObjects = (reverse, parsed) => {
   const objects = []
   reverse.forEach(path=>{
@@ -243,21 +244,24 @@ const getTemplateObjects = (reverse, parsed) => {
 export const getTemplateSource = (reverse, parsed) => {
   let ret = []
   reverse.forEach(path=>{
-    path = path.split('.')
-    const pathBase = path.shift()
-    path.shift()
+    const pathArray = path.split('.')
+    const pathBase = pathArray.shift()
+    pathArray.shift()
 
     // dig out the yaml and the object that points to it
     const yaml = _.get(parsed, `${pathBase}.$yml`)
-    path = path.length>0 ? pathBase + `.$synced.${path.join('.$v.')}` : pathBase
-    const synced = _.get(parsed, path)
+    const pathReformat = path.length>0 ? pathBase + `.$synced.${pathArray.join('.$v.')}.$v` : pathBase
+    const synced = _.get(parsed, pathReformat)
     if (yaml && synced) {
       // capture the source lines
       const lines = yaml.split('\n')
-      ret = [...ret, ...lines.slice(synced.$r, synced.$r+synced.$l+1)]
+      // the templates are an array, so we need to iterate over each
+      synced.forEach(syncItem => {
+        ret = [...ret, ...lines.slice(syncItem.$r, syncItem.$r+syncItem.$l+1).join('\n')]
+      })
     }
   })
-  return ret.join('\n')
+  return ret
 }
 
 export const parseYAML = (yaml) => {

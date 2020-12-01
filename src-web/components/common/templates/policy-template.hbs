@@ -14,9 +14,10 @@ spec:
   remediationAction: {{#if enforce}}enforce{{else}}inform{{/if}}
   disabled: {{#if disabled}}true{{else}}false{{/if}}
   {{! If user modifies one of these specs, editor captures those changes and will insert here on re-render}}
-  policy-templates:{{#unless policyTemplates.length}} []
+  policy-templates:
+  {{#unless policyTemplates.length}}
+    []
   {{else}}
-
     {{#each policyTemplates}}
     {{{ this }}}
     {{/each}}

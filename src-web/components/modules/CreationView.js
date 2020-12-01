@@ -26,7 +26,7 @@ const Portals = Object.freeze({
   cancelBtn: 'cancel-button-portal-id',
 })
 
-// controlData is converted to templateData when tempplate handlebar is rendered
+// controlData is converted to templateData when template handlebar is rendered
 //  id: becomes template variable;
 //  active: becomes value replacement
 //  type: what type of control to prompt user
