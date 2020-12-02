@@ -101,7 +101,7 @@ replacements: # if user select this choice, the template variable names and valu
                     logLevel: INFO
                     replicas: 1
                   image:
-                    image: 'docker.io/openpolicyagent/gatekeeper:v3.1.1'
+                    image: 'docker.io/openpolicyagent/gatekeeper:v3.2.1'
                   validatingWebhook: Enabled
                   webhook:
                     emitAdmissionEvents: Enabled
