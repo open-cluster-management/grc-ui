@@ -2,10 +2,10 @@
 
 OC_BUILD_VERSION?=latest
 OC_PLATFORM ?= $(shell echo $(BUILD_HARNESS_OS) | sed 's/darwin/macosx/g')
-OC_SOURCE_URL?="https://mirror.openshift.com/pub/openshift-v4/clients/oc/${OC_BUILD_VERSION}/${OC_PLATFORM}/oc.tar.gz"
+OC_SOURCE_URL?="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OC_BUILD_VERSION}/${OC_PLATFORM}/openshift-client-linux.tar.gz"
 
 OC_DEST_PATH?=${BUILD_HARNESS_PATH}/vendor
-OC_TAR_PATH?=${OC_DEST_PATH}/oc.tar.gz
+OC_TAR_PATH?=${OC_DEST_PATH}/openshift-client-linux.tar.gz
 OC?=${OC_DEST_PATH}/oc
 OC_CLUSTER_USER ?=
 OC_CLUSTER_PASS ?=
