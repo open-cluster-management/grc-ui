@@ -31,7 +31,7 @@ describe('Policy can be created and deleted', () => {
       verifyPolicyInListing({ name, ...policyDetails})
     })
 
-    it(`Policy status becomes available`, () => {
+    it('Policy status becomes available', () => {
       cy.visit(`/multicloud/policies/all/${policies[name]['namespace']}/${frname}`)
       // or
       // cy.visit('/multicloud/policies/all')
