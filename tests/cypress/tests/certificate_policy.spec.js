@@ -34,7 +34,7 @@ describe('GRC certificate policy controller e2e tests', () => {
 
     it('Disable certificate policy', () => {
       cy.CheckGrcMainPage()
-      disablePolicyInListing(certificatePolicyName)s
+      disablePolicyInListing(certificatePolicyName)
     })
 
     it('Enable certificate policy', () => {
