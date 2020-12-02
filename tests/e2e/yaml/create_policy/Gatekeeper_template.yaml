@@ -1,0 +1,140 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: [TEST_POLICY_NAME]
+  namespace: default
+  annotations:
+    policy.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: PR.AC Identity Management Authentication and Access Control
+    policy.open-cluster-management.io/controls: PR.AC-4 Access Control
+spec:
+  remediationAction: inform
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: [TEST_POLICY_NAME]-gatekeeper-operator-ns
+        spec:
+          remediationAction: inform
+          severity: high
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: Namespace
+                metadata:
+                  name: gatekeeper-system
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: [TEST_POLICY_NAME]-gatekeeper-operator-catalog-source
+        spec:
+          remediationAction: inform
+          severity: high
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: operators.coreos.com/v1alpha1
+                kind: CatalogSource
+                metadata:
+                  name: gatekeeper-operator
+                  namespace: gatekeeper-system
+                spec:
+                  displayName: Gatekeeper Operator Upstream
+                  publisher: github.com/font/gatekeeper-operator
+                  sourceType: grpc
+                  image: 'quay.io/willkutler/gatekeeper-operator-bundle-index:0.0.3'
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: [TEST_POLICY_NAME]-gatekeeper-operator-group
+        spec:
+          remediationAction: inform
+          severity: high
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: operators.coreos.com/v1
+                kind: OperatorGroup
+                metadata:
+                  name: gatekeeper-operator
+                  namespace: gatekeeper-system
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: [TEST_POLICY_NAME]-gatekeeper-operator-subscription
+        spec:
+          remediationAction: inform
+          severity: high
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: operators.coreos.com/v1alpha1
+                kind: Subscription
+                metadata:
+                  name: gatekeeper-operator-sub
+                  namespace: gatekeeper-system
+                spec:
+                  channel: alpha
+                  name: gatekeeper-operator
+                  source: gatekeeper-operator
+                  sourceNamespace: gatekeeper-system
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: [TEST_POLICY_NAME]-gatekeeper
+        spec:
+          remediationAction: inform
+          severity: high
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: operator.gatekeeper.sh/v1alpha1
+                kind: Gatekeeper
+                metadata:
+                  name: gatekeeper
+                  namespace: gatekeeper-system
+                spec:
+                  audit:
+                    logLevel: INFO
+                    replicas: 1
+                  image:
+                    image: 'docker.io/openpolicyagent/gatekeeper:v3.2.1'
+                  validatingWebhook: Enabled
+                  webhook:
+                    emitAdmissionEvents: Enabled
+                    logLevel: INFO
+                    replicas: 2
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-[TEST_POLICY_NAME]
+  namespace: default
+placementRef:
+  name: placement-[TEST_POLICY_NAME]
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+- name: [TEST_POLICY_NAME]
+  kind: Policy
+  apiGroup: policy.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-[TEST_POLICY_NAME]
+  namespace: default
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+      []  # selects all clusters if not specified
