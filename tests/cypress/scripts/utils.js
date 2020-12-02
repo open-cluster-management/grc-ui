@@ -10,9 +10,9 @@ export const getOpt = (opts, key, defaultValue) => {
 export const getUniqueResourceName = (name, time) => {
   let uName = name
   if (time) {
-    uName = `${name}_${time}`
+    uName = `${name}-${time}`
   } else if (Cypress.env('RESOURCE_ID') && (!name.endsWith(Cypress.env('RESOURCE_ID')))) {
-    uName = `${name}_${Cypress.env('RESOURCE_ID')}`
+    uName = `${name}-${Cypress.env('RESOURCE_ID')}`
   }
 
   return uName

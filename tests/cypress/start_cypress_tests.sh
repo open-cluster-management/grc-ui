@@ -42,7 +42,10 @@ CYPRESS_OPTIONS_HUB_BASEDOMAIN=${CYPRESS_OPTIONS_HUB_BASEDOMAIN%":6443"}
 export CYPRESS_OPTIONS_HUB_BASEDOMAIN
 export CYPRESS_BASE_URL=https://multicloud-console.apps.$CYPRESS_OPTIONS_HUB_BASEDOMAIN
 
+export CYPRESS_RESOURCE_ID=$(date +"%s")
+
 echo -e "Running cypess tests with the following environment:\n"
+echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_ID"
 echo -e "\tCYPRESS_OPTIONS_HUB_BASEDOMAIN : $CYPRESS_OPTIONS_HUB_BASEDOMAIN"
 echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL)  : $CYPRESS_BASE_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL   : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
