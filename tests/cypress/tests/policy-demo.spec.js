@@ -3,7 +3,7 @@
 
 import { pageLoader } from '../views/common'
 import { createPolicy, verifyPolicyInListing, verifyPolicyNotInListing, deletePolicyInListing } from '../views/policy'
-import { formatResourceName } from '../scripts/utils'
+import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
 
 
@@ -13,7 +13,7 @@ const { policies } = getConfigObject('demo')
 describe('Policy can be created and deleted', () => {
   for (const name in policies) {
     const policyDetails = policies[name]
-    const frname = formatResourceName(name)
+    const frname = getUniqueResourceName(name)
 
     it (`Can create new policy ${frname}`, () => {
       cy.visit('/multicloud/policies/create')

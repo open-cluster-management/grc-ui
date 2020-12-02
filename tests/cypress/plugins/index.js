@@ -8,7 +8,7 @@
 const glob = require('glob')
 const path = require('path')
 const getConfig = require('../config').getConfig
-const configFiles = glob.sync(path.join(__dirname, '../config', '*.yaml'))
+const configFiles = glob.sync(path.join(__dirname, '../config/*/', '*.yaml'))
 
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits

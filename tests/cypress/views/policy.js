@@ -1,10 +1,10 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
 import { selectItems } from './common'
-import { formatResourceName } from '../scripts/utils'
+import { getUniqueResourceName } from '../scripts/utils'
 
 export const createPolicy = ({ name, create=false, ...policyConfig }) => {
-  name = formatResourceName(name)
+  name = getUniqueResourceName(name)
   // fill the form
   // name
   cy.get('input[aria-label="name"]')
@@ -57,10 +57,12 @@ export const createPolicy = ({ name, create=false, ...policyConfig }) => {
         cy.get('#create-button-portal-id-btn').click()
       }
     })
+
+    cy.CheckGrcMainPage()
 }
 
 export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
-  name = formatResourceName(name)
+  name = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
     cy.get('a').contains(name).parent('td').siblings('td').spread((namespace, remediation, violations, standards, categories, controls) => {
       // namespace
@@ -91,7 +93,7 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
 }
 
 export const verifyPolicyNotInListing = (name) => {
-  name = formatResourceName(name)
+  name = getUniqueResourceName(name)
   // either there are no policies at all or there are some policies listed
   if (!Cypress.$('#page').find('div.no-resouce'.length)) {
     cy.get('.grc-view-by-policies-table').within(() => {
@@ -103,7 +105,7 @@ export const verifyPolicyNotInListing = (name) => {
 }
 
 export const doPolicyActionInListing = (name, action, cancel=false) => {
-  name = formatResourceName(name)
+  name = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
     cy.get('a')
       .contains(name)
@@ -126,8 +128,53 @@ export const doPolicyActionInListing = (name, action, cancel=false) => {
       }
     })
   })
+  cy.CheckGrcMainPage()
+}
+
+export const doPolicyActionInListingWithTag = (name, action, cancel=false) => {
+  name = getUniqueResourceName(name)
+  cy.get('.grc-view-by-policies-table').within(() => {
+    cy.get('a')
+      .contains(name)
+      .parent('div')
+      .parent('td')
+      .siblings('td')
+      .last()
+      .click()
+  })
+  .then(() => {
+    cy.get('button').contains(action).click()
+  })
+  .then(() => {
+    cy.get('.bx--modal-container').within(() => {
+      if (cancel) {
+        cy.get('button').contains('Cancel')
+          .click()
+      } else {
+        cy.get('button').contains(action)
+          .click()
+      }
+    })
+  })
+  cy.CheckGrcMainPage()
 }
 
 export const deletePolicyInListing = (name) => {
   doPolicyActionInListing(name, 'Remove')
+}
+
+export const disablePolicyInListing = (name) => {
+  doPolicyActionInListing(name, 'Disable')
+}
+
+export const enablePolicyInListing = (name) => {
+  doPolicyActionInListingWithTag(name, 'Enable')
+}
+
+export const enforcePolicyInListing = (name) => {
+  doPolicyActionInListing(name, 'Enforce')
+}
+
+export const informPolicyInListing = (name) => {
+  doPolicyActionInListing(name, 'Inform')
 }

@@ -1,0 +1,13 @@
+createCertificate:
+  name: 'policy-create-certificate'
+  namespace: 'default'
+  cluster_binding:
+   - 'name: "local-cluster"'
+  standards:
+   - 'NIST-CSF'
+  categories:
+   - 'PR.PT Protective Technology'
+  controls:
+   - 'PR.PT-3 Least Functionality'
+  enforce: True
+  disable: False
