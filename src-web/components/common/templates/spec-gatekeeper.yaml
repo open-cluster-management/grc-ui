@@ -42,7 +42,7 @@ replacements: # if user select this choice, the template variable names and valu
                   displayName: Gatekeeper Operator Upstream
                   publisher: github.com/font/gatekeeper-operator
                   sourceType: grpc
-                  image: 'quay.io/willkutler/gatekeeper-operator-bundle-index:0.0.1'
+                  image: 'quay.io/willkutler/gatekeeper-operator-bundle-index:0.0.3'
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
