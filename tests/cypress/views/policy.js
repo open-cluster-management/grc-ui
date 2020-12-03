@@ -104,6 +104,30 @@ export const verifyPolicyNotInListing = (name) => {
   }
 }
 
+export const verifyDisabledPolicyInListing = (name) => {
+  name = getUniqueResourceName(name)
+  if (!Cypress.$('#page').find('div.no-resouce').length) {
+    cy.get('.grc-view-by-policies-table').within(() => {
+      cy.get('a')
+        .contains(name)
+        .siblings('span')
+        .contains('disabled', { matchCase: false })
+    })
+  }
+}
+
+export const verifyNonDisabledPolicyInListing = (name) => {
+  name = getUniqueResourceName(name)
+  if (!Cypress.$('#page').find('div.no-resouce').length) {
+    cy.get('.grc-view-by-policies-table').within(() => {
+      cy.get('a')
+        .contains(name)
+        .siblings('span')
+        .should('not.exist')
+    })
+  }
+}
+
 export const doPolicyActionInListing = (name, action, withTag=false, cancel=false) => {
   name = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
