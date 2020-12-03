@@ -56,11 +56,13 @@ export const generateYAML = (template, controlData) => {
   // add replacements
   const snippetMap = {}
   replacements.forEach(replacement=>{
-    const {id:replacementID, active, availableMap, hasCapturedUserSource, userData} = replacement
+    const {id:replacementID, active, availableMap, hasCapturedUserSource, reverse, userData} = replacement
     if (active.length>0) {
       if (hasCapturedUserSource) {
         // Store userData to inject in the editor in place of templates
-        templateData[`${replacementID}Capture`] = userData
+        //   (In order to parse valid YAML, we need to pass the parent key
+        //    with the array, so we'll grab it from the `reverse` path)
+        templateData[`${replacementID}Capture`] = `  ${reverse[0].split('.').slice(-1)}:\n${userData}`
       } else {
         // add predefined snippets
         active.forEach((key, idx)=>{
@@ -116,8 +118,7 @@ export const generateYAML = (template, controlData) => {
 
   //format yaml from custom specifications
   if (templateData['specsCapture']) {
-    // In order to parse valid YAML, we need to pass the parent key with the array
-    const parsed = parseYAML('  policy-templates:\n' + templateData['specsCapture'])
+    const parsed = parseYAML(templateData['specsCapture'])
     const raw = parsed['parsed']['unknown'][0]['$raw']
     templateData['specsCapture'] = jsYaml.safeDump(raw)
   }
