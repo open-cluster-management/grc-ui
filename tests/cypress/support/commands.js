@@ -2,6 +2,7 @@
 import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
 import { oauthIssuer } from '../views/resource'
+import { isPolicyStatusAvailable } from '../views/policy'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
   var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
@@ -139,6 +140,12 @@ Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
         return cy.window().its('monaco').its('editor').invoke('getModels').spread((ed) => { cy.wrap(ed) })
       }
   })
+
+// needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
+// see isPolicyStatusAvailable()
+Cypress.Commands.add('waitForPolicyStatus', (name) => {
+  cy.waitUntil(() => isPolicyStatusAvailable(name), {'interval': 5000, 'timeout':60000})
+
 })
 
 Cypress.Commands.add('goToGRCPage', () => {
