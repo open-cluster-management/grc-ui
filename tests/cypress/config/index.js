@@ -11,13 +11,16 @@ exports.getConfig = (filepath) => {
  return config
 }
 
+exports.getConfigText = (prefix) => {
+  return Cypress.env('TEST_CONFIG_'+prefix.toUpperCase())
+}
+
 exports.getConfigObject = (prefix) => {
   let config
   try {
-    config = jsYaml.safeLoad(Cypress.env('TEST_CONFIG_'+prefix.toUpperCase()))
+    config = jsYaml.safeLoad(exports.getConfigText(prefix))
   } catch (e) {
     throw new Error(e)
   }
- 
   return config
 }
