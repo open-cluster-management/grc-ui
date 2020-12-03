@@ -92,15 +92,6 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
   })
 }
 
-export const verifyPolicyRemediationInListing = (name, tragetRemediation) => {
-  name = getUniqueResourceName(name)
-  cy.get('.grc-view-by-policies-table').within(() => {
-    cy.get('a').contains(name).parent('td').siblings('td').spread((remediation) => {
-      cy.wrap(remediation).contains(tragetRemediation)
-    })
-  })
-}
-
 export const verifyPolicyNotInListing = (name) => {
   name = getUniqueResourceName(name)
   // either there are no policies at all or there are some policies listed
@@ -169,9 +160,8 @@ export const informPolicyInListing = (name) => {
   doPolicyActionInListing(name, 'Inform')
 }
 
-export const isPolicyStatusAvailable = (name) => {
-  name = formatResourceName(name)
-  var r = false
+export const isPolicyStatusAvailable = (name, statusPending=false) => {
+  name = getUniqueResourceName(name)
   // page /multicloud/policies/all
   if (window.location.toString().endsWith('/multicloud/policies/all')) {
     return cy.get('.grc-view-by-policies-table').within(() => {
@@ -181,12 +171,12 @@ export const isPolicyStatusAvailable = (name) => {
         if (elems.length == 1) {
           const d = elems[0].getAttribute('d')
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-          r = !d.startsWith('M569')
+          statusPending = !d.startsWith('M569')
         }
       })
     })
   })
-  .then(() => r)
+  .then(() => statusPending)
   } else { // other pages
     return cy.get('.violationCell').spread((violations) => {
       // check the violation status
@@ -194,10 +184,10 @@ export const isPolicyStatusAvailable = (name) => {
         if (elems.length == 1) {
           const d = elems[0].getAttribute('d')
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-          r = !d.startsWith('M569')
+          statusPending = !d.startsWith('M569')
         }
       })
     })
-    .then(() => r)
+    .then(() => statusPending)
   }
 }
