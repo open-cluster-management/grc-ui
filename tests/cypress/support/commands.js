@@ -140,6 +140,7 @@ Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
         return cy.window().its('monaco').its('editor').invoke('getModels').spread((ed) => { cy.wrap(ed) })
       }
   })
+})
 
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
 // see isPolicyStatusAvailable()
