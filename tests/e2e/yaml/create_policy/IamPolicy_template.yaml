@@ -11,18 +11,18 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-    - objectDefinition:
-        apiVersion: policy.open-cluster-management.io/v1
-        kind: IamPolicy # limit clusteradminrole and report violation
-        metadata:
-          name: [TEST_POLICY_NAME]-example
-        spec:
-          severity: medium
-          namespaceSelector:
-            include: ["*"]
-            exclude: ["kube-*", "openshift-*"]
-          remediationAction: inform # will be overridden by remediationAction in parent policy
-          maxClusterRoleBindingUsers: 5
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: IamPolicy # limit clusteradminrole and report violation
+      metadata:
+        name: [TEST_POLICY_NAME]-example
+      spec:
+        severity: medium
+        namespaceSelector:
+          include: ["*"]
+          exclude: ["kube-*", "openshift-*"]
+        remediationAction: inform # will be overridden by remediationAction in parent policy
+        maxClusterRoleBindingUsers: 5
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
