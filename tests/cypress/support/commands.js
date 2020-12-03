@@ -36,7 +36,7 @@ Cypress.Commands.add('reloadUntil', (condition, options) => {
   var currentTime = new Date()
   if (currentTime - startTime < timeout) {
     condition().then(result => {
-      if (result == false) {
+      if (result === false) {
         cy.reload()
         if (interval > 0) {
           cy.wait(interval)
@@ -77,7 +77,7 @@ Cypress.Commands.add('checkCondition', (selector, condition, action) => {
   return cy.get('body').then($body => {
     var $elem = $body.find(selector)
     var result = condition($elem)
-    if (result == true && action) {
+    if (result === true && action) {
       return action($elem)
     }
 
@@ -87,7 +87,7 @@ Cypress.Commands.add('checkCondition', (selector, condition, action) => {
 
 Cypress.Commands.add('forEach', (selector, action, options) => {
   var failIfNotFound = getOpt(options, 'failIfNotFound', false)
-  if (failIfNotFound == true) {
+  if (failIfNotFound === true) {
     return cy.get(selector, options).each(($elem) => action($elem))
   }
 

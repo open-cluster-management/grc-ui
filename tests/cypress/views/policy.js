@@ -69,9 +69,9 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
       cy.wrap(namespace).contains(policyConfig['namespace'])
       // enforce/inform
       if (policyConfig['enforce']) {
-        cy.wrap(remediation).contains('enforce')
+        cy.wrap(remediation).contains('enforce', { matchCase: false })
       } else {
-        cy.wrap(remediation).contains('inform')
+        cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // standard
       for (const std of policyConfig['standards']) {
@@ -125,15 +125,15 @@ export const doPolicyActionInListing = (name, action, withTag=false, cancel=fals
     }
   })
   .then(() => {
-    cy.get('button').contains(action).click()
+    cy.get('button').contains(action, { matchCase: false }).click()
   })
   .then(() => {
     cy.get('.bx--modal-container').within(() => {
       if (cancel) {
-        cy.get('button').contains('Cancel')
+        cy.get('button').contains('Cancel', { matchCase: false })
           .click()
       } else {
-        cy.get('button').contains(action)
+        cy.get('button').contains(action, { matchCase: false })
           .click()
       }
     })
@@ -168,7 +168,7 @@ export const isPolicyStatusAvailable = (name, statusPending=false) => {
     cy.get('a').contains(name).parent('td').siblings('td').spread((namespace, remediation, violations) => {
       // check the violation status
       cy.wrap(violations).find('path').then((elems) => {
-        if (elems.length == 1) {
+        if (elems.length === 1) {
           const d = elems[0].getAttribute('d')
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
           statusPending = !d.startsWith('M569')
@@ -181,7 +181,7 @@ export const isPolicyStatusAvailable = (name, statusPending=false) => {
     return cy.get('.violationCell').spread((violations) => {
       // check the violation status
       cy.wrap(violations).find('path').then((elems) => {
-        if (elems.length == 1) {
+        if (elems.length === 1) {
           const d = elems[0].getAttribute('d')
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
           statusPending = !d.startsWith('M569')

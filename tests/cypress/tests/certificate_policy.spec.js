@@ -27,7 +27,7 @@ describe('GRC certificate policy controller e2e tests', () => {
       verifyPolicyInListing({ createCertificateName, ...createCertificate})
     })
 
-    it ('Create certificate policy with violation', () => {
+    it ('Create certificate policy', () => {
       cy.FromGRCToCreatePolicyPage()
       createPolicy({ certificatePolicyName, create:true, ...certificatePolicy})
       verifyPolicyInListing({ certificatePolicyName, ...certificatePolicy})
@@ -50,12 +50,18 @@ describe('GRC certificate policy controller e2e tests', () => {
       cy.CheckGrcMainPage()
       enforcePolicyInListing(certificatePolicyName)
       cy.CheckGrcMainPage()
+      certificatePolicy.enforce = true
+      certificatePolicy.inform = false
+      verifyPolicyInListing({ certificatePolicyName, ...certificatePolicy})
     })
 
     it('Inform certificate policy', () => {
       cy.CheckGrcMainPage()
       informPolicyInListing(certificatePolicyName)
       cy.CheckGrcMainPage()
+      certificatePolicy.enforce = false
+      certificatePolicy.inform = true
+      verifyPolicyInListing({ certificatePolicyName, ...certificatePolicy})
     })
 
     it('Delete issuer', () => {
