@@ -3,7 +3,8 @@
 
 import {
   createPolicy, verifyPolicyInListing, verifyPolicyNotInListing, deletePolicyInListing,
-  disablePolicyInListing, enablePolicyInListing, enforcePolicyInListing, informPolicyInListing
+  disablePolicyInListing, enablePolicyInListing, enforcePolicyInListing, informPolicyInListing,
+  verifyPolicyRemediationInListing
 } from '../views/policy'
 import { getConfigObject } from '../config'
 
@@ -35,38 +36,47 @@ describe('GRC certificate policy controller e2e tests', () => {
     it('Disable certificate policy', () => {
       cy.CheckGrcMainPage()
       disablePolicyInListing(certificatePolicyName)
+      cy.CheckGrcMainPage()
     })
 
     it('Enable certificate policy', () => {
       cy.CheckGrcMainPage()
       enablePolicyInListing(certificatePolicyName)
+      cy.CheckGrcMainPage()
     })
 
     it('Enforce certificate policy', () => {
       cy.CheckGrcMainPage()
       enforcePolicyInListing(certificatePolicyName)
+      cy.CheckGrcMainPage()
+      // verifyPolicyRemediationInListing(certificatePolicyName, 'enforce')
     })
 
     it('Inform certificate policy', () => {
       cy.CheckGrcMainPage()
       informPolicyInListing(certificatePolicyName)
+      cy.CheckGrcMainPage()
+      // verifyPolicyRemediationInListing(certificatePolicyName, 'inform')
     })
 
     it('Delete issuer', () => {
       cy.CheckGrcMainPage()
       deletePolicyInListing(createIssuerName)
       verifyPolicyNotInListing(createIssuerName)
+      cy.CheckGrcMainPage()
     })
 
     it('Delete certificate', () => {
       cy.CheckGrcMainPage()
       deletePolicyInListing(createCertificateName)
       verifyPolicyNotInListing(createCertificateName)
+      cy.CheckGrcMainPage()
     })
 
     it('Delete certificate policy', () => {
       cy.CheckGrcMainPage()
       deletePolicyInListing(certificatePolicyName)
       verifyPolicyNotInListing(certificatePolicyName)
+      cy.CheckGrcMainPage()
     })
 })

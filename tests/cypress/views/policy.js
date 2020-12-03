@@ -92,6 +92,15 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
   })
 }
 
+export const verifyPolicyRemediationInListing = (name, tragetRemediation) => {
+  name = getUniqueResourceName(name)
+  cy.get('.grc-view-by-policies-table').within(() => {
+    cy.get('a').contains(name).parent('td').siblings('td').spread((remediation) => {
+      cy.wrap(remediation).contains(tragetRemediation)
+    })
+  })
+}
+
 export const verifyPolicyNotInListing = (name) => {
   name = getUniqueResourceName(name)
   // either there are no policies at all or there are some policies listed
@@ -104,43 +113,25 @@ export const verifyPolicyNotInListing = (name) => {
   }
 }
 
-export const doPolicyActionInListing = (name, action, cancel=false) => {
+export const doPolicyActionInListing = (name, action, withTag=false, cancel=false) => {
   name = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
-    cy.get('a')
-      .contains(name)
-      .parent('td')
-      .siblings('td')
-      .last()
-      .click()
-  })
-  .then(() => {
-    cy.get('button').contains(action).click()
-  })
-  .then(() => {
-    cy.get('.bx--modal-container').within(() => {
-      if (cancel) {
-        cy.get('button').contains('Cancel')
-          .click()
-      } else {
-        cy.get('button').contains(action)
-          .click()
-      }
-    })
-  })
-  cy.CheckGrcMainPage()
-}
-
-export const doPolicyActionInListingWithTag = (name, action, cancel=false) => {
-  name = getUniqueResourceName(name)
-  cy.get('.grc-view-by-policies-table').within(() => {
-    cy.get('a')
+    if (withTag) {
+      cy.get('a')
       .contains(name)
       .parent('div')
       .parent('td')
       .siblings('td')
       .last()
       .click()
+    } else {
+      cy.get('a')
+      .contains(name)
+      .parent('td')
+      .siblings('td')
+      .last()
+      .click()
+    }
   })
   .then(() => {
     cy.get('button').contains(action).click()
@@ -156,7 +147,6 @@ export const doPolicyActionInListingWithTag = (name, action, cancel=false) => {
       }
     })
   })
-  cy.CheckGrcMainPage()
 }
 
 export const deletePolicyInListing = (name) => {
@@ -168,7 +158,7 @@ export const disablePolicyInListing = (name) => {
 }
 
 export const enablePolicyInListing = (name) => {
-  doPolicyActionInListingWithTag(name, 'Enable')
+  doPolicyActionInListing(name, 'Enable', true)
 }
 
 export const enforcePolicyInListing = (name) => {
