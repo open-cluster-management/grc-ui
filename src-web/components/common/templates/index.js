@@ -20,6 +20,7 @@ import specCertmgmtexp from './spec-certmgmtexp.yaml'
 import specScc from './spec-scc.yaml'
 import specImv from './spec-imagemanifestvuln.yaml'
 import specEtcdEncryption from './spec-etcd-encryption.yaml'
+import specGatekeeper from './spec-gatekeeper.yaml'
 
 const Choices = {
   specPodRole,
@@ -33,6 +34,7 @@ const Choices = {
   specScc,
   specImv,
   specEtcdEncryption,
+  specGatekeeper,
 }
 
 export default Choices
