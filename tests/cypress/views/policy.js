@@ -95,7 +95,7 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
 export const verifyPolicyNotInListing = (name) => {
   name = getUniqueResourceName(name)
   // either there are no policies at all or there are some policies listed
-  if (!Cypress.$('#page').find('div.no-resouce'.length)) {
+  if (!Cypress.$('#page').find('div.no-resouce').length) {
     cy.get('.grc-view-by-policies-table').within(() => {
       cy.get('a')
         .contains(name)
