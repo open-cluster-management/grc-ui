@@ -3,6 +3,7 @@ import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
 import { oauthIssuer } from '../views/resource'
 import { pageLoader } from '../views/common'
+import { isPolicyStatusAvailable } from '../views/policy'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
   var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
@@ -113,6 +114,10 @@ Cypress.Commands.add('generateNamespace', () => {
 
 Cypress.Commands.add('waitUsingSLA', () => {
   return cy.wait(parseInt(Cypress.env('SERVICE_SLA'), 10) || 5000)
+})
+
+Cypress.Commands.add('waitForPolicyStatus', (name) => {
+  cy.waitUntil(() => isPolicyStatusAvailable(name), {'interval': 5000, 'timeout':60000})
 })
 
 Cypress.Commands.add('FromACMToGRCPage', () => {

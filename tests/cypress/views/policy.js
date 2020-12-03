@@ -168,3 +168,36 @@ export const enforcePolicyInListing = (name) => {
 export const informPolicyInListing = (name) => {
   doPolicyActionInListing(name, 'Inform')
 }
+
+export const isPolicyStatusAvailable = (name) => {
+  name = formatResourceName(name)
+  var r = false
+  // page /multicloud/policies/all
+  if (window.location.toString().endsWith('/multicloud/policies/all')) {
+    return cy.get('.grc-view-by-policies-table').within(() => {
+    cy.get('a').contains(name).parent('td').siblings('td').spread((namespace, remediation, violations) => {
+      // check the violation status
+      cy.wrap(violations).find('path').then((elems) => {
+        if (elems.length == 1) {
+          const d = elems[0].getAttribute('d')
+          // M569 seem to be unique to an icon telling that policy status is not available for some cluster
+          r = !d.startsWith('M569')
+        }
+      })
+    })
+  })
+  .then(() => r)
+  } else { // other pages
+    return cy.get('.violationCell').spread((violations) => {
+      // check the violation status
+      cy.wrap(violations).find('path').then((elems) => {
+        if (elems.length == 1) {
+          const d = elems[0].getAttribute('d')
+          // M569 seem to be unique to an icon telling that policy status is not available for some cluster
+          r = !d.startsWith('M569')
+        }
+      })
+    })
+    .then(() => r)
+  }
+}
