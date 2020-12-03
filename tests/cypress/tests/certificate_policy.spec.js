@@ -36,6 +36,9 @@ describe('GRC certificate policy controller e2e tests', () => {
     it('Disable certificate policy', () => {
       cy.CheckGrcMainPage()
       disablePolicyInListing(certificatePolicyName)
+    })
+
+    it('Check disabled certificate policy', () => {
       cy.CheckGrcMainPage()
       isPolicyStatusAvailable(certificatePolicyName, true)
     })
@@ -49,39 +52,42 @@ describe('GRC certificate policy controller e2e tests', () => {
     it('Enforce certificate policy', () => {
       cy.CheckGrcMainPage()
       enforcePolicyInListing(certificatePolicyName)
+    })
+
+    it('Check enforced certificate policy', () => {
       cy.CheckGrcMainPage()
-      // certificatePolicy.enforce = true
-      // certificatePolicy.inform = false
-      // verifyPolicyInListing({ certificatePolicyName, ...certificatePolicy})
+      certificatePolicy.enforce = true
+      certificatePolicy.inform = false
+      verifyPolicyInListing({ certificatePolicyName, ...certificatePolicy})
     })
 
     it('Inform certificate policy', () => {
       cy.CheckGrcMainPage()
       informPolicyInListing(certificatePolicyName)
+    })
+
+    it('Check informed certificate policy', () => {
       cy.CheckGrcMainPage()
-      // certificatePolicy.enforce = false
-      // certificatePolicy.inform = true
-      // verifyPolicyInListing({ certificatePolicyName, ...certificatePolicy})
+      certificatePolicy.enforce = false
+      certificatePolicy.inform = true
+      verifyPolicyInListing({ certificatePolicyName, ...certificatePolicy})
     })
 
     it('Delete issuer', () => {
       cy.CheckGrcMainPage()
       deletePolicyInListing(createIssuerName)
       verifyPolicyNotInListing(createIssuerName)
-      cy.CheckGrcMainPage()
     })
 
     it('Delete certificate', () => {
       cy.CheckGrcMainPage()
       deletePolicyInListing(createCertificateName)
       verifyPolicyNotInListing(createCertificateName)
-      cy.CheckGrcMainPage()
     })
 
     it('Delete certificate policy', () => {
       cy.CheckGrcMainPage()
       deletePolicyInListing(certificatePolicyName)
       verifyPolicyNotInListing(certificatePolicyName)
-      cy.CheckGrcMainPage()
     })
 })
