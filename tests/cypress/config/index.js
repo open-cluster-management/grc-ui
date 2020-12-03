@@ -4,16 +4,20 @@ const jsYaml = require('js-yaml')
 
 exports.getConfig = (filepath) => {
   let config
-  config = fs.readFileSync(filepath)
+  config = fs.readFileSync(filepath).toString()
+  console.log(filepath)
+  console.log(config)
 
-  try {
-    config = jsYaml.safeLoad(config)
-  } catch (e) {
-    throw new Error(e)
-  }
-  return JSON.stringify(config)
+ return config
 }
 
 exports.getConfigObject = (prefix) => {
-  return JSON.parse(Cypress.env('TEST_CONFIG_'+prefix.toUpperCase()))
+  let config
+  try {
+    config = jsYaml.safeLoad(Cypress.env('TEST_CONFIG_'+prefix.toUpperCase()))
+  } catch (e) {
+    throw new Error(e)
+  }
+ 
+  return config
 }
