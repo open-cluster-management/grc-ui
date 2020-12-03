@@ -15,7 +15,7 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: [TEST_POLICY_NAME]-gatekeeper-operator-ns
+          name: gatekeeper-operator-ns
         spec:
           remediationAction: inform
           severity: high
@@ -30,7 +30,7 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: [TEST_POLICY_NAME]-gatekeeper-operator-catalog-source
+          name: gatekeeper-operator-catalog-source
         spec:
           remediationAction: inform
           severity: high
@@ -51,7 +51,7 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: [TEST_POLICY_NAME]-gatekeeper-operator-group
+          name: gatekeeper-operator-group
         spec:
           remediationAction: inform
           severity: high
@@ -67,7 +67,7 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: [TEST_POLICY_NAME]-gatekeeper-operator-subscription
+          name: gatekeeper-operator-subscription
         spec:
           remediationAction: inform
           severity: high
@@ -88,7 +88,7 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: [TEST_POLICY_NAME]-gatekeeper
+          name: gatekeeper
         spec:
           remediationAction: inform
           severity: high
