@@ -9,11 +9,8 @@ export CYPRESS_OPTIONS_HUB_URL="https://multicloud-console..."
 export CYPRESS_OPTIONS_HUB_USER=kubeadmin
 export CYPRESS_OPTIONS_HUB_PASSWORD="password"
 ```
-<<<<<<< Updated upstream
-start-cypress-tests.sh will automatically export CYPRESS_RESOURCE_ID=$(date +"%s") to a unique timestamp, it will be used to generate uniqe resource names. However it requires the respective code to call the [formatResourceName()](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/scripts/utils.js#L10) function. You can also overwrite it by own resource id.
-=======
+
 start_cypress_tests.sh will automatically export CYPRESS_RESOURCE_ID=$(date +"%s") to a unique timestamp, it will be used to generate uniqe resource names. However it requires the respective code to call the [getUniqueResourceName()](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/scripts/utils.js#L10) function. You can also overwrite it by own resource id.
->>>>>>> Stashed changes
 
 2. Enter the repository and execute cypress
 ```

@@ -1,7 +1,5 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
-
-import { pageLoader } from '../views/common'
 import {
   createPolicy, verifyPolicyInListing, verifyPolicyNotInListing,
   actionPolicyActionInListing
