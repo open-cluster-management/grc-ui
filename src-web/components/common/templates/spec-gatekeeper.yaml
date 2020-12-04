@@ -1,6 +1,6 @@
 # an available choice for the specs control
 name:
-  Gatekeeper
+  GatekeeperOperator
 description:
   install the Gatekeeper operator
 multiselect:
