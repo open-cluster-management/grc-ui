@@ -64,9 +64,11 @@ export const createPolicy = ({ name, create=false, ...policyConfig }) => {
 export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
   name = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
-    cy.get('a').contains(name).parent('td').siblings('td').spread((namespace, remediation, violations, standards, categories, controls) => {
+    cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, remediation, violations, standards, categories, controls) => {
       // namespace
-      cy.wrap(namespace).contains(policyConfig['namespace'])
+      if (policyConfig['namespace']) {
+        cy.wrap(namespace).contains(policyConfig['namespace'])
+      }
       // enforce/inform
       if (policyConfig['enforce']) {
         cy.wrap(remediation).contains('enforce', { matchCase: false })
@@ -74,19 +76,25 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // standard
-      for (const std of policyConfig['standards']) {
-        // replace() below is a workaround for bz#1896399
-        cy.wrap(standards).contains(std.replace(/[.-]/g, ' '))
+      if (policyConfig['standards']) {
+        for (const std of policyConfig['standards']) {
+          // replace() below is a workaround for bz#1896399
+          cy.wrap(standards).contains(std.replace(/[.-]/g, ' '))
+        }
       }
       // categories
-      for (const cat of policyConfig['categories']) {
-        // replace() below is a workaround for bz#1896399
-        cy.wrap(categories).contains(cat.replace(/[.-]/g, ' '))
+      if (policyConfig['categories']) {
+        for (const cat of policyConfig['categories']) {
+          // replace() below is a workaround for bz#1896399
+          cy.wrap(categories).contains(cat.replace(/[.-]/g, ' '))
+        }
       }
       // controls
-      for (const ctl of policyConfig['controls']) {
-        // replace() and matchCase:false below is a workaround for bz#1896399
-        cy.wrap(controls).contains(ctl.replace(/[.-]/g, ' '), { matchCase: false})
+      if (policyConfig['controls']) {
+        for (const ctl of policyConfig['controls']) {
+          // replace() and matchCase:false below is a workaround for bz#1896399
+          cy.wrap(controls).contains(ctl.replace(/[.-]/g, ' '), { matchCase: false})
+        }
       }
     })
   })
@@ -142,7 +150,7 @@ export const doPolicyActionInListing = (name, action, withTag=false, cancel=fals
     } else {
       cy.get('a')
       .contains(name)
-      .parent('td')
+      .parents('td')
       .siblings('td')
       .last()
       .click()
@@ -189,7 +197,7 @@ export const isPolicyStatusAvailable = (name, statusPending=false) => {
   // page /multicloud/policies/all
   if (window.location.toString().endsWith('/multicloud/policies/all')) {
     return cy.get('.grc-view-by-policies-table').within(() => {
-    cy.get('a').contains(name).parent('td').siblings('td').spread((namespace, remediation, violations) => {
+    cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, remediation, violations) => {
       // check the violation status
       cy.wrap(violations).find('path').then((elems) => {
         if (elems.length === 1) {

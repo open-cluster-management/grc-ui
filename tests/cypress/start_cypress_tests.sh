@@ -72,4 +72,3 @@ elif [ "$NODE_ENV" == "debug" ]; then
 else 
   cypress run --browser $BROWSER $HEADLESS --spec "./tests/cypress/tests/*.spec.js" --reporter cypress-multi-reporters
 fi
-
