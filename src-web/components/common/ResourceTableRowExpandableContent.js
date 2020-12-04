@@ -14,12 +14,12 @@ import PropTypes from 'prop-types'
 import { StructuredListWrapper, StructuredListHead, StructuredListRow, StructuredListCell, StructuredListBody } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
 import { getResourceType } from '../../../lib/client/resource-helper'
-import _uniqueId from 'lodash/uniqueId'
+import _ from 'lodash'
 
 const ResourceTableRowExpandableContent = ({ items }, context) =>
   <StructuredListWrapper>
     <StructuredListHead>
-      <StructuredListRow head key={_uniqueId('SLRowHeader')}>
+      <StructuredListRow head key={_.uniqueId('SLRowHeader')}>
         <StructuredListCell head>
           <div>{msgs.get('formfield.name', context.locale)}</div>
         </StructuredListCell>
@@ -30,7 +30,7 @@ const ResourceTableRowExpandableContent = ({ items }, context) =>
     </StructuredListHead>
     <StructuredListBody>
       {items.map(item => (
-        <StructuredListRow key={_uniqueId('item.resource')} data-row-name={item.resource} >
+        <StructuredListRow key={_.uniqueId('item.resource')} data-row-name={item.resource} >
           <StructuredListCell noWrap>{item.resource}</StructuredListCell>
           <StructuredListCell noWrap>{getResourceType(item, context.locale)}</StructuredListCell>
         </StructuredListRow>

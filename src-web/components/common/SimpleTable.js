@@ -19,7 +19,6 @@ import { Link } from 'react-router-dom'
 import ResourceTableRowExpandableTable from './ResourceTableRowExpandableTable'
 import { Module, ModuleHeader, ModuleBody } from 'carbon-addons-cloud-react'
 import msgs from '../../../nls/platform.properties'
-import _uniqueId from 'lodash/uniqueId'
 
 resources(() => {
   require('../../../scss/structured-list.scss')
@@ -82,7 +81,7 @@ class StructuredListModule extends React.Component {
                     return <th
                       className={`bx--header-index-${index}`}
                       scope={'col'}
-                      key={_uniqueId('bx--header')}
+                      key={_.uniqueId('bx--header')}
                     />
                   }
                 }
@@ -142,7 +141,7 @@ class StructuredListModule extends React.Component {
                           && resourceRows[0].cells.map((cell)=>
                             <TableCell
                               key={`${cell.resourceKey.substring(0, 21)}Cell`}
-                              className={row.id.includes('S_F_S_P')?_uniqueId('S_F_S_P'):_uniqueId('index')}>
+                              className={row.id.includes('S_F_S_P')?_.uniqueId('S_F_S_P'):_.uniqueId('index')}>
                               {transform(row, cell, this.context.locale)}
                             </TableCell>
                           )}

@@ -18,7 +18,7 @@ import resources from '../../../lib/shared/resources'
 import { transform } from '../../../lib/client/resource-helper'
 import { Link } from 'react-router-dom'
 import ResourceTableRowExpandableList from './ResourceTableRowExpandableList'
-import _uniqueId from 'lodash/uniqueId'
+import _ from 'lodash'
 
 resources(() => {
   require('../../../scss/structured-list.scss')
@@ -56,7 +56,7 @@ class StructuredListModule extends React.Component {
         <ModuleBody>
           <StructuredListWrapper className='bx--structured-list--condensed' role='region' ariaLabel={msgs.get(title, this.context.locale)}>
             <StructuredListHead>
-              <StructuredListRow head key={_uniqueId('SLRowHeader')}>
+              <StructuredListRow head key={_.uniqueId('SLRowHeader')}>
                 {listSubItems &&
                 <StructuredListCell head key={'empty-header'}>
                 </StructuredListCell>}
