@@ -3,8 +3,7 @@ const fs = require('fs')
 const jsYaml = require('js-yaml')
 
 exports.getConfig = (filepath) => {
-  let config
-  config = fs.readFileSync(filepath).toString()
+  const config = fs.readFileSync(filepath).toString()
   console.log(filepath)
   console.log(config)
 
