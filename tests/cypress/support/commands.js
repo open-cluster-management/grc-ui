@@ -122,9 +122,9 @@ Cypress.Commands.add('toggleYAMLeditor', (state = undefined) => {
   const err = 'Invalid parameter: Parameter "state" can be either "On" or "Off" or undefined'
   if (state != undefined && state != 'On' && state != 'Off') { throw err }
   cy.get('.switch-label').spread( (e) => {
-    if ((state == undefined) ||
-        (e.textContent.indexOf('Off') > 0 && state == 'On') ||
-        (e.textContent.indexOf('On') > 0 && state == 'Off'))
+    if ((state === undefined) ||
+        (e.textContent.includes('Off') && state === 'On') ||
+        (e.textContent.includes('On') && state === 'Off'))
     {
       cy.get('#edit-yaml').next('label').click()
     }
