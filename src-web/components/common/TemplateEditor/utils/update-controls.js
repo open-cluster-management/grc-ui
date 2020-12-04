@@ -210,7 +210,6 @@ const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newPar
   // get all objects this control can possibly add to the template
   const oldObjects = getTemplateObjects(reverse, oldParsed)
   const newObjects = getTemplateObjects(reverse, newParsed)
-
   // if old and new have objects
   if (oldObjects && newObjects) {
     // did user an edit an object?
@@ -227,7 +226,13 @@ const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newPar
   // if user has manually changed the objects, save their changes and remove all active selected templates
   if (control.hasCapturedUserSource) {
     control.userData = getTemplateSource(reverse, newParsed)
-    control.active = [msgs.get('creation.view.policy.custom', locale)]
+    if (control.userData !== '') {
+      control.active = [msgs.get('creation.view.policy.custom', locale)]
+    } else {
+      // If userData is empty, we should reset the form
+      control.active = []
+      control.hasCapturedUserSource = false
+    }
   } else {
     delete control.userData
   }
