@@ -1484,7 +1484,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     data-label="Categories"
                     onMouseEnter={[Function]}
                   >
-                    System And Communications Protections, System And Information Integrity
+                    SystemAndCommunicationsProtections, SystemAndInformationIntegrity
                   </td>
                   <td
                     className=""
@@ -1492,7 +1492,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     data-label="Controls"
                     onMouseEnter={[Function]}
                   >
-                    Mutation Advisor, VA
+                    MutationAdvisor, VA
                   </td>
                   <td
                     className=""
@@ -1634,7 +1634,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     data-label="Categories"
                     onMouseEnter={[Function]}
                   >
-                    System And Information Integrity
+                    SystemAndInformationIntegrity
                   </td>
                   <td
                     className=""
@@ -1642,7 +1642,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     data-label="Controls"
                     onMouseEnter={[Function]}
                   >
-                    Mutation Advisor
+                    MutationAdvisor
                   </td>
                   <td
                     className=""
@@ -1784,7 +1784,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     data-label="Categories"
                     onMouseEnter={[Function]}
                   >
-                    System And Communications Protections, System And Information Integrity
+                    SystemAndCommunicationsProtections, SystemAndInformationIntegrity
                   </td>
                   <td
                     className=""
@@ -1792,7 +1792,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     data-label="Controls"
                     onMouseEnter={[Function]}
                   >
-                    Mutation Advisor, Certificate Manager
+                    MutationAdvisor, CertificateManager
                   </td>
                   <td
                     className=""
