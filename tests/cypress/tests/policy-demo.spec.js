@@ -21,10 +21,6 @@ describe('Policy can be created and deleted', () => {
       createPolicy({ name, create:true, ...policyDetails})
     })
 
-    it ('Redirects browser to a page with policy listing', () => {
-      cy.CheckGrcMainPage()
-    })
-
     it(`Policy ${frname} is present in the policy listing`, () => {
       verifyPolicyInListing({ name, ...policyDetails})
     })
