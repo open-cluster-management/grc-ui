@@ -9,7 +9,7 @@ replacements: # if user select this choice, the template variable names and valu
   standards: |
     NIST-CSF
   categories: |
-    PR.AC Identity Management Authentication and Access Control
+    PR.AC Identity Management and Access Control
   controls: |
     PR.AC-5 Network Integrity
   policyTemplates: |

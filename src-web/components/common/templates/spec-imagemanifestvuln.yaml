@@ -11,7 +11,7 @@ replacements: # if user select this choice, the template variable names and valu
   categories: |
     DE.CM Security Continuous Monitoring
   controls: |
-    DE.CM-8 Vulnerability scans
+    DE.CM-8 Vulnerability Scans
   namespaceSelector: |
     namespaces:
       exclude: ["kube-*"]
