@@ -218,7 +218,7 @@ const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newPar
     // did user paste in some objects?
     control.hasCapturedUserSource = true
   } else if (oldObjects && !newObjects) {
-    // did user delete the objects? Or provide no objects?
+    // did user delete the objects?
     control.active = []
     control.hasCapturedUserSource = false
   }
