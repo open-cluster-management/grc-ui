@@ -941,22 +941,22 @@ export function getSubjects(item) {
 
 export function getControls(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations['policy.open-cluster-management.io/controls'])
+  return formatAnnotationString(annotations['policy.open-cluster-management.io/controls'])
 }
 
 export function getStandards(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations['policy.open-cluster-management.io/standards'])
+  return formatAnnotationString(annotations['policy.open-cluster-management.io/standards'])
 }
 
 export function getCategories(item) {
   const annotations = _.get(item, 'metadata.annotations') || {}
-  return convertToStartCase(annotations['policy.open-cluster-management.io/categories'])
+  return formatAnnotationString(annotations['policy.open-cluster-management.io/categories'])
 }
 
-export function convertToStartCase(items){
+export function formatAnnotationString(items){
   if (items) {
-    return items.split(',').map(item => _.startCase(item.trim())).join(', ')
+    return items.split(',').map(item => item.trim()).join(', ')
   }
   return '-'
 }
