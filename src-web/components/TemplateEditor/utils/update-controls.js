@@ -11,7 +11,7 @@
 
 import jsYaml from 'js-yaml'
 import YamlParser from '../components/YamlParser'
-import msgs from '../../../../../nls/platform.properties'
+import msgs from '../../../../nls/platform.properties'
 import _ from 'lodash'
 
 export const initializeControlData = (template, initialControlData) =>{
