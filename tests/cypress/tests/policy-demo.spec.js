@@ -40,7 +40,6 @@ describe('Policy can be created and deleted', () => {
     })
 
     it(`Deleted policy ${frname} is not present in the policy listing`, () => {
-      cy.visit('/multicloud/policies/all')
       verifyPolicyNotInListing(name)
     })
   }

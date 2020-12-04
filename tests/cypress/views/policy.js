@@ -137,6 +137,9 @@ export const actionPolicyActionInListing = (name, action, cancel=false) => {
       }
     })
   })
+
+  // after mainpage table action, always return to grc main page
+  cy.CheckGrcMainPage()
 }
 
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
