@@ -1,10 +1,10 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
 import { selectItems } from './common'
-import { formatResourceName } from '../scripts/utils'
+import { getUniqueResourceName } from '../scripts/utils'
 
 export const createPolicy = ({ name, create=false, ...policyConfig }) => {
-  name = formatResourceName(name)
+  name = getUniqueResourceName(name)
   // fill the form
   // name
   cy.get('input[aria-label="name"]')
@@ -57,10 +57,13 @@ export const createPolicy = ({ name, create=false, ...policyConfig }) => {
         cy.get('#create-button-portal-id-btn').click()
       }
     })
+
+    // after creation, always return to grc main page
+    cy.CheckGrcMainPage()
 }
 
 export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
-  name = formatResourceName(name)
+  name = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
     cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, remediation, violations, standards, categories, controls) => {
       // namespace
@@ -69,9 +72,9 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
       }
       // enforce/inform
       if (policyConfig['enforce']) {
-        cy.wrap(remediation).contains('enforce')
+        cy.wrap(remediation).contains('enforce', { matchCase: false })
       } else {
-        cy.wrap(remediation).contains('inform')
+        cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // standard
       if (policyConfig['standards']) {
@@ -99,7 +102,7 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
 }
 
 export const verifyPolicyNotInListing = (name) => {
-  name = formatResourceName(name)
+  name = getUniqueResourceName(name)
   // either there are no policies at all or there are some policies listed
   if (!Cypress.$('#page').find('div.no-resouce'.length)) {
     cy.get('.grc-view-by-policies-table').within(() => {
@@ -110,8 +113,8 @@ export const verifyPolicyNotInListing = (name) => {
   }
 }
 
-export const doPolicyActionInListing = (name, action, cancel=false) => {
-  name = formatResourceName(name)
+export const actionPolicyActionInListing = (name, action, cancel=false) => {
+  name = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
     cy.get('a')
       .contains(name)
@@ -121,44 +124,40 @@ export const doPolicyActionInListing = (name, action, cancel=false) => {
       .click()
   })
   .then(() => {
-    cy.get('button').contains(action).click()
+    cy.get('button').contains(action, { matchCase: false }).click()
   })
   .then(() => {
     cy.get('.bx--modal-container').within(() => {
       if (cancel) {
-        cy.get('button').contains('Cancel')
+        cy.get('button').contains('Cancel', { matchCase: false })
           .click()
       } else {
-        cy.get('button').contains(action)
+        cy.get('button').contains(action, { matchCase: false })
           .click()
       }
     })
   })
 }
 
-export const deletePolicyInListing = (name) => {
-  doPolicyActionInListing(name, 'Remove')
-}
-
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
-export const isPolicyStatusAvailable = (name) => {
-  name = formatResourceName(name)
-  var r = false
+// here statusPending = true to check consist pending status for disable policy
+export const isPolicyStatusAvailable = (name, statusPending=false) => {
+  name = getUniqueResourceName(name)
   // page /multicloud/policies/all
   if (window.location.toString().endsWith('/multicloud/policies/all')) {
     return cy.get('.grc-view-by-policies-table').within(() => {
     cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, remediation, violations) => {
       // check the violation status
       cy.wrap(violations).find('path').then((elems) => {
-        if (elems.length == 1) {
+        if (elems.length === 1) {
           const d = elems[0].getAttribute('d')
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-          r = !d.startsWith('M569')
+          statusPending = !d.startsWith('M569')
         }
       })
     })
   })
-  .then(() => r)
+  .then(() => statusPending)
   } else { // other pages
     return cy.get('.violationCell').spread((violations) => {
       // check the violation status
@@ -166,10 +165,10 @@ export const isPolicyStatusAvailable = (name) => {
         if (elems.length == 1) {
           const d = elems[0].getAttribute('d')
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-          r = !d.startsWith('M569')
+          statusPending = !d.startsWith('M569')
         }
       })
     })
-    .then(() => r)
+    .then(() => statusPending)
   }
 }
