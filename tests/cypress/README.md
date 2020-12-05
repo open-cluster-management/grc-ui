@@ -9,7 +9,7 @@ export CYPRESS_OPTIONS_HUB_URL="https://multicloud-console..."
 export CYPRESS_OPTIONS_HUB_USER=kubeadmin
 export CYPRESS_OPTIONS_HUB_PASSWORD="password"
 ```
-start_cypress_tests.sh will automatically export CYPRESS_RESOURCE_ID=$(date +"%s") to a unique timestamp, it will be used to generate uniqe resource names. However it requires the respective code to call the [formatResourceName()](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/scripts/utils.js#L10) function. You can also overwrite it by own resource id.
+start_cypress_tests.sh will automatically export CYPRESS_RESOURCE_ID=$(date +"%s") to a unique timestamp, it will be used to generate uniqe resource names. However it requires the respective code to call the [getUniqueResourceName()](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/scripts/utils.js#L10) function. You can also overwrite it by own resource id.
 
 2. Enter the repository and execute cypress
 ```
@@ -22,12 +22,12 @@ As mentioned above, environment variable `CYPRESS_RESOURCE_ID` can be used to ge
 
 In order to generate unique identificator in your code use the following code.
 ```
-import { formatResourceName } from '../scripts/utils'
+import { getUniqueResourceName } from '../scripts/utils'
 
-const frname = formatResourceName(name)
+const frname = getUniqueResourceName(name)
 ```
-e.g. `formatResourceName("my-policy")` returns `my-policy-12345` when `CYPRESS_RESOURCE_ID=12345`.
-e.g. `formatResourceName("my-policy", '54321')` returns `my-policy-54321` with user own resource id  `54321`.
+e.g. `getUniqueResourceName("my-policy")` returns `my-policy-12345` when `CYPRESS_RESOURCE_ID=12345`.
+e.g. `getUniqueResourceName("my-policy", '54321')` returns `my-policy-54321` with user own resource id  `54321`.
 
 ## Test configuration data
 If your test needs some test data you can store them in YAML format in [tests/cypress/config](https://github.com/open-cluster-management/grc-ui/tree/master/tests/cypress/config) directory. Each `.yaml` file in this directory is loaded at start up and the content is available through an environment variable.

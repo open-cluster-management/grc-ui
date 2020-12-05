@@ -7,9 +7,10 @@ export const getOpt = (opts, key, defaultValue) => {
 }
 
 // create an unique resource name
-export const formatResourceName = name => {
+export const getUniqueResourceName = name => {
+  let uName = name
   if (Cypress.env('RESOURCE_ID') && (!name.endsWith(Cypress.env('RESOURCE_ID'))))
-    name = `${name}-${Cypress.env('RESOURCE_ID')}`
+    uName = `${name}-${Cypress.env('RESOURCE_ID')}`
 
-  return name
+  return uName
 }
