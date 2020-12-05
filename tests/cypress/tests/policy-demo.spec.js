@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 import {
   createPolicy, verifyPolicyInListing, verifyPolicyNotInListing,
-  actionPolicyActionInListing,
+  actionPolicyActionInListing
 } from '../views/policy'
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
