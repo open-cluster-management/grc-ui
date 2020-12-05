@@ -4,11 +4,12 @@ import { selectItems } from './common'
 import { getUniqueResourceName } from '../scripts/utils'
 
 export const createPolicy = ({ name, create=false, ...policyConfig }) => {
-  const uName = getUniqueResourceName(name)
-  // fill the form uName
+  name = getUniqueResourceName(name)
+  // fill the form
+  // name
   cy.get('input[aria-label="name"]')
     .clear()
-    .type(uName)
+    .type(name)
   // namespace
   cy.get('.bx--dropdown[aria-label="Choose an item"]')
     .click()
@@ -61,35 +62,35 @@ export const createPolicy = ({ name, create=false, ...policyConfig }) => {
     cy.CheckGrcMainPage()
 }
 
-export const verifyPolicyInListing = ({ name, ...policyConfig }, enabled='enabled') => {
-  const uName = getUniqueResourceName(name)
+export const verifyPolicyInListing = ({ name, ...policyConfig }) => {
+  name = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
-    cy.get('a').contains(uName).parents('td').siblings('td').spread((namespace, remediation, violations, standards, categories, controls) => {
-      // check namespace
+    cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, remediation, violations, standards, categories, controls) => {
+      // namespace
       if (policyConfig['namespace']) {
         cy.wrap(namespace).contains(policyConfig['namespace'])
       }
-      // check enforce/inform
+      // enforce/inform
       if (policyConfig['enforce']) {
         cy.wrap(remediation).contains('enforce', { matchCase: false })
       } else {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
-      // check standard
+      // standard
       if (policyConfig['standards']) {
         for (const std of policyConfig['standards']) {
           // replace() below is a workaround for bz#1896399
           cy.wrap(standards).contains(std.replace(/[.-]/g, ' '))
         }
       }
-      // check categories
+      // categories
       if (policyConfig['categories']) {
         for (const cat of policyConfig['categories']) {
           // replace() below is a workaround for bz#1896399
           cy.wrap(categories).contains(cat.replace(/[.-]/g, ' '))
         }
       }
-      // check controls
+      // controls
       if (policyConfig['controls']) {
         for (const ctl of policyConfig['controls']) {
           // replace() and matchCase:false below is a workaround for bz#1896399
@@ -97,42 +98,26 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }, enabled='enable
         }
       }
     })
-
-    if (enabled.toLowerCase() === 'disabled') { // check disabled policy
-      cy.get('a')
-      .contains(name)
-      .siblings('span')
-      .contains('disabled', { matchCase: false })
-      .then(() => {
-        isPolicyStatusAvailable(name, true)
-      })
-    } else { // check enabled policy
-      cy.get('a')
-        .contains(name)
-        .siblings('span')
-        .should('not.exist')
-    }
   })
 }
 
 export const verifyPolicyNotInListing = (name) => {
-  const uName = getUniqueResourceName(name)
+  name = getUniqueResourceName(name)
   // either there are no policies at all or there are some policies listed
   if (!Cypress.$('#page').find('div.no-resouce'.length)) {
     cy.get('.grc-view-by-policies-table').within(() => {
       cy.get('a')
-        .contains(uName)
+        .contains(name)
         .should('not.exist')
     })
   }
 }
 
 export const actionPolicyActionInListing = (name, action, cancel=false) => {
-  cy.CheckGrcMainPage()
-  const uName = getUniqueResourceName(name)
+  name = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
     cy.get('a')
-      .contains(uName)
+      .contains(name)
       .parents('td')
       .siblings('td')
       .last()
@@ -160,11 +145,11 @@ export const actionPolicyActionInListing = (name, action, cancel=false) => {
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
 // here statusPending = true to check consist pending status for disable policy
 export const isPolicyStatusAvailable = (name, statusPending=false) => {
-  const uName = getUniqueResourceName(name)
+  name = getUniqueResourceName(name)
   // page /multicloud/policies/all
   if (window.location.toString().endsWith('/multicloud/policies/all')) {
     return cy.get('.grc-view-by-policies-table').within(() => {
-    cy.get('a').contains(uName).parents('td').siblings('td').spread((namespace, remediation, violations) => {
+    cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, remediation, violations) => {
       // check the violation status
       cy.wrap(violations).find('path').then((elems) => {
         if (elems.length === 1) {

@@ -13,13 +13,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StructuredListWrapper, StructuredListRow, StructuredListCell, StructuredListBody } from 'carbon-components-react'
 import msgs from '../../../nls/platform.properties'
-import _ from 'lodash'
+import _uniqueId from 'lodash/uniqueId'
 
 const ResourceTableRowExpandableContent = ({ items }, context) =>
   <StructuredListWrapper>
     <StructuredListBody>
       {items.map(item => (
-        <StructuredListRow className={'nested-expandable-row'} key={_.uniqueId('item.name')} data-row-name={item.name} >
+        <StructuredListRow className={'nested-expandable-row'} key={_uniqueId('item.name')} data-row-name={item.name} >
           <StructuredListCell className={'nested-expandable-row-header'} noWrap>{msgs.get(item.name, context.locale)}</StructuredListCell>
           <StructuredListCell className={'nested-expandable-row-content'} noWrap>{item.items.join(', ')}</StructuredListCell>
         </StructuredListRow>
