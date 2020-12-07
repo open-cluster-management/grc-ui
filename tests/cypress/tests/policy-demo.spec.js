@@ -26,16 +26,49 @@ describe('Policy can be created and deleted', () => {
     })
 
     it('Policy status becomes available', () => {
-      cy.visit(`/multicloud/policies/all/${policies[name]['namespace']}/${frname}`)
-      // or
-      // cy.visit('/multicloud/policies/all')
+      // cy.visit(`/multicloud/policies/all/${policies[name]['namespace']}/${frname}`)
+      // or cy.visit('/multicloud/policies/all')
       // both pages should be supported
       cy.waitForPolicyStatus(name)
-        //.wait(3000)  // just to give user some time to see the change
+    })
+
+    it('Disable policy', () => {
+      actionPolicyActionInListing(name, 'Disable')
+    })
+
+    it('Check disabled policy', () => {
+      verifyPolicyInListing({ name, ...policyDetails}, 'disabled', 3)
+    })
+
+    it('Enable policy', () => {
+      actionPolicyActionInListing(name, 'Enable')
+    })
+
+    it('Check enabled policy', () => {
+      verifyPolicyInListing({ name, ...policyDetails}, 'enabled', 1)
+    })
+
+    it('Enforce policy', () => {
+      actionPolicyActionInListing(name, 'Enforce')
+    })
+
+    it('Check enforced policy', () => {
+      policyDetails.enforce = true
+      policyDetails.inform = false
+      verifyPolicyInListing({ name, ...policyDetails})
+    })
+
+    it('Inform policy', () => {
+      actionPolicyActionInListing(name, 'Inform')
+    })
+
+    it('Check informed policy', () => {
+      policyDetails.enforce = false
+      policyDetails.inform = true
+      verifyPolicyInListing({ name, ...policyDetails})
     })
 
     it(`Policy ${frname} can be deleted in the policy listing`, () => {
-      cy.visit('/multicloud/policies/all')
       actionPolicyActionInListing(name, 'Remove')
     })
 
