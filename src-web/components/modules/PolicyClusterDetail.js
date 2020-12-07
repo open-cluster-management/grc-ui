@@ -17,6 +17,7 @@ import { Spinner } from '@patternfly/react-core'
 import StructuredListModule from '../common/StructuredListModule'
 import resources from '../../../lib/shared/resources'
 import PolicyTemplatesView from './PolicyTemplatesView'
+import NoResource from '../common/NoResource'
 // eslint-disable-next-line import/no-named-as-default
 import ResourceTableModule from '../common/ResourceTableModuleFromProps'
 import { RESOURCE_TYPES } from '../../../lib/shared/constants'
@@ -59,12 +60,17 @@ class PolicyClusterDetail extends React.Component {
     const {staticResourceData, error, loading, resourceType, params, policies} = this.props
     const { locale } = this.context
     const modulesRight = [], modulesBottom = []
-    if(error) {
+    if (error) {
       return <Notification
         title=''
         className='persistent'
         subtitle={msgs.get(error, locale)}
         kind='error' />
+    } else if (policies === null) {
+      return <NoResource
+            title={msgs.get('error.not.found', this.context.locale)}
+            svgName='EmptyPagePlanet-illus.png'>
+          </NoResource>
     } else if ( loading || !policies || !Array.isArray(policies) ) {
       return <Spinner className='patternfly-spinner' />
     }
