@@ -118,14 +118,14 @@ class DetailsModule extends React.PureComponent {
         <DescriptionList
           columnModifier={{[this.props.colSize]: '1Col'}}
           isHorizontal
-          key={`description-list-${Math.random().toString(36).substr(2, 9)}`}
+          key={_.uniqueId('description-list-')}
         >
           {colData}
         </DescriptionList>
       )
       if (index < renderedData.length - 1) {
         renderedDescriptionList.push(
-          <Divider isVertical key={`divider-${Math.random().toString(36).substr(2, 9)}`} />
+          <Divider isVertical key={_.uniqueId('divider-')} />
         )
       }
     })
