@@ -82,17 +82,17 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }, enabled='enable
         // check the violation status
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            const filledColor = elems[0].getAttribute('fill')
+            const filledColor = elems[0].getAttribute('fill').trim().toLowerCase()
             switch(targetStatus) {
               case 1: // 467f40 is the unique non-volation status color
-                filledColor.trim().toLowerCase() === '#467f40'
+                filledColor === '#467f40'
                 break
               case 2: // c9190b is the unique violation status color
-                filledColor.trim().toLowerCase() === '#c9190b'
+                filledColor === '#c9190b'
                 break
               case 3:
               default: // f0ab00 is the unique pending status color
-                filledColor.trim().toLowerCase() === '#f0ab00'
+                filledColor === '#f0ab00'
                 break
             }
           }
