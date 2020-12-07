@@ -37,7 +37,7 @@ describe('Policy can be created and deleted', () => {
     })
 
     it('Check disabled policy', () => {
-      verifyPolicyInListing({ name, ...policyDetails}, 'disabled')
+      verifyPolicyInListing({ name, ...policyDetails}, 'disabled', 3)
     })
 
     it('Enable policy', () => {
@@ -45,7 +45,7 @@ describe('Policy can be created and deleted', () => {
     })
 
     it('Check enabled policy', () => {
-      verifyPolicyInListing({ name, ...policyDetails}, 'enabled')
+      verifyPolicyInListing({ name, ...policyDetails}, 'enabled', 1)
     })
 
     it('Enforce policy', () => {

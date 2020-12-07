@@ -61,7 +61,10 @@ export const createPolicy = ({ name, create=false, ...policyConfig }) => {
     cy.CheckGrcMainPage()
 }
 
-export const verifyPolicyInListing = ({ name, ...policyConfig }, enabled='enabled') => {
+// enabled='enabled', checking if policy is enabled; enabled='disabled', checking if policy is disabled
+// targetStatus = 0, don't check policy status; targetStatus = 1, check policy status is non-violation
+// targetStatus = 2, check policy status is violation; targetStatus = 3, check policy status is pending
+export const verifyPolicyInListing = ({ name, ...policyConfig }, enabled='enabled', targetStatus=0) => {
   const uName = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
     cy.get('a').contains(uName).parents('td').siblings('td').spread((namespace, remediation, violations, standards, categories, controls) => {
@@ -74,6 +77,26 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }, enabled='enable
         cy.wrap(remediation).contains('enforce', { matchCase: false })
       } else {
         cy.wrap(remediation).contains('inform', { matchCase: false })
+      }
+      if (targetStatus === 1 || targetStatus === 2 || targetStatus === 3) {
+        // check the violation status
+        cy.wrap(violations).find('svg').then((elems) => {
+          if (elems.length === 1) {
+            const filledColor = elems[0].getAttribute('fill')
+            switch(targetStatus) {
+              case 1: // 467f40 is the unique non-volation status color
+                filledColor.trim().toLowerCase() === '#467f40'
+                break
+              case 2: // c9190b is the unique violation status color
+                filledColor.trim().toLowerCase() === '#c9190b'
+                break
+              case 3:
+              default: // f0ab00 is the unique pending status color
+                filledColor.trim().toLowerCase() === '#f0ab00'
+                break
+            }
+          }
+        })
       }
       // check standard
       if (policyConfig['standards']) {
