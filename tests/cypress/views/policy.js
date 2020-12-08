@@ -7,8 +7,8 @@
 import { selectItems } from './common'
 import { formatResourceName } from '../scripts/utils'
 
-export const createPolicy = ({ name, create=false, valid=true, ...policyConfig }) => {
-  name = formatResourceName(name)
+export const createPolicy = ({ name, create=false, ...policyConfig }) => {
+  const uName = getUniqueResourceName(name)
   // fill the form
   // name
   cy.get('input[aria-label="name"]')
@@ -56,20 +56,15 @@ export const createPolicy = ({ name, create=false, valid=true, ...policyConfig }
       }
     })
   // create
-    .then(() => {
-      if (create && valid) {
-        cy.get('#create-button-portal-id-btn').click()
-      }
-      if(!valid)
-      {
-        cy.get('.react-monaco-editor-container').click().focused().type(name+'-invalid{enter}', { delay: 100 })
-        cy.get('#create-button-portal-id-btn').click()
-        cy.get('.bx--inline-notification__title').contains('Create error:')
-        cy.get('.bx--inline-notification__subtitle').should('exist')
-      }
-    })
-    cy.get('.react-monaco-editor-container').click().focused().type(Cypress.platform !== 'darwin' ? '{ctrl}a' : '{meta}a')
-  }
+  then(() => {
+    if (create) {
+      cy.get('#create-button-portal-id-btn').click()
+    }
+  })
+
+    // after creation, always return to grc main page
+    cy.CheckGrcMainPage()
+}
 
 
 export const verifyPolicyInListing = ({ name, ...policyConfig }) => {

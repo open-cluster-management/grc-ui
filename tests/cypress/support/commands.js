@@ -2,6 +2,8 @@
 import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
 import { oauthIssuer } from '../views/resource'
+import { pageLoader } from '../views/common'
+import { isPolicyStatusAvailable } from '../views/policy'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
   var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
@@ -34,7 +36,7 @@ Cypress.Commands.add('reloadUntil', (condition, options) => {
   var currentTime = new Date()
   if (currentTime - startTime < timeout) {
     condition().then(result => {
-      if (result == false) {
+      if (result === false) {
         cy.reload()
         if (interval > 0) {
           cy.wait(interval)
@@ -75,7 +77,7 @@ Cypress.Commands.add('checkCondition', (selector, condition, action) => {
   return cy.get('body').then($body => {
     var $elem = $body.find(selector)
     var result = condition($elem)
-    if (result == true && action) {
+    if (result === true && action) {
       return action($elem)
     }
 
@@ -85,7 +87,7 @@ Cypress.Commands.add('checkCondition', (selector, condition, action) => {
 
 Cypress.Commands.add('forEach', (selector, action, options) => {
   var failIfNotFound = getOpt(options, 'failIfNotFound', false)
-  if (failIfNotFound == true) {
+  if (failIfNotFound === true) {
     return cy.get(selector, options).each(($elem) => action($elem))
   }
 
@@ -114,10 +116,58 @@ Cypress.Commands.add('waitUsingSLA', () => {
   return cy.wait(parseInt(Cypress.env('SERVICE_SLA'), 10) || 5000)
 })
 
-Cypress.Commands.add('goToGRCPage', () => {
+// set the YAML editor visibility to a desired state
+// requires an element with 'switch-label' class being available in the page
+Cypress.Commands.add('toggleYAMLeditor', (state = undefined) => {
+  const err = 'Invalid parameter: Parameter "state" can be either "On" or "Off" or undefined'
+  if (state != undefined && state != 'On' && state != 'Off') { throw err }
+  cy.get('.switch-label').spread( (e) => {
+    if ((state === undefined) ||
+        (e.textContent.includes('Off') && state === 'On') ||
+        (e.textContent.includes('On') && state === 'Off'))
+    {
+      cy.get('#edit-yaml').next('label').click()
+    }
+    return cy
+  })
+})
+
+Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
+  cy.get('textarea.inputarea') // make sure the element is there first
+    .then(() => {
+      if (uri) {
+        return cy.window().its('monaco').its('editor').invoke('getModel', uri).then((ed) => { cy.wrap(ed) })
+      } else {
+        return cy.window().its('monaco').its('editor').invoke('getModels').spread((ed) => { cy.wrap(ed) })
+      }
+  })
+})
+
+// needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
+// see isPolicyStatusAvailable()
+Cypress.Commands.add('waitForPolicyStatus', (name) => {
+  cy.waitUntil(() => isPolicyStatusAvailable(name), {'interval': 5000, 'timeout':60000})
+
+})
+
+Cypress.Commands.add('FromACMToGRCPage', () => {
   cy.get('#hamburger', { timeout: 20000 }).should('exist')
   cy.get('#hamburger').click()
   cy.get('#grc', { timeout: 20000 }).should('exist')
   cy.get('#grc').click()
   cy.get('.bx--detail-page-header-title').contains('Governance and risk')
+})
+
+Cypress.Commands.add('CheckGrcMainPage', () => {
+  cy.location('pathname').should('eq', '/multicloud/policies/all')
+  pageLoader.shouldNotExist()
+  cy.get('.bx--detail-page-header-title').contains('Governance and risk')
+})
+
+Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
+  cy.get('#create-policy', { timeout: 20000 }).should('exist')
+  cy.get('#create-policy').click()
+  cy.location('pathname').should('eq', '/multicloud/policies/create')
+  pageLoader.shouldNotExist()
+  cy.get('.bx--detail-page-header-title').contains('Create policy')
 })
