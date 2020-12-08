@@ -11,7 +11,7 @@ replacements: # if user select this choice, the template variable names and valu
   categories: |
     PR.DS Data Security
   controls: |
-    PR.DS-2 Data-at-rest
+    PR.DS-1 Data-at-rest
   policyTemplates: |
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1

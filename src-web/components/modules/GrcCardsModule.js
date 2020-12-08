@@ -147,10 +147,7 @@ export class GrcCardsModule extends React.Component {
       types.split(',').forEach(type=>{
         type = type.trim()
         if (type) {
-          let name = type
-          if (grcCardChoice===GrcCardsSelections.categories || grcCardChoice===GrcCardsSelections.standards || grcCardChoice===GrcCardsSelections.controls ) {
-            name = _.startCase(name)
-          }
+          const name = type
           const filtered = activeFilters[key] &&  activeFilters[key].size>0 && !activeFilters[key].has(name)
           if (!filtered) {
             if (!dataMap[name]) {

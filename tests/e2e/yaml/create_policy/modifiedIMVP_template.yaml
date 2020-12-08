@@ -6,7 +6,7 @@ metadata:
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF, FISMA
     policy.open-cluster-management.io/categories: DE.CM Security Continuous Monitoring, PR.DS Data Security
-    policy.open-cluster-management.io/controls: DE.CM-8 Vulnerability scans, DE.CM-7 Monitoring for unauthorized activity
+    policy.open-cluster-management.io/controls: DE.CM-8 Vulnerability Scans, DE.CM-7 Monitoring for Unauthorized Activity
 spec:
   remediationAction: inform
   disabled: false

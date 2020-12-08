@@ -6,7 +6,7 @@ metadata:
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
     policy.open-cluster-management.io/categories: PR.DS Data Security
-    policy.open-cluster-management.io/controls: PR.DS-2 Data-at-rest
+    policy.open-cluster-management.io/controls: PR.DS-1 Data-at-rest
 spec:
   remediationAction: inform
   disabled: false

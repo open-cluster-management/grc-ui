@@ -60,7 +60,7 @@ module.exports = {
       specification: ['ImageManifestVulnPolicy'],
       standards: ['FISMA'],
       categories: ['PR.DS Data Security'],
-      controls: ['DE.CM-7 Monitoring for unauthorized activity']
+      controls: ['DE.CM-7 Monitoring for Unauthorized Activity']
     }
     page.createTestPolicy(true, policySpec, templateFile)
     common.checkStatus(policyName, true)

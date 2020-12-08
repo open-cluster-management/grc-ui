@@ -234,7 +234,6 @@ export class GrcView extends React.Component {
     let activeSet
     if (value) { //add non-null grc-card filter
       //covert filter name on policy card to start case to match
-      value = _.startCase(value.replace(' ', '-'))
       if (!activeFilters[key]) {
         activeFilters[key] = new Set()
       }
