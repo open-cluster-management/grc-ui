@@ -1,3 +1,4 @@
+# demo-policy-raw.yaml is used for creating the policy "demo-policy"
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:

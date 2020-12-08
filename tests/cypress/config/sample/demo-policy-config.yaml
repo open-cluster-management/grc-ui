@@ -1,4 +1,4 @@
-# key in this file correspond to the required policy name
+# demo-policy-config.yaml is used for validating the policy "demo-policy"
 policyConfig:
   namespace: 'default'
   specifications:
