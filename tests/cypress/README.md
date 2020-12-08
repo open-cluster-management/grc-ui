@@ -30,16 +30,16 @@ e.g. `getUniqueResourceName("my-policy")` returns `my-policy-12345` when `CYPRES
 e.g. `getUniqueResourceName("my-policy", '54321')` returns `my-policy-54321` with user own resource id  `54321`.
 
 ## Test configuration data
-If your test needs some test data you can store them in YAML format in [tests/cypress/config](https://github.com/open-cluster-management/grc-ui/tree/master/tests/cypress/config) directory. Each `.yaml` file in this directory is loaded at start up and the content is available through an environment variable.
+If your test needs some test data you can store them in YAML format in [tests/cypress/config/sample](https://github.com/open-cluster-management/grc-ui/tree/master/tests/cypress/config/sample) directory. Each `.yaml` file in this `sample` directory is loaded at start up and the content is available through an environment variable.
 E.g. a content of 'demo-policy-raw.yaml' is available in variable `TEST_CONFIG_DEMO_POLICY_RAW` and you can use any of the following approaches to assign it to a variable (dictionary).
 
 ```
-const data = JSON.parse(Cypress.env('TEST_CONFIG_DEMO_POLICY_RAW'))
+const data = JSON.parse(Cypress.env('TEST_CONFIG_DEMO_SAMPLE_POLICY_RAW'))
 ```
 or
 ```
 import { getConfigObject } from '../config'
-const data = getConfigObject('demo-policy-raw') --- get raw data
-const data = getConfigObject('demo-policy-raw', 'raw') --- also get raw data
-const data = getConfigObject('demo-policy-config', 'json') --- get json data
+const data = getConfigObject('demo-policy-raw', 'sample') --- get raw data
+const data = getConfigObject('demo-policy-raw', 'sample', 'raw') --- also get raw data
+const data = getConfigObject('demo-policy-config', 'sample', 'json') --- get json data
 ```

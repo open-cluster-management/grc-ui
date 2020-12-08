@@ -16,9 +16,10 @@ module.exports = (on, config) => {
   for (const singleConfig of configFiles) {
     // get base name, cut-off .yaml suffice, replace - with _ and convert to uppercase
     const pathArray = singleConfig.split('/')
-    const subDirName = pathArray[pathArray.length-2]
+    const lastSubDirName = pathArray[pathArray.length-2]
     const fileName = pathArray[pathArray.length-1]
-    const fomarttedFileName = `${subDirName}_${fileName}`.replace(/\.yaml$/, '').replace('-','_').toUpperCase()
+    const uFileName = lastSubDirName ? `${lastSubDirName}_${fileName}` : fileName
+    const fomarttedFileName = uFileName.replace(/\.yaml$/, '').replace('-','_').toUpperCase()
     config.env[`TEST_CONFIG_${fomarttedFileName}`] = getConfig(singleConfig)
   }
   require('cypress-terminal-report/src/installLogsPrinter')(on)
