@@ -26,6 +26,7 @@ module.exports = {
   'GRC Create policy page: Verify templates': (browser) => {
     const templates = [
       'CertificatePolicy',
+      'ComplianceOperator',
       'GatekeeperOperator',
       'IamPolicy',
       'ImageManifestVulnPolicy',
