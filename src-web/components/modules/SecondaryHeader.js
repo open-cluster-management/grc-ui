@@ -142,7 +142,7 @@ export class SecondaryHeader extends React.Component {
   renderBreadCrumb() {
     const { locale } = this.context
     const { breadcrumbItems } = this.props
-    return breadcrumbItems && breadcrumbItems.filter(crumb => Boolean(crumb.label)).map((breadcrumb, index) => {
+    return breadcrumbItems && breadcrumbItems.map((breadcrumb, index) => {
       const key = `${breadcrumb.id}-${index}`
       const noLocale = _.get(breadcrumb, 'noLocale', false)
       return (
