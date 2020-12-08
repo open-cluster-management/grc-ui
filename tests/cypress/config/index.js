@@ -10,14 +10,16 @@ exports.getConfig = (filepath) => {
   }
 }
 
-exports.getConfigObject = (postfix, returnType='raw') => {
+exports.getConfigObject = (fileName, subDirName='', returnType='raw') => {
+  let postfix = subDirName ? `${subDirName}_${fileName}` : fileName
+  postfix = postfix.replace('-','_').toUpperCase()
   try {
     switch(returnType.toLowerCase()) {
       case 'json':
-        return jsYaml.load(Cypress.env('TEST_CONFIG_'+postfix.replace('-','_').toUpperCase()))
+        return jsYaml.load(Cypress.env(`TEST_CONFIG_${postfix}`))
       case 'raw':
       default:
-        return Cypress.env('TEST_CONFIG_'+postfix.replace('-','_').toUpperCase())
+        return Cypress.env(`TEST_CONFIG_${postfix}`)
     }
   } catch (e) {
     throw new Error(e)
