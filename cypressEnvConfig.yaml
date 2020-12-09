@@ -3,3 +3,4 @@ options:
     hubClusterURL: #set hubClusterURL for local cypress testing
     user: #set user for local cypress testing
     password: #set password for local cypress testing
+    baseURL: # set cypress start point url, for example http://localhost:3000
