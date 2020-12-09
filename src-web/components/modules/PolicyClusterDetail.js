@@ -34,7 +34,6 @@ class PolicyClusterDetail extends React.Component {
   static propTypes = {
     error: PropTypes.object,
     loading: PropTypes.any,
-    params: PropTypes.object,
     policies: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.object,
@@ -57,7 +56,7 @@ class PolicyClusterDetail extends React.Component {
   }
 
   render() {
-    const {staticResourceData, error, loading, resourceType, params, policies} = this.props
+    const {staticResourceData, error, loading, resourceType, policies} = this.props
     const { locale } = this.context
     const modulesRight = [], modulesBottom = []
     if (error) {
@@ -83,9 +82,9 @@ class PolicyClusterDetail extends React.Component {
       <ResourceTableModule key='rules' definitionsKey='policyRules' />,
       <ResourceTableModule key='violations' definitionsKey='policyViolations' />], module => {
       if (module.props.right) {
-        modulesRight.push(React.cloneElement(module, { staticResourceData: staticResourceData, resourceType: resourceType, resourceData: policy, params }))
+        modulesRight.push(React.cloneElement(module, { staticResourceData: staticResourceData, resourceType: resourceType, resourceData: policy }))
       } else {
-        modulesBottom.push(React.cloneElement(module, { staticResourceData: staticResourceData, resourceType: resourceType, resourceData: policy, params }))
+        modulesBottom.push(React.cloneElement(module, { staticResourceData: staticResourceData, resourceType: resourceType, resourceData: policy }))
       }
     })
     return (

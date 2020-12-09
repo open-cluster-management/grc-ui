@@ -18,7 +18,6 @@ class PolicyDetailSubRouter extends React.Component {
 
   static propTypes = {
     launch_links: PropTypes.object,
-    location: PropTypes.object,
     match: PropTypes.any,
     resourceType: PropTypes.any,
     tabs: PropTypes.array,
@@ -41,14 +40,13 @@ class PolicyDetailSubRouter extends React.Component {
       match,
       tabs,
       launch_links,
-      location
     } = this.props
 
     const baseUrl = this.getBaseUrl()
     localUpdateSecondaryHeader(
       match.params.name,
       getTabs(tabs, (tab, index) => index === 0 ? baseUrl : `${baseUrl}/${tab}`),
-      this.getBreadcrumb(location),
+      this.getBreadcrumb(),
       launch_links
     )
   }
@@ -91,26 +89,21 @@ class PolicyDetailSubRouter extends React.Component {
     return match.params.tab ? match.url.split('/').slice(0, -1).join('/') : match.url
   }
 
-  getBreadcrumb(location) {
+  getBreadcrumb() {
     const breadcrumbItems = []
-    location = location || this.props.location
     const { match } = this.props,
           { locale } = this.context,
-          urlSegments = location.pathname.replace(/\/$/, '').split('/'),
           currentTab = match.params.tab
-
-    // The base path, calculated by the current location minus params
-    const paramsLength = 2
 
     breadcrumbItems.push({
       label: msgs.get('tabs.grc.all', locale),
       noLocale: true,
-      url: urlSegments.slice(0, (urlSegments.length - (paramsLength + (currentTab ? 1 : 0)))).join('/')
+      url: '/multicloud/policies/all'
     })
     breadcrumbItems.push({
       label: match.params.name,
       noLocale: true,
-      url: currentTab ? location.pathname.replace(`/${currentTab}`, '') : location.pathname
+      url: currentTab ? match.url.replace(`/${currentTab}`, '') : match.url
     })
     return breadcrumbItems
   }

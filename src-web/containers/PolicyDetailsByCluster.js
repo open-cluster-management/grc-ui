@@ -25,7 +25,6 @@ import { setRefreshControl } from '../../lib/client/reactiveVars'
 
 class PolicyDetailsByCluster extends React.Component {
   static propTypes = {
-    location: PropTypes.object,
     match: PropTypes.object,
     resourceType: PropTypes.object,
     updateSecondaryHeader: PropTypes.func,
@@ -66,9 +65,9 @@ class PolicyDetailsByCluster extends React.Component {
 
   getBreadcrumb() {
     const breadcrumbItems = []
-    const {  location, match, resourceType } = this.props,
+    const {  match, resourceType } = this.props,
           { locale } = this.context,
-          urlSegments = location.pathname.split('/')
+          urlSegments = match.url.split('/')
 
     // Push only one breadcrumb to overview page
     if (resourceType.name === RESOURCE_TYPES.POLICIES_BY_POLICY.name) {
@@ -85,7 +84,7 @@ class PolicyDetailsByCluster extends React.Component {
       {
         label: match.params.clusterName,
         noLocale: true,
-        url: `${urlSegments.slice(0, 3).join('/')}/policy/${match.params.clusterName}/${match.params.name}`
+        url: match.url
       }
       )
     }
@@ -116,7 +115,6 @@ class PolicyDetailsByCluster extends React.Component {
               policies={policies}
               loading={!policies && loading}
               error={error}
-              params={match.params}
             />)
         }}
       </Query>
