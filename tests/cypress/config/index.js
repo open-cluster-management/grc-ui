@@ -10,14 +10,21 @@ exports.getConfig = (filepath) => {
   }
 }
 
-exports.getConfigObject = (fileName, subDirName='', returnType='raw') => {
-  let postfix = subDirName ? `${subDirName}_${fileName}` : fileName
-  postfix = postfix.replace('-','_').toUpperCase()
+exports.getConfigObject = (relativePath, configFormat='') => {
+  let postfix = relativePath.replace(/\//g, '__').replace(/-/g,'_').replace(/\./g,'_').toUpperCase()
+  // if configFormat not provided, try to detect the file format from a relativePath file suffix
+  if (!configFormat) {
+    const arr = relativePath.split('.')
+    configFormat = arr[arr.length-1]
+  }
   try {
-    switch(returnType.toLowerCase()) {
+    switch(configFormat.toLowerCase()) {
       case 'yaml':
         return jsYaml.load(Cypress.env(`TEST_CONFIG_${postfix}`))
+      case 'json':
+        return JSON.parse(Cypress.env(`TEST_CONFIG_${postfix}`))
       case 'raw':
+      case 'txt':
       default:
         return Cypress.env(`TEST_CONFIG_${postfix}`)
     }

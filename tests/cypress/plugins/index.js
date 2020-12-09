@@ -8,20 +8,16 @@
 const glob = require('glob')
 const path = require('path')
 const getConfig = require('../config').getConfig
-const configFiles = glob.sync(path.join(__dirname, '../config/*/', '*.yaml'))
+const configFiles = glob.sync(path.join(__dirname, '../config/**/*'), {nodir:true})
 
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
   for (const singleConfig of configFiles) {
-    // get base name, cut-off .yaml suffice, replace - with _ and convert to uppercase
+    // get base name, replace . and - with _ and convert to uppercase
     try {
-      const pathArray = singleConfig.split('/')
-      const lastSubDirName = pathArray[pathArray.length-2]
-      const fileName = pathArray[pathArray.length-1]
-      const uFileName = lastSubDirName ? `${lastSubDirName}_${fileName}` : fileName
-      const fomarttedFileName = uFileName.replace(/\.yaml$/, '').replace('-','_').toUpperCase()
-      config.env[`TEST_CONFIG_${fomarttedFileName}`] = getConfig(singleConfig)
+      const normalizedFileName = singleConfig.replace(/^.*\/config\//, '').replace(/\//g, '__').replace(/\./g, '_').replace(/-/g,'_').toUpperCase()
+      config.env[`TEST_CONFIG_${normalizedFileName}`] = getConfig(singleConfig)
     } catch (e) {
       throw new Error(e)
     }
