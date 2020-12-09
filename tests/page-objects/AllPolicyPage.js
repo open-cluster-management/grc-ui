@@ -438,7 +438,7 @@ function updateYamlEditor() {
   editYaml(this, 'test-control', 9, 'controlsDropdownInput')
   editYaml(this, 'enforce', 11, 'enforceCheckbox', true)
   editYaml(this, 'true', 12, 'disableCheckbox', true)
-  editYaml(this, applyTemplate('', 'custom_spec.yaml'), 12, 'templateDropdownInput', true, 'Custom specifications')
+  editYaml(this, applyTemplate('', 'custom_spec.yaml'), 13, 'templateDropdownInput', true, 'Custom specifications')
 }
 /* Helper to replace punctuation with spaces and capitalize text */
 function cleanAndCapitalize(str) {
