@@ -11,7 +11,7 @@ exports.getConfig = (filepath) => {
 }
 
 exports.getConfigObject = (relativePath, configFormat='') => {
-  let postfix = relativePath.replace(/\//g, '__').replace(/-/g,'_').replace(/\./g,'_').toUpperCase()
+  const postfix = relativePath.replace(/\//g, '__').replace(/-/g,'_').replace(/\./g,'_').toUpperCase()
   // if configFormat not provided, try to detect the file format from a relativePath file suffix
   if (!configFormat) {
     const arr = relativePath.split('.')
