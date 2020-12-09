@@ -11,11 +11,6 @@ export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
   console.log(formattedYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
-    .invoke('getValue')
-    .should('contain', 'apiVersion: policy.open-cluster-management.io/v1')
-    .toggleYAMLeditor('Off')
-    .toggleYAMLeditor()
-    .YAMLeditor()
     .invoke('setValue', formattedYAML)
     // create
     .then(() => {
