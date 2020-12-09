@@ -13,8 +13,8 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     // demo-policy-raw.yaml is raw policy yaml and need be to get as raw data
     const policyYAML = getConfigObject('demo-policy-raw', 'sample', 'raw')
     // demo-policy-config.yaml is used for validating the policy "demo-policy"
-    // demo-policy-config.yaml isn't raw policy yaml but config yaml and need be to get as json
-    const { policyConfig } = getConfigObject('demo-policy-config', 'sample', 'json')
+    // demo-policy-config.yaml isn't raw policy yaml but config yaml and need be converted to a dictionary
+    const { policyConfig } = getConfigObject('demo-policy-config', 'sample', 'yaml')
     const uPolicyName = getUniqueResourceName(policyName)
 
     it (`Can create new policy ${uPolicyName} from YAML editor`, () => {

@@ -15,7 +15,7 @@ exports.getConfigObject = (fileName, subDirName='', returnType='raw') => {
   postfix = postfix.replace('-','_').toUpperCase()
   try {
     switch(returnType.toLowerCase()) {
-      case 'json':
+      case 'yaml':
         return jsYaml.load(Cypress.env(`TEST_CONFIG_${postfix}`))
       case 'raw':
       default:

@@ -41,5 +41,5 @@ or
 import { getConfigObject } from '../config'
 const data = getConfigObject('demo-policy-raw', 'sample') --- get raw data
 const data = getConfigObject('demo-policy-raw', 'sample', 'raw') --- also get raw data
-const data = getConfigObject('demo-policy-config', 'sample', 'json') --- get json data
+const data = getConfigObject('demo-policy-config', 'sample', 'yaml') --- get javascript object (dictionary) created from the parsed YAML configuration
 ```
