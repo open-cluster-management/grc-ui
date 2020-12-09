@@ -2,16 +2,29 @@
 import './commands'
 require('cypress-terminal-report/src/installLogsCollector')()
 
+Cypress.Cookies.defaults({
+  preserve: ['acm-access-token-cookie', '_oauth_proxy', 'XSRF-TOKEN', '_csrf']
+})
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED='0'
 
 before(() => {
-  cy.clearCookies()
+  if (Cypress.config().baseUrl.includes('localhost')) {
+    cy.exec('oc whoami -t').then(res => {
+      cy.setCookie('acm-access-token-cookie', res.stdout)
+      Cypress.env('token', res.stdout)
+    })
+  }
   cy.login()
-  // cy.FromACMToGRCPage()
 })
 
 beforeEach(() => {
-  Cypress.Cookies.preserveOnce('acm-access-token-cookie', '_oauth_proxy', 'XSRF-TOKEN', '_csrf')
+  if (Cypress.config().baseUrl.includes('localhost')) {
+    cy.exec('oc whoami -t').then(res => {
+      cy.setCookie('acm-access-token-cookie', res.stdout)
+      Cypress.env('token', res.stdout)
+    })
+  }
 })
 
 after(()=> {
