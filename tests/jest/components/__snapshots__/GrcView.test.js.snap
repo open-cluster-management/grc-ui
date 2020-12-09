@@ -117,7 +117,7 @@ exports[`GrcView component 1 renders as expected 1`] = `
             <div
               className="card-name"
             >
-              NIST CSF
+              NIST-CSF
             </div>
             <div
               className="card-count-content"
@@ -718,10 +718,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 HIPAA
               </td>
               <td>
-                System And Communications Protections
+                SystemAndCommunicationsProtections
               </td>
               <td>
-                Cert Manager
+                CertManager
               </td>
               <td>
                 <div
@@ -838,10 +838,10 @@ exports[`GrcView component 1 renders as expected 1`] = `
                 NIST, HIPAA
               </td>
               <td>
-                System And Communications Protections, System And Information Integrity
+                SystemAndCommunicationsProtections, SystemAndInformationIntegrity
               </td>
               <td>
-                Mutation Advisor
+                MutationAdvisor
               </td>
               <td>
                 <div
