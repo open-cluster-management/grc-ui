@@ -10,7 +10,6 @@
 const fs = require('fs')
 const path = require('path')
 const yaml = require('js-yaml')
-const config = require('../../config')
 
 module.exports = {
   elements: {
@@ -92,12 +91,7 @@ module.exports = {
     verifySummary,
     verifyTable,
     verifyToggle,
-    noResourceCheck,
   }]
-}
-function noResourceCheck(path) {
-  this.api.url(`${this.api.launchUrl}${config.get('contextPath')}${path}`)
-  this.expect.element('@noResource').to.be.visible
 }
 function verifySummary(url) {
   this.waitForElementVisible('@summaryCollapse')

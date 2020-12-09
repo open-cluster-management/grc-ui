@@ -8,6 +8,7 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 const parser = require('../utils/yamlHelper')
+const config = require('../../config')
 
 module.exports = {
   elements: {
@@ -58,7 +59,18 @@ module.exports = {
     tryEnable,
     tryDisable,
     clickButtonOnOverflowModal,
+    noResourceCheck,
   }]
+}
+
+function noResourceCheck(path='', exists=false) {
+  this.log(`Verifying: ${path}`)
+  this.api.url(`${this.api.launchUrl}${config.get('contextPath')}${path}`)
+  this.waitForElementNotPresent('@spinner')
+  if (exists)
+    this.expect.element('@noResource').to.be.visible
+  else
+    this.expect.element('@noResource').to.be.not.visible
 }
 
 /*
