@@ -85,6 +85,24 @@ module.exports = {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
     common.deletePolicy(policyName)
+  },
+
+  'GRC All policy page: Check nonexistent URLs': () => {
+    // Check to make sure pages that don't exist return 'No Resource':
+    // - Cluster name and policy that don't exist
+    common.log('Cluster name and policy that don\'t exist:')
+    page.noResourceCheck('/policy/not-a-cluster/not-a-policy')
+    common.log('Cluster name and policy that don\'t exist, plus extra paths:')
+    page.noResourceCheck('/policy/not-a-cluster/not-a-policy/a/b/c')
+    // - Namespace and policy that don't exist
+    common.log('Namespace and policy that don\'t exist:')
+    page.noResourceCheck('/all/not-a-namespace/not-a-policy')
+    common.log('Namespace and policy that don\'t exist, plus status path:')
+    page.noResourceCheck('/all/not-a-namespace/not-a-policy/status')
+    common.log('Namespace and policy that don\'t exist, plus yaml path:')
+    page.noResourceCheck('/all/not-a-namespace/not-a-policy/yaml')
+    common.log('Namespace and policy that don\'t exist, plus extra paths:')
+    page.noResourceCheck('/all/not-a-namespace/not-a-policy/other/a/b/c')
   }
 
 }
