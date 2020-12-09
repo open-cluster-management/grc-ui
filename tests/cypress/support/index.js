@@ -13,7 +13,6 @@ before(() => {
     cy.exec('oc whoami -t').then(res => {
       cy.setCookie('acm-access-token-cookie', res.stdout)
       Cypress.env('token', res.stdout)
-      Cypress.env('baseURL', 'https://localhost:3000')
     })
   }
   cy.login()
