@@ -88,7 +88,7 @@ export const createPolicyFromSelection = ({ uPolicyName, create=false, ...policy
 // enabled='enabled', checking if policy is enabled; enabled='disabled', checking if policy is disabled
 // targetStatus = 0, don't check policy status; targetStatus = 1, check policy status is non-violation
 // targetStatus = 2, check policy status is violation; targetStatus = 3, check policy status is pending
-export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', targetStatus=0) => {
+export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', targetStatus=0, violationsCounter='') => {
   cy.get('.grc-view-by-policies-table').within(() => {
     console.log(uName)
     cy.log(uName)
@@ -104,8 +104,8 @@ export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', ta
       } else {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
+      // check the violation status
       if (targetStatus === 1 || targetStatus === 2 || targetStatus === 3) {
-        // check the violation status
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
             const filledColor = elems[0].getAttribute('fill').trim().toLowerCase()
@@ -123,6 +123,10 @@ export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', ta
             }
           }
         })
+      }
+      // check the cluster violations value
+      if (violationsCounter) {
+        cy.wrap(violations.textContent).should('match', new RegExp('^'+violationsCounter+'$'))
       }
       // check standard
       if (policyConfig['standards']) {
