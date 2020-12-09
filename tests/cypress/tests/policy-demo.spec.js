@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 import {
   createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
-  actionPolicyActionInListing
+  actionPolicyActionInListing, verifyPolicyInPolicyDetails
 } from '../views/policy'
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
@@ -69,7 +69,17 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
       verifyPolicyInListing(uPolicyName,  policyConfig)
     })
 
+    it('check policy and the detailed policy page', () => {
+       // we need to find another way how to access this page
+       cy.visit(`/multicloud/policies/all/default/${uPolicyName}`)
+         .then(() => {
+           verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', 1, '0/1')
+         })
+    })
+
     it(`Policy ${uPolicyName} can be deleted in the policy listing`, () => {
+      // we could use a different way how to return to this page
+      cy.visit('/multicloud/policies/all')
       actionPolicyActionInListing(uPolicyName, 'Remove')
     })
 
