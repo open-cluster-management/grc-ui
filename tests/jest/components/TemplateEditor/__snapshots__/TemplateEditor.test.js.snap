@@ -1093,18 +1093,18 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policies.ibm.com/v1alpha1
-      kind: CertificatePolicy # cert management expiration
-      metadata:
-        name: policy-certificatepolicy-1-example
-      spec:
-        namespaceSelector:
-          include: [\\"default\\"]
-          exclude: []
-        remediationAction: inform
-        severity: low
-        minimumDuration: 300h
+    - objectDefinition:
+        apiVersion: policies.ibm.com/v1alpha1
+        kind: CertificatePolicy # cert management expiration
+        metadata:
+          name: policy-certificatepolicy-1-example
+        spec:
+          namespaceSelector:
+            include: [\\"default\\"]
+            exclude: []
+          remediationAction: inform
+          severity: low
+          minimumDuration: 300h
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -1149,18 +1149,18 @@ spec:
   remediationAction: inform
   disabled: true
   policy-templates:
-  - objectDefinition:
-      apiVersion: policies.ibm.com/v1alpha1
-      kind: CertificatePolicy # cert management expiration
-      metadata:
-        name: policy-certificatepolicy-1-example
-      spec:
-        namespaceSelector:
-          include: [\\"default\\"]
-          exclude: []
-        remediationAction: inform
-        severity: low
-        minimumDuration: 300h
+    - objectDefinition:
+        apiVersion: policies.ibm.com/v1alpha1
+        kind: CertificatePolicy # cert management expiration
+        metadata:
+          name: policy-certificatepolicy-1-example
+        spec:
+          namespaceSelector:
+            include: [\\"default\\"]
+            exclude: []
+          remediationAction: inform
+          severity: low
+          minimumDuration: 300h
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -1205,18 +1205,18 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policies.ibm.com/v1alpha1
-      kind: CertificatePolicy # cert management expiration
-      metadata:
-        name: policy-certificatepolicy-1-example
-      spec:
-        namespaceSelector:
-          include: [\\"default\\"]
-          exclude: []
-        remediationAction: inform
-        severity: low
-        minimumDuration: 300h
+    - objectDefinition:
+        apiVersion: policies.ibm.com/v1alpha1
+        kind: CertificatePolicy # cert management expiration
+        metadata:
+          name: policy-certificatepolicy-1-example
+        spec:
+          namespaceSelector:
+            include: [\\"default\\"]
+            exclude: []
+          remediationAction: inform
+          severity: low
+          minimumDuration: 300h
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding

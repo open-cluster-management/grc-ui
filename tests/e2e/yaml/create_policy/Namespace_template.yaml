@@ -11,24 +11,24 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: [TEST_POLICY_NAME]-prod
-      spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: low
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["default"]
-        object-templates:
-          - complianceType: musthave
-            objectDefinition:
-              kind: Namespace # must have namespace 'prod'
-              apiVersion: v1
-              metadata:
-                name: prod
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: [TEST_POLICY_NAME]-prod
+        spec:
+          remediationAction: inform # will be overridden by remediationAction in parent policy
+          severity: low
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                kind: Namespace # must have namespace 'prod'
+                apiVersion: v1
+                metadata:
+                  name: prod
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding

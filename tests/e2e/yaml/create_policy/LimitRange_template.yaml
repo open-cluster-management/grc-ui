@@ -11,31 +11,31 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: [TEST_POLICY_NAME]-mem-limit-range
-      spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: medium
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["default"]
-        object-templates:
-          - complianceType: musthave
-            objectDefinition:
-              apiVersion: v1
-              kind: LimitRange # limit memory usage
-              metadata:
-                name: mem-limit-range
-              spec:
-                limits:
-                - default:
-                    memory: 512Mi
-                  defaultRequest:
-                    memory: 256Mi
-                  type: Container
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: [TEST_POLICY_NAME]-mem-limit-range
+        spec:
+          remediationAction: inform # will be overridden by remediationAction in parent policy
+          severity: medium
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: LimitRange # limit memory usage
+                metadata:
+                  name: mem-limit-range
+                spec:
+                  limits:
+                  - default:
+                      memory: 512Mi
+                    defaultRequest:
+                      memory: 256Mi
+                    type: Container
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding

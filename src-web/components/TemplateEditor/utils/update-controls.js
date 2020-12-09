@@ -11,7 +11,6 @@
 
 import jsYaml from 'js-yaml'
 import YamlParser from '../components/YamlParser'
-import msgs from '../../../../nls/platform.properties'
 import _ from 'lodash'
 
 export const initializeControlData = (template, initialControlData) =>{
@@ -87,7 +86,7 @@ export const cacheUserData = (controlData) => {
   })
 }
 
-export const updateControls = (controlData, oldParsed, newParsed, locale) => {
+export const updateControls = (controlData, oldParsed, newParsed) => {
 
   // stuff newly parsed yaml object into a control's active values using the object to control path (reverse)
   let isCustomName = false
@@ -104,7 +103,7 @@ export const updateControls = (controlData, oldParsed, newParsed, locale) => {
       updateSingleSelectControl(control, reverse, newParsed)
       break
     case 'multiselect':
-      updateMultiSelectControl(control, reverse, oldParsed, newParsed, locale)
+      updateMultiSelectControl(control, reverse, oldParsed, newParsed)
       break
     }
   })
@@ -112,8 +111,7 @@ export const updateControls = (controlData, oldParsed, newParsed, locale) => {
 }
 
 const updateTextControl = (control, reverse, newParsed) => {
-  // If nothing is returned, default to an empty string
-  const newActive = _.get(newParsed, reverse[0], '')
+  const newActive = _.get(newParsed, reverse[0])
   const isCustomName = control.id==='name' && control.active!==newActive
   control.active = newActive
   return isCustomName
@@ -140,12 +138,12 @@ const updateSingleSelectControl = (control, reverse, newParsed) => {
   }
 }
 
-const updateMultiSelectControl = (control, reverse, oldParsed, newParsed, locale) => {
+const updateMultiSelectControl = (control, reverse, oldParsed, newParsed) => {
   const {hasLabels, hasReplacements} = control
   if (hasLabels) {
     updateMultiSelectLabelControl(control, reverse, newParsed)
   } else if (hasReplacements) {
-    updateMultiSelectReplacementControl(control, reverse, oldParsed, newParsed, locale)
+    updateMultiSelectReplacementControl(control, reverse, oldParsed, newParsed)
   } else {
     updateMultiSelectStringControl(control, reverse, newParsed)
   }
@@ -205,11 +203,12 @@ const updateMultiSelectLabelControl = (control, reverse, newParsed) => {
   control.active = selectors
 }
 
-const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newParsed, locale) => {
+const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newParsed) => {
 
   // get all objects this control can possibly add to the template
   const oldObjects = getTemplateObjects(reverse, oldParsed)
   const newObjects = getTemplateObjects(reverse, newParsed)
+
   // if old and new have objects
   if (oldObjects && newObjects) {
     // did user an edit an object?
@@ -219,25 +218,17 @@ const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newPar
     control.hasCapturedUserSource = true
   } else if (oldObjects && !newObjects) {
     // did user delete the objects?
-    control.active = []
     control.hasCapturedUserSource = false
   }
 
-  // if user has manually changed the objects, save their changes and remove all active selected templates
+  // if user has manually changed the objects, save their changes to stuff back into template
   if (control.hasCapturedUserSource) {
     control.userData = getTemplateSource(reverse, newParsed)
-    if (control.userData !== '') {
-      control.active = [msgs.get('creation.view.policy.custom', locale)]
-    } else {
-      // If userData is empty, we should reset the form
-      control.active = []
-      control.hasCapturedUserSource = false
-    }
+    control.active = control.userData
   } else {
     delete control.userData
   }
 }
-
 const getTemplateObjects = (reverse, parsed) => {
   const objects = []
   reverse.forEach(path=>{
@@ -252,21 +243,18 @@ const getTemplateObjects = (reverse, parsed) => {
 export const getTemplateSource = (reverse, parsed) => {
   let ret = []
   reverse.forEach(path=>{
-    const pathArray = path.split('.')
-    const pathBase = pathArray.shift()
-    pathArray.shift()
+    path = path.split('.')
+    const pathBase = path.shift()
+    path.shift()
 
     // dig out the yaml and the object that points to it
     const yaml = _.get(parsed, `${pathBase}.$yml`)
-    const pathReformat = path.length>0 ? pathBase + `.$synced.${pathArray.join('.$v.')}.$v` : pathBase
-    const synced = _.get(parsed, pathReformat)
+    path = path.length>0 ? pathBase + `.$synced.${path.join('.$v.')}` : pathBase
+    const synced = _.get(parsed, path)
     if (yaml && synced) {
       // capture the source lines
       const lines = yaml.split('\n')
-      // the templates are an array, so we need to iterate over each
-      synced.forEach(syncItem => {
-        ret = [...ret, ...lines.slice(syncItem.$r, syncItem.$r+syncItem.$l).join('\n')]
-      })
+      ret = [...ret, ...lines.slice(synced.$r, synced.$r+synced.$l+1)]
     }
   })
   return ret.join('\n')
@@ -289,9 +277,6 @@ export const parseYAML = (yaml) => {
       const post = new RegExp(/[\r\n]+$/).test(snip)
       snip = snip.trim()
       const $synced = new YamlParser().parse(snip, absLine)
-      if ($synced === null) {
-        throw new Error('YAML returned null')
-      }
       $synced.$r = absLine
       $synced.$l = snip.split(/[\r\n]+/g).length
       values.push({$raw: obj, $yml: snip, $synced})

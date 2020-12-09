@@ -11,28 +11,28 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: [TEST_POLICY_NAME]-sample-role
-      spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: high
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["default"]
-        object-templates:
-          - complianceType: mustonlyhave # role definition should exact match
-            objectDefinition:
-              apiVersion: rbac.authorization.k8s.io/v1
-              kind: Role
-              metadata:
-                name: sample-role
-              rules:
-                - apiGroups: ["extensions", "apps"]
-                  resources: ["deployments"]
-                  verbs: ["get", "list", "watch", "delete","patch"]
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: [TEST_POLICY_NAME]-sample-role
+        spec:
+          remediationAction: inform # will be overridden by remediationAction in parent policy
+          severity: high
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["default"]
+          object-templates:
+            - complianceType: mustonlyhave # role definition should exact match
+              objectDefinition:
+                apiVersion: rbac.authorization.k8s.io/v1
+                kind: Role
+                metadata:
+                  name: sample-role
+                rules:
+                  - apiGroups: ["extensions", "apps"]
+                    resources: ["deployments"]
+                    verbs: ["get", "list", "watch", "delete","patch"]
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding

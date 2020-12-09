@@ -26,7 +26,7 @@ const Portals = Object.freeze({
   cancelBtn: 'cancel-button-portal-id',
 })
 
-// controlData is converted to templateData when template handlebar is rendered
+// controlData is converted to templateData when tempplate handlebar is rendered
 //  id: becomes template variable;
 //  active: becomes value replacement
 //  type: what type of control to prompt user
@@ -60,7 +60,7 @@ const controlData = [
     available: [],
     isOneSelection: true, // close dropdown on one selection--otherwise dropdown stays open
     updateNamePrefix: 'policy-', // if user hasn't typed in a custom name, update name using this selection
-    reverse: 'Policy[0].spec.policy-templates',
+    reverse: ['Policy[0].spec',],
     mustExist: true,
   },
   {

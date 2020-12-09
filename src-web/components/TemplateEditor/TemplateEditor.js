@@ -397,18 +397,19 @@ export default class TemplateEditor extends React.Component {
   }
 
   renderMultiSelect(control) {
+    const {locale} = this.props
     const {id, name, placeholder:ph, description, isOneSelection, mustExist} = control
 
     // see if we need to add user additions to available (from editing the yaml file)
-    const {active=[], userData, userMap, hasCapturedUserSource} = control
-    let {available, availableMap} = control
+    const {userData, userMap, hasCapturedUserSource} = control
+    let {active=[], available, availableMap} = control
     if (userData) {
       if (!hasCapturedUserSource) {
         available = [...userData, ...available]
         availableMap = {...userMap, ...availableMap}
       } else {
         // if user edited the source, we can't automatically update it
-        available = active
+        active = available = [msgs.get('creation.view.policy.custom', locale)]
         availableMap = null
       }
     }
@@ -671,7 +672,7 @@ export default class TemplateEditor extends React.Component {
     let { isCustomName } = this.state
     const { templateYAML, templateObject } = this.state
     let { controlData } = this.state
-    const { parsed: newParsed, exceptions} = parseYAML(templateYAML)
+    const { parsed: newParsed, exceptions} = parseYAML(templateYAML, locale)
     validateYAML(newParsed, controlData, exceptions, locale)
 
     // update editor annotations
@@ -702,7 +703,7 @@ export default class TemplateEditor extends React.Component {
     // if no exceptions, update controlData based on custom editing
     if (Object.keys(newParsed).length>0) {
       controlData = _.cloneDeep(controlData)
-      if (updateControls(controlData, templateObject, newParsed, locale)) {
+      if (updateControls(controlData, templateObject, newParsed)) {
         isCustomName = true
       }
     }
@@ -716,7 +717,7 @@ export default class TemplateEditor extends React.Component {
     const { locale } = this.context
     const { controlData, templateYAML } = this.state
     let errorMsg = null
-    const { parsed, exceptions } = parseYAML(templateYAML)
+    const { parsed, exceptions } = parseYAML(templateYAML, locale)
     if (exceptions.length===0) {
       validateYAML(parsed, controlData, exceptions, locale)
     }
