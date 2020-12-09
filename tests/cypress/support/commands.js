@@ -150,14 +150,6 @@ Cypress.Commands.add('waitForPolicyStatus', (name) => {
 
 })
 
-Cypress.Commands.add('FromACMToGRCPage', () => {
-  cy.get('#hamburger', { timeout: 20000 }).should('exist')
-  cy.get('#hamburger').click()
-  cy.get('#grc', { timeout: 20000 }).should('exist')
-  cy.get('#grc').click()
-  cy.get('.bx--detail-page-header-title').contains('Governance and risk')
-})
-
 Cypress.Commands.add('CheckGrcMainPage', () => {
   cy.location('pathname').should('eq', '/multicloud/policies/all')
   pageLoader.shouldNotExist()
