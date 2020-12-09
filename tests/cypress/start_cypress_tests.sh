@@ -10,16 +10,18 @@ if [ -z "$BROWSER" ]; then
   export BROWSER="chrome"
 fi
 
-if [ ! -z "$OC_HUB_CLUSTER_URL" ] && [ ! -z "$OC_CLUSTER_USER" ] && [ ! -z "$OC_HUB_CLUSTER_PASS" ]; then
+if [ ! -z "$OC_HUB_CLUSTER_URL" ] && [ ! -z "$OC_CLUSTER_USER" ] && [ ! -z "$OC_HUB_CLUSTER_PASS" ] && [ ! -z "$CYPRESS_BASE_URL" ]; then
   echo -e "Using cypess config from Travis env variables.\n"
   export CYPRESS_OPTIONS_HUB_CLUSTER_URL=$OC_HUB_CLUSTER_URL
   export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
   export CYPRESS_OPTIONS_HUB_PASSWORD=$OC_HUB_CLUSTER_PASS
-elif [ ! -z "$OC_CLUSTER_URL" ] && [ ! -z "$OC_CLUSTER_USER" ] && [ ! -z "$OC_CLUSTER_PASS" ]; then
+  export CYPRESS_BASE_URL=$CYPRESS_BASE_URL
+elif [ ! -z "$OC_CLUSTER_URL" ] && [ ! -z "$OC_CLUSTER_USER" ] && [ ! -z "$OC_CLUSTER_PASS" ] && [ ! -z "$CYPRESS_BASE_URL" ]; then
   echo -e "Using cypess config from Docker env variables.\n"
   export CYPRESS_OPTIONS_HUB_CLUSTER_URL=$OC_CLUSTER_URL
   export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
   export CYPRESS_OPTIONS_HUB_PASSWORD=$OC_CLUSTER_PASS
+  export CYPRESS_BASE_URL=$CYPRESS_BASE_URL
 else
   USER_OPTIONS_FILE=./cypressEnvConfig.yaml
   echo -e "System env variables don't exist, loading local config from '$USER_OPTIONS_FILE' file.\n"
@@ -28,6 +30,7 @@ else
     export CYPRESS_OPTIONS_HUB_CLUSTER_URL=`yq r $USER_OPTIONS_FILE 'options.hub.hubClusterURL'`
     export CYPRESS_OPTIONS_HUB_USER=`yq r $USER_OPTIONS_FILE 'options.hub.user'`
     export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $USER_OPTIONS_FILE 'options.hub.password'`
+    export CYPRESS_BASE_URL=`yq r $USER_OPTIONS_FILE 'options.hub.baseURL'`
   else
     echo "Can't find '$USER_OPTIONS_FILE' locally and set all cypess config to empty."
     export CYPRESS_OPTIONS_HUB_CLUSTER_URL=""
