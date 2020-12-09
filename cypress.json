@@ -3,6 +3,7 @@
     "runMode": 1,
     "openMode": 1
   },
+  "baseUrl": "https://localhost:3000",
   "chromeWebSecurity": false,
   "defaultCommandTimeout": 10000,
   "integrationFolder": "tests/cypress/tests",
