@@ -9,7 +9,9 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) =
   var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
   var password = process.env.SELENIUM_PASSWORD || OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
   var idp = OC_IDP || Cypress.env('OC_IDP')
-  cy.visit('/multicloud/welcome')
+  if (!window.location.toString().contains('localhost')) {
+    cy.visit('/multicloud/welcome')
+  }
   cy.get('body').then(body => {
     // Check if logged in
     if (body.find('#header').length === 0) {
