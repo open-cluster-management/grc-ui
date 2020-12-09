@@ -28,6 +28,7 @@ else
     export CYPRESS_OPTIONS_HUB_CLUSTER_URL=`yq r $USER_OPTIONS_FILE 'options.hub.hubClusterURL'`
     export CYPRESS_OPTIONS_HUB_USER=`yq r $USER_OPTIONS_FILE 'options.hub.user'`
     export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $USER_OPTIONS_FILE 'options.hub.password'`
+    export CYPRESS_BASE_URL=`yq r $USER_OPTIONS_FILE 'options.hub.baseURL'`
   else
     echo "Can't find '$USER_OPTIONS_FILE' locally and set all cypess config to empty."
     export CYPRESS_OPTIONS_HUB_CLUSTER_URL=""
@@ -36,17 +37,11 @@ else
   fi
 fi
 
-CYPRESS_OPTIONS_HUB_BASEDOMAIN=${CYPRESS_OPTIONS_HUB_CLUSTER_URL}
-CYPRESS_OPTIONS_HUB_BASEDOMAIN=${CYPRESS_OPTIONS_HUB_BASEDOMAIN#"https://api."}
-CYPRESS_OPTIONS_HUB_BASEDOMAIN=${CYPRESS_OPTIONS_HUB_BASEDOMAIN%":6443"}
-export CYPRESS_OPTIONS_HUB_BASEDOMAIN
-export CYPRESS_BASE_URL=https://multicloud-console.apps.$CYPRESS_OPTIONS_HUB_BASEDOMAIN
-
 export CYPRESS_RESOURCE_ID=$(date +"%s")
+export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-"https://localhost:3000"}
 
 echo -e "Running cypess tests with the following environment:\n"
 echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_ID"
-echo -e "\tCYPRESS_OPTIONS_HUB_BASEDOMAIN : $CYPRESS_OPTIONS_HUB_BASEDOMAIN"
 echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL)  : $CYPRESS_BASE_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL   : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_USER       : $CYPRESS_OPTIONS_HUB_USER"
