@@ -2,15 +2,6 @@
 
 exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
 <withRouter(Connect(PolicyDetailsByCluster))
-  location={
-    Object {
-      "hash": "",
-      "key": "ngh5of",
-      "pathname": "/multicloud/policies/all/test-namespace/test-policy",
-      "search": "",
-      "state": undefined,
-    }
-  }
   resourceType={
     Object {
       "name": "HCMCompliance",
@@ -24,15 +15,27 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
       Object {
         "action": "POP",
         "block": [Function],
+        "canGo": [Function],
         "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "ngh5of",
+            "pathname": "/multicloud/policies/policy/test-namespace/test-policy",
+            "search": "",
+            "state": undefined,
+          },
+        ],
         "go": [Function],
         "goBack": [Function],
         "goForward": [Function],
+        "index": 0,
         "length": 1,
         "listen": [Function],
         "location": Object {
           "hash": "",
-          "pathname": "/",
+          "key": "ngh5of",
+          "pathname": "/multicloud/policies/policy/test-namespace/test-policy",
           "search": "",
           "state": undefined,
         },
@@ -43,7 +46,8 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
     location={
       Object {
         "hash": "",
-        "pathname": "/",
+        "key": "ngh5of",
+        "pathname": "/multicloud/policies/policy/test-namespace/test-policy",
         "search": "",
         "state": undefined,
       }
@@ -51,9 +55,12 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
     match={
       Object {
         "isExact": true,
-        "params": Object {},
-        "path": "/",
-        "url": "/",
+        "params": Object {
+          "clusterName": "test-namespace",
+          "name": "test-policy",
+        },
+        "path": "/multicloud/policies/policy/:clusterName/:name",
+        "url": "/multicloud/policies/policy/test-namespace/test-policy",
       }
     }
     resourceType={
@@ -69,15 +76,27 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
         Object {
           "action": "POP",
           "block": [Function],
+          "canGo": [Function],
           "createHref": [Function],
+          "entries": Array [
+            Object {
+              "hash": "",
+              "key": "ngh5of",
+              "pathname": "/multicloud/policies/policy/test-namespace/test-policy",
+              "search": "",
+              "state": undefined,
+            },
+          ],
           "go": [Function],
           "goBack": [Function],
           "goForward": [Function],
+          "index": 0,
           "length": 1,
           "listen": [Function],
           "location": Object {
             "hash": "",
-            "pathname": "/",
+            "key": "ngh5of",
+            "pathname": "/multicloud/policies/policy/test-namespace/test-policy",
             "search": "",
             "state": undefined,
           },
@@ -88,7 +107,8 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
       location={
         Object {
           "hash": "",
-          "pathname": "/",
+          "key": "ngh5of",
+          "pathname": "/multicloud/policies/policy/test-namespace/test-policy",
           "search": "",
           "state": undefined,
         }
@@ -96,9 +116,12 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
       match={
         Object {
           "isExact": true,
-          "params": Object {},
-          "path": "/",
-          "url": "/",
+          "params": Object {
+            "clusterName": "test-namespace",
+            "name": "test-policy",
+          },
+          "path": "/multicloud/policies/policy/:clusterName/:name",
+          "url": "/multicloud/policies/policy/test-namespace/test-policy",
         }
       }
       resourceType={
@@ -527,13 +550,19 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
         }
         variables={
           Object {
-            "clusterName": "",
-            "name": "",
+            "clusterName": "test-namespace",
+            "name": "test-policy",
           }
         }
       >
         <withRouter(PolicyClusterDetail)
           loading={true}
+          params={
+            Object {
+              "clusterName": "test-namespace",
+              "name": "test-policy",
+            }
+          }
           resourceType={
             Object {
               "name": "HCMCompliance",
@@ -1416,15 +1445,27 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
               Object {
                 "action": "POP",
                 "block": [Function],
+                "canGo": [Function],
                 "createHref": [Function],
+                "entries": Array [
+                  Object {
+                    "hash": "",
+                    "key": "ngh5of",
+                    "pathname": "/multicloud/policies/policy/test-namespace/test-policy",
+                    "search": "",
+                    "state": undefined,
+                  },
+                ],
                 "go": [Function],
                 "goBack": [Function],
                 "goForward": [Function],
+                "index": 0,
                 "length": 1,
                 "listen": [Function],
                 "location": Object {
                   "hash": "",
-                  "pathname": "/",
+                  "key": "ngh5of",
+                  "pathname": "/multicloud/policies/policy/test-namespace/test-policy",
                   "search": "",
                   "state": undefined,
                 },
@@ -1436,7 +1477,8 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
             location={
               Object {
                 "hash": "",
-                "pathname": "/",
+                "key": "ngh5of",
+                "pathname": "/multicloud/policies/policy/test-namespace/test-policy",
                 "search": "",
                 "state": undefined,
               }
@@ -1444,9 +1486,18 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
             match={
               Object {
                 "isExact": true,
-                "params": Object {},
-                "path": "/",
-                "url": "/",
+                "params": Object {
+                  "clusterName": "test-namespace",
+                  "name": "test-policy",
+                },
+                "path": "/multicloud/policies/policy/:clusterName/:name",
+                "url": "/multicloud/policies/policy/test-namespace/test-policy",
+              }
+            }
+            params={
+              Object {
+                "clusterName": "test-namespace",
+                "name": "test-policy",
               }
             }
             resourceType={
