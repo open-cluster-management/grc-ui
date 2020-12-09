@@ -1,7 +1,6 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
-import { oauthIssuer } from '../views/resource'
 import { pageLoader } from '../views/common'
 import { isPolicyStatusAvailable } from '../views/policy'
 
@@ -101,10 +100,13 @@ Cypress.Commands.add('forEach', (selector, action, options) => {
 })
 
 Cypress.Commands.add('logout', () => {
-  cy.getCookie('acm-access-token-cookie').should('exist').then((token) => {
-    oauthIssuer(token.value).then((issuer) => {
-      cy.get('#acm-user-dropdown').click().then(() => cy.get('#acm-logout').click().then(() => cy.url().should('include', issuer)))
-    })
+  cy.log('Attempt to logout existing user')
+  cy.get('.header-user-info-dropdown_icon').then($btn => {
+    //logout when test starts since we need to use the app idp user
+    cy.log('Logging out existing user')
+    cy.get($btn).click()
+    cy.contains('Log out').click()
+    // cy.clearCookies()
   })
 })
 
