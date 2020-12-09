@@ -91,7 +91,7 @@ export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', ta
     .spread((namespace, remediation, violations, standards, categories, controls) => {
       // check namespace
       if (policyConfig['namespace']) {
-        cy.wrap(namespace).contains(policyConfig['namespace'])
+        cy.wrap(namespace).contains(policyConfig['namespace'].trim(), { matchCase: false })
       }
       // check enforce/inform
       if (policyConfig['enforce']) {
@@ -127,21 +127,21 @@ export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', ta
       if (policyConfig['standards']) {
         for (const std of policyConfig['standards']) {
           // replace() below is a workaround for bz#1896399
-          cy.wrap(standards).contains(std.replace(/[.-]/g, ' '))
+          cy.wrap(standards).contains(std.trim(), { matchCase: false})
         }
       }
       // check categories
       if (policyConfig['categories']) {
         for (const cat of policyConfig['categories']) {
           // replace() below is a workaround for bz#1896399
-          cy.wrap(categories).contains(cat.replace(/[.-]/g, ' '))
+          cy.wrap(categories).contains(cat.trim(), { matchCase: false})
         }
       }
       // check controls
       if (policyConfig['controls']) {
         for (const ctl of policyConfig['controls']) {
           // replace() and matchCase:false below is a workaround for bz#1896399
-          cy.wrap(controls).contains(ctl.replace(/[.-]/g, ' '), { matchCase: false})
+          cy.wrap(controls).contains(ctl.trim(), { matchCase: false})
         }
       }
     })

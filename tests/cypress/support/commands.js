@@ -1,7 +1,6 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
-import { oauthIssuer } from '../views/resource'
 import { pageLoader } from '../views/common'
 import { isPolicyStatusAvailable } from '../views/policy'
 
@@ -9,7 +8,7 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) =
   var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
   var password = process.env.SELENIUM_PASSWORD || OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
   var idp = OC_IDP || Cypress.env('OC_IDP')
-  cy.visit('/multicloud/welcome')
+  cy.visit('/multicloud/policies')
   cy.get('body').then(body => {
     // Check if logged in
     if (body.find('#header').length === 0) {
@@ -101,10 +100,13 @@ Cypress.Commands.add('forEach', (selector, action, options) => {
 })
 
 Cypress.Commands.add('logout', () => {
-  cy.getCookie('acm-access-token-cookie').should('exist').then((token) => {
-    oauthIssuer(token.value).then((issuer) => {
-      cy.get('#acm-user-dropdown').click().then(() => cy.get('#acm-logout').click().then(() => cy.url().should('include', issuer)))
-    })
+  cy.log('Attempt to logout existing user')
+  cy.get('.header-user-info-dropdown_icon').then($btn => {
+    //logout when test starts since we need to use the app idp user
+    cy.log('Logging out existing user')
+    cy.get($btn).click()
+    cy.contains('Log out').click()
+    // cy.clearCookies()
   })
 })
 
@@ -148,14 +150,6 @@ Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
 Cypress.Commands.add('waitForPolicyStatus', (name) => {
   cy.waitUntil(() => isPolicyStatusAvailable(name), {'interval': 5000, 'timeout':60000})
 
-})
-
-Cypress.Commands.add('FromACMToGRCPage', () => {
-  cy.get('#hamburger', { timeout: 20000 }).should('exist')
-  cy.get('#hamburger').click()
-  cy.get('#grc', { timeout: 20000 }).should('exist')
-  cy.get('#grc').click()
-  cy.get('.bx--detail-page-header-title').contains('Governance and risk')
 })
 
 Cypress.Commands.add('CheckGrcMainPage', () => {
