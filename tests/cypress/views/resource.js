@@ -8,7 +8,7 @@ export const oauthIssuer = (token) => {
   return cy.request({
     url: apiUrl + '/.well-known/oauth-authorization-server',
     headers: {
-      Authorization: 'Bearer ' + token,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
       Accept: 'application/json'
     }

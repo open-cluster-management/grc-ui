@@ -6,7 +6,7 @@ metadata:
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
     policy.open-cluster-management.io/categories: DE.CM Security Continuous Monitoring
-    policy.open-cluster-management.io/controls: DE.CM-8 Vulnerability Scans
+    policy.open-cluster-management.io/controls: 
 spec:
   remediationAction: inform
   disabled: false
@@ -15,9 +15,44 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: [TEST_POLICY_NAME]-example-sub
+        name: comp-operator-ns
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
+        severity: high
+        object-templates:
+          - complianceType: musthave
+            objectDefinition:
+              apiVersion: v1
+              kind: Namespace
+              metadata:
+                name: openshift-compliance
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: comp-operator-operator-group
+      spec:
+        remediationAction: inform # will be overridden by remediationAction in parent policy
+        severity: high
+        object-templates:
+          - complianceType: musthave
+            objectDefinition:
+              apiVersion: operators.coreos.com/v1
+              kind: OperatorGroup
+              metadata:
+                name: compliance-operator
+                namespace: openshift-compliance
+              spec:
+                selector:
+                  matchLabels:
+                    policy.open-cluster-management.io/isClusterNamespace: "true"
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: comp-operator-subscription
+      spec:
+        remediationAction: inform  # will be overridden by remediationAction in parent policy
         severity: high
         object-templates:
           - complianceType: musthave
@@ -25,30 +60,14 @@ spec:
               apiVersion: operators.coreos.com/v1alpha1
               kind: Subscription
               metadata:
-                name: container-security-operator
-                namespace: openshift-operators
+                name: compliance-operator
+                namespace: openshift-compliance
               spec:
-                channel: quay-v3.3
+                channel: "4.6"
                 installPlanApproval: Automatic
-                name: container-security-operator
+                name: compliance-operator
                 source: redhat-operators
                 sourceNamespace: openshift-marketplace
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: [TEST_POLICY_NAME]-example-imv
-      spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: high
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["*"]
-        object-templates:
-          - complianceType: mustnothave # mustnothave any ImageManifestVuln object
-            objectDefinition:
-              apiVersion: secscan.quay.redhat.com/v1alpha1
-              kind: ImageManifestVuln # checking for a kind
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding

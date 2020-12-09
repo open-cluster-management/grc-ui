@@ -21,7 +21,7 @@ import {
   getCategories,
   getDecisions,
   getSubjects,
-  convertToStartCase,
+  formatAnnotationString,
   formLinkToCluster,
   formMessageLink,
 } from '../../../src-web/tableDefinitions/hcm-compliances'
@@ -223,18 +223,18 @@ describe('hcm-compliances - getSubjects', () => {
   })
 })
 
-describe('hcm-compliances - convertToStartCase', () => {
-  it('should get start cases', () => {
-    const item = 'test1 test2, test3, test4 test5'
-    expect(convertToStartCase(item)).toMatchSnapshot()
+describe('hcm-compliances - formatAnnotationString', () => {
+  it('should get list of annotations back with proper whitespace', () => {
+    const item = 'test1 test2,test3 ,  test4 test5'
+    expect(formatAnnotationString(item)).toMatchSnapshot()
   })
   it('should get "-" ', () => {
     const item = ''
-    expect(convertToStartCase(item)).toMatchSnapshot()
+    expect(formatAnnotationString(item)).toMatchSnapshot()
   })
   it('should get "-" ', () => {
     const item = null
-    expect(convertToStartCase(item)).toMatchSnapshot()
+    expect(formatAnnotationString(item)).toMatchSnapshot()
   })
 })
 

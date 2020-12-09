@@ -92,7 +92,7 @@ const controlData = [
     available: [
       'PR.PT Protective Technology',
       'PR.DS Data Security',
-      'PR.AC Identity Management Authentication and Access Control',
+      'PR.AC Identity Management and Access Control',
       'PR.IP Information Protection Processes and Procedures',
       'DE.CM Security Continuous Monitoring'
     ],
@@ -108,13 +108,13 @@ const controlData = [
     available: [
       'PR.PT-1 Audit Logging',
       'PR.PT-3 Least Functionality',
+      'PR.DS-1 Data-at-rest',
       'PR.DS-2 Data-in-transit',
-      'PR.DS-2 Data-at-rest',
       'PR.AC-4 Access Control',
       'PR.AC-5 Network Integrity',
       'PR.IP-1 Baseline Configuration',
-      'DE.CM-7 Monitoring for unauthorized activity',
-      'DE.CM-8 Vulnerability scans'
+      'DE.CM-7 Monitoring for Unauthorized Activity',
+      'DE.CM-8 Vulnerability Scans'
     ],
     reverse: 'Policy[0].metadata.annotations["policy.open-cluster-management.io/controls"]',
     cacheUserValueKey: 'create.policy.controls',

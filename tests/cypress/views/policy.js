@@ -1,14 +1,38 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
 import { selectItems } from './common'
-import { getUniqueResourceName } from '../scripts/utils'
 
-export const createPolicy = ({ name, create=false, ...policyConfig }) => {
-  const uName = getUniqueResourceName(name)
+export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
+  let label = '[]'
+  if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
+    label = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
+  }
+  const formattedYAML = policyYAML.replace(/\[LABEL\]/g, label).replace(/\[UNAME\]/g, uPolicyName)
+  console.log(formattedYAML)
+  cy.toggleYAMLeditor('On')
+    .YAMLeditor()
+    .invoke('getValue')
+    .should('contain', 'apiVersion: policy.open-cluster-management.io/v1')
+    .toggleYAMLeditor('Off')
+    .toggleYAMLeditor()
+    .YAMLeditor()
+    .invoke('setValue', formattedYAML)
+    // create
+    .then(() => {
+      if (create) {
+        cy.get('#create-button-portal-id-btn').click()
+      }
+    })
+    // after creation, always return to grc main page
+    cy.CheckGrcMainPage()
+}
+
+// this function is mainly used to testing selection on the create policy page
+export const createPolicyFromSelection = ({ uPolicyName, create=false, ...policyConfig }) => {
   // fill the form uName
   cy.get('input[aria-label="name"]')
     .clear()
-    .type(uName)
+    .type(uPolicyName)
   // namespace
   cy.get('.bx--dropdown[aria-label="Choose an item"]')
     .click()
@@ -64,10 +88,12 @@ export const createPolicy = ({ name, create=false, ...policyConfig }) => {
 // enabled='enabled', checking if policy is enabled; enabled='disabled', checking if policy is disabled
 // targetStatus = 0, don't check policy status; targetStatus = 1, check policy status is non-violation
 // targetStatus = 2, check policy status is violation; targetStatus = 3, check policy status is pending
-export const verifyPolicyInListing = ({ name, ...policyConfig }, enabled='enabled', targetStatus=0) => {
-  const uName = getUniqueResourceName(name)
+export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', targetStatus=0) => {
   cy.get('.grc-view-by-policies-table').within(() => {
-    cy.get('a').contains(uName).parents('td').siblings('td').spread((namespace, remediation, violations, standards, categories, controls) => {
+    console.log(uName)
+    cy.log(uName)
+    cy.get('a').contains(uName).parents('td').siblings('td')
+    .spread((namespace, remediation, violations, standards, categories, controls) => {
       // check namespace
       if (policyConfig['namespace']) {
         cy.wrap(namespace).contains(policyConfig['namespace'])
@@ -123,23 +149,22 @@ export const verifyPolicyInListing = ({ name, ...policyConfig }, enabled='enable
 
     if (enabled.toLowerCase() === 'disabled') { // check disabled policy
       cy.get('a')
-      .contains(name)
+      .contains(uName)
       .siblings('span')
       .contains('disabled', { matchCase: false })
       .then(() => {
-        isPolicyStatusAvailable(name, true)
+        isPolicyStatusAvailable(uName, true)
       })
     } else { // check enabled policy
       cy.get('a')
-        .contains(name)
+        .contains(uName)
         .siblings('span')
         .should('not.exist')
     }
   })
 }
 
-export const verifyPolicyNotInListing = (name) => {
-  const uName = getUniqueResourceName(name)
+export const verifyPolicyNotInListing = (uName) => {
   // either there are no policies at all or there are some policies listed
   if (!Cypress.$('#page').find('div.no-resouce'.length)) {
     cy.get('.grc-view-by-policies-table').within(() => {
@@ -150,9 +175,8 @@ export const verifyPolicyNotInListing = (name) => {
   }
 }
 
-export const actionPolicyActionInListing = (name, action, cancel=false) => {
+export const actionPolicyActionInListing = (uName, action, cancel=false) => {
   cy.CheckGrcMainPage()
-  const uName = getUniqueResourceName(name)
   cy.get('.grc-view-by-policies-table').within(() => {
     cy.get('a')
       .contains(uName)
@@ -182,8 +206,7 @@ export const actionPolicyActionInListing = (name, action, cancel=false) => {
 
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
 // here statusPending = true to check consist pending status for disable policy
-export const isPolicyStatusAvailable = (name, statusPending=false) => {
-  const uName = getUniqueResourceName(name)
+export const isPolicyStatusAvailable = (uName, statusPending=false) => {
   // page /multicloud/policies/all
   if (window.location.toString().endsWith('/multicloud/policies/all')) {
     return cy.get('.grc-view-by-policies-table').within(() => {

@@ -10,6 +10,7 @@ metadata:
 spec:
   remediationAction: inform
   disabled: false
+  policy-templates: []
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
