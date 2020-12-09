@@ -46,7 +46,7 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     })
 
     it('Check enabled policy', () => {
-      verifyPolicyInListing(uPolicyName,  policyConfig, 'enabled', 1)
+      verifyPolicyInListing(uPolicyName,  policyConfig, 'enabled', 1, '0/1')
     })
 
     it('Enforce policy', () => {
