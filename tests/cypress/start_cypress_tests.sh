@@ -38,7 +38,7 @@ else
 fi
 
 export CYPRESS_RESOURCE_ID=$(date +"%s")
-export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-"http://localhost:3000"}
+export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-"https://localhost:3000"}
 
 echo -e "Running cypess tests with the following environment:\n"
 echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_ID"
