@@ -167,8 +167,8 @@ Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
 })
 
 Cypress.Commands.add('goToPolicyDetailsPage', (policyName, open=true) => {
-  cy.get('.pf-c-search-input__text-input', { timeout: 20000 }).should('exist')
-  cy.get('.pf-c-search-input__text-input').clear().type(policyName)
+  cy.get('input[placeholder="Find policies"]', { timeout: 20000 }).should('exist')
+  cy.get('input[placeholder="Find policies"]').clear().type(policyName)
   if(open)
   {
     cy.get('a').contains(policyName).click()
