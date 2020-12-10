@@ -3,10 +3,6 @@
 import { selectItems } from './common'
 
 export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
-  let label = '[]'
-  if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
-    label = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
-  }
   console.log(policyYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
