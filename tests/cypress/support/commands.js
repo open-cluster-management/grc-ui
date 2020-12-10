@@ -169,7 +169,7 @@ Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
 Cypress.Commands.add('goToPolicyDetailsPage', (policyName, namespace='default', open=true) => {
   cy.get('.resource-table').within(()=>
   {
-    cy.get('input[placeholder="Find policies"]').clear().type(policyName) // This action remains on multicloud/policies/all
+    cy.get('input[aria-label="Search input"]').clear().type(policyName) // This action remains on multicloud/policies/all
     if(open)
     {
       cy.get('a').contains(policyName).click()
