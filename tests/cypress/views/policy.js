@@ -310,15 +310,15 @@ export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enable
   })
 }
 
-export const verifyPolicyInPolicyDetailsTemplates = (uName, apiVersion='policy.open-cluster-management.io/v1', kind='CertificatePolicy') => {
+export const verifyPolicyInPolicyDetailsTemplates = (uName, policyConfig) => {
   cy.get('#policy-templates-table-container').within(() => {
     cy.get('tr[data-row-name="'+uName+'-example"]').children().spread((name, visibleAPIver, visibleKind) => {
       // check name
       cy.wrap(name).contains(uName)
       // check api version
-      cy.wrap(visibleAPIver).contains(apiVersion)
+      cy.wrap(visibleAPIver).contains(policyConfig['apiVersion'])
       // check kind
-      cy.wrap(visibleKind).contains(kind)
+      cy.wrap(visibleKind).contains(policyConfig['kind'])
     })
   })
 }

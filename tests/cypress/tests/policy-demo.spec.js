@@ -75,10 +75,10 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
 
     it('check policy and the detailed policy page', () => {
        // we need to find another way how to access this page
-       cy.goToPolicyDetailsPage(uPolicyName)
+       cy.goToPolicyDetailsPage(uPolicyName, policyConfig['namespace'])
          .then(() => {
            verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', 1, '0/1')
-           verifyPolicyInPolicyDetailsTemplates(uPolicyName)
+           verifyPolicyInPolicyDetailsTemplates(uPolicyName, policyConfig)
          })
     })
 
