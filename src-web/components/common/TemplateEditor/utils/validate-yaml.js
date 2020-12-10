@@ -48,10 +48,19 @@ const validateSingleSelectControl =  (control, reverse, parsed, exceptions, loca
   if (!active) {
     addException(path, parsed, exceptions, locale)
   } else if (_.indexOf(_.get(control, 'available'), active) === -1){
+    const available = _.get(control, 'available', [])
+    let choices
+    // Truncate the list if it's over a certain number of values
+    if (available.length > 5) {
+      choices = available.slice(0, 5)
+      choices.push('...')
+    } else {
+      choices = available
+    }
     exceptions.push({
       row: getRow(path, parsed),
       column: 0,
-      text: msgs.get('validation.bad.value', [active, _.get(control, 'available')], locale),
+      text: msgs.get('validation.bad.value', [control.id, choices], locale),
       type: 'error',
     })
   }
