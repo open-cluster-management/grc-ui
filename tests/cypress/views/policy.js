@@ -2,16 +2,23 @@
 /// <reference types="cypress" />
 import { selectItems } from './common'
 
-export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
-  let label = '[]'
+export const getDefaultSubstitutionRules = (uName) => {
+  let label = ''
   if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
     label = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
   }
-  const formattedYAML = policyYAML.replace(/\[LABEL\]/g, label).replace(/\[UNAME\]/g, uPolicyName)
-  console.log(formattedYAML)
+  const substitutions = [
+      [ /\[LABEL\]/g, label ],
+      [ /\[UNAME\]/g, uName ]
+  ]
+  return substitutions
+}
+
+export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
+  console.log(policyYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
-    .invoke('setValue', formattedYAML)
+    .invoke('setValue', policyYAML)
     // create
     .then(() => {
       if (create) {
