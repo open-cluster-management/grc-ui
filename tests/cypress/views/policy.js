@@ -16,18 +16,11 @@ export const getDefaultSubstitutionRules = (uName) => {
   return substitutions
 }
 
-export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false, substitutionRules=undefined) => {
-  let newPolicyYAML = policyYAML
-  if (substitutionRules == undefined) {
-    substitutionRules = getDefaultSubstitutionRules(uPolicyName)
-  }
-  if (substitutionRules) {
-    newPolicyYAML = doSubstitutionsInText(policyYAML, substitutionRules)
-  }
-  console.log(newPolicyYAML)
+export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
+  console.log(policyYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
-    .invoke('setValue', newPolicyYAML)
+    .invoke('setValue', policyYAML)
     // create
     .then(() => {
       if (create) {
