@@ -557,12 +557,6 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
       >
         <withRouter(PolicyClusterDetail)
           loading={true}
-          params={
-            Object {
-              "clusterName": "test-namespace",
-              "name": "test-policy",
-            }
-          }
           resourceType={
             Object {
               "name": "HCMCompliance",
@@ -1492,12 +1486,6 @@ exports[`PolicyDetailsByCluster container test renders as expected 1`] = `
                 },
                 "path": "/multicloud/policies/policy/:clusterName/:name",
                 "url": "/multicloud/policies/policy/test-namespace/test-policy",
-              }
-            }
-            params={
-              Object {
-                "clusterName": "test-namespace",
-                "name": "test-policy",
               }
             }
             resourceType={
