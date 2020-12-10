@@ -135,22 +135,19 @@ export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', ta
       // check standard
       if (policyConfig['standards']) {
         for (const std of policyConfig['standards']) {
-          // replace() below is a workaround for bz#1896399
-          cy.wrap(standards).contains(std.trim(), { matchCase: false})
+          cy.wrap(standards).contains(std.trim())
         }
       }
       // check categories
       if (policyConfig['categories']) {
         for (const cat of policyConfig['categories']) {
-          // replace() below is a workaround for bz#1896399
-          cy.wrap(categories).contains(cat.trim(), { matchCase: false})
+          cy.wrap(categories).contains(cat.trim())
         }
       }
       // check controls
       if (policyConfig['controls']) {
         for (const ctl of policyConfig['controls']) {
-          // replace() and matchCase:false below is a workaround for bz#1896399
-          cy.wrap(controls).contains(ctl.trim(), { matchCase: false})
+          cy.wrap(controls).contains(ctl.trim())
         }
       }
     })
@@ -295,21 +292,18 @@ export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enable
       // check categories
       if (policyConfig['categories']) {
         for (const cat of policyConfig['categories']) {
-          // replace() below is a workaround for bz#1896399
           cy.wrap(categories).contains(cat)
         }
       }
       // check controls
       if (policyConfig['controls']) {
         for (const ctl of policyConfig['controls']) {
-          // replace() and matchCase:false below is a workaround for bz#1896399
           cy.wrap(controls).contains(ctl)
         }
       }
       // check standard
       if (policyConfig['standards']) {
         for (const std of policyConfig['standards']) {
-          // replace() below is a workaround for bz#1896399
           cy.wrap(standards).contains(std)
         }
       }
