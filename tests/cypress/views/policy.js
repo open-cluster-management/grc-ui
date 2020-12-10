@@ -2,6 +2,8 @@
 /// <reference types="cypress" />
 import { selectItems } from './common'
 
+const timestampRegexp = /^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/
+
 export const getDefaultSubstitutionRules = (uName) => {
   let label = ''
   if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
@@ -306,7 +308,67 @@ export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enable
         }
       }
       // check creation time
-      cy.wrap(created).contains(/^(a|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/)
+      cy.wrap(created).contains(timestampRegexp)
+    })
+  })
+}
+
+const getStatusIconFillColor = (targetStatus) => {
+  switch(targetStatus) {
+    case 1: // 467f40 is the unique non-volation status color
+    case 'compliant':
+      return '#467f40'
+      break
+    case 2: // c9190b is the unique violation status color
+    case 'not compliant':
+      return '#c9190b'
+      break
+    case 3:
+    default: // f0ab00 is the unique pending status color
+    case 'no status':
+      return '#f0ab00'
+      break
+  }
+}
+
+
+export const verifyPlacementRuleInPolicyDetails = (placementRuleConfig) => {
+  cy.get('section[aria-label="Placement rule"]').within(() => {
+    cy.get('.bx--structured-list-td').spread((label1, name, label2, namespace, label3, selector, label4, decisions, label5, timestamp) => {
+      // check name
+      if (placementRuleConfig['name']) {
+        cy.wrap(name).contains(placementRuleConfig['name'])
+      }
+      // check namespace
+      if (placementRuleConfig['namespace']) {
+        cy.wrap(namespace).contains(placementRuleConfig['namespace'])
+      }
+      // check Cluster selector
+      if (placementRuleConfig['selector']) {
+        cy.wrap(selector).contains(placementRuleConfig['selector'])
+      }
+      // check Decisions
+      if (placementRuleConfig['clusters']) {
+        // check the number of clusters listed matches the configuration
+        // for each cluster check that the expected status is listed
+        cy.wrap(decisions).find('a').should('have.length', Object.keys(placementRuleConfig['clusters']).length)
+        .then(() => {
+          for (const [clusterName, expectedStatus] of Object.entries(placementRuleConfig['clusters'])) {
+            cy.wrap(decisions).within(() => {
+              // find cluster name
+              cy.get('a').contains(clusterName)
+                .next().as('clusterStatus')
+              // check status
+              cy.get('@clusterStatus').contains(expectedStatus.toLowerCase())
+              // check status icon
+              const fillColor = getStatusIconFillColor(expectedStatus.toLowerCase())
+              cy.get('@clusterStatus').find('svg').should('have.attr', 'fill', fillColor)
+            })
+          }
+        })
+      }
+      // check creation time
+      cy.wrap(timestamp).contains(timestampRegexp)
     })
   })
 }
