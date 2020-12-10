@@ -38,7 +38,7 @@
         "chromeOptions": {
           "w3c": false,
           "args" : [
-            "window-size=1280,950",
+            "window-size=1280,1280",
             "--no-sandbox",
             "--disable-gpu",
             "ignore-certificate-errors"
@@ -79,7 +79,7 @@
           "w3c": false,
           "args" : [
             "--headless",
-            "window-size=1280,950",
+            "window-size=1280,1280",
             "--no-sandbox",
             "--disable-gpu",
             "ignore-certificate-errors"
