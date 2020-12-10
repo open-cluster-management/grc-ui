@@ -2,6 +2,18 @@
 const fs = require('fs')
 const jsYaml = require('js-yaml')
 
+// function does various substitions in the provided text using the provided rules
+// specifying the substitutions variable as an array of touples where first iteam
+// in a touple is a regular expression and the second item is the new value
+// e.g. rules = [ [/\[LABEL\]/g, "mylabel"] ]
+exports.doSubstitutionsInText = (text, rules={}) => {
+  let newText = text
+  for (const [regExp, newValue] of rules) {
+    newText = newText.replace(regExp, newValue)
+  }
+  return newText
+}
+
 exports.getConfig = (filepath) => {
   try {
     return fs.readFileSync(filepath).toString()
@@ -25,8 +37,8 @@ exports.getConfigObject = (relativePath, configFormat='', substitutions=[]) => {
   // first read the environment variable
   let rawContent = Cypress.env(`TEST_CONFIG_${postfix}`)
   // now do substitutions if required
-  for (const [regExp, newValue] of substitutions) {
-    rawContent = rawContent.replace(regExp, newValue)
+  if (substitutions) {
+    rawContent = exports.doSubstitutionsInText(rawContent, substitutions)
   }
   // finally convert to the object by parsing the respective format
   try {

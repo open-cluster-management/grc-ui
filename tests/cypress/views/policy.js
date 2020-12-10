@@ -1,12 +1,33 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
 import { selectItems } from './common'
+import { doSubstitutionsInText } from '../config'
 
-export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
-  console.log(policyYAML)
+
+export const getDefaultSubstitutionRules = (uName) => {
+  let label = ''
+  if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
+    label = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
+  }
+  const substitutions = [
+      [ /\[LABEL\]/g, label ],
+      [ /\[UNAME\]/g, uName ]
+  ]
+  return substitutions
+}
+
+export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false, substitutionRules=undefined) => {
+  let newPolicyYAML = policyYAML
+  if (substitutionRules == undefined) {
+    substitutionRules = getDefaultSubstitutionRules(uPolicyName)
+  }
+  if (substitutionRules) {
+    newPolicyYAML = doSubstitutionsInText(policyYAML, substitutionRules)
+  }
+  console.log(newPolicyYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
-    .invoke('setValue', policyYAML)
+    .invoke('setValue', newPolicyYAML)
     // create
     .then(() => {
       if (create) {
