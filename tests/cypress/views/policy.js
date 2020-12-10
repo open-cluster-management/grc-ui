@@ -1,8 +1,6 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
 import { selectItems } from './common'
-import { doSubstitutionsInText } from '../config'
-
 
 export const getDefaultSubstitutionRules = (uName) => {
   let label = ''
