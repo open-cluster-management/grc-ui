@@ -38,7 +38,14 @@ else
 fi
 
 export CYPRESS_RESOURCE_ID=$(date +"%s")
-export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-"https://localhost:3000"}
+
+if [ ! -z "$SELENIUM_CLUSTER" ]; then
+  echo "SELENIUM_CLUSTER env parameter is found, run system e2e testing and use OC_HUB_CLUSTER_URL"
+  export CYPRESS_BASE_URL=$SELENIUM_CLUSTER
+else
+  echo "pull request e2e testing and use travis env CYPRESS_BASE_URL or localhost"
+  export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-"https://localhost:3000"}
+fi
 
 echo -e "Running cypess tests with the following environment:\n"
 echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_ID"
