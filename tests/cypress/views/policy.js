@@ -83,7 +83,7 @@ export const createPolicyFromSelection = ({ uPolicyName, create=false, ...policy
 // enabled='enabled', checking if policy is enabled; enabled='disabled', checking if policy is disabled
 // targetStatus = 0, don't check policy status; targetStatus = 1, check policy status is non-violation
 // targetStatus = 2, check policy status is violation; targetStatus = 3, check policy status is pending
-export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', targetStatus=0) => {
+export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', targetStatus=0, violationsCounter='') => {
   cy.get('.grc-view-by-policies-table').within(() => {
     console.log(uName)
     cy.log(uName)
@@ -99,8 +99,8 @@ export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', ta
       } else {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
+      // check the violation status
       if (targetStatus === 1 || targetStatus === 2 || targetStatus === 3) {
-        // check the violation status
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
             const filledColor = elems[0].getAttribute('fill').trim().toLowerCase()
@@ -118,6 +118,10 @@ export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', ta
             }
           }
         })
+      }
+      // check the cluster violations value
+      if (violationsCounter) {
+        cy.wrap(violations.textContent).should('match', new RegExp('^'+violationsCounter+'$'))
       }
       // check standard
       if (policyConfig['standards']) {
@@ -230,4 +234,78 @@ export const isPolicyStatusAvailable = (uName, statusPending=false) => {
     })
     .then(() => statusPending)
   }
+}
+
+
+export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enabled', targetStatus=0, violationsCounter='') => {
+  //cy.get('div.vertical-expend').then((e) => {
+  cy.get('#compliance\\.details-expand').within(() => {
+    cy.get('div.pf-c-description-list__text').spread((name, namespace, enforcement, disabled, violations, categories, controls, standards, created) => {
+      // check name
+      cy.wrap(name).contains(uName)
+      // check namespace
+      if (policyConfig['namespace']) {
+        cy.wrap(namespace).contains(policyConfig['namespace'])
+      }
+      // check enforce/inform
+      if (policyConfig['enforce']) {
+        cy.wrap(enforcement).contains('enforce', { matchCase: false })
+      } else {
+        cy.wrap(enforcement).contains('inform', { matchCase: false })
+      }
+      // check state
+      if (enabled == 'enabled') {
+        cy.wrap(disabled).contains('false')
+      } else {
+        cy.wrap(disabled).contains('true')
+      }
+      if (targetStatus === 1 || targetStatus === 2 || targetStatus === 3) {
+        // check the violation status
+        cy.wrap(violations).find('svg').then((elems) => {
+          if (elems.length === 1) {
+            const filledColor = elems[0].getAttribute('fill').trim().toLowerCase()
+            switch(targetStatus) {
+              case 1: // 467f40 is the unique non-volation status color
+                filledColor === '#467f40'
+                break
+              case 2: // c9190b is the unique violation status color
+                filledColor === '#c9190b'
+                break
+              case 3:
+              default: // f0ab00 is the unique pending status color
+                filledColor === '#f0ab00'
+                break
+            }
+          }
+        })
+      }
+      // check violations counter
+      if (violationsCounter) {
+        cy.wrap(violations).contains(new RegExp('^'+violationsCounter+'$'))
+      }
+      // check categories
+      if (policyConfig['categories']) {
+        for (const cat of policyConfig['categories']) {
+          // replace() below is a workaround for bz#1896399
+          cy.wrap(categories).contains(cat)
+        }
+      }
+      // check controls
+      if (policyConfig['controls']) {
+        for (const ctl of policyConfig['controls']) {
+          // replace() and matchCase:false below is a workaround for bz#1896399
+          cy.wrap(controls).contains(ctl)
+        }
+      }
+      // check standard
+      if (policyConfig['standards']) {
+        for (const std of policyConfig['standards']) {
+          // replace() below is a workaround for bz#1896399
+          cy.wrap(standards).contains(std)
+        }
+      }
+      // check creation time
+      cy.wrap(created).contains(/^(a|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/)
+    })
+  })
 }
