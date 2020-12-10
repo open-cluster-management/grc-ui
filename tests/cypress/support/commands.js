@@ -167,13 +167,15 @@ Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
 })
 
 Cypress.Commands.add('goToPolicyDetailsPage', (policyName, open=true) => {
-  cy.get('input[placeholder="Find policies"]', { timeout: 20000 }).should('exist')
-  cy.get('input[placeholder="Find policies"]').clear().type(policyName)
-  if(open)
+  cy.get('.resource-table').within(()=>
   {
-    cy.get('a').contains(policyName).click()
-    cy.location('pathname').should('eq', '/multicloud/policies/all/default/'+policyName)
-    pageLoader.shouldNotExist()
-    cy.get('.bx--detail-page-header-title').contains(policyName)
-  }
+    cy.get('input[placeholder="Find policies"]').clear().type(policyName)
+    if(open)
+    {
+      cy.get('a').contains(policyName).click()
+      cy.location('pathname').should('eq', '/multicloud/policies/all/default/'+policyName)
+      pageLoader.shouldNotExist()
+      cy.get('.bx--detail-page-header-title').contains(policyName)
+    }
+  })
 })
