@@ -68,7 +68,7 @@ function noResourceCheck(path='', exists=false) {
   this.api.url(`${this.api.launchUrl}${config.get('contextPath')}${path}`)
   this.waitForElementNotPresent('@spinner')
   if (exists)
-    this.expect.element('@noResource').to.not.be.visible
+    this.expect.element('@noResource').to.not.be.present
   else
     this.expect.element('@noResource').to.be.visible
 }
