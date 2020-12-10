@@ -8,7 +8,11 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) =
   var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
   var password = process.env.SELENIUM_PASSWORD || OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
   var idp = OC_IDP || Cypress.env('OC_IDP')
-  cy.visit('/multicloud/policies')
+  if (process.env.SELENIUM_CLUSTER) { // system e2e testing and use OC_HUB_CLUSTER_URL
+    cy.visit(`${process.env.SELENIUM_CLUSTER}/multicloud/policies`)
+  } else { // pull request e2e testing and use CYPRESS_BASE_URL or https://localhost:3000
+    cy.visit('/multicloud/policies')
+  }
   cy.get('body').then(body => {
     // Check if logged in
     if (body.find('#header').length === 0) {
