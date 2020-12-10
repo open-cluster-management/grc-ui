@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 import {
   createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
-  actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules, 
+  actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
   verifyPolicyInPolicyDetailsTemplates
 } from '../views/policy'
 import { getUniqueResourceName } from '../scripts/utils'
