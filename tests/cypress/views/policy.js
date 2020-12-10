@@ -7,11 +7,10 @@ export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
   if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
     label = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
   }
-  const formattedYAML = policyYAML.replace(/\[LABEL\]/g, label).replace(/\[UNAME\]/g, uPolicyName)
-  console.log(formattedYAML)
+  console.log(policyYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
-    .invoke('setValue', formattedYAML)
+    .invoke('setValue', policyYAML)
     // create
     .then(() => {
       if (create) {

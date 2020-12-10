@@ -10,23 +10,35 @@ exports.getConfig = (filepath) => {
   }
 }
 
-exports.getConfigObject = (relativePath, configFormat='') => {
+// returns the respective configuration file either in a raw form or as an object
+// prior the actual parsing you can do various substitions in the configuration by
+// specifying the substitutions variable as an array of touples where first iteam
+// in a touple is a regular expression and the second item is the new value
+// e.g. substitutions = [ [/\[LABEL\]/g, "mylabel"] ]
+exports.getConfigObject = (relativePath, configFormat='', substitutions=[]) => {
   const postfix = relativePath.replace(/\//g, '__').replace(/-/g,'_').replace(/\./g,'_').toUpperCase()
   // if configFormat not provided, try to detect the file format from a relativePath file suffix
   if (!configFormat) {
     const arr = relativePath.split('.')
     configFormat = arr[arr.length-1]
   }
+  // first read the environment variable
+  let rawContent = Cypress.env(`TEST_CONFIG_${postfix}`)
+  // now do substitutions if required
+  for (const [regExp, newValue] of substitutions) {
+    rawContent = rawContent.replace(regExp, newValue)
+  }
+  // finally convert to the object by parsing the respective format
   try {
     switch(configFormat.toLowerCase()) {
       case 'yaml':
-        return jsYaml.load(Cypress.env(`TEST_CONFIG_${postfix}`))
+        return jsYaml.load(rawContent)
       case 'json':
-        return JSON.parse(Cypress.env(`TEST_CONFIG_${postfix}`))
+        return JSON.parse(rawContent)
       case 'raw':
       case 'txt':
       default:
-        return Cypress.env(`TEST_CONFIG_${postfix}`)
+        return rawContent
     }
   } catch (e) {
     throw new Error(e)
