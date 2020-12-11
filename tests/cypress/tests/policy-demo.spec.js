@@ -19,7 +19,7 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
 
     it (`Can create new policy ${uPolicyName} from YAML editor`, () => {
       cy.FromGRCToCreatePolicyPage()
-      createPolicyFromYAML(uPolicyName, policyYAML, true)
+      createPolicyFromYAML(policyYAML, true)
     })
 
     it(`Policy ${uPolicyName} is present in the policy listing`, () => {
