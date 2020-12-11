@@ -15,7 +15,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { updateSecondaryHeader} from '../actions/common'
 import {getPollInterval} from '../components/common/RefreshTimeSelect'
-import lodash from 'lodash'
 import { GRC_REFRESH_INTERVAL_COOKIE, RESOURCE_TYPES } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
@@ -26,8 +25,7 @@ import { setRefreshControl } from '../../lib/client/reactiveVars'
 
 class PolicyDetailsByCluster extends React.Component {
   static propTypes = {
-    location: PropTypes.object,
-    params: PropTypes.object,
+    match: PropTypes.object,
     resourceType: PropTypes.object,
     updateSecondaryHeader: PropTypes.func,
   }
@@ -50,35 +48,26 @@ class PolicyDetailsByCluster extends React.Component {
   }
 
   getPolicyName(withParentNamespace) {
-    const { location } = this.props,
-          urlSegments = location.pathname.split('/')
-    if(withParentNamespace){
-      return urlSegments[urlSegments.length - 1]
-    }
-    else{
-      const nameSegments = urlSegments[urlSegments.length - 1].split('.')
+    const { match } = this.props
+    if (withParentNamespace) {
+      return match.params.name
+    } else {
+      const nameSegments = match.params.name.split('.')
       return nameSegments[1]
     }
   }
 
   getRootPolicyNamespace() {
-    const { location } = this.props,
-          urlSegments = location.pathname.split('/'),
-          nameSegments = urlSegments[urlSegments.length - 1].split('.')
+    const { match } = this.props
+    const nameSegments = match.params.name.split('.')
     return nameSegments[0]
-  }
-
-  getClusterName() {
-    const { location } = this.props,
-          urlSegments = location.pathname.split('/')
-    return urlSegments[urlSegments.length - 2]
   }
 
   getBreadcrumb() {
     const breadcrumbItems = []
-    const {  location, resourceType } = this.props,
+    const {  match, resourceType } = this.props,
           { locale } = this.context,
-          urlSegments = location.pathname.split('/')
+          urlSegments = match.url.split('/')
 
     // Push only one breadcrumb to overview page
     if (resourceType.name === RESOURCE_TYPES.HCM_COMPLIANCES.name) {
@@ -93,9 +82,9 @@ class PolicyDetailsByCluster extends React.Component {
         url: `${urlSegments.slice(0, 3).join('/')}/all/${this.getRootPolicyNamespace()}/${this.getPolicyName(false)}`
       },
       {
-        label: this.getClusterName(),
+        label: match.params.clusterName,
         noLocale: true,
-        url: `${urlSegments.join('/')}`
+        url: match.url
       }
       )
     }
@@ -103,12 +92,10 @@ class PolicyDetailsByCluster extends React.Component {
   }
 
   render() {
-    const url = lodash.get(this.props, 'location.pathname')
-    const urlSegments = url.split('/')
-    const policyName = urlSegments[urlSegments.length - 1]
-    const policyNamespace = urlSegments[urlSegments.length - 2]
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
-    const {params, resourceType} = this.props
+    const {match, resourceType} = this.props
+    const policyName = this.getPolicyName(true)
+    const policyNamespace = match.params.clusterName
     const staticResourceData = getResourceDefinitions(resourceType)
     return (
       <Query query={HCMPolicy} variables={{name: policyName, clusterName: policyNamespace}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
@@ -128,7 +115,6 @@ class PolicyDetailsByCluster extends React.Component {
               policies={policies}
               loading={!policies && loading}
               error={error}
-              params={params}
             />)
         }}
       </Query>

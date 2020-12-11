@@ -79,7 +79,7 @@ module.exports = {
     verifyPolicyTable,
     verifySummary,
     verifyTable,
-    verifyToggle
+    verifyToggle,
   }]
 }
 function verifySummary(browser, url) {

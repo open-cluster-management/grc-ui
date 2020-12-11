@@ -9,13 +9,13 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 
 const config = require('../../config')
-let page, common
+let page, common, loginPage
 
 module.exports = {
   '@disabled': false,
 
   before: (browser) => {
-    const loginPage = browser.page.LoginPage()
+    loginPage = browser.page.LoginPage()
     loginPage.navigate()
     loginPage.authenticate()
 
@@ -81,10 +81,40 @@ module.exports = {
     page.verifyPagination(browser)
   },
 
+
+  'GRC All policy page: Check nonexistent URLs': (browser) => {
+    const time = browser.globals.time
+    const policyName = `${time}-policy-test`
+    const policyNamespace = 'default'
+
+    // Check to make sure pages that don't exist return 'No Resource' and those
+    // that do exist can return resources even though extra paths are present:
+    //
+    // - Cluster name and policy that do exist
+    common.noResourceCheck(`/policy/local-cluster/${policyNamespace}.${policyName}`, true)
+    common.noResourceCheck(`/policy/local-cluster/${policyNamespace}.${policyName}/a/b/c`, true)
+    // - Cluster name and policy that don't exist
+    common.noResourceCheck('/policy/not-a-cluster/not-a-policy', false)
+    common.noResourceCheck('/policy/not-a-cluster/not-a-policy/a/b/c', false)
+    // - Namespace and policy that do exist
+    common.noResourceCheck(`/all/${policyNamespace}/${policyName}`, true)
+    common.noResourceCheck(`/all/${policyNamespace}/${policyName}/a/b/c`, true)
+    common.noResourceCheck(`/all/${policyNamespace}/${policyName}/yaml`, true)
+    common.noResourceCheck(`/all/${policyNamespace}/${policyName}/yaml/a/b/c`, true)
+    // - Namespace and policy that don't exist
+    common.noResourceCheck('/all/not-a-namespace/not-a-policy', false)
+    common.noResourceCheck('/all/not-a-namespace/not-a-policy/status', false)
+    common.noResourceCheck('/all/not-a-namespace/not-a-policy/yaml', false)
+    common.noResourceCheck('/all/not-a-namespace/not-a-policy/other/a/b/c', false)
+
+    // Return to summary page
+    loginPage.navigate()
+  },
+
   'GRC All policy page: Delete test policy': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
     common.deletePolicy(policyName)
-  }
+  },
 
 }
