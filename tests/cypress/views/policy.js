@@ -292,7 +292,7 @@ export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enable
 }
 
 const getStatusIconFillColor = (targetStatus) => {
-  switch(targetStatus.toLowerCase()) {
+  switch(targetStatus) {
     case 1: // 467f40 is the unique non-volation status color
     case 'compliant':
       return '#467f40'
