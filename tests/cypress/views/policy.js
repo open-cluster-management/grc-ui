@@ -115,8 +115,7 @@ export const verifyPolicyInListing = (
       if ([1,2,3].includes(targetStatus)) {
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            const fillColor = getStatusIconFillColor(targetStatus)
-            elems[0].should('have.attr', 'fill', fillColor)
+            getStatusIconFillColor(targetStatus) === elems[0].getAttribute('fill').trim().toLowerCase()
           }
         })
       }
@@ -267,8 +266,7 @@ export const verifyPolicyInPolicyDetails = (
         // check the violation status
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            const fillColor = getStatusIconFillColor(targetStatus)
-            elems[0].should('have.attr', 'fill', fillColor)
+            getStatusIconFillColor(targetStatus) === elems[0].getAttribute('fill').trim().toLowerCase()
           }
         })
       }
