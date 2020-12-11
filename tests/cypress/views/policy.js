@@ -112,19 +112,8 @@ export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', ta
       if (targetStatus === 1 || targetStatus === 2 || targetStatus === 3) {
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            const filledColor = elems[0].getAttribute('fill').trim().toLowerCase()
-            switch(targetStatus) {
-              case 1: // 467f40 is the unique non-volation status color
-                filledColor === '#467f40'
-                break
-              case 2: // c9190b is the unique violation status color
-                filledColor === '#c9190b'
-                break
-              case 3:
-              default: // f0ab00 is the unique pending status color
-                filledColor === '#f0ab00'
-                break
-            }
+            const fillColor = getStatusIconFillColor(targetStatus.toLowerCase())
+            elems[0].should('have.attr', 'fill', fillColor)
           }
         })
       }
@@ -269,19 +258,8 @@ export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enable
         // check the violation status
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            const filledColor = elems[0].getAttribute('fill').trim().toLowerCase()
-            switch(targetStatus) {
-              case 1: // 467f40 is the unique non-volation status color
-                filledColor === '#467f40'
-                break
-              case 2: // c9190b is the unique violation status color
-                filledColor === '#c9190b'
-                break
-              case 3:
-              default: // f0ab00 is the unique pending status color
-                filledColor === '#f0ab00'
-                break
-            }
+            const fillColor = getStatusIconFillColor(targetStatus.toLowerCase())
+            elems[0].should('have.attr', 'fill', fillColor)
           }
         })
       }
@@ -318,16 +296,13 @@ const getStatusIconFillColor = (targetStatus) => {
     case 1: // 467f40 is the unique non-volation status color
     case 'compliant':
       return '#467f40'
-      break
     case 2: // c9190b is the unique violation status color
     case 'not compliant':
       return '#c9190b'
-      break
     case 3:
     default: // f0ab00 is the unique pending status color
     case 'no status':
       return '#f0ab00'
-      break
   }
 }
 
