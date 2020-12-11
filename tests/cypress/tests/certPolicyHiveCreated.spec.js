@@ -1,0 +1,122 @@
+/* Copyright (c) 2020 Red Hat, Inc. */
+/// <reference types="cypress" />
+import {
+  createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
+  actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
+} from '../views/policy'
+import { getUniqueResourceName } from '../scripts/utils'
+import { getConfigObject } from '../config'
+
+describe('Testing certificate policy governance in a hive-created OCP over managed cluster', () => {
+    const certificateName = 'policy-create-certificate'
+    const uCertificateName = getUniqueResourceName(certificateName)
+    const certificateYAML = getConfigObject('certPolicyHiveCreated/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificateName))
+
+    const certificatePolicyName = 'policy-certificatepolicy'
+    const uCertificatePolicyName = getUniqueResourceName(certificatePolicyName)
+    const certificatePolicyYAML = getConfigObject('certPolicyHiveCreated/test_certpolicy_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificatePolicyName))
+
+
+    const certificatePolicyConfig = getConfigObject('certPolicyHiveCreated/test_certpolicy_config.yaml')
+
+    it ('"Govern risk" page can be launched.', () => {
+      cy.CheckGrcMainPage()
+    })
+
+    it (`Create an expiring certificate ${uCertificateName} in the managed cluster.`, () => {
+      cy.FromGRCToCreatePolicyPage()
+      createPolicyFromYAML(certificateYAML, true)
+    })
+
+    it(`Certificate ${uCertificateName} status becomes available`, () => {
+      cy.CheckGrcMainPage()
+      cy.waitForPolicyStatus(uCertificateName)
+    })
+
+    it ('Navigated to "Govern risk" page and clicked at "Create policy"', () => {
+      cy.CheckGrcMainPage()
+      cy.FromGRCToCreatePolicyPage()
+    })
+
+    it (`Create policy ${uCertificatePolicyName}`, () => {
+      createPolicyFromYAML(certificatePolicyYAML, true)
+    })
+
+    it(`Certificate policy ${uCertificatePolicyName} status becomes available`, () => {
+      cy.CheckGrcMainPage()
+      cy.waitForPolicyStatus(uCertificatePolicyName)
+    })
+
+    it (`Verify all information about the created certificate policy ${uCertificatePolicyName} on the "Govern and risk" page`, () => {
+      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', 2)
+    })
+
+    it(`Validate violations/status of created policy ${uCertificatePolicyName} on the detailed policy page`, () => {
+      // we need to find another way how to access this page
+      cy.visit(`/multicloud/policies/all/default/${uCertificatePolicyName}`)
+        .then(() => {
+          verifyPolicyInPolicyDetails(uCertificatePolicyName, certificatePolicyConfig, 'enabled', 2)
+        })
+      // we could use a different way how to return to this page
+      cy.visit('/multicloud/policies/all')
+    })
+
+    it(`Validate violations/status of created policy ${uCertificatePolicyName} on the policy history page`, () => {
+      // to-do
+    })
+
+    it(`Validate yaml of created policy ${uCertificatePolicyName} from edit YAML action`, () => {
+      // to-do
+    })
+
+    it(`Validate disable of the policy ${uCertificatePolicyName}`, () => {
+      actionPolicyActionInListing(uCertificatePolicyName, 'Disable')
+    })
+
+    it('Check disabled policy', () => {
+      cy.CheckGrcMainPage()
+      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'disabled', 3)
+    })
+
+    it(`Validate enable of the policy ${uCertificatePolicyName}` , () => {
+      actionPolicyActionInListing(uCertificatePolicyName, 'Enable')
+      cy.CheckGrcMainPage()
+    })
+
+    it(`Check enabled policy ${uCertificatePolicyName}`, () => {
+      cy.waitForPolicyStatus(uCertificatePolicyName)
+      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', 2)
+    })
+
+    it(`Edit policy ${uCertificatePolicyName} and change "remediateAction" to "enforce"`, () => {
+      actionPolicyActionInListing(uCertificatePolicyName, 'Enforce')
+      cy.CheckGrcMainPage()
+      cy.waitForPolicyStatus(uCertificatePolicyName)
+    })
+
+    it('Check violations stay reported but not remediated', () => {
+      certificatePolicyConfig.enforce = true
+      certificatePolicyConfig.inform = false
+      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', 2)
+    })
+
+    it(`Remove created certificate ${uCertificateName}`, () => {
+      // actionPolicyActionInListing(uIssuerName, 'Remove')
+      actionPolicyActionInListing(uCertificateName, 'Remove')
+      cy.CheckGrcMainPage()
+    })
+
+    it(`Check created certificate ${uCertificateName} is not present`, () => {
+      // verifyPolicyNotInListing(uIssuerName)
+      verifyPolicyNotInListing(uCertificateName)
+    })
+
+    it(`Remove created policy ${uCertificatePolicyName}`, () => {
+      actionPolicyActionInListing(uCertificatePolicyName, 'Remove')
+      cy.CheckGrcMainPage()
+    })
+
+    it(`Check created policy ${uCertificatePolicyName} is not present`, () => {
+      verifyPolicyNotInListing(uCertificatePolicyName)
+    })
+})

@@ -5,7 +5,7 @@ import { selectItems } from './common'
 const timestampRegexp = /^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/
 
 export const getDefaultSubstitutionRules = (uName) => {
-  let label = ''
+  let label = '[]'
   let timestamp = ''
   if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
     label = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
