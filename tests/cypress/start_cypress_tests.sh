@@ -52,12 +52,6 @@ echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_I
 echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL)  : $CYPRESS_BASE_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL   : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_USER       : $CYPRESS_OPTIONS_HUB_USER"
-
-if [ -n "$CYPRESS_OPTIONS_HUB_CLUSTER_URL" ]; then
-  echo -e "\nLogging into Kube API server\n"
-  oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
-fi
-
 testCode=0
 
 # We are caching the cypress binary for containerization, therefore it does not need npx. However, locally we need it.
