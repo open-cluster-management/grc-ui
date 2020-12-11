@@ -92,7 +92,10 @@ export const createPolicyFromSelection = ({ uPolicyName, create=false, ...policy
 // enabled='enabled', checking if policy is enabled; enabled='disabled', checking if policy is disabled
 // targetStatus = 0, don't check policy status; targetStatus = 1, check policy status is non-violation
 // targetStatus = 2, check policy status is violation; targetStatus = 3, check policy status is pending
-export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', targetStatus=0, violationsCounter='') => {
+export const verifyPolicyInListing = (
+  uName, policyConfig, enabled='enabled',
+  targetStatus=0, violationsCounter=''
+  ) => {
   cy.get('.grc-view-by-policies-table').within(() => {
     console.log(uName)
     cy.log(uName)
@@ -232,10 +235,16 @@ export const isPolicyStatusAvailable = (uName, statusPending=false) => {
 }
 
 
-export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enabled', targetStatus=0, violationsCounter='') => {
+export const verifyPolicyInPolicyDetails = (
+  uName, policyConfig, enabled='enabled',
+  targetStatus=0, violationsCounter=''
+  ) => {
   //cy.get('div.vertical-expend').then((e) => {
   cy.get('#compliance\\.details-expand').within(() => {
-    cy.get('div.pf-c-description-list__text').spread((name, namespace, enforcement, disabled, violations, categories, controls, standards, created) => {
+    cy.get('div.pf-c-description-list__text').spread((
+      name, namespace, enforcement, disabled, violations,
+      categories, controls, standards, created
+      ) => {
       // check name
       cy.wrap(name).contains(uName)
       // check namespace
@@ -309,7 +318,10 @@ const getStatusIconFillColor = (targetStatus) => {
 
 export const verifyPlacementRuleInPolicyDetails = (placementRuleConfig) => {
   cy.get('section[aria-label="Placement rule"]').within(() => {
-    cy.get('.bx--structured-list-td').spread((label1, name, label2, namespace, label3, selector, label4, decisions, label5, timestamp) => {
+    cy.get('.bx--structured-list-td').spread((
+      label1, name, label2, namespace, label3,
+      selector, label4, decisions, label5, timestamp
+      ) => {
       // check name
       if (placementRuleConfig['name']) {
         cy.wrap(name).contains(placementRuleConfig['name'])
