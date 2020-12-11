@@ -247,15 +247,12 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
         }
       }
     })
-    // wait until editor has content before highlighting
-    setTimeout(() => {
-      editor.decorations = editor.deltaDecorations(editor.decorations, decorationList)
-    }, 0)
     if (editor && (firstNewRow || firstModRow)) {
       const lineNumber = firstNewRow || firstModRow || 0
       editor.revealLinesInCenter(lineNumber, lineNumber+10, 0)
-
     }
+    // Return list so that other decorations can be added
+    return decorationList
   }
 }
 

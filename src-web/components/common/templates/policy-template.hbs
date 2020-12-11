@@ -8,8 +8,8 @@ metadata:
     policy.open-cluster-management.io/categories: {{#each categories}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
     policy.open-cluster-management.io/controls: {{#each controls}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
 spec:
-  remediationAction: {{#if enforce}}enforce{{else}}inform{{/if}}
-  disabled: {{#if disabled}}true{{else}}false{{/if}}
+  remediationAction: {{enforce}}
+  disabled: {{disabled}}
   {{! If user modifies one of these specs, editor captures those changes and will insert here on re-render}}
   {{#if specsCapture}}
   {{{ specsCapture }}}
