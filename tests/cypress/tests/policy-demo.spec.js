@@ -36,7 +36,6 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     })
 
     it('Disable policy', () => {
-      cy.goToPolicyDetailsPage(uPolicyName,false)
       actionPolicyActionInListing(uPolicyName, 'Disable')
     })
 
@@ -45,7 +44,6 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     })
 
     it('Enable policy', () => {
-      cy.goToPolicyDetailsPage(uPolicyName,false)
       actionPolicyActionInListing(uPolicyName, 'Enable')
     })
 
@@ -54,7 +52,6 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     })
 
     it('Enforce policy', () => {
-      cy.goToPolicyDetailsPage(uPolicyName,false)
       actionPolicyActionInListing(uPolicyName, 'Enforce')
     })
 
@@ -65,7 +62,6 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     })
 
     it('Inform policy', () => {
-      cy.goToPolicyDetailsPage(uPolicyName,false)
       actionPolicyActionInListing(uPolicyName, 'Inform')
     })
 
@@ -81,13 +77,12 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
          .then(() => {
            verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', 1, '0/1')
            verifyPolicyInPolicyDetailsTemplates(uPolicyName, policyConfig)
-            verifyPlacementRuleInPolicyDetails(policyPlacementRule)
+           verifyPlacementRuleInPolicyDetails(policyPlacementRule)
          })
     })
 
     it(`Policy ${uPolicyName} can be deleted in the policy listing`, () => {
       // we could use a different way how to return to this page
-      cy.goToPolicyDetailsPage(uPolicyName,false)
       actionPolicyActionInListing(uPolicyName, 'Remove')
     })
 
