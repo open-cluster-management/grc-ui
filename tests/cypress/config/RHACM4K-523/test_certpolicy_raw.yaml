@@ -49,4 +49,4 @@ spec:
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: cloud, operator: In, values: ["Amazon"]}
+      [LABEL]
