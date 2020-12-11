@@ -3,9 +3,8 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import _ from 'lodash'
 import {RESOURCE_TYPES} from '../../lib/shared/constants'
 import Page from '../components/common/Page'
 import {updateSecondaryHeader} from '../actions/common'
@@ -19,7 +18,6 @@ class PolicyDetailSubRouter extends React.Component {
 
   static propTypes = {
     launch_links: PropTypes.object,
-    location: PropTypes.object,
     match: PropTypes.any,
     resourceType: PropTypes.any,
     tabs: PropTypes.array,
@@ -39,101 +37,75 @@ class PolicyDetailSubRouter extends React.Component {
   componentDidMount() {
     const {
       updateSecondaryHeader:localUpdateSecondaryHeader,
+      match,
       tabs,
       launch_links,
-      match,
-      location
     } = this.props
+
+    const baseUrl = this.getBaseUrl()
     localUpdateSecondaryHeader(
-      this.getPolicyName(location),
-      getTabs(tabs, (tab, index) => index === 0 ? match.url : `${match.url}/${tab}`),
-      this.getBreadcrumb(location),
+      match.params.name,
+      getTabs(tabs, (tab, index) => index === 0 ? baseUrl : `${baseUrl}/${tab}`),
+      this.getBreadcrumb(),
       launch_links
     )
   }
 
   render () {
-    const { resourceType, tabs } = this.props
-    const url = _.get(this.props, 'match.url')
-    const urlSegments = url.split('/')
-    const policyName = urlSegments[urlSegments.length - 1]
-    const policyNamespace = this.getPolicyNamespace(location)
+    const { resourceType, match, tabs } = this.props
+    const url = this.getBaseUrl()
+    const policyName = match.params.name
+    const policyNamespace = match.params.namespace
+    const tabName = match.params.tab
+    let TabPage
+
+    switch (tabName) {
+      case 'status':
+        TabPage = PolicyStatusTab
+        break
+      case 'yaml':
+        TabPage = PolicyTemplateTab
+        break
+      default:
+        TabPage = PolicyDetailsTab
+    }
 
     return (
       <Page>
-        <Switch>
-          <Route path={`${url}/status`} exact render={() => {
-            return <PolicyStatusTab
-              policyName={policyName}
-              policyNamespace={policyNamespace}
-              tabs={tabs}
-              url={url}
-            />}}
-          />
-          <Route path={`${url}/yaml`} exact render={() => {
-            return <PolicyTemplateTab
-              policyName={policyName}
-              policyNamespace={policyNamespace}
-              resourceType={resourceType}
-              tabs={tabs}
-              url={url}
-            />}}
-          />
-          <Route path={url} exact render={() => {
-            return <PolicyDetailsTab
-              policyName={policyName}
-              policyNamespace={policyNamespace}
-              resourceType={resourceType}
-              tabs={tabs}
-              url={url}
-            />}}
-          />
-        </Switch>
+        <TabPage
+          policyName={policyName}
+          policyNamespace={policyNamespace}
+          resourceType={resourceType}
+          tabs={tabs}
+          url={url}
+        />
       </Page>
     )
   }
 
-  getBreadcrumb(location) {
-    const breadcrumbItems = []
-    location = location || this.props.location
-    const { tabs } = this.props,
-          { locale } = this.context,
-          urlSegments = location.pathname.replace(/\/$/, '').split('/'),
-          lastSegment = urlSegments[urlSegments.length - 1],
-          currentTab = tabs.find(tab => tab === lastSegment)
+  getBaseUrl() {
+    const { match } = this.props
+    // If it exists, remove the tab from the URL path to find the base path
+    return match.params.tab ? match.url.split('/').slice(0, -1).join('/') : match.url
+  }
 
-    // The base path, calculated by the current location minus params
-    const paramsLength = 2
+  getBreadcrumb() {
+    const breadcrumbItems = []
+    const { match } = this.props,
+          { locale } = this.context,
+          currentTab = match.params.tab
 
     breadcrumbItems.push({
       label: msgs.get('tabs.grc.all', locale),
       noLocale: true,
-      url: urlSegments.slice(0, (urlSegments.length - (paramsLength + (currentTab ? 1 : 0)))).join('/')
+      url: '/multicloud/policies/all'
     })
     breadcrumbItems.push({
-      label: this.getPolicyName(location),
+      label: match.params.name,
       noLocale: true,
-      url: currentTab ? location.pathname.replace(`/${currentTab}`, '') : location.pathname
+      url: currentTab ? match.url.replace(`/${currentTab}`, '') : match.url
     })
     return breadcrumbItems
-  }
-
-  getPolicyName(location) {
-    const urlSegments = location.pathname.split('/')
-    const lastSegment = urlSegments[urlSegments.length - 1]
-    if( lastSegment === 'status'|| lastSegment === 'yaml' ){
-      return urlSegments[urlSegments.length - 2]
-    }
-    return lastSegment
-  }
-
-  getPolicyNamespace(location) {
-    const urlSegments = location.pathname.split('/')
-    const lastSegment = urlSegments[urlSegments.length - 1]
-    if( lastSegment === 'status'|| lastSegment === 'yaml' ){
-      return urlSegments[urlSegments.length - 3]
-    }
-    return urlSegments[urlSegments.length - 2]
   }
 }
 
