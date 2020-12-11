@@ -109,10 +109,10 @@ export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', ta
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check the violation status
-      if (targetStatus === 1 || targetStatus === 2 || targetStatus === 3) {
+      if ([1,2,3].includes(targetStatus)) {
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            const fillColor = getStatusIconFillColor(targetStatus.toLowerCase())
+            const fillColor = getStatusIconFillColor(targetStatus)
             elems[0].should('have.attr', 'fill', fillColor)
           }
         })
@@ -254,11 +254,11 @@ export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enable
       } else {
         cy.wrap(disabled).contains('true')
       }
-      if (targetStatus === 1 || targetStatus === 2 || targetStatus === 3) {
+      if ([1,2,3].includes(targetStatus)) {
         // check the violation status
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            const fillColor = getStatusIconFillColor(targetStatus.toLowerCase())
+            const fillColor = getStatusIconFillColor(targetStatus)
             elems[0].should('have.attr', 'fill', fillColor)
           }
         })
@@ -292,7 +292,7 @@ export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enable
 }
 
 const getStatusIconFillColor = (targetStatus) => {
-  switch(targetStatus) {
+  switch(targetStatus.toLowerCase()) {
     case 1: // 467f40 is the unique non-volation status color
     case 'compliant':
       return '#467f40'
