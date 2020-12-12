@@ -64,7 +64,7 @@ const GrcRouter = ({ match }) =>
     <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <PolicyDetailsByCluster secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/all/:policyNamespace/:policyName/template/:clusterName/:apiGroup/:version/:kind/:name`}
       render={() => <PolicyTemplateDetails secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
-    <Route path={`${match.url}/all/:namespace/:name`} render={() => <PolicyDetailSubRouter secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
+    <Route path={`${match.url}/all/:namespace/:name/:tab?`} render={() => <PolicyDetailSubRouter secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/all`} exact render={() => <PoliciesTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
     <Route path={`${match.url}/create`} render={() => <CreationTab secondaryHeaderProps={CREATION_HEADER_PROPS} />} />
     <Redirect to={`${match.url}/all`} />
