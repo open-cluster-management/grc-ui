@@ -3,7 +3,7 @@
 import {
   createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
   actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
-  verifyPlacementRuleInPolicyDetails
+  verifyPolicyInPolicyDetailsTemplates, verifyPlacementRuleInPolicyDetails
 } from '../views/policy'
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
@@ -73,9 +73,12 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
 
     it('check policy and the detailed policy page', () => {
        // we need to find another way how to access this page
-       cy.visit(`/multicloud/policies/all/default/${uPolicyName}`)
-       verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', 1, '0/1')
-       verifyPlacementRuleInPolicyDetails(policyPlacementRule)
+       cy.goToPolicyDetailsPage(uPolicyName, policyConfig['namespace'])
+         .then(() => {
+           verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', 1, '0/1')
+           verifyPolicyInPolicyDetailsTemplates(uPolicyName, policyConfig)
+           verifyPlacementRuleInPolicyDetails(policyPlacementRule)
+         })
     })
 
     it(`Policy ${uPolicyName} can be deleted in the policy listing`, () => {
