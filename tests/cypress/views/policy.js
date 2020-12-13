@@ -2,16 +2,25 @@
 /// <reference types="cypress" />
 import { selectItems } from './common'
 
-export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
-  let label = '[]'
+const timestampRegexp = /^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/
+
+export const getDefaultSubstitutionRules = (uName) => {
+  let label = ''
   if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
     label = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
   }
-  const formattedYAML = policyYAML.replace(/\[LABEL\]/g, label).replace(/\[UNAME\]/g, uPolicyName)
-  console.log(formattedYAML)
+  const substitutions = [
+      [ /\[LABEL\]/g, label ],
+      [ /\[UNAME\]/g, uName ]
+  ]
+  return substitutions
+}
+
+export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
+  console.log(policyYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
-    .invoke('setValue', formattedYAML)
+    .invoke('setValue', policyYAML)
     // create
     .then(() => {
       if (create) {
@@ -83,7 +92,10 @@ export const createPolicyFromSelection = ({ uPolicyName, create=false, ...policy
 // enabled='enabled', checking if policy is enabled; enabled='disabled', checking if policy is disabled
 // targetStatus = 0, don't check policy status; targetStatus = 1, check policy status is non-violation
 // targetStatus = 2, check policy status is violation; targetStatus = 3, check policy status is pending
-export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', targetStatus=0, violationsCounter='') => {
+export const verifyPolicyInListing = (
+  uName, policyConfig, enabled='enabled',
+  targetStatus=0, violationsCounter=''
+  ) => {
   cy.get('.grc-view-by-policies-table').within(() => {
     console.log(uName)
     cy.log(uName)
@@ -100,22 +112,10 @@ export const verifyPolicyInListing = (uName, policyConfig, enabled='enabled', ta
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check the violation status
-      if (targetStatus === 1 || targetStatus === 2 || targetStatus === 3) {
+      if ([1,2,3].includes(targetStatus)) {
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            const filledColor = elems[0].getAttribute('fill').trim().toLowerCase()
-            switch(targetStatus) {
-              case 1: // 467f40 is the unique non-volation status color
-                filledColor === '#467f40'
-                break
-              case 2: // c9190b is the unique violation status color
-                filledColor === '#c9190b'
-                break
-              case 3:
-              default: // f0ab00 is the unique pending status color
-                filledColor === '#f0ab00'
-                break
-            }
+            getStatusIconFillColor(targetStatus) === elems[0].getAttribute('fill').trim().toLowerCase()
           }
         })
       }
@@ -234,10 +234,16 @@ export const isPolicyStatusAvailable = (uName, statusPending=false) => {
 }
 
 
-export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enabled', targetStatus=0, violationsCounter='') => {
+export const verifyPolicyInPolicyDetails = (
+  uName, policyConfig, enabled='enabled',
+  targetStatus=0, violationsCounter=''
+  ) => {
   //cy.get('div.vertical-expend').then((e) => {
   cy.get('#compliance\\.details-expand').within(() => {
-    cy.get('div.pf-c-description-list__text').spread((name, namespace, enforcement, disabled, violations, categories, controls, standards, created) => {
+    cy.get('div.pf-c-description-list__text').spread((
+      name, namespace, enforcement, disabled, violations,
+      categories, controls, standards, created
+      ) => {
       // check name
       cy.wrap(name).contains(uName)
       // check namespace
@@ -256,23 +262,11 @@ export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enable
       } else {
         cy.wrap(disabled).contains('true')
       }
-      if (targetStatus === 1 || targetStatus === 2 || targetStatus === 3) {
+      if ([1,2,3].includes(targetStatus)) {
         // check the violation status
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            const filledColor = elems[0].getAttribute('fill').trim().toLowerCase()
-            switch(targetStatus) {
-              case 1: // 467f40 is the unique non-volation status color
-                filledColor === '#467f40'
-                break
-              case 2: // c9190b is the unique violation status color
-                filledColor === '#c9190b'
-                break
-              case 3:
-              default: // f0ab00 is the unique pending status color
-                filledColor === '#f0ab00'
-                break
-            }
+            getStatusIconFillColor(targetStatus) === elems[0].getAttribute('fill').trim().toLowerCase()
           }
         })
       }
@@ -299,7 +293,67 @@ export const verifyPolicyInPolicyDetails = (uName, policyConfig, enabled='enable
         }
       }
       // check creation time
-      cy.wrap(created).contains(/^(a|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/)
+      cy.wrap(created).contains(timestampRegexp)
+    })
+  })
+}
+
+const getStatusIconFillColor = (targetStatus) => {
+  switch(targetStatus) {
+    case 1: // 467f40 is the unique non-volation status color
+    case 'compliant':
+      return '#467f40'
+    case 2: // c9190b is the unique violation status color
+    case 'not compliant':
+      return '#c9190b'
+    case 3:
+    default: // f0ab00 is the unique pending status color
+    case 'no status':
+      return '#f0ab00'
+  }
+}
+
+
+export const verifyPlacementRuleInPolicyDetails = (placementRuleConfig) => {
+  cy.get('section[aria-label="Placement rule"]').within(() => {
+    cy.get('.bx--structured-list-td').spread((
+      label1, name, label2, namespace, label3,
+      selector, label4, decisions, label5, timestamp
+      ) => {
+      // check name
+      if (placementRuleConfig['name']) {
+        cy.wrap(name).contains(placementRuleConfig['name'])
+      }
+      // check namespace
+      if (placementRuleConfig['namespace']) {
+        cy.wrap(namespace).contains(placementRuleConfig['namespace'])
+      }
+      // check Cluster selector
+      if (placementRuleConfig['selector']) {
+        cy.wrap(selector).contains(placementRuleConfig['selector'])
+      }
+      // check Decisions
+      if (placementRuleConfig['clusters']) {
+        // check the number of clusters listed matches the configuration
+        // for each cluster check that the expected status is listed
+        cy.wrap(decisions).find('a').should('have.length', Object.keys(placementRuleConfig['clusters']).length)
+        .then(() => {
+          for (const [clusterName, expectedStatus] of Object.entries(placementRuleConfig['clusters'])) {
+            cy.wrap(decisions).within(() => {
+              // find cluster name
+              cy.get('a').contains(clusterName)
+                .next().as('clusterStatus')
+              // check status
+              cy.get('@clusterStatus').contains(expectedStatus.toLowerCase())
+              // check status icon
+              const fillColor = getStatusIconFillColor(expectedStatus.toLowerCase())
+              cy.get('@clusterStatus').find('svg').should('have.attr', 'fill', fillColor)
+            })
+          }
+        })
+      }
+      // check creation time
+      cy.wrap(timestamp).contains(timestampRegexp)
     })
   })
 }

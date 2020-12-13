@@ -5,7 +5,7 @@ import React from 'react'
 import PolicyDetailsByCluster from '../../../src-web/containers/PolicyDetailsByCluster'
 import { mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import { BrowserRouter } from 'react-router-dom'
+import { MemoryRouter, Route } from 'react-router-dom'
 import * as reducers from '../../../src-web/reducers'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
@@ -20,11 +20,14 @@ const store = createStore(combineReducers(reducers), preloadedState, composeEnha
   applyMiddleware(...middleware)
 ))
 const location = {
-  'pathname': '/multicloud/policies/all/test-namespace/test-policy',
+  'pathname': '/multicloud/policies/policy/test-namespace/test-policy',
   'search': '',
   'hash': '',
   'key': 'ngh5of',
   'state': undefined
+}
+const match = {
+  'path': '/multicloud/policies/policy/:clusterName/:name'
 }
 const resourceType = {
   'name': 'HCMCompliance',
@@ -37,13 +40,16 @@ describe('PolicyDetailsByCluster container test', () => {
     const component = mount(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
-          <BrowserRouter>
-            <PolicyDetailsByCluster
-              location={location}
-              resourceType={resourceType}
-              updateSecondaryHeader={updateSecondaryHeader}
+          <MemoryRouter initialEntries={[location]}>
+            <Route
+              path={match.path}
+              render={() =>
+                <PolicyDetailsByCluster
+                  resourceType={resourceType}
+                  updateSecondaryHeader={updateSecondaryHeader}
+                />}
             />
-          </BrowserRouter>
+          </MemoryRouter>
         </Provider>
       </ApolloProvider>
     )

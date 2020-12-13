@@ -2,20 +2,22 @@
 /// <reference types="cypress" />
 import {
   createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
-  actionPolicyActionInListing, verifyPolicyInPolicyDetails
+  actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
+  verifyPlacementRuleInPolicyDetails
 } from '../views/policy'
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
 
 describe('Testing policy named demo-policy in demo.yaml file', () => {
     const policyName = 'demo-policy'
+    const uPolicyName = getUniqueResourceName(policyName)
     // demo-policy-raw.yaml is used for creating the policy "demo-policy"
     // demo-policy-raw.yaml is raw policy yaml and need be to get as raw data
-    const policyYAML = getConfigObject('sample/demo-policy-raw.yaml', 'raw')
+    const policyYAML = getConfigObject('sample/demo-policy-raw.yaml', 'raw', getDefaultSubstitutionRules(uPolicyName))
     // demo-policy-config.yaml is used for validating the policy "demo-policy"
     // demo-policy-config.yaml isn't raw policy yaml but config yaml and need be converted to a dictionary
     const { policyConfig } = getConfigObject('sample/demo-policy-config.yaml')
-    const uPolicyName = getUniqueResourceName(policyName)
+    const policyPlacementRule = getConfigObject('sample/demo-policy-placement-rule.yaml', 'yaml', getDefaultSubstitutionRules(uPolicyName))
 
     it (`Can create new policy ${uPolicyName} from YAML editor`, () => {
       cy.FromGRCToCreatePolicyPage()
@@ -72,9 +74,8 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     it('check policy and the detailed policy page', () => {
        // we need to find another way how to access this page
        cy.visit(`/multicloud/policies/all/default/${uPolicyName}`)
-         .then(() => {
-           verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', 1, '0/1')
-         })
+       verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', 1, '0/1')
+       verifyPlacementRuleInPolicyDetails(policyPlacementRule)
     })
 
     it(`Policy ${uPolicyName} can be deleted in the policy listing`, () => {
