@@ -48,7 +48,12 @@ export const generateYAML = (template, controlData) => {
       }
     } else {
       if (id === 'enforce' || id === 'disabled') {
-        templateData[id] = active
+        // If it's undefined or null, it's been removed. Set to match the form.
+        if (!active) {
+          templateData[id] = control.available[0]
+        } else {
+          templateData[id] = active
+        }
       }
     }
   })
