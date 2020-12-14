@@ -384,7 +384,7 @@ export const verifyPlacementBindingInPolicyDetails = (uName, policyConfig) => {
         cy.wrap(placement_rule).contains('placement-'+uName)
         if (policyConfig['apiVersion']) {
           let apiVer = policyConfig['apiVersion']
-          apiVer = apiVer.substring(0, apiVer.length - 3);
+          apiVer = apiVer.substring(0, apiVer.length - 3)
           cy.wrap(subjects).contains(uName+'('+apiVer+')')
         }
         cy.wrap(timestamp).contains(timestampRegexp)
