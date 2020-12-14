@@ -53,6 +53,8 @@ npm run build
 npm run start:instrument &>/dev/null &
 sleep 10
 npm run test:cypress-headless
+# clean up after cypress test
+$DIR/cluster-clean-up.sh hubnpm
 sleep 10
 npm run test:e2e-headless
 
