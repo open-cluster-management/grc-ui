@@ -159,6 +159,7 @@ Cypress.Commands.add('CheckGrcMainPage', () => {
 })
 
 Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
+  cy.visit('/multicloud/policies/all')
   cy.get('#create-policy', { timeout: 20000 }).should('exist')
   cy.get('#create-policy').click()
   cy.location('pathname').should('eq', '/multicloud/policies/create')
