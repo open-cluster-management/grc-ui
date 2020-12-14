@@ -11,18 +11,18 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-    - objectDefinition:
-        apiVersion: policy.open-cluster-management.io/v1
-        kind: CertificatePolicy # cert management expiration
-        metadata:
-          name: policy-certificatepolicy-[TIME]
-        spec:
-          namespaceSelector:
-            include: ["default"]
-            exclude: []
-          remediationAction: inform
-          severity: low
-          minimumDuration: 30h
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: CertificatePolicy # cert management expiration
+      metadata:
+        name: policy-certificatepolicy-[TIME]
+      spec:
+        namespaceSelector:
+          include: ["default"]
+          exclude: ["kube-*"]
+        remediationAction: inform
+        severity: low
+        minimumDuration: 30h
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
