@@ -1,6 +1,4 @@
 namespace: 'default'
-cluster_binding:
-- cloud: "Amazon"
 standards:
 - 'NIST-CSF'
 categories:
