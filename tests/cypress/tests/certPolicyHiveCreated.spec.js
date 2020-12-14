@@ -3,6 +3,7 @@
 import {
   createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
   actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
+  verifyPolicyInPolicyStatus, verifyPolicyByYAML
 } from '../views/policy'
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
@@ -57,19 +58,25 @@ describe('Testing certificate policy governance in a hive-created OCP over manag
         .then(() => {
           verifyPolicyInPolicyDetails(uCertificatePolicyName, certificatePolicyConfig, 'enabled', 2)
         })
-      // we could use a different way how to return to this page
-      cy.visit('/multicloud/policies/all')
     })
 
-    it(`Validate violations/status of created policy ${uCertificatePolicyName} on the policy history page`, () => {
-      // to-do
+    it(`Validate violations/status of created policy ${uCertificatePolicyName} on the policy status/history page`, () => {
+      // we need to find another way how to access this page
+      cy.visit(`/multicloud/policies/all/default/${uCertificatePolicyName}/status`)
+        .then(() => {
+        verifyPolicyInPolicyStatus(uCertificatePolicyName)
+      })
     })
 
     it(`Validate yaml of created policy ${uCertificatePolicyName} from edit YAML action`, () => {
-      // to-do
+      // we could use a different way how to return to this page
+      cy.visit('/multicloud/policies/all')
+      verifyPolicyByYAML(uCertificatePolicyName, certificatePolicyYAML, true)
     })
 
     it(`Validate disable of the policy ${uCertificatePolicyName}`, () => {
+      // we could use a different way how to return to this page
+      cy.visit('/multicloud/policies/all')
       actionPolicyActionInListing(uCertificatePolicyName, 'Disable')
     })
 
