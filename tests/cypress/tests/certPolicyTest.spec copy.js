@@ -8,7 +8,7 @@ import {
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
 
-describe('Testing certificate policy governance in a hive-created OCP over managed cluster', () => {
+describe('Testing certificate policy governance over managed cluster', () => {
     const certificateName = 'policy-create-certificate'
     const uCertificateName = getUniqueResourceName(certificateName)
     const certificateYAML = getConfigObject('certPolicyTest/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificateName))
