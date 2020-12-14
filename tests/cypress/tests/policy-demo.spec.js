@@ -3,7 +3,7 @@
 import {
   createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
   actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
-  verifyPolicyInPolicyDetailsTemplates, verifyPlacementRuleInPolicyDetails
+  verifyPolicyInPolicyDetailsTemplates, verifyPlacementRuleInPolicyDetails, verifyPlacementBindingInPolicyDetails
 } from '../views/policy'
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
@@ -78,6 +78,7 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
            verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', 1, '0/1')
            verifyPolicyInPolicyDetailsTemplates(uPolicyName, policyConfig)
            verifyPlacementRuleInPolicyDetails(policyPlacementRule)
+           verifyPlacementBindingInPolicyDetails(uPolicyName, policyConfig)
          })
     })
 
