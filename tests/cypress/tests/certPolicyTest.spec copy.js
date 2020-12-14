@@ -108,13 +108,11 @@ describe('Testing certificate policy governance over managed cluster', () => {
     })
 
     it(`Remove created certificate ${uCertificateName}`, () => {
-      // actionPolicyActionInListing(uIssuerName, 'Remove')
       actionPolicyActionInListing(uCertificateName, 'Remove')
       cy.CheckGrcMainPage()
     })
 
     it(`Check created certificate ${uCertificateName} is not present`, () => {
-      // verifyPolicyNotInListing(uIssuerName)
       verifyPolicyNotInListing(uCertificateName)
     })
 
