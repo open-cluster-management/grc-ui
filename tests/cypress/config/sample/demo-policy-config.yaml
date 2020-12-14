@@ -1,6 +1,8 @@
 # demo-policy-config.yaml is used for validating the policy "demo-policy"
 policyConfig:
+  apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
+  kind: 'CertificatePolicy'
   specifications:
   - 'CertificatePolicy - cert management expiration'
   cluster_binding:

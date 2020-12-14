@@ -357,3 +357,37 @@ export const verifyPlacementRuleInPolicyDetails = (placementRuleConfig) => {
     })
   })
 }
+
+export const verifyPolicyInPolicyDetailsTemplates = (uName, policyConfig) => {
+  cy.get('#policy-templates-table-container').within(() => {
+    cy.get('tr[data-row-name="'+uName+'-example"]').children().spread((name, visibleAPIver, visibleKind) => {
+      // check name
+      cy.wrap(name).contains(uName)
+      // check api version
+      cy.wrap(visibleAPIver).contains(policyConfig['apiVersion'])
+      // check kind
+      cy.wrap(visibleKind).contains(policyConfig['kind'])
+    })
+  })
+}
+
+export const verifyPlacementBindingInPolicyDetails = (uName, policyConfig) => {
+  cy.get('section[aria-label="Placement binding"]').within(() => {
+    cy.get('.bx--structured-list-td').spread((
+      label1, name, label2, namespace, label3,
+      placement_rule, label4, subjects, label5, timestamp
+      ) => {
+        cy.wrap(name).contains('binding-'+uName)
+        if (policyConfig['namespace']) {
+          cy.wrap(namespace).contains(policyConfig['namespace'])
+        }
+        cy.wrap(placement_rule).contains('placement-'+uName)
+        if (policyConfig['apiVersion']) {
+          let apiVer = policyConfig['apiVersion']
+          apiVer = apiVer.substring(0, apiVer.length - 3)
+          cy.wrap(subjects).contains(uName+'('+apiVer+')')
+        }
+        cy.wrap(timestamp).contains(timestampRegexp)
+      })
+    })
+}
