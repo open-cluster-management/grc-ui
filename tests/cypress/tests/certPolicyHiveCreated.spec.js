@@ -11,14 +11,14 @@ import { getConfigObject } from '../config'
 describe('Testing certificate policy governance in a hive-created OCP over managed cluster', () => {
     const certificateName = 'policy-create-certificate'
     const uCertificateName = getUniqueResourceName(certificateName)
-    const certificateYAML = getConfigObject('certPolicyHiveCreated/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificateName))
+    const certificateYAML = getConfigObject('certPolicyTest/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificateName))
 
     const certificatePolicyName = 'policy-certificatepolicy'
     const uCertificatePolicyName = getUniqueResourceName(certificatePolicyName)
-    const certificatePolicyYAML = getConfigObject('certPolicyHiveCreated/test_certpolicy_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificatePolicyName))
+    const certificatePolicyYAML = getConfigObject('certPolicyTest/test_certpolicy_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificatePolicyName))
 
 
-    const certificatePolicyConfig = getConfigObject('certPolicyHiveCreated/test_certpolicy_config.yaml')
+    const certificatePolicyConfig = getConfigObject('certPolicyTest/test_certpolicy_config.yaml')
 
     it ('"Govern risk" page can be launched.', () => {
       cy.CheckGrcMainPage()
