@@ -60,14 +60,14 @@ class PolicyDetailSubRouter extends React.Component {
     let TabPage
 
     switch (tabName) {
-      case 'status':
-        TabPage = PolicyStatusTab
-        break
-      case 'yaml':
-        TabPage = PolicyTemplateTab
-        break
-      default:
-        TabPage = PolicyDetailsTab
+    case 'status':
+      TabPage = PolicyStatusTab
+      break
+    case 'yaml':
+      TabPage = PolicyTemplateTab
+      break
+    default:
+      TabPage = PolicyDetailsTab
     }
 
     return (

@@ -67,9 +67,9 @@ class PolicyClusterDetail extends React.Component {
         kind='error' />
     } else if (policies === null) {
       return <NoResource
-            title={msgs.get('error.not.found', this.context.locale)}
-            svgName='EmptyPagePlanet-illus.png'>
-          </NoResource>
+        title={msgs.get('error.not.found', this.context.locale)}
+        svgName='EmptyPagePlanet-illus.png'>
+      </NoResource>
     } else if ( loading || !policies || !Array.isArray(policies) ) {
       return <Spinner className='patternfly-spinner' />
     }
