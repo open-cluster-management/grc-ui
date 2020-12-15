@@ -49,7 +49,7 @@ export const generateYAML = (template, controlData) => {
     } else {
       if (id === 'enforce' || id === 'disabled') {
         // If it's undefined or null, it's been removed. Set to match the form.
-        if (!active) {
+        if (active===undefined || active===null) {
           templateData[id] = control.available[0]
         } else {
           templateData[id] = active
@@ -256,9 +256,9 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
       const lineNumber = firstNewRow || firstModRow || 0
       editor.revealLinesInCenter(lineNumber, lineNumber+10, 0)
     }
-    // Return list so that other decorations can be added
-    return decorationList
   }
+  // Return list so that other decorations can be added
+  return decorationList
 }
 
 export const getUniqueName = (name, nameSet) => {

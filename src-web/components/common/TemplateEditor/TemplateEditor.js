@@ -695,7 +695,9 @@ export default class TemplateEditor extends React.Component {
         })
       })
       // Let editor update before adding decorations
-      setTimeout(() => {this.editor.decorations = this.editor.deltaDecorations(this.editor.decorations, decorationList)}, 500)
+      setTimeout(() => {
+        this.editor.decorations = this.editor.deltaDecorations(this.editor.decorations, decorationList)
+      }, 500)
     }
   }
 

@@ -115,7 +115,7 @@ const updateTextControl = (control, reverse, newParsed) => {
 const updateCheckboxControl = (control, reverse, newParsed) => {
   const newActive = _.get(newParsed, reverse[0])
   control.active = newActive === null ? '' : newActive
-  control.checked = control.available.indexOf(newActive)>0
+  control.checked = control.available.indexOf(newActive)===1
 }
 
 const updateSingleSelectControl = (control, reverse, newParsed) => {
@@ -164,12 +164,7 @@ const updateMultiSelectLabelControl = (control, reverse, newParsed) => {
   const matchLabels = _.get(newParsed, `${reverse[0]}.matchLabels`)
   if (matchLabels instanceof Object) {
     Object.entries(matchLabels).forEach(([key, value]) => {
-      const selection = `${key}: "${value}"`
-      selectors.push(selection)
-      if (!availableMap[selection]) {
-        userMap[selection] = {key, value}
-        userData.push(selection)
-      }
+      updateUserData(availableMap, userMap, userData, selectors, key, value)
     })
   }
   const matchExpressions = _.get(newParsed, `${reverse[0]}.matchExpressions`)
@@ -177,12 +172,7 @@ const updateMultiSelectLabelControl = (control, reverse, newParsed) => {
     matchExpressions.forEach(({key, operator, values})=>{
       if (operator==='In') {
         values.forEach(value => {
-          const selection = `${key}: "${value}"`
-          selectors.push(selection)
-          if (!availableMap[selection]) {
-            userMap[selection] = {key, value}
-            userData.push(selection)
-          }
+          updateUserData(availableMap, userMap, userData, selectors, key, value)
         })
       }
     })
@@ -192,6 +182,15 @@ const updateMultiSelectLabelControl = (control, reverse, newParsed) => {
     control.userMap = userMap
   }
   control.active = selectors
+}
+
+const updateUserData = (availableMap, userMap, userData, selectors, key, value) => {
+  const selection = `${key}: "${value}"`
+  selectors.push(selection)
+  if (!availableMap[selection]) {
+    userMap[selection] = {key, value}
+    userData.push(selection)
+  }
 }
 
 const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newParsed, locale) => {
