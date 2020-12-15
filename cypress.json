@@ -7,7 +7,7 @@
   "chromeWebSecurity": false,
   "defaultCommandTimeout": 10000,
   "integrationFolder": "tests/cypress/tests",
-  "ignoreTestFiles": "tests/cypress/ignoredTestFiles/*.spec.js",
+  "ignoreTestFiles": "**/ignoredTestFiles/*.spec.js",
   "fixturesFolder": "tests/cypress/fixtures",
   "pluginsFile": "tests/cypress/plugins/index.js",
   "screenshotsFolder" : "test-output/cypress/screenshots",
