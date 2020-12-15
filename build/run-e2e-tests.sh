@@ -8,7 +8,7 @@
 set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-./build/download-clis.sh
+sudo ./build/download-clis.sh
 
 echo "Login managed"
 # Get env from Travis config
