@@ -5,18 +5,23 @@ import { selectItems } from './common'
 const timestampRegexp = /^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/
 
 export const getDefaultSubstitutionRules = (uName) => {
-  let label = ''
+  let label = '[]'
+  let timestamp = ''
   if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
     label = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
   }
+  if (Cypress.env('RESOURCE_ID')) {
+    timestamp = Cypress.env('RESOURCE_ID')
+  }
   const substitutions = [
       [ /\[LABEL\]/g, label ],
-      [ /\[UNAME\]/g, uName ]
+      [ /\[UNAME\]/g, uName ],
+      [ /\[TIME\]/g, timestamp ]
   ]
   return substitutions
 }
 
-export const createPolicyFromYAML = (uPolicyName, policyYAML, create=false) => {
+export const createPolicyFromYAML = (policyYAML, create=false) => {
   console.log(policyYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
@@ -356,6 +361,51 @@ export const verifyPlacementRuleInPolicyDetails = (placementRuleConfig) => {
       cy.wrap(timestamp).contains(timestampRegexp)
     })
   })
+}
+
+// will add more check to enhance it later
+export const verifyPolicyInPolicyStatus = (uName) => {
+  cy.get('.pf-c-toggle-group__button').contains('Templates')
+  .click()
+  .then(() => {
+    cy.get('.policy-status-by-templates-table .pf-c-title').contains(uName)
+    verifyPolicyInPolicyHistory(uName)
+  })
+}
+
+// will add more check to enhance it later
+export const verifyPolicyInPolicyHistory = (uName) => {
+  cy.get('tbody tr td a').contains('View history', { matchCase: false }).first()
+  .click()
+  .then(() => {
+    cy.get('div h4').contains(uName, { matchCase: false })
+  })
+}
+
+export const verifyPolicyByYAML = (uName, originalYAML, ingoreClusterSelector=true) => {
+  cy.CheckGrcMainPage()
+  cy.get('.grc-view-by-policies-table').within(() => {
+    cy.get('a')
+      .contains(uName)
+      .parents('td')
+      .siblings('td')
+      .last()
+      .click()
+  })
+  .then(() => {
+    cy.get('button').contains('Edit', { matchCase: false }).click()
+  })
+  .then(() => {
+    cy.get('.bx--modal-container').within(() => {
+      cy.log(ingoreClusterSelector)
+      // // eslint-disable-next-line cypress/no-assigning-return-values
+      // const acutalYAML = cy.YAMLeditor().first().invoke('getValue')
+      // cy.log(acutalYAML)
+    })
+  })
+
+  // after mainpage table action, always return to grc main page
+  cy.CheckGrcMainPage()
 }
 
 export const verifyPolicyInPolicyDetailsTemplates = (uName, policyConfig) => {
