@@ -450,8 +450,8 @@ export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violat
   for (const cluster of clusters) {
     for (const patternId of clusterViolations[cluster]) {
       // from a messageId having format "templateName-id' parse both templateName and id
-      let templateName = patternId.replace(/-[^-]*$/, '')
-      let id = patternId.replace(/^.*-/, '')
+      const templateName = patternId.replace(/-[^-]*$/, '')
+      const id = patternId.replace(/^.*-/, '')
       // now use the search to better target the required policy and to get it on the first page
       // FIXME: this should be replaced by a separate function/command doing this, ideally without 'force'
       cy.get('input[aria-label="Search input"]').clear({force: true}).type(templateName, {force: true})

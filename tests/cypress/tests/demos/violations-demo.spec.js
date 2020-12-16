@@ -3,7 +3,7 @@
 import {
   getDefaultSubstitutionRules, verifyViolationsInPolicyStatusClusters
 } from '../../views/policy'
-import { getUniqueResourceName } from '../../scripts/utils'
+//import { getUniqueResourceName } from '../../scripts/utils'
 import { getConfigObject } from '../../config'
 
 // this demo should only ilustrate how policy violations can be checked
@@ -15,15 +15,15 @@ describe('Testing policy deviations as specified in the violations.yaml config f
     const policyName = 'ksrot-test-policy'
     //const uPolicyName = getUniqueResourceName(policyName)
     const uPolicyName = policyName
-    // read details about configured clusters
-    const confClusters = getConfigObject('demos/clusters.yaml')
+    // optionally read details about configured clusters
+    //const confClusters = getConfigObject('demos/clusters.yaml')
     // read all violation message patterns
     const confViolationPatterns = getConfigObject('violation-patterns.yaml', 'yaml', getDefaultSubstitutionRules(uPolicyName))
 
     // read expected cluster violations
     const confClusterViolations = getConfigObject('demos/violations.yaml', 'yaml', getDefaultSubstitutionRules(uPolicyName))
 
-    it (`All expected violations are listed`, () => {
+    it ('All expected violations are listed', () => {
       cy.visit(`/multicloud/policies/all/default/${uPolicyName}/status`)
       verifyViolationsInPolicyStatusClusters(confClusterViolations, confViolationPatterns)
     })
