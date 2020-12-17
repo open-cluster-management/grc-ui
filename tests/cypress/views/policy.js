@@ -443,6 +443,14 @@ export const verifyPlacementBindingInPolicyDetails = (uName, policyConfig) => {
 }
 
 
+// does the search using the search form
+// so far tested only on the policy status page
+export const doTableSearch = (text, parentElement = null) => {
+  // FIXME - do this search without a force
+  cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true}).type(text, {force: true})
+}
+
+
 export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violationPatterns, clusters = undefined) => {
   if (clusters == undefined) {
     clusters = Object.keys(clusterViolations)
@@ -453,8 +461,7 @@ export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violat
       const templateName = patternId.replace(/-[^-]*$/, '')
       const id = patternId.replace(/^.*-/, '')
       // now use the search to better target the required policy and to get it on the first page
-      // FIXME: this should be replaced by a separate function/command doing this, ideally without 'force'
-      cy.get('input[aria-label="Search input"]').clear({force: true}).type(templateName, {force: true})
+      doTableSearch(templateName)
       cy.get('tbody').within(() => {
         cy.get('td').contains(new RegExp('^'+cluster+'$')).parents('td').siblings('td').spread((clusterStatus, template, message, lastReport, history) => {
           // check status
@@ -496,8 +503,9 @@ export const verifyViolationsInPolicyStatusTemplates = (clusterViolations, viola
       const id = patternId.replace(/^.*-/, '')
       // now find the right search (there could be more) to better target the required cluster result and to get it on the first page
       // FIXME: this should be replaced by a separate function/command doing this, ideally without 'force'
-      cy.get('h4').contains(new RegExp('^'+templateName+'$')).parent('div.policy-status-by-templates-table').within(() => {
-        cy.get('input[aria-label="Search input"]').clear({force: true}).type(cluster, {force: true})
+      cy.get('h4').contains(new RegExp('^'+templateName+'$')).parent('div.policy-status-by-templates-table').as('form')
+      cy.get('@form').then(e => doTableSearch(cluster, e))
+      cy.get('@form').within(() => {
         cy.get('tbody').within(() => {
           cy.get('td').contains(new RegExp('^'+cluster+'$')).parents('td').siblings('td').spread((clusterStatus, message, lastReport, history) => {
             // check status
