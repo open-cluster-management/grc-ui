@@ -40,6 +40,8 @@ export const formatPoliciesToClustersTableData = (policies) => {
           } else if (policyCompliantStatusOnCluster === 'noncompliant') {
             nonCompliantNum = 1
             nonCompliantPolicyName = _.get(policy, 'metadata.name', '-')
+          } else {
+            nonCompliantPolicyName = _.get(policy, 'metadata.name', '-')
           }
           const singlePolicyData = {
             nameSpace,
@@ -67,7 +69,7 @@ export const formatPoliciesToClustersTableData = (policies) => {
           nonCompliant.push(singlePolicyData.nonCompliantPolicyName)
         }
         totalCompliantNum += singlePolicyData.compliantNum
-        totalNonCompliantNum += singlePolicyData.nonCompliantPolicyName
+        totalNonCompliantNum += singlePolicyData.nonCompliantNum
         consoleURL = singlePolicyData.consoleURL
       })
       const singleClusterData = {
