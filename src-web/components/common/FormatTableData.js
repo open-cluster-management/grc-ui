@@ -10,69 +10,77 @@
 'use strict'
 import _ from 'lodash'
 
-const formatPolicyClusterView = (clusterName, policiesUnderCluster) => {
-  let compliantNum = 0
-  let noncompliantNum = 0
-  let nameSpace = '-'
-  let consoleURL = '-'
-  const nonCompliant = []
-  policiesUnderCluster.forEach(policy => {
-    if (policy.clusterNS && typeof policy.clusterNS === 'object' && policy.clusterNS[clusterName]) {
-      nameSpace = policy.clusterNS[clusterName]
-    }
-
-    if (policy.clusterConsoleURL && typeof policy.clusterConsoleURL === 'object' && policy.clusterConsoleURL[clusterName]) {
-      consoleURL = policy.clusterConsoleURL[clusterName]
-    }
-
-    const statuses = _.get(policy, 'raw.status.status')
-    if (Array.isArray(statuses) && statuses.length > 0) {
-      statuses.forEach(status => {
-        const clusterNameTemp = _.get(status, 'clustername', '')
-        const compliantTemp = _.get(status, 'compliant', '')
-        if (clusterNameTemp.trim().toLowerCase() === clusterName.trim().toLowerCase()) {
-          if (compliantTemp.trim().toLowerCase() === 'compliant') {
-            compliantNum += 1
-          } else if (compliantTemp.trim().toLowerCase() === 'noncompliant') {
-            noncompliantNum += 1
-            nonCompliant.push(_.get(policy, 'metadata.name', '-'))
-          } else {
-            nonCompliant.push(_.get(policy, 'metadata.name', '-'))
-          }
-        }
-      })
-    }
-  })
-
-  return {
-    cluster: clusterName,
-    namespace: nameSpace,
-    violation: `${noncompliantNum}/${policiesUnderCluster.length}/${policiesUnderCluster.length-compliantNum-noncompliantNum}`,
-    nonCompliant: nonCompliant,
-    consoleURL: consoleURL,
-  }
-}
-
 export const formatPoliciesToClustersTableData = (policies) => {
-  const result = []
-  const map = new Map()
-  if (policies) {
+  const clusterTableData = []
+  const clusterMap = new Map()
+  if (Array.isArray(policies) && policies.length > 0) {
     policies.forEach((policy) => {
       const statuses = _.get(policy, 'raw.status.status', {})
-      Array.isArray(statuses) && statuses.forEach((cluster) =>
-      {
-        if (!map.has(cluster.clustername)) {
-          map.set(cluster.clustername, [])
-        }
-        map.get(cluster.clustername).push(policy)
-      })
+      // step 1, build policies info grouped by each unique cluster name
+      if (Array.isArray(statuses) && statuses.length > 0) {
+        statuses.forEach((singleClusterStatus) => {
+          const clusterName = singleClusterStatus.clustername
+          if (!clusterMap.has(clusterName)) {
+            clusterMap.set(clusterName, [])
+          }
+          let compliantNum = 0
+          let nonCompliantNum = 0
+          let nameSpace = '-'
+          let consoleURL = '-'
+          let nonCompliantPolicyName = ''
+          if (policy.clusterNS && typeof policy.clusterNS === 'object' && policy.clusterNS[clusterName]) {
+            nameSpace = policy.clusterNS[clusterName]
+          }
+          if (policy.clusterConsoleURL && typeof policy.clusterConsoleURL === 'object' && policy.clusterConsoleURL[clusterName]) {
+            consoleURL = policy.clusterConsoleURL[clusterName]
+          }
+          const policyCompliantStatusOnCluster = _.get(singleClusterStatus, 'compliant', '').trim().toLowerCase()
+          if (policyCompliantStatusOnCluster === 'compliant') {
+            compliantNum = 1
+          } else if (policyCompliantStatusOnCluster === 'noncompliant') {
+            nonCompliantNum = 1
+            nonCompliantPolicyName = _.get(policy, 'metadata.name', '-')
+          }
+          const singlePolicyData = {
+            nameSpace,
+            compliantNum,
+            nonCompliantNum,
+            nonCompliantPolicyName,
+            consoleURL,
+          }
+          clusterMap.get(clusterName).push(singlePolicyData)
+        })
+      }
     })
 
-    for (const [key, value] of map.entries()) {
-      result.push(formatPolicyClusterView(key, value))
+    // step 2, combine single policy info in policiesData together under each unique cluster name
+    for (const [clusterName, policiesData] of clusterMap.entries()) {
+      let namespace = '-'
+      let consoleURL = '-'
+      let totalCompliantNum = 0
+      let totalNonCompliantNum = 0
+      const totalPoliciesUnderCluster = policiesData.length
+      const nonCompliant = []
+      policiesData.forEach((singlePolicyData) => {
+        namespace = singlePolicyData.nameSpace
+        if (singlePolicyData.nonCompliantPolicyName) {
+          nonCompliant.push(singlePolicyData.nonCompliantPolicyName)
+        }
+        totalCompliantNum += singlePolicyData.compliantNum
+        totalNonCompliantNum += singlePolicyData.nonCompliantPolicyName
+        consoleURL = singlePolicyData.consoleURL
+      })
+      const singleClusterData = {
+        cluster: clusterName,
+        namespace,
+        violation: `${totalNonCompliantNum}/${totalPoliciesUnderCluster}/${totalPoliciesUnderCluster-totalCompliantNum-totalNonCompliantNum}`,
+        nonCompliant,
+        consoleURL,
+      }
+      clusterTableData.push(singleClusterData)
     }
   }
-  return result
+  return clusterTableData
 }
 
 export const formatExpandablePolicies = (policies) => {
