@@ -125,6 +125,7 @@ const controlData = [
     id: 'enforce',
     type: 'checkbox',
     active: 'inform',
+    checked: false,
     available: ['inform', 'enforce'],  // in template, 'inform'===checkbox unchecked
     reverse: 'Policy[0].spec.remediationAction',
   },
@@ -133,8 +134,9 @@ const controlData = [
     description: 'policy.create.disabled.tooltip',
     id: 'disabled',
     type: 'checkbox',
-    active: 'false',
-    available: ['false', 'true'],
+    active: false,
+    checked: false,
+    available: [false, true],
     reverse: 'Policy[0].spec.disabled',
   },
 ]

@@ -218,7 +218,8 @@ const controlData = [
     'description': 'Select Enforce, if the feature is supported for your policy, to update remediationAction. When Enforce is not selected, the parameter value for remediationAction is inform.',
     'id': 'enforce',
     'type': 'checkbox',
-    'active': false,
+    'active': 'inform',
+    'checked': false,
     'available': [
       'inform',
       'enforce'
@@ -234,6 +235,7 @@ const controlData = [
     'id': 'disabled',
     'type': 'checkbox',
     'active': false,
+    'checked': false,
     'available': [
       'false',
       'true'
