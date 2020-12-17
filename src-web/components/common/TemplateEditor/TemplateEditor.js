@@ -340,7 +340,7 @@ export default class TemplateEditor extends React.Component {
   }
 
   renderCheckbox(control) {
-    const {id, name, description, active} = control
+    const {id, name, description, checked} = control
     return (
       <React.Fragment>
         <div className='creation-view-controls-checkbox'>
@@ -350,7 +350,7 @@ export default class TemplateEditor extends React.Component {
             className='checkbox'
             hideLabel
             labelText=''
-            checked={active}
+            checked={checked}
             onChange={this.onChange.bind(this, id)} />
           <div>{name}</div>
           <Tooltip content={description}>
@@ -510,6 +510,7 @@ export default class TemplateEditor extends React.Component {
   }
 
   onChange(field, evt) {
+    const { locale } = this.props
     let updateName = false
     let { isCustomName } = this.state
     const { controlData, templateYAML } = this.state
@@ -529,7 +530,8 @@ export default class TemplateEditor extends React.Component {
       updateName = !isCustomName && control.updateNamePrefix
       break
     case 'checkbox':
-      control.active = evt
+      control.active = evt ? control.available[1] : control.available[0]
+      control.checked = evt
       break
     }
 
@@ -550,9 +552,13 @@ export default class TemplateEditor extends React.Component {
 
     const {template} = this.props
     const newYAML = generateYAML(template, controlData)
-    const templateObject = parseYAML(newYAML).parsed
-    this.setState({controlData, isCustomName, templateYAML: newYAML, templateObject, exceptions:[]})
-    highlightChanges(this.editor, templateYAML, newYAML)
+    const { parsed: templateObject, exceptions }= parseYAML(newYAML)
+    // Get highlight decorations
+    const highlights = highlightChanges(this.editor, templateYAML, newYAML)
+    // Validate YAML and attach highlights and exception decorations
+    validateYAML(templateObject, controlData, exceptions, locale)
+    this.handleExceptions(exceptions, highlights)
+    this.setState({controlData, isCustomName, templateYAML: newYAML, templateObject, exceptions})
     return field
   }
 
@@ -665,28 +671,21 @@ export default class TemplateEditor extends React.Component {
     this.parseDebounced()
   }
 
-  handleParse = () => {
-    const {locale}= this.props
-    let { isCustomName } = this.state
-    const { templateYAML, templateObject } = this.state
-    let { controlData } = this.state
-    const { parsed: newParsed, exceptions} = parseYAML(templateYAML)
-    validateYAML(newParsed, controlData, exceptions, locale)
-
+  handleExceptions = (exceptions, decorationList=[]) => {
     // update editor annotations
     if (this.editor) {
-      const decorationList = []
+      // Decorate with error icon and tooltip message in the margin
       exceptions.forEach(({row, text})=>{
         decorationList.push({
           range: new this.editor.monaco.Range(row, 0, row, 132),
           options: {
-            isWholeLine: true,
             glyphMarginClassName: 'errorDecoration',
             glyphMarginHoverMessage: {value: text},
-            minimap: {color: 'red' , position:1}
+            minimap: {color: 'red' , position: 1}
           }
         })
       })
+      // Decorate text with squiggly underline under the error
       exceptions.forEach(({row, column})=>{
         decorationList.push({
           range: new this.editor.monaco.Range(row, column-6, row, column+6),
@@ -695,8 +694,23 @@ export default class TemplateEditor extends React.Component {
           }
         })
       })
-      this.editor.decorations = this.editor.deltaDecorations(this.editor.decorations, decorationList)
+      // Let editor update before adding decorations
+      setTimeout(() => {
+        this.editor.decorations = this.editor.deltaDecorations(this.editor.decorations, decorationList)
+      }, 500)
     }
+  }
+
+  handleParse = () => {
+    const {locale}= this.props
+    let { isCustomName } = this.state
+    const { templateYAML, templateObject } = this.state
+    let { controlData } = this.state
+
+    // Parse, validate, and add exception decorations
+    const { parsed: newParsed, exceptions} = parseYAML(templateYAML)
+    validateYAML(newParsed, controlData, exceptions, locale)
+    this.handleExceptions(exceptions)
 
     // if no exceptions, update controlData based on custom editing
     if (Object.keys(newParsed).length>0) {

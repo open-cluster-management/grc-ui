@@ -48,7 +48,12 @@ export const generateYAML = (template, controlData) => {
       }
     } else {
       if (id === 'enforce' || id === 'disabled') {
-        templateData[id] = active
+        // If it's undefined or null, it's been removed. Set to match the form.
+        if (active===undefined || active===null) {
+          templateData[id] = control.available[0]
+        } else {
+          templateData[id] = active
+        }
       }
     }
   })
@@ -247,16 +252,13 @@ export const highlightChanges = (editor, oldYAML, newYAML) => {
         }
       }
     })
-    // wait until editor has content before highlighting
-    setTimeout(() => {
-      editor.decorations = editor.deltaDecorations(editor.decorations, decorationList)
-    }, 0)
     if (editor && (firstNewRow || firstModRow)) {
       const lineNumber = firstNewRow || firstModRow || 0
       editor.revealLinesInCenter(lineNumber, lineNumber+10, 0)
-
     }
   }
+  // Return list so that other decorations can be added
+  return decorationList
 }
 
 export const getUniqueName = (name, nameSet) => {

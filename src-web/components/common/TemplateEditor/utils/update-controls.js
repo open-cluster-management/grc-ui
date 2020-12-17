@@ -17,12 +17,6 @@ import _ from 'lodash'
 export const initializeControlData = (template, initialControlData) =>{
   return initialControlData.map(control=>{
     control = Object.assign({}, control)
-    const {type, active, available=[]} = control
-
-    // if checkbox, convert active from an item name to a boolean
-    if (type==='checkbox') {
-      control.active = available.indexOf(active)>0
-    }
 
     // if user data was cached, apply now
     // save custom user input for session??
@@ -112,21 +106,16 @@ export const updateControls = (controlData, oldParsed, newParsed, locale) => {
 }
 
 const updateTextControl = (control, reverse, newParsed) => {
-  // If nothing is returned, default to an empty string
-  const newActive = _.get(newParsed, reverse[0], '')
+  const newActive = _.get(newParsed, reverse[0])
   const isCustomName = control.id==='name' && control.active!==newActive
-  control.active = newActive
+  control.active = newActive === null ? '' : newActive
   return isCustomName
 }
 
 const updateCheckboxControl = (control, reverse, newParsed) => {
   const newActive = _.get(newParsed, reverse[0])
-  if (typeof newActive === 'boolean') {
-    control.active = control.available.indexOf(newActive.toString())>0
-  }
-  else {
-    control.active = control.available.indexOf(newActive)>0
-  }
+  control.active = newActive === null ? '' : newActive
+  control.checked = control.available.indexOf(newActive)===1
 }
 
 const updateSingleSelectControl = (control, reverse, newParsed) => {
@@ -175,12 +164,7 @@ const updateMultiSelectLabelControl = (control, reverse, newParsed) => {
   const matchLabels = _.get(newParsed, `${reverse[0]}.matchLabels`)
   if (matchLabels instanceof Object) {
     Object.entries(matchLabels).forEach(([key, value]) => {
-      const selection = `${key}: "${value}"`
-      selectors.push(selection)
-      if (!availableMap[selection]) {
-        userMap[selection] = {key, value}
-        userData.push(selection)
-      }
+      updateUserData(availableMap, userMap, userData, selectors, key, value)
     })
   }
   const matchExpressions = _.get(newParsed, `${reverse[0]}.matchExpressions`)
@@ -188,12 +172,7 @@ const updateMultiSelectLabelControl = (control, reverse, newParsed) => {
     matchExpressions.forEach(({key, operator, values})=>{
       if (operator==='In') {
         values.forEach(value => {
-          const selection = `${key}: "${value}"`
-          selectors.push(selection)
-          if (!availableMap[selection]) {
-            userMap[selection] = {key, value}
-            userData.push(selection)
-          }
+          updateUserData(availableMap, userMap, userData, selectors, key, value)
         })
       }
     })
@@ -203,6 +182,15 @@ const updateMultiSelectLabelControl = (control, reverse, newParsed) => {
     control.userMap = userMap
   }
   control.active = selectors
+}
+
+const updateUserData = (availableMap, userMap, userData, selectors, key, value) => {
+  const selection = `${key}: "${value}"`
+  selectors.push(selection)
+  if (!availableMap[selection]) {
+    userMap[selection] = {key, value}
+    userData.push(selection)
+  }
 }
 
 const updateMultiSelectReplacementControl = (control, reverse, oldParsed, newParsed, locale) => {
