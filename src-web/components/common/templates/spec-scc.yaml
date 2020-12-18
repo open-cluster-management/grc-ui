@@ -2,7 +2,7 @@
 name:
   SecurityContextConstraints
 description:
-  restricted scc
+  Restricted SCC
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use
