@@ -13,7 +13,7 @@ spec:
   policy-templates:
   - objectDefinition:
       apiVersion: policy.open-cluster-management.io/v1
-      kind: IamPolicy # limit clusteradmin role
+      kind: IamPolicy # limit clusteradmin roles
       metadata:
         name: [TEST_POLICY_NAME]-limit-clusteradmin
       spec:
