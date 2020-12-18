@@ -2,7 +2,7 @@
 name:
   ImageManifestVulnPolicy
 description:
-  detect image vulnerabilities
+  Detect image vulnerabilities
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use
@@ -21,7 +21,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: {{name}}-example-sub
+          name: {{name}}-image-vulnerabilty-sub
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: high
@@ -43,7 +43,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: {{name}}-example-imv
+          name: {{name}}-image-vulnerabilities
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: high

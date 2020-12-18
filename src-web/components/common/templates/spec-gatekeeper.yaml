@@ -2,7 +2,7 @@
 name:
   GatekeeperOperator
 description:
-  install the Gatekeeper operator
+  Install the Gatekeeper operator
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use

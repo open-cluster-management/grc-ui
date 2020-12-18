@@ -2,7 +2,7 @@
 name:
   ComplianceOperator
 description:
-  install the Compliance operator
+  Install the Compliance operator
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use
@@ -15,7 +15,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: comp-operator-ns
+          name: {{name}}-comp-operator-ns
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: high
@@ -30,7 +30,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: comp-operator-operator-group
+          name: {{name}}-comp-operator-operator-group
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: high
@@ -49,7 +49,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: comp-operator-subscription
+          name: {{name}}-comp-operator-subscription
         spec:
           remediationAction: inform  # will be overridden by remediationAction in parent policy
           severity: high
