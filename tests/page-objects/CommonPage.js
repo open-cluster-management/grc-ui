@@ -251,10 +251,8 @@ function searchPolicy(name, expectToDisplay) {
   this.setPatternFlySearchValue(name)
   if(expectToDisplay){
     this.expect.element('tbody tr > *:first-child > a').text.to.equal(name)
-    this.clearPatternFlySearchValue()
   } else{
     this.waitForElementNotPresent('tbody tr > *:first-child > a')
-    this.clearPatternFlySearchValue()
   }
 }
 

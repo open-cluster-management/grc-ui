@@ -15,6 +15,10 @@
   position: relative;
   margin-top: -10px;
 
+  .bx--inline-notification__text-wrapper {
+    display:block
+  }
+
   &.showEditor {
     margin: -22px 0 -3.125rem 0;
   }
