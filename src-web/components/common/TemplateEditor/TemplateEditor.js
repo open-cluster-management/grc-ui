@@ -296,7 +296,16 @@ export default class TemplateEditor extends React.Component {
               msgs.get('error.create.policy', locale) :
               msgs.get('success.create.policy', locale) }
             iconDescription=''
-            subtitle={updateMessage}
+            subtitle={updateMsgKind==='error'
+              ? <span>
+                  <br />{msgs.get('error.policy.nameFormat', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule1', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule2', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule3', locale)}
+                  {msgs.get('error.policy.nameFormat.Rule4', locale)}
+                </span>
+              : updateMessage
+            }
             className='persistent notification'
             onCloseButtonClick={this.handleUpdateMessageClosed}
           />
