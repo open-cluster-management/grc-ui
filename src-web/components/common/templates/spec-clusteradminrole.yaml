@@ -2,7 +2,7 @@
 name:
   IamPolicy
 description:
-  Limit number of clusteradmin roles
+  Limit clusteradmin roles
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use
@@ -15,7 +15,7 @@ replacements: # if user select this choice, the template variable names and valu
   policyTemplates: |
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
-        kind: IamPolicy # limit clusteradmin role
+        kind: IamPolicy # limit clusteradmin roles
         metadata:
           name: {{name}}-limit-clusteradmin
         spec:

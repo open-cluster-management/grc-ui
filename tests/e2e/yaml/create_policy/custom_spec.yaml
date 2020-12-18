@@ -3,7 +3,7 @@
       apiVersion: policy.open-cluster-management.io/v1
       kind: MyOwnPolicy
       metadata:
-        name: policy-myownpolicy-example
+        name: policy-myownpolicy
       spec:
         namespaceSelector:
           include: ["default"]

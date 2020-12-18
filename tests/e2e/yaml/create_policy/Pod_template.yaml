@@ -15,7 +15,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: [TEST_POLICY_NAME]-sample-nginx-pod
+        name: [TEST_POLICY_NAME]-nginx-pod
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
         severity: low
@@ -28,7 +28,7 @@ spec:
               apiVersion: v1
               kind: Pod # nginx pod must exist
               metadata:
-                name: sample-nginx-pod
+                name: nginx-pod
               spec:
                 containers:
                 - image: nginx:1.7.9

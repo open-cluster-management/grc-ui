@@ -15,7 +15,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: CertificatePolicy # cert management expiration
       metadata:
-        name: [TEST_POLICY_NAME]-example
+        name: [TEST_POLICY_NAME]-cert-expiration
       spec:
         namespaceSelector:
           include: ["default"]

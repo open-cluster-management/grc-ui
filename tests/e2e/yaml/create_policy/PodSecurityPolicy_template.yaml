@@ -15,7 +15,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: [TEST_POLICY_NAME]-sample-restricted-psp
+        name: [TEST_POLICY_NAME]-restricted-psp
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
         severity: high
@@ -28,7 +28,7 @@ spec:
               apiVersion: policy/v1beta1
               kind: PodSecurityPolicy # no privileged pods
               metadata:
-                name: sample-restricted-psp
+                name: restricted-psp
                 annotations:
                   seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
               spec:

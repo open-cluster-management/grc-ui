@@ -15,7 +15,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: [TEST_POLICY_NAME]-mem-limit-range
+        name: [TEST_POLICY_NAME]-container-mem-limit-range
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
         severity: medium
@@ -28,7 +28,7 @@ spec:
               apiVersion: v1
               kind: LimitRange # limit memory usage
               metadata:
-                name: mem-limit-range
+                name: container-mem-limit-range
               spec:
                 limits:
                 - default:
