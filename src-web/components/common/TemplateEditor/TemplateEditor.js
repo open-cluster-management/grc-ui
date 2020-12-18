@@ -298,6 +298,7 @@ export default class TemplateEditor extends React.Component {
             iconDescription=''
             subtitle={updateMsgKind==='error'
               ? <span>
+                  <br />{msgs.get('error.policy.nameFormat.hint', locale)}
                   <br />{msgs.get('error.policy.nameFormat', locale)}
                   <br />{msgs.get('error.policy.nameFormat.Rule1', locale)}
                   <br />{msgs.get('error.policy.nameFormat.Rule2', locale)}
