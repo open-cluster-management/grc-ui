@@ -2,7 +2,7 @@
 name:
   IamPolicy
 description:
-  Limit number of clusteradmin role
+  Limit number of clusteradmin roles
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use

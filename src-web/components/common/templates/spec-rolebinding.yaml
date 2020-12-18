@@ -17,7 +17,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: {{name}}-operator-rolebinding
+          name: {{name}}-operatoruser-rolebinding
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: high
@@ -30,7 +30,7 @@ replacements: # if user select this choice, the template variable names and valu
                 kind: RoleBinding # role binding must exist
                 apiVersion: rbac.authorization.k8s.io/v1
                 metadata:
-                  name: operator-rolebinding
+                  name: operatoruser-rolebinding
                 subjects:
                 - kind: User
                   name: admin # Name is case sensitive
