@@ -538,8 +538,7 @@ export const verifyViolationsInPolicyStatusTemplates = (clusterViolations, viola
 export const verifyPolicyDetailsInCluster =  (policyName, policyConfig) => {
   cy.goToPolicyClusterPage(policyName, policyConfig)
   cy.get('section[aria-label="Policy details"]').within(() => {
-    cy.get('.bx--structured-list-td').spread((nameLabel, name, clusterLabel, cluster, messageLabel, message, 
-      statusLabel, status, enforcementLabel, enforcement ) => {
+    cy.get('.bx--structured-list-td').spread((nameLabel, name, clusterLabel, cluster, messageLabel, message, statusLabel, status, enforcementLabel, enforcement ) => {
         if (policyConfig['namespace']) {
           cy.wrap(name).contains(policyConfig['namespace']+'.'+policyName)
         }
@@ -557,17 +556,15 @@ export const verifyPolicyDetailsInCluster =  (policyName, policyConfig) => {
 
 export const verifyPolicyTemplatesInCluster = (policyName, policyConfig) => {
   cy.get('#policyTemplates-table-container').within(() => {
-    cy.get('tbody').children('tr[data-row-name="'+policyName+'-example"]').spread((nameLabel, name, apiLabel, api, kindLabel, kind, 
-      compliantLabel, compliant) => {
-        cy.log(name)
-        cy.wrap(name).contains(policyName+'-example')
-        if(policyConfig['apiVersion']) {
-          cy.wrap(api).contains(policyConfig['apiVersion'])
-        }if(policyConfig['kind']) {
-          cy.wrap(kind).contains(policyConfig['kind'])
-        }
-        cy.wrap(compliant).contains('Compliant')
+    cy.get('tbody').children('tr[data-row-name="'+policyName+'-example"]').spread((nameLabel, name, apiLabel, api, kindLabel, kind, compliantLabel, compliant) => {
+      cy.wrap(name).contains(policyName+'-example')
+      if(policyConfig['apiVersion']) {
+        cy.wrap(api).contains(policyConfig['apiVersion'])
+      }
+      if(policyConfig['kind']) {
+        cy.wrap(kind).contains(policyConfig['kind'])
+      }
+      cy.wrap(compliant).contains('Compliant')
       })
     })
-
 }
