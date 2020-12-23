@@ -38,3 +38,7 @@ gatekeeper-operator-subscription:
 [UNAME]-sample-role:
  0: "notification - roles \\[sample-role\\] in namespace default exist as specified, therefore this Object template is compliant"
  1: "violation - roles `sample-role` does not exist as specified"
+[UNAME]-sample-rolebinding:
+ 1: "violation - rolebindings `sample-rolebinding` does not exist as specified"
+[UNAME]-sample-restricted-scc:
+ 1: "violation - securitycontextconstraints `sample-restricted-scc` does not exist as specified"

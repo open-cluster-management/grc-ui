@@ -7,6 +7,8 @@ policyConfig:
   - 'CertificatePolicy - cert management expiration'
   cluster_binding:
     - 'name: "local-cluster"'
+  binding_selector:
+    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "local-cluster" ] } ]'
   standards:
     - 'NIST-CSF'
     - 'FISMA'
