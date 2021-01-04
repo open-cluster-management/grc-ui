@@ -253,7 +253,7 @@ export const getTemplateSource = (reverse, parsed) => {
       const lines = yaml.split('\n')
       // the templates are an array, so we need to iterate over each
       for (let i = 0; i < synced.length; i++) {
-        const syncItem = synced[i];
+        const syncItem = synced[i]
         if (i+1 < synced.length) {
           ret = [...ret, ...lines.slice(syncItem.$r, synced[i+1].$r).join('\n')]
         } else {
