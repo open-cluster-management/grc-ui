@@ -82,7 +82,7 @@ replacements: # if user select this choice, the template variable names and valu
                   name: gatekeeper-operator-sub
                   namespace: gatekeeper-system
                 spec:
-                  channel: alpha
+                  channel: stable
                   name: gatekeeper-operator
                   source: gatekeeper-operator
                   sourceNamespace: gatekeeper-system
