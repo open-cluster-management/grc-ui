@@ -82,6 +82,7 @@ module.exports = {
       return selectorStr
     },
     createTestPolicy,
+    compareTemplate,
     testCreateCustomSelections,
     testDetailsPage,
     testFilters,
