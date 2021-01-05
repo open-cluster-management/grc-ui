@@ -74,6 +74,13 @@ module.exports = {
     page.testDetailsPage(policyName, templateFile)
   },
 
+  'GRC All policy page: Verify stability of YAML': (browser) => {
+    const time = browser.globals.time
+    const gkPolicy = fs.readFileSync(path.join(__dirname, 'yaml/create_policy/Gatekeeper-template.yaml'))
+    var yaml = gkPolicy.toString()
+    common.createPolicy(browser, 'policy-gatekeeper-' + time, yaml, time)
+  },
+
   'GRC All policy page: Verify summary table': (browser) => {
     common.clearPatternFlySearchValue()
     page.verifySummary(`${browser.launch_url}${config.get('contextPath')}/all`)

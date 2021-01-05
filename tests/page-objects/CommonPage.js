@@ -9,6 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 const parser = require('../utils/yamlHelper')
 const config = require('../../config')
+const allpolicy = require('./AllPolicyPage')
 
 module.exports = {
   elements: {
@@ -120,6 +121,7 @@ function createPolicy(browser, name, yaml, time) {
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
   this.pause(1000)
+  verifyStableYaml(browser, yaml, name)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
@@ -140,6 +142,15 @@ function createPolicy(browser, name, yaml, time) {
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
+}
+
+function verifyStableYaml(browser, yaml, name) {
+  //check/uncheck enforce to reload DOM
+  this.waitForElementVisible('@enforce')
+  this.click('@enforce')
+  this.pause(1000)
+  this.click('@enforce')
+  allpolicy.compareTemplate(browser, yaml, { policyName: name })
 }
 
 function enforcePolicy(name){
