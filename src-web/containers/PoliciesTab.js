@@ -25,6 +25,7 @@ import { ALL_POLICIES } from '../../lib/client/queries'
 import msgs from '../../nls/platform.properties'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
+import { policiesTestBigData } from '../../tests/jest/policiesTestBigData'
 class PoliciesTab extends React.Component {
   static propTypes = {
     secondaryHeaderProps: PropTypes.object,
@@ -51,8 +52,9 @@ class PoliciesTab extends React.Component {
       <Page>
         <Query query={ALL_POLICIES} pollInterval={pollInterval} notifyOnNetworkStatusChange >
           {( complianceResult ) => {
+            // eslint-disable-next-line no-unused-vars
             const {data={}, loading, startPolling, stopPolling, refetch} = complianceResult
-            const { items } = data
+            const { items } = policiesTestBigData.data
             const error = items ? null : complianceResult.error
             if (error) {
               const errorName = complianceResult.error.graphQLErrors[0].name ? complianceResult.error.graphQLErrors[0].name : error.name
