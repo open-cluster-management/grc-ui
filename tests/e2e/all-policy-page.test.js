@@ -9,6 +9,9 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 
 const config = require('../../config')
+var fs = require('fs')
+const path = require('path')
+
 let page, common, loginPage
 
 module.exports = {
