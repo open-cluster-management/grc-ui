@@ -121,7 +121,7 @@ function createPolicy(browser, name, yaml, time) {
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
   this.pause(1000)
-  verifyStableYaml(browser, yaml, name)
+  verifyStableYaml(this, browser, yaml, name)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
@@ -144,12 +144,12 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementNotPresent('@spinner')
 }
 
-function verifyStableYaml(browser, yaml, name) {
+function verifyStableYaml(el, browser, yaml, name) {
   //check/uncheck enforce to reload DOM
-  this.waitForElementVisible('@enforce')
-  this.click('@enforce')
-  this.pause(1000)
-  this.click('@enforce')
+  el.waitForElementVisible('@enforce')
+  el.click('@enforce')
+  el.pause(1000)
+  el.click('@enforce')
   allpolicy.compareTemplate(browser, yaml, { policyName: name })
 }
 
