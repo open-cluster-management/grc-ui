@@ -1,26 +1,26 @@
 # an available choice for the specs control
 name:
-  LimitRange
+  Pod
 description:
-  limit memory usage
+  Nginx pod must exist
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use
   standards: |
     NIST-CSF
   categories: |
-    PR.IP Information Protection Processes and Procedures
+    PR.PT Protective Technology
   controls: |
-    PR.IP-1 Baseline Configuration
+    PR.PT-3 Least Functionality
   policyTemplates: |
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: {{name}}-mem-limit-range
+          name: {{name}}-nginx-pod
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
-          severity: medium
+          severity: low
           namespaceSelector:
             exclude: ["kube-*"]
             include: ["default"]
@@ -28,13 +28,12 @@ replacements: # if user select this choice, the template variable names and valu
             - complianceType: musthave
               objectDefinition:
                 apiVersion: v1
-                kind: LimitRange # limit memory usage
+                kind: Pod # nginx pod must exist
                 metadata:
-                  name: mem-limit-range
+                  name: nginx-pod
                 spec:
-                  limits:
-                  - default:
-                      memory: 512Mi
-                    defaultRequest:
-                      memory: 256Mi
-                    type: Container
+                  containers:
+                  - image: nginx:1.7.9
+                    name: nginx
+                    ports:
+                    - containerPort: 80

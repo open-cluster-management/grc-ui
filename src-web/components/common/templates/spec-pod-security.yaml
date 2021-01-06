@@ -2,7 +2,7 @@
 name:
   PodSecurityPolicy
 description:
-  no privileged pods
+  No privileged pods
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use
@@ -17,7 +17,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: {{name}}-sample-restricted-psp
+          name: {{name}}-restricted-psp
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: high
@@ -30,7 +30,7 @@ replacements: # if user select this choice, the template variable names and valu
                 apiVersion: policy/v1beta1
                 kind: PodSecurityPolicy # no privileged pods
                 metadata:
-                  name: sample-restricted-psp
+                  name: restricted-psp
                   annotations:
                     seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
                 spec:

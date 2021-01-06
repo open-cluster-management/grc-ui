@@ -75,6 +75,7 @@ module.exports = {
   },
 
   'GRC All policy page: Verify summary table': (browser) => {
+    common.clearPatternFlySearchValue()
     page.verifySummary(`${browser.launch_url}${config.get('contextPath')}/all`)
   },
 

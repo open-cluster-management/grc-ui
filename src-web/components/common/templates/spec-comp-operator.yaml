@@ -2,7 +2,7 @@
 name:
   ComplianceOperator
 description:
-  install the Compliance operator
+  Install the Compliance operator
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use

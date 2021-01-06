@@ -2,7 +2,7 @@
 name:
   SecurityContextConstraints
 description:
-  restricted scc
+  Restricted SCC
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use
@@ -17,7 +17,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: {{name}}-sample-restricted-scc
+          name: {{name}}-restricted-scc
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: high
@@ -32,7 +32,7 @@ replacements: # if user select this choice, the template variable names and valu
                 metadata:
                   annotations:
                     kubernetes.io/description: restricted denies access to all host features and requires pods to be run with a UID, and SELinux context that are allocated to the namespace.  This is the most restrictive SCC and it is used by default for authenticated users.
-                  name: sample-restricted-scc
+                  name: restricted-scc
                 allowHostDirVolumePlugin: false
                 allowHostIPC: false
                 allowHostNetwork: false

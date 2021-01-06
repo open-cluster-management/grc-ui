@@ -2,7 +2,7 @@
 name:
   CertificatePolicy
 description:
-  cert management expiration
+  Certificate management expiration
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use
@@ -17,7 +17,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: CertificatePolicy # cert management expiration
         metadata:
-          name: {{name}}-example
+          name: {{name}}-cert-expiration
         spec:
           namespaceSelector:
             include: ["default"]

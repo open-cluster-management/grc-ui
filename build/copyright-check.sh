@@ -22,6 +22,7 @@ if [ -z "$current_year" ] || [ $current_year -lt $origin_year ]; then
 fi
 
 lic_redhat_identifier=" Copyright (c) ${current_year} Red Hat, Inc."
+lic_redhat_identifier_2020=" Copyright (c) 2020 Red Hat, Inc."
 
 #Used to signal an exit
 ERROR=0
@@ -58,7 +59,7 @@ for f in $FILES_TO_SCAN; do
   printf " ========>>>>>>   Scanning $f . . .\n"
   must_have_redhat_license=true
 
-  if [[ "${must_have_redhat_license}" == "true" ]] && [[ "$header" != *"${lic_redhat_identifier}"* ]]; then
+  if [[ "${must_have_redhat_license}" == "true" ]] && [[ "$header" != *"${lic_redhat_identifier}"* ]] && [[ "$header" != *"${lic_redhat_identifier_2020}"* ]]; then
     printf " Missing copyright\n >> Could not find [${lic_redhat_identifier}] in the file.\n"
     ERROR=1
   fi

@@ -1,0 +1,40 @@
+comp-operator-ns:
+ 1: "violation - namespaces `openshift-compliance` does not exist as specified"
+comp-operator-operator-group:
+ 1: "violation - couldn't find mapping resource with kind OperatorGroup, please check if you have CRD deployed"
+ 2: "violation - operatorgroups `compliance-operator` does not exist as specified"
+comp-operator-subscription:
+ 1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
+ 2: "violation - operatorgroups `compliance-operator` does not exist as specified"
+gatekeeper:
+ 1: "violation - couldn't find mapping resource with kind Gatekeeper, please check if you have CRD deployed"
+gatekeeper-operator-ns:
+ 1: "violation - namespaces `gatekeeper-system` does not exist as specified;"
+ 2: "violation - clusterroles `gatekeeper-operator-openshift-role` does not exist as specified;"
+ 3: "violation - rolebindings `gatekeeper-operator-openshift-binding` does not exist as specified"
+gatekeeper-operator-catalog-source:
+ 1: "violation - couldn't find mapping resource with kind CatalogSource, please check if you have CRD deployed"
+ 2: "violation - catalogsources `gatekeeper-operator` does not exist as specified"
+gatekeeper-operator-group:
+ 1: "violation - couldn't find mapping resource with kind OperatorGroup, please check if you have CRD deployed"
+ 2: "violation - catalogsources `gatekeeper-operator` does not exist as specified"
+gatekeeper-operator-subscription:
+ 1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
+ 2: "violation - subscriptions `gatekeeper-operator-sub` does not exist as specified"
+[UNAME]-example:
+ 0: "Number of users with clusteradmin role is 0 above the specified limit"
+ 1: "Number of users with clusteradmin role is [0-9]+ above the specified limit"
+[UNAME]-example-imv:
+ 1: "violation - couldn't find mapping resource with kind ImageManifestVuln, please check if you have CRD deployed"
+[UNAME]-example-sub:
+ 1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
+ 2: "violation - subscriptions `container-security-operator` does not exist as specified"
+[UNAME]-mem-limit-range:
+ 1: "violation - limitranges `mem-limit-range` does not exist as specified"
+[UNAME]-prod:
+ 1: "violation - namespaces `prod` does not exist as specified"
+[UNAME]-sample-restricted-psp:
+ 1: "violation - podsecuritypolicies `sample-restricted-psp` does not exist as specified"
+[UNAME]-sample-role:
+ 0: "notification - roles \\[sample-role\\] in namespace default exist as specified, therefore this Object template is compliant"
+ 1: "violation - roles `sample-role` does not exist as specified"

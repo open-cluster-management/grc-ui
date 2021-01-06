@@ -2,7 +2,7 @@
 name:
   Role
 description:
-  role must follow defined permissions
+  Role must follow defined permissions
 multiselect:
   specs
 replacements: # if user select this choice, the template variable names and values to use
@@ -17,7 +17,7 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: {{name}}-sample-role
+          name: {{name}}-deployments-role
         spec:
           remediationAction: inform # will be overridden by remediationAction in parent policy
           severity: high
@@ -30,7 +30,7 @@ replacements: # if user select this choice, the template variable names and valu
                 apiVersion: rbac.authorization.k8s.io/v1
                 kind: Role
                 metadata:
-                  name: sample-role
+                  name: deployments-role
                 rules:
                   - apiGroups: ["extensions", "apps"]
                     resources: ["deployments"]

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -39,7 +38,8 @@ import _ from 'lodash'
 
 const tempCookie = 'template-editor-open-cookie'
 const diagramIconsInfoStr = '#diagramIcons_info'
-
+// Regex to text valid policy name formart
+const policyNameRegex = RegExp(/^[a-z0-9]([-a-z0-9]*[a-z0-9])?(.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/)
 export default class TemplateEditor extends React.Component {
 
   static propTypes = {
@@ -118,6 +118,7 @@ export default class TemplateEditor extends React.Component {
     showEditor = showEditor===null || showEditor==='true' ? true : false
     this.state = {
       isCustomName: false,
+      validPolicyName: true,
       showEditor,
       exceptions: [],
       updateMessage: '',
@@ -274,7 +275,11 @@ export default class TemplateEditor extends React.Component {
 
   renderNotifications() {
     const { locale } = this.props
-    const { updateMessage, updateMsgKind } = this.state
+    const { updateMessage, validPolicyName } = this.state
+    let { updateMsgKind } = this.state
+    if (!validPolicyName) {
+      updateMsgKind ='error'
+    }
     if (updateMessage) {
 
       const handleClick = () => {
@@ -296,7 +301,17 @@ export default class TemplateEditor extends React.Component {
               msgs.get('error.create.policy', locale) :
               msgs.get('success.create.policy', locale) }
             iconDescription=''
-            subtitle={updateMessage}
+            subtitle={validPolicyName
+              ? updateMessage
+              : <span>
+                  <br />{msgs.get('error.policy.nameFormat.hint', locale)}
+                  <br />{msgs.get('error.policy.nameFormat', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule1', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule2', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule3', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule4', locale)}
+                </span>
+            }
             className='persistent notification'
             onCloseButtonClick={this.handleUpdateMessageClosed}
           />
@@ -304,6 +319,12 @@ export default class TemplateEditor extends React.Component {
       </div>
     }
     return null
+  }
+
+  handlePolicyNameVaildation = (vaildNameFormat) => {
+    this.setState({
+      validPolicyName: vaildNameFormat
+    })
   }
 
   renderTextInput(control) {
@@ -316,6 +337,8 @@ export default class TemplateEditor extends React.Component {
       if (isCustomName && existing) {
         invalid = new Set(existing).has(value)
       }
+      const vaildPolicyNameFormat = policyNameRegex.test(value)
+      invalid = !vaildPolicyNameFormat ? !vaildPolicyNameFormat : invalid
     }
 
     return (
@@ -513,7 +536,16 @@ export default class TemplateEditor extends React.Component {
     const { locale } = this.props
     let updateName = false
     let { isCustomName } = this.state
-    const { controlData, templateYAML } = this.state
+    const { controlData, templateYAML, validPolicyName } = this.state
+    if (field === 'name') {
+      const policyName = _.get(evt, '_targetInst.stateNode.value', '')
+      if (policyName) {
+        const vaildPolicyNameFormat = policyNameRegex.test(policyName)
+        if (validPolicyName !== vaildPolicyNameFormat) {
+          this.handlePolicyNameVaildation(vaildPolicyNameFormat)
+        }
+      }
+    }
     const control = controlData.find(({id})=>id===field)
     switch (control.type) {
     case 'text':
@@ -850,10 +882,11 @@ export default class TemplateEditor extends React.Component {
 
   async handleCreateResource() {
     const { buildControl, createControl } = this.props
+    const { validPolicyName } = this.state
     const {createResource} = createControl
     const {buildResourceLists} = buildControl
     const resourceJSON = this.getResourceJSON()
-    if (resourceJSON) {
+    if (resourceJSON && validPolicyName) {
       const res = await buildResourceLists(resourceJSON)
       const create = res.create
       const update = res.update

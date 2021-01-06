@@ -441,3 +441,96 @@ export const verifyPlacementBindingInPolicyDetails = (uName, policyConfig) => {
       })
     })
 }
+
+
+// does the search using the search form
+// so far tested only on the policy status page
+export const doTableSearch = (text, parentElement = null) => {
+  // FIXME - do this search without a force
+  cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true}).type(text, {force: true})
+}
+
+
+export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violationPatterns, clusters = undefined) => {
+  if (clusters == undefined) {
+    clusters = Object.keys(clusterViolations)
+  }
+  for (const cluster of clusters) {
+    for (const patternId of clusterViolations[cluster]) {
+      // from a messageId having format "templateName-id' parse both templateName and id
+      const templateName = patternId.replace(/-[^-]*$/, '')
+      const id = patternId.replace(/^.*-/, '')
+      // now use the search to better target the required policy and to get it on the first page
+      doTableSearch(templateName)
+      cy.get('tbody').within(() => {
+        cy.get('td').contains(new RegExp('^'+cluster+'$')).parents('td').siblings('td').spread((clusterStatus, template, message, lastReport, history) => {
+          // check status
+          let expectedStatus = 'Compliant'
+          if (id > 0) { expectedStatus = 'Not compliant' }
+          cy.wrap(clusterStatus).contains(expectedStatus)
+          // check status icon
+          const fillColor = getStatusIconFillColor(expectedStatus.toLowerCase())
+          cy.wrap(clusterStatus).find('svg').should('have.attr', 'fill', fillColor)
+          // double-check template
+          cy.wrap(template).contains(templateName)
+          // check message
+          // FIXME: here we should have a function that split the content per ';' and tests each part agains Compliant/NonCompliant and expected messages
+          if (id == 0) {
+            cy.wrap(message).contains(new RegExp('Compliant; '+violationPatterns[templateName][id]))
+          } else {
+            cy.wrap(message).contains(new RegExp('NonCompliant; '+violationPatterns[templateName][id]))
+          }
+          // check last report timestamp
+          cy.wrap(lastReport).contains(timestampRegexp)
+          // check View history link
+          cy.wrap(history).within(() => {
+            cy.get('a').contains('View history')
+          })
+        })
+      })
+    }
+  }
+}
+
+export const verifyViolationsInPolicyStatusTemplates = (clusterViolations, violationPatterns, clusters = undefined) => {
+  if (clusters == undefined) {
+    clusters = Object.keys(clusterViolations)
+  }
+  for (const cluster of clusters) {
+    for (const patternId of clusterViolations[cluster]) {
+      // from a messageId having format "templateName-id' parse both templateName and id
+      const templateName = patternId.replace(/-[^-]*$/, '')
+      const id = patternId.replace(/^.*-/, '')
+      // now find the right search (there could be more) to better target the required cluster result and to get it on the first page
+      // FIXME: this should be replaced by a separate function/command doing this, ideally without 'force'
+      cy.get('h4').contains(new RegExp('^'+templateName+'$')).parent('div.policy-status-by-templates-table').as('form')
+      cy.get('@form').then(e => doTableSearch(cluster, e))
+      cy.get('@form').within(() => {
+        cy.get('tbody').within(() => {
+          cy.get('td').contains(new RegExp('^'+cluster+'$')).parents('td').siblings('td').spread((clusterStatus, message, lastReport, history) => {
+            // check status
+            let expectedStatus = 'Compliant'
+            if (id > 0) { expectedStatus = 'Not compliant' }
+            cy.wrap(clusterStatus).contains(expectedStatus)
+            // check status icon
+            const fillColor = getStatusIconFillColor(expectedStatus.toLowerCase())
+            cy.wrap(clusterStatus).find('svg').should('have.attr', 'fill', fillColor)
+            // check message
+            // FIXME: here we should have a function that split the content per ';' and tests each part agains Compliant/NonCompliant and expected messages
+            if (id == 0) {
+              cy.wrap(message).contains(new RegExp('Compliant; '+violationPatterns[templateName][id]))
+            } else {
+              cy.wrap(message).contains(new RegExp('NonCompliant; '+violationPatterns[templateName][id]))
+            }
+            // check last report timestamp
+            cy.wrap(lastReport).contains(timestampRegexp)
+            // check View history link
+            cy.wrap(history).within(() => {
+              cy.get('a').contains('View history')
+            })
+          })
+        })
+      })
+    }
+  }
+}
