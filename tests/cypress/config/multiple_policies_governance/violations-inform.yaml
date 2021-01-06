@@ -1,0 +1,6 @@
+"local-cluster":
+ - [UNAME]-example-0
+ - [UNAME]-sample-restricted-psp-1
+ - [UNAME]-sample-role-1
+ - [UNAME]-sample-rolebinding-1
+ - [UNAME]-sample-restricted-scc-1

@@ -1,0 +1,6 @@
+"local-cluster":
+ - [UNAME]-example-0
+ - [UNAME]-sample-restricted-psp-0
+ - [UNAME]-sample-role-0
+# - [UNAME]-sample-rolebinding-0  # this is currently not needed due to a template name conflict
+ - [UNAME]-sample-restricted-scc-0

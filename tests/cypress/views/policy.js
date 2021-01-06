@@ -180,6 +180,7 @@ export const verifyPolicyNotInListing = (uName) => {
 
 export const actionPolicyActionInListing = (uName, action, cancel=false) => {
   cy.CheckGrcMainPage()
+  doTableSearch(uName)
   cy.get('.grc-view-by-policies-table').within(() => {
     cy.get('a')
       .contains(uName)
@@ -208,6 +209,7 @@ export const actionPolicyActionInListing = (uName, action, cancel=false) => {
   })
   // after mainpage table action, always return to grc main page
   cy.CheckGrcMainPage()
+  clearTableSearch()
 }
 
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
