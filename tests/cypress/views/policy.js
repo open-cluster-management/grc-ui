@@ -37,7 +37,7 @@ export const createPolicyFromYAML = (policyYAML, create=false) => {
 }
 
 // this function is mainly used to testing selection on the create policy page
-export const createPolicyFromSelection = ({ uPolicyName, create=false, ...policyConfig }) => {
+export const createPolicyFromSelection = (uPolicyName, create=false, policyConfig) => {
   // fill the form uName
   cy.get('input[aria-label="name"]')
     .clear()
@@ -101,6 +101,7 @@ export const verifyPolicyInListing = (
   uName, policyConfig, enabled='enabled',
   targetStatus=0, violationsCounter=''
   ) => {
+  doTableSearch(uName)
   cy.get('.grc-view-by-policies-table').within(() => {
     console.log(uName)
     cy.log(uName)
@@ -163,6 +164,7 @@ export const verifyPolicyInListing = (
         .should('not.exist')
     }
   })
+  clearTableSearch()
 }
 
 export const verifyPolicyNotInListing = (uName) => {
@@ -200,7 +202,10 @@ export const actionPolicyActionInListing = (uName, action, cancel=false) => {
       }
     })
   })
-
+  // wait for the dialog to be closed
+  .then(() => {
+    cy.get('.bx--modal-container').should('not.exist')
+  })
   // after mainpage table action, always return to grc main page
   cy.CheckGrcMainPage()
 }
@@ -319,40 +324,44 @@ const getStatusIconFillColor = (targetStatus) => {
 }
 
 
-export const verifyPlacementRuleInPolicyDetails = (placementRuleConfig) => {
+export const verifyPlacementRuleInPolicyDetails = (policyName, policyConfig, clusterViolations, checkLength=true) => {
   cy.get('section[aria-label="Placement rule"]').within(() => {
     cy.get('.bx--structured-list-td').spread((
       label1, name, label2, namespace, label3,
       selector, label4, decisions, label5, timestamp
       ) => {
       // check name
-      if (placementRuleConfig['name']) {
-        cy.wrap(name).contains(placementRuleConfig['name'])
-      }
+      cy.wrap(name).contains('placement-'+policyName)
       // check namespace
-      if (placementRuleConfig['namespace']) {
-        cy.wrap(namespace).contains(placementRuleConfig['namespace'])
+      if (policyConfig['namespace']) {
+        cy.wrap(namespace).contains(policyConfig['namespace'])
       }
-      // check Cluster selector
-      if (placementRuleConfig['selector']) {
-        cy.wrap(selector).contains(placementRuleConfig['selector'])
+      // check binding selector
+      if (policyConfig['binding_selector']) {
+        // FIXME: in theory there could be multiple bindings
+        cy.wrap(selector).contains(policyConfig['binding_selector'][0])
       }
       // check Decisions
-      if (placementRuleConfig['clusters']) {
+      if (clusterViolations) {
         // check the number of clusters listed matches the configuration
         // for each cluster check that the expected status is listed
-        cy.wrap(decisions).find('a').should('have.length', Object.keys(placementRuleConfig['clusters']).length)
-        .then(() => {
-          for (const [clusterName, expectedStatus] of Object.entries(placementRuleConfig['clusters'])) {
+        if (checkLength) {
+          cy.wrap(decisions).find('a').should('have.length', Object.keys(clusterViolations).length)
+        }
+        cy.then(() => {
+          for (const clusterName in clusterViolations) {
             cy.wrap(decisions).within(() => {
               // find cluster name
               cy.get('a').contains(clusterName)
                 .next().as('clusterStatus')
               // check status
-              cy.get('@clusterStatus').contains(expectedStatus.toLowerCase())
-              // check status icon
-              const fillColor = getStatusIconFillColor(expectedStatus.toLowerCase())
-              cy.get('@clusterStatus').find('svg').should('have.attr', 'fill', fillColor)
+                .then(() => {
+                  const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName]).toLowerCase()
+                  cy.get('@clusterStatus').contains(clusterStatus)
+                  // check status icon
+                  const fillColor = getStatusIconFillColor(clusterStatus)
+                  cy.get('@clusterStatus').find('svg').should('have.attr', 'fill', fillColor)
+                })
             })
           }
         })
@@ -408,16 +417,122 @@ export const verifyPolicyByYAML = (uName, originalYAML, ingoreClusterSelector=tr
   cy.CheckGrcMainPage()
 }
 
+export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
+  const templates = new Set()
+  for (const specification of policyConfig['specifications']) {
+    const shortSpec = specification.split('-')[0].trim() // get only part before '-'
+
+    switch(shortSpec) {
+    case 'CertificatePolicy':
+      templates.add(policyName+'-example'+'/'+'CertificatePolicy')
+      break
+    case 'ComplianceOperator':
+      templates.add('comp-operator-ns'+'/'+'ConfigurationPolicy')
+      templates.add('comp-operator-operator-group'+'/'+'ConfigurationPolicy')
+      templates.add('comp-operator-subscription'+'/'+'ConfigurationPolicy')
+      break
+    case 'EtcdEncryption':
+      templates.add(policyName+'-example'+'/'+'ConfigurationPolicy')
+      break
+    case 'GatekeeperOperator':
+      templates.add('gatekeeper-operator-ns'+'/'+'ConfigurationPolicy')
+      templates.add('gatekeeper-operator-catalog-source'+'/'+'ConfigurationPolicy')
+      templates.add('gatekeeper-operator-group'+'/'+'ConfigurationPolicy')
+      templates.add('gatekeeper-operator-subscription'+'/'+'ConfigurationPolicy')
+      templates.add('gatekeeper'+'/'+'ConfigurationPolicy')
+      break
+    case 'IamPolicy':
+      templates.add(policyName+'-example'+'/'+'IamPolicy')
+      break
+    case 'ImageManifestVulnPolicy':
+      templates.add(policyName+'-example-sub'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-example-imv'+'/'+'ConfigurationPolicy')
+      break
+    case 'LimitRange':
+      templates.add(policyName+'-mem-limit-range'+'/'+'ConfigurationPolicy')
+      break
+    case 'Namespace':
+      templates.add(policyName+'-prod'+'/'+'ConfigurationPolicy')
+      break
+    case 'Pod':
+      templates.add(policyName+'-sample-nginx-pod'+'/'+'ConfigurationPolicy')
+      break
+    case 'PodSecurityPolicy':
+      templates.add(policyName+'-sample-restricted-psp'+'/'+'ConfigurationPolicy')
+      break
+    case 'Role':
+      templates.add(policyName+'-sample-role'+'/'+'ConfigurationPolicy')
+      break
+    case 'RoleBinding':
+      templates.add(policyName+'-sample-role-binding'+'/'+'ConfigurationPolicy')
+      break
+    case 'SecurityContextConstraints':
+      templates.add(policyName+'-sample-restricted-scc'+'/'+'ConfigurationPolicy')
+      break
+    }
+  }
+  return Array.from(templates)
+}
+
+export const getViolationsPerPolicy = (policyName, policyConfig, clusterViolations, clusters = undefined) => {
+  const violations = {}
+  const templates = getPolicyTemplatesNameAndKind(policyName, policyConfig)
+  if (clusters == undefined) {
+    clusters = Object.keys(clusterViolations)
+  }
+  for (const cluster of clusters) {
+    violations[cluster] = []
+  }
+  for (const template of templates) {
+    const templateName = template.split('/', 2)[0]
+    for (const cluster of clusters) {
+      for (const clusterViolation of clusterViolations[cluster]) {
+        if (clusterViolation.startsWith(templateName+'-')) {
+          violations[cluster].push(clusterViolation)
+        }
+      }
+    }
+  }
+  return violations
+}
+
+export const getClusterPolicyStatus = (clusterViolations) => {
+  // in theory there could be multiple violations found by one policy
+  if (clusterViolations.length == 1 && clusterViolations[0].endsWith('-0')) {
+    return 'Compliant'
+  } else {
+    return 'Not Compliant'
+  }
+}
+
+
+export const getViolationsCounter = (clusterViolations) => {
+  let violations = 0
+  const clusters = Object.keys(clusterViolations).length
+  for (const cluster in clusterViolations) {
+    // in theory there could be multiple violations found by one policy
+    // in case the only violation template here is not for success (suffix -0), increase violations counter
+    if (!(clusterViolations[cluster].length == 1 && clusterViolations[cluster][0].endsWith('-0'))) {
+      violations = violations + 1
+    }
+  }
+  return violations+'/'+clusters
+}
+
 export const verifyPolicyInPolicyDetailsTemplates = (uName, policyConfig) => {
   cy.get('#policy-templates-table-container').within(() => {
-    cy.get('tr[data-row-name="'+uName+'-example"]').children().spread((name, visibleAPIver, visibleKind) => {
-      // check name
-      cy.wrap(name).contains(uName)
-      // check api version
-      cy.wrap(visibleAPIver).contains(policyConfig['apiVersion'])
-      // check kind
-      cy.wrap(visibleKind).contains(policyConfig['kind'])
-    })
+    const templates = getPolicyTemplatesNameAndKind(uName, policyConfig)
+    for (const template of templates) {
+      const [templateName, templateKind] = template.split('/', 2)
+      cy.get('tr[data-row-name="'+templateName+'"]').children().spread((name, visibleAPIver, visibleKind) => {
+        // double-check name
+        cy.wrap(name).contains(templateName)
+        // check api version
+        cy.wrap(visibleAPIver).contains(policyConfig['apiVersion'])
+        // check kind
+        cy.wrap(visibleKind).contains(templateKind)
+      })
+    }
   })
 }
 
@@ -449,6 +564,12 @@ export const doTableSearch = (text, parentElement = null) => {
   // FIXME - do this search without a force
   cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true}).type(text, {force: true})
 }
+
+export const clearTableSearch = (parentElement = null) => {
+  // FIXME - do this without a force
+  cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true})
+}
+
 
 
 export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violationPatterns, clusters = undefined) => {
@@ -490,6 +611,7 @@ export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violat
       })
     }
   }
+  clearTableSearch()
 }
 
 export const verifyViolationsInPolicyStatusTemplates = (clusterViolations, violationPatterns, clusters = undefined) => {
