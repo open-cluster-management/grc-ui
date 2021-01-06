@@ -7,11 +7,10 @@ import {
   verifyViolationsInPolicyStatusClusters, verifyViolationsInPolicyStatusTemplates,
   getViolationsPerPolicy, getViolationsCounter
 } from '../views/policy'
-import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
 
 describe('Testing multiple policy governance', () => {
-    const confClusters = getConfigObject('multiple_policies_governance/clusters.yaml')
+    //const confClusters = getConfigObject('multiple_policies_governance/clusters.yaml')
     const substitutionRules = [ [/\[ID\]/g, Cypress.env('RESOURCE_ID')] ]
     // policy-config is used for policy creation and validation
     const confPolicies = getConfigObject('multiple_policies_governance/policy-config.yaml', 'yaml', substitutionRules)
@@ -29,7 +28,6 @@ describe('Testing multiple policy governance', () => {
 
       it(`Disable policy ${policyName}`, () => {
         actionPolicyActionInListing(policyName, 'Disable')
-        cy.wait(1000) // wait 1sec to avoid getting outdated page content since the page must be reloaded first
       })
 
       it(`Check disabled policy ${policyName}`, () => {
@@ -45,11 +43,10 @@ describe('Testing multiple policy governance', () => {
     for (const policyName in confPolicies) {
 
       // we need to do the substitution per policy - probably we could do this once for whole test
-      const confViolationPatterns = getConfigObject('violation-patterns.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
       const confClusterViolations = getConfigObject('multiple_policies_governance/violations-inform.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
       const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations)
       const violationsCounter = getViolationsCounter(clusterViolations)
- 
+
       it(`Wait for policy ${policyName} status becomes available`, () => {
         cy.waitForPolicyStatus(policyName)
       })
