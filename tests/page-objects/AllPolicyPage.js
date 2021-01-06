@@ -82,7 +82,6 @@ module.exports = {
       return selectorStr
     },
     createTestPolicy,
-    compareTemplate,
     testCreateCustomSelections,
     testDetailsPage,
     testFilters,
@@ -92,7 +91,8 @@ module.exports = {
     verifySummary,
     verifyTable,
     verifyToggle,
-  }]
+  }],
+  compareTemplate: compareTemplate
 }
 function verifySummary(url) {
   this.waitForElementVisible('@summaryCollapse')

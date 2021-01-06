@@ -16,7 +16,7 @@ spec:
         metadata:
           name: policy-gatekeeper-[TIME]-k8srequiredlabels
         spec:
-          remediationAction: enforce # will be overridden by remediationAction in parent policy
+          remediationAction: enforce
           severity: low
           object-templates:
             - complianceType: musthave
@@ -31,7 +31,6 @@ spec:
                       names:
                         kind: K8sRequiredLabels
                       validation:
-                        # Schema for the `parameters` field
                         openAPIV3Schema:
                           properties:
                             labels:
@@ -70,7 +69,7 @@ spec:
         metadata:
           name: policy-gatekeeper-[TIME]-audit
         spec:
-          remediationAction: inform # will be overridden by remediationAction in parent policy
+          remediationAction: inform
           severity: low
           object-templates:
             - complianceType: musthave
@@ -87,7 +86,7 @@ spec:
         metadata:
           name: policy-gatekeeper-[TIME]-admission
         spec:
-          remediationAction: inform # will be overridden by remediationAction in parent policy
+          remediationAction: inform
           severity: low
           object-templates:
             - complianceType: mustnothave

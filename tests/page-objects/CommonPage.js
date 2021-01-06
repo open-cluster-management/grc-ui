@@ -99,7 +99,7 @@ function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionNa
   this.waitForElementNotPresent(modalName)
 }
 
-function createPolicy(browser, name, yaml, time) {
+function createPolicy(browser, name, yaml, time, filename) {
   this.log(`Creating policy:\n${yaml}`)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@createPolicyButton')
@@ -121,7 +121,9 @@ function createPolicy(browser, name, yaml, time) {
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
   this.pause(1000)
-  verifyStableYaml(this, browser, yaml, name)
+  if (filename) {
+    verifyStableYaml(this, filename, name)
+  }
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
@@ -144,13 +146,13 @@ function createPolicy(browser, name, yaml, time) {
   this.waitForElementNotPresent('@spinner')
 }
 
-function verifyStableYaml(el, browser, yaml, name) {
+function verifyStableYaml(el, yaml, name) {
   //check/uncheck enforce to reload DOM
   el.waitForElementVisible('@enforce')
   el.click('@enforce')
   el.pause(1000)
   el.click('@enforce')
-  allpolicy.compareTemplate(browser, yaml, { policyName: name })
+  allpolicy.compareTemplate(el, yaml, { policyName: name })
 }
 
 function enforcePolicy(name){

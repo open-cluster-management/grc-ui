@@ -81,7 +81,7 @@ module.exports = {
     const time = browser.globals.time
     const gkPolicy = fs.readFileSync(path.join(__dirname, 'yaml/create_policy/Gatekeeper-template.yaml'))
     var yaml = gkPolicy.toString()
-    common.createPolicy(browser, 'policy-gatekeeper-' + time, yaml, time)
+    common.createPolicy(browser, 'policy-gatekeeper-' + time, yaml, time, 'Gatekeeper-template-verify.yaml')
   },
 
   'GRC All policy page: Verify summary table': (browser) => {
