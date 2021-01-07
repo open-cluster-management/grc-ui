@@ -17,11 +17,12 @@
 test-iam-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
-  cluster_binding:
-    - 'name: "dhaks1020-2-dho-461"'
+#  cluster_binding:
+#    - 'name: "dhaks1020-2-dho-461"'
 #    - 'local-cluster: "true"'
   binding_selector:
-    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
+    - 'matchExpressions =[]'
+#    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'IamPolicy'
   specifications:
@@ -38,11 +39,12 @@ test-iam-policy-[ID]:
 test-pod-security-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
-  cluster_binding:
-    - 'name: "dhaks1020-2-dho-461"'
+#  cluster_binding:
+#    - 'name: "dhaks1020-2-dho-461"'
 #    - 'local-cluster: "true"'
   binding_selector:
-    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
+    - 'matchExpressions =[]'
+#    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'ConfigurationPolicy'
   specifications:
@@ -59,11 +61,12 @@ test-pod-security-policy-[ID]:
 test-role-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
-  cluster_binding:
-    - 'name: "dhaks1020-2-dho-461"'
+#  cluster_binding:
+#    - 'name: "dhaks1020-2-dho-461"'
 #    - 'local-cluster: "true"'
   binding_selector:
-    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
+    - 'matchExpressions =[]'
+#    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'ConfigurationPolicy'
   specifications:
@@ -80,11 +83,12 @@ test-role-policy-[ID]:
 test-role-binding-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
-  cluster_binding:
-    - 'name: "dhaks1020-2-dho-461"'
+#  cluster_binding:
+#    - 'name: "dhaks1020-2-dho-461"'
 #    - 'local-cluster: "true"'
   binding_selector:
-    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
+    - 'matchExpressions =[]'
+#    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'ConfigurationPolicy'
   specifications:
@@ -101,11 +105,12 @@ test-role-binding-policy-[ID]:
 test-security-context-constraints-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
-  cluster_binding:
-    - 'name: "dhaks1020-2-dho-461"'
+#  cluster_binding:
+#    - 'name: "dhaks1020-2-dho-461"'
 #    - 'local-cluster: "true"'
   binding_selector:
-    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
+    - 'matchExpressions =[]'
+#    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'ConfigurationPolicy'
   specifications:
