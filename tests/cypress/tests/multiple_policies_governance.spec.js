@@ -10,7 +10,7 @@ import {
 import { getConfigObject } from '../config'
 
 describe('Testing multiple policy governance', () => {
-    const confClusters = getConfigObject('multiple_policies_governance/clusters.yaml')
+    const confClusters = getConfigObject('clusters.yaml')
     const clusterList = Object.keys(confClusters)  // these are clusters we would be working with
     const substitutionRules = [ [/\[ID\]/g, Cypress.env('RESOURCE_ID')] ]
     // policy-config is used for policy creation and validation
@@ -164,7 +164,7 @@ describe('Testing multiple policy governance', () => {
     }
 */
     for (const policyName in confPolicies) {
-      it.only(`Policy ${policyName} can be deleted in the policy listing`, () => {
+      it(`Policy ${policyName} can be deleted in the policy listing`, () => {
         // we could use a different way how to return to this page
         cy.visit('/multicloud/policies/all')
         actionPolicyActionInListing(policyName, 'Remove')
@@ -174,4 +174,5 @@ describe('Testing multiple policy governance', () => {
         verifyPolicyNotInListing(policyName)
       })
     }
+
 })

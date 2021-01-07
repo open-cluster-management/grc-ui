@@ -1,5 +1,5 @@
 "*":  # this is a default mapping
- - [UNAME]-limit-clusteradmin-0
+ - [UNAME]-limit-clusteradmin-1
  - [UNAME]-restricted-psp-1
  - [UNAME]-deployments-role-1
  - [UNAME]-operatoruser-rolebinding-1

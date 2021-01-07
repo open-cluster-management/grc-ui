@@ -481,7 +481,7 @@ export const getViolationsPerPolicy = (policyName, policyConfig, clusterViolatio
   const violations = {}
   const templates = getPolicyTemplatesNameAndKind(policyName, policyConfig)
   if (clusters == undefined) {  // clusters were not defined, get a list of all cluster names from the clusterViolations dictionary
-    clusters = Object.keys(clusterViolations).filter(function(value, index, arr){ return value != '*' }) // get all keys except the default/wildcard '*' when present
+    clusters = Object.keys(clusterViolations).filter((value) => { return value != '*' }) // get all keys except the default/wildcard '*' when present
   }
   for (const cluster of clusters) {
     violations[cluster] = []
