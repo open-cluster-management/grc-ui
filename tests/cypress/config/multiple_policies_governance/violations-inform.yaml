@@ -1,6 +1,6 @@
-"local-cluster":
- - [UNAME]-example-0
- - [UNAME]-sample-restricted-psp-1
- - [UNAME]-sample-role-1
- - [UNAME]-sample-rolebinding-1
- - [UNAME]-sample-restricted-scc-1
+"*":  # this is a default mapping
+ - [UNAME]-limit-clusteradmin-0
+ - [UNAME]-restricted-psp-1
+ - [UNAME]-deployments-role-1
+ - [UNAME]-operatoruser-rolebinding-1
+ - [UNAME]-restricted-scc-2

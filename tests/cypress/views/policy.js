@@ -426,7 +426,7 @@ export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
 
     switch(shortSpec) {
     case 'CertificatePolicy':
-      templates.add(policyName+'-example'+'/'+'CertificatePolicy')
+      templates.add(policyName+'-cert-expiration'+'/'+'CertificatePolicy')
       break
     case 'ComplianceOperator':
       templates.add('comp-operator-ns'+'/'+'ConfigurationPolicy')
@@ -434,7 +434,7 @@ export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
       templates.add('comp-operator-subscription'+'/'+'ConfigurationPolicy')
       break
     case 'EtcdEncryption':
-      templates.add(policyName+'-example'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-etcd-encryption'+'/'+'ConfigurationPolicy')
       break
     case 'GatekeeperOperator':
       templates.add('gatekeeper-operator-ns'+'/'+'ConfigurationPolicy')
@@ -444,43 +444,44 @@ export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
       templates.add('gatekeeper'+'/'+'ConfigurationPolicy')
       break
     case 'IamPolicy':
-      templates.add(policyName+'-example'+'/'+'IamPolicy')
+      templates.add(policyName+'-limit-clusteradmin'+'/'+'IamPolicy')
       break
     case 'ImageManifestVulnPolicy':
-      templates.add(policyName+'-example-sub'+'/'+'ConfigurationPolicy')
-      templates.add(policyName+'-example-imv'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-image-vulnerabilities'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-image-vulnerabilities-sub'+'/'+'ConfigurationPolicy')
       break
     case 'LimitRange':
-      templates.add(policyName+'-mem-limit-range'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-container-mem-limit-range'+'/'+'ConfigurationPolicy')
       break
     case 'Namespace':
-      templates.add(policyName+'-prod'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-prod-ns'+'/'+'ConfigurationPolicy')
       break
     case 'Pod':
-      templates.add(policyName+'-sample-nginx-pod'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-nginx-pod'+'/'+'ConfigurationPolicy')
       break
     case 'PodSecurityPolicy':
-      templates.add(policyName+'-sample-restricted-psp'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-restricted-psp'+'/'+'ConfigurationPolicy')
       break
     case 'Role':
-      templates.add(policyName+'-sample-role'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-deployments-role'+'/'+'ConfigurationPolicy')
       break
     case 'RoleBinding':
-      templates.add(policyName+'-sample-role-binding'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-operatoruser-rolebinding'+'/'+'ConfigurationPolicy')
       break
     case 'SecurityContextConstraints':
-      templates.add(policyName+'-sample-restricted-scc'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-restricted-scc'+'/'+'ConfigurationPolicy')
       break
     }
   }
   return Array.from(templates)
 }
 
+// from the set of known violations per cluster read just violations relevant for the particular policy
 export const getViolationsPerPolicy = (policyName, policyConfig, clusterViolations, clusters = undefined) => {
   const violations = {}
   const templates = getPolicyTemplatesNameAndKind(policyName, policyConfig)
-  if (clusters == undefined) {
-    clusters = Object.keys(clusterViolations)
+  if (clusters == undefined) {  // clusters were not defined, get a list of all cluster names from the clusterViolations dictionary
+    clusters = Object.keys(clusterViolations).filter(function(value, index, arr){ return value != '*' }) // get all keys except the default/wildcard '*' when present
   }
   for (const cluster of clusters) {
     violations[cluster] = []
@@ -488,7 +489,14 @@ export const getViolationsPerPolicy = (policyName, policyConfig, clusterViolatio
   for (const template of templates) {
     const templateName = template.split('/', 2)[0]
     for (const cluster of clusters) {
-      for (const clusterViolation of clusterViolations[cluster]) {
+      let violationList = []  // will contain a list of violations for the specific cluster
+      if (cluster in clusterViolations) {  // I know violations for the specific cluster in clusterViolations
+        violationList = clusterViolations[cluster]
+      }
+      else if ('*' in clusterViolations) {  // I am using the default/wildcard '*' settings from clusterViolations
+        violationList = clusterViolations['*']
+      }
+      for (const clusterViolation of violationList) {
         if (clusterViolation.startsWith(templateName+'-')) {
           violations[cluster].push(clusterViolation)
         }

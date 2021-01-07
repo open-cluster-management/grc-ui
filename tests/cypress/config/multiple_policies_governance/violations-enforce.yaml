@@ -1,6 +1,6 @@
-"local-cluster":
- - [UNAME]-example-0
- - [UNAME]-sample-restricted-psp-0
- - [UNAME]-sample-role-0
-# - [UNAME]-sample-rolebinding-0  # this is currently not needed due to a template name conflict
- - [UNAME]-sample-restricted-scc-0
+"*": # this is the default mapping
+ - [UNAME]-limit-clusteradmin-0
+ - [UNAME]-restricted-psp-0
+ - [UNAME]-deployments-role-0
+ - [UNAME]-operatoruser-rolebinding-0
+ - [UNAME]-restricted-scc-0

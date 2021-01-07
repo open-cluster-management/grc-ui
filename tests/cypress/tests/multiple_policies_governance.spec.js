@@ -10,7 +10,8 @@ import {
 import { getConfigObject } from '../config'
 
 describe('Testing multiple policy governance', () => {
-    //const confClusters = getConfigObject('multiple_policies_governance/clusters.yaml')
+    const confClusters = getConfigObject('multiple_policies_governance/clusters.yaml')
+    const clusterList = Object.keys(confClusters)  // these are clusters we would be working with
     const substitutionRules = [ [/\[ID\]/g, Cypress.env('RESOURCE_ID')] ]
     // policy-config is used for policy creation and validation
     const confPolicies = getConfigObject('multiple_policies_governance/policy-config.yaml', 'yaml', substitutionRules)
@@ -44,7 +45,7 @@ describe('Testing multiple policy governance', () => {
 
       // we need to do the substitution per policy - probably we could do this once for whole test
       const confClusterViolations = getConfigObject('multiple_policies_governance/violations-inform.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
-      const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations)
+      const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations, clusterList)
       const violationsCounter = getViolationsCounter(clusterViolations)
 
       it(`Wait for policy ${policyName} status becomes available`, () => {
@@ -62,7 +63,7 @@ describe('Testing multiple policy governance', () => {
       // we need to do the substitution per policy
       const confViolationPatterns = getConfigObject('violation-patterns.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
       const confClusterViolations = getConfigObject('multiple_policies_governance/violations-inform.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
-      const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations)
+      const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations, clusterList)
       const violationsCounter = getViolationsCounter(clusterViolations)
 
       it(`Verify policy ${policyName} details at the detailed page`, () => {
@@ -96,7 +97,7 @@ describe('Testing multiple policy governance', () => {
       })
 
     }
-
+/*
     for (const policyName in confPolicies) {
 
       it(`Enforce policy ${policyName}`, () => {
@@ -117,7 +118,7 @@ describe('Testing multiple policy governance', () => {
       // we need to do the substitution per policy
       const confViolationPatterns = getConfigObject('violation-patterns.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
       const confClusterViolations = getConfigObject('multiple_policies_governance/violations-enforce.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
-      const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations)
+      const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations, clusterList)
       const violationsCounter = getViolationsCounter(clusterViolations)
 
       it(`Wait for policy ${policyName} status becomes available`, () => {
@@ -161,9 +162,9 @@ describe('Testing multiple policy governance', () => {
       })
 
     }
-
+*/
     for (const policyName in confPolicies) {
-      it(`Policy ${policyName} can be deleted in the policy listing`, () => {
+      it.only(`Policy ${policyName} can be deleted in the policy listing`, () => {
         // we could use a different way how to return to this page
         cy.visit('/multicloud/policies/all')
         actionPolicyActionInListing(policyName, 'Remove')

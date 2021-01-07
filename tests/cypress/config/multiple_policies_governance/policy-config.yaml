@@ -18,9 +18,11 @@ test-iam-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
   cluster_binding:
-    - 'local-cluster: "true"'
+    - 'name: "dhaks1020-2-dho-461"'
+#    - 'local-cluster: "true"'
   binding_selector:
-    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
+    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
+#    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'IamPolicy'
   specifications:
     - 'IamPolicy'
@@ -37,9 +39,11 @@ test-pod-security-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
   cluster_binding:
-    - 'local-cluster: "true"'
+    - 'name: "dhaks1020-2-dho-461"'
+#    - 'local-cluster: "true"'
   binding_selector:
-    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
+    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
+#    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'ConfigurationPolicy'
   specifications:
     - 'PodSecurityPolicy'
@@ -56,12 +60,14 @@ test-role-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
   cluster_binding:
-    - 'local-cluster: "true"'
+    - 'name: "dhaks1020-2-dho-461"'
+#    - 'local-cluster: "true"'
   binding_selector:
-    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
+    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
+#    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'ConfigurationPolicy'
   specifications:
-    - 'Role - role must follow defined permissions'
+    - 'Role - Role must follow defined permissions'
   standards:
     - 'NIST-CSF'
   categories:
@@ -75,12 +81,14 @@ test-role-binding-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
   cluster_binding:
-    - 'local-cluster: "true"'
+    - 'name: "dhaks1020-2-dho-461"'
+#    - 'local-cluster: "true"'
   binding_selector:
-    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
+    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
+#    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'ConfigurationPolicy'
   specifications:
-    - 'Role - role must follow defined permissions'
+    - 'Role - Role must follow defined permissions'
   standards:
     - 'NIST-CSF'
   categories:
@@ -94,9 +102,11 @@ test-security-context-constraints-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
   cluster_binding:
-    - 'local-cluster: "true"'
+    - 'name: "dhaks1020-2-dho-461"'
+#    - 'local-cluster: "true"'
   binding_selector:
-    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
+    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
+#    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'ConfigurationPolicy'
   specifications:
     - 'SecurityContextConstraints'
