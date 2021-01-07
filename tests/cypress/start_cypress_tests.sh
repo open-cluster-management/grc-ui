@@ -58,6 +58,7 @@ oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USE
 
 # save a list of available clusters to .tests/cypress/config/clusters.yaml file so tests can use it
 oc get managedclusters -o custom-columns='name:.metadata.name,available:.status.conditions[?(@.reason=="ManagedClusterAvailable")].status,vendor:.metadata.labels.vendor' --no-headers | awk '/True/ { printf "%s:\n  vendor: %s\n", $1, $3 }' > ./tests/cypress/config/clusters.yaml
+echo "Available clusters stored in ./tests/cypress/config/clusters.yaml:"
 cat ./tests/cypress/config/clusters.yaml
 
 testCode=0
