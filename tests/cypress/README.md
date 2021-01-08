@@ -88,13 +88,6 @@ These files are used to contain a raw YAML which is being used in a test e.g. as
 
 This configuration file contain policy details that can be used both for policy creation and policy validation (checking that policy as respective properties). In some cases multiple policies can be specified in one file, policy name being (usually) a section header. Within a section there are various policy attributes specified.
 
-### policy placement rule description
- * State: draft (used in demo) - in a future it may be merged with policy description described above
- * Path: Usually stored in a subfolder under `tests/cypress/config`.
- * Example: [config/sample/demo-policy-placement-rule.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/sample/demo-policy-placement-rule.yaml)
-
-This configuration file is being used for validation of the policy placement rule at the detailed policy status page. It also contain the expected (overall) compliance status for each relevant cluster.
-
 ### violations patterns
  * State: draft (used in demo)
  * Path: [tests/cypress/config/violation-patterns.yaml](https://github.com/open-cluster-management/grc-ui/pull/358/files#diff-df2d42454a9fad5cc02820a2ef9c68b1fefcbd1a4bea58d377f4c4d22aabafca)
@@ -109,3 +102,23 @@ Substitutions should be used for this configuration file in order to adjust temp
 
 The file describe violation message patterns that should be used when checking the actual violations on the detailed policy status page. There is a section per cluster and within the section there is a list of message pattern identifiers (described above) relevant for that particular cluster.
 Substitutions should be used for this configuration file in order to adjust pattern identifiers according to the actual environment.
+
+## Violations checking
+
+There are few facts that must be taken into account when doing a violation check in a test:
+ * Each policy may have multiple specifications
+ * Each specification should map to a template with unique name. See [issue 8088](https://github.com/open-cluster-management/backlog/issues/8088) for details
+ * Each template can report multiple different violations
+ * Particular violation messages could vary a bit and therefore it seems reasonable to match them using regexp pattern
+ * We SHOULD know which violations are expected to appear on a particular server based on its conviguration in a canary environment
+
+In order to be able to do a violation check for a policy and server we need to capture the details above in various configuration files (see config file description above) and process them in a following manner:
+
+ 1. For each policy we get a list of policy templates (and their kind) based on a list of selected specifications in a policy configuration (stored policy description configuration file) - `getPolicyTemplatesNameAndKind()` is doing this
+ 2. For each cluster we store a list of expected (configured) policy violations (stored in cluster violation mapping configuration file)
+ ** Each cluster violation has unique identifier in a configuration consisting of a template name and a number
+ ** Each violation identifier maps to a regexp pattern matching the actual violation text
+ ** Number 0 is reserved for a text expressing compliance with a specification
+ 3. From a list of all expected violations per server we filter out only violations relevant for particular policy - using `getViolationsPerPolicy()`. This is handy so we do not have to maintain cluster violations per policy.
+ 4. Once we know cluster&policy specific violations we can say what is the expected policy status (using `getClusterPolicyStatus()`) and number of non-compliant clusters (using `getViolationsCounter()`)
+ ** Using respective regexp patterns we can verify respective violation texts
