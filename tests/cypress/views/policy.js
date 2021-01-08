@@ -571,8 +571,11 @@ export const verifyPlacementBindingInPolicyDetails = (uName, policyConfig) => {
 // does the search using the search form
 // so far tested only on the policy status page
 export const doTableSearch = (text, parentElement = null) => {
-  // FIXME - do this search without a force
-  cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true}).type(text, {force: true})
+  // do the search only if there are resources on the page
+  if (!Cypress.$('#page').find('div.no-resouce'.length)) {
+    // FIXME - do this search without a force
+    cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true}).type(text, {force: true})
+  }
 }
 
 export const clearTableSearch = (parentElement = null) => {
