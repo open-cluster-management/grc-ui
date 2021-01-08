@@ -48,7 +48,6 @@ describe(description, () => {
 
       // we need to do the substitution per policy - probably we could do this once for whole test
       const confClusterViolations = getConfigObject(confFileViolationsInform, 'yaml', getDefaultSubstitutionRules(policyName))
-      alert(policyName)
       const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations, clusterList)
       const violationsCounter = getViolationsCounter(clusterViolations)
 
@@ -67,7 +66,6 @@ describe(description, () => {
       // we need to do the substitution per policy
       const confViolationPatterns = getConfigObject('violation-patterns.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
       const confClusterViolations = getConfigObject(confFileViolationsInform, 'yaml', getDefaultSubstitutionRules(policyName))
-      alert(getDefaultSubstitutionRules(policyName))
       const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations, clusterList)
       const violationsCounter = getViolationsCounter(clusterViolations)
 
