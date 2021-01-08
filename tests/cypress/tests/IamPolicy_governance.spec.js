@@ -2,4 +2,4 @@
 /// <reference types="cypress" />
 import { test_genericPolicyGovernance } from './common/generic_policies_governance.spec.js'
 
-test_genericPolicyGovernance('IamPolicyGovernance', 'IamPolicy_governance/policy-config.yaml', 'IamPolicy_governance/violations-inform.yaml')
+test_genericPolicyGovernance('IamPolicy governance', 'IamPolicy_governance/policy-config.yaml', 'IamPolicy_governance/violations-inform.yaml', 'IamPolicy_governance/violations-inform.yaml')
