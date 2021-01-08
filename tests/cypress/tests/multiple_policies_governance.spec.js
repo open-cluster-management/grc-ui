@@ -97,7 +97,7 @@ describe('Testing multiple policy governance', () => {
       })
 
     }
-
+/*
     for (const policyName in confPolicies) {
 
       it(`Enforce policy ${policyName}`, () => {
@@ -162,7 +162,7 @@ describe('Testing multiple policy governance', () => {
       })
 
     }
-
+*/
     for (const policyName in confPolicies) {
       it(`Policy ${policyName} can be deleted in the policy listing`, () => {
         // we could use a different way how to return to this page
