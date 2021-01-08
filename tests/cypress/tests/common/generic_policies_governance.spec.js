@@ -6,15 +6,18 @@ import {
   verifyPolicyInPolicyDetailsTemplates, verifyPlacementRuleInPolicyDetails, verifyPlacementBindingInPolicyDetails,
   verifyViolationsInPolicyStatusClusters, verifyViolationsInPolicyStatusTemplates,
   getViolationsPerPolicy, getViolationsCounter
-} from '../views/policy'
-import { getConfigObject } from '../config'
+} from '../../views/policy'
+import { getConfigObject } from '../../config'
 
-describe('Testing multiple policy governance', () => {
-    const confClusters = getConfigObject('clusters.yaml')
+
+export const test_genericPolicyGovernance = (description, confFilePolicy, confFileViolationsInform, confFileViolationsEnforce=null, confFileClusters='clusters.yaml') => {
+
+describe(description, () => {
+    const confClusters = getConfigObject(confFileClusters)
     const clusterList = Object.keys(confClusters)  // these are clusters we would be working with
     const substitutionRules = [ [/\[ID\]/g, Cypress.env('RESOURCE_ID')] ]
     // policy-config is used for policy creation and validation
-    const confPolicies = getConfigObject('multiple_policies_governance/policy-config.yaml', 'yaml', substitutionRules)
+    const confPolicies = getConfigObject(confFilePolicy, 'yaml', substitutionRules)
 
     for (const policyName in confPolicies) {
 
@@ -44,7 +47,8 @@ describe('Testing multiple policy governance', () => {
     for (const policyName in confPolicies) {
 
       // we need to do the substitution per policy - probably we could do this once for whole test
-      const confClusterViolations = getConfigObject('multiple_policies_governance/violations-inform.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
+      const confClusterViolations = getConfigObject(confFileViolationsInform, 'yaml', getDefaultSubstitutionRules(policyName))
+      alert(policyName)
       const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations, clusterList)
       const violationsCounter = getViolationsCounter(clusterViolations)
 
@@ -62,7 +66,8 @@ describe('Testing multiple policy governance', () => {
 
       // we need to do the substitution per policy
       const confViolationPatterns = getConfigObject('violation-patterns.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
-      const confClusterViolations = getConfigObject('multiple_policies_governance/violations-inform.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
+      const confClusterViolations = getConfigObject(confFileViolationsInform, 'yaml', getDefaultSubstitutionRules(policyName))
+      alert(getDefaultSubstitutionRules(policyName))
       const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations, clusterList)
       const violationsCounter = getViolationsCounter(clusterViolations)
 
@@ -97,7 +102,10 @@ describe('Testing multiple policy governance', () => {
       })
 
     }
-/*
+
+  // run the test for enforced policy only if the config file was given
+  if (confFileViolationsEnforce) {
+
     for (const policyName in confPolicies) {
 
       it(`Enforce policy ${policyName}`, () => {
@@ -117,7 +125,7 @@ describe('Testing multiple policy governance', () => {
 
       // we need to do the substitution per policy
       const confViolationPatterns = getConfigObject('violation-patterns.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
-      const confClusterViolations = getConfigObject('multiple_policies_governance/violations-enforce.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
+      const confClusterViolations = getConfigObject(confFileViolationsEnforce, 'yaml', getDefaultSubstitutionRules(policyName))
       const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations, clusterList)
       const violationsCounter = getViolationsCounter(clusterViolations)
 
@@ -162,7 +170,10 @@ describe('Testing multiple policy governance', () => {
       })
 
     }
-*/
+
+  }
+
+    // delete created policies at the end
     for (const policyName in confPolicies) {
       it(`Policy ${policyName} can be deleted in the policy listing`, () => {
         // we could use a different way how to return to this page
@@ -176,3 +187,5 @@ describe('Testing multiple policy governance', () => {
     }
 
 })
+
+}
