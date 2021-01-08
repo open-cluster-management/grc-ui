@@ -1,6 +1,0 @@
-"*": # this is the default mapping
- - [UNAME]-limit-clusteradmin-1  # IamPolicy cannot be enforced
- - [UNAME]-restricted-psp-0
- - [UNAME]-deployments-role-0
- - [UNAME]-operatoruser-rolebinding-0
- - [UNAME]-restricted-scc-0
