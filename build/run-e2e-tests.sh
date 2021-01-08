@@ -53,9 +53,17 @@ npm run build
 npm run start:instrument &>/dev/null &
 sleep 10
 npm run test:cypress-headless
-# clean up after cypress test
-$DIR/cluster-clean-up.sh hubnpm
 sleep 10
+# clean up after cypress test
+$DIR/cluster-clean-up.sh managed
+
+echo "Login hub"
+export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
+export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
+make oc/login
+
+$DIR/cluster-clean-up.sh hub
+
 npm run test:e2e-headless
 
 # kill the node process to let nyc generate coverage report
