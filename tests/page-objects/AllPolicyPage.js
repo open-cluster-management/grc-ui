@@ -79,8 +79,9 @@ module.exports = {
     verifyPolicyTable,
     verifySummary,
     verifyTable,
-    verifyToggle
-  }]
+    verifyToggle,
+  }],
+  compareTemplate: compareTemplate
 }
 function verifySummary(browser, url) {
   this.waitForElementVisible('button.collapse > span.collapse-button')
