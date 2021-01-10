@@ -579,8 +579,11 @@ export const doTableSearch = (text, parentElement = null) => {
 }
 
 export const clearTableSearch = (parentElement = null) => {
-  // FIXME - do this without a force
-  cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true})
+  // clear the search only if there are resources on the page
+  if (!Cypress.$('#page').find('div.no-resouce'.length)) {
+    // FIXME - do this without a force
+    cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true})
+  }
 }
 
 
