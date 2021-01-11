@@ -1,44 +1,44 @@
 comp-operator-ns:
- 1: "violation - namespaces `openshift-compliance` does not exist as specified"
+ 1: "violation - namespaces not found: \\[openshift-compliance\\] missing"
 comp-operator-operator-group:
  1: "violation - couldn't find mapping resource with kind OperatorGroup, please check if you have CRD deployed"
- 2: "violation - operatorgroups `compliance-operator` does not exist as specified"
+ 2: "violation - operatorgroups not found: \\[compliance-operator\\] missing"
 comp-operator-subscription:
  1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
- 2: "violation - operatorgroups `compliance-operator` does not exist as specified"
+ 2: "violation - operatorgroups not found: \\[compliance-operator\\] missing"
 gatekeeper:
  1: "violation - couldn't find mapping resource with kind Gatekeeper, please check if you have CRD deployed"
 gatekeeper-operator-ns:
- 1: "violation - namespaces `gatekeeper-system` does not exist as specified;"
- 2: "violation - clusterroles `gatekeeper-operator-openshift-role` does not exist as specified;"
- 3: "violation - rolebindings `gatekeeper-operator-openshift-binding` does not exist as specified"
+ 1: "violation - namespaces not found: \\[gatekeeper-system\\] missing;"
+ 2: "violation - clusterroles not found: \\[gatekeeper-operator-openshift-role\\] missing;"
+ 3: "violation - rolebindings not found: \\[gatekeeper-operator-openshift-binding\\] missing"
 gatekeeper-operator-catalog-source:
  1: "violation - couldn't find mapping resource with kind CatalogSource, please check if you have CRD deployed"
- 2: "violation - catalogsources `gatekeeper-operator` does not exist as specified"
+ 2: "violation - catalogsources not found: \\[gatekeeper-operator\\] missing"
 gatekeeper-operator-group:
  1: "violation - couldn't find mapping resource with kind OperatorGroup, please check if you have CRD deployed"
- 2: "violation - catalogsources `gatekeeper-operator` does not exist as specified"
+ 2: "violation - catalogsources not found: \\[gatekeeper-operator\\] missing"
 gatekeeper-operator-subscription:
  1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
- 2: "violation - subscriptions `gatekeeper-operator-sub` does not exist as specified"
-[UNAME]-example:
+ 2: "violation - subscriptions not found: \\[gatekeeper-operator-sub\\] missing"
+\\[UNAME\\]-example:
  0: "Number of users with clusteradmin role is 0 above the specified limit"
- 1: "Number of users with clusteradmin role is [0-9]+ above the specified limit"
-[UNAME]-example-imv:
+ 1: "Number of users with clusteradmin role is \\[0-9\\]+ above the specified limit"
+\\[UNAME\\]-example-imv:
  1: "violation - couldn't find mapping resource with kind ImageManifestVuln, please check if you have CRD deployed"
-[UNAME]-example-sub:
+\\[UNAME\\]-example-sub:
  1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
- 2: "violation - subscriptions `container-security-operator` does not exist as specified"
-[UNAME]-mem-limit-range:
- 1: "violation - limitranges `mem-limit-range` does not exist as specified"
-[UNAME]-prod:
- 1: "violation - namespaces `prod` does not exist as specified"
-[UNAME]-sample-restricted-psp:
- 1: "violation - podsecuritypolicies `sample-restricted-psp` does not exist as specified"
-[UNAME]-sample-role:
- 0: "notification - roles \\[sample-role\\] in namespace default exist as specified, therefore this Object template is compliant"
- 1: "violation - roles `sample-role` does not exist as specified"
-[UNAME]-sample-rolebinding:
- 1: "violation - rolebindings `sample-rolebinding` does not exist as specified"
-[UNAME]-sample-restricted-scc:
- 1: "violation - securitycontextconstraints `sample-restricted-scc` does not exist as specified"
+ 2: "violation - subscriptions not found: \\[container-security-operator\\] missing"
+\\[UNAME\\]-mem-limit-range:
+ 1: "violation - limitranges not found: \\[mem-limit-range\\] in namespace default missing"
+\\[UNAME\\]-prod:
+ 1: "violation - namespaces not found: \\[prod\\] missing"
+\\[UNAME\\]-sample-restricted-psp:
+ 1: "violation - podsecuritypolicies not found: \\[sample-restricted-psp\\] in namespace default missing"
+\\[UNAME\\]-sample-role:
+ 0: "notification - roles \\[sample-role\\] in namespace default found as specified, therefore this Object template is compliant"
+ 1: "violation - roles not found: \\[sample-role\\] in namespace default missing"
+\\[UNAME\\]-sample-rolebinding:
+ 1: "violation - rolebindings not found: \\[sample-rolebinding\\] in namespace default missing"
+\\[UNAME\\]-sample-restricted-scc:
+ 1: "violation - securitycontextconstraints not found: \\[sample-restricted-scc\\] in namespace default missing"
