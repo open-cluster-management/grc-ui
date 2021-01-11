@@ -69,7 +69,7 @@ gatekeeper-operator-subscription:
  1: "violation - podsecuritypolicies not found: [\\[`]restricted-psp[\\]`] does not exist"
 # Role specification
 [UNAME]-deployments-role:
- 0: "notification - roles \\[deployments-role\\] in namespace default exist as specified, therefore this Object template is compliant"
+ 0: "notification - roles [\\[`]deployments-role[\\]`] exists as it should be, therefore this Object template is compliant"
  1: "violation - roles not found: [\\[`]deployments-role[\\]`] does not exist"
 # RoleBinding specification
 [UNAME]-operatoruser-rolebinding:
