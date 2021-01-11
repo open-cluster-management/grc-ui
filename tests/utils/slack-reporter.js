@@ -25,10 +25,8 @@ async function reportFailure() {
       const pathArray = screenshot.split('/')
       const filename = pathArray[pathArray.length-1]
       const searchIndex = filename.indexOf('_')
-      const string = filename.slice(0, searchIndex)
-      const testName = string.replace(/-/g, ' ')
-      const comment = buildComment(testName)
-      postScreenshot(filename, screenshot, comment, userId)
+      const testName = filename.slice(0, searchIndex).replace(/-/g, ' ')
+      postScreenshot(filename, screenshot, buildComment(testName), userId)
     })
     const cypressDir = path.join(process.cwd(), 'test-output', 'cypress')
     const cypressScreenshotsDir = path.join(cypressDir, 'screenshots')
