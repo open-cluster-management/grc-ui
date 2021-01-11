@@ -24,7 +24,10 @@ async function reportFailure() {
     screenshots.forEach(screenshot => {
       const pathArray = screenshot.split('/')
       const filename = pathArray[pathArray.length-1]
-      const comment = buildComment(filename)
+      const searchIndex = filename.indexOf('_')
+      const string = filename.slice(0, searchIndex)
+      const testName = string.replace(/-/g, ' ')
+      const comment = buildComment(testName)
       postScreenshot(filename, screenshot, comment, userId)
     })
     const cypressDir = path.join(process.cwd(), 'test-output', 'cypress')
@@ -33,11 +36,11 @@ async function reportFailure() {
     if (fs.existsSync(cypressScreenshotsDir)) {
       // screenshot dir exists means there are test failures
       // upload only videos with failures
-      const videos = getDirectories(cypressScreenshotsDir)
-      videos.forEach(video => {
-        const filename = path.join(cypressVideosDir, video + '.mp4')
+      const failureTestNames = getDirectories(cypressScreenshotsDir)
+      failureTestNames.forEach(testName => {
+        const filename = path.join(cypressVideosDir, testName + '.mp4')
         console.log('Uploading video ' + filename)
-        postScreenshot(filename, filename, video, userId)
+        postScreenshot(filename, filename, buildComment(testName), userId)
       })
     }
   } catch(e) {
@@ -74,10 +77,7 @@ function recFindByExt(base,ext,files,result) {
   return result
 }
 
-function buildComment(fileName) {
-  const searchIndex = fileName.indexOf('_')
-  const string = fileName.slice(0, searchIndex)
-  const testName = string.replace(/-/g, ' ')
+function buildComment(testName) {
   return `:failed: *FAILED: ${TRAVIS_REPO_SLUG} -- ${TRAVIS_PULL_REQUEST == 'false' ? 'Branch: '+TRAVIS_BRANCH : 'PR: '+TRAVIS_PULL_REQUEST} -- ${testName}.* \n ${TRAVIS_BUILD_WEB_URL}`
 }
 
