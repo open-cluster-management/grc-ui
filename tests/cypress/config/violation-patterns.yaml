@@ -1,44 +1,82 @@
+# CertificatePolicy specification
+[UNAME]-cert-expiration:
+ 0: "TBD"
+ 1: "TBD"
+# ComplianceOperator specification
 comp-operator-ns:
+ 0: "TBD"
  1: "violation - namespaces not found: \\[openshift-compliance\\] missing"
 comp-operator-operator-group:
+ 0: "TBD"
  1: "violation - couldn't find mapping resource with kind OperatorGroup, please check if you have CRD deployed"
  2: "violation - operatorgroups not found: \\[compliance-operator\\] missing"
 comp-operator-subscription:
+ 0: "TBD"
  1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
  2: "violation - operatorgroups not found: \\[compliance-operator\\] missing"
+# EtcdEncryption specification
+[UNAME]-etcd-encryption:
+ 0: "TBD"
+ 1: "TBD"
+# GatekeeperOperator specification 
 gatekeeper:
+ 0: "TBD"
  1: "violation - couldn't find mapping resource with kind Gatekeeper, please check if you have CRD deployed"
 gatekeeper-operator-ns:
+ 0: "TBD"
  1: "violation - namespaces not found: \\[gatekeeper-system\\] missing;"
  2: "violation - clusterroles not found: \\[gatekeeper-operator-openshift-role\\] missing;"
- 3: "violation - rolebindings not found: \\[gatekeeper-operator-openshift-binding\\] missing"
+ 3: "violation - rolebindings not found: \\[gatekeeper-operator-openshift-binding\\] in namespace default missing"
 gatekeeper-operator-catalog-source:
+ 0: "TBD"
  1: "violation - couldn't find mapping resource with kind CatalogSource, please check if you have CRD deployed"
- 2: "violation - catalogsources not found: \\[gatekeeper-operator\\] missing"
+ 2: "violation - catalogsources not found: \\[gatekeeper-operator\\] in namespace default missing"
 gatekeeper-operator-group:
+ 0: "TBD"
  1: "violation - couldn't find mapping resource with kind OperatorGroup, please check if you have CRD deployed"
- 2: "violation - catalogsources not found: \\[gatekeeper-operator\\] missing"
+ 2: "violation - catalogsources not found: \\[gatekeeper-operator\\] in namespace default missing"
 gatekeeper-operator-subscription:
+ 0: "TBD"
  1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
- 2: "violation - subscriptions not found: \\[gatekeeper-operator-sub\\] missing"
-\\[UNAME\\]-example:
+ 2: "violation - subscriptions not found: \\[gatekeeper-operator-sub\\] in namespace default missing"
+# IamPolicy specification
+[UNAME]-limit-clusteradmin:
  0: "Number of users with clusteradmin role is 0 above the specified limit"
- 1: "Number of users with clusteradmin role is \\[0-9\\]+ above the specified limit"
-\\[UNAME\\]-example-imv:
+ 1: "Number of users with clusteradmin role is [0-9]+ above the specified limit"
+# ImageManifestVulnPolicy specification
+[UNAME]-image-vulnerabilities:
+ 0: "TBD"
  1: "violation - couldn't find mapping resource with kind ImageManifestVuln, please check if you have CRD deployed"
-\\[UNAME\\]-example-sub:
+[UNAME]-image-vulnerabilities-sub:
+ 0: "TBD"
  1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
- 2: "violation - subscriptions not found: \\[container-security-operator\\] missing"
-\\[UNAME\\]-mem-limit-range:
+ 2: "violation - subscriptions not found: \\[container-security-operator\\] in namespace default missing"
+# LimitRange specification
+[UNAME]-container-mem-limit-range:
+ 0: "TBD"
  1: "violation - limitranges not found: \\[mem-limit-range\\] in namespace default missing"
-\\[UNAME\\]-prod:
+# Namespace specification
+[UNAME]-prod-ns:
+ 0: "TBD"
  1: "violation - namespaces not found: \\[prod\\] missing"
-\\[UNAME\\]-sample-restricted-psp:
- 1: "violation - podsecuritypolicies not found: \\[sample-restricted-psp\\] in namespace default missing"
-\\[UNAME\\]-sample-role:
- 0: "notification - roles \\[sample-role\\] in namespace default found as specified, therefore this Object template is compliant"
- 1: "violation - roles not found: \\[sample-role\\] in namespace default missing"
-\\[UNAME\\]-sample-rolebinding:
- 1: "violation - rolebindings not found: \\[sample-rolebinding\\] in namespace default missing"
-\\[UNAME\\]-sample-restricted-scc:
- 1: "violation - securitycontextconstraints not found: \\[sample-restricted-scc\\] in namespace default missing"
+# Pod specification
+[UNAME]-nginx-pod:
+ 0: "TBD"
+ 1: "TBD"
+# PodSecurityPolicy specification
+[UNAME]-restricted-psp:
+ 0: "notification - podsecuritypolicies [restricted-psp] in namespace default found as specified, therefore this Object template is compliant"
+ 1: "violation - podsecuritypolicies not found: \\[restricted-psp\\] in namespace default missing"
+# Role specification
+[UNAME]-deployments-role:
+ 0: "notification - roles \\[deployments-role\\] in namespace default found as specified, therefore this Object template is compliant"
+ 1: "violation - roles not found: \\[deployments-role\\] in namespace default missing"
+# RoleBinding specification
+[UNAME]-operatoruser-rolebinding:
+ 0: "TBD"
+ 1: "violation - rolebindings not found: \\[operatoruser-rolebinding\\] in namespace default missing"
+# SecurityContextConstraints specification
+[UNAME]-restricted-scc:
+ 0: "notification - securitycontextconstraints \\[restricted-scc\\] in namespace default found as specified, therefore this Object template is compliant"
+ 1: "violation - securitycontextconstraints not found: \\[restricted-scc\\] in namespace default missing"
+ 2: "violation - couldn't find mapping resource with kind SecurityContextConstraints, please check if you have CRD deployed"

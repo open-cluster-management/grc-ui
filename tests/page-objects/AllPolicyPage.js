@@ -91,7 +91,8 @@ module.exports = {
     verifySummary,
     verifyTable,
     verifyToggle,
-  }]
+  }],
+  compareTemplate: compareTemplate
 }
 function verifySummary(url) {
   this.waitForElementVisible('@summaryCollapse')
