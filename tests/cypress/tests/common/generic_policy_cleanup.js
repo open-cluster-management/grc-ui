@@ -9,8 +9,8 @@ export const cleanup_usingPolicyYAML = (confFilePolicy) => {
 
   const rawPolicyYAML = getConfigObject(confFilePolicy, 'raw', getDefaultSubstitutionRules())
   const policyName = rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
- 
-  it(`Create the clean up policy using the YAML`, () => {
+
+  it('Create the clean up policy using the YAML', () => {
     cy.visit('/multicloud/policies/create')
     createPolicyFromYAML(rawPolicyYAML, true)
   })
