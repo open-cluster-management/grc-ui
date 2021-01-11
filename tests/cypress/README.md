@@ -100,7 +100,7 @@ Substitutions should be used for this configuration file in order to adjust temp
  * Path: Usually stored in a subfolder under `tests/cypress/config`.
  * Example: [config/demo/violations.yaml](https://github.com/open-cluster-management/grc-ui/pull/358/files#diff-c0d94b95d8eb69700ff3b76d88c9a7f6de26aa821700dd1cd845cbcf62f341ad)
 
-The file describe violation message patterns that should be used when checking the actual violations on the detailed policy status page. There is a section per cluster and within the section there is a list of message pattern identifiers (described above) relevant for that particular cluster.
+The file describe violation message patterns that should be used when checking the actual violations on the detailed policy status page. There is a section per cluster and within the section there is a list of message pattern identifiers (described above) relevant for that particular cluster. There could be also a section having "*" instead of a cluster name, meaning this is the default mapping for server that are not listed.
 Substitutions should be used for this configuration file in order to adjust pattern identifiers according to the actual environment.
 
 ## Violations checking

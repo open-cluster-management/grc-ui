@@ -29,6 +29,6 @@ beforeEach(() => {
 })
 
 after(()=> {
-  cy.logout()
-  cy.clearCookies()
+  // cy.logout()
+  // cy.clearCookies()
 })
