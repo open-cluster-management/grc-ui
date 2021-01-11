@@ -1,6 +1,5 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 import './commands'
-import 'cypress-axe'
 require('cypress-terminal-report/src/installLogsCollector')()
 
 Cypress.Cookies.defaults({
