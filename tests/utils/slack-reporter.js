@@ -27,9 +27,28 @@ async function reportFailure() {
       const comment = buildComment(filename)
       postScreenshot(filename, screenshot, comment, userId)
     })
+    const cypressDir = path.join(process.cwd(), 'test-output', 'cypress')
+    const cypressScreenshotsDir = path.join(cypressDir, 'screenshots')
+    const cypressVideosDir = path.join(cypressDir, 'videos')
+    if (fs.existsSync(cypressScreenshotsDir)) {
+      // screenshot dir exists means there are test failures
+      // upload only videos with failures
+      const videos = getDirectories(cypressScreenshotsDir)
+      videos.forEach(video => {
+        const filename = path.join(cypressVideosDir, video + '.mp4')
+        console.log('Uploading video ' + filename)
+        postScreenshot(filename, filename, video, userId)
+      })
+    }
   } catch(e) {
     console.error(e)
   }
+}
+
+function getDirectories(source) {
+  return fs.readdirSync(source, { withFileTypes: true })
+          .filter(dirent => dirent.isDirectory())
+          .map(dirent => dirent.name)
 }
 
 function recFindByExt(base,ext,files,result) {
