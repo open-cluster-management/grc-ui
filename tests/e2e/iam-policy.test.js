@@ -24,7 +24,7 @@ module.exports = {
     page = browser.page.CommonPage()
   },
 
-  'GRC IAM policy: create iam-policy': (browser) => {
+  'GRC: [P1][Sev1][policy-grc] IAM policy: create iam-policy': (browser) => {
     const time = browser.globals.time
     const createIamPolicy = fs.readFileSync(path.join(__dirname, 'yaml/iam_policy/create_test_iam_policy.yaml'))
     var yaml = createIamPolicy.toString()
@@ -32,7 +32,7 @@ module.exports = {
     page.checkStatus('policy-iampolicy-' + time, false)
   },
 
-  'GRC IAM policy: create clusterrolebinding as should show violation': (browser) => {
+  'GRC: [P1][Sev1][policy-grc] IAM policy: create clusterrolebinding as should show violation': (browser) => {
     const time = browser.globals.time
     const createCRB = fs.readFileSync(path.join(__dirname, 'yaml/iam_policy/create_test_clusterrolebinding.yaml'))
     var yaml = createCRB.toString()
@@ -42,7 +42,7 @@ module.exports = {
     page.deletePolicy('policy-clusterrolebinding-test-' + time)
   },
 
-  'GRC IAM policy: delete clusterrolebinding as should show compliant': (browser) => {
+  'GRC: [P1][Sev1][policy-grc] IAM policy: delete clusterrolebinding as should show compliant': (browser) => {
     const time = browser.globals.time
     const deleteCRB = fs.readFileSync(path.join(__dirname, 'yaml/iam_policy/delete_test_clusterrolebinding.yaml'))
     var yaml = deleteCRB.toString()
@@ -52,7 +52,7 @@ module.exports = {
     page.deletePolicy('policy-clusterrolebinding-delete-' + time)
   },
 
-  'GRC IAM policy: clean up': (browser) => {
+  'GRC: [P1][Sev1][policy-grc] IAM policy: clean up': (browser) => {
     const time = browser.globals.time
     page.deletePolicy('policy-iampolicy-' + time)
   },
