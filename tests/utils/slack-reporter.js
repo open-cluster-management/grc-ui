@@ -28,6 +28,8 @@ async function reportFailure() {
         const testName = filename.slice(0, searchIndex).replace(/-/g, ' ')
         postScreenshot(filename, screenshot, buildComment(testName), userId)
       })
+    } else {
+      console.log('No nightwatch failure screenshots exist.')
     }
     const cypressDir = path.join(process.cwd(), 'test-output', 'cypress')
     const cypressScreenshotsDir = path.join(cypressDir, 'screenshots')
@@ -41,6 +43,8 @@ async function reportFailure() {
         console.log('Uploading video ' + filename)
         postScreenshot(filename, filename, buildComment(testName), userId)
       })
+    } else {
+      console.log('No cypress failure screenshots/videos exist.')
     }
   } catch(e) {
     console.error(e)
