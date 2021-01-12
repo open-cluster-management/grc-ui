@@ -3,7 +3,7 @@
 import { test_genericPolicyGovernance } from './common/generic_policies_governance.spec.js'
 import { cleanup_usingPolicyYAML } from './common/generic_policy_cleanup.js'
 
-test_genericPolicyGovernance('LimitRange governance', 'LimitRange_governance/policy-config.yaml', 'LimitRange_governance/violations-inform.yaml', 'LimitRange_governance/violations-enforce.yaml')
-describe('LimitRange policy governance - clean up', () => {
-    cleanup_usingPolicyYAML('LimitRange_governance/limitRange_specification_cleanup_policy_raw.yaml')
+test_genericPolicyGovernance('Pod governance', 'Pod_governance/policy-config.yaml', 'Pod_governance/violations-inform.yaml', 'Pod_governance/violations-enforce.yaml')
+describe('Pod policy governance - clean up', () => {
+    cleanup_usingPolicyYAML('Pod_governance/pod_specification_cleanup_policy_raw.yaml')
 })

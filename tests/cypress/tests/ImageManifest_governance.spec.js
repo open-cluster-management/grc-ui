@@ -3,7 +3,7 @@
 import { test_genericPolicyGovernance } from './common/generic_policies_governance.spec.js'
 import { cleanup_usingPolicyYAML } from './common/generic_policy_cleanup.js'
 
-test_genericPolicyGovernance('LimitRange governance', 'LimitRange_governance/policy-config.yaml', 'LimitRange_governance/violations-inform.yaml', 'LimitRange_governance/violations-enforce.yaml')
-describe('LimitRange policy governance - clean up', () => {
-    cleanup_usingPolicyYAML('LimitRange_governance/limitRange_specification_cleanup_policy_raw.yaml')
+test_genericPolicyGovernance('ImageManifest governance', 'ImageManifest_governance/policy-config.yaml', 'ImageManifest_governance/violations-inform.yaml', 'ImageManifest_governance/violations-enforce.yaml')
+describe('ImageManifest policy governance - clean up', () => {
+    cleanup_usingPolicyYAML('ImageManifest_governance/imageManifest_specification_cleanup_policy_raw.yaml')
 })
