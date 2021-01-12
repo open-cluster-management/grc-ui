@@ -12,7 +12,7 @@ test-pod-policy-[ID]:
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'Pod'
   specifications:
-    - 'Pod'
+    - 'Pod - Nginx pod must exist'
   standards:
     - 'NIST-CSF'
   categories:

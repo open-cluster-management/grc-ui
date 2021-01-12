@@ -12,7 +12,7 @@ test-limitrange-policy-[ID]:
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'LimitRange'
   specifications:
-    - 'LimitRange'
+    - 'LimitRange - Limit container memory usage'
   standards:
     - 'NIST-CSF'
   categories:

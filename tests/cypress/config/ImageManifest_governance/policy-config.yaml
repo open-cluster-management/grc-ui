@@ -12,7 +12,7 @@ test-imageManifest-policy-[ID]:
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'ImageManifestVulnPolicy'
   specifications:
-    - 'Subscription'
+    - 'ImageManifestVulnPolicy - Detect image vulnerabilities'
   standards:
     - 'NIST-CSF'
   categories:

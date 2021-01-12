@@ -12,7 +12,7 @@ test-namespace-policy-[ID]:
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'Namespace'
   specifications:
-    - 'Namespace'
+    - 'Namespace - Must have namespace 'prod''
   standards:
     - 'NIST-CSF'
   categories:
