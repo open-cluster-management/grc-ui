@@ -19,7 +19,7 @@ import msgs from '../../../nls/platform.properties'
 import { withRouter } from 'react-router-dom'
 import { REQUEST_STATUS } from '../../actions/index'
 import { removeResource, clearRequestStatus, receiveDelError, updateModal } from '../../actions/common'
-
+import { buildSelfLinK } from '../../components/common/BuildSelfLink'
 class RemoveResourceModal extends React.Component {
   constructor(props) {
     super(props)
@@ -91,6 +91,7 @@ class RemoveResourceModal extends React.Component {
   handleSubmitClick() {
     const { handleSubmit, data } = this.props
     data.selected = this.state.selected
+    data.selfLink = buildSelfLinK(data, 'policies')
     handleSubmit()
   }
 
@@ -166,6 +167,7 @@ RemoveResourceModal.propTypes = {
     name: PropTypes.string,
     namespace: PropTypes.string,
     selected: PropTypes.array,
+    selfLink: PropTypes.string,
   }),
   handleClose: PropTypes.func,
   handleSubmit: PropTypes.func,
@@ -187,7 +189,7 @@ const mapStateToProps = state =>  {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleSubmit: () => {
-      dispatch(removeResource(ownProps.resourceType, ownProps.data))
+      dispatch(removeResource(ownProps.resourceType, ownProps.data, ownProps.data.selfLink))
     },
     handleClose: () => {
       dispatch(clearRequestStatus())

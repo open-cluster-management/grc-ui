@@ -184,10 +184,10 @@ export const enforcResource = (resourceType, namespace, name, body, selfLink, re
     })
 })
 
-export const removeResource = (resourceType, vars) => async dispatch => {
+export const removeResource = (resourceType, vars, selfLink) => async dispatch => {
   dispatch(delResource(resourceType))
   try {
-    const response = await GrcApolloClient.remove(vars)
+    const response = await GrcApolloClient.remove(vars, selfLink)
     if (response.errors) {
       return dispatch(receiveDelError(response.errors, resourceType))
     } else {

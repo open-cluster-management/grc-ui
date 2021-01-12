@@ -12,6 +12,7 @@ import { REQUEST_STATUS } from '../../actions/index'
 import {
   enforcResource, disableResource, clearRequestStatus, receivePatchError, updateModal,
 } from '../../actions/common'
+import { buildSelfLinK } from '../../components/common/BuildSelfLink'
 
 export class PolicyActionModal extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ export class PolicyActionModal extends React.Component {
   }
 
   handleSubmitClick() {
-    const { type:modalType, handleSubmit, data:pData, resourceType } = this.props
+    const { type:modalType, handleSubmit, data:rawData, resourceType } = this.props
     let resourcePath = '', data = '', dispatchFun = null
     switch(modalType) {
     case 'resource-disable':
@@ -47,7 +48,7 @@ export class PolicyActionModal extends React.Component {
     default:
       break
     }
-    handleSubmit(resourceType, pData.namespace, pData.name, data, pData.metadata.selfLink, resourcePath, dispatchFun)
+    handleSubmit(resourceType, rawData.namespace, rawData.name, data,  buildSelfLinK(rawData, 'policies'), resourcePath, dispatchFun)
   }
 
   handleCloseClick() {
