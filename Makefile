@@ -42,9 +42,7 @@ unit-test:
 	npm test
 
 travis-slack-reporter:
-	if [ -d "test-output/e2e/screenshots" ]; then \
-		node ./tests/utils/slack-reporter.js; \
-	fi
+	node ./tests/utils/slack-reporter.js
 
 build-test-image:
 	make component/build
