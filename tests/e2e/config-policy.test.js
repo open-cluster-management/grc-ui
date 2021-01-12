@@ -23,7 +23,7 @@ module.exports = {
 
     page = browser.page.CommonPage()
   },
-  'GRC: [P1][Sev1][policy-grc] Config policy: single object check (musthave+inform) and then enforce it using UI': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Config policy: single object check (musthave+inform) and then enforce it using UI': (browser) => {
     const time = browser.globals.time
     const singleMustHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/single_musthave_inform.yaml'))
     const yaml = singleMustHaveInform.toString()
@@ -34,7 +34,7 @@ module.exports = {
     page.deletePolicy('policy-pod-single-musthave-inform-' + time)
   },
 
-  'GRC: [P1][Sev1][policy-grc] Config policy: single object check (mustnothave+enforce) and then inform it using UI': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Config policy: single object check (mustnothave+enforce) and then inform it using UI': (browser) => {
     const time = browser.globals.time
     const singleMustHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/single_mustnothave_enforce.yaml'))
     const yaml = singleMustHaveInform.toString()
@@ -45,7 +45,7 @@ module.exports = {
     page.deletePolicy('policy-pod-single-mustnothave-enforce-' + time)
   },
 
-  'GRC: [P1][Sev1][policy-grc] Config policy: all objects of kind / exists': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Config policy: all objects of kind / exists': (browser) => {
     const time = browser.globals.time
     const kindMustNotHaveNC = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/kind_mustnothave_noncompliant.yaml'))
     let yaml = kindMustNotHaveNC.toString()
@@ -59,7 +59,7 @@ module.exports = {
     page.deletePolicy('policy-ns-musthave-' + time)
   },
 
-  'GRC: [P1][Sev1][policy-grc] Config policy: all objects of kind / does not exist': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Config policy: all objects of kind / does not exist': (browser) => {
     const time = browser.globals.time
     const createNS = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/create_test_ns.yaml'))
     let yaml = createNS.toString()

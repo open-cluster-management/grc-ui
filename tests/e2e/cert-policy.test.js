@@ -23,7 +23,7 @@ module.exports = {
     page = browser.page.CommonPage()
   },
 
-  'GRC: [P1][Sev1][policy-grc] Cert policy: create issuer and certificate ': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Cert policy: create issuer and certificate ': (browser) => {
     const time = browser.globals.time
     const testIssuer = fs.readFileSync(path.join(__dirname, 'yaml/cert_policy/create_test_issuer.yaml'))
     let yaml = testIssuer.toString()
@@ -37,7 +37,7 @@ module.exports = {
     page.deletePolicy('policy-create-certificate-' + time)
   },
 
-  'GRC: [P1][Sev1][policy-grc] Cert policy: create cert policy and should show violation': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Cert policy: create cert policy and should show violation': (browser) => {
     const time = browser.globals.time
     const certPolicy = fs.readFileSync(path.join(__dirname, 'yaml/cert_policy/create_test_certpolicy.yaml'))
     const yaml = certPolicy.toString()
@@ -45,7 +45,7 @@ module.exports = {
     page.checkStatus('policy-certificatepolicy-' + time, true)
   },
 
-  'GRC: [P1][Sev1][policy-grc] Cert policy: update certificate and secret': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Cert policy: update certificate and secret': (browser) => {
     const time = browser.globals.time
     const updateCertificate = fs.readFileSync(path.join(__dirname, 'yaml/cert_policy/update_test_certificate.yaml'))
     const yaml = updateCertificate.toString()
@@ -54,12 +54,12 @@ module.exports = {
     page.deletePolicy('policy-update-certificate-' + time)
   },
 
-  'GRC: [P1][Sev1][policy-grc] Cert policy: cert policy should show compliant': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Cert policy: cert policy should show compliant': (browser) => {
     const time = browser.globals.time
     page.checkStatus('policy-certificatepolicy-' + time, false)
   },
 
-  'GRC: [P1][Sev1][policy-grc] Cert policy: clean up': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Cert policy: clean up': (browser) => {
     const time = browser.globals.time
     page.deletePolicy('policy-create-issuer-' + time)
     page.deletePolicy('policy-certificatepolicy-' + time)
