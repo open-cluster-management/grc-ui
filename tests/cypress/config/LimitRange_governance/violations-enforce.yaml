@@ -1,3 +1,3 @@
 "*": # this is the default mapping
- - [UNAME]-limit-clusteradmin-1  
+ - "[UNAME]-container-mem-limit-range-0"
 
