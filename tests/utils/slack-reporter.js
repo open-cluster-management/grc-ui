@@ -17,17 +17,20 @@ async function reportFailure() {
   }
 
   try {
-    const screenshotDir = path.join(process.cwd(), 'test-output', 'e2e', 'screenshots')
-    // const userId = await mapSlackUserByGitEmail()
     const userId = SLACK_CHANNEL_NAME
-    const screenshots = recFindByExt(screenshotDir, 'png')
-    screenshots.forEach(screenshot => {
-      const pathArray = screenshot.split('/')
-      const filename = pathArray[pathArray.length-1]
-      const searchIndex = filename.indexOf('_')
-      const testName = filename.slice(0, searchIndex).replace(/-/g, ' ')
-      postScreenshot(filename, screenshot, buildComment(testName), userId)
-    })
+    const screenshotDir = path.join(process.cwd(), 'test-output', 'e2e', 'screenshots')
+    if (fs.existsSync(screenshotDir)) {
+      const screenshots = recFindByExt(screenshotDir, 'png')
+      screenshots.forEach(screenshot => {
+        const pathArray = screenshot.split('/')
+        const filename = pathArray[pathArray.length-1]
+        const searchIndex = filename.indexOf('_')
+        const testName = filename.slice(0, searchIndex).replace(/-/g, ' ')
+        postScreenshot(filename, screenshot, buildComment(testName), userId)
+      })
+    } else {
+      console.log('No nightwatch failure screenshots exist.')
+    }
     const cypressDir = path.join(process.cwd(), 'test-output', 'cypress')
     const cypressScreenshotsDir = path.join(cypressDir, 'screenshots')
     const cypressVideosDir = path.join(cypressDir, 'videos')
@@ -40,6 +43,8 @@ async function reportFailure() {
         console.log('Uploading video ' + filename)
         postScreenshot(filename, filename, buildComment(testName), userId)
       })
+    } else {
+      console.log('No cypress failure screenshots/videos exist.')
     }
   } catch(e) {
     console.error(e)
