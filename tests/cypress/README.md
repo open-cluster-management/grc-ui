@@ -67,11 +67,11 @@ would create a dictionary matching the following object
 In this section we are going to present and explain configuration file types that are currently being used by cypress tests.
 
 ### cluster list
- * State: draft (used in demo)
+ * State: used in tests
  * Path: tests/cypress/config/clusters.yaml
  * Example: [config/demo/clusters.yaml](https://github.com/open-cluster-management/grc-ui/pull/358/files#diff-20a8e39681436d2de40012e88cf54929a00a2f38bcba179d79dbdd1a2fc76946)
 
-This configuration file should contain details about individual imported clusters avaialable in RHACM. Ideally, it would be created by a script prior test execution according to the actual testing (e.g. canary) environment.
+This configuration file contains details about clusters avaialable in RHACM. It is created by the `start_cypress_tests.sh` script before tests starts. However for locally issued tests you can modify this file with a different content.
 
 ### raw YAML file
  * State: used in tests
@@ -84,24 +84,25 @@ These files are used to contain a raw YAML which is being used in a test e.g. as
 ### policy description
  * State: used in tests
  * Path: Usually stored in a subfolder under `tests/cypress/config`.
- * Example: [config/sample/demo-policy-conf.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/sample/demo-policy-config.yaml)
+ * Example: [config/IamPolicy_governance/policy-config.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/IamPolicy_governance/policy-config.yaml)
 
 This configuration file contain policy details that can be used both for policy creation and policy validation (checking that policy as respective properties). In some cases multiple policies can be specified in one file, policy name being (usually) a section header. Within a section there are various policy attributes specified.
 
 ### violations patterns
- * State: draft (used in demo)
- * Path: [tests/cypress/config/violation-patterns.yaml](https://github.com/open-cluster-management/grc-ui/pull/358/files#diff-df2d42454a9fad5cc02820a2ef9c68b1fefcbd1a4bea58d377f4c4d22aabafca)
+ * State: used in tests
+ * Path: [tests/cypress/config/violation-patterns.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/violation-patterns.yaml)
 
-This is a generic purpose file containing violation message patterns (regexps) used for matching the actual vilation message in the policy status page. There is a separate section for each policy template and within a section there are multiple patterns listed, each having a numeric ID. From the policy pattern name (e.g. `comp-operator-ns`) and ID (e.g. `1`) a unique identifier for the message pattern is constructed (e.g. `comp-operator-ns-1`). Such identifiers are used for the expected cluster violation mapping described below. ID `0` is being used for the compliant message (i.e. there is no violation).
+This is a generic purpose file (used by multiple tests) containing violation message patterns (regexps) used for matching the actual vilation message in the policy status page. There is a separate section for each policy template and within a section there are multiple patterns listed, each having a numeric ID. From the policy pattern name (e.g. `comp-operator-ns`) and ID (e.g. `1`) a unique identifier for the message pattern is constructed (e.g. `comp-operator-ns-1`). Such identifiers are used for the expected cluster violation mapping described below. ID `0` is being used for the compliant message (i.e. there is no violation).
 Substitutions should be used for this configuration file in order to adjust template names according to the actual environment.
 
 ### cluster violation mapping
- * State: draft (used in demo)
+ * State: used in tests
  * Path: Usually stored in a subfolder under `tests/cypress/config`.
- * Example: [config/demo/violations.yaml](https://github.com/open-cluster-management/grc-ui/pull/358/files#diff-c0d94b95d8eb69700ff3b76d88c9a7f6de26aa821700dd1cd845cbcf62f341ad)
+ * Example: [config/demo/violations.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/demos/violations.yaml), [config/IamPolicy_governance/violations-inform.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/IamPolicy_governance/violations-inform.yaml)
 
-The file describe violation message patterns that should be used when checking the actual violations on the detailed policy status page. There is a section per cluster and within the section there is a list of message pattern identifiers (described above) relevant for that particular cluster.
+The file describe violation message patterns that should be used when checking the actual violations on the detailed policy status page. There is a section per cluster and within the section there is a list of message pattern identifiers (described above) relevant for that particular cluster. There could be also a section having "*" instead of a cluster name, meaning this is the default mapping for server that are not listed.
 Substitutions should be used for this configuration file in order to adjust pattern identifiers according to the actual environment.
+In a test, you may want to use two files instead, `violations-inform.yaml` mapping violations expected for `inform` policy and `violation-enforce.yaml` for violations expected after policy is enforced.
 
 ## Violations checking
 

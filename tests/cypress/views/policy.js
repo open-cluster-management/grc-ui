@@ -112,9 +112,9 @@ export const verifyPolicyInListing = (
         cy.wrap(namespace).contains(policyConfig['namespace'].trim(), { matchCase: false })
       }
       // check enforce/inform
-      if (policyConfig['enforce']) {
+      if (policyConfig['enforce'] == true) {
         cy.wrap(remediation).contains('enforce', { matchCase: false })
-      } else {
+      } else if (policyConfig['enforce'] == false) {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check the violation status
@@ -154,9 +154,8 @@ export const verifyPolicyInListing = (
       .contains(uName)
       .siblings('span')
       .contains('disabled', { matchCase: false })
-      .then(() => {
-        isPolicyStatusAvailable(uName, true)
-      })
+      .then(() => isPolicyStatusAvailable(uName)) // check policy status, it should not be available
+      .then((v) => expect(v).to.be.false)
     } else { // check enabled policy
       cy.get('a')
         .contains(uName)
@@ -180,6 +179,7 @@ export const verifyPolicyNotInListing = (uName) => {
 
 export const actionPolicyActionInListing = (uName, action, cancel=false) => {
   cy.CheckGrcMainPage()
+  doTableSearch(uName)
   cy.get('.grc-view-by-policies-table').within(() => {
     cy.get('a')
       .contains(uName)
@@ -208,41 +208,50 @@ export const actionPolicyActionInListing = (uName, action, cancel=false) => {
   })
   // after mainpage table action, always return to grc main page
   cy.CheckGrcMainPage()
+  clearTableSearch()
 }
 
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
 // here statusPending = true to check consist pending status for disable policy
-export const isPolicyStatusAvailable = (uName, statusPending=false) => {
+export const isPolicyStatusAvailable = (uName, violationsCounter) => {
+  let statusAvailable
   // page /multicloud/policies/all
-  if (window.location.toString().endsWith('/multicloud/policies/all')) {
-    return cy.get('.grc-view-by-policies-table').within(() => {
+  //if (window.location.toString().endsWith('/multicloud/policies/all')) {
+return cy.url().then((pageURL) => {
+  if (pageURL.endsWith('/multicloud/policies/all')) {
+    cy.get('[aria-label="Sortable Table"]').within(() => {
     cy.get('a').contains(uName).parents('td').siblings('td').spread((namespace, remediation, violations) => {
       // check the violation status
       cy.wrap(violations).find('path').then((elems) => {
         if (elems.length === 1) {
           const d = elems[0].getAttribute('d')
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-          statusPending = !d.startsWith('M569')
+          statusAvailable = !d.startsWith('M569')
+          if (statusAvailable && violationsCounter) { // also check if violations counter matches
+            if (violations.textContent.indexOf(violationsCounter) < 0) { // not found
+              statusAvailable = false
+            }
+          }
         }
       })
     })
   })
-  .then(() => statusPending)
+  .then(() => statusAvailable)
   } else { // other pages
-    return cy.get('.violationCell').spread((violations) => {
+    cy.get('.violationCell').spread((violations) => {
       // check the violation status
       cy.wrap(violations).find('path').then((elems) => {
         if (elems.length == 1) {
           const d = elems[0].getAttribute('d')
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-          statusPending = !d.startsWith('M569')
+          statusAvailable = !d.startsWith('M569')
         }
       })
     })
-    .then(() => statusPending)
+    .then(() => statusAvailable)
   }
+})
 }
-
 
 export const verifyPolicyInPolicyDetails = (
   uName, policyConfig, enabled='enabled',
@@ -261,9 +270,9 @@ export const verifyPolicyInPolicyDetails = (
         cy.wrap(namespace).contains(policyConfig['namespace'])
       }
       // check enforce/inform
-      if (policyConfig['enforce']) {
+      if (policyConfig['enforce'] == true) {
         cy.wrap(enforcement).contains('enforce', { matchCase: false })
-      } else {
+      } else if (policyConfig['enforce'] == false) {
         cy.wrap(enforcement).contains('inform', { matchCase: false })
       }
       // check state
@@ -424,7 +433,7 @@ export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
 
     switch(shortSpec) {
     case 'CertificatePolicy':
-      templates.add(policyName+'-example'+'/'+'CertificatePolicy')
+      templates.add(policyName+'-cert-expiration'+'/'+'CertificatePolicy')
       break
     case 'ComplianceOperator':
       templates.add('comp-operator-ns'+'/'+'ConfigurationPolicy')
@@ -432,7 +441,7 @@ export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
       templates.add('comp-operator-subscription'+'/'+'ConfigurationPolicy')
       break
     case 'EtcdEncryption':
-      templates.add(policyName+'-example'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-etcd-encryption'+'/'+'ConfigurationPolicy')
       break
     case 'GatekeeperOperator':
       templates.add('gatekeeper-operator-ns'+'/'+'ConfigurationPolicy')
@@ -442,43 +451,44 @@ export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
       templates.add('gatekeeper'+'/'+'ConfigurationPolicy')
       break
     case 'IamPolicy':
-      templates.add(policyName+'-example'+'/'+'IamPolicy')
+      templates.add(policyName+'-limit-clusteradmin'+'/'+'IamPolicy')
       break
     case 'ImageManifestVulnPolicy':
-      templates.add(policyName+'-example-sub'+'/'+'ConfigurationPolicy')
-      templates.add(policyName+'-example-imv'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-image-vulnerabilities'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-image-vulnerabilities-sub'+'/'+'ConfigurationPolicy')
       break
     case 'LimitRange':
-      templates.add(policyName+'-mem-limit-range'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-container-mem-limit-range'+'/'+'ConfigurationPolicy')
       break
     case 'Namespace':
-      templates.add(policyName+'-prod'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-prod-ns'+'/'+'ConfigurationPolicy')
       break
     case 'Pod':
-      templates.add(policyName+'-sample-nginx-pod'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-nginx-pod'+'/'+'ConfigurationPolicy')
       break
     case 'PodSecurityPolicy':
-      templates.add(policyName+'-sample-restricted-psp'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-restricted-psp'+'/'+'ConfigurationPolicy')
       break
     case 'Role':
-      templates.add(policyName+'-sample-role'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-deployments-role'+'/'+'ConfigurationPolicy')
       break
     case 'RoleBinding':
-      templates.add(policyName+'-sample-role-binding'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-operatoruser-rolebinding'+'/'+'ConfigurationPolicy')
       break
     case 'SecurityContextConstraints':
-      templates.add(policyName+'-sample-restricted-scc'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-restricted-scc'+'/'+'ConfigurationPolicy')
       break
     }
   }
   return Array.from(templates)
 }
 
+// from the set of known violations per cluster read just violations relevant for the particular policy
 export const getViolationsPerPolicy = (policyName, policyConfig, clusterViolations, clusters = undefined) => {
   const violations = {}
   const templates = getPolicyTemplatesNameAndKind(policyName, policyConfig)
-  if (clusters == undefined) {
-    clusters = Object.keys(clusterViolations)
+  if (clusters == undefined) {  // clusters were not defined, get a list of all cluster names from the clusterViolations dictionary
+    clusters = Object.keys(clusterViolations).filter((value) => { return value != '*' }) // get all keys except the default/wildcard '*' when present
   }
   for (const cluster of clusters) {
     violations[cluster] = []
@@ -486,7 +496,14 @@ export const getViolationsPerPolicy = (policyName, policyConfig, clusterViolatio
   for (const template of templates) {
     const templateName = template.split('/', 2)[0]
     for (const cluster of clusters) {
-      for (const clusterViolation of clusterViolations[cluster]) {
+      let violationList = []  // will contain a list of violations for the specific cluster
+      if (cluster in clusterViolations) {  // I know violations for the specific cluster in clusterViolations
+        violationList = clusterViolations[cluster]
+      }
+      else if ('*' in clusterViolations) {  // I am using the default/wildcard '*' settings from clusterViolations
+        violationList = clusterViolations['*']
+      }
+      for (const clusterViolation of violationList) {
         if (clusterViolation.startsWith(templateName+'-')) {
           violations[cluster].push(clusterViolation)
         }
@@ -561,13 +578,19 @@ export const verifyPlacementBindingInPolicyDetails = (uName, policyConfig) => {
 // does the search using the search form
 // so far tested only on the policy status page
 export const doTableSearch = (text, parentElement = null) => {
-  // FIXME - do this search without a force
-  cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true}).type(text, {force: true})
+  // do the search only if there are resources on the page
+  if (!Cypress.$('#page').find('div.no-resouce'.length)) {
+    // FIXME - do this search without a force
+    cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true}).type(text, {force: true})
+  }
 }
 
 export const clearTableSearch = (parentElement = null) => {
-  // FIXME - do this without a force
-  cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true})
+  // clear the search only if there are resources on the page
+  if (!Cypress.$('#page').find('div.no-resouce'.length)) {
+    // FIXME - do this without a force
+    cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true})
+  }
 }
 
 
