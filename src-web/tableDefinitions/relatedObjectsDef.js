@@ -57,7 +57,9 @@ export default {
 }
 
 function buildViewYamlLink(item, locale) {
-  const selfLink = _.get(item, 'selfLink')
+  const selfLink = _.get(item, 'object.metadata.selfLink')
+    ? _.get(item, 'object.metadata.selfLink')
+    : _.get(item, 'selfLink')
   const cluster = _.get(item, 'cluster')
   if (selfLink && cluster) {
     return <a target='_blank' rel='noopener noreferrer'

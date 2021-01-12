@@ -107,10 +107,10 @@ const data = {
           'metadata': {
             'name': 'openshift-multus.162c757efd7ebb62',
             'namespace': 'gatekeeper-system',
-            'selfLink': '/api/v1/namespaces/gatekeeper-system/events/openshift-multus.162c757efd7ebb62'
           }
         },
-        'reason': 'No status'
+        'reason': 'No status',
+        'selfLink': '/api/v1/namespaces/gatekeeper-system/events/openshift-multus.162c757efd7ebb62'
       },
       {
         'compliant': 'NonCompliant',

@@ -2,7 +2,7 @@
 'use strict'
 import _ from 'lodash'
 
-export const buildSelfLinK= (data, kind) => {
+export const buildSelfLinK = (data, kind) => {
   const apiGroupVersion = _.get(data, 'raw.apiVersion')
   const namespace = _.get(data, 'metadata.namespace')
   const name = _.get(data, 'metadata.name')
