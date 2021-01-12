@@ -50,7 +50,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
     const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations, clusterList)
     const violationsCounter = getViolationsCounter(clusterViolations)
 
-    it(`Wait for policy ${policyName} status becomes available`, () => {
+    it(`Wait for policy ${policyName} status to become available`, () => {
       cy.waitForPolicyStatus(policyName)
     })
 
@@ -125,7 +125,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       const clusterViolations = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolations, clusterList)
       const violationsCounter = getViolationsCounter(clusterViolations)
 
-      it(`Wait for policy ${policyName} status becomes available`, () => {
+      it(`Wait for policy ${policyName} status to become available`, () => {
         cy.visit('/multicloud/policies/all')
         cy.waitForPolicyStatus(policyName, violationsCounter)
       })
