@@ -1,7 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
-import { test_genericPolicyGovernance } from './common/generic_policies_governance.spec.js'
-import { cleanup_usingPolicyYAML } from './common/generic_policy_cleanup.js'
+import { test_genericPolicyGovernance } from './common/generic_policies_governance'
+import { cleanup_usingPolicyYAML } from './common/generic_policy_cleanup'
 
 test_genericPolicyGovernance('Role policy governance', 'Role_policy_governance/policy-config.yaml', 'Role_policy_governance/violations-inform.yaml', 'Role_policy_governance/violations-enforce.yaml')
 
