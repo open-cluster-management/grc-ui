@@ -1,6 +1,6 @@
 # these are policies required by following Polarion test cases:
 
-test-iam-policy-[ID]:
+test-limitrange-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
 #  cluster_binding:
