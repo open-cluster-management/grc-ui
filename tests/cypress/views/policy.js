@@ -112,9 +112,9 @@ export const verifyPolicyInListing = (
         cy.wrap(namespace).contains(policyConfig['namespace'].trim(), { matchCase: false })
       }
       // check enforce/inform
-      if (policyConfig['enforce']) {
+      if (policyConfig['enforce'] == true) {
         cy.wrap(remediation).contains('enforce', { matchCase: false })
-      } else {
+      } else if (policyConfig['enforce'] == false) {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check the violation status
@@ -154,9 +154,8 @@ export const verifyPolicyInListing = (
       .contains(uName)
       .siblings('span')
       .contains('disabled', { matchCase: false })
-      .then(() => {
-        isPolicyStatusAvailable(uName, true)
-      })
+      .then(() => isPolicyStatusAvailable(uName)) // check policy status, it should not be available
+      .then((v) => expect(v).to.be.false)
     } else { // check enabled policy
       cy.get('a')
         .contains(uName)
@@ -214,37 +213,45 @@ export const actionPolicyActionInListing = (uName, action, cancel=false) => {
 
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
 // here statusPending = true to check consist pending status for disable policy
-export const isPolicyStatusAvailable = (uName, statusPending=false) => {
+export const isPolicyStatusAvailable = (uName, violationsCounter) => {
+  let statusAvailable
   // page /multicloud/policies/all
-  if (window.location.toString().endsWith('/multicloud/policies/all')) {
-    return cy.get('.grc-view-by-policies-table').within(() => {
+  //if (window.location.toString().endsWith('/multicloud/policies/all')) {
+return cy.url().then((pageURL) => {
+  if (pageURL.endsWith('/multicloud/policies/all')) {
+    cy.get('[aria-label="Sortable Table"]').within(() => {
     cy.get('a').contains(uName).parents('td').siblings('td').spread((namespace, remediation, violations) => {
       // check the violation status
       cy.wrap(violations).find('path').then((elems) => {
         if (elems.length === 1) {
           const d = elems[0].getAttribute('d')
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-          statusPending = !d.startsWith('M569')
+          statusAvailable = !d.startsWith('M569')
+          if (statusAvailable && violationsCounter) { // also check if violations counter matches
+            if (violations.textContent.indexOf(violationsCounter) < 0) { // not found
+              statusAvailable = false
+            }
+          }
         }
       })
     })
   })
-  .then(() => statusPending)
+  .then(() => statusAvailable)
   } else { // other pages
-    return cy.get('.violationCell').spread((violations) => {
+    cy.get('.violationCell').spread((violations) => {
       // check the violation status
       cy.wrap(violations).find('path').then((elems) => {
         if (elems.length == 1) {
           const d = elems[0].getAttribute('d')
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-          statusPending = !d.startsWith('M569')
+          statusAvailable = !d.startsWith('M569')
         }
       })
     })
-    .then(() => statusPending)
+    .then(() => statusAvailable)
   }
+})
 }
-
 
 export const verifyPolicyInPolicyDetails = (
   uName, policyConfig, enabled='enabled',
@@ -263,9 +270,9 @@ export const verifyPolicyInPolicyDetails = (
         cy.wrap(namespace).contains(policyConfig['namespace'])
       }
       // check enforce/inform
-      if (policyConfig['enforce']) {
+      if (policyConfig['enforce'] == true) {
         cy.wrap(enforcement).contains('enforce', { matchCase: false })
-      } else {
+      } else if (policyConfig['enforce'] == false) {
         cy.wrap(enforcement).contains('inform', { matchCase: false })
       }
       // check state

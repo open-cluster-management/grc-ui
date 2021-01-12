@@ -147,9 +147,10 @@ Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
 
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
 // see isPolicyStatusAvailable()
-Cypress.Commands.add('waitForPolicyStatus', (name) => {
+// optionally can wait for the specific violations counter to appear
+Cypress.Commands.add('waitForPolicyStatus', (name, violationsCounter) => {
   doTableSearch(name)
-  cy.waitUntil(() => isPolicyStatusAvailable(name), {'interval': 2000, 'timeout':120000})
+  cy.waitUntil(() => isPolicyStatusAvailable(name, violationsCounter), {'interval': 2000, 'timeout':60000})
     .then(() => clearTableSearch())
 })
 

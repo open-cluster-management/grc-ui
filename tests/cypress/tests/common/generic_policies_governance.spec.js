@@ -129,7 +129,7 @@ describe(description, () => {
 
       it(`Wait for policy ${policyName} status becomes available`, () => {
         cy.visit('/multicloud/policies/all')
-        cy.waitForPolicyStatus(policyName)
+        cy.waitForPolicyStatus(policyName, violationsCounter)
       })
 
       it(`Check enabled policy ${policyName}`, () => {
