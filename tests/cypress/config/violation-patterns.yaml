@@ -62,7 +62,7 @@ gatekeeper-operator-subscription:
 # Pod specification
 [UNAME]-nginx-pod:
  0: "notification - pods `nginx-pod` was missing, and was created successfully"
- 1: "violation - pods not found: [nginx-pod] does not exist in namespace default"
+ 1: "violation - pods not found: \\[nginx-pod\\] does not exist in namespace default"
 # PodSecurityPolicy specification
 [UNAME]-restricted-psp:
  0: "notification - podsecuritypolicies \\[restricted-psp\\] in namespace default found as specified, therefore this Object template is compliant"
