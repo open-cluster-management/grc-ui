@@ -55,7 +55,20 @@ export class ResourceModal extends React.PureComponent {
           if (resource.metadata && resource.metadata.name) {
             name = resource.metadata.name
           }
-          this.props.putResource(resourceType, namespace, name, resource, this.props.data, 'policies')
+          let kind
+          const resourceKind = _.get(resource, 'kind')
+          switch(resourceKind.trim().toLowerCase()) {
+            case 'placementrule':
+              kind = 'placementrules'
+              break
+            case 'placementbinding':
+              kind = 'placementbindings'
+              break
+            default:
+              kind = 'policies'
+              break
+          }
+          this.props.putResource(resourceType, namespace, name, resource, this.props.data, kind)
         })
       } catch(e) {
         this.setState(preState => {
