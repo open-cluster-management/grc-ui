@@ -16,8 +16,10 @@ test-imageManifest-policy-[ID]:
   standards:
     - 'NIST-CSF'
   categories:
-    - 'PR.AC Identity Management and Access Control, DE.CM Security Continuous Monitoring'
+    - 'PR.AC Identity Management and Access Control' 
+    - 'DE.CM Security Continuous Monitoring'
   controls:
-    - 'PR.AC-4 Access Control, DE.CM-8 Vulnerability Scans'
+    - 'PR.AC-4 Access Control' 
+    - 'DE.CM-8 Vulnerability Scans'
   enforce: False
   disable: False
