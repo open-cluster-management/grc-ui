@@ -20,6 +20,7 @@ import * as reducers from './reducers'
 import config from '../lib/shared/config'
 import GrcApolloClient from '../lib/client/apollo-client'
 import ScrollToTop from './components/common/ScrollToTop'
+import { AcmHeaderPrototype } from '@open-cluster-management/ui-components'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -45,7 +46,9 @@ hydrate(
     <Provider store={store}>
       <BrowserRouter>
         <ScrollToTop>
-          <App />
+          <AcmHeaderPrototype href="https://patternfly.org" target="_blank">
+            <App />
+          </AcmHeaderPrototype>
         </ScrollToTop>
       </BrowserRouter>
     </Provider>

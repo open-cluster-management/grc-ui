@@ -70,7 +70,22 @@ module.exports = {
       },
       {
         test: [/\.s?css$/],
-        exclude: /node_modules\/(?!(@patternfly)\/).*/,
+        exclude: {
+          and: [
+            /node_modules/,
+            {
+              or: [
+                { not: [/node_modules\/@patternfly/] },
+                {
+                  and: [
+                    /node_modules\/@open-cluster-management\/ui-components/,
+                    /node_modules\/@patternfly/
+                  ]
+                }
+              ]
+            }
+          ]
+        },
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -145,6 +160,12 @@ module.exports = {
         // file-loader rule.
         test: overpassTest,
         loader: 'null-loader',
+      },
+      // ignore styles @open-cluster-management/ui-components
+      {
+        test: /\.s?css$/,
+        include: /node_modules\/@open-cluster-management\/ui-components/,
+        loader: 'null-loader'
       },
     ],
     noParse: [
