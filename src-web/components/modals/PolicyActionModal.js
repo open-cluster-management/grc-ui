@@ -12,8 +12,6 @@ import { REQUEST_STATUS } from '../../actions/index'
 import {
   enforcResource, disableResource, clearRequestStatus, receivePatchError, updateModal,
 } from '../../actions/common'
-import { buildSelfLinK } from '../../components/common/BuildSelfLink'
-
 export class PolicyActionModal extends React.Component {
   constructor(props) {
     super(props)
@@ -48,7 +46,7 @@ export class PolicyActionModal extends React.Component {
     default:
       break
     }
-    handleSubmit(resourceType, rawData.namespace, rawData.name, data,  buildSelfLinK(rawData, 'policies'), resourcePath, dispatchFun)
+    handleSubmit(resourceType, rawData.namespace, rawData.name, data, rawData, 'policies', resourcePath, dispatchFun)
   }
 
   handleCloseClick() {
@@ -137,8 +135,8 @@ const mapStateToProps = state =>  {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSubmit: (resourceType, namespace, name, data, selfLink, resourcePath, dispatchFun) => {
-      dispatch(dispatchFun(resourceType, namespace, name, data, selfLink, resourcePath))
+    handleSubmit: (resourceType, namespace, name, data, resourceData, type, resourcePath, dispatchFun) => {
+      dispatch(dispatchFun(resourceType, namespace, name, data, resourceData, type, resourcePath))
     },
     handleClose: (modalType) => {
       dispatch(clearRequestStatus())

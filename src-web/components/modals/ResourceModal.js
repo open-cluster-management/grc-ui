@@ -21,7 +21,6 @@ import msgs from '../../../nls/platform.properties'
 import { dumpAndParse, saveLoad } from '../../../lib/client/design-helper'
 import YamlEditor from '../common/YamlEditor'
 import PropTypes from 'prop-types'
-import { buildSelfLinK } from '../../components/common/BuildSelfLink'
 
 resources(() => {
   require('../../../scss/modal.scss')
@@ -46,7 +45,6 @@ export class ResourceModal extends React.PureComponent {
       const resourceType = this.props.resourceType
       let namespace = this.props.namespace
       let name = this.props.name
-      let selfLink = buildSelfLinK(this.props.data, 'policies')
       let localResources
       try {
         localResources = _.compact(saveLoad(this.state.data))
@@ -57,9 +55,7 @@ export class ResourceModal extends React.PureComponent {
           if (resource.metadata && resource.metadata.name) {
             name = resource.metadata.name
           }
-          const resourceSelfLink = buildSelfLinK(resource, 'policies')
-          selfLink = resourceSelfLink ? resourceSelfLink : selfLink
-          this.props.putResource(resourceType, namespace, name, resource, selfLink)
+          this.props.putResource(resourceType, namespace, name, resource, this.props.data, 'policies')
         })
       } catch(e) {
         this.setState(preState => {
@@ -211,8 +207,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    putResource: (resourceType, namespace, name, data, selfLink) => {
-      dispatch(editResource(resourceType, namespace, name, data, selfLink))
+    putResource: (resourceType, namespace, name, data, resourceData, type) => {
+      dispatch(editResource(resourceType, namespace, name, data, resourceData, type))
     },
     handleClose: () => {
       dispatch(clearRequestStatus())
