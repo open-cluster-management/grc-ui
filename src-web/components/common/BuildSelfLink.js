@@ -3,13 +3,15 @@
 import _ from 'lodash'
 
 export const buildSelfLinK = (data) => {
-  const apiGroupVersion = _.get(data, 'apiVersion', 'raw.apiVersion')
-  const resourceKind = _.get(data, 'kind')
+  const apiGroupVersion = _.get(data, 'raw.apiVersion')
+    ? _.get(data, 'raw.apiVersion')
+    : _.get(data, 'apiVersion')
+  const resourceKind = _.get(data, 'kind', 'policy')
   const namespace = _.get(data, 'metadata.namespace')
   const name = _.get(data, 'metadata.name')
   let kind
   let selfLink = ''
-  if (apiGroupVersion && namespace && resourceKind && name) {
+  if (apiGroupVersion && namespace && name) {
     switch (resourceKind.trim().toLowerCase()) {
       case 'placementrule':
         kind = 'placementrules'
@@ -17,6 +19,7 @@ export const buildSelfLinK = (data) => {
       case 'placementbinding':
         kind = 'placementbindings'
         break
+      case 'policy':
       default:
         kind = 'policies'
         break
