@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: LimitRange-specification-cleanup-policy-[TIME]
+  name: limitRange-specification-cleanup-policy-[TIME]
   namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF

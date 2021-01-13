@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: Pod-specification-cleanup-policy-[TIME]
+  name: pod-specification-cleanup-policy-[TIME]
   namespace: 
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
