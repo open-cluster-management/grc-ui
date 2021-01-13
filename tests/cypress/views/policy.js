@@ -16,7 +16,8 @@ export const getDefaultSubstitutionRules = (uName) => {
   const substitutions = [
       [ /\[LABEL\]/g, label ],
       [ /\[UNAME\]/g, uName ],
-      [ /\[TIME\]/g, timestamp ]
+      [ /\[TIME\]/g, timestamp ],
+      [ /\[ID\]/g, timestamp ]
   ]
   return substitutions
 }
