@@ -28,7 +28,7 @@ module.exports = {
     const singleMustHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/single_musthave_inform.yaml'))
     const yaml = singleMustHaveInform.toString()
     page.createPolicy(browser, 'policy-pod-single-musthave-inform-' + time, yaml, time)
-    page.checkStatus('policy-pod-single-musthave-inform-' + time, true, 'NonCompliant; violation - pods not found: [nginx-pod-' + time + '` in namespace default missing View details')
+    page.checkStatus('policy-pod-single-musthave-inform-' + time, true, 'NonCompliant; violation - pods `nginx-pod-' + time + '` does not exist as specified View details')
     page.enforcePolicy('policy-pod-single-musthave-inform-' + time)
     page.checkStatus('policy-pod-single-musthave-inform-' + time, false)
     page.deletePolicy('policy-pod-single-musthave-inform-' + time)
