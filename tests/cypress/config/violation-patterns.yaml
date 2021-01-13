@@ -53,7 +53,7 @@ gatekeeper-operator-subscription:
  2: "violation - subscriptions not found: \\[container-security-operator\\] in namespace default missing"
 # LimitRange specification
 [UNAME]-container-mem-limit-range:
- 0: "notification - limitranges [container-mem-limit-range] in namespace default exist as specified, therefore this Object template is compliant"
+ 0: "notification - limitranges \\[container-mem-limit-range\\] in namespace default exist as specified, therefore this Object template is compliant"
  1: "violation - limitranges not found: \\[mem-limit-range\\] in namespace default missing"
 # Namespace specification
 [UNAME]-prod-ns:
