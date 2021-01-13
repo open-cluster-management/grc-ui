@@ -46,7 +46,7 @@ export class PolicyActionModal extends React.Component {
     default:
       break
     }
-    handleSubmit(resourceType, rawData.namespace, rawData.name, data, rawData, 'policies', resourcePath, dispatchFun)
+    handleSubmit(resourceType, rawData.namespace, rawData.name, data, rawData, resourcePath, dispatchFun)
   }
 
   handleCloseClick() {
@@ -135,8 +135,8 @@ const mapStateToProps = state =>  {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSubmit: (resourceType, namespace, name, data, resourceData, type, resourcePath, dispatchFun) => {
-      dispatch(dispatchFun(resourceType, namespace, name, data, resourceData, type, resourcePath))
+    handleSubmit: (resourceType, namespace, name, data, resourceData, resourcePath, dispatchFun) => {
+      dispatch(dispatchFun(resourceType, namespace, name, data, resourceData, resourcePath))
     },
     handleClose: (modalType) => {
       dispatch(clearRequestStatus())

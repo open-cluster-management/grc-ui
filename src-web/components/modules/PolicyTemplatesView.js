@@ -122,7 +122,7 @@ class PolicyTemplatesView extends React.Component {
     }
     const namespace = _.get(resourceData, 'metadata.namespace')
     const name = _.get(resourceData, 'metadata.name')
-    localEditResource(resourceType, namespace, name, resource, resourceData, 'policies')
+    localEditResource(resourceType, namespace, name, resource, resourceData)
     this.setState({
       updated: true
     })
@@ -243,8 +243,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editResource: (resourceType, namespace, name, data, resourceData, type) => {
-      dispatch(editResource(resourceType, namespace, name, data, resourceData, type))
+    editResource: (resourceType, namespace, name, data, resourceData) => {
+      dispatch(editResource(resourceType, namespace, name, data, resourceData))
     },
   }
 }

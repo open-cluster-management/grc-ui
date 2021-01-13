@@ -186,7 +186,7 @@ const mapStateToProps = state =>  {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleSubmit: () => {
-      dispatch(removeResource(ownProps.resourceType, ownProps.data, 'policies'))
+      dispatch(removeResource(ownProps.resourceType, ownProps.data))
     },
     handleClose: () => {
       dispatch(clearRequestStatus())

@@ -143,9 +143,9 @@ export const fetchResource = (resourceType, namespace, name) => {
   }
 }
 
-export const editResource = (resourceType, namespace, name, body, resourceData, type, resourcePath) => (dispatch => {
+export const editResource = (resourceType, namespace, name, body, resourceData, resourcePath) => (dispatch => {
   dispatch(putResource(resourceType))
-  const selfLink = buildSelfLinK(body, type) ? buildSelfLinK(body, type) : buildSelfLinK(resourceData, type)
+  const selfLink = buildSelfLinK(body) ? buildSelfLinK(body) : buildSelfLinK(resourceData)
   return GrcApolloClient.updateResource(namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
@@ -158,9 +158,9 @@ export const editResource = (resourceType, namespace, name, body, resourceData, 
     })
 })
 
-export const disableResource = (resourceType, namespace, name, body, resourceData, type, resourcePath) => (dispatch => {
+export const disableResource = (resourceType, namespace, name, body, resourceData, resourcePath) => (dispatch => {
   dispatch(patchResource(resourceType))
-  const selfLink = buildSelfLinK(resourceData, type)
+  const selfLink = buildSelfLinK(resourceData)
   return GrcApolloClient.updateResource(namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
@@ -173,9 +173,9 @@ export const disableResource = (resourceType, namespace, name, body, resourceDat
     })
 })
 
-export const enforcResource = (resourceType, namespace, name, body, resourceData, type, resourcePath) => (dispatch => {
+export const enforcResource = (resourceType, namespace, name, body, resourceData, resourcePath) => (dispatch => {
   dispatch(patchResource(resourceType))
-  const selfLink = buildSelfLinK(resourceData, type)
+  const selfLink = buildSelfLinK(resourceData)
   return GrcApolloClient.updateResource(namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
@@ -188,9 +188,9 @@ export const enforcResource = (resourceType, namespace, name, body, resourceData
     })
 })
 
-export const removeResource = (resourceType, resourceData, type) => async dispatch => {
+export const removeResource = (resourceType, resourceData) => async dispatch => {
   dispatch(delResource(resourceType))
-  const selfLink = buildSelfLinK(resourceData, type)
+  const selfLink = buildSelfLinK(resourceData)
   try {
     const response = await GrcApolloClient.remove(resourceData, selfLink)
     if (response.errors) {
