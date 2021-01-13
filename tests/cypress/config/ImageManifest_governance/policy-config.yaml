@@ -1,6 +1,6 @@
 # these are policies required by following Polarion test cases:
 
-test-imageManifest-policy-[ID]:
+test-imagemanifest-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
 #  cluster_binding:
