@@ -622,8 +622,10 @@ export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violat
           // FIXME: here we should have a function that split the content per ';' and tests each part agains Compliant/NonCompliant and expected messages
           if (id == 0) {
             cy.wrap(message).contains(new RegExp('Compliant; '+violationPatterns[templateName][id]))
+            cy.log(message)
           } else {
             cy.wrap(message).contains(new RegExp('NonCompliant; '+violationPatterns[templateName][id]))
+            cy.log(message)
           }
           // check last report timestamp
           cy.wrap(lastReport).contains(timestampRegexp)
@@ -665,8 +667,10 @@ export const verifyViolationsInPolicyStatusTemplates = (clusterViolations, viola
             // FIXME: here we should have a function that split the content per ';' and tests each part agains Compliant/NonCompliant and expected messages
             if (id == 0) {
               cy.wrap(message).contains(new RegExp('Compliant; '+violationPatterns[templateName][id]))
+              cy.log(message)
             } else {
               cy.wrap(message).contains(new RegExp('NonCompliant; '+violationPatterns[templateName][id]))
+              cy.log(message)
             }
             // check last report timestamp
             cy.wrap(lastReport).contains(timestampRegexp)
