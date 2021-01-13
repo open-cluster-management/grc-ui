@@ -19,6 +19,7 @@ import msgs from '../../../nls/platform.properties'
 import { withRouter } from 'react-router-dom'
 import { REQUEST_STATUS } from '../../actions/index'
 import { removeResource, clearRequestStatus, receiveDelError, updateModal } from '../../actions/common'
+
 class RemoveResourceModal extends React.Component {
   constructor(props) {
     super(props)
