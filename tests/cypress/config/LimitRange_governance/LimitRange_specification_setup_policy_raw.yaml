@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: limitRange-specification-cleanup-policy-[TIME]
+  name: limitRange-specification-setup-policy-[TIME]
   namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
@@ -15,7 +15,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: LimitRange-specification-cleanup-policy-[TIME]-container-mem-limit-range
+        name: LimitRange-specification-setup-policy-[TIME]-container-mem-limit-range
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
         severity: medium
@@ -40,21 +40,21 @@ spec:
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-LimitRange-specification-cleanup-policy-[TIME]
+  name: binding-LimitRange-specification-setup-policy-[TIME]
   namespace: 
 placementRef:
-  name: placement-LimitRange-specification-cleanup-policy-[TIME]
+  name: placement-LimitRange-specification-setup-policy-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: LimitRange-specification-cleanup-policy-[TIME]
+- name: LimitRange-specification-setup-policy-[TIME]
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-LimitRange-specification-cleanup-policy-[TIME]
+  name: placement-LimitRange-specification-setup-policy-[TIME]
   namespace: 
 spec:
   clusterConditions:

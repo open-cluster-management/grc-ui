@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: limitRange-specification-cleanup-policy-[TIME]
+  name: namespace-specification-setup-policy-[TIME]
   namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
@@ -15,47 +15,40 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: LimitRange-specification-cleanup-policy-[TIME]-container-mem-limit-range
+        name: Namespace-specification-setup-policy-[TIME]-prod-ns
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: medium
+        severity: low
         namespaceSelector:
           exclude: ["kube-*"]
           include: ["default"]
         object-templates:
-          - complianceType: mustnothave # this is the clean up action
+          - complianceType: mustnothave # this is the setup up action
             objectDefinition:
+              kind: Namespace # must have namespace 'prod'
               apiVersion: v1
-              kind: LimitRange # limit memory usage
               metadata:
-                name: container-mem-limit-range
-              spec:
-                limits:
-                - default:
-                    memory: 512Mi
-                  defaultRequest:
-                    memory: 256Mi
-                  type: Container
+                name: prod
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-LimitRange-specification-cleanup-policy-[TIME]
-  namespace: 
+  name: binding-Namespace-specification-setup-policy-[TIME]
+  namespace: default
 placementRef:
-  name: placement-LimitRange-specification-cleanup-policy-[TIME]
+  name: placement-Namespace-specification-setup-policy-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: LimitRange-specification-cleanup-policy-[TIME]
+- name: Namespace-specification-setup-policy-[TIME]
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-LimitRange-specification-cleanup-policy-[TIME]
-  namespace: 
+  name: placement-Namespace-specification-setup-policy-[TIME]
+  namespace: default
 spec:
   clusterConditions:
   - status: "True"
