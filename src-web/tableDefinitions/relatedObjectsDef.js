@@ -1,5 +1,4 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
-
 'use strict'
 
 import React from 'react'
@@ -59,9 +58,12 @@ export default {
 
 function buildViewYamlLink(item, locale) {
   const selfLink = _.get(item, 'object.metadata.selfLink')
-  if (selfLink) {
+    ? _.get(item, 'object.metadata.selfLink')
+    : _.get(item, 'selfLink')
+  const cluster = _.get(item, 'cluster')
+  if (selfLink && cluster) {
     return <a target='_blank' rel='noopener noreferrer'
-      href={`/multicloud/details/${_.get(item, 'cluster')}${selfLink}`}>{msgs.get('table.actions.view.yaml', locale)}</a>
+      href={`/multicloud/details/${cluster}${selfLink}`}>{msgs.get('table.actions.view.yaml', locale)}</a>
   }
   return ''
 }
