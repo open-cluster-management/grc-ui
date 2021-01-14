@@ -79,3 +79,4 @@ ps -ef | grep 'node app.js' | grep -v grep | awk '{print $2}' | xargs kill
 sleep 10
 
 sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/server/coverage/lcov.info
+sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/cypress/coverage/lcov.info
