@@ -63,7 +63,7 @@ function fetchHeader(req, res, store, ctx) {
         <StaticRouter
           location={req.originalUrl}
           context={ctx}>
-          <AcmHeaderPrototype href="https://patternfly.org" target="_blank">
+          <AcmHeaderPrototype href="/" target="_self">
             <App />
           </AcmHeaderPrototype>
         </StaticRouter>

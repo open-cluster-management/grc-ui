@@ -10,7 +10,9 @@
 'use strict'
 const express = require('express'),
       router = express.Router(),
-      config = require('../config')
+      config = require('../config'),
+      securityMW = require('security-middleware')
+
 
 //controllers
 const status = require('./status'),
@@ -18,5 +20,6 @@ const status = require('./status'),
 
 router.all(['/', '/status', '/livenessProbe', '/readinessProbe'], status)
 router.use(config.get('contextPath'), ui)
+router.get('/logout', securityMW.logout)
 
 module.exports = router

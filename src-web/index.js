@@ -46,7 +46,7 @@ hydrate(
     <Provider store={store}>
       <BrowserRouter>
         <ScrollToTop>
-          <AcmHeaderPrototype href="https://patternfly.org" target="_blank">
+          <AcmHeaderPrototype href="/" target="_self">
             <App />
           </AcmHeaderPrototype>
         </ScrollToTop>
