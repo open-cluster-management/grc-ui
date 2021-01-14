@@ -252,6 +252,7 @@ function deletePolicy(name){
   this.log(`Deleting policy: ${name}`)
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
+  this.click('@searchInput').clearValue('@searchInput')
   this.expect.elements('tbody>tr').count.not.to.equal(0)
   this.searchPolicy(name, true)
   //verify cancel button (.bx--btn.bx--btn--tertiary) on delete policy modal and return to main page
