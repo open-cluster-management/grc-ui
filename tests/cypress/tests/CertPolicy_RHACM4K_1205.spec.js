@@ -14,7 +14,7 @@ describe('Testing certificate policy governance case RHACM4K_1205 over managed c
     const certificateYAML = getConfigObject('CertPolicyTest/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificateName))
     const certificatePolicyName = 'policy-certificatepolicy-RHACM4K-1205'
     const uCertificatePolicyName = getUniqueResourceName(certificatePolicyName)
-    const certificatePolicyYAML = getConfigObject('CertPolicyTest/CertPolicyTest/test_certpolicy_RHACM4K_1205_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificatePolicyName))
+    const certificatePolicyYAML = getConfigObject('CertPolicyTest/test_certpolicy_RHACM4K_1205_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificatePolicyName))
     const certificatePolicyConfig = getConfigObject('CertPolicyTest/test_certpolicy_config.yaml')
 
     it ('"Govern risk" page can be launched.', () => {
