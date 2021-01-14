@@ -38,8 +38,12 @@ import _ from 'lodash'
 
 const tempCookie = 'template-editor-open-cookie'
 const diagramIconsInfoStr = '#diagramIcons_info'
-// Regex to text valid policy name formart
-const policyNameRegex = RegExp(/^[a-z0-9]([-a-z0-9]*[a-z0-9])?(.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/)
+// Regex to test valid policy name format
+// (253 allowable characters, but we have a 'placement-' prefix for PlacementRule,
+// so we're limiting the name input to 243 characters--the full is too heavy
+// for processing, so we only use the full on render and the simple elsewhere)
+const simplePolicyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,241}[a-z0-9]$/)
+const fullPolicyNameRegex = RegExp(/^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/)
 export default class TemplateEditor extends React.Component {
 
   static propTypes = {
@@ -278,10 +282,9 @@ export default class TemplateEditor extends React.Component {
     const { updateMessage, validPolicyName } = this.state
     let { updateMsgKind } = this.state
     if (!validPolicyName) {
-      updateMsgKind ='error'
+      updateMsgKind = 'error'
     }
     if (updateMessage) {
-
       const handleClick = () => {
         //This is intentional
       }
@@ -321,10 +324,12 @@ export default class TemplateEditor extends React.Component {
     return null
   }
 
-  handlePolicyNameVaildation = (vaildNameFormat) => {
-    this.setState({
-      validPolicyName: vaildNameFormat
-    })
+  handlePolicyNameValidation = (validNameFormat) => {
+    if (this.state.validPolicyName !== validNameFormat){
+      this.setState({
+          validPolicyName: validNameFormat
+      })
+    }
   }
 
   renderTextInput(control) {
@@ -337,8 +342,9 @@ export default class TemplateEditor extends React.Component {
       if (isCustomName && existing) {
         invalid = new Set(existing).has(value)
       }
-      const vaildPolicyNameFormat = policyNameRegex.test(value)
-      invalid = !vaildPolicyNameFormat ? !vaildPolicyNameFormat : invalid
+      const validPolicyNameFormat = fullPolicyNameRegex.test(value)
+      this.handlePolicyNameValidation(validPolicyNameFormat)
+      invalid = !validPolicyNameFormat ? !validPolicyNameFormat : invalid
     }
 
     return (
@@ -536,14 +542,12 @@ export default class TemplateEditor extends React.Component {
     const { locale } = this.props
     let updateName = false
     let { isCustomName } = this.state
-    const { controlData, templateYAML, validPolicyName } = this.state
+    const { controlData, templateYAML } = this.state
     if (field === 'name') {
       const policyName = _.get(evt, '_targetInst.stateNode.value', '')
       if (policyName) {
-        const vaildPolicyNameFormat = policyNameRegex.test(policyName)
-        if (validPolicyName !== vaildPolicyNameFormat) {
-          this.handlePolicyNameVaildation(vaildPolicyNameFormat)
-        }
+        const validPolicyNameFormat = simplePolicyNameRegex.test(policyName)
+        this.handlePolicyNameValidation(validPolicyNameFormat)
       }
     }
     const control = controlData.find(({id})=>id===field)
