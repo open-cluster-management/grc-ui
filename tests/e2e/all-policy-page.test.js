@@ -26,7 +26,7 @@ module.exports = {
     common = browser.page.CommonPage()
   },
 
-  'GRC Create policy page: Verify templates': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Create policy page: Verify templates': (browser) => {
     const templates = [
       'CertificatePolicy',
       'ComplianceOperator',
@@ -52,11 +52,11 @@ module.exports = {
     page.testCreateCustomSelections(templates.slice(0,3))
   },
 
-  'GRC Create policy page: Updating YAML in editor': () => {
+  'GRC UI: [P1][Sev1][policy-grc] Create policy page: Updating YAML in editor': () => {
     page.updateYamlEditor()
   },
 
-  'GRC All policy page: Create, Search, Verify details of policy': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] All policy page: Create, Search, Verify details of policy': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
     const templateFile = 'modifiedIMVP_template.yaml'
@@ -77,7 +77,7 @@ module.exports = {
     page.testDetailsPage(policyName, templateFile)
   },
 
-  'GRC All policy page: Verify stability of YAML': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] All policy page: Verify stability of YAML': (browser) => {
     const time = browser.globals.time
     const gkPolicy = fs.readFileSync(path.join(__dirname, 'yaml/create_policy/Gatekeeper-template.yaml'))
     var yaml = gkPolicy.toString()
@@ -85,17 +85,17 @@ module.exports = {
     common.deletePolicy('policy-gatekeeper-' + time)
   },
 
-  'GRC All policy page: Verify summary table': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] All policy page: Verify summary table': (browser) => {
     common.clearPatternFlySearchValue()
     page.verifySummary(`${browser.launch_url}${config.get('contextPath')}/all`)
   },
 
-  // 'GRC All policy page: Test pagination': (browser) => {
+  // 'GRC UI: [P1][Sev1][policy-grc] All policy page: Test pagination': (browser) => {
   //   page.verifyPagination(browser)
   // },
 
 
-  'GRC All policy page: Check nonexistent URLs': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] All policy page: Check nonexistent URLs': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
     const policyNamespace = 'default'
@@ -124,7 +124,7 @@ module.exports = {
     loginPage.navigate()
   },
 
-  'GRC All policy page: Delete test policy': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] All policy page: Delete test policy': (browser) => {
     const time = browser.globals.time
     const policyName = `${time}-policy-test`
     common.deletePolicy(policyName)
