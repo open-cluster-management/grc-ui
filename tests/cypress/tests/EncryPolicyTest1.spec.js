@@ -8,7 +8,7 @@ import {
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
 
-describe('Testing encryption policy governance over managed cluster', () => {
+describe('RHACM4K-1403/1581- GRC UI: [P1][Sev1][policy-grc]', () => {
     const encryptionPolicyName = 'policy-etcdencryption-first'
     const uEncryptionPolicyName = getUniqueResourceName(encryptionPolicyName)
     const encryptionPolicyYAML = getConfigObject('encryPolicyTest/test_etcdencryption_first_raw.yaml', 'raw', getDefaultSubstitutionRules(uEncryptionPolicyName))
