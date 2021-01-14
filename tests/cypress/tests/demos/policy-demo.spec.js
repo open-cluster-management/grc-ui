@@ -3,7 +3,8 @@
 import {
   createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
   actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
-  verifyPolicyInPolicyDetailsTemplates, verifyPlacementRuleInPolicyDetails, verifyPlacementBindingInPolicyDetails
+  verifyPolicyInPolicyDetailsTemplates, verifyPlacementRuleInPolicyDetails, verifyPlacementBindingInPolicyDetails,
+  verifyPolicyDetailsInCluster, verifyPolicyTemplatesInCluster
 } from '../../views/policy'
 import { getUniqueResourceName } from '../../scripts/utils'
 import { getConfigObject } from '../../config'
@@ -80,6 +81,11 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
            verifyPlacementRuleInPolicyDetails(uPolicyName, policyConfig, confClusterViolations)
            verifyPlacementBindingInPolicyDetails(uPolicyName, policyConfig)
          })
+    })
+
+    it('check policy details & templates on cluster page', () => {
+      verifyPolicyDetailsInCluster(uPolicyName, policyConfig)
+      verifyPolicyTemplatesInCluster(uPolicyName, policyConfig)
     })
 
     it(`Policy ${uPolicyName} can be deleted in the policy listing`, () => {
