@@ -45,7 +45,6 @@ export class ResourceModal extends React.PureComponent {
       const resourceType = this.props.resourceType
       let namespace = this.props.namespace
       let name = this.props.name
-      let selfLink = this.props.data.metadata.selfLink
       let localResources
       try {
         localResources = _.compact(saveLoad(this.state.data))
@@ -56,10 +55,7 @@ export class ResourceModal extends React.PureComponent {
           if (resource.metadata && resource.metadata.name) {
             name = resource.metadata.name
           }
-          if (resource.metadata && resource.metadata.selfLink) {
-            selfLink = resource.metadata.selfLink
-          }
-          this.props.putResource(resourceType, namespace, name, resource, selfLink)
+          this.props.putResource(resourceType, namespace, name, resource, this.props.data)
         })
       } catch(e) {
         this.setState(preState => {
@@ -211,8 +207,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    putResource: (resourceType, namespace, name, data, selfLink) => {
-      dispatch(editResource(resourceType, namespace, name, data, selfLink))
+    putResource: (resourceType, namespace, name, data, resourceData) => {
+      dispatch(editResource(resourceType, namespace, name, data, resourceData))
     },
     handleClose: () => {
       dispatch(clearRequestStatus())

@@ -65,18 +65,17 @@ gatekeeper-operator-subscription:
  1: "TBD"
 # PodSecurityPolicy specification
 [UNAME]-restricted-psp:
- 0: "notification - podsecuritypolicies [restricted-psp] in namespace default found as specified, therefore this Object template is compliant"
- 1: "violation - podsecuritypolicies not found: \\[restricted-psp\\] in namespace default missing"
+ 0: "notification - podsecuritypolicies \\[restricted-psp\\] found as specified, therefore this Object template is compliant View details"
+ 1: "violation - podsecuritypolicies not found: \\[restricted-psp\\] missing"
 # Role specification
 [UNAME]-deployments-role:
- 0: "notification - roles \\[deployments-role\\] in namespace default found as specified, therefore this Object template is compliant"
+ 0: "notification - roles \\[deployments-role\\] in namespace default (was missing, and was created successfully|found as specified, therefore this Object template is compliant)"
  1: "violation - roles not found: \\[deployments-role\\] in namespace default missing"
 # RoleBinding specification
 [UNAME]-operatoruser-rolebinding:
- 0: "TBD"
+ 0: "notification - rolebindings \\[operatoruser-rolebinding\\] in namespace default (was missing, and was created successfully|found as specified, therefore this Object template is compliant)"
  1: "violation - rolebindings not found: \\[operatoruser-rolebinding\\] in namespace default missing"
 # SecurityContextConstraints specification
 [UNAME]-restricted-scc:
- 0: "notification - securitycontextconstraints \\[restricted-scc\\] in namespace default found as specified, therefore this Object template is compliant"
- 1: "violation - securitycontextconstraints not found: \\[restricted-scc\\] in namespace default missing"
- 2: "violation - couldn't find mapping resource with kind SecurityContextConstraints, please check if you have CRD deployed"
+ 0: "notification - securitycontextconstraints \\[restricted-scc\\] (was missing, and was created successfully|found as specified, therefore this Object template is compliant)"
+ 1: "violation - securitycontextconstraints not found: \\[restricted-scc\\] missing"

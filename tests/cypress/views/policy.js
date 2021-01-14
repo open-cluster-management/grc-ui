@@ -16,7 +16,8 @@ export const getDefaultSubstitutionRules = (uName) => {
   const substitutions = [
       [ /\[LABEL\]/g, label ],
       [ /\[UNAME\]/g, uName ],
-      [ /\[TIME\]/g, timestamp ]
+      [ /\[TIME\]/g, timestamp ],
+      [ /\[ID\]/g, timestamp ]
   ]
   return substitutions
 }
@@ -678,4 +679,38 @@ export const verifyViolationsInPolicyStatusTemplates = (clusterViolations, viola
       })
     }
   }
+}
+
+export const verifyPolicyDetailsInCluster =  (policyName, policyConfig) => {
+  cy.goToPolicyClusterPage(policyName, policyConfig)
+  cy.get('section[aria-label="Policy details"]').within(() => {
+    cy.get('.bx--structured-list-td').spread((nameLabel, name, clusterLabel, cluster, messageLabel, message, statusLabel, status, enforcementLabel, enforcement ) => {
+        if (policyConfig['namespace']) {
+          cy.wrap(name).contains(policyConfig['namespace']+'.'+policyName)
+        }
+        if (policyConfig['cluster_binding']) {
+          const clustBind = policyConfig['cluster_binding'].toString().split(':')
+          const binded_cluster = clustBind[1].substring(2, clustBind[1].length-1)
+          cy.wrap(cluster).contains(binded_cluster)
+        }
+        cy.wrap(message).contains(policyName+'-example: Compliant,')
+        cy.wrap(status).contains('Compliant')
+        policyConfig['enforce']==='true' ? cy.wrap(enforcement).contains('enforce') : cy.wrap(enforcement).contains('inform')
+      })
+    })
+}
+
+export const verifyPolicyTemplatesInCluster = (policyName, policyConfig) => {
+  cy.get('#policyTemplates-table-container').within(() => {
+    cy.get('tbody').children('tr[data-row-name="'+policyName+'-example"]').spread((nameLabel, name, apiLabel, api, kindLabel, kind, compliantLabel, compliant) => {
+      cy.wrap(name).contains(policyName+'-example')
+      if(policyConfig['apiVersion']) {
+        cy.wrap(api).contains(policyConfig['apiVersion'])
+      }
+      if(policyConfig['kind']) {
+        cy.wrap(kind).contains(policyConfig['kind'])
+      }
+      cy.wrap(compliant).contains('Compliant')
+      })
+    })
 }

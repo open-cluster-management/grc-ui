@@ -62,7 +62,7 @@ module.exports = {
     }
   },
 
-  'GRC RBAC: Cluster-wide cluster-admin user': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Cluster-wide cluster-admin user': () => {
     loginPage.authenticate('e2e-cluster-admin-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.clusterAdmin)
     const createdPolicy = `${policyName}-cluster-admin-cluster`
@@ -72,7 +72,7 @@ module.exports = {
     page.verifyPolicyPage(policyName, permissions.clusterAdmin)
   },
 
-  'GRC RBAC: Cluster-wide admin user': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Cluster-wide admin user': () => {
     loginPage.authenticate('e2e-admin-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.admin)
     const createdPolicy = `${policyName}-admin-cluster`
@@ -82,28 +82,28 @@ module.exports = {
     page.verifyPolicyPage(policyName, permissions.admin)
   },
 
-  'GRC RBAC: Cluster-wide edit user': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Cluster-wide edit user': () => {
     loginPage.authenticate('e2e-edit-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.edit)
     page.verifyCreatePage(permissions.edit)
     page.verifyPolicyPage(policyName, permissions.edit)
   },
 
-  'GRC RBAC: Cluster-wide view user': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Cluster-wide view user': () => {
     loginPage.authenticate('e2e-view-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.view)
     page.verifyCreatePage(permissions.view)
     page.verifyPolicyPage(policyName, permissions.view)
   },
 
-  'GRC RBAC: Cluster-wide view user in a group': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Cluster-wide view user in a group': () => {
     loginPage.authenticate('e2e-group-cluster')
     page.verifyAllPage(policyName, namespaces.length, permissions.view)
     page.verifyCreatePage(permissions.view)
     page.verifyPolicyPage(policyName, permissions.view)
   },
 
-  'GRC RBAC: Namespaced cluster-admin user': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Namespaced cluster-admin user': () => {
     loginPage.authenticate('e2e-cluster-admin-ns')
     page.verifyAllPage(policyName, 1, permissions.clusterAdmin)
     const createdPolicy = `${policyName}-cluster-admin-ns`
@@ -113,7 +113,7 @@ module.exports = {
     page.verifyPolicyPage(policyName, permissions.clusterAdmin, true)
   },
 
-  'GRC RBAC: Namespaced admin user': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Namespaced admin user': () => {
     loginPage.authenticate('e2e-admin-ns')
     // This would be 1, but admin user also has view access to namespace 2
     // Verify admin permissions for this user by filtering for the specific policys
@@ -128,28 +128,28 @@ module.exports = {
     page.verifyPolicyPage(`${policyName}-${namespaces[0]}`, permissions.admin, true)
   },
 
-  'GRC RBAC: Namespaced edit user': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Namespaced edit user': () => {
     loginPage.authenticate('e2e-edit-ns')
     page.verifyAllPage(`${policyName}-${namespaces[0]}`, 1, permissions.edit)
     page.verifyCreatePage(permissions.edit)
     page.verifyPolicyPage(`${policyName}-${namespaces[0]}`, permissions.edit, true)
   },
 
-  'GRC RBAC: Namespaced view user': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Namespaced view user': () => {
     loginPage.authenticate('e2e-view-ns')
     page.verifyAllPage(`${policyName}-${namespaces[0]}`, 1, permissions.view)
     page.verifyCreatePage(permissions.view)
     page.verifyPolicyPage(`${policyName}-${namespaces[0]}`, permissions.view, true)
   },
 
-  'GRC RBAC: Namespaced view user in a group': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Namespaced view user in a group': () => {
     loginPage.authenticate('e2e-group-ns')
     page.verifyAllPage(`${policyName}-${namespaces[0]}`, 1, permissions.view)
     page.verifyCreatePage(permissions.view)
     page.verifyPolicyPage(`${policyName}-${namespaces[0]}`, permissions.view, true)
   },
 
-  'GRC RBAC: Clean up': () => {
+  'GRC UI: [P1][Sev1][policy-grc] RBAC: Clean up': () => {
     loginPage.authenticate()
     // Delete created policies
     policies.forEach((policy) => {

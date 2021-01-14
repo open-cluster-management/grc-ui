@@ -181,3 +181,18 @@ Cypress.Commands.add('goToPolicyDetailsPage', (policyName, namespace='default', 
     }
   })
 })
+
+Cypress.Commands.add('goToPolicyClusterPage', (policyName, policyConfig) => {
+  var binded_cluster = 'local-cluster'
+  var namespace = 'default'
+  cy.goToPolicyDetailsPage(policyName,namespace,true)
+  cy.get('.one-cluster-status').children('a').click()
+  pageLoader.shouldNotExist()
+  if(policyConfig['cluster_binding'] && policyConfig['namepsace'])
+  {
+    var clustBind = policyConfig['cluster_binding'].toString().split(':')
+    binded_cluster = clustBind[1].substring(2, clustBind[1].length-1)
+    namespace = policyConfig['namepsace']
+  }
+  cy.location('pathname').should('eq', '/multicloud/policies/policy/'+binded_cluster+'/'+namespace+'.'+policyName)
+})
