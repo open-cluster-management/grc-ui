@@ -8,7 +8,7 @@ import {
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
 
-describe('Testing certificate policy governance over managed cluster', () => {
+describe('RHACM4K-523/524/525/526/527/528/563/659/663/893/894/895/1567 - GRC UI: [P1][Sev1][policy-grc]', () => {
     const certificateName = 'policy-create-certificate'
     const uCertificateName = getUniqueResourceName(certificateName)
     const certificateYAML = getConfigObject('CertPolicyTest/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificateName))
