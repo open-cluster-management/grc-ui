@@ -11,14 +11,11 @@ import { getConfigObject } from '../config'
 describe('Testing certificate policy governance over managed cluster', () => {
     const certificateName = 'policy-create-certificate'
     const uCertificateName = getUniqueResourceName(certificateName)
-    const certificateYAML = getConfigObject('certPolicyTest/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificateName))
-
+    const certificateYAML = getConfigObject('CertPolicyTest/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificateName))
     const certificatePolicyName = 'policy-certificatepolicy'
     const uCertificatePolicyName = getUniqueResourceName(certificatePolicyName)
-    const certificatePolicyYAML = getConfigObject('certPolicyTest/test_certpolicy_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificatePolicyName))
-
-
-    const certificatePolicyConfig = getConfigObject('certPolicyTest/test_certpolicy_config.yaml')
+    const certificatePolicyYAML = getConfigObject('CertPolicyTest/test_certpolicy_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificatePolicyName))
+    const certificatePolicyConfig = getConfigObject('CertPolicyTest/test_certpolicy_config.yaml')
 
     it ('"Govern risk" page can be launched.', () => {
       cy.CheckGrcMainPage()
