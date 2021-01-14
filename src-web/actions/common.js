@@ -11,6 +11,7 @@ import _ from 'lodash'
 
 import GrcApolloClient from '../../lib/client/apollo-client'
 import { formatExpandablePolicies } from '../components/common/FormatTableData'
+import { buildSelfLinK } from '../components/common/BuildSelfLink'
 import {
   TABLE_PAGE_CHANGE, TABLE_SEARCH, TABLE_SORT, RESOURCE_RECEIVE_SUCCESS,
   REQUEST_STATUS, RESOURCE_RECEIVE_FAILURE, RESOURCE_REQUEST, RESOURCE_ADD,
@@ -142,8 +143,9 @@ export const fetchResource = (resourceType, namespace, name) => {
   }
 }
 
-export const editResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
+export const editResource = (resourceType, namespace, name, body, resourceData, resourcePath) => (dispatch => {
   dispatch(putResource(resourceType))
+  const selfLink = buildSelfLinK(body) ? buildSelfLinK(body) : buildSelfLinK(resourceData)
   return GrcApolloClient.updateResource(namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
@@ -156,8 +158,9 @@ export const editResource = (resourceType, namespace, name, body, selfLink, reso
     })
 })
 
-export const disableResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
+export const disableResource = (resourceType, namespace, name, body, resourceData, resourcePath) => (dispatch => {
   dispatch(patchResource(resourceType))
+  const selfLink = buildSelfLinK(resourceData)
   return GrcApolloClient.updateResource(namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
@@ -170,8 +173,9 @@ export const disableResource = (resourceType, namespace, name, body, selfLink, r
     })
 })
 
-export const enforcResource = (resourceType, namespace, name, body, selfLink, resourcePath) => (dispatch => {
+export const enforcResource = (resourceType, namespace, name, body, resourceData, resourcePath) => (dispatch => {
   dispatch(patchResource(resourceType))
+  const selfLink = buildSelfLinK(resourceData)
   return GrcApolloClient.updateResource(namespace, name, body, selfLink, resourcePath)
     .then(response => {
       if (response.errors) {
@@ -184,14 +188,15 @@ export const enforcResource = (resourceType, namespace, name, body, selfLink, re
     })
 })
 
-export const removeResource = (resourceType, vars) => async dispatch => {
+export const removeResource = (resourceType, resourceData) => async dispatch => {
   dispatch(delResource(resourceType))
+  const selfLink = buildSelfLinK(resourceData)
   try {
-    const response = await GrcApolloClient.remove(vars)
+    const response = await GrcApolloClient.remove(resourceData, selfLink)
     if (response.errors) {
       return dispatch(receiveDelError(response.errors, resourceType))
     } else {
-      dispatch(receiveDelResource(response, resourceType, vars))
+      dispatch(receiveDelResource(response, resourceType, resourceData))
     }
     dispatch(fetchResources(resourceType))
   } catch (err) {
