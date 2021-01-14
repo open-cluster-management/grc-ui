@@ -53,9 +53,7 @@ npm run build
 npm run start:instrument &>/dev/null &
 sleep 10
 npm run test:cypress-headless
-sleep 10
-# clean up after cypress test
-$DIR/cluster-clean-up.sh managed
+sleep 10s
 
 echo "Login managed"
 # Get env from Travis config
