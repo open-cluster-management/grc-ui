@@ -252,7 +252,7 @@ function deletePolicy(name){
   this.log(`Deleting policy: ${name}`)
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.setSearchValue(name)
+  this.searchPolicy(name, true)
   //verify cancel button (.bx--btn.bx--btn--tertiary) on delete policy modal and return to main page
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 4, '#remove-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
