@@ -12,7 +12,6 @@ import { REQUEST_STATUS } from '../../actions/index'
 import {
   enforcResource, disableResource, clearRequestStatus, receivePatchError, updateModal,
 } from '../../actions/common'
-
 export class PolicyActionModal extends React.Component {
   constructor(props) {
     super(props)
@@ -21,7 +20,7 @@ export class PolicyActionModal extends React.Component {
   }
 
   handleSubmitClick() {
-    const { type:modalType, handleSubmit, data:pData, resourceType } = this.props
+    const { type:modalType, handleSubmit, data:rawData, resourceType } = this.props
     let resourcePath = '', data = '', dispatchFun = null
     switch(modalType) {
     case 'resource-disable':
@@ -47,7 +46,7 @@ export class PolicyActionModal extends React.Component {
     default:
       break
     }
-    handleSubmit(resourceType, pData.namespace, pData.name, data, pData.metadata.selfLink, resourcePath, dispatchFun)
+    handleSubmit(resourceType, rawData.namespace, rawData.name, data, rawData, resourcePath, dispatchFun)
   }
 
   handleCloseClick() {
@@ -136,8 +135,8 @@ const mapStateToProps = state =>  {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSubmit: (resourceType, namespace, name, data, selfLink, resourcePath, dispatchFun) => {
-      dispatch(dispatchFun(resourceType, namespace, name, data, selfLink, resourcePath))
+    handleSubmit: (resourceType, namespace, name, data, resourceData, resourcePath, dispatchFun) => {
+      dispatch(dispatchFun(resourceType, namespace, name, data, resourceData, resourcePath))
     },
     handleClose: (modalType) => {
       dispatch(clearRequestStatus())

@@ -50,13 +50,16 @@ class PolicyTemplateDetailsView extends React.Component {
   }
 
   render() {
-    const { template } = this.props
+    const { template, selfLink } = this.props
     const { locale } = this.context
     // clone and inject cluster info into relatedObjects
     let relatedObjects = _.get(_.cloneDeep(template), 'status.relatedObjects', [])
     if (relatedObjects.length > 0) {
       relatedObjects = relatedObjects.map(o => {
         o.cluster = template.metadata.namespace
+        if (!template.metadata.selfLink) {
+          o.selfLink = selfLink
+        }
         return o
       })
     }
@@ -123,6 +126,7 @@ class PolicyTemplateDetailsView extends React.Component {
 }
 
 PolicyTemplateDetailsView.propTypes = {
+  selfLink: PropTypes.string,
   template: PropTypes.object,
 }
 

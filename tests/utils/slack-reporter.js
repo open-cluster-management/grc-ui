@@ -17,19 +17,44 @@ async function reportFailure() {
   }
 
   try {
-    const screenshotDir = path.join(process.cwd(), 'test-output', 'e2e', 'screenshots')
-    // const userId = await mapSlackUserByGitEmail()
     const userId = SLACK_CHANNEL_NAME
-    const screenshots = recFindByExt(screenshotDir, 'png')
-    screenshots.forEach(screenshot => {
-      const pathArray = screenshot.split('/')
-      const filename = pathArray[pathArray.length-1]
-      const comment = buildComment(filename)
-      postScreenshot(filename, screenshot, comment, userId)
-    })
+    const screenshotDir = path.join(process.cwd(), 'test-output', 'e2e', 'screenshots')
+    if (fs.existsSync(screenshotDir)) {
+      const screenshots = recFindByExt(screenshotDir, 'png')
+      screenshots.forEach(screenshot => {
+        const pathArray = screenshot.split('/')
+        const filename = pathArray[pathArray.length-1]
+        const searchIndex = filename.indexOf('_')
+        const testName = filename.slice(0, searchIndex).replace(/-/g, ' ')
+        postScreenshot(filename, screenshot, buildComment(testName), userId)
+      })
+    } else {
+      console.log('No nightwatch failure screenshots exist.')
+    }
+    const cypressDir = path.join(process.cwd(), 'test-output', 'cypress')
+    const cypressScreenshotsDir = path.join(cypressDir, 'screenshots')
+    const cypressVideosDir = path.join(cypressDir, 'videos')
+    if (fs.existsSync(cypressScreenshotsDir)) {
+      // screenshot dir exists means there are test failures
+      // upload only videos with failures
+      const failureTestNames = getDirectories(cypressScreenshotsDir)
+      failureTestNames.forEach(testName => {
+        const filename = path.join(cypressVideosDir, testName + '.mp4')
+        console.log('Uploading video ' + filename)
+        postScreenshot(filename, filename, buildComment(testName), userId)
+      })
+    } else {
+      console.log('No cypress failure screenshots/videos exist.')
+    }
   } catch(e) {
     console.error(e)
   }
+}
+
+function getDirectories(source) {
+  return fs.readdirSync(source, { withFileTypes: true })
+          .filter(dirent => dirent.isDirectory())
+          .map(dirent => dirent.name)
 }
 
 function recFindByExt(base,ext,files,result) {
@@ -55,10 +80,7 @@ function recFindByExt(base,ext,files,result) {
   return result
 }
 
-function buildComment(fileName) {
-  const searchIndex = fileName.indexOf('_')
-  const string = fileName.slice(0, searchIndex)
-  const testName = string.replace(/-/g, ' ')
+function buildComment(testName) {
   return `:failed: *FAILED: ${TRAVIS_REPO_SLUG} -- ${TRAVIS_PULL_REQUEST == 'false' ? 'Branch: '+TRAVIS_BRANCH : 'PR: '+TRAVIS_PULL_REQUEST} -- ${testName}.* \n ${TRAVIS_BUILD_WEB_URL}`
 }
 

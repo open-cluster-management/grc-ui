@@ -106,7 +106,7 @@ class PolicyTemplateDetails extends React.Component {
           if (items) {
             return (
               <Page>
-                <PolicyTemplateDetailsView template={items} />
+                <PolicyTemplateDetailsView template={items} selfLink={selfLink} />
               </Page>
             )
           } else {

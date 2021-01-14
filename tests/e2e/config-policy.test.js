@@ -23,18 +23,18 @@ module.exports = {
 
     page = browser.page.CommonPage()
   },
-  'GRC Config policy: single object check (musthave+inform) and then enforce it using UI': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Config policy: single object check (musthave+inform) and then enforce it using UI': (browser) => {
     const time = browser.globals.time
     const singleMustHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/single_musthave_inform.yaml'))
     const yaml = singleMustHaveInform.toString()
     page.createPolicy(browser, 'policy-pod-single-musthave-inform-' + time, yaml, time)
-    page.checkStatus('policy-pod-single-musthave-inform-' + time, true, 'NonCompliant; violation - pods not found: [nginx-pod-' + time + '] does not exist in namespace default View details')
+    page.checkStatus('policy-pod-single-musthave-inform-' + time, true, 'NonCompliant; violation - pods not found: [nginx-pod-' + time + '] in namespace default missing View details')
     page.enforcePolicy('policy-pod-single-musthave-inform-' + time)
     page.checkStatus('policy-pod-single-musthave-inform-' + time, false)
     page.deletePolicy('policy-pod-single-musthave-inform-' + time)
   },
 
-  'GRC Config policy: single object check (mustnothave+enforce) and then inform it using UI': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Config policy: single object check (mustnothave+enforce) and then inform it using UI': (browser) => {
     const time = browser.globals.time
     const singleMustHaveInform = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/single_mustnothave_enforce.yaml'))
     const yaml = singleMustHaveInform.toString()
@@ -45,7 +45,7 @@ module.exports = {
     page.deletePolicy('policy-pod-single-mustnothave-enforce-' + time)
   },
 
-  'GRC Config policy: all objects of kind / exists': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Config policy: all objects of kind / exists': (browser) => {
     const time = browser.globals.time
     const kindMustNotHaveNC = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/kind_mustnothave_noncompliant.yaml'))
     let yaml = kindMustNotHaveNC.toString()
@@ -59,7 +59,7 @@ module.exports = {
     page.deletePolicy('policy-ns-musthave-' + time)
   },
 
-  'GRC Config policy: all objects of kind / does not exist': (browser) => {
+  'GRC UI: [P1][Sev1][policy-grc] Config policy: all objects of kind / does not exist': (browser) => {
     const time = browser.globals.time
     const createNS = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/create_test_ns.yaml'))
     let yaml = createNS.toString()
@@ -70,7 +70,7 @@ module.exports = {
     const kindMustHave = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/kind_musthave_noncompliant.yaml'))
     yaml = kindMustHave.toString()
     page.createPolicy(browser, 'policy-pod-musthave-all-' + time, yaml, time)
-    page.checkStatus('policy-pod-musthave-all-' + time, true, 'NonCompliant; violation - No instances of `pods` exist as specified View details')
+    page.checkStatus('policy-pod-musthave-all-' + time, true, 'NonCompliant; violation - No instances of `pods` found as specified View details')
     page.deletePolicy('policy-pod-musthave-all-' + time)
     const kindMustNotHave = fs.readFileSync(path.join(__dirname, 'yaml/config_policy/kind_mustnothave_compliant.yaml'))
     yaml = kindMustNotHave.toString()
