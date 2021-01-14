@@ -39,7 +39,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
     })
 
     it(`Check disabled policy ${policyName}`, () => {
-      verifyPolicyInListing(policyName, confPolicies[policyName], 'disabled', 3)
+      verifyPolicyInListing(policyName, confPolicies[policyName], 'disabled')
     })
 
     it(`Enable policy ${policyName}`, () => {
@@ -60,7 +60,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
     })
 
     it(`Check enabled policy ${policyName}`, () => {
-      verifyPolicyInListing(policyName, confPolicies[policyName], 'enabled', 1, violationsCounter)
+      verifyPolicyInListing(policyName, confPolicies[policyName], 'enabled', violationsCounter)
     })
 
   }
@@ -75,7 +75,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
 
     it(`Verify policy ${policyName} details at the detailed page`, () => {
       cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`)
-      verifyPolicyInPolicyDetails(policyName, confPolicies[policyName], 'enabled', 1, violationsCounter)
+      verifyPolicyInPolicyDetails(policyName, confPolicies[policyName], 'enabled', violationsCounter)
     })
 
     it(`Verify policy ${policyName} template details at the detailed page`, () => {
@@ -151,7 +151,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
 
       it(`Verify policy ${policyName} details at the detailed page`, () => {
         cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`)
-        verifyPolicyInPolicyDetails(policyName, confPolicies[policyName], 'enabled', 1, violationsCounter)
+        verifyPolicyInPolicyDetails(policyName, confPolicies[policyName], 'enabled', violationsCounter)
       })
 
       it(`Verify policy ${policyName} template details at the detailed page`, () => {

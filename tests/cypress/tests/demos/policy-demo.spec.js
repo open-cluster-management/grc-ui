@@ -40,7 +40,7 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     })
 
     it('Check disabled policy', () => {
-      verifyPolicyInListing(uPolicyName,  policyConfig, 'disabled', 3)
+      verifyPolicyInListing(uPolicyName,  policyConfig, 'disabled')
     })
 
     it('Enable policy', () => {
@@ -48,9 +48,10 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     })
 
     it('Check enabled policy', () => {
-      verifyPolicyInListing(uPolicyName,  policyConfig, 'enabled', 1, '0/1')
+      verifyPolicyInListing(uPolicyName,  policyConfig, 'enabled', '0/1')
     })
 
+/*
     it('Enforce policy', () => {
       actionPolicyActionInListing(uPolicyName, 'Enforce')
     })
@@ -75,13 +76,13 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
        // we need to find another way how to access this page
        cy.goToPolicyDetailsPage(uPolicyName, policyConfig['namespace'])
          .then(() => {
-           verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', 1, '0/1')
+           verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', '0/1')
            verifyPolicyInPolicyDetailsTemplates(uPolicyName, policyConfig)
            verifyPlacementRuleInPolicyDetails(uPolicyName, policyConfig, confClusterViolations)
            verifyPlacementBindingInPolicyDetails(uPolicyName, policyConfig)
          })
     })
-
+*/
     it(`Policy ${uPolicyName} can be deleted in the policy listing`, () => {
       // we could use a different way how to return to this page
       cy.visit('/multicloud/policies/all')

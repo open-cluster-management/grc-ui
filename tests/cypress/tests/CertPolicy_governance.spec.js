@@ -46,14 +46,14 @@ describe('RHACM4K-523/524/525/526/527/528/563/659/663/893/894/895/1567 - GRC UI:
     })
 
     it (`Verify all information about the created certificate policy ${uCertificatePolicyName} on the "Govern and risk" page`, () => {
-      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', 2)
+      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', targetStatus=2)
     })
 
     it(`Validate violations/status of created policy ${uCertificatePolicyName} on the detailed policy page`, () => {
       // we need to find another way how to access this page
       cy.visit(`/multicloud/policies/all/default/${uCertificatePolicyName}`)
         .then(() => {
-          verifyPolicyInPolicyDetails(uCertificatePolicyName, certificatePolicyConfig, 'enabled', 2)
+          verifyPolicyInPolicyDetails(uCertificatePolicyName, certificatePolicyConfig, 'enabled', targetStatus=2)
         })
     })
 
@@ -79,7 +79,7 @@ describe('RHACM4K-523/524/525/526/527/528/563/659/663/893/894/895/1567 - GRC UI:
 
     it('Check disabled policy', () => {
       cy.CheckGrcMainPage()
-      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'disabled', 3)
+      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'disabled')
     })
 
     it(`Validate enable of the policy ${uCertificatePolicyName}` , () => {
@@ -89,7 +89,7 @@ describe('RHACM4K-523/524/525/526/527/528/563/659/663/893/894/895/1567 - GRC UI:
 
     it(`Check enabled policy ${uCertificatePolicyName}`, () => {
       cy.waitForPolicyStatus(uCertificatePolicyName)
-      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', 2)
+      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', targetStatus=2)
     })
 
     it(`Edit policy ${uCertificatePolicyName} and change "remediateAction" to "enforce"`, () => {
@@ -101,7 +101,7 @@ describe('RHACM4K-523/524/525/526/527/528/563/659/663/893/894/895/1567 - GRC UI:
     it('Check violations stay reported but not remediated', () => {
       certificatePolicyConfig.enforce = true
       certificatePolicyConfig.inform = false
-      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', 2)
+      verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', targetStatus=2)
     })
 
     it(`Remove created certificate ${uCertificateName}`, () => {
