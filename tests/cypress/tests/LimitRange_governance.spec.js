@@ -4,7 +4,7 @@ import { test_genericPolicyGovernance } from './common/generic_policies_governan
 import { cleanup_usingPolicyYAML } from './common/generic_policy_cleanup'
 
 describe('LimitRange policy governance - setup', () => {
-    cleanup_usingPolicyYAML('LimitRange_governance/limitRange_specification_setup_policy_raw.yaml')
+    cleanup_usingPolicyYAML('LimitRange_governance/LimitRange_specification_setup_policy_raw.yaml')
 })
 
 describe('LimitRange policy governance', () => {
@@ -12,5 +12,5 @@ describe('LimitRange policy governance', () => {
 })
 
 describe('LimitRange policy governance - clean up', () => {
-    cleanup_usingPolicyYAML('LimitRange_governance/limitRange_specification_cleanup_policy_raw.yaml')
+    cleanup_usingPolicyYAML('LimitRange_governance/LimitRange_specification_cleanup_policy_raw.yaml')
 })

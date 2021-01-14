@@ -8,5 +8,5 @@ describe('ImageManifest policy governance', () => {
 })
 
 describe('ImageManifest policy governance - clean up', () => {
-    cleanup_usingPolicyYAML('ImageManifest_governance/imageManifest_specification_cleanup_policy_raw.yaml')
+    cleanup_usingPolicyYAML('ImageManifest_governance/ImageManifest_specification_cleanup_policy_raw.yaml')
 })

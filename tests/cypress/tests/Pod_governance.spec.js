@@ -8,5 +8,5 @@ describe('Pod policy governance', () => {
 })
 
 describe('Pod policy governance - clean up', () => {
-    cleanup_usingPolicyYAML('Pod_governance/pod_specification_cleanup_policy_raw.yaml')
+    cleanup_usingPolicyYAML('Pod_governance/Pod_specification_cleanup_policy_raw.yaml')
 })
