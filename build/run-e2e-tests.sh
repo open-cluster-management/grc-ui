@@ -57,12 +57,22 @@ sleep 10
 # clean up after cypress test
 $DIR/cluster-clean-up.sh managed
 
+echo "Login managed"
+# Get env from Travis config
+export OC_CLUSTER_URL=${OC_MANAGED_CLUSTER_URL:-${OC_HUB_CLUSTER_URL}}
+export OC_CLUSTER_PASS=${OC_MANAGED_CLUSTER_PASS:-${OC_HUB_CLUSTER_PASS}}
+make oc/login
+
+$DIR/install-cert-manager.sh
+$DIR/cluster-clean-up.sh managed
+
 echo "Login hub"
 export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
 
 $DIR/cluster-clean-up.sh hub
+$DIR/setup-dev.sh
 
 npm run test:e2e-headless
 
