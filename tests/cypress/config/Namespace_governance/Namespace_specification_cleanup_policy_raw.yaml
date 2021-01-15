@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: namespace-specification-cleanup-policy-[TIME]
+  name: ns-spec-cleanup-[TIME]
   namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
@@ -15,7 +15,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: Namespace-specification-cleanup-policy-[TIME]-prod-ns
+        name: ns-spec-cleanup-[TIME]-prod-ns
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
         severity: low
@@ -23,7 +23,7 @@ spec:
           exclude: ["kube-*"]
           include: ["default"]
         object-templates:
-          - complianceType: mustnothave # this is the clean up action
+          - complianceType: mustnothave
             objectDefinition:
               kind: Namespace # must have namespace 'prod'
               apiVersion: v1
@@ -33,21 +33,21 @@ spec:
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-Namespace-specification-cleanup-policy-[TIME]
+  name: binding-ns-spec-cleanup-[TIME]
   namespace: default
 placementRef:
-  name: placement-Namespace-specification-cleanup-policy-[TIME]
+  name: placement-ns-spec-cleanup-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: Namespace-specification-cleanup-policy-[TIME]
+- name: ns-spec-cleanup-[TIME]
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-Namespace-specification-cleanup-policy-[TIME]
+  name: placement-ns-spec-cleanup-[TIME]
   namespace: default
 spec:
   clusterConditions:

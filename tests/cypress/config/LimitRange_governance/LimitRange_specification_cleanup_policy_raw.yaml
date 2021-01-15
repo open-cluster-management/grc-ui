@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: limitRange-specification-cleanup-policy-[TIME]
+  name: limitspec-cleanup-[TIME]
   namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
@@ -15,7 +15,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: LimitRange-specification-cleanup-policy-[TIME]-container-mem-limit-range
+        name: limitspec-cleanup-[TIME]-container-mem-limit-range
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
         severity: medium
@@ -23,7 +23,7 @@ spec:
           exclude: ["kube-*"]
           include: ["default"]
         object-templates:
-          - complianceType: mustnothave # this is the clean up action
+          - complianceType: mustnothave
             objectDefinition:
               apiVersion: v1
               kind: LimitRange # limit memory usage
@@ -40,22 +40,22 @@ spec:
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-LimitRange-specification-cleanup-policy-[TIME]
-  namespace: 
+  name: binding-limitspec-cleanup-[TIME]
+  namespace: default
 placementRef:
-  name: placement-LimitRange-specification-cleanup-policy-[TIME]
+  name: placement-limitspec-cleanup-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: LimitRange-specification-cleanup-policy-[TIME]
+- name: limitspec-cleanup-[TIME]
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-LimitRange-specification-cleanup-policy-[TIME]
-  namespace: 
+  name: placement-limitspec-cleanup-[TIME]
+  namespace: default
 spec:
   clusterConditions:
   - status: "True"
