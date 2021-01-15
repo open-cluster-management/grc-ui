@@ -8,7 +8,7 @@ import {
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
 
-describe('RHACM4K-1403/1581- GRC UI: [P1][Sev1][policy-grc]', () => {
+describe('GRC UI: [P1][Sev1][policy-grc] EncryptionPolicy governance - setup', () => {
     const encryptionPolicyName = 'policy-etcdencryption-first'
     const uEncryptionPolicyName = getUniqueResourceName(encryptionPolicyName)
     const encryptionPolicyYAML = getConfigObject('encryPolicyTest/test_etcdencryption_first_raw.yaml', 'raw', getDefaultSubstitutionRules(uEncryptionPolicyName))
@@ -88,7 +88,7 @@ describe('RHACM4K-1403/1581- GRC UI: [P1][Sev1][policy-grc]', () => {
     })
 })
 
-describe('RHACM4K-1581 Testing encryption policy governance over managed cluster has preivously been encrypted', () => {
+describe('RHACM4K-1403/1581 - GRC UI: [P1][Sev1][policy-grc] - EncryptionPolicy governance', () => {
   const preEncryptionPolicyName = 'policy-etcdencryption-first'
   const uPreEncryptionPolicyName = getUniqueResourceName(preEncryptionPolicyName)
   const encryptionPolicyName = 'policy-etcdencryption-second'
