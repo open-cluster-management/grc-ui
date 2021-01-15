@@ -1,3 +1,2 @@
 local-cluster:
-#dhaks1020-2-dho-461:
-  status: Ready
+  vendor: OpenShift
