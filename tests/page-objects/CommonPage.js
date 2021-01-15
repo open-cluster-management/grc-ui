@@ -240,13 +240,13 @@ function searchPolicy(name, expectToDisplay) {
   this.clearSearchValue()
   this.expect.elements('tbody>tr').count.not.to.equal(0)
   this.click('@searchInput').setSearchValue(name)
-  this.expect.elements('tbody>tr').count.to.equal(1)
-  if(expectToDisplay){
+  if (expectToDisplay) {
+    this.expect.elements('tbody>tr').count.to.equal(1)
     this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(name)
-    this.click('@searchInput').clearValue('@searchInput')
-  } else{
+    this.clearSearchValue()
+  } else {
     this.waitForElementNotPresent('tbody>tr')
-    this.click('@searchInput').clearValue('@searchInput')
+    this.clearSearchValue()
   }
 }
 
