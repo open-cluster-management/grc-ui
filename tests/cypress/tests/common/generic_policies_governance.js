@@ -51,7 +51,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
     const violationsCounter = getViolationsCounter(clusterViolations)
 
     it(`Wait for policy ${policyName} status to become available`, () => {
-      cy.waitForPolicyStatus(policyName)
+      cy.waitForPolicyStatus(policyName, violationsCounter)
     })
 
     it(`Check enabled policy ${policyName}`, () => {
