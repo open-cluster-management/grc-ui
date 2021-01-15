@@ -127,7 +127,7 @@ This configuration file contains details about clusters avaialable in RHACM. It 
 ### raw YAML file
  * State: used in tests
  * Path: Usually stored in a subfolder under `tests/cypress/config`.
- * Example: [tests/cypress/config/certPolicyTest/test_certificate_raw.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/certPolicyTest/test_certificate_raw.yaml).
+ * Example: [tests/cypress/config/CertPolicyTest/test_certificate_raw.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/CertPolicyTest/test_certificate_raw.yaml).
 
 These files are used to contain a raw YAML which is being used in a test e.g. as a content of YAML editor. Substitutions can be used in order to adjust the content for the actual environment.
 
