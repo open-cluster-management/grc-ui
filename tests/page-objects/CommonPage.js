@@ -243,10 +243,8 @@ function searchPolicy(name, expectToDisplay) {
   if (expectToDisplay) {
     this.expect.elements('tbody>tr').count.to.equal(1)
     this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(name)
-    this.clearSearchValue()
   } else {
     this.waitForElementNotPresent('tbody>tr')
-    this.clearSearchValue()
   }
 }
 
