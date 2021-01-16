@@ -48,12 +48,12 @@ gatekeeper-operator-subscription:
  0: "TBD"
  1: "violation - couldn't find mapping resource with kind ImageManifestVuln, please check if you have CRD deployed"
 [UNAME]-image-vulnerabilities-sub:
- 0: "TBD"
+ 0: "notifcation - subscriptions \\[container-security-operator\\] in namespace openshift-operators found as specified, therefore this Object templates is compliant "
  1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
  2: "violation - subscriptions not found: \\[container-security-operator\\] in namespace default missing"
 # LimitRange specification
 [UNAME]-container-mem-limit-range:
- 0: "notification - limitranges \\[container-mem-limit-range\\] in namespace default was missing, and was created successfully "
+ 0: "notification - limitranges \\[container-mem-limit-range\\] in namespace default (was missing, and was created successfully|found as specified, therefore this Object template is compliant)"
  1: "violation - limitranges not found: \\[container-mem-limit-range\\] in namespace default missing"
 # Namespace specification
 [UNAME]-prod-ns:
