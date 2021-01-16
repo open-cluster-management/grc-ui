@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y apache2-utils libgtk2.0-0 libgtk-3-0 li
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
-RUN sh ./build/download-clis.sh
+RUN ./build/download-clis.sh
 
 RUN npm install \
     chromedriver \
@@ -40,5 +40,4 @@ RUN npm install \
     js-yaml@3.14.0 \
     @slack/web-api@5.15.0
 
-RUN ./build/download-clis.sh
 CMD ["./build/run-docker-tests.sh"]
