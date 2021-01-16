@@ -86,6 +86,7 @@ jobs:
       name: "Run unit tests and e2e tests"
       if: branch = master OR type = pull_request
       script:
+        - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
         - make sonar/js/jest-init
         - echo '"start unit testing..."' && echo -en 'travis_fold:start:script.build\\r'
