@@ -40,4 +40,5 @@ RUN npm install \
     js-yaml@3.14.0 \
     @slack/web-api@5.15.0
 
+RUN ./build/download-clis.sh
 CMD ["./build/run-docker-tests.sh"]
