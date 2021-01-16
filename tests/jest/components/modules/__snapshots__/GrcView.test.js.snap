@@ -1501,7 +1501,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     onMouseEnter={[Function]}
                   >
                     <span>
-                      a year ago
+                      2 years ago
                     </span>
                   </td>
                   <td
@@ -1651,7 +1651,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     onMouseEnter={[Function]}
                   >
                     <span>
-                      a year ago
+                      2 years ago
                     </span>
                   </td>
                   <td
@@ -1801,7 +1801,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                     onMouseEnter={[Function]}
                   >
                     <span>
-                      a year ago
+                      2 years ago
                     </span>
                   </td>
                   <td
