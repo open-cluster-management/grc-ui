@@ -42,8 +42,7 @@ const diagramIconsInfoStr = '#diagramIcons_info'
 // (253 allowable characters, but we have a 'placement-' prefix for PlacementRule,
 // so we're limiting the name input to 243 characters--the full is too heavy
 // for processing, so we only use the full on render and the simple elsewhere)
-const simplePolicyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,241}[a-z0-9]$/)
-const fullPolicyNameRegex = RegExp(/^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/)
+const policyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,241}[a-z0-9]$/)
 export default class TemplateEditor extends React.Component {
 
   static propTypes = {
@@ -123,6 +122,7 @@ export default class TemplateEditor extends React.Component {
     this.state = {
       isCustomName: false,
       validPolicyName: true,
+      duplicateName: false,
       showEditor,
       exceptions: [],
       updateMessage: '',
@@ -279,10 +279,11 @@ export default class TemplateEditor extends React.Component {
 
   renderNotifications() {
     const { locale } = this.props
-    const { updateMessage, validPolicyName } = this.state
-    let { updateMsgKind } = this.state
-    if (!validPolicyName) {
-      updateMsgKind = 'error'
+    let { updateMessage, updateMsgKind } = this.state
+    const { validPolicyName, duplicateName } = this.state
+    if ((!updateMessage || updateMsgKind === 'success') && duplicateName) {
+      updateMsgKind = 'warning'
+      updateMessage = msgs.get('warning.policy.duplicateName', locale)
     }
     if (updateMessage) {
       const handleClick = () => {
@@ -300,9 +301,7 @@ export default class TemplateEditor extends React.Component {
           <Notification
             key={updateMessage}
             kind={updateMsgKind}
-            title={updateMsgKind==='error' ?
-              msgs.get('error.create.policy', locale) :
-              msgs.get('success.create.policy', locale) }
+            title={msgs.get(`${updateMsgKind}.create.policy`, locale)}
             iconDescription=''
             subtitle={validPolicyName
               ? updateMessage
@@ -324,28 +323,29 @@ export default class TemplateEditor extends React.Component {
     return null
   }
 
-  handlePolicyNameValidation = (validNameFormat) => {
-    if (this.state.validPolicyName !== validNameFormat){
-      this.setState({
-          validPolicyName: validNameFormat
-      })
+  handlePolicyNameValidation = (policyName) => {
+    const { controlData } = this.state
+    const { existing } = controlData.find(control => control.id === 'name')
+    let isDuplicateName = false
+    let validPolicyNameFormat = true
+    if (policyName) {
+      // Check to see whether the policy name exists already
+      if (existing) {
+        isDuplicateName = existing.includes(policyName)
+      }
+      // Validate name with RegEx
+      validPolicyNameFormat = policyNameRegex.test(policyName)
     }
+    // Set state appropriately
+    this.setState({
+        validPolicyName: validPolicyNameFormat,
+        duplicateName: isDuplicateName
+    })
   }
 
   renderTextInput(control) {
-    const {id, name, active:value, existing, mustExist} = control
-
-    // special case--validate that name is unique
-    let invalid = false
-    if (id==='name') {
-      const { isCustomName } = this.state
-      if (isCustomName && existing) {
-        invalid = new Set(existing).has(value)
-      }
-      const validPolicyNameFormat = fullPolicyNameRegex.test(value)
-      this.handlePolicyNameValidation(validPolicyNameFormat)
-      invalid = !validPolicyNameFormat ? !validPolicyNameFormat : invalid
-    }
+    const {id, name, active:value, mustExist} = control
+    const { validPolicyName, duplicateName } = this.state
 
     return (
       <React.Fragment>
@@ -357,7 +357,7 @@ export default class TemplateEditor extends React.Component {
           <TextInput
             aria-label={id}
             id={id}
-            invalid={invalid}
+            invalid={!validPolicyName || duplicateName}
             hideLabel
             labelText=''
             spellCheck={false}
@@ -542,14 +542,7 @@ export default class TemplateEditor extends React.Component {
     const { locale } = this.props
     let updateName = false
     let { isCustomName } = this.state
-    const { controlData, templateYAML } = this.state
-    if (field === 'name') {
-      const policyName = _.get(evt, '_targetInst.stateNode.value', '')
-      if (policyName) {
-        const validPolicyNameFormat = simplePolicyNameRegex.test(policyName)
-        this.handlePolicyNameValidation(validPolicyNameFormat)
-      }
-    }
+    const { controlData, templateYAML, updateMessage } = this.state
     const control = controlData.find(({id})=>id===field)
     switch (control.type) {
     case 'text':
@@ -595,6 +588,12 @@ export default class TemplateEditor extends React.Component {
     validateYAML(templateObject, controlData, exceptions, locale)
     this.handleExceptions(exceptions, highlights)
     this.setState({controlData, isCustomName, templateYAML: newYAML, templateObject, exceptions})
+    // If updateMessage is not empty, then there might be a notification message that we'll need to update
+    if (updateMessage) {
+      this.handleExceptionNotification(exceptions, 'success.edit.policy.check', locale)
+    }
+    // Run validation on the name
+    this.handlePolicyNameValidation(controlData.find(control => control.id === 'name').active)
     return field
   }
 
@@ -740,13 +739,17 @@ export default class TemplateEditor extends React.Component {
   handleParse = () => {
     const {locale}= this.props
     let { isCustomName } = this.state
-    const { templateYAML, templateObject } = this.state
+    const { templateYAML, templateObject, updateMessage } = this.state
     let { controlData } = this.state
 
     // Parse, validate, and add exception decorations
     const { parsed: newParsed, exceptions} = parseYAML(templateYAML)
     validateYAML(newParsed, controlData, exceptions, locale)
     this.handleExceptions(exceptions)
+    // If updateMessage is not empty, then there might be a notification message that we'll need to update
+    if (updateMessage) {
+      this.handleExceptionNotification(exceptions, 'success.edit.policy.check', locale)
+    }
 
     // if no exceptions, update controlData based on custom editing
     if (Object.keys(newParsed).length>0) {
@@ -756,23 +759,34 @@ export default class TemplateEditor extends React.Component {
       }
     }
     this.setState({controlData, isCustomName, templateObject: newParsed, exceptions})
+    // Validate policy name
+    this.handlePolicyNameValidation(controlData.find(control => control.id === 'name').active)
     return templateYAML // for jest test
   }
 
   handleUpdateMessageClosed = () => this.setState({ updateMessage: '' })
 
+  handleExceptionNotification = (exceptions, message, locale) => {
+    const errorMsg = exceptions.length>0 ? exceptions[0].text : null
+    this.setState({
+      updateMsgKind: errorMsg?'error':'success',
+      updateMessage: errorMsg||msgs.get(message, locale)
+    })
+    // We're heading to 'Create', so we no longer need the duplicate name alert
+    if (!errorMsg && message === 'success.create.policy.check') {
+      this.setState({duplicateName: false})
+    }
+    return errorMsg
+  }
+
   getResourceJSON() {
     const { locale } = this.context
     const { controlData, templateYAML } = this.state
-    let errorMsg = null
     const { parsed, exceptions } = parseYAML(templateYAML)
     if (exceptions.length===0) {
       validateYAML(parsed, controlData, exceptions, locale)
     }
-    if (exceptions.length>0) {
-      errorMsg = exceptions[0].text
-    }
-    this.setState({updateMsgKind: errorMsg?'error':'success', updateMessage: errorMsg||msgs.get('success.create.policy.check', locale)})
+    const errorMsg = this.handleExceptionNotification(exceptions, 'success.create.policy.check', locale)
     if (!errorMsg) {
       // cache user data
       cacheUserData(controlData)
@@ -886,11 +900,10 @@ export default class TemplateEditor extends React.Component {
 
   async handleCreateResource() {
     const { buildControl, createControl } = this.props
-    const { validPolicyName } = this.state
     const {createResource} = createControl
     const {buildResourceLists} = buildControl
     const resourceJSON = this.getResourceJSON()
-    if (resourceJSON && validPolicyName) {
+    if (resourceJSON) {
       const res = await buildResourceLists(resourceJSON)
       const create = res.create
       const update = res.update
@@ -938,6 +951,9 @@ export default class TemplateEditor extends React.Component {
     const controlData = initializeControlData(template, initialControlData)
     const templateYAML = generateYAML(template, controlData)
     const templateObject = parseYAML(templateYAML).parsed
-    this.setState({ controlData, templateYAML, templateObject, exceptions:[], hasUndo: false, hasRedo: false, resetInx:resetInx+1})
+    this.setState({controlData, templateYAML, templateObject, exceptions:[],
+      hasUndo: false, hasRedo: false, resetInx:resetInx+1, updateMessage:'',
+      duplicateName: false, validPolicyName: true
+    })
   }
 }
