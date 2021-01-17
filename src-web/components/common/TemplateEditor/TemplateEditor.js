@@ -593,7 +593,7 @@ export default class TemplateEditor extends React.Component {
       this.handleExceptionNotification(exceptions, 'success.edit.policy.check', locale)
     }
     // Run validation on the name
-    this.handlePolicyNameValidation(controlData.find(control => control.id === 'name').active)
+    this.handlePolicyNameValidation(controlData.find(data => data.id === 'name').active)
     return field
   }
 
