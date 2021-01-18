@@ -65,7 +65,7 @@ gatekeeper-operator-subscription:
  1: "violation - pods not found: \\[nginx-pod\\] in namespace default missing"
 # PodSecurityPolicy specification
 [UNAME]-restricted-psp:
- 0: "notification - podsecuritypolicies \\[restricted-psp\\] found as specified, therefore this Object template is compliant View details"
+ 0: "notification - podsecuritypolicies \\[restricted-psp\\] (was missing, and was created successfully|found as specified, therefore this Object template is compliant)"
  1: "violation - podsecuritypolicies not found: \\[restricted-psp\\] missing"
 # Role specification
 [UNAME]-deployments-role:
