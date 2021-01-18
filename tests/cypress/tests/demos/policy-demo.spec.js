@@ -3,8 +3,7 @@
 import {
   createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
   actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
-  verifyPolicyInPolicyDetailsTemplates, verifyPlacementRuleInPolicyDetails, verifyPlacementBindingInPolicyDetails,
-  verifyPolicyDetailsInCluster, verifyPolicyTemplatesInCluster
+  verifyPolicyInPolicyDetailsTemplates, verifyPlacementRuleInPolicyDetails, verifyPlacementBindingInPolicyDetails
 } from '../../views/policy'
 import { getUniqueResourceName } from '../../scripts/utils'
 import { getConfigObject } from '../../config'

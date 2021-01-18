@@ -187,10 +187,5 @@ Cypress.Commands.add('goToPolicyClusterPage', (policyName, policyConfig, cluster
   var namespace = policyConfig['namespace']
   cy.get('.one-cluster-status').children('a').click()
   pageLoader.shouldNotExist()
-  if(policyConfig['cluster_binding'] && namespace)
-  {
-    var clustBind = policyConfig['cluster_binding'].toString().split(':')
-    binded_cluster = clustBind[1].substring(2, clustBind[1].length-1)
-  }
   cy.location('pathname').should('eq', '/multicloud/policies/policy/'+clusterName+'/'+namespace+'.'+policyName)
 })

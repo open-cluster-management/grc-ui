@@ -495,7 +495,7 @@ export const getViolationsPerPolicy = (policyName, policyConfig, clusterViolatio
     violations[cluster] = []
   }
   for (const template of templates) {
-    let templateName = template.split('/', 2)[0]
+    const templateName = template.split('/', 2)[0]
     for (const cluster of clusters) {
       let violationList = []  // will contain a list of violations for the specific cluster
       if (cluster in clusterViolations) {  // I know violations for the specific cluster in clusterViolations
@@ -708,15 +708,17 @@ export const verifyPolicyDetailsInCluster =  (policyName, policyConfig, clusterN
       for (const violation of violations) {
         const templateName = violation.replace(/-[^-]*$/, '')
         const id = violation.replace(/^.*-/, '')
-        //const pattern = violationPatterns[templateName][id]
-        //cy.wrap(message).contains(templateName+': '+clusterStatus+'; '+pattern) // no idea why also the pattern is not matched
+        const pattern = violationPatterns[templateName][id]
+        const text = templateName+': '+clusterStatus+'; '+pattern
+        cy.log(text)
+        //cy.wrap(message).contains(text) // no idea why also the pattern is not matched
         cy.wrap(message).contains(templateName+': '+clusterStatus)
       }
     })
   })
 }
 
-export const verifyPolicyTemplatesInCluster = (policyName, policyConfig, clusterName, clusterViolations, violationPatterns) => {
+export const verifyPolicyTemplatesInCluster = (policyName, policyConfig, clusterName, clusterViolations) => {
   const violations = clusterViolations[clusterName]
   const clusterStatus = getClusterPolicyStatus(violations).toLowerCase()
   for (const violation of violations) {
@@ -748,7 +750,7 @@ export const verifyPolicyViolationDetailsInCluster = (policyName, policyConfig, 
   for (const violation of violations) {
     const templateName = violation.replace(/-[^-]*$/, '')
     const id = violation.replace(/^.*-/, '')
-    //const pattern = violationPatterns[templateName][id]
+    const pattern = violationPatterns[templateName][id]
     const clusterStatus2 = clusterStatus == 'compliant' ? 'Compliant' : 'NonCompliant'
     doTableSearch(templateName, '#policyViolations-module-id')
     cy.get('#policyViolations-module-id').within(() => {
@@ -758,7 +760,9 @@ export const verifyPolicyViolationDetailsInCluster = (policyName, policyConfig, 
         // check cluster name
         cy.wrap(cluster).contains(clusterName)
         // check violation message
-        //cy.wrap(message).contains(clusterStatus2+'; '+pattern)
+        const text = clusterStatus2+'; '+pattern
+        cy.log(text)
+        //cy.wrap(message).contains(text)
         cy.wrap(message).contains(clusterStatus2)
         // check last results date
         cy.wrap(last_update).contains(timestampRegexp)
