@@ -89,15 +89,6 @@ function fetchHeader(req, res, store, fetchHeaderContext) {
     try {
       res.render('home', Object.assign({
         manifest: appUtil.app().locals.manifest,
-        content: ReactDOMServer.renderToString(
-          <Provider store={store}>
-            <StaticRouter
-              location={req.originalUrl}
-              context={fetchHeaderContext}>
-              <App />
-            </StaticRouter>
-          </Provider>
-        ),
         contextPath: config.get('contextPath'),
         headerContextPath: config.get('headerContextPath'),
         state: store.getState(),
