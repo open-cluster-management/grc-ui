@@ -45,10 +45,10 @@ gatekeeper-operator-subscription:
  1: "Number of users with clusteradmin role is [0-9]+ above the specified limit"
 # ImageManifestVulnPolicy specification
 [UNAME]-image-vulnerability:
- 0: /\s*notification/
- 1: /\s*violation - imagemanifestvulns found/
+ 0: "TBD"
+ 1: "violation - couldn't find mapping resource with kind ImageManifestVuln, please check if you have CRD deployed"
 [UNAME]-image-vulnerability-sub:
- 0: "notifcation - subscriptions \\[container-security-operator\\] in namespace openshift-operators found as specified, therefore this Object templates is compliant "
+ 0: "TBD"
  1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
  2: "violation - subscriptions not found: \\[container-security-operator\\] in namespace default missing"
 # LimitRange specification
