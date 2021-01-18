@@ -40,6 +40,8 @@ const store = createStore(combineReducers(reducers), preloadedState, composeEnha
   applyMiddleware(...middleware)
 ))
 
+
+
 render(
   <ApolloProvider client={GrcApolloClient.getGrcClient()}>
     <Provider store={store}>

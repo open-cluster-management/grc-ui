@@ -47,11 +47,11 @@ router.get('*', (req, res) => {
 
   App = App === undefined ? require('../../src-web/containers/App').default : App
 
-  const fetchHeaderContext = getContext(req)
-  fetchHeader(req, res, store, fetchHeaderContext)
+  const reqContext = getContext(req)
+  fetchHeader(req, res, store, reqContext)
 })
 
-function fetchHeader(req, res, store, fetchHeaderContext) {
+function fetchHeader(req, res, store, reqContext) {
   const optionsUrlPrefix = `${config.get('headerUrl')}${config.get('headerContextPath')}/api/v1/header`
   const optionsUrlQuery = `serviceId=grc-ui&dev=${process.env.NODE_ENV === 'development'}&targetAPIGroups=${JSON.stringify(targetAPIGroups)}`
   const options = {
@@ -92,12 +92,12 @@ function fetchHeader(req, res, store, fetchHeaderContext) {
         contextPath: config.get('contextPath'),
         headerContextPath: config.get('headerContextPath'),
         state: store.getState(),
-        props: fetchHeaderContext,
+        props: reqContext,
         header: header,
         propsH: propsH,
         stateH: stateH,
         filesH: filesH
-      }, fetchHeaderContext))
+      }, reqContext))
     } catch(e) {
       //eslint-disable-next-line no-console
       console.error(e)
@@ -111,7 +111,7 @@ function getContext(req) {
   return {
     title: msgs.get('common.app.name', reqContext.locale),
     context: reqContext,
-    xsrfToken: req.csrfToken()
+    xsrfToken: req.csrfToken().toString('base64')
   }
 }
 

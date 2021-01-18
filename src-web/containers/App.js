@@ -52,6 +52,7 @@ class App extends React.Component {
   render() {
     const serverProps = this.getServerProps()
     const { match } = this.props
+    console.log(serverProps)
     return (
       <LocaleContext.Provider value={serverProps.context}>
         <div className='expand-vertically'>
@@ -62,7 +63,6 @@ class App extends React.Component {
             <Redirect to={`${config.contextPath}`} />
           </Switch>
           <Modal locale={serverProps.context.locale} />
-          <input type='hidden' id='app-access' value={serverProps.xsrfToken.toString('base64')} locale={serverProps.context.locale} />
         </div>
       </LocaleContext.Provider>
     )
