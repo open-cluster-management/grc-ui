@@ -176,7 +176,11 @@
   },
   "nyc": {
     "report-dir": "./test-output/cypress/coverage",
-    "reporter": ["text", "json", "lcov"]
+    "reporter": [
+      "text",
+      "json",
+      "lcov"
+    ]
   },
   "jest": {
     "testPathIgnorePatterns": [

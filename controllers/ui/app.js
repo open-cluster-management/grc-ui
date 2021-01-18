@@ -9,17 +9,13 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-const ReactDOMServer = require('react-dom/server'),
-      thunkMiddleware = require('redux-thunk').default,
+const thunkMiddleware = require('redux-thunk').default,
       redux = require('redux'),
-      React = require('react'),
       express = require('express'),
-      StaticRouter = require('react-router-dom').StaticRouter,
       context = require('../../lib/shared/context'),
       msgs = require('../../nls/platform.properties'),
       config = require('../../config'),
       appUtil = require('../../lib/server/app-util'),
-      Provider = require('react-redux').Provider,
       router = express.Router({ mergeParams: true }),
       lodash = require('lodash'),
       request = require('../../lib/server/request'),
