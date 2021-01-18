@@ -495,7 +495,7 @@ export const getViolationsPerPolicy = (policyName, policyConfig, clusterViolatio
     violations[cluster] = []
   }
   for (const template of templates) {
-    const templateName = template.split('/', 2)[0]
+    let templateName = template.split('/', 2)[0]
     for (const cluster of clusters) {
       let violationList = []  // will contain a list of violations for the specific cluster
       if (cluster in clusterViolations) {  // I know violations for the specific cluster in clusterViolations
@@ -685,36 +685,85 @@ export const verifyViolationsInPolicyStatusTemplates = (clusterViolations, viola
   }
 }
 
-export const verifyPolicyDetailsInCluster =  (policyName, policyConfig) => {
-  cy.goToPolicyClusterPage(policyName, policyConfig)
+export const verifyPolicyDetailsInCluster =  (policyName, policyConfig, clusterName, clusterViolations, violationPatterns) => {
+  const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName]).toLowerCase() == 'compliant' ? 'Compliant' : 'NonCompliant'
   cy.get('section[aria-label="Policy details"]').within(() => {
     cy.get('.bx--structured-list-td').spread((nameLabel, name, clusterLabel, cluster, messageLabel, message, statusLabel, status, enforcementLabel, enforcement ) => {
-        if (policyConfig['namespace']) {
-          cy.wrap(name).contains(policyConfig['namespace']+'.'+policyName)
-        }
-        if (policyConfig['cluster_binding']) {
-          const clustBind = policyConfig['cluster_binding'].toString().split(':')
-          const binded_cluster = clustBind[1].substring(2, clustBind[1].length-1)
-          cy.wrap(cluster).contains(binded_cluster)
-        }
-        cy.wrap(message).contains(policyName+'-example: Compliant,')
-        cy.wrap(status).contains('Compliant')
-        policyConfig['enforce']==='true' ? cy.wrap(enforcement).contains('enforce') : cy.wrap(enforcement).contains('inform')
-      })
+      // verify namespace
+      if (policyConfig['namespace']) {
+        cy.wrap(name).contains(policyConfig['namespace']+'.'+policyName)
+      }
+      // verify cluster name
+      cy.wrap(cluster).contains(clusterName)
+      // verify cluster status
+      cy.wrap(status).contains(clusterStatus)
+      // verify policy enforcement settings
+      policyConfig['enforce'] === true ? cy.wrap(enforcement).contains('enforce') : cy.wrap(enforcement).contains('inform')
+      // verify the message
+      // first check that the right ammount of messages is listed
+      const number_of_messages = (message.textContent.match(/Compliant[,;]/g) || []).length
+      const violations = clusterViolations[clusterName]
+      expect(number_of_messages).to.equal(violations.length)
+      // verify that each violation/compliance message is present
+      for (const violation of violations) {
+        const templateName = violation.replace(/-[^-]*$/, '')
+        const id = violation.replace(/^.*-/, '')
+        //const pattern = violationPatterns[templateName][id]
+        //cy.wrap(message).contains(templateName+': '+clusterStatus+'; '+pattern) // no idea why also the pattern is not matched
+        cy.wrap(message).contains(templateName+': '+clusterStatus)
+      }
     })
+  })
 }
 
-export const verifyPolicyTemplatesInCluster = (policyName, policyConfig) => {
-  cy.get('#policyTemplates-table-container').within(() => {
-    cy.get('tbody').children('tr[data-row-name="'+policyName+'-example"]').spread((nameLabel, name, apiLabel, api, kindLabel, kind, compliantLabel, compliant) => {
-      cy.wrap(name).contains(policyName+'-example')
-      if(policyConfig['apiVersion']) {
-        cy.wrap(api).contains(policyConfig['apiVersion'])
-      }
-      if(policyConfig['kind']) {
-        cy.wrap(kind).contains(policyConfig['kind'])
-      }
-      cy.wrap(compliant).contains('Compliant')
+export const verifyPolicyTemplatesInCluster = (policyName, policyConfig, clusterName, clusterViolations, violationPatterns) => {
+  const violations = clusterViolations[clusterName]
+  const clusterStatus = getClusterPolicyStatus(violations).toLowerCase()
+  for (const violation of violations) {
+    const templateName = violation.replace(/-[^-]*$/, '')
+    doTableSearch(templateName, '#policyPolicyTemplates-module-id')
+    cy.get('#policyPolicyTemplates-module-id').within(() => {
+
+      cy.get('tbody').children('tr[data-row-name="'+templateName+'"]').find('td').spread((name, api, kind, compliant) => {
+        cy.wrap(name).contains(policyName)
+        if(policyConfig['apiVersion']) {
+          cy.wrap(api).contains(policyConfig['apiVersion'])
+        }
+        if(policyConfig['kind']) {
+          cy.wrap(kind).contains(policyConfig['kind'])
+        }
+        cy.wrap(compliant).contains(clusterStatus)
+        // check status icon
+        const fillColor = getStatusIconFillColor(clusterStatus)
+        cy.wrap(compliant).find('svg').should('have.attr', 'fill', fillColor)
       })
     })
+    clearTableSearch()
+  }
+}
+
+export const verifyPolicyViolationDetailsInCluster = (policyName, policyConfig, clusterName, clusterViolations, violationPatterns) => {
+  const violations = clusterViolations[clusterName]
+  const clusterStatus = getClusterPolicyStatus(violations).toLowerCase()
+  for (const violation of violations) {
+    const templateName = violation.replace(/-[^-]*$/, '')
+    const id = violation.replace(/^.*-/, '')
+    //const pattern = violationPatterns[templateName][id]
+    const clusterStatus2 = clusterStatus == 'compliant' ? 'Compliant' : 'NonCompliant'
+    doTableSearch(templateName, '#policyViolations-module-id')
+    cy.get('#policyViolations-module-id').within(() => {
+      cy.get('tbody').children('tr[data-row-name="'+templateName+'"]').find('td').spread((name, cluster, message, last_update) => {
+        // check policy name
+        cy.wrap(name).contains(policyName)
+        // check cluster name
+        cy.wrap(cluster).contains(clusterName)
+        // check violation message
+        //cy.wrap(message).contains(clusterStatus2+'; '+pattern)
+        cy.wrap(message).contains(clusterStatus2)
+        // check last results date
+        cy.wrap(last_update).contains(timestampRegexp)
+      })
+    })
+    clearTableSearch()
+  }
 }

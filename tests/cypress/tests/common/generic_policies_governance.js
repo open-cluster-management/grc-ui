@@ -5,7 +5,8 @@ import {
   actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
   verifyPolicyInPolicyDetailsTemplates, verifyPlacementRuleInPolicyDetails, verifyPlacementBindingInPolicyDetails,
   verifyViolationsInPolicyStatusClusters, verifyViolationsInPolicyStatusTemplates,
-  getViolationsPerPolicy, getViolationsCounter
+  getViolationsPerPolicy, getViolationsCounter, verifyPolicyDetailsInCluster, verifyPolicyTemplatesInCluster, 
+  verifyPolicyViolationDetailsInCluster
 } from '../../views/policy'
 import { getConfigObject } from '../../config'
 
@@ -102,6 +103,16 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       verifyViolationsInPolicyStatusTemplates(clusterViolations, confViolationPatterns)
     })
 
+    for (const clusterName of clusterList) {
+      it(`Verify policy details & templates on cluster ${clusterName} detailed page`, () => {
+        cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`)
+        cy.goToPolicyClusterPage(policyName, confPolicies[policyName], clusterName)
+        verifyPolicyDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+        verifyPolicyTemplatesInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+        verifyPolicyViolationDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+      })
+    }
+
   }
 
   // run the test for enforced policy only if the config file was given
@@ -135,7 +146,6 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       })
 
       it(`Check enabled policy ${policyName}`, () => {
-        confPolicies[policyName]['enforce'] = true  // not needed if done previously
         verifyPolicyInListing(policyName, confPolicies[policyName], 'enabled', 1, violationsCounter)
       })
 
@@ -168,6 +178,15 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
         // verify violations per template
         verifyViolationsInPolicyStatusTemplates(clusterViolations, confViolationPatterns)
       })
+      for (const clusterName of clusterList) {
+        it(`Verify policy details & templates on cluster ${clusterName} detailed page`, () => {
+          cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`)
+          cy.goToPolicyClusterPage(policyName, confPolicies[policyName], clusterName)
+          verifyPolicyDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+          verifyPolicyTemplatesInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+          verifyPolicyViolationDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+        })
+      }
 
     }
   }
