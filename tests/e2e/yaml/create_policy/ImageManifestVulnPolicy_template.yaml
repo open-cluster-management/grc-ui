@@ -37,7 +37,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: [TEST_POLICY_NAME]-image-vulnerabilities
+        name: [TEST_POLICY_NAME]-image-vulnerability
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
         severity: high
