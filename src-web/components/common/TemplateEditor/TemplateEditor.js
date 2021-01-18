@@ -281,6 +281,7 @@ export default class TemplateEditor extends React.Component {
     const { locale } = this.props
     let { updateMessage, updateMsgKind } = this.state
     const { validPolicyName, duplicateName } = this.state
+    // If the name is duplicate and there are no other errors, display an alert
     if ((!updateMessage || updateMsgKind === 'success') && duplicateName) {
       updateMsgKind = 'warning'
       updateMessage = msgs.get('warning.policy.duplicateName', locale)
