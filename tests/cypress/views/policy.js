@@ -709,10 +709,11 @@ export const verifyPolicyDetailsInCluster =  (policyName, policyConfig, clusterN
         const templateName = violation.replace(/-[^-]*$/, '')
         const id = violation.replace(/^.*-/, '')
         const pattern = violationPatterns[templateName][id]
-        const text = templateName+': '+clusterStatus+'; '+pattern
-        cy.log(text)
-        //cy.wrap(message).contains(text) // no idea why also the pattern is not matched
-        cy.wrap(message).contains(templateName+': '+clusterStatus)
+        if (clusterStatus == 'NonCompliant') {
+          cy.wrap(message).contains(new RegExp(templateName+': '+clusterStatus+'; '+pattern))
+        } else {
+          cy.wrap(message).contains(new RegExp(templateName+': '+clusterStatus))
+        }
       }
     })
   })
@@ -760,10 +761,7 @@ export const verifyPolicyViolationDetailsInCluster = (policyName, policyConfig, 
         // check cluster name
         cy.wrap(cluster).contains(clusterName)
         // check violation message
-        const text = clusterStatus2+'; '+pattern
-        cy.log(text)
-        //cy.wrap(message).contains(text)
-        cy.wrap(message).contains(clusterStatus2)
+        cy.wrap(message).contains(new RegExp(clusterStatus2+'; '+pattern))
         // check last results date
         cy.wrap(last_update).contains(timestampRegexp)
       })
