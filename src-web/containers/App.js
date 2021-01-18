@@ -52,7 +52,6 @@ class App extends React.Component {
   render() {
     const serverProps = this.getServerProps()
     const { match } = this.props
-    console.log(serverProps)
     return (
       <LocaleContext.Provider value={serverProps.context}>
         <div className='expand-vertically'>
