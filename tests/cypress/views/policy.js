@@ -215,7 +215,7 @@ export const actionPolicyActionInListing = (uName, action, cancel=false) => {
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
 // here statusPending = true to check consist pending status for disable policy
 export const isPolicyStatusAvailable = (uName, violationsCounter) => {
-  let statusAvailable
+  let statusAvailable = false
   // page /multicloud/policies/all
   //if (window.location.toString().endsWith('/multicloud/policies/all')) {
 return cy.url().then((pageURL) => {
