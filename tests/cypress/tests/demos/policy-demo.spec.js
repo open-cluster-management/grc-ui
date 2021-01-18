@@ -83,11 +83,6 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
          })
     })
 
-    it('check policy details & templates on cluster page', () => {
-      verifyPolicyDetailsInCluster(uPolicyName, policyConfig)
-      verifyPolicyTemplatesInCluster(uPolicyName, policyConfig)
-    })
-
     it(`Policy ${uPolicyName} can be deleted in the policy listing`, () => {
       // we could use a different way how to return to this page
       cy.visit('/multicloud/policies/all')
