@@ -20,6 +20,8 @@ export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_CLUSTER_PASS}}
 export SKIP_NIGHTWATCH_COVERAGE=${SKIP_NIGHTWATCH_COVERAGE:-true}
 export SKIP_LOG_DELETE=${SKIP_LOG_DELETE:-true}
 export DISABLE_CANARY_TEST=${DISABLE_CANARY_TEST:-false}
+export FAIL_FAST=${FAIL_FAST:-false}
+
 
 # show all envs
 printenv
@@ -46,7 +48,13 @@ done
 export PAUSE=${PAUSE:-60}
 echo sleep $PAUSE seconds cypress ...
 sleep $PAUSE
-npm run test:cypress-headless || true
+if [ $FAIL_FAST == "true" ]; then
+  echo "Running in fail fast mode"
+  npm run test:cypress-headless
+else
+  npm run test:cypress-headless || true
+fi
+
 echo sleep $PAUSE seconds selenium ...
 sleep $PAUSE
 npm run test:e2e-headless

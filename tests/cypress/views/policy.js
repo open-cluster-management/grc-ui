@@ -215,7 +215,7 @@ export const actionPolicyActionInListing = (uName, action, cancel=false) => {
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
 // here statusPending = true to check consist pending status for disable policy
 export const isPolicyStatusAvailable = (uName, violationsCounter) => {
-  let statusAvailable
+  let statusAvailable = false
   // page /multicloud/policies/all
   //if (window.location.toString().endsWith('/multicloud/policies/all')) {
 return cy.url().then((pageURL) => {
@@ -455,8 +455,8 @@ export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
       templates.add(policyName+'-limit-clusteradmin'+'/'+'IamPolicy')
       break
     case 'ImageManifestVulnPolicy':
-      templates.add(policyName+'-image-vulnerabilities'+'/'+'ConfigurationPolicy')
-      templates.add(policyName+'-image-vulnerabilities-sub'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-image-vulnerability'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-image-vulnerability-sub'+'/'+'ConfigurationPolicy')
       break
     case 'LimitRange':
       templates.add(policyName+'-container-mem-limit-range'+'/'+'ConfigurationPolicy')

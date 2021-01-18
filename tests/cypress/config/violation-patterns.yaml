@@ -44,10 +44,10 @@ gatekeeper-operator-subscription:
  0: "Number of users with clusteradmin role is 0 above the specified limit"
  1: "Number of users with clusteradmin role is [0-9]+ above the specified limit"
 # ImageManifestVulnPolicy specification
-[UNAME]-image-vulnerabilities:
+[UNAME]-image-vulnerability:
  0: "TBD"
  1: "violation - couldn't find mapping resource with kind ImageManifestVuln, please check if you have CRD deployed"
-[UNAME]-image-vulnerabilities-sub:
+[UNAME]-image-vulnerability-sub:
  0: "TBD"
  1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
  2: "violation - subscriptions not found: \\[container-security-operator\\] in namespace default missing"
