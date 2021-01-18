@@ -107,8 +107,8 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       it(`Verify policy details & templates on cluster ${clusterName} detailed page`, () => {
         cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`)
         cy.goToPolicyClusterPage(policyName, confPolicies[policyName], clusterName)
-        verifyPolicyDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations)
-        verifyPolicyTemplatesInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+        verifyPolicyDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+        verifyPolicyTemplatesInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations)
         verifyPolicyViolationDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
       })
     }
