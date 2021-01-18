@@ -9,7 +9,7 @@
     "start:instrument": "nyc --reporter=text --reporter=lcov --report-dir=./test-output/server/coverage node app.js",
     "clean": "del-cli dll public/*",
     "build:watch": "cross-env BABEL_ENV=e2e webpack --progress --watch --mode=development",
-    "build": "npm run clean && cross-env BABEL_ENV=e2e webpack --progress --config webpack.dll.js --mode=development && cross-env BABEL_ENV=e2e webpack --mode=development",
+    "build": "npm run clean && cross-env BABEL_ENV=e2e webpack --progress --config webpack.dll.js --mode=development && cross-env BABEL_ENV=e2e webpack --progress --mode=development",
     "build:production": "npm run build:dll:production && cross-env BUILD_ENV=production webpack --progress --mode=production",
     "build:dll:production": "cross-env BUILD_ENV=production webpack --progress --config webpack.dll.js --mode=production",
     "build:dll": "webpack --progress --config webpack.dll.js --progress",
