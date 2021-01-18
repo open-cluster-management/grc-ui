@@ -455,7 +455,7 @@ export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
       templates.add(policyName+'-limit-clusteradmin'+'/'+'IamPolicy')
       break
     case 'ImageManifestVulnPolicy':
-      templates.add(policyName+'-image-vulnerabilities'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-image-vulnerability'+'/'+'ConfigurationPolicy')
       templates.add(policyName+'-image-vulnerability-sub'+'/'+'ConfigurationPolicy')
       break
     case 'LimitRange':
