@@ -8,7 +8,7 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 import React from 'react'
-import { hydrate } from 'react-dom'
+import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
@@ -40,7 +40,7 @@ const store = createStore(combineReducers(reducers), preloadedState, composeEnha
   applyMiddleware(...middleware)
 ))
 
-hydrate(
+render(
   <ApolloProvider client={GrcApolloClient.getGrcClient()}>
     <Provider store={store}>
       <BrowserRouter>
