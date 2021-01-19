@@ -10,7 +10,7 @@ test-limitrange-policy-[ID]:
     - 'matchExpressions =[]'
 #    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
-  kind: 'LimitRange'
+  kind: 'ConfigurationPolicy'
   specifications:
     - 'LimitRange - Limit container memory usage'
   standards:
