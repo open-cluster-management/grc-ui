@@ -53,19 +53,19 @@ gatekeeper-operator-subscription:
  2: "violation - subscriptions not found: \\[container-security-operator\\] in namespace default missing"
 # LimitRange specification
 [UNAME]-container-mem-limit-range:
- 0: "TBD"
- 1: "violation - limitranges not found: \\[mem-limit-range\\] in namespace default missing"
+ 0: "notification - limitranges \\[container-mem-limit-range\\] in namespace default (was missing, and was created successfully|found as specified, therefore this Object template is compliant)"
+ 1: "violation - limitranges not found: \\[container-mem-limit-range\\] in namespace default missing"
 # Namespace specification
 [UNAME]-prod-ns:
- 0: "TBD"
+ 0: "notification - namespaces \\[prod\\] found as specified, therefore this Object template is compliant"
  1: "violation - namespaces not found: \\[prod\\] missing"
 # Pod specification
 [UNAME]-nginx-pod:
- 0: "TBD"
- 1: "TBD"
+ 0: "notification - pods \\[nginx-pod\\] in namespace default (was missing, and was created successfully|found as specified, therefore this Object template is compliant)"
+ 1: "violation - pods not found: \\[nginx-pod\\] in namespace default missing"
 # PodSecurityPolicy specification
 [UNAME]-restricted-psp:
- 0: "notification - podsecuritypolicies \\[restricted-psp\\] found as specified, therefore this Object template is compliant View details"
+ 0: "notification - podsecuritypolicies \\[restricted-psp\\] (was missing, and was created successfully|found as specified, therefore this Object template is compliant)"
  1: "violation - podsecuritypolicies not found: \\[restricted-psp\\] missing"
 # Role specification
 [UNAME]-deployments-role:
