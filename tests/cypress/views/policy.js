@@ -601,7 +601,7 @@ export const clearTableSearch = (inputSelector = null, parentSelector = null) =>
 }
 
 
-export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violationPatterns, clusters = undefined) => {
+export const verifyViolationsInPolicyStatusClusters = (policyName, policyConfig, clusterViolations, violationPatterns, clusters = undefined) => {
   if (clusters == undefined) {
     clusters = Object.keys(clusterViolations)
   }
@@ -637,6 +637,8 @@ export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violat
           // check View history link
           cy.wrap(history).within(() => {
             cy.get('a').contains('View history')
+            const url_pattern = `/multicloud/policies/all/${policyConfig['namespace']}/${policyName}/status/${cluster}/templates/${templateName}/history$`
+            cy.get('a').invoke('attr', 'href').then((target) => { cy.wrap(target).should('match', new RegExp(url_pattern)) })
           })
         })
       })
@@ -645,7 +647,7 @@ export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violat
   clearTableSearch()
 }
 
-export const verifyViolationsInPolicyStatusTemplates = (clusterViolations, violationPatterns, clusters = undefined) => {
+export const verifyViolationsInPolicyStatusTemplates = (policyName, policyConfig, clusterViolations, violationPatterns, clusters = undefined) => {
   if (clusters == undefined) {
     clusters = Object.keys(clusterViolations)
   }
@@ -682,6 +684,8 @@ export const verifyViolationsInPolicyStatusTemplates = (clusterViolations, viola
             // check View history link
             cy.wrap(history).within(() => {
               cy.get('a').contains('View history')
+              const url_pattern = `/multicloud/policies/all/${policyConfig['namespace']}/${policyName}/status/${cluster}/templates/${templateName}/history$`
+              cy.get('a').invoke('attr', 'href').then((target) => { cy.wrap(target).should('match', new RegExp(url_pattern)) })
             })
           })
         })
@@ -773,4 +777,18 @@ export const verifyPolicyViolationDetailsInCluster = (policyName, policyConfig, 
     })
     clearTableSearch('#violations-search')
   }
+}
+
+export const verifyPolicyViolationDetailsInHistory = (templateName, violations, violationPatterns) => {
+  cy.get('table[aria-label="Sortable Table"]').within(() => {
+    for (const violation of violations) {
+      const id = violation.replace(/^.*-/, '')
+      const pattern = violationPatterns[templateName][id]
+      const policyStatus = id == '0' ? 'Compliant' : 'Not compliant'
+      cy.get('td').contains(new RegExp(pattern)).siblings('td').spread((state, timestamp) => {
+        cy.wrap(state).contains(policyStatus)
+        cy.wrap(timestamp).contains(/^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/)
+      })
+    }
+  })
 }
