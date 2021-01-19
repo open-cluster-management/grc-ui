@@ -10,7 +10,7 @@ test-pod-policy-[ID]:
     - 'matchExpressions =[]'
 #    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
-  kind: 'Pod'
+  kind: 'ConfigurationPolicy'
   specifications:
     - 'Pod - Nginx pod must exist'
   standards:
