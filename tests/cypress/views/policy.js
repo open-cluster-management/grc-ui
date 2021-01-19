@@ -578,22 +578,27 @@ export const verifyPlacementBindingInPolicyDetails = (uName, policyConfig) => {
 
 // does the search using the search form
 // so far tested only on the policy status page
-export const doTableSearch = (text, parentElement = null) => {
+export const doTableSearch = (text, inputSelector = null, parentSelector = null) => {
+  if (inputSelector === null) {
+    inputSelector = 'input[aria-label="Search input"]'
+  }
   // do the search only if there are resources on the page
-  if (!Cypress.$('#page').find('div.no-resouce').length) {
+  if (!Cypress.$('#page').find('div.no-resource'.length)) {
     // FIXME - do this search without a force
-    cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true}).type(text, {force: true})
+    cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true}).type(text, {force: true})
   }
 }
 
-export const clearTableSearch = (parentElement = null) => {
+export const clearTableSearch = (inputSelector = null, parentSelector = null) => {
+  if (inputSelector === null) {
+    inputSelector = 'input[aria-label="Search input"]'
+  }
   // clear the search only if there are resources on the page
-  if (!Cypress.$('#page').find('div.no-resouce'.length)) {
+  if (!Cypress.$('#page').find('div.no-resource'.length)) {
     // FIXME - do this without a force
     cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true})
   }
 }
-
 
 
 export const verifyViolationsInPolicyStatusClusters = (clusterViolations, violationPatterns, clusters = undefined) => {
@@ -652,7 +657,7 @@ export const verifyViolationsInPolicyStatusTemplates = (clusterViolations, viola
       // now find the right search (there could be more) to better target the required cluster result and to get it on the first page
       // FIXME: this should be replaced by a separate function/command doing this, ideally without 'force'
       cy.get('h4').contains(new RegExp('^'+templateName+'$')).parent('div.policy-status-by-templates-table').as('form')
-      cy.get('@form').then(e => doTableSearch(cluster, e))
+      cy.get('@form').then(e => doTableSearch(cluster, null, e))
       cy.get('@form').within(() => {
         cy.get('tbody').within(() => {
           cy.get('td').contains(new RegExp('^'+cluster+'$')).parents('td').siblings('td').spread((clusterStatus, message, lastReport, history) => {
@@ -724,7 +729,7 @@ export const verifyPolicyTemplatesInCluster = (policyName, policyConfig, cluster
   const clusterStatus = getClusterPolicyStatus(violations).toLowerCase()
   for (const violation of violations) {
     const templateName = violation.replace(/-[^-]*$/, '')
-    doTableSearch(templateName, '#policyPolicyTemplates-module-id')
+    doTableSearch(templateName, '#policyTemplates-search')
     cy.get('#policyPolicyTemplates-module-id').within(() => {
 
       cy.get('tbody').children('tr[data-row-name="'+templateName+'"]').find('td').spread((name, api, kind, compliant) => {
@@ -741,7 +746,7 @@ export const verifyPolicyTemplatesInCluster = (policyName, policyConfig, cluster
         cy.wrap(compliant).find('svg').should('have.attr', 'fill', fillColor)
       })
     })
-    clearTableSearch()
+    clearTableSearch('#policyTemplates-search')
   }
 }
 
@@ -753,7 +758,7 @@ export const verifyPolicyViolationDetailsInCluster = (policyName, policyConfig, 
     const id = violation.replace(/^.*-/, '')
     const pattern = violationPatterns[templateName][id]
     const clusterStatus2 = clusterStatus == 'compliant' ? 'Compliant' : 'NonCompliant'
-    doTableSearch(templateName, '#policyViolations-module-id')
+    doTableSearch(templateName, '#violations-search')
     cy.get('#policyViolations-module-id').within(() => {
       cy.get('tbody').children('tr[data-row-name="'+templateName+'"]').find('td').spread((name, cluster, message, last_update) => {
         // check policy name
@@ -770,6 +775,6 @@ export const verifyPolicyViolationDetailsInCluster = (policyName, policyConfig, 
         cy.wrap(last_update).contains(timestampRegexp)
       })
     })
-    clearTableSearch()
+    clearTableSearch('#violations-search')
   }
 }
