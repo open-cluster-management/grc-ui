@@ -61,12 +61,19 @@ module.exports = {
       {
         // Transpile React JSX to ES5
         test: [/\.jsx$/, /\.js$/],
-        exclude: /node_modules|\.scss/,
-        loader: 'babel-loader?cacheDirectory',
-        query: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-          plugins: ['@babel/plugin-proposal-class-properties']
-        }
+        exclude: [
+          {
+            test: [
+              /\.scss$/,
+              path.resolve(__dirname, './node_modules'),
+            ],
+            exclude: [
+              path.resolve(__dirname, './node_modules/fuse.js'),
+              //path.resolve(__dirname, './node_modules/temptifly'),
+            ]
+          }
+        ],
+        loader: 'babel-loader?cacheDirectory'
       },
       {
         test: [/\.s?css$/],

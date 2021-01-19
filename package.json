@@ -56,7 +56,7 @@
     "@patternfly/react-core": "^4.75.2",
     "@patternfly/react-icons": "^4.7.16",
     "@patternfly/react-table": "^4.19.5",
-    "@patternfly/react-tokens": "2.8.13",
+    "@patternfly/react-tokens": "^4.9.18",
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "apollo-client": "^2.6.10",
     "assets-webpack-plugin": "^5.1.2",
@@ -82,6 +82,7 @@
     "del-cli": "^3.0.1",
     "eslint": "^7.13.0",
     "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^3.3.1",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
@@ -107,6 +108,7 @@
     "normalizr": "^3.6.1",
     "null-loader": "^4.0.1",
     "path-to-regexp": "^3.2.0",
+    "patternfly": "^3.59.5",
     "postcss-loader": "^3.0.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.13.7",
@@ -129,6 +131,7 @@
     "source-map-loader": "^1.1.2",
     "style-loader": "^1.3.0",
     "terser-webpack-plugin": "^4.2.3",
+    "typescript": "^4.1.3",
     "typescript-eslint": "0.0.1-alpha.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
@@ -180,7 +183,11 @@
   },
   "nyc": {
     "report-dir": "./test-output/cypress/coverage",
-    "reporter": ["text", "json", "lcov"]
+    "reporter": [
+      "text",
+      "json",
+      "lcov"
+    ]
   },
   "jest": {
     "testPathIgnorePatterns": [
