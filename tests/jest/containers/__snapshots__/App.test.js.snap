@@ -31,7 +31,7 @@ exports[`App container test renders as expected 1`] = `
   }
 >
   <BrowserRouter>
-    <_default
+    <App
       match={
         Object {
           "isExact": false,

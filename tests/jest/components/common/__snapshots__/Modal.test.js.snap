@@ -58,7 +58,7 @@ exports[`Modal component renders DisableResource as expected 1`] = `
     }
     type="resource-disable"
   >
-    <ForwardRef
+    <withRouter(Connect(PolicyActionModal))
       data={
         Object {
           "kind": "Policy",
@@ -87,7 +87,7 @@ exports[`Modal component renders DisableResource as expected 1`] = `
       }
       type="resource-disable"
     >
-      <Component
+      <Connect(PolicyActionModal)
         data={
           Object {
             "kind": "Policy",
@@ -97,12 +97,47 @@ exports[`Modal component renders DisableResource as expected 1`] = `
           }
         }
         dispatch={[Function]}
-        forwardedRef={null}
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
         label={
           Object {
             "heading": "modal.disable-hcmcompliance.heading",
             "label": "modal.disable-hcmcompliance.heading",
             "primaryBtn": "modal.disable-hcmcompliance.heading",
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          }
+        }
+        match={
+          Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
           }
         }
         open={true}
@@ -117,7 +152,7 @@ exports[`Modal component renders DisableResource as expected 1`] = `
         }
         type="resource-disable"
       >
-        <InnerLoadable
+        <PolicyActionModal
           data={
             Object {
               "kind": "Policy",
@@ -127,7 +162,28 @@ exports[`Modal component renders DisableResource as expected 1`] = `
             }
           }
           dispatch={[Function]}
-          forwardedRef={null}
+          handleClose={[Function]}
+          handleSubmit={[Function]}
+          history={
+            Object {
+              "action": "POP",
+              "block": [Function],
+              "createHref": [Function],
+              "go": [Function],
+              "goBack": [Function],
+              "goForward": [Function],
+              "length": 1,
+              "listen": [Function],
+              "location": Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+                "state": undefined,
+              },
+              "push": [Function],
+              "replace": [Function],
+            }
+          }
           label={
             Object {
               "heading": "modal.disable-hcmcompliance.heading",
@@ -135,7 +191,24 @@ exports[`Modal component renders DisableResource as expected 1`] = `
               "primaryBtn": "modal.disable-hcmcompliance.heading",
             }
           }
+          location={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            }
+          }
+          match={
+            Object {
+              "isExact": true,
+              "params": Object {},
+              "path": "/",
+              "url": "/",
+            }
+          }
           open={true}
+          receivePatchError={[Function]}
           store={
             Object {
               "dispatch": [Function],
@@ -146,9 +219,192 @@ exports[`Modal component renders DisableResource as expected 1`] = `
             }
           }
           type="resource-disable"
-        />
-      </Component>
-    </ForwardRef>
+        >
+          <div>
+            <Modal
+              aria-label="Disable policy"
+              danger={true}
+              focusTrap={true}
+              iconDescription="close the modal"
+              id="disable-resource-modal"
+              modalHeading="Disable policy"
+              modalLabel="Disable policy"
+              onKeyDown={[Function]}
+              onRequestClose={[Function]}
+              onRequestSubmit={[Function]}
+              open={true}
+              passiveModal={false}
+              primaryButtonDisabled={false}
+              primaryButtonText="Disable policy"
+              role="region"
+              secondaryButtonText="Cancel"
+              selectorPrimaryFocus="[data-modal-primary-focus]"
+            >
+              <FocusTrap
+                _createFocusTrap={[Function]}
+                active={true}
+                focusTrapOptions={
+                  Object {
+                    "initialFocus": [Function],
+                  }
+                }
+                paused={false}
+              >
+                <div
+                  aria-label="Disable policy"
+                  className="bx--modal bx--modal-tall is-visible bx--modal--danger"
+                  id="disable-resource-modal"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  onTransitionEnd={[Function]}
+                  role="presentation"
+                  tabIndex={-1}
+                >
+                  <div
+                    aria-modal="true"
+                    className="bx--modal-container"
+                    role="dialog"
+                  >
+                    <div
+                      className="bx--modal-header"
+                    >
+                      <p
+                        className="bx--modal-header__label"
+                      >
+                        Disable policy
+                      </p>
+                      <p
+                        className="bx--modal-header__heading"
+                      >
+                        Disable policy
+                      </p>
+                      <button
+                        className="bx--modal-close"
+                        onClick={[Function]}
+                        title="close the modal"
+                        type="button"
+                      >
+                        <Icon
+                          className="bx--modal-close__icon"
+                          description="close the modal"
+                          fillRule="evenodd"
+                          icon={
+                            Object {
+                              "height": "10",
+                              "id": "icon--close",
+                              "name": "icon--close",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z",
+                                    "fill-rule": "nonzero",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--close",
+                              "viewBox": "0 0 10 10",
+                              "width": "10",
+                            }
+                          }
+                          role="img"
+                        >
+                          <svg
+                            alt="close the modal"
+                            aria-label="close the modal"
+                            className="bx--modal-close__icon"
+                            fillRule="evenodd"
+                            height="10"
+                            role="img"
+                            viewBox="0 0 10 10"
+                            width="10"
+                          >
+                            <title>
+                              close the modal
+                            </title>
+                            <path
+                              d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                              key="key0"
+                            />
+                          </svg>
+                        </Icon>
+                      </button>
+                    </div>
+                    <div
+                      className="bx--modal-content"
+                    >
+                      <div />
+                      <p>
+                        Are you sure you want to disable this policy?
+                      </p>
+                    </div>
+                    <div
+                      className="bx--modal-footer"
+                    >
+                      <ForwardRef
+                        disabled={false}
+                        iconDescription="Provide icon description if icon is used"
+                        kind="tertiary"
+                        onClick={[Function]}
+                        small={false}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <button
+                          className="bx--btn bx--btn--tertiary"
+                          disabled={false}
+                          onClick={[Function]}
+                          tabIndex={0}
+                          type="button"
+                        >
+                          Cancel
+                        </button>
+                      </ForwardRef>
+                      <ForwardRef
+                        disabled={false}
+                        iconDescription="Provide icon description if icon is used"
+                        inputref={
+                          Object {
+                            "current": <button
+                              class="bx--btn bx--btn--danger--primary"
+                              tabindex="0"
+                              type="button"
+                            >
+                              Disable policy
+                            </button>,
+                          }
+                        }
+                        kind="danger--primary"
+                        onClick={[Function]}
+                        small={false}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <button
+                          className="bx--btn bx--btn--danger--primary"
+                          disabled={false}
+                          onClick={[Function]}
+                          tabIndex={0}
+                          type="button"
+                        >
+                          Disable policy
+                        </button>
+                      </ForwardRef>
+                    </div>
+                  </div>
+                </div>
+              </FocusTrap>
+            </Modal>
+          </div>
+        </PolicyActionModal>
+      </Connect(PolicyActionModal)>
+    </withRouter(Connect(PolicyActionModal))>
   </Modal>
 </Connect(Modal)>
 `;
@@ -223,7 +479,7 @@ exports[`Modal component renders EditResource as expected 1`] = `
     }
     type="resource-edit"
   >
-    <ForwardRef
+    <Connect(ResourceModal)
       data={
         Object {
           "kind": "Policy",
@@ -258,7 +514,8 @@ exports[`Modal component renders EditResource as expected 1`] = `
       }
       type="resource-edit"
     >
-      <Component
+      <ResourceModal
+        clearRequestStatus={[Function]}
         data={
           Object {
             "kind": "Policy",
@@ -268,7 +525,7 @@ exports[`Modal component renders EditResource as expected 1`] = `
           }
         }
         dispatch={[Function]}
-        forwardedRef={null}
+        handleClose={[Function]}
         label={
           Object {
             "heading": "modal.edit-hcmcompliance.heading",
@@ -277,6 +534,7 @@ exports[`Modal component renders EditResource as expected 1`] = `
           }
         }
         open={true}
+        putResource={[Function]}
         resourceType={
           Object {
             "list": "ALL_POLICIES",
@@ -294,44 +552,209 @@ exports[`Modal component renders EditResource as expected 1`] = `
         }
         type="resource-edit"
       >
-        <InnerLoadable
-          data={
-            Object {
-              "kind": "Policy",
-              "metadata": Object {
-                "name": "test-policy",
-              },
-            }
-          }
-          dispatch={[Function]}
-          forwardedRef={null}
-          label={
-            Object {
-              "heading": "modal.edit-hcmcompliance.heading",
-              "label": "modal.edit-hcmcompliance.label",
-              "primaryBtn": "modal.button.submit",
-            }
-          }
-          open={true}
-          resourceType={
-            Object {
-              "list": "ALL_POLICIES",
-              "name": "HCMCompliance",
-            }
-          }
-          store={
-            Object {
-              "dispatch": [Function],
-              "getState": [Function],
-              "replaceReducer": [Function],
-              "subscribe": [Function],
-              Symbol(observable): [Function],
-            }
-          }
-          type="resource-edit"
-        />
-      </Component>
-    </ForwardRef>
+        <div
+          id="resource-modal-container"
+          onKeyDown={[Function]}
+          role="region"
+          tabIndex={-1}
+        >
+          <Modal
+            aria-label="Edit policy"
+            className="resource-modal"
+            focusTrap={true}
+            iconDescription="close the modal"
+            id="resource-modal-HCMCompliance"
+            modalHeading="Edit policy"
+            modalLabel="Edit policy"
+            onKeyDown={[Function]}
+            onRequestClose={[Function]}
+            onRequestSubmit={[Function]}
+            open={true}
+            passiveModal={false}
+            primaryButtonDisabled={false}
+            primaryButtonText="Submit"
+            role="region"
+            secondaryButtonText="Cancel"
+            selectorPrimaryFocus="[data-modal-primary-focus]"
+          >
+            <FocusTrap
+              _createFocusTrap={[Function]}
+              active={true}
+              focusTrapOptions={
+                Object {
+                  "initialFocus": [Function],
+                }
+              }
+              paused={false}
+            >
+              <div
+                aria-label="Edit policy"
+                className="bx--modal bx--modal-tall is-visible resource-modal"
+                id="resource-modal-HCMCompliance"
+                onBlur={[Function]}
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                onTransitionEnd={[Function]}
+                role="presentation"
+                tabIndex={-1}
+              >
+                <div
+                  aria-modal="true"
+                  className="bx--modal-container"
+                  role="dialog"
+                >
+                  <div
+                    className="bx--modal-header"
+                  >
+                    <p
+                      className="bx--modal-header__label"
+                    >
+                      Edit policy
+                    </p>
+                    <p
+                      className="bx--modal-header__heading"
+                    >
+                      Edit policy
+                    </p>
+                    <button
+                      className="bx--modal-close"
+                      onClick={[Function]}
+                      title="close the modal"
+                      type="button"
+                    >
+                      <Icon
+                        className="bx--modal-close__icon"
+                        description="close the modal"
+                        fillRule="evenodd"
+                        icon={
+                          Object {
+                            "height": "10",
+                            "id": "icon--close",
+                            "name": "icon--close",
+                            "styles": "",
+                            "svgData": Object {
+                              "circles": "",
+                              "ellipses": "",
+                              "paths": Array [
+                                Object {
+                                  "d": "M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z",
+                                  "fill-rule": "nonzero",
+                                },
+                              ],
+                              "polygons": "",
+                              "polylines": "",
+                              "rects": "",
+                            },
+                            "tags": "icon--close",
+                            "viewBox": "0 0 10 10",
+                            "width": "10",
+                          }
+                        }
+                        role="img"
+                      >
+                        <svg
+                          alt="close the modal"
+                          aria-label="close the modal"
+                          className="bx--modal-close__icon"
+                          fillRule="evenodd"
+                          height="10"
+                          role="img"
+                          viewBox="0 0 10 10"
+                          width="10"
+                        >
+                          <title>
+                            close the modal
+                          </title>
+                          <path
+                            d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                            key="key0"
+                          />
+                        </svg>
+                      </Icon>
+                    </button>
+                  </div>
+                  <div
+                    className="bx--modal-content"
+                  >
+                    <div>
+                      <div
+                        className="yamlEditorContainerContainer"
+                      >
+                        <mockYamlEditor
+                          height="40vh"
+                          onYamlChange={[Function]}
+                          readOnly={false}
+                          setEditor={[Function]}
+                          width="50vw"
+                          yaml=""
+                        >
+                          <div
+                            data-testid="mockYamlEditor"
+                          />
+                        </mockYamlEditor>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="bx--modal-footer"
+                  >
+                    <ForwardRef
+                      disabled={false}
+                      iconDescription="Provide icon description if icon is used"
+                      kind="secondary"
+                      onClick={[Function]}
+                      small={false}
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <button
+                        className="bx--btn bx--btn--secondary"
+                        disabled={false}
+                        onClick={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        Cancel
+                      </button>
+                    </ForwardRef>
+                    <ForwardRef
+                      disabled={false}
+                      iconDescription="Provide icon description if icon is used"
+                      inputref={
+                        Object {
+                          "current": <button
+                            class="bx--btn bx--btn--primary"
+                            tabindex="0"
+                            type="button"
+                          >
+                            Submit
+                          </button>,
+                        }
+                      }
+                      kind="primary"
+                      onClick={[Function]}
+                      small={false}
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <button
+                        className="bx--btn bx--btn--primary"
+                        disabled={false}
+                        onClick={[Function]}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        Submit
+                      </button>
+                    </ForwardRef>
+                  </div>
+                </div>
+              </div>
+            </FocusTrap>
+          </Modal>
+        </div>
+      </ResourceModal>
+    </Connect(ResourceModal)>
   </Modal>
 </Connect(Modal)>
 `;
@@ -394,7 +817,7 @@ exports[`Modal component renders EnableResource as expected 1`] = `
     }
     type="resource-enable"
   >
-    <ForwardRef
+    <withRouter(Connect(PolicyActionModal))
       data={
         Object {
           "kind": "Policy",
@@ -423,7 +846,7 @@ exports[`Modal component renders EnableResource as expected 1`] = `
       }
       type="resource-enable"
     >
-      <Component
+      <Connect(PolicyActionModal)
         data={
           Object {
             "kind": "Policy",
@@ -433,12 +856,47 @@ exports[`Modal component renders EnableResource as expected 1`] = `
           }
         }
         dispatch={[Function]}
-        forwardedRef={null}
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
         label={
           Object {
             "heading": "modal.enable-hcmcompliance.heading",
             "label": "modal.enable-hcmcompliance.label",
             "primaryBtn": "modal.enable-hcmcompliance.heading",
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          }
+        }
+        match={
+          Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
           }
         }
         open={true}
@@ -453,7 +911,7 @@ exports[`Modal component renders EnableResource as expected 1`] = `
         }
         type="resource-enable"
       >
-        <InnerLoadable
+        <PolicyActionModal
           data={
             Object {
               "kind": "Policy",
@@ -463,7 +921,28 @@ exports[`Modal component renders EnableResource as expected 1`] = `
             }
           }
           dispatch={[Function]}
-          forwardedRef={null}
+          handleClose={[Function]}
+          handleSubmit={[Function]}
+          history={
+            Object {
+              "action": "POP",
+              "block": [Function],
+              "createHref": [Function],
+              "go": [Function],
+              "goBack": [Function],
+              "goForward": [Function],
+              "length": 1,
+              "listen": [Function],
+              "location": Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+                "state": undefined,
+              },
+              "push": [Function],
+              "replace": [Function],
+            }
+          }
           label={
             Object {
               "heading": "modal.enable-hcmcompliance.heading",
@@ -471,7 +950,24 @@ exports[`Modal component renders EnableResource as expected 1`] = `
               "primaryBtn": "modal.enable-hcmcompliance.heading",
             }
           }
+          location={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            }
+          }
+          match={
+            Object {
+              "isExact": true,
+              "params": Object {},
+              "path": "/",
+              "url": "/",
+            }
+          }
           open={true}
+          receivePatchError={[Function]}
           store={
             Object {
               "dispatch": [Function],
@@ -482,9 +978,192 @@ exports[`Modal component renders EnableResource as expected 1`] = `
             }
           }
           type="resource-enable"
-        />
-      </Component>
-    </ForwardRef>
+        >
+          <div>
+            <Modal
+              aria-label="Enable policy"
+              danger={false}
+              focusTrap={true}
+              iconDescription="close the modal"
+              id="enable-resource-modal"
+              modalHeading="Enable policy"
+              modalLabel="Enable policy"
+              onKeyDown={[Function]}
+              onRequestClose={[Function]}
+              onRequestSubmit={[Function]}
+              open={true}
+              passiveModal={false}
+              primaryButtonDisabled={false}
+              primaryButtonText="Enable policy"
+              role="region"
+              secondaryButtonText="Cancel"
+              selectorPrimaryFocus="[data-modal-primary-focus]"
+            >
+              <FocusTrap
+                _createFocusTrap={[Function]}
+                active={true}
+                focusTrapOptions={
+                  Object {
+                    "initialFocus": [Function],
+                  }
+                }
+                paused={false}
+              >
+                <div
+                  aria-label="Enable policy"
+                  className="bx--modal bx--modal-tall is-visible"
+                  id="enable-resource-modal"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  onTransitionEnd={[Function]}
+                  role="presentation"
+                  tabIndex={-1}
+                >
+                  <div
+                    aria-modal="true"
+                    className="bx--modal-container"
+                    role="dialog"
+                  >
+                    <div
+                      className="bx--modal-header"
+                    >
+                      <p
+                        className="bx--modal-header__label"
+                      >
+                        Enable policy
+                      </p>
+                      <p
+                        className="bx--modal-header__heading"
+                      >
+                        Enable policy
+                      </p>
+                      <button
+                        className="bx--modal-close"
+                        onClick={[Function]}
+                        title="close the modal"
+                        type="button"
+                      >
+                        <Icon
+                          className="bx--modal-close__icon"
+                          description="close the modal"
+                          fillRule="evenodd"
+                          icon={
+                            Object {
+                              "height": "10",
+                              "id": "icon--close",
+                              "name": "icon--close",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z",
+                                    "fill-rule": "nonzero",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--close",
+                              "viewBox": "0 0 10 10",
+                              "width": "10",
+                            }
+                          }
+                          role="img"
+                        >
+                          <svg
+                            alt="close the modal"
+                            aria-label="close the modal"
+                            className="bx--modal-close__icon"
+                            fillRule="evenodd"
+                            height="10"
+                            role="img"
+                            viewBox="0 0 10 10"
+                            width="10"
+                          >
+                            <title>
+                              close the modal
+                            </title>
+                            <path
+                              d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                              key="key0"
+                            />
+                          </svg>
+                        </Icon>
+                      </button>
+                    </div>
+                    <div
+                      className="bx--modal-content"
+                    >
+                      <div />
+                      <p>
+                        Are you sure you want to enable this policy?
+                      </p>
+                    </div>
+                    <div
+                      className="bx--modal-footer"
+                    >
+                      <ForwardRef
+                        disabled={false}
+                        iconDescription="Provide icon description if icon is used"
+                        kind="secondary"
+                        onClick={[Function]}
+                        small={false}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <button
+                          className="bx--btn bx--btn--secondary"
+                          disabled={false}
+                          onClick={[Function]}
+                          tabIndex={0}
+                          type="button"
+                        >
+                          Cancel
+                        </button>
+                      </ForwardRef>
+                      <ForwardRef
+                        disabled={false}
+                        iconDescription="Provide icon description if icon is used"
+                        inputref={
+                          Object {
+                            "current": <button
+                              class="bx--btn bx--btn--primary"
+                              tabindex="0"
+                              type="button"
+                            >
+                              Enable policy
+                            </button>,
+                          }
+                        }
+                        kind="primary"
+                        onClick={[Function]}
+                        small={false}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <button
+                          className="bx--btn bx--btn--primary"
+                          disabled={false}
+                          onClick={[Function]}
+                          tabIndex={0}
+                          type="button"
+                        >
+                          Enable policy
+                        </button>
+                      </ForwardRef>
+                    </div>
+                  </div>
+                </div>
+              </FocusTrap>
+            </Modal>
+          </div>
+        </PolicyActionModal>
+      </Connect(PolicyActionModal)>
+    </withRouter(Connect(PolicyActionModal))>
   </Modal>
 </Connect(Modal)>
 `;
@@ -547,7 +1226,7 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
     }
     type="resource-enforce"
   >
-    <ForwardRef
+    <withRouter(Connect(PolicyActionModal))
       data={
         Object {
           "kind": "Policy",
@@ -576,7 +1255,7 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
       }
       type="resource-enforce"
     >
-      <Component
+      <Connect(PolicyActionModal)
         data={
           Object {
             "kind": "Policy",
@@ -586,12 +1265,47 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
           }
         }
         dispatch={[Function]}
-        forwardedRef={null}
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
         label={
           Object {
             "heading": "modal.enforce-hcmcompliance.heading",
             "label": "modal.enforce-hcmcompliance.label",
             "primaryBtn": "modal.enforce-hcmcompliance.heading",
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          }
+        }
+        match={
+          Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
           }
         }
         open={true}
@@ -606,7 +1320,7 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
         }
         type="resource-enforce"
       >
-        <InnerLoadable
+        <PolicyActionModal
           data={
             Object {
               "kind": "Policy",
@@ -616,7 +1330,28 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
             }
           }
           dispatch={[Function]}
-          forwardedRef={null}
+          handleClose={[Function]}
+          handleSubmit={[Function]}
+          history={
+            Object {
+              "action": "POP",
+              "block": [Function],
+              "createHref": [Function],
+              "go": [Function],
+              "goBack": [Function],
+              "goForward": [Function],
+              "length": 1,
+              "listen": [Function],
+              "location": Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+                "state": undefined,
+              },
+              "push": [Function],
+              "replace": [Function],
+            }
+          }
           label={
             Object {
               "heading": "modal.enforce-hcmcompliance.heading",
@@ -624,7 +1359,24 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
               "primaryBtn": "modal.enforce-hcmcompliance.heading",
             }
           }
+          location={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            }
+          }
+          match={
+            Object {
+              "isExact": true,
+              "params": Object {},
+              "path": "/",
+              "url": "/",
+            }
+          }
           open={true}
+          receivePatchError={[Function]}
           store={
             Object {
               "dispatch": [Function],
@@ -635,9 +1387,192 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
             }
           }
           type="resource-enforce"
-        />
-      </Component>
-    </ForwardRef>
+        >
+          <div>
+            <Modal
+              aria-label="Enforce policy"
+              danger={true}
+              focusTrap={true}
+              iconDescription="close the modal"
+              id="enforce-resource-modal"
+              modalHeading="Enforce policy"
+              modalLabel="Enforce policy"
+              onKeyDown={[Function]}
+              onRequestClose={[Function]}
+              onRequestSubmit={[Function]}
+              open={true}
+              passiveModal={false}
+              primaryButtonDisabled={false}
+              primaryButtonText="Enforce policy"
+              role="region"
+              secondaryButtonText="Cancel"
+              selectorPrimaryFocus="[data-modal-primary-focus]"
+            >
+              <FocusTrap
+                _createFocusTrap={[Function]}
+                active={true}
+                focusTrapOptions={
+                  Object {
+                    "initialFocus": [Function],
+                  }
+                }
+                paused={false}
+              >
+                <div
+                  aria-label="Enforce policy"
+                  className="bx--modal bx--modal-tall is-visible bx--modal--danger"
+                  id="enforce-resource-modal"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  onTransitionEnd={[Function]}
+                  role="presentation"
+                  tabIndex={-1}
+                >
+                  <div
+                    aria-modal="true"
+                    className="bx--modal-container"
+                    role="dialog"
+                  >
+                    <div
+                      className="bx--modal-header"
+                    >
+                      <p
+                        className="bx--modal-header__label"
+                      >
+                        Enforce policy
+                      </p>
+                      <p
+                        className="bx--modal-header__heading"
+                      >
+                        Enforce policy
+                      </p>
+                      <button
+                        className="bx--modal-close"
+                        onClick={[Function]}
+                        title="close the modal"
+                        type="button"
+                      >
+                        <Icon
+                          className="bx--modal-close__icon"
+                          description="close the modal"
+                          fillRule="evenodd"
+                          icon={
+                            Object {
+                              "height": "10",
+                              "id": "icon--close",
+                              "name": "icon--close",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z",
+                                    "fill-rule": "nonzero",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--close",
+                              "viewBox": "0 0 10 10",
+                              "width": "10",
+                            }
+                          }
+                          role="img"
+                        >
+                          <svg
+                            alt="close the modal"
+                            aria-label="close the modal"
+                            className="bx--modal-close__icon"
+                            fillRule="evenodd"
+                            height="10"
+                            role="img"
+                            viewBox="0 0 10 10"
+                            width="10"
+                          >
+                            <title>
+                              close the modal
+                            </title>
+                            <path
+                              d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                              key="key0"
+                            />
+                          </svg>
+                        </Icon>
+                      </button>
+                    </div>
+                    <div
+                      className="bx--modal-content"
+                    >
+                      <div />
+                      <p>
+                        Are you sure you want to enforce this policy? The policy makes any necessary changes to the applied cluster to remediate the violations.
+                      </p>
+                    </div>
+                    <div
+                      className="bx--modal-footer"
+                    >
+                      <ForwardRef
+                        disabled={false}
+                        iconDescription="Provide icon description if icon is used"
+                        kind="tertiary"
+                        onClick={[Function]}
+                        small={false}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <button
+                          className="bx--btn bx--btn--tertiary"
+                          disabled={false}
+                          onClick={[Function]}
+                          tabIndex={0}
+                          type="button"
+                        >
+                          Cancel
+                        </button>
+                      </ForwardRef>
+                      <ForwardRef
+                        disabled={false}
+                        iconDescription="Provide icon description if icon is used"
+                        inputref={
+                          Object {
+                            "current": <button
+                              class="bx--btn bx--btn--danger--primary"
+                              tabindex="0"
+                              type="button"
+                            >
+                              Enforce policy
+                            </button>,
+                          }
+                        }
+                        kind="danger--primary"
+                        onClick={[Function]}
+                        small={false}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <button
+                          className="bx--btn bx--btn--danger--primary"
+                          disabled={false}
+                          onClick={[Function]}
+                          tabIndex={0}
+                          type="button"
+                        >
+                          Enforce policy
+                        </button>
+                      </ForwardRef>
+                    </div>
+                  </div>
+                </div>
+              </FocusTrap>
+            </Modal>
+          </div>
+        </PolicyActionModal>
+      </Connect(PolicyActionModal)>
+    </withRouter(Connect(PolicyActionModal))>
   </Modal>
 </Connect(Modal)>
 `;
@@ -700,7 +1635,7 @@ exports[`Modal component renders InformResource as expected 1`] = `
     }
     type="resource-inform"
   >
-    <ForwardRef
+    <withRouter(Connect(PolicyActionModal))
       data={
         Object {
           "kind": "Policy",
@@ -729,7 +1664,7 @@ exports[`Modal component renders InformResource as expected 1`] = `
       }
       type="resource-inform"
     >
-      <Component
+      <Connect(PolicyActionModal)
         data={
           Object {
             "kind": "Policy",
@@ -739,12 +1674,47 @@ exports[`Modal component renders InformResource as expected 1`] = `
           }
         }
         dispatch={[Function]}
-        forwardedRef={null}
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
         label={
           Object {
             "heading": "modal.inform-hcmcompliance.heading",
             "label": "modal.inform-hcmcompliance.label",
             "primaryBtn": "modal.inform-hcmcompliance.heading",
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          }
+        }
+        match={
+          Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
           }
         }
         open={true}
@@ -759,7 +1729,7 @@ exports[`Modal component renders InformResource as expected 1`] = `
         }
         type="resource-inform"
       >
-        <InnerLoadable
+        <PolicyActionModal
           data={
             Object {
               "kind": "Policy",
@@ -769,7 +1739,28 @@ exports[`Modal component renders InformResource as expected 1`] = `
             }
           }
           dispatch={[Function]}
-          forwardedRef={null}
+          handleClose={[Function]}
+          handleSubmit={[Function]}
+          history={
+            Object {
+              "action": "POP",
+              "block": [Function],
+              "createHref": [Function],
+              "go": [Function],
+              "goBack": [Function],
+              "goForward": [Function],
+              "length": 1,
+              "listen": [Function],
+              "location": Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+                "state": undefined,
+              },
+              "push": [Function],
+              "replace": [Function],
+            }
+          }
           label={
             Object {
               "heading": "modal.inform-hcmcompliance.heading",
@@ -777,7 +1768,24 @@ exports[`Modal component renders InformResource as expected 1`] = `
               "primaryBtn": "modal.inform-hcmcompliance.heading",
             }
           }
+          location={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            }
+          }
+          match={
+            Object {
+              "isExact": true,
+              "params": Object {},
+              "path": "/",
+              "url": "/",
+            }
+          }
           open={true}
+          receivePatchError={[Function]}
           store={
             Object {
               "dispatch": [Function],
@@ -788,9 +1796,192 @@ exports[`Modal component renders InformResource as expected 1`] = `
             }
           }
           type="resource-inform"
-        />
-      </Component>
-    </ForwardRef>
+        >
+          <div>
+            <Modal
+              aria-label="Inform policy"
+              danger={false}
+              focusTrap={true}
+              iconDescription="close the modal"
+              id="inform-resource-modal"
+              modalHeading="Inform policy"
+              modalLabel="Inform policy"
+              onKeyDown={[Function]}
+              onRequestClose={[Function]}
+              onRequestSubmit={[Function]}
+              open={true}
+              passiveModal={false}
+              primaryButtonDisabled={false}
+              primaryButtonText="Inform policy"
+              role="region"
+              secondaryButtonText="Cancel"
+              selectorPrimaryFocus="[data-modal-primary-focus]"
+            >
+              <FocusTrap
+                _createFocusTrap={[Function]}
+                active={true}
+                focusTrapOptions={
+                  Object {
+                    "initialFocus": [Function],
+                  }
+                }
+                paused={false}
+              >
+                <div
+                  aria-label="Inform policy"
+                  className="bx--modal bx--modal-tall is-visible"
+                  id="inform-resource-modal"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  onTransitionEnd={[Function]}
+                  role="presentation"
+                  tabIndex={-1}
+                >
+                  <div
+                    aria-modal="true"
+                    className="bx--modal-container"
+                    role="dialog"
+                  >
+                    <div
+                      className="bx--modal-header"
+                    >
+                      <p
+                        className="bx--modal-header__label"
+                      >
+                        Inform policy
+                      </p>
+                      <p
+                        className="bx--modal-header__heading"
+                      >
+                        Inform policy
+                      </p>
+                      <button
+                        className="bx--modal-close"
+                        onClick={[Function]}
+                        title="close the modal"
+                        type="button"
+                      >
+                        <Icon
+                          className="bx--modal-close__icon"
+                          description="close the modal"
+                          fillRule="evenodd"
+                          icon={
+                            Object {
+                              "height": "10",
+                              "id": "icon--close",
+                              "name": "icon--close",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z",
+                                    "fill-rule": "nonzero",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--close",
+                              "viewBox": "0 0 10 10",
+                              "width": "10",
+                            }
+                          }
+                          role="img"
+                        >
+                          <svg
+                            alt="close the modal"
+                            aria-label="close the modal"
+                            className="bx--modal-close__icon"
+                            fillRule="evenodd"
+                            height="10"
+                            role="img"
+                            viewBox="0 0 10 10"
+                            width="10"
+                          >
+                            <title>
+                              close the modal
+                            </title>
+                            <path
+                              d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                              key="key0"
+                            />
+                          </svg>
+                        </Icon>
+                      </button>
+                    </div>
+                    <div
+                      className="bx--modal-content"
+                    >
+                      <div />
+                      <p>
+                        Are you sure you want to change the remediation action of this policy to inform? You must manually remediate the policy violations.
+                      </p>
+                    </div>
+                    <div
+                      className="bx--modal-footer"
+                    >
+                      <ForwardRef
+                        disabled={false}
+                        iconDescription="Provide icon description if icon is used"
+                        kind="secondary"
+                        onClick={[Function]}
+                        small={false}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <button
+                          className="bx--btn bx--btn--secondary"
+                          disabled={false}
+                          onClick={[Function]}
+                          tabIndex={0}
+                          type="button"
+                        >
+                          Cancel
+                        </button>
+                      </ForwardRef>
+                      <ForwardRef
+                        disabled={false}
+                        iconDescription="Provide icon description if icon is used"
+                        inputref={
+                          Object {
+                            "current": <button
+                              class="bx--btn bx--btn--primary"
+                              tabindex="0"
+                              type="button"
+                            >
+                              Inform policy
+                            </button>,
+                          }
+                        }
+                        kind="primary"
+                        onClick={[Function]}
+                        small={false}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <button
+                          className="bx--btn bx--btn--primary"
+                          disabled={false}
+                          onClick={[Function]}
+                          tabIndex={0}
+                          type="button"
+                        >
+                          Inform policy
+                        </button>
+                      </ForwardRef>
+                    </div>
+                  </div>
+                </div>
+              </FocusTrap>
+            </Modal>
+          </div>
+        </PolicyActionModal>
+      </Connect(PolicyActionModal)>
+    </withRouter(Connect(PolicyActionModal))>
   </Modal>
 </Connect(Modal)>
 `;
@@ -853,7 +2044,7 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
     }
     type="resource-remove"
   >
-    <ForwardRef
+    <withRouter(Connect(RemoveResourceModal))
       data={
         Object {
           "kind": "Policy",
@@ -882,7 +2073,7 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
       }
       type="resource-remove"
     >
-      <Component
+      <Connect(RemoveResourceModal)
         data={
           Object {
             "kind": "Policy",
@@ -892,12 +2083,47 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
           }
         }
         dispatch={[Function]}
-        forwardedRef={null}
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
         label={
           Object {
             "heading": "modal.remove-hcmcompliance.heading",
             "label": "modal.remove-hcmcompliance.label",
             "primaryBtn": "modal.remove-hcmcompliance.heading",
+          }
+        }
+        location={
+          Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          }
+        }
+        match={
+          Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "/",
+            "url": "/",
           }
         }
         open={true}
@@ -912,7 +2138,7 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
         }
         type="resource-remove"
       >
-        <InnerLoadable
+        <RemoveResourceModal
           data={
             Object {
               "kind": "Policy",
@@ -922,7 +2148,28 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
             }
           }
           dispatch={[Function]}
-          forwardedRef={null}
+          handleClose={[Function]}
+          handleSubmit={[Function]}
+          history={
+            Object {
+              "action": "POP",
+              "block": [Function],
+              "createHref": [Function],
+              "go": [Function],
+              "goBack": [Function],
+              "goForward": [Function],
+              "length": 1,
+              "listen": [Function],
+              "location": Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+                "state": undefined,
+              },
+              "push": [Function],
+              "replace": [Function],
+            }
+          }
           label={
             Object {
               "heading": "modal.remove-hcmcompliance.heading",
@@ -930,7 +2177,24 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
               "primaryBtn": "modal.remove-hcmcompliance.heading",
             }
           }
+          location={
+            Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            }
+          }
+          match={
+            Object {
+              "isExact": true,
+              "params": Object {},
+              "path": "/",
+              "url": "/",
+            }
+          }
           open={true}
+          receiveDelError={[Function]}
           store={
             Object {
               "dispatch": [Function],
@@ -941,9 +2205,192 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
             }
           }
           type="resource-remove"
-        />
-      </Component>
-    </ForwardRef>
+        >
+          <div>
+            <Modal
+              aria-label="Remove policy"
+              danger={true}
+              focusTrap={true}
+              iconDescription="close the modal"
+              id="remove-resource-modal"
+              modalHeading="Remove policy"
+              modalLabel="Remove policy"
+              onKeyDown={[Function]}
+              onRequestClose={[Function]}
+              onRequestSubmit={[Function]}
+              open={true}
+              passiveModal={false}
+              primaryButtonDisabled={false}
+              primaryButtonText="Remove policy"
+              role="region"
+              secondaryButtonText="Cancel"
+              selectorPrimaryFocus="[data-modal-primary-focus]"
+            >
+              <FocusTrap
+                _createFocusTrap={[Function]}
+                active={true}
+                focusTrapOptions={
+                  Object {
+                    "initialFocus": [Function],
+                  }
+                }
+                paused={false}
+              >
+                <div
+                  aria-label="Remove policy"
+                  className="bx--modal bx--modal-tall is-visible bx--modal--danger"
+                  id="remove-resource-modal"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  onTransitionEnd={[Function]}
+                  role="presentation"
+                  tabIndex={-1}
+                >
+                  <div
+                    aria-modal="true"
+                    className="bx--modal-container"
+                    role="dialog"
+                  >
+                    <div
+                      className="bx--modal-header"
+                    >
+                      <p
+                        className="bx--modal-header__label"
+                      >
+                        Remove policy
+                      </p>
+                      <p
+                        className="bx--modal-header__heading"
+                      >
+                        Remove policy
+                      </p>
+                      <button
+                        className="bx--modal-close"
+                        onClick={[Function]}
+                        title="close the modal"
+                        type="button"
+                      >
+                        <Icon
+                          className="bx--modal-close__icon"
+                          description="close the modal"
+                          fillRule="evenodd"
+                          icon={
+                            Object {
+                              "height": "10",
+                              "id": "icon--close",
+                              "name": "icon--close",
+                              "styles": "",
+                              "svgData": Object {
+                                "circles": "",
+                                "ellipses": "",
+                                "paths": Array [
+                                  Object {
+                                    "d": "M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z",
+                                    "fill-rule": "nonzero",
+                                  },
+                                ],
+                                "polygons": "",
+                                "polylines": "",
+                                "rects": "",
+                              },
+                              "tags": "icon--close",
+                              "viewBox": "0 0 10 10",
+                              "width": "10",
+                            }
+                          }
+                          role="img"
+                        >
+                          <svg
+                            alt="close the modal"
+                            aria-label="close the modal"
+                            className="bx--modal-close__icon"
+                            fillRule="evenodd"
+                            height="10"
+                            role="img"
+                            viewBox="0 0 10 10"
+                            width="10"
+                          >
+                            <title>
+                              close the modal
+                            </title>
+                            <path
+                              d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
+                              key="key0"
+                            />
+                          </svg>
+                        </Icon>
+                      </button>
+                    </div>
+                    <div
+                      className="bx--modal-content"
+                    >
+                      <div />
+                      <p>
+                        Removing {0} is irreversible. Are you sure you want to continue?
+                      </p>
+                    </div>
+                    <div
+                      className="bx--modal-footer"
+                    >
+                      <ForwardRef
+                        disabled={false}
+                        iconDescription="Provide icon description if icon is used"
+                        kind="tertiary"
+                        onClick={[Function]}
+                        small={false}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <button
+                          className="bx--btn bx--btn--tertiary"
+                          disabled={false}
+                          onClick={[Function]}
+                          tabIndex={0}
+                          type="button"
+                        >
+                          Cancel
+                        </button>
+                      </ForwardRef>
+                      <ForwardRef
+                        disabled={false}
+                        iconDescription="Provide icon description if icon is used"
+                        inputref={
+                          Object {
+                            "current": <button
+                              class="bx--btn bx--btn--danger--primary"
+                              tabindex="0"
+                              type="button"
+                            >
+                              Remove policy
+                            </button>,
+                          }
+                        }
+                        kind="danger--primary"
+                        onClick={[Function]}
+                        small={false}
+                        tabIndex={0}
+                        type="button"
+                      >
+                        <button
+                          className="bx--btn bx--btn--danger--primary"
+                          disabled={false}
+                          onClick={[Function]}
+                          tabIndex={0}
+                          type="button"
+                        >
+                          Remove policy
+                        </button>
+                      </ForwardRef>
+                    </div>
+                  </div>
+                </div>
+              </FocusTrap>
+            </Modal>
+          </div>
+        </RemoveResourceModal>
+      </Connect(RemoveResourceModal)>
+    </withRouter(Connect(RemoveResourceModal))>
   </Modal>
 </Connect(Modal)>
 `;
