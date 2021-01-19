@@ -76,7 +76,7 @@ if [ "$NODE_ENV" == "dev" ]; then
   npx cypress run --browser $BROWSER $HEADLESS --spec "./tests/cypress/tests/stable/**/*.spec.js" --reporter cypress-multi-reporters  
 elif [ "$NODE_ENV" == "debug" ]; then
   npx cypress open --browser $BROWSER --config numTestsKeptInMemory=0
-elif [ "$TRAVIS_REPO_SLUG" == "open-cluster-management/grc-ui"]; then
+elif [ "$TRAVIS_REPO_SLUG" == "open-cluster-management/grc-ui" ]; then
   echo "Running subset of tests in open-cluster-management/grc-ui repo"
   cypress run --browser $BROWSER $HEADLESS --spec "./tests/cypress/tests/stable/*.spec.js" --reporter cypress-multi-reporters
 else 
