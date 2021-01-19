@@ -52,6 +52,11 @@ module.exports = {
           'css-loader',],
       },
       {
+        test: /\.s?css$/,
+        include: path.resolve(__dirname, './node_modules/@patternfly'),
+        loader: 'null-loader'
+      },
+      {
         test: /\.(woff2?|ttf|eot|otf)(\?.*$|$)/,
         exclude: overpassTest,
         loader: 'file-loader',

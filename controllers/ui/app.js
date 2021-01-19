@@ -9,8 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
-import { AcmHeaderPrototype, AcmButton } from '@open-cluster-management/ui-components'
-import { Page, PageSection, Brand, PageHeader } from '@patternfly/react-core'
+import { AcmHeaderPrototype } from '@open-cluster-management/ui-components'
 
 const ReactDOMServer = require('react-dom/server'),
       thunkMiddleware = require('redux-thunk').default,
@@ -23,20 +22,9 @@ const ReactDOMServer = require('react-dom/server'),
       config = require('../../config'),
       appUtil = require('../../lib/server/app-util'),
       Provider = require('react-redux').Provider,
-      router = express.Router({ mergeParams: true }),
-      lodash = require('lodash'),
-      request = require('../../lib/server/request'),
-      i18n = require('node-i18n-util')
+      router = express.Router({ mergeParams: true })
 
-const log4js = require('log4js'),
-      logger = log4js.getLogger('app')
-
-const targetAPIGroups = [
-  'policy.open-cluster-management.io',
-  'apps.open-cluster-management.io',
-]
-
-let App, Login, reducers, access  //laziy initialize to reduce startup time seen on k8s
+let App, Login, reducers  //laziy initialize to reduce startup time seen on k8s
 
 router.get('*', (req, res) => {
   reducers = reducers === undefined ? require('../../src-web/reducers') : reducers

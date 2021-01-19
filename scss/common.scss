@@ -11,6 +11,8 @@
 @import 'node_modules/carbon-components/scss/globals/scss/styles';
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
 @import 'node_modules/carbon-components/scss/globals/scss/_helper-mixins';
+@import '../node_modules/@patternfly/patternfly/patternfly.css';
+@import '../node_modules/@patternfly/patternfly/patternfly-addons.css';
 @import '../node_modules/@patternfly/react-core/dist/styles/base.css';
 @import 'header-carbon-v9-migration';
 @import 'variables';
@@ -33,7 +35,7 @@ menu, nav, output, ruby, section, summary, time, mark, audio, video {
 .bx--tooltip--icon__top::before, .bx--tooltip--icon__top::after, 
 .bx--tooltip--icon__bottom::before, .bx--tooltip--icon__bottom::after, 
 .bx--tooltip__label, .bx--tag, .bx--pagination, .bx--select, .bx--label, 
-.bx--select-input {
+.bx--select-input, .pf-c-page__header {
   font-family: RedHatText;
 }
 
