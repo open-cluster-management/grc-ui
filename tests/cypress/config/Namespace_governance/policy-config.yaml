@@ -10,7 +10,7 @@ test-namespace-policy-[ID]:
     - 'matchExpressions =[]'
 #    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
-  kind: 'Namespace'
+  kind: 'ConfigurationPolicy'
   specifications:
     - Namespace - Must have namespace 'prod'
   standards:
