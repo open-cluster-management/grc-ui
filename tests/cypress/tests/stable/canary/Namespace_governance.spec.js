@@ -1,7 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
-import { test_genericPolicyGovernance } from './common/generic_policies_governance'
-import { cleanup_usingPolicyYAML } from './common/generic_policy_cleanup'
+import { test_genericPolicyGovernance } from '../../common/generic_policies_governance'
+import { cleanup_usingPolicyYAML } from '../../common/generic_policy_cleanup'
 
 describe('GRC UI: [P1][Sev1][policy-grc] Namespace policy governance - setup', () => {
     cleanup_usingPolicyYAML('Namespace_governance/Namespace_specification_setup_policy_raw.yaml')

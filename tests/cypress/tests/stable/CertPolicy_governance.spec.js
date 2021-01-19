@@ -4,9 +4,9 @@ import {
   createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
   actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
   verifyPolicyInPolicyStatus, verifyPolicyByYAML
-} from '../views/policy'
-import { getUniqueResourceName } from '../scripts/utils'
-import { getConfigObject } from '../config'
+} from '../../views/policy'
+import { getUniqueResourceName } from '../../scripts/utils'
+import { getConfigObject } from '../../config'
 
 describe('RHACM4K-523/524/525/526/527/528/563/659/663/893/894/895/1567 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy governance', () => {
     const certificateName = 'policy-create-certificate'
