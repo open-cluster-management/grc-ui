@@ -1,26 +1,17 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc. */
+/* Copyright (c) 2021 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import loadable from '@loadable/component'
 import config from '../../lib/shared/config'
-
-export const PoliciesTab = loadable(() => import(/* webpackChunkName: "policies" */ './PoliciesTab'))
-export const CreationTab = loadable(() => import(/* webpackChunkName: "creation" */ './CreationTab'))
-export const PolicyDetailSubRouter = loadable(() => import(/* webpackChunkName: "policyDetail" */ './PolicyDetailSubRouter'))
-export const PolicyDetailsByCluster = loadable(() => import(/* webpackChunkName: "policyCluster" */ './PolicyDetailsByCluster'))
-export const PolicyTemplateDetails = loadable(() => import(/* webpackChunkName: "policyTemplateDetails" */ './PolicyTemplateDetails'))
-export const PolicyStatusHistoryTab = loadable(() => import(/* webpackChunkName: "PolicyStatusHistoryTab" */ './PolicyStatusHistoryTab'))
+import PoliciesTab from './PoliciesTab'
+// eslint-disable-next-line import/no-named-as-default
+import CreationTab  from './CreationTab'
+import PolicyDetailSubRouter from './PolicyDetailSubRouter'
+import PolicyDetailsByCluster from './PolicyDetailsByCluster'
+import PolicyTemplateDetails from './PolicyTemplateDetails'
+import PolicyStatusHistoryTab from './PolicyStatusHistoryTab'
 
 const BASE_PAGE_PATH = `${config.contextPath}`
 

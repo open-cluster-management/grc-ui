@@ -1,19 +1,12 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc. */
+/* eslint-disable import/no-named-as-default */
+/* Copyright (c) 2021 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
 import { connect } from 'react-redux'
-import loadable from '@loadable/component'
-
-let RemoveResourceModal, ResourceModal, PolicyActionModal
+import PolicyActionModal from '../modals/PolicyActionModal'
+import ResourceModal from '../modals/ResourceModal'
+import RemoveResourceModal from '../modals/RemoveResourceModal'
 
 const Modal = ({ type, open, ...rest }) => {
   switch (type) {
@@ -32,23 +25,14 @@ const Modal = ({ type, open, ...rest }) => {
 }
 
 const getPolicyActionModal = props => {
-  PolicyActionModal = PolicyActionModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "policy-action-modal" */ '../modals/PolicyActionModal'))
-    : PolicyActionModal
   return getModal(PolicyActionModal, props)
 }
 
 const getResourceModal = props => {
-  ResourceModal = ResourceModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "edit-resource-modal" */ '../modals/ResourceModal'))
-    : ResourceModal
   return getModal(ResourceModal, props)
 }
 
 const getRemoveResourceModal = props => {
-  RemoveResourceModal = RemoveResourceModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "remove-resource-modal" */ '../modals/RemoveResourceModal'))
-    : RemoveResourceModal
   return getModal(RemoveResourceModal, props)
 }
 
