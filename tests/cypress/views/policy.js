@@ -169,7 +169,7 @@ export const verifyPolicyInListing = (
 
 export const verifyPolicyNotInListing = (uName) => {
   // either there are no policies at all or there are some policies listed
-  if (!Cypress.$('#page').find('div.no-resouce'.length)) {
+  if (!Cypress.$('#page').find('div.no-resource'.length)) {
     cy.get('.grc-view-by-policies-table').within(() => {
       cy.get('a')
         .contains(uName)
