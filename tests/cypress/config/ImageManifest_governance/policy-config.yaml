@@ -10,7 +10,7 @@ test-imagemanifest-policy-[ID]:
     - 'matchExpressions =[]'
 #    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
-  kind: 'ImageManifestVulnPolicy'
+  kind: 'ConfigurationPolicy'
   specifications:
     - 'ImageManifestVulnPolicy - Detect image vulnerabilities'
   standards:
