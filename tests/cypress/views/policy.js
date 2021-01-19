@@ -596,7 +596,7 @@ export const clearTableSearch = (inputSelector = null, parentSelector = null) =>
   // clear the search only if there are resources on the page
   if (!Cypress.$('#page').find('div.no-resource'.length)) {
     // FIXME - do this without a force
-    cy.get('input[aria-label="Search input"]', {withinSubject: parentElement}).clear({force: true})
+    cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true})
   }
 }
 
