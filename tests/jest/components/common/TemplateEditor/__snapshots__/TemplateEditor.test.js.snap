@@ -1047,6 +1047,122 @@ exports[`TemplateEditor component renders as expected 1`] = `
 </div>
 `;
 
+exports[`on control change function renders as expected 1`] = `
+Object {
+  "aria-label": "Name already exists: pressing 'Create' will prompt to update the existing policy",
+  "children": <div>
+    <Notification
+      className="persistent notification"
+      hideCloseButton={false}
+      iconDescription=""
+      kind="warning"
+      onCloseButtonClick={[Function]}
+      subtitle="Name already exists: pressing 'Create' will prompt to update the existing policy"
+      title="Alert:"
+    />
+  </div>,
+  "onClick": [Function],
+  "onKeyDown": [Function],
+  "role": "button",
+  "tabIndex": "0",
+}
+`;
+
+exports[`on control change function renders as expected 2`] = `
+<div
+  aria-label="Invalid name: should only have lowercase alphanumeric characters, '-', or '.' and not begin or end with punctuation"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex="0"
+>
+  <div>
+    <Notification
+      className="persistent notification"
+      hideCloseButton={false}
+      iconDescription=""
+      kind="error"
+      onCloseButtonClick={[Function]}
+      subtitle={
+        <span>
+          <br />
+          Invalid name due to Kubernetes naming restriction.
+          <br />
+          The name must meet the following requirements:
+          <br />
+          • contain no more than 253 characters
+          <br />
+          • contain only lowercase alphanumeric characters, '-' or '.'
+          <br />
+          • start with an alphanumeric character
+          <br />
+          • end with an alphanumeric character
+        </span>
+      }
+      title="Create error:"
+    />
+  </div>
+</div>
+`;
+
+exports[`on control change function renders as expected 3`] = `
+Object {
+  "aria-label": "Name already exists: pressing 'Create' will prompt to update the existing policy",
+  "children": <div>
+    <Notification
+      className="persistent notification"
+      hideCloseButton={false}
+      iconDescription=""
+      kind="warning"
+      onCloseButtonClick={[Function]}
+      subtitle="Name already exists: pressing 'Create' will prompt to update the existing policy"
+      title="Alert:"
+    />
+  </div>,
+  "onClick": [Function],
+  "onKeyDown": [Function],
+  "role": "button",
+  "tabIndex": "0",
+}
+`;
+
+exports[`on control change function renders as expected 4`] = `
+<div
+  aria-label="Invalid name: should only have lowercase alphanumeric characters, '-', or '.' and not begin or end with punctuation"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex="0"
+>
+  <div>
+    <Notification
+      className="persistent notification"
+      hideCloseButton={false}
+      iconDescription=""
+      kind="error"
+      onCloseButtonClick={[Function]}
+      subtitle={
+        <span>
+          <br />
+          Invalid name due to Kubernetes naming restriction.
+          <br />
+          The name must meet the following requirements:
+          <br />
+          • contain no more than 253 characters
+          <br />
+          • contain only lowercase alphanumeric characters, '-' or '.'
+          <br />
+          • start with an alphanumeric character
+          <br />
+          • end with an alphanumeric character
+        </span>
+      }
+      title="Create error:"
+    />
+  </div>
+</div>
+`;
+
 exports[`on editor change function renders as expected 1`] = `
 "apiVersion: policy.open-cluster-management.io/v1
 kind: Policy

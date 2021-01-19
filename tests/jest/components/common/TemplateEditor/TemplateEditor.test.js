@@ -15,6 +15,7 @@ import renderer from 'react-test-renderer'
 import policyTemplate from '../../../../../src-web/components/common/templates/policy-template.hbs'
 import { shallow } from 'enzyme'
 import _ from 'lodash'
+const msgs = require('../../../config/platform-properties.json')
 //import { existing } from '../ComponentsTestingData'
 
 const Portals = Object.freeze({
@@ -29,7 +30,7 @@ const controlData = [
     'type': 'text',
     'active': 'policy-certificatepolicy-1',
     'reverse': [
-      'Policy[0].$raw.metadata.name'
+      'Policy[0].metadata.name'
     ],
     'mustExist': true,
     'existing': [
@@ -54,7 +55,7 @@ const controlData = [
       'hive'
     ],
     'reverse': [
-      'Policy[0].$raw.metadata.namespace'
+      'Policy[0].metadata.namespace'
     ],
     'mustExist': true,
     'active': 'governance'
@@ -80,9 +81,9 @@ const controlData = [
     'isOneSelection': true,
     'updateNamePrefix': 'policy-',
     'reverse': [
-      'Policy[0].$raw.spec.role-templates',
-      'Policy[0].$raw.spec.object-templates',
-      'Policy[0].$raw.spec.policy-templates'
+      'Policy[0].spec.role-templates',
+      'Policy[0].spec.object-templates',
+      'Policy[0].spec.policy-templates'
     ],
     'mustExist': true,
     'availableMap': {
@@ -115,7 +116,7 @@ const controlData = [
       'name: "calamari"'
     ],
     'reverse': [
-      'PlacementRule[0].$raw.spec.clusterSelector'
+      'PlacementRule[0].spec.clusterSelector'
     ],
     'mustExist': false,
     'availableMap': {
@@ -151,7 +152,7 @@ const controlData = [
       'NIST-CSF'
     ],
     'reverse': [
-      'Policy[0].$raw.metadata.annotations["policy.open-cluster-management.io/standards"]'
+      'Policy[0].metadata.annotations["policy.open-cluster-management.io/standards"]'
     ],
     'cacheUserValueKey': 'create.policy.standards',
     'wasSet': new Set([
@@ -175,7 +176,7 @@ const controlData = [
       'DE.CM Security Continuous Monitoring'
     ],
     'reverse': [
-      'Policy[0].$raw.metadata.annotations["policy.open-cluster-management.io/categories"]'
+      'Policy[0].metadata.annotations["policy.open-cluster-management.io/categories"]'
     ],
     'cacheUserValueKey': 'create.policy.categories',
     'wasSet': new Set([
@@ -203,7 +204,7 @@ const controlData = [
       'DE.CM-8 Vulnerability scans'
     ],
     'reverse': [
-      'Policy[0].$raw.metadata.annotations["policy.open-cluster-management.io/controls"]'
+      'Policy[0].metadata.annotations["policy.open-cluster-management.io/controls"]'
     ],
     'cacheUserValueKey': 'create.policy.controls',
     'wasSet': new Set([
@@ -225,7 +226,7 @@ const controlData = [
       'enforce'
     ],
     'reverse': [
-      'Policy[0].$raw.spec.remediationAction'
+      'Policy[0].spec.remediationAction'
     ],
     'mustExist': true
   },
@@ -241,7 +242,7 @@ const controlData = [
       'true'
     ],
     'reverse': [
-      'Policy[0].$raw.spec.disabled'
+      'Policy[0].spec.disabled'
     ]
   }
 ]
@@ -275,13 +276,40 @@ describe('on control change function', () => {
       selectedItems: ['selectedItems-testing-1', 'selectedItems-testing-2'],
     }
     expect(wrapper.instance().onChange('name', evt)).toEqual('name')
+    const evt_duplicateName = {
+      target: { value: 'policy-pod' }
+    }
+    expect(wrapper.instance().onChange('name', evt_duplicateName)).toEqual('name')
+    expect(wrapper.instance().state.duplicateName).toEqual(true)
+    expect(wrapper.instance().renderNotifications().props).toMatchSnapshot()
+    const evt_emptyName = {
+      target: { value: '' }
+    }
+    expect(wrapper.instance().onChange('name', evt_emptyName)).toEqual('name')
+    expect(wrapper.instance().state.exceptions.some((exception) => exception.text === msgs['validation.missing.resource'])).toEqual(true)
+    const evt_badName = {
+      target: { value: 'a-b-' }
+    }
+    expect(wrapper.instance().onChange('name', evt_badName)).toEqual('name')
+    expect(wrapper.instance().state.duplicateName).toEqual(false)
+    expect(wrapper.instance().state.validPolicyName).toEqual(false)
+    expect(wrapper.instance().state.exceptions.some((exception) => exception.text === msgs['error.policy.nameFormat.short'])).toEqual(true)
+    wrapper.instance().handleExceptionNotification(wrapper.instance().state.exceptions, 'success.create.policy.check', '')
+    expect(wrapper.instance().renderNotifications()).toMatchSnapshot()
     expect(wrapper.instance().onChange('namespace', evt)).toEqual('namespace')
     expect(wrapper.instance().onChange('standards', evt)).toEqual('standards')
     expect(wrapper.instance().onChange('categories', evt)).toEqual('categories')
     expect(wrapper.instance().onChange('controls', evt)).toEqual('controls')
     expect(wrapper.instance().onChange('clusters', evt)).toEqual('clusters')
-    //expect(wrapper.instance().onChange('enforce', evt)).toEqual('enforce')
-    // expect(wrapper.instance().onChange('specs', evt)).toEqual('specs')
+    const evt_inform = false
+    expect(wrapper.instance().onChange('enforce', evt_inform)).toEqual('enforce')
+    const evt_enforce = true
+    expect(wrapper.instance().onChange('enforce', evt_enforce)).toEqual('enforce')
+    const evt_spec = {
+      target: { value: 'value-testing' },
+      selectedItems: ['CertificatePolicy - cert management expiration']
+    }
+    expect(wrapper.instance().onChange('specs', evt_spec)).toEqual('specs')
   })
 })
 
@@ -303,13 +331,40 @@ describe('on control change function', () => {
       selectedItems: ['selectedItems-testing-1', 'selectedItems-testing-2'],
     }
     expect(wrapper.instance().onChange('name', evt)).toEqual('name')
+    const evt_duplicateName = {
+      target: { value: 'policy-pod' }
+    }
+    expect(wrapper.instance().onChange('name', evt_duplicateName)).toEqual('name')
+    expect(wrapper.instance().state.duplicateName).toEqual(true)
+    expect(wrapper.instance().renderNotifications().props).toMatchSnapshot()
+    const evt_emptyName = {
+      target: { value: '' }
+    }
+    expect(wrapper.instance().onChange('name', evt_emptyName)).toEqual('name')
+    expect(wrapper.instance().state.exceptions.some((exception) => exception.text === msgs['validation.missing.resource'])).toEqual(true)
+    const evt_badName = {
+      target: { value: 'a-b-' }
+    }
+    expect(wrapper.instance().onChange('name', evt_badName)).toEqual('name')
+    expect(wrapper.instance().state.duplicateName).toEqual(false)
+    expect(wrapper.instance().state.validPolicyName).toEqual(false)
+    expect(wrapper.instance().state.exceptions.some((exception) => exception.text === msgs['error.policy.nameFormat.short'])).toEqual(true)
+    wrapper.instance().handleExceptionNotification(wrapper.instance().state.exceptions, 'success.create.policy.check', '')
+    expect(wrapper.instance().renderNotifications()).toMatchSnapshot()
     expect(wrapper.instance().onChange('namespace', evt)).toEqual('namespace')
     expect(wrapper.instance().onChange('standards', evt)).toEqual('standards')
     expect(wrapper.instance().onChange('categories', evt)).toEqual('categories')
     expect(wrapper.instance().onChange('controls', evt)).toEqual('controls')
     expect(wrapper.instance().onChange('clusters', evt)).toEqual('clusters')
-    //expect(wrapper.instance().onChange('enforce', evt)).toEqual('enforce')
-    // expect(wrapper.instance().onChange('specs', evt)).toEqual('specs')
+    const evt_inform = false
+    expect(wrapper.instance().onChange('enforce', evt_inform)).toEqual('enforce')
+    const evt_enforce = true
+    expect(wrapper.instance().onChange('enforce', evt_enforce)).toEqual('enforce')
+    const evt_spec = {
+      target: { value: 'value-testing' },
+      selectedItems: ['CertificatePolicy - cert management expiration']
+    }
+    expect(wrapper.instance().onChange('specs', evt_spec)).toEqual('specs')
   })
 })
 
