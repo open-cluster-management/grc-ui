@@ -6,7 +6,7 @@ import {
   verifyPolicyInPolicyDetailsTemplates, verifyPlacementRuleInPolicyDetails, verifyPlacementBindingInPolicyDetails,
   verifyViolationsInPolicyStatusClusters, verifyViolationsInPolicyStatusTemplates,
   getViolationsPerPolicy, getViolationsCounter, verifyPolicyDetailsInCluster, verifyPolicyTemplatesInCluster,
-  verifyPolicyViolationDetailsInCluster
+  verifyPolicyViolationDetailsInCluster, verifyPolicyViolationDetailsInHistory
 } from '../../views/policy'
 import { getConfigObject } from '../../config'
 
@@ -93,14 +93,14 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
     it(`Verify policy ${policyName} violations at the Status - Clusters page`, () => {
       cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}/status`)
       // verify all violations per cluster
-      verifyViolationsInPolicyStatusClusters(clusterViolations, confViolationPatterns)
+      verifyViolationsInPolicyStatusClusters(policyName, confPolicies[policyName], clusterViolations, confViolationPatterns)
     })
 
     it(`Verify policy ${policyName} violations at the Status - Templates page`, () => {
       // open the Templates tab - we should have a command for this
       cy.get('#policy-status-templates').click()
       // verify violations per template
-      verifyViolationsInPolicyStatusTemplates(clusterViolations, confViolationPatterns)
+      verifyViolationsInPolicyStatusTemplates(policyName, confPolicies[policyName], clusterViolations, confViolationPatterns)
     })
 
     for (const clusterName of clusterList) {
@@ -169,15 +169,16 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       it(`Verify policy ${policyName} violations at the Status - Clusters page`, () => {
         cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}/status`)
         // verify all violations per cluster
-        verifyViolationsInPolicyStatusClusters(clusterViolations, confViolationPatterns)
+        verifyViolationsInPolicyStatusClusters(policyName, confPolicies[policyName], clusterViolations, confViolationPatterns)
       })
 
       it(`Verify policy ${policyName} violations at the Status - Templates page`, () => {
         // open the Templates tab - we should have a command for this
         cy.get('#policy-status-templates').click()
         // verify violations per template
-        verifyViolationsInPolicyStatusTemplates(clusterViolations, confViolationPatterns)
+        verifyViolationsInPolicyStatusTemplates(policyName, confPolicies[policyName], clusterViolations, confViolationPatterns)
       })
+
       for (const clusterName of clusterList) {
         it(`Verify policy details & templates on cluster ${clusterName} detailed page`, () => {
           cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`)
@@ -188,6 +189,44 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
         })
       }
 
+    }
+  }
+
+  // verify the History page for each policy, cluster and template used
+  // this would be a bit more complicated as history is split per policy, cluster, template
+  for (const policyName in confPolicies) {
+    // read the configuration for each policy
+    const confViolationPatterns = getConfigObject('violation-patterns.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
+    const confClusterViolationsInform = getConfigObject(confFileViolationsInform, 'yaml', getDefaultSubstitutionRules(policyName))
+    const clusterViolationsInform = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolationsInform, clusterList)
+    let confClusterViolationsEnforce
+    let clusterViolationsEnforce
+    if (confFileViolationsEnforce) {
+      confClusterViolationsEnforce = getConfigObject(confFileViolationsEnforce, 'yaml', getDefaultSubstitutionRules(policyName))
+      clusterViolationsEnforce = getViolationsPerPolicy(policyName, confPolicies[policyName], confClusterViolationsEnforce, clusterList)
+    }
+    // now for each cluster get a merged list of cluster violations (from both Inform and Enforce violations)
+    for (const clusterName of clusterList) {
+      const allClusterViolations = confFileViolationsEnforce ? clusterViolationsInform[clusterName].concat(clusterViolationsEnforce[clusterName]) : clusterViolationsInform[clusterName]
+      const templateDict = {}
+      // now I need to split violations per template name
+      for (const violation of allClusterViolations) {
+        const templateName = violation.replace(/-[^-]*$/, '')
+        if (!(templateName in templateDict)) {
+          templateDict[templateName] = []
+        }
+        templateDict[templateName].push(violation)
+      }
+      // now iterate through template names and check all violations are listed
+      for (const [templateName, violations] of Object.entries(templateDict)) {
+        const url = `/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}/status/${clusterName}/templates/${templateName}/history`
+
+        it(`Verify the History page for policy ${policyName} cluster ${clusterName} template ${templateName}`, () => {
+          cy.visit(url)
+          verifyPolicyViolationDetailsInHistory(templateName, violations, confViolationPatterns)
+        })
+
+      }
     }
   }
 
