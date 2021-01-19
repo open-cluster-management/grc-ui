@@ -11,6 +11,7 @@ const getConfig = require('../config').getConfig
 const configFiles = glob.sync(path.join(__dirname, '../config/**/*'), {nodir:true, ignore:[path.join(__dirname, '../config/index.js')]})
 
 module.exports = (on, config) => {
+  require('@cypress/code-coverage/task')(on, config)
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
   for (const singleConfig of configFiles) {

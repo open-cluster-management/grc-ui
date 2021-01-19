@@ -53,7 +53,21 @@ npm run build
 npm run start:instrument &>/dev/null &
 sleep 10
 npm run test:cypress-headless
-sleep 10
+sleep 10s
+
+echo "Login managed"
+# Get env from Travis config
+export OC_CLUSTER_URL=${OC_MANAGED_CLUSTER_URL:-${OC_HUB_CLUSTER_URL}}
+export OC_CLUSTER_PASS=${OC_MANAGED_CLUSTER_PASS:-${OC_HUB_CLUSTER_PASS}}
+make oc/login
+$DIR/cluster-clean-up.sh managed
+
+echo "Login hub"
+export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
+export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
+make oc/login
+$DIR/cluster-clean-up.sh hub
+
 npm run test:e2e-headless
 
 # kill the node process to let nyc generate coverage report
@@ -61,3 +75,4 @@ ps -ef | grep 'node app.js' | grep -v grep | awk '{print $2}' | xargs kill
 sleep 10
 
 sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/server/coverage/lcov.info
+sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/cypress/coverage/lcov.info
