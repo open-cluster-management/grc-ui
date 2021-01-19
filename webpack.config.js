@@ -179,7 +179,7 @@ module.exports = {
       allChunks: true
     }),
     PRODUCTION ? new TerserPlugin({
-      sourceMap: true
+      parallel: true,
     }) : noOP,
     new webpack.LoaderOptionsPlugin({
       options: {

@@ -86,7 +86,7 @@ module.exports = {
       context: __dirname
     }),
     PRODUCTION ? new TerserPlugin({
-      sourceMap: true
+      parallel: true,
     }) : noOP,
     new CompressionPlugin({
       filename: '[path].gz[query]',

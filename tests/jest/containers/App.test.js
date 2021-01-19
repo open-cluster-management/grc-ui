@@ -10,7 +10,7 @@
 'use strict'
 
 import React from 'react'
-import App from '../../../src-web/containers/App'
+import { App } from '../../../src-web/containers/App'
 import { shallow } from 'enzyme'
 import { BrowserRouter } from 'react-router-dom'
 import * as reducers from '../../../src-web/reducers'
