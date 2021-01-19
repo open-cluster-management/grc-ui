@@ -766,11 +766,7 @@ export const verifyPolicyViolationDetailsInCluster = (policyName, policyConfig, 
         // check cluster name
         cy.wrap(cluster).contains(clusterName)
         // check violation message
-        if (clusterStatus2 == 'NonCompliant') {
-          cy.wrap(message).contains(new RegExp(clusterStatus2+'; '+pattern))
-        } else {
-          cy.wrap(message).contains(new RegExp(clusterStatus2+', '+pattern))
-        }
+        cy.wrap(message).contains(new RegExp(clusterStatus2+'[,;] '+pattern))
         // check last results date
         cy.wrap(last_update).contains(timestampRegexp)
       })
