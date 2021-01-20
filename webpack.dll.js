@@ -14,8 +14,7 @@ const path = require('path'),
       WebpackMd5Hash = require('webpack-md5-hash'),
       CompressionPlugin = require('compression-webpack-plugin')
 
-const noOP = () => { /*This is intentional*/},
-      PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
+const PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
 process.env.BABEL_ENV = process.env.BABEL_ENV ? process.env.BABEL_ENV : 'client'
 
@@ -74,6 +73,14 @@ module.exports = {
     filename: PRODUCTION ? 'dll.[name].[chunkhash].js' : 'dll.[name].js',
     library: '[name]'
   },
+
+  optimization: {
+    minimize: PRODUCTION,
+    minimizer: [new TerserPlugin({
+      parallel: true,
+    })],
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
@@ -85,9 +92,6 @@ module.exports = {
       name: '[name]',
       context: __dirname
     }),
-    PRODUCTION ? new TerserPlugin({
-      sourceMap: true
-    }) : noOP,
     new CompressionPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',

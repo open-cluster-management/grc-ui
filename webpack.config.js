@@ -18,8 +18,7 @@ const config = require('./config'),
       TerserPlugin = require('terser-webpack-plugin'),
       WebpackMd5Hash = require('webpack-md5-hash')
 
-const noOP = () => { /*This is intentional*/},
-      PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
+const PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
 process.env.BABEL_ENV = process.env.BABEL_ENV ? process.env.BABEL_ENV : 'client'
 
@@ -153,6 +152,13 @@ module.exports = {
     ]
   },
 
+  optimization: {
+    minimize: PRODUCTION,
+    minimizer: [new TerserPlugin({
+      parallel: true,
+    })],
+  },
+
   output: {
     //needs to be hash for production (vs chunckhash) in order to cache bust references to chunks
     filename: PRODUCTION ? 'js/[name].[hash].min.js' : 'js/[name].min.js',
@@ -178,9 +184,6 @@ module.exports = {
       filename: PRODUCTION ? 'css/[name].[contenthash].css' : 'css/[name].css',
       allChunks: true
     }),
-    PRODUCTION ? new TerserPlugin({
-      sourceMap: true
-    }) : noOP,
     new webpack.LoaderOptionsPlugin({
       options: {
         eslint: {
