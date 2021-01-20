@@ -19,7 +19,7 @@ const status = require('./status'),
       ui = require('./ui')
 
 router.all(['/', '/status', '/livenessProbe', '/readinessProbe'], status)
-router.use(config.get('contextPath'), ui)
 router.get('/logout', securityMW.logout)
+router.use(config.get('contextPath'), ui)
 
 module.exports = router

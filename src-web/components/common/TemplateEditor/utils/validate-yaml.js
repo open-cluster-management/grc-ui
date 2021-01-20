@@ -37,9 +37,23 @@ export function validateYAML(parsed, controlData, exceptions, locale) {
 }
 
 const validateTextControl = (reverse, parsed, exceptions, locale, mustExist) => {
+  const active = _.get(parsed, reverse[0])
+  const path = reverse[0].split('.')
+  // This is a simplified version of the RegEx used by Kubernetes for validation
+  // (it's 243 to account for the 10 character PlacementRule prefix 'placement-')
+  const policyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,241}[a-z0-9]$/)
   // Add exception if it's required but missing
-  if (mustExist && !_.get(parsed, reverse[0])) {
-    addMissingException(reverse[0].split('.'), parsed, exceptions, locale)
+  if (mustExist && !active) {
+    addMissingException(path, parsed, exceptions, locale)
+  }
+  // Add exception if metadata.name has invalid formatting
+  else if (active && path.slice(path.length-2, path.length).join('.')==='metadata.name' && !policyNameRegex.test(active)) {
+    exceptions.push({
+      row: getRow(path, parsed),
+      column: 0,
+      text: msgs.get('error.policy.nameFormat.short', locale),
+      type: 'error',
+    })
   }
 }
 

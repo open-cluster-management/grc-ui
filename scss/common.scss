@@ -11,7 +11,9 @@
 @import 'node_modules/carbon-components/scss/globals/scss/styles';
 @import 'node_modules/carbon-components/scss/globals/scss/_colors';
 @import 'node_modules/carbon-components/scss/globals/scss/_helper-mixins';
-@import '../node_modules/@patternfly/react-core/dist/styles/base.css';
+// @import '../node_modules/@patternfly/patternfly/patternfly.css';
+@import '../node_modules/@patternfly/patternfly/patternfly-addons.css';
+// @import '../node_modules/@patternfly/react-core/dist/styles/base.css';
 @import 'header-carbon-v9-migration';
 @import 'variables';
 @import '_red-hat-font';
@@ -33,13 +35,21 @@ menu, nav, output, ruby, section, summary, time, mark, audio, video {
 .bx--tooltip--icon__top::before, .bx--tooltip--icon__top::after, 
 .bx--tooltip--icon__bottom::before, .bx--tooltip--icon__bottom::after, 
 .bx--tooltip__label, .bx--tag, .bx--pagination, .bx--select, .bx--label, 
-.bx--select-input {
+.bx--select-input, .pf-c-page__header {
   font-family: RedHatText;
 }
 
 .pf-c-table tr > * {
   --pf-c-table--cell--FontSize: var(--pf-global--FontSize--sm);
 }
+
+[class*="pf-c-"], [class*="pf-c-"]::before, [class*="pf-c-"]::after {
+  padding: 0px !important;
+  margin: 0 !important;
+}
+
+// [class*="pf-c-"], [class*="pf-c-"]::before, [class*="pf-c-"]::after {
+//   background-color: var(--pf-c-page__header--BackgroundColor) }
 
 html {
   height: 100%;
@@ -51,7 +61,7 @@ body {
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $acm-background-color;
+  background-color: $acm-background-color !important;
   
   .bx--data-table-v2{
     thead{
@@ -65,6 +75,12 @@ body {
     border-radius: 3px;
     font-size: .875rem;
   }
+}
+
+.pf-c-page__header {
+  margin: 0px !important;
+  padding: 10px !important;
+  background-color: black !important;
 }
 
 .page-content-container {

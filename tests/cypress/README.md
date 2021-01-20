@@ -1,17 +1,68 @@
 # Additional notes on Cypress test development and execution
 
+## Running the ACM server on localhost
+This is handy if you want to be sure that your cypress code is using the latest UI bits.
+Please note that this won't help if you are deading with outdated backend (e.g. controllers)
+on a test server.
+
+The procedure basically follows the setup described in 
+ * https://github.com/open-cluster-management/grc-ui/blob/master/README.md
+ * https://github.com/open-cluster-management/grc-ui-api/blob/master/README.md, however in order to run Cypress tests only it can be distilled into the following steps:
+
+1. Export environment variables necessary for a server to run and login. E.g.
+```
+export NODE_ENV="development"
+export headerUrl="https://multicloud-console.apps.YOURSERVER.red-chesterfield.com"  # replace with your server name
+export API_SERVER_URL="https://api.YOURSERVER.red-chesterfield.com:6443"  # replace with your server name
+export SERVICEACCT_TOKEN="sha256~12345...abcde"  # replace with your token
+export OAUTH2_CLIENT_ID="multicloudingress"
+export OAUTH2_CLIENT_SECRET="multicloudingresssecret"
+export OAUTH2_REDIRECT_URL="https://localhost:3000/multicloud/policies/auth/callback"
+```
+followed by the command
+```
+oc login --token="$SERVICEACCT_TOKEN" --server="$API_SERVER_URL"
+```
+The way how to obtain the TOKEN is described in the first README listed above.
+
+2. Ensure that your cluster accepts authorization for a localhost. You can enable it using the following command.
+```
+oc patch oauthclient multicloudingress --patch '{"redirectURIs":["https://localhost:3000/multicloud/auth/callback", "https://localhost:3000/multicloud/policies/auth/callback"]}'
+```
+
+3. Build and start the local UI server
+```
+git clone git@github.com:open-cluster-management/grc-ui.git
+cd grc-ui
+npm install
+npm run build
+npm run start
+```
+
+4. In another terminal build and start the local API server. Make sure you export the same variables from step 1.
+```
+npm install
+npm run build
+npm run start
+```
+
+5. Once both servers are running, you should be able to login using your browser at URL (https://localhost:3000/multicloud/policies/).
+
+Now, you can point your Cypress test environment to `localhost` instead of your test cluster.
+
 ## Alternative way of test execution
 You can use the following approach to run Cypress test.
 
 1. Export following environment variables
 ```
-export CYPRESS_OPTIONS_HUB_URL="https://multicloud-console..."
-export CYPRESS_OPTIONS_HUB_USER=kubeadmin
-export CYPRESS_OPTIONS_HUB_PASSWORD="password"
+export CYPRESS_OPTIONS_HUB_URL="https://multicloud-console..."  # or https://localhost:3000 for the local cluster
+export CYPRESS_OPTIONS_HUB_USER=kubeadmin  # or a different username
+export CYPRESS_OPTIONS_HUB_PASSWORD="password"  # here enter your password
+export CYPRESS_RESOURCE_ID=$(date +"%s")
 ```
-start_cypress_tests.sh will automatically export CYPRESS_RESOURCE_ID=$(date +"%s") to a unique timestamp, it will be used to generate uniqe resource names. However it requires the respective code to call the [getUniqueResourceName()](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/scripts/utils.js#L10) function. You can also overwrite it by own resource id.
+Please note that `start_cypress_tests.sh` will automatically export `CYPRESS_RESOURCE_ID` to a unique timestamp, it will be used to generate uniqe resource names. However it requires the respective code to call the [getUniqueResourceName()](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/scripts/utils.js#L10) function. You can also overwrite it by own resource id.
 
-2. Enter the repository and execute cypress
+2. Enter the test repo and start cypress
 ```
 cd grc-ui
 npx cypress open
@@ -76,7 +127,7 @@ This configuration file contains details about clusters avaialable in RHACM. It 
 ### raw YAML file
  * State: used in tests
  * Path: Usually stored in a subfolder under `tests/cypress/config`.
- * Example: [tests/cypress/config/certPolicyTest/test_certificate_raw.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/certPolicyTest/test_certificate_raw.yaml).
+ * Example: [tests/cypress/config/CertPolicyTest/test_certificate_raw.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/CertPolicyTest/test_certificate_raw.yaml).
 
 These files are used to contain a raw YAML which is being used in a test e.g. as a content of YAML editor. Substitutions can be used in order to adjust the content for the actual environment.
 

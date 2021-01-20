@@ -26,11 +26,11 @@ describe('Testing policy deviations as specified in the violations.yaml config f
     it ('All expected violations are listed', () => {
       cy.visit(`/multicloud/policies/all/default/${uPolicyName}/status`)
       // verify all violations per cluster
-      verifyViolationsInPolicyStatusClusters(confClusterViolations, confViolationPatterns)
+      verifyViolationsInPolicyStatusClusters(uPolicyName, {'namespace': 'default'}, confClusterViolations, confViolationPatterns)
       // open the Templates tab - we should have a command for this
       cy.get('#policy-status-templates').click()
       // verify violations per template
-      verifyViolationsInPolicyStatusTemplates(confClusterViolations, confViolationPatterns)
+      verifyViolationsInPolicyStatusTemplates(uPolicyName, {'namespace': 'default'}, confClusterViolations, confViolationPatterns)
     })
 
 })

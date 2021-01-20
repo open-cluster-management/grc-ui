@@ -61,31 +61,23 @@ module.exports = {
       {
         // Transpile React JSX to ES5
         test: [/\.jsx$/, /\.js$/],
-        exclude: /node_modules|\.scss/,
-        loader: 'babel-loader?cacheDirectory',
-        query: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-          plugins: ['@babel/plugin-proposal-class-properties']
-        }
+        exclude: [
+          {
+            test: [
+              /\.scss$/,
+              path.resolve(__dirname, './node_modules'),
+            ],
+            exclude: [
+              path.resolve(__dirname, './node_modules/fuse.js'),
+              //path.resolve(__dirname, './node_modules/temptifly'),
+            ]
+          }
+        ],
+        loader: 'babel-loader?cacheDirectory'
       },
       {
         test: [/\.s?css$/],
-        exclude: {
-          and: [
-            /node_modules/,
-            {
-              or: [
-                { not: [/node_modules\/@patternfly/] },
-                {
-                  and: [
-                    /node_modules\/@open-cluster-management\/ui-components/,
-                    /node_modules\/@patternfly/
-                  ]
-                }
-              ]
-            }
-          ]
-        },
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -124,8 +116,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: path.resolve(__dirname, './node_modules/monaco-editor'),
-        use: ['style-loader', 'css-loader'],
+          include: [
+           path.resolve(__dirname, './node_modules/monaco-editor'),
+           path.resolve(__dirname, './node_modules/@open-cluster-management/ui-components'),
+          ],
+          use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.s?css$/,
+        include: path.resolve(__dirname, './node_modules/@patternfly'),
+        loader: 'null-loader'
       },
       {
         test: /\.properties$/,
@@ -160,12 +160,6 @@ module.exports = {
         // file-loader rule.
         test: overpassTest,
         loader: 'null-loader',
-      },
-      // ignore styles @open-cluster-management/ui-components
-      {
-        test: /\.s?css$/,
-        include: /node_modules\/@open-cluster-management\/ui-components/,
-        loader: 'null-loader'
       },
     ],
     noParse: [

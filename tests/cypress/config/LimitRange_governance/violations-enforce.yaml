@@ -1,0 +1,3 @@
+"*": # this is the default mapping
+ - "[UNAME]-container-mem-limit-range-0"
+
