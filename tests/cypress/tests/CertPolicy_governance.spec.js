@@ -161,7 +161,7 @@ describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
   })
 
   it (`Verify all information about the created certificate policy ${uCertificatePolicyName} on the "Govern and risk" page`, () => {
-    verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', 2)
+    verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', '', 2)
   })
 
   it(`Validate violations/status of created policy ${uCertificatePolicyName} on the detailed policy page`, () => {
@@ -194,7 +194,7 @@ describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
 
   it('Check disabled policy', () => {
     cy.CheckGrcMainPage()
-    verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'disabled', 3)
+    verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'disabled')
   })
 
   it(`Validate enable of the policy ${uCertificatePolicyName}` , () => {
@@ -204,7 +204,7 @@ describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
 
   it(`Check enabled policy ${uCertificatePolicyName}`, () => {
     cy.waitForPolicyStatus(uCertificatePolicyName)
-    verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', 2)
+    verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', '', 2)
   })
 
   it(`Edit policy ${uCertificatePolicyName} and change "remediateAction" to "enforce"`, () => {
@@ -216,7 +216,7 @@ describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
   it('Check violations stay reported but not remediated', () => {
     certificatePolicyConfig.enforce = true
     certificatePolicyConfig.inform = false
-    verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', 2)
+    verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', '', 2)
   })
 
   it(`Remove created certificate ${uCertificateName}`, () => {
