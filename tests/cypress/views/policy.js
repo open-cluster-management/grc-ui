@@ -4,21 +4,26 @@ import { selectItems } from './common'
 
 const timestampRegexp = /^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/
 
-export const getDefaultSubstitutionRules = (uName) => {
-  let label = '[]'
-  let timestamp = ''
-  if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
-    label = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
+export const getDefaultSubstitutionRules = (rules = {}) => {
+  if (rules['label'] == undefined) {
+    if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
+      rules['label'] = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
+    } else {
+      rules['label'] = ''
+    }
   }
-  if (Cypress.env('RESOURCE_ID')) {
-    timestamp = Cypress.env('RESOURCE_ID')
+  if (rules['id'] == undefined) {
+    if (Cypress.env('RESOURCE_ID')) {
+      rules['id'] = Cypress.env('RESOURCE_ID')
+    }
   }
-  const substitutions = [
-      [ /\[LABEL\]/g, label ],
-      [ /\[UNAME\]/g, uName ],
-      [ /\[TIME\]/g, timestamp ],
-      [ /\[ID\]/g, timestamp ]
-  ]
+  if (rules['namespace'] == undefined) {
+    rules['namespace'] = 'default'
+  }
+  const substitutions = []
+  for (const [key, value] of Object.entries(rules)) {
+    substitutions.push([new RegExp('\\['+key.toUpperCase()+'\\]', 'g'), value])
+  }
   return substitutions
 }
 

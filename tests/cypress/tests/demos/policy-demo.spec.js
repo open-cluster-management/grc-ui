@@ -13,11 +13,11 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     const uPolicyName = getUniqueResourceName(policyName)
     // demo-policy-raw.yaml is used for creating the policy "demo-policy"
     // demo-policy-raw.yaml is raw policy yaml and need be to get as raw data
-    const policyYAML = getConfigObject('sample/demo-policy-raw.yaml', 'raw', getDefaultSubstitutionRules(uPolicyName))
+    const policyYAML = getConfigObject('sample/demo-policy-raw.yaml', 'raw', getDefaultSubstitutionRules({policyname:uPolicyName}))
     // demo-policy-config.yaml is used for validating the policy "demo-policy"
     // demo-policy-config.yaml isn't raw policy yaml but config yaml and need be converted to a dictionary
     const { policyConfig } = getConfigObject('sample/demo-policy-config.yaml')
-    const confClusterViolations = getConfigObject('sample/violations.yaml', 'yaml', getDefaultSubstitutionRules(policyName))
+    const confClusterViolations = getConfigObject('sample/violations.yaml', 'yaml', getDefaultSubstitutionRules({policyname:policyName}))
 
     it (`Can create new policy ${uPolicyName} from YAML editor`, () => {
       cy.FromGRCToCreatePolicyPage()
