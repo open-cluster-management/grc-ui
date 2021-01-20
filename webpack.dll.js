@@ -11,11 +11,9 @@ const path = require('path'),
       webpack = require('webpack'),
       TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
-      WebpackMd5Hash = require('webpack-md5-hash'),
       CompressionPlugin = require('compression-webpack-plugin')
 
-const noOP = () => { /*This is intentional*/},
-      PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
+const PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
 process.env.BABEL_ENV = process.env.BABEL_ENV ? process.env.BABEL_ENV : 'client'
 
@@ -71,9 +69,17 @@ module.exports = {
 
   output: {
     path: __dirname + '/public',
-    filename: PRODUCTION ? 'dll.[name].[chunkhash].js' : 'dll.[name].js',
+    filename: PRODUCTION ? 'dll.[name].[contenthash].min.js' : 'dll.[name].js',
     library: '[name]'
   },
+
+  optimization: {
+    minimize: PRODUCTION,
+    minimizer: [new TerserPlugin({
+      parallel: true,
+    })],
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
@@ -85,11 +91,8 @@ module.exports = {
       name: '[name]',
       context: __dirname
     }),
-    PRODUCTION ? new TerserPlugin({
-      sourceMap: true
-    }) : noOP,
     new CompressionPlugin({
-      filename: '[path].gz[query]',
+      filename: '[path].gz',
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
     }),
@@ -99,8 +102,6 @@ module.exports = {
       prettyPrint: true,
       update: true
     }),
-    PRODUCTION ? new webpack.HashedModuleIdsPlugin() : new webpack.NamedModulesPlugin(),
-    new WebpackMd5Hash()
   ],
   resolve: {
     modules: [path.join(__dirname, 'node_modules')]

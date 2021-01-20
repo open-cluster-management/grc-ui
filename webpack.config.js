@@ -15,11 +15,9 @@ const config = require('./config'),
       CopyPlugin = require('copy-webpack-plugin'),
       MiniCssExtractPlugin = require('mini-css-extract-plugin'),
       MonacoWebpackPlugin = require('monaco-editor-webpack-plugin'),
-      TerserPlugin = require('terser-webpack-plugin'),
-      WebpackMd5Hash = require('webpack-md5-hash')
+      TerserPlugin = require('terser-webpack-plugin')
 
-const noOP = () => { /*This is intentional*/},
-      PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
+const PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
 process.env.BABEL_ENV = process.env.BABEL_ENV ? process.env.BABEL_ENV : 'client'
 
@@ -54,6 +52,7 @@ module.exports = {
         test: /\.js$/,
         enforce: 'pre',
         loader: 'eslint-loader',
+        exclude: /node_modules/,
         options: {
           quiet: true
         }
@@ -63,14 +62,14 @@ module.exports = {
         test: [/\.jsx$/, /\.js$/],
         exclude: /node_modules|\.scss/,
         loader: 'babel-loader?cacheDirectory',
-        query: {
+        options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
           plugins: ['@babel/plugin-proposal-class-properties']
         }
       },
       {
         test: [/\.s?css$/],
-        exclude: /node_modules\/(?!(@patternfly)\/).*/,
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -113,6 +112,11 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
+        test: /\.s?css$/,
+        include: path.resolve(__dirname, './node_modules/@patternfly'),
+        loader: 'null-loader'
+      },
+      {
         test: /\.properties$/,
         loader: 'properties-loader'
       },
@@ -153,10 +157,17 @@ module.exports = {
     ]
   },
 
+  optimization: {
+    minimize: PRODUCTION,
+    minimizer: [new TerserPlugin({
+      parallel: true,
+    })],
+  },
+
   output: {
     //needs to be hash for production (vs chunckhash) in order to cache bust references to chunks
-    filename: PRODUCTION ? 'js/[name].[hash].min.js' : 'js/[name].min.js',
-    chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].min.js',
+    filename: PRODUCTION ? 'js/[name].[contenthash].min.js' : 'js/[name].js',
+    // chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].js',
     path: __dirname + '/public',
     publicPath: config.get('contextPath').replace(/\/?$/, '/'),
     jsonpFunction: 'webpackJsonpFunctionGrc',
@@ -178,9 +189,6 @@ module.exports = {
       filename: PRODUCTION ? 'css/[name].[contenthash].css' : 'css/[name].css',
       allChunks: true
     }),
-    PRODUCTION ? new TerserPlugin({
-      sourceMap: true
-    }) : noOP,
     new webpack.LoaderOptionsPlugin({
       options: {
         eslint: {
@@ -195,7 +203,7 @@ module.exports = {
       }
     }),
     new CompressionPlugin({
-      filename: '[path].gz[query]',
+      filename: '[path].gz',
       algorithm: 'gzip',
       test: /\.js$|\.css$/,
       minRatio: 1,
@@ -209,8 +217,6 @@ module.exports = {
       prettyPrint: true,
       update: true
     }),
-    PRODUCTION ? new webpack.HashedModuleIdsPlugin() : new webpack.NamedModulesPlugin(),
-    new WebpackMd5Hash(),
     new CopyPlugin({
       patterns: [
         { from: 'node_modules/carbon-icons/dist/carbon-icons.svg', to: 'graphics' },
