@@ -217,7 +217,6 @@ module.exports = {
       prettyPrint: true,
       update: true
     }),
-    PRODUCTION ? new webpack.HashedModuleIdsPlugin() : new webpack.NamedModulesPlugin(),
     new CopyPlugin({
       patterns: [
         { from: 'node_modules/carbon-icons/dist/carbon-icons.svg', to: 'graphics' },

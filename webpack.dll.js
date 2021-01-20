@@ -102,7 +102,6 @@ module.exports = {
       prettyPrint: true,
       update: true
     }),
-    PRODUCTION ? new webpack.HashedModuleIdsPlugin() : new webpack.NamedModulesPlugin()
   ],
   resolve: {
     modules: [path.join(__dirname, 'node_modules')]
