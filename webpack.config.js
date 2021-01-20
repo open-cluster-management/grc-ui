@@ -69,7 +69,7 @@ module.exports = {
       },
       {
         test: [/\.s?css$/],
-        exclude: /node_modules\/(?!(@patternfly)\/).*/,
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -110,6 +110,11 @@ module.exports = {
         test: /\.css$/,
         include: path.resolve(__dirname, './node_modules/monaco-editor'),
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.s?css$/,
+        include: path.resolve(__dirname, './node_modules/@patternfly'),
+        loader: 'null-loader'
       },
       {
         test: /\.properties$/,
@@ -161,7 +166,7 @@ module.exports = {
 
   output: {
     //needs to be hash for production (vs chunckhash) in order to cache bust references to chunks
-    filename: PRODUCTION ? 'js/[name].[contenthash].min.js' : 'js/[name].js',
+    filename: PRODUCTION ? 'js/[name].[contenthash].min.js' : 'js/[name].[contenthash].js',
     // chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].[chunkhash].js',
     path: __dirname + '/public',
     publicPath: config.get('contextPath').replace(/\/?$/, '/'),
