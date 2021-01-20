@@ -20,14 +20,14 @@ before(() => {
   cy.login()
 })
 
-beforeEach(() => {
-  if (Cypress.config().baseUrl.includes('localhost')) {
-    cy.exec('oc whoami -t').then(res => {
-      cy.setCookie('acm-access-token-cookie', res.stdout)
-      Cypress.env('token', res.stdout)
-    })
-  }
-})
+// beforeEach(() => {
+//   if (Cypress.config().baseUrl.includes('localhost')) {
+//     cy.exec('oc whoami -t').then(res => {
+//       cy.setCookie('acm-access-token-cookie', res.stdout)
+//       Cypress.env('token', res.stdout)
+//     })
+//   }
+// })
 
 after(()=> {
   // cy.logout()

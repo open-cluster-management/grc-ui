@@ -1,26 +1,26 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: [TEST_POLICY_NAME]
+  name: imagespec-cleanup-[TIME]
   namespace: default
   annotations:
-    policy.open-cluster-management.io/standards: NIST-CSF, FISMA
-    policy.open-cluster-management.io/categories: DE.CM Security Continuous Monitoring, PR.DS Data Security
-    policy.open-cluster-management.io/controls: DE.CM-8 Vulnerability Scans, DE.CM-7 Monitoring for Unauthorized Activity
+    policy.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: DE.CM Security Continuous Monitoring
+    policy.open-cluster-management.io/controls: DE.CM-8 Vulnerability Scans
 spec:
-  remediationAction: inform
+  remediationAction: enforce
   disabled: false
   policy-templates:
   - objectDefinition:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: [TEST_POLICY_NAME]-image-vulnerability-sub
+        name: imagespec-cleanup-[TIME]-image-vulnerability-sub
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
         severity: high
         object-templates:
-          - complianceType: musthave
+          - complianceType: mustnothave
             objectDefinition:
               apiVersion: operators.coreos.com/v1alpha1
               kind: Subscription
@@ -37,7 +37,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: [TEST_POLICY_NAME]-image-vulnerability
+        name: imagespec-cleanup-[TIME]-image-vulnerabilities
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
         severity: high
@@ -53,21 +53,21 @@ spec:
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-[TEST_POLICY_NAME]
+  name: binding-imagespec-cleanup-[TIME]
   namespace: default
 placementRef:
-  name: placement-[TEST_POLICY_NAME]
+  name: placement-imagespec-cleanup-[TIME]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: [TEST_POLICY_NAME]
+- name: imagespec-cleanup-[TIME]
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-[TEST_POLICY_NAME]
+  name: placement-imagespec-cleanup-[TIME]
   namespace: default
 spec:
   clusterConditions:

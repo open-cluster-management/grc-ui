@@ -52,22 +52,10 @@ printenv
 npm run build
 npm run start:instrument &>/dev/null &
 sleep 10
+echo "Launching cypress e2e test"
 npm run test:cypress-headless
-sleep 10s
-
-echo "Login managed"
-# Get env from Travis config
-export OC_CLUSTER_URL=${OC_MANAGED_CLUSTER_URL:-${OC_HUB_CLUSTER_URL}}
-export OC_CLUSTER_PASS=${OC_MANAGED_CLUSTER_PASS:-${OC_HUB_CLUSTER_PASS}}
-make oc/login
-$DIR/cluster-clean-up.sh managed
-
-echo "Login hub"
-export OC_CLUSTER_URL=$OC_HUB_CLUSTER_URL
-export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
-make oc/login
-$DIR/cluster-clean-up.sh hub
-
+sleep 10
+echo "Launching nightwatch e2e test"
 npm run test:e2e-headless
 
 # kill the node process to let nyc generate coverage report

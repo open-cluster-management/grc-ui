@@ -74,6 +74,8 @@ module.exports = {
     controlsDropdownClearValue: '.creation-view-controls-container > div > div:nth-child(7) > div.bx--multi-select.bx--list-box > div.bx--list-box__field > div.bx--list-box__selection[title="Clear selected item"]',
     enforceCheckbox: '#enforce',
     disableCheckbox: '#disabled',
+    createErrorDecoration: '.errorDecoration',
+    createNotification: '.bx--inline-notification__subtitle',
   },
   commands: [{
     dynamicSelector(selectorRef, ...params) {
@@ -82,6 +84,7 @@ module.exports = {
       return selectorStr
     },
     createTestPolicy,
+    checkCreateNotification,
     testCreateCustomSelections,
     testDetailsPage,
     testFilters,
@@ -448,6 +451,20 @@ function updateYamlEditor() {
   editYaml(this, 'true', 12, 'disableCheckbox', true)
   editYaml(this, applyTemplate('', 'custom_spec.yaml'), 13, 'templateDropdownInput', true, 'Custom specifications')
 }
+// Check notification on the Create page for a violation
+function checkCreateNotification(expectedNotification='', errExpected=true) {
+  if (errExpected) {
+    // Click "Create" button
+    this.waitForElementVisible('@submitCreatePolicyButton')
+    this.click('@submitCreatePolicyButton')
+    // Check notification
+    this.waitForElementVisible('@createNotification')
+    this.expect.element('@createNotification').text.to.equal(expectedNotification)
+  } else {
+    this.expect.element('@createErrorDecoration').to.not.be.present
+  }
+}
+
 function verifyPolicyTable(name, templateFile) {
   // Parse template file into object
   const file = applyTemplate(name, templateFile)
