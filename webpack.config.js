@@ -15,8 +15,7 @@ const config = require('./config'),
       CopyPlugin = require('copy-webpack-plugin'),
       MiniCssExtractPlugin = require('mini-css-extract-plugin'),
       MonacoWebpackPlugin = require('monaco-editor-webpack-plugin'),
-      TerserPlugin = require('terser-webpack-plugin'),
-      WebpackMd5Hash = require('webpack-md5-hash')
+      TerserPlugin = require('terser-webpack-plugin')
 
 const PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
@@ -63,7 +62,7 @@ module.exports = {
         test: [/\.jsx$/, /\.js$/],
         exclude: /node_modules|\.scss/,
         loader: 'babel-loader?cacheDirectory',
-        query: {
+        options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
           plugins: ['@babel/plugin-proposal-class-properties']
         }
@@ -162,8 +161,8 @@ module.exports = {
 
   output: {
     //needs to be hash for production (vs chunckhash) in order to cache bust references to chunks
-    filename: PRODUCTION ? 'js/[name].[hash].min.js' : 'js/[name].min.js',
-    chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].min.js',
+    filename: PRODUCTION ? 'js/[name].[contenthash].min.js' : 'js/[name].js',
+    // chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].[chunkhash].js',
     path: __dirname + '/public',
     publicPath: config.get('contextPath').replace(/\/?$/, '/'),
     jsonpFunction: 'webpackJsonpFunctionGrc',
@@ -214,7 +213,6 @@ module.exports = {
       update: true
     }),
     PRODUCTION ? new webpack.HashedModuleIdsPlugin() : new webpack.NamedModulesPlugin(),
-    new WebpackMd5Hash(),
     new CopyPlugin({
       patterns: [
         { from: 'node_modules/carbon-icons/dist/carbon-icons.svg', to: 'graphics' },
