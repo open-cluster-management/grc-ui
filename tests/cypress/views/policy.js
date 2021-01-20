@@ -9,7 +9,7 @@ export const getDefaultSubstitutionRules = (rules = {}) => {
     if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
       rules['label'] = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
     } else {
-      rules['label'] = ''
+      rules['label'] = '[]'
     }
   }
   if (rules['id'] == undefined) {
