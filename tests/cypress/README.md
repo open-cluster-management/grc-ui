@@ -41,6 +41,8 @@ npm run start
 
 4. In another terminal build and start the local API server. Make sure you export the same variables from step 1.
 ```
+git clone git@github.com:open-cluster-management/grc-ui-api.git
+cd grc-ui-api
 npm install
 npm run build
 npm run start
