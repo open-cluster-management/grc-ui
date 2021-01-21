@@ -8,6 +8,7 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 const parser = require('../utils/yamlHelper')
+const allpolicy = require('./AllPolicyPage')
 
 module.exports = {
   elements: {
@@ -87,7 +88,7 @@ function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionNa
   this.waitForElementNotPresent(modalName)
 }
 
-function createPolicy(browser, name, yaml, time) {
+function createPolicy(browser, name, yaml, time, filename) {
   this.log(`Creating policy:\n${yaml}`)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@createPolicyButton')
@@ -109,6 +110,9 @@ function createPolicy(browser, name, yaml, time) {
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
   this.pause(1000)
+  if (filename) {
+    verifyStableYaml(this, filename, name)
+  }
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
@@ -129,6 +133,15 @@ function createPolicy(browser, name, yaml, time) {
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
+}
+
+function verifyStableYaml(el, yaml, name) {
+  //check/uncheck enforce to reload DOM
+  el.waitForElementVisible('@enforce')
+  el.click('@enforce')
+  el.pause(1000)
+  el.click('@enforce')
+  allpolicy.compareTemplate(el, yaml, { policyName: name })
 }
 
 function enforcePolicy(name){

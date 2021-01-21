@@ -7,19 +7,21 @@ metadata:
     policy.open-cluster-management.io/standards: {{#each standards}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
     policy.open-cluster-management.io/categories: {{#each categories}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
     policy.open-cluster-management.io/controls: {{#each controls}}{{ this }}{{^if @last}}, {{/if}}{{/each}}
-{{#if specsCapture}}
-{{{specsCapture}}}
-{{else}}
 spec:
   remediationAction: {{#if enforce}}enforce{{else}}inform{{/if}}
   disabled: {{#if disabled}}true{{else}}false{{/if}}
   {{! If user modifies one of these specs, editor captures those changes and will insert here on re-render}}
-  {{#if policyTemplates.length}}
-  policy-templates:
-    {{#each policyTemplates}}
-    {{{ this }}}
-    {{/each}}
-  {{/if}}
+  {{#if specsCapture}}
+  {{{ specsCapture }}}
+  {{else}}
+  policy-templates:{{#unless policyTemplates.length}} []
+  {{else~}}
+  {{! Need to have this newline here so that templates don't appear inline like the empty brackets}}
+
+  {{#each policyTemplates}}
+  {{{ this }}}
+  {{/each}}
+  {{/unless}}
   {{/if}}
 ---
 apiVersion: policy.open-cluster-management.io/v1

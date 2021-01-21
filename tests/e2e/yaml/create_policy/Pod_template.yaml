@@ -11,30 +11,30 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-    - objectDefinition:
-        apiVersion: policy.open-cluster-management.io/v1
-        kind: ConfigurationPolicy
-        metadata:
-          name: [TEST_POLICY_NAME]-sample-nginx-pod
-        spec:
-          remediationAction: inform # will be overridden by remediationAction in parent policy
-          severity: low
-          namespaceSelector:
-            exclude: ["kube-*"]
-            include: ["default"]
-          object-templates:
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: v1
-                kind: Pod # nginx pod must exist
-                metadata:
-                  name: sample-nginx-pod
-                spec:
-                  containers:
-                  - image: nginx:1.7.9
-                    name: nginx
-                    ports:
-                    - containerPort: 80
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: [TEST_POLICY_NAME]-sample-nginx-pod
+      spec:
+        remediationAction: inform # will be overridden by remediationAction in parent policy
+        severity: low
+        namespaceSelector:
+          exclude: ["kube-*"]
+          include: ["default"]
+        object-templates:
+          - complianceType: musthave
+            objectDefinition:
+              apiVersion: v1
+              kind: Pod # nginx pod must exist
+              metadata:
+                name: sample-nginx-pod
+              spec:
+                containers:
+                - image: nginx:1.7.9
+                  name: nginx
+                  ports:
+                  - containerPort: 80
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
