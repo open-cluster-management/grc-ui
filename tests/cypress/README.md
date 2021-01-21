@@ -103,7 +103,7 @@ For example:
 Having a configuration file `cluster-policy-templates.yaml` with the following content
 ```
 local-cluster:
- - [UNAME]-example-0
+ - [POLICYNAME]-example-0
 ```
 we can use the following code
 ```

@@ -1,4 +1,4 @@
 "*": # this is the default mapping
- - "[UNAME]-operatoruser-rolebinding-0"
- - "[UNAME]-deployments-role-0"
+ - "[POLICYNAME]-operatoruser-rolebinding-0"
+ - "[POLICYNAME]-deployments-role-0"
 
