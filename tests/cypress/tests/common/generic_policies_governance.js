@@ -146,7 +146,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       })
 
       it(`Check enabled policy ${policyName}`, () => {
-        verifyPolicyInListing(policyName, confPolicies[policyName], 'enabled', 1, violationsCounter)
+        verifyPolicyInListing(policyName, confPolicies[policyName], 'enabled', violationsCounter)
       })
 
       it(`Verify policy ${policyName} details at the detailed page`, () => {
