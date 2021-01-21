@@ -176,3 +176,10 @@ In order to be able to do a violation check for a policy and server we need to c
  3. From a list of all expected violations per server we filter out only violations relevant for particular policy - using `getViolationsPerPolicy()`. This is handy so we do not have to maintain cluster violations per policy.
  4. Once we know cluster&policy specific violations we can say what is the expected policy status (using `getClusterPolicyStatus()`) and number of non-compliant clusters (using `getViolationsCounter()`)
  ** Using respective regexp patterns we can verify respective violation texts
+
+## Videos / Demos
+
+ * [Introducing policy violations handling in tests](https://drive.google.com/file/d/11A9g1-GP1tLlhbudw7xVzalQwleyCWLI/view)
+ * [Using Polarion TC IDs in tests and the Xunit conversion script](https://drive.google.com/file/d/1yr5KOT9K7qDCvjKToNhAyNB08rYbdSCc/view)
+ * [Introducing multi-policy and multi-specification test configuration](https://drive.google.com/file/d/1S1j4hAUOz8VI_tA4qAYihu8-WOuIpRZH/view)
+
