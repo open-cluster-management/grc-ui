@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: role-binding-cleanup-policy-[TIME]
+  name: role-binding-cleanup-policy-[ID]
   namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
@@ -15,7 +15,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: role-binding-cleanup-policy-[TIME]-operatoruser-rolebinding
+        name: role-binding-cleanup-policy-[ID]-operatoruser-rolebinding
       spec:
         remediationAction: inform
         severity: high
@@ -43,21 +43,21 @@ spec:
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-role-binding-cleanup-policy-[TIME]
+  name: binding-role-binding-cleanup-policy-[ID]
   namespace: default
 placementRef:
-  name: placement-role-binding-cleanup-policy-[TIME]
+  name: placement-role-binding-cleanup-policy-[ID]
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: role-binding-cleanup-policy-[TIME]
+- name: role-binding-cleanup-policy-[ID]
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-role-binding-cleanup-policy-[TIME]
+  name: placement-role-binding-cleanup-policy-[ID]
   namespace: default
 spec:
   clusterConditions:

@@ -11,10 +11,10 @@ import { getConfigObject } from '../config'
 describe('RHACM4K-523/524/525/526/527/528/563/659/663/893/894/895/1567 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy governance', () => {
     const certificateName = 'policy-create-certificate'
     const uCertificateName = getUniqueResourceName(certificateName)
-    const certificateYAML = getConfigObject('CertPolicyTest/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificateName))
+    const certificateYAML = getConfigObject('CertPolicyTest/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules({policyname:uCertificateName}))
     const certificatePolicyName = 'policy-certificatepolicy'
     const uCertificatePolicyName = getUniqueResourceName(certificatePolicyName)
-    const certificatePolicyYAML = getConfigObject('CertPolicyTest/test_certpolicy_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificatePolicyName))
+    const certificatePolicyYAML = getConfigObject('CertPolicyTest/test_certpolicy_raw.yaml', 'raw', getDefaultSubstitutionRules({policyname:uCertificatePolicyName}))
     const certificatePolicyConfig = getConfigObject('CertPolicyTest/test_certpolicy_config.yaml')
 
     it ('"Govern risk" page can be launched.', () => {
@@ -126,10 +126,10 @@ describe('RHACM4K-523/524/525/526/527/528/563/659/663/893/894/895/1567 - GRC UI:
 describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy governance', () => {
   const certificateName = 'policy-create-certificate'
   const uCertificateName = getUniqueResourceName(certificateName)
-  const certificateYAML = getConfigObject('CertPolicyTest/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificateName))
+  const certificateYAML = getConfigObject('CertPolicyTest/test_certificate_raw.yaml', 'raw', getDefaultSubstitutionRules({policyname:uCertificateName}))
   const certificatePolicyName = 'policy-certificatepolicy-rhacm4k-1205'
   const uCertificatePolicyName = getUniqueResourceName(certificatePolicyName)
-  const certificatePolicyYAML = getConfigObject('CertPolicyTest/test_certpolicy_RHACM4K_1205_raw.yaml', 'raw', getDefaultSubstitutionRules(uCertificatePolicyName))
+  const certificatePolicyYAML = getConfigObject('CertPolicyTest/test_certpolicy_RHACM4K_1205_raw.yaml', 'raw', getDefaultSubstitutionRules({policyname:uCertificatePolicyName}))
   const certificatePolicyConfig = getConfigObject('CertPolicyTest/test_certpolicy_config.yaml')
 
   it ('"Govern risk" page can be launched.', () => {

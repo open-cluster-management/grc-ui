@@ -4,21 +4,26 @@ import { selectItems } from './common'
 
 const timestampRegexp = /^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/
 
-export const getDefaultSubstitutionRules = (uName) => {
-  let label = '[]'
-  let timestamp = ''
-  if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
-    label = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
+export const getDefaultSubstitutionRules = (rules = {}) => {
+  if (rules['label'] == undefined) {
+    if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
+      rules['label'] = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
+    } else {
+      rules['label'] = '[]'
+    }
   }
-  if (Cypress.env('RESOURCE_ID')) {
-    timestamp = Cypress.env('RESOURCE_ID')
+  if (rules['id'] == undefined) {
+    if (Cypress.env('RESOURCE_ID')) {
+      rules['id'] = Cypress.env('RESOURCE_ID')
+    }
   }
-  const substitutions = [
-      [ /\[LABEL\]/g, label ],
-      [ /\[UNAME\]/g, uName ],
-      [ /\[TIME\]/g, timestamp ],
-      [ /\[ID\]/g, timestamp ]
-  ]
+  if (rules['namespace'] == undefined) {
+    rules['namespace'] = 'default'
+  }
+  const substitutions = []
+  for (const [key, value] of Object.entries(rules)) {
+    substitutions.push([new RegExp('\\['+key.toUpperCase()+'\\]', 'g'), value])
+  }
   return substitutions
 }
 
@@ -516,11 +521,13 @@ export const getViolationsPerPolicy = (policyName, policyConfig, clusterViolatio
 
 export const getClusterPolicyStatus = (clusterViolations) => {
   // in theory there could be multiple violations found by one policy
-  if (clusterViolations.length == 1 && clusterViolations[0].endsWith('-0')) {
-    return 'Compliant'
-  } else {
-    return 'Not Compliant'
+  // or multiple compliance statuses when one policy has multiple specifications
+  for (const violation of clusterViolations) {
+    if (!violation.endsWith('-0')) {  // if there is an actual violation (non-zero ID)
+      return 'Not Compliant'
+    }
   }
+  return 'Compliant'
 }
 
 
@@ -529,9 +536,12 @@ export const getViolationsCounter = (clusterViolations) => {
   const clusters = Object.keys(clusterViolations).length
   for (const cluster in clusterViolations) {
     // in theory there could be multiple violations found by one policy
-    // in case the only violation template here is not for success (suffix -0), increase violations counter
-    if (!(clusterViolations[cluster].length == 1 && clusterViolations[cluster][0].endsWith('-0'))) {
-      violations = violations + 1
+    // also, if the policy has multiple specifications there could be even multiple compliances
+    for (const violation of clusterViolations[cluster]) {
+      if (!violation.endsWith('-0')) {  // if there is an actual violation (non-zero ID)
+        violations = violations + 1
+        break  // stop checking this server
+      }
     }
   }
   return violations+'/'+clusters
@@ -583,7 +593,7 @@ export const doTableSearch = (text, inputSelector = null, parentSelector = null)
     inputSelector = 'input[aria-label="Search input"]'
   }
   // do the search only if there are resources on the page
-  if (!Cypress.$('#page').find('div.no-resource'.length)) {
+  if (!Cypress.$('#page').find('div.no-resource').length) {
     // FIXME - do this search without a force
     cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true}).type(text, {force: true})
   }
