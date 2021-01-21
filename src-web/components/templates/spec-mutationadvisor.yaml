@@ -11,7 +11,7 @@ replacements: # if user select this choice, the template variable names and valu
   categories: |
     DE.CM Security Continuous Monitoring
   controls: |
-    DE.CM-7 Monitoring for unauthorized activity
+    DE.CM-7 Monitoring for Unauthorized Activity
   policyTemplates: |
     - objectDefinition:
         apiVersion: policies.ibm.com/v1alpha1

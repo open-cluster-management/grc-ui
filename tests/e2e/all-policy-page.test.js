@@ -9,6 +9,9 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 
 const config = require('../../config')
+var fs = require('fs')
+const path = require('path')
+
 let page, common, loginPage
 
 module.exports = {
@@ -60,7 +63,7 @@ module.exports = {
       specification: ['ImageManifestVulnPolicy'],
       standards: ['FISMA'],
       categories: ['PR.DS Data Security'],
-      controls: ['DE.CM-7 Monitoring for unauthorized activity']
+      controls: ['DE.CM-7 Monitoring for Unauthorized Activity']
     }
     page.createTestPolicy(true, policySpec, templateFile)
     common.checkStatus(policyName, true)
@@ -71,6 +74,14 @@ module.exports = {
     common.searchPolicy(policyName, true)
     page.verifyPolicyTable(policyName, templateFile)
     page.testDetailsPage(policyName, templateFile)
+  },
+
+  'GRC All policy page: Verify stability of YAML': (browser) => {
+    const time = browser.globals.time
+    const gkPolicy = fs.readFileSync(path.join(__dirname, 'yaml/create_policy/Gatekeeper-template.yaml'))
+    var yaml = gkPolicy.toString()
+    common.createPolicy(browser, 'policy-gatekeeper-' + time, yaml, time, 'Gatekeeper-template-verify.yaml')
+    common.deletePolicy('policy-gatekeeper-' + time)
   },
 
   'GRC All policy page: Verify summary table': (browser) => {

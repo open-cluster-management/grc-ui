@@ -80,7 +80,8 @@ module.exports = {
     verifySummary,
     verifyTable,
     verifyToggle,
-  }]
+  }],
+  compareTemplate: compareTemplate
 }
 function verifySummary(browser, url) {
   this.waitForElementVisible('button.collapse > span.collapse-button')
@@ -201,7 +202,7 @@ function testFilters(spec = {}) {
     })
     if (headings[i] !== 'Type') {
       const heading = headings[i].toLowerCase()
-      const label = cleanAndCapitalize(spec[heading][0])
+      const label = spec[heading][0]
       let labelTrunc
       if (label.length > 20) {
         labelTrunc = `${label.substring(0,9)}...${label.substring(label.length-8)}`
@@ -224,7 +225,7 @@ function testFilters(spec = {}) {
   for (let i = 0; i < headings.length; i++) {
     if (headings[i] !== 'Type') {
       const heading = headings[i].toLowerCase()
-      const label = cleanAndCapitalize(spec[heading][0])
+      const label = spec[heading][0]
       let labelTrunc
       if (label.length > 20) {
         labelTrunc = `${label.substring(0,9)}...${label.substring(label.length-8)}`
@@ -438,18 +439,7 @@ function updateYamlEditor() {
   editYaml(this, 'test-control', 9, 'controlsDropdownInput')
   editYaml(this, 'enforce', 11, 'enforceCheckbox', true)
   editYaml(this, 'true', 12, 'disableCheckbox', true)
-  editYaml(this, applyTemplate('', 'custom_spec.yaml'), 12, 'templateDropdownInput', true, 'Custom specifications')
-}
-/* Helper to replace punctuation with spaces and capitalize text */
-function cleanAndCapitalize(str) {
-  const punctuation = ['-', '.']
-  punctuation.forEach(p => {
-    while (str.indexOf(p) >= 0) {
-      str = str.replace(p, ' ')
-    }
-  })
-  str = str.replace(/\b\w/g, l => l.toUpperCase())
-  return str
+  editYaml(this, applyTemplate('', 'custom_spec.yaml'), 13, 'templateDropdownInput', true, 'Custom specifications')
 }
 function verifyPolicyTable(name, templateFile) {
   // Parse template file into object
@@ -459,17 +449,17 @@ function verifyPolicyTable(name, templateFile) {
   this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(2) > a').text.to.equal(name)
   this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(3)').text.to.equal(data[0].metadata.namespace)
   if (data[0].metadata.annotations['policy.open-cluster-management.io/standards']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/standards']))
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/standards'])
   } else {
     this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(6)').text.to.equal('-')
   }
   if (data[0].metadata.annotations['policy.open-cluster-management.io/controls']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/categories']))
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/categories'])
   } else {
     this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(7)').text.to.equal('-')
   }
   if (data[0].metadata.annotations['policy.open-cluster-management.io/categories']) {
-    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal(cleanAndCapitalize(data[0].metadata.annotations['policy.open-cluster-management.io/controls']))
+    this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal(data[0].metadata.annotations['policy.open-cluster-management.io/controls'])
   } else {
     this.expect.element('table.bx--data-table-v2.resource-table.bx--data-table-v2--zebra > tbody > tr:nth-child(1) > td:nth-child(8)').text.to.equal('-')
   }
