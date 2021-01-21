@@ -1,0 +1,4 @@
+"*": # this is the default mapping
+ - "[UNAME]-operatoruser-rolebinding-0"
+ - "[UNAME]-deployments-role-0"
+
