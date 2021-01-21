@@ -79,8 +79,9 @@ module.exports = {
     verifyPolicyTable,
     verifySummary,
     verifyTable,
-    verifyToggle
-  }]
+    verifyToggle,
+  }],
+  compareTemplate: compareTemplate
 }
 function verifySummary(browser, url) {
   this.waitForElementVisible('button.collapse > span.collapse-button')
@@ -438,7 +439,7 @@ function updateYamlEditor() {
   editYaml(this, 'test-control', 9, 'controlsDropdownInput')
   editYaml(this, 'enforce', 11, 'enforceCheckbox', true)
   editYaml(this, 'true', 12, 'disableCheckbox', true)
-  editYaml(this, applyTemplate('', 'custom_spec.yaml'), 12, 'templateDropdownInput', true, 'Custom specifications')
+  editYaml(this, applyTemplate('', 'custom_spec.yaml'), 13, 'templateDropdownInput', true, 'Custom specifications')
 }
 function verifyPolicyTable(name, templateFile) {
   // Parse template file into object

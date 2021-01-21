@@ -8,6 +8,7 @@
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 const parser = require('../utils/yamlHelper')
+const allpolicy = require('./AllPolicyPage')
 
 module.exports = {
   elements: {
@@ -87,7 +88,7 @@ function clickButtonOnOverflowModal(name, nameTarget, overflowPosition, actionNa
   this.waitForElementNotPresent(modalName)
 }
 
-function createPolicy(browser, name, yaml, time) {
+function createPolicy(browser, name, yaml, time, filename) {
   this.log(`Creating policy:\n${yaml}`)
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@createPolicyButton')
@@ -109,6 +110,9 @@ function createPolicy(browser, name, yaml, time) {
   this.click('@yamlMonacoEditor')
   parser.enterTextInYamlEditor(this, browser, yaml, time)
   this.pause(1000)
+  if (filename) {
+    verifyStableYaml(this, filename, name)
+  }
   this.waitForElementNotPresent('@spinner')
   this.waitForElementVisible('@submitCreatePolicyButton')
   this.click('@submitCreatePolicyButton')
@@ -129,6 +133,15 @@ function createPolicy(browser, name, yaml, time) {
   this.expect.element('.overview-content-second > div:nth-child(2) > div > div > .bx--module__content > section > div > div:nth-child(1) > div:nth-child(2)').text.to.equal('binding-' + name)
   this.click('.bx--breadcrumb > div:nth-child(1)')
   this.waitForElementNotPresent('@spinner')
+}
+
+function verifyStableYaml(el, yaml, name) {
+  //check/uncheck enforce to reload DOM
+  el.waitForElementVisible('@enforce')
+  el.click('@enforce')
+  el.pause(1000)
+  el.click('@enforce')
+  allpolicy.compareTemplate(el, yaml, { policyName: name })
 }
 
 function enforcePolicy(name){
@@ -237,14 +250,14 @@ function checkStatus(name, violationExpected, violationText) {
 
 function searchPolicy(name, expectToDisplay) {
   this.waitForElementVisible('@searchInput')
-  this.click('@searchInput').clearValue('@searchInput').setSearchValue(name)
-  this.waitForElementVisible('@searchInput')
-  if(expectToDisplay){
+  this.clearSearchValue()
+  this.expect.elements('tbody>tr').count.not.to.equal(0)
+  this.click('@searchInput').setSearchValue(name)
+  if (expectToDisplay) {
+    this.expect.elements('tbody>tr').count.to.equal(1)
     this.expect.element('tbody>tr').to.have.attribute('data-row-name').equals(name)
-    this.click('@searchInput').clearValue('@searchInput')
-  } else{
+  } else {
     this.waitForElementNotPresent('tbody>tr')
-    this.click('@searchInput').clearValue('@searchInput')
   }
 }
 
@@ -252,7 +265,7 @@ function deletePolicy(name){
   this.log(`Deleting policy: ${name}`)
   this.waitForElementVisible('body')
   this.waitForElementVisible('@searchInput')
-  this.setSearchValue(name)
+  this.searchPolicy(name, true)
   //verify cancel button (.bx--btn.bx--btn--tertiary) on delete policy modal and return to main page
   this.clickButtonOnOverflowModal(name, 'a', 9, 'Remove', 4, '#remove-resource-modal', '.bx--btn.bx--btn--tertiary')
   //re-entry overflow menu then click delete policy button (.bx--btn.bx--btn--danger--primary)
@@ -271,7 +284,8 @@ function clearSearchValue(){
 
 function setSearchValue(value){
   this.log(`Searching for policy: ${value}`)
-  this.click('@searchInput').clearValue('@searchInput').setValue('@searchInput', value)
+  this.clearSearchValue()
+  this.click('@searchInput').setValue('@searchInput', value)
 }
 
 function log(message) {
