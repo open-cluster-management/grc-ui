@@ -245,7 +245,7 @@ return cy.url().then((pageURL) => {
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
           statusAvailable = !d.startsWith('M569')
           if (statusAvailable && violationsCounter) { // also check if violations counter matches
-            if (!violations.textContent.match('^'+violationsCounter+'$')) { // not found
+            if (!violations.textContent.match('\\b'+violationsCounter+'\\b')) { // not found
               statusAvailable = false
             }
           }
