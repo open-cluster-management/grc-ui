@@ -670,7 +670,11 @@ export const verifyViolationsInPolicyStatusClusters = (policyName, policyConfig,
       const id = patternId.replace(/^.*-/, '')
       // now use the search to better target the required policy and to get it on the first page
       doTableSearch(templateName)
+      // first we need to sort rows per Cluster name to make sure they won't reorder in case some cluster state is updated - if this
+      // happens, field values won't match expectations
+      cy.get('th[data-label="Cluster"]').find('button').click()
       cy.get('tbody').within(() => {
+        // now find the appropriate row with the cluster name
         cy.get('td').contains(new RegExp('^'+cluster+'$')).parents('td').siblings('td').spread((clusterStatus, template, message, lastReport, history) => {
           // check status
           const expectedStatus = getPolicyStatusForViolationId(id)
@@ -802,11 +806,12 @@ export const verifyPolicyDetailsInCluster =  (policyName, policyConfig, clusterN
       for (const violation of violations) {
         const templateName = violation.replace(/-[^-]*$/, '')
         const id = violation.replace(/^.*-/, '')
+        const clusterStatus2 = getPolicyStatusForViolationId(id, 'short')
         const pattern = violationPatterns[templateName][id]
-        if (clusterStatus == 'NonCompliant') {
-          cy.wrap(message).contains(new RegExp(templateName+': '+clusterStatus+'; '+pattern))
+        if (clusterStatus2 == 'NonCompliant') {
+          cy.wrap(message).contains(new RegExp(templateName+': '+clusterStatus2+'; '+pattern))
         } else {
-          cy.wrap(message).contains(new RegExp(templateName+': '+clusterStatus))
+          cy.wrap(message).contains(new RegExp(templateName+': '+clusterStatus2))
         }
       }
     })
