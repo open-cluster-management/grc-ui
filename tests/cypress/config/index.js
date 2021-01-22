@@ -57,9 +57,9 @@ exports.getConfigObject = (relativePath, configFormat='', substitutions=[]) => {
   }
 }
 
-exports.getOpenShiftCluster = () => {
-  const confClusters = exports.getConfigObject('clusters.yaml')
+exports.filterClusterList = (query,confFile='clusters.yaml') => {
+  const confClusters = exports.getConfigObject(confFile)
   const clusterList = Object.keys(confClusters)
-  const newList = clusterList.filter((v) => {return confClusters[v]['vendor'] == 'OpenShift'})
+  const newList = clusterList.filter((v) => {return confClusters[v]['vendor'] == query})
   return newList
 }
