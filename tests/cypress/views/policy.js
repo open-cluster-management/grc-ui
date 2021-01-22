@@ -108,7 +108,7 @@ export const verifyPolicyInListing = (
   violationsCounter='', targetStatus = null
   ) => {
   if (targetStatus == null) {
-    if (violationsCounter && violationsCounter[0] != '/') {
+    if (violationsCounter && violationsCounter[0] != '[') {
       targetStatus = violationsCounter.startsWith('0/') ? 1 : 2
     }
     else if (enabled == 'disabled') {
@@ -144,11 +144,7 @@ export const verifyPolicyInListing = (
       }
       // check the cluster violations value
       if (violationsCounter) {
-        if (violationsCounter[0] != '/') {
-          cy.wrap(violations.textContent).should('match', new RegExp(violationsCounter+'$'))
-        } else {
-          cy.wrap(violations.textContent).should('match', new RegExp('^'+violationsCounter+'$'))
-        }
+        cy.wrap(violations.textContent).should('match', new RegExp('^'+violationsCounter+'$'))
       }
       // check standard
       if (policyConfig['standards']) {
@@ -249,7 +245,7 @@ return cy.url().then((pageURL) => {
           // M569 seem to be unique to an icon telling that policy status is not available for some cluster
           statusAvailable = !d.startsWith('M569')
           if (statusAvailable && violationsCounter) { // also check if violations counter matches
-            if (violations.textContent.indexOf(violationsCounter) < 0) { // not found
+            if (!violations.textContent.match('^'+violationsCounter+'$')) { // not found
               statusAvailable = false
             }
           }
@@ -279,7 +275,7 @@ export const verifyPolicyInPolicyDetails = (
   violationsCounter='', targetStatus = null
   ) => {
   if (targetStatus == null) {
-    if (violationsCounter && violationsCounter[0] != '/') {
+    if (violationsCounter && violationsCounter[0] != '[') {
       targetStatus = violationsCounter.startsWith('0/') ? 1 : 2
     }
     else if (enabled == 'disabled') {
@@ -322,11 +318,7 @@ export const verifyPolicyInPolicyDetails = (
       }
       // check violations counter
       if (violationsCounter) {
-        if (violationsCounter[0] == '/') {
-          cy.wrap(violations).contains(new RegExp(violationsCounter+'$'))
-        } else {
-          cy.wrap(violations).contains(new RegExp('^'+violationsCounter+'$'))
-        }
+        cy.wrap(violations).contains(new RegExp('^'+violationsCounter+'$'))
       }
       // check categories
       if (policyConfig['categories']) {
@@ -584,7 +576,7 @@ export const getViolationsCounter = (clusterViolations) => {
     // also, if the policy has multiple specifications there could be even multiple compliances
     for (const violation of clusterViolations[cluster]) {
       if (violation.endsWith('?')) { // unspecific violation
-        return '/'+clusters
+        return '[0-9]+/'+clusters
       }
       if (!violation.endsWith('-0')) {  // if there is an actual violation (non-zero ID)
         violations = violations + 1
