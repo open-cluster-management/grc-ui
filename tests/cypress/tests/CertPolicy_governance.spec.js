@@ -168,7 +168,7 @@ describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
     // we need to find another way how to access this page
     cy.visit(`/multicloud/policies/all/default/${uCertificatePolicyName}`)
       .then(() => {
-        verifyPolicyInPolicyDetails(uCertificatePolicyName, certificatePolicyConfig, 'enabled', 2)
+        verifyPolicyInPolicyDetails(uCertificatePolicyName, certificatePolicyConfig, 'enabled', '', 2)
       })
   })
 
