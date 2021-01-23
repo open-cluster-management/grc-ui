@@ -1,3 +1,4 @@
 "*":  # this is a default mapping
  - "[POLICYNAME]-image-vulnerability-sub-?"
+ - "[POLICYNAME]-image-vulnerability-?"
 
