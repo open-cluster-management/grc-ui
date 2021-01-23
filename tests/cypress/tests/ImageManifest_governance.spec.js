@@ -1,9 +1,9 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
 import { test_genericPolicyGovernance } from './common/generic_policies_governance.js'
-import { filterClusterList } from '../config'
+import { getClusterListByVendor } from '../config'
 
-const getList = filterClusterList('OpenShift')
+const getList = getClusterListByVendor('OpenShift')
 
 if(getList.length>0)
 {

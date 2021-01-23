@@ -57,9 +57,9 @@ exports.getConfigObject = (relativePath, configFormat='', substitutions=[]) => {
   }
 }
 
-exports.filterClusterList = (query,confFile='clusters.yaml') => {
+exports.getClusterListByVendor = (vendor, confFile='clusters.yaml') => {
   const confClusters = exports.getConfigObject(confFile)
   const clusterList = Object.keys(confClusters)
-  const newList = clusterList.filter((v) => {return confClusters[v]['vendor'] == query})
+  const newList = clusterList.filter((v) => {return confClusters[v]['vendor'] == vendor})
   return newList
 }

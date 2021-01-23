@@ -11,7 +11,7 @@ import {
 import { getConfigObject } from '../../config'
 
 
-export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsInform, confFileViolationsEnforce=null, confFileClusters='clusters.yaml', filteredClusterList= null) => {
+export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsInform, confFileViolationsEnforce=null, confFileClusters='clusters.yaml', filteredClusterList=null) => {
 
   const confClusters = getConfigObject(confFileClusters)
   const clusterList = filteredClusterList===null?(Object.keys(confClusters)):filteredClusterList
