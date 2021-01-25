@@ -393,10 +393,10 @@ export const verifyPlacementRuleInPolicyDetails = (policyName, policyConfig, clu
               // check status
                 .then(() => {
                   const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName]).toLowerCase()
-                  cy.get('@clusterStatus').contains(clusterStatus)
+                  cy.get('@clusterStatus').should('contain', clusterStatus)
                   // check status icon
                   const fillColor = getStatusIconFillColor(clusterStatus)
-                  cy.get('@clusterStatus').find('svg').should('have.attr', 'fill', fillColor)
+                  cy.get('@clusterStatus').find('svg[fill="'+fillColor+'"]').should('exist')
                 })
             })
           }
