@@ -99,3 +99,4 @@ gatekeeper-operator-subscription:
  ?: "(notification|violation)"
  0: "notification - securitycontextconstraints \\[restricted-scc\\] (was missing, and was created successfully|found as specified, therefore this Object template is compliant)"
  1: "violation - securitycontextconstraints not found: \\[restricted-scc\\] missing"
+ 
