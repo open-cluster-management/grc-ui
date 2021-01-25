@@ -395,8 +395,11 @@ export const verifyPlacementRuleInPolicyDetails = (policyName, policyConfig, clu
                   const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName]).toLowerCase()
                   cy.get('@clusterStatus').contains(new RegExp(clusterStatus))
                   // check status icon
-                  const fillColor = getStatusIconFillColor(clusterStatus)
-                  cy.get('@clusterStatus').find('svg[fill="'+fillColor+'"]').should('exist')
+                  // FIXME: we are not checking status icon if we do not know the expected policy status
+                  if (clusterStatus[0] != '(') {  // it is not regexp for unspecified status
+                    const fillColor = getStatusIconFillColor(clusterStatus)
+                    cy.get('@clusterStatus').find('svg[fill="'+fillColor+'"]').should('exist')
+                  }
                 })
             })
           }
@@ -531,7 +534,8 @@ export const getViolationsPerPolicy = (policyName, policyConfig, clusterViolatio
         violationList = clusterViolations['*']
       }
       for (const clusterViolation of violationList) {
-        if (clusterViolation.startsWith(templateName+'-')) {
+        // if violation pattern ID matches the template name and a number or ?, add it to the list
+        if (clusterViolation.match(new RegExp('^'+templateName+'-[0-9?]+$'))) {
           violations[cluster].push(clusterViolation)
         }
       }
@@ -662,9 +666,10 @@ export const verifyViolationsInPolicyStatusClusters = (policyName, policyConfig,
       const id = patternId.replace(/^.*-/, '')
       // now use the search to better target the required policy and to get it on the first page
       doTableSearch(templateName)
-      // first we need to sort rows per Cluster name to make sure they won't reorder in case some cluster state is updated - if this
+      // first we need to sort rows per Cluster name and later Template name to make sure they won't reorder in case some cluster state is updated - if this
       // happens, field values won't match expectations
       cy.get('th[data-label="Cluster"]').find('button').click()
+      cy.get('th[data-label="Template"]').find('button').click()
       cy.get('tbody').within(() => {
         // now find the appropriate row with the cluster name
         cy.get('td').contains(new RegExp('^'+cluster+'$')).parents('td').siblings('td').spread((clusterStatus, template, message, lastReport, history) => {
@@ -786,7 +791,7 @@ export const verifyPolicyDetailsInCluster =  (policyName, policyConfig, clusterN
       // verify cluster name
       cy.wrap(cluster).contains(clusterName)
       // verify cluster status
-      cy.wrap(status).contains(clusterStatus)
+      cy.wrap(status).contains(new RegExp(clusterStatus))
       // verify policy enforcement settings
       policyConfig['enforce'] === true ? cy.wrap(enforcement).contains('enforce') : cy.wrap(enforcement).contains('inform')
       // verify the message
@@ -812,9 +817,9 @@ export const verifyPolicyDetailsInCluster =  (policyName, policyConfig, clusterN
 
 export const verifyPolicyTemplatesInCluster = (policyName, policyConfig, clusterName, clusterViolations) => {
   const violations = clusterViolations[clusterName]
-  const clusterStatus = getClusterPolicyStatus(violations).toLowerCase()
   for (const violation of violations) {
     const templateName = violation.replace(/-[^-]*$/, '')
+    const id = violation.replace(/^.*-/, '')
     doTableSearch(templateName, '#policyTemplates-search')
     cy.get('#policyPolicyTemplates-module-id').within(() => {
 
@@ -826,10 +831,11 @@ export const verifyPolicyTemplatesInCluster = (policyName, policyConfig, cluster
         if(policyConfig['kind']) {
           cy.wrap(kind).contains(policyConfig['kind'])
         }
-        cy.wrap(compliant).contains(clusterStatus)
+        const clusterStatus = getPolicyStatusForViolationId(id).toLowerCase()
+        cy.wrap(compliant).contains(new RegExp(clusterStatus))
         // check status icon
         // FIXME: we are now doing the check only if we know the the status
-        if (!templateName.endsWith('?')) {
+        if (id != '?') {
           const fillColor = getStatusIconFillColor(clusterStatus)
           cy.wrap(compliant).find('svg').should('have.attr', 'fill', fillColor)
         }
@@ -869,7 +875,9 @@ export const verifyPolicyViolationDetailsInHistory = (templateName, violations, 
       const id = violation.replace(/^.*-/, '')
       const pattern = violationPatterns[templateName][id]
       const policyStatus = getPolicyStatusForViolationId(id)
-      cy.get('td').contains(new RegExp(pattern)).siblings('td').spread((state, timestamp) => {
+      // this is tricky, sometimes the message is directly in <td> and sometimes in <span> inside that <td>
+      // therefore we will be approaching it via the parent <tr>
+      cy.get('td').contains(new RegExp(pattern)).parents('tr').find('td').spread((state, message, timestamp) => {
         cy.wrap(state).contains(new RegExp(policyStatus))
         cy.wrap(timestamp).contains(/^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/)
       })
