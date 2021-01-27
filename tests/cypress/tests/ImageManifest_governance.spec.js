@@ -2,6 +2,7 @@
 /// <reference types="cypress" />
 import { test_genericPolicyGovernance } from './common/generic_policies_governance.js'
 import { getClusterListByVendor } from '../config'
+import { cleanup_usingPolicyYAML } from './common/generic_policy_cleanup'
 
 const getList = getClusterListByVendor('OpenShift')
 
