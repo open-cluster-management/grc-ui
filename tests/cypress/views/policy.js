@@ -668,8 +668,12 @@ export const verifyViolationsInPolicyStatusClusters = (policyName, policyConfig,
       doTableSearch(templateName)
       // first we need to sort rows per Cluster name and later Template name to make sure they won't reorder in case some cluster state is updated - if this
       // happens, field values won't match expectations
-      cy.get('th[data-label="Cluster"]').find('button').click()
-      cy.get('th[data-label="Template"]').find('button').click()
+      cy.get('th[data-label="Cluster"]').within(() => {
+        cy.get('button').click()
+      })
+      cy.get('th[data-label="Template"]').within(() => {
+        cy.get('button').click()
+      })
       cy.get('tbody').within(() => {
         // now find the appropriate row with the cluster name
         cy.get('td').contains(new RegExp('^'+cluster+'$')).parents('td').siblings('td').spread((clusterStatus, template, message, lastReport, history) => {
