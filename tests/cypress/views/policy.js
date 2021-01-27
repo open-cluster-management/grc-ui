@@ -228,6 +228,55 @@ export const actionPolicyActionInListing = (uName, action, cancel=false) => {
   clearTableSearch()
 }
 
+// needs to be run only on /multicloud/policies/all/default/${policyName}
+// where it checks whether all clusters have the expected status available
+export const isClusterPolicyStatusAvailable = (clusterViolations, clusterList=null) => {
+  let statusAvailable = true
+  if (clusterList == null) { clusterList = Object.keys(clusterViolations) }
+  // search for the cluster status in a Placement rule section
+  return cy.then(() => {
+    cy.get('section[aria-label="Placement rule"]').within(() => {
+    cy.get('.bx--structured-list-td').spread((
+      label1, name, label2, namespace, label3,
+      selector, label4, decisions
+      ) => {
+      // check Decisions
+      // for each cluster check that the expected status is listed
+      cy.then(() => {
+        for (const clusterName in clusterViolations) {
+          cy.wrap(decisions).within(() => {
+            // find cluster name
+            cy.get('a').contains(clusterName)
+              .next().as('clusterStatus')
+              // check status
+              .then(() => {
+                if (clusterViolations[clusterName]) {  // do the check only if we have violation details for the cluster
+                  const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName]).toLowerCase()
+                  cy.get('@clusterStatus').then((e) => {
+                    // check the cluster status
+                    if (! e[0].textContent.match(new RegExp(clusterStatus))) {
+                      statusAvailable = false
+                    }
+                  })
+                }
+                // always check that status icon doesn't indicate status not being available
+                cy.get('@clusterStatus').find('path').then((elems) => {
+                  const d = elems[0].getAttribute('d')
+                  // M569 seem to be unique to an icon telling that policy status is not available for some cluster
+                  if (d.startsWith('M569')) {
+                    statusAvailable = false
+                  }
+                })
+              })
+          })
+        }
+      })
+    })
+  }).then(() => statusAvailable )
+})
+}
+
+
 // needs to be run either at /multicloud/policies/all or /multicloud/policies/all/{namespace}/{policy} page
 // here statusPending = true to check consist pending status for disable policy
 export const isPolicyStatusAvailable = (uName, violationsCounter) => {

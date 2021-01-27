@@ -2,7 +2,7 @@
 import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
 import { pageLoader } from '../views/common'
-import { isPolicyStatusAvailable, doTableSearch, clearTableSearch } from '../views/policy'
+import { isPolicyStatusAvailable, isClusterPolicyStatusAvailable, doTableSearch, clearTableSearch } from '../views/policy'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
   var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
@@ -153,6 +153,16 @@ Cypress.Commands.add('waitForPolicyStatus', (name, violationsCounter) => {
   doTableSearch(name)
   cy.waitUntil(() => isPolicyStatusAvailable(name, violationsCounter), {'interval': 2000, 'timeout':60000})
     .then(() => clearTableSearch())
+})
+
+// needs to be run on /multicloud/policies/all/{namespace}/{policy} page
+// see isClusterPolicyStatusAvailable()
+Cypress.Commands.add('waitForClusterPolicyStatus', (clusterViolations, clusterList=null) => {
+  cy.waitUntil(() => { return isClusterPolicyStatusAvailable(clusterViolations, clusterList) }, {'interval': 2000, 'timeout':60000})
+})
+
+Cypress.Commands.add('waitForPageContentLoad', () => {
+  pageLoader.shouldNotExist()
 })
 
 Cypress.Commands.add('CheckGrcMainPage', () => {
