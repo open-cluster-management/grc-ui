@@ -3,6 +3,7 @@ FROM node:erbium
 
 ENV NODE_ENV=development
 ENV TERM=xterm
+
 USER root
 
 RUN mkdir -p /opt/app-root/src/grc-ui
