@@ -59,4 +59,5 @@ fi
 
 echo sleep $PAUSE seconds selenium ...
 sleep $PAUSE
+unset CI # unset for nightwatch
 npm run test:e2e-headless
