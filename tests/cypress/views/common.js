@@ -87,6 +87,12 @@ export const checkItems = (labels, listQuery, itemQuery=selectItemQuery, labelQu
           })
         }
       })
+      // clear the input field
+      .then(() => {
+        cy.get(listQuery).within(() => {
+          cy.get('input.bx--text-input').first().clear()
+        })
+      })
       .then(() => {
         resolve('checkItems')
       })
