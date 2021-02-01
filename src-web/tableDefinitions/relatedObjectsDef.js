@@ -66,8 +66,13 @@ function buildViewYamlLink(item, locale) {
   const apiVersion = _.get(item, 'object.apiVersion')
   const kind = _.get(item, 'object.kind')
   if (cluster && kind && apiVersion && name) {
-    return <a target='_blank' rel='noopener noreferrer'
-    href={`/resources?cluster=${cluster}&kind=${kind}&apiversion=${apiVersion}&namespace=${namespace}&name=${name}`}>{msgs.get('table.actions.view.yaml', locale)}</a>
+    if (namespace != undefined) {
+      return <a target='_blank' rel='noopener noreferrer'
+        href={`/resources?cluster=${cluster}&kind=${kind}&apiversion=${apiVersion}&namespace=${namespace}&name=${name}`}>{msgs.get('table.actions.view.yaml', locale)}</a>
+    } else {
+      return <a target='_blank' rel='noopener noreferrer'
+        href={`/resources?cluster=${cluster}&kind=${kind}&apiversion=${apiVersion}&name=${name}`}>{msgs.get('table.actions.view.yaml', locale)}</a>
+    }
   }
   else if (selfLink && cluster) {
     return <a target='_blank' rel='noopener noreferrer'
