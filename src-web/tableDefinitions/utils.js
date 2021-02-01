@@ -81,7 +81,7 @@ export function buildClusterLink(item) {
   const cluster = _.get(item, 'cluster')
   const clusterNamespace = _.get(item, 'clusterNamespace')
   if (cluster && clusterNamespace) {
-    const clusterURL = `${config.clusterContextPath}/${clusterNamespace}/${cluster}`
+    const clusterURL = `${config.clusterContextPath}/${clusterNamespace}/overview`
     return <a
       rel='noopener noreferrer'
       href={clusterURL}>
