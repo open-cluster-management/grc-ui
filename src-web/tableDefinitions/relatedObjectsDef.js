@@ -59,11 +59,11 @@ export default {
 function buildViewYamlLink(item, locale) {
   const cluster = _.get(item, 'cluster')
   const name = _.get(item, 'object.metadata.name')
-  const namespace = _.get(item, 'object.metadata.namespace')
+  const namespace = _.get(item, 'object.metadata.namespace', '')
   const apiVersion = _.get(item, 'object.apiVersion')
   const kind = _.get(item, 'object.kind')
   if (cluster && kind && apiVersion && name) {
-    if (namespace != undefined) {
+    if (namespace !== '') {
       return <a target='_blank' rel='noopener noreferrer'
         href={`/resources?cluster=${cluster}&kind=${kind}&apiversion=${apiVersion}&namespace=${namespace}&name=${name}`}>{msgs.get('table.actions.view.yaml', locale)}</a>
     } else {
