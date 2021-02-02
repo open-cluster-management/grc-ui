@@ -22,6 +22,12 @@ function managed() {
     oc delete subscriptions.operators.coreos.com container-security-operator -n openshift-operators || true
     oc delete ClusterServiceVersion -n openshift-operators container-security-operator.v3.3.4 || true
     oc delete crd imagemanifestvulns.secscan.quay.redhat.com || true
+    oc delete LimitRange container-mem-limit-range -n default || true
+    oc delete ns prod -n default || true
+    oc delete psp restricted-psp -n default || true
+    oc delete role deployments-role -n default || true
+    oc delete rolebinding operatoruser-rolebinding -n default || true
+    oc delete scc restricted-scc -n default || true
 }
 
 case $1 in
