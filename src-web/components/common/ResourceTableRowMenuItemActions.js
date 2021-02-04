@@ -25,7 +25,7 @@ export const resourceActions = (action, dispatch, resourceType, data) => {
         data: { kind: resourceType.name, ...data }}))
   }
   case 'table.actions.launch.cluster':{
-    const consoleURL = _.get(data, 'consoleURL', _.get(data, 'clusterConsoleURL.local-cluster'))
+    const consoleURL = _.get(data, 'consoleURL')
     if (consoleURL) {
       window.open(`${consoleURL}`, '_blank')
     }
