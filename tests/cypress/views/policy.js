@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 import { selectItems } from './common'
 
-const timestampRegexp = /^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/
+const timestampRegexp = /^((an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago|in a few seconds)$/
 
 export const getDefaultSubstitutionRules = (rules = {}) => {
   if (rules['label'] == undefined) {
