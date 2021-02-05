@@ -12,8 +12,8 @@ describe('RHACM4K-1648 - GRC UI: [P2][Sev2][policy-grc] SCC policy with wrong na
   // we will work only with one cluster, we do not need more
   const clusterList = Object.keys(confClusters).slice(0,1)
   // if process.env.MANAGED_CLUSTER_NAME is defined, use it instead
-  if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
-    clusterList[0] = process.env.MANAGED_CLUSTER_NAME
+  if (Cypress.env('MANAGED_CLUSTER_NAME') !== undefined) {
+    clusterList[0] = Cypress.env('MANAGED_CLUSTER_NAME')
   }
   const substitutionRules = [ [/\[ID\]/g, Cypress.env('RESOURCE_ID')], [/\[ONECLUSTERNAME\]/g, clusterList[0]] ]
   // policy-config is used for policy creation and validation
