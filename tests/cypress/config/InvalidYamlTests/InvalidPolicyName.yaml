@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: policy-invalidName-[ID]
+  name: policy-invalidName-[ID]-@
   namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
@@ -15,7 +15,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: policy-invalidName-[ID]-nginx-pod
+        name: policy-invalidName-[ID]-@-nginx-pod
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
         severity: low
@@ -39,21 +39,21 @@ spec:
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-policy-invalidName-[ID]
+  name: binding-policy-invalidName-[ID]-@
   namespace: default
 placementRef:
-  name: placement-policy-invalidName-[ID]
+  name: placement-policy-invalidName-[ID]-@
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: policy-invalidName-[ID]
+- name: policy-invalidName-[ID]-@
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: placement-policy-invalidName-[ID]
+  name: placement-policy-invalidName-[ID]-@
   namespace: default
 spec:
   clusterConditions:

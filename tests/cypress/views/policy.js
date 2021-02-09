@@ -949,9 +949,8 @@ export const checkInvalidYamlError = (errorType) => {
   cy.get('div[kind="error"]').within( () => {
     cy.get('.bx--inline-notification__title').should('contain', 'Create error:')
     cy.get('svg[fill-rule="evenodd"]').should('exist')
-    if(errorType==='invalidName')
+    if( errorType === 'invalidName' )
     {
-      cy.get('#name-error-msg').should('exist')
       cy.get('.bx--inline-notification__subtitle').find('span').should('contain', invalidYamlErrorMessages[errorType]['msg'])
     }
     else

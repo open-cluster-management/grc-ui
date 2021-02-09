@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-   name: policy-bad-indentation-[ID]
+   name: policy-bad-indentation-[ID] #bad indentation
   namespace: default
   annotations:
     policy.open-cluster-management.io/standards: NIST-CSF
