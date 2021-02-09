@@ -172,12 +172,6 @@ describe('RHACM4K-1691 - GRC UI: [P2][Sev2][policy-grc] Certificate policy contr
     [/\[CLUSTERSELECTOR\]/g, `- {key: name, operator: In, values: ["${clusterList[0]}"]}`],
   ]
   cleanup_usingPolicyYAML('issue7520/delete_namespace_raw.yaml', substitutionRules)
-  substitutionRules = [
-    [/\[POLICYNAME\]/g, uName('delete-ns2')],
-    [/\[NAMESPACENAME\]/g, uName('ns2')],
-    [/\[CLUSTERSELECTOR\]/g, `- {key: name, operator: In, values: ["${clusterList[0]}"]}`],
-  ]
-  cleanup_usingPolicyYAML('issue7520/delete_namespace_raw.yaml', substitutionRules)
 
 })
 
