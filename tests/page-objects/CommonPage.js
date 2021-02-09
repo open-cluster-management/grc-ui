@@ -283,6 +283,7 @@ function deletePolicy(name){
 }
 
 function clearPatternFlySearchValue(){
+  this.waitForElementVisible('@searchPatternFlyInputClear')
   this.isVisible('@searchPatternFlyInputClear', result => {
     if (result.value) {
       this.click('@searchPatternFlyInputClear')
@@ -312,7 +313,7 @@ function testPolicyStatusTabSearching(){
 function setPatternFlySearchValue(value){
   this.log(`Searching for PatternFly table: ${value}`)
   this.waitForElementVisible('@searchPatternFlyInput')
-  this.clearPatternFlySearchValue()
+  this.click('@searchPatternFlyInput').clearValue('@searchPatternFlyInput')
   this.click('@searchPatternFlyInput').setValue('@searchPatternFlyInput', value)
   this.waitForElementVisible('@searchPatternFlyInput')
 }
