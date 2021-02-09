@@ -945,3 +945,31 @@ export const checkNotificationMessage = (kind, title, notification) => {
     cy.get('.bx--inline-notification__subtitle').should('contain', notification)
   })
 }
+
+export const verifyPolicyTemplateViolationDetailsForCluster = (policyName, policyConfig, clusterName, clusterViolations, violationPatterns) => {
+  const violations = clusterViolations[clusterName]
+  const clusterStatus = getClusterPolicyStatus(violations, 'short')
+  cy.get('div.overview').find('div.pf-c-description-list__text').spread((name, cluster, kind, api, compliant, details) => {
+    // check name
+    cy.wrap(name).contains(policyName)
+    // check cluster name
+    cy.wrap(cluster).contains(clusterName)
+    // check policy kind
+    if (policyConfig['kind']) {
+      cy.wrap(kind).contains(policyConfig['kind'])
+    }
+    // check apiVersion
+    if (policyConfig['apiVersion']) {
+      cy.wrap(api).contains(policyConfig['apiVersion'])
+    }
+    // check status
+    cy.wrap(compliant).contains(clusterStatus)
+    // check details
+    for (const violation of violations) {
+      const templateName = violation.replace(/-[^-]*$/, '')
+      const id = violation.replace(/^.*-/, '')
+      const pattern = violationPatterns[templateName][id]
+      cy.wrap(details).contains(pattern)
+    }
+  })
+}
