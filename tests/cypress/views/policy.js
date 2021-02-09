@@ -1,8 +1,10 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
+import { getConfigObject } from '../config'
 import { selectItems } from './common'
 
 const timestampRegexp = /^((an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago|in a few seconds)$/
+const invalidYamlErrorMessages = getConfigObject('InvalidYamlTests/invalidYamlErrors.yaml', 'yaml')
 
 export const getDefaultSubstitutionRules = (rules = {}) => {
   if (rules['label'] == undefined) {
@@ -27,7 +29,7 @@ export const getDefaultSubstitutionRules = (rules = {}) => {
   return substitutions
 }
 
-export const createPolicyFromYAML = (policyYAML, create=false) => {
+export const createPolicyFromYAML = (policyYAML, create=false, invalid=false, invalidType=null) => {
   console.log(policyYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
@@ -39,6 +41,11 @@ export const createPolicyFromYAML = (policyYAML, create=false) => {
       }
     })
     // after creation, always return to grc main page
+    if(invalid && invalidType!==null)
+    {
+      checkInvalidYamlError(invalidType)
+      return
+    }
     cy.CheckGrcMainPage()
 }
 
@@ -934,6 +941,22 @@ export const verifyPolicyViolationDetailsInHistory = (templateName, violations, 
         cy.wrap(state).contains(new RegExp(policyStatus))
         cy.wrap(timestamp).contains(/^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/)
       })
+    }
+  })
+}
+
+export const checkInvalidYamlError = (errorType) => {
+  cy.get('div[kind="error"]').within( () => {
+    cy.get('.bx--inline-notification__title').should('contain', 'Create error:')
+    cy.get('svg[fill-rule="evenodd"]').should('exist')
+    if(errorType==='invalidName')
+    {
+      cy.get('#name-error-msg').should('exist')
+      cy.get('.bx--inline-notification__subtitle').find('span').should('contain', invalidYamlErrorMessages[errorType]['msg'])
+    }
+    else
+    {
+      cy.get('.bx--inline-notification__subtitle').should('contain', invalidYamlErrorMessages[errorType]['msg'])
     }
   })
 }
