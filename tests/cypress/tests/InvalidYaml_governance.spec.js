@@ -1,3 +1,6 @@
+/* Copyright (c) 2020 Red Hat, Inc. */
+/// <reference types="cypress" />
+
 import { getConfigObject } from '../config'
 import { createPolicyFromYAML, getDefaultSubstitutionRules } from '../views/policy'
 
