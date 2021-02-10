@@ -2,6 +2,7 @@
 [POLICYNAME]-cert-expiration:
  ?: "(notification|violation)"
  0: "TBD"
+ "01": "No namespaces matched the namespace selector"
  1: "TBD"
 # ComplianceOperator specification
 comp-operator-ns:

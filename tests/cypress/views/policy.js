@@ -100,11 +100,10 @@ export const createPolicyFromSelection = (uPolicyName, create=false, policyConfi
     .then(() => {
       if (create) {
         cy.get('#create-button-portal-id-btn').click()
+        // after creation, always return to grc main page
+        cy.CheckGrcMainPage()
       }
     })
-
-    // after creation, always return to grc main page
-    cy.CheckGrcMainPage()
 }
 
 // enabled='enabled', checking if policy is enabled; enabled='disabled', checking if policy is disabled
@@ -606,9 +605,10 @@ export const getClusterPolicyStatus = (clusterViolations, format='long') => {
   // if the policy status would be unknown return '?'
   let result = 'Compliant'
   for (const violation of clusterViolations) {
-    if (violation.endsWith('-?')) {  // if the status is unknown
+    const id = violation.replace(/^.*-/, '')
+    if (id == '?') {  // if the status is unknown
       result = '(Compliant|Not Compliant)'
-    } else if (!violation.endsWith('-0')) {  // if there is an actual violation (non-zero ID)
+    } else if (id[0] != '0') {  // if there is an actual violation (non-zero ID)
       result = 'Not Compliant'
       break
     }
@@ -635,10 +635,11 @@ export const getViolationsCounter = (clusterViolations) => {
     // in theory there could be multiple violations found by one policy
     // also, if the policy has multiple specifications there could be even multiple compliances
     for (const violation of clusterViolations[cluster]) {
-      if (violation.endsWith('?')) { // unspecific violation
+      const id = violation.replace(/^.*-/, '')
+      if (id == '?') { // unspecific violation
         return '[0-9]+/'+clusters
       }
-      if (!violation.endsWith('-0')) {  // if there is an actual violation (non-zero ID)
+      if (id[0] != '0') {  // if there is an actual violation (non-zero ID)
         violations = violations + 1
         break  // stop checking this server
       }
@@ -748,7 +749,7 @@ export const verifyViolationsInPolicyStatusClusters = (policyName, policyConfig,
           // FIXME: here we should have a function that split the content per ';' and tests each part agains Compliant/NonCompliant and expected messages
           if (id == '?') {
             cy.wrap(message).contains(new RegExp('(NonCompliant|Compliant); '+violationPatterns[templateName][id]))
-          } else if (id == '0') {
+          } else if (id[0] == '0') {
             cy.wrap(message).contains(new RegExp('Compliant; '+violationPatterns[templateName][id]))
           } else {
             cy.wrap(message).contains(new RegExp('NonCompliant; '+violationPatterns[templateName][id]))
@@ -770,7 +771,7 @@ export const verifyViolationsInPolicyStatusClusters = (policyName, policyConfig,
 
 export const getPolicyStatusForViolationId = (id, format='long') => {
   if (format == 'long') {
-    switch(id) {
+    switch(id[0]) {  // take just the first digit
       case '?':
         return '(Not compliant|Compliant)'
       case '0':
@@ -780,7 +781,7 @@ export const getPolicyStatusForViolationId = (id, format='long') => {
     }
   }
   if (format == 'short') {
-    switch(id) {
+    switch(id[0]) {
       case '?':
         return '(NonCompliant|Compliant)'
       case '0':
@@ -820,7 +821,7 @@ export const verifyViolationsInPolicyStatusTemplates = (policyName, policyConfig
             // FIXME: here we should have a function that split the content per ';' and tests each part agains Compliant/NonCompliant and expected messages
             if (id == '?') {
               cy.wrap(message).contains(new RegExp('(NonCompliant|Compliant); '+violationPatterns[templateName][id]))
-            } else if (id == '0') {
+            } else if (id[0] == '0') {
               cy.wrap(message).contains(new RegExp('Compliant; '+violationPatterns[templateName][id]))
             } else {
               cy.wrap(message).contains(new RegExp('NonCompliant; '+violationPatterns[templateName][id]))
