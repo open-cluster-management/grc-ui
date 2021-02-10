@@ -307,15 +307,15 @@ export default class TemplateEditor extends React.Component {
     return null
   }
 
-  handlePolicyNameValidation = (policyName) => {
+  handlePolicyNameValidation = (policyName, policyNS) => {
     const { controlData } = this.state
-    const { existing } = controlData.find(control => control.id === 'name')
+    const { existing, existingByNamespace } = controlData.find(control => control.id === 'name')
     let isDuplicateName = false
     let validPolicyNameFormat = true
     if (policyName) {
       // Check to see whether the policy name exists already
-      if (existing) {
-        isDuplicateName = existing.includes(policyName)
+      if (existing && existingByNamespace) {
+        isDuplicateName = existing.includes(policyName) && existingByNamespace[policyName] === policyNS
       }
       // Validate name with RegEx
       validPolicyNameFormat = policyNameRegex.test(policyName)
@@ -577,7 +577,7 @@ export default class TemplateEditor extends React.Component {
       this.handleExceptionNotification(exceptions, 'success.edit.policy.check', locale)
     }
     // Run validation on the name
-    this.handlePolicyNameValidation(controlData.find(data => data.id === 'name').active)
+    this.handlePolicyNameValidation(controlData.find(data => data.id === 'name').active, controlData.find(data => data.id === 'namespace').active)
     return field
   }
 
@@ -744,7 +744,7 @@ export default class TemplateEditor extends React.Component {
     }
     this.setState({controlData, isCustomName, templateObject: newParsed, exceptions})
     // Validate policy name
-    this.handlePolicyNameValidation(controlData.find(control => control.id === 'name').active)
+    this.handlePolicyNameValidation(controlData.find(control => control.id === 'name').active, controlData.find(data => data.id === 'namespace').active)
     return templateYAML // for jest test
   }
 
