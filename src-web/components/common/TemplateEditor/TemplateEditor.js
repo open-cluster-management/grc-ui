@@ -25,7 +25,7 @@ import {
   Modal} from 'carbon-components-react'
 import { Spinner, Tooltip } from '@patternfly/react-core'
 import { initializeControlData, cacheUserData, updateControls, parseYAML } from './utils/update-controls'
-import { generateYAML, highlightChanges, getUniqueName } from './utils/update-editor'
+import { generateYAML, highlightChanges } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
 import EditorHeader from './components/EditorHeader'
 import EditorBar from './components/EditorBar'
@@ -40,8 +40,7 @@ const tempCookie = 'template-editor-open-cookie'
 const diagramIconsInfoStr = '#diagramIcons_info'
 // Regex to test valid policy name format
 // (253 allowable characters, but we have a 'placement-' prefix for PlacementRule,
-// so we're limiting the name input to 243 characters--the full is too heavy
-// for processing, so we only use the full on render and the simple elsewhere)
+// so we're limiting the name input to 243 characters)
 const policyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,241}[a-z0-9]$/)
 export default class TemplateEditor extends React.Component {
 
@@ -86,7 +85,6 @@ export default class TemplateEditor extends React.Component {
       return {updateMsgKind: 'error', updateMessage: createAndUpdateMsg}
     } else if (isLoaded) {
       const { template, controlData: initialControlData } = props
-      const { isCustomName } = state
       let { controlData, templateYAML, templateObject } = state
 
       // initialize controlData, templateYAML, templateObject
@@ -95,21 +93,6 @@ export default class TemplateEditor extends React.Component {
         templateYAML = generateYAML(template, controlData)
         templateObject = parseYAML(templateYAML).parsed
         return { controlData, templateYAML, templateObject }
-      }
-
-      // make sure an auto generated name is unique
-      if (!isCustomName) {
-        const name = controlData.find(({id})=>id==='name')
-        if (name) {
-          const {active, existing} = name
-          const uniqueName = getUniqueName(active, new Set(existing))
-          if (uniqueName !==active) {
-            name.active = uniqueName
-            templateYAML = generateYAML(template, controlData)
-            templateObject = parseYAML(templateYAML).parsed
-            return { controlData, templateYAML, templateObject }
-          }
-        }
       }
     }
     return null
@@ -954,7 +937,7 @@ export default class TemplateEditor extends React.Component {
     const templateObject = parseYAML(templateYAML).parsed
     this.setState({controlData, templateYAML, templateObject, exceptions:[],
       hasUndo: false, hasRedo: false, resetInx:resetInx+1, updateMessage:'',
-      duplicateName: false, validPolicyName: true
+      duplicateName: false, validPolicyName: true, isCustomName: false
     })
   }
 }
