@@ -1,10 +1,8 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /// <reference types="cypress" />
-import { getConfigObject } from '../config'
 import { selectItems } from './common'
 
 const timestampRegexp = /^((an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago|in a few seconds)$/
-const invalidYamlErrorMessages = getConfigObject('InvalidYamlTests/invalidYamlErrors.yaml', 'yaml')
 
 export const getDefaultSubstitutionRules = (rules = {}) => {
   if (rules['label'] == undefined) {
@@ -29,7 +27,7 @@ export const getDefaultSubstitutionRules = (rules = {}) => {
   return substitutions
 }
 
-export const createPolicyFromYAML = (policyYAML, create=false, invalid=false, invalidType=null) => {
+export const createPolicyFromYAML = (policyYAML, create=true) => {
   console.log(policyYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
@@ -38,19 +36,13 @@ export const createPolicyFromYAML = (policyYAML, create=false, invalid=false, in
     .then(() => {
       if (create) {
         cy.get('#create-button-portal-id-btn').click()
+        cy.CheckGrcMainPage()
       }
     })
-    // after creation, always return to grc main page
-    if(invalid && invalidType!==null)
-    {
-      checkInvalidYamlError(invalidType)
-      return
-    }
-    cy.CheckGrcMainPage()
 }
 
 // this function is mainly used to testing selection on the create policy page
-export const createPolicyFromSelection = (uPolicyName, create=false, policyConfig) => {
+export const createPolicyFromSelection = (uPolicyName, create=true, policyConfig) => {
   // fill the form uName
   cy.get('input[aria-label="name"]')
     .clear()
@@ -946,17 +938,14 @@ export const verifyPolicyViolationDetailsInHistory = (templateName, violations, 
   })
 }
 
-export const checkInvalidYamlError = (errorType) => {
-  cy.get('div[kind="error"]').within( () => {
-    cy.get('.bx--inline-notification__title').should('contain', 'Create error:')
+export const checkNotificationMessage = (kind, title, type, notifications, multiline=false) => {
+  cy.get('div[kind="'+kind+'"]').within( () => {
+    cy.get('.bx--inline-notification__title').should('contain', title)
     cy.get('svg[fill-rule="evenodd"]').should('exist')
-    if( errorType === 'invalidName' )
+    if(multiline)
     {
-      cy.get('.bx--inline-notification__subtitle').find('span').should('contain', invalidYamlErrorMessages[errorType]['msg'])
+      cy.get('.bx--inline-notification__subtitle').find('span').should('contain', notifications[type]['msg'])
     }
-    else
-    {
-      cy.get('.bx--inline-notification__subtitle').should('contain', invalidYamlErrorMessages[errorType]['msg'])
-    }
+    cy.get('.bx--inline-notification__subtitle').should('contain', notifications[type]['msg'])
   })
 }
