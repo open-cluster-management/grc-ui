@@ -32,30 +32,6 @@ replacements: # if user select this choice, the template variable names and valu
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: gatekeeper-operator-catalog-source
-        spec:
-          remediationAction: inform
-          severity: high
-          object-templates:
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: operators.coreos.com/v1alpha1
-                kind: CatalogSource
-                metadata:
-                  name: gatekeeper-operator
-                  namespace: openshift-gatekeeper-operator
-                spec:
-                  displayName: Gatekeeper Operator Upstream
-                  publisher: github.com/font/gatekeeper-operator
-                  sourceType: grpc
-                  image: 'quay.io/gatekeeper/gatekeeper-operator-bundle-index:latest'
-                  updateStrategy:
-                    registryPoll:
-                      interval: 45m
-    - objectDefinition:
-        apiVersion: policy.open-cluster-management.io/v1
-        kind: ConfigurationPolicy
-        metadata:
           name: gatekeeper-operator-group
         spec:
           remediationAction: inform
@@ -86,7 +62,8 @@ replacements: # if user select this choice, the template variable names and valu
                   namespace: openshift-gatekeeper-operator
                 spec:
                   channel: stable
-                  name: gatekeeper-operator
+                  installPlanApproval: Automatic
+                  name: gatekeeper-operator-product
                   source: gatekeeper-operator
                   sourceNamespace: openshift-gatekeeper-operator
     - objectDefinition:
@@ -109,8 +86,9 @@ replacements: # if user select this choice, the template variable names and valu
                     logLevel: INFO
                     replicas: 1
                   image:
-                    image: 'docker.io/openpolicyagent/gatekeeper:v3.2.2'
+                    image: 'registry.redhat.io/rhacm2/gatekeeper-rhel8:v3.3.0'
                   validatingWebhook: Enabled
+                  mutatingWebhook: Disabled
                   webhook:
                     emitAdmissionEvents: Enabled
                     logLevel: INFO
