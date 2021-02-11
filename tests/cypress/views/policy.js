@@ -27,7 +27,7 @@ export const getDefaultSubstitutionRules = (rules = {}) => {
   return substitutions
 }
 
-export const createPolicyFromYAML = (policyYAML, create=false) => {
+export const createPolicyFromYAML = (policyYAML, create=true) => {
   console.log(policyYAML)
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
@@ -36,14 +36,13 @@ export const createPolicyFromYAML = (policyYAML, create=false) => {
     .then(() => {
       if (create) {
         cy.get('#create-button-portal-id-btn').click()
+        cy.CheckGrcMainPage()
       }
     })
-    // after creation, always return to grc main page
-    cy.CheckGrcMainPage()
 }
 
 // this function is mainly used to testing selection on the create policy page
-export const createPolicyFromSelection = (uPolicyName, create=false, policyConfig) => {
+export const createPolicyFromSelection = (uPolicyName, create=true, policyConfig) => {
   // fill the form uName
   cy.get('input[aria-label="name"]')
     .clear()
@@ -936,5 +935,13 @@ export const verifyPolicyViolationDetailsInHistory = (templateName, violations, 
         cy.wrap(timestamp).contains(/^(an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago$/)
       })
     }
+  })
+}
+
+export const checkNotificationMessage = (kind, title, notification) => {
+  cy.get('div[kind="'+kind+'"]').within( () => {
+    cy.get('.bx--inline-notification__title').should('contain', title)
+    cy.get('svg[fill-rule="evenodd"]').should('exist')
+    cy.get('.bx--inline-notification__subtitle').should('contain', notification)
   })
 }
