@@ -938,14 +938,10 @@ export const verifyPolicyViolationDetailsInHistory = (templateName, violations, 
   })
 }
 
-export const checkNotificationMessage = (kind, title, type, notifications, multiline=false) => {
+export const checkNotificationMessage = (kind, title, notification) => {
   cy.get('div[kind="'+kind+'"]').within( () => {
     cy.get('.bx--inline-notification__title').should('contain', title)
     cy.get('svg[fill-rule="evenodd"]').should('exist')
-    if(multiline)
-    {
-      cy.get('.bx--inline-notification__subtitle').find('span').should('contain', notifications[type]['msg'])
-    }
-    cy.get('.bx--inline-notification__subtitle').should('contain', notifications[type]['msg'])
+    cy.get('.bx--inline-notification__subtitle').should('contain', notification)
   })
 }

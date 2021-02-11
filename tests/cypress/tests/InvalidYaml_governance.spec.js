@@ -12,7 +12,7 @@ describe('RHACM4K-247 - GRC UI: [P1][Sev1][policy-grc] Create policy with invali
     cy.visit('/multicloud/policies/create')
     createPolicyFromYAML(rawPolicyYAML, false)
     cy.get('#create-button-portal-id-btn').click()
-    checkNotificationMessage('error', 'Create error:', 'invalidName', invalidYamlErrorMessages, true)
+    checkNotificationMessage('error', 'Create error:', invalidYamlErrorMessages['invalidName']['msg'])
   })
   it('Create policy should fail with missing namespace in yaml', () => {
     const confFilePolicy = 'InvalidYamlTests/MissingNamespace.yaml'
@@ -20,7 +20,7 @@ describe('RHACM4K-247 - GRC UI: [P1][Sev1][policy-grc] Create policy with invali
     cy.visit('/multicloud/policies/create')
     createPolicyFromYAML(rawPolicyYAML, false)
     cy.get('#create-button-portal-id-btn').click()
-    checkNotificationMessage('error', 'Create error:', 'missingNamespace', invalidYamlErrorMessages)
+    checkNotificationMessage('error', 'Create error:', invalidYamlErrorMessages['missingNamespace']['msg'])
   })
   it('Create policy should fail with invalid indentation in yaml', () => {
     const confFilePolicy = 'InvalidYamlTests/InvalidIndentation.yaml'
@@ -28,6 +28,6 @@ describe('RHACM4K-247 - GRC UI: [P1][Sev1][policy-grc] Create policy with invali
     cy.visit('/multicloud/policies/create')
     createPolicyFromYAML(rawPolicyYAML, false)
     cy.get('#create-button-portal-id-btn').click()
-    checkNotificationMessage('error', 'Create error:', 'badIndentation', invalidYamlErrorMessages)
+    checkNotificationMessage('error', 'Create error:', invalidYamlErrorMessages['badIndentation']['msg'])
   })
 })
