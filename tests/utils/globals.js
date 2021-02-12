@@ -27,8 +27,12 @@ module.exports = {
 
   // External after hook is ran at the very end of the tests run, after closing the Selenium session
   after: function(done) {
-    coverageReporter.save() // call this function in your global after hook
-    done()
+    if (process.env.SELENIUM_CLUSTER) {
+      done()
+    } else {
+      coverageReporter.save() // call this function in your global after hook
+      done()
+    }
   },
 
   // This will be run before each test suite is started
@@ -38,7 +42,7 @@ module.exports = {
 
   // This will be run after each test suite is finished
   afterEach: function(browser, done) {
-    if(process.env.SELENIUM_CLUSTER) {
+    if (process.env.SELENIUM_CLUSTER) {
       done()
     } else {
       browser.collectCoverage(() => {
