@@ -35,7 +35,6 @@ module.exports = {
 
   // This will be run before each test suite is started
   beforeEach: function(browser, done) {
-    console.log(process.env.SELENIUM_CLUSTER)
     done()
   },
 
