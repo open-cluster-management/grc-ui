@@ -112,9 +112,6 @@ module.exports = {
     var nsYaml = nsPolicy.toString()
     common.createPolicy(browser, 'policy-create-ns-for-dup-' + time, nsYaml, time)
     common.checkStatus('policy-create-ns-for-dup-' + time, false)
-    // there is 2 mins cache on ui api side so need to logout and login again to get new created ns
-    loginPage.logout()
-    loginPage.authenticate()
     //create 2 policies with the same name in different namespaces
     const originalPolicy = fs.readFileSync(path.join(__dirname, 'yaml/create_policy/pod_template_original.yaml'))
     var originalYaml = originalPolicy.toString()
