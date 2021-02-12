@@ -31,7 +31,7 @@ echo "Create RBAC users"
 source $DIR/rbac-setup.sh
 
 echo "setup cluster for test"
-$DIR/build/cluster-setup.sh
+$DIR/cluster-setup.sh
 
 echo "Export envs to run e2e"
 export SERVICEACCT_TOKEN=`${BUILD_HARNESS_PATH}/vendor/oc whoami --show-token`
