@@ -128,6 +128,8 @@ export const generateYAML = (template, controlData) => {
     if (parsed['parsed']['unknown']) {
       const raw = parsed['parsed']['unknown'][0]['$raw']
       templateData['specsCapture'] = jsYaml.safeDump(raw)
+    } else {
+      templateData['specsCapture'] = []
     }
   }
   let yaml = template(templateData) || ''
