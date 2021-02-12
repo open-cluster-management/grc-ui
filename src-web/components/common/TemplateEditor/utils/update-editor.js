@@ -124,8 +124,11 @@ export const generateYAML = (template, controlData) => {
   //format yaml from custom specifications
   if (templateData['specsCapture']) {
     const parsed = parseYAML(templateData['specsCapture'])
-    const raw = parsed['parsed']['unknown'][0]['$raw']
-    templateData['specsCapture'] = jsYaml.safeDump(raw)
+    // Only process if it's valid, otherwise throw it out
+    if (parsed['parsed']['unknown']) {
+      const raw = parsed['parsed']['unknown'][0]['$raw']
+      templateData['specsCapture'] = jsYaml.safeDump(raw)
+    }
   }
   let yaml = template(templateData) || ''
   yaml = yaml.replace(/[\r\n]+/g, '\n')
