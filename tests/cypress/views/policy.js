@@ -6,8 +6,8 @@ const timestampRegexp = /^((an?|[0-9]+) (days?|hours?|minutes?|few seconds) ago|
 
 export const getDefaultSubstitutionRules = (rules = {}) => {
   if (rules['label'] == undefined) {
-    if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
-      rules['label'] = `- {key: name, operator: In, values: ["${process.env.MANAGED_CLUSTER_NAME}"]}`
+    if (Cypress.env('MANAGED_CLUSTER_NAME') !== undefined) {
+      rules['label'] = `- {key: name, operator: In, values: ["${Cypress.env('MANAGED_CLUSTER_NAME')}"]}`
     } else {
       rules['label'] = '[]'
     }

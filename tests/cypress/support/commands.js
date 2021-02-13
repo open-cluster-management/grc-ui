@@ -16,10 +16,10 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) =
       // Check if identity providers are configured
       if (body.find('form').length === 0)
         cy.contains(idp).click()
-      cy.get('#inputUsername', { timeout: 20000 }).click().focused().type(user)
-      cy.get('#inputPassword', { timeout: 20000 }).click().focused().type(password)
-      cy.get('button[type="submit"]', { timeout: 20000 }).click()
-      cy.get('#header', { timeout: 30000 }).should('exist')
+      cy.get('#inputUsername').click().focused().type(user)
+      cy.get('#inputPassword').click().focused().type(password)
+      cy.get('button[type="submit"]').click()
+      cy.get('#header').should('exist')
     }
   })
   cy.CheckGrcMainPage()
@@ -172,7 +172,7 @@ Cypress.Commands.add('CheckGrcMainPage', () => {
 })
 
 Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
-  cy.get('#create-policy', { timeout: 20000 }).should('exist')
+  cy.get('#create-policy').should('exist')
   cy.get('#create-policy').click()
   cy.location('pathname').should('eq', '/multicloud/policies/create')
   pageLoader.shouldNotExist()
