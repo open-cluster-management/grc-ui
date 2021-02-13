@@ -54,15 +54,14 @@ else
   export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-"https://localhost:3000"}
 fi
 
-export CYPRESS_FAIL_FAST_ENABLED=${CYPRESS_FAIL_FAST_ENABLED:-"true"}
-
+export CYPRESS_FAIL_FAST_PLUGIN=${CYPRESS_FAIL_FAST_PLUGIN:-"true"}
 echo -e "Running cypess tests with the following environment:\n"
 echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_ID"
 echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL)  : $CYPRESS_BASE_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL   : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_USER       : $CYPRESS_OPTIONS_HUB_USER"
 echo -e "\tCYPRESS_MANAGED_CLUSTER_NAME       : $CYPRESS_MANAGED_CLUSTER_NAME"
-echo -e "\tCYPRESS_FAIL_FAST_ENABLED       : $CYPRESS_FAIL_FAST_ENABLED"
+echo -e "\CYPRESS_FAIL_FAST_PLUGIN       : $CYPRESS_FAIL_FAST_PLUGIN"
 
 echo -e "\nLogging into Kube API server\n"
 oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
