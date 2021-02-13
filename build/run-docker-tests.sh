@@ -58,7 +58,7 @@ if [ $FAIL_FAST == "true" ]; then
   npm run test:cypress-headless
 else
   echo "Running in non fail fast mode"
-  export CYPRESS_FAIL_FAST_PLUGIN=false
+  export CYPRESS_FAIL_FAST_ENABLED=false
   npm run test:cypress-headless || true
 fi
 
