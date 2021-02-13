@@ -38,10 +38,11 @@ else
 fi
 
 export CYPRESS_RESOURCE_ID=$(date +"%s")
-if [[ -z "$MANAGED_CLUSTER_NAME" ]]; then
+if [ -z "$MANAGED_CLUSTER_NAME" ]; then
   echo "MANAGED_CLUSTER_NAME not set."
 else
   export CYPRESS_MANAGED_CLUSTER_NAME=$MANAGED_CLUSTER_NAME
+  echo "MANAGED_CLUSTER_NAME is set, set CYPRESS_MANAGED_CLUSTER_NAME to $MANAGED_CLUSTER_NAME"
 fi
 
 
