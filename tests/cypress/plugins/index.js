@@ -25,5 +25,7 @@ module.exports = (on, config) => {
   }
   require('cypress-terminal-report/src/installLogsPrinter')(on)
 
+  require('cypress-fail-fast/plugin')(on, config)
+
   return config
 }
