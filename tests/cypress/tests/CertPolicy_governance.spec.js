@@ -212,7 +212,7 @@ describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
 
 describe('Cleanup - delete a certificate and an issuer', () => {
   const substitutionRulesCleanup = getDefaultSubstitutionRules({
-    clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"]`,
+    clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"]}`,
     compliancetype: 'mustnothave'
   })
 
