@@ -264,8 +264,10 @@ export const getTemplateSource = (reverse, parsed) => {
       // Handle any object that's given and make it an array to try to save it for the user
       } else if (synced.constructor === Object) {
         for (const key in synced) {
-          const syncItem = synced[key]
-          ret = [...ret, ...`  - ${lines.slice(syncItem.$r, syncItem.$r+syncItem.$l).join('\n').trim()}`]
+          if (Object.prototype.hasOwnProperty.call(synced, key)) {
+            const syncItem = synced[key]
+            ret = [...ret, ...`  - ${lines.slice(syncItem.$r, syncItem.$r+syncItem.$l).join('\n').trim()}`]
+          }
         }
       // Turn any string provided into an array to try to save it for the user
       } else if (synced.constructor === String) {
