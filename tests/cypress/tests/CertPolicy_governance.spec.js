@@ -13,8 +13,8 @@ const confClusters = getConfigObject('clusters.yaml')
 // we will work only with one cluster, we do not need more
 const clusterList = Object.keys(confClusters).slice(0,1)
 // if process.env.MANAGED_CLUSTER_NAME is defined, use it instead
-if (process.env.MANAGED_CLUSTER_NAME !== undefined) {
-  clusterList[0] = process.env.MANAGED_CLUSTER_NAME
+if (Cypress.env('MANAGED_CLUSTER_NAME') !== undefined) {
+  clusterList[0] = Cypress.env('MANAGED_CLUSTER_NAME')
 }
 
 

@@ -38,6 +38,7 @@ else
 fi
 
 export CYPRESS_RESOURCE_ID=$(date +"%s")
+export CYPRESS_MANAGED_CLUSTER_NAME=$MANAGED_CLUSTER_NAME
 
 if [ ! -z "$SELENIUM_CLUSTER" ]; then
   echo "SELENIUM_CLUSTER env parameter is found, run system e2e testing and use OC_HUB_CLUSTER_URL"
