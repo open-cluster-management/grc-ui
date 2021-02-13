@@ -19,7 +19,10 @@ if (Cypress.env('MANAGED_CLUSTER_NAME') !== undefined) {
 
 
 describe('Setup - create a certificate expiring soon', () => {
-  const substitutionRules = getDefaultSubstitutionRules({clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"]}`})
+  const substitutionRules = getDefaultSubstitutionRules({
+    clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"]}`,
+    compliancetype: 'musthave'
+  })
 
   it ('"Govern risk" page can be launched.', () => {
     cy.CheckGrcMainPage()
@@ -208,7 +211,10 @@ describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
 
 
 describe('Cleanup - delete a certificate and an issuer', () => {
-  const substitutionRulesCleanup = getDefaultSubstitutionRules({clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"], 'complianceType: musthave': 'complianceType: mustnothave'}`})
+  const substitutionRulesCleanup = getDefaultSubstitutionRules({
+    clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"]`,
+    compliancetype: 'mustnothave'
+  })
 
   // Remove created certificate
   cleanup_usingPolicyYAML('CertPolicyTest/test_certificate_raw.yaml', substitutionRulesCleanup)
