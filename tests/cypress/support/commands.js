@@ -1,8 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
-import { pageLoader } from '../views/common'
-import { isPolicyStatusAvailable, isClusterPolicyStatusAvailable, doTableSearch, clearTableSearch } from '../views/policy'
+import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, doTableSearch, clearTableSearch } from '../common/views'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
   var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')

@@ -4,8 +4,8 @@ import {
   createPolicyFromYAML, verifyPolicyInListing, verifyPolicyNotInListing,
   actionPolicyActionInListing, verifyPolicyInPolicyDetails, getDefaultSubstitutionRules,
   verifyPolicyInPolicyStatus, verifyPolicyByYAML
-} from '../views/policy'
-import { cleanup_usingPolicyYAML } from  './common/generic_policy_cleanup'
+} from '../common/views'
+import { test_applyPolicyYAML } from  '../common/tests'
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
 
@@ -29,10 +29,10 @@ describe('Setup - create a certificate expiring soon', () => {
   })
 
   // create certificate issuer
-  cleanup_usingPolicyYAML('CertPolicyTest/test_issuer_raw.yaml', substitutionRules)
+  test_applyPolicyYAML('CertPolicyTest/test_issuer_raw.yaml', substitutionRules)
 
   // create an about-to-expire certificate
-  cleanup_usingPolicyYAML('CertPolicyTest/test_certificate_raw.yaml', substitutionRules)
+  test_applyPolicyYAML('CertPolicyTest/test_certificate_raw.yaml', substitutionRules)
 })
 
 
@@ -217,9 +217,9 @@ describe('Cleanup - delete a certificate and an issuer', () => {
   })
 
   // Remove created certificate
-  cleanup_usingPolicyYAML('CertPolicyTest/test_certificate_raw.yaml', substitutionRulesCleanup)
+  test_applyPolicyYAML('CertPolicyTest/test_certificate_raw.yaml', substitutionRulesCleanup)
 
   // Remove certificate issuer
-  cleanup_usingPolicyYAML('CertPolicyTest/test_issuer_raw.yaml', substitutionRulesCleanup)
+  test_applyPolicyYAML('CertPolicyTest/test_issuer_raw.yaml', substitutionRulesCleanup)
 
 })
