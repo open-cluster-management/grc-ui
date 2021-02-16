@@ -1,7 +1,9 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
-import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, doTableSearch, clearTableSearch } from '../common/views'
+import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, isClusterTemplateStatusAvailable,
+         doTableSearch, clearTableSearch
+} from '../common/views'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
   var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
@@ -158,6 +160,12 @@ Cypress.Commands.add('waitForPolicyStatus', (name, violationsCounter) => {
 // see isClusterPolicyStatusAvailable()
 Cypress.Commands.add('waitForClusterPolicyStatus', (clusterViolations, clusterList=null) => {
   cy.waitUntil(() => { return isClusterPolicyStatusAvailable(clusterViolations, clusterList) }, {'interval': 2000, 'timeout':60000})
+})
+
+// needs to be run on /multicloud/policies/all/{namespace}/{policy}/status page
+// see isClusterTemplateStatusAvailable()
+Cypress.Commands.add('waitForClusterTemplateStatus', (clusterViolations = {}) => {
+  cy.waitUntil(() => { return isClusterTemplateStatusAvailable(clusterViolations) }, {'interval': 2000, 'timeout':60000})
 })
 
 Cypress.Commands.add('waitForPageContentLoad', () => {

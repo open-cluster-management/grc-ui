@@ -464,6 +464,53 @@ return cy.url().then((pageURL) => {
 })
 }
 
+// needs to be run only on /multicloud/policies/all/default/${policyName}/status
+// where it checks whether all listed (e.g. filtered) templates have status
+export const isClusterTemplateStatusAvailable = (clusterViolations = {}) => {
+  let statusAvailable = true
+  // search for the template status in a table
+  return cy.then(() => {
+    cy.get('tbody').within(() => {
+      cy.get('tr').each((row) => {
+        cy.wrap(row).find('td').spread((cluster, status, template) => {
+          const clusterName = cluster.textContent.trim()
+          const templateName = template.textContent.trim()
+          if (clusterViolations[clusterName]) {  // do the check only if we have violation details for the cluster
+            // get respective violation ID
+            let violationID
+            for (const patternId of clusterViolations[clusterName]) {
+              const name = patternId.replace(/-[^-]*$/, '')
+              const id = patternId.replace(/^.*-/, '')
+              if (templateName == name) {
+                violationID = id
+                break
+              }
+            }
+            const clusterStatus = getPolicyStatusForViolationId(violationID)
+            // check the cluster status
+            if (! status.textContent.match(new RegExp(clusterStatus))) {
+              statusAvailable = false
+            }
+          } else {  // we do not know the expected status, only check the icon
+            cy.wrap(status).find('path').then((elems) => {
+              if (elems.length === 1) {
+                const d = elems[0].getAttribute('d')
+                // M569 seem to be unique to an icon telling that policy status is not available for some cluster
+                if (d.startsWith('M569')) {
+                  statusAvailable = false
+                }
+              } else {
+                statusAvailable = false
+              }
+            })
+          }
+        })
+      })
+    })
+    .then(() => statusAvailable )
+  })
+}
+
 export const verifyPolicyInPolicyDetails = (
   uName, policyConfig, enabled='enabled',
   violationsCounter='', targetStatus = null
