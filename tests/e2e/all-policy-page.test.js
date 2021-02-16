@@ -30,7 +30,7 @@ module.exports = {
     const templates = [
       'CertificatePolicy',
       'ComplianceOperator',
-      'GatekeeperOperator',
+      // 'GatekeeperOperator',
       'IamPolicy',
       'ImageManifestVulnPolicy',
       'LimitRange',
