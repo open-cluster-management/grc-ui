@@ -35,31 +35,31 @@ spec:
                 sourceNamespace: openshift-marketplace
   - objectDefinition:
       apiVersion: policy.open-cluster-management.io/v1
-        kind: ConfigurationPolicy
-        metadata:
-          name: gatekeeper
-        spec:
-          remediationAction: inform
-          severity: high
-          object-templates:
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: operator.gatekeeper.sh/v1alpha1
-                kind: Gatekeeper
-                metadata:
-                  name: gatekeeper
-                spec:
-                  audit:
-                    logLevel: INFO
-                    replicas: 1
-                  image:
-                    image: 'registry.redhat.io/rhacm2/gatekeeper-rhel8:v3.3.0'
-                  validatingWebhook: Enabled
-                  mutatingWebhook: Disabled
-                  webhook:
-                    emitAdmissionEvents: Enabled
-                    logLevel: INFO
-                    replicas: 2
+      kind: ConfigurationPolicy
+      metadata:
+        name: gatekeeper
+      spec:
+        remediationAction: inform
+        severity: high
+        object-templates:
+          - complianceType: musthave
+            objectDefinition:
+              apiVersion: operator.gatekeeper.sh/v1alpha1
+              kind: Gatekeeper
+              metadata:
+                name: gatekeeper
+              spec:
+                audit:
+                  logLevel: INFO
+                  replicas: 1
+                image:
+                  image: 'registry.redhat.io/rhacm2/gatekeeper-rhel8:v3.3.0'
+                validatingWebhook: Enabled
+                mutatingWebhook: Disabled
+                webhook:
+                  emitAdmissionEvents: Enabled
+                  logLevel: INFO
+                  replicas: 2
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
