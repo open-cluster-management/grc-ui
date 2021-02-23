@@ -11,6 +11,9 @@ else
   source ./build/rbac-setup.sh
 fi
 
+# setup cluster for test
+./build/cluster-setup.sh
+
 #Get env from Docker arguments
 export SELENIUM_CLUSTER=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
 export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
@@ -48,12 +51,13 @@ done
 export PAUSE=${PAUSE:-60}
 echo sleep $PAUSE seconds cypress ...
 sleep $PAUSE
-export CYPRESS_coverage=false
 export CI=true # force cypress to output color
 if [ $FAIL_FAST == "true" ]; then
   echo "Running in fail fast mode"
   npm run test:cypress-headless
 else
+  echo "Running in non fail fast mode"
+  export CYPRESS_FAIL_FAST_PLUGIN=false
   npm run test:cypress-headless || true
 fi
 
