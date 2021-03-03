@@ -273,3 +273,34 @@ Cypress.Commands.add('verifyPolicyViolationDetailsInCluster', (policyName, polic
 Cypress.Commands.add('verifyPolicyViolationDetailsInHistory', (templateName, violations, violationPatterns) => {
   cy.then(() => action_verifyPolicyViolationDetailsInHistory(templateName, violations, violationPatterns))
 })
+
+// must be run on /multicloud/policies/all
+Cypress.Commands.add('verifyCardsOnPolicyListingPage', (cardName, cardValuesDict) => {
+  const numCards = Object.keys(cardValuesDict).length
+  cy.url().should('match', /\/multicloud\/policies\/all[?]?/)
+  // switch to the required card
+  cy.get('#grc-cards-toggle').click()
+  cy.get('div.module-grc-cards').within(() => {
+    cy.get('li').contains(cardName).click()
+  })
+  // check the summary header and counter
+  cy.get('#summary-toggle').within(() => {
+    cy.get('.header-title').contains('Summary')
+    cy.get('.grc-cards-count').contains(new RegExp('^'+numCards+'$'))
+  })
+  // check number of cards displayed
+  cy.get('dd.grc-cards-container').within(() => {
+    cy.get('.card-container').should('have.length', numCards)
+  })
+  // verify all cards
+  for (const [name, violations] of Object.entries(cardValuesDict)) {
+    // find card by name
+    cy.get('.card-name').contains(name).parents('.card-content').within(() => {
+      // verify cluster violations
+      cy.get('div').contains('Cluster violations').prev('div.card-count').contains(violations[0])
+      // verify policy violations
+      cy.get('div').contains('Policy violations').prev('div.card-count').contains(violations[1])
+    })
+  }
+})
+
