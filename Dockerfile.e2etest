@@ -25,7 +25,7 @@ RUN ./build/download-clis.sh
 
 RUN npm install \
     chromedriver \
-    cypress@6.2.1 \
+    cypress@6.6.0 \
     cypress-multi-reporters \
     cypress-terminal-report \
     cypress-wait-until \
