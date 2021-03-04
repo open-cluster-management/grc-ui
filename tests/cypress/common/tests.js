@@ -2,7 +2,8 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 /// <reference types="cypress" />
-import { getDefaultSubstitutionRules, getViolationsPerPolicy, getViolationsCounter } from './views'
+import { getDefaultSubstitutionRules, getViolationsPerPolicy, getViolationsCounter,
+         getClusterViolationsCounterAndPolicyList } from './views'
 import { getConfigObject } from '../config'
 
 
@@ -56,6 +57,27 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
 
     it(`Check enabled policy ${policyName}`, () => {
       cy.verifyPolicyInListing(policyName, confPolicies[policyName], 'enabled', violationsCounter)
+    })
+
+  }
+
+  // verify cluster violation listed on the All policies page, Clusters tab
+  for (const clusterName of clusterList) {
+    const [violationCounter, violatedPolicies] = getClusterViolationsCounterAndPolicyList(clusterName, clusterList, confFileViolationsInform, confPolicies)
+
+    // BEWARE: The check would only work if there were no other policies present on the cluster
+    // if this is not the case, avoid passing violationCounter and violatedPolicies to
+    // waitForClusterViolationsStatus() and verifyClusterViolationsInListing() functions below
+    it('Wait for cluster violation status to become available', () => {
+      // switch to the Clusters tab
+      cy.get('#grc-cluster-view').click()
+        .waitForClusterViolationsStatus(clusterName, violationCounter)
+        //.waitForClusterViolationsStatus(clusterName)
+    })
+
+    it(`Check cluster ${clusterName} violations`, () => {
+      cy.verifyClusterViolationsInListing(clusterName, violationCounter, violatedPolicies)
+      //cy.verifyClusterViolationsInListing(clusterName)
     })
 
   }
@@ -145,6 +167,27 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       it(`Check enabled policy ${policyName}`, () => {
         cy.verifyPolicyInListing(policyName, confPolicies[policyName], 'enabled', violationsCounter)
       })
+
+      // verify cluster violation listed on the All policies page, Clusters tab
+      for (const clusterName of clusterList) {
+        const [violationCounter, violatedPolicies] = getClusterViolationsCounterAndPolicyList(clusterName, clusterList, confFileViolationsEnforce, confPolicies)
+
+        // BEWARE: The check would only work if there were no other policies present on the cluster
+        // if this is not the case, avoid passing violationCounter and violatedPolicies to
+        // waitForClusterViolationsStatus() and verifyClusterViolationsInListing() functions below
+        it('Wait for cluster violation status to become available', () => {
+          // switch to the Clusters tab
+          cy.get('#grc-cluster-view').click()
+            .waitForClusterViolationsStatus(clusterName, violationCounter)
+           //.waitForClusterViolationsStatus(clusterName)
+        })
+
+        it(`Check cluster ${clusterName} violations`, () => {
+          cy.verifyClusterViolationsInListing(clusterName, violationCounter, violatedPolicies)
+          //cy.verifyClusterViolationsInListing(clusterName)
+        })
+
+      }
 
       it(`Verify policy ${policyName} details at the detailed page`, () => {
         cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`).waitForPageContentLoad()
