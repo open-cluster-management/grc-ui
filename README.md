@@ -1,6 +1,6 @@
 # grc-ui [![Build Status](https://travis-ci.com/open-cluster-management/grc-ui.svg?token=1xoYGv8XzWhB2heDk2My&branch=master)](https://travis-ci.com/open-cluster-management/grc-ui)
 
-The UI microservice, `grc-ui`, is the governance and risk dashboard for Red Hat Advanced Cluster Management.
+The UI microservice, `grc-ui`, is the governance and risk dashboard for Red Hat Advanced Cluster Management. (See [`grc-ui-api`](https://github.com/open-cluster-management/grc-ui-api) for the API Server microservice it uses)
 
 ## Design
 
@@ -73,6 +73,8 @@ The UI Platform is developed as an isomorphic react application. View the list o
    npm run build:watch
    npm run start
    ```
+
+   - Start the API server alongside it. See: [`grc-ui-api`](https://github.com/open-cluster-management/grc-ui-api)
 
 5.Open a browser to `https://localhost:3000/multicloud/policies` and log in using your cluster admin credentials.
 
