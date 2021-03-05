@@ -29,7 +29,7 @@ describe('RHACM4K-2342 - GRC UI: [P1][Sev1][policy-grc] Verify create policy wit
       .createPolicyFromYAML(rawPolicyYAML)
     policyNames.push(policyName)
   })
-  it(`Delete created policies`, () => {
+  it('Delete created policies', () => {
     for (const policyName of policyNames) {
        cy.actionPolicyActionInListing(policyName, 'Remove')
        cy.verifyPolicyNotInListing(policyName)
