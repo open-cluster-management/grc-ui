@@ -4,7 +4,7 @@ The UI microservice, `grc-ui`, is the governance and risk dashboard for Red Hat 
 
 ## Design
 
-The UI Platform is developed as an isomorphic react application. View the list of major components that are used to build this service:
+The UI Platform is developed as an isomorphic React application. View the list of major components that are used to build this service:
 
 * NodeJS
 * Express
@@ -36,6 +36,8 @@ The UI Platform is developed as an isomorphic react application. View the list o
    ```
 
 ## Run installation
+
+**SECURITY WARNING:** The GRC UI provides an SSL certificate in `/sslcert` that is open to the public. In order to run this in production, you'll need to replace these certificates. For our production builds, we replace these certificates using its Helm chart.
 
 1. The following environment variables need to be set to point to a running Openshift cluster. Your environment might resemble the following content:
 
