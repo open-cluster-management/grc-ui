@@ -304,3 +304,13 @@ Cypress.Commands.add('verifyCardsOnPolicyListingPage', (cardName, cardValuesDict
   }
 })
 
+// click on the button to set content visibility on or off
+Cypress.Commands.add('toggleVisibilityButton', (buttonSelector, contentSelector, state='') => {
+  cy.get(contentSelector).then($content => {
+    if ((state == '') ||  // either we want to do the switch
+        (state == 'off' && $content.is(':visible')) ||  // or it is visible and we want to hide it
+        (state == 'on' && $content.is(':visible') == false)) {  // or it is hidden and we want to show it
+      cy.get(buttonSelector).click()
+    }
+  })
+})

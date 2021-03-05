@@ -34,9 +34,9 @@ describe('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify summar
 
   // verify toggle button
   it('Verify toggle button does work', () => {
-    cy.get('#summary-toggle').click()
+    cy.toggleVisibilityButton('#summary-toggle', 'dd.grc-cards-container')
       .get('dd.grc-cards-container').should('not.be.visible')
-      .get('#summary-toggle').click()
+      .toggleVisibilityButton('#summary-toggle', 'dd.grc-cards-container')
       .get('dd.grc-cards-container').should('be.visible')
   })
 
