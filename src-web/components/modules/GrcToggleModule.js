@@ -57,7 +57,7 @@ class GrcToggleModule extends React.Component {
     }
     return (
       <div className='grc-toggle'>
-        {showGrcTabToggle && <ToggleGroup className='grc-toggle-button' variant='light'>
+        {showGrcTabToggle && <ToggleGroup className='grc-toggle-button'>
           <ToggleGroupItem
             buttonId={'grc-policies-view'}
             onChange={handleToggleClick}
