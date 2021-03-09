@@ -1,10 +1,11 @@
-# grc-ui [![Build Status](https://travis-ci.com/open-cluster-management/grc-ui.svg?token=1xoYGv8XzWhB2heDk2My&branch=master)](https://travis-ci.com/open-cluster-management/grc-ui)
+# grc-ui
+[![Build Status](https://travis-ci.com/open-cluster-management/grc-ui.svg?token=2jHocNax82kqKsGV1uTE&branch=main)](https://travis-ci.com/open-cluster-management/grc-ui)
 
 The UI microservice, `grc-ui`, is the governance and risk dashboard for Red Hat Advanced Cluster Management. (See [`grc-ui-api`](https://github.com/open-cluster-management/grc-ui-api) for the API Server microservice it uses)
 
 ## Design
 
-The UI Platform is developed as an isomorphic react application. View the list of major components that are used to build this service:
+The UI Platform is developed as an isomorphic React application. View the list of major components that are used to build this service:
 
 * NodeJS
 * Express
@@ -36,6 +37,8 @@ The UI Platform is developed as an isomorphic react application. View the list o
    ```
 
 ## Run installation
+
+**SECURITY WARNING:** The GRC UI provides an SSL certificate in `/sslcert` that is open to the public. In order to run this in production, you'll need to replace these certificates. For our production builds, we replace these certificates using its Helm chart.
 
 1. The following environment variables need to be set to point to a running Openshift cluster. Your environment might resemble the following content:
 
