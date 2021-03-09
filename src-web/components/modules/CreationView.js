@@ -6,7 +6,6 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  ******************************************************************************
-/* Copyright (c) 2020 Red Hat, Inc. */
 'use strict'
 
 import React from 'react'
@@ -246,3 +245,6 @@ const getControlData = (discovered, locale) => {
   }
   return controlData
 }
+/* Copyright (c) 2020 Red Hat, Inc. */
+/* Copyright Contributors to the Open Cluster Management project */
+

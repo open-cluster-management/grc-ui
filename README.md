@@ -1,3 +1,5 @@
+[comment]: # ( Copyright Contributors to the Open Cluster Management project )
+
 # grc-ui
 [![Build Status](https://travis-ci.com/open-cluster-management/grc-ui.svg?token=2jHocNax82kqKsGV1uTE&branch=main)](https://travis-ci.com/open-cluster-management/grc-ui)
 
