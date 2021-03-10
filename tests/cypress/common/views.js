@@ -1284,6 +1284,7 @@ export const verifyPolicyTemplateViolationDetailsForCluster = (policyName, polic
   })
 }
 
+<<<<<<< HEAD
 export const action_verifyClusterViolationsInListing = (clusterName, violationsCounter = '', violatedPolicies = [], targetStatus = null) => {
   if (targetStatus == null) {
     if (violationsCounter && violationsCounter[0] != '[') {
@@ -1332,6 +1333,8 @@ export const getClusterViolationsCounterAndPolicyList = (clusterName, clusterLis
   let counter = 0
   const violatedPolicies = []
   let violationCounter = ''
+=======
+>>>>>>> Updated requested changes
 
   // first we need to find out the proper violationsCounter value by counting violated policies
   for (const policyName in confPolicies) {

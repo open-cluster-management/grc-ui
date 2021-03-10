@@ -4,7 +4,7 @@
 /// <reference types="cypress" />
 
 import { getConfigObject } from '../config'
-import { getDefaultSubstitutionRules, checkPolicyNoResourcesExist } from '../common/views'
+import { getDefaultSubstitutionRules } from '../common/views'
 const substitutionRules = getDefaultSubstitutionRules()
 var policyName = ''
 describe('RHACM4K-2354 - GRC UI: [P1][Sev1][policy-grc] Check existent and non-existent URLs for the policy', () => {
@@ -17,34 +17,34 @@ describe('RHACM4K-2354 - GRC UI: [P1][Sev1][policy-grc] Check existent and non-e
   })
   it('Verify URLs for cluster name and policy that do exist', () => {
     cy.visit('/multicloud/policies/policy/local-cluster/default.'+policyName)
-    checkPolicyNoResourcesExist()
+    .checkPolicyNoResourcesIconMessage()
     cy.visit('/multicloud/policies/policy/local-cluster/default.'+policyName+'/a/b/c')
-    checkPolicyNoResourcesExist()
+    .checkPolicyNoResourcesIconMessage()
   })
   it('Verify URLs for cluster name and policy that dont exist', () => {
     cy.visit('/multicloud/policies/policy/not-a-cluster/not-a-policy')
-    checkPolicyNoResourcesExist(false)
+    .checkPolicyNoResourcesIconMessage(false)
     cy.visit('/multicloud/policies/policy/not-a-cluster/not-a-policy/a/b/c')
-    checkPolicyNoResourcesExist(false)
+    .checkPolicyNoResourcesIconMessage(false)
   })
   it('Verify URLs for Namespace and policy that do exist', () => {
     cy.visit('/multicloud/policies/all/default/'+policyName)
-    checkPolicyNoResourcesExist()
+    .checkPolicyNoResourcesIconMessage()
     cy.visit('/multicloud/policies/all/default/'+policyName+'/a/b/c')
-    checkPolicyNoResourcesExist()
+    .checkPolicyNoResourcesIconMessage()
     cy.visit('/multicloud/policies/all/default/'+policyName+'/yaml')
-    checkPolicyNoResourcesExist()
+    .checkPolicyNoResourcesIconMessage()
     cy.visit('/multicloud/policies/all/default/'+policyName+'/yaml/a/b/c')
-    checkPolicyNoResourcesExist()
+    .checkPolicyNoResourcesIconMessage()
   })
   it('Verify URLs for Namespace and policy that dont exist', () => {
     cy.visit('/multicloud/policies/all/not-a-namespace/not-a-policy')
-    checkPolicyNoResourcesExist(false)
+    .checkPolicyNoResourcesIconMessage(false)
     cy.visit('/multicloud/policies/all/not-a-namespace/not-a-policy/status')
-    checkPolicyNoResourcesExist(false, 'No policy status found')
+    .checkPolicyNoResourcesIconMessage(false, 'No policy status found')
     cy.visit('/multicloud/policies/all/not-a-namespace/not-a-policy/yaml')
-    checkPolicyNoResourcesExist(false, )
+    .checkPolicyNoResourcesIconMessage(false, )
     cy.visit('/multicloud/policies/all/not-a-namespace/not-a-policy/other/a/b/c')
-    checkPolicyNoResourcesExist(false)
+    .checkPolicyNoResourcesIconMessage(false)
   })
 })

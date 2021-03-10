@@ -369,3 +369,16 @@ Cypress.Commands.add('waitForDocumentUpdate', (timeout=5000) => {
 Cypress.Commands.add('verifyClusterViolationsInListing', (clusterName, violationsCounter, violatedPolicies) => {
   cy.then(() => action_verifyClusterViolationsInListing(clusterName, violationsCounter, violatedPolicies))
 })
+// To check the no resoures icon and message
+Cypress.Commands.add('checkPolicyNoResourcesIconMessage', (present=true, message='Resource not found') => {
+  if(present)
+  {
+    cy.get('.no-resource-title').should('not.exist')
+    cy.get('img[alt="No resource"]').should('not.exist')
+  }
+  else
+  {
+    cy.get('.no-resource-title').should('contain', message)
+    cy.get('img[alt="No resource"]').should('exist')
+  }
+})
