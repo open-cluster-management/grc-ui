@@ -41,7 +41,7 @@ const diagramIconsInfoStr = '#diagramIcons_info'
 // Regex to test valid policy name format
 // (253 allowable characters, but we have a 'placement-' prefix for PlacementRule,
 // so we're limiting the name input to 243 characters)
-const policyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,241}[a-z0-9]$/)
+const policyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,43}[a-z0-9]$/)
 export default class TemplateEditor extends React.Component {
 
   static propTypes = {
