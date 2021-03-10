@@ -22,16 +22,14 @@ const rawPolicyYAML = getConfigObject('policy_form_update_per_YAML/policy-raw.ya
       .simpleYAMLupdate(/controls:.*/, 'controls: PR.DS-1 Data-at-rest', 9)
       .simpleYAMLupdate('inform', 'enforce', 11)
       .simpleYAMLupdate('false', 'true', 12)
-      // wait for form update
-      .wait(1000)
+      .waitForDocumentUpdate()
       .verifyCreatePolicySelection('updated-iam-policy', policyConf['updated-iam-policy'])
   })
 
   it('Check form is updated when whole policy YAML is pasted into YAML editor', () => {
     cy.log(rawPolicyYAML)
       .createPolicyFromYAML(rawPolicyYAML, false)
-      // wait for form update
-      .wait(1000)
+      .waitForDocumentUpdate()
       .verifyCreatePolicySelection('full-yaml-policy', policyConf['full-yaml-policy'])
   })
 

@@ -341,3 +341,13 @@ Cypress.Commands.add('simpleYAMLupdate', (regExp='', text='', lineNumber) => {
       }
     })
 })
+
+// wait for document.lastModified timestamp to change, but at most $timeout miliseconds, just in case
+// we have already missed the update
+// command can be used instead of cy.wait()
+Cypress.Commands.add('waitForDocumentUpdate', (timeout=5000) => {
+  cy.document().then($doc => {
+    const lastUpdate = $doc.lastModified  // save current timestamp
+    cy.waitUntil(() => { return cy.document().its('lastModified').then($newUpdate => $newUpdate != lastUpdate) }, {'interval': 200, 'timeout':timeout})
+  })
+})
