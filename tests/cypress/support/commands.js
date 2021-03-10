@@ -10,7 +10,8 @@ import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, is
          action_verifyPlacementRuleInPolicyDetails, action_verifyPlacementBindingInPolicyDetails,
          action_verifyViolationsInPolicyStatusClusters, action_verifyViolationsInPolicyStatusTemplates,
          action_verifyPolicyDetailsInCluster, action_verifyPolicyTemplatesInCluster,
-         action_verifyPolicyViolationDetailsInCluster, action_verifyPolicyViolationDetailsInHistory
+         action_verifyPolicyViolationDetailsInCluster, action_verifyPolicyViolationDetailsInHistory,
+         action_verifyCreatePolicySelection
 } from '../common/views'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
@@ -315,4 +316,28 @@ Cypress.Commands.add('toggleVisibilityButton', (buttonSelector, contentSelector,
       cy.get(buttonSelector).click()
     }
   })
+})
+
+Cypress.Commands.add('verifyCreatePolicySelection', (policyName, policyConf) => {
+  cy.then(() => action_verifyCreatePolicySelection(policyName, policyConf))
+})
+
+Cypress.Commands.add('simpleYAMLupdate', (regExp='', text='', lineNumber) => {
+  cy.YAMLeditor()
+    .then($ed => {
+      const line = $ed.getLineContent(lineNumber)
+      const newLine = line.replace(regExp, text)
+      if (line != newLine) {
+        $ed.pushEditOperations([],
+          [{
+            range: {
+              startColumn: 1,
+              endColumn: line.length + 1,
+              startLineNumber: lineNumber,
+              endLineNumber: lineNumber
+            },
+            text: newLine
+          }])
+      }
+    })
 })

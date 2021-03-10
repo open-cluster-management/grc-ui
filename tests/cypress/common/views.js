@@ -248,6 +248,90 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
     })
 }
 
+// this function verify whether create policy form contain values matching the policy configuration
+// oldPolicyName is used only to wait for a form update (since we cannot use wait() )
+export const action_verifyCreatePolicySelection = (policyName, policyConfig) => {
+  // first wait for the form update
+  //cy.get('#name').invoke('val').should('not.match', /policy-grc/)
+  // now check the updated policy name
+  cy.get('#name').invoke('val').should('match', new RegExp('^'+policyName+'$'))
+  // namespace
+  if (policyConfig['namespace']) {
+    cy.get('div[aria-label="namespace"]').contains(new RegExp('^'+policyConfig['namespace']+'$'))
+  }
+  //specs
+  if (policyConfig['specifications']) {
+    cy.then(() => {
+        verifyItemsChecked(policyConfig['specifications'], '.bx--multi-select[aria-label="specs"]')
+      })
+      // also check that the number of selected items matches
+      .get('.bx--multi-select[aria-label="specs"]').within(() => {
+        cy.get('div[title="Clear all selected items"]').contains(new RegExp('[^0-9]?'+policyConfig['specifications'].length+'[^0-9]?'))
+      })
+  }
+  // cluster binding
+  if (policyConfig['cluster_binding']) {
+    cy.then(() => {
+        verifyItemsChecked(policyConfig['cluster_binding'], '.bx--multi-select[aria-label="clusters"]')
+      })
+      // also check that the number of selected items matches
+      .get('.bx--multi-select[aria-label="clusters"]').within(() => {
+        cy.get('div[title="Clear all selected items"]').contains(new RegExp('[^0-9]?'+policyConfig['cluster_binding'].length+'[^0-9]?'))
+      })
+  }
+  // standards
+  if (policyConfig['standards']) {
+    cy.then(() => {
+        verifyItemsChecked(policyConfig['standards'], '.bx--multi-select[aria-label="standards"]')
+      })
+      // also check that the number of selected items matches
+      .get('.bx--multi-select[aria-label="standards"]').within(() => {
+        cy.get('div[title="Clear all selected items"]').contains(new RegExp('[^0-9]?'+policyConfig['standards'].length+'[^0-9]?'))
+      })
+  }
+  // categories
+  if (policyConfig['categories']) {
+    cy.then(() => {
+        verifyItemsChecked(policyConfig['categories'], '.bx--multi-select[aria-label="categories"]')
+      })
+      // also check that the number of selected items matches
+      .get('.bx--multi-select[aria-label="categories"]').within(() => {
+        cy.get('div[title="Clear all selected items"]').contains(new RegExp('[^0-9]?'+policyConfig['categories'].length+'[^0-9]?'))
+      })
+  }
+  // controls
+  if (policyConfig['controls']) {
+    cy.then(() => {
+        verifyItemsChecked(policyConfig['controls'], '.bx--multi-select[aria-label="controls"]')
+      })
+      // also check that the number of selected items matches
+      .get('.bx--multi-select[aria-label="controls"]').within(() => {
+        cy.get('div[title="Clear all selected items"]').contains(new RegExp('[^0-9]?'+policyConfig['controls'].length+'[^0-9]?'))
+      })
+  }
+  // enforce
+  if (policyConfig['enforce']) {
+    cy.then(() => {
+      if (policyConfig['enforce']) {
+        cy.get('input[aria-label="enforce"][type="checkbox"]').should('be.checked')
+      } else {
+        cy.get('input[aria-label="enforce"][type="checkbox"]').should('not.be.checked')
+      }
+    })
+  }
+  // disable
+  if (policyConfig['disable']) {
+    cy.then(() => {
+      if (policyConfig['disable']) {
+        cy.get('input[aria-label="disabled"][type="checkbox"]').should('be.checked')
+      } else {
+        cy.get('input[aria-label="disabled"][type="checkbox"]').should('not.be.checked')
+      }
+    })
+  }
+}
+
+
 // enabled='enabled', checking if policy is enabled; enabled='disabled', checking if policy is disabled
 // targetStatus = 0, don't check policy status; targetStatus = 1, check policy status is non-violation
 // targetStatus = 2, check policy status is violation; targetStatus = 3, check policy status is pending
