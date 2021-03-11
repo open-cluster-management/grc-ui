@@ -15,6 +15,12 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
   // policy-config is used for policy creation and validation
   const confPolicies = getConfigObject(confFilePolicy, 'yaml', substitutionRules)
 
+  // first check there are no policies, otherwise numbers won't match
+  it('Verify there are no policies present', () => {
+    cy.get('div.no-resource')  // there should be no-resource element
+      .get('.grc-view-by-policies-table').should('not.exist')  // there should not be policy table
+  })
+
   for (const policyName in confPolicies) {
 
     it(`Create new policy ${policyName} using the form`, () => {
