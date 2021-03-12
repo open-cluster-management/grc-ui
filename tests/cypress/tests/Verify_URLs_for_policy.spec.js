@@ -8,11 +8,10 @@ import { getDefaultSubstitutionRules } from '../common/views'
 
 describe('RHACM4K-2354 - GRC UI: [P1][Sev1][policy-grc] Check existent and non-existent URLs for the policy', () => {
   const substitutionRules = getDefaultSubstitutionRules()
-  let policyName = ''
+  const confFilePolicy = 'duplicatePolicyInDiffNS/create_ns_template.yaml'
+  const rawPolicyYAML = getConfigObject(confFilePolicy, 'raw', substitutionRules)
+  const policyName = rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
   it('Create policy for the URL visit', () => {
-    const confFilePolicy = 'duplicatePolicyInDiffNS/create_ns_template.yaml'
-    const rawPolicyYAML = getConfigObject(confFilePolicy, 'raw', substitutionRules)
-    policyName = rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
     cy.visit('/multicloud/policies/create').waitForPageContentLoad()
       .createPolicyFromYAML(rawPolicyYAML)
   })
