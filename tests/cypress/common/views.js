@@ -1283,9 +1283,7 @@ export const verifyPolicyTemplateViolationDetailsForCluster = (policyName, polic
     }
   })
 }
-<<<<<<< HEAD
 
-<<<<<<< HEAD
 export const action_verifyClusterViolationsInListing = (clusterName, violationsCounter = '', violatedPolicies = [], targetStatus = null) => {
   if (targetStatus == null) {
     if (violationsCounter && violationsCounter[0] != '[') {
