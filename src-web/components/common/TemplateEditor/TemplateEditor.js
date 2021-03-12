@@ -41,8 +41,7 @@ import _ from 'lodash'
 const tempCookie = 'template-editor-open-cookie'
 const diagramIconsInfoStr = '#diagramIcons_info'
 // Regex to test valid policy name format
-// (253 allowable characters, but we have a 'placement-' prefix for PlacementRule,
-// so we're limiting the name input to 243 characters)
+// (it's 63 characters for `${policyNS}.${policyName}`)
 const policyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,63}[a-z0-9]$/)
 export default class TemplateEditor extends React.Component {
 
