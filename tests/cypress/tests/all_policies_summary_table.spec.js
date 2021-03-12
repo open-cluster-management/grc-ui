@@ -59,13 +59,14 @@ describe('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify summar
         'NIST-CSF': [/[0-9]+\/[0-9]+/, /[0-9]+\/[0-9]+/],
         'FISMA': [/[0-9]+\/[0-9]+/, /[0-9]+\/[0-9]+/]
       }
+      cy.verifyCardsOnPolicyListingPage('Standards', violationCounters, true)
     } else {
       violationCounters = {
         'NIST-CSF': [`${clusterCount}/${clusterCount}`, `${2*clusterCount}/${2*clusterCount}`],
         'FISMA': [`${clusterCount}/${clusterCount}`, `${clusterCount}/${clusterCount}`]
       }
+      cy.verifyCardsOnPolicyListingPage('Standards', violationCounters)
     }
-    cy.verifyCardsOnPolicyListingPage('Standards', violationCounters)
   })
 
   it('Verify the content of Categories card', () => {
@@ -76,14 +77,15 @@ describe('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify summar
         'PR.DS Data Security': [/[0-9]+\/[0-9]+/, /[0-9]+\/[0-9]+/],
         'PR.IP Information Protec...rocesses and Procedures': [/[0-9]+\/[0-9]+/, /[0-9]+\/[0-9]+/],
       }
+      cy.verifyCardsOnPolicyListingPage('Categories', violatonCounters, true)
     } else {
       violatonCounters = {
         'PR.AC Identity Management and Access Control': [`${clusterCount}/${clusterCount}`, `${clusterCount}/${clusterCount}`],
         'PR.DS Data Security': [`${clusterCount}/${clusterCount}`, `${clusterCount}/${clusterCount}`],
         'PR.IP Information Protec...rocesses and Procedures': [`${clusterCount}/${clusterCount}`, `${clusterCount}/${clusterCount}`],
       }
+      cy.verifyCardsOnPolicyListingPage('Categories', violatonCounters)
     }
-    cy.verifyCardsOnPolicyListingPage('Categories', violatonCounters)
   })
 
   // delete created policies at the end
