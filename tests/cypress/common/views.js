@@ -1309,7 +1309,7 @@ export const action_verifyClusterViolationsInListing = (clusterName, violationsC
       if (violationsCounter) {
         cy.wrap(violations.textContent).should('match', new RegExp('^'+violationsCounter+'$'))
       } else {
-        cy.wrap(violations.textContent).should('match', new RegExp('^[0-9]+\/[0-9]+$'))
+        cy.wrap(violations.textContent).should('match', /^[0-9]+\/[0-9]+$/)
       }
       // check violated policies
       // in fact there is no sense checking it precisely since policy listing woudl be truncated in the UI
