@@ -11,7 +11,7 @@ const glob = require('glob')
 const path = require('path')
 const getConfig = require('../config').getConfig
 const configFiles = glob.sync(path.join(__dirname, '../config/**/*'), {nodir:true, ignore:[path.join(__dirname, '../config/index.js')]})
-const tagify = require('cypress-tags');
+const tagify = require('cypress-tags')
 
 module.exports = (on, config) => {
   require('@cypress/code-coverage/task')(on, config)
