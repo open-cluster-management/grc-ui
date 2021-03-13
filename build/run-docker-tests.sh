@@ -27,7 +27,6 @@ export SKIP_LOG_DELETE=${SKIP_LOG_DELETE:-true}
 export DISABLE_CANARY_TEST=${DISABLE_CANARY_TEST:-false}
 export FAIL_FAST=${FAIL_FAST:-false}
 
-
 # show all envs
 printenv
 # test oauth server and see if idp has been setup
@@ -55,7 +54,7 @@ echo sleep $PAUSE seconds cypress ...
 sleep $PAUSE
 export CI=true # force cypress to output color
 # Check for standalone test suite flag to loosen tests if there are other policies present from concurrent tests
-if [ ${STANDALONE_TESTSUITE_EXECUTION} == "false" ]; then
+if [ "${STANDALONE_TESTSUITE_EXECUTION}" == "false" ]; then
   export CYPRESS_STANDALONE_TESTSUITE_EXECUTION="FALSE"
 fi
 # Check for fail_fast flag to stop tests on failure
