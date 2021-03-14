@@ -31,6 +31,7 @@ RUN npm install \
     cypress-wait-until \
     cypress-fail-fast \
     cypress-tags \
+    typescript \
     @cypress/code-coverage \
     mocha \
     mocha-junit-reporter \
