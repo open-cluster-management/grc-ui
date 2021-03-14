@@ -58,10 +58,11 @@ module.exports = {
     const time = browser.globals.time
     common.log('Checking RegEx validation of policy name')
     const regexErrMsg = 'Invalid name due to Kubernetes naming restriction.\nThe name must meet the following requirements:\n• the combined length of namespace and policy name should not exceed than 63 characters\n• contain only lowercase alphanumeric characters, \'-\' or \'.\'\n• start with an alphanumeric character\n• end with an alphanumeric character'
+    const regexErrMsgShort = 'Invalid name: should only have lowercase alphanumeric characters, \'-\', or \'.\' and not begin or end with punctuation'
     page.createTestPolicy(false, {policyName: 'this-is-n,ot-a-valid-name'})
     page.checkCreateNotification(regexErrMsg)
     page.createTestPolicy(false, {policyName: '-this-is-not-a-valid-name'})
-    page.checkCreateNotification(regexErrMsg)
+    page.checkCreateNotification(regexErrMsgShort)
     page.createTestPolicy(false, {policyName: 'this-is-not-a-valid-name-'})
     page.checkCreateNotification(regexErrMsg)
     page.createTestPolicy(false, {policyName: 'this-is-a-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-long-name-that-is-too-long-and-should-not-work-when-its-put-into-the-name-field'})
