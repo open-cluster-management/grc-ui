@@ -67,7 +67,7 @@ module.exports = {
     page.checkCreateNotification(regexErrMsg)
     page.createTestPolicy(false, {policyName: 'this-is-a-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-long-name-that-is-too-long-and-should-not-work-when-its-put-into-the-name-field'})
     page.checkCreateNotification(regexErrMsg)
-    page.createTestPolicy(false, {policyName: 'this-is-a---really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-really-long-valid-name-that-should-work-when-its-put-into-the-name-field'})
+    page.createTestPolicy(false, {policyName: 'this-is-a-long-name'})
     page.checkCreateNotification(regexErrMsg, false)
     common.log('Checking duplicate name and missing field notifications')
     page.verifyCreateNotifications(`duplicate-policy-${time}`)
