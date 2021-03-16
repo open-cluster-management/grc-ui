@@ -18,7 +18,8 @@ describe('RHACM4K-2349 - GRC UI: [P1][Sev1][policy-grc] Create policy page: Chec
                          ['othis-is-41-characters-long-policy-name-xx', 'open-cluster-management', errorMsg],  // name+namespace = 64 characters (now 65)
                          ['this-is-'+'very-'.repeat(20)+'long-policy-name', 'default', errorMsg],  // name+namespace is really long
                        ]
-  const longestValidName = 'this-is-56-characters-long-policy-name-xxxxxxxxxxxxxxxxx'
+  //const longestValidName = 'this-is-56-characters-long-policy-name-xxxxxxxxxxxxxxxxx'  // again, see bz#1939409#c1
+  const longestValidName = 'this-is-55-characters-long-policy-name-xxxxxxxxxxxxxxxx'
 
   it('Check that invalid policy name pattern issues an error', () => {
     cy.FromGRCToCreatePolicyPage()
@@ -41,6 +42,7 @@ describe('RHACM4K-2349 - GRC UI: [P1][Sev1][policy-grc] Create policy page: Chec
 
   it('Cleanup: delete previously created policy', () => {
     cy.visit('/multicloud/policies')
+      .waitForPolicyStatus(longestValidName)  // wait for policy status to make sure we are deleting it also with binding
       .actionPolicyActionInListing(longestValidName, 'Remove')  // using that long name here seems to make some problems in the cypress code
   })
 
