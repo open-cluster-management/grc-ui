@@ -33,13 +33,14 @@ const targetAPIGroups = [
   'policy.open-cluster-management.io',
   'apps.open-cluster-management.io',
 ]
+const appJson = 'application/json'
 
 const getUserNamespaces = (auth, cb) => {
   const options = {
     url: `${config.get('API_SERVER_URL')}/apis/project.openshift.io/v1/projects`,
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      'Content-Type': appJson,
+      'Accept': appJson,
       'Authorization': auth
     },
     json: true
@@ -54,7 +55,7 @@ const getUserNamespaces = (auth, cb) => {
     userNamespaces = userNamespaces
       ? userNamespaces.map(item => ({ Name: item.metadata.name }))
       : []
-    cb(err, userNamespaces)
+    return cb(err, userNamespaces)
   })
 }
 
@@ -78,8 +79,8 @@ async function getUserAccess(authorizationToken, singleNS, apiGroups, rawDataFla
     url: `${config.get('API_SERVER_URL')}${k8sAPI}/selfsubjectrulesreviews`,
     json: true,
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      'Content-Type': appJson,
+      'Accept': appJson,
       Authorization: authorizationToken
     },
     body: {
@@ -100,13 +101,13 @@ async function getUserAccess(authorizationToken, singleNS, apiGroups, rawDataFla
   })
 }
 
-const getUserAccessInfo = (authorizationToken, targetAPIGroups, rawDataFlag, namespaces, cb) => {
+const getUserAccessInfo = (authorizationToken, trgtAPIGroups, rawDataFlag, namespaces, cb) => {
   const userAllNS = nsFormatter(namespaces)
   const userAccessReq = []
   userAllNS.forEach((singleNS) => {// each element binds with one NS then parallelly call whole array
     userAccessReq.push(
       new Promise((resolve, reject) => {
-        return getUserAccess(authorizationToken, singleNS, targetAPIGroups, rawDataFlag, resolve, reject)
+        return getUserAccess(authorizationToken, singleNS, trgtAPIGroups, rawDataFlag, resolve, reject)
       })
     )
   })
@@ -121,8 +122,8 @@ const getUserAccessInfo = (authorizationToken, targetAPIGroups, rawDataFlag, nam
   )
 }
 
-function userAccessFormatter(accessInfo, apiGroups, singleNS, rawDataFlag) {
-  const targetAPIGroups = new Set(apiGroups)
+function userAccessFormatter(accessInfo, apiGrps, singleNS, rawDataFlag) {
+  const trgtAPIGroups = new Set(apiGrps)
   const singleNSAccess ={
     namespace: singleNS,
     rules: {},
@@ -138,7 +139,7 @@ function userAccessFormatter(accessInfo, apiGroups, singleNS, rawDataFlag) {
         const apiGroups = _.compact(resourceRule.apiGroups)
         resourceRule.apiGroups.length > 0 && apiGroups.forEach((api) => {
           // no matter if user want *, always return these special cases
-          if (Array.isArray(resourceRule.resources) && (targetAPIGroups.has(api) || api === '*')) {
+          if (Array.isArray(resourceRule.resources) && (trgtAPIGroups.has(api) || api === '*')) {
             const resources = _.compact(resourceRule.resources)
             const verbs = _.compact(resourceRule.verbs)
             resourceRule.resources.length > 0 && resources.forEach((resource) => {
@@ -172,9 +173,9 @@ router.get('*', (req, res) => {
     if (err) {
       return res.status(err.statusCode || 500).send(err.details)
     }
-    getUserAccessInfo(auth, targetAPIGroups, null, userNS, (err, ua) => {
+    getUserAccessInfo(auth, targetAPIGroups, null, userNS, (uaErr, ua) => {
       if (err) {
-        return res.status(err.statusCode || 500).send(err.details)
+        return res.status(uaErr.statusCode || 500).send(uaErr.details)
       }
       userAccess = ua
       access = access === undefined ? require('../../src-web/actions/access') : access
@@ -188,7 +189,7 @@ router.get('*', (req, res) => {
       App = App === undefined ? require('../../src-web/containers/App').default : App
 
       const fetchHeaderContext = getContext(req)
-      fetchHeader(req, res, store, fetchHeaderContext)
+      return fetchHeader(req, res, store, fetchHeaderContext)
     })
   })
 })

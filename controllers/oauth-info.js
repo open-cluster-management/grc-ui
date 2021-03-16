@@ -7,6 +7,6 @@ module.exports.oauthInfo = (req, res) => {
     if(err) {
       return res.status(500).send(err)
     }
-    res.status(200).json({ token_endpoint: response['token_endpoint'] })
+    return res.status(200).json({ token_endpoint: response['token_endpoint'] })
   })
 }

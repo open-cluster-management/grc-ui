@@ -21,14 +21,12 @@ module.exports.userInfo = (req, res) => {
       return res.status(401).send('The request is unauthorized, no token provided.')
     }
 
-    userInfoClient.getUserInfo(req, token, (err, response, body) => {
+    return userInfoClient.getUserInfo(req, token, (err, response, body) => {
         if (err) {
-            console.log('--- ERROR ----')
-            console.log(err)
             return res.status(500).send(err.details)
-        } if (body && body.status && body.status.error) {
+        } else if (body && body.status && body.status.error) {
             return res.status(401).send(body.status.error)
-        } if (body && body.status && body.status.user) {
+        } else if (body && body.status && body.status.user) {
             const name = body.status.user.username ? body.status.user.username : ''
             return res.status(200).json({ username: name })
         }

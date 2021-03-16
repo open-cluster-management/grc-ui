@@ -7,6 +7,6 @@ module.exports.version = (req, res) => {
     if(err) {
       return res.status(500).send(err)
     }
-    res.status(200).json({ version: response.status.currentVersion })
+    return res.status(200).json({ version: response.status.currentVersion })
   })
 }

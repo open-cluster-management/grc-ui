@@ -17,13 +17,11 @@ resources(() => {
 })
 // without curly braces means component with redux
 // eslint-disable-next-line import/no-named-as-default
-import { Route } from 'react-router-dom'
 import client from '../../lib/shared/client'
 import config from '../../lib/shared/config'
-import { AcmHeader } from '@open-cluster-management/ui-components'
 import msgs from '../../nls/platform.properties'
 
-class WelcomeStatic extends React.Component {
+export default class WelcomeStatic extends React.Component {
 
   constructor(props) {
     super(props)
@@ -178,17 +176,6 @@ class WelcomeStatic extends React.Component {
                 <p className='welcome--connect__section-title'>{msgs.get('welcome.connect.box.two.title.one', locale)}</p>
                 <p className='welcome--connect__section-body'>{msgs.get('welcome.connect.box.two.title.two', locale)}</p>
                 <p className='connect-coming-soon'>{msgs.get('welcome.connect.box.coming.soon')}</p>
-                {/* <a
-                target='slack'
-                href='http://ibm.biz/BdsHmN'
-                className='bx--link'
-                aria-describedby='launchWindow'>{
-                  msgs.get(welcomeBoxLinkStr, locale)}
-                  <img
-                  className='welcome--connect__section-launch'
-                  src={`${config.contextPath}/graphics/arrow-right.svg`}
-                  alt={msgs.get(welcomeBoxLinkStr, locale)} />
-                </a> */}
               </div>
               <div className='welcome--connect__section'>
                 <img
@@ -218,11 +205,3 @@ class WelcomeStatic extends React.Component {
     )
   }
 }
-
-// eslint-disable-next-line react/display-name
-export default props => (
-  // eslint-disable-next-line react/prop-types
-  <AcmHeader urlpath={client ? window.location.pathname : props.url} href="/" target="_self">
-    <Route path={'/multicloud/welcome'} serverProps={props} component={WelcomeStatic} />
-  </AcmHeader>
-)
