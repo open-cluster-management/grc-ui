@@ -1144,9 +1144,9 @@ Object {
       "one",
     ],
     Array [
-      "one",
-      "two",
       "a",
+      "two",
+      "k",
       "four",
       "two",
     ],
@@ -1179,9 +1179,9 @@ Object {
       "six",
     ],
     Array [
-      "a",
+      "one",
       "two",
-      "k",
+      "a",
       "four",
       "seven",
     ],
