@@ -1377,3 +1377,9 @@ export const getClusterViolationsCounterAndPolicyList = (clusterName, clusterLis
   }
   return [ violationCounter, violatedPolicies]
 }
+
+// parse policy name from a raw policy YAML
+// returns string
+export const parsePolicyNameFromYAML = (rawPolicyYAML) => {
+  return rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
+}
