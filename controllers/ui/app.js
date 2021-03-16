@@ -103,10 +103,10 @@ async function getUserAccess(authorizationToken, singleNS, apiGroups, rawDataFla
 const getUserAccessInfo = (authorizationToken, targetAPIGroups, rawDataFlag, namespaces, cb) => {
   const userAllNS = nsFormatter(namespaces)
   const userAccessReq = []
-  userAllNS.map((singleNS) => {// each element binds with one NS then parallelly call whole array
+  userAllNS.forEach((singleNS) => {// each element binds with one NS then parallelly call whole array
     userAccessReq.push(
       new Promise((resolve, reject) => {
-        getUserAccess(authorizationToken, singleNS, targetAPIGroups, rawDataFlag, resolve, reject)
+        return getUserAccess(authorizationToken, singleNS, targetAPIGroups, rawDataFlag, resolve, reject)
       })
     )
   })

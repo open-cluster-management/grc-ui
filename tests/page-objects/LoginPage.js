@@ -21,10 +21,10 @@ module.exports = {
     password: '#inputPassword',
     submit: 'button[type="submit"]',
     error: '.bx--inline-notification--error',
-    header: '.app-header',
+    header: '.pf-c-page__header',
     loginForm: 'form[role="form"]',
     spinner: '.patternfly-spinner',
-    userDropdown: '#acm-user-dropdown > .dropdown-container > .header-action-trigger',
+    userDropdown: '.pf-c-app-launcher.pf-m-align-right.co-app-launcher.co-user-menu',
     logout: '#logout'
   },
   commands: [{
@@ -87,7 +87,7 @@ function submit() {
 function waitForLoginSuccess(name) {
   this.waitForElementPresent('@header')
   this.waitForElementNotPresent('@spinner')
-  this.expect.element('.header-user-info-dropdown').text.to.equal(name)
+  this.expect.element('.co-username').text.to.equal(name)
 }
 
 function waitForLoginForm(rbac_user) {
