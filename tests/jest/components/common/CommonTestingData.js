@@ -3965,7 +3965,7 @@ export const staticResourceDataPolicyOverview = {
             'type': 'i18n'
           },
           {
-            'resourceKey': 'enforcement'
+            'resourceKey': 'remediation'
           }
         ]
       },
@@ -4064,7 +4064,7 @@ export const staticResourceDataPolicyOverview = {
             'type': 'i18n'
           },
           {
-            'resourceKey': 'enforcement'
+            'resourceKey': 'remediation'
           }
         ]
       },
@@ -6190,7 +6190,7 @@ export const staticResourceDataPolicyCluster = {
             'type':'i18n'
           },
           {
-            'resourceKey':'enforcement'
+            'resourceKey':'remediation'
           }
         ]
       },
@@ -6276,7 +6276,7 @@ export const staticResourceDataPolicyCluster = {
             'type':'i18n'
           },
           {
-            'resourceKey':'enforcement'
+            'resourceKey':'remediation'
           }
         ]
       }
@@ -6423,7 +6423,7 @@ export const policiesClusterDetail = [
       'uid':'21615207-e76f-49ab-ba52-9af6c8a8f833',
       '__typename':'Metadata'
     },
-    'enforcement':'inform',
+    'remediation':'inform',
     'raw':{
       'apiVersion':'policy.open-cluster-management.io/v1',
       'kind':'Policy',
