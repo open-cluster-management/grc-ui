@@ -11,17 +11,13 @@
 
 'use strict'
 
-const ReactDOMServer = require('react-dom/server'),
-      thunkMiddleware = require('redux-thunk').default,
+const thunkMiddleware = require('redux-thunk').default,
       redux = require('redux'),
-      React = require('react'),
       express = require('express'),
-      StaticRouter = require('react-router-dom').StaticRouter,
       context = require('../../lib/shared/context'),
       msgs = require('../../nls/platform.properties'),
       config = require('../../config'),
       appUtil = require('../../lib/server/app-util'),
-      Provider = require('react-redux').Provider,
       router = express.Router({ mergeParams: true }),
       request = require('../../lib/server/request')
 
@@ -198,17 +194,6 @@ function fetchHeader(req, res, store, ctx) {
 
   res.render('home', Object.assign({
     manifest: appUtil.app().locals.manifest,
-    content: ReactDOMServer.renderToString(
-      <Provider store={store}>
-        <StaticRouter
-          location={req.originalUrl}
-          context={ctx}>
-          <App
-            url={req.originalUrl}
-          ></App>
-        </StaticRouter>
-      </Provider>
-    ),
     contextPath: config.get('contextPath'),
     headerContextPath: config.get('headerContextPath'),
     state: store.getState(),

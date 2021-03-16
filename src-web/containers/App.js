@@ -27,7 +27,7 @@ import Modal from '../components/common/Modal'
 import GrcRouter from './GrcRouter'
 import loadable from '@loadable/component'
 import { LocaleContext } from '../components/common/LocaleContext'
-import { AcmHeader } from '@open-cluster-management/ui-components'
+import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
 
 export const ResourceToolbar = loadable(() => import(/* webpackChunkName: "ResourceToolbar" */ '../components/common/ResourceToolbar'))
@@ -74,10 +74,23 @@ class App extends React.Component {
   }
 }
 
+const getAcmRoute = (props) => {
+  let path = ''
+  if (client) {
+    path = window.location.pathname
+  } else {
+    path = props.url
+  }
+  if (path.includes(config.contextPath)) {
+    return AcmRoute.GovernRisk
+  }
+  return AcmRoute.Welcome
+}
+
 // eslint-disable-next-line react/display-name
 export default props => (
   // eslint-disable-next-line react/prop-types
-  <AcmHeader urlpath={client ? window.location.pathname : props.url} href="/" target="_self">
+  <AcmHeader route={getAcmRoute(props)} >
     <Route path={config.contextPath} serverProps={props} component={App} />
     <Route path={'/multicloud/welcome'} serverProps={props} component={WelcomeStatic} />
   </AcmHeader>

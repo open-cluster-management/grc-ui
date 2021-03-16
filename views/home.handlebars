@@ -2,6 +2,7 @@
 
 <body class="bx--global-light-ui" aria-label={{title}}>
     {{!-- <div id="header">{{{header}}}</div> --}}
+    <input type="hidden" id="app-access" value={{props.xsrfToken}}>
     <div id="page">{{{content}}}</div>
     {{{body}}}
     {{!-- <script charset="UTF-8">window.__PRELOADED_STATE__= {{{json stateH}}}</script> --}}
