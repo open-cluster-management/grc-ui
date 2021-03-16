@@ -263,9 +263,6 @@ export default class TemplateEditor extends React.Component {
   renderNotifications() {
     const { locale } = this.props
     let { updateMessage, updateMsgKind } = this.state
-    if (updateMessage.message && typeof updateMessage.message === 'string') {
-      updateMessage = updateMessage.message
-    }
     const { validPolicyName, duplicateName } = this.state
     // If the name is duplicate and there are no other errors, display an alert
     if ((!updateMessage || updateMsgKind === 'success') && duplicateName) {
