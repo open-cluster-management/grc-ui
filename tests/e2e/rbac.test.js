@@ -44,7 +44,7 @@ module.exports = {
     loginPage.navigate()
     loginPage.authenticate()
     // Create policies for RBAC testing and save names for deletion later
-    policyName = `rbac-policy-test-${browser.globals.time}`
+    policyName = `rbac-${browser.globals.time}`
     const ns = 'e2e-rbac-test'
     for (let i = 1; i <= 2; i++) {
       namespaces.push(`${ns}-${i}`)
