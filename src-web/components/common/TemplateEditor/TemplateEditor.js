@@ -361,7 +361,7 @@ export default class TemplateEditor extends React.Component {
       const radioButtons=[]
       available.forEach((item) => {
         radioButtons.push(<RadioButton
-          aria-label={id}
+          aria-label={`${id}-${item}`}
           id={`${id}-${item}`}
           key={`${id}-${item}`}
           className='radio-button'
