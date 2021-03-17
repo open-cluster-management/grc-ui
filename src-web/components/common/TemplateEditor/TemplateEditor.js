@@ -284,7 +284,7 @@ export default class TemplateEditor extends React.Component {
 
       return <div role='button' onClick={handleClick}
         tabIndex="0" aria-label={updateMessage} onKeyDown={handleKeyPress}>
-        <div  >
+        <div>
           <Notification
             key={updateMessage}
             kind={updateMsgKind}
