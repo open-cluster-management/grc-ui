@@ -799,8 +799,8 @@ class YamlParser {
           key = new YamlInline().parseScalar(values.key)
         } catch (e) {
           if (e instanceof YamlParseException) {
-            e.setParsedLine(this.getRealCurrentLineNb() + 1)
-            e.setSnippet(this.currentLine)
+            e.parsedLine = this.getRealCurrentLineNb() + 1
+            e.snippet = this.currentLine
           }
           throw e
         }
@@ -900,8 +900,8 @@ class YamlParser {
             value = new YamlInline().parse(this.lines[0])
           } catch (e) {
             if (e instanceof YamlParseException) {
-              e.setParsedLine(this.getRealCurrentLineNb() + 1)
-              e.setSnippet(this.currentLine)
+              e.parsedLine = this.getRealCurrentLineNb() + 1
+              e.snippet = this.currentLine
             }
             throw e
           }
@@ -1141,8 +1141,8 @@ class YamlParser {
       return new YamlInline().parse(value)
     } catch (e) {
       if (e instanceof YamlParseException) {
-        e.setParsedLine(this.getRealCurrentLineNb() + 1)
-        e.setSnippet(this.currentLine)
+        e.parsedLine = this.getRealCurrentLineNb() + 1
+        e.snippet = this.currentLine
       }
       throw e
     }
