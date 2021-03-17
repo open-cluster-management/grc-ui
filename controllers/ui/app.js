@@ -195,7 +195,6 @@ function fetchHeader(req, res, store, ctx) {
   res.render('home', Object.assign({
     manifest: appUtil.app().locals.manifest,
     contextPath: config.get('contextPath'),
-    headerContextPath: config.get('headerContextPath'),
     state: store.getState(),
     props: ctx,
   }, ctx))

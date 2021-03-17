@@ -119,46 +119,6 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
   secure: false
 }))
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(appConfig.get('headerContextPath'), cookieParser(), (req, res, next) => {
-    res.setHeader(cacheControlStr, 'no-store')
-    res.setHeader('Pragma', 'no-cache')
-    res.setHeader(xContentTypeOptions, 'nosniff')
-    const accessToken = req.cookies[acmAccessTokenCookieStr]
-    if (req.headers.authorization) {
-      req.headers.authorization = `Bearer ${accessToken}`
-    }
-    else {
-      req.headers.Authorization = `Bearer ${accessToken}`
-    }
-    next()
-  }, createProxyMiddleware({
-    target: appConfig.get('headerUrl'),
-    changeOrigin: true,
-    secure: false,
-  }))
-  app.use(`${appConfig.get('contextPath')}/api/proxy${appConfig.get('headerContextPath')}`, cookieParser(), (req, res, next) => {
-    res.setHeader(cacheControlStr, 'no-store')
-    res.setHeader('Pragma', 'no-cache')
-    res.setHeader(xContentTypeOptions, 'nosniff')
-    const accessToken = req.cookies[acmAccessTokenCookieStr]
-    if (req.headers.authorization) {
-      req.headers.authorization = `Bearer ${accessToken}`
-    }
-    else {
-      req.headers.Authorization = `Bearer ${accessToken}`
-    }
-    next()
-  }, createProxyMiddleware({
-    target: appConfig.get('headerUrl'),
-    changeOrigin: true,
-    pathRewrite: {
-      [`^${appConfig.get('contextPath')}/api/proxy`]: ''
-    },
-    secure: false
-  }))
-}
-
 const hbs = exphbs.create({
   // Specify helpers which are only registered on this instance.
   helpers: {
