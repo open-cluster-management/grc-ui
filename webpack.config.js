@@ -35,7 +35,7 @@ module.exports = {
     warningsFilter: [/Failed to parse source map/],
   },
   entry: {
-    'main': ['@babel/polyfill', './src-web/index.js', './scss/common.scss', './scss/welcome.scss'],
+    'main': ['@babel/polyfill', './src-web/index.js'],
   },
 
   externals: Object.assign(PRODUCTION ? prodExternals : {}, {
