@@ -55,10 +55,9 @@ printenv
 
 npm run build
 npm run start:instrument &>/dev/null &
-sleep 10
+sleep 20
 echo "Launching cypress e2e test"
 npm run test:cypress-headless
-sleep 10
 echo "Launching nightwatch e2e test"
 npm run test:e2e-headless
 
