@@ -184,21 +184,16 @@ router.get('*', (req, res) => {
 
       App = App === undefined ? require('../../src-web/containers/App').default : App
 
-      const fetchHeaderContext = getContext(req)
-      return fetchHeader(req, res, store, fetchHeaderContext)
+      const ctx = getContext(req)
+      return res.render('home', Object.assign({
+        manifest: appUtil.app().locals.manifest,
+        contextPath: config.get('contextPath'),
+        state: store.getState(),
+        props: ctx,
+      }, ctx))
     })
   })
 })
-
-function fetchHeader(req, res, store, ctx) {
-
-  res.render('home', Object.assign({
-    manifest: appUtil.app().locals.manifest,
-    contextPath: config.get('contextPath'),
-    state: store.getState(),
-    props: ctx,
-  }, ctx))
-}
 
 function getContext(req) {
   const reqContext = context(req)
