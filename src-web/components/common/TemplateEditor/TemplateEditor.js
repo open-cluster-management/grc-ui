@@ -753,8 +753,9 @@ export default class TemplateEditor extends React.Component {
 
   handleExceptionNotification = (exceptions, message, locale) => {
     const errorMsg = exceptions.length>0 ? exceptions[0].text : null
+    const { validPolicyName } = this.state
     this.setState({
-      updateMsgKind: errorMsg?'error':'success',
+      updateMsgKind: (errorMsg || !validPolicyName)?'error':'success',
       updateMessage: errorMsg||msgs.get(message, locale)
     })
     // We're heading to 'Create', so we no longer need the duplicate name alert
