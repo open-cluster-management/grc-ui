@@ -11,7 +11,8 @@ import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, is
          action_verifyViolationsInPolicyStatusClusters, action_verifyViolationsInPolicyStatusTemplates,
          action_verifyPolicyDetailsInCluster, action_verifyPolicyTemplatesInCluster,
          action_verifyPolicyViolationDetailsInCluster, action_verifyPolicyViolationDetailsInHistory,
-         action_verifyCreatePolicySelection, isClusterViolationsStatusAvailable, action_verifyClusterViolationsInListing
+         action_verifyCreatePolicySelection, isClusterViolationsStatusAvailable, action_verifyClusterViolationsInListing,
+         action_checkNotificationMessage
 } from '../common/views'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
@@ -375,6 +376,7 @@ Cypress.Commands.add('waitForDocumentUpdate', (timeout=5000) => {
 Cypress.Commands.add('verifyClusterViolationsInListing', (clusterName, violationsCounter, violatedPolicies) => {
   cy.then(() => action_verifyClusterViolationsInListing(clusterName, violationsCounter, violatedPolicies))
 })
+
 // To check the no resoures icon and message
 Cypress.Commands.add('checkPolicyNoResourcesIconMessage', (present=true, message='Resource not found') => {
   if(present)
@@ -387,4 +389,8 @@ Cypress.Commands.add('checkPolicyNoResourcesIconMessage', (present=true, message
     cy.get('.no-resource-title').should('contain', message)
     cy.get('img[alt="No resource"]').should('exist')
   }
+})
+
+Cypress.Commands.add('checkNotificationMessage', (kind, title, notification) => {
+  cy.then(() => action_checkNotificationMessage(kind, title, notification))
 })
