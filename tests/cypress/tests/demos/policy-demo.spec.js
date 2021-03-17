@@ -54,8 +54,7 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     })
 
     it('Check enforced policy', () => {
-      policyConfig.enforce = true
-      policyConfig.inform = false
+      policyConfig.remediation = true
       cy.verifyPolicyInListing(uPolicyName, policyConfig)
     })
 
@@ -64,8 +63,7 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     })
 
     it('Check informed policy', () => {
-      policyConfig.enforce = false
-      policyConfig.inform = true
+      policyConfig.remediation = false
       cy.verifyPolicyInListing(uPolicyName, policyConfig)
     })
 

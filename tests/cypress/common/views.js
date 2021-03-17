@@ -236,11 +236,11 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
       selectItems(policyConfig['controls'], '.bx--multi-select[aria-label="controls"]', )
     })
   }
-  // enforce
-  if (policyConfig['enforce']) {
+  // remediation
+  if (policyConfig['remediation']) {
     cy.then(() => {
-      if (policyConfig['enforce']) {
-        cy.get('input[aria-label="enforce"][type="checkbox"]')
+      if (policyConfig['remediation']) {
+        cy.get('input[aria-label="remediation-enforce"][type="radio"]')
           .next('label')
           .click()
       }
@@ -328,12 +328,12 @@ export const action_verifyCreatePolicySelection = (policyName, policyConfig) => 
       })
   }
   // enforce
-  if (policyConfig['enforce']) {
+  if (policyConfig['remediation']) {
     cy.then(() => {
-      if (policyConfig['enforce']) {
-        cy.get('input[aria-label="enforce"][type="checkbox"]').should('be.checked')
+      if (policyConfig['remediation']) {
+        cy.get('input[aria-label="remediation-enforce"][type="radio"]').should('be.checked')
       } else {
-        cy.get('input[aria-label="enforce"][type="checkbox"]').should('not.be.checked')
+        cy.get('input[aria-label="remediation-enforce"][type="radio"]').should('not.be.checked')
       }
     })
   }
@@ -378,9 +378,9 @@ export const action_verifyPolicyInListing = (
         cy.wrap(namespace).contains(policyConfig['namespace'].trim(), { matchCase: false })
       }
       // check enforce/inform
-      if (policyConfig['enforce'] == true) {
+      if (policyConfig['remediation'] == true) {
         cy.wrap(remediation).contains('enforce', { matchCase: false })
-      } else if (policyConfig['enforce'] == false) {
+      } else if (policyConfig['remediation'] == false) {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check the violation status
@@ -671,9 +671,9 @@ export const action_verifyPolicyInPolicyDetails = (
         cy.wrap(namespace).contains(policyConfig['namespace'])
       }
       // check enforce/inform
-      if (policyConfig['enforce'] == true) {
+      if (policyConfig['remediation'] == true) {
         cy.wrap(remediation).contains('enforce', { matchCase: false })
-      } else if (policyConfig['enforce'] == false) {
+      } else if (policyConfig['remediation'] == false) {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check state
