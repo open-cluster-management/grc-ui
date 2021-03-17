@@ -44,7 +44,7 @@ const tempCookie = 'template-editor-open-cookie'
 const diagramIconsInfoStr = '#diagramIcons_info'
 // Regex to test valid policy name format
 // (it's 63 characters for `${policyNS}.${policyName}`)
-const policyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,63}[a-z0-9]$/)
+const policyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,61}[a-z0-9]$/)
 export default class TemplateEditor extends React.Component {
 
   static propTypes = {
@@ -801,8 +801,9 @@ export default class TemplateEditor extends React.Component {
 
   handleExceptionNotification = (exceptions, message, locale) => {
     const errorMsg = exceptions.length>0 ? exceptions[0].text : null
+    const { validPolicyName } = this.state
     this.setState({
-      updateMsgKind: errorMsg?'error':'success',
+      updateMsgKind: (errorMsg || !validPolicyName)?'error':'success',
       updateMessage: errorMsg||msgs.get(message, locale)
     })
     // We're heading to 'Create', so we no longer need the duplicate name alert
@@ -933,10 +934,11 @@ export default class TemplateEditor extends React.Component {
 
   async handleCreateResource() {
     const { buildControl, createControl } = this.props
+    const { validPolicyName } = this.state
     const {createResource} = createControl
     const {buildResourceLists} = buildControl
     const resourceJSON = this.getResourceJSON()
-    if (resourceJSON) {
+    if (resourceJSON && validPolicyName) {
       const res = await buildResourceLists(resourceJSON)
       const create = res.create
       const update = res.update
