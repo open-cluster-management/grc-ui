@@ -12,12 +12,12 @@ describe('RHACM4K-2349 - GRC UI: [P1][Sev1][policy-grc] Create policy page: Chec
                          ['-this-is-not-a-valid-name', 'default', errorMsg2], // starts with dash
                          ['this-is-not-a-valid-name-', 'default', errorMsg],  // ends with dash
                          ['this-is-Not-a-valid-name-', 'default', errorMsg],  // contain uppercase letter
-                         ['this-is-56-characters-long-policy-name-xxxxxxxxxxxxxxxxx', 'default', errorMsg],  // name.namespace = 64 characters
-                         ['this-is-59-characters-long-policy-name-xxxxxxxxxxxxxxxxxxxx', 'hive', errorMsg],  // name.namespace = 64 characters
-                         ['this-is-40-characters-long-policy-name-x', 'open-cluster-management', errorMsg],  // name.namespace = 64 characters
-                         ['this-is-'+'very-'.repeat(20)+'long-policy-name', 'default', errorMsg],  // name.namespace is really long
+                         ['this-is-56-characters-long-policy-name-xxxxxxxxxxxxxxxxx', 'default', errorMsg],  // namespace.name = 64 characters
+                         ['this-is-59-characters-long-policy-name-xxxxxxxxxxxxxxxxxxxx', 'hive', errorMsg],  // namespace.name = 64 characters
+                         ['this-is-40-characters-long-policy-name-x', 'open-cluster-management', errorMsg],  // namespace.name = 64 characters
+                         ['this-is-'+'very-'.repeat(20)+'long-policy-name', 'default', errorMsg],  // namespace.name is really long
                        ]
-  const longestValidName = 'this-is-55-characters-long-policy-name-xxxxxxxxxxxxxxxx'
+  const longestValidName = 'this-is-55-characters-long-policy-name-xxxxxxxxxxxxxxxx' // default.name = 63 chars
 
   it('Check that invalid policy name pattern issues an error', () => {
     cy.FromGRCToCreatePolicyPage()
