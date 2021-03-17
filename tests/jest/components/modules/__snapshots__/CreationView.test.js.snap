@@ -617,7 +617,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                     className="radio-button bx--radio-button-wrapper radioButtonWrapper"
                   >
                     <input
-                      aria-label="remediation"
+                      aria-label="remediation-inform"
                       checked={true}
                       className="bx--radio-button"
                       id="remediation-inform"
@@ -641,7 +641,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                     className="radio-button bx--radio-button-wrapper radioButtonWrapper"
                   >
                     <input
-                      aria-label="remediation"
+                      aria-label="remediation-enforce"
                       checked={false}
                       className="bx--radio-button"
                       id="remediation-enforce"
@@ -1574,7 +1574,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                     className="radio-button bx--radio-button-wrapper radioButtonWrapper"
                   >
                     <input
-                      aria-label="remediation"
+                      aria-label="remediation-inform"
                       checked={true}
                       className="bx--radio-button"
                       id="remediation-inform"
@@ -1598,7 +1598,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                     className="radio-button bx--radio-button-wrapper radioButtonWrapper"
                   >
                     <input
-                      aria-label="remediation"
+                      aria-label="remediation-enforce"
                       checked={false}
                       className="bx--radio-button"
                       id="remediation-enforce"
@@ -2531,7 +2531,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                     className="radio-button bx--radio-button-wrapper radioButtonWrapper"
                   >
                     <input
-                      aria-label="remediation"
+                      aria-label="remediation-inform"
                       checked={true}
                       className="bx--radio-button"
                       id="remediation-inform"
@@ -2555,7 +2555,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                     className="radio-button bx--radio-button-wrapper radioButtonWrapper"
                   >
                     <input
-                      aria-label="remediation"
+                      aria-label="remediation-enforce"
                       checked={false}
                       className="bx--radio-button"
                       id="remediation-enforce"

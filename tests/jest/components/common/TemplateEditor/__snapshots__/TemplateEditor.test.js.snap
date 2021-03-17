@@ -752,7 +752,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     className="radio-button bx--radio-button-wrapper radioButtonWrapper"
                   >
                     <input
-                      aria-label="remediation"
+                      aria-label="remediation-inform"
                       checked={true}
                       className="bx--radio-button"
                       id="remediation-inform"
@@ -776,7 +776,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     className="radio-button bx--radio-button-wrapper radioButtonWrapper"
                   >
                     <input
-                      aria-label="remediation"
+                      aria-label="remediation-enforce"
                       checked={false}
                       className="bx--radio-button"
                       id="remediation-enforce"
