@@ -15,15 +15,26 @@ import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, is
          action_checkNotificationMessage
 } from '../common/views'
 
-Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
-  var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
-  var password = process.env.SELENIUM_PASSWORD || OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
-  var idp = OC_IDP || Cypress.env('OC_IDP')
+Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='') => {
+  const user = OPTIONS_HUB_USER || process.env.SELENIUM_USER || Cypress.env('OPTIONS_HUB_USER')
+  const password = OPTIONS_HUB_PASSWORD || process.env.SELENIUM_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
+  const idp = OC_IDP || Cypress.env('OC_IDP')
+  const APIServer = Cypress.env('API_SERVER_URL')
+  cy.clearCookies()
+
+  // handle login using cookie when running against localhost
+  if (Cypress.config().baseUrl.includes('localhost')) {
+    expect(APIServer).to.not.equal(undefined)
+    cy.exec(`oc login --server=${APIServer} -u ${user} -p ${password}`).then(res => cy.log(res.stdout))
+    cy.exec('oc whoami -t').then(res => {
+      Cypress.env('token', res.stdout)
+      cy.setCookie('acm-access-token-cookie', Cypress.env('token'))
+    })
+  }
   cy.visit('/multicloud/policies')
   cy.get('body').then(body => {
     // Check if logged in
     if (body.find('#header').length === 0) {
-
       // Check if identity providers are configured
       if (body.find('form').length === 0)
         cy.contains(idp).click()
@@ -116,9 +127,11 @@ Cypress.Commands.add('logout', () => {
   cy.get('.header-user-info-dropdown_icon').then($btn => {
     //logout when test starts since we need to use the app idp user
     cy.log('Logging out existing user')
-    cy.get($btn).click()
+      .get($btn).click()
     cy.contains('Log out').click()
-    // cy.clearCookies()
+    cy.location('pathname').should('match', new RegExp('/oauth/authorize(\\?.*)?$'))
+//      .waitForPageContentLoad()
+      .clearCookies()
   })
 })
 
@@ -189,7 +202,8 @@ Cypress.Commands.add('waitForClusterTemplateStatus', (clusterViolations = {}) =>
 })
 
 Cypress.Commands.add('waitForPageContentLoad', () => {
-  cy.then(() => pageLoader.shouldNotExist())
+  cy.get('div.page-content-container')
+    .then(() => pageLoader.shouldNotExist())
 })
 
 Cypress.Commands.add('CheckGrcMainPage', () => {

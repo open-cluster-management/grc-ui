@@ -61,6 +61,10 @@ else
   export CYPRESS_coverage=false
 fi
 
+export CYPRESS_RBAC_PASS="$RBAC_PASS"
+[ -n "$CYPRESS_RBAC_PASS" ] && echo -e "CYPRESS_RBAC_PASS set" || echo -e "Error: RBAC_PASS is not set"
+export CYPRESS_API_SERVER_URL="$API_SERVER_URL"
+
 export CYPRESS_FAIL_FAST_PLUGIN=${CYPRESS_FAIL_FAST_PLUGIN:-"true"}
 echo -e "Running cypess tests with the following environment:\n"
 echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_ID"
@@ -73,6 +77,7 @@ echo -e "\tCYPRESS_STANDALONE_TESTSUITE_EXECUTION: $CYPRESS_STANDALONE_TESTSUITE
 echo -e "\tCYPRESS_coverage       : $CYPRESS_coverage"
 echo -e "\tCYPRESS_TAGS_INCLUDE          : $CYPRESS_TAGS_INCLUDE"
 echo -e "\tCYPRESS_TAGS_EXCLUDE          : $CYPRESS_TAGS_EXCLUDE"
+echo -e "\tCYPRESS_API_SERVER_URL : $CYPRESS_API_SERVER_URL"
 
 echo -e "\nLogging into Kube API server\n"
 oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify

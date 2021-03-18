@@ -14,12 +14,6 @@ Cypress.Cookies.defaults({
 process.env.NODE_TLS_REJECT_UNAUTHORIZED='0'
 
 before(() => {
-  if (Cypress.config().baseUrl.includes('localhost')) {
-    cy.exec('oc whoami -t').then(res => {
-      cy.setCookie('acm-access-token-cookie', res.stdout)
-      Cypress.env('token', res.stdout)
-    })
-  }
   cy.login()
 })
 
