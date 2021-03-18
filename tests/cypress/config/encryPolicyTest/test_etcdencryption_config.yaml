@@ -5,5 +5,5 @@ categories:
 - 'PR.DS Data Security'
 controls:
 - 'PR.DS-1 Data-at-rest'
-enforce: False
+remediation: False
 disable: False

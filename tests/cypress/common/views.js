@@ -236,11 +236,11 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
       selectItems(policyConfig['controls'], '.bx--multi-select[aria-label="controls"]', )
     })
   }
-  // enforce
-  if (policyConfig['enforce']) {
+  // remediation
+  if (policyConfig['remediation']) {
     cy.then(() => {
-      if (policyConfig['enforce']) {
-        cy.get('input[aria-label="enforce"][type="checkbox"]')
+      if (policyConfig['remediation']) {
+        cy.get('input[aria-label="remediation-enforce"][type="radio"]')
           .next('label')
           .click()
       }
@@ -328,12 +328,12 @@ export const action_verifyCreatePolicySelection = (policyName, policyConfig) => 
       })
   }
   // enforce
-  if (policyConfig['enforce']) {
+  if (policyConfig['remediation']) {
     cy.then(() => {
-      if (policyConfig['enforce']) {
-        cy.get('input[aria-label="enforce"][type="checkbox"]').should('be.checked')
+      if (policyConfig['remediation']) {
+        cy.get('input[aria-label="remediation-enforce"][type="radio"]').should('be.checked')
       } else {
-        cy.get('input[aria-label="enforce"][type="checkbox"]').should('not.be.checked')
+        cy.get('input[aria-label="remediation-enforce"][type="radio"]').should('not.be.checked')
       }
     })
   }
@@ -378,9 +378,9 @@ export const action_verifyPolicyInListing = (
         cy.wrap(namespace).contains(policyConfig['namespace'].trim(), { matchCase: false })
       }
       // check enforce/inform
-      if (policyConfig['enforce'] == true) {
+      if (policyConfig['remediation'] == true) {
         cy.wrap(remediation).contains('enforce', { matchCase: false })
-      } else if (policyConfig['enforce'] == false) {
+      } else if (policyConfig['remediation'] == false) {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check the violation status
@@ -661,7 +661,7 @@ export const action_verifyPolicyInPolicyDetails = (
   //cy.get('div.vertical-expend').then((e) => {
   cy.get('#compliance\\.details-expand').within(() => {
     cy.get('div.pf-c-description-list__text').spread((
-      name, namespace, enforcement, disabled, violations,
+      name, namespace, remediation, disabled, violations,
       categories, controls, standards, created
       ) => {
       // check name
@@ -671,10 +671,10 @@ export const action_verifyPolicyInPolicyDetails = (
         cy.wrap(namespace).contains(policyConfig['namespace'])
       }
       // check enforce/inform
-      if (policyConfig['enforce'] == true) {
-        cy.wrap(enforcement).contains('enforce', { matchCase: false })
-      } else if (policyConfig['enforce'] == false) {
-        cy.wrap(enforcement).contains('inform', { matchCase: false })
+      if (policyConfig['remediation'] == true) {
+        cy.wrap(remediation).contains('enforce', { matchCase: false })
+      } else if (policyConfig['remediation'] == false) {
+        cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check state
       if (enabled == 'enabled') {
@@ -1163,7 +1163,7 @@ export const action_verifyViolationsInPolicyStatusTemplates = (policyName, polic
 export const action_verifyPolicyDetailsInCluster =  (policyName, policyConfig, clusterName, clusterViolations, violationPatterns) => {
   const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName], 'short')
   cy.get('section[aria-label="Policy details"]').within(() => {
-    cy.get('.bx--structured-list-td').spread((nameLabel, name, clusterLabel, cluster, messageLabel, message, statusLabel, status, enforcementLabel, enforcement ) => {
+    cy.get('.bx--structured-list-td').spread((nameLabel, name, clusterLabel, cluster, messageLabel, message, statusLabel, status, remediationLabel, remediation ) => {
       // verify namespace
       if (policyConfig['namespace']) {
         cy.wrap(name).contains(policyConfig['namespace']+'.'+policyName)
@@ -1172,8 +1172,8 @@ export const action_verifyPolicyDetailsInCluster =  (policyName, policyConfig, c
       cy.wrap(cluster).contains(clusterName)
       // verify cluster status
       cy.wrap(status).contains(new RegExp(clusterStatus))
-      // verify policy enforcement settings
-      policyConfig['enforce'] === true ? cy.wrap(enforcement).contains('enforce') : cy.wrap(enforcement).contains('inform')
+      // verify policy remediation settings
+      policyConfig['remediation'] === true ? cy.wrap(remediation).contains('enforce') : cy.wrap(remediation).contains('inform')
       // verify the message
       // first check that the right ammount of messages is listed
       const number_of_messages = (message.textContent.match(/Compliant[,;]/g) || []).length

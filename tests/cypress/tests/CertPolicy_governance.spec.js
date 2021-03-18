@@ -103,8 +103,7 @@ describe('RHACM4K-2294 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
   })
 
   it('Check violations stay reported but not remediated', () => {
-    certificatePolicyConfig.enforce = true
-    certificatePolicyConfig.inform = false
+    certificatePolicyConfig.remediation = true
     cy.verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', '', 2)
   })
 
@@ -188,8 +187,7 @@ describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
   })
 
   it('Check violations stay reported but not remediated', () => {
-    certificatePolicyConfig.enforce = true
-    certificatePolicyConfig.inform = false
+    certificatePolicyConfig.remediation = true
     cy.verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', '', 2)
   })
 
