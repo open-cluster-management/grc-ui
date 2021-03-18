@@ -196,6 +196,7 @@ Cypress.Commands.add('CheckGrcMainPage', () => {
   cy.location('pathname').should('eq', '/multicloud/policies/all')
   pageLoader.shouldNotExist()
   cy.get('.bx--detail-page-header-title').contains('Governance and risk')
+  cy.get('.page-content-container > div').should('be.visible')
 })
 
 Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {

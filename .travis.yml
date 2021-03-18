@@ -87,9 +87,7 @@ jobs:
       if: type = cron OR type = pull_request
       script:
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
-        - echo '"start sonar initialization..."' && echo -en 'travis_fold:start:script.build\\r'
         - make sonar/js/jest-init
-        - echo '"finished sonar initialization..."' && echo -en 'travis_fold:start:script.build\\r'
         - echo '"start unit testing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/test/unit
         - echo '"finished unit test"' && echo -en 'travis_fold:end:script.build\\r'
@@ -101,10 +99,8 @@ jobs:
         - make sonar/js
         - echo '"finished sonar check"' && echo -en 'travis_fold:end:script.build\\r'
       after_failure:
-        - echo '"start test failure logging..."' && echo -en 'travis_fold:start:script.build\\r'
         - make travis-slack-reporter
         - docker logs grcuiapi
-        - echo '"finished test failure logging..."' && echo -en 'travis_fold:end:script.build\\r'
     - stage: publish
       name: "Publish the image to quay with an official version/sha tag and publish entry to integration pipeline stage"
       if: type = push AND branch =~ /^release-[0-9]+\..*$/
