@@ -18,5 +18,5 @@ policyConfig:
   controls:
     - 'PR.DS-2 Data-in-transit'
     - 'PR.DS-2 Data-at-rest'
-  enforce: False
+  remediation: False
   disable: False
