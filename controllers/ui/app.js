@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2019. All Rights Reserved.
@@ -163,36 +164,36 @@ router.get('*', (req, res) => {
     thunkMiddleware, // lets us dispatch() functions
   ))
 
-  let userAccess
-  const auth = req.headers.Authorization || req.headers.authorization || `Bearer ${req.cookies['acm-access-token-cookie']}`
-  getUserNamespaces(auth, (err, userNS) => {
-    if (err) {
-      return res.status(err.statusCode || 500).send(err.details)
-    }
-    getUserAccessInfo(auth, targetAPIGroups, null, userNS, (uaErr, ua) => {
-      if (err) {
-        return res.status(uaErr.statusCode || 500).send(uaErr.details)
-      }
-      userAccess = ua
-      access = access === undefined ? require('../../src-web/actions/access') : access
-      if (userAccess) {
-        store.dispatch(access.userAccessSuccess(userAccess))
-      }
-
-      Login = Login === undefined ? require('../../src-web/actions/login') : Login
-      store.dispatch(Login.receiveLoginSuccess(req.user))
-
-      App = App === undefined ? require('../../src-web/containers/App').default : App
-
-      const ctx = getContext(req)
+  // let userAccess
+  // const auth = req.headers.Authorization || req.headers.authorization || `Bearer ${req.cookies['acm-access-token-cookie']}`
+  const ctx = getContext(req)
       return res.render('home', Object.assign({
         manifest: appUtil.app().locals.manifest,
         contextPath: config.get('contextPath'),
         state: store.getState(),
         props: ctx,
       }, ctx))
-    })
-  })
+  // getUserNamespaces(auth, (err, userNS) => {
+  //   if (err) {
+  //     return res.status(err.statusCode || 500).send(err.details)
+  //   }
+  //   getUserAccessInfo(auth, targetAPIGroups, null, userNS, (uaErr, ua) => {
+  //     if (err) {
+  //       return res.status(uaErr.statusCode || 500).send(uaErr.details)
+  //     }
+  //     userAccess = ua
+  //     access = access === undefined ? require('../../src-web/actions/access') : access
+  //     if (userAccess) {
+  //       store.dispatch(access.userAccessSuccess(userAccess))
+  //     }
+
+  //     Login = Login === undefined ? require('../../src-web/actions/login') : Login
+  //     store.dispatch(Login.receiveLoginSuccess(req.user))
+
+  //     App = App === undefined ? require('../../src-web/containers/App').default : App
+
+  //   })
+  // })
 })
 
 function getContext(req) {
