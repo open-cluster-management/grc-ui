@@ -451,8 +451,9 @@ export const action_actionPolicyActionInListing = (uName, action, cancel=false) 
       .contains(uName)
       .parents('td')
       .siblings('td')
-      .last()
-      .click()
+      .last().within(() => {
+        cy.get('button').click()
+      })
   })
   .then(() => {
     cy.get('button').contains(action, { matchCase: false }).click()
@@ -1264,11 +1265,14 @@ export const action_verifyPolicyViolationDetailsInHistory = (templateName, viola
   })
 }
 
-export const checkNotificationMessage = (kind, title, notification) => {
+export const action_checkNotificationMessage = (kind, title, notification, close=true) => {
   cy.get('div[kind="'+kind+'"]').within( () => {
     cy.get('.bx--inline-notification__title').should('contain', title)
     cy.get('svg[fill-rule="evenodd"]').should('exist')
-    cy.get('.bx--inline-notification__subtitle').should('contain', notification)
+    cy.get('.bx--inline-notification__subtitle').invoke('text').should('contain', notification)
+    if (close) {
+      cy.get('button.bx--inline-notification__close-button').click()  // close the message
+    }
   })
 }
 
@@ -1376,4 +1380,10 @@ export const getClusterViolationsCounterAndPolicyList = (clusterName, clusterLis
     violationCounter = counter.toString() + '/' + Object.keys(confPolicies).length.toString()
   }
   return [ violationCounter, violatedPolicies]
+}
+
+// parse policy name from a raw policy YAML
+// returns string
+export const parsePolicyNameFromYAML = (rawPolicyYAML) => {
+  return rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
 }
