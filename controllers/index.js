@@ -13,7 +13,7 @@
 const express = require('express'),
       router = express.Router(),
       config = require('../config'),
-      security = require('security-middleware'),
+      security = require('@open-cluster-management/security-middleware'),
       oauth = require('./oauth-info'),
       user = require('./userinfo'),
       version = require('./acmversion')
