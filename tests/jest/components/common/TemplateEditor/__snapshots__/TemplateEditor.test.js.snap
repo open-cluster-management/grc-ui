@@ -1092,7 +1092,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
 </div>
 `;
 
-exports[`on control change function renders as expected 1`] = `
+exports[`on control change function with active selections renders as expected 1`] = `
 <div
   aria-label="Invalid name: should only have lowercase alphanumeric characters, '-', or '.' and not begin or end with punctuation"
   onClick={[Function]}
@@ -1129,7 +1129,7 @@ exports[`on control change function renders as expected 1`] = `
 </div>
 `;
 
-exports[`on control change function renders as expected 2`] = `
+exports[`on control change function without active selections renders as expected 1`] = `
 <div
   aria-label="Invalid name: should only have lowercase alphanumeric characters, '-', or '.' and not begin or end with punctuation"
   onClick={[Function]}
