@@ -315,7 +315,8 @@ export default class TemplateEditor extends React.Component {
     const { existing, existingByNamespace } = controlData.find(control => control.id === 'name')
     let isDuplicateName = false
     let validPolicyNameFormat = true
-    if (policyName) {
+    // If both a policy name and namespace are provided, check for duplication and formatting
+    if (policyName && policyNS) {
       // Check to see whether the policy name exists already
       if (existing && existingByNamespace) {
         isDuplicateName = existing.includes(policyName) && existingByNamespace[policyName] === policyNS

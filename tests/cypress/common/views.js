@@ -184,6 +184,7 @@ export const action_createPolicyFromYAML = (policyYAML, create=true) => {
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
     .invoke('setValue', policyYAML)
+    .waitForDocumentUpdate()
     // create
     .then(() => {
       if (create) {

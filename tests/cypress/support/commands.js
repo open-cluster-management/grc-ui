@@ -370,7 +370,7 @@ Cypress.Commands.add('simpleYAMLupdate', (regExp='', text='', lineNumber) => {
 Cypress.Commands.add('waitForDocumentUpdate', (timeout=5000) => {
   cy.document().then($doc => {
     const lastUpdate = $doc.lastModified  // save current timestamp
-    cy.waitUntil(() => { return cy.document().its('lastModified').then($newUpdate => $newUpdate != lastUpdate) }, {'interval': 200, 'timeout':timeout})
+    cy.waitUntil(() => { return cy.document().its('lastModified').then($newUpdate => $newUpdate != lastUpdate) }, {'interval': 1000, 'timeout':timeout})
   })
 })
 

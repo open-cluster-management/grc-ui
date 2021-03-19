@@ -262,7 +262,7 @@ describe('TemplateEditor component', () => {
   })
 })
 
-describe('on control change function', () => {
+describe('on control change function with active selections', () => {
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
@@ -314,7 +314,7 @@ describe('on control change function', () => {
   })
 })
 
-describe('on control change function', () => {
+describe('on control change function without active selections', () => {
   const deepCopy = _.cloneDeep(controlData)
   deepCopy[1].active = null
   it('renders as expected', () => {
@@ -345,7 +345,15 @@ describe('on control change function', () => {
     const evt_badName = {
       target: { value: 'a-b-' }
     }
+    const evt_namespace = {
+      selectedItem: 'test-namespace'
+    }
+    // Without any namespace, the name should still be valid to allow the missing namespace error to show
     expect(wrapper.instance().onChange('name', evt_badName)).toEqual('name')
+    expect(wrapper.instance().state.duplicateName).toEqual(false)
+    expect(wrapper.instance().state.validPolicyName).toEqual(true)
+    // With a namespace, the name should no longer be valid
+    expect(wrapper.instance().onChange('namespace', evt_namespace)).toEqual('namespace')
     expect(wrapper.instance().state.duplicateName).toEqual(false)
     expect(wrapper.instance().state.validPolicyName).toEqual(false)
     expect(wrapper.instance().state.exceptions.some((exception) => exception.text === msgs['error.policy.nameFormat.short'])).toEqual(true)
