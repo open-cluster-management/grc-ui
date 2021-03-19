@@ -4,7 +4,7 @@ IamPolicy:
    - 'local-cluster: "true"'
   specifications:
     - 'IamPolicy'
-  enforce: False
+  remediation: False
   disable: False
 
 CertificatePolicy:
@@ -13,7 +13,7 @@ CertificatePolicy:
    - 'local-cluster: "true"'
   specifications:
     - 'CertificatePolicy'
-  enforce: False
+  remediation: False
   disable: False
 
 ComplianceOperator:
@@ -22,7 +22,7 @@ ComplianceOperator:
    - 'local-cluster: "true"'
   specifications:
     - 'ComplianceOperator'
-  enforce: False
+  remediation: False
   disable: False
  
 EtcdEncryption:
@@ -31,7 +31,7 @@ EtcdEncryption:
    - 'local-cluster: "true"'
   specifications:
     - 'EtcdEncryption'
-  enforce: False
+  remediation: False
   disable: False
 
 GatekeeperOperator:
@@ -40,7 +40,7 @@ GatekeeperOperator:
    - 'local-cluster: "true"'
   specifications:
     - 'GatekeeperOperator'
-  enforce: False
+  remediation: False
   disable: False
  
 ImageManifestVulnPolicy:
@@ -49,7 +49,7 @@ ImageManifestVulnPolicy:
    - 'local-cluster: "true"'
   specifications:
     - 'ImageManifestVulnPolicy'
-  enforce: False
+  remediation: False
   disable: False
  
 LimitRange:
@@ -58,7 +58,7 @@ LimitRange:
    - 'local-cluster: "true"'
   specifications:
     - 'LimitRange'
-  enforce: False
+  remediation: False
   disable: False
  
 Namespace:
@@ -67,7 +67,7 @@ Namespace:
    - 'local-cluster: "true"'
   specifications:
     - 'Namespace'
-  enforce: False
+  remediation: False
   disable: False
 
 Pod:
@@ -76,7 +76,7 @@ Pod:
    - 'local-cluster: "true"'
   specifications:
     - 'Pod'
-  enforce: False
+  remediation: False
   disable: False
 
 PodSecurityPolicy:
@@ -85,7 +85,7 @@ PodSecurityPolicy:
    - 'local-cluster: "true"'
   specifications:
     - 'PodSecurityPolicy'
-  enforce: False
+  remediation: False
   disable: False
 
 Role:
@@ -94,7 +94,7 @@ Role:
    - 'local-cluster: "true"'
   specifications:
     - 'Role'
-  enforce: False
+  remediation: False
   disable: False
 
 RoleBinding:
@@ -103,7 +103,7 @@ RoleBinding:
    - 'local-cluster: "true"'
   specifications:
     - 'RoleBinding'
-  enforce: False
+  remediation: False
   disable: False
 
 SecurityContextConstraints:
@@ -112,5 +112,5 @@ SecurityContextConstraints:
    - 'local-cluster: "true"'
   specifications:
     - 'SecurityContextConstraints'
-  enforce: False
+  remediation: False
   disable: False

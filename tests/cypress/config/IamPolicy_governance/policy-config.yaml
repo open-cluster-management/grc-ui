@@ -19,5 +19,5 @@ test-iam-policy-[ID]:
     - 'PR.AC Identity Management and Access Control'
   controls:
     - 'PR.AC-4 Access Control'
-  enforce: False
+  remediation: False
   disable: False

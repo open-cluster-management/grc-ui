@@ -26,14 +26,14 @@ const testPolicy = (policyConfFile, templateConfFile) => {
   })
 
   it(`Set ${policyName} to an Enforced state and then back to Inform`, () => {
-    cy.get('input[aria-label="enforce"][type="checkbox"]').as('checkbox')
-    cy.get('@checkbox').next('label').as('label')
-      .get('@label').click()
-      .waitForDocumentUpdate()
-      .get('@checkbox').should('be.checked')
-      .get('@label').click()
-      .waitForDocumentUpdate()
-      .get('@checkbox').should('not.be.checked')
+    const choices = ['enforce', 'inform']
+    choices.forEach( (choice) => {
+      cy.get(`input[aria-label="remediation-${choice}"][type="radio"]`).as(`${choice}`)
+      cy.get(`@${choice}`).next('label').as('label')
+        .get('@label').click()
+        .waitForDocumentUpdate()
+        .get(`@${choice}`).should('be.checked')
+    })
   })
 
   it('Verify that YAML editor content matches the template', () => {

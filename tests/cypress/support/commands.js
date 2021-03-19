@@ -162,7 +162,7 @@ Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
 // optionally can wait for the specific violations counter to appear
 Cypress.Commands.add('waitForPolicyStatus', (name, violationsCounter) => {
   doTableSearch(name)
-  cy.waitUntil(() => isPolicyStatusAvailable(name, violationsCounter), {'interval': 500, 'timeout':120000})
+  cy.waitUntil(() => isPolicyStatusAvailable(name, violationsCounter), {'interval': 1000, 'timeout':120000})
     .then(() => clearTableSearch())
 })
 
@@ -171,7 +171,7 @@ Cypress.Commands.add('waitForPolicyStatus', (name, violationsCounter) => {
 // optionally can wait for the specific violations counter to appear
 Cypress.Commands.add('waitForClusterViolationsStatus', (name, violationsCounter) => {
   doTableSearch(name)
-  cy.waitUntil(() => isClusterViolationsStatusAvailable(name, violationsCounter), {'interval': 500, 'timeout':120000})
+  cy.waitUntil(() => isClusterViolationsStatusAvailable(name, violationsCounter), {'interval': 1000, 'timeout':120000})
     .then(() => clearTableSearch())
 })
 
@@ -179,13 +179,13 @@ Cypress.Commands.add('waitForClusterViolationsStatus', (name, violationsCounter)
 // needs to be run on /multicloud/policies/all/{namespace}/{policy} page
 // see isClusterPolicyStatusAvailable()
 Cypress.Commands.add('waitForClusterPolicyStatus', (clusterViolations, clusterList=null) => {
-  cy.waitUntil(() => { return isClusterPolicyStatusAvailable(clusterViolations, clusterList) }, {'interval': 500, 'timeout':60000})
+  cy.waitUntil(() => { return isClusterPolicyStatusAvailable(clusterViolations, clusterList) }, {'interval': 1000, 'timeout':60000})
 })
 
 // needs to be run on /multicloud/policies/all/{namespace}/{policy}/status page
 // see isClusterTemplateStatusAvailable()
 Cypress.Commands.add('waitForClusterTemplateStatus', (clusterViolations = {}) => {
-  cy.waitUntil(() => { return isClusterTemplateStatusAvailable(clusterViolations) }, {'interval': 500, 'timeout':60000})
+  cy.waitUntil(() => { return isClusterTemplateStatusAvailable(clusterViolations) }, {'interval': 1000, 'timeout':60000})
 })
 
 Cypress.Commands.add('waitForPageContentLoad', () => {
@@ -196,6 +196,7 @@ Cypress.Commands.add('CheckGrcMainPage', () => {
   cy.location('pathname').should('eq', '/multicloud/policies/all')
   pageLoader.shouldNotExist()
   cy.get('.bx--detail-page-header-title').contains('Governance and risk')
+  cy.get('.page-content-container > div').should('be.visible')
 })
 
 Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {

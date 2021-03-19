@@ -11,7 +11,7 @@ original-iam-policy:
     - 'PR.AC Identity Management and Access Control'
   controls:
     - 'PR.AC-4 Access Control'
-  enforce: False
+  remediation: False
   disable: False
 
 updated-iam-policy:
@@ -26,7 +26,7 @@ updated-iam-policy:
     - 'PR.DS Data Security'
   controls:
     - 'PR.DS-1 Data-at-rest'
-  enforce: True
+  remediation: True
   disable: True
 # these are policies required by following Polarion test cases:
 
@@ -47,5 +47,5 @@ full-yaml-policy:
     - 'PR.AC-4 Access Control'
     - 'PR.PT-1 Audit Logging'
     - 'PR.AC-5 Network Integrity'
-  enforce: True
+  remediation: True
   disable: True

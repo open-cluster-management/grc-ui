@@ -167,7 +167,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       })
 
       it(`Check that enforced policy ${policyName} is present in the policy listing`, () => {
-        confPolicies[policyName]['enforce'] = true
+        confPolicies[policyName]['remediation'] = true
         cy.verifyPolicyInListing(policyName, confPolicies[policyName])
       })
 
