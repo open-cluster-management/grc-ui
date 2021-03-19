@@ -1,11 +1,10 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
-/* Copyright Contributors to the Open Cluster Management project */
-
 /// <reference types="cypress" />
-import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../common/tests'
+import { test_genericPolicyGovernance } from './common/generic_policies_governance'
+import { cleanup_usingPolicyYAML } from './common/generic_policy_cleanup'
 
 describe('GRC UI: [P1][Sev1][policy-grc] IamPolicy governance - setup', () => {
-  test_applyPolicyYAML('IamPolicy_governance/policy-clusterrolebinding-setup_raw.yaml')
+  cleanup_usingPolicyYAML('IamPolicy_governance/policy-clusterrolebinding-setup_raw.yaml')
 })
 
 describe('RHACM4K-1719 - GRC UI: [P1][Sev1][policy-grc] IamPolicy governance', () => {
@@ -13,5 +12,5 @@ describe('RHACM4K-1719 - GRC UI: [P1][Sev1][policy-grc] IamPolicy governance', (
 })
 
 describe('GRC UI: [P1][Sev1][policy-grc] IamPolicy governance - cleanup', () => {
-  test_applyPolicyYAML('IamPolicy_governance/policy-clusterrolebinding-cleanup_raw.yaml')
+  cleanup_usingPolicyYAML('IamPolicy_governance/policy-clusterrolebinding-cleanup_raw.yaml')
 })

@@ -1,8 +1,6 @@
 #!/bin/bash
+
 # Copyright (c) 2020 Red Hat, Inc.
-# Copyright Contributors to the Open Cluster Management project
-
-
 
 # From the grc-ui project directory, invoke as:
 #     ./build/rbac-clean.sh

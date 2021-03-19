@@ -1,5 +1,4 @@
 /* eslint-disable react/display-name */
-
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * (c) Copyright IBM Corporation 2018, 2019. All Rights Reserved.
@@ -9,7 +8,6 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
-/* Copyright Contributors to the Open Cluster Management project */
 
 'use strict'
 

@@ -1,7 +1,3 @@
-# the following variables has to be replaced prior to use
-# [ID]
-# [COMPLIANCETYPE]
-# [CLUSTERSELECTOR]
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
@@ -27,7 +23,7 @@ spec:
             exclude: ["kube-*"]
             include: ["default"]
           object-templates:
-            - complianceType: [COMPLIANCETYPE]
+            - complianceType: musthave
               objectDefinition:
                 apiVersion: cert-manager.io/v1alpha3
                 kind: Certificate
@@ -73,4 +69,4 @@ spec:
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      [CLUSTERSELECTOR]
+      [LABEL]

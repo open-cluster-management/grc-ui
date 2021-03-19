@@ -6,8 +6,6 @@
 # Contributors:
 #  IBM Corporation - initial API and implementation
 ###############################################################################
-# Copyright Contributors to the Open Cluster Management project
-
 
 include build/Configfile
 

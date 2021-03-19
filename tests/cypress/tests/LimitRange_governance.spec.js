@@ -1,11 +1,10 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
-/* Copyright Contributors to the Open Cluster Management project */
-
 /// <reference types="cypress" />
-import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../common/tests'
+import { test_genericPolicyGovernance } from './common/generic_policies_governance'
+import { cleanup_usingPolicyYAML } from './common/generic_policy_cleanup'
 
 describe('GRC UI: [P1][Sev1][policy-grc] LimitRange policy governance - setup', () => {
-    test_applyPolicyYAML('LimitRange_governance/LimitRange_specification_setup_policy_raw.yaml')
+    cleanup_usingPolicyYAML('LimitRange_governance/LimitRange_specification_setup_policy_raw.yaml')
 })
 
 describe('RHACM4K-1726 - GRC UI: [P1][Sev1][policy-grc] LimitRange policy governance', () => {
@@ -13,5 +12,5 @@ describe('RHACM4K-1726 - GRC UI: [P1][Sev1][policy-grc] LimitRange policy govern
 })
 //setup & clean up yaml files are identical
 describe('GRC UI: [P1][Sev1][policy-grc] LimitRange policy governance - clean up', () => {
-    test_applyPolicyYAML('LimitRange_governance/LimitRange_specification_setup_policy_raw.yaml')
+    cleanup_usingPolicyYAML('LimitRange_governance/LimitRange_specification_setup_policy_raw.yaml')
 })
