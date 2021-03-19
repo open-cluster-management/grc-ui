@@ -1,3 +1,5 @@
+[comment]: # ( Copyright Contributors to the Open Cluster Management project )
+
 # Additional notes on Cypress test development and execution
 
 ## Running the ACM server on localhost
@@ -122,7 +124,7 @@ In this section we are going to present and explain configuration file types tha
 ### cluster list
  * State: used in tests
  * Path: tests/cypress/config/clusters.yaml
- * Example: [config/demo/clusters.yaml](https://github.com/open-cluster-management/grc-ui/pull/358/files#diff-20a8e39681436d2de40012e88cf54929a00a2f38bcba179d79dbdd1a2fc76946)
+ * Example: [config/clusters.yaml](https://github.com/open-cluster-management/grc-ui/blob/master/tests/cypress/config/clusters.yaml)
 
 This configuration file contains details about clusters avaialable in RHACM. It is created by the `start_cypress_tests.sh` script before tests starts. However for locally issued tests you can modify this file with a different content.
 
@@ -173,6 +175,7 @@ In order to be able to do a violation check for a policy and server we need to c
  ** Each cluster violation has unique identifier in a configuration consisting of a template name and a number
  ** Each violation identifier maps to a regexp pattern matching the actual violation text
  ** Number 0 is reserved for a text expressing compliance with a specification
+ ** Later on it turned out we may have multiple compliant messages. To address that need use id which is a string starting with '0', e.g. '01', '02' etc.
  3. From a list of all expected violations per server we filter out only violations relevant for particular policy - using `getViolationsPerPolicy()`. This is handy so we do not have to maintain cluster violations per policy.
  4. Once we know cluster&policy specific violations we can say what is the expected policy status (using `getClusterPolicyStatus()`) and number of non-compliant clusters (using `getViolationsCounter()`)
  ** Using respective regexp patterns we can verify respective violation texts

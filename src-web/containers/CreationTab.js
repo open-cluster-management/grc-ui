@@ -7,6 +7,8 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
+/* Copyright Contributors to the Open Cluster Management project */
+
 'use strict'
 
 import React from 'react'
@@ -184,7 +186,13 @@ export class CreationTab extends React.Component {
   }
 
   formatUpdateError = (m1, m2) => {
-    if (m1 && m2) {
+    if (m1 && m1.message && typeof m1.message === 'string') {
+      m1 = m1.message
+    }
+    if (m2 && m2.message && typeof m2.message === 'string') {
+      m2 = m2.message
+    }
+    if (m1 && m2 && m1 !== m2) {
       return m1 + '; ' + m2
     } else if (m1) {
       return m1
