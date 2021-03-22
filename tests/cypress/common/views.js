@@ -1013,22 +1013,32 @@ export const doTableSearch = (text, inputSelector = null, parentSelector = null)
   if (inputSelector === null) {
     inputSelector = 'input[aria-label="Search input"]'
   }
-  // do the search only if there are resources on the page
-  if (!Cypress.$('#page').find('div.no-resource').length) {
-    // FIXME - do this search without a force
-    cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true}).type(text, {force: true})
-  }
+
+  cy.get('div.page-content-container')  // make sure the page is loaded enough
+    .then(() => {
+      // do the search only if there are resources on the page
+      if (!Cypress.$('#page').find('div.no-resource').length) {
+        // FIXME - do this search without a force
+        cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true}).type(text, {force: true})
+      }
+    })
+
 }
 
 export const clearTableSearch = (inputSelector = null, parentSelector = null) => {
   if (inputSelector === null) {
     inputSelector = 'input[aria-label="Search input"]'
   }
-  // clear the search only if there are resources on the page
-  if (!Cypress.$('#page').find('div.no-resource').length) {
-    // FIXME - do this without a force
-    cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true})
-  }
+
+  cy.get('div.page-content-container')  // make sure the page is loaded enough
+    .then(() => {
+      // clear the search only if there are resources on the page
+      if (!Cypress.$('#page').find('div.no-resource').length) {
+        // FIXME - do this without a force
+        cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true})
+      }
+    })
+
 }
 
 
