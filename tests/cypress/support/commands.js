@@ -395,3 +395,11 @@ Cypress.Commands.add('checkPolicyNoResourcesIconMessage', (present=true, message
 Cypress.Commands.add('checkNotificationMessage', (kind, title, notification) => {
   cy.then(() => action_checkNotificationMessage(kind, title, notification))
 })
+
+Cypress.Commands.add('doTableSearch', (text, inputSelector = null, parentSelector = null) => {
+  doTableSearch(text, inputSelector, parentSelector)
+})
+
+Cypress.Commands.add('clearTableSearch', (inputSelector = null, parentSelector = null) => {
+  clearTableSearch(inputSelector, parentSelector)
+})
