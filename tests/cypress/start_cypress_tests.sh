@@ -91,6 +91,9 @@ else
   echo "Running cypess under browser headless model."
 fi
 
+# CYPRESS_TAGS_EXCLUDE is just a test tag filtering demo. It should not be applied by default!!!
+export CYPRESS_TAGS_EXCLUDE="@extended"
+
 if [ "$NODE_ENV" == "dev" ]; then
   npx cypress run --browser $BROWSER $HEADLESS --spec "./tests/cypress/tests/*.spec.js" --reporter cypress-multi-reporters  
 elif [ "$NODE_ENV" == "debug" ]; then

@@ -2,6 +2,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 /// <reference types="cypress" />
+import { describeT } from '../support/tagging'
 import { getDefaultSubstitutionRules, verifyPolicyInPolicyStatus, verifyPolicyByYAML } from '../common/views'
 import { test_applyPolicyYAML } from  '../common/tests'
 import { getUniqueResourceName } from '../scripts/utils'
@@ -16,7 +17,7 @@ if (Cypress.env('MANAGED_CLUSTER_NAME') !== undefined) {
 }
 
 
-describe('Setup - create a certificate expiring soon', () => {
+describeT('Setup - create a certificate expiring soon', () => {
   const substitutionRules = getDefaultSubstitutionRules({
     clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"]}`,
     compliancetype: 'musthave'
@@ -34,7 +35,7 @@ describe('Setup - create a certificate expiring soon', () => {
 })
 
 
-describe('RHACM4K-2294 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy governance', () => {
+describeT('RHACM4K-2294 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy governance', () => {
   const certificatePolicyName = 'policy-certificatepolicy'
   const uCertificatePolicyName = getUniqueResourceName(certificatePolicyName)
   const substitutionRules = getDefaultSubstitutionRules({policyname:uCertificatePolicyName, clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"]}`})
@@ -118,7 +119,7 @@ describe('RHACM4K-2294 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
 })
 
 
-describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy governance', () => {
+describeT('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy governance', () => {
   const certificatePolicyName = 'policy-certificatepolicy-rhacm4k-1205'
   const uCertificatePolicyName = getUniqueResourceName(certificatePolicyName)
   const substitutionRules = getDefaultSubstitutionRules({policyname:uCertificatePolicyName, clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"]}`})
@@ -202,7 +203,7 @@ describe('RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - CertificatePolicy gove
 })
 
 
-describe('Cleanup - delete a certificate and an issuer', () => {
+describeT('Cleanup - delete a certificate and an issuer', () => {
   const substitutionRulesCleanup = getDefaultSubstitutionRules({
     clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"]}`,
     compliancetype: 'mustnothave'

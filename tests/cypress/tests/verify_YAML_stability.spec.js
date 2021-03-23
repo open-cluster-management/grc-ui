@@ -3,6 +3,7 @@
 
 /// <reference types="cypress" />
 
+import { describeT } from '../support/tagging'
 import { getConfigObject } from '../config'
 import { getDefaultSubstitutionRules, parsePolicyNameFromYAML } from '../common/views'
 
@@ -47,7 +48,7 @@ const testPolicy = (policyConfFile, templateConfFile) => {
 
 }
 
-describe('RHACM4K-2509 - GRC UI: [P1][Sev1][policy-grc] All policy page: Verify stability of YAML', () => {
+describeT('RHACM4K-2509 - GRC UI: [P1][Sev1][policy-grc] All policy page: Verify stability of YAML', () => {
 
   testPolicy('verify_YAML_stability/Gatekeeper-template.yaml', 'verify_YAML_stability/Gatekeeper-template-verify.yaml')
   testPolicy('verify_YAML_stability/LimitRange_template-apply.yaml', 'verify_YAML_stability/LimitRange_template-verify.yaml')

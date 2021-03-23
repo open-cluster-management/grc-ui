@@ -7,9 +7,10 @@
 // other tests running in the environment
 
 /// <reference types="cypress" />
+import { describeT } from '../support/tagging'
 import { getConfigObject } from '../config'
 
-describe('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify summary table', () => {
+describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify summary table', () => {
 
   const confClusters = getConfigObject('clusters.yaml')
   const clusterCount = Object.keys(confClusters).length
