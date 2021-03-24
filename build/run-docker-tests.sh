@@ -63,7 +63,8 @@ else
   npm run test:cypress-headless || true
 fi
 
-echo sleep $PAUSE seconds selenium ...
-sleep $PAUSE
-unset CI # unset for nightwatch
-npm run test:e2e-headless
+if [ -z $CYPRESS_TAGS_INCLUDE ] && [ $CYPRESS_TAGS_INCLUDE == "@extended"]; then
+  unset CI # unset for nightwatch
+  npm run test:e2e-headless
+fi
+
