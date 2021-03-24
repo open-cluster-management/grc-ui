@@ -4,7 +4,7 @@
 import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
 import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, isClusterTemplateStatusAvailable,
-         doTableSearch, clearTableSearch, action_createPolicyFromSelection, action_verifyPolicyInListing,
+         action_doTableSearch, action_clearTableSearch, action_createPolicyFromSelection, action_verifyPolicyInListing,
          action_verifyPolicyNotInListing, action_actionPolicyActionInListing, action_createPolicyFromYAML,
          action_verifyPolicyInPolicyDetails, action_verifyPolicyInPolicyDetailsTemplates,
          action_verifyPlacementRuleInPolicyDetails, action_verifyPlacementBindingInPolicyDetails,
@@ -161,18 +161,18 @@ Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
 // see isPolicyStatusAvailable()
 // optionally can wait for the specific violations counter to appear
 Cypress.Commands.add('waitForPolicyStatus', (name, violationsCounter) => {
-  doTableSearch(name)
-  cy.waitUntil(() => isPolicyStatusAvailable(name, violationsCounter), {'interval': 1000, 'timeout':120000})
-    .then(() => clearTableSearch())
+  cy.doTableSearch(name)
+    .waitUntil(() => isPolicyStatusAvailable(name, violationsCounter), {'interval': 1000, 'timeout':120000})
+    .clearTableSearch()
 })
 
 // needs to be run at /multicloud/policies/all at Cluster violations tab
 // see isClusterViolationsStatusAvailable()
 // optionally can wait for the specific violations counter to appear
 Cypress.Commands.add('waitForClusterViolationsStatus', (name, violationsCounter) => {
-  doTableSearch(name)
-  cy.waitUntil(() => isClusterViolationsStatusAvailable(name, violationsCounter), {'interval': 1000, 'timeout':120000})
-    .then(() => clearTableSearch())
+  cy.doTableSearch(name)
+    .waitUntil(() => isClusterViolationsStatusAvailable(name, violationsCounter), {'interval': 1000, 'timeout':120000})
+    .clearTableSearch()
 })
 
 
@@ -397,9 +397,9 @@ Cypress.Commands.add('checkNotificationMessage', (kind, title, notification) => 
 })
 
 Cypress.Commands.add('doTableSearch', (text, inputSelector = null, parentSelector = null) => {
-  doTableSearch(text, inputSelector, parentSelector)
+  cy.then(() => action_doTableSearch(text, inputSelector, parentSelector))
 })
 
 Cypress.Commands.add('clearTableSearch', (inputSelector = null, parentSelector = null) => {
-  clearTableSearch(inputSelector, parentSelector)
+  cy.then(() => action_clearTableSearch(inputSelector, parentSelector))
 })
