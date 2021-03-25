@@ -98,14 +98,12 @@ npm run test:unit
 
 **Note**: It is required that the UI runs locally or can target a remote cluster to start the selenium based tests.
 
-1. The RBAC tests require a set of users to exist in the remote cluster. To set up these users, first log in to your remote cluster. Decide on a password you'd like to use for these users. Then, from the `grc-ui` folder, run these commands (the script will also export `SELENIUM_USER`, `SELENIUM_PASSWORD`, and `SELENIUM_USER_SELECT` to match the RBAC users and use in place of `kubeadmin`):
+1. The RBAC tests require a set of users to exist in the remote cluster. To set up these users, first log in to your remote cluster. Decide on a password you'd like to use for these users. Then, from the `grc-ui` folder, run these commands (the script will also export `OC_CLUSTER_USER`, `OC_HUB_CLUSTER_PASS`, and `OC_IDP` to match the RBAC users and use in place of `kubeadmin`):
 
    ```bash
    export RBAC_PASS=<your-rbac-password>
    ./build/rbac-setup.sh
    ```
-
-   Alternatively, you can set `DISABLE_CANARY_TEST` to `true` to disable tests that would fail in the canaries like RBAC.
 
    For reference, the following users will be created:
 
