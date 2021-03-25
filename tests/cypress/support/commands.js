@@ -214,9 +214,29 @@ Cypress.Commands.add('waitForClusterTemplateStatus', (clusterViolations = {}) =>
   cy.waitUntil(() => { return isClusterTemplateStatusAvailable(clusterViolations) }, {'interval': 1000, 'timeout':60000})
 })
 
+// wait for any of the specified elements to appear on the page
+Cypress.Commands.add('waitForAnyElement', (selectors, timeout=60000) => {
+  const anyElemFound = (selectors) => {
+    var value = false
+    return cy.get('body').then($body => {
+      for (const selector of selectors) {
+        const elems = $body.find(selector)
+        if (elems.length > 0) { 
+          value = true
+        }
+        if (value) { break }
+      }
+    })
+    .then(() => value)
+  }
+  // wait until any of the required selectors succeed on the page
+  cy.waitUntil(() => { return anyElemFound(selectors) != null }, {'interval': 1000, 'timeout':timeout})
+})
+
 Cypress.Commands.add('waitForPageContentLoad', () => {
-  cy.get('div.page-content-container')
-    .then(() => pageLoader.shouldNotExist())
+  const selectors = ['div.page-content-container', '#page']
+  cy.waitForAnyElement(selectors)
+  .then(() => pageLoader.shouldNotExist())
 })
 
 Cypress.Commands.add('CheckGrcMainPage', () => {
