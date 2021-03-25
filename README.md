@@ -94,11 +94,19 @@ npm run test:unit
 ```
 
 ### Cypress Tests
-**Note**: To run Cypress tests, you'll need to add necessary values in `cypressEnvConfig.yaml` file. e.g. `multicloud-console.apps.{BASE_DOMAIN}`.
 
 **Note**: It is required that the UI runs locally or can target a remote cluster to start the selenium based tests.
 
-1. The RBAC tests require a set of users to exist in the remote cluster. To set up these users, first log in to your remote cluster. Decide on a password you'd like to use for these users. Then, from the `grc-ui` folder, run these commands (the script will also export `OC_CLUSTER_USER`, `OC_HUB_CLUSTER_PASS`, and `OC_IDP` to match the RBAC users and use in place of `kubeadmin`):
+1. Before you run any cypress test, make sure the environment parameters `selenium_user` and `selenium_password` are set. If they are not set you can re-run the `rbac-setup.sh` script or to use the `kubeadmin` user, run the following commands:
+
+   ```bash
+   export OC_HUB_CLUSTER_URL=https://api.grcui-e2e.dev08.red-chesterfield.com:6443
+   export OC_CLUSTER_USER=kubeadmin
+   export OC_HUB_CLUSTER_PASS=XXXXXXXXX
+   export OC_IDP=kube:admin
+   ```
+
+2. The RBAC tests require a set of users to exist in the remote cluster. To set up these users, first log in to your remote cluster. Decide on a password you'd like to use for these users. Then, from the `grc-ui` folder, run these commands (the script will also export `OC_CLUSTER_USER`, `OC_HUB_CLUSTER_PASS`, and `OC_IDP` to match the RBAC users and use in place of `kubeadmin`):
 
    ```bash
    export RBAC_PASS=<your-rbac-password>
@@ -120,29 +128,23 @@ npm run test:unit
    | e2e-view-ns | Namespace | view for `e2e-rbac-test-1` |
    | e2e-group-ns | Namespace | view for `e2e-rbac-test-1` |
 
-2. Before you run any end-to-end (e2e) test, make sure the environment parameters `selenium_user` and `selenium_password` are set. If they are not set you can re-run the `rbac-setup.sh` script or to use the `kubeadmin` user, run the following commands:
+
+
+3. **Optional**: By default, cypress test runs against a live cluster. You can run cypress test against localhost. Set the environment parameter, `CYPRESS_BASE_URL` by running the following command:
 
    ```bash
-   export SELENIUM_USER=UI_USERNAME
-   export SELENIUM_PASSWORD=UI_PASSWORD
+   export CYPRESS_BASE_URL=https://localhost:3000
    ```
 
-3. **Optional**: By default, e2e test runs against https://localhost:3000. You can run e2e test against a specific remote cluster. Set the environment parameter, `SELENIUM_CLUSTER` by running the following command:
-
+4. Run the following command to start the cypress test:
    ```bash
-   export SELENIUM_CLUSTER=https://target.base.url
-   ```
-
-4. Run the following command to start the e2e test:
-
-   ```bash
-   npm run test:e2e
+   npm run test:cypress
    ```
 
    To run the tests headless (i.e. with the browser running in the background):
 
    ```bash
-   npm run test:e2e-headless
+   npm run test:cypress-headless
    ```
 
 
