@@ -41,7 +41,7 @@ RUN npm install \
     nconf@0.10.0 \
     log4js@6.3.0 \
     # del@5.1.0 \ 
-    # js-yaml@3.14.0 \
+    js-yaml@3.14.1 \
     @slack/web-api@5.15.0
 
 CMD ["./build/run-docker-tests.sh"]
