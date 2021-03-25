@@ -221,7 +221,7 @@ Cypress.Commands.add('waitForAnyElement', (selectors, timeout=60000) => {
     return cy.get('body').then($body => {
       for (const selector of selectors) {
         const elems = $body.find(selector)
-        if (elems.length > 0) { 
+        if (elems.length > 0) {
           value = true
         }
         if (value) { break }
