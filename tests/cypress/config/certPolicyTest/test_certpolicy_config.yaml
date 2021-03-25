@@ -5,5 +5,5 @@ categories:
 - 'PR.DS Data Security'
 controls:
 - 'PR.DS-2 Data-in-transit'
-enforce: False
+remediation: False
 disable: False

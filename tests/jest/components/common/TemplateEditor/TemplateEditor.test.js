@@ -217,9 +217,9 @@ const controlData = [
     ]
   },
   {
-    'name': 'Enforce if supported',
-    'description': 'Select Enforce, if the feature is supported for your policy, to update remediationAction. When Enforce is not selected, the parameter value for remediationAction is inform.',
-    'id': 'enforce',
+    'name': `${msgs['creation.view.policy.remediation']}`,
+    'description': `${msgs['policy.create.remediation.tooltip']}`,
+    'id': 'remediation',
     'type': 'checkbox',
     'active': 'inform',
     'checked': false,
@@ -262,7 +262,7 @@ describe('TemplateEditor component', () => {
   })
 })
 
-describe('on control change function', () => {
+describe('on control change function with active selections', () => {
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
@@ -302,10 +302,10 @@ describe('on control change function', () => {
     expect(wrapper.instance().onChange('categories', evt)).toEqual('categories')
     expect(wrapper.instance().onChange('controls', evt)).toEqual('controls')
     expect(wrapper.instance().onChange('clusters', evt)).toEqual('clusters')
-    const evt_inform = false
-    expect(wrapper.instance().onChange('enforce', evt_inform)).toEqual('enforce')
-    const evt_enforce = true
-    expect(wrapper.instance().onChange('enforce', evt_enforce)).toEqual('enforce')
+    const evt_inform = 'false'
+    expect(wrapper.instance().onChange('remediation', evt_inform)).toEqual('remediation')
+    const evt_enforce = 'true'
+    expect(wrapper.instance().onChange('remediation', evt_enforce)).toEqual('remediation')
     const evt_spec = {
       target: { value: 'value-testing' },
       selectedItems: ['CertificatePolicy - cert management expiration']
@@ -314,7 +314,7 @@ describe('on control change function', () => {
   })
 })
 
-describe('on control change function', () => {
+describe('on control change function without active selections', () => {
   const deepCopy = _.cloneDeep(controlData)
   deepCopy[1].active = null
   it('renders as expected', () => {
@@ -345,7 +345,15 @@ describe('on control change function', () => {
     const evt_badName = {
       target: { value: 'a-b-' }
     }
+    const evt_namespace = {
+      selectedItem: 'test-namespace'
+    }
+    // Without any namespace, the name should still be valid to allow the missing namespace error to show
     expect(wrapper.instance().onChange('name', evt_badName)).toEqual('name')
+    expect(wrapper.instance().state.duplicateName).toEqual(false)
+    expect(wrapper.instance().state.validPolicyName).toEqual(true)
+    // With a namespace, the name should no longer be valid
+    expect(wrapper.instance().onChange('namespace', evt_namespace)).toEqual('namespace')
     expect(wrapper.instance().state.duplicateName).toEqual(false)
     expect(wrapper.instance().state.validPolicyName).toEqual(false)
     expect(wrapper.instance().state.exceptions.some((exception) => exception.text === msgs['error.policy.nameFormat.short'])).toEqual(true)
@@ -356,10 +364,10 @@ describe('on control change function', () => {
     expect(wrapper.instance().onChange('categories', evt)).toEqual('categories')
     expect(wrapper.instance().onChange('controls', evt)).toEqual('controls')
     expect(wrapper.instance().onChange('clusters', evt)).toEqual('clusters')
-    const evt_inform = false
-    expect(wrapper.instance().onChange('enforce', evt_inform)).toEqual('enforce')
-    const evt_enforce = true
-    expect(wrapper.instance().onChange('enforce', evt_enforce)).toEqual('enforce')
+    const evt_inform = 'false'
+    expect(wrapper.instance().onChange('remediation', evt_inform)).toEqual('remediation')
+    const evt_enforce = 'true'
+    expect(wrapper.instance().onChange('remediation', evt_enforce)).toEqual('remediation')
     const evt_spec = {
       target: { value: 'value-testing' },
       selectedItems: ['CertificatePolicy - cert management expiration']

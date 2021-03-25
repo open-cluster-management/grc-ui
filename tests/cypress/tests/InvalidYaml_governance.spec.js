@@ -2,12 +2,13 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 /// <reference types="cypress" />
+import { describeT } from '../support/tagging'
 import { getConfigObject } from '../config'
 import { getDefaultSubstitutionRules } from '../common/views'
 const invalidYamlErrorMessages = getConfigObject('InvalidYamlTests/invalidYamlErrors.yaml', 'yaml')
 
 
-describe('RHACM4K-247 - GRC UI: [P1][Sev1][policy-grc] Create policy with invalid yaml', () => {
+describeT('RHACM4K-247 - GRC UI: [P1][Sev1][policy-grc] Create policy with invalid yaml', () => {
   it('Create policy should fail with invalid policy name in yaml', () => {
     const confFilePolicy = 'InvalidYamlTests/InvalidPolicyName.yaml'
     const rawPolicyYAML = getConfigObject(confFilePolicy, 'raw', getDefaultSubstitutionRules())

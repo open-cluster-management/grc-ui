@@ -1646,7 +1646,7 @@ export const clusterSubResourceListTestingItemData = [
       '__typename': 'Metadata'
     },
     'status': 'NonCompliant',
-    'enforcement': 'enforce',
+    'remediation': 'enforce',
     'detail': {
       'exclude_namespace': [
         '*'
@@ -1765,7 +1765,7 @@ export const clusterSubResourceListTestingItemData = [
       '__typename': 'Metadata'
     },
     'status': 'NonCompliant',
-    'enforcement': 'inform',
+    'remediation': 'inform',
     'detail': {
       'exclude_namespace': [
         'kube*'
@@ -1883,7 +1883,7 @@ export const clusterSubResourceListTestingItemData = [
       '__typename': 'Metadata'
     },
     'status': 'Compliant',
-    'enforcement': 'enforce',
+    'remediation': 'enforce',
     'detail': {
       'exclude_namespace': [
         'kube*'

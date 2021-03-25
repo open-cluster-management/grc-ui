@@ -511,7 +511,7 @@ describe('PolicyTemplatesView component', () => {
               'complianceName': '1569249226915-policy-test',
               'complianceNamespace': 'mcm',
               'valid': 'unknown',
-              'enforcement': 'unknown',
+              'remediation': 'unknown',
               'status': 'NonCompliant',
               'raw': null,
               'metadata': {
@@ -542,7 +542,7 @@ describe('PolicyTemplatesView component', () => {
               'complianceName': '1569249226915-policy-test',
               'complianceNamespace': 'mcm',
               'valid': 'unknown',
-              'enforcement': 'unknown',
+              'remediation': 'unknown',
               'status': 'NonCompliant',
               'raw': null,
               'metadata': {

@@ -2,10 +2,11 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 /// <reference types="cypress" />
+import { describeT } from '../support/tagging'
 import { getDefaultSubstitutionRules, getViolationsPerPolicy, getViolationsCounter } from '../common/views'
 import { getConfigObject } from '../config'
 
-describe('RHACM4K-1648 - GRC UI: [P2][Sev2][policy-grc] CertPolicy with wrong namespace selector', () => {
+describeT('RHACM4K-1648 - GRC UI: [P2][Sev2][policy-grc] CertPolicy with wrong namespace selector', () => {
 
   const confClusters = getConfigObject('clusters.yaml')
   // we will work only with one cluster, we do not need more

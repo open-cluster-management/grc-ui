@@ -23,6 +23,8 @@ import {
   Checkbox,
   DropdownV2,
   MultiSelect,
+  RadioButtonGroup,
+  RadioButton,
   ToggleSmall,
   Modal} from 'carbon-components-react'
 import { Spinner, Tooltip } from '@patternfly/react-core'
@@ -313,7 +315,8 @@ export default class TemplateEditor extends React.Component {
     const { existing, existingByNamespace } = controlData.find(control => control.id === 'name')
     let isDuplicateName = false
     let validPolicyNameFormat = true
-    if (policyName) {
+    // If both a policy name and namespace are provided, check for duplication and formatting
+    if (policyName && policyNS) {
       // Check to see whether the policy name exists already
       if (existing && existingByNamespace) {
         isDuplicateName = existing.includes(policyName) && existingByNamespace[policyName] === policyNS
@@ -354,9 +357,57 @@ export default class TemplateEditor extends React.Component {
   }
 
   renderCheckbox(control) {
-    const {id, name, description, checked} = control
+    const {id, name, description, checked, available} = control
+    if (id === 'remediation') {
+      const radioButtons=[]
+      available.forEach((item) => {
+        radioButtons.push(<RadioButton
+          aria-label={`${id}-${item}`}
+          id={`${id}-${item}`}
+          key={`${id}-${item}`}
+          className='radio-button'
+          labelText={msgs.get(`creation.view.policy.${item}`)}
+          value={item === 'enforce' ? 'true' : 'false'}
+        />)
+      })
+      return (
+        <React.Fragment>
+          <div className='creation-view-controls-radiobutton'>
+            <div className="creation-view-controls-textbox-title">
+              {name}
+              <div className='creation-view-controls-must-exist'>*</div>
+              <Tooltip content={description}>
+                <svg className='info-icon'>
+                  <use href={diagramIconsInfoStr} ></use>
+                </svg>
+              </Tooltip>
+            </div>
+            <RadioButtonGroup
+              aria-label={id}
+              id={id}
+              name='radio-button-group'
+              className='radio-button-group'
+              defaultSelected='inform'
+              valueSelected={checked.toString()}
+              orientation='vertical'
+              onChange={this.onChange.bind(this, id)}
+            >
+              {radioButtons}
+            </RadioButtonGroup>
+          </div>
+        </React.Fragment>
+      )
+    }
     return (
       <React.Fragment>
+        <div className="creation-view-controls-textbox-title">
+          {name}
+          <Tooltip content={description}>
+            <svg className='info-icon'>
+              <use href={diagramIconsInfoStr} ></use>
+            </svg>
+          </Tooltip>
+        </div>
         <div className='creation-view-controls-checkbox'>
           <Checkbox
             aria-label={id}
@@ -366,12 +417,7 @@ export default class TemplateEditor extends React.Component {
             labelText=''
             checked={checked}
             onChange={this.onChange.bind(this, id)} />
-          <div>{name}</div>
-          <Tooltip content={description}>
-            <svg className='info-icon'>
-              <use href={diagramIconsInfoStr} ></use>
-            </svg>
-          </Tooltip>
+            <div>{msgs.get(`description.title.${id}`)}</div>
         </div>
       </React.Fragment>
     )
@@ -544,6 +590,9 @@ export default class TemplateEditor extends React.Component {
       updateName = !isCustomName && control.updateNamePrefix
       break
     case 'checkbox':
+      if (typeof(evt) === 'string') {
+        evt = (evt === 'true')
+      }
       control.active = evt ? control.available[1] : control.available[0]
       control.checked = evt
       break
