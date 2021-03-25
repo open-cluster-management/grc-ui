@@ -24,23 +24,17 @@ RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 RUN ./build/download-clis.sh
 
 RUN npm install \
-    # chromedriver \
     cypress \
     cypress-multi-reporters \
     cypress-terminal-report \
     cypress-wait-until \
     cypress-fail-fast \
-    # cypress-tags \
-    # typescript \
     @cypress/code-coverage \
     mocha \
     mocha-junit-reporter \
     mochawesome \
-    # nightwatch \
-    # nightwatch-coverage \
     nconf@0.10.0 \
     log4js@6.3.0 \
-    # del@5.1.0 \ 
     js-yaml@3.14.1 \
     @slack/web-api@5.15.0
 
