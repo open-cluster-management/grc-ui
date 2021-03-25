@@ -12,7 +12,7 @@ import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, is
          action_verifyPolicyDetailsInCluster, action_verifyPolicyTemplatesInCluster,
          action_verifyPolicyViolationDetailsInCluster, action_verifyPolicyViolationDetailsInHistory,
          action_verifyCreatePolicySelection, isClusterViolationsStatusAvailable, action_verifyClusterViolationsInListing,
-         action_checkNotificationMessage
+         action_checkNotificationMessage, action_checkPolicyListingPageUserPermissions
 } from '../common/views'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='') => {
@@ -429,4 +429,69 @@ Cypress.Commands.add('doTableSearch', (text, inputSelector = null, parentSelecto
 
 Cypress.Commands.add('clearTableSearch', (inputSelector = null, parentSelector = null) => {
   cy.then(() => action_clearTableSearch(inputSelector, parentSelector))
+})
+
+// the command does check the content of the /multicloud/policies/all page with respect to the user permissions
+// arguments:
+//   policyNames = array of policy names that are expected to be found
+//   confPolicies = dictionary storing policy configurations where policyName is a key
+//   permissions = user permissions
+//   searchFilter = filter to be used in the Search field to limit the scope of a test
+Cypress.Commands.add('checkPolicyListingPageUserPermissions', (policyNames = [], confPolicies = {}, permissions = {}, elevated = false, searchFilter='') => {
+  action_checkPolicyListingPageUserPermissions(policyNames, confPolicies, permissions, elevated, searchFilter)
+})
+
+// visit the policy details page, either through a link from a policy table or directly through URL
+// does not clearTableSearch so you need to do it later eventually
+Cypress.Commands.add('fromGRCToPolicyDetailsPage', (policyName) => {
+  cy.doTableSearch(policyName)
+    .get('.grc-view-by-policies-table').within(() => {
+      cy.get('a').contains(new RegExp(`^${policyName}$`)).click()
+    })
+})
+
+// the command does check the content of the /multicloud/policies/all/${namespace}/${policyName} page with respect to the user permissions
+// checks that PlacementRule and PlacementBinding Edit buttons are enabled/disabled accordingly
+Cypress.Commands.add('checkDetailedPolicyPageUserPermissions', (policyName, permissions) => {
+  const btnState = permissions.patch ? 'enabled' : 'disabled'
+  // need to search for button this way since disabled button is wrapped in an extra <div>
+  cy.get('h1').contains('Placement rule').parent().find('button').then($button => {
+      cy.wrap($button).should(`be.${btnState}`)
+    })
+    .get('h1').contains('Placement binding').parent().find('button').then($button => {
+       cy.wrap($button).should(`be.${btnState}`)
+    })
+})
+
+// the command does check controls availability at the Status tab of /multicloud/policies/all/${namespace}/${policyName}
+// page with respect to the user permissions
+// works both for Clusters and Templates tabs, you just need to set messageColumnIndex accordingly (4 for Clusters, 3 for templates)
+Cypress.Commands.add('checkPolicyStatusPageUserPermissions', (policyName, permissions, namespaced, messageColumnIndex=4) => {
+  if (namespaced) {  // not permitted to see the content
+    cy.checkPolicyNoResourcesIconMessage(false, 'No policy status found')
+  } else {
+    // The "View details" link should be disabled with a tooltip since it requires
+    // permissions to create a managedClusterView
+    cy.get('table[aria-label="Sortable Table"]').each(($table) => {  // for each table, on templates tab there could be more
+      cy.wrap($table).within(() => {
+        cy.get('tbody').find('tr').each(($row) => {  // for each table row
+          cy.wrap($row).find('td').then(columns => {  // get all columns
+            if (permissions.create) {
+              cy.wrap(columns[messageColumnIndex-1]).contains('View details').should('have.attr', 'href')
+            } else {
+              cy.wrap(columns[messageColumnIndex-1]).contains('View details').should('have.class', 'link-disabled')
+            }
+          })
+        })
+      })
+    })
+  }
+})
+
+// does check controls availability at the YAML Editor tab of /multicloud/policies/all/${namespace}/${policyName} page
+// with respect to the user permissions
+Cypress.Commands.add('checkPolicyYAMLPageUserPermissions', (permissions) => {
+  const btnState = permissions.patch ? 'enabled' : 'disabled'
+  cy.get('#edit-button').should(`be.${btnState}`)
+  cy.get('#submit-button').should(`be.${btnState}`)
 })
