@@ -18,7 +18,7 @@ fi
 
 #Get env from Docker arguments
 export FAIL_FAST=${FAIL_FAST:-false}
-
+export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
 # show all envs
 printenv
 # test oauth server and see if idp has been setup
