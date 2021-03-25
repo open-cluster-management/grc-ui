@@ -10,7 +10,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import { Notification } from 'carbon-components-react'
+import { AcmAlert } from '@open-cluster-management/ui-components'
 import { Spinner } from '@patternfly/react-core'
 
 import {
@@ -158,7 +158,7 @@ describe('PolicyActionModal component', () => {
         store={store}
       />
     )
-    expect(component.find(Notification)).toHaveLength(1)
+    expect(component.find(AcmAlert)).toHaveLength(1)
     expect(toJson(component)).toMatchSnapshot()
   })
 })
