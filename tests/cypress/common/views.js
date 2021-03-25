@@ -1013,7 +1013,6 @@ export const action_doTableSearch = (text, inputSelector = null, parentSelector 
   if (inputSelector === null) {
     inputSelector = 'input[aria-label="Search input"]'
   }
-
   cy.get('div.page-content-container')  // make sure the page is loaded enough
     .then(() => {
       // do the search only if there are resources on the page
@@ -1022,14 +1021,12 @@ export const action_doTableSearch = (text, inputSelector = null, parentSelector 
         cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true}).type(text, {force: true})
       }
     })
-
 }
 
 export const action_clearTableSearch = (inputSelector = null, parentSelector = null) => {
   if (inputSelector === null) {
     inputSelector = 'input[aria-label="Search input"]'
   }
-
   cy.get('div.page-content-container')  // make sure the page is loaded enough
     .then(() => {
       // clear the search only if there are resources on the page
@@ -1038,7 +1035,6 @@ export const action_clearTableSearch = (inputSelector = null, parentSelector = n
         cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true})
       }
     })
-
 }
 
 
@@ -1397,4 +1393,68 @@ export const getClusterViolationsCounterAndPolicyList = (clusterName, clusterLis
 // returns string
 export const parsePolicyNameFromYAML = (rawPolicyYAML) => {
   return rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
+}
+
+// the function does check the content of the /multicloud/policies/all page with respect to the user permissions
+// arguments:
+//   policyNames = array of policy names that are expected to be found
+//   confPolicies = dictionary storing policy configurations where policyName is a key
+//   permissions = user permissions
+//   elevated = true if a user has multiple permissions for different namespaces and Create policy button should be enabled
+//   searchFilter = filter to be used in the Search field to limit the scope of a test
+export const action_checkPolicyListingPageUserPermissions = (policyNames = [], confPolicies = {}, permissions = {}, elevated = false, searchFilter='') => {
+
+ const policyCount = policyNames.length
+
+  // check whether Create button is enabled/disabled
+  const createBtnState = permissions.create || elevated ? 'enabled' : 'disabled'
+  cy.get('#create-policy').should(`be.${createBtnState}`)
+
+  // check policy listing
+  if (policyCount > 0) {
+    // there should be policies listed let's check them
+    // enter the filter first
+    cy.doTableSearch(searchFilter)  // clears the search eventually
+    // check total number of policies listed
+    cy.get('div.pf-c-pagination').find('b').last().contains(new RegExp(`^${policyCount}$`))
+    // check each policy is listed
+    for (const policyName of policyNames) {
+      cy.verifyPolicyInListing(policyName, confPolicies[policyName])
+    }
+    // check Actions menu for the first policy
+   cy.doTableSearch(policyNames[0])
+   // all users should be able to click the Action button
+   cy.get('.grc-view-by-policies-table').within(() => {  // click the Action button
+      cy.get('button[aria-label="Actions"]').first().click()
+        .then(() => {
+          for (const action of ['Edit', 'Disable', 'Enforce']) {
+            if (permissions.patch) {
+              cy.get('button.pf-c-dropdown__menu-item').contains(action, { matchCase: false }).should('be.enabled')
+            } else {
+              cy.get('button.pf-c-dropdown__menu-item').contains(action, { matchCase: false }).parent().should('be.disabled')
+            }
+          }
+          if (permissions.delete) {
+            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).should('be.enabled')
+          } else {
+            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).parent().should('be.disabled')
+          }
+        })
+        // close the menu again
+        cy.get('button[aria-label="Actions"]').first().click()
+      })
+
+  } else if (searchFilter) {
+    // some policies should be filtered out
+    cy.doTableSearch(searchFilter)
+      .get('h2.pf-c-title').contains('No results found')
+  } else {
+    // no policies should be listed at all
+    cy.checkPolicyNoResourcesIconMessage(false, 'No policies found')
+    // check whether Create button below is enabled/disabled
+    const createBtnState = permissions.create || elevated ? 'enabled' : 'disabled'
+    cy.get('#create-resource').should(`be.${createBtnState}`)
+  }
+  cy.clearTableSearch()
+
 }
