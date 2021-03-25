@@ -100,7 +100,11 @@ class AppCtr extends React.Component {
 
   componentDidMount() {
     console.log('---- updating user access ----- ')
-    this.props.updateUserAccess()
+    GrcApolloClient.getUserAccess().then((response) => {
+      console.log('then response')
+      console.log(response.data.items)
+      this.props.updateUserAccess(response.data.items)
+    })
   }
 
   render() {
@@ -118,10 +122,8 @@ AppCtr.propTypes = {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log('----- map dispatch -----')
-  console.log(GrcApolloClient.getUserAccess())
   return {
-    updateUserAccess: () => dispatch(userAccessSuccess({ access: GrcApolloClient.getUserAccess('sha256~9rOYAGJpyEKo8lfmXeEBn_3LpiqPqUQzfhdX1-Q336E') }))
+    updateUserAccess: (access) => dispatch(userAccessSuccess(access))
   }
 }
 
