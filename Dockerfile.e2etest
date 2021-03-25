@@ -10,7 +10,7 @@ RUN mkdir -p /opt/app-root/src/grc-ui
 
 WORKDIR /opt/app-root/src/grc-ui
 
-COPY nightwatch.conf.js cypress.json nightwatch.json package.json ./
+COPY cypress.json package.json ./
 COPY config ./config
 COPY tests ./tests
 COPY build ./build
