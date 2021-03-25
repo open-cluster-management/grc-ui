@@ -20,7 +20,7 @@ import PropTypes from 'prop-types'
 // without curly braces means component with redux
 // eslint-disable-next-line import/no-named-as-default
 import SecondaryHeader from '../components/modules/SecondaryHeader'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import client from '../../lib/shared/client'
 import config from '../../lib/shared/config'
 import Modal from '../components/common/Modal'
@@ -29,6 +29,9 @@ import loadable from '@loadable/component'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
+import GrcApolloClient from '../../lib/client/apollo-client'
+import { userAccessSuccess } from '../actions/access'
+import { connect } from 'react-redux'
 
 export const ResourceToolbar = loadable(() => import(/* webpackChunkName: "ResourceToolbar" */ '../components/common/ResourceToolbar'))
 
@@ -86,11 +89,40 @@ const getAcmRoute = (props) => {
   return AcmRoute.Welcome
 }
 
-// eslint-disable-next-line react/display-name
-export default props => (
-  // eslint-disable-next-line react/prop-types
-  <AcmHeader route={getAcmRoute(props)} >
-    <Route path={config.contextPath} serverProps={props} component={App} />
-    <Route path={'/multicloud/welcome'} serverProps={props} component={WelcomeStatic} />
-  </AcmHeader>
-)
+class AppCtr extends React.Component {
+
+  constructor(props) {
+    super(props)
+    if (client && document.getElementById('propshcm')) {
+      this.serverProps = JSON.parse(document.getElementById('propshcm').textContent)
+    }
+  }
+
+  componentDidMount() {
+    console.log('---- updating user access ----- ')
+    this.props.updateUserAccess()
+  }
+
+  render() {
+    return (
+      <AcmHeader route={getAcmRoute(this.props)} >
+        <Route path={config.contextPath} serverProps={this.props} component={App} />
+        <Route path={'/multicloud/welcome'} serverProps={this.props} component={WelcomeStatic} />
+      </AcmHeader>
+    )
+  }
+}
+
+AppCtr.propTypes = {
+  updateUserAccess: PropTypes.func
+}
+
+const mapDispatchToProps = (dispatch) => {
+  console.log('----- map dispatch -----')
+  console.log(GrcApolloClient.getUserAccess())
+  return {
+    updateUserAccess: () => dispatch(userAccessSuccess({ access: GrcApolloClient.getUserAccess('sha256~9rOYAGJpyEKo8lfmXeEBn_3LpiqPqUQzfhdX1-Q336E') }))
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(AppCtr))
