@@ -7,7 +7,7 @@ import { getConfigObject } from '../config'
 import { test_userPermissionsPageContentCheck } from '../common/tests'
 
 
-describe('Role Based Access Control tests', () => {
+describe('RHACM4K-2584 - Role Based Access Control tests', () => {
 
   // we expect the user password to be exported in CYPRESS_RBAC_PASS variable
   const RBACpass = Cypress.env('RBAC_PASS')
