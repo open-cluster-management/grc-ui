@@ -19,5 +19,5 @@ test-pod-policy-[ID]:
     - 'PR.PT Protective Technology'
   controls:
     - 'PR.PT-3 Least Functionality'
-  enforce: False
+  remediation: False
   disable: False

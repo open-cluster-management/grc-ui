@@ -460,7 +460,7 @@ export const staticResourceData = {
       {
         'cells': [
           {
-            'resourceKey': 'description.title.enforcement',
+            'resourceKey': 'description.title.remediation',
             'type': 'i18n'
           },
           {
@@ -678,11 +678,11 @@ export const staticResourceData = {
       {
         'cells': [
           {
-            'resourceKey': 'description.title.enforcement',
+            'resourceKey': 'description.title.remediation',
             'type': 'i18n'
           },
           {
-            'resourceKey': 'enforcement'
+            'resourceKey': 'remediation'
           }
         ]
       },
@@ -764,11 +764,11 @@ export const staticResourceData = {
       {
         'cells': [
           {
-            'resourceKey': 'description.title.enforcement',
+            'resourceKey': 'description.title.remediation',
             'type': 'i18n'
           },
           {
-            'resourceKey': 'enforcement'
+            'resourceKey': 'remediation'
           }
         ]
       },
@@ -1422,7 +1422,7 @@ export const items = [
             'complianceName': '1570049336008-policy-test',
             'complianceNamespace': 'mcm',
             'valid': 'unknown',
-            'enforcement': 'unknown',
+            'remediation': 'unknown',
             'status': 'Compliant',
             'raw': null,
             'metadata': {
@@ -1453,7 +1453,7 @@ export const items = [
             'complianceName': '1570049336008-policy-test',
             'complianceNamespace': 'mcm',
             'valid': 'unknown',
-            'enforcement': 'unknown',
+            'remediation': 'unknown',
             'status': 'Compliant',
             'raw': null,
             'metadata': {

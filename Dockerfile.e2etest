@@ -1,5 +1,5 @@
 # Copyright (c) 2020 Red Hat, Inc.
-FROM node:erbium
+FROM node:fermium
 
 ENV NODE_ENV=development
 ENV TERM=xterm-256color
@@ -25,7 +25,7 @@ RUN ./build/download-clis.sh
 
 RUN npm install \
     chromedriver \
-    cypress@6.8.0 \
+    cypress \
     cypress-multi-reporters \
     cypress-terminal-report \
     cypress-wait-until \

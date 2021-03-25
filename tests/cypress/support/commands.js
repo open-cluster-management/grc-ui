@@ -4,7 +4,7 @@
 import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
 import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, isClusterTemplateStatusAvailable,
-         doTableSearch, clearTableSearch, action_createPolicyFromSelection, action_verifyPolicyInListing,
+         action_doTableSearch, action_clearTableSearch, action_createPolicyFromSelection, action_verifyPolicyInListing,
          action_verifyPolicyNotInListing, action_actionPolicyActionInListing, action_createPolicyFromYAML,
          action_verifyPolicyInPolicyDetails, action_verifyPolicyInPolicyDetailsTemplates,
          action_verifyPlacementRuleInPolicyDetails, action_verifyPlacementBindingInPolicyDetails,
@@ -161,31 +161,31 @@ Cypress.Commands.add('YAMLeditor', (uri = undefined) => {
 // see isPolicyStatusAvailable()
 // optionally can wait for the specific violations counter to appear
 Cypress.Commands.add('waitForPolicyStatus', (name, violationsCounter) => {
-  doTableSearch(name)
-  cy.waitUntil(() => isPolicyStatusAvailable(name, violationsCounter), {'interval': 500, 'timeout':120000})
-    .then(() => clearTableSearch())
+  cy.doTableSearch(name)
+    .waitUntil(() => isPolicyStatusAvailable(name, violationsCounter), {'interval': 1000, 'timeout':120000})
+    .clearTableSearch()
 })
 
 // needs to be run at /multicloud/policies/all at Cluster violations tab
 // see isClusterViolationsStatusAvailable()
 // optionally can wait for the specific violations counter to appear
 Cypress.Commands.add('waitForClusterViolationsStatus', (name, violationsCounter) => {
-  doTableSearch(name)
-  cy.waitUntil(() => isClusterViolationsStatusAvailable(name, violationsCounter), {'interval': 500, 'timeout':120000})
-    .then(() => clearTableSearch())
+  cy.doTableSearch(name)
+    .waitUntil(() => isClusterViolationsStatusAvailable(name, violationsCounter), {'interval': 1000, 'timeout':120000})
+    .clearTableSearch()
 })
 
 
 // needs to be run on /multicloud/policies/all/{namespace}/{policy} page
 // see isClusterPolicyStatusAvailable()
 Cypress.Commands.add('waitForClusterPolicyStatus', (clusterViolations, clusterList=null) => {
-  cy.waitUntil(() => { return isClusterPolicyStatusAvailable(clusterViolations, clusterList) }, {'interval': 500, 'timeout':60000})
+  cy.waitUntil(() => { return isClusterPolicyStatusAvailable(clusterViolations, clusterList) }, {'interval': 1000, 'timeout':60000})
 })
 
 // needs to be run on /multicloud/policies/all/{namespace}/{policy}/status page
 // see isClusterTemplateStatusAvailable()
 Cypress.Commands.add('waitForClusterTemplateStatus', (clusterViolations = {}) => {
-  cy.waitUntil(() => { return isClusterTemplateStatusAvailable(clusterViolations) }, {'interval': 500, 'timeout':60000})
+  cy.waitUntil(() => { return isClusterTemplateStatusAvailable(clusterViolations) }, {'interval': 1000, 'timeout':60000})
 })
 
 Cypress.Commands.add('waitForPageContentLoad', () => {
@@ -196,6 +196,7 @@ Cypress.Commands.add('CheckGrcMainPage', () => {
   cy.location('pathname').should('eq', '/multicloud/policies/all')
   pageLoader.shouldNotExist()
   cy.get('.bx--detail-page-header-title').contains('Governance and risk')
+  cy.get('.page-content-container > div').should('be.visible')
 })
 
 Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
@@ -369,7 +370,7 @@ Cypress.Commands.add('simpleYAMLupdate', (regExp='', text='', lineNumber) => {
 Cypress.Commands.add('waitForDocumentUpdate', (timeout=5000) => {
   cy.document().then($doc => {
     const lastUpdate = $doc.lastModified  // save current timestamp
-    cy.waitUntil(() => { return cy.document().its('lastModified').then($newUpdate => $newUpdate != lastUpdate) }, {'interval': 200, 'timeout':timeout})
+    cy.waitUntil(() => { return cy.document().its('lastModified').then($newUpdate => $newUpdate != lastUpdate) }, {'interval': 1000, 'timeout':timeout})
   })
 })
 
@@ -393,4 +394,12 @@ Cypress.Commands.add('checkPolicyNoResourcesIconMessage', (present=true, message
 
 Cypress.Commands.add('checkNotificationMessage', (kind, title, notification) => {
   cy.then(() => action_checkNotificationMessage(kind, title, notification))
+})
+
+Cypress.Commands.add('doTableSearch', (text, inputSelector = null, parentSelector = null) => {
+  cy.then(() => action_doTableSearch(text, inputSelector, parentSelector))
+})
+
+Cypress.Commands.add('clearTableSearch', (inputSelector = null, parentSelector = null) => {
+  cy.then(() => action_clearTableSearch(inputSelector, parentSelector))
 })
