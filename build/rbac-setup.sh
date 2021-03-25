@@ -50,6 +50,6 @@ if [ ! $(oc -n openshift-config get oauth cluster -o jsonpath='{.spec.identityPr
 fi
 oc apply --validate=false -k ${RBAC_DIR}
 
-export SELENIUM_USER=e2e-cluster-admin-cluster
-export SELENIUM_PASSWORD=${RBAC_PASS}
-export SELENIUM_USER_SELECT=grc-e2e-htpasswd
+export OC_CLUSTER_USER=e2e-cluster-admin-cluster
+export OC_HUB_CLUSTER_PASS=${RBAC_PASS}
+export OC_IDP=grc-e2e-htpasswd

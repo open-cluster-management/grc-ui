@@ -17,10 +17,6 @@
   "videoCompression": false,
   "watchForFileChanges": true,
   "nodeVersion": "system",
-  "env": {
-    "OC_IDP": "kube:admin",
-    "OC_CLUSTER_USER": "kubeadmin"
-  },
   "reporter": "cypress-multi-reporters",
   "reporterOptions": {
     "reporterEnabled": "mochawesome, mocha-junit-reporter",

@@ -47,14 +47,7 @@ else
 fi
 
 
-if [ ! -z "$SELENIUM_CLUSTER" ]; then
-  echo "SELENIUM_CLUSTER env parameter is found, run system e2e testing and use OC_HUB_CLUSTER_URL"
-  export CYPRESS_BASE_URL=$SELENIUM_CLUSTER
-else
-  echo "pull request e2e testing and use travis env CYPRESS_BASE_URL or localhost"
-  export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-"https://localhost:3000"}
-fi
-
+export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-"https://localhost:3000"}
 if [ "$CYPRESS_BASE_URL" = "https://localhost:3000" ]; then
   export CYPRESS_coverage=true
 else
@@ -62,8 +55,8 @@ else
 fi
 
 export CYPRESS_RBAC_PASS="$RBAC_PASS"
-
 export CYPRESS_FAIL_FAST_PLUGIN=${CYPRESS_FAIL_FAST_PLUGIN:-"true"}
+export CYPRESS_OC_IDP=${OC_IDP:-"kube:admin"}
 echo -e "Running cypess tests with the following environment:\n"
 echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_ID"
 echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL)  : $CYPRESS_BASE_URL"
