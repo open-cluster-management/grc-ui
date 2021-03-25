@@ -58,8 +58,6 @@ npm run start:instrument &>/dev/null &
 sleep 20
 echo "Launching cypress e2e test"
 npm run test:cypress-headless
-echo "Launching nightwatch e2e test"
-npm run test:e2e-headless
 
 # kill the node process to let nyc generate coverage report
 ps -ef | grep 'node app.js' | grep -v grep | awk '{print $2}' | xargs kill
