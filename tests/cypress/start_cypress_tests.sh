@@ -46,8 +46,8 @@ else
   echo "MANAGED_CLUSTER_NAME is set, set CYPRESS_MANAGED_CLUSTER_NAME to $MANAGED_CLUSTER_NAME"
 fi
 
-
-export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-"https://localhost:3000"}
+RHACM_CONSOLE_URL=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
+export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-$RHACM_CONSOLE_URL}
 if [ "$CYPRESS_BASE_URL" = "https://localhost:3000" ]; then
   export CYPRESS_coverage=true
 else

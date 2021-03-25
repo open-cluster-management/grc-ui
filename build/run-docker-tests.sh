@@ -17,10 +17,6 @@ fi
 ./build/cluster-setup.sh
 
 #Get env from Docker arguments
-export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
-export SKIP_NIGHTWATCH_COVERAGE=${SKIP_NIGHTWATCH_COVERAGE:-true}
-export SKIP_LOG_DELETE=${SKIP_LOG_DELETE:-true}
-export DISABLE_CANARY_TEST=${DISABLE_CANARY_TEST:-false}
 export FAIL_FAST=${FAIL_FAST:-false}
 
 # show all envs
