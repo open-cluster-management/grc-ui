@@ -57,6 +57,12 @@ class App extends React.Component {
     return this.props.staticContext
   }
 
+  componentDidMount() {
+    GrcApolloClient.getUserAccess().then((response) => {
+      this.props.updateUserAccess(response.data.items)
+    })
+  }
+
   render() {
     const serverProps = this.getServerProps()
     const { match } = this.props
@@ -76,6 +82,18 @@ class App extends React.Component {
   }
 }
 
+App.propTypes = {
+  updateUserAccess: PropTypes.func
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateUserAccess: (access) => dispatch(userAccessSuccess(access))
+  }
+}
+
+const AppWithUserAccess = withRouter(connect(null, mapDispatchToProps)(App))
+
 const getAcmRoute = (props) => {
   let path = ''
   if (client) {
@@ -89,42 +107,11 @@ const getAcmRoute = (props) => {
   return AcmRoute.Welcome
 }
 
-class AppCtr extends React.Component {
-
-  constructor(props) {
-    super(props)
-    if (client && document.getElementById('propshcm')) {
-      this.serverProps = JSON.parse(document.getElementById('propshcm').textContent)
-    }
-  }
-
-  componentDidMount() {
-    console.log('---- updating user access ----- ')
-    GrcApolloClient.getUserAccess().then((response) => {
-      console.log('then response')
-      console.log(response.data.items)
-      this.props.updateUserAccess(response.data.items)
-    })
-  }
-
-  render() {
-    return (
-      <AcmHeader route={getAcmRoute(this.props)} >
-        <Route path={config.contextPath} serverProps={this.props} component={App} />
-        <Route path={'/multicloud/welcome'} serverProps={this.props} component={WelcomeStatic} />
-      </AcmHeader>
-    )
-  }
-}
-
-AppCtr.propTypes = {
-  updateUserAccess: PropTypes.func
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateUserAccess: (access) => dispatch(userAccessSuccess(access))
-  }
-}
-
-export default withRouter(connect(null, mapDispatchToProps)(AppCtr))
+// eslint-disable-next-line react/display-name
+export default props => (
+  // eslint-disable-next-line react/prop-types
+  <AcmHeader route={getAcmRoute(props)} >
+    <Route path={config.contextPath} serverProps={props} component={AppWithUserAccess} />
+    <Route path={'/multicloud/welcome'} serverProps={props} component={WelcomeStatic} />
+  </AcmHeader>
+)
