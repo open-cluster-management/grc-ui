@@ -30,8 +30,8 @@
   "author": "",
   "license": "SEE LICENSE IN LICENSE",
   "engines": {
-    "node": "10.15.3",
-    "npm": "6.4.1"
+    "node": ">=10.15.3",
+    "npm": ">=6.4.1"
   },
   "dependencies": {
     "@apollo/client": "^3.3.11",
