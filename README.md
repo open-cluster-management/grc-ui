@@ -93,13 +93,6 @@ Run the following command to start all unit tests (run through Jest):
 npm run test:unit
 ```
 
-### E2E Tests
-
-**Note**: To run E2E tests, you'll need to install `chromedriver` before the first run or the test run will fail immediately:
-
-```bash
-npm install chromedriver
-```
 ### Cypress Tests
 **Note**: To run Cypress tests, you'll need to add necessary values in `cypressEnvConfig.yaml` file. e.g. `multicloud-console.apps.{BASE_DOMAIN}`.
 
@@ -163,11 +156,9 @@ View the full list of npm scripts that are described in the following table:
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | `npm start`                      | Starts the application with NODE_ENV='development'.                                                                               |
 | `npm test:unit`                  | Runs jest tests.                                                                                                                |
-| `npm run test:cypress`            | Cypress headed or GUI based test with Chrome browser.|
 | `npm test:update-snapshot`       | Updates snapshots for jest tests. This command should only be used if you have made changes to a component that requires an updated snapshot artifact for a test case.|
-| `npm test:update-a11ySnap`       | Updates snapshots for automated a11y test in e2e test. To update a11y test snapshot, first run `npm run test:e2e` locally, then run this command to update files. Only update a11y snapshot when you make changes and make sure those a11y issues can't be fixed on our side.|
-| `npm test:e2e`                   | Runs nightwatch e2e tests. |
-| `npm test:e2e-headless`          | Runs nightwatch e2e tests with headless browser (i.e. browser runs in the background). |
+| `npm test:cypress`               | Runs Cypress e2e tests. |
+| `npm test:cypress-headless`      | Runs Cypress e2e tests with headless browser (i.e. browser runs in the background). |
 | `npm run start:production`       | Starts the application with NODE_ENV='production'.                                                                                |
 | `npm run clean`                  | Deletes the generated files from public folder.                                                                                  |
 | `npm run build`                  | Does a FULL development build.  (caching disabled and dev source maps)                                                           |
@@ -177,7 +168,6 @@ View the full list of npm scripts that are described in the following table:
 | `npm run test:install-selenium`  | Install selenium standalone for running UI tests locally. Automatically invoked when you run `npm run test:e2e`.                        |
 | `npm run lint`                   | Runs linting on the code base.                                                                                                   |
 | `npm run lint:fix`               | Attempts to fix any linting errors automatically.                                                                                |
-| `npm run shrinkwrap:clean`       | Regenerates a clean `npm-shrinkwrap.json` - THIS COMMAND SHOULD ONLY BE USED IN EXTREME CIRCUMSTANCES.                           |
 
   **Note**: The build process leverages the Dll and DllReference plugins to extract vendor plugins for faster build times and improve browser caching.  A separate bundle is created for 3rd-party client-side libraries.  The generated bundle is sourced (_public/dll.vendor.js_) along with its manifest (_vendor-manifest.json_).  If new client dependencies are added or existing versions of dependencies are updated, this module needs to be regenerated and recommitted back into source control. Run the following command  `npm run build:dll`.
 
