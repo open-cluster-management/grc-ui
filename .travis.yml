@@ -57,7 +57,7 @@ jobs:
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
     - stage: build
       name: "Build the test image"
-      # if: type != pull_request AND type != cron AND branch = main
+      if: type != pull_request AND type != cron AND branch = main
       script:
         - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
@@ -91,9 +91,7 @@ jobs:
         - echo '"start unit testing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/test/unit
         - echo '"finished unit test"' && echo -en 'travis_fold:end:script.build\\r'
-        - echo '"start e2e testing..."' && echo -en 'travis_fold:start:script.build\\r'
         - make component/test/e2e
-        - echo '"finished e2e test"' && echo -en 'travis_fold:end:script.build\\r'
         - npm run merge:coverage
         - echo '"start sonar checking..."' && echo -en 'travis_fold:start:script.build\\r'
         - make sonar/js
