@@ -63,7 +63,3 @@ else
   npm run test:cypress-headless || true
 fi
 
-if [ ! -z $CYPRESS_TAGS_INCLUDE ] || [ "$CYPRESS_TAGS_INCLUDE" = "@extended" ]; then
-  unset CI; # unset for nightwatch
-  npm run test:e2e-headless;
-fi
