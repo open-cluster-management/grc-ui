@@ -46,6 +46,10 @@ else
   echo "MANAGED_CLUSTER_NAME is set, set CYPRESS_MANAGED_CLUSTER_NAME to $MANAGED_CLUSTER_NAME"
 fi
 
+echo -e "\nLogging into Kube API server\n"
+oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
+
+
 RHACM_CONSOLE_URL=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
 export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-$RHACM_CONSOLE_URL}
 if [ "$CYPRESS_BASE_URL" = "https://localhost:3000" ]; then
@@ -69,9 +73,6 @@ echo -e "\tCYPRESS_coverage       : $CYPRESS_coverage"
 echo -e "\tCYPRESS_TAGS_INCLUDE          : $CYPRESS_TAGS_INCLUDE"
 echo -e "\tCYPRESS_TAGS_EXCLUDE          : $CYPRESS_TAGS_EXCLUDE"
 [ -n "$CYPRESS_RBAC_PASS" ] && echo -e "CYPRESS_RBAC_PASS set" || echo -e "Error: CYPRESS_RBAC_PASS is not set"
-
-echo -e "\nLogging into Kube API server\n"
-oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
 
 # save a list of available clusters to .tests/cypress/config/clusters.yaml file so tests can use it
 oc get managedclusters -o custom-columns='name:.metadata.name,available:.status.conditions[?(@.reason=="ManagedClusterAvailable")].status,vendor:.metadata.labels.vendor' --no-headers | awk '/True/ { printf "%s:\n  vendor: %s\n", $1, $3 }' > ./tests/cypress/config/clusters.yaml
