@@ -97,7 +97,7 @@ npm run test:unit
 
 **Note**: It is required that the UI runs locally or can target a remote cluster to start the selenium based tests.
 
-1. Before you run any cypress test, make sure the environment parameters `selenium_user` and `selenium_password` are set. If they are not set you can re-run the `rbac-setup.sh` script or to use the `kubeadmin` user, run the following commands:
+1. Before you run any cypress test, make sure the following envs are set.
 
    ```bash
    export OC_HUB_CLUSTER_URL=https://api.grcui-e2e.dev08.red-chesterfield.com:6443
@@ -127,8 +127,6 @@ npm run test:unit
    | e2e-edit-ns | Namespace | edit for `e2e-rbac-test-1` |
    | e2e-view-ns | Namespace | view for `e2e-rbac-test-1` |
    | e2e-group-ns | Namespace | view for `e2e-rbac-test-1` |
-
-
 
 3. **Optional**: By default, cypress test runs against a live cluster. You can run cypress test against localhost. Set the environment parameter, `CYPRESS_BASE_URL` by running the following command:
 
