@@ -16,24 +16,37 @@ import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, is
 } from '../common/views'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='') => {
-  const user = OPTIONS_HUB_USER || process.env.SELENIUM_USER || Cypress.env('OPTIONS_HUB_USER')
-  const password = OPTIONS_HUB_PASSWORD || process.env.SELENIUM_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
+  const user = OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
+  const password = OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
   const idp = OC_IDP || Cypress.env('OC_IDP')
-  const APIServer = Cypress.env('API_SERVER_URL')
-  cy.clearCookies()
+  const APIServer = Cypress.env('OPTIONS_HUB_CLUSTER_URL')
+  cy.log(`Initiating login as ${user}`)
 
-  // handle login using cookie when running against localhost
-  if (Cypress.config().baseUrl.includes('localhost')) {
-    expect(APIServer).to.not.equal(undefined)
-    cy.exec(`oc login --server=${APIServer} -u ${user} -p ${password}`).then(res => cy.log(res.stdout))
-    cy.exec('oc whoami -t').then(res => {
-      Cypress.env('token', res.stdout)
-      cy.setCookie('acm-access-token-cookie', Cypress.env('token'))
-    })
-  }
+  cy.clearCookies()  // clear cookies so we do login again
+  // handle login by setting cookie explicitly when running against localhost
+  .then(() => {
+    if (Cypress.config().baseUrl.includes('localhost')) {
+      expect(APIServer).to.not.equal(undefined)
+      // check who is the current user
+      cy.exec('oc whoami', {failOnNonZeroExit: false}).then(res => {
+        const currentUser = res.stdout.replace('kube:admin', 'kubeadmin')
+        cy.log(`Currently logged to 'oc' as ${currentUser}`)
+        if (currentUser != user) {  // do oc login as the required user
+          cy.log(`Doing 'oc login' as ${user}`)
+          cy.exec(`oc login --server=${APIServer} -u ${user} -p ${password}`).then(res => cy.log(res.stdout))
+        }
+      })
+      .then(() => {
+        cy.exec('oc whoami -t').then(res => {  // get token and set cookie and env var accordingly
+          Cypress.env('token', res.stdout)
+          cy.setCookie('acm-access-token-cookie', Cypress.env('token'))
+        })
+      })
+    }
+  })
   cy.visit('/multicloud/policies')
-  cy.get('body').then(body => {
-    // Check if logged in
+  .get('body').then(body => {
+    // if not yet logged in, do the regular login through Web UI
     if (body.find('#header').length === 0) {
       // Check if identity providers are configured
       if (body.find('form').length === 0)
@@ -44,7 +57,7 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
       cy.get('#header').should('exist')
     }
   })
-  cy.CheckGrcMainPage()
+  .CheckGrcMainPage()
 })
 
 Cypress.Commands.add('reloadUntil', (condition, options) => {
