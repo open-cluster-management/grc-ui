@@ -350,3 +350,66 @@ export const test_applyPolicyYAML = (confFilePolicy, substitutionRules=null) => 
   })
 
 }
+
+//   userName - user to use when logging
+//   userPassword - password to use when logging
+//   IDP - IDP to use when logging
+//   policyNames = array of policy names that are expected to be found
+//   confPolicies = dictionary storing policy configurations where policyName is a key
+//   permissions = user permissions
+//   namespaced = true if the user namespaced
+//   elevated = true if a user has multiple permissions for different namespaces and Create policy button should be enabled
+//   searchFilter = filter to be used in the Search field to limit the scope of a test
+export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP, policyNames, confPolicies, permissions, namespaced, elevated, searchFilter) => {
+
+  it(`Login ${userName} user`, () => {
+    cy.login(userName, userPassword, IDP)
+  })
+
+  it(`Check All policies listing page content as ${userName}`, () => {
+    cy.checkPolicyListingPageUserPermissions(policyNames, confPolicies, permissions, elevated, searchFilter)
+  })
+
+  // check policy details only if there are policies available
+  // TODO: maybe we should also check that we are not able to access details through URL for policy we are not allowed
+  if (policyNames.length > 0) {
+    const firstPolicyName = policyNames[0]
+
+    it(`Check detailed ${firstPolicyName} policy page as ${userName}`, () => {
+      // search for policy in the Listing
+      cy.fromGRCToPolicyDetailsPage(firstPolicyName).waitForPageContentLoad()
+        .verifyPolicyInPolicyDetails(firstPolicyName, confPolicies[firstPolicyName])  // do a basic content check
+        .checkDetailedPolicyPageUserPermissions(firstPolicyName, permissions)
+    })
+
+    it(`Check ${firstPolicyName} policy Status page as ${userName}`, () => {
+      // click on Status tab
+      cy.get('#status-tab').contains('Status').click().waitForPageContentLoad()
+        // check permissions
+        .checkPolicyStatusPageUserPermissions(firstPolicyName, permissions, namespaced)
+        // check Templates tab only for a non-namespaced user
+        .then(() => {
+          if (!namespaced) {
+            // click on Templates tab
+            cy.get('#policy-status-templates').click().waitForPageContentLoad()
+              .checkPolicyStatusPageUserPermissions(firstPolicyName, permissions, namespaced, 3)
+          }
+        })
+    })
+
+    it(`Check ${firstPolicyName} policy YAML Editor page as ${userName}`, () => {
+      // click on YAML tab
+      cy.get('#yaml-tab').contains('YAML').click().waitForPageContentLoad()
+        .checkPolicyYAMLPageUserPermissions(permissions)
+    })
+
+  }
+
+  it(`Logout ${userName} user`, () => {
+    // go back to policy listing and clear table search
+    //cy.visit('/multicloud/policies/all').waitForPageContentLoad()
+    //  .clearTableSearch()
+    cy.logout()
+  })
+
+}

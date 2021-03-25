@@ -1,0 +1,11 @@
+# these are policies required by following Polarion test cases:
+
+rbac-policy-test-e2e-rbac-test-1:
+  namespace: e2e-rbac-test-1
+  specifications:
+    - 'LimitRange - Limit container memory usage'
+
+rbac-policy-test-e2e-rbac-test-2:
+  namespace: e2e-rbac-test-2
+  specifications:
+    - 'IamPolicy'

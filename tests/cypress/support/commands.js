@@ -12,18 +12,42 @@ import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, is
          action_verifyPolicyDetailsInCluster, action_verifyPolicyTemplatesInCluster,
          action_verifyPolicyViolationDetailsInCluster, action_verifyPolicyViolationDetailsInHistory,
          action_verifyCreatePolicySelection, isClusterViolationsStatusAvailable, action_verifyClusterViolationsInListing,
-         action_checkNotificationMessage
+         action_checkNotificationMessage, action_checkPolicyListingPageUserPermissions
 } from '../common/views'
 
-Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) => {
-  var user = process.env.SELENIUM_USER || OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
-  var password = process.env.SELENIUM_PASSWORD || OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
-  var idp = OC_IDP || Cypress.env('OC_IDP')
-  cy.visit('/multicloud/policies')
-  cy.get('body').then(body => {
-    // Check if logged in
-    if (body.find('.pf-c-page__header').length === 0) {
+Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='') => {
+  const user = OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
+  const password = OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
+  const idp = OC_IDP || Cypress.env('OC_IDP')
+  const APIServer = Cypress.env('OPTIONS_HUB_CLUSTER_URL')
+  cy.log(`Initiating login as ${user}`)
 
+  cy.clearCookies()  // clear cookies so we do login again
+  // handle login by setting cookie explicitly when running against localhost
+  .then(() => {
+    if (Cypress.config().baseUrl.includes('localhost')) {
+      expect(APIServer).to.not.equal(undefined)
+      // check who is the current user
+      cy.exec('oc whoami', {failOnNonZeroExit: false}).then(res => {
+        const currentUser = res.stdout.replace('kube:admin', 'kubeadmin')
+        cy.log(`Currently logged to 'oc' as ${currentUser}`)
+        if (currentUser != user) {  // do oc login as the required user
+          cy.log(`Doing 'oc login' as ${user}`)
+          cy.exec(`oc login --server=${APIServer} -u ${user} -p ${password}`).then(res => cy.log(res.stdout))
+        }
+      })
+      .then(() => {
+        cy.exec('oc whoami -t').then(res => {  // get token and set cookie and env var accordingly
+          Cypress.env('token', res.stdout)
+          cy.setCookie('acm-access-token-cookie', Cypress.env('token'))
+        })
+      })
+    }
+  })
+  cy.visit('/multicloud/policies')
+  .get('body').then(body => {
+    // if not yet logged in, do the regular login through Web UI
+    if (body.find('.pf-c-page__header').length === 0) {
       // Check if identity providers are configured
       if (body.find('form').length === 0)
         cy.contains(idp).click()
@@ -33,7 +57,7 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER, OPTIONS_HUB_PASSWORD, OC_IDP) =
       cy.get('.pf-c-page__header').should('exist')
     }
   })
-  cy.CheckGrcMainPage()
+  .CheckGrcMainPage()
 })
 
 Cypress.Commands.add('reloadUntil', (condition, options) => {
@@ -116,9 +140,11 @@ Cypress.Commands.add('logout', () => {
   cy.get('.header-user-info-dropdown_icon').then($btn => {
     //logout when test starts since we need to use the app idp user
     cy.log('Logging out existing user')
-    cy.get($btn).click()
+      .get($btn).click()
     cy.contains('Log out').click()
-    // cy.clearCookies()
+    cy.location('pathname').should('match', new RegExp('/oauth/authorize(\\?.*)?$'))
+//      .waitForPageContentLoad()
+      .clearCookies()
   })
 })
 
@@ -188,8 +214,29 @@ Cypress.Commands.add('waitForClusterTemplateStatus', (clusterViolations = {}) =>
   cy.waitUntil(() => { return isClusterTemplateStatusAvailable(clusterViolations) }, {'interval': 1000, 'timeout':60000})
 })
 
+// wait for any of the specified elements to appear on the page
+Cypress.Commands.add('waitForAnyElement', (selectors, timeout=60000) => {
+  const anyElemFound = (selectors) => {
+    var value = false
+    return cy.get('body').then($body => {
+      for (const selector of selectors) {
+        const elems = $body.find(selector)
+        if (elems.length > 0) {
+          value = true
+        }
+        if (value) { break }
+      }
+    })
+    .then(() => value)
+  }
+  // wait until any of the required selectors succeed on the page
+  cy.waitUntil(() => { return anyElemFound(selectors) != null }, {'interval': 1000, 'timeout':timeout})
+})
+
 Cypress.Commands.add('waitForPageContentLoad', () => {
-  cy.then(() => pageLoader.shouldNotExist())
+  const selectors = ['div.page-content-container', '#page']
+  cy.waitForAnyElement(selectors)
+  .then(() => pageLoader.shouldNotExist())
 })
 
 Cypress.Commands.add('CheckGrcMainPage', () => {
@@ -402,4 +449,69 @@ Cypress.Commands.add('doTableSearch', (text, inputSelector = null, parentSelecto
 
 Cypress.Commands.add('clearTableSearch', (inputSelector = null, parentSelector = null) => {
   cy.then(() => action_clearTableSearch(inputSelector, parentSelector))
+})
+
+// the command does check the content of the /multicloud/policies/all page with respect to the user permissions
+// arguments:
+//   policyNames = array of policy names that are expected to be found
+//   confPolicies = dictionary storing policy configurations where policyName is a key
+//   permissions = user permissions
+//   searchFilter = filter to be used in the Search field to limit the scope of a test
+Cypress.Commands.add('checkPolicyListingPageUserPermissions', (policyNames = [], confPolicies = {}, permissions = {}, elevated = false, searchFilter='') => {
+  action_checkPolicyListingPageUserPermissions(policyNames, confPolicies, permissions, elevated, searchFilter)
+})
+
+// visit the policy details page, either through a link from a policy table or directly through URL
+// does not clearTableSearch so you need to do it later eventually
+Cypress.Commands.add('fromGRCToPolicyDetailsPage', (policyName) => {
+  cy.doTableSearch(policyName)
+    .get('.grc-view-by-policies-table').within(() => {
+      cy.get('a').contains(new RegExp(`^${policyName}$`)).click()
+    })
+})
+
+// the command does check the content of the /multicloud/policies/all/${namespace}/${policyName} page with respect to the user permissions
+// checks that PlacementRule and PlacementBinding Edit buttons are enabled/disabled accordingly
+Cypress.Commands.add('checkDetailedPolicyPageUserPermissions', (policyName, permissions) => {
+  const btnState = permissions.patch ? 'enabled' : 'disabled'
+  // need to search for button this way since disabled button is wrapped in an extra <div>
+  cy.get('h1').contains('Placement rule').parent().find('button').then($button => {
+      cy.wrap($button).should(`be.${btnState}`)
+    })
+    .get('h1').contains('Placement binding').parent().find('button').then($button => {
+       cy.wrap($button).should(`be.${btnState}`)
+    })
+})
+
+// the command does check controls availability at the Status tab of /multicloud/policies/all/${namespace}/${policyName}
+// page with respect to the user permissions
+// works both for Clusters and Templates tabs, you just need to set messageColumnIndex accordingly (4 for Clusters, 3 for templates)
+Cypress.Commands.add('checkPolicyStatusPageUserPermissions', (policyName, permissions, namespaced, messageColumnIndex=4) => {
+  if (namespaced) {  // not permitted to see the content
+    cy.checkPolicyNoResourcesIconMessage(false, 'No policy status found')
+  } else {
+    // The "View details" link should be disabled with a tooltip since it requires
+    // permissions to create a managedClusterView
+    cy.get('table[aria-label="Sortable Table"]').each(($table) => {  // for each table, on templates tab there could be more
+      cy.wrap($table).within(() => {
+        cy.get('tbody').find('tr').each(($row) => {  // for each table row
+          cy.wrap($row).find('td').then(columns => {  // get all columns
+            if (permissions.create) {
+              cy.wrap(columns[messageColumnIndex-1]).contains('View details').should('have.attr', 'href')
+            } else {
+              cy.wrap(columns[messageColumnIndex-1]).contains('View details').should('have.class', 'link-disabled')
+            }
+          })
+        })
+      })
+    })
+  }
+})
+
+// does check controls availability at the YAML Editor tab of /multicloud/policies/all/${namespace}/${policyName} page
+// with respect to the user permissions
+Cypress.Commands.add('checkPolicyYAMLPageUserPermissions', (permissions) => {
+  const btnState = permissions.patch ? 'enabled' : 'disabled'
+  cy.get('#edit-button').should(`be.${btnState}`)
+  cy.get('#submit-button').should(`be.${btnState}`)
 })
