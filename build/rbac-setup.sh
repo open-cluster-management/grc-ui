@@ -52,4 +52,5 @@ oc apply --validate=false -k ${RBAC_DIR}
 
 export OC_CLUSTER_USER=e2e-cluster-admin-cluster
 export OC_HUB_CLUSTER_PASS=${RBAC_PASS}
+export OC_CLUSTER_PASS=${RBAC_PASS}
 export OC_IDP=grc-e2e-htpasswd
