@@ -184,6 +184,7 @@ export const action_createPolicyFromYAML = (policyYAML, create=true) => {
   cy.toggleYAMLeditor('On')
     .YAMLeditor()
     .invoke('setValue', policyYAML)
+    .waitForDocumentUpdate()
     // create
     .then(() => {
       if (create) {
@@ -236,11 +237,11 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
       selectItems(policyConfig['controls'], '.bx--multi-select[aria-label="controls"]', )
     })
   }
-  // enforce
-  if (policyConfig['enforce']) {
+  // remediation
+  if (policyConfig['remediation']) {
     cy.then(() => {
-      if (policyConfig['enforce']) {
-        cy.get('input[aria-label="enforce"][type="checkbox"]')
+      if (policyConfig['remediation']) {
+        cy.get('input[aria-label="remediation-enforce"][type="radio"]')
           .next('label')
           .click()
       }
@@ -328,12 +329,12 @@ export const action_verifyCreatePolicySelection = (policyName, policyConfig) => 
       })
   }
   // enforce
-  if (policyConfig['enforce']) {
+  if (policyConfig['remediation']) {
     cy.then(() => {
-      if (policyConfig['enforce']) {
-        cy.get('input[aria-label="enforce"][type="checkbox"]').should('be.checked')
+      if (policyConfig['remediation']) {
+        cy.get('input[aria-label="remediation-enforce"][type="radio"]').should('be.checked')
       } else {
-        cy.get('input[aria-label="enforce"][type="checkbox"]').should('not.be.checked')
+        cy.get('input[aria-label="remediation-enforce"][type="radio"]').should('not.be.checked')
       }
     })
   }
@@ -367,8 +368,8 @@ export const action_verifyPolicyInListing = (
       targetStatus = 0
     }
   }
-  doTableSearch(uName)
-  cy.get('.grc-view-by-policies-table').within(() => {
+  cy.doTableSearch(uName)
+    .get('.grc-view-by-policies-table').within(() => {
     console.log(uName)
     cy.log(uName)
     cy.get('a').contains(uName).parents('td').siblings('td')
@@ -378,9 +379,9 @@ export const action_verifyPolicyInListing = (
         cy.wrap(namespace).contains(policyConfig['namespace'].trim(), { matchCase: false })
       }
       // check enforce/inform
-      if (policyConfig['enforce'] == true) {
+      if (policyConfig['remediation'] == true) {
         cy.wrap(remediation).contains('enforce', { matchCase: false })
-      } else if (policyConfig['enforce'] == false) {
+      } else if (policyConfig['remediation'] == false) {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check the violation status
@@ -429,7 +430,7 @@ export const action_verifyPolicyInListing = (
         .should('not.exist')
     }
   })
-  clearTableSearch()
+  cy.clearTableSearch()
 }
 
 export const action_verifyPolicyNotInListing = (uName) => {
@@ -445,8 +446,8 @@ export const action_verifyPolicyNotInListing = (uName) => {
 
 export const action_actionPolicyActionInListing = (uName, action, cancel=false) => {
   cy.CheckGrcMainPage()
-  doTableSearch(uName)
-  cy.get('.grc-view-by-policies-table').within(() => {
+    .doTableSearch(uName)
+    .get('.grc-view-by-policies-table').within(() => {
     cy.get('a')
       .contains(uName)
       .parents('td')
@@ -475,7 +476,7 @@ export const action_actionPolicyActionInListing = (uName, action, cancel=false) 
   })
   // after mainpage table action, always return to grc main page
   cy.CheckGrcMainPage()
-  clearTableSearch()
+    .clearTableSearch()
 }
 
 // needs to be run only on /multicloud/policies/all/default/${policyName}
@@ -661,7 +662,7 @@ export const action_verifyPolicyInPolicyDetails = (
   //cy.get('div.vertical-expend').then((e) => {
   cy.get('#compliance\\.details-expand').within(() => {
     cy.get('div.pf-c-description-list__text').spread((
-      name, namespace, enforcement, disabled, violations,
+      name, namespace, remediation, disabled, violations,
       categories, controls, standards, created
       ) => {
       // check name
@@ -671,10 +672,10 @@ export const action_verifyPolicyInPolicyDetails = (
         cy.wrap(namespace).contains(policyConfig['namespace'])
       }
       // check enforce/inform
-      if (policyConfig['enforce'] == true) {
-        cy.wrap(enforcement).contains('enforce', { matchCase: false })
-      } else if (policyConfig['enforce'] == false) {
-        cy.wrap(enforcement).contains('inform', { matchCase: false })
+      if (policyConfig['remediation'] == true) {
+        cy.wrap(remediation).contains('enforce', { matchCase: false })
+      } else if (policyConfig['remediation'] == false) {
+        cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check state
       if (enabled == 'enabled') {
@@ -1008,26 +1009,32 @@ export const action_verifyPlacementBindingInPolicyDetails = (uName, policyConfig
 
 // does the search using the search form
 // so far tested only on the policy status page
-export const doTableSearch = (text, inputSelector = null, parentSelector = null) => {
+export const action_doTableSearch = (text, inputSelector = null, parentSelector = null) => {
   if (inputSelector === null) {
     inputSelector = 'input[aria-label="Search input"]'
   }
-  // do the search only if there are resources on the page
-  if (!Cypress.$('#page').find('div.no-resource').length) {
-    // FIXME - do this search without a force
-    cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true}).type(text, {force: true})
-  }
+  cy.get('div.page-content-container')  // make sure the page is loaded enough
+    .then(() => {
+      // do the search only if there are resources on the page
+      if (!Cypress.$('#page').find('div.no-resource').length) {
+        // FIXME - do this search without a force
+        cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true}).type(text, {force: true})
+      }
+    })
 }
 
-export const clearTableSearch = (inputSelector = null, parentSelector = null) => {
+export const action_clearTableSearch = (inputSelector = null, parentSelector = null) => {
   if (inputSelector === null) {
     inputSelector = 'input[aria-label="Search input"]'
   }
-  // clear the search only if there are resources on the page
-  if (!Cypress.$('#page').find('div.no-resource'.length)) {
-    // FIXME - do this without a force
-    cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true})
-  }
+  cy.get('div.page-content-container')  // make sure the page is loaded enough
+    .then(() => {
+      // clear the search only if there are resources on the page
+      if (!Cypress.$('#page').find('div.no-resource').length) {
+        // FIXME - do this without a force
+        cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true})
+      }
+    })
 }
 
 
@@ -1041,7 +1048,7 @@ export const action_verifyViolationsInPolicyStatusClusters = (policyName, policy
       const templateName = patternId.replace(/-[^-]*$/, '')
       const id = patternId.replace(/^.*-/, '')
       // now use the search to better target the required policy and to get it on the first page
-      doTableSearch(templateName)
+      cy.doTableSearch(templateName)
       // first we need to sort rows per Cluster name and later Template name to make sure they won't reorder in case some cluster state is updated - if this
       // happens, field values won't match expectations
       cy.get('th[data-label="Cluster"]').within(() => {
@@ -1085,7 +1092,7 @@ export const action_verifyViolationsInPolicyStatusClusters = (policyName, policy
       })
     }
   }
-  clearTableSearch()
+  cy.clearTableSearch()
 }
 
 export const getPolicyStatusForViolationId = (id, format='long') => {
@@ -1123,7 +1130,7 @@ export const action_verifyViolationsInPolicyStatusTemplates = (policyName, polic
       // now find the right search (there could be more) to better target the required cluster result and to get it on the first page
       // FIXME: this should be replaced by a separate function/command doing this, ideally without 'force'
       cy.get('h4').contains(new RegExp('^'+templateName+'$')).parent('div.policy-status-by-templates-table').as('form')
-      cy.get('@form').then(e => doTableSearch(cluster, null, e))
+      cy.get('@form').then(e => cy.doTableSearch(cluster, null, e))
       cy.get('@form').within(() => {
         cy.get('tbody').within(() => {
           cy.get('td').contains(new RegExp('^'+cluster+'$')).parents('td').siblings('td').spread((clusterStatus, message, lastReport, history) => {
@@ -1163,7 +1170,7 @@ export const action_verifyViolationsInPolicyStatusTemplates = (policyName, polic
 export const action_verifyPolicyDetailsInCluster =  (policyName, policyConfig, clusterName, clusterViolations, violationPatterns) => {
   const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName], 'short')
   cy.get('section[aria-label="Policy details"]').within(() => {
-    cy.get('.bx--structured-list-td').spread((nameLabel, name, clusterLabel, cluster, messageLabel, message, statusLabel, status, enforcementLabel, enforcement ) => {
+    cy.get('.bx--structured-list-td').spread((nameLabel, name, clusterLabel, cluster, messageLabel, message, statusLabel, status, remediationLabel, remediation ) => {
       // verify namespace
       if (policyConfig['namespace']) {
         cy.wrap(name).contains(policyConfig['namespace']+'.'+policyName)
@@ -1172,8 +1179,8 @@ export const action_verifyPolicyDetailsInCluster =  (policyName, policyConfig, c
       cy.wrap(cluster).contains(clusterName)
       // verify cluster status
       cy.wrap(status).contains(new RegExp(clusterStatus))
-      // verify policy enforcement settings
-      policyConfig['enforce'] === true ? cy.wrap(enforcement).contains('enforce') : cy.wrap(enforcement).contains('inform')
+      // verify policy remediation settings
+      policyConfig['remediation'] === true ? cy.wrap(remediation).contains('enforce') : cy.wrap(remediation).contains('inform')
       // verify the message
       // first check that the right ammount of messages is listed
       const number_of_messages = (message.textContent.match(/Compliant[,;]/g) || []).length
@@ -1200,8 +1207,8 @@ export const action_verifyPolicyTemplatesInCluster = (policyName, policyConfig, 
   for (const violation of violations) {
     const templateName = violation.replace(/-[^-]*$/, '')
     const id = violation.replace(/^.*-/, '')
-    doTableSearch(templateName, '#policyTemplates-search')
-    cy.get('#policyPolicyTemplates-module-id').within(() => {
+    cy.doTableSearch(templateName, '#policyTemplates-search')
+      .get('#policyPolicyTemplates-module-id').within(() => {
 
       cy.get('tbody').children('tr[data-row-name="'+templateName+'"]').find('td').spread((name, api, kind, compliant) => {
         cy.wrap(name).contains(policyName)
@@ -1221,7 +1228,7 @@ export const action_verifyPolicyTemplatesInCluster = (policyName, policyConfig, 
         }
       })
     })
-    clearTableSearch('#policyTemplates-search')
+    cy.clearTableSearch('#policyTemplates-search')
   }
 }
 
@@ -1232,8 +1239,8 @@ export const action_verifyPolicyViolationDetailsInCluster = (policyName, policyC
     const id = violation.replace(/^.*-/, '')
     const pattern = violationPatterns[templateName][id]
     const clusterStatus = getClusterPolicyStatus(violations, 'short')
-    doTableSearch(templateName, '#violations-search')
-    cy.get('#policyViolations-module-id').within(() => {
+    cy.doTableSearch(templateName, '#violations-search')
+      .get('#policyViolations-module-id').within(() => {
       cy.get('tbody').children('tr[data-row-name="'+templateName+'"]').find('td').spread((name, cluster, message, last_update) => {
         // check policy name
         cy.wrap(name).contains(policyName)
@@ -1245,7 +1252,7 @@ export const action_verifyPolicyViolationDetailsInCluster = (policyName, policyC
         cy.wrap(last_update).contains(timestampRegexp)
       })
     })
-    clearTableSearch('#violations-search')
+    cy.clearTableSearch('#violations-search')
   }
 }
 
@@ -1312,8 +1319,8 @@ export const action_verifyClusterViolationsInListing = (clusterName, violationsC
       targetStatus = 0
     }
   }
-  doTableSearch(clusterName)
-  cy.get('table[aria-label="Sortable Table"]').within(() => {
+  cy.doTableSearch(clusterName)
+    .get('table[aria-label="Sortable Table"]').within(() => {
     cy.get('a').contains(clusterName).parents('td').siblings('td')
     .spread((namespace, violations, policies) => {
       // FIXME: skip namespace
@@ -1347,7 +1354,7 @@ export const action_verifyClusterViolationsInListing = (clusterName, violationsC
       }
     })
   })
-  clearTableSearch()
+  cy.clearTableSearch()
 }
 
 export const getClusterViolationsCounterAndPolicyList = (clusterName, clusterList, confFileViolations, confPolicies) => {
@@ -1386,4 +1393,68 @@ export const getClusterViolationsCounterAndPolicyList = (clusterName, clusterLis
 // returns string
 export const parsePolicyNameFromYAML = (rawPolicyYAML) => {
   return rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
+}
+
+// the function does check the content of the /multicloud/policies/all page with respect to the user permissions
+// arguments:
+//   policyNames = array of policy names that are expected to be found
+//   confPolicies = dictionary storing policy configurations where policyName is a key
+//   permissions = user permissions
+//   elevated = true if a user has multiple permissions for different namespaces and Create policy button should be enabled
+//   searchFilter = filter to be used in the Search field to limit the scope of a test
+export const action_checkPolicyListingPageUserPermissions = (policyNames = [], confPolicies = {}, permissions = {}, elevated = false, searchFilter='') => {
+
+ const policyCount = policyNames.length
+
+  // check whether Create button is enabled/disabled
+  const createBtnState = permissions.create || elevated ? 'enabled' : 'disabled'
+  cy.get('#create-policy').should(`be.${createBtnState}`)
+
+  // check policy listing
+  if (policyCount > 0) {
+    // there should be policies listed let's check them
+    // enter the filter first
+    cy.doTableSearch(searchFilter)  // clears the search eventually
+    // check total number of policies listed
+    cy.get('div.pf-c-pagination').find('b').last().contains(new RegExp(`^${policyCount}$`))
+    // check each policy is listed
+    for (const policyName of policyNames) {
+      cy.verifyPolicyInListing(policyName, confPolicies[policyName])
+    }
+    // check Actions menu for the first policy
+   cy.doTableSearch(policyNames[0])
+   // all users should be able to click the Action button
+   cy.get('.grc-view-by-policies-table').within(() => {  // click the Action button
+      cy.get('button[aria-label="Actions"]').first().click()
+        .then(() => {
+          for (const action of ['Edit', 'Disable', 'Enforce']) {
+            if (permissions.patch) {
+              cy.get('button.pf-c-dropdown__menu-item').contains(action, { matchCase: false }).should('be.enabled')
+            } else {
+              cy.get('button.pf-c-dropdown__menu-item').contains(action, { matchCase: false }).parent().should('be.disabled')
+            }
+          }
+          if (permissions.delete) {
+            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).should('be.enabled')
+          } else {
+            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).parent().should('be.disabled')
+          }
+        })
+        // close the menu again
+        cy.get('button[aria-label="Actions"]').first().click()
+      })
+
+  } else if (searchFilter) {
+    // some policies should be filtered out
+    cy.doTableSearch(searchFilter)
+      .get('h2.pf-c-title').contains('No results found')
+  } else {
+    // no policies should be listed at all
+    cy.checkPolicyNoResourcesIconMessage(false, 'No policies found')
+    // check whether Create button below is enabled/disabled
+    const createBtnState = permissions.create || elevated ? 'enabled' : 'disabled'
+    cy.get('#create-resource').should(`be.${createBtnState}`)
+  }
+  cy.clearTableSearch()
+
 }

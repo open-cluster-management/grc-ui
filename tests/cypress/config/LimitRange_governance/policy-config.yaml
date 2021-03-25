@@ -19,5 +19,5 @@ test-limitrange-policy-[ID]:
     - 'PR.IP Information Protection Processes and Procedures'
   controls:
     - 'PR.IP-1 Baseline Configuration'
-  enforce: False
+  remediation: False
   disable: False

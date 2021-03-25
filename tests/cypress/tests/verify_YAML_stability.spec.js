@@ -3,6 +3,7 @@
 
 /// <reference types="cypress" />
 
+import { describeT } from '../support/tagging'
 import { getConfigObject } from '../config'
 import { getDefaultSubstitutionRules, parsePolicyNameFromYAML } from '../common/views'
 
@@ -26,14 +27,14 @@ const testPolicy = (policyConfFile, templateConfFile) => {
   })
 
   it(`Set ${policyName} to an Enforced state and then back to Inform`, () => {
-    cy.get('input[aria-label="enforce"][type="checkbox"]').as('checkbox')
-    cy.get('@checkbox').next('label').as('label')
-      .get('@label').click()
-      .waitForDocumentUpdate()
-      .get('@checkbox').should('be.checked')
-      .get('@label').click()
-      .waitForDocumentUpdate()
-      .get('@checkbox').should('not.be.checked')
+    const choices = ['enforce', 'inform']
+    choices.forEach( (choice) => {
+      cy.get(`input[aria-label="remediation-${choice}"][type="radio"]`).as(`${choice}`)
+      cy.get(`@${choice}`).next('label').as('label')
+        .get('@label').click()
+        .waitForDocumentUpdate()
+        .get(`@${choice}`).should('be.checked')
+    })
   })
 
   it('Verify that YAML editor content matches the template', () => {
@@ -47,7 +48,7 @@ const testPolicy = (policyConfFile, templateConfFile) => {
 
 }
 
-describe('RHACM4K-2509 - GRC UI: [P1][Sev1][policy-grc] All policy page: Verify stability of YAML', () => {
+describeT('RHACM4K-2509 - GRC UI: [P1][Sev1][policy-grc] All policy page: Verify stability of YAML', () => {
 
   testPolicy('verify_YAML_stability/Gatekeeper-template.yaml', 'verify_YAML_stability/Gatekeeper-template-verify.yaml')
   testPolicy('verify_YAML_stability/LimitRange_template-apply.yaml', 'verify_YAML_stability/LimitRange_template-verify.yaml')

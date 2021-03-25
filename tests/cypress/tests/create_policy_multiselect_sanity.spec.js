@@ -3,6 +3,7 @@
 
 /// <reference types="cypress" />
 
+import { describeT } from '../support/tagging'
 import { checkItems, verifyItemsChecked } from '../common/views'
 
 const specificationsList = ['CertificatePolicy', 'EtcdEncryption']
@@ -16,7 +17,7 @@ const selectControlsQuery = '.bx--multi-select[aria-label="controls"]'
 const itemQuery = 'input[type="checkbox"]'
 const labelQuery = '.bx--checkbox-label'
 
-describe('RHACM4K-1671 - GRC UI: [P2][Sev2][policy-grc] Test create policy multi-select acts correctly', () => {
+describeT('RHACM4K-1671 - GRC UI: [P2][Sev2][policy-grc] Test create policy multi-select acts correctly', () => {
 
   it('Access the Create policy page', () => {
     cy.FromGRCToCreatePolicyPage()

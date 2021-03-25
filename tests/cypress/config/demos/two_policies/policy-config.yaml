@@ -17,7 +17,7 @@ test-role-binding-policy-[ID]:
     - 'PR.AC Identity Management and Access Control'
   controls:
     - 'PR.AC-4 Access Control'
-  enforce: False
+  remediation: False
   disable: False
 test-role-policy-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
@@ -38,5 +38,5 @@ test-role-policy-[ID]:
     - 'PR.AC Identity Management and Access Control'
   controls:
     - 'PR.AC-4 Access Control'
-  enforce: False
+  remediation: False
   disable: False

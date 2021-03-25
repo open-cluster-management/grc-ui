@@ -2,6 +2,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 /// <reference types="cypress" />
+import { describeT } from '../support/tagging'
 import { getDefaultSubstitutionRules } from '../common/views'
 import { getConfigObject } from '../config'
 
@@ -21,7 +22,7 @@ const confClusterViolations = getConfigObject('issue2444/violations-inform.yaml'
 const clusterViolations = {}
 clusterViolations[clusterList[0]] = confClusterViolations['*']
 
-describe('RHACM4K-1650 - GRC UI: [P1][Sev1][policy-grc] configurationPoicy controller: not matching namespaceSelector issues a violation', () => {
+describeT('RHACM4K-1650 - GRC UI: [P1][Sev1][policy-grc] configurationPoicy controller: not matching namespaceSelector issues a violation', () => {
 
   // create a Pod policy not matching any namespace in namespaceSelector
   it(`Create Pod policy ${policyName} from YAML, expecting a compliance`, () => {
