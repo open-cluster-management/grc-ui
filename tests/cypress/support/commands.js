@@ -141,11 +141,11 @@ Cypress.Commands.add('forEach', (selector, action, options) => {
 
 Cypress.Commands.add('logout', () => {
   cy.log('Attempt to logout existing user')
-  cy.get('.header-user-info-dropdown_icon').then($btn => {
+  cy.get('.co-username').then($btn => {
     //logout when test starts since we need to use the app idp user
     cy.log('Logging out existing user')
       .get($btn).click()
-    cy.contains('Log out').click()
+    cy.contains('Logout').click()
     cy.location('pathname').should('match', new RegExp('/oauth/authorize(\\?.*)?$'))
 //      .waitForPageContentLoad()
       .clearCookies()
