@@ -25,7 +25,6 @@ import { staticResourceDataPolicyOverview, itemPolicyOverview } from './CommonTe
 
 describe('StructuredListModule component test', () => {
   it('renders as expected', () => {
-    
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(

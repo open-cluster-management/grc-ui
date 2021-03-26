@@ -20,7 +20,6 @@ import { REQUEST_STATUS } from '../../../../src-web/actions/index'
 
 describe('PolicyActionModal component', () => {
   it('Disable modal renders as expected', () => {
-    
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
@@ -41,7 +40,7 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Enable modal renders as expected', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
@@ -62,7 +61,7 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Enforce modal renders as expected', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
@@ -83,7 +82,7 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Inform modal renders as expected', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
@@ -104,7 +103,7 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Modal renders without data', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
@@ -122,7 +121,7 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Modal returns spinner when loading', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
@@ -142,7 +141,7 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Modal returns notification on error', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(

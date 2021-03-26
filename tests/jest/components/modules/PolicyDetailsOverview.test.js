@@ -28,7 +28,7 @@ import {
 
 describe('PolicyDetailsOverview component', () => {
   it('renders as normal', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
