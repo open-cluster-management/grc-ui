@@ -27,10 +27,10 @@ const tabs = ['detail','status','yaml']
 const url = '/multicloud/policies/all/default/policy-gatekeeper'
 describe('PolicyDetail container test', () => {
   it('renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+    
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(

@@ -25,10 +25,9 @@ import { staticResourceDataPolicyOverview } from './CommonTestingData'
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
@@ -49,10 +48,9 @@ describe('ResourceTableRowExpandableTable component test', () => {
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
@@ -73,10 +71,9 @@ describe('ResourceTableRowExpandableTable component test', () => {
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
@@ -97,10 +94,9 @@ describe('ResourceTableRowExpandableTable component test', () => {
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
@@ -132,10 +128,9 @@ const items1 = [
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
@@ -167,10 +162,10 @@ const items2 = [
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+    
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
@@ -203,10 +198,10 @@ const items3 = [
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+    
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
@@ -243,10 +238,10 @@ const items4 = [
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+    
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
@@ -277,10 +272,10 @@ const items5 = [
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+    
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
