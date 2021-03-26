@@ -50,7 +50,7 @@
     "@loadable/component": "^5.14.1",
     "@open-cluster-management/security-middleware": "git+https://github.com/open-cluster-management/security-middleware.git#1.0.2",
     "@open-cluster-management/ui-components": "^0.8.0",
-    "@patternfly/react-core": "^4.84.4",
+    "@patternfly/react-core": "^4.75.2",
     "@patternfly/react-icons": "^4.7.16",
     "@patternfly/react-table": "^4.19.5",
     "@patternfly/react-tokens": "2.8.13",
