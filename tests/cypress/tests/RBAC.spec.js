@@ -12,7 +12,7 @@ describeT('@rbac RHACM4K-2584 - GRC UI: [P1][Sev1][policy-grc] Role Based Access
 
   // we expect the user password to be exported in CYPRESS_RBAC_PASS variable
   const RBACpass = Cypress.env('RBAC_PASS')
-  const IDP = 'e2e-htpasswd'
+  const IDP = Cypress.env('OC_IDP') || 'e2e-htpasswd'
   const confPolicies = getConfigObject('RBAC/policy-config.yaml')
   const permissions = getConfigObject('RBAC/permissions.json')
   const policyNames = Object.keys(confPolicies)

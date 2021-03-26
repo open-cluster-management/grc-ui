@@ -18,7 +18,7 @@ import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, is
 Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='', force=false) => {
   const user = OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
   const password = OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
-  const idp = OC_IDP || Cypress.env('OC_IDP')
+  let idp = OC_IDP || Cypress.env('OC_IDP')
   const APIServer = Cypress.env('OPTIONS_HUB_CLUSTER_URL')
   cy.log(`Initiating login as ${user} idp ${idp}`)
 
@@ -49,8 +49,13 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
     // if not yet logged in, do the regular login through Web UI
     if (body.find('#header').length === 0) {
       // Check if identity providers are configured
-      if (body.find('form').length === 0)
+      if (body.find('form').length === 0) {
+        if (user === 'kubeadmin') {
+          idp = 'kube:admin'
+        }
         cy.contains(idp).click()
+      }
+        
       cy.get('#inputUsername').click().focused().type(user)
       cy.get('#inputPassword').click().focused().type(password)
       cy.get('button[type="submit"]').click()
