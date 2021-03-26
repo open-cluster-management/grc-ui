@@ -204,7 +204,7 @@ export class CreationTab extends React.Component {
   render () {
     const { mutateStatus, mutateErrorMsg, mutatePBErrorMsg, mutatePRErrorMsg, updateStatus, userAccess } = this.props
     const { updateRequested } = this.state
-    if (userAccess.length > 0 && checkCreatePermission(userAccess) !== 1) {
+    if (userAccess && userAccess.length > 0 && checkCreatePermission(userAccess) !== 1) {
       return <Redirect to={`${config.contextPath}/all`} />
     }
     if ((mutateStatus && mutateStatus === 'DONE') && (!updateRequested || (updateStatus && updateStatus === 'DONE'))) {
