@@ -28,10 +28,10 @@ import {
 
 describe('PolicyDetailsOverview component', () => {
   it('renders as normal', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const location = {
