@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2017, 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
@@ -13,8 +5,8 @@
 
 import React from 'react'
 import _ from 'lodash'
-import { Modal, InlineNotification } from 'carbon-components-react'
-import { Spinner } from '@patternfly/react-core'
+import { AcmModal, AcmButton, AcmAlert } from '@open-cluster-management/ui-components'
+import { Spinner, ButtonVariant } from '@patternfly/react-core'
 import resources from '../../../lib/shared/resources'
 import { clearRequestStatus, editResource, updateModal } from '../../actions/common'
 import { connect } from 'react-redux'
@@ -134,24 +126,31 @@ export class ResourceModal extends React.PureComponent {
         aria-label={msgs.get('a11y.editor.escape', locale)}
       >
         {reqCount && reqCount > 0 && <Spinner className='patternfly-spinner' />}
-        <Modal
+        <AcmModal
           id={`resource-modal-${resourceType.name}`}
           className='resource-modal'
-          open={open}
-          primaryButtonText={msgs.get(label.primaryBtn, locale)}
-          secondaryButtonText={msgs.get('modal.button.cancel', locale)}
-          modalLabel={msgs.get(label.label, locale)}
-          modalHeading={msgs.get(label.heading, locale)}
-          onRequestClose={this.handleClose}
-          onRequestSubmit={this.handleSubmit}
+          variant='medium'
+          isOpen={open}
+          showClose={true}
+          onClose={this.handleClose}
+          title={msgs.get(label.heading, locale)}
           role='region'
-          aria-label={msgs.get(label.heading, locale)}>
+          aria-label={msgs.get(label.heading, locale)}
+          actions={[
+            <AcmButton key="cancel" variant={ButtonVariant.link} onClick={this.handleClose}>
+            {msgs.get('modal.button.cancel', locale)}
+            </AcmButton>,
+            <AcmButton key="confirm" variant={ButtonVariant.primary} onClick={this.handleSubmit}>
+                {msgs.get(label.primaryBtn, locale)}
+            </AcmButton>,
+          ]}
+          >
           <div>
             {this.state.reqErrorMsg && this.state.reqErrorMsg.length > 0 &&
               this.state.reqErrorMsg.map((err) =>
-                <InlineNotification
+                <AcmAlert
                   key={`inline-notification-${err}`}
-                  kind='error'
+                  variant='danger'
                   title=''
                   subtitle={err}
                   iconDescription={msgs.get('svg.description.error', locale)}
@@ -174,7 +173,7 @@ export class ResourceModal extends React.PureComponent {
               />
             </div>
           </div>
-        </Modal>
+        </AcmModal>
       </div>
     )
   }

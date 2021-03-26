@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2017, 2018. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
@@ -15,8 +7,8 @@ import _ from 'lodash'
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Checkbox, Modal, Notification } from 'carbon-components-react'
-import { Spinner } from '@patternfly/react-core'
+import { AcmModal, AcmButton, AcmAlert } from '@open-cluster-management/ui-components'
+import { Spinner, ButtonVariant, Checkbox } from '@patternfly/react-core'
 import msgs from '../../../nls/platform.properties'
 import { withRouter } from 'react-router-dom'
 import { REQUEST_STATUS } from '../../actions/index'
@@ -82,8 +74,8 @@ class RemoveResourceModal extends React.Component {
     })
   }
 
-  toggleSelected = (i, target) => {
-    this.toggleSelectedSetState(target)
+  toggleSelected = (checked, event) => {
+    this.toggleSelectedSetState(event.target.id)
   }
 
   toggleSelectedKeyboard = (target) => {
@@ -110,10 +102,10 @@ class RemoveResourceModal extends React.Component {
                 <div className='remove-app-modal-content-data' key={child.id} >
                   <Checkbox
                     id={child.id}
-                    checked={this.state.selected.some((i) => {return (i.id === child.id && child.selected === true)})}
+                    isChecked={this.state.selected.some((i) => {return (i.id === child.id && child.selected === true)})}
                     onChange={this.toggleSelected}
                     onKeyPress={this.toggleSelectedKeyboard.bind(this, child.id)}
-                    labelText={child.label}
+                    label={child.label}
                     aria-label={child.id} />
                 </div>
               )}
@@ -136,27 +128,32 @@ class RemoveResourceModal extends React.Component {
     return (
       <div>
         {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Spinner className='patternfly-spinner' />}
-        <Modal
-          danger
+        <AcmModal
+          titleIconVariant={'danger'}
+          variant='medium'
           id='remove-resource-modal'
-          open={open}
-          primaryButtonText={msgs.get(label.primaryBtn, locale)}
-          secondaryButtonText={msgs.get('modal.button.cancel', locale)}
-          modalLabel={msgs.get(label.label, locale)}
-          modalHeading={msgs.get(label.heading, locale)}
-          onRequestClose={handleClose}
-          onRequestSubmit={this.handleSubmitClick}
-          role='region'
-          aria-label={msgs.get(label.heading, locale)}>
+          isOpen={open}
+          showClose={true}
+          onClose={handleClose}
+          title={msgs.get(label.heading, locale)}
+          actions={[
+            <AcmButton key="cancel" variant={ButtonVariant.link} onClick={handleClose}>
+            {msgs.get('modal.button.cancel', locale)}
+            </AcmButton>,
+            <AcmButton key="confirm" variant={ButtonVariant.primary} onClick={this.handleSubmitClick}>
+                {msgs.get(label.primaryBtn, locale)}
+            </AcmButton>,
+          ]}
+          >
           <div>
             {reqStatus === REQUEST_STATUS.ERROR &&
-              <Notification
-                kind='error'
+              <AcmAlert
+                variant='danger'
                 title=''
                 subtitle={reqErrorMsg || msgs.get('error.default.description', locale)} />}
           </div>
           {this.modalBody(data, label, locale)}
-        </Modal>
+        </AcmModal>
       </div>
     )
   }
