@@ -20,7 +20,7 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
   const password = OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
   const idp = OC_IDP || Cypress.env('OC_IDP')
   const APIServer = Cypress.env('OPTIONS_HUB_CLUSTER_URL')
-  cy.log(`Initiating login as ${user}`)
+  cy.log(`Initiating login as ${user} idp ${idp}`)
 
   cy.clearCookies()  // clear cookies so we do login again
   // handle login by setting cookie explicitly when running against localhost
