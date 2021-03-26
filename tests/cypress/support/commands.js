@@ -15,12 +15,12 @@ import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, is
          action_checkNotificationMessage, action_checkPolicyListingPageUserPermissions
 } from '../common/views'
 
-Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='') => {
+Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='', force=false) => {
   const user = OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
   const password = OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
-  const idp = OC_IDP || Cypress.env('OC_IDP')
+  let idp = OC_IDP || Cypress.env('OC_IDP')
   const APIServer = Cypress.env('OPTIONS_HUB_CLUSTER_URL')
-  cy.log(`Initiating login as ${user}`)
+  cy.log(`Initiating login as ${user} idp ${idp}`)
 
   cy.clearCookies()  // clear cookies so we do login again
   // handle login by setting cookie explicitly when running against localhost
@@ -31,7 +31,7 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
       cy.exec('oc whoami', {failOnNonZeroExit: false}).then(res => {
         const currentUser = res.stdout.replace('kube:admin', 'kubeadmin')
         cy.log(`Currently logged to 'oc' as ${currentUser}`)
-        if (currentUser != user) {  // do oc login as the required user
+        if (currentUser != user || force) {  // do oc login as the required user
           cy.log(`Doing 'oc login' as ${user}`)
           cy.exec(`oc login --server=${APIServer} -u ${user} -p ${password}`).then(res => cy.log(res.stdout))
         }
@@ -49,8 +49,12 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
     // if not yet logged in, do the regular login through Web UI
     if (body.find('#header').length === 0) {
       // Check if identity providers are configured
-      if (body.find('form').length === 0)
+      if (body.find('form').length === 0) {
+        if (user === 'kubeadmin') {
+          idp = 'kube:admin'
+        }
         cy.contains(idp).click()
+      }
       cy.get('#inputUsername').click().focused().type(user)
       cy.get('#inputPassword').click().focused().type(password)
       cy.get('button[type="submit"]').click()

@@ -93,26 +93,25 @@ Run the following command to start all unit tests (run through Jest):
 npm run test:unit
 ```
 
-### E2E Tests
-
-**Note**: To run E2E tests, you'll need to install `chromedriver` before the first run or the test run will fail immediately:
-
-```bash
-npm install chromedriver
-```
 ### Cypress Tests
-**Note**: To run Cypress tests, you'll need to add necessary values in `cypressEnvConfig.yaml` file. e.g. `multicloud-console.apps.{BASE_DOMAIN}`.
 
 **Note**: It is required that the UI runs locally or can target a remote cluster to start the selenium based tests.
 
-1. The RBAC tests require a set of users to exist in the remote cluster. To set up these users, first log in to your remote cluster. Decide on a password you'd like to use for these users. Then, from the `grc-ui` folder, run these commands (the script will also export `SELENIUM_USER`, `SELENIUM_PASSWORD`, and `SELENIUM_USER_SELECT` to match the RBAC users and use in place of `kubeadmin`):
+1. Before you run any cypress test, make sure the following envs are set.
+
+   ```bash
+   export OC_HUB_CLUSTER_URL=https://api.grcui-e2e.dev08.red-chesterfield.com:6443
+   export OC_CLUSTER_USER=kubeadmin
+   export OC_HUB_CLUSTER_PASS=XXXXXXXXX
+   export OC_IDP=kube:admin
+   ```
+
+2. The RBAC tests require a set of users to exist in the remote cluster. To set up these users, first log in to your remote cluster. Decide on a password you'd like to use for these users. Then, from the `grc-ui` folder, run these commands (the script will also export `OC_CLUSTER_USER`, `OC_HUB_CLUSTER_PASS`, and `OC_IDP` to match the RBAC users and use in place of `kubeadmin`):
 
    ```bash
    export RBAC_PASS=<your-rbac-password>
-   ./build/rbac-setup.sh
+   source ./build/rbac-setup.sh
    ```
-
-   Alternatively, you can set `DISABLE_CANARY_TEST` to `true` to disable tests that would fail in the canaries like RBAC.
 
    For reference, the following users will be created:
 
@@ -129,29 +128,21 @@ npm install chromedriver
    | e2e-view-ns | Namespace | view for `e2e-rbac-test-1` |
    | e2e-group-ns | Namespace | view for `e2e-rbac-test-1` |
 
-2. Before you run any end-to-end (e2e) test, make sure the environment parameters `selenium_user` and `selenium_password` are set. If they are not set you can re-run the `rbac-setup.sh` script or to use the `kubeadmin` user, run the following commands:
+3. **Optional**: By default, cypress test runs against a live cluster. You can run cypress test against localhost. Set the environment parameter, `CYPRESS_BASE_URL` by running the following command:
 
    ```bash
-   export SELENIUM_USER=UI_USERNAME
-   export SELENIUM_PASSWORD=UI_PASSWORD
+   export CYPRESS_BASE_URL=https://localhost:3000
    ```
 
-3. **Optional**: By default, e2e test runs against https://localhost:3000. You can run e2e test against a specific remote cluster. Set the environment parameter, `SELENIUM_CLUSTER` by running the following command:
-
+4. Run the following command to start the cypress test:
    ```bash
-   export SELENIUM_CLUSTER=https://target.base.url
-   ```
-
-4. Run the following command to start the e2e test:
-
-   ```bash
-   npm run test:e2e
+   npm run test:cypress
    ```
 
    To run the tests headless (i.e. with the browser running in the background):
 
    ```bash
-   npm run test:e2e-headless
+   npm run test:cypress-headless
    ```
 
 
@@ -163,21 +154,17 @@ View the full list of npm scripts that are described in the following table:
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | `npm start`                      | Starts the application with NODE_ENV='development'.                                                                               |
 | `npm test:unit`                  | Runs jest tests.                                                                                                                |
-| `npm run test:cypress`            | Cypress headed or GUI based test with Chrome browser.|
 | `npm test:update-snapshot`       | Updates snapshots for jest tests. This command should only be used if you have made changes to a component that requires an updated snapshot artifact for a test case.|
-| `npm test:update-a11ySnap`       | Updates snapshots for automated a11y test in e2e test. To update a11y test snapshot, first run `npm run test:e2e` locally, then run this command to update files. Only update a11y snapshot when you make changes and make sure those a11y issues can't be fixed on our side.|
-| `npm test:e2e`                   | Runs nightwatch e2e tests. |
-| `npm test:e2e-headless`          | Runs nightwatch e2e tests with headless browser (i.e. browser runs in the background). |
+| `npm test:cypress`               | Runs Cypress e2e tests. |
+| `npm test:cypress-headless`      | Runs Cypress e2e tests with headless browser (i.e. browser runs in the background). |
 | `npm run start:production`       | Starts the application with NODE_ENV='production'.                                                                                |
 | `npm run clean`                  | Deletes the generated files from public folder.                                                                                  |
 | `npm run build`                  | Does a FULL development build.  (caching disabled and dev source maps)                                                           |
 | `npm run build:production`       | Does a FULL production build.                                                                                                    |
 | `npm run build:watch`            | Does a build of application code (w/o the DLL generation) and continues to run in the background watching for changes.            |
 | `npm run build:dll`              | Only re-builds the the vendor library component.                                                                                 |
-| `npm run test:install-selenium`  | Install selenium standalone for running UI tests locally. Automatically invoked when you run `npm run test:e2e`.                        |
 | `npm run lint`                   | Runs linting on the code base.                                                                                                   |
 | `npm run lint:fix`               | Attempts to fix any linting errors automatically.                                                                                |
-| `npm run shrinkwrap:clean`       | Regenerates a clean `npm-shrinkwrap.json` - THIS COMMAND SHOULD ONLY BE USED IN EXTREME CIRCUMSTANCES.                           |
 
   **Note**: The build process leverages the Dll and DllReference plugins to extract vendor plugins for faster build times and improve browser caching.  A separate bundle is created for 3rd-party client-side libraries.  The generated bundle is sourced (_public/dll.vendor.js_) along with its manifest (_vendor-manifest.json_).  If new client dependencies are added or existing versions of dependencies are updated, this module needs to be regenerated and recommitted back into source control. Run the following command  `npm run build:dll`.
 

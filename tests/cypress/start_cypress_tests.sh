@@ -46,29 +46,27 @@ else
   echo "MANAGED_CLUSTER_NAME is set, set CYPRESS_MANAGED_CLUSTER_NAME to $MANAGED_CLUSTER_NAME"
 fi
 
+echo -e "\nLogging into Kube API server\n"
+oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
 
-if [ ! -z "$SELENIUM_CLUSTER" ]; then
-  echo "SELENIUM_CLUSTER env parameter is found, run system e2e testing and use OC_HUB_CLUSTER_URL"
-  export CYPRESS_BASE_URL=$SELENIUM_CLUSTER
-else
-  echo "pull request e2e testing and use travis env CYPRESS_BASE_URL or localhost"
-  export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-"https://localhost:3000"}
-fi
 
+RHACM_CONSOLE_URL=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
+export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-$RHACM_CONSOLE_URL}
 if [ "$CYPRESS_BASE_URL" = "https://localhost:3000" ]; then
   export CYPRESS_coverage=true
 else
   export CYPRESS_coverage=false
 fi
 
-export CYPRESS_RBAC_PASS="$RBAC_PASS"
-
+export CYPRESS_RBAC_PASS=$RBAC_PASS
 export CYPRESS_FAIL_FAST_PLUGIN=${CYPRESS_FAIL_FAST_PLUGIN:-"true"}
+export CYPRESS_OC_IDP=$OC_IDP
 echo -e "Running cypess tests with the following environment:\n"
 echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_ID"
 echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL)  : $CYPRESS_BASE_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL   : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_USER       : $CYPRESS_OPTIONS_HUB_USER"
+echo -e "\tCYPRESS_OC_IDP            : $CYPRESS_OC_IDP"
 echo -e "\tCYPRESS_MANAGED_CLUSTER_NAME       : $CYPRESS_MANAGED_CLUSTER_NAME"
 echo -e "\tCYPRESS_FAIL_FAST_PLUGIN       : $CYPRESS_FAIL_FAST_PLUGIN"
 echo -e "\tCYPRESS_STANDALONE_TESTSUITE_EXECUTION: $CYPRESS_STANDALONE_TESTSUITE_EXECUTION"
@@ -76,9 +74,6 @@ echo -e "\tCYPRESS_coverage       : $CYPRESS_coverage"
 echo -e "\tCYPRESS_TAGS_INCLUDE          : $CYPRESS_TAGS_INCLUDE"
 echo -e "\tCYPRESS_TAGS_EXCLUDE          : $CYPRESS_TAGS_EXCLUDE"
 [ -n "$CYPRESS_RBAC_PASS" ] && echo -e "CYPRESS_RBAC_PASS set" || echo -e "Error: CYPRESS_RBAC_PASS is not set"
-
-echo -e "\nLogging into Kube API server\n"
-oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
 
 # save a list of available clusters to .tests/cypress/config/clusters.yaml file so tests can use it
 oc get managedclusters -o custom-columns='name:.metadata.name,available:.status.conditions[?(@.reason=="ManagedClusterAvailable")].status,vendor:.metadata.labels.vendor' --no-headers | awk '/True/ { printf "%s:\n  vendor: %s\n", $1, $3 }' > ./tests/cypress/config/clusters.yaml

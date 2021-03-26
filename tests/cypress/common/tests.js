@@ -363,7 +363,7 @@ export const test_applyPolicyYAML = (confFilePolicy, substitutionRules=null) => 
 export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP, policyNames, confPolicies, permissions, namespaced, elevated, searchFilter) => {
 
   it(`Login ${userName} user`, () => {
-    cy.login(userName, userPassword, IDP)
+    cy.login(userName, userPassword, IDP, true)
   })
 
   it(`Check All policies listing page content as ${userName}`, () => {
