@@ -24,7 +24,7 @@ import { CREATE_POLICY_DISCOVERY } from '../../lib/client/queries'
 import CreationView from '../components/modules/CreationView'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
-import checkCreatePermission from '../components/common/CheckCreatePermission'
+// import checkCreatePermission from '../components/common/CheckCreatePermission'
 import { LocaleContext } from '../components/common/LocaleContext'
 
 export class CreationTab extends React.Component {
@@ -202,11 +202,11 @@ export class CreationTab extends React.Component {
   }
 
   render () {
-    const { mutateStatus, mutateErrorMsg, mutatePBErrorMsg, mutatePRErrorMsg, updateStatus, userAccess } = this.props
+    const { mutateStatus, mutateErrorMsg, mutatePBErrorMsg, mutatePRErrorMsg, updateStatus/*, userAccess */} = this.props
     const { updateRequested } = this.state
-    if (checkCreatePermission(userAccess) !== 1) {
-      return <Redirect to={`${config.contextPath}/all`} />
-    }
+    // if (checkCreatePermission(userAccess) !== 1) {
+    //   return <Redirect to={`${config.contextPath}/all`} />
+    // }
     if ((mutateStatus && mutateStatus === 'DONE') && (!updateRequested || (updateStatus && updateStatus === 'DONE'))) {
       this.props.cleanReqStatus && this.props.cleanReqStatus()
       return <Redirect to={`${config.contextPath}/all`} />
