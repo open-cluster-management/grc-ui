@@ -109,7 +109,6 @@ const getAcmRoute = (props) => {
 
 // eslint-disable-next-line react/display-name
 export default props => (
-  // eslint-disable-next-line react/prop-types
   <AcmHeader route={getAcmRoute(props)} >
     <Route path={config.contextPath} serverProps={props} component={AppWithUserAccess} />
     <Route path={'/multicloud/welcome'} serverProps={props} component={WelcomeStatic} />
