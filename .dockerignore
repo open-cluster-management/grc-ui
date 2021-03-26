@@ -30,7 +30,6 @@ travis-env.sh
 .nvmrc
 travis-scripts
 copy.sh
-upload-selenium.sh
 webpack*
 version.ejs
 state
