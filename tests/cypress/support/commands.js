@@ -15,7 +15,7 @@ import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, is
          action_checkNotificationMessage, action_checkPolicyListingPageUserPermissions
 } from '../common/views'
 
-Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='') => {
+Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='', force=false) => {
   const user = OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
   const password = OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
   const idp = OC_IDP || Cypress.env('OC_IDP')
@@ -31,7 +31,7 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
       cy.exec('oc whoami', {failOnNonZeroExit: false}).then(res => {
         const currentUser = res.stdout.replace('kube:admin', 'kubeadmin')
         cy.log(`Currently logged to 'oc' as ${currentUser}`)
-        if (currentUser != user) {  // do oc login as the required user
+        if (currentUser != user || force) {  // do oc login as the required user
           cy.log(`Doing 'oc login' as ${user}`)
           cy.exec(`oc login --server=${APIServer} -u ${user} -p ${password}`).then(res => cy.log(res.stdout))
         }

@@ -34,7 +34,7 @@ describeT('@rbac RHACM4K-2584 - GRC UI: [P1][Sev1][policy-grc] Role Based Access
 
   })
 
-  it('Logout as kube-admin', () => {
+  it('Logout', () => {
     cy.logout()
   })
 
