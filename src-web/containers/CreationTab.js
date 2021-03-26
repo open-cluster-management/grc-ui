@@ -50,7 +50,7 @@ export class CreationTab extends React.Component {
     secondaryHeaderProps: PropTypes.object,
     updateSecondaryHeader: PropTypes.func,
     updateStatus: PropTypes.string,
-    userAccess: PropTypes.array
+    // userAccess: PropTypes.array
   }
 
   UNSAFE_componentWillMount() {
