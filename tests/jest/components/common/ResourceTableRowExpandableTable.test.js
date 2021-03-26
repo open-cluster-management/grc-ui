@@ -162,7 +162,7 @@ const items2 = [
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
@@ -198,7 +198,7 @@ const items3 = [
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
@@ -238,7 +238,7 @@ const items4 = [
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
@@ -272,7 +272,7 @@ const items5 = [
 
 describe('ResourceTableRowExpandableTable component test', () => {
   it('renders as expected', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
