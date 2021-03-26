@@ -110,7 +110,7 @@ npm run test:unit
 
    ```bash
    export RBAC_PASS=<your-rbac-password>
-   ./build/rbac-setup.sh
+   source ./build/rbac-setup.sh
    ```
 
    For reference, the following users will be created:
