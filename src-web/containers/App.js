@@ -29,8 +29,7 @@ import loadable from '@loadable/component'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
-import GrcApolloClient from '../../lib/client/apollo-client'
-import { userAccessSuccess } from '../actions/access'
+import { getUserAccessData } from '../actions/access'
 import { connect } from 'react-redux'
 
 export const ResourceToolbar = loadable(() => import(/* webpackChunkName: "ResourceToolbar" */ '../components/common/ResourceToolbar'))
@@ -58,9 +57,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    GrcApolloClient.getUserAccess().then((response) => {
-      this.props.updateUserAccess(response.data.items)
-    })
+    this.props.getUserAccess()
   }
 
   render() {
@@ -83,12 +80,12 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  updateUserAccess: PropTypes.func
+  getUserAccess: PropTypes.func
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateUserAccess: (access) => dispatch(userAccessSuccess(access))
+    getUserAccess: () => dispatch(getUserAccessData())
   }
 }
 

@@ -39,10 +39,9 @@ describe('ResourceFilterBar no filters applied', () => {
       'search': '',
       'hash': ''
     }
-    const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
@@ -84,10 +83,9 @@ describe('ResourceFilterBar w/ filter applied', () => {
       'search': '',
       'hash': ''
     }
-    const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component2 = renderer.create(

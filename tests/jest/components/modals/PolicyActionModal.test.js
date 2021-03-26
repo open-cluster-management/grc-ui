@@ -20,10 +20,9 @@ import { REQUEST_STATUS } from '../../../../src-web/actions/index'
 
 describe('PolicyActionModal component', () => {
   it('Disable modal renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = shallow(
@@ -41,10 +40,10 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Enable modal renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = shallow(
@@ -62,10 +61,10 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Enforce modal renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = shallow(
@@ -83,10 +82,10 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Inform modal renders as expected', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = shallow(
@@ -104,10 +103,10 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Modal renders without data', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = shallow(
@@ -122,10 +121,10 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Modal returns spinner when loading', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = shallow(
@@ -142,10 +141,10 @@ describe('PolicyActionModal component', () => {
   })
 
   it('Modal returns notification on error', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = shallow(

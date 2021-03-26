@@ -29,10 +29,9 @@ import {
 
 describe('PolicyClusterDetail component', () => {
   it('renders as loading', () => {
-    const preloadedState = window.__PRELOADED_STATE__
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
@@ -52,10 +51,10 @@ describe('PolicyClusterDetail component', () => {
 
 describe('PolicyClusterDetail component', () => {
   it('renders as normal', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const location = {
@@ -89,10 +88,10 @@ describe('PolicyClusterDetail component', () => {
 
 describe('PolicyClusterDetail component', () => {
   it('renders as error', () => {
-    const preloadedState = window.__PRELOADED_STATE__
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
-    const store = createStore(combineReducers(reducers), preloadedState, composeEnhancers(
+    const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
     const component = renderer.create(
