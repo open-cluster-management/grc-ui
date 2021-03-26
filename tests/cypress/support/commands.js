@@ -55,7 +55,6 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
         }
         cy.contains(idp).click()
       }
-        
       cy.get('#inputUsername').click().focused().type(user)
       cy.get('#inputPassword').click().focused().type(password)
       cy.get('button[type="submit"]').click()
