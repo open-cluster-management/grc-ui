@@ -24,7 +24,7 @@ import { Provider } from 'react-redux'
 
 describe('PoliciesTab container test', () => {
   it('renders as expected', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(

@@ -28,7 +28,6 @@ const url = '/multicloud/policies/all/default/policy-gatekeeper'
 
 describe('PolicyDetail container test', () => {
   it('renders as expected', () => {
-    
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
@@ -56,7 +55,6 @@ describe('PolicyDetail container test', () => {
 
 describe('PolicyDetail container test', () => {
   it('renders as loading', () => {
-    
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(

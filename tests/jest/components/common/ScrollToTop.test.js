@@ -25,7 +25,6 @@ import { Provider } from 'react-redux'
 describe('ScrollToTop component test', () => {
   it('renders as expected', () => {
     global.scrollTo = jest.fn()
-    
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(

@@ -15,7 +15,6 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 describe('PolicyStatusView component', () => {
-  
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   const middleware = [thunkMiddleware]
   const store = createStore(combineReducers(reducers), composeEnhancers(

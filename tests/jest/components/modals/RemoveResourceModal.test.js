@@ -23,7 +23,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 describe('RemoveResourceModal test', () => {
   it('renders as expected', () => {
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
     const store = createStore(combineReducers(reducers), composeEnhancers(
