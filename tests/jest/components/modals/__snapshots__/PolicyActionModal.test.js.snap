@@ -2,176 +2,197 @@
 
 exports[`PolicyActionModal component Disable modal renders as expected 1`] = `
 <div>
-  <Modal
-    aria-label="Disable policy"
-    danger={true}
-    focusTrap={true}
-    iconDescription="close the modal"
+  <AcmModal
+    actions={
+      Array [
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="primary"
+        >
+          Disable policy
+        </AcmButton>,
+      ]
+    }
     id="disable-resource-modal"
-    modalHeading="Disable policy"
-    modalLabel="Disable policy"
-    onKeyDown={[Function]}
-    onRequestClose={[Function]}
-    onRequestSubmit={[Function]}
-    open={true}
-    passiveModal={false}
-    primaryButtonDisabled={false}
-    primaryButtonText="Disable policy"
-    role="region"
-    secondaryButtonText="Cancel"
-    selectorPrimaryFocus="[data-modal-primary-focus]"
+    isOpen={true}
+    onClose={[Function]}
+    showClose={true}
+    title="Disable policy"
+    titleIconVariant="danger"
+    variant="medium"
   >
     <div />
-    <p>
-      Are you sure you want to disable this policy?
-    </p>
-  </Modal>
+    Are you sure you want to disable this policy?
+  </AcmModal>
 </div>
 `;
 
 exports[`PolicyActionModal component Enable modal renders as expected 1`] = `
 <div>
-  <Modal
-    aria-label="Enable policy"
-    danger={false}
-    focusTrap={true}
-    iconDescription="close the modal"
+  <AcmModal
+    actions={
+      Array [
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="primary"
+        >
+          Enable policy
+        </AcmButton>,
+      ]
+    }
     id="enable-resource-modal"
-    modalHeading="Enable policy"
-    modalLabel="Enable policy"
-    onKeyDown={[Function]}
-    onRequestClose={[Function]}
-    onRequestSubmit={[Function]}
-    open={true}
-    passiveModal={false}
-    primaryButtonDisabled={false}
-    primaryButtonText="Enable policy"
-    role="region"
-    secondaryButtonText="Cancel"
-    selectorPrimaryFocus="[data-modal-primary-focus]"
+    isOpen={true}
+    onClose={[Function]}
+    showClose={true}
+    title="Enable policy"
+    titleIconVariant="default"
+    variant="medium"
   >
     <div />
-    <p>
-      Are you sure you want to enable this policy?
-    </p>
-  </Modal>
+    Are you sure you want to enable this policy?
+  </AcmModal>
 </div>
 `;
 
 exports[`PolicyActionModal component Enforce modal renders as expected 1`] = `
 <div>
-  <Modal
-    aria-label="Enforce policy"
-    danger={true}
-    focusTrap={true}
-    iconDescription="close the modal"
+  <AcmModal
+    actions={
+      Array [
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="primary"
+        >
+          Enforce policy
+        </AcmButton>,
+      ]
+    }
     id="enforce-resource-modal"
-    modalHeading="Enforce policy"
-    modalLabel="Enforce policy"
-    onKeyDown={[Function]}
-    onRequestClose={[Function]}
-    onRequestSubmit={[Function]}
-    open={true}
-    passiveModal={false}
-    primaryButtonDisabled={false}
-    primaryButtonText="Enforce policy"
-    role="region"
-    secondaryButtonText="Cancel"
-    selectorPrimaryFocus="[data-modal-primary-focus]"
+    isOpen={true}
+    onClose={[Function]}
+    showClose={true}
+    title="Enforce policy"
+    titleIconVariant="danger"
+    variant="medium"
   >
     <div />
-    <p>
-      Are you sure you want to enforce this policy? The policy makes any necessary changes to the applied cluster to remediate the violations.
-    </p>
-  </Modal>
+    Are you sure you want to enforce this policy? The policy makes any necessary changes to the applied cluster to remediate the violations.
+  </AcmModal>
 </div>
 `;
 
 exports[`PolicyActionModal component Inform modal renders as expected 1`] = `
 <div>
-  <Modal
-    aria-label="Inform policy"
-    danger={false}
-    focusTrap={true}
-    iconDescription="close the modal"
+  <AcmModal
+    actions={
+      Array [
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="primary"
+        >
+          Inform policy
+        </AcmButton>,
+      ]
+    }
     id="inform-resource-modal"
-    modalHeading="Inform policy"
-    modalLabel="Inform policy"
-    onKeyDown={[Function]}
-    onRequestClose={[Function]}
-    onRequestSubmit={[Function]}
-    open={true}
-    passiveModal={false}
-    primaryButtonDisabled={false}
-    primaryButtonText="Inform policy"
-    role="region"
-    secondaryButtonText="Cancel"
-    selectorPrimaryFocus="[data-modal-primary-focus]"
+    isOpen={true}
+    onClose={[Function]}
+    showClose={true}
+    title="Inform policy"
+    titleIconVariant="default"
+    variant="medium"
   >
     <div />
-    <p>
-      Are you sure you want to change the remediation action of this policy to inform? You must manually remediate the policy violations.
-    </p>
-  </Modal>
+    Are you sure you want to change the remediation action of this policy to inform? You must manually remediate the policy violations.
+  </AcmModal>
 </div>
 `;
 
 exports[`PolicyActionModal component Modal renders without data 1`] = `
 <div>
-  <Modal
-    danger={false}
-    focusTrap={true}
-    iconDescription="close the modal"
+  <AcmModal
+    actions={
+      Array [
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="primary"
+        />,
+      ]
+    }
     id=""
-    modalHeading=""
-    modalLabel=""
-    onKeyDown={[Function]}
-    onRequestClose={[Function]}
-    onRequestSubmit={[Function]}
-    open={true}
-    passiveModal={false}
-    primaryButtonDisabled={false}
-    role="region"
-    secondaryButtonText="Cancel"
-    selectorPrimaryFocus="[data-modal-primary-focus]"
+    isOpen={true}
+    onClose={[Function]}
+    showClose={true}
+    titleIconVariant="default"
+    variant="medium"
   >
     <div />
-    <p />
-  </Modal>
+  </AcmModal>
 </div>
 `;
 
 exports[`PolicyActionModal component Modal returns notification on error 1`] = `
 <div>
-  <Modal
-    danger={false}
-    focusTrap={true}
-    iconDescription="close the modal"
+  <AcmModal
+    actions={
+      Array [
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="primary"
+        />,
+      ]
+    }
     id=""
-    modalHeading=""
-    modalLabel=""
-    onKeyDown={[Function]}
-    onRequestClose={[Function]}
-    onRequestSubmit={[Function]}
-    open={true}
-    passiveModal={false}
-    primaryButtonDisabled={false}
-    role="region"
-    secondaryButtonText="Cancel"
-    selectorPrimaryFocus="[data-modal-primary-focus]"
+    isOpen={true}
+    onClose={[Function]}
+    showClose={true}
+    titleIconVariant="default"
+    variant="medium"
   >
     <div>
-      <Notification
-        hideCloseButton={false}
-        iconDescription="closes notification"
-        kind="error"
-        onCloseButtonClick={[Function]}
+      <AcmAlert
         subtitle="There was an error."
         title=""
+        variant="danger"
       />
     </div>
-    <p />
-  </Modal>
+  </AcmModal>
 </div>
 `;
 
@@ -180,25 +201,29 @@ exports[`PolicyActionModal component Modal returns spinner when loading 1`] = `
   <Spinner
     className="patternfly-spinner"
   />
-  <Modal
-    danger={false}
-    focusTrap={true}
-    iconDescription="close the modal"
+  <AcmModal
+    actions={
+      Array [
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="primary"
+        />,
+      ]
+    }
     id=""
-    modalHeading=""
-    modalLabel=""
-    onKeyDown={[Function]}
-    onRequestClose={[Function]}
-    onRequestSubmit={[Function]}
-    open={true}
-    passiveModal={false}
-    primaryButtonDisabled={false}
-    role="region"
-    secondaryButtonText="Cancel"
-    selectorPrimaryFocus="[data-modal-primary-focus]"
+    isOpen={true}
+    onClose={[Function]}
+    showClose={true}
+    titleIconVariant="default"
+    variant="medium"
   >
     <div />
-    <p />
-  </Modal>
+  </AcmModal>
 </div>
 `;

@@ -2,69 +2,97 @@
 
 exports[`PolicyClusterDetail component renders as error 1`] = `
 <div
-  className="bx--inline-notification bx--inline-notification--error persistent"
-  kind="error"
-  role="alert"
+  className="MuiCollapse-container MuiCollapse-hidden"
+  style={
+    Object {
+      "minHeight": "0px",
+    }
+  }
 >
   <div
-    className="bx--inline-notification__details"
+    className="MuiCollapse-wrapper"
   >
-    <svg
-      alt="closes notification"
-      aria-label="closes notification"
-      className="bx--inline-notification__icon"
-      fillRule="evenodd"
-      height="16"
-      role="img"
-      viewBox="0 0 16 16"
-      width="16"
-    >
-      <title>
-        closes notification
-      </title>
-      <path
-        d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z"
-      />
-    </svg>
     <div
-      className="bx--inline-notification__text-wrapper"
+      className="MuiCollapse-wrapperInner"
     >
-      <p
-        className="bx--inline-notification__title"
-      >
-        
-      </p>
       <div
-        className="bx--inline-notification__subtitle"
+        aria-label="Danger Alert"
+        className="pf-c-alert pf-m-danger persistent"
+        data-ouia-component-id="OUIA-Generated-Alert-danger-1"
+        data-ouia-component-type="PF4/Alert"
+        data-ouia-safe={true}
       >
-        Provide a subtitle
+        <div
+          className="pf-c-alert__icon"
+        >
+          <svg
+            aria-hidden={true}
+            aria-labelledby={null}
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style={
+              Object {
+                "verticalAlign": "-0.125em",
+              }
+            }
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+            />
+          </svg>
+        </div>
+        <h4
+          className="pf-c-alert__title"
+        >
+          <span
+            className="pf-u-screen-reader"
+          >
+            Danger alert:
+          </span>
+          
+        </h4>
+        <div
+          className="pf-c-alert__action"
+        >
+          <button
+            aria-disabled={false}
+            aria-label="Close Danger alert: alert: "
+            className="pf-c-button pf-m-plain"
+            data-ouia-component-id="OUIA-Generated-Button-plain-1"
+            data-ouia-component-type="PF4/Button"
+            data-ouia-safe={true}
+            disabled={false}
+            onClick={[Function]}
+            role={null}
+            type="button"
+          >
+            <svg
+              aria-hidden={true}
+              aria-labelledby={null}
+              fill="currentColor"
+              height="1em"
+              role="img"
+              style={
+                Object {
+                  "verticalAlign": "-0.125em",
+                }
+              }
+              viewBox="0 0 352 512"
+              width="1em"
+            >
+              <path
+                d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+              />
+            </svg>
+          </button>
+        </div>
+        
       </div>
     </div>
   </div>
-  <button
-    className="bx--inline-notification__close-button"
-    onClick={[Function]}
-    title="close icon"
-    type="button"
-  >
-    <svg
-      alt="close icon"
-      aria-label="close icon"
-      className="bx--inline-notification__close-icon"
-      fillRule="evenodd"
-      height="10"
-      role="img"
-      viewBox="0 0 10 10"
-      width="10"
-    >
-      <title>
-        close icon
-      </title>
-      <path
-        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
-      />
-    </svg>
-  </button>
 </div>
 `;
 

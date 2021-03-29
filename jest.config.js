@@ -52,15 +52,15 @@ const jestConfig = {
     '.+\\.(hbs)$': 'jest-handlebars',
     '.+\\.(handlebars)$': 'jest-handlebars',
     '.+\\.(yaml)$': 'jest-yaml-transform',
-    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
+    '.+\\.(styl|less|sass|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
   },
   globalSetup: '<rootDir>/tests/jest/config/properties-to-json.js',
   setupFiles: [
     '<rootDir>/tests/jest/config/setup.js'
   ],
   moduleNameMapper: {
-    '^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
-    '\\.(css|scss|svg|png)$': '<rootDir>/tests/jest/config/styleMock.js',
+    '^.+.(styl|less|sass|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
+    '\\.(css|scss|svg)$': '<rootDir>/tests/jest/config/styleMock.js',
     'monaco-editor': '<rootDir>/node_modules/react-monaco-editor'
   }
 }

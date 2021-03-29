@@ -660,24 +660,32 @@ spec:
         role="region"
         tabIndex={-1}
       >
-        <Modal
+        <AcmModal
+          actions={
+            Array [
+              <AcmButton
+                onClick={[Function]}
+                variant="link"
+              >
+                Cancel
+              </AcmButton>,
+              <AcmButton
+                onClick={[Function]}
+                variant="primary"
+              >
+                Submit
+              </AcmButton>,
+            ]
+          }
           aria-label="Edit policy"
           className="resource-modal"
-          focusTrap={true}
-          iconDescription="close the modal"
           id="resource-modal-HCMCompliance"
-          modalHeading="Edit policy"
-          modalLabel="Edit policy"
-          onKeyDown={[Function]}
-          onRequestClose={[Function]}
-          onRequestSubmit={[Function]}
-          open={true}
-          passiveModal={false}
-          primaryButtonDisabled={false}
-          primaryButtonText="Submit"
+          isOpen={true}
+          onClose={[Function]}
           role="region"
-          secondaryButtonText="Cancel"
-          selectorPrimaryFocus="[data-modal-primary-focus]"
+          showClose={true}
+          title="Edit policy"
+          variant="medium"
         >
           <div>
             <div
@@ -748,7 +756,7 @@ spec:
               />
             </div>
           </div>
-        </Modal>
+        </AcmModal>
       </div>,
       "_rendering": false,
       "_updater": [Circular],
@@ -1244,24 +1252,32 @@ spec:
         <Spinner
           className="patternfly-spinner"
         />
-        <Modal
+        <AcmModal
+          actions={
+            Array [
+              <AcmButton
+                onClick={[Function]}
+                variant="link"
+              >
+                Cancel
+              </AcmButton>,
+              <AcmButton
+                onClick={[Function]}
+                variant="primary"
+              >
+                Submit
+              </AcmButton>,
+            ]
+          }
           aria-label="Edit policy"
           className="resource-modal"
-          focusTrap={true}
-          iconDescription="close the modal"
           id="resource-modal-HCMCompliance"
-          modalHeading="Edit policy"
-          modalLabel="Edit policy"
-          onKeyDown={[Function]}
-          onRequestClose={[Function]}
-          onRequestSubmit={[Function]}
-          open={true}
-          passiveModal={false}
-          primaryButtonDisabled={false}
-          primaryButtonText="Submit"
+          isOpen={true}
+          onClose={[Function]}
           role="region"
-          secondaryButtonText="Cancel"
-          selectorPrimaryFocus="[data-modal-primary-focus]"
+          showClose={true}
+          title="Edit policy"
+          variant="medium"
         >
           <div>
             <div
@@ -1332,7 +1348,7 @@ spec:
               />
             </div>
           </div>
-        </Modal>
+        </AcmModal>
       </div>,
       "_rendering": false,
       "_updater": [Circular],
