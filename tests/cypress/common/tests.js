@@ -356,11 +356,16 @@ export const test_applyPolicyYAML = (confFilePolicy, substitutionRules=null) => 
 //   IDP - IDP to use when logging
 //   policyNames = array of policy names that are expected to be found
 //   confPolicies = dictionary storing policy configurations where policyName is a key
+//   namespaces = namespaces that should be visible to the user
 //   permissions = user permissions
 //   namespaced = true if the user namespaced
 //   elevated = true if a user has multiple permissions for different namespaces and Create policy button should be enabled
 //   searchFilter = filter to be used in the Search field to limit the scope of a test
-export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP, policyNames, confPolicies, permissions, namespaced, elevated, searchFilter) => {
+export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP, policyNames, confPolicies, namespaces, permissions, namespaced, elevated, searchFilter) => {
+
+  const id = Cypress.env('RESOURCE_ID')
+  const newPolicyName = `rbac-new-${userName}-${id}`  // make policy name unique due to bug 1943662#c1
+  const newPolicyConf = confPolicies['disabled-policy']  // use disabled-policy from conf file
 
   it(`Login ${userName} user`, () => {
     cy.login(userName, userPassword, IDP, true)
@@ -401,6 +406,52 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
       // click on YAML tab
       cy.get('#yaml-tab').contains('YAML').click().waitForPageContentLoad()
         .checkPolicyYAMLPageUserPermissions(permissions)
+    })
+
+  }
+
+  // If a user has multiple permissions for different namespaces, the create
+  // button may be enabled, which is the purpose of setting `elevated`
+  it(`Check policy creation as ${userName}`, () => {
+
+    cy.visit('/multicloud/policies/create').waitForPageContentLoad()
+    if (permissions.create || elevated) {
+      // Check that specified namespaces are visible
+      cy.get('.bx--dropdown[aria-label="Choose an item"]').as('dropdown')
+      cy.get('@dropdown').click().within(() => {
+        for (const namespace of namespaces) {
+          cy.get('div.bx--list-box__menu-item').contains(new RegExp(`^${namespace}$`))
+        }
+        // If user has clusterwide permissions, they should see more namespaces
+        // Otherwise, they should only see the namespaces specified
+        cy.get('div.bx--list-box__menu-item').then(items => {
+          const count = items.length
+          if (!namespaced) {
+            assert.isAbove(count, namespaces.length, 'There should be additional namespaces available')
+          } else {
+            assert.equal(count, namespaces.length, 'There should be no additional namespaces')
+          }
+        })
+      })
+      // collapse the drop down again
+      cy.get('@dropdown').click()
+      // now create a test policy
+      cy.createPolicyFromSelection(newPolicyName, true, newPolicyConf)
+      .verifyPolicyInListing(newPolicyName, newPolicyConf, 'disabled')
+
+    } else {
+      // Make sure users can't navigate to the Create page directly
+      // and are redirected to /policies/all page
+      cy.url().should('match', /\/multicloud\/policies\/all[?]?/)
+    }
+
+  })
+
+  if (permissions.delete) {  // Should this be (permissions.delete || elevated) ???
+
+    it(`Check policy removal as ${userName}`, () => {
+      cy.actionPolicyActionInListing(newPolicyName, 'Remove')
+      .verifyPolicyNotInListing(newPolicyName)
     })
 
   }

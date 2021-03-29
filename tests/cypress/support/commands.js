@@ -284,8 +284,8 @@ Cypress.Commands.add('createPolicyFromSelection', (uPolicyName, create=true, pol
   cy.then(() => action_createPolicyFromSelection(uPolicyName, create, policyConfig))
 })
 
-Cypress.Commands.add('verifyPolicyInListing', (uPolicyName, create, policyConfig) => {
-  cy.then(() => action_verifyPolicyInListing(uPolicyName, create, policyConfig))
+Cypress.Commands.add('verifyPolicyInListing', (uPolicyName, policyConfig, enabled='enabled', violationsCounter='', targetStatus = null) => {
+  cy.then(() => action_verifyPolicyInListing(uPolicyName, policyConfig, enabled, violationsCounter, targetStatus))
 })
 
 Cypress.Commands.add('verifyPolicyNotInListing', (uPolicyName) => {
