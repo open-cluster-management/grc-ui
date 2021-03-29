@@ -13,7 +13,7 @@ import { pageLoader, isPolicyStatusAvailable, isClusterPolicyStatusAvailable, is
          action_verifyPolicyViolationDetailsInCluster, action_verifyPolicyViolationDetailsInHistory,
          action_verifyCreatePolicySelection, isClusterViolationsStatusAvailable, action_verifyClusterViolationsInListing,
          action_checkNotificationMessage, action_checkPolicyListingPageUserPermissions
-} from '../common/views'
+} from '../support/views'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='', force=false) => {
   const user = OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')

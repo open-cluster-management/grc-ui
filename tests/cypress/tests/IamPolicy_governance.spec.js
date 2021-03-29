@@ -3,7 +3,7 @@
 
 /// <reference types="cypress" />
 import { describeT } from '../support/tagging'
-import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../common/tests'
+import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../support/tests'
 
 describeT('GRC UI: [P1][Sev1][policy-grc] IamPolicy governance - setup', () => {
   test_applyPolicyYAML('IamPolicy_governance/policy-clusterrolebinding-setup_raw.yaml')

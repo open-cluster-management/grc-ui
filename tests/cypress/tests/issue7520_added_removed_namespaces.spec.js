@@ -5,8 +5,8 @@
 import { describeT } from '../support/tagging'
 import { getDefaultSubstitutionRules,
          verifyPolicyTemplateViolationDetailsForCluster
-       } from '../common/views'
-import { test_applyPolicyYAML } from '../common/tests'
+       } from '../support/views'
+import { test_applyPolicyYAML } from '../support/tests'
 import { getConfigObject } from '../config'
 
 // simple function that would help us to generate unique resource names

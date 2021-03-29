@@ -3,7 +3,7 @@
 
 /// <reference types="cypress" />
 import { describeT } from '../support/tagging'
-import { getDefaultSubstitutionRules, getViolationsPerPolicy, getViolationsCounter } from '../common/views'
+import { getDefaultSubstitutionRules, getViolationsPerPolicy, getViolationsCounter } from '../support/views'
 import { getConfigObject } from '../config'
 
 describeT('RHACM4K-1648 - GRC UI: [P2][Sev2][policy-grc] CertPolicy with wrong namespace selector', () => {

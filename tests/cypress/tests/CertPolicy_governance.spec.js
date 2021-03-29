@@ -3,8 +3,8 @@
 
 /// <reference types="cypress" />
 import { describeT } from '../support/tagging'
-import { getDefaultSubstitutionRules, verifyPolicyInPolicyStatus, verifyPolicyByYAML } from '../common/views'
-import { test_applyPolicyYAML } from  '../common/tests'
+import { getDefaultSubstitutionRules, verifyPolicyInPolicyStatus, verifyPolicyByYAML } from '../support/views'
+import { test_applyPolicyYAML } from  '../support/tests'
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
 

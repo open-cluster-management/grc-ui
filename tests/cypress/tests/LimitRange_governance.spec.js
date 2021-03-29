@@ -3,7 +3,7 @@
 
 /// <reference types="cypress" />
 import { describeT } from '../support/tagging'
-import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../common/tests'
+import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../support/tests'
 
 describeT('@extended GRC UI: [P1][Sev1][policy-grc] LimitRange policy governance - setup', () => {
     test_applyPolicyYAML('LimitRange_governance/LimitRange_specification_setup_policy_raw.yaml')

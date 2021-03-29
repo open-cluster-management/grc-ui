@@ -4,7 +4,7 @@
 /// <reference types="cypress" />
 
 import { describeT } from '../support/tagging'
-import { checkItems, verifyItemsChecked } from '../common/views'
+import { checkItems, verifyItemsChecked } from '../support/views'
 
 const specificationsList = ['CertificatePolicy', 'EtcdEncryption']
 const selectSpecsQuery = '.bx--multi-select[aria-label="specs"]'

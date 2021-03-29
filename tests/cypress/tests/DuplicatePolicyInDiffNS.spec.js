@@ -3,7 +3,7 @@
 
 import { describeT } from '../support/tagging'
 import { getConfigObject } from '../config'
-import { getDefaultSubstitutionRules } from '../common/views'
+import { getDefaultSubstitutionRules } from '../support/views'
 
 const substitutionRules = getDefaultSubstitutionRules()
 var policyNames = []
