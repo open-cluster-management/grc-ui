@@ -275,6 +275,7 @@ Cypress.Commands.add('goToPolicyDetailsPage', (policyName, namespace='default', 
 // must be run on policy details page
 Cypress.Commands.add('goToPolicyClusterPage', (policyName, policyConfig, clusterName) => {
   var namespace = policyConfig['namespace']
+  cy.waitUntil(() => cy.get('.one-cluster-status').children('a').contains(clusterName).click(), {'interval': 1000, 'timeout':60000})
   cy.get('.one-cluster-status').children('a').contains(clusterName).click()
   pageLoader.shouldNotExist()
   cy.location('pathname').should('eq', '/multicloud/policies/policy/'+clusterName+'/'+namespace+'.'+policyName)
