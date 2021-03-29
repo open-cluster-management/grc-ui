@@ -158,7 +158,6 @@ class PolicyTemplatesView extends React.Component {
             {createDisableTooltip(disableFlag, 'edit-resource', this.context.locale,
               (<AcmButton
                 isDisabled={disableFlag}
-                icon="add--glyph"
                 className={this.state.readOnly ? 'read-only-button' : 'editing-button'}
                 small id={'edit-button'}
                 key='edit-resource'
@@ -168,7 +167,6 @@ class PolicyTemplatesView extends React.Component {
             {createDisableTooltip(disableFlag, 'submit-button', this.context.locale,
               (<AcmButton
                 isDisabled={disableFlag}
-                icon="add--glyph" small
                 id={'submit-button'}
                 key='submit-resource-change'
                 onClick={this.handleSubmitClick}>
