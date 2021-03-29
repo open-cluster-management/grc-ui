@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2017, 2018. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
@@ -18,7 +10,7 @@ import jsYaml from 'js-yaml'
 import YamlEditor from '../common/YamlEditor'
 import _ from 'lodash'
 import { dumpAndParse } from '../../../lib/client/design-helper'
-import { Button, InlineNotification } from 'carbon-components-react'
+import { AcmAlert, AcmButton } from '@open-cluster-management/ui-components'
 import { Spinner } from '@patternfly/react-core'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -164,29 +156,29 @@ class PolicyTemplatesView extends React.Component {
           {!viewOnly &&
           <div className='yaml-editor-button'>
             {createDisableTooltip(disableFlag, 'edit-resource', this.context.locale,
-              (<Button
-                disabled={disableFlag}
+              (<AcmButton
+                isDisabled={disableFlag}
                 icon="add--glyph"
                 className={this.state.readOnly ? 'read-only-button' : 'editing-button'}
                 small id={'edit-button'}
                 key='edit-resource'
                 onClick={this.handleEditBtnClick}>
                 {msgs.get('table.actions.edit', this.context.locale)}
-              </Button>))}
+              </AcmButton>))}
             {createDisableTooltip(disableFlag, 'submit-button', this.context.locale,
-              (<Button
-                disabled={disableFlag}
+              (<AcmButton
+                isDisabled={disableFlag}
                 icon="add--glyph" small
                 id={'submit-button'}
                 key='submit-resource-change'
                 onClick={this.handleSubmitClick}>
                 {msgs.get('modal.button.submit', this.context.locale)}
-              </Button>))}
+              </AcmButton>))}
           </div>}
         </div>
         {this.state.yamlParsingError &&
-        <InlineNotification
-          kind='error'
+        <AcmAlert
+          variant='danger'
           title={msgs.get('error.parse', this.context.locale)}
           iconDescription=''
           subtitle={this.state.yamlParsingError.reason}
@@ -194,8 +186,8 @@ class PolicyTemplatesView extends React.Component {
         />
         }
         {this.state.reqErrorMsg &&
-        <InlineNotification
-          kind='error'
+        <AcmAlert
+          variant='danger'
           title={msgs.get('error.parse', this.context.locale)}
           iconDescription=''
           subtitle={this.state.reqErrorMsg}

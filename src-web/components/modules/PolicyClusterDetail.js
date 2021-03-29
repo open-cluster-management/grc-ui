@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2018, 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
@@ -14,7 +6,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Notification } from 'carbon-components-react'
+import { AcmAlert } from '@open-cluster-management/ui-components'
 import { Spinner } from '@patternfly/react-core'
 import StructuredListModule from '../common/StructuredListModule'
 import resources from '../../../lib/shared/resources'
@@ -62,11 +54,11 @@ class PolicyClusterDetail extends React.Component {
     const { locale } = this.context
     const modulesRight = [], modulesBottom = []
     if (error) {
-      return <Notification
+      return <AcmAlert
         title=''
         className='persistent'
         subtitle={msgs.get(error, locale)}
-        kind='error' />
+        variant='danger' />
     } else if (policies === null) {
       return <NoResource
             title={msgs.get('error.not.found', this.context.locale)}
