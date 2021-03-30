@@ -3,7 +3,7 @@
 
 /// <reference types="cypress" />
 import { describeT } from '../support/tagging'
-import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../common/tests.js'
+import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../support/tests.js'
 import { getClusterListByVendor } from '../config'
 
 const getList = getClusterListByVendor('OpenShift')

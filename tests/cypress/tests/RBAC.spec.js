@@ -5,8 +5,8 @@
 
 import { describeT } from '../support/tagging'
 import { getConfigObject } from '../config'
-import { test_userPermissionsPageContentCheck } from '../common/tests'
-import { getDefaultSubstitutionRules } from '../common/views'
+import { test_userPermissionsPageContentCheck } from '../support/tests'
+import { getDefaultSubstitutionRules } from '../support/views'
 
 
 describeT('@rbac RHACM4K-2584 - GRC UI: [P1][Sev1][policy-grc] Role Based Access Control tests', () => {

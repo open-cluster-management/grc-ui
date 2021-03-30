@@ -3,7 +3,7 @@
 
 /// <reference types="cypress" />
 import { describeT } from '../support/tagging'
-import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../common/tests'
+import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../support/tests'
 
 describeT('@extended RHACM4K-1720 - GRC UI: [P1][Sev1][policy-grc] PodSecurityPolicy governance', () => {
   test_genericPolicyGovernance('PodSecurityPolicy_governance/policy-config.yaml', 'PodSecurityPolicy_governance/violations-inform.yaml', 'PodSecurityPolicy_governance/violations-enforce.yaml')

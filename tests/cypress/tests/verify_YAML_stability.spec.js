@@ -5,7 +5,7 @@
 
 import { describeT } from '../support/tagging'
 import { getConfigObject } from '../config'
-import { getDefaultSubstitutionRules, parsePolicyNameFromYAML } from '../common/views'
+import { getDefaultSubstitutionRules, parsePolicyNameFromYAML } from '../support/views'
 
 /*
  * The test case paste YAML policy to an editor and then triggers YAML processing
