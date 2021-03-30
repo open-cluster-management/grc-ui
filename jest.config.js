@@ -37,7 +37,7 @@ const jestConfig = {
   coverageThreshold: {
     global: {
       branches: 55,
-      functions: 59,
+      functions: 58,
       lines: 60,
       statements: 60,
     },
@@ -52,15 +52,13 @@ const jestConfig = {
     '.+\\.(hbs)$': 'jest-handlebars',
     '.+\\.(handlebars)$': 'jest-handlebars',
     '.+\\.(yaml)$': 'jest-yaml-transform',
-    '.+\\.(styl|less|sass|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
   },
   globalSetup: '<rootDir>/tests/jest/config/properties-to-json.js',
   setupFiles: [
     '<rootDir>/tests/jest/config/setup.js'
   ],
   moduleNameMapper: {
-    '^.+.(styl|less|sass|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
-    '\\.(css|scss|svg)$': '<rootDir>/tests/jest/config/styleMock.js',
+    '\\.(css|scss|svg|png)$': '<rootDir>/tests/jest/config/styleMock.js',
     'monaco-editor': '<rootDir>/node_modules/react-monaco-editor'
   }
 }

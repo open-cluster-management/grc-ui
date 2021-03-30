@@ -20,7 +20,7 @@ import { GrcViewPolicyCluster, GrcViewPolicyCluster2,
 //curly braces means pure component without redux
 //which is what we want in unit test
 import { GrcView } from '../../../../src-web/components/modules/GrcView'
-import renderer from 'react-test-renderer'
+// import renderer from 'react-test-renderer'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
@@ -73,7 +73,7 @@ describe('GrcView component 2', () => {
     pathname: '/multicloud/policies/all'
   }
   it('shows loading when given loading:true', () => {
-    const component = renderer.create(
+    const component = shallow(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -90,7 +90,7 @@ describe('GrcView component 2', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -99,7 +99,7 @@ describe('GrcView component 3', () => {
     pathname: '/multicloud/policies/all'
   }
   it('gives an error notification given an error object', () => {
-    const component = renderer.create(
+    const component = shallow(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -116,7 +116,7 @@ describe('GrcView component 3', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -126,7 +126,7 @@ describe('GrcView component 4', () => {
     search: '?index=0&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = shallow(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -143,7 +143,7 @@ describe('GrcView component 4', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -153,7 +153,7 @@ describe('GrcView component 7 has create permission', () => {
     search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = shallow(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -171,7 +171,7 @@ describe('GrcView component 7 has create permission', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
@@ -181,7 +181,7 @@ describe('GrcView component 8 has not create permission', () => {
     search: '?index=1&side=true&card=false&toggle=false&filters={"textsearch":["cluster1"]}'
   }
   it('renders as expected', () => {
-    const component = renderer.create(
+    const component = shallow(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <GrcView
@@ -199,7 +199,7 @@ describe('GrcView component 8 has not create permission', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
 
