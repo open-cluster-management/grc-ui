@@ -5,7 +5,7 @@
 
 import { describeT } from '../support/tagging'
 import { getConfigObject } from '../config'
-import { getDefaultSubstitutionRules } from '../common/views'
+import { getDefaultSubstitutionRules } from '../support/views'
 
 describeT('RHACM4K-2354 - GRC UI: [P1][Sev1][policy-grc] Check existent and non-existent URLs for the policy', () => {
   const substitutionRules = getDefaultSubstitutionRules()

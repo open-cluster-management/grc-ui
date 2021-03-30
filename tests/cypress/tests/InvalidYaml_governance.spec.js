@@ -4,7 +4,7 @@
 /// <reference types="cypress" />
 import { describeT } from '../support/tagging'
 import { getConfigObject } from '../config'
-import { getDefaultSubstitutionRules } from '../common/views'
+import { getDefaultSubstitutionRules } from '../support/views'
 const invalidYamlErrorMessages = getConfigObject('InvalidYamlTests/invalidYamlErrors.yaml', 'yaml')
 
 

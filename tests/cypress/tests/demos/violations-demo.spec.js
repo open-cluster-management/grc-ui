@@ -2,7 +2,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 /// <reference types="cypress" />
-import { getDefaultSubstitutionRules } from '../../common/views'
+import { getDefaultSubstitutionRules } from '../../support/views'
 //import { getUniqueResourceName } from '../../scripts/utils'
 import { getConfigObject } from '../../config'
 

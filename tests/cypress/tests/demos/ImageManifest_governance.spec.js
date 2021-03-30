@@ -2,7 +2,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 /// <reference types="cypress" />
-import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../../common/tests'
+import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../../support/tests'
 
 describe('RHACM4K-1727 - GRC UI: [P1][Sev1][policy-grc] ImageManifest policy governance', () => {
     test_genericPolicyGovernance('ImageManifest_governance/policy-config.yaml', 'ImageManifest_governance/violations-inform.yaml', 'ImageManifest_governance/violations-enforce.yaml')

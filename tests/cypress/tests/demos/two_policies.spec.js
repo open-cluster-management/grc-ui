@@ -2,7 +2,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 /// <reference types="cypress" />
-import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../../common/tests'
+import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../../support/tests'
 
 describe('two policies tests', () => {
   test_genericPolicyGovernance('demos/two_policies/policy-config.yaml', 'demos/two_policies/violations-inform.yaml', 'demos/two_policies/violations-enforce.yaml')

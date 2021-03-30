@@ -3,7 +3,7 @@
 
 /// <reference types="cypress" />
 import { describeT } from '../support/tagging'
-import { getDefaultSubstitutionRules } from '../common/views'
+import { getDefaultSubstitutionRules } from '../support/views'
 import { getConfigObject } from '../config'
 
 const confClusters = getConfigObject('clusters.yaml')
