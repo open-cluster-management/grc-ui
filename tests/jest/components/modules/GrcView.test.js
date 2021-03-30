@@ -141,7 +141,18 @@ describe('GrcView component 4', () => {
             secondaryHeaderProps={GrcViewSecondaryHeaderProps}
           />
         </BrowserRouter>
-      </Provider>
+      </Provider>,
+      {
+        createNodeMock() {
+          console.log('createNodeMock called')
+          return {
+            style:{
+              height: '50',
+              setProperty: jest.fn()
+            }
+          }
+        }
+      }
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -169,7 +180,18 @@ describe('GrcView component 7 has create permission', () => {
             access={reduxStorePolicyCluster.userAccess.access}
           />
         </BrowserRouter>
-      </Provider>
+      </Provider>,
+      {
+        createNodeMock() {
+          console.log('createNodeMock called')
+          return {
+            style:{
+              height: '50',
+              setProperty: jest.fn()
+            }
+          }
+        }
+      }
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
