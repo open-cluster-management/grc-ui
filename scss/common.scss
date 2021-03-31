@@ -89,7 +89,9 @@ body {
 #toggle-perspective {
 
   .pf-c-dropdown__toggle-text {
-    font-size: 14px;
+    h2 {
+      font-size: 14px;
+    }
   }
 
   &::before {
