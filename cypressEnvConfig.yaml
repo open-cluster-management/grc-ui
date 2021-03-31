@@ -1,6 +1,6 @@
 options:
   hub:
-    hubClusterURL: https://api.policy-grc-cp-autoclaims-2764w.dev08.red-chesterfield.com:6443
+    hubClusterURL: https://api.grcui-e2e.dev08.red-chesterfield.com:6443
     user: kubeadmin
-    password: 5CXEJ-NyTM6-qnTDu-cffBI
-    baseURL: https://localhost:3000/multicloud/policies
+    password: i2Usu-sESWd-AT7Q4-yKFYJ
+    baseURL: https://multicloud-console.apps.grcui-e2e.dev08.red-chesterfield.com
