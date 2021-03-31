@@ -86,6 +86,17 @@ body {
   }
 }
 
+#toggle-perspective {
+
+  .pf-c-dropdown__toggle-text {
+    font-size: 14px;
+  }
+
+  &::before {
+    content: none;
+  }
+}
+
 .resource-list-filter {
   margin-top: -1.5rem;
   padding-bottom: 3rem;
