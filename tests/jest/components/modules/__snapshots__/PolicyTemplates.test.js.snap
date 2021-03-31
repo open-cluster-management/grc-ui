@@ -40,7 +40,6 @@ exports[`PolicyTemplatesView component renders as expected 1`] = `
               onClick={[Function]}
               onKeyPress={[Function]}
               role={null}
-              small={true}
               tabIndex={null}
               type="button"
             >
