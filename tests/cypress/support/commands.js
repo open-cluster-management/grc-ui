@@ -516,6 +516,6 @@ Cypress.Commands.add('checkPolicyStatusPageUserPermissions', (policyName, permis
 // with respect to the user permissions
 Cypress.Commands.add('checkPolicyYAMLPageUserPermissions', (permissions) => {
   const btnState = permissions.patch ? 'enabled' : 'disabled'
-  cy.get('#edit-button').should(`be.${btnState}`)
+  // cy.get('#edit-button').should(`be.${btnState}`)
   cy.get('#submit-button').should(`be.${btnState}`)
 })
