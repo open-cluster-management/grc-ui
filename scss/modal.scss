@@ -1,90 +1,21 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2018. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
- @import 'node_modules/carbon-components/scss/globals/scss/_colors';
- @import 'variables';
+ .pf-c-modal-box__title, .pf-c-modal-box__title-text {
+   font-size: var(--pf-global--FontSize--2xl);
+   font-weight: var(--pf-global--FontWeight--light);
+ }
 
-.modal-with-editor {
+ .pf-c-modal-box__body {
+  font-size: var(--pf-global--FontSize--xl);
+  overflow-y: hidden;
+ }
 
-  .bx--modal-container {
-    padding: 0;
-    margin: 0;
-  }
+ .remove-app-modal-content-text {
+  font-size: var(--pf-global--FontSize--lg);
+  margin-bottom: 0.5rem;
+ }
 
-  .bx--modal-header {
-    padding: 1.25rem 3rem 1.25rem 3rem;
-    border-bottom: 0.0625rem solid $color__gray-1;
-    margin-bottom: 0;
-
-    .bx--modal-close:focus {
-      box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
-      outline: 0.0625rem solid transparent;
-      border: none;
-    }  
-  }
-
-  .bx--modal-content {
-    margin-bottom: 0;
-  }
-
-  .bx--modal-content-desc {
-    padding: 1.25rem 3rem 1.25rem 3rem
-  }
-
-  .bx--modal-footer {
-    margin: 0;
-  }
-}
-
-.remove-app-modal {
-  &-content {
-    height: auto;
-    max-height: 25rem;
-    overflow-y: auto;
-
-    &-text {
-      margin-bottom: 1rem;
-    }
-
-    &-data {
-      width: 100%;
-      border-bottom: 0.0625rem solid $color__gray-1;
-      padding-bottom: 0.4rem;
-    }
-  }
-}
-
-.resource-modal#resource-modal-HCMCompliance,.resource-modal#resource-modal-HCMCompliance{
-  .bx--modal-container{
-    padding: 1rem 0 0 0;
-    .bx--modal-header{
-      padding: 0 3rem;
-
-      .bx--modal-close:focus {
-        box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
-        outline: 0.0625rem solid transparent;
-        border: none;
-      }  
-    }
-    .bx--modal-content{
-      margin-bottom: 0;
-    }
-    .bx--modal-footer{
-      margin-left: 0;
-      margin-right: 0;
-    }
-    .ace-monokai {
-      .ace_meta.ace_tag.ace_tag, .ace_keyword.ace_keyword {
-        color: #F92672;
-      }
-    }
-  }
-}
+ .pf-c-modal-box__title-icon {
+   margin-top: 0.5rem;
+ }
