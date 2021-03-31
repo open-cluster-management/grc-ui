@@ -159,7 +159,7 @@ class PolicyTemplatesView extends React.Component {
               (<AcmButton
                 isDisabled={disableFlag}
                 className={this.state.readOnly ? 'read-only-button' : 'editing-button'}
-                small id={'edit-button'}
+                id={'edit-button'}
                 key='edit-resource'
                 onClick={this.handleEditBtnClick}>
                 {msgs.get('table.actions.edit', this.context.locale)}
