@@ -460,7 +460,7 @@ export const action_actionPolicyActionInListing = (uName, action, cancel=false) 
     cy.get('button').contains(action, { matchCase: false }).click()
   })
   .then(() => {
-    cy.get('.bx--modal-container').within(() => {
+    cy.get('.pf-c-modal-box').within(() => {
       if (cancel) {
         cy.get('button').contains('Cancel', { matchCase: false })
           .click()
@@ -472,7 +472,7 @@ export const action_actionPolicyActionInListing = (uName, action, cancel=false) 
   })
   // wait for the dialog to be closed
   .then(() => {
-    cy.get('.bx--modal-container').should('not.exist')
+    cy.get('.pf-c-modal-box').should('not.exist')
   })
   // after mainpage table action, always return to grc main page
   cy.CheckGrcMainPage()
@@ -819,7 +819,7 @@ export const verifyPolicyByYAML = (uName, originalYAML, ingoreClusterSelector=tr
     cy.get('button').contains('Edit', { matchCase: false }).click()
   })
   .then(() => {
-    cy.get('.bx--modal-container').within(() => {
+    cy.get('.pf-c-modal-box').within(() => {
       cy.log(ingoreClusterSelector)
       // // eslint-disable-next-line cypress/no-assigning-return-values
       // const acutalYAML = cy.YAMLeditor().first().invoke('getValue')

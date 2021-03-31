@@ -516,7 +516,7 @@ Cypress.Commands.add('checkPolicyStatusPageUserPermissions', (policyName, permis
 // does check controls availability at the YAML Editor tab of /multicloud/policies/all/${namespace}/${policyName} page
 // with respect to the user permissions
 Cypress.Commands.add('checkPolicyYAMLPageUserPermissions', (permissions) => {
-  const btnState = permissions.patch ? 'enabled' : 'disabled'
-  cy.get('#edit-button').should(`be.${btnState}`)
-  cy.get('#submit-button').should(`be.${btnState}`)
+  const btnState = permissions.patch ? 'false' : 'true'
+  cy.get('#edit-button').should('have.attr', 'aria-disabled', btnState)
+  cy.get('#submit-button').should('have.attr', 'aria-disabled', btnState)
 })

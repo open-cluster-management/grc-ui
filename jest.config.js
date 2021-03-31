@@ -37,7 +37,7 @@ const jestConfig = {
   coverageThreshold: {
     global: {
       branches: 55,
-      functions: 59,
+      functions: 58,
       lines: 60,
       statements: 60,
     },
@@ -51,7 +51,7 @@ const jestConfig = {
     '^.+\\.js$': 'babel-jest',
     '.+\\.(hbs)$': 'jest-handlebars',
     '.+\\.(handlebars)$': 'jest-handlebars',
-    '.+\\.(yaml)$': 'jest-yaml-transform'
+    '.+\\.(yaml)$': 'jest-yaml-transform',
   },
   globalSetup: '<rootDir>/tests/jest/config/properties-to-json.js',
   setupFiles: [

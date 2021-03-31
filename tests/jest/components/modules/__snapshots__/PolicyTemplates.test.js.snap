@@ -29,33 +29,21 @@ exports[`PolicyTemplatesView component renders as expected 1`] = `
             className="disable-tooltip"
           >
             <button
-              className="read-only-button bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
-              disabled={true}
+              aria-disabled={true}
+              aria-label={null}
+              className="pf-c-button pf-m-primary pf-m-aria-disabled read-only-button"
+              data-ouia-component-id="OUIA-Generated-Button-primary-1"
+              data-ouia-component-type="PF4/Button"
+              data-ouia-safe={true}
+              disabled={false}
               id="edit-button"
               onClick={[Function]}
-              tabIndex={0}
+              onKeyPress={[Function]}
+              role={null}
+              tabIndex={null}
               type="button"
             >
               Edit
-              <svg
-                alt="Provide icon description if icon is used"
-                aria-hidden={true}
-                aria-label="Provide icon description if icon is used"
-                className="bx--btn__icon"
-                fillRule="evenodd"
-                height="16"
-                name="add--glyph"
-                role="img"
-                viewBox="0 0 16 16"
-                width="16"
-              >
-                <title>
-                  Provide icon description if icon is used
-                </title>
-                <path
-                  d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
-                />
-              </svg>
             </button>
           </div>
         </div>
@@ -67,33 +55,21 @@ exports[`PolicyTemplatesView component renders as expected 1`] = `
             className="disable-tooltip"
           >
             <button
-              className="bx--btn bx--btn--sm bx--btn--primary bx--btn--disabled"
-              disabled={true}
+              aria-disabled={true}
+              aria-label={null}
+              className="pf-c-button pf-m-primary pf-m-aria-disabled"
+              data-ouia-component-id="OUIA-Generated-Button-primary-2"
+              data-ouia-component-type="PF4/Button"
+              data-ouia-safe={true}
+              disabled={false}
               id="submit-button"
               onClick={[Function]}
-              tabIndex={0}
+              onKeyPress={[Function]}
+              role={null}
+              tabIndex={null}
               type="button"
             >
               Submit
-              <svg
-                alt="Provide icon description if icon is used"
-                aria-hidden={true}
-                aria-label="Provide icon description if icon is used"
-                className="bx--btn__icon"
-                fillRule="evenodd"
-                height="16"
-                name="add--glyph"
-                role="img"
-                viewBox="0 0 16 16"
-                width="16"
-              >
-                <title>
-                  Provide icon description if icon is used
-                </title>
-                <path
-                  d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
-                />
-              </svg>
             </button>
           </div>
         </div>

@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
@@ -17,7 +9,7 @@ import resources from '../../../lib/shared/resources'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateAvailableFilters, updateActiveFilters } from '../../actions/common'
-import { Notification } from 'carbon-components-react'
+import { AcmAlert } from '@open-cluster-management/ui-components'
 import { Spinner } from '@patternfly/react-core'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 // eslint-disable-next-line import/no-named-as-default
@@ -136,10 +128,10 @@ export class GrcView extends React.Component {
 
     if (error) {
       if (error.name === 'PermissionError') {
-        return <Notification title='' className='overview-notification' kind='error'
+        return <AcmAlert title='' className='overview-notification' variant='danger'
           subtitle={msgs.get('error.permission.denied', locale)} />
       }
-      return <Notification title='' className='overview-notification' kind='error'
+      return <AcmAlert title='' className='overview-notification' variant='danger'
         subtitle={msgs.get('overview.error.default', locale)} />
     }
 
