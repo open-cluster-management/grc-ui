@@ -5,14 +5,14 @@
 import { describeT } from '../support/tagging'
 import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../support/tests'
 
-describeT('GRC UI: [P1][Sev1][policy-grc] IamPolicy governance - setup', () => {
+describeT('@extended GRC UI: [P1][Sev1][policy-grc] IamPolicy governance - setup', () => {
   test_applyPolicyYAML('IamPolicy_governance/policy-clusterrolebinding-setup_raw.yaml')
 })
 
-describeT('RHACM4K-1719 - GRC UI: [P1][Sev1][policy-grc] IamPolicy governance', () => {
+describeT('@extended RHACM4K-1719 - GRC UI: [P1][Sev1][policy-grc] IamPolicy governance', () => {
   test_genericPolicyGovernance('IamPolicy_governance/policy-config.yaml', 'IamPolicy_governance/violations-inform.yaml', 'IamPolicy_governance/violations-inform.yaml')
 })
 
-describeT('GRC UI: [P1][Sev1][policy-grc] IamPolicy governance - cleanup', () => {
+describeT('@extended GRC UI: [P1][Sev1][policy-grc] IamPolicy governance - cleanup', () => {
   test_applyPolicyYAML('IamPolicy_governance/policy-clusterrolebinding-cleanup_raw.yaml')
 })
