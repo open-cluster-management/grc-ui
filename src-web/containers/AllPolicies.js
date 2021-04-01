@@ -5,6 +5,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Query } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { AcmButton, AcmPage, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime } from '@open-cluster-management/ui-components'
@@ -16,6 +17,8 @@ import config from '../../lib/shared/config'
 import Page from '../components/common/Page'
 // eslint-disable-next-line import/no-named-as-default
 import GrcView from '../components/modules/GrcView'
+import checkCreatePermission from '../components/common/CheckCreatePermission'
+
 
 class AllPolicies extends React.Component {
 
@@ -28,7 +31,7 @@ class AllPolicies extends React.Component {
 
   render () {
     const { locale } = this.context
-    const { history } = this.props
+    const { history, userAccess } = this.props
     const pollInterval = localStorage.getItem(REFRESH_INTERVAL_COOKIE) || INITIAL_REFRESH_TIME
     return (
       <Page>
@@ -44,6 +47,7 @@ class AllPolicies extends React.Component {
             if (!loading) {
               this.timestamp = new Date().toString()
             }
+            const isDisabled = checkCreatePermission(userAccess)===0
             return (
               <AcmPage>
                 <AcmPageHeader title= {msgs.get('routes.grc', locale)} controls={
@@ -53,9 +57,11 @@ class AllPolicies extends React.Component {
                       refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
                       initRefreshTime={INITIAL_REFRESH_TIME} />
                     <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
-                    <AcmButton id='create-policy' onClick={() => history.push(`${config.contextPath}/create`)}>
-                     {msgs.get('routes.create.policy', locale)}
-                  </AcmButton>
+                    <AcmButton id='create-policy' isDisabled={isDisabled}
+                      tooltip={msgs.get('error.permission.disabled', locale)}
+                      onClick={() => history.push(`${config.contextPath}/create`)}>
+                      {msgs.get('routes.create.policy', locale)}
+                    </AcmButton>
                   </React.Fragment>
                 }>
                 </AcmPageHeader>
@@ -75,6 +81,17 @@ class AllPolicies extends React.Component {
 }
 AllPolicies.propTypes = {
   history: PropTypes.object.isRequired,
+  userAccess: PropTypes.array,
 }
 
-export default withRouter(AllPolicies)
+
+const mapStateToProps = (state) => {
+  const userAccess = state.userAccess && state.userAccess.access
+    ? state.userAccess.access
+    : []
+  return {
+    userAccess: userAccess,
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(AllPolicies))
