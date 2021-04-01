@@ -42,7 +42,7 @@ class PolicyDetailsTab extends React.Component{
       history,
     } = this.props
     const { locale } = this.context
-    const pollInterval = localStorage.getItem(REFRESH_INTERVAL_COOKIE) || INITIAL_REFRESH_TIME
+    const pollInterval = localStorage.getItem(REFRESH_INTERVAL_COOKIE) || INITIAL_REFRESH_TIME*1000
     return <Query
       query={SINGLE_POLICY}
       variables={{name: policyName, namespace: policyNamespace}}
