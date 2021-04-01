@@ -18,6 +18,7 @@ import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import { transform } from '../../tableDefinitions/utils'
 import checkCreatePermission from '../common/CheckCreatePermission'
 import msgs from '../../../nls/platform.properties'
+import '../../../scss/policy-status-view.scss'
 
 class PolicyStatusView extends React.Component {
   constructor(props) {

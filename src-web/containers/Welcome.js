@@ -12,7 +12,7 @@
 import React from 'react'
 import resources from '../../lib/shared/resources'
 resources(() => {
-  require('../../scss/common.scss')
+  // require('../../scss/common.scss')
   require('../../scss/welcome.scss')
 })
 // without curly braces means component with redux
