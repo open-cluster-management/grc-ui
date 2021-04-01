@@ -16,7 +16,7 @@ import PropTypes from 'prop-types'
 import MonacoEditor from 'react-monaco-editor'
 import {
   global_BackgroundColor_100 as lineNumberActiveForeground,
-  global_BackgroundColor_300 as lineNumberForeground,
+  global_BackgroundColor_200 as lineNumberForeground,
   global_BackgroundColor_dark_100 as editorBackground,
 } from '@patternfly/react-tokens'
 
