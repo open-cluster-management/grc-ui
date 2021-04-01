@@ -1,12 +1,5 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc. */
+
+/* Copyright (c) 2021 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
 'use strict'
@@ -23,6 +16,7 @@ import config from '../../lib/shared/config'
 import Modal from '../components/common/Modal'
 import GrcRouter from './GrcRouter'
 import AllPolicies from './AllPolicies'
+import PolicyDetailSubRouter from './PolicyDetailSubRouter'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
@@ -64,8 +58,11 @@ class App extends React.Component {
           <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
           {/* Removes duplicate slashes in the middle of the URL */}
           <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
+          <Route path={`${match.url}/all/:namespace/:name/:tab?`}>
+            <PolicyDetailSubRouter />
+          </Route>
           <Route path={`${match.url}/all`} exact>
-          <AllPolicies />
+            <AllPolicies />
           </Route>
           <Route path={`${match.url}`} render={() => <GrcRouter />} />
           <Redirect to={`${config.contextPath}/all`} />

@@ -7,26 +7,23 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import resources from '../../lib/shared/resources'
+// import resources from '../../lib/shared/resources'
 import { getResourceData } from '../tableDefinitions'
-import { connect } from 'react-redux'
-import { updateSecondaryHeader } from '../actions/common'
+// import { connect } from 'react-redux'
+// import { updateSecondaryHeader } from '../actions/common'
 import { SINGLE_POLICY } from '../../lib/client/queries'
-import { getPollInterval } from '../components/common/RefreshTimeSelect'
-import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { Spinner } from '@patternfly/react-core'
 import { DangerNotification } from '../components/common/DangerNotification'
 // eslint-disable-next-line import/no-named-as-default
 import PolicyDetailsOverview from '../components/modules/PolicyDetailsOverview'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
-import { getTabs } from '../../lib/client/resource-helper'
+// import { getTabs } from '../../lib/client/resource-helper'
 import msgs from '../../nls/platform.properties'
 import { LocaleContext } from '../components/common/LocaleContext'
 import NoResource from '../components/common/NoResource'
-
-resources(() => {
-  require('../../scss/policy-yaml-tab.scss')
-})
+import { AcmButton, AcmPage, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime, AcmSecondaryNav, AcmSecondaryNavItem } from '@open-cluster-management/ui-components'
+import { INITIAL_REFRESH_TIME, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
+import config from '../../lib/shared/config'
 
 class PolicyDetailsTab extends React.Component{
   constructor(props) {
@@ -35,43 +32,17 @@ class PolicyDetailsTab extends React.Component{
 
   static contextType = LocaleContext
 
-  getBreadcrumb() {
-    const breadcrumbItems = []
-    const { location } = this.props,
-          { locale } = this.context,
-          urlSegments = location.pathname.split('/')
-    const hubNamespace = urlSegments.length > 4 ? urlSegments.slice(4, 5) : ''
-    const policyName = urlSegments.length > 5 ? urlSegments.slice(5, 6) : ''
-    breadcrumbItems.push({
-      label: msgs.get('tabs.hcmcompliance', locale),
-      noLocale: true,
-      url: `${urlSegments.slice(0, 3).join('/')}/all`
-    },
-    {
-      label: policyName,
-      noLocale: true,
-      url: `${urlSegments.slice(0, 3).join('/')}/all/${hubNamespace}/${policyName}`
-    })
-    return breadcrumbItems
-  }
-
-  componentDidMount() {
-    const { policyName } = this.props
-    const { tabs, url, updateSecondaryHeader: localUpdateSecondaryHeader } = this.props
-    localUpdateSecondaryHeader(
-      policyName,
-      getTabs(tabs, (tab, index) => index === 0 ? url : `${url}/${tab}`),
-      this.getBreadcrumb()
-    )
-  }
-
   render() {
     const {
+      tab,
       policyName,
       policyNamespace,
-      resourceType
+      resourceType,
+      location,
+      history,
     } = this.props
-    const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
+    const { locale } = this.context
+    const pollInterval = localStorage.getItem(REFRESH_INTERVAL_COOKIE) || INITIAL_REFRESH_TIME
     return <Query
       query={SINGLE_POLICY}
       variables={{name: policyName, namespace: policyNamespace}}
@@ -94,18 +65,59 @@ class PolicyDetailsTab extends React.Component{
           return <Spinner className='patternfly-spinner' />
         } else if (items.length === 0){
           return <NoResource
-            title={msgs.get('error.not.found', this.context.locale)}
+            title={msgs.get('error.not.found', locale)}
             svgName='EmptyPagePlanet-illus.png'>
           </NoResource>
         } else {
           const item = items[0]
-          return <PolicyDetailsOverview
-            loading={!items && loading}
-            error={error}
-            item={item}
-            resourceType={resourceType}
-            staticResourceData={staticResourceData}
-          />
+          return (
+            <AcmPage>
+              <AcmPageHeader
+                title={policyName}
+                breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath }, { text: policyName, to: location.pathname}]}
+                controls={
+                  <React.Fragment>
+                    <AcmAutoRefreshSelect refetch={refetch}
+                      refreshIntervals={REFRESH_INTERVALS}
+                      refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
+                      initRefreshTime={INITIAL_REFRESH_TIME} />
+                    <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
+                    <AcmButton id='edit-policy' isDisabled={false}
+                      tooltip={msgs.get('error.permission.disabled', locale)}
+                      onClick={() => history.push(`${config.contextPath}/all/${policyNamespace}/${policyName}/edit`)}>
+                      {msgs.get('routes.edit.policy', locale)}
+                    </AcmButton>
+                  </React.Fragment>
+                }
+                navigation={
+                  <AcmSecondaryNav>
+                    <AcmSecondaryNavItem
+                      isActive={tab !== 'status'}
+                      onClick={() => history.push(`${config.contextPath}/all/${policyNamespace}/${policyName}`)}>
+                        {msgs.get('tabs.details', locale)}
+                    </AcmSecondaryNavItem>
+                    <AcmSecondaryNavItem
+                      isActive={tab === 'status'}
+                      onClick={() => history.push(`${config.contextPath}/all/${policyNamespace}/${policyName}/status`)}>
+                        {msgs.get('tabs.status', locale)}
+                    </AcmSecondaryNavItem>
+                    {/* <AcmSecondaryNavItem
+                      isActive={tab === 'yaml'}
+                      onClick={() => history.push(`${config.contextPath}/all/${policyNamespace}/${policyName}/yaml`)}>
+                        {msgs.get('tabs.yaml', locale)}
+                    </AcmSecondaryNavItem> */}
+                  </AcmSecondaryNav>
+                }>
+              </AcmPageHeader>
+              <PolicyDetailsOverview
+                loading={!items && loading}
+                error={error}
+                item={item}
+                resourceType={resourceType}
+                staticResourceData={staticResourceData}
+              />
+            </AcmPage>
+          )
         }
       }}
     </Query>
@@ -114,19 +126,14 @@ class PolicyDetailsTab extends React.Component{
 }
 
 PolicyDetailsTab.propTypes = {
+  history: PropTypes.object,
   location: PropTypes.object,
   policyName: PropTypes.string,
   policyNamespace: PropTypes.string,
   resourceType: PropTypes.object,
-  tabs: PropTypes.array,
-  updateSecondaryHeader: PropTypes.func,
-  url: PropTypes.string,
+  tab: PropTypes.string,
+  // updateSecondaryHeader: PropTypes.func,
+  // url: PropTypes.string,
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateSecondaryHeader: (title, tabs, breadcrumbItems, links) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links))
-  }
-}
-
-export default withRouter(connect(null, mapDispatchToProps)(PolicyDetailsTab))
+export default withRouter(PolicyDetailsTab)
