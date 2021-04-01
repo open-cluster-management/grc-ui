@@ -59,7 +59,7 @@ You can use the following approach to run Cypress test.
 
 1. Export following environment variables
 ```
-export CYPRESS_OPTIONS_HUB_URL="https://multicloud-console..."  # or https://localhost:3000 for the local cluster
+export CYPRESS_OPTIONS_HUB_CLUSTER_URL="https://multicloud-console..."  # or https://localhost:3000 for the local cluster
 export CYPRESS_OPTIONS_HUB_USER=kubeadmin  # or a different username
 export CYPRESS_OPTIONS_HUB_PASSWORD="password"  # here enter your password
 export CYPRESS_RESOURCE_ID=$(date +"%s")
