@@ -17,22 +17,17 @@ resources(() => {
   require('../../scss/common.scss')
 })
 import PropTypes from 'prop-types'
-// without curly braces means component with redux
-// eslint-disable-next-line import/no-named-as-default
-import SecondaryHeader from '../components/modules/SecondaryHeader'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import client from '../../lib/shared/client'
 import config from '../../lib/shared/config'
 import Modal from '../components/common/Modal'
 import GrcRouter from './GrcRouter'
-import loadable from '@loadable/component'
+import AllPolicies from './AllPolicies'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
 import { getUserAccessData } from '../actions/access'
 import { connect } from 'react-redux'
-
-export const ResourceToolbar = loadable(() => import(/* webpackChunkName: "ResourceToolbar" */ '../components/common/ResourceToolbar'))
 
 class App extends React.Component {
 
@@ -65,15 +60,17 @@ class App extends React.Component {
     const { match } = this.props
     return (
       <LocaleContext.Provider value={serverProps.context}>
-        <div className='expand-vertically'>
-          <SecondaryHeader />
-          <ResourceToolbar />
-          <Switch>
-            <Route path={`${match.url}`} render={() => <GrcRouter />} />
-            <Redirect to={`${config.contextPath}`} />
-          </Switch>
-          <Modal locale={serverProps.context.locale} />
-        </div>
+        <Switch>
+          <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
+          {/* Removes duplicate slashes in the middle of the URL */}
+          <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
+          <Route path={`${match.url}/all`} exact>
+          <AllPolicies />
+          </Route>
+          <Route path={`${match.url}`} render={() => <GrcRouter />} />
+          <Redirect to={`${config.contextPath}/all`} />
+        </Switch>
+        <Modal locale={serverProps.context.locale} />
       </LocaleContext.Provider>
     )
   }
