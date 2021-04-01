@@ -1407,8 +1407,8 @@ export const action_checkPolicyListingPageUserPermissions = (policyNames = [], c
  const policyCount = policyNames.length
 
   // check whether Create button is enabled/disabled
-  const createBtnState = permissions.create || elevated ? 'enabled' : 'disabled'
-  cy.get('#create-policy').should(`be.${createBtnState}`)
+  const createBtnState = permissions.create || elevated ? 'false' : 'true'
+  cy.get('#create-policy').should('have.attr', 'aria-disabled', createBtnState)
 
   // check policy listing
   if (policyCount > 0) {
@@ -1429,15 +1429,15 @@ export const action_checkPolicyListingPageUserPermissions = (policyNames = [], c
         .then(() => {
           for (const action of ['Edit', 'Disable', 'Enforce']) {
             if (permissions.patch) {
-              cy.get('button.pf-c-dropdown__menu-item').contains(action, { matchCase: false }).should('be.enabled')
+              cy.get('button.pf-c-dropdown__menu-item').contains(action, { matchCase: false }).should('have.attr', 'aria-disabled', 'false')
             } else {
-              cy.get('button.pf-c-dropdown__menu-item').contains(action, { matchCase: false }).parent().should('be.disabled')
+              cy.get('button.pf-c-dropdown__menu-item').contains(action, { matchCase: false }).parent().should('have.attr', 'aria-disabled', 'true')
             }
           }
           if (permissions.delete) {
-            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).should('be.enabled')
+            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).should('have.attr', 'aria-disabled', 'false')
           } else {
-            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).parent().should('be.disabled')
+            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).parent().should('have.attr', 'aria-disabled', 'true')
           }
         })
         // close the menu again

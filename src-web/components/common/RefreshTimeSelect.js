@@ -16,7 +16,7 @@ import PropTypes from 'prop-types'
 import resources from '../../../lib/shared/resources'
 import { DropdownV2, Loading } from 'carbon-components-react'
 import '../../../graphics/diagramIcons.svg'
-import { DEFAULT_REFRESH_TIME, GRC_REFRESH_INTERVAL_COOKIE} from '../../../lib/shared/constants'
+import { INITIAL_REFRESH_TIME, GRC_REFRESH_INTERVAL_COOKIE} from '../../../lib/shared/constants'
 import msgs from '../../../nls/platform.properties'
 
 resources(() => {
@@ -144,7 +144,7 @@ export default class RefreshTimeSelect extends React.Component {
 }
 
 export const getPollInterval = (cookieKey) => {
-  let pollInterval = DEFAULT_REFRESH_TIME*1000
+  let pollInterval = INITIAL_REFRESH_TIME*1000
   if (cookieKey) {
     const savedInterval = localStorage.getItem(cookieKey)
     if (savedInterval) {

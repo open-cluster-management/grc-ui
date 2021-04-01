@@ -1,16 +1,5 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc. */
+/* Copyright (c) 2021 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
-
-@import 'node_modules/carbon-components/scss/globals/scss/_colors';
-@import 'variables';
 
 .module-grc-cards {
   margin-bottom: 1.875rem;
@@ -76,7 +65,7 @@
   }
 
   .grc-cards-container {
-    background-color: var(--pf-global--BackgroundColor--200);
+    // background-color: var(--pf-global--BackgroundColor--200);
 
     .pf-c-accordion__expanded-content-body {
       display: flex;
@@ -127,8 +116,9 @@
           flex-direction: column;
           height: 12.75rem;
           min-width: 23.125rem;
-          background-color: white;
+          // background-color: white;
           box-shadow: rgba(0, 0, 0, 0.1) 0rem 0.0625rem 0.125rem 0rem;
+          border: 1px var(--pf-global--BackgroundColor--200);
 
           .card-name {
             height: 3.75rem;
@@ -145,7 +135,7 @@
           display: flex;
           padding: 2rem 1.5rem;
           height: 100%;
-          border-top: 0.0625rem solid $color__gray-1;
+          border-top: 0.0625rem solid var(--pf-global--BackgroundColor--200);
           align-items: center;
 
           > div {
@@ -175,7 +165,7 @@
                 font-size: 0.875rem;
                 margin-top: 0.8rem;
                 margin-right: auto;
-                color: $color__navy-gray-6;
+                color: var(--pf-global--BackgroundColor--dark-400);
               }
               .no-resource-detail {
                 font-size: 0.75rem;
@@ -183,7 +173,7 @@
                 margin-right: auto;
                 font-weight: 400;
                 word-break: break-word;
-                color: $color__navy-gray-6;
+                color: var(--pf-global--BackgroundColor--dark-400);
               }
             }
           }
@@ -197,7 +187,7 @@
             outline: none;
 
             &:focus {
-              box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
+              // box-shadow: 0 0 0 $0.1875rem $grc_focus_shaldow_color;
               outline: 0.0625rem solid transparent;
               border: none;
             }
@@ -207,7 +197,7 @@
                 .card-count-informations {
                   font-size: 2.25rem;
                   padding-right: 0.75rem;
-                  color: $color__red-50;
+                  color: var(--pf-global--danger-color--100);
                 }
                 .card-count-total {
                   font-size: 1.75rem;
@@ -218,7 +208,7 @@
             &.violated:hover, &.found:hover, &.high:hover {
               cursor: pointer;
               .card-grc-type {
-                color: $color__blue-51;
+                color: var(--pf-global--link--Color--dark);
                 text-decoration: underline;
               }
             }

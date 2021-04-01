@@ -16,7 +16,9 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import loadable from '@loadable/component'
 import config from '../../lib/shared/config'
-
+// eslint-disable-next-line import/no-named-as-default
+import SecondaryHeader from '../components/modules/SecondaryHeader'
+export const ResourceToolbar = loadable(() => import(/* webpackChunkName: "ResourceToolbar" */ '../components/common/ResourceToolbar'))
 export const PoliciesTab = loadable(() => import(/* webpackChunkName: "policies" */ './PoliciesTab'))
 export const CreationTab = loadable(() => import(/* webpackChunkName: "creation" */ './CreationTab'))
 export const PolicyDetailSubRouter = loadable(() => import(/* webpackChunkName: "policyDetail" */ './PolicyDetailSubRouter'))
@@ -56,21 +58,25 @@ const CREATION_HEADER_PROPS = {
 }
 
 const GrcRouter = ({ match }) =>
-  <Switch>
-    {/* Removes trailing slashes */}
-    <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
-    {/* Removes duplicate slashes in the middle of the URL */}
-    <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
-    <Route path={`${match.url}/all/:hubNamespace/:policyName/status/:cluster/templates/:template/history`}
-      render={() => <PolicyStatusHistoryTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
-    <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <PolicyDetailsByCluster secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
-    <Route path={`${match.url}/all/:policyNamespace/:policyName/template/:clusterName/:apiGroup/:version/:kind/:name`}
-      render={() => <PolicyTemplateDetails secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
-    <Route path={`${match.url}/all/:namespace/:name/:tab?`} render={() => <PolicyDetailSubRouter secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
-    <Route path={`${match.url}/all`} exact render={() => <PoliciesTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
-    <Route path={`${match.url}/create`} render={() => <CreationTab secondaryHeaderProps={CREATION_HEADER_PROPS} />} />
-    <Redirect to={`${match.url}/all`} />
-  </Switch>
+  <React.Fragment>
+    <SecondaryHeader />
+    <ResourceToolbar />
+    <Switch>
+      {/* Removes trailing slashes */}
+      <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
+      {/* Removes duplicate slashes in the middle of the URL */}
+      <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
+      <Route path={`${match.url}/all/:hubNamespace/:policyName/status/:cluster/templates/:template/history`}
+        render={() => <PolicyStatusHistoryTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
+      <Route path={`${match.url}/policy/:clusterName/:name`} render={() => <PolicyDetailsByCluster secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
+      <Route path={`${match.url}/all/:policyNamespace/:policyName/template/:clusterName/:apiGroup/:version/:kind/:name`}
+        render={() => <PolicyTemplateDetails secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
+      <Route path={`${match.url}/all/:namespace/:name/:tab?`} render={() => <PolicyDetailSubRouter secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
+      <Route path={`${match.url}/all`} exact render={() => <PoliciesTab secondaryHeaderProps={SECONDARY_HEADER_PROPS} />} />
+      <Route path={`${match.url}/create`} render={() => <CreationTab secondaryHeaderProps={CREATION_HEADER_PROPS} />} />
+      <Redirect to={`${match.url}/all`} />
+    </Switch>
+  </React.Fragment>
 
 GrcRouter.propTypes = {
   match: PropTypes.object,
