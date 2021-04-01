@@ -53,7 +53,7 @@ class AllPolicies extends React.Component {
                       refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
                       initRefreshTime={INITIAL_REFRESH_TIME} />
                     <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
-                    <AcmButton onClick={() => history.push(`${config.contextPath}/create`)}>
+                    <AcmButton id='create-policy' onClick={() => history.push(`${config.contextPath}/create`)}>
                      {msgs.get('routes.create.policy', locale)}
                   </AcmButton>
                   </React.Fragment>
