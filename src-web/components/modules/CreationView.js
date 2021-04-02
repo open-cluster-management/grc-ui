@@ -13,20 +13,12 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { hideResourceToolbar, showResourceToolbar } from '../../../lib/client/resource-helper'
 import { TemplateEditor } from '../common/TemplateEditor'
 import policyTemplate from '../common/templates/policy-template.hbs'
 import Choices from '../common/templates'
 import msgs from '../../../nls/platform.properties'
 import { LocaleContext } from '../common/LocaleContext'
 import _ from 'lodash'
-
-// // where to put Create/Cancel buttons
-// const Portals = Object.freeze({
-//   editBtn: 'edit-button-portal-id',
-//   createBtn: 'create-button-portal-id',
-//   cancelBtn: 'cancel-button-portal-id',
-// })
 
 // controlData is converted to templateData when template handlebar is rendered
 //  id: becomes template variable;
@@ -176,12 +168,7 @@ export default class CreationView extends React.Component {
 
   static contextType = LocaleContext
 
-  // componentWillUnmount() {
-  //   showResourceToolbar()
-  // }
-
   render() {
-    // hideResourceToolbar()
     const { locale } = this.context
     const {onCreate, fetchControl, createControl, buildControl, updateControl, discovered, createAndUpdateControl} = this.props
     return (
@@ -189,7 +176,6 @@ export default class CreationView extends React.Component {
         onCreate={onCreate}
         template={policyTemplate}
         controlData={getControlData(discovered, locale)}
-        // portals={Portals}
         fetchControl={fetchControl}
         createControl={createControl}
         buildControl={buildControl}

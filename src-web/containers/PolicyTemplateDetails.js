@@ -14,7 +14,6 @@ import PolicyTemplateDetailsView from '../components/modules/PolicyTemplateDetai
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { DangerNotification } from '../components/common/DangerNotification'
-import { setRefreshControl } from '../../lib/client/reactiveVars'
 import { INITIAL_REFRESH_TIME, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { AcmPage, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime } from '@open-cluster-management/ui-components'
 import config from '../../lib/shared/config'
@@ -35,18 +34,17 @@ class PolicyTemplateDetails extends React.Component {
   }
 
   render() {
-    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE)) || INITIAL_REFRESH_TIME*1000
+    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE), 10) || INITIAL_REFRESH_TIME*1000
     const { match: { params: { name, namespace, cluster, apiGroup, version, kind, template }}} = this.props
     const { locale } = this.context
     const selfLink = `/apis/${apiGroup}/${version}/namespaces/${cluster}/${kind}/${template}`
     return (
       <Query query={POLICY_TEMPLATE_DETAILS} variables={{name:template, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {
-          const { data={}, loading, startPolling, stopPolling, refetch, error } = result
+          const { data={}, loading, refetch, error } = result
           if (!loading) {
             this.timestamp = new Date().toString()
           }
-          setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
           if (error) {
             return (
               <DangerNotification error={error} />

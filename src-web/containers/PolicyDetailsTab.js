@@ -13,7 +13,6 @@ import { Spinner } from '@patternfly/react-core'
 import { DangerNotification } from '../components/common/DangerNotification'
 // eslint-disable-next-line import/no-named-as-default
 import PolicyDetailsOverview from '../components/modules/PolicyDetailsOverview'
-import { setRefreshControl } from '../../lib/client/reactiveVars'
 import msgs from '../../nls/platform.properties'
 import { LocaleContext } from '../components/common/LocaleContext'
 import NoResource from '../components/common/NoResource'
@@ -44,7 +43,7 @@ class PolicyDetailsTab extends React.Component{
       history,
     } = this.props
     const { locale } = this.context
-    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE)) || INITIAL_REFRESH_TIME*1000
+    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE), 10) || INITIAL_REFRESH_TIME*1000
     return <Query
       query={SINGLE_POLICY}
       variables={{ name, namespace }}
@@ -52,15 +51,13 @@ class PolicyDetailsTab extends React.Component{
       notifyOnNetworkStatusChange
     >
       {( result ) => {
-        const {data={}, loading, startPolling, stopPolling, refetch} = result
+        const {data={}, loading, refetch} = result
         const { items } = data
         const error = items ? null : result.error
         const staticResourceData = getResourceData(resourceType)
         if (!loading) {
           this.timestamp = new Date().toString()
         }
-        setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
-
         if (error) {
           return <DangerNotification error={error} />
         } else if (loading && items === undefined) {

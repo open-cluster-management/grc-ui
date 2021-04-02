@@ -31,7 +31,7 @@ class PoliciesTab extends React.Component {
   render () {
     const { locale } = this.context
     const { history, userAccess } = this.props
-    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE)) || INITIAL_REFRESH_TIME*1000
+    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE), 10) || INITIAL_REFRESH_TIME*1000
     return (
       <Query query={ALL_POLICIES} pollInterval={pollInterval*1000} notifyOnNetworkStatusChange >
         {( complianceResult ) => {

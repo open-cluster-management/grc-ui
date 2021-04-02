@@ -7,16 +7,10 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-// import resources from '../../lib/shared/resources'
-// import { getResourceData } from '../tableDefinitions'
-// import { connect } from 'react-redux'
-// import { updateSecondaryHeader } from '../actions/common'
 import { POLICY_STATUS } from '../../lib/client/queries'
 import { Spinner } from '@patternfly/react-core'
 import { DangerNotification } from '../components/common/DangerNotification'
 import PolicyStatusView from '../components/modules/PolicyStatusView'
-import { setRefreshControl } from '../../lib/client/reactiveVars'
-// import { getTabs } from '../../lib/client/resource-helper'
 import msgs from '../../nls/platform.properties'
 import { LocaleContext } from '../components/common/LocaleContext'
 import NoResource from '../components/common/NoResource'
@@ -42,7 +36,7 @@ class PolicyDetailsTab extends React.Component{
       history,
     } = this.props
     const { locale } = this.context
-    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE)) || INITIAL_REFRESH_TIME*1000
+    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE), 10) || INITIAL_REFRESH_TIME*1000
     return (
       <Query
         query={POLICY_STATUS}
@@ -51,12 +45,11 @@ class PolicyDetailsTab extends React.Component{
         notifyOnNetworkStatusChange
       >
       {(result) => {
-        const {data={}, loading, startPolling, stopPolling, refetch} = result
+        const {data={}, loading, refetch} = result
         const { status } = data
         if (!loading) {
           this.timestamp = new Date().toString()
         }
-        setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
         const error = status ? null : result.error
         if (error) {
           return (

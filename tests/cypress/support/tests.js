@@ -389,7 +389,7 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
 
     it(`Check ${firstPolicyName} policy Status page as ${userName}`, () => {
       // click on Status tab
-      cy.get('#status-tab').contains('Status').click().waitForPageContentLoad()
+      cy.get('.pf-c-page__main-nav .pf-c-nav__link').contains('Status').click().waitForPageContentLoad()
         // check permissions
         .checkPolicyStatusPageUserPermissions(firstPolicyName, permissions, namespaced)
         // check Templates tab only for a non-namespaced user
@@ -402,11 +402,11 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
         })
     })
 
-    it(`Check ${firstPolicyName} policy YAML Editor page as ${userName}`, () => {
-      // click on YAML tab
-      cy.get('#yaml-tab').contains('YAML').click().waitForPageContentLoad()
-        .checkPolicyYAMLPageUserPermissions(permissions)
-    })
+    // it(`Check ${firstPolicyName} policy YAML Editor page as ${userName}`, () => {
+    //   // click on YAML tab
+    //   cy.get('#yaml-tab').contains('YAML').click().waitForPageContentLoad()
+    //     .checkPolicyYAMLPageUserPermissions(permissions)
+    // })
 
   }
 
