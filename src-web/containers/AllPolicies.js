@@ -32,7 +32,7 @@ class AllPolicies extends React.Component {
   render () {
     const { locale } = this.context
     const { history, userAccess } = this.props
-    const pollInterval = localStorage.getItem(REFRESH_INTERVAL_COOKIE) || INITIAL_REFRESH_TIME*1000
+    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE)) || INITIAL_REFRESH_TIME*1000
     return (
       <Page>
         <Query query={ALL_POLICIES} pollInterval={pollInterval*1000} notifyOnNetworkStatusChange >

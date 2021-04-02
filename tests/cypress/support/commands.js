@@ -277,7 +277,7 @@ Cypress.Commands.add('goToPolicyClusterPage', (policyName, policyConfig, cluster
   var namespace = policyConfig['namespace']
   cy.get('.one-cluster-status').children('a').contains(clusterName)
     .should('exist')
-    .click()
+    .click({force: true})
   pageLoader.shouldNotExist()
   cy.location('pathname').should('eq', '/multicloud/policies/policy/'+clusterName+'/'+namespace+'.'+policyName)
 })
