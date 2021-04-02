@@ -27,7 +27,6 @@ import { createResourceReducer, resourceReducerFunction } from './common'
 import { RESOURCE_TYPES } from '../../lib/shared/constants'
 import _ from 'lodash'
 
-export { user, loggedIn } from './user'
 export { userAccess } from './access'
 export { resourceToolbar } from './common'
 export { secondaryHeader } from './common'

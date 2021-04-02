@@ -12,12 +12,8 @@
 import React from 'react'
 import resources from '../../lib/shared/resources'
 resources(() => {
-  // require('../../scss/common.scss')
   require('../../scss/welcome.scss')
 })
-// without curly braces means component with redux
-// eslint-disable-next-line import/no-named-as-default
-import client from '../../lib/shared/client'
 import config from '../../lib/shared/config'
 import msgs from '../../nls/platform.properties'
 
@@ -25,9 +21,6 @@ export default class WelcomeStatic extends React.Component {
 
   constructor(props) {
     super(props)
-    if (client && document.getElementById('propshcm')) {
-      this.serverProps = JSON.parse(document.getElementById('propshcm').textContent)
-    }
   }
 
   welcomeCard(img, title, desc, linkText, linkRoute) {
@@ -41,7 +34,6 @@ export default class WelcomeStatic extends React.Component {
           <p className="desc">{desc}</p>
           <div className="links">
             <a href={linkRoute} className='links-link'>{linkText}</a>
-            {/* <a target='_blank' href='' className='links-link spacer'>{msgs.get('welcome.card.launch.docs', locale)}</a> */}
           </div>
         </div>
       </div>
