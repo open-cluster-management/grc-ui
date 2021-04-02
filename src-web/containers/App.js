@@ -63,21 +63,12 @@ class App extends React.Component {
             <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
             {/* Removes duplicate slashes in the middle of the URL */}
             <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
-            <Route path={`${match.url}/all/:hubNamespace/:policyName/status/:cluster/templates/:template/history`}>
-              <PolicyStatusHistoryTab />
-            </Route>
-            <Route path={`${match.url}/all/:policyNamespace/:policyName/template/:clusterName/:apiGroup/:version/:kind/:name`}>
-              <PolicyTemplateDetails />
-            </Route>
+            <Route path={`${match.url}/all/:hubNamespace/:policyName/status/:cluster/templates/:template/history`} component={PolicyStatusHistoryTab} />
+            <Route path={`${match.url}/all/:policyNamespace/:policyName/template/:clusterName/:apiGroup/:version/:kind/:name`} component={PolicyTemplateDetails} />
             <Route path={`${match.url}/all/:namespace/:name/status`} component={PolicyStatusTab} />
             <Route path={`${match.url}/all/:namespace/:name`} component={PolicyDetailsTab} />
-            <Route path={`${match.url}/all`} exact>
-              <AllPolicies />
-            </Route>
-            <Route path={`${match.url}/policy/:clusterName/:name`}>
-              <PolicyDetailsByCluster />
-            </Route>
-            {/* <Route path={`${match.url}`} render={() => <GrcRouter />} /> */}
+            <Route path={`${match.url}/all`} exact component={AllPolicies} />
+            <Route path={`${match.url}/policy/:clusterName/:name`} component={PolicyDetailsByCluster} />
             <Redirect to={`${config.contextPath}/all`} />
           </Switch>
          </Page>

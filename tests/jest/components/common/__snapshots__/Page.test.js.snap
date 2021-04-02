@@ -3,7 +3,6 @@
 exports[`NoResource component renders as expected 1`] = `
 <div
   className="page-content-container"
-  role="main"
 >
   <div
     className="child"
