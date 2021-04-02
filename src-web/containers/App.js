@@ -58,7 +58,7 @@ class App extends React.Component {
           <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
           {/* Removes duplicate slashes in the middle of the URL */}
           <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
-          <Route path={`${match.url}/all/:namespace/:name/:tab?`}>
+          <Route path={`${match.url}/all/:namespace/:name/:tab`} exact>
             <PolicyDetailSubRouter />
           </Route>
           <Route path={`${match.url}/all`} exact>
