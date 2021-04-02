@@ -61,18 +61,18 @@ fi
 export CYPRESS_RBAC_PASS=$RBAC_PASS
 export CYPRESS_FAIL_FAST_PLUGIN=${CYPRESS_FAIL_FAST_PLUGIN:-"true"}
 export CYPRESS_OC_IDP=$OC_IDP
-echo -e "Running cypess tests with the following environment:\n"
+echo -e "Running Cypress tests with the following environment:\n"
 echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_ID"
-echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL)  : $CYPRESS_BASE_URL"
-echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL   : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
-echo -e "\tCYPRESS_OPTIONS_HUB_USER       : $CYPRESS_OPTIONS_HUB_USER"
-echo -e "\tCYPRESS_OC_IDP            : $CYPRESS_OC_IDP"
-echo -e "\tCYPRESS_MANAGED_CLUSTER_NAME       : $CYPRESS_MANAGED_CLUSTER_NAME"
-echo -e "\tCYPRESS_FAIL_FAST_PLUGIN       : $CYPRESS_FAIL_FAST_PLUGIN"
+echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL) : $CYPRESS_BASE_URL"
+echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
+echo -e "\tCYPRESS_OPTIONS_HUB_USER        : $CYPRESS_OPTIONS_HUB_USER"
+echo -e "\tCYPRESS_OC_IDP                  : $CYPRESS_OC_IDP"
+echo -e "\tCYPRESS_MANAGED_CLUSTER_NAME    : $CYPRESS_MANAGED_CLUSTER_NAME"
+echo -e "\tCYPRESS_FAIL_FAST_PLUGIN        : $CYPRESS_FAIL_FAST_PLUGIN"
 echo -e "\tCYPRESS_STANDALONE_TESTSUITE_EXECUTION: $CYPRESS_STANDALONE_TESTSUITE_EXECUTION"
-echo -e "\tCYPRESS_coverage       : $CYPRESS_coverage"
-echo -e "\tCYPRESS_TAGS_INCLUDE          : $CYPRESS_TAGS_INCLUDE"
-echo -e "\tCYPRESS_TAGS_EXCLUDE          : $CYPRESS_TAGS_EXCLUDE"
+echo -e "\tCYPRESS_coverage                : $CYPRESS_coverage"
+echo -e "\tCYPRESS_TAGS_INCLUDE            : $CYPRESS_TAGS_INCLUDE"
+echo -e "\tCYPRESS_TAGS_EXCLUDE            : $CYPRESS_TAGS_EXCLUDE"
 [ -n "$CYPRESS_RBAC_PASS" ] && echo -e "CYPRESS_RBAC_PASS set" || echo -e "Error: CYPRESS_RBAC_PASS is not set"
 
 # save a list of available clusters to .tests/cypress/config/clusters.yaml file so tests can use it
