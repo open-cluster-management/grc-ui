@@ -12,12 +12,10 @@
 'use strict'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
 import SplitPane from 'react-split-pane'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {
-  Button,
   Notification,
   TextInput,
   Checkbox,
@@ -25,14 +23,11 @@ import {
   MultiSelect,
   RadioButtonGroup,
   RadioButton,
-  ToggleSmall,
   Modal} from 'carbon-components-react'
 import { Spinner, Tooltip } from '@patternfly/react-core'
 import { initializeControlData, cacheUserData, updateControls, parseYAML } from './utils/update-controls'
 import { generateYAML, highlightChanges } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
-import EditorHeader from './components/EditorHeader'
-import EditorBar from './components/EditorBar'
 import YamlEditor from './components/YamlEditor'
 import './scss/template-editor.scss'
 import msgs from '../../../../nls/platform.properties'
@@ -70,7 +65,7 @@ export default class TemplateEditor extends React.Component {
       error: PropTypes.object
     }),
     locale: PropTypes.string,
-    portals: PropTypes.object.isRequired,
+    onCreate: PropTypes.func.isRequired,
     template: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
   }
@@ -110,10 +105,7 @@ export default class TemplateEditor extends React.Component {
       validPolicyName: true,
       duplicateName: false,
       showEditor,
-      exceptions: [],
       updateMessage: '',
-      hasUndo: false,
-      hasRedo: false,
       resetInx: 0,
     }
     this.multiSelectCmpMap = {}
@@ -129,6 +121,7 @@ export default class TemplateEditor extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize',  this.layoutEditors.bind(this))
+    this.props.onCreate(this.handleCreateResource.bind(this))
   }
 
   setSplitPaneRef = splitPane => (this.splitPane = splitPane);
@@ -191,9 +184,6 @@ export default class TemplateEditor extends React.Component {
     return (
       <div key={`key${resetInx}`} className={viewClasses} ref={this.setContainerRef}>
         {this.conditionalRenderUpdate(locale)}
-        {this.renderEditButton()}
-        {this.renderCreateButton()}
-        {this.renderCancelButton()}
         {this.renderSplitEditor()}
       </div>
     )
@@ -516,22 +506,9 @@ export default class TemplateEditor extends React.Component {
   }
 
   renderEditor() {
-    const { locale } = this.context
-    const { templateYAML, hasUndo, hasRedo, exceptions } = this.state
+    const { templateYAML } = this.state
     return (
       <div className='creation-view-yaml' >
-        <EditorHeader
-          locale={locale}
-        >
-          <EditorBar
-            hasUndo={hasUndo}
-            hasRedo={hasRedo}
-            exceptions={exceptions}
-            gotoEditorLine={this.gotoEditorLine}
-            handleEditorCommand={this.handleEditorCommand}
-            handleSearchChange={this.handleSearchChange}
-          />
-        </EditorHeader>
         <YamlEditor
           width={'100%'}
           height={'100%'}
@@ -621,7 +598,7 @@ export default class TemplateEditor extends React.Component {
     // Validate YAML and attach highlights and exception decorations
     validateYAML(templateObject, controlData, exceptions, locale)
     this.handleExceptions(exceptions, highlights)
-    this.setState({controlData, isCustomName, templateYAML: newYAML, templateObject, exceptions})
+    this.setState({controlData, isCustomName, templateYAML: newYAML, templateObject})
     // If updateMessage is not empty, then there might be a notification message that we'll need to update
     if (updateMessage) {
       this.handleExceptionNotification(exceptions, 'success.edit.policy.check', locale)
@@ -638,12 +615,6 @@ export default class TemplateEditor extends React.Component {
   setEditor = (editor) => {
     this.editor = editor
     this.layoutEditors()
-    editor.onDidChangeModelContent(() => {
-      const model = editor.getModel()
-      const hasUndo = model.canUndo()
-      const hasRedo = model.canRedo()
-      this.setState({hasUndo, hasRedo})
-    })
   }
 
   layoutEditors() {
@@ -792,7 +763,7 @@ export default class TemplateEditor extends React.Component {
         isCustomName = true
       }
     }
-    this.setState({controlData, isCustomName, templateObject: newParsed, exceptions})
+    this.setState({controlData, isCustomName, templateObject: newParsed})
     // Validate policy name
     this.handlePolicyNameValidation(controlData.find(control => control.id === 'name').active, controlData.find(data => data.id === 'namespace').active)
     return templateYAML // for jest test
@@ -836,60 +807,6 @@ export default class TemplateEditor extends React.Component {
         })
       })
       return payload
-    }
-    return null
-  }
-
-  renderEditButton() {
-    const { portals={}, locale } = this.props
-    const { editBtn } = portals
-    if (editBtn) {
-      const portal = document.getElementById(editBtn)
-      if (portal) {
-        const { showEditor } = this.state
-        const handleToggle = () => {
-          if (showEditor) {
-            localStorage.setItem(tempCookie, 'false')
-          } else {
-            localStorage.setItem(tempCookie, 'true')
-          }
-          this.setState({showEditor: !showEditor})
-        }
-        this.renderedPortals = true
-        return ReactDOM.createPortal(
-          <div className='edit-template-switch'>
-            <ToggleSmall
-              id='edit-yaml'
-              ariaLabel={showEditor ? msgs.get('edit.yaml.on', locale) : msgs.get('edit.yaml.off', locale)}
-              defaultToggled={showEditor}
-              onChange={()=>{/*This is intentional*/}}
-              onToggle={handleToggle}
-            />
-            <div className='switch-label'>
-              {showEditor ? msgs.get('edit.yaml.on', locale) : msgs.get('edit.yaml.off', locale)}
-            </div>
-          </div>, portal
-        )
-      }
-    }
-    return null
-  }
-
-  renderCreateButton() {
-    const { portals={}, createControl, locale } = this.props
-    const { createBtn } = portals
-    if (createControl && createBtn) {
-      const portal = document.getElementById(createBtn)
-      if (portal) {
-        return ReactDOM.createPortal(
-          <Button id={`${createBtn}-btn`}
-            onClick={this.handleCreateResource.bind(this)}
-            kind={'primary'} >
-            {msgs.get('button.create', locale)}
-          </Button>,
-          portal
-        )
-      }
     }
     return null
   }
@@ -961,34 +878,14 @@ export default class TemplateEditor extends React.Component {
     createAndUpdateResource(create, update)
   }
 
-  renderCancelButton() {
-    const { portals={}, createControl, locale } = this.props
-    const { cancelBtn } = portals
-    if (createControl && cancelBtn) {
-      const portal = document.getElementById(cancelBtn)
-      if (portal) {
-        const {cancelCreate} = createControl
-        return ReactDOM.createPortal(
-          <Button id={`${cancelBtn}-btn`}
-            onClick={cancelCreate}
-            kind={'secondary'} >
-            {msgs.get('button.cancel', locale)}
-          </Button>,
-          portal
-        )
-      }
-    }
-    return null
-  }
-
   resetEditor() {
     const {resetInx} = this.state
     const { template, controlData: initialControlData } = this.props
     const controlData = initializeControlData(template, initialControlData)
     const templateYAML = generateYAML(template, controlData)
     const templateObject = parseYAML(templateYAML).parsed
-    this.setState({controlData, templateYAML, templateObject, exceptions:[],
-      hasUndo: false, hasRedo: false, resetInx:resetInx+1, updateMessage:'',
+    this.setState({controlData, templateYAML, templateObject,
+      resetInx:resetInx+1, updateMessage:'',
       duplicateName: false, validPolicyName: true, isCustomName: false
     })
   }

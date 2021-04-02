@@ -29,7 +29,7 @@ describeT('@extended RHACM4K-1648 - GRC UI: [P2][Sev2][policy-grc] CertPolicy wi
   })
 
   it('Replace namespaceSelector value with "no-such-namespace"', () => {
-    cy.toggleYAMLeditor('On')
+    cy/*.toggleYAMLeditor('On')*/
       .YAMLeditor()
       .invoke('getValue')
       .then((content) => {
@@ -42,7 +42,7 @@ describeT('@extended RHACM4K-1648 - GRC UI: [P2][Sev2][policy-grc] CertPolicy wi
   })
 
   it('Create a customized policy', () => {
-    cy.get('#create-button-portal-id-btn').click()
+    cy.get('#create').click()
     // after creation, always return to grc main page
     cy.CheckGrcMainPage()
   })

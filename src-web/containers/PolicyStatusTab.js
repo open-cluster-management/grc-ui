@@ -31,10 +31,6 @@ class PolicyDetailsTab extends React.Component{
 
   static contextType = LocaleContext
 
-  static defaultProps = {
-    tab: 'status'
-  }
-
   render() {
     const {
       match : {
@@ -43,7 +39,6 @@ class PolicyDetailsTab extends React.Component{
           namespace: hubNamespace,
         }
       },
-      location,
       history,
     } = this.props
     const { locale } = this.context
@@ -79,7 +74,7 @@ class PolicyDetailsTab extends React.Component{
               <AcmPage>
                 <AcmPageHeader
                   title={policyName}
-                  breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath }, { text: policyName, to: location.pathname}]}
+                  breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath }, { text: policyName }]}
                   controls={
                     <React.Fragment>
                       <AcmAutoRefreshSelect refetch={refetch}
@@ -129,7 +124,6 @@ class PolicyDetailsTab extends React.Component{
 
 PolicyDetailsTab.propTypes = {
   history: PropTypes.object,
-  location: PropTypes.object,
   match: PropTypes.object,
 }
 

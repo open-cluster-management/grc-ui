@@ -30,31 +30,11 @@ describe('PoliciesTab container test', () => {
     const store = createStore(combineReducers(reducers), composeEnhancers(
       applyMiddleware(...middleware)
     ))
-    const secondaryHeaderProps = {
-      'title': 'routes.create.policy',
-      'information': 'policy.create.tooltip',
-      'breadcrumbItems': [
-        {
-          'id': 'policy-overview',
-          'label': 'routes.grc',
-          'url': '/multicloud/policies'
-        },
-        {
-          'id': 'policy-overview-all',
-          'label': 'routes.policies',
-          'url': '/multicloud/policies/all'
-        }
-      ]
-    }
-    const updateSecondaryHeader= jest.fn()
     const component = renderer.create(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
-            <PoliciesTab
-              secondaryHeaderProps={secondaryHeaderProps}
-              updateSecondaryHeader={updateSecondaryHeader}
-            />
+            <PoliciesTab />
           </BrowserRouter>
         </Provider>
       </ApolloProvider>

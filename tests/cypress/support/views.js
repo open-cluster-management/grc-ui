@@ -181,14 +181,14 @@ export const getDefaultSubstitutionRules = (rules = {}) => {
 
 export const action_createPolicyFromYAML = (policyYAML, create=true) => {
   console.log(policyYAML)
-  cy.toggleYAMLeditor('On')
+  cy/*.toggleYAMLeditor('On')*/
     .YAMLeditor()
     .invoke('setValue', policyYAML)
     .waitForDocumentUpdate()
     // create
     .then(() => {
       if (create) {
-        cy.get('#create-button-portal-id-btn').click()
+        cy.get('#create').click()
         cy.CheckGrcMainPage()
       }
     })
@@ -260,7 +260,7 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
   // create
   cy.then(() => {
     if (create) {
-      cy.get('#create-button-portal-id-btn').click()
+      cy.get('#create').click()
       // after creation, always return to grc main page
       cy.CheckGrcMainPage()
     }

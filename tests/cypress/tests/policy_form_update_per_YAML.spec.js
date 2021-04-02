@@ -11,7 +11,7 @@ const rawPolicyYAML = getConfigObject('policy_form_update_per_YAML/policy-raw.ya
 
   it('Access the Create policy page', () => {
     cy.visit('/multicloud/policies/create').waitForPageContentLoad()
-      .toggleYAMLeditor('On')
+      /*.toggleYAMLeditor('On')*/
   })
 
   it('Individual YAML updates are reflected in a form', () => {

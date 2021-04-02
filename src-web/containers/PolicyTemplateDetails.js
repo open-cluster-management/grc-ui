@@ -6,11 +6,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import { Spinner } from '@patternfly/react-core'
-import { updateSecondaryHeader } from '../actions/common'
-import {getPollInterval} from '../components/common/RefreshTimeSelect'
-import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
 import { POLICY_TEMPLATE_DETAILS } from '../../lib/client/queries'
@@ -19,6 +15,9 @@ import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { DangerNotification } from '../components/common/DangerNotification'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
+import { INITIAL_REFRESH_TIME, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
+import { AcmPage, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime } from '@open-cluster-management/ui-components'
+import config from '../../lib/shared/config'
 
 resources(() => {
   require('../../scss/policy-template-details.scss')
@@ -26,10 +25,7 @@ resources(() => {
 
 class PolicyTemplateDetails extends React.Component {
   static propTypes = {
-    location: PropTypes.object,
     match: PropTypes.object,
-    // resourceType: PropTypes.object,
-    updateSecondaryHeader: PropTypes.func,
   }
 
   static contextType = LocaleContext
@@ -38,58 +34,13 @@ class PolicyTemplateDetails extends React.Component {
     super(props)
   }
 
-  getBreadcrumb() {
-    const breadcrumbItems = []
-    const { location } = this.props,
-          { locale } = this.context,
-          urlSegments = location.pathname.split('/')
-    const {
-      match: {
-        params: {
-          policyName,
-          policyNamespace,
-          clusterName,
-          apiGroup,
-          version,
-          kind,
-          name,
-        }
-      }
-    } = this.props
-    breadcrumbItems.push({
-      label: msgs.get('tabs.hcmcompliance', locale),
-      noLocale: true,
-      url: `${urlSegments.slice(0, 3).join('/')}/all`
-    },
-    {
-      label: policyName,
-      noLocale: true,
-      url: `${urlSegments.slice(0, 3).join('/')}/all/${policyNamespace}/${policyName}`
-    },
-    {
-      label: msgs.get('table.header.status', locale),
-      noLocale: true,
-      url: `${urlSegments.slice(0, 3).join('/')}/all/${policyNamespace}/${policyName}/status`
-    },
-    {
-      label: msgs.get('table.header.template', locale),
-      noLocale: true,
-      url: `${urlSegments.slice(0, 3).join('/')}/all/${policyNamespace}/${policyName}/template/${clusterName}/${apiGroup}/${version}/${kind}/${name}`
-    })
-    return breadcrumbItems
-  }
-
-  componentDidMount() {
-    const { updateSecondaryHeader: localUpdateSecondaryHeader, match: { params: { name }} } = this.props
-    localUpdateSecondaryHeader(name, null, this.getBreadcrumb())
-  }
-
   render() {
-    const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
-    const { match: { params: { clusterName: cluster, apiGroup, version, kind, name }}} = this.props
-    const selfLink = `/apis/${apiGroup}/${version}/namespaces/${cluster}/${kind}/${name}`
+    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE)) || INITIAL_REFRESH_TIME*1000
+    const { match: { params: { name, namespace, cluster, apiGroup, version, kind, template }}} = this.props
+    const { locale } = this.context
+    const selfLink = `/apis/${apiGroup}/${version}/namespaces/${cluster}/${kind}/${template}`
     return (
-      <Query query={POLICY_TEMPLATE_DETAILS} variables={{name, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+      <Query query={POLICY_TEMPLATE_DETAILS} variables={{name:template, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
         {(result) => {
           const { data={}, loading, startPolling, stopPolling, refetch, error } = result
           if (!loading) {
@@ -104,7 +55,24 @@ class PolicyTemplateDetails extends React.Component {
           const { items } = data
           if (items) {
             return (
-              <PolicyTemplateDetailsView template={items} selfLink={selfLink} />
+              <AcmPage>
+                <AcmPageHeader title= {template}
+                  breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath },
+                    { text: name, to: `${config.contextPath}/all/${namespace}/${name}`},
+                    { text: msgs.get('table.header.status', locale), to: `${config.contextPath}/all/${namespace}/${name}/status`},
+                    { text: template}]}
+                  controls={
+                    <React.Fragment>
+                      <AcmAutoRefreshSelect refetch={refetch}
+                        refreshIntervals={REFRESH_INTERVALS}
+                        refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
+                        initRefreshTime={INITIAL_REFRESH_TIME} />
+                      <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
+                    </React.Fragment>
+                  }>
+                </AcmPageHeader>
+                <PolicyTemplateDetailsView template={items} selfLink={selfLink} />
+            </AcmPage>
             )
           } else {
             return (
@@ -117,10 +85,4 @@ class PolicyTemplateDetails extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateSecondaryHeader: (title, tabs, breadcrumbItems, links) => dispatch(updateSecondaryHeader(title, tabs, breadcrumbItems, links))
-  }
-}
-
-export default withRouter(connect(null, mapDispatchToProps)(PolicyTemplateDetails))
+export default withRouter(PolicyTemplateDetails)

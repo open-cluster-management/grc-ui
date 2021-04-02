@@ -13,7 +13,7 @@ const policyConf = getConfigObject('policy_YAML_templates_verification/policy-co
 
     it(`Verify YAML template for ${policyName} specification`, () => {
       cy.visit('/multicloud/policies/create').waitForPageContentLoad()
-        .toggleYAMLeditor('On')
+        /*.toggleYAMLeditor('On')*/
         .createPolicyFromSelection(policyName.toLowerCase(), false, policyConf[policyName])
         .waitForDocumentUpdate()
         .YAMLeditor()

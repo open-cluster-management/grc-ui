@@ -14,37 +14,7 @@ CreationTab {
     "secondaryHeaderProps": Object {
       "title": "testing1",
     },
-    "updateSecondaryHeader": [MockFunction] {
-      "calls": Array [
-        Array [
-          undefined,
-          undefined,
-          undefined,
-          Array [
-            Object {
-              "id": "edit-button-portal-id",
-              "kind": "portal",
-              "title": true,
-            },
-            Object {
-              "id": "cancel-button-portal-id",
-              "kind": "portal",
-            },
-            Object {
-              "id": "create-button-portal-id",
-              "kind": "portal",
-            },
-          ],
-          undefined,
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": undefined,
-        },
-      ],
-    },
+    "updateSecondaryHeader": [MockFunction],
   },
   "refs": Object {},
   "setState": [Function],
@@ -79,39 +49,7 @@ CreationTab {
             "title": "testing1",
           }
         }
-        updateSecondaryHeader={
-          [MockFunction] {
-            "calls": Array [
-              Array [
-                undefined,
-                undefined,
-                undefined,
-                Array [
-                  Object {
-                    "id": "edit-button-portal-id",
-                    "kind": "portal",
-                    "title": true,
-                  },
-                  Object {
-                    "id": "cancel-button-portal-id",
-                    "kind": "portal",
-                  },
-                  Object {
-                    "id": "create-button-portal-id",
-                    "kind": "portal",
-                  },
-                ],
-                undefined,
-              ],
-            ],
-            "results": Array [
-              Object {
-                "type": "return",
-                "value": undefined,
-              },
-            ],
-          }
-        }
+        updateSecondaryHeader={[MockFunction]}
       />,
       "_firstWorkInProgressHook": null,
       "_forcedUpdate": false,
@@ -145,37 +83,6 @@ CreationTab {
     "secondaryHeaderProps": Object {
       "title": "testing2",
     },
-    "updateSecondaryHeader": [MockFunction] {
-      "calls": Array [
-        Array [
-          undefined,
-          undefined,
-          undefined,
-          Array [
-            Object {
-              "id": "edit-button-portal-id",
-              "kind": "portal",
-              "title": true,
-            },
-            Object {
-              "id": "cancel-button-portal-id",
-              "kind": "portal",
-            },
-            Object {
-              "id": "create-button-portal-id",
-              "kind": "portal",
-            },
-          ],
-          undefined,
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": undefined,
-        },
-      ],
-    },
   },
   "refs": Object {},
   "setState": [Function],
@@ -208,39 +115,6 @@ CreationTab {
         secondaryHeaderProps={
           Object {
             "title": "testing2",
-          }
-        }
-        updateSecondaryHeader={
-          [MockFunction] {
-            "calls": Array [
-              Array [
-                undefined,
-                undefined,
-                undefined,
-                Array [
-                  Object {
-                    "id": "edit-button-portal-id",
-                    "kind": "portal",
-                    "title": true,
-                  },
-                  Object {
-                    "id": "cancel-button-portal-id",
-                    "kind": "portal",
-                  },
-                  Object {
-                    "id": "create-button-portal-id",
-                    "kind": "portal",
-                  },
-                ],
-                undefined,
-              ],
-            ],
-            "results": Array [
-              Object {
-                "type": "return",
-                "value": undefined,
-              },
-            ],
           }
         }
       />,

@@ -15,7 +15,9 @@ import client from '../../lib/shared/client'
 import config from '../../lib/shared/config'
 import Modal from '../components/common/Modal'
 import Page from '../components/common/Page'
-import AllPolicies from './AllPolicies'
+// eslint-disable-next-line import/no-named-as-default
+import CreationTab from './CreationTab'
+import PoliciesTab from './PoliciesTab'
 import PolicyDetailsTab from './PolicyDetailsTab'
 import PolicyStatusTab from './PolicyStatusTab'
 import PolicyStatusHistoryTab from './PolicyStatusHistoryTab'
@@ -63,11 +65,12 @@ class App extends React.Component {
             <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
             {/* Removes duplicate slashes in the middle of the URL */}
             <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
-            <Route path={`${match.url}/all/:hubNamespace/:policyName/status/:cluster/templates/:template/history`} component={PolicyStatusHistoryTab} />
-            <Route path={`${match.url}/all/:policyNamespace/:policyName/template/:clusterName/:apiGroup/:version/:kind/:name`} component={PolicyTemplateDetails} />
-            <Route path={`${match.url}/all/:namespace/:name/status`} component={PolicyStatusTab} />
-            <Route path={`${match.url}/all/:namespace/:name`} component={PolicyDetailsTab} />
-            <Route path={`${match.url}/all`} exact component={AllPolicies} />
+            <Route path={`${match.url}/all/:namespace/:name/status/:cluster/templates/:template/history`} exact component={PolicyStatusHistoryTab} />
+            <Route path={`${match.url}/all/:namespace/:name/template/:cluster/:apiGroup/:version/:kind/:template`} exact component={PolicyTemplateDetails} />
+            <Route path={`${match.url}/all/:namespace/:name/status`} exact component={PolicyStatusTab} />
+            <Route path={`${match.url}/all/:namespace/:name`} exact component={PolicyDetailsTab} />
+            <Route path={`${match.url}/all`} exact component={PoliciesTab} />
+            <Route path={`${match.url}/create`} exact component={CreationTab} />
             <Route path={`${match.url}/policy/:clusterName/:name`} component={PolicyDetailsByCluster} />
             <Redirect to={`${config.contextPath}/all`} />
           </Switch>

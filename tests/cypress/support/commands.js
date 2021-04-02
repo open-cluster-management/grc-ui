@@ -255,7 +255,7 @@ Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
   cy.get('#create-policy').click()
   cy.location('pathname').should('eq', '/multicloud/policies/create')
   pageLoader.shouldNotExist()
-  cy.get('.bx--detail-page-header-title').contains('Create policy')
+  cy.get('.pf-c-page__main-section .pf-c-title').contains('Create policy')
 })
 
 Cypress.Commands.add('goToPolicyDetailsPage', (policyName, namespace='default', open=true) => {
@@ -267,7 +267,7 @@ Cypress.Commands.add('goToPolicyDetailsPage', (policyName, namespace='default', 
       cy.get('a').contains(policyName).click()
       cy.location('pathname').should('eq', '/multicloud/policies/all/'+namespace+'/'+policyName)
       pageLoader.shouldNotExist()
-      //cy.get('.bx--detail-page-header-title').contains(policyName)
+      cy.get('.pf-c-page__main-section .pf-c-title').contains(policyName)
     }
   })
 })

@@ -28,7 +28,6 @@ describe('CreationTab container', () => {
   it('renders as expected', () => {
     const component = shallow(<CreationTab
       secondaryHeaderProps={{title:'testing2'}}
-      updateSecondaryHeader={jest.fn()}
       handleCreateResources={jest.fn()}
     />)
     expect(component.instance()).toMatchSnapshot()

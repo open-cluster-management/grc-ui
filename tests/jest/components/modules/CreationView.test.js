@@ -66,6 +66,7 @@ describe('CreationView module', () => {
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
+            onCreate={jest.fn()}
             discovered={discoveries}
             createControl={{
               cancelCreate: jest.fn(),
@@ -87,6 +88,7 @@ describe('CreationView module', () => {
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
+            onCreate={jest.fn()}
             discovered={emptyDiscoveries}
             createControl={{
               cancelCreate: jest.fn(),
@@ -108,6 +110,7 @@ describe('CreationView module', () => {
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
+            onCreate={jest.fn()}
             createControl={{
               cancelCreate: jest.fn(),
               createResource: jest.fn(),
@@ -128,6 +131,7 @@ describe('CreationView module', () => {
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
+            onCreate={jest.fn()}
             createControl={{
               cancelCreate: jest.fn(),
               createResource: jest.fn(),
@@ -148,6 +152,7 @@ describe('CreationView module', () => {
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
+            onCreate={jest.fn()}
             createControl={{
               cancelCreate: jest.fn(),
               createResource: jest.fn(),
@@ -170,6 +175,7 @@ describe('CreationView module', () => {
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
+            onCreate={jest.fn()}
             createControl={{
               cancelCreate: jest.fn(),
               createResource: jest.fn(),

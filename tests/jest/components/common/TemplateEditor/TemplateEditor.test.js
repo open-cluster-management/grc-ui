@@ -253,6 +253,7 @@ describe('TemplateEditor component', () => {
   it('renders as expected', () => {
     const component = renderer.create(
       <TemplateEditor
+        onCreate={jest.fn()}
         template={policyTemplate}
         controlData={controlData}
         portals={Portals}
@@ -266,6 +267,7 @@ describe('on control change function with active selections', () => {
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
+        onCreate={jest.fn()}
         template={policyTemplate}
         controlData={controlData}
         portals={Portals}
@@ -287,15 +289,12 @@ describe('on control change function with active selections', () => {
       target: { value: '' }
     }
     expect(wrapper.instance().onChange('name', evt_emptyName)).toEqual('name')
-    expect(wrapper.instance().state.exceptions.some((exception) => exception.text === msgs['validation.missing.resource'])).toEqual(true)
     const evt_badName = {
       target: { value: 'a-b-' }
     }
     expect(wrapper.instance().onChange('name', evt_badName)).toEqual('name')
     expect(wrapper.instance().state.duplicateName).toEqual(false)
     expect(wrapper.instance().state.validPolicyName).toEqual(false)
-    expect(wrapper.instance().state.exceptions.some((exception) => exception.text === msgs['error.policy.nameFormat.short'])).toEqual(true)
-    wrapper.instance().handleExceptionNotification(wrapper.instance().state.exceptions, 'success.create.policy.check', '')
     expect(wrapper.instance().renderNotifications()).toMatchSnapshot()
     expect(wrapper.instance().onChange('namespace', evt)).toEqual('namespace')
     expect(wrapper.instance().onChange('standards', evt)).toEqual('standards')
@@ -320,6 +319,7 @@ describe('on control change function without active selections', () => {
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
+        onCreate={jest.fn()}
         template={policyTemplate}
         controlData={deepCopy}
         portals={Portals}
@@ -341,7 +341,6 @@ describe('on control change function without active selections', () => {
       target: { value: '' }
     }
     expect(wrapper.instance().onChange('name', evt_emptyName)).toEqual('name')
-    expect(wrapper.instance().state.exceptions.some((exception) => exception.text === msgs['validation.missing.resource'])).toEqual(true)
     const evt_badName = {
       target: { value: 'a-b-' }
     }
@@ -356,8 +355,6 @@ describe('on control change function without active selections', () => {
     expect(wrapper.instance().onChange('namespace', evt_namespace)).toEqual('namespace')
     expect(wrapper.instance().state.duplicateName).toEqual(false)
     expect(wrapper.instance().state.validPolicyName).toEqual(false)
-    expect(wrapper.instance().state.exceptions.some((exception) => exception.text === msgs['error.policy.nameFormat.short'])).toEqual(true)
-    wrapper.instance().handleExceptionNotification(wrapper.instance().state.exceptions, 'success.create.policy.check', '')
     expect(wrapper.instance().renderNotifications()).toMatchSnapshot()
     expect(wrapper.instance().onChange('namespace', evt)).toEqual('namespace')
     expect(wrapper.instance().onChange('standards', evt)).toEqual('standards')
@@ -380,6 +377,7 @@ describe('on editor change function', () => {
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
+        onCreate={jest.fn()}
         template={policyTemplate}
         controlData={controlData}
         portals={Portals}
@@ -397,6 +395,7 @@ describe('on editor change function', () => {
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
+        onCreate={jest.fn()}
         template={policyTemplate}
         controlData={deepCopy}
         portals={Portals}
@@ -414,6 +413,7 @@ describe('on editor change function', () => {
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
+        onCreate={jest.fn()}
         template={policyTemplate}
         controlData={deepCopy}
         portals={Portals}
@@ -427,6 +427,7 @@ describe('handleEditorCommand function', () => {
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
+        onCreate={jest.fn()}
         template={policyTemplate}
         controlData={controlData}
         portals={Portals}
@@ -443,6 +444,7 @@ describe('getResourceJSON function', () => {
   it('renders as expected', () => {
     const wrapper = shallow(
       <TemplateEditor
+        onCreate={jest.fn()}
         template={policyTemplate}
         controlData={controlData}
         portals={Portals}

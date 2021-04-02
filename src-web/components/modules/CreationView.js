@@ -13,7 +13,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { hideResourceToolbar, showResourceToolbar } from '../../../lib/client/resource-helper'
+// import { hideResourceToolbar, showResourceToolbar } from '../../../lib/client/resource-helper'
 import { TemplateEditor } from '../common/TemplateEditor'
 import policyTemplate from '../common/templates/policy-template.hbs'
 import Choices from '../common/templates'
@@ -21,12 +21,12 @@ import msgs from '../../../nls/platform.properties'
 import { LocaleContext } from '../common/LocaleContext'
 import _ from 'lodash'
 
-// where to put Create/Cancel buttons
-const Portals = Object.freeze({
-  editBtn: 'edit-button-portal-id',
-  createBtn: 'create-button-portal-id',
-  cancelBtn: 'cancel-button-portal-id',
-})
+// // where to put Create/Cancel buttons
+// const Portals = Object.freeze({
+//   editBtn: 'edit-button-portal-id',
+//   createBtn: 'create-button-portal-id',
+//   cancelBtn: 'cancel-button-portal-id',
+// })
 
 // controlData is converted to templateData when template handlebar is rendered
 //  id: becomes template variable;
@@ -165,6 +165,7 @@ export default class CreationView extends React.Component {
       isLoaded: PropTypes.bool,
       isFailed: PropTypes.bool,
     }),
+    onCreate: PropTypes.func.isRequired,
     updateControl: PropTypes.shape({
       updateResource: PropTypes.func,
       cancelUpdate: PropTypes.func,
@@ -175,19 +176,20 @@ export default class CreationView extends React.Component {
 
   static contextType = LocaleContext
 
-  componentWillUnmount() {
-    showResourceToolbar()
-  }
+  // componentWillUnmount() {
+  //   showResourceToolbar()
+  // }
 
   render() {
-    hideResourceToolbar()
+    // hideResourceToolbar()
     const { locale } = this.context
-    const {fetchControl, createControl, buildControl, updateControl, discovered, createAndUpdateControl} = this.props
+    const {onCreate, fetchControl, createControl, buildControl, updateControl, discovered, createAndUpdateControl} = this.props
     return (
       <TemplateEditor
+        onCreate={onCreate}
         template={policyTemplate}
         controlData={getControlData(discovered, locale)}
-        portals={Portals}
+        // portals={Portals}
         fetchControl={fetchControl}
         createControl={createControl}
         buildControl={buildControl}

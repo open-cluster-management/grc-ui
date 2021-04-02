@@ -41,7 +41,6 @@ class PolicyDetailsTab extends React.Component{
         }
       },
       resourceType,
-      location,
       history,
     } = this.props
     const { locale } = this.context
@@ -77,7 +76,7 @@ class PolicyDetailsTab extends React.Component{
             <AcmPage>
               <AcmPageHeader
                 title={name}
-                breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath }, { text: name, to: location.pathname}]}
+                breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath }, { text: name }]}
                 controls={
                   <React.Fragment>
                     <AcmAutoRefreshSelect refetch={refetch}
@@ -125,7 +124,6 @@ class PolicyDetailsTab extends React.Component{
 
 PolicyDetailsTab.propTypes = {
   history: PropTypes.object,
-  location: PropTypes.object,
   match: PropTypes.object,
   resourceType: PropTypes.object,
 }

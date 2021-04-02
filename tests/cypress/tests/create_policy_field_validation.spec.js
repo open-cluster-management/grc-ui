@@ -25,7 +25,7 @@ describeT('RHACM4K-2349 - GRC UI: [P1][Sev1][policy-grc] Create policy page: Che
     cy.FromGRCToCreatePolicyPage()
     for (const [name, namespace, message] of namePatterns) {
       cy.createPolicyFromSelection(name, false, {'namespace': namespace})
-        .get('#create-button-portal-id-btn').click()  // click create
+        .get('#create').click()  // click create
         .checkNotificationMessage('error', 'Create error:', message)
     }
   })
