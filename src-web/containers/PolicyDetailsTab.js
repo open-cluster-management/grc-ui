@@ -7,22 +7,18 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-// import resources from '../../lib/shared/resources'
 import { getResourceData } from '../tableDefinitions'
-// import { connect } from 'react-redux'
-// import { updateSecondaryHeader } from '../actions/common'
 import { SINGLE_POLICY } from '../../lib/client/queries'
 import { Spinner } from '@patternfly/react-core'
 import { DangerNotification } from '../components/common/DangerNotification'
 // eslint-disable-next-line import/no-named-as-default
 import PolicyDetailsOverview from '../components/modules/PolicyDetailsOverview'
 import { setRefreshControl } from '../../lib/client/reactiveVars'
-// import { getTabs } from '../../lib/client/resource-helper'
 import msgs from '../../nls/platform.properties'
 import { LocaleContext } from '../components/common/LocaleContext'
 import NoResource from '../components/common/NoResource'
 import { AcmButton, AcmPage, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime, AcmSecondaryNav, AcmSecondaryNavItem } from '@open-cluster-management/ui-components'
-import { INITIAL_REFRESH_TIME, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
+import { INITIAL_REFRESH_TIME, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE, RESOURCE_TYPES } from '../../lib/shared/constants'
 import config from '../../lib/shared/config'
 
 class PolicyDetailsTab extends React.Component{
@@ -32,11 +28,18 @@ class PolicyDetailsTab extends React.Component{
 
   static contextType = LocaleContext
 
+  static defaultProps = {
+    resourceType: RESOURCE_TYPES.POLICIES_BY_POLICY,
+  }
+
   render() {
     const {
-      tab,
-      policyName,
-      policyNamespace,
+      match : {
+        params: {
+          name,
+          namespace,
+        }
+      },
       resourceType,
       location,
       history,
@@ -45,7 +48,7 @@ class PolicyDetailsTab extends React.Component{
     const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE)) || INITIAL_REFRESH_TIME*1000
     return <Query
       query={SINGLE_POLICY}
-      variables={{name: policyName, namespace: policyNamespace}}
+      variables={{ name, namespace }}
       pollInterval={pollInterval}
       notifyOnNetworkStatusChange
     >
@@ -73,8 +76,8 @@ class PolicyDetailsTab extends React.Component{
           return (
             <AcmPage>
               <AcmPageHeader
-                title={policyName}
-                breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath }, { text: policyName, to: location.pathname}]}
+                title={name}
+                breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath }, { text: name, to: location.pathname}]}
                 controls={
                   <React.Fragment>
                     <AcmAutoRefreshSelect refetch={refetch}
@@ -84,7 +87,7 @@ class PolicyDetailsTab extends React.Component{
                     <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
                     <AcmButton id='edit-policy' isDisabled={false}
                       tooltip={msgs.get('error.permission.disabled', locale)}
-                      onClick={() => history.push(`${config.contextPath}/all/${policyNamespace}/${policyName}/edit`)}>
+                      onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}/edit`)}>
                       {msgs.get('routes.edit.policy', locale)}
                     </AcmButton>
                   </React.Fragment>
@@ -92,20 +95,15 @@ class PolicyDetailsTab extends React.Component{
                 navigation={
                   <AcmSecondaryNav>
                     <AcmSecondaryNavItem
-                      isActive={tab !== 'status'}
-                      onClick={() => history.push(`${config.contextPath}/all/${policyNamespace}/${policyName}`)}>
+                      isActive={true}
+                      onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}`)}>
                         {msgs.get('tabs.details', locale)}
                     </AcmSecondaryNavItem>
                     <AcmSecondaryNavItem
-                      isActive={tab === 'status'}
-                      onClick={() => history.push(`${config.contextPath}/all/${policyNamespace}/${policyName}/status`)}>
+                      isActive={false}
+                      onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}/status`)}>
                         {msgs.get('tabs.status', locale)}
                     </AcmSecondaryNavItem>
-                    {/* <AcmSecondaryNavItem
-                      isActive={tab === 'yaml'}
-                      onClick={() => history.push(`${config.contextPath}/all/${policyNamespace}/${policyName}/yaml`)}>
-                        {msgs.get('tabs.yaml', locale)}
-                    </AcmSecondaryNavItem> */}
                   </AcmSecondaryNav>
                 }>
               </AcmPageHeader>
@@ -128,12 +126,8 @@ class PolicyDetailsTab extends React.Component{
 PolicyDetailsTab.propTypes = {
   history: PropTypes.object,
   location: PropTypes.object,
-  policyName: PropTypes.string,
-  policyNamespace: PropTypes.string,
+  match: PropTypes.object,
   resourceType: PropTypes.object,
-  tab: PropTypes.string,
-  // updateSecondaryHeader: PropTypes.func,
-  // url: PropTypes.string,
 }
 
 export default withRouter(PolicyDetailsTab)

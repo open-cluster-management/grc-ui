@@ -6,7 +6,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import Page from '../components/common/Page'
 // import msgs from '../../nls/platform.properties'
 import PolicyDetailsTab from './PolicyDetailsTab'
 import PolicyStatusTab from './PolicyStatusTab'
@@ -50,14 +49,12 @@ class PolicyDetailSubRouter extends React.Component {
     }
 
     return (
-      <Page>
-        <TabPage
-          policyName={policyName}
-          policyNamespace={policyNamespace}
-          resourceType={resourceType}
-          tab={tabName}
-        />
-      </Page>
+      <TabPage
+        policyName={policyName}
+        policyNamespace={policyNamespace}
+        resourceType={resourceType}
+        tab={tabName}
+      />
     )
   }
 

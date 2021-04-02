@@ -1,12 +1,4 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
-/* Copyright (c) 2020 Red Hat, Inc. */
+/* Copyright (c) 2021 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
 'use strict'
@@ -19,7 +11,6 @@ import { createResources, createAndUpdateResources, updateSecondaryHeader,
   clearRequestStatus, fetchSingleResource } from '../actions/common'
 import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Page from '../components/common/Page'
 import { CREATE_POLICY_DISCOVERY } from '../../lib/client/queries'
 import CreationView from '../components/modules/CreationView'
 import msgs from '../../nls/platform.properties'
@@ -212,51 +203,49 @@ export class CreationTab extends React.Component {
       return <Redirect to={`${config.contextPath}/all`} />
     }
     return (
-      <Page>
-        <Query query={CREATE_POLICY_DISCOVERY}>
-          {( result ) => {
-            const { loading } = result
-            const { data={} } = result
-            const { discoveries } = data
-            const errored = discoveries ? false : true
-            const error = discoveries ? null : result.error
-            if (!loading && error) {
-              const errorName = result.error.graphQLErrors[0].name ? result.error.graphQLErrors[0].name : error.name
-              error.name = errorName
-            }
-            const fetchControl = {
-              isLoaded: !loading,
-              isFailed: errored,
-              error: error
-            }
-            const buildControl = {
-              buildResourceLists: this.buildCreateUpdateLists.bind(this),
-            }
-            const createControl = {
-              createResource: this.handleCreate.bind(this),
-              cancelCreate: this.handleCancel.bind(this),
-              creationStatus: mutateStatus,
-              creationMsg: mutateErrorMsg,
-            }
-            const createAndUpdateControl = {
-              createAndUpdateResource: this.handleCreateAndUpdate.bind(this),
-              cancelCreateAndUpdate: this.handleCancel.bind(this),
-              createAndUpdateStatus: updateStatus,
-              createAndUpdateMsg: this.formatUpdateError(this.formatUpdateError(mutatePBErrorMsg, mutateErrorMsg), mutatePRErrorMsg),
-            }
-            return (
-              <CreationView
-                discovered={discoveries}
-                fetchControl={fetchControl}
-                createControl={createControl}
-                buildControl={buildControl}
-                createAndUpdateControl={createAndUpdateControl}
-              />
-            )
+      <Query query={CREATE_POLICY_DISCOVERY}>
+        {( result ) => {
+          const { loading } = result
+          const { data={} } = result
+          const { discoveries } = data
+          const errored = discoveries ? false : true
+          const error = discoveries ? null : result.error
+          if (!loading && error) {
+            const errorName = result.error.graphQLErrors[0].name ? result.error.graphQLErrors[0].name : error.name
+            error.name = errorName
           }
+          const fetchControl = {
+            isLoaded: !loading,
+            isFailed: errored,
+            error: error
           }
-        </Query>
-      </Page>
+          const buildControl = {
+            buildResourceLists: this.buildCreateUpdateLists.bind(this),
+          }
+          const createControl = {
+            createResource: this.handleCreate.bind(this),
+            cancelCreate: this.handleCancel.bind(this),
+            creationStatus: mutateStatus,
+            creationMsg: mutateErrorMsg,
+          }
+          const createAndUpdateControl = {
+            createAndUpdateResource: this.handleCreateAndUpdate.bind(this),
+            cancelCreateAndUpdate: this.handleCancel.bind(this),
+            createAndUpdateStatus: updateStatus,
+            createAndUpdateMsg: this.formatUpdateError(this.formatUpdateError(mutatePBErrorMsg, mutateErrorMsg), mutatePRErrorMsg),
+          }
+          return (
+            <CreationView
+              discovered={discoveries}
+              fetchControl={fetchControl}
+              createControl={createControl}
+              buildControl={buildControl}
+              createAndUpdateControl={createAndUpdateControl}
+            />
+          )
+        }
+        }
+      </Query>
     )
   }
 }

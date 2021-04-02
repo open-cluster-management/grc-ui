@@ -14,7 +14,6 @@ import { LocaleContext } from '../components/common/LocaleContext'
 import { INITIAL_REFRESH_TIME, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
-import Page from '../components/common/Page'
 // eslint-disable-next-line import/no-named-as-default
 import GrcView from '../components/modules/GrcView'
 import checkCreatePermission from '../components/common/CheckCreatePermission'
@@ -34,47 +33,45 @@ class AllPolicies extends React.Component {
     const { history, userAccess } = this.props
     const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE)) || INITIAL_REFRESH_TIME*1000
     return (
-      <Page>
-        <Query query={ALL_POLICIES} pollInterval={pollInterval*1000} notifyOnNetworkStatusChange >
-          {( complianceResult ) => {
-            const {data={}, loading, refetch} = complianceResult
-            const { items } = data
-            const error = items ? null : complianceResult.error
-            if (error) {
-              const errorName = complianceResult.error.graphQLErrors[0].name ? complianceResult.error.graphQLErrors[0].name : error.name
-              error.name = errorName
-            }
-            if (!loading) {
-              this.timestamp = new Date().toString()
-            }
-            const isDisabled = checkCreatePermission(userAccess)===0
-            return (
-              <AcmPage>
-                <AcmPageHeader title= {msgs.get('routes.grc', locale)} controls={
-                  <React.Fragment>
-                    <AcmAutoRefreshSelect refetch={refetch}
-                      refreshIntervals={REFRESH_INTERVALS}
-                      refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
-                      initRefreshTime={INITIAL_REFRESH_TIME} />
-                    <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
-                    <AcmButton id='create-policy' isDisabled={isDisabled}
-                      tooltip={msgs.get('error.permission.disabled', locale)}
-                      onClick={() => history.push(`${config.contextPath}/create`)}>
-                      {msgs.get('routes.create.policy', locale)}
-                    </AcmButton>
-                  </React.Fragment>
-                }>
-                </AcmPageHeader>
-                <GrcView
-                  loading={!items && loading}
-                  error={error}
-                  grcItems={items}
-                />
-              </AcmPage>
-            )
-          }}
-        </Query>
-      </Page>
+      <Query query={ALL_POLICIES} pollInterval={pollInterval*1000} notifyOnNetworkStatusChange >
+        {( complianceResult ) => {
+          const {data={}, loading, refetch} = complianceResult
+          const { items } = data
+          const error = items ? null : complianceResult.error
+          if (error) {
+            const errorName = complianceResult.error.graphQLErrors[0].name ? complianceResult.error.graphQLErrors[0].name : error.name
+            error.name = errorName
+          }
+          if (!loading) {
+            this.timestamp = new Date().toString()
+          }
+          const isDisabled = checkCreatePermission(userAccess)===0
+          return (
+            <AcmPage>
+              <AcmPageHeader title= {msgs.get('routes.grc', locale)} controls={
+                <React.Fragment>
+                  <AcmAutoRefreshSelect refetch={refetch}
+                    refreshIntervals={REFRESH_INTERVALS}
+                    refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
+                    initRefreshTime={INITIAL_REFRESH_TIME} />
+                  <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
+                  <AcmButton id='create-policy' isDisabled={isDisabled}
+                    tooltip={msgs.get('error.permission.disabled', locale)}
+                    onClick={() => history.push(`${config.contextPath}/create`)}>
+                    {msgs.get('routes.create.policy', locale)}
+                  </AcmButton>
+                </React.Fragment>
+              }>
+              </AcmPageHeader>
+              <GrcView
+                loading={!items && loading}
+                error={error}
+                grcItems={items}
+              />
+            </AcmPage>
+          )
+        }}
+      </Query>
     )
   }
 }

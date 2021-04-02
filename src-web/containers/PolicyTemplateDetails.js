@@ -15,7 +15,6 @@ import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
 import { POLICY_TEMPLATE_DETAILS } from '../../lib/client/queries'
 import PolicyTemplateDetailsView from '../components/modules/PolicyTemplateDetailsView'
-import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { DangerNotification } from '../components/common/DangerNotification'
@@ -99,17 +98,13 @@ class PolicyTemplateDetails extends React.Component {
           setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
           if (error) {
             return (
-              <Page>
-                <DangerNotification error={error} />
-              </Page>
+              <DangerNotification error={error} />
             )
           }
           const { items } = data
           if (items) {
             return (
-              <Page>
-                <PolicyTemplateDetailsView template={items} selfLink={selfLink} />
-              </Page>
+              <PolicyTemplateDetailsView template={items} selfLink={selfLink} />
             )
           } else {
             return (

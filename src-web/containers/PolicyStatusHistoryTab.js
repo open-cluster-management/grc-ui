@@ -14,7 +14,6 @@ import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import msgs from '../../nls/platform.properties'
 import { Query } from 'react-apollo'
 import { POLICY_STATUS_HISTORY } from '../../lib/client/queries'
-import Page from '../components/common/Page'
 import resources from '../../lib/shared/resources'
 import { LocaleContext } from '../components/common/LocaleContext'
 import PolicyStatusHistoryView from '../components/modules/PolicyStatusHistoryView'
@@ -91,21 +90,17 @@ class PolicyStatusHistoryTab extends React.Component {
           setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
           if (error) {
             return (
-              <Page>
-                <DangerNotification error={error} />
-              </Page>
+              <DangerNotification error={error} />
             )
           }
           const { items } = data
           if (items) {
             return (
-              <Page>
-                <PolicyStatusHistoryView
-                  history={items}
-                  template={template}
-                  cluster={cluster}
-                />
-              </Page>
+              <PolicyStatusHistoryView
+                history={items}
+                template={template}
+                cluster={cluster}
+              />
             )
           } else {
             return (

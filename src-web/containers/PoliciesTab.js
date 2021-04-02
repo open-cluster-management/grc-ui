@@ -18,7 +18,6 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { GRC_REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { getPollInterval } from '../components/common/RefreshTimeSelect'
-import Page from '../components/common/Page'
 // without curly braces means component with redux
 // eslint-disable-next-line import/no-named-as-default
 import GrcView from '../components/modules/GrcView'
@@ -50,31 +49,29 @@ class PoliciesTab extends React.Component {
     const { secondaryHeaderProps } = this.props
     const pollInterval = getPollInterval(GRC_REFRESH_INTERVAL_COOKIE)
     return (
-      <Page>
-        <Query query={ALL_POLICIES} pollInterval={pollInterval} notifyOnNetworkStatusChange >
-          {( complianceResult ) => {
-            const {data={}, loading, startPolling, stopPolling, refetch} = complianceResult
-            const { items } = data
-            const error = items ? null : complianceResult.error
-            if (error) {
-              const errorName = complianceResult.error.graphQLErrors[0].name ? complianceResult.error.graphQLErrors[0].name : error.name
-              error.name = errorName
-            }
-            if (!loading) {
-              this.timestamp = new Date().toString()
-            }
-            setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
-            return <GrcView
-              loading={!items && loading}
-              error={error}
-              grcItems={items}
-              secondaryHeaderProps={secondaryHeaderProps}
-            />
+      <Query query={ALL_POLICIES} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+        {( complianceResult ) => {
+          const {data={}, loading, startPolling, stopPolling, refetch} = complianceResult
+          const { items } = data
+          const error = items ? null : complianceResult.error
+          if (error) {
+            const errorName = complianceResult.error.graphQLErrors[0].name ? complianceResult.error.graphQLErrors[0].name : error.name
+            error.name = errorName
+          }
+          if (!loading) {
+            this.timestamp = new Date().toString()
+          }
+          setRefreshControl(loading, this.timestamp, startPolling, stopPolling, refetch)
+          return <GrcView
+            loading={!items && loading}
+            error={error}
+            grcItems={items}
+            secondaryHeaderProps={secondaryHeaderProps}
+          />
 
-          }
-          }
-        </Query>
-      </Page>
+        }
+        }
+      </Query>
     )
   }
 }

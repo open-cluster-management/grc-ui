@@ -31,11 +31,18 @@ class PolicyDetailsTab extends React.Component{
 
   static contextType = LocaleContext
 
+  static defaultProps = {
+    tab: 'status'
+  }
+
   render() {
     const {
-      tab,
-      policyName,
-      policyNamespace: hubNamespace,
+      match : {
+        params: {
+          name: policyName,
+          namespace: hubNamespace,
+        }
+      },
       location,
       history,
     } = this.props
@@ -90,12 +97,12 @@ class PolicyDetailsTab extends React.Component{
                   navigation={
                     <AcmSecondaryNav>
                       <AcmSecondaryNavItem
-                        isActive={tab !== 'status'}
+                        isActive={false}
                         onClick={() => history.push(`${config.contextPath}/all/${hubNamespace}/${policyName}`)}>
                           {msgs.get('tabs.details', locale)}
                       </AcmSecondaryNavItem>
                       <AcmSecondaryNavItem
-                        isActive={tab === 'status'}
+                        isActive={true}
                         onClick={() => history.push(`${config.contextPath}/all/${hubNamespace}/${policyName}/status`)}>
                           {msgs.get('tabs.status', locale)}
                       </AcmSecondaryNavItem>
@@ -123,9 +130,7 @@ class PolicyDetailsTab extends React.Component{
 PolicyDetailsTab.propTypes = {
   history: PropTypes.object,
   location: PropTypes.object,
-  policyName: PropTypes.string,
-  policyNamespace: PropTypes.string,
-  tab: PropTypes.string,
+  match: PropTypes.object,
 }
 
 export default withRouter(PolicyDetailsTab)
