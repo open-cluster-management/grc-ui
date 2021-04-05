@@ -16,18 +16,6 @@ describeT('RHACM4K-2354 - GRC UI: [P1][Sev1][policy-grc] Check existent and non-
     cy.visit('/multicloud/policies/create').waitForPageContentLoad()
       .createPolicyFromYAML(rawPolicyYAML)
   })
-  it('Verify URLs for cluster name and policy that do exist', () => {
-    cy.visit('/multicloud/policies/policy/local-cluster/default.'+policyName).waitForPageContentLoad()
-    .checkPolicyNoResourcesIconMessage()
-    cy.visit('/multicloud/policies/policy/local-cluster/default.'+policyName+'/status').waitForPageContentLoad()
-    .checkPolicyNoResourcesIconMessage()
-  })
-  it('Verify URLs for cluster name and policy that dont exist', () => {
-    cy.visit('/multicloud/policies/policy/not-a-cluster/not-a-policy').waitForPageContentLoad()
-    .checkPolicyNoResourcesIconMessage(false)
-    cy.visit('/multicloud/policies/policy/not-a-cluster/not-a-policy/status').waitForPageContentLoad()
-    .checkPolicyNoResourcesIconMessage(false)
-  })
   it('Verify URLs for Namespace and policy that do exist', () => {
     cy.visit('/multicloud/policies/all/default/'+policyName).waitForPageContentLoad()
     .checkPolicyNoResourcesIconMessage()
