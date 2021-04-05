@@ -296,7 +296,6 @@ export const parseYAMLFromPolicyDiscovered = (policyDiscovered) => {
     yaml += '---\n'
     yaml += jsYaml.dump(plr.raw)
   })
-  console.log(yaml)
   return yaml
 }
 
