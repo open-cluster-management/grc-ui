@@ -144,15 +144,15 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
         .verifyViolationsInPolicyStatusTemplates(policyName, confPolicies[policyName], clusterViolations, confViolationPatterns)
     })
 
-    for (const clusterName of clusterList) {
-      it(`Verify policy details & templates on cluster ${clusterName} detailed page`, () => {
-        cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`).waitForPageContentLoad()
-        cy.goToPolicyClusterPage(policyName, confPolicies[policyName], clusterName)
-          .verifyPolicyDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
-          .verifyPolicyTemplatesInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations)
-          .verifyPolicyViolationDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
-      })
-    }
+    // for (const clusterName of clusterList) {
+    //   it(`Verify policy details & templates on cluster ${clusterName} detailed page`, () => {
+    //     cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`).waitForPageContentLoad()
+    //     cy.goToPolicyClusterPage(policyName, confPolicies[policyName], clusterName)
+    //       .verifyPolicyDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+    //       .verifyPolicyTemplatesInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations)
+    //       .verifyPolicyViolationDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+    //   })
+    // }
 
   }
 
@@ -252,15 +252,15 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
           .verifyViolationsInPolicyStatusTemplates(policyName, confPolicies[policyName], clusterViolations, confViolationPatterns)
       })
 
-      for (const clusterName of clusterList) {
-        it(`Verify policy details & templates on cluster ${clusterName} detailed page`, () => {
-          cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`).waitForPageContentLoad()
-          cy.goToPolicyClusterPage(policyName, confPolicies[policyName], clusterName)
-            .verifyPolicyDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
-            .verifyPolicyTemplatesInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations)
-            .verifyPolicyViolationDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
-        })
-      }
+      // for (const clusterName of clusterList) {
+      //   it(`Verify policy details & templates on cluster ${clusterName} detailed page`, () => {
+      //     cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`).waitForPageContentLoad()
+      //     cy.goToPolicyClusterPage(policyName, confPolicies[policyName], clusterName)
+      //       .verifyPolicyDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+      //       .verifyPolicyTemplatesInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations)
+      //       .verifyPolicyViolationDetailsInCluster(policyName, confPolicies[policyName], clusterName, clusterViolations, confViolationPatterns)
+      //   })
+      // }
 
     }
   }

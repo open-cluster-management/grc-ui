@@ -474,12 +474,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                         <div
                           className="one-cluster-status"
                         >
-                          <a
-                            href="/multicloud/policies/policy/calamari/default.case6-test-policy"
-                            onClick={[Function]}
-                          >
-                            calamari
-                          </a>
+                          calamari
                           <div
                             className="table-status-row"
                           >

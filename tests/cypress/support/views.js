@@ -497,8 +497,8 @@ export const isClusterPolicyStatusAvailable = (clusterViolations, clusterList=nu
         for (const clusterName in clusterViolations) {
           cy.wrap(decisions).within(() => {
             // find cluster name
-            cy.get('a').contains(clusterName)
-              .next().as('clusterStatus')
+            cy.get('.one-cluster-status').contains(clusterName)
+              .get('.table-status-row').as('clusterStatus')
               // check status
               .then(() => {
                 if (clusterViolations[clusterName]) {  // do the check only if we have violation details for the cluster

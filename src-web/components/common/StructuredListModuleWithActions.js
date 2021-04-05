@@ -21,7 +21,6 @@ import _ from 'lodash'
 import msgs from '../../../nls/platform.properties'
 import resources from '../../../lib/shared/resources'
 import { transform } from '../../../lib/client/resource-helper'
-import { Link } from 'react-router-dom'
 import { resourceActions } from './ResourceTableRowMenuItemActions'
 import { connect } from 'react-redux'
 import StatusField from '../../components/common/StatusField'
@@ -149,10 +148,10 @@ StructuredListModule.formatDecisionsWithLinkAndIcon = (
   resourceKey, data, clusterStatus, location, context
 ) => {
   const decisions = _.get(data[resourceKey], 'decisions')
-  const hubNamespace = _.get(data,'metadata.namespace')
-  const urlSegments = location.pathname.replace(/\/$/, '').split('/')
-  const baseUrl = urlSegments.slice(0, urlSegments.length- 3 ).join('/')
-  const policyName = urlSegments[urlSegments.length-1]
+  // const hubNamespace = _.get(data,'metadata.namespace')
+  // const urlSegments = location.pathname.replace(/\/$/, '').split('/')
+  // const baseUrl = urlSegments.slice(0, urlSegments.length- 3 ).join('/')
+  // const policyName = urlSegments[urlSegments.length-1]
   const links = []
   _.forEach(decisions, (item) => {
     const cluster = _.get(item, 'clusterName')
@@ -164,7 +163,7 @@ StructuredListModule.formatDecisionsWithLinkAndIcon = (
       statusIcon = <StatusField status='unknown' text={msgs.get('policy.status.unknown',context.locale)} />
     }
     links.push(<div className='one-cluster-status' key={`${cluster}-container`}>
-      <Link to= {`${baseUrl}/policy/${cluster}/${hubNamespace}.${policyName}`} >{cluster}</Link>
+      {cluster}
       {statusIcon}
     </div>)
   })

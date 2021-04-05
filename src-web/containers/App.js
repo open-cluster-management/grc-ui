@@ -22,7 +22,6 @@ import PolicyDetailsTab from './PolicyDetailsTab'
 import PolicyStatusTab from './PolicyStatusTab'
 import PolicyStatusHistoryTab from './PolicyStatusHistoryTab'
 import PolicyTemplateDetails from './PolicyTemplateDetails'
-import PolicyDetailsByCluster from './PolicyDetailsByCluster'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
@@ -71,7 +70,6 @@ class App extends React.Component {
             <Route path={`${match.url}/all/:namespace/:name`} exact component={PolicyDetailsTab} />
             <Route path={`${match.url}/all`} exact component={PoliciesTab} />
             <Route path={`${match.url}/create`} exact component={CreationTab} />
-            <Route path={`${match.url}/policy/:clusterName/:name`} component={PolicyDetailsByCluster} />
             <Redirect to={`${config.contextPath}/all`} />
           </Switch>
          </Page>
