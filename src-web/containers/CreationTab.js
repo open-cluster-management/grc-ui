@@ -11,7 +11,7 @@ import { createResources, createAndUpdateResources,
   clearRequestStatus, fetchSingleResource } from '../actions/common'
 import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { CREATE_POLICY_DISCOVERY } from '../../lib/client/queries'
+import { CREATE_POLICY_DISCOVERY, EDIT_POLICY_DISCOVERY } from '../../lib/client/queries'
 import CreationView from '../components/modules/CreationView'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
@@ -36,6 +36,7 @@ export class CreationTab extends React.Component {
     handleCreateResources: PropTypes.func,
     handleFetchResource: PropTypes.func,
     history: PropTypes.object.isRequired,
+    match: PropTypes.object,
     mutateErrorMsg: PropTypes.string,
     mutatePBErrorMsg: PropTypes.string,
     mutatePRErrorMsg: PropTypes.string,
@@ -173,7 +174,14 @@ export class CreationTab extends React.Component {
   }
 
   render () {
-    const { history, mutateStatus, mutateErrorMsg, mutatePBErrorMsg, mutatePRErrorMsg, updateStatus, userAccess } = this.props
+    const { history, mutateStatus, mutateErrorMsg, mutatePBErrorMsg, mutatePRErrorMsg, updateStatus, userAccess,
+      match : {
+        params: {
+          name,
+          namespace,
+        }
+      }
+    } = this.props
     const { updateRequested } = this.state
     const { locale } = this.context
     if (userAccess && userAccess.length > 0 && checkCreatePermission(userAccess) !== 1) {
@@ -183,12 +191,14 @@ export class CreationTab extends React.Component {
       this.props.cleanReqStatus && this.props.cleanReqStatus()
       return <Redirect to={`${config.contextPath}/all`} />
     }
+    const isEdit = namespace !== undefined && name !== undefined
+    const query = isEdit ? EDIT_POLICY_DISCOVERY : CREATE_POLICY_DISCOVERY
     return (
-      <Query query={CREATE_POLICY_DISCOVERY}>
+      <Query query={query} variables={{ name, namespace }}>
         {( result ) => {
           const { loading } = result
           const { data={} } = result
-          const { discoveries } = data
+          const { discoveries, policyDiscoveries } = data
           const errored = discoveries ? false : true
           const error = discoveries ? null : result.error
           if (!loading && error) {
@@ -217,7 +227,7 @@ export class CreationTab extends React.Component {
           }
           return (
             <AcmPage>
-              <AcmPageHeader title={msgs.get('button.create.policy', locale)}
+              <AcmPageHeader title={isEdit?msgs.get('button.edit.policy', locale):msgs.get('button.create.policy', locale)}
                 titleTooltip={msgs.get('policy.create.tooltip', locale)}
                 controls={
                   <React.Fragment>
@@ -225,16 +235,17 @@ export class CreationTab extends React.Component {
                       onClick={() => history.push(`${config.contextPath}/all`)}>
                       {msgs.get('button.cancel', locale)}
                     </AcmButton>
-                    <AcmButton id='create'
+                    <AcmButton id={isEdit?'edit':'create'}
                       tooltip={msgs.get('error.permission.disabled', locale)}
                       onClick={() => this.clickChild()}>
-                      {msgs.get('button.create', locale)}
+                      {isEdit?msgs.get('button.edit', locale):msgs.get('button.create', locale)}
                     </AcmButton>
                   </React.Fragment>
                 }>
               </AcmPageHeader>
               <CreationView
                 onCreate={click => this.clickChild = click}
+                policyDiscovered={policyDiscoveries && policyDiscoveries[0]}
                 discovered={discoveries}
                 fetchControl={fetchControl}
                 createControl={createControl}

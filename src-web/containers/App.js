@@ -66,6 +66,7 @@ class App extends React.Component {
             <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
             <Route path={`${match.url}/all/:namespace/:name/status/:cluster/templates/:template/history`} exact component={PolicyStatusHistoryTab} />
             <Route path={`${match.url}/all/:namespace/:name/template/:cluster/:apiGroup/:version/:kind/:template`} exact component={PolicyTemplateDetails} />
+            <Route path={`${match.url}/all/:namespace/:name/edit`} exact component={CreationTab} />
             <Route path={`${match.url}/all/:namespace/:name/status`} exact component={PolicyStatusTab} />
             <Route path={`${match.url}/all/:namespace/:name`} exact component={PolicyDetailsTab} />
             <Route path={`${match.url}/all`} exact component={PoliciesTab} />

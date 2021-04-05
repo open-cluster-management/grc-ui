@@ -12,19 +12,13 @@
 'use strict'
 
 import { updateModal } from '../../actions/common'
+import config from '../../../lib/shared/config'
 import _ from 'lodash'
 
 export const resourceActions = (action, dispatch, resourceType, data) => {
   switch (action) {
   case 'table.actions.edit': {
-    return dispatch(updateModal(
-      { open: true, type: 'resource-edit', action: 'put', resourceType, editorMode: 'json',
-        label: {
-          primaryBtn: 'modal.button.submit',
-          label: `modal.edit-${resourceType.name.toLowerCase()}.label`,
-          heading: `modal.edit-${resourceType.name.toLowerCase()}.heading`
-        },
-        data: { kind: resourceType.name, ...data }}))
+    return window.open(`${config.contextPath}/all/${data.namespace}/${data.name}/edit`, '_self')
   }
   case 'table.actions.launch.cluster':{
     const consoleURL = _.get(data, 'consoleURL')

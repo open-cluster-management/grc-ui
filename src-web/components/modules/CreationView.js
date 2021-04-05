@@ -158,6 +158,7 @@ export default class CreationView extends React.Component {
       isFailed: PropTypes.bool,
     }),
     onCreate: PropTypes.func.isRequired,
+    policyDiscovered: PropTypes.object,
     updateControl: PropTypes.shape({
       updateResource: PropTypes.func,
       cancelUpdate: PropTypes.func,
@@ -170,9 +171,10 @@ export default class CreationView extends React.Component {
 
   render() {
     const { locale } = this.context
-    const {onCreate, fetchControl, createControl, buildControl, updateControl, discovered, createAndUpdateControl} = this.props
+    const {onCreate, fetchControl, createControl, buildControl, updateControl, discovered, policyDiscovered, createAndUpdateControl} = this.props
     return (
       <TemplateEditor
+        policyDiscovered={policyDiscovered}
         onCreate={onCreate}
         template={policyTemplate}
         controlData={getControlData(discovered, locale)}

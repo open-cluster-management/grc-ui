@@ -15,12 +15,23 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { CreationTab } from '../../../src-web/containers/CreationTab'
 
+const match = {
+  'path': '/multicloud/policies/all/:namespace/:name',
+  'url': '/multicloud/policies/all/default/policy-certificatepolicy',
+  'isExact': true,
+  'params': {
+    'name': 'policy-certificatepolicy',
+    'namespace': 'default',
+  }
+}
+
 describe('CreationTab container', () => {
   it('renders as expected', () => {
     const component = shallow(<CreationTab
       secondaryHeaderProps={{title:'testing1'}}
       updateSecondaryHeader={jest.fn()}
       mutateStatus={'DONE'}
+      match={match}
     />)
     expect(component.instance()).toMatchSnapshot()
   })
@@ -29,6 +40,7 @@ describe('CreationTab container', () => {
     const component = shallow(<CreationTab
       secondaryHeaderProps={{title:'testing2'}}
       handleCreateResources={jest.fn()}
+      match={match}
     />)
     expect(component.instance()).toMatchSnapshot()
     component.instance().handleCreate()

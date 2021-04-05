@@ -21,10 +21,17 @@ describe('ResourceTableRowMenuItemActions', () => {
       'name': 'HCMCompliance',
       'query': 'ALL_POLICIES'
     }
+    const data = {
+      namespace: 'default',
+      name: 'policy-pod'
+    }
+    window.open = jest.fn()
     const dispatch = jest.fn()
-    expect(resourceActions(action, dispatch, resourceType, {}, true, {})).toBeUndefined()
-    expect(dispatch).toHaveBeenCalledTimes(1)
-    expect(dispatch.mock.calls[0]).toMatchSnapshot()
+    expect(resourceActions(action, dispatch, resourceType, data, true, {})).toBeUndefined()
+    expect(dispatch).not.toHaveBeenCalled()
+    expect(window.open).toHaveBeenCalledTimes(1)
+    expect(window.open.mock.calls[0]).toMatchSnapshot()
+    window.open.mockClear()
   })
   it('table.actions.launch.cluster is called as expected', () => {
     const action = 'table.actions.launch.cluster'

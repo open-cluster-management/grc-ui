@@ -52,27 +52,8 @@ Array [
 
 exports[`ResourceTableRowMenuItemActions table.actions.edit is called as expected 1`] = `
 Array [
-  Object {
-    "data": Object {
-      "action": "put",
-      "data": Object {
-        "kind": "HCMCompliance",
-      },
-      "editorMode": "json",
-      "label": Object {
-        "heading": "modal.edit-hcmcompliance.heading",
-        "label": "modal.edit-hcmcompliance.label",
-        "primaryBtn": "modal.button.submit",
-      },
-      "open": true,
-      "resourceType": Object {
-        "name": "HCMCompliance",
-        "query": "ALL_POLICIES",
-      },
-      "type": "resource-edit",
-    },
-    "type": "MODAL_UPDATE",
-  },
+  "undefined/all/default/policy-pod/edit",
+  "_self",
 ]
 `;
 
