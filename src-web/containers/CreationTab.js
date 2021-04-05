@@ -238,7 +238,7 @@ export class CreationTab extends React.Component {
                     <AcmButton id={isEdit?'edit':'create'}
                       tooltip={msgs.get('error.permission.disabled', locale)}
                       onClick={() => this.clickChild()}>
-                      {isEdit?msgs.get('button.edit', locale):msgs.get('button.create', locale)}
+                      {isEdit?msgs.get('button.save', locale):msgs.get('button.create', locale)}
                     </AcmButton>
                   </React.Fragment>
                 }>
