@@ -87,7 +87,6 @@ export default class TemplateEditor extends React.Component {
       let { controlData, templateYAML, templateObject } = state
       // initialize controlData, templateYAML, templateObject
       if (!controlData) {
-        console.log('getDerivedStateFromProps controldata')
         controlData = initializeControlData(template, initialControlData)
         let isCustomName = false
         if (policyDiscovered) {
@@ -124,7 +123,7 @@ export default class TemplateEditor extends React.Component {
     this.multiSelectCmpMap = {}
     this.parseDebounced = _.debounce(()=>{
       this.handleParse()
-    }, 500).bind(this)
+    }, 500)
     this.handleEditorCommand = this.handleEditorCommand.bind(this)
     this.handleSearchChange = this.handleSearchChange.bind(this)
     this.handleUpdateResource = this.handleUpdateResource.bind(this)

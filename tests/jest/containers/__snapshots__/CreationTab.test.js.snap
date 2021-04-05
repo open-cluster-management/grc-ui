@@ -332,7 +332,10 @@ CreationTab {
                         "kind": "SelectionSet",
                         "selections": Array [
                           Object {
-                            "alias": undefined,
+                            "alias": Object {
+                              "kind": "Name",
+                              "value": "policy",
+                            },
                             "arguments": Array [],
                             "directives": Array [],
                             "kind": "Field",
@@ -449,7 +452,7 @@ CreationTab {
             ],
             "kind": "Document",
             "loc": Object {
-              "end": 434,
+              "end": 442,
               "start": 0,
             },
           }
