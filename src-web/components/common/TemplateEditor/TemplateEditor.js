@@ -94,9 +94,7 @@ export default class TemplateEditor extends React.Component {
           templateObject = parseYAML(templateYAML).parsed
           if (Object.keys(templateObject).some(item => templateObject[item].length>0)) {
             controlData = _.cloneDeep(controlData)
-            if (updateControls(controlData, templateObject, templateObject, locale)) {
-              isCustomName = true
-            }
+            isCustomName = updateControls(controlData, templateObject, templateObject, locale)
           }
         } else {
           templateYAML = generateYAML(template, controlData)

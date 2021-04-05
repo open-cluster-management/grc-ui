@@ -59,8 +59,9 @@ class App extends React.Component {
     const { match } = this.props
     return (
       <LocaleContext.Provider value={serverProps.context}>
-         <Page>
+        <Page>
           <Switch>
+            {/* Removes trailing slashes in the URL */}
             <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
             {/* Removes duplicate slashes in the middle of the URL */}
             <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
@@ -73,7 +74,7 @@ class App extends React.Component {
             <Route path={`${match.url}/create`} exact component={CreationTab} />
             <Redirect to={`${config.contextPath}/all`} />
           </Switch>
-         </Page>
+        </Page>
         <Modal locale={serverProps.context.locale} />
       </LocaleContext.Provider>
     )
