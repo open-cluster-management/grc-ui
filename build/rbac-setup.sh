@@ -48,7 +48,7 @@ fi
 if [ ! $(oc -n openshift-config get oauth cluster -o jsonpath='{.spec.identityProviders[*].name}' | grep -o 'grc-e2e-htpasswd') ]; then
   oc patch -n openshift-config oauth cluster --type json --patch "$(cat ${RBAC_DIR}/e2e-rbac-auth.json)"
 fi
-oc apply --validate=false -k ${RBAC_DIR}
+oc apply --validate=false -k ${RBAC_DIR} || true
 
 export OC_CLUSTER_USER=e2e-cluster-admin-cluster
 export OC_HUB_CLUSTER_PASS=${RBAC_PASS}
