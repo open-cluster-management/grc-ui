@@ -26,9 +26,7 @@
   .creation-view-split-container {
     width: 100%;
     &.showEditor {
-      // height: calc(100vh - 190px);
       .creation-view-controls-container {
-        // height: calc(100vh - 16.67rem);
         display: flex;
         flex-direction: column;
       }
