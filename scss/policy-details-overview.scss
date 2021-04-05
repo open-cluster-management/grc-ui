@@ -17,6 +17,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  padding: 0 1.5rem;
   margin-left: -.625rem;
   margin-right: -.625rem;
   .violationCell {
@@ -86,9 +87,6 @@
       .pf-c-accordion {
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 
-        & > dt {
-          padding: 0.5rem;
-        }
         .pf-c-accordion__expanded-content-body {
           border-top: 1px solid #DFE3E6;
           display: flex;

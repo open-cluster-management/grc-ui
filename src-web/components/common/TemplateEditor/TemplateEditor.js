@@ -88,17 +88,17 @@ export default class TemplateEditor extends React.Component {
       // initialize controlData, templateYAML, templateObject
       if (!controlData) {
         controlData = initializeControlData(template, initialControlData)
+        templateYAML = generateYAML(template, controlData)
+        templateObject = parseYAML(templateYAML).parsed
         let isCustomName = false
         if (policyDiscovered) {
           templateYAML = parseYAMLFromPolicyDiscovered(policyDiscovered)
           templateObject = parseYAML(templateYAML).parsed
+          isCustomName = true
           if (Object.keys(templateObject).some(item => templateObject[item].length>0)) {
             controlData = _.cloneDeep(controlData)
-            isCustomName = updateControls(controlData, templateObject, templateObject, locale)
+            updateControls(controlData, [], templateObject, locale)
           }
-        } else {
-          templateYAML = generateYAML(template, controlData)
-          templateObject = parseYAML(templateYAML).parsed
         }
         return { controlData, templateYAML, templateObject, isCustomName }
       }
@@ -212,6 +212,7 @@ export default class TemplateEditor extends React.Component {
             split="vertical"
             minSize={300}
             maxSize={-500}
+            style={{position:'unset'}}
             ref={this.setSplitPaneRef}
             defaultSize={this.handleSplitterDefault()}
             onChange={this.handleSplitterChange}
@@ -632,7 +633,7 @@ export default class TemplateEditor extends React.Component {
       const controlsSize = this.handleSplitterDefault()
       const rect = this.containerRef.getBoundingClientRect()
       const width = rect.width - controlsSize - 15
-      const height = rect.height - 80
+      const height = rect.height
       this.editor.layout({width, height})
     }
   }

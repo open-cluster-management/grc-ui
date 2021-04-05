@@ -13,7 +13,7 @@
 .creation-view {
   display: flex;
   position: relative;
-  margin-top: -10px;
+  padding: 0 1.5rem;
 
   .bx--inline-notification__text-wrapper {
     display:block
@@ -25,29 +25,16 @@
 
   .creation-view-split-container {
     width: 100%;
-
-    div.SplitPane {
-      div.Pane1 {
-        position: unset !important;
-      }
-    }
-
-    .creation-view-controls-container {
-      margin-top: 30px;
-    }
-
     &.showEditor {
-      height: calc(100vh - 190px);
-
+      // height: calc(100vh - 190px);
       .creation-view-controls-container {
-        height: calc(100vh - 16.67rem);
-        margin-top: 40px;
+        // height: calc(100vh - 16.67rem);
         display: flex;
         flex-direction: column;
       }
 
       .creation-view-yaml {
-        height: calc(100% - 30px);
+        height: 100%;
         position: relative;
 
         &-header {

@@ -6,6 +6,7 @@
 
 .page-content-container {
   .policy-status-history-view {
+    padding: 0 1.5rem;
     .table {
       .pattern-fly-table {
         margin-top: 1.5rem;
@@ -15,12 +16,10 @@
         font-family: RedHatText;
         font-size: var(--pf-global--FontSize--md);
         font-weight: var(--pf-global--FontWeight--bold);
-        background-color: $acm-background-color;
       }
       .pf-c-title.pf-m-md {
         font-family: RedHatText;
         font-size: var(--pf-global--FontSize--md);
-        background-color: $acm-background-color;
       }
     }
   }

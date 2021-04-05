@@ -21,7 +21,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
           "msUserSelect": "text",
           "outline": "none",
           "overflow": "hidden",
-          "position": "absolute",
+          "position": "unset",
           "right": 0,
           "userSelect": "text",
         }

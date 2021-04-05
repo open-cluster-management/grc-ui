@@ -6,11 +6,12 @@
 
 .page-content-container {
   .policy-template-details-view {
+    padding: 0 1.5rem;
     .title {
       font-family: RedHatText;
       font-size: var(--pf-global--FontSize--md);
       font-weight: var(--pf-global--FontWeight--bold);
-      background-color: $acm-background-color;
+      // background-color: $acm-background-color;
     }
     
     .details {
@@ -21,12 +22,11 @@
         background: $color__white;
         margin-right: .75rem;
         dl {
-          padding: 1rem;
-            dd {
-              > div {
-                overflow-wrap: anywhere
-              }
+          dd {
+            > div {
+              overflow-wrap: anywhere
             }
+          }
         }
       }
       .yaml {
