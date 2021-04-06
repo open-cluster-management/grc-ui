@@ -35,6 +35,8 @@ spec:
                 metadata:
                   name: [ISSUERNAME]
                   namespace: [ISSUERNAMESPACE]
+                  labels:
+                    e2e: true
                 spec:
                   selfSigned: {}
 ---

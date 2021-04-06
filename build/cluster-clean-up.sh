@@ -13,6 +13,7 @@ function hub() {
             oc delete placementbindings.policy.open-cluster-management.io  -n $ns --all || true
             oc delete placementrules.apps.open-cluster-management.io -n $ns --all || true
         done
+    oc delete ns -l e2e=true || true
 }
 
 function managed() {
@@ -31,6 +32,7 @@ function managed() {
     oc delete role deployments-role -n default || true
     oc delete rolebinding operatoruser-rolebinding -n default || true
     oc delete scc restricted-scc || true
+    oc delete ns -l e2e=true || true
 }
 
 case $1 in
