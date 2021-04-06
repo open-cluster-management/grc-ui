@@ -57,7 +57,7 @@ jobs:
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
     - stage: build
       name: "Build the test image"
-      # if: type != pull_request AND type != cron AND branch = main
+      if: type != pull_request AND type != cron AND branch = main
       script:
         - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
