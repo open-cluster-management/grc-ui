@@ -21,19 +21,6 @@ const acmVersion = (token) => {
     })
 }
 
-const oauthTokenEndpoint = (token) => {
-    return cy.request({
-        url: apiUrl + '/.well-known/oauth-authorization-server',
-        headers: {
-            Authorization: 'Bearer ' + token,
-            'Content-Type': 'application/json',
-            Accept: 'application/json'
-        }
-    }).then(resp => {
-        return resp.body['token_endpoint']
-    })
-}
-
 export const oauthIssuer = (token) => {
     return cy.request({
         url: apiUrl + '/.well-known/oauth-authorization-server',
