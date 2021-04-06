@@ -36,7 +36,7 @@ spec:
                   name: [ISSUERNAME]
                   namespace: [ISSUERNAMESPACE]
                   labels:
-                    e2e: true
+                    e2e: "true"
                 spec:
                   selfSigned: {}
 ---

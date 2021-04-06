@@ -12,7 +12,7 @@ import { getConfigObject } from '../config'
 // simple function that would help us to generate unique resource names
 function uName(suffix) {
   const id = (Cypress.env('RESOURCE_ID') === '') ? '-' : '-'+Cypress.env('RESOURCE_ID')+'-'
-  return 'issue3677'+id+suffix
+  return 'issue7520'+id+suffix
 }
 
 const confClusters = getConfigObject('clusters.yaml')
