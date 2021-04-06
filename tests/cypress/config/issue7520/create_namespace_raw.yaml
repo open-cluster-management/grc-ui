@@ -33,6 +33,8 @@ spec:
               apiVersion: v1
               metadata:
                 name: [NAMESPACENAME]
+                labels:
+                  e2e: "true"
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
