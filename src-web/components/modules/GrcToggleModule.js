@@ -116,7 +116,7 @@ class GrcToggleModule extends React.Component {
   }
 
   tableActionResolver = (rowData) => {
-    const { getResourceAction, userAccess, grcTabToggleIndex} = this.props
+    const { getResourceAction, userAccess, grcTabToggleIndex, history } = this.props
     const { locale } = this.context
     const userAccessHash = formatUserAccess(userAccess)
     const actionsList = []
@@ -178,7 +178,7 @@ class GrcToggleModule extends React.Component {
                 title: createDisableTooltip(disableFlag, action, locale, msgs.get(action, locale)),
                 isDisabled: disableFlag ? true : false,
                 onClick: () =>
-                  (disableFlag ? null : getResourceAction(action, row, resourceType))
+                  (disableFlag ? null : getResourceAction(action, row, resourceType, history))
               }
             )
           }
@@ -194,6 +194,7 @@ GrcToggleModule.propTypes = {
   grcItems: PropTypes.array,
   grcTabToggleIndex: PropTypes.number,
   handleToggleClick: PropTypes.func,
+  history: PropTypes.object.isRequired,
   showGrcTabToggle: PropTypes.bool,
   status: PropTypes.string,
   userAccess: PropTypes.array,
@@ -210,8 +211,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getResourceAction: (action, resource, resourceType) =>
-      resourceActions(action, dispatch, resourceType, resource)
+    getResourceAction: (action, resource, resourceType, history) =>
+      resourceActions(action, dispatch, resourceType, resource, history)
   }
 }
 

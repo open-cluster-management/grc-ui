@@ -273,25 +273,815 @@ exports[`PolicyTemplateDetails container test renders as expected 1`] = `
         }
       }
     >
-      <Spinner
-        className="patternfly-spinner"
-      >
-        <span
-          aria-valuetext="Loading..."
-          className="pf-c-spinner pf-m-xl patternfly-spinner"
-          role="progressbar"
+      <AcmPage>
+        <Page
+          defaultManagedSidebarIsOpen={true}
+          isBreadcrumbWidthLimited={false}
+          isManagedSidebar={false}
+          isNotificationDrawerExpanded={false}
+          mainTabIndex={-1}
+          onNotificationDrawerExpand={[Function]}
+          onPageResize={[Function]}
         >
-          <span
-            className="pf-c-spinner__clipper"
-          />
-          <span
-            className="pf-c-spinner__lead-ball"
-          />
-          <span
-            className="pf-c-spinner__tail-ball"
-          />
-        </span>
-      </Spinner>
+          <div
+            className="pf-c-page"
+          >
+            <main
+              className="pf-c-page__main"
+              tabIndex={-1}
+            >
+              <AcmPageHeader
+                breadcrumb={
+                  Array [
+                    Object {
+                      "text": "Policies",
+                      "to": undefined,
+                    },
+                    Object {
+                      "text": undefined,
+                      "to": "undefined/all/undefined/undefined",
+                    },
+                    Object {
+                      "text": "Status",
+                      "to": "undefined/all/undefined/undefined/status",
+                    },
+                    Object {
+                      "text": undefined,
+                    },
+                  ]
+                }
+                controls={
+                  <React.Fragment>
+                    <AcmAutoRefreshSelect
+                      initRefreshTime={10}
+                      refetch={[Function]}
+                      refreshIntervalCookie="acm-grc-refresh-interval"
+                      refreshIntervals={
+                        Array [
+                          5,
+                          10,
+                          30,
+                          60,
+                          300,
+                          1800,
+                          0,
+                        ]
+                      }
+                    />
+                    <AcmRefreshTime
+                      reloading={true}
+                    />
+                  </React.Fragment>
+                }
+              >
+                <PageSection
+                  variant="light"
+                >
+                  <section
+                    className="pf-c-page__main-section pf-m-light"
+                  >
+                    <Split
+                      hasGutter={true}
+                    >
+                      <div
+                        className="pf-l-split pf-m-gutter"
+                      >
+                        <SplitItem
+                          isFilled={true}
+                        >
+                          <div
+                            className="pf-l-split__item pf-m-fill"
+                          >
+                            <Stack
+                              hasGutter={true}
+                            >
+                              <div
+                                className="pf-l-stack pf-m-gutter"
+                              >
+                                <StackItem>
+                                  <div
+                                    className="pf-l-stack__item"
+                                  >
+                                    <AcmBreadcrumb
+                                      breadcrumb={
+                                        Array [
+                                          Object {
+                                            "text": "Policies",
+                                            "to": undefined,
+                                          },
+                                          Object {
+                                            "text": undefined,
+                                            "to": "undefined/all/undefined/undefined",
+                                          },
+                                          Object {
+                                            "text": "Status",
+                                            "to": "undefined/all/undefined/undefined/status",
+                                          },
+                                          Object {
+                                            "text": undefined,
+                                          },
+                                        ]
+                                      }
+                                    >
+                                      <Breadcrumb>
+                                        <nav
+                                          aria-label="Breadcrumb"
+                                          className="pf-c-breadcrumb"
+                                          data-ouia-component-id="OUIA-Generated-Breadcrumb-1"
+                                          data-ouia-component-type="PF4/Breadcrumb"
+                                          data-ouia-safe={true}
+                                        >
+                                          <ol
+                                            className="pf-c-breadcrumb__list"
+                                          >
+                                            <BreadcrumbItem
+                                              key=".0"
+                                              showDivider={false}
+                                            >
+                                              <li
+                                                className="pf-c-breadcrumb__item"
+                                              >
+                                                <Link
+                                                  className="pf-c-breadcrumb__link"
+                                                >
+                                                  <LinkAnchor
+                                                    className="pf-c-breadcrumb__link"
+                                                    href=""
+                                                    navigate={[Function]}
+                                                  >
+                                                    <a
+                                                      className="pf-c-breadcrumb__link"
+                                                      href=""
+                                                      onClick={[Function]}
+                                                    >
+                                                      Policies
+                                                    </a>
+                                                  </LinkAnchor>
+                                                </Link>
+                                              </li>
+                                            </BreadcrumbItem>
+                                            <BreadcrumbItem
+                                              key=".$undefined/all/undefined/undefined"
+                                              showDivider={true}
+                                            >
+                                              <li
+                                                className="pf-c-breadcrumb__item"
+                                              >
+                                                <span
+                                                  className="pf-c-breadcrumb__item-divider"
+                                                >
+                                                  <AngleRightIcon
+                                                    color="currentColor"
+                                                    noVerticalAlign={false}
+                                                    size="sm"
+                                                  >
+                                                    <svg
+                                                      aria-hidden={true}
+                                                      aria-labelledby={null}
+                                                      fill="currentColor"
+                                                      height="1em"
+                                                      role="img"
+                                                      style={
+                                                        Object {
+                                                          "verticalAlign": "-0.125em",
+                                                        }
+                                                      }
+                                                      viewBox="0 0 256 512"
+                                                      width="1em"
+                                                    >
+                                                      <path
+                                                        d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                                                      />
+                                                    </svg>
+                                                  </AngleRightIcon>
+                                                </span>
+                                                <Link
+                                                  className="pf-c-breadcrumb__link"
+                                                  to="undefined/all/undefined/undefined"
+                                                >
+                                                  <LinkAnchor
+                                                    className="pf-c-breadcrumb__link"
+                                                    href="/undefined/all/undefined/undefined"
+                                                    navigate={[Function]}
+                                                  >
+                                                    <a
+                                                      className="pf-c-breadcrumb__link"
+                                                      href="/undefined/all/undefined/undefined"
+                                                      onClick={[Function]}
+                                                    />
+                                                  </LinkAnchor>
+                                                </Link>
+                                              </li>
+                                            </BreadcrumbItem>
+                                            <BreadcrumbItem
+                                              key=".$undefined/all/undefined/undefined/status"
+                                              showDivider={true}
+                                            >
+                                              <li
+                                                className="pf-c-breadcrumb__item"
+                                              >
+                                                <span
+                                                  className="pf-c-breadcrumb__item-divider"
+                                                >
+                                                  <AngleRightIcon
+                                                    color="currentColor"
+                                                    noVerticalAlign={false}
+                                                    size="sm"
+                                                  >
+                                                    <svg
+                                                      aria-hidden={true}
+                                                      aria-labelledby={null}
+                                                      fill="currentColor"
+                                                      height="1em"
+                                                      role="img"
+                                                      style={
+                                                        Object {
+                                                          "verticalAlign": "-0.125em",
+                                                        }
+                                                      }
+                                                      viewBox="0 0 256 512"
+                                                      width="1em"
+                                                    >
+                                                      <path
+                                                        d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                                                      />
+                                                    </svg>
+                                                  </AngleRightIcon>
+                                                </span>
+                                                <Link
+                                                  className="pf-c-breadcrumb__link"
+                                                  to="undefined/all/undefined/undefined/status"
+                                                >
+                                                  <LinkAnchor
+                                                    className="pf-c-breadcrumb__link"
+                                                    href="/undefined/all/undefined/undefined/status"
+                                                    navigate={[Function]}
+                                                  >
+                                                    <a
+                                                      className="pf-c-breadcrumb__link"
+                                                      href="/undefined/all/undefined/undefined/status"
+                                                      onClick={[Function]}
+                                                    >
+                                                      Status
+                                                    </a>
+                                                  </LinkAnchor>
+                                                </Link>
+                                              </li>
+                                            </BreadcrumbItem>
+                                            <BreadcrumbItem
+                                              key=".3"
+                                              showDivider={true}
+                                            >
+                                              <li
+                                                className="pf-c-breadcrumb__item"
+                                              >
+                                                <span
+                                                  className="pf-c-breadcrumb__item-divider"
+                                                >
+                                                  <AngleRightIcon
+                                                    color="currentColor"
+                                                    noVerticalAlign={false}
+                                                    size="sm"
+                                                  >
+                                                    <svg
+                                                      aria-hidden={true}
+                                                      aria-labelledby={null}
+                                                      fill="currentColor"
+                                                      height="1em"
+                                                      role="img"
+                                                      style={
+                                                        Object {
+                                                          "verticalAlign": "-0.125em",
+                                                        }
+                                                      }
+                                                      viewBox="0 0 256 512"
+                                                      width="1em"
+                                                    >
+                                                      <path
+                                                        d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                                                      />
+                                                    </svg>
+                                                  </AngleRightIcon>
+                                                </span>
+                                                <a
+                                                  aria-current="page"
+                                                  className="pf-c-breadcrumb__link pf-m-current"
+                                                />
+                                              </li>
+                                            </BreadcrumbItem>
+                                          </ol>
+                                        </nav>
+                                      </Breadcrumb>
+                                    </AcmBreadcrumb>
+                                  </div>
+                                </StackItem>
+                                <StackItem>
+                                  <div
+                                    className="pf-l-stack__item"
+                                  >
+                                    <TextContent>
+                                      <div
+                                        className="pf-c-content"
+                                      >
+                                        <Title
+                                          headingLevel="h1"
+                                        >
+                                          <h1
+                                            className="pf-c-title pf-m-2xl"
+                                          />
+                                        </Title>
+                                      </div>
+                                    </TextContent>
+                                  </div>
+                                </StackItem>
+                              </div>
+                            </Stack>
+                          </div>
+                        </SplitItem>
+                        <SplitItem>
+                          <div
+                            className="pf-l-split__item"
+                          >
+                            <Stack
+                              hasGutter={true}
+                            >
+                              <div
+                                className="pf-l-stack pf-m-gutter"
+                              >
+                                <StackItem
+                                  style={
+                                    Object {
+                                      "alignItems": "flex-end",
+                                      "display": "flex",
+                                      "flexDirection": "column",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    className="pf-l-stack__item"
+                                    style={
+                                      Object {
+                                        "alignItems": "flex-end",
+                                        "display": "flex",
+                                        "flexDirection": "column",
+                                      }
+                                    }
+                                  >
+                                    <AcmAutoRefreshSelect
+                                      initRefreshTime={10}
+                                      refetch={[Function]}
+                                      refreshIntervalCookie="acm-grc-refresh-interval"
+                                      refreshIntervals={
+                                        Array [
+                                          5,
+                                          10,
+                                          30,
+                                          60,
+                                          300,
+                                          1800,
+                                          0,
+                                        ]
+                                      }
+                                    >
+                                      <div
+                                        className="makeStyles-container-1"
+                                      >
+                                        <div
+                                          aria-label="refresh-icon"
+                                          className="makeStyles-reloadButton-2"
+                                          id="refresh-icon"
+                                          onClick={[Function]}
+                                          onKeyPress={[Function]}
+                                          role="button"
+                                          tabIndex={0}
+                                        >
+                                          <SyncAltIcon
+                                            className="makeStyles-icon-4"
+                                            color="currentColor"
+                                            noVerticalAlign={false}
+                                            size="sm"
+                                          >
+                                            <svg
+                                              aria-hidden={true}
+                                              aria-labelledby={null}
+                                              className="makeStyles-icon-4"
+                                              fill="currentColor"
+                                              height="1em"
+                                              role="img"
+                                              style={
+                                                Object {
+                                                  "verticalAlign": "-0.125em",
+                                                }
+                                              }
+                                              viewBox="0 0 512 512"
+                                              width="1em"
+                                            >
+                                              <path
+                                                d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z"
+                                              />
+                                            </svg>
+                                          </SyncAltIcon>
+                                        </div>
+                                        <Dropdown
+                                          aria-label="refetch-intervals"
+                                          className="makeStyles-buttonTitle-3"
+                                          dropdownItems={
+                                            Array [
+                                              <DropdownItem
+                                                id="refresh-5s"
+                                                onClick={[Function]}
+                                                pi={5000}
+                                              >
+                                                Refresh every 5s
+                                              </DropdownItem>,
+                                              <DropdownItem
+                                                id="refresh-10s"
+                                                onClick={[Function]}
+                                                pi={10000}
+                                              >
+                                                Refresh every 10s
+                                              </DropdownItem>,
+                                              <DropdownItem
+                                                id="refresh-30s"
+                                                onClick={[Function]}
+                                                pi={30000}
+                                              >
+                                                Refresh every 30s
+                                              </DropdownItem>,
+                                              <DropdownItem
+                                                id="refresh-1m"
+                                                onClick={[Function]}
+                                                pi={60000}
+                                              >
+                                                Refresh every 1m
+                                              </DropdownItem>,
+                                              <DropdownItem
+                                                id="refresh-5m"
+                                                onClick={[Function]}
+                                                pi={300000}
+                                              >
+                                                Refresh every 5m
+                                              </DropdownItem>,
+                                              <DropdownItem
+                                                id="refresh-30m"
+                                                onClick={[Function]}
+                                                pi={1800000}
+                                              >
+                                                Refresh every 30m
+                                              </DropdownItem>,
+                                              <DropdownItem
+                                                id="refresh-disable"
+                                                onClick={[Function]}
+                                                pi={0}
+                                              >
+                                                Disable refresh
+                                              </DropdownItem>,
+                                            ]
+                                          }
+                                          id="refresh-dropdown"
+                                          isOpen={false}
+                                          isPlain={true}
+                                          onSelect={[Function]}
+                                          toggle={
+                                            <DropdownToggle
+                                              aria-label="refresh-label"
+                                              id="refresh-toggle"
+                                              isDisabled={false}
+                                              onToggle={[Function]}
+                                            >
+                                              Refresh every 10s
+                                            </DropdownToggle>
+                                          }
+                                        >
+                                          <DropdownWithContext
+                                            aria-label="refetch-intervals"
+                                            autoFocus={true}
+                                            className="makeStyles-buttonTitle-3"
+                                            direction="down"
+                                            dropdownItems={
+                                              Array [
+                                                <DropdownItem
+                                                  id="refresh-5s"
+                                                  onClick={[Function]}
+                                                  pi={5000}
+                                                >
+                                                  Refresh every 5s
+                                                </DropdownItem>,
+                                                <DropdownItem
+                                                  id="refresh-10s"
+                                                  onClick={[Function]}
+                                                  pi={10000}
+                                                >
+                                                  Refresh every 10s
+                                                </DropdownItem>,
+                                                <DropdownItem
+                                                  id="refresh-30s"
+                                                  onClick={[Function]}
+                                                  pi={30000}
+                                                >
+                                                  Refresh every 30s
+                                                </DropdownItem>,
+                                                <DropdownItem
+                                                  id="refresh-1m"
+                                                  onClick={[Function]}
+                                                  pi={60000}
+                                                >
+                                                  Refresh every 1m
+                                                </DropdownItem>,
+                                                <DropdownItem
+                                                  id="refresh-5m"
+                                                  onClick={[Function]}
+                                                  pi={300000}
+                                                >
+                                                  Refresh every 5m
+                                                </DropdownItem>,
+                                                <DropdownItem
+                                                  id="refresh-30m"
+                                                  onClick={[Function]}
+                                                  pi={1800000}
+                                                >
+                                                  Refresh every 30m
+                                                </DropdownItem>,
+                                                <DropdownItem
+                                                  id="refresh-disable"
+                                                  onClick={[Function]}
+                                                  pi={0}
+                                                >
+                                                  Disable refresh
+                                                </DropdownItem>,
+                                              ]
+                                            }
+                                            id="refresh-dropdown"
+                                            isGrouped={false}
+                                            isOpen={false}
+                                            isPlain={true}
+                                            menuAppendTo="inline"
+                                            onSelect={[Function]}
+                                            position="left"
+                                            toggle={
+                                              <DropdownToggle
+                                                aria-label="refresh-label"
+                                                id="refresh-toggle"
+                                                isDisabled={false}
+                                                onToggle={[Function]}
+                                              >
+                                                Refresh every 10s
+                                              </DropdownToggle>
+                                            }
+                                          >
+                                            <div
+                                              aria-label="refetch-intervals"
+                                              className="pf-c-dropdown makeStyles-buttonTitle-3"
+                                              data-ouia-component-id="OUIA-Generated-Dropdown-1"
+                                              data-ouia-component-type="PF4/Dropdown"
+                                              data-ouia-safe={true}
+                                              id="refresh-dropdown"
+                                            >
+                                              <DropdownToggle
+                                                aria-haspopup={true}
+                                                aria-label="refresh-label"
+                                                getMenuRef={[Function]}
+                                                id="refresh-toggle"
+                                                isDisabled={false}
+                                                isOpen={false}
+                                                isPlain={true}
+                                                key=".0"
+                                                onEnter={[Function]}
+                                                onToggle={[Function]}
+                                                parentRef={
+                                                  Object {
+                                                    "current": <div
+                                                      aria-label="refetch-intervals"
+                                                      class="pf-c-dropdown makeStyles-buttonTitle-3"
+                                                      data-ouia-component-id="OUIA-Generated-Dropdown-1"
+                                                      data-ouia-component-type="PF4/Dropdown"
+                                                      data-ouia-safe="true"
+                                                      id="refresh-dropdown"
+                                                    >
+                                                      <button
+                                                        aria-expanded="false"
+                                                        aria-haspopup="true"
+                                                        aria-label="refresh-label"
+                                                        class="pf-c-dropdown__toggle pf-m-plain"
+                                                        data-ouia-component-id="OUIA-Generated-DropdownToggle-1"
+                                                        data-ouia-component-type="PF4/DropdownToggle"
+                                                        data-ouia-safe="true"
+                                                        id="refresh-toggle"
+                                                        type="button"
+                                                      >
+                                                        <span
+                                                          class="pf-c-dropdown__toggle-text"
+                                                        >
+                                                          Refresh every 10s
+                                                        </span>
+                                                        <span
+                                                          class="pf-c-dropdown__toggle-icon"
+                                                        >
+                                                          <svg
+                                                            aria-hidden="true"
+                                                            fill="currentColor"
+                                                            height="1em"
+                                                            role="img"
+                                                            style="vertical-align: -0.125em;"
+                                                            viewBox="0 0 320 512"
+                                                            width="1em"
+                                                          >
+                                                            <path
+                                                              d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                                                            />
+                                                          </svg>
+                                                        </span>
+                                                      </button>
+                                                    </div>,
+                                                  }
+                                                }
+                                              >
+                                                <Toggle
+                                                  aria-haspopup={true}
+                                                  aria-label="refresh-label"
+                                                  bubbleEvent={false}
+                                                  className=""
+                                                  data-ouia-component-id="OUIA-Generated-DropdownToggle-1"
+                                                  data-ouia-component-type="PF4/DropdownToggle"
+                                                  data-ouia-safe={true}
+                                                  getMenuRef={[Function]}
+                                                  id="refresh-toggle"
+                                                  isActive={false}
+                                                  isDisabled={false}
+                                                  isOpen={false}
+                                                  isPlain={true}
+                                                  isPrimary={false}
+                                                  isSplitButton={false}
+                                                  onEnter={[Function]}
+                                                  onToggle={[Function]}
+                                                  parentRef={
+                                                    Object {
+                                                      "current": <div
+                                                        aria-label="refetch-intervals"
+                                                        class="pf-c-dropdown makeStyles-buttonTitle-3"
+                                                        data-ouia-component-id="OUIA-Generated-Dropdown-1"
+                                                        data-ouia-component-type="PF4/Dropdown"
+                                                        data-ouia-safe="true"
+                                                        id="refresh-dropdown"
+                                                      >
+                                                        <button
+                                                          aria-expanded="false"
+                                                          aria-haspopup="true"
+                                                          aria-label="refresh-label"
+                                                          class="pf-c-dropdown__toggle pf-m-plain"
+                                                          data-ouia-component-id="OUIA-Generated-DropdownToggle-1"
+                                                          data-ouia-component-type="PF4/DropdownToggle"
+                                                          data-ouia-safe="true"
+                                                          id="refresh-toggle"
+                                                          type="button"
+                                                        >
+                                                          <span
+                                                            class="pf-c-dropdown__toggle-text"
+                                                          >
+                                                            Refresh every 10s
+                                                          </span>
+                                                          <span
+                                                            class="pf-c-dropdown__toggle-icon"
+                                                          >
+                                                            <svg
+                                                              aria-hidden="true"
+                                                              fill="currentColor"
+                                                              height="1em"
+                                                              role="img"
+                                                              style="vertical-align: -0.125em;"
+                                                              viewBox="0 0 320 512"
+                                                              width="1em"
+                                                            >
+                                                              <path
+                                                                d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                                                              />
+                                                            </svg>
+                                                          </span>
+                                                        </button>
+                                                      </div>,
+                                                    }
+                                                  }
+                                                >
+                                                  <button
+                                                    aria-expanded={false}
+                                                    aria-haspopup={true}
+                                                    aria-label="refresh-label"
+                                                    className="pf-c-dropdown__toggle pf-m-plain"
+                                                    data-ouia-component-id="OUIA-Generated-DropdownToggle-1"
+                                                    data-ouia-component-type="PF4/DropdownToggle"
+                                                    data-ouia-safe={true}
+                                                    disabled={false}
+                                                    id="refresh-toggle"
+                                                    onClick={[Function]}
+                                                    onKeyDown={[Function]}
+                                                    type="button"
+                                                  >
+                                                    <span
+                                                      className="pf-c-dropdown__toggle-text"
+                                                    >
+                                                      Refresh every 10s
+                                                    </span>
+                                                    <span
+                                                      className="pf-c-dropdown__toggle-icon"
+                                                    >
+                                                      <CaretDownIcon
+                                                        color="currentColor"
+                                                        noVerticalAlign={false}
+                                                        size="sm"
+                                                      >
+                                                        <svg
+                                                          aria-hidden={true}
+                                                          aria-labelledby={null}
+                                                          fill="currentColor"
+                                                          height="1em"
+                                                          role="img"
+                                                          style={
+                                                            Object {
+                                                              "verticalAlign": "-0.125em",
+                                                            }
+                                                          }
+                                                          viewBox="0 0 320 512"
+                                                          width="1em"
+                                                        >
+                                                          <path
+                                                            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                                                          />
+                                                        </svg>
+                                                      </CaretDownIcon>
+                                                    </span>
+                                                  </button>
+                                                </Toggle>
+                                              </DropdownToggle>
+                                            </div>
+                                          </DropdownWithContext>
+                                        </Dropdown>
+                                      </div>
+                                    </AcmAutoRefreshSelect>
+                                    <AcmRefreshTime
+                                      reloading={true}
+                                    >
+                                      <div
+                                        className="makeStyles-timestamp-5"
+                                      >
+                                        <Spinner
+                                          size="sm"
+                                        >
+                                          <span
+                                            aria-valuetext="Loading..."
+                                            className="pf-c-spinner pf-m-sm"
+                                            role="progressbar"
+                                          >
+                                            <span
+                                              className="pf-c-spinner__clipper"
+                                            />
+                                            <span
+                                              className="pf-c-spinner__lead-ball"
+                                            />
+                                            <span
+                                              className="pf-c-spinner__tail-ball"
+                                            />
+                                          </span>
+                                        </Spinner>
+                                        <p>
+                                          Last update: 
+                                          Invalid date
+                                        </p>
+                                      </div>
+                                    </AcmRefreshTime>
+                                  </div>
+                                </StackItem>
+                              </div>
+                            </Stack>
+                          </div>
+                        </SplitItem>
+                      </div>
+                    </Split>
+                  </section>
+                </PageSection>
+              </AcmPageHeader>
+              <Spinner
+                className="patternfly-spinner"
+              >
+                <span
+                  aria-valuetext="Loading..."
+                  className="pf-c-spinner pf-m-xl patternfly-spinner"
+                  role="progressbar"
+                >
+                  <span
+                    className="pf-c-spinner__clipper"
+                  />
+                  <span
+                    className="pf-c-spinner__lead-ball"
+                  />
+                  <span
+                    className="pf-c-spinner__tail-ball"
+                  />
+                </span>
+              </Spinner>
+            </main>
+          </div>
+        </Page>
+      </AcmPage>
     </Query>
   </PolicyTemplateDetails>
 </withRouter(PolicyTemplateDetails)>

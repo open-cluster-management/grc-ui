@@ -25,13 +25,13 @@ describe('ResourceTableRowMenuItemActions', () => {
       namespace: 'default',
       name: 'policy-pod'
     }
-    window.open = jest.fn()
+    const history = { push: jest.fn() }
     const dispatch = jest.fn()
-    expect(resourceActions(action, dispatch, resourceType, data, true, {})).toBeUndefined()
+    expect(resourceActions(action, dispatch, resourceType, data, history)).toBeUndefined()
     expect(dispatch).not.toHaveBeenCalled()
-    expect(window.open).toHaveBeenCalledTimes(1)
-    expect(window.open.mock.calls[0]).toMatchSnapshot()
-    window.open.mockClear()
+    expect(history.push).toHaveBeenCalledTimes(1)
+    expect(history.push.mock.calls[0]).toMatchSnapshot()
+    history.push.mockClear()
   })
   it('table.actions.launch.cluster is called as expected', () => {
     const action = 'table.actions.launch.cluster'

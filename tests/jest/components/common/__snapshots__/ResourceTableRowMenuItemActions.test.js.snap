@@ -53,7 +53,6 @@ Array [
 exports[`ResourceTableRowMenuItemActions table.actions.edit is called as expected 1`] = `
 Array [
   "undefined/all/default/policy-pod/edit",
-  "_self",
 ]
 `;
 

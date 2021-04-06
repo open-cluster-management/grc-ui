@@ -56,61 +56,65 @@ class PolicyDetailsTab extends React.Component{
         if (!loading) {
           this.timestamp = new Date().toString()
         }
-        if (error) {
-          return <DangerNotification error={error} />
-        } else if (loading && items === undefined) {
-          return <Spinner className='patternfly-spinner' />
-        } else if (items.length === 0){
-          return <NoResource
-            title={msgs.get('error.not.found', locale)}
-            svgName='EmptyPagePlanet-illus.png'>
-          </NoResource>
-        } else {
-          const item = items[0]
-          return (
-            <AcmPage>
-              <AcmPageHeader
-                title={name}
-                breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath }, { text: name }]}
-                controls={
-                  <React.Fragment>
-                    <AcmAutoRefreshSelect refetch={refetch}
-                      refreshIntervals={REFRESH_INTERVALS}
-                      refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
-                      initRefreshTime={INITIAL_REFRESH_TIME} />
-                    <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
-                    <AcmButton id='edit-policy' isDisabled={false}
-                      tooltip={msgs.get('error.permission.disabled', locale)}
-                      onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}/edit`)}>
-                      {msgs.get('routes.edit.policy', locale)}
-                    </AcmButton>
-                  </React.Fragment>
+        return (
+          <AcmPage>
+            <AcmPageHeader
+              title={name}
+              breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath }, { text: name }]}
+              controls={
+                <React.Fragment>
+                  <AcmAutoRefreshSelect refetch={refetch}
+                    refreshIntervals={REFRESH_INTERVALS}
+                    refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
+                    initRefreshTime={INITIAL_REFRESH_TIME} />
+                  <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
+                  <AcmButton id='edit-policy' isDisabled={false}
+                    tooltip={msgs.get('error.permission.disabled', locale)}
+                    onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}/edit`)}>
+                    {msgs.get('routes.edit.policy', locale)}
+                  </AcmButton>
+                </React.Fragment>
+              }
+              navigation={
+                <AcmSecondaryNav>
+                  <AcmSecondaryNavItem
+                    isActive={true}
+                    onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}`)}>
+                      {msgs.get('tabs.details', locale)}
+                  </AcmSecondaryNavItem>
+                  <AcmSecondaryNavItem
+                    isActive={false}
+                    onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}/status`)}>
+                      {msgs.get('tabs.status', locale)}
+                  </AcmSecondaryNavItem>
+                </AcmSecondaryNav>
+              }>
+            </AcmPageHeader>
+            {(() => {
+              if (error) {
+                  return <DangerNotification error={error} />
+                } else if (loading && items === undefined) {
+                  return <Spinner className='patternfly-spinner' />
+                } else if (items.length === 0){
+                  return <NoResource
+                    title={msgs.get('error.not.found', locale)}
+                    svgName='EmptyPagePlanet-illus.png'>
+                  </NoResource>
+                } else {
+                  const item = items[0]
+                  return (
+                    <PolicyDetailsOverview
+                      loading={!items && loading}
+                      error={error}
+                      item={item}
+                      resourceType={resourceType}
+                      staticResourceData={staticResourceData}
+                    />
+                  )
                 }
-                navigation={
-                  <AcmSecondaryNav>
-                    <AcmSecondaryNavItem
-                      isActive={true}
-                      onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}`)}>
-                        {msgs.get('tabs.details', locale)}
-                    </AcmSecondaryNavItem>
-                    <AcmSecondaryNavItem
-                      isActive={false}
-                      onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}/status`)}>
-                        {msgs.get('tabs.status', locale)}
-                    </AcmSecondaryNavItem>
-                  </AcmSecondaryNav>
-                }>
-              </AcmPageHeader>
-              <PolicyDetailsOverview
-                loading={!items && loading}
-                error={error}
-                item={item}
-                resourceType={resourceType}
-                staticResourceData={staticResourceData}
-              />
-            </AcmPage>
-          )
-        }
+            })()}
+          </AcmPage>
+        )
       }}
     </Query>
   }

@@ -120,7 +120,7 @@ export class GrcView extends React.Component {
     const { locale } = this.context
     const { viewState } = this.state
     const {
-      loading, error, grcItems, activeFilters={}, location, access
+      loading, error, grcItems, activeFilters={}, location, access, history
     } = this.props
     if (loading) {
       return <Spinner className='patternfly-spinner' />
@@ -181,6 +181,7 @@ export class GrcView extends React.Component {
           handleDrillDownClick={this.handleDrillDownClickGrcView}
         />
         <GrcToggleModule
+          history={history}
           grcItems={filterGrcItems}
           grcTabToggleIndex={grcTabToggleIndex}
           showGrcTabToggle={showGrcTabToggle}

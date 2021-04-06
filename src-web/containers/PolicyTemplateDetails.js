@@ -44,38 +44,41 @@ class PolicyTemplateDetails extends React.Component {
           if (!loading) {
             this.timestamp = new Date().toString()
           }
-          if (error) {
-            return (
-              <DangerNotification error={error} />
-            )
-          }
-          const { items } = data
-          if (items) {
-            return (
-              <AcmPage>
-                <AcmPageHeader title= {template}
-                  breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath },
-                    { text: name, to: `${config.contextPath}/all/${namespace}/${name}`},
-                    { text: msgs.get('table.header.status', locale), to: `${config.contextPath}/all/${namespace}/${name}/status`},
-                    { text: template}]}
-                  controls={
-                    <React.Fragment>
-                      <AcmAutoRefreshSelect refetch={refetch}
-                        refreshIntervals={REFRESH_INTERVALS}
-                        refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
-                        initRefreshTime={INITIAL_REFRESH_TIME} />
-                      <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
-                    </React.Fragment>
-                  }>
-                </AcmPageHeader>
-                <PolicyTemplateDetailsView template={items} selfLink={selfLink} />
-            </AcmPage>
-            )
-          } else {
-            return (
-              <Spinner className='patternfly-spinner' />
-            )
-          }
+          return (
+            <AcmPage>
+              <AcmPageHeader title= {template}
+                breadcrumb={[{ text: msgs.get('routes.policies', locale), to: config.contextPath },
+                  { text: name, to: `${config.contextPath}/all/${namespace}/${name}`},
+                  { text: msgs.get('table.header.status', locale), to: `${config.contextPath}/all/${namespace}/${name}/status`},
+                  { text: template}]}
+                controls={
+                  <React.Fragment>
+                    <AcmAutoRefreshSelect refetch={refetch}
+                      refreshIntervals={REFRESH_INTERVALS}
+                      refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
+                      initRefreshTime={INITIAL_REFRESH_TIME} />
+                    <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
+                  </React.Fragment>
+                }>
+              </AcmPageHeader>
+              {(() => {
+                const { items } = data
+                if (error) {
+                  return (
+                    <DangerNotification error={error} />
+                  )
+                } else if (items) {
+                  return <PolicyTemplateDetailsView template={items} selfLink={selfLink} />
+                } else {
+                  return (
+                    <Spinner className='patternfly-spinner' />
+                  )
+                }
+
+              })()}
+
+          </AcmPage>
+          )
         }}
       </Query>
     )

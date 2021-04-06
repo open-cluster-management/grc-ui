@@ -15,10 +15,10 @@ import { updateModal } from '../../actions/common'
 import config from '../../../lib/shared/config'
 import _ from 'lodash'
 
-export const resourceActions = (action, dispatch, resourceType, data) => {
+export const resourceActions = (action, dispatch, resourceType, data, history) => {
   switch (action) {
   case 'table.actions.edit': {
-    return window.open(`${config.contextPath}/all/${data.namespace}/${data.name}/edit`, '_self')
+    return history.push(`${config.contextPath}/all/${data.namespace}/${data.name}/edit`)
   }
   case 'table.actions.launch.cluster':{
     const consoleURL = _.get(data, 'consoleURL')
