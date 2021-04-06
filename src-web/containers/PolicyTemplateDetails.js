@@ -34,12 +34,11 @@ class PolicyTemplateDetails extends React.Component {
   }
 
   render() {
-    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE), 10) || INITIAL_REFRESH_TIME*1000
     const { match: { params: { name, namespace, cluster, apiGroup, version, kind, template }}} = this.props
     const { locale } = this.context
     const selfLink = `/apis/${apiGroup}/${version}/namespaces/${cluster}/${kind}/${template}`
     return (
-      <Query query={POLICY_TEMPLATE_DETAILS} variables={{name:template, cluster, kind, selfLink}} pollInterval={pollInterval} notifyOnNetworkStatusChange >
+      <Query query={POLICY_TEMPLATE_DETAILS} variables={{name:template, cluster, kind, selfLink}} notifyOnNetworkStatusChange >
         {(result) => {
           const { data={}, loading, refetch, error } = result
           if (!loading) {

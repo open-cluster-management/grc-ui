@@ -34,14 +34,12 @@ class PolicyStatusHistoryTab extends React.Component {
   }
 
   render() {
-    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE), 10) || INITIAL_REFRESH_TIME*1000
     const { match: { params: { name, namespace, cluster, template }}} = this.props
     const { locale } = this.context
     return (
       <Query
         query={POLICY_STATUS_HISTORY}
         variables={{policyName:name, hubNamespace:namespace, cluster, template}}
-        pollInterval={pollInterval}
         notifyOnNetworkStatusChange
       >
         {(result) => {
@@ -78,7 +76,7 @@ class PolicyStatusHistoryTab extends React.Component {
                   template={template}
                   cluster={cluster}
                 />
-            </AcmPage>
+              </AcmPage>
             )
           } else {
             return (

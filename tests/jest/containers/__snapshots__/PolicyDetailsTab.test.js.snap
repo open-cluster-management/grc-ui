@@ -89,7 +89,6 @@ exports[`PolicyTemplateTab container test renders as expected 1`] = `
   >
     <Query
       notifyOnNetworkStatusChange={true}
-      pollInterval={10000}
       query={
         Object {
           "definitions": Array [

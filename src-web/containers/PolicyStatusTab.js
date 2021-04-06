@@ -36,12 +36,10 @@ class PolicyDetailsTab extends React.Component{
       history,
     } = this.props
     const { locale } = this.context
-    const pollInterval = parseInt(localStorage.getItem(REFRESH_INTERVAL_COOKIE), 10) || INITIAL_REFRESH_TIME*1000
     return (
       <Query
         query={POLICY_STATUS}
         variables={{policyName, hubNamespace}}
-        pollInterval={pollInterval}
         notifyOnNetworkStatusChange
       >
       {(result) => {
@@ -94,11 +92,6 @@ class PolicyDetailsTab extends React.Component{
                         onClick={() => history.push(`${config.contextPath}/all/${hubNamespace}/${policyName}/status`)}>
                           {msgs.get('tabs.status', locale)}
                       </AcmSecondaryNavItem>
-                      {/* <AcmSecondaryNavItem
-                        isActive={tab === 'yaml'}
-                        onClick={() => history.push(`${config.contextPath}/all/${hubNamespace}/${policyName}/yaml`)}>
-                          {msgs.get('tabs.yaml', locale)}
-                      </AcmSecondaryNavItem> */}
                     </AcmSecondaryNav>
                   }>
                 </AcmPageHeader>
