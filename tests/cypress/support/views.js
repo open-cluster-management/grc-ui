@@ -805,31 +805,31 @@ export const verifyPolicyInPolicyHistory = (uName) => {
   })
 }
 
-export const verifyPolicyByYAML = (uName, originalYAML, ingoreClusterSelector=true) => {
-  cy.CheckGrcMainPage()
-  cy.get('.grc-view-by-policies-table').within(() => {
-    cy.get('a')
-      .contains(uName)
-      .parents('td')
-      .siblings('td')
-      .last()
-      .click()
-  })
-  .then(() => {
-    cy.get('button').contains('Edit', { matchCase: false }).click()
-  })
-  .then(() => {
-    cy.get('.pf-c-modal-box').within(() => {
-      cy.log(ingoreClusterSelector)
-      // // eslint-disable-next-line cypress/no-assigning-return-values
-      // const acutalYAML = cy.YAMLeditor().first().invoke('getValue')
-      // cy.log(acutalYAML)
-    })
-  })
+// export const verifyPolicyByYAML = (uName, originalYAML, ingoreClusterSelector=true) => {
+//   cy.CheckGrcMainPage()
+//   cy.get('.grc-view-by-policies-table').within(() => {
+//     cy.get('a')
+//       .contains(uName)
+//       .parents('td')
+//       .siblings('td')
+//       .last()
+//       .click()
+//   })
+//   .then(() => {
+//     cy.get('button').contains('Edit', { matchCase: false }).click()
+//   })
+//   .then(() => {
+//     cy.get('.pf-c-modal-box').within(() => {
+//       cy.log(ingoreClusterSelector)
+//       // // eslint-disable-next-line cypress/no-assigning-return-values
+//       // const acutalYAML = cy.YAMLeditor().first().invoke('getValue')
+//       // cy.log(acutalYAML)
+//     })
+//   })
 
-  // after mainpage table action, always return to grc main page
-  cy.CheckGrcMainPage()
-}
+//   // after mainpage table action, always return to grc main page
+//   cy.CheckGrcMainPage()
+// }
 
 export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
   const templates = new Set()

@@ -3,7 +3,7 @@
 
 /// <reference types="cypress" />
 import { describeT } from '../support/tagging'
-import { getDefaultSubstitutionRules, verifyPolicyInPolicyStatus, verifyPolicyByYAML } from '../support/views'
+import { getDefaultSubstitutionRules, verifyPolicyInPolicyStatus/*, verifyPolicyByYAML */} from '../support/views'
 import { test_applyPolicyYAML } from  '../support/tests'
 import { getUniqueResourceName } from '../scripts/utils'
 import { getConfigObject } from '../config'
@@ -70,11 +70,11 @@ describeT('@extended RHACM4K-2294 - GRC UI: [P1][Sev1][policy-grc] - Certificate
     })
   })
 
-  it(`Validate yaml of created policy ${uCertificatePolicyName} from edit YAML action`, () => {
-    // we could use a different way how to return to this page
-    cy.visit('/multicloud/policies/all')
-    verifyPolicyByYAML(uCertificatePolicyName, certificatePolicyYAML, true)
-  })
+  // it(`Validate yaml of created policy ${uCertificatePolicyName} from edit YAML action`, () => {
+  //   // we could use a different way how to return to this page
+  //   cy.visit('/multicloud/policies/all')
+  //   verifyPolicyByYAML(uCertificatePolicyName, certificatePolicyYAML, true)
+  // })
 
   it(`Validate disable of the policy ${uCertificatePolicyName}`, () => {
     // we could use a different way how to return to this page
@@ -154,11 +154,11 @@ describeT('@extended RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - Certificate
     })
   })
 
-  it(`Validate yaml of created policy ${uCertificatePolicyName} from edit YAML action`, () => {
-    // we could use a different way how to return to this page
-    cy.visit('/multicloud/policies/all')
-    verifyPolicyByYAML(uCertificatePolicyName, certificatePolicyYAML, true)
-  })
+  // it(`Validate yaml of created policy ${uCertificatePolicyName} from edit YAML action`, () => {
+  //   // we could use a different way how to return to this page
+  //   cy.visit('/multicloud/policies/all')
+  //   verifyPolicyByYAML(uCertificatePolicyName, certificatePolicyYAML, true)
+  // })
 
   it(`Validate disable of the policy ${uCertificatePolicyName}`, () => {
     // we could use a different way how to return to this page
