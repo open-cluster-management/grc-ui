@@ -69,7 +69,7 @@ jobs:
         - COMPONENT_VERSION="latest" COMPONENT_TAG_EXTENSION="-dev" make component/push;
     - stage: build
       name: "Build the test image"
-      # if: type = push AND branch =~ /^release-[0-9]+\..*$/
+      if: type = push AND branch =~ /^release-[0-9]+\..*$/
       script:
         - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;

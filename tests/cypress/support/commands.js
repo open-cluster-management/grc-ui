@@ -245,6 +245,7 @@ Cypress.Commands.add('waitForPageContentLoad', () => {
 
 Cypress.Commands.add('CheckGrcMainPage', () => {
   cy.location('pathname').should('eq', '/multicloud/policies/all')
+  window.localStorage.setItem('acm-grc-refresh-interval', 5000)
   pageLoader.shouldNotExist()
   cy.get('.pf-c-page__main-section .pf-c-title').contains('Governance and risk')
   cy.get('.page-content-container > div').should('be.visible')
