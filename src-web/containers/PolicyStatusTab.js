@@ -62,7 +62,7 @@ class PolicyDetailsTab extends React.Component{
                   <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
                   <AcmButton id='edit-policy' isDisabled={false}
                     tooltip={msgs.get('error.permission.disabled', locale)}
-                    onClick={() => history.push(`${config.contextPath}/edit`)}>
+                    onClick={() => history.push(`${config.contextPath}/all/${hubNamespace}/${policyName}/edit`)}>
                     {msgs.get('routes.edit.policy', locale)}
                   </AcmButton>
                 </React.Fragment>
