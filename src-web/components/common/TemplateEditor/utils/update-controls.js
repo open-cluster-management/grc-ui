@@ -279,8 +279,19 @@ export const getTemplateSource = (reverse, parsed) => {
   })
   return ret.join('\n')
 }
-
-export const parseYAMLFromPolicyDiscovered = (policyDiscovered) => {
+export const dumpYAMLFromTemplateObject = (templateObject) => {
+  let yaml = ''
+  Object.keys(templateObject).map(key=>{
+    templateObject[key].map(obj=>{
+      if (yaml !== '') {
+        yaml += '---\n'
+      }
+      yaml += jsYaml.dump(obj.$raw)
+    })
+  })
+  return yaml
+}
+export const dumpYAMLFromPolicyDiscovered = (policyDiscovered) => {
   let yaml = ''
   const policy = policyDiscovered.policy
   if (policy) {

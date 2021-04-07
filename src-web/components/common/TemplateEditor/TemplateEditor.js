@@ -25,7 +25,7 @@ import {
   RadioButton,
   Modal} from 'carbon-components-react'
 import { Spinner, Tooltip } from '@patternfly/react-core'
-import { initializeControlData, cacheUserData, updateControls, parseYAML, parseYAMLFromPolicyDiscovered } from './utils/update-controls'
+import { initializeControlData, cacheUserData, updateControls, parseYAML, dumpYAMLFromPolicyDiscovered, dumpYAMLFromTemplateObject } from './utils/update-controls'
 import { generateYAML, highlightChanges } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
 import YamlEditor from './components/YamlEditor'
@@ -92,7 +92,7 @@ export default class TemplateEditor extends React.Component {
         templateObject = parseYAML(templateYAML).parsed
         let isCustomName = false
         if (policyDiscovered) {
-          templateYAML = parseYAMLFromPolicyDiscovered(policyDiscovered)
+          templateYAML = dumpYAMLFromPolicyDiscovered(policyDiscovered)
           templateObject = parseYAML(templateYAML).parsed
           isCustomName = true
           if (Object.keys(templateObject).some(item => templateObject[item].length>0)) {
@@ -561,7 +561,7 @@ export default class TemplateEditor extends React.Component {
     const { locale } = this.props
     let updateName = false
     let { isCustomName } = this.state
-    const { controlData, templateYAML, updateMessage } = this.state
+    const { controlData, templateYAML, updateMessage, templateObject } = this.state
     const control = controlData.find(({id})=>id===field)
     switch (control.type) {
     case 'text':
@@ -602,14 +602,16 @@ export default class TemplateEditor extends React.Component {
     }
 
     const {template} = this.props
-    const newYAML = generateYAML(template, controlData)
-    const { parsed: templateObject, exceptions }= parseYAML(newYAML)
+    const newTemplateYAML = generateYAML(template, controlData)
+    const { parsed: newTemplateObject, exceptions }= parseYAML(newTemplateYAML)
+    const finalTemplateObject = _.merge(templateObject, newTemplateObject)
+    const finalYaml = dumpYAMLFromTemplateObject(finalTemplateObject)
     // Get highlight decorations
-    const highlights = highlightChanges(this.editor, templateYAML, newYAML)
+    const highlights = highlightChanges(this.editor, templateYAML, finalYaml)
     // Validate YAML and attach highlights and exception decorations
-    validateYAML(templateObject, controlData, exceptions, locale)
+    validateYAML(finalTemplateObject, controlData, exceptions, locale)
     this.handleExceptions(exceptions, highlights)
-    this.setState({controlData, isCustomName, templateYAML: newYAML, templateObject})
+    this.setState({controlData, isCustomName, templateYAML: finalYaml, templateObject: finalTemplateObject})
     // If updateMessage is not empty, then there might be a notification message that we'll need to update
     if (updateMessage) {
       this.handleExceptionNotification(exceptions, 'success.edit.policy.check', locale)
