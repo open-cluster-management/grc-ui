@@ -281,8 +281,8 @@ export const getTemplateSource = (reverse, parsed) => {
 }
 export const dumpYAMLFromTemplateObject = (templateObject) => {
   let yaml = ''
-  Object.keys(templateObject).map(key=>{
-    templateObject[key].map(obj=>{
+  Object.keys(templateObject).forEach(key=>{
+    templateObject[key].forEach(obj=>{
       if (yaml !== '') {
         yaml += '---\n'
       }
