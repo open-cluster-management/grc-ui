@@ -20,12 +20,38 @@ import thunkMiddleware from 'redux-thunk'
 import GrcApolloClient from '../../../lib/client/apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { Provider } from 'react-redux'
-import { staticResourceData } from './ContainersTestingData'
 import PolicyStatusTab from '../../../src-web/containers/PolicyStatusTab'
 
-const tabs = ['detail','status','yaml']
-const url = '/multicloud/policies/all/default/policy-gatekeeper'
-describe('PolicyDetail container test', () => {
+describe('PolicyStatusTab container test', () => {
+  it('renders as expected with access', () => {
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    const middleware = [thunkMiddleware]
+    const store = createStore(combineReducers(reducers), composeEnhancers(
+      applyMiddleware(...middleware)
+    ))
+    const userAccess = [
+      {
+        namespace: 'default',
+        rules: {
+          '*/*': [
+            '*'
+          ]
+        }
+      }
+    ]
+    const component = renderer.create(
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <PolicyStatusTab
+              userAccess={userAccess}
+            />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
   it('renders as expected', () => {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     const middleware = [thunkMiddleware]
@@ -36,11 +62,7 @@ describe('PolicyDetail container test', () => {
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>
         <Provider store={store}>
           <BrowserRouter>
-            <PolicyStatusTab
-              staticResourceData={staticResourceData}
-              tabs={tabs}
-              url={url}
-            />
+            <PolicyStatusTab />
           </BrowserRouter>
         </Provider>
       </ApolloProvider>
