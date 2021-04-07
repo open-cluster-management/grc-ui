@@ -165,7 +165,7 @@
     "mocha-junit-reporter": "^2.0.0",
     "mochawesome": "^6.1.1",
     "mochawesome-merge": "^4.2.0",
-    "nightwatch": "^1.5.1",
+    "nightwatch": "^1.6.2",
     "nightwatch-coverage": "^1.0.4",
     "nyc": "^15.1.0",
     "properties-parser": "^0.3.1",
