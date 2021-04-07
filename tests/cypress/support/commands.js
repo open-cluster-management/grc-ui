@@ -477,16 +477,10 @@ Cypress.Commands.add('fromGRCToPolicyDetailsPage', (policyName) => {
 })
 
 // the command does check the content of the /multicloud/policies/all/${namespace}/${policyName} page with respect to the user permissions
-// checks that PlacementRule and PlacementBinding Edit buttons are enabled/disabled accordingly
+// checks that Edit button is enabled/disabled
 Cypress.Commands.add('checkDetailedPolicyPageUserPermissions', (policyName, permissions) => {
-  const btnState = permissions.patch ? 'enabled' : 'disabled'
-  // need to search for button this way since disabled button is wrapped in an extra <div>
-  cy.get('h1').contains('Placement rule').parent().find('button').then($button => {
-      cy.wrap($button).should(`be.${btnState}`)
-    })
-    .get('h1').contains('Placement binding').parent().find('button').then($button => {
-       cy.wrap($button).should(`be.${btnState}`)
-    })
+  const btnState = permissions.patch ? 'false' : 'true'
+  cy.get('#edit-policy').should('have.attr', 'aria-disabled', btnState)
 })
 
 // the command does check controls availability at the Status tab of /multicloud/policies/all/${namespace}/${policyName}
@@ -496,6 +490,9 @@ Cypress.Commands.add('checkPolicyStatusPageUserPermissions', (policyName, permis
   if (namespaced) {  // not permitted to see the content
     cy.checkPolicyNoResourcesIconMessage(false, 'No policy status found')
   } else {
+    // checks that Edit button is enabled/disabled
+    const btnState = permissions.patch ? 'false' : 'true'
+    cy.get('#edit-policy').should('have.attr', 'aria-disabled', btnState)
     // The "View details" link should be disabled with a tooltip since it requires
     // permissions to create a managedClusterView
     cy.get('table[aria-label="Sortable Table"]').each(($table) => {  // for each table, on templates tab there could be more

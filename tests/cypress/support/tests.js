@@ -402,12 +402,17 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
         })
     })
 
-    // it(`Check ${firstPolicyName} policy YAML Editor page as ${userName}`, () => {
-    //   // click on YAML tab
-    //   cy.get('#yaml-tab').contains('YAML').click().waitForPageContentLoad()
-    //     .checkPolicyYAMLPageUserPermissions(permissions)
-    // })
-
+    it(`Check ${firstPolicyName} policy edit page as ${userName}`, () => {
+      return cy.url().then((pageURL) => {
+        const editPageURL = pageURL.replace('/status', '/edit')
+        cy.visit(editPageURL).waitForPageContentLoad()
+        if (permissions.patch) {
+          cy.url().should('eq', editPageURL)
+        } else {
+          cy.url().should('eq', '/multicloud/policies/all')
+        }
+      })
+    })
   }
 
   // If a user has multiple permissions for different namespaces, the create
