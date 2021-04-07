@@ -253,7 +253,7 @@ Cypress.Commands.add('CheckGrcMainPage', () => {
 
 Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
   cy.get('#create-policy').should('exist')
-  cy.get('#create-policy').click()
+  cy.get('#create-policy').should('have.attr', 'aria-disabled', 'false').click()
   cy.location('pathname').should('eq', '/multicloud/policies/create')
   pageLoader.shouldNotExist()
   cy.get('.pf-c-page__main-section .pf-c-title').contains('Create policy')
