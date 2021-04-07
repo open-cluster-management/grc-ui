@@ -15,15 +15,8 @@ describeT('GRC UI: [P1][Sev1][policy-grc] Welcome page', () => {
         cy.login()
     })
 
-    beforeEach(() => {
-        welcomePage.whenGoToWelcomePage()
-    })
-
-    after(() => {
-        cy.logout()
-    })
-
     it(`[P1][Sev1][${squad}] should load`, () => {
+        welcomePage.whenGoToWelcomePage()
         welcomePage.shouldExist()
     })
 

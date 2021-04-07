@@ -10,14 +10,14 @@ var apiUrl =
 
 const acmVersion = (token) => {
     return cy.request({
-        url: Cypress.config().baseUrl + '/multicloud/header/version',
+        url: Cypress.config().baseUrl + '/multicloud/common/version',
         headers: {
             Authorization: 'Bearer ' + token,
             'Content-Type': 'application/json',
             Accept: 'application/json'
         }
     }).then(resp => {
-        return resp.body['status']['currentVersion']
+        return resp.body['version']
     })
 }
 
@@ -41,70 +41,14 @@ export const welcomePage = {
         cy.get('.welcome--svcs').should('contain', 'Go to Overview').and('contain', 'Go to Clusters').and('contain', 'Go to Applications').and('contain', 'Go to Governance and risk')
     },
     validateSvcs: () => {
-        cy.contains('Go to Overview').click()
-        overviewPage.shouldExist()
-        cy.visit('/multicloud/welcome')
-        cy.contains('Go to Clusters').click()
-        cy.get('.pf-c-title').should('contain', 'Cluster management')
-        cy.visit('/multicloud/welcome')
-        cy.contains('Go to Applications').click()
-        cy.get('.secondary-header-wrapper').find('h1').should('contain', 'Applications')
-        cy.visit('/multicloud/welcome')
-        cy.contains('Go to Governance and risk').click()
-        cy.get('.pf-c-page').find('h1').should('contain', 'Governance and risk')
-        cy.visit('/multicloud/welcome')
+        cy.contains('Go to Overview').should('have.prop', 'href', Cypress.config().baseUrl + '/overview')
+        cy.contains('Go to Clusters').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/clusters')
+        cy.contains('Go to Applications').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/applications')
+        cy.contains('Go to Governance and risk').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
     },
     validateConnect: () => {
         cy.get('[target="dev-community"]').should('have.prop', 'href', 'https://www.redhat.com/en/blog/products')
         cy.get('[target="support"]').should('have.prop', 'href', 'https://access.redhat.com/support')
-    }
-}
-
-export const clustersPage = {
-    shouldExist: () => {
-        cy.get('.pf-c-page').should('contain', 'Cluster management')
-    }
-}
-
-export const overviewPage = {
-    shouldExist: () => {
-        cy.get('.pf-c-page').should('contain', 'Overview')
-    }
-}
-
-export const searchPage = {
-    shouldExist: () => {
-        cy.get('.pf-c-page').should('contain', 'Search')
-    }
-}
-
-export const applicationPage = {
-    shouldExist: () => {
-        cy.get('.pf-c-page', {timeout: 10000 }).should('contain', 'Applications')
-    }
-}
-
-export const grcPage = {
-    shouldExist: () => {
-        cy.get('.pf-c-page', {timeout: 10000 }).should('contain', 'Governance and risk')
-    }
-}
-
-export const credentialsPage = {
-    shouldExist: () => {
-        cy.get('.pf-c-page', {timeout: 10000 }).should('contain', 'Manage credentials')
-    }
-}
-
-export const kuiPage = {
-    shouldExist: () => {
-        cy.get('.bx--header__name').should('contain', 'Visual Web Terminal')
-    }
-}
-
-export const resourcePage = {
-    shouldExist: () => {
-        cy.get('.bx--modal-header__heading').should('contain', 'Create resource')
     }
 }
 
@@ -128,35 +72,30 @@ export const leftNav = {
         cy.get('#page-sidebar').contains('Overview').should('not.be.visible')
         cy.get('#page-sidebar').contains('Home').click()
         cy.get('#page-sidebar').contains('Overview').should('be.visible')
-        cy.get('#page-sidebar').contains('Overview').click()
-        overviewPage.shouldExist()
+        cy.get('#page-sidebar').contains('Overview').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/overview')
     },
     goToClusters: () => {
-        cy.get('#page-sidebar').contains('Clusters').click()
-        clustersPage.shouldExist()
+        cy.get('#page-sidebar').contains('Clusters').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/clusters')
     },
     goToApplications: () => {
-        cy.get('#page-sidebar').contains('Applications').click()
-        applicationPage.shouldExist()
+        cy.get('#page-sidebar').contains('Applications').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/applications')
     },
     goToGRC: () => {
-        cy.get('#page-sidebar').contains('Risk and Compliance').click()
-        grcPage.shouldExist()
+        cy.get('#page-sidebar').contains('Risk and Compliance').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
     },
     goToCredentials: () => {
-        cy.get('#page-sidebar').contains('Credentials').click()
-        credentialsPage.shouldExist()
+        cy.get('#page-sidebar').contains('Credentials').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/credentials')
     },
     goToKUI: () => {
-        cy.get('#page-sidebar').contains('Visual Web Terminal').click()
-        kuiPage.shouldExist()
+        cy.get('#page-sidebar').contains('Visual Web Terminal').should('have.prop', 'href', Cypress.config().baseUrl + '/kui')
     }
 }
 
 export const userMenu = {
     openSearch: () => {
         cy.get('[aria-label="search-button"]').click()
-        searchPage.shouldExist()
+        cy.url().should('equal', Cypress.config().baseUrl + '/search/')
+        cy.visit('/multicloud/welcome')
     },
     openInfo: () => {
         cy.get('[data-test="about-dropdown"]').click()
