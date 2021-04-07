@@ -64,6 +64,7 @@ export default class TemplateEditor extends React.Component {
       isFailed: PropTypes.bool,
       error: PropTypes.object
     }),
+    isEdit: PropTypes.bool,
     locale: PropTypes.string,
     onCreate: PropTypes.func.isRequired,
     policyDiscovered: PropTypes.object,
@@ -328,7 +329,7 @@ export default class TemplateEditor extends React.Component {
     // Set state appropriately
     this.setState({
         validPolicyName: validPolicyNameFormat,
-        duplicateName: isDuplicateName
+        duplicateName: this.props.isEdit ? false: isDuplicateName
     })
   }
 
@@ -868,23 +869,27 @@ export default class TemplateEditor extends React.Component {
   }
 
   async handleCreateResource() {
-    const { buildControl, createControl } = this.props
+    const { buildControl, createControl, isEdit } = this.props
     const { validPolicyName } = this.state
     const {createResource} = createControl
     const {buildResourceLists} = buildControl
     const resourceJSON = this.getResourceJSON()
     if (resourceJSON && validPolicyName) {
-      const res = await buildResourceLists(resourceJSON)
-      const create = res.create
-      const update = res.update
-      if (update.length === 0) {
-        createResource(create)
+      if (isEdit) {
+        this.handleUpdateResource([], resourceJSON)
       } else {
-        this.setState({
-          canOpenModal: true,
-          toCreate: create,
-          toUpdate: update
-        })
+        const res = await buildResourceLists(resourceJSON)
+        const create = res.create
+        const update = res.update
+        if (update.length === 0) {
+          createResource(create)
+        } else {
+          this.setState({
+            canOpenModal: true,
+            toCreate: create,
+            toUpdate: update
+          })
+        }
       }
     }
   }
