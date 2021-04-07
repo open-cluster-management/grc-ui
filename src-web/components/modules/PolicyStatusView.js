@@ -16,7 +16,7 @@ import { LocaleContext } from '../common/LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import { transform } from '../../tableDefinitions/utils'
-import checkCreatePermission from '../common/CheckCreatePermission'
+import { checkCreatePermission } from '../common/CheckUserPermission'
 import msgs from '../../../nls/platform.properties'
 import '../../../scss/policy-status-view.scss'
 

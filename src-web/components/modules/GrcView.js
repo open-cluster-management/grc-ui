@@ -21,7 +21,7 @@ import {
 import NoResource from '../common/NoResource'
 import { createDocLink, createDetails } from '../common/CreateDocLink'
 import ResourceFilterBar from '../common/ResourceFilterBar'
-import checkCreatePermission from '../common/CheckCreatePermission'
+import { checkCreatePermission } from '../common/CheckUserPermission'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'

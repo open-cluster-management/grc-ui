@@ -214,16 +214,18 @@ exports[`PolicyDetail container test renders as expected 1`] = `
                 </p>
               </div>
               <button
-                aria-disabled={false}
+                aria-disabled={true}
                 aria-label={null}
-                className="pf-c-button pf-m-primary"
+                className="pf-c-button pf-m-primary pf-m-aria-disabled"
                 data-ouia-component-id="OUIA-Generated-Button-primary-1"
                 data-ouia-component-type="PF4/Button"
                 data-ouia-safe={true}
                 disabled={false}
                 id="edit-policy"
                 onClick={[Function]}
+                onKeyPress={[Function]}
                 role={null}
+                tabIndex={null}
                 type="button"
               >
                 Edit policy

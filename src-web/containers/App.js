@@ -34,6 +34,7 @@ class App extends React.Component {
     match: PropTypes.object,
     staticContext: PropTypes.object,
     url: PropTypes.string,
+    userAccess: PropTypes.array,
   }
 
   constructor(props) {
@@ -56,7 +57,7 @@ class App extends React.Component {
 
   render() {
     const serverProps = this.getServerProps()
-    const { match } = this.props
+    const { match, userAccess } = this.props
     return (
       <LocaleContext.Provider value={serverProps.context}>
         <Page>
@@ -68,9 +69,9 @@ class App extends React.Component {
             <Route path={`${match.url}/all/:namespace/:name/status/:cluster/templates/:template/history`} exact component={PolicyStatusHistoryTab} />
             <Route path={`${match.url}/all/:namespace/:name/template/:cluster/:apiGroup/:version/:kind/:template`} exact component={PolicyTemplateDetails} />
             <Route path={`${match.url}/all/:namespace/:name/edit`} exact component={CreationTab} />
-            <Route path={`${match.url}/all/:namespace/:name/status`} exact component={PolicyStatusTab} />
-            <Route path={`${match.url}/all/:namespace/:name`} exact component={PolicyDetailsTab} />
-            <Route path={`${match.url}/all`} exact component={PoliciesTab} />
+            <Route path={`${match.url}/all/:namespace/:name/status`} exact render={() => <PolicyStatusTab userAccess={userAccess} />} />
+            <Route path={`${match.url}/all/:namespace/:name`} exact render={() => <PolicyDetailsTab userAccess={userAccess} />} />
+            <Route path={`${match.url}/all`} exact render={() => <PoliciesTab userAccess={userAccess} />} />
             <Route path={`${match.url}/create`} exact component={CreationTab} />
             <Redirect to={`${config.contextPath}/all`} />
           </Switch>
@@ -84,6 +85,11 @@ class App extends React.Component {
 App.propTypes = {
   getUserAccess: PropTypes.func
 }
+const mapStateToProps = (state) => {
+  return {
+    userAccess: state.userAccess && state.userAccess.access ? state.userAccess.access : [],
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -91,7 +97,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const AppWithUserAccess = withRouter(connect(null, mapDispatchToProps)(App))
+const AppWithUserAccess = withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
 
 const getAcmRoute = (props) => {
   let path = ''

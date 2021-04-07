@@ -643,7 +643,7 @@ exports[`PolicyTemplateTab container test renders as expected 1`] = `
                     />
                     <AcmButton
                       id="edit-policy"
-                      isDisabled={false}
+                      isDisabled={true}
                       onClick={[Function]}
                       tooltip="You are not authorized to complete this action. See your cluster administrator for role-based access information."
                     >
@@ -1268,35 +1268,112 @@ exports[`PolicyTemplateTab container test renders as expected 1`] = `
                                     </AcmRefreshTime>
                                     <AcmButton
                                       id="edit-policy"
-                                      isDisabled={false}
+                                      isDisabled={true}
                                       onClick={[Function]}
                                       tooltip="You are not authorized to complete this action. See your cluster administrator for role-based access information."
                                     >
                                       <TooltipWrapper
-                                        showTooltip={false}
+                                        showTooltip={true}
                                         tooltip="You are not authorized to complete this action. See your cluster administrator for role-based access information."
                                       >
-                                        <Button
-                                          id="edit-policy"
-                                          isAriaDisabled={false}
-                                          onClick={[Function]}
+                                        <Tooltip
+                                          content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
+                                          position="top"
                                         >
-                                          <button
-                                            aria-disabled={false}
-                                            aria-label={null}
-                                            className="pf-c-button pf-m-primary"
-                                            data-ouia-component-id="OUIA-Generated-Button-primary-1"
-                                            data-ouia-component-type="PF4/Button"
-                                            data-ouia-safe={true}
-                                            disabled={false}
-                                            id="edit-policy"
-                                            onClick={[Function]}
-                                            role={null}
-                                            type="button"
+                                          <Popper
+                                            appendTo={[Function]}
+                                            distance={15}
+                                            enableFlip={true}
+                                            flipBehavior={
+                                              Array [
+                                                "top",
+                                                "right",
+                                                "bottom",
+                                                "left",
+                                                "top",
+                                                "right",
+                                                "bottom",
+                                              ]
+                                            }
+                                            isVisible={false}
+                                            onBlur={[Function]}
+                                            onDocumentClick={false}
+                                            onDocumentKeyDown={[Function]}
+                                            onFocus={[Function]}
+                                            onMouseEnter={[Function]}
+                                            onMouseLeave={[Function]}
+                                            onTriggerEnter={[Function]}
+                                            placement="top"
+                                            popper={
+                                              <div
+                                                className="pf-c-tooltip"
+                                                id="pf-tooltip-1"
+                                                role="tooltip"
+                                                style={
+                                                  Object {
+                                                    "maxWidth": null,
+                                                    "opacity": 0,
+                                                    "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
+                                                  }
+                                                }
+                                              >
+                                                <TooltipArrow />
+                                                <TooltipContent
+                                                  isLeftAligned={false}
+                                                >
+                                                  You are not authorized to complete this action. See your cluster administrator for role-based access information.
+                                                </TooltipContent>
+                                              </div>
+                                            }
+                                            popperMatchesTriggerWidth={false}
+                                            positionModifiers={
+                                              Object {
+                                                "bottom": "pf-m-bottom",
+                                                "left": "pf-m-left",
+                                                "right": "pf-m-right",
+                                                "top": "pf-m-top",
+                                              }
+                                            }
+                                            trigger={
+                                              <Button
+                                                id="edit-policy"
+                                                isAriaDisabled={true}
+                                                onClick={[Function]}
+                                              >
+                                                Edit policy
+                                              </Button>
+                                            }
+                                            zIndex={9999}
                                           >
-                                            Edit policy
-                                          </button>
-                                        </Button>
+                                            <FindRefWrapper
+                                              onFoundRef={[Function]}
+                                            >
+                                              <Button
+                                                id="edit-policy"
+                                                isAriaDisabled={true}
+                                                onClick={[Function]}
+                                              >
+                                                <button
+                                                  aria-disabled={true}
+                                                  aria-label={null}
+                                                  className="pf-c-button pf-m-primary pf-m-aria-disabled"
+                                                  data-ouia-component-id="OUIA-Generated-Button-primary-1"
+                                                  data-ouia-component-type="PF4/Button"
+                                                  data-ouia-safe={true}
+                                                  disabled={false}
+                                                  id="edit-policy"
+                                                  onClick={[Function]}
+                                                  onKeyPress={[Function]}
+                                                  role={null}
+                                                  tabIndex={null}
+                                                  type="button"
+                                                >
+                                                  Edit policy
+                                                </button>
+                                              </Button>
+                                            </FindRefWrapper>
+                                          </Popper>
+                                        </Tooltip>
                                       </TooltipWrapper>
                                     </AcmButton>
                                   </div>

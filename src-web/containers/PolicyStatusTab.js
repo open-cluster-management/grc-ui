@@ -17,6 +17,7 @@ import NoResource from '../components/common/NoResource'
 import { AcmButton, AcmPage, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime, AcmSecondaryNav, AcmSecondaryNavItem } from '@open-cluster-management/ui-components'
 import { INITIAL_REFRESH_TIME, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import config from '../../lib/shared/config'
+import { checkEditPermission } from '../components/common/CheckUserPermission'
 
 class PolicyDetailsTab extends React.Component{
   constructor(props) {
@@ -34,6 +35,7 @@ class PolicyDetailsTab extends React.Component{
         }
       },
       history,
+      userAccess,
     } = this.props
     const { locale } = this.context
     return (
@@ -60,7 +62,7 @@ class PolicyDetailsTab extends React.Component{
                     refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
                     initRefreshTime={INITIAL_REFRESH_TIME} />
                   <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
-                  <AcmButton id='edit-policy' isDisabled={false}
+                  <AcmButton id='edit-policy' isDisabled={checkEditPermission(userAccess)===0}
                     tooltip={msgs.get('error.permission.disabled', locale)}
                     onClick={() => history.push(`${config.contextPath}/all/${hubNamespace}/${policyName}/edit`)}>
                     {msgs.get('routes.edit.policy', locale)}
@@ -111,6 +113,7 @@ class PolicyDetailsTab extends React.Component{
 PolicyDetailsTab.propTypes = {
   history: PropTypes.object,
   match: PropTypes.object,
+  userAccess: PropTypes.array,
 }
 
 export default withRouter(PolicyDetailsTab)

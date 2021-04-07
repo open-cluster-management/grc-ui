@@ -15,7 +15,7 @@ import { CREATE_POLICY_DISCOVERY, EDIT_POLICY_DISCOVERY } from '../../lib/client
 import CreationView from '../components/modules/CreationView'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
-import checkCreatePermission from '../components/common/CheckCreatePermission'
+import { checkCreatePermission, checkEditPermission } from '../components/common/CheckUserPermission'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { AcmButton, AcmPage, AcmPageHeader } from '@open-cluster-management/ui-components'
 
@@ -182,16 +182,18 @@ export class CreationTab extends React.Component {
         }
       }
     } = this.props
+    const isEdit = namespace !== undefined && name !== undefined
     const { updateRequested } = this.state
     const { locale } = this.context
-    if (userAccess && userAccess.length > 0 && checkCreatePermission(userAccess) !== 1) {
-      return <Redirect to={`${config.contextPath}/all`} />
+    if (userAccess && userAccess.length > 0) {
+      if ((!isEdit && checkCreatePermission(userAccess)!== 1) || (isEdit && checkEditPermission(userAccess) !== 1)) {
+        return <Redirect to={`${config.contextPath}/all`} />
+      }
     }
     if ((mutateStatus && mutateStatus === 'DONE') && (!updateRequested || (updateStatus && updateStatus === 'DONE'))) {
       this.props.cleanReqStatus && this.props.cleanReqStatus()
       return <Redirect to={`${config.contextPath}/all`} />
     }
-    const isEdit = namespace !== undefined && name !== undefined
     const query = isEdit ? EDIT_POLICY_DISCOVERY : CREATE_POLICY_DISCOVERY
     return (
       <Query query={query} variables={{ name, namespace }}>
