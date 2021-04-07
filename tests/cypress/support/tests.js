@@ -409,7 +409,7 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
         if (permissions.patch) {
           cy.url().should('eq', editPageURL)
         } else {
-          cy.url().should('eq', '/multicloud/policies/all')
+          cy.url().should('match', /\/multicloud\/policies\/all[?]?/)
         }
       })
     })
