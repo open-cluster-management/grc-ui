@@ -11,18 +11,20 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: CertificatePolicy # cert management expiration
-      metadata:
-        name: certificatepolicy-cert-expiration
-      spec:
-        namespaceSelector:
-          include: ["default"]
-          exclude: ["kube-*"]
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: low
-        minimumDuration: 300h
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: CertificatePolicy
+        metadata:
+          name: certificatepolicy-cert-expiration
+        spec:
+          namespaceSelector:
+            include:
+              - default
+            exclude:
+              - kube-*
+          remediationAction: inform
+          severity: low
+          minimumDuration: 300h
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -34,9 +36,9 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: certificatepolicy
-  kind: Policy
-  apiGroup: policy.open-cluster-management.io
+  - name: certificatepolicy
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -45,8 +47,11 @@ metadata:
   namespace: default
 spec:
   clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
+    - status: 'True'
+      type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: local-cluster, operator: In, values: ["true"]}
+      - key: local-cluster
+        operator: In
+        values:
+          - 'true'

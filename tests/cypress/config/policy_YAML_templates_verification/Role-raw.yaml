@@ -11,28 +11,38 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: role-deployments-role
-      spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: high
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["default"]
-        object-templates:
-          - complianceType: mustonlyhave # role definition should exact match
-            objectDefinition:
-              apiVersion: rbac.authorization.k8s.io/v1
-              kind: Role
-              metadata:
-                name: deployments-role
-              rules:
-                - apiGroups: ["extensions", "apps"]
-                  resources: ["deployments"]
-                  verbs: ["get", "list", "watch", "delete","patch"]
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: role-deployments-role
+        spec:
+          remediationAction: inform
+          severity: high
+          namespaceSelector:
+            exclude:
+              - kube-*
+            include:
+              - default
+          object-templates:
+            - complianceType: mustonlyhave
+              objectDefinition:
+                apiVersion: rbac.authorization.k8s.io/v1
+                kind: Role
+                metadata:
+                  name: deployments-role
+                rules:
+                  - apiGroups:
+                      - extensions
+                      - apps
+                    resources:
+                      - deployments
+                    verbs:
+                      - get
+                      - list
+                      - watch
+                      - delete
+                      - patch
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -44,9 +54,9 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: role
-  kind: Policy
-  apiGroup: policy.open-cluster-management.io
+  - name: role
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -55,8 +65,11 @@ metadata:
   namespace: default
 spec:
   clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
+    - status: 'True'
+      type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: local-cluster, operator: In, values: ["true"]}
+      - key: local-cluster
+        operator: In
+        values:
+          - 'true'

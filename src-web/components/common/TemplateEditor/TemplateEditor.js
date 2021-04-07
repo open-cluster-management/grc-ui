@@ -604,7 +604,11 @@ export default class TemplateEditor extends React.Component {
     const {template} = this.props
     const newTemplateYAML = generateYAML(template, controlData)
     const { parsed: newTemplateObject, exceptions }= parseYAML(newTemplateYAML)
-    const finalTemplateObject = _.merge(templateObject, newTemplateObject)
+    const finalTemplateObject = _.mergeWith(templateObject, newTemplateObject, (objValue, srcValue) => {
+      if (_.isArray(objValue) && _.isArray(srcValue) && srcValue.length === 0) {
+        return srcValue
+      }
+    })
     const finalYaml = dumpYAMLFromTemplateObject(finalTemplateObject)
     // Get highlight decorations
     const highlights = highlightChanges(this.editor, templateYAML, finalYaml)
