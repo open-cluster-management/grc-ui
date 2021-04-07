@@ -609,6 +609,7 @@ export default class TemplateEditor extends React.Component {
       if (_.isArray(objValue) && _.isArray(srcValue) && srcValue.length === 0) {
         return srcValue
       }
+      return undefined
     })
     const finalYaml = dumpYAMLFromTemplateObject(finalTemplateObject)
     // Get highlight decorations

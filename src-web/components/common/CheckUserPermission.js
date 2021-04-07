@@ -27,7 +27,7 @@ export const checkCreatePermission = (userAccess) => {
 
 
 export const checkEditPermission = (userAccess) => {
-  // if create policy permission on any ns, set flag to 1
+  // if edit policy permission on any ns, set flag to 1
   let editFlag = 0
   if (userAccess && typeof userAccess === 'object') {
     const policyKey = 'policy.open-cluster-management.io/policies'
