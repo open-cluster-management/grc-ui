@@ -185,8 +185,8 @@ export class CreationTab extends React.Component {
     const isEdit = namespace !== undefined && name !== undefined
     const { updateRequested } = this.state
     const { locale } = this.context
-    const ifRedirect = isEdit ? checkEditPermission(userAccess) === 0 : checkCreatePermission(userAccess) === 0
-    if (userAccess && userAccess.length > 0 && ifRedirect) {
+    const hasPermission = isEdit ? checkEditPermission(userAccess) === 0 : checkCreatePermission(userAccess) === 0
+    if (userAccess && userAccess.length > 0 && hasPermission) {
       return <Redirect to={`${config.contextPath}/all`} />
     }
     if ((mutateStatus && mutateStatus === 'DONE') && (!updateRequested || (updateStatus && updateStatus === 'DONE'))) {
