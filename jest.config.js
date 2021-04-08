@@ -9,6 +9,8 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
+process.env.TZ = 'UTC'
+
 const tapReporter = [
   'jest-tap-reporter',
   {
@@ -36,10 +38,10 @@ const jestConfig = {
   testURL: 'http://localhost/',
   coverageThreshold: {
     global: {
-      branches: 50,
-      functions: 50,
-      lines: 59,
-      statements: 58,
+      branches: 54,
+      functions: 53,
+      lines: 62,
+      statements: 61,
     },
   },
   testMatch: [

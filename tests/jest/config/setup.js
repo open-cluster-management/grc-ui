@@ -47,4 +47,5 @@ jest.mock('lodash/uniqueId')
 let mockId = 1
 _uniqueId.mockImplementation(() => `mockLodashID-${mockId++}`)
 
+// set timezone and mock date for tests
 MockDate.set('2021-01-01T00:00:00.000Z')
