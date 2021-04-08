@@ -80,6 +80,7 @@ describe('ResourceFilterBar', () => {
     // Child 1: Standards Filter chip
     // Child 2: "Clear All" link
     // Clear single filter: should fire Redux store action to clear Standards filter and also clear filter object
+    console.log(JSON.stringify(component.toJSON()))
     component.toJSON().children[1].children[1].props.onClick()
     expect(storePolicyCluster.getActions().length).toEqual(1)
     expect(storePolicyCluster.getActions()[0]).toEqual({ type: 'ACTIVE_FILTER_UPDATE', activeFilters: {} } )

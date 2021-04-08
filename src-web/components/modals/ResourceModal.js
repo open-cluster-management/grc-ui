@@ -7,7 +7,6 @@ import React from 'react'
 import _ from 'lodash'
 import { AcmModal, AcmButton, AcmAlert } from '@open-cluster-management/ui-components'
 import { Spinner, ButtonVariant } from '@patternfly/react-core'
-import resources from '../../../lib/shared/resources'
 import { clearRequestStatus, editResource, updateModal } from '../../actions/common'
 import { connect } from 'react-redux'
 import { REQUEST_STATUS } from '../../actions/index'
@@ -15,11 +14,6 @@ import msgs from '../../../nls/platform.properties'
 import { dumpAndParse, saveLoad } from '../../../lib/client/design-helper'
 import YamlEditor from '../common/YamlEditor'
 import PropTypes from 'prop-types'
-
-resources(() => {
-  require('../../../scss/modal.scss')
-})
-
 export class ResourceModal extends React.PureComponent {
 
   state = {
