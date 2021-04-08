@@ -4,18 +4,18 @@
 'use strict'
 
 import React from 'react'
-import { mount } from 'enzyme'
+import { mount, render } from 'enzyme'
 import { BrowserRouter } from 'react-router-dom'
 import { MockedProvider } from '@apollo/client/testing'
 import toJson from 'enzyme-to-json'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
-import { advanceBy, advanceTo, clear } from 'jest-date-mock'
+import MockDate from 'mockdate'
 
 import * as reducers from '../../../src-web/reducers'
 import AcmGrcPage from '../../../src-web/containers/AcmGrcPage'
-import { ALL_POLICIES, POLICY_STATUS, POLICY_STATUS_HISTORY, POLICY_TEMPLATE_DETAILS } from '../../../lib/client/queries'
+import { ALL_POLICIES } from '../../../lib/client/queries'
 import ALL_POLICIES_QUERY_DATA from './ALL_POLICIES_QUERY_DATA'
 
 
@@ -27,20 +27,11 @@ const store = createStore(combineReducers(reducers), composeEnhancers(
 
 const props = { userAccess: [], locale: 'en' }
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
-  useParams: () => ({
-    companyId: 'company-id1',
-    teamId: 'team-id1',
-  }),
-  useHistory: () => ({ url: '/company/company-id1/team/team-id1' }),
-}))
-
 describe('AcmGrcPage container', () => {
   it('should render loading spinner', () => {
-    advanceTo(new Date(2021, 5, 27, 0, 0, 0))
     const mocks = []
-    const component = mount(
+    MockDate.set('2021-01-01')
+    const component = render(
       <Provider store={store}>
         <MockedProvider mocks={mocks} addTypename={false}>
           <BrowserRouter>
@@ -53,7 +44,6 @@ describe('AcmGrcPage container', () => {
   })
 
   it('should render ALL_POLICIES page ', async () => {
-    advanceTo(new Date(2021, 5, 27, 0, 0, 0))
     const mocks = [
       {
         request: {
@@ -75,6 +65,7 @@ describe('AcmGrcPage container', () => {
     )
 
     await new Promise(resolve => setTimeout(resolve, 0))
+    MockDate.set('2021-01-01')
     component.update()
     expect(toJson(component)).toMatchSnapshot()
   })

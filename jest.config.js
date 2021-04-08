@@ -56,7 +56,6 @@ const jestConfig = {
   globalSetup: '<rootDir>/tests/jest/config/properties-to-json.js',
   setupFiles: [
     '<rootDir>/tests/jest/config/setup.js',
-    'jest-date-mock'
   ],
   moduleNameMapper: {
     '\\.(css|scss|svg|png)$': '<rootDir>/tests/jest/config/styleMock.js',
