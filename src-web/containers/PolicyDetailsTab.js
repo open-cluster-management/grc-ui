@@ -4,7 +4,7 @@
 'use strict'
 
 import React from 'react'
-import { Query } from 'react-apollo'
+import { Query } from '@apollo/client/react/components'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { getResourceData } from '../tableDefinitions'

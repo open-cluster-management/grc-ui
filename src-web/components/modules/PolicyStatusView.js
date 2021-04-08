@@ -32,13 +32,13 @@ class PolicyStatusView extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { status, userAccess } = this.props
+    const { items=[], userAccess } = this.props
     const { locale } = this.context
     // Check for "create" permissions in order to determine whether to enable
     // the "View Details" link, which requires creating a managedClusterView
     // (See https://github.com/open-cluster-management/backlog/issues/6135)
     const showDetailsLink = checkCreatePermission(userAccess)
-    const statusAccess = status.map(item => ({...item, showDetailsLink: showDetailsLink}))
+    const statusAccess = items.map(item => ({...item, showDetailsLink: showDetailsLink}))
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
     const tableDataByClusters = transform(statusAccess, statusByClustersDef, locale)
     const toggleIndex = this.state.toggleIndex
@@ -132,7 +132,7 @@ function groupByTemplate(status, locale) {
 }
 
 PolicyStatusView.propTypes = {
-  status: PropTypes.array,
+  items: PropTypes.array,
   userAccess: PropTypes.array
 }
 

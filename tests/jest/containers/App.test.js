@@ -19,7 +19,7 @@ import * as reducers from '../../../src-web/reducers'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 // import GrcApolloClient from '../../../lib/client/apollo-client'
-// import { ApolloProvider } from 'react-apollo'
+// import { ApolloProvider } from '@apollo/client/react'
 import { Provider } from 'react-redux'
 import toJson from 'enzyme-to-json'
 
@@ -32,24 +32,16 @@ describe('App container test', () => {
       applyMiddleware(...middleware)
     ))
     const match = {
-      'path': '/multicloud',
+      'path': '/multicloud/policies',
       'url': '/multicloud',
       'isExact': false,
       'params': {}
-    }
-    const staticContext = {
-      'title': 'IBM Multicloud Manager',
-      'context': {
-        'locale': 'en'
-      },
-      'xsrfToken': 'tXcZ8lkN-bDcRaa7cJmmIMX5EmsmJ_vI_YnU'
     }
     const component = shallow(
       <Provider store={store}>
         <BrowserRouter>
           <App
             match={match}
-            staticContext={staticContext}
             url={'/multicloud/policies'}
           />
         </BrowserRouter>

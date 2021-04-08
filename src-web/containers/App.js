@@ -17,11 +17,8 @@ import Modal from '../components/common/Modal'
 import Page from '../components/common/Page'
 // eslint-disable-next-line import/no-named-as-default
 import CreationTab from './CreationTab'
-import PoliciesTab from './PoliciesTab'
+import AcmGrcPage from './AcmGrcPage'
 import PolicyDetailsTab from './PolicyDetailsTab'
-import PolicyStatusTab from './PolicyStatusTab'
-import PolicyStatusHistoryTab from './PolicyStatusHistoryTab'
-import PolicyTemplateDetails from './PolicyTemplateDetails'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
@@ -58,6 +55,8 @@ class App extends React.Component {
   render() {
     const serverProps = this.getServerProps()
     const { match, userAccess } = this.props
+    const locale = serverProps.context.locale
+    const props = { userAccess, locale }
     return (
       <LocaleContext.Provider value={serverProps.context}>
         <Page>
@@ -66,17 +65,17 @@ class App extends React.Component {
             <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
             {/* Removes duplicate slashes in the middle of the URL */}
             <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
-            <Route path={`${match.url}/all/:namespace/:name/status/:cluster/templates/:template/history`} exact component={PolicyStatusHistoryTab} />
-            <Route path={`${match.url}/all/:namespace/:name/template/:cluster/:apiGroup/:version/:kind/:template`} exact component={PolicyTemplateDetails} />
+            <Route path={`${match.url}/all/:namespace/:name/status/:cluster/templates/:template/history`} exact render={() => <AcmGrcPage type='POLICY_STATUS_HISTORY' {...props} />} />
+            <Route path={`${match.url}/all/:namespace/:name/template/:cluster/:apiGroup/:version/:kind/:template`} exact render={() => <AcmGrcPage type='POLICY_TEMPLATE_DETAILS' {...props} />} />
             <Route path={`${match.url}/all/:namespace/:name/edit`} exact component={CreationTab} />
-            <Route path={`${match.url}/all/:namespace/:name/status`} exact render={() => <PolicyStatusTab userAccess={userAccess} />} />
+            <Route path={`${match.url}/all/:namespace/:name/status`} exact render={() => <AcmGrcPage type='POLICY_STATUS' {...props} />} />
             <Route path={`${match.url}/all/:namespace/:name`} exact render={() => <PolicyDetailsTab userAccess={userAccess} />} />
-            <Route path={`${match.url}/all`} exact render={() => <PoliciesTab userAccess={userAccess} />} />
+            <Route path={`${match.url}/all`} exact render={() => <AcmGrcPage type='ALL_POLICIES' {...props} />} />
             <Route path={`${match.url}/create`} exact component={CreationTab} />
             <Redirect to={`${config.contextPath}/all`} />
           </Switch>
         </Page>
-        <Modal locale={serverProps.context.locale} />
+        <Modal locale={locale} />
       </LocaleContext.Provider>
     )
   }
