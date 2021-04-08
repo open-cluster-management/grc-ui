@@ -47,4 +47,4 @@ jest.mock('lodash/uniqueId')
 let mockId = 1
 _uniqueId.mockImplementation(() => `mockLodashID-${mockId++}`)
 
-MockDate.set('2021-01-01')
+MockDate.set('2021-01-01T00:00:00.000Z')
