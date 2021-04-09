@@ -119,6 +119,22 @@ app.use(`${appConfig.get('contextPath')}/search/graphql`, cookieParser(), csrfMi
   secure: false
 }))
 
+if (process.env.NODE_ENV === 'development') {
+  app.use('/multicloud/version', cookieParser(), (req, res, next) => {
+    res = setRes(res)
+    req = setReq(req)
+    res.setHeader(cacheControlStr, 'no-store')
+    res.setHeader('Pragma', 'no-cache')
+    res.setHeader(xContentTypeOptions, 'nosniff')
+    console.log('------ HIT PROXY ---------')
+    next()
+  }, createProxyMiddleware({
+    target: appConfig.get('RHACM_URL'),
+    changeOrigin: true,
+    secure: false
+  }))
+}
+
 const hbs = exphbs.create({
   // Specify helpers which are only registered on this instance.
   helpers: {

@@ -12,5 +12,6 @@
     "OAUTH2_CLIENT_SECRET": "",
     "OAUTH2_REDIRECT_URL": "https://localhost:3000/multicloud/policies/auth/callback",
     "ocmPoliciesPrefix": "policy.open-cluster-management.io",
+    "RHACM_URL": "",
     "searchApiUrl": ""
 }
