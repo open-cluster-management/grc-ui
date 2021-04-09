@@ -6,18 +6,18 @@
 
 import React from 'react'
 import { useQuery } from '@apollo/client'
-import { AcmPageContent, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime } from '@open-cluster-management/ui-components'
+import { AcmPageContent, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime, AcmSecondaryNav } from '@open-cluster-management/ui-components'
 import { Spinner } from '@patternfly/react-core'
 import { useHistory, useParams } from 'react-router-dom'
 
 import { INITIAL_REFRESH_TIME, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
-import { GET_PAGE_DEFINITION } from './definitions/PageDefinitions'
+import { getPageDefinition } from './definitions/PageDefinitions'
 
 let timestamp = new Date().toString()
 
 function AcmGrcPage(props) {
   const allProps = {...props, ...useParams(), history: useHistory()}
-  const page = GET_PAGE_DEFINITION(allProps)
+  const page = getPageDefinition(allProps)
   const { loading, data={}, refetch, error, previousData } = useQuery(page.query, { variables: page.query_variables, notifyOnNetworkStatusChange: true })
   const { items } = data
   if (!loading) {
@@ -27,6 +27,11 @@ function AcmGrcPage(props) {
     <React.Fragment>
       <AcmPageHeader title={page.title}
         breadcrumb={page.breadcrumb}
+        navigation={page.navigation && (
+          <AcmSecondaryNav>
+            {page.navigation.map(nav => nav(allProps))}
+          </AcmSecondaryNav>
+        )}
         controls={
           <React.Fragment>
             {page.refreshControls && (

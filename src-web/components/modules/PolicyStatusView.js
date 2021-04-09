@@ -15,6 +15,7 @@ import PatternFlyTable from '../common/PatternFlyTable'
 import { LocaleContext } from '../common/LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
+import NoResource from '../../components/common/NoResource'
 import { transform } from '../../tableDefinitions/utils'
 import { checkCreatePermission } from '../common/CheckUserPermission'
 import msgs from '../../../nls/platform.properties'
@@ -34,6 +35,12 @@ class PolicyStatusView extends React.Component {
   render() {
     const { items=[], userAccess } = this.props
     const { locale } = this.context
+    if (items.length === 0) {
+      return <NoResource
+        title={msgs.get('no-status.title', [msgs.get('routes.grc', locale)], locale)}
+        svgName='EmptyPagePlanet-illus.png'>
+      </NoResource>
+    }
     // Check for "create" permissions in order to determine whether to enable
     // the "View Details" link, which requires creating a managedClusterView
     // (See https://github.com/open-cluster-management/backlog/issues/6135)

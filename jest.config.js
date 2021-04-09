@@ -41,7 +41,7 @@ const jestConfig = {
       branches: 55,
       functions: 56,
       lines: 63,
-      statements: 62,
+      statements: 63,
     },
   },
   testMatch: [

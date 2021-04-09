@@ -65,8 +65,10 @@ class App extends React.Component {
             <Route path="/:url*(/+)" exact strict render={({ location }) => <Redirect to={location.pathname.replace(/\/+$/, '')} />} />
             {/* Removes duplicate slashes in the middle of the URL */}
             <Route path="/:url(.*//+.*)" exact strict render={({ match: { params }})=> <Redirect to={`/${params.url.replace(/\/\/+/, '/')}`} />} />
-            <Route path={`${match.url}/all/:namespace/:name/status/:cluster/templates/:template/history`} exact render={() => <AcmGrcPage type='POLICY_STATUS_HISTORY' {...props} />} />
-            <Route path={`${match.url}/all/:namespace/:name/template/:cluster/:apiGroup/:version/:kind/:template`} exact render={() => <AcmGrcPage type='POLICY_TEMPLATE_DETAILS' {...props} />} />
+            <Route path={`${match.url}/all/:namespace/:name/status/:cluster/templates/:template/history`} exact
+              render={() => <AcmGrcPage type='POLICY_STATUS_HISTORY' {...props} />} />
+            <Route path={`${match.url}/all/:namespace/:name/template/:cluster/:apiGroup/:version/:kind/:template`} exact
+              render={() => <AcmGrcPage type='POLICY_TEMPLATE_DETAILS' {...props} />} />
             <Route path={`${match.url}/all/:namespace/:name/edit`} exact component={CreationTab} />
             <Route path={`${match.url}/all/:namespace/:name/status`} exact render={() => <AcmGrcPage type='POLICY_STATUS' {...props} />} />
             <Route path={`${match.url}/all/:namespace/:name`} exact render={() => <PolicyDetailsTab userAccess={userAccess} />} />

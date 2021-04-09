@@ -4,7 +4,7 @@
 
 'use strict'
 import React from 'react'
-import { AcmButton } from '@open-cluster-management/ui-components'
+import { AcmButton, AcmSecondaryNavItem } from '@open-cluster-management/ui-components'
 
 import { ALL_POLICIES, POLICY_STATUS, POLICY_STATUS_HISTORY, POLICY_TEMPLATE_DETAILS } from '../../../lib/client/queries'
 import config from '../../../lib/shared/config'
@@ -17,19 +17,17 @@ import msgs from '../../../nls/platform.properties'
 import { checkCreatePermission, checkEditPermission } from '../../components/common/CheckUserPermission'
 
 
-export const GET_PAGE_DEFINITION = (props) => {
+export const getPageDefinition = (props) => {
   const { type } = props
   switch(type) {
     case 'ALL_POLICIES':
-      return POLICIES_PAGE(props)
+      return policiesPage(props)
     case 'POLICY_STATUS':
-      return POLICY_STATUS_PAGE(props)
+      return policyStatusPage(props)
     case 'POLICY_TEMPLATE_DETAILS':
-      return POLICY_TEMPLATE_DETAILS_PAGE(props)
+      return policyTemplateDetailsPage(props)
     case 'POLICY_STATUS_HISTORY':
-      return POLICY_STATUS_HISTORY_PAGE(props)
-    default:
-      return undefined
+      return policyStatusHistoryPage(props)
   }
 }
 
@@ -53,7 +51,27 @@ const editBtn = ({ userAccess, history, locale, name, namespace }) => {
   )
 }
 
-const POLICIES_PAGE = ({ locale }) => {
+const detailsNav = ({ history, locale, name, namespace }) => {
+  const url = `${config.contextPath}/all/${namespace}/${name}`
+  return (
+    <AcmSecondaryNavItem key='details' isActive={history.location.pathname===url}
+      onClick={() => history.push(url)}>
+      {msgs.get('tabs.details', locale)}
+    </AcmSecondaryNavItem>
+  )
+}
+
+const statusNav = ({ history, locale, name, namespace }) => {
+  const url = `${config.contextPath}/all/${namespace}/${name}/status`
+  return (
+    <AcmSecondaryNavItem key='status' isActive={history.location.pathname===url}
+      onClick={() => history.push(url)}>
+      {msgs.get('tabs.status', locale)}
+    </AcmSecondaryNavItem>
+  )
+}
+
+const policiesPage = ({ locale }) => {
   return {
     id: 'policies',
     title: msgs.get('routes.grc', locale),
@@ -64,7 +82,7 @@ const POLICIES_PAGE = ({ locale }) => {
   }
 }
 
-const POLICY_STATUS_PAGE = ({ name, namespace, locale }) => {
+const policyStatusPage = ({ name, namespace, locale }) => {
   return {
     id: 'policy-status',
     title: name,
@@ -75,13 +93,16 @@ const POLICY_STATUS_PAGE = ({ name, namespace, locale }) => {
       { text: msgs.get('routes.policies', locale), to: config.contextPath },
       { text: name, to: name }
     ],
+    navigation: [
+      detailsNav,
+      statusNav
+    ],
     buttons: [ editBtn ],
     childern: (props) => <PolicyStatusView {...props} />
   }
 }
 
-const POLICY_TEMPLATE_DETAILS_PAGE = (props) => {
-  const { name, namespace, cluster, apiGroup, version, kind, template, locale } = props
+const policyTemplateDetailsPage = ({ name, namespace, cluster, apiGroup, version, kind, template, locale }) => {
   const selfLink = `/apis/${apiGroup}/${version}/namespaces/${cluster}/${kind}/${template}`
   return {
     id: 'policy-template-details',
@@ -99,10 +120,11 @@ const POLICY_TEMPLATE_DETAILS_PAGE = (props) => {
   }
 }
 
-const POLICY_STATUS_HISTORY_PAGE = ({ name, namespace, cluster, template, locale }) => {
+const policyStatusHistoryPage = ({ name, namespace, cluster, template, locale }) => {
+  const historyMsg = 'table.header.history'
   return {
     id: 'policy-status-history',
-    title: msgs.get('table.header.history', locale),
+    title: msgs.get(historyMsg, locale),
     query: POLICY_STATUS_HISTORY,
     query_variables: { policyName: name, hubNamespace: namespace, cluster, template },
     refreshControls: true,
@@ -110,7 +132,7 @@ const POLICY_STATUS_HISTORY_PAGE = ({ name, namespace, cluster, template, locale
       { text: msgs.get('routes.policies', locale), to: config.contextPath },
       { text: name, to: `${config.contextPath}/all/${namespace}/${name}`},
       { text: msgs.get('table.header.status', locale), to: `${config.contextPath}/all/${namespace}/${name}/status`},
-      { text: msgs.get('table.header.history', locale), to: msgs.get('table.header.history', locale) }
+      { text: msgs.get(historyMsg, locale), to: msgs.get(historyMsg, locale) }
     ],
     childern: (props) => <PolicyStatusHistoryView {...props} cluster={cluster} template={template} />
   }
