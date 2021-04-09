@@ -103,7 +103,6 @@ describe('AcmGrcPage container', () => {
   })
 
   it('should render POLICY_TEMPLATE_DETAILS page ', async () => {
-  
 
     const props = {
       userAccess: [],
