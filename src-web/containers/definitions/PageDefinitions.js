@@ -16,6 +16,8 @@ import PolicyStatusHistoryView from '../../components/modules/PolicyStatusHistor
 import msgs from '../../../nls/platform.properties'
 import { checkCreatePermission, checkEditPermission } from '../../components/common/CheckUserPermission'
 
+const policiesMsg = 'routes.policies'
+const historyMsg = 'table.header.history'
 
 export const getPageDefinition = (props) => {
   const { type } = props
@@ -29,6 +31,7 @@ export const getPageDefinition = (props) => {
     case 'POLICY_STATUS_HISTORY':
       return policyStatusHistoryPage(props)
   }
+  return null
 }
 
 const createBtn = ({ userAccess, history, locale }) => {
@@ -90,7 +93,7 @@ const policyStatusPage = ({ name, namespace, locale }) => {
     query_variables: { policyName: name, hubNamespace: namespace },
     refreshControls: true,
     breadcrumb: [
-      { text: msgs.get('routes.policies', locale), to: config.contextPath },
+      { text: msgs.get(policiesMsg, locale), to: config.contextPath },
       { text: name, to: name }
     ],
     navigation: [
@@ -121,7 +124,6 @@ const policyTemplateDetailsPage = ({ name, namespace, cluster, apiGroup, version
 }
 
 const policyStatusHistoryPage = ({ name, namespace, cluster, template, locale }) => {
-  const historyMsg = 'table.header.history'
   return {
     id: 'policy-status-history',
     title: msgs.get(historyMsg, locale),
