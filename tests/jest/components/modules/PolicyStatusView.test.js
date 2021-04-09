@@ -26,7 +26,7 @@ describe('PolicyStatusView component', () => {
         <Provider store={store}>
           <BrowserRouter>
             <PolicyStatusView
-              status={[{ templateName: 'test-policy-name' }]}
+              items={[{ templateName: 'test-policy-name' }]}
             />
           </BrowserRouter>
         </Provider>
@@ -40,7 +40,7 @@ describe('PolicyStatusView component', () => {
         <Provider store={store}>
           <BrowserRouter>
             <PolicyStatusView
-              status={[{}]}
+              items={[{}]}
             />
           </BrowserRouter>
         </Provider>
@@ -54,7 +54,7 @@ describe('PolicyStatusView component', () => {
         <Provider store={store}>
           <BrowserRouter>
             <PolicyStatusView
-              status={[]}
+              items={[]}
             />
           </BrowserRouter>
         </Provider>

@@ -36,7 +36,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
             <div
               className="pf-c-description-list__text"
             >
-              -
+              policy-gatekeeper-admission
             </div>
           </dd>
         </div>
@@ -58,7 +58,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
             <div
               className="pf-c-description-list__text"
             >
-              -
+              calamari
             </div>
           </dd>
         </div>
@@ -80,7 +80,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
             <div
               className="pf-c-description-list__text"
             >
-              -
+              ConfigurationPolicy
             </div>
           </dd>
         </div>
@@ -102,7 +102,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
             <div
               className="pf-c-description-list__text"
             >
-              -
+              policy.open-cluster-management.io/v1
             </div>
           </dd>
         </div>
@@ -124,7 +124,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
             <div
               className="pf-c-description-list__text"
             >
-              -
+              NonCompliant
             </div>
           </dd>
         </div>
@@ -146,7 +146,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
             <div
               className="pf-c-description-list__text"
             >
-              "-"
+              [{"Compliant":"NonCompliant","Validity":{},"conditions":[{"lastTransitionTime":"2020-08-21T17:01:43Z","message":"events exist and should be deleted: [openshift-multus.162c73ad488032d5, openshift-multus.162c749621995399, openshift-multus.162c757efd7ebb62] in namespace gatekeeper-system","reason":"K8s has a must \`not\` have object","status":"True","type":"violation"}]}]
             </div>
           </dd>
         </div>
@@ -251,7 +251,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
           >
             <tr
               className=""
-              data-ouia-component-id="OUIA-Generated-TableRow-4"
+              data-ouia-component-id="OUIA-Generated-TableRow-14"
               data-ouia-component-type="PF4/TableRow"
               data-ouia-safe={true}
               hidden={false}
@@ -874,7 +874,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
             <div
               className="pf-c-description-list__text"
             >
-              -
+              policy-gatekeeper-admission
             </div>
           </dd>
         </div>
@@ -896,7 +896,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
             <div
               className="pf-c-description-list__text"
             >
-              -
+              calamari
             </div>
           </dd>
         </div>
@@ -918,7 +918,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
             <div
               className="pf-c-description-list__text"
             >
-              -
+              ConfigurationPolicy
             </div>
           </dd>
         </div>
@@ -940,7 +940,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
             <div
               className="pf-c-description-list__text"
             >
-              -
+              policy.open-cluster-management.io/v1
             </div>
           </dd>
         </div>
@@ -962,7 +962,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
             <div
               className="pf-c-description-list__text"
             >
-              -
+              NonCompliant
             </div>
           </dd>
         </div>
@@ -984,7 +984,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
             <div
               className="pf-c-description-list__text"
             >
-              "-"
+              [{"Compliant":"NonCompliant","Validity":{},"conditions":[{"lastTransitionTime":"2020-08-21T17:01:43Z","message":"events exist and should be deleted: [openshift-multus.162c73ad488032d5, openshift-multus.162c749621995399, openshift-multus.162c757efd7ebb62] in namespace gatekeeper-system","reason":"K8s has a must \`not\` have object","status":"True","type":"violation"}]}]
             </div>
           </dd>
         </div>
@@ -1089,7 +1089,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
           >
             <tr
               className=""
-              data-ouia-component-id="OUIA-Generated-TableRow-3"
+              data-ouia-component-id="OUIA-Generated-TableRow-13"
               data-ouia-component-type="PF4/TableRow"
               data-ouia-safe={true}
               hidden={false}
@@ -1712,7 +1712,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
             <div
               className="pf-c-description-list__text"
             >
-              -
+              policy-gatekeeper-admission
             </div>
           </dd>
         </div>
@@ -1734,7 +1734,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
             <div
               className="pf-c-description-list__text"
             >
-              -
+              calamari
             </div>
           </dd>
         </div>
@@ -1756,7 +1756,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
             <div
               className="pf-c-description-list__text"
             >
-              -
+              ConfigurationPolicy
             </div>
           </dd>
         </div>
@@ -1778,7 +1778,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
             <div
               className="pf-c-description-list__text"
             >
-              -
+              policy.open-cluster-management.io/v1
             </div>
           </dd>
         </div>
@@ -1800,7 +1800,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
             <div
               className="pf-c-description-list__text"
             >
-              -
+              NonCompliant
             </div>
           </dd>
         </div>
@@ -1822,7 +1822,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
             <div
               className="pf-c-description-list__text"
             >
-              "-"
+              [{"Compliant":"NonCompliant","Validity":{},"conditions":[{"lastTransitionTime":"2020-08-21T17:01:43Z","message":"events exist and should be deleted: [openshift-multus.162c73ad488032d5, openshift-multus.162c749621995399, openshift-multus.162c757efd7ebb62] in namespace gatekeeper-system","reason":"K8s has a must \`not\` have object","status":"True","type":"violation"}]}]
             </div>
           </dd>
         </div>
@@ -2228,40 +2228,469 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
           <tbody
             className="pattern-fly-table-body"
             role="rowgroup"
-          />
-        </table>
-        <div
-          className="pf-c-empty-state pf-m-sm pattern-fly-table-empty-state"
-        >
-          <div
-            className="pf-c-empty-state__content"
           >
-            <svg
-              aria-hidden="true"
-              aria-labelledby={null}
-              className="pf-c-empty-state__icon"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style={
-                Object {
-                  "verticalAlign": "-0.125em",
-                }
-              }
-              viewBox="0 0 512 512"
-              width="1em"
+            <tr
+              className=""
+              data-ouia-component-id="OUIA-Generated-TableRow-2"
+              data-ouia-component-type="PF4/TableRow"
+              data-ouia-safe={true}
+              hidden={false}
+              onMouseDown={[Function]}
             >
-              <path
-                d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
-              />
-            </svg>
-            <h2
-              className="pf-c-title pf-m-md"
+              <td
+                className="pf-m-break-word"
+                data-key={0}
+                data-label="Name"
+                onMouseEnter={[Function]}
+              >
+                openshift-multus.162c73ad488032d5
+              </td>
+              <td
+                className=""
+                data-key={1}
+                data-label="Namespace"
+                onMouseEnter={[Function]}
+              >
+                gatekeeper-system
+              </td>
+              <td
+                className=""
+                data-key={2}
+                data-label="Kind"
+                onMouseEnter={[Function]}
+              >
+                events
+              </td>
+              <td
+                className="pf-m-break-word"
+                data-key={3}
+                data-label="API groups"
+                onMouseEnter={[Function]}
+              >
+                /v1
+              </td>
+              <td
+                className=""
+                data-key={4}
+                data-label="Compliant"
+                onMouseEnter={[Function]}
+              >
+                <div>
+                  <svg
+                    aria-hidden={true}
+                    aria-labelledby={null}
+                    fill="#c9190b"
+                    height="1em"
+                    role="img"
+                    style={
+                      Object {
+                        "verticalAlign": "-0.125em",
+                      }
+                    }
+                    viewBox="0 0 512 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    />
+                  </svg>
+                   
+                  Not compliant
+                </div>
+              </td>
+              <td
+                className=""
+                data-key={5}
+                data-label="Reason"
+                onMouseEnter={[Function]}
+              >
+                Resource found but not expected
+              </td>
+              <td
+                className=""
+                data-key={6}
+                data-label={null}
+                onMouseEnter={[Function]}
+              >
+                <a
+                  href="/resources?cluster=calamari&kind=events&apiversion=/v1&namespace=gatekeeper-system&name=openshift-multus.162c73ad488032d5"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View yaml
+                </a>
+              </td>
+            </tr>
+            <tr
+              className=""
+              data-ouia-component-id="OUIA-Generated-TableRow-3"
+              data-ouia-component-type="PF4/TableRow"
+              data-ouia-safe={true}
+              hidden={false}
+              onMouseDown={[Function]}
             >
-              No results found
-            </h2>
-          </div>
-        </div>
+              <td
+                className="pf-m-break-word"
+                data-key={0}
+                data-label="Name"
+                onMouseEnter={[Function]}
+              >
+                openshift-multus.162c749621995399
+              </td>
+              <td
+                className=""
+                data-key={1}
+                data-label="Namespace"
+                onMouseEnter={[Function]}
+              >
+                gatekeeper-system
+              </td>
+              <td
+                className=""
+                data-key={2}
+                data-label="Kind"
+                onMouseEnter={[Function]}
+              >
+                events
+              </td>
+              <td
+                className="pf-m-break-word"
+                data-key={3}
+                data-label="API groups"
+                onMouseEnter={[Function]}
+              >
+                /v1
+              </td>
+              <td
+                className=""
+                data-key={4}
+                data-label="Compliant"
+                onMouseEnter={[Function]}
+              >
+                <div>
+                  <svg
+                    aria-hidden={true}
+                    aria-labelledby={null}
+                    fill="#c9190b"
+                    height="1em"
+                    role="img"
+                    style={
+                      Object {
+                        "verticalAlign": "-0.125em",
+                      }
+                    }
+                    viewBox="0 0 512 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    />
+                  </svg>
+                   
+                  Not compliant
+                </div>
+              </td>
+              <td
+                className=""
+                data-key={5}
+                data-label="Reason"
+                onMouseEnter={[Function]}
+              >
+                Resource found but not expected
+              </td>
+              <td
+                className=""
+                data-key={6}
+                data-label={null}
+                onMouseEnter={[Function]}
+              >
+                <a
+                  href="/resources?cluster=calamari&kind=events&apiversion=/v1&namespace=gatekeeper-system&name=openshift-multus.162c749621995399"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View yaml
+                </a>
+              </td>
+            </tr>
+            <tr
+              className=""
+              data-ouia-component-id="OUIA-Generated-TableRow-4"
+              data-ouia-component-type="PF4/TableRow"
+              data-ouia-safe={true}
+              hidden={false}
+              onMouseDown={[Function]}
+            >
+              <td
+                className="pf-m-break-word"
+                data-key={0}
+                data-label="Name"
+                onMouseEnter={[Function]}
+              >
+                openshift-multus.162c757efd7ebb62
+              </td>
+              <td
+                className=""
+                data-key={1}
+                data-label="Namespace"
+                onMouseEnter={[Function]}
+              >
+                gatekeeper-system
+              </td>
+              <td
+                className=""
+                data-key={2}
+                data-label="Kind"
+                onMouseEnter={[Function]}
+              >
+                events
+              </td>
+              <td
+                className="pf-m-break-word"
+                data-key={3}
+                data-label="API groups"
+                onMouseEnter={[Function]}
+              >
+                /v1
+              </td>
+              <td
+                className=""
+                data-key={4}
+                data-label="Compliant"
+                onMouseEnter={[Function]}
+              >
+                <div>
+                  <svg
+                    aria-hidden={true}
+                    aria-labelledby={null}
+                    fill="#c9190b"
+                    height="1em"
+                    role="img"
+                    style={
+                      Object {
+                        "verticalAlign": "-0.125em",
+                      }
+                    }
+                    viewBox="0 0 512 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    />
+                  </svg>
+                   
+                  Not compliant
+                </div>
+              </td>
+              <td
+                className=""
+                data-key={5}
+                data-label="Reason"
+                onMouseEnter={[Function]}
+              >
+                Resource found but not expected
+              </td>
+              <td
+                className=""
+                data-key={6}
+                data-label={null}
+                onMouseEnter={[Function]}
+              >
+                <a
+                  href="/resources?cluster=calamari&kind=events&apiversion=/v1&namespace=gatekeeper-system&name=openshift-multus.162c757efd7ebb62"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View yaml
+                </a>
+              </td>
+            </tr>
+            <tr
+              className=""
+              data-ouia-component-id="OUIA-Generated-TableRow-5"
+              data-ouia-component-type="PF4/TableRow"
+              data-ouia-safe={true}
+              hidden={false}
+              onMouseDown={[Function]}
+            >
+              <td
+                className="pf-m-break-word"
+                data-key={0}
+                data-label="Name"
+                onMouseEnter={[Function]}
+              >
+                openshift-multus.162c757efd7ebb62
+              </td>
+              <td
+                className=""
+                data-key={1}
+                data-label="Namespace"
+                onMouseEnter={[Function]}
+              >
+                gatekeeper-system
+              </td>
+              <td
+                className=""
+                data-key={2}
+                data-label="Kind"
+                onMouseEnter={[Function]}
+              >
+                events
+              </td>
+              <td
+                className="pf-m-break-word"
+                data-key={3}
+                data-label="API groups"
+                onMouseEnter={[Function]}
+              >
+                /v1
+              </td>
+              <td
+                className=""
+                data-key={4}
+                data-label="Compliant"
+                onMouseEnter={[Function]}
+              >
+                <div>
+                  <svg
+                    aria-hidden={true}
+                    aria-labelledby={null}
+                    fill="#467f40"
+                    height="1em"
+                    role="img"
+                    style={
+                      Object {
+                        "verticalAlign": "-0.125em",
+                      }
+                    }
+                    viewBox="0 0 512 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
+                    />
+                  </svg>
+                   
+                  Compliant
+                </div>
+              </td>
+              <td
+                className=""
+                data-key={5}
+                data-label="Reason"
+                onMouseEnter={[Function]}
+              >
+                Resource found and expected
+              </td>
+              <td
+                className=""
+                data-key={6}
+                data-label={null}
+                onMouseEnter={[Function]}
+              >
+                <a
+                  href="/resources?cluster=calamari&kind=events&apiversion=/v1&namespace=gatekeeper-system&name=openshift-multus.162c757efd7ebb62"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View yaml
+                </a>
+              </td>
+            </tr>
+            <tr
+              className=""
+              data-ouia-component-id="OUIA-Generated-TableRow-6"
+              data-ouia-component-type="PF4/TableRow"
+              data-ouia-safe={true}
+              hidden={false}
+              onMouseDown={[Function]}
+            >
+              <td
+                className="pf-m-break-word"
+                data-key={0}
+                data-label="Name"
+                onMouseEnter={[Function]}
+              >
+                openshift-multus.162c757efd7ebb62
+              </td>
+              <td
+                className=""
+                data-key={1}
+                data-label="Namespace"
+                onMouseEnter={[Function]}
+              >
+                gatekeeper-system
+              </td>
+              <td
+                className=""
+                data-key={2}
+                data-label="Kind"
+                onMouseEnter={[Function]}
+              >
+                events
+              </td>
+              <td
+                className="pf-m-break-word"
+                data-key={3}
+                data-label="API groups"
+                onMouseEnter={[Function]}
+              >
+                /v1
+              </td>
+              <td
+                className=""
+                data-key={4}
+                data-label="Compliant"
+                onMouseEnter={[Function]}
+              >
+                <div>
+                  <svg
+                    aria-hidden={true}
+                    aria-labelledby={null}
+                    fill="#f0ab00"
+                    height="1em"
+                    role="img"
+                    style={
+                      Object {
+                        "verticalAlign": "-0.125em",
+                      }
+                    }
+                    viewBox="0 0 576 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    />
+                  </svg>
+                   
+                  No status
+                </div>
+              </td>
+              <td
+                className=""
+                data-key={5}
+                data-label="Reason"
+                onMouseEnter={[Function]}
+              >
+                No status
+              </td>
+              <td
+                className=""
+                data-key={6}
+                data-label={null}
+                onMouseEnter={[Function]}
+              >
+                <a
+                  href="/resources?cluster=calamari&kind=events&apiversion=/v1&namespace=gatekeeper-system&name=openshift-multus.162c757efd7ebb62"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View yaml
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <div
           className="pf-c-pagination pf-m-bottom"
           data-ouia-component-id="OUIA-Generated-Pagination-bottom-1"
@@ -2281,15 +2710,15 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 className="pf-c-options-menu__toggle-text"
               >
                 <b>
-                  0
+                  1
                    - 
-                  0
+                  5
                 </b>
                  
                 of
                  
                 <b>
-                  0
+                  5
                 </b>
                  
                 
@@ -2301,7 +2730,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-ouia-component-id="OUIA-Generated-DropdownToggle-1"
                 data-ouia-component-type="PF4/DropdownToggle"
                 data-ouia-safe={true}
-                disabled={true}
+                disabled={false}
                 id="pagination-options-menu-bottom-toggle-0"
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -2417,19 +2846,19 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 aria-label="Current page"
                 className="pf-c-form-control"
                 disabled={true}
-                max={0}
+                max={1}
                 min={1}
                 onChange={[Function]}
                 onKeyDown={[Function]}
                 type="number"
-                value={0}
+                value={1}
               />
               <span
                 aria-hidden="true"
               >
                 of
                  
-                0
+                1
               </span>
             </div>
             <div
@@ -2550,7 +2979,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
             <div
               className="pf-c-description-list__text"
             >
-              -
+              policy-gatekeeper-admission
             </div>
           </dd>
         </div>
@@ -2572,7 +3001,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
             <div
               className="pf-c-description-list__text"
             >
-              -
+              calamari
             </div>
           </dd>
         </div>
@@ -2594,7 +3023,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
             <div
               className="pf-c-description-list__text"
             >
-              -
+              ConfigurationPolicy
             </div>
           </dd>
         </div>
@@ -2616,7 +3045,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
             <div
               className="pf-c-description-list__text"
             >
-              -
+              policy.open-cluster-management.io/v1
             </div>
           </dd>
         </div>
@@ -2638,7 +3067,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
             <div
               className="pf-c-description-list__text"
             >
-              -
+              NonCompliant
             </div>
           </dd>
         </div>
@@ -2660,7 +3089,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
             <div
               className="pf-c-description-list__text"
             >
-              "-"
+              [{"Compliant":"NonCompliant","Validity":{},"conditions":[{"lastTransitionTime":"2020-08-21T17:01:43Z","message":"events exist and should be deleted: [openshift-multus.162c73ad488032d5, openshift-multus.162c749621995399, openshift-multus.162c757efd7ebb62] in namespace gatekeeper-system","reason":"K8s has a must \`not\` have object","status":"True","type":"violation"}]}]
             </div>
           </dd>
         </div>
@@ -2765,7 +3194,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
           >
             <tr
               className=""
-              data-ouia-component-id="OUIA-Generated-TableRow-2"
+              data-ouia-component-id="OUIA-Generated-TableRow-7"
               data-ouia-component-type="PF4/TableRow"
               data-ouia-safe={true}
               hidden={false}
@@ -3066,40 +3495,469 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
           <tbody
             className="pattern-fly-table-body"
             role="rowgroup"
-          />
-        </table>
-        <div
-          className="pf-c-empty-state pf-m-sm pattern-fly-table-empty-state"
-        >
-          <div
-            className="pf-c-empty-state__content"
           >
-            <svg
-              aria-hidden="true"
-              aria-labelledby={null}
-              className="pf-c-empty-state__icon"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style={
-                Object {
-                  "verticalAlign": "-0.125em",
-                }
-              }
-              viewBox="0 0 512 512"
-              width="1em"
+            <tr
+              className=""
+              data-ouia-component-id="OUIA-Generated-TableRow-8"
+              data-ouia-component-type="PF4/TableRow"
+              data-ouia-safe={true}
+              hidden={false}
+              onMouseDown={[Function]}
             >
-              <path
-                d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
-              />
-            </svg>
-            <h2
-              className="pf-c-title pf-m-md"
+              <td
+                className="pf-m-break-word"
+                data-key={0}
+                data-label="Name"
+                onMouseEnter={[Function]}
+              >
+                openshift-multus.162c73ad488032d5
+              </td>
+              <td
+                className=""
+                data-key={1}
+                data-label="Namespace"
+                onMouseEnter={[Function]}
+              >
+                -
+              </td>
+              <td
+                className=""
+                data-key={2}
+                data-label="Kind"
+                onMouseEnter={[Function]}
+              >
+                events
+              </td>
+              <td
+                className="pf-m-break-word"
+                data-key={3}
+                data-label="API groups"
+                onMouseEnter={[Function]}
+              >
+                /v1
+              </td>
+              <td
+                className=""
+                data-key={4}
+                data-label="Compliant"
+                onMouseEnter={[Function]}
+              >
+                <div>
+                  <svg
+                    aria-hidden={true}
+                    aria-labelledby={null}
+                    fill="#c9190b"
+                    height="1em"
+                    role="img"
+                    style={
+                      Object {
+                        "verticalAlign": "-0.125em",
+                      }
+                    }
+                    viewBox="0 0 512 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    />
+                  </svg>
+                   
+                  Not compliant
+                </div>
+              </td>
+              <td
+                className=""
+                data-key={5}
+                data-label="Reason"
+                onMouseEnter={[Function]}
+              >
+                Resource found but not expected
+              </td>
+              <td
+                className=""
+                data-key={6}
+                data-label={null}
+                onMouseEnter={[Function]}
+              >
+                <a
+                  href="/resources?cluster=calamari&kind=events&apiversion=/v1&name=openshift-multus.162c73ad488032d5"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View yaml
+                </a>
+              </td>
+            </tr>
+            <tr
+              className=""
+              data-ouia-component-id="OUIA-Generated-TableRow-9"
+              data-ouia-component-type="PF4/TableRow"
+              data-ouia-safe={true}
+              hidden={false}
+              onMouseDown={[Function]}
             >
-              No results found
-            </h2>
-          </div>
-        </div>
+              <td
+                className="pf-m-break-word"
+                data-key={0}
+                data-label="Name"
+                onMouseEnter={[Function]}
+              >
+                openshift-multus.162c749621995399
+              </td>
+              <td
+                className=""
+                data-key={1}
+                data-label="Namespace"
+                onMouseEnter={[Function]}
+              >
+                -
+              </td>
+              <td
+                className=""
+                data-key={2}
+                data-label="Kind"
+                onMouseEnter={[Function]}
+              >
+                events
+              </td>
+              <td
+                className="pf-m-break-word"
+                data-key={3}
+                data-label="API groups"
+                onMouseEnter={[Function]}
+              >
+                /v1
+              </td>
+              <td
+                className=""
+                data-key={4}
+                data-label="Compliant"
+                onMouseEnter={[Function]}
+              >
+                <div>
+                  <svg
+                    aria-hidden={true}
+                    aria-labelledby={null}
+                    fill="#c9190b"
+                    height="1em"
+                    role="img"
+                    style={
+                      Object {
+                        "verticalAlign": "-0.125em",
+                      }
+                    }
+                    viewBox="0 0 512 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    />
+                  </svg>
+                   
+                  Not compliant
+                </div>
+              </td>
+              <td
+                className=""
+                data-key={5}
+                data-label="Reason"
+                onMouseEnter={[Function]}
+              >
+                Resource found but not expected
+              </td>
+              <td
+                className=""
+                data-key={6}
+                data-label={null}
+                onMouseEnter={[Function]}
+              >
+                <a
+                  href="/resources?cluster=calamari&kind=events&apiversion=/v1&name=openshift-multus.162c749621995399"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View yaml
+                </a>
+              </td>
+            </tr>
+            <tr
+              className=""
+              data-ouia-component-id="OUIA-Generated-TableRow-10"
+              data-ouia-component-type="PF4/TableRow"
+              data-ouia-safe={true}
+              hidden={false}
+              onMouseDown={[Function]}
+            >
+              <td
+                className="pf-m-break-word"
+                data-key={0}
+                data-label="Name"
+                onMouseEnter={[Function]}
+              >
+                openshift-multus.162c757efd7ebb62
+              </td>
+              <td
+                className=""
+                data-key={1}
+                data-label="Namespace"
+                onMouseEnter={[Function]}
+              >
+                -
+              </td>
+              <td
+                className=""
+                data-key={2}
+                data-label="Kind"
+                onMouseEnter={[Function]}
+              >
+                events
+              </td>
+              <td
+                className="pf-m-break-word"
+                data-key={3}
+                data-label="API groups"
+                onMouseEnter={[Function]}
+              >
+                /v1
+              </td>
+              <td
+                className=""
+                data-key={4}
+                data-label="Compliant"
+                onMouseEnter={[Function]}
+              >
+                <div>
+                  <svg
+                    aria-hidden={true}
+                    aria-labelledby={null}
+                    fill="#c9190b"
+                    height="1em"
+                    role="img"
+                    style={
+                      Object {
+                        "verticalAlign": "-0.125em",
+                      }
+                    }
+                    viewBox="0 0 512 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    />
+                  </svg>
+                   
+                  Not compliant
+                </div>
+              </td>
+              <td
+                className=""
+                data-key={5}
+                data-label="Reason"
+                onMouseEnter={[Function]}
+              >
+                Resource found but not expected
+              </td>
+              <td
+                className=""
+                data-key={6}
+                data-label={null}
+                onMouseEnter={[Function]}
+              >
+                <a
+                  href="/resources?cluster=calamari&kind=events&apiversion=/v1&name=openshift-multus.162c757efd7ebb62"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View yaml
+                </a>
+              </td>
+            </tr>
+            <tr
+              className=""
+              data-ouia-component-id="OUIA-Generated-TableRow-11"
+              data-ouia-component-type="PF4/TableRow"
+              data-ouia-safe={true}
+              hidden={false}
+              onMouseDown={[Function]}
+            >
+              <td
+                className="pf-m-break-word"
+                data-key={0}
+                data-label="Name"
+                onMouseEnter={[Function]}
+              >
+                openshift-multus.162c757efd7ebb62
+              </td>
+              <td
+                className=""
+                data-key={1}
+                data-label="Namespace"
+                onMouseEnter={[Function]}
+              >
+                -
+              </td>
+              <td
+                className=""
+                data-key={2}
+                data-label="Kind"
+                onMouseEnter={[Function]}
+              >
+                events
+              </td>
+              <td
+                className="pf-m-break-word"
+                data-key={3}
+                data-label="API groups"
+                onMouseEnter={[Function]}
+              >
+                /v1
+              </td>
+              <td
+                className=""
+                data-key={4}
+                data-label="Compliant"
+                onMouseEnter={[Function]}
+              >
+                <div>
+                  <svg
+                    aria-hidden={true}
+                    aria-labelledby={null}
+                    fill="#467f40"
+                    height="1em"
+                    role="img"
+                    style={
+                      Object {
+                        "verticalAlign": "-0.125em",
+                      }
+                    }
+                    viewBox="0 0 512 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
+                    />
+                  </svg>
+                   
+                  Compliant
+                </div>
+              </td>
+              <td
+                className=""
+                data-key={5}
+                data-label="Reason"
+                onMouseEnter={[Function]}
+              >
+                Resource found and expected
+              </td>
+              <td
+                className=""
+                data-key={6}
+                data-label={null}
+                onMouseEnter={[Function]}
+              >
+                <a
+                  href="/resources?cluster=calamari&kind=events&apiversion=/v1&name=openshift-multus.162c757efd7ebb62"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View yaml
+                </a>
+              </td>
+            </tr>
+            <tr
+              className=""
+              data-ouia-component-id="OUIA-Generated-TableRow-12"
+              data-ouia-component-type="PF4/TableRow"
+              data-ouia-safe={true}
+              hidden={false}
+              onMouseDown={[Function]}
+            >
+              <td
+                className="pf-m-break-word"
+                data-key={0}
+                data-label="Name"
+                onMouseEnter={[Function]}
+              >
+                openshift-multus.162c757efd7ebb62
+              </td>
+              <td
+                className=""
+                data-key={1}
+                data-label="Namespace"
+                onMouseEnter={[Function]}
+              >
+                gatekeeper-system
+              </td>
+              <td
+                className=""
+                data-key={2}
+                data-label="Kind"
+                onMouseEnter={[Function]}
+              >
+                events
+              </td>
+              <td
+                className="pf-m-break-word"
+                data-key={3}
+                data-label="API groups"
+                onMouseEnter={[Function]}
+              >
+                /v1
+              </td>
+              <td
+                className=""
+                data-key={4}
+                data-label="Compliant"
+                onMouseEnter={[Function]}
+              >
+                <div>
+                  <svg
+                    aria-hidden={true}
+                    aria-labelledby={null}
+                    fill="#f0ab00"
+                    height="1em"
+                    role="img"
+                    style={
+                      Object {
+                        "verticalAlign": "-0.125em",
+                      }
+                    }
+                    viewBox="0 0 576 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    />
+                  </svg>
+                   
+                  No status
+                </div>
+              </td>
+              <td
+                className=""
+                data-key={5}
+                data-label="Reason"
+                onMouseEnter={[Function]}
+              >
+                No status
+              </td>
+              <td
+                className=""
+                data-key={6}
+                data-label={null}
+                onMouseEnter={[Function]}
+              >
+                <a
+                  href="/resources?cluster=calamari&kind=events&apiversion=/v1&namespace=gatekeeper-system&name=openshift-multus.162c757efd7ebb62"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View yaml
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <div
           className="pf-c-pagination pf-m-bottom"
           data-ouia-component-id="OUIA-Generated-Pagination-bottom-2"
@@ -3119,15 +3977,15 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                 className="pf-c-options-menu__toggle-text"
               >
                 <b>
-                  0
+                  1
                    - 
-                  0
+                  5
                 </b>
                  
                 of
                  
                 <b>
-                  0
+                  5
                 </b>
                  
                 
@@ -3139,7 +3997,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                 data-ouia-component-id="OUIA-Generated-DropdownToggle-2"
                 data-ouia-component-type="PF4/DropdownToggle"
                 data-ouia-safe={true}
-                disabled={true}
+                disabled={false}
                 id="pagination-options-menu-bottom-toggle-1"
                 onClick={[Function]}
                 onKeyDown={[Function]}
@@ -3255,19 +4113,19 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                 aria-label="Current page"
                 className="pf-c-form-control"
                 disabled={true}
-                max={0}
+                max={1}
                 min={1}
                 onChange={[Function]}
                 onKeyDown={[Function]}
                 type="number"
-                value={0}
+                value={1}
               />
               <span
                 aria-hidden="true"
               >
                 of
                  
-                0
+                1
               </span>
             </div>
             <div
