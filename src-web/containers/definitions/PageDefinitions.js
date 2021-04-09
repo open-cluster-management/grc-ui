@@ -114,7 +114,7 @@ const policyTemplateDetailsPage = ({ name, namespace, cluster, apiGroup, version
     query_variables: { name:template, cluster, kind, selfLink },
     refreshControls: true,
     breadcrumb: [
-      { text: msgs.get('routes.policies', locale), to: config.contextPath },
+      { text: msgs.get(policiesMsg, locale), to: config.contextPath },
       { text: name, to: `${config.contextPath}/all/${namespace}/${name}`},
       { text: msgs.get('table.header.status', locale), to: `${config.contextPath}/all/${namespace}/${name}/status` },
       { text: template, to: template }
@@ -131,7 +131,7 @@ const policyStatusHistoryPage = ({ name, namespace, cluster, template, locale })
     query_variables: { policyName: name, hubNamespace: namespace, cluster, template },
     refreshControls: true,
     breadcrumb: [
-      { text: msgs.get('routes.policies', locale), to: config.contextPath },
+      { text: msgs.get(policiesMsg, locale), to: config.contextPath },
       { text: name, to: `${config.contextPath}/all/${namespace}/${name}`},
       { text: msgs.get('table.header.status', locale), to: `${config.contextPath}/all/${namespace}/${name}/status`},
       { text: msgs.get(historyMsg, locale), to: msgs.get(historyMsg, locale) }
