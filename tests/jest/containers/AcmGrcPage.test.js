@@ -26,6 +26,13 @@ const store = createStore(combineReducers(reducers), composeEnhancers(
   applyMiddleware(...middleware)
 ))
 
+// Mock YamlEditor since we aren't passing it any actual data
+jest.mock('../../../src-web/components/common/YamlEditor', () => {
+  return function mockYamlEditor() {
+    return <div data-testid='mockYamlEditor' />
+  }
+})
+
 const props = { userAccess: [], locale: 'en' }
 
 describe('AcmGrcPage container', () => {
@@ -96,6 +103,8 @@ describe('AcmGrcPage container', () => {
   })
 
   it('should render POLICY_TEMPLATE_DETAILS page ', async () => {
+  
+
     const props = {
       userAccess: [],
       locale: 'en',
