@@ -388,7 +388,7 @@ export const action_verifyPolicyInListing = (
       if ([1,2,3].includes(targetStatus)) {
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            cy.wrap(elems[0]).should('have.attr', 'fill', getStatusIconFillColor('targetStatus'))
+            cy.wrap(elems[0]).should('have.attr', 'fill', getStatusIconFillColor(targetStatus))
           }
         })
       }
