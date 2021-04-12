@@ -197,7 +197,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -280,7 +280,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -363,7 +363,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -446,7 +446,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -529,7 +529,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -946,7 +946,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1029,7 +1029,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1112,7 +1112,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1195,7 +1195,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1278,7 +1278,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1695,7 +1695,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1778,7 +1778,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1861,7 +1861,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1944,7 +1944,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -2027,7 +2027,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >

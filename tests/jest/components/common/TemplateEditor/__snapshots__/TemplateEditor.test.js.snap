@@ -197,7 +197,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -347,7 +347,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -497,7 +497,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -647,7 +647,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -797,7 +797,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
