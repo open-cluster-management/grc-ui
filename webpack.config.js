@@ -63,11 +63,22 @@ module.exports = {
         // Transpile React JSX to ES5
         test: [/\.jsx$/, /\.js$/],
         exclude: /node_modules|\.scss/,
-        loader: 'babel-loader?cacheDirectory',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-          plugins: ['@babel/plugin-proposal-class-properties']
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: ['@babel/plugin-proposal-class-properties']
+            },
+          },
+          // {
+          //   loader: 'cacheDirectory',
+          //   options: {
+          //     presets: ['@babel/preset-env', '@babel/preset-react'],
+          //     plugins: ['@babel/plugin-proposal-class-properties']
+          //   },
+          // },
+        ]
       },
       {
         test: [/\.s?css$/],
@@ -106,7 +117,8 @@ module.exports = {
       },
       {
         test: /\.woff2?$/,
-        loader: 'file-loader?name=fonts/[name].[ext]'
+        // loader: 'file-loader?name=fonts/[name].[ext]'
+        loader: 'file-loader'
       },
       {
         test: /\.css$/,
@@ -177,7 +189,7 @@ module.exports = {
     // chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].js',
     path: __dirname + '/public',
     publicPath: config.get('contextPath').replace(/\/?$/, '/'),
-    jsonpFunction: 'webpackJsonpFunctionGrc',
+    chunkLoadingGlobal: 'webpackJsonpFunctionGrc',
   },
 
   plugins: [
