@@ -71,13 +71,6 @@ module.exports = {
               plugins: ['@babel/plugin-proposal-class-properties']
             },
           },
-          // {
-          //   loader: 'cacheDirectory',
-          //   options: {
-          //     presets: ['@babel/preset-env', '@babel/preset-react'],
-          //     plugins: ['@babel/plugin-proposal-class-properties']
-          //   },
-          // },
         ]
       },
       {
@@ -117,8 +110,10 @@ module.exports = {
       },
       {
         test: /\.woff2?$/,
-        // loader: 'file-loader?name=fonts/[name].[ext]'
-        loader: 'file-loader'
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[ext]'
+        }
       },
       {
         test: /\.css$/,
