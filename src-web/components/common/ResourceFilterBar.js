@@ -29,7 +29,6 @@ class ResourceFilterBar extends React.Component {
 
   render() {
     const { locale } = this.context
-    console.log(JSON.stringify(activeFilters))
     const { activeFilters={} } = this.props
     const boundFilters=[]
     const clearFilters = []
