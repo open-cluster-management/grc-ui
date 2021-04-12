@@ -31,6 +31,20 @@ describeT('GRC UI: [P1][Sev1][policy-grc] Welcome page', () => {
         leftNav.validateMenu()
     })
 
+    it(`[P3][Sev3][${squad}] should show perspective switcher on kube 1.2`, () => {
+        cy.intercept(
+            {
+              method: 'GET',
+              url: '/multicloud/version',
+            },
+            {
+                'gitVersion': 'v1.20.0+bd9e442',
+            }
+        )
+        cy.request('/multicloud/version')
+        leftNav.validatePerspective()
+    })
+
     it(`[P3][Sev3][${squad}] using left navigation - should navigate to Clusters page`, () => {
         leftNav.goToClusters()
     })

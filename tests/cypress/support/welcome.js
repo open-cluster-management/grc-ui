@@ -59,6 +59,9 @@ export const leftNav = {
         cy.get('#page-sidebar').should('not.be.visible')
         cy.get('#nav-toggle').click()
     },
+    validatePerspective: () => {
+        cy.get('#toggle-perspective').should('be.visible')
+    },
     goToHome: () => {
         cy.get('#page-sidebar').contains('Home').click()
         cy.get('#page-sidebar').contains('Welcome').should('not.be.visible')
