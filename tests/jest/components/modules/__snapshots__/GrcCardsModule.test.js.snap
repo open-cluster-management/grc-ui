@@ -2235,7 +2235,7 @@ GrcCardsModule {
                   "spec": Object {
                     "containers": Array [
                       Object {
-                        "image": "nginx:1.7.9",
+                        "image": "nginx:1.18.0",
                         "name": "nginx",
                         "ports": Array [
                           Object {
@@ -2854,7 +2854,7 @@ GrcCardsModule {
                         "spec": Object {
                           "containers": Array [
                             Object {
-                              "image": "nginx:1.7.9",
+                              "image": "nginx:1.18.0",
                               "name": "nginx",
                               "ports": Array [
                                 Object {
@@ -3554,7 +3554,7 @@ GrcCardsModule {
                   "spec": Object {
                     "containers": Array [
                       Object {
-                        "image": "nginx:1.7.9",
+                        "image": "nginx:1.18.0",
                         "name": "nginx",
                         "ports": Array [
                           Object {
@@ -4173,7 +4173,7 @@ GrcCardsModule {
                         "spec": Object {
                           "containers": Array [
                             Object {
-                              "image": "nginx:1.7.9",
+                              "image": "nginx:1.18.0",
                               "name": "nginx",
                               "ports": Array [
                                 Object {
@@ -4475,7 +4475,7 @@ GrcCardsModule {
                   "spec": Object {
                     "containers": Array [
                       Object {
-                        "image": "nginx:1.7.9",
+                        "image": "nginx:1.18.0",
                         "name": "nginx",
                         "ports": Array [
                           Object {
@@ -4606,7 +4606,7 @@ GrcCardsModule {
                   "spec": Object {
                     "containers": Array [
                       Object {
-                        "image": "nginx:1.7.9",
+                        "image": "nginx:1.18.0",
                         "name": "nginx",
                         "ports": Array [
                           Object {
@@ -4874,7 +4874,7 @@ GrcCardsModule {
                   "spec": Object {
                     "containers": Array [
                       Object {
-                        "image": "nginx:1.7.9",
+                        "image": "nginx:1.18.0",
                         "name": "nginx",
                         "ports": Array [
                           Object {
@@ -5056,7 +5056,7 @@ GrcCardsModule {
                         "spec": Object {
                           "containers": Array [
                             Object {
-                              "image": "nginx:1.7.9",
+                              "image": "nginx:1.18.0",
                               "name": "nginx",
                               "ports": Array [
                                 Object {
@@ -5187,7 +5187,7 @@ GrcCardsModule {
                         "spec": Object {
                           "containers": Array [
                             Object {
-                              "image": "nginx:1.7.9",
+                              "image": "nginx:1.18.0",
                               "name": "nginx",
                               "ports": Array [
                                 Object {
@@ -5455,7 +5455,7 @@ GrcCardsModule {
                         "spec": Object {
                           "containers": Array [
                             Object {
-                              "image": "nginx:1.7.9",
+                              "image": "nginx:1.18.0",
                               "name": "nginx",
                               "ports": Array [
                                 Object {
@@ -5739,7 +5739,7 @@ GrcCardsModule {
                   "spec": Object {
                     "containers": Array [
                       Object {
-                        "image": "nginx:1.7.9",
+                        "image": "nginx:1.18.0",
                         "name": "nginx",
                         "ports": Array [
                           Object {
@@ -5870,7 +5870,7 @@ GrcCardsModule {
                   "spec": Object {
                     "containers": Array [
                       Object {
-                        "image": "nginx:1.7.9",
+                        "image": "nginx:1.18.0",
                         "name": "nginx",
                         "ports": Array [
                           Object {
@@ -6138,7 +6138,7 @@ GrcCardsModule {
                   "spec": Object {
                     "containers": Array [
                       Object {
-                        "image": "nginx:1.7.9",
+                        "image": "nginx:1.18.0",
                         "name": "nginx",
                         "ports": Array [
                           Object {
@@ -6320,7 +6320,7 @@ GrcCardsModule {
                         "spec": Object {
                           "containers": Array [
                             Object {
-                              "image": "nginx:1.7.9",
+                              "image": "nginx:1.18.0",
                               "name": "nginx",
                               "ports": Array [
                                 Object {
@@ -6451,7 +6451,7 @@ GrcCardsModule {
                         "spec": Object {
                           "containers": Array [
                             Object {
-                              "image": "nginx:1.7.9",
+                              "image": "nginx:1.18.0",
                               "name": "nginx",
                               "ports": Array [
                                 Object {
@@ -6719,7 +6719,7 @@ GrcCardsModule {
                         "spec": Object {
                           "containers": Array [
                             Object {
-                              "image": "nginx:1.7.9",
+                              "image": "nginx:1.18.0",
                               "name": "nginx",
                               "ports": Array [
                                 Object {

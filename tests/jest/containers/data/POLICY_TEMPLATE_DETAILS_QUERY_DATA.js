@@ -158,7 +158,7 @@ export default {
                     'spec':{
                        'containers':[
                           {
-                             'image':'nginx:1.7.9',
+                             'image':'nginx:1.18.0',
                              'name':'nginx',
                              'ports':[
                                 {

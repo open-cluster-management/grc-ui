@@ -38949,7 +38949,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                         "spec": Object {
                           "containers": Array [
                             Object {
-                              "image": "nginx:1.7.9",
+                              "image": "nginx:1.18.0",
                               "name": "nginx",
                               "ports": Array [
                                 Object {
@@ -39127,7 +39127,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                             "spec": Object {
                               "containers": Array [
                                 Object {
-                                  "image": "nginx:1.7.9",
+                                  "image": "nginx:1.18.0",
                                   "name": "nginx",
                                   "ports": Array [
                                     Object {
@@ -39351,7 +39351,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                             "spec": Object {
                               "containers": Array [
                                 Object {
-                                  "image": "nginx:1.7.9",
+                                  "image": "nginx:1.18.0",
                                   "name": "nginx",
                                   "ports": Array [
                                     Object {
@@ -40060,7 +40060,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                               "spec": Object {
                                 "containers": Array [
                                   Object {
-                                    "image": "nginx:1.7.9",
+                                    "image": "nginx:1.18.0",
                                     "name": "nginx",
                                     "ports": Array [
                                       Object {
@@ -40284,7 +40284,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                               "spec": Object {
                                 "containers": Array [
                                   Object {
-                                    "image": "nginx:1.7.9",
+                                    "image": "nginx:1.18.0",
                                     "name": "nginx",
                                     "ports": Array [
                                       Object {
@@ -40782,7 +40782,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                               "spec": Object {
                                 "containers": Array [
                                   Object {
-                                    "image": "nginx:1.7.9",
+                                    "image": "nginx:1.18.0",
                                     "name": "nginx",
                                     "ports": Array [
                                       Object {
@@ -41006,7 +41006,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                               "spec": Object {
                                 "containers": Array [
                                   Object {
-                                    "image": "nginx:1.7.9",
+                                    "image": "nginx:1.18.0",
                                     "name": "nginx",
                                     "ports": Array [
                                       Object {
@@ -41718,7 +41718,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                 "spec": Object {
                                   "containers": Array [
                                     Object {
-                                      "image": "nginx:1.7.9",
+                                      "image": "nginx:1.18.0",
                                       "name": "nginx",
                                       "ports": Array [
                                         Object {
@@ -41942,7 +41942,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                 "spec": Object {
                                   "containers": Array [
                                     Object {
-                                      "image": "nginx:1.7.9",
+                                      "image": "nginx:1.18.0",
                                       "name": "nginx",
                                       "ports": Array [
                                         Object {
@@ -42439,7 +42439,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                   "spec": Object {
                                     "containers": Array [
                                       Object {
-                                        "image": "nginx:1.7.9",
+                                        "image": "nginx:1.18.0",
                                         "name": "nginx",
                                         "ports": Array [
                                           Object {
@@ -42663,7 +42663,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                   "spec": Object {
                                     "containers": Array [
                                       Object {
-                                        "image": "nginx:1.7.9",
+                                        "image": "nginx:1.18.0",
                                         "name": "nginx",
                                         "ports": Array [
                                           Object {
@@ -43146,7 +43146,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                               "spec": Object {
                                 "containers": Array [
                                   Object {
-                                    "image": "nginx:1.7.9",
+                                    "image": "nginx:1.18.0",
                                     "name": "nginx",
                                     "ports": Array [
                                       Object {
@@ -43717,7 +43717,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                 "spec": Object {
                                   "containers": Array [
                                     Object {
-                                      "image": "nginx:1.7.9",
+                                      "image": "nginx:1.18.0",
                                       "name": "nginx",
                                       "ports": Array [
                                         Object {
@@ -43892,7 +43892,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                 "spec": Object {
                                   "containers": Array [
                                     Object {
-                                      "image": "nginx:1.7.9",
+                                      "image": "nginx:1.18.0",
                                       "name": "nginx",
                                       "ports": Array [
                                         Object {
@@ -44054,7 +44054,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                 "spec": Object {
                                   "containers": Array [
                                     Object {
-                                      "image": "nginx:1.7.9",
+                                      "image": "nginx:1.18.0",
                                       "name": "nginx",
                                       "ports": Array [
                                         Object {
@@ -44458,7 +44458,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                       "spec": Object {
                                         "containers": Array [
                                           Object {
-                                            "image": "nginx:1.7.9",
+                                            "image": "nginx:1.18.0",
                                             "name": "nginx",
                                             "ports": Array [
                                               Object {
@@ -45726,7 +45726,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                         "spec": Object {
                                           "containers": Array [
                                             Object {
-                                              "image": "nginx:1.7.9",
+                                              "image": "nginx:1.18.0",
                                               "name": "nginx",
                                               "ports": Array [
                                                 Object {
@@ -46073,7 +46073,7 @@ spec:
           name: nginx-pod
         spec:
           containers:
-            - image: 'nginx:1.7.9'
+            - image: 'nginx:1.18.0'
               name: nginx
               ports:
                 - containerPort: 80

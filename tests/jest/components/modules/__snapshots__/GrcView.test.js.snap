@@ -829,7 +829,7 @@ exports[`GrcView component 2 shows loading when given loading:true 1`] = `
                       "spec": Object {
                         "containers": Array [
                           Object {
-                            "image": "nginx:1.7.9",
+                            "image": "nginx:1.18.0",
                             "name": "nginx",
                             "ports": Array [
                               Object {
@@ -1490,7 +1490,7 @@ exports[`GrcView component 3 gives an error notification given an error object 1
                       "spec": Object {
                         "containers": Array [
                           Object {
-                            "image": "nginx:1.7.9",
+                            "image": "nginx:1.18.0",
                             "name": "nginx",
                             "ports": Array [
                               Object {
@@ -2157,7 +2157,7 @@ exports[`GrcView component 4 renders as expected 1`] = `
                       "spec": Object {
                         "containers": Array [
                           Object {
-                            "image": "nginx:1.7.9",
+                            "image": "nginx:1.18.0",
                             "name": "nginx",
                             "ports": Array [
                               Object {
