@@ -62,21 +62,20 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   *
                 </div>
               </div>
-              <div
-                className="bx--form-item"
-              >
-                <input
-                  aria-label="name"
-                  className="bx--text-input bx--text__input"
-                  disabled={false}
-                  id="name"
-                  onChange={[Function]}
-                  onClick={[Function]}
-                  spellCheck={false}
-                  type="text"
-                  value="policy-grc"
-                />
-              </div>
+              <input
+                aria-invalid={false}
+                aria-label="name"
+                className="pf-c-form-control"
+                disabled={false}
+                id="name"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                readOnly={false}
+                required={true}
+                type="text"
+                value="policy-grc"
+              />
             </div>
             <div
               className="creation-view-controls-singleselect"
@@ -104,56 +103,65 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="Choose an item"
-                className="bx--dropdown bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex={null}
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeahead-1"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="namespace"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <span
-                    className="bx--list-box__label"
-                    htmlFor="downshift-0-input"
-                  >
-                    The namespace to create and store the policy on the hub cluster.
-                  </span>
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-0-select-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="The namespace to create and store the policy on the hub cluster."
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="namespace pf-select-toggle-id-0"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-0"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -183,66 +191,65 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="specs"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-1"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="specs"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-1-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Begin typing to search for template to select"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-1-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="Begin typing to search for template to select"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="specs pf-select-toggle-id-1"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-1"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -267,66 +274,65 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="clusters"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-2"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="clusters"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-2-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Begin typing to search for cluster label to select. If not selected, all clusters will be applied."
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-2-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="Begin typing to search for cluster label to select. If not selected, all clusters will be applied."
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="clusters pf-select-toggle-id-2"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-2"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -351,66 +357,65 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="standards"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-3"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="standards"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-3-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Begin typing to search for label to select"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-3-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="Begin typing to search for label to select"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="standards pf-select-toggle-id-3"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-3"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -435,66 +440,65 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="categories"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-4"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="categories"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-4-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Begin typing to search for label to select"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-4-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="Begin typing to search for label to select"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="categories pf-select-toggle-id-4"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-4"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -519,66 +523,65 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="controls"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-5"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="controls"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-5-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Begin typing to search for label to select"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-5-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="Begin typing to search for label to select"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="controls pf-select-toggle-id-5"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-5"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -608,60 +611,52 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 </div>
               </div>
               <div
-                className="bx--form-item"
+                className="pf-c-radio"
               >
-                <div
-                  className="bx--radio-button-group radio-button-group"
+                <input
+                  aria-invalid={false}
+                  checked={true}
+                  className="pf-c-radio__input"
+                  data-ouia-component-id="OUIA-Generated-Radio-1"
+                  data-ouia-component-type="PF4/Radio"
+                  data-ouia-safe={true}
+                  disabled={false}
+                  id="remediation-inform"
+                  name="remediation-inform"
+                  onChange={[Function]}
+                  type="radio"
+                  value="inform"
+                />
+                <label
+                  className="pf-c-radio__label"
+                  htmlFor="remediation-inform"
                 >
-                  <div
-                    className="radio-button bx--radio-button-wrapper radioButtonWrapper"
-                  >
-                    <input
-                      aria-label="remediation-inform"
-                      checked={true}
-                      className="bx--radio-button"
-                      id="remediation-inform"
-                      name="radio-button-group"
-                      onChange={[Function]}
-                      type="radio"
-                      value="false"
-                    />
-                    <label
-                      aria-label="Inform - Reports the violation, which requires manual remediation."
-                      className="bx--radio-button__label"
-                      htmlFor="remediation-inform"
-                    >
-                      <span
-                        className="bx--radio-button__appearance"
-                      />
-                      Inform - Reports the violation, which requires manual remediation.
-                    </label>
-                  </div>
-                  <div
-                    className="radio-button bx--radio-button-wrapper radioButtonWrapper"
-                  >
-                    <input
-                      aria-label="remediation-enforce"
-                      checked={false}
-                      className="bx--radio-button"
-                      id="remediation-enforce"
-                      name="radio-button-group"
-                      onChange={[Function]}
-                      type="radio"
-                      value="true"
-                    />
-                    <label
-                      aria-label="Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported."
-                      className="bx--radio-button__label"
-                      htmlFor="remediation-enforce"
-                    >
-                      <span
-                        className="bx--radio-button__appearance"
-                      />
-                      Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
-                    </label>
-                  </div>
-                </div>
+                  Inform - Reports the violation, which requires manual remediation.
+                </label>
+              </div>
+              <div
+                className="pf-c-radio"
+              >
+                <input
+                  aria-invalid={false}
+                  checked={false}
+                  className="pf-c-radio__input"
+                  data-ouia-component-id="OUIA-Generated-Radio-2"
+                  data-ouia-component-type="PF4/Radio"
+                  data-ouia-safe={true}
+                  disabled={false}
+                  id="remediation-enforce"
+                  name="remediation-enforce"
+                  onChange={[Function]}
+                  type="radio"
+                  value="enforce"
+                />
+                <label
+                  className="pf-c-radio__label"
+                  htmlFor="remediation-enforce"
+                >
+                  Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
+                </label>
               </div>
             </div>
             <div
@@ -685,27 +680,18 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
               className="creation-view-controls-checkbox"
             >
               <div
-                className="bx--form-item bx--checkbox-wrapper"
+                className="pf-c-check pf-m-standalone"
               >
                 <input
+                  aria-invalid={false}
                   aria-label="disabled"
                   checked={false}
-                  className="bx--checkbox"
+                  className="pf-c-check__input"
+                  disabled={false}
                   id="disabled"
                   onChange={[Function]}
                   type="checkbox"
                 />
-                <label
-                  className="bx--checkbox-label checkbox"
-                  htmlFor="disabled"
-                  title={null}
-                >
-                  <span
-                    className="bx--visually-hidden"
-                  >
-                    
-                  </span>
-                </label>
               </div>
               <div>
                 Disabled
@@ -825,21 +811,20 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   *
                 </div>
               </div>
-              <div
-                className="bx--form-item"
-              >
-                <input
-                  aria-label="name"
-                  className="bx--text-input bx--text__input"
-                  disabled={false}
-                  id="name"
-                  onChange={[Function]}
-                  onClick={[Function]}
-                  spellCheck={false}
-                  type="text"
-                  value="policy-grc"
-                />
-              </div>
+              <input
+                aria-invalid={false}
+                aria-label="name"
+                className="pf-c-form-control"
+                disabled={false}
+                id="name"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                readOnly={false}
+                required={true}
+                type="text"
+                value="policy-grc"
+              />
             </div>
             <div
               className="creation-view-controls-singleselect"
@@ -867,56 +852,65 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 </div>
               </div>
               <div
-                aria-label="Choose an item"
-                className="bx--dropdown bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex={null}
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeahead-2"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="namespace"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <span
-                    className="bx--list-box__label"
-                    htmlFor="downshift-6-input"
-                  >
-                    The namespace to create and store the policy on the hub cluster.
-                  </span>
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-6-select-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="The namespace to create and store the policy on the hub cluster."
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="namespace pf-select-toggle-id-6"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-6"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -946,66 +940,65 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 </div>
               </div>
               <div
-                aria-label="specs"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-6"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="specs"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-7-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Begin typing to search for template to select"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-7-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="Begin typing to search for template to select"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="specs pf-select-toggle-id-7"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-7"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1030,66 +1023,65 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 </div>
               </div>
               <div
-                aria-label="clusters"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-7"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="clusters"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-8-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Begin typing to search for cluster label to select. If not selected, all clusters will be applied."
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-8-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="Begin typing to search for cluster label to select. If not selected, all clusters will be applied."
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="clusters pf-select-toggle-id-8"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-8"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1114,66 +1106,65 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 </div>
               </div>
               <div
-                aria-label="standards"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-8"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="standards"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-9-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Begin typing to search for label to select"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-9-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="Begin typing to search for label to select"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="standards pf-select-toggle-id-9"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-9"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1198,66 +1189,65 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 </div>
               </div>
               <div
-                aria-label="categories"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-9"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="categories"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-10-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Begin typing to search for label to select"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-10-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="Begin typing to search for label to select"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="categories pf-select-toggle-id-10"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-10"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1282,66 +1272,65 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 </div>
               </div>
               <div
-                aria-label="controls"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-10"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="controls"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-11-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Begin typing to search for label to select"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-11-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="Begin typing to search for label to select"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="controls pf-select-toggle-id-11"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-11"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1371,60 +1360,52 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 </div>
               </div>
               <div
-                className="bx--form-item"
+                className="pf-c-radio"
               >
-                <div
-                  className="bx--radio-button-group radio-button-group"
+                <input
+                  aria-invalid={false}
+                  checked={true}
+                  className="pf-c-radio__input"
+                  data-ouia-component-id="OUIA-Generated-Radio-3"
+                  data-ouia-component-type="PF4/Radio"
+                  data-ouia-safe={true}
+                  disabled={false}
+                  id="remediation-inform"
+                  name="remediation-inform"
+                  onChange={[Function]}
+                  type="radio"
+                  value="inform"
+                />
+                <label
+                  className="pf-c-radio__label"
+                  htmlFor="remediation-inform"
                 >
-                  <div
-                    className="radio-button bx--radio-button-wrapper radioButtonWrapper"
-                  >
-                    <input
-                      aria-label="remediation-inform"
-                      checked={true}
-                      className="bx--radio-button"
-                      id="remediation-inform"
-                      name="radio-button-group"
-                      onChange={[Function]}
-                      type="radio"
-                      value="false"
-                    />
-                    <label
-                      aria-label="Inform - Reports the violation, which requires manual remediation."
-                      className="bx--radio-button__label"
-                      htmlFor="remediation-inform"
-                    >
-                      <span
-                        className="bx--radio-button__appearance"
-                      />
-                      Inform - Reports the violation, which requires manual remediation.
-                    </label>
-                  </div>
-                  <div
-                    className="radio-button bx--radio-button-wrapper radioButtonWrapper"
-                  >
-                    <input
-                      aria-label="remediation-enforce"
-                      checked={false}
-                      className="bx--radio-button"
-                      id="remediation-enforce"
-                      name="radio-button-group"
-                      onChange={[Function]}
-                      type="radio"
-                      value="true"
-                    />
-                    <label
-                      aria-label="Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported."
-                      className="bx--radio-button__label"
-                      htmlFor="remediation-enforce"
-                    >
-                      <span
-                        className="bx--radio-button__appearance"
-                      />
-                      Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
-                    </label>
-                  </div>
-                </div>
+                  Inform - Reports the violation, which requires manual remediation.
+                </label>
+              </div>
+              <div
+                className="pf-c-radio"
+              >
+                <input
+                  aria-invalid={false}
+                  checked={false}
+                  className="pf-c-radio__input"
+                  data-ouia-component-id="OUIA-Generated-Radio-4"
+                  data-ouia-component-type="PF4/Radio"
+                  data-ouia-safe={true}
+                  disabled={false}
+                  id="remediation-enforce"
+                  name="remediation-enforce"
+                  onChange={[Function]}
+                  type="radio"
+                  value="enforce"
+                />
+                <label
+                  className="pf-c-radio__label"
+                  htmlFor="remediation-enforce"
+                >
+                  Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
+                </label>
               </div>
             </div>
             <div
@@ -1448,27 +1429,18 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
               className="creation-view-controls-checkbox"
             >
               <div
-                className="bx--form-item bx--checkbox-wrapper"
+                className="pf-c-check pf-m-standalone"
               >
                 <input
+                  aria-invalid={false}
                   aria-label="disabled"
                   checked={false}
-                  className="bx--checkbox"
+                  className="pf-c-check__input"
+                  disabled={false}
                   id="disabled"
                   onChange={[Function]}
                   type="checkbox"
                 />
-                <label
-                  className="bx--checkbox-label checkbox"
-                  htmlFor="disabled"
-                  title={null}
-                >
-                  <span
-                    className="bx--visually-hidden"
-                  >
-                    
-                  </span>
-                </label>
               </div>
               <div>
                 Disabled
@@ -1588,21 +1560,20 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   *
                 </div>
               </div>
-              <div
-                className="bx--form-item"
-              >
-                <input
-                  aria-label="name"
-                  className="bx--text-input bx--text__input"
-                  disabled={false}
-                  id="name"
-                  onChange={[Function]}
-                  onClick={[Function]}
-                  spellCheck={false}
-                  type="text"
-                  value="policy-grc"
-                />
-              </div>
+              <input
+                aria-invalid={false}
+                aria-label="name"
+                className="pf-c-form-control"
+                disabled={false}
+                id="name"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                readOnly={false}
+                required={true}
+                type="text"
+                value="policy-grc"
+              />
             </div>
             <div
               className="creation-view-controls-singleselect"
@@ -1630,56 +1601,65 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="Choose an item"
-                className="bx--dropdown bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex={null}
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeahead-3"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="namespace"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <span
-                    className="bx--list-box__label"
-                    htmlFor="downshift-12-input"
-                  >
-                    The namespace to create and store the policy on the hub cluster.
-                  </span>
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-12-select-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="The namespace to create and store the policy on the hub cluster."
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="namespace pf-select-toggle-id-12"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-12"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1709,66 +1689,65 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="specs"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-11"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="specs"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-13-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="creation.view.policy.select.specs"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-13-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="creation.view.policy.select.specs"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="specs pf-select-toggle-id-13"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-13"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1793,66 +1772,65 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="clusters"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-12"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="clusters"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-14-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="creation.view.policy.select.selectors"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-14-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="creation.view.policy.select.selectors"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="clusters pf-select-toggle-id-14"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-14"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1877,66 +1855,65 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="standards"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-13"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="standards"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-15-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="creation.view.policy.select.standards"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-15-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="creation.view.policy.select.standards"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="standards pf-select-toggle-id-15"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-15"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1961,66 +1938,65 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="categories"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-14"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="categories"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-16-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="creation.view.policy.select.categories"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-16-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="creation.view.policy.select.categories"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="categories pf-select-toggle-id-16"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-16"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -2045,66 +2021,65 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 </div>
               </div>
               <div
-                aria-label="controls"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-15"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="controls"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
-                    aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
-                    disabled={false}
-                    id="downshift-17-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="creation.view.policy.select.controls"
-                    role="combobox"
-                    value=""
-                  />
-                  
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-17-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="creation.view.policy.select.controls"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="controls pf-select-toggle-id-17"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-17"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -2134,60 +2109,52 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 </div>
               </div>
               <div
-                className="bx--form-item"
+                className="pf-c-radio"
               >
-                <div
-                  className="bx--radio-button-group radio-button-group"
+                <input
+                  aria-invalid={false}
+                  checked={true}
+                  className="pf-c-radio__input"
+                  data-ouia-component-id="OUIA-Generated-Radio-5"
+                  data-ouia-component-type="PF4/Radio"
+                  data-ouia-safe={true}
+                  disabled={false}
+                  id="remediation-inform"
+                  name="remediation-inform"
+                  onChange={[Function]}
+                  type="radio"
+                  value="inform"
+                />
+                <label
+                  className="pf-c-radio__label"
+                  htmlFor="remediation-inform"
                 >
-                  <div
-                    className="radio-button bx--radio-button-wrapper radioButtonWrapper"
-                  >
-                    <input
-                      aria-label="remediation-inform"
-                      checked={true}
-                      className="bx--radio-button"
-                      id="remediation-inform"
-                      name="radio-button-group"
-                      onChange={[Function]}
-                      type="radio"
-                      value="false"
-                    />
-                    <label
-                      aria-label="Inform - Reports the violation, which requires manual remediation."
-                      className="bx--radio-button__label"
-                      htmlFor="remediation-inform"
-                    >
-                      <span
-                        className="bx--radio-button__appearance"
-                      />
-                      Inform - Reports the violation, which requires manual remediation.
-                    </label>
-                  </div>
-                  <div
-                    className="radio-button bx--radio-button-wrapper radioButtonWrapper"
-                  >
-                    <input
-                      aria-label="remediation-enforce"
-                      checked={false}
-                      className="bx--radio-button"
-                      id="remediation-enforce"
-                      name="radio-button-group"
-                      onChange={[Function]}
-                      type="radio"
-                      value="true"
-                    />
-                    <label
-                      aria-label="Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported."
-                      className="bx--radio-button__label"
-                      htmlFor="remediation-enforce"
-                    >
-                      <span
-                        className="bx--radio-button__appearance"
-                      />
-                      Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
-                    </label>
-                  </div>
-                </div>
+                  Inform - Reports the violation, which requires manual remediation.
+                </label>
+              </div>
+              <div
+                className="pf-c-radio"
+              >
+                <input
+                  aria-invalid={false}
+                  checked={false}
+                  className="pf-c-radio__input"
+                  data-ouia-component-id="OUIA-Generated-Radio-6"
+                  data-ouia-component-type="PF4/Radio"
+                  data-ouia-safe={true}
+                  disabled={false}
+                  id="remediation-enforce"
+                  name="remediation-enforce"
+                  onChange={[Function]}
+                  type="radio"
+                  value="enforce"
+                />
+                <label
+                  className="pf-c-radio__label"
+                  htmlFor="remediation-enforce"
+                >
+                  Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
+                </label>
               </div>
             </div>
             <div
@@ -2211,27 +2178,18 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
               className="creation-view-controls-checkbox"
             >
               <div
-                className="bx--form-item bx--checkbox-wrapper"
+                className="pf-c-check pf-m-standalone"
               >
                 <input
+                  aria-invalid={false}
                   aria-label="disabled"
                   checked={false}
-                  className="bx--checkbox"
+                  className="pf-c-check__input"
+                  disabled={false}
                   id="disabled"
                   onChange={[Function]}
                   type="checkbox"
                 />
-                <label
-                  className="bx--checkbox-label checkbox"
-                  htmlFor="disabled"
-                  title={null}
-                >
-                  <span
-                    className="bx--visually-hidden"
-                  >
-                    
-                  </span>
-                </label>
               </div>
               <div>
                 Disabled

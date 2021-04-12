@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
@@ -449,7 +441,7 @@ export default class TemplateEditor extends React.Component {
   }
 
   renderMultiSelect(control) {
-    const {id, name, placeholder:ph, description, isOneSelection, mustExist, active} = control
+    const {id, name, placeholder:ph, description, isOneSelection, mustExist, active=[]} = control
 
     // see if we need to add user additions to available (from editing the yaml file)
     const {userData, userMap, hasCapturedUserSource} = control
@@ -511,7 +503,7 @@ export default class TemplateEditor extends React.Component {
               const {control={}} = this.state
               control[id] = {
                 selected: active,
-                isOpen: false,
+                // isOpen: false,
               }
               this.setState({control})
               this.handleChange.bind(this, id)(active, event)
@@ -556,9 +548,6 @@ export default class TemplateEditor extends React.Component {
   }
 
   handleChange(field, evt, other) {
-    console.log(field)
-    console.log(evt)
-    console.log(other)
     // const multiSelect = this.multiSelectCmpMap[field]
 
     // if this multiselect has an isOneSelection option, close on any selection
@@ -585,6 +574,9 @@ export default class TemplateEditor extends React.Component {
   }
 
   onChange(field, evt, other) {
+    // console.log(field)
+    // console.log(evt)
+    // console.log(other)
     const { locale } = this.props
     let updateName = false
     let { isCustomName } = this.state
@@ -605,10 +597,11 @@ export default class TemplateEditor extends React.Component {
       updateName = !isCustomName && control.updateNamePrefix
       break
     case 'checkbox':
-      if (typeof(evt) === 'string') {
-        evt = (evt === 'true')
+      if (control.name === 'Remediation') {
+        control.active = other.currentTarget.value
+        break
       }
-      control.active = other.currentTarget.value
+      control.active = evt
       control.checked = evt
       break
     }
@@ -631,7 +624,7 @@ export default class TemplateEditor extends React.Component {
     const newTemplateYAML = generateYAML(template, controlData)
     const { parsed: newTemplateObject, exceptions }= parseYAML(newTemplateYAML)
     const finalTemplateObject = _.mergeWith(templateObject, newTemplateObject, (objValue, srcValue, key) => {
-      if (key === 'policy-templates') {
+      if (key === 'policy-templates' || key === 'matchExpressions') {
         return srcValue
       }
       return undefined

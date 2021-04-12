@@ -273,12 +273,7 @@ describe('on control change function with active selections', () => {
         portals={Portals}
       />
     )
-    const evt = {
-      target: {
-        value: 'value-testing'
-      },
-      selectedItems: ['selectedItems-testing-1', 'selectedItems-testing-2'],
-    }
+    const evt = ['selectedItems-testing-1', 'selectedItems-testing-2']
     expect(wrapper.instance().onChange('name', evt)).toEqual('name')
     const evt_duplicateName = {
       target: { value: 'policy-pod' }
@@ -301,14 +296,11 @@ describe('on control change function with active selections', () => {
     expect(wrapper.instance().onChange('categories', evt)).toEqual('categories')
     expect(wrapper.instance().onChange('controls', evt)).toEqual('controls')
     expect(wrapper.instance().onChange('clusters', evt)).toEqual('clusters')
-    const evt_inform = 'false'
-    expect(wrapper.instance().onChange('remediation', evt_inform)).toEqual('remediation')
-    const evt_enforce = 'true'
-    expect(wrapper.instance().onChange('remediation', evt_enforce)).toEqual('remediation')
-    const evt_spec = {
-      target: { value: 'value-testing' },
-      selectedItems: ['CertificatePolicy - cert management expiration']
-    }
+    const evt_inform = { currentTarget: { value: 'inform' }}
+    expect(wrapper.instance().onChange('remediation', null, evt_inform)).toEqual('remediation')
+    const evt_enforce = { currentTarget: { value: 'enforce' }}
+    expect(wrapper.instance().onChange('remediation', null, evt_enforce)).toEqual('remediation')
+    const evt_spec = ['CertificatePolicy - cert management expiration']
     expect(wrapper.instance().onChange('specs', evt_spec)).toEqual('specs')
   })
 })
@@ -325,12 +317,8 @@ describe('on control change function without active selections', () => {
         portals={Portals}
       />
     )
-    const evt = {
-      target: {
-        value: 'value-testing'
-      },
-      selectedItems: ['selectedItems-testing-1', 'selectedItems-testing-2'],
-    }
+    const evt = ['selectedItems-testing-1', 'selectedItems-testing-2']
+
     expect(wrapper.instance().onChange('name', evt)).toEqual('name')
     const evt_duplicateName = {
       target: { value: 'policy-pod' }
@@ -361,14 +349,11 @@ describe('on control change function without active selections', () => {
     expect(wrapper.instance().onChange('categories', evt)).toEqual('categories')
     expect(wrapper.instance().onChange('controls', evt)).toEqual('controls')
     expect(wrapper.instance().onChange('clusters', evt)).toEqual('clusters')
-    const evt_inform = 'false'
-    expect(wrapper.instance().onChange('remediation', evt_inform)).toEqual('remediation')
-    const evt_enforce = 'true'
-    expect(wrapper.instance().onChange('remediation', evt_enforce)).toEqual('remediation')
-    const evt_spec = {
-      target: { value: 'value-testing' },
-      selectedItems: ['CertificatePolicy - cert management expiration']
-    }
+    const evt_inform = { currentTarget: { value: 'inform' }}
+    expect(wrapper.instance().onChange('remediation', null, evt_inform)).toEqual('remediation')
+    const evt_enforce = { currentTarget: { value: 'enforce' }}
+    expect(wrapper.instance().onChange('remediation', null, evt_enforce)).toEqual('remediation')
+    const evt_spec = ['CertificatePolicy - cert management expiration']
     expect(wrapper.instance().onChange('specs', evt_spec)).toEqual('specs')
   })
 })

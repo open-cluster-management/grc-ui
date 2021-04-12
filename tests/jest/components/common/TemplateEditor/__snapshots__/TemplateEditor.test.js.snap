@@ -62,21 +62,20 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   *
                 </div>
               </div>
-              <div
-                className="bx--form-item"
-              >
-                <input
-                  aria-label="name"
-                  className="bx--text-input bx--text__input"
-                  disabled={false}
-                  id="name"
-                  onChange={[Function]}
-                  onClick={[Function]}
-                  spellCheck={false}
-                  type="text"
-                  value="policy-certificatepolicy-1"
-                />
-              </div>
+              <input
+                aria-invalid={false}
+                aria-label="name"
+                className="pf-c-form-control"
+                disabled={false}
+                id="name"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                readOnly={false}
+                required={true}
+                type="text"
+                value="policy-certificatepolicy-1"
+              />
             </div>
             <div
               className="creation-view-controls-singleselect"
@@ -104,56 +103,65 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="Choose an item"
-                className="bx--dropdown bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex={null}
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeahead-1"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="namespace"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
-                  <span
-                    className="bx--list-box__label"
-                    htmlFor="downshift-0-input"
-                  >
-                    governance
-                  </span>
                   <div
-                    className="bx--list-box__menu-icon"
+                    className="pf-c-select__toggle-wrapper"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-0-select-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="The namespace to create and store the policy on the hub cluster."
+                      type="text"
+                      value="governance"
+                    />
+                  </div>
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="namespace pf-select-toggle-id-0"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
+                    disabled={false}
+                    id="pf-select-toggle-id-0"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -183,93 +191,132 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="specs"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-1"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="specs"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
                   <div
-                    className="bx--list-box__selection bx--list-box__selection--multi"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex="0"
-                    title="Clear all selected items"
+                    className="pf-c-select__toggle-wrapper"
                   >
-                    1
-                    <svg
-                      alt="Clear all selected items"
-                      aria-label="Clear all selected items"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="10"
-                      role="img"
-                      viewBox="0 0 10 10"
-                      width="10"
+                    <div
+                      className="pf-c-chip-group"
+                      data-ouia-component-type="PF4/ChipGroup"
+                      data-ouia-safe={true}
                     >
-                      <title>
-                        Clear all selected items
-                      </title>
-                      <path
-                        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
-                      />
-                    </svg>
+                      <div
+                        className="pf-c-chip-group__main"
+                      >
+                        
+                        <ul
+                          aria-label="Chip group category"
+                          className="pf-c-chip-group__list"
+                          role="list"
+                        >
+                          <li
+                            className="pf-c-chip-group__list-item"
+                          >
+                            <div
+                              className="pf-c-chip"
+                              data-ouia-component-id="OUIA-Generated-Chip-1"
+                              data-ouia-component-type="PF4/Chip"
+                              data-ouia-safe={true}
+                            >
+                              <span
+                                className="pf-c-chip__text"
+                                id="pf-random-id-3"
+                              >
+                                CertificatePolicy - cert management expiration
+                              </span>
+                              <button
+                                aria-disabled={false}
+                                aria-label="Remove"
+                                aria-labelledby="remove_pf-random-id-3 pf-random-id-3"
+                                className="pf-c-button pf-m-plain"
+                                data-ouia-component-id="Remove"
+                                data-ouia-component-type="PF4/Button"
+                                data-ouia-safe={true}
+                                disabled={false}
+                                id="remove_pf-random-id-3"
+                                onClick={[Function]}
+                                role={null}
+                                type="button"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  aria-labelledby={null}
+                                  fill="currentColor"
+                                  height="1em"
+                                  role="img"
+                                  style={
+                                    Object {
+                                      "verticalAlign": "-0.125em",
+                                    }
+                                  }
+                                  viewBox="0 0 352 512"
+                                  width="1em"
+                                >
+                                  <path
+                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-1-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="CertificatePolicy"
+                      type="text"
+                      value=""
+                    />
                   </div>
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
+                  <button
                     aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="specs pf-select-toggle-id-1"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
-                    id="downshift-1-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="CertificatePolicy"
-                    role="combobox"
-                    value=""
-                  />
-                  
-                  <div
-                    className="bx--list-box__menu-icon"
+                    id="pf-select-toggle-id-1"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -294,93 +341,132 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="clusters"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-2"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="clusters"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
                   <div
-                    className="bx--list-box__selection bx--list-box__selection--multi"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex="0"
-                    title="Clear all selected items"
+                    className="pf-c-select__toggle-wrapper"
                   >
-                    1
-                    <svg
-                      alt="Clear all selected items"
-                      aria-label="Clear all selected items"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="10"
-                      role="img"
-                      viewBox="0 0 10 10"
-                      width="10"
+                    <div
+                      className="pf-c-chip-group"
+                      data-ouia-component-type="PF4/ChipGroup"
+                      data-ouia-safe={true}
                     >
-                      <title>
-                        Clear all selected items
-                      </title>
-                      <path
-                        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
-                      />
-                    </svg>
+                      <div
+                        className="pf-c-chip-group__main"
+                      >
+                        
+                        <ul
+                          aria-label="Chip group category"
+                          className="pf-c-chip-group__list"
+                          role="list"
+                        >
+                          <li
+                            className="pf-c-chip-group__list-item"
+                          >
+                            <div
+                              className="pf-c-chip"
+                              data-ouia-component-id="OUIA-Generated-Chip-2"
+                              data-ouia-component-type="PF4/Chip"
+                              data-ouia-safe={true}
+                            >
+                              <span
+                                className="pf-c-chip__text"
+                                id="pf-random-id-6"
+                              >
+                                cloud: "Amazon"
+                              </span>
+                              <button
+                                aria-disabled={false}
+                                aria-label="Remove"
+                                aria-labelledby="remove_pf-random-id-6 pf-random-id-6"
+                                className="pf-c-button pf-m-plain"
+                                data-ouia-component-id="Remove"
+                                data-ouia-component-type="PF4/Button"
+                                data-ouia-safe={true}
+                                disabled={false}
+                                id="remove_pf-random-id-6"
+                                onClick={[Function]}
+                                role={null}
+                                type="button"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  aria-labelledby={null}
+                                  fill="currentColor"
+                                  height="1em"
+                                  role="img"
+                                  style={
+                                    Object {
+                                      "verticalAlign": "-0.125em",
+                                    }
+                                  }
+                                  viewBox="0 0 352 512"
+                                  width="1em"
+                                >
+                                  <path
+                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-2-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="cloud: \\"Amazon\\""
+                      type="text"
+                      value=""
+                    />
                   </div>
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
+                  <button
                     aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="clusters pf-select-toggle-id-2"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
-                    id="downshift-2-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="cloud: \\"Amazon\\""
-                    role="combobox"
-                    value=""
-                  />
-                  
-                  <div
-                    className="bx--list-box__menu-icon"
+                    id="pf-select-toggle-id-2"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -405,93 +491,132 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="standards"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-3"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="standards"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
                   <div
-                    className="bx--list-box__selection bx--list-box__selection--multi"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex="0"
-                    title="Clear all selected items"
+                    className="pf-c-select__toggle-wrapper"
                   >
-                    1
-                    <svg
-                      alt="Clear all selected items"
-                      aria-label="Clear all selected items"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="10"
-                      role="img"
-                      viewBox="0 0 10 10"
-                      width="10"
+                    <div
+                      className="pf-c-chip-group"
+                      data-ouia-component-type="PF4/ChipGroup"
+                      data-ouia-safe={true}
                     >
-                      <title>
-                        Clear all selected items
-                      </title>
-                      <path
-                        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
-                      />
-                    </svg>
+                      <div
+                        className="pf-c-chip-group__main"
+                      >
+                        
+                        <ul
+                          aria-label="Chip group category"
+                          className="pf-c-chip-group__list"
+                          role="list"
+                        >
+                          <li
+                            className="pf-c-chip-group__list-item"
+                          >
+                            <div
+                              className="pf-c-chip"
+                              data-ouia-component-id="OUIA-Generated-Chip-3"
+                              data-ouia-component-type="PF4/Chip"
+                              data-ouia-safe={true}
+                            >
+                              <span
+                                className="pf-c-chip__text"
+                                id="pf-random-id-9"
+                              >
+                                NIST-CSF
+                              </span>
+                              <button
+                                aria-disabled={false}
+                                aria-label="Remove"
+                                aria-labelledby="remove_pf-random-id-9 pf-random-id-9"
+                                className="pf-c-button pf-m-plain"
+                                data-ouia-component-id="Remove"
+                                data-ouia-component-type="PF4/Button"
+                                data-ouia-safe={true}
+                                disabled={false}
+                                id="remove_pf-random-id-9"
+                                onClick={[Function]}
+                                role={null}
+                                type="button"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  aria-labelledby={null}
+                                  fill="currentColor"
+                                  height="1em"
+                                  role="img"
+                                  style={
+                                    Object {
+                                      "verticalAlign": "-0.125em",
+                                    }
+                                  }
+                                  viewBox="0 0 352 512"
+                                  width="1em"
+                                >
+                                  <path
+                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-3-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="NIST-CSF"
+                      type="text"
+                      value=""
+                    />
                   </div>
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
+                  <button
                     aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="standards pf-select-toggle-id-3"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
-                    id="downshift-3-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="NIST-CSF"
-                    role="combobox"
-                    value=""
-                  />
-                  
-                  <div
-                    className="bx--list-box__menu-icon"
+                    id="pf-select-toggle-id-3"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -516,93 +641,132 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="categories"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-4"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="categories"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
                   <div
-                    className="bx--list-box__selection bx--list-box__selection--multi"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex="0"
-                    title="Clear all selected items"
+                    className="pf-c-select__toggle-wrapper"
                   >
-                    1
-                    <svg
-                      alt="Clear all selected items"
-                      aria-label="Clear all selected items"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="10"
-                      role="img"
-                      viewBox="0 0 10 10"
-                      width="10"
+                    <div
+                      className="pf-c-chip-group"
+                      data-ouia-component-type="PF4/ChipGroup"
+                      data-ouia-safe={true}
                     >
-                      <title>
-                        Clear all selected items
-                      </title>
-                      <path
-                        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
-                      />
-                    </svg>
+                      <div
+                        className="pf-c-chip-group__main"
+                      >
+                        
+                        <ul
+                          aria-label="Chip group category"
+                          className="pf-c-chip-group__list"
+                          role="list"
+                        >
+                          <li
+                            className="pf-c-chip-group__list-item"
+                          >
+                            <div
+                              className="pf-c-chip"
+                              data-ouia-component-id="OUIA-Generated-Chip-4"
+                              data-ouia-component-type="PF4/Chip"
+                              data-ouia-safe={true}
+                            >
+                              <span
+                                className="pf-c-chip__text"
+                                id="pf-random-id-12"
+                              >
+                                PR.DS Data Security
+                              </span>
+                              <button
+                                aria-disabled={false}
+                                aria-label="Remove"
+                                aria-labelledby="remove_pf-random-id-12 pf-random-id-12"
+                                className="pf-c-button pf-m-plain"
+                                data-ouia-component-id="Remove"
+                                data-ouia-component-type="PF4/Button"
+                                data-ouia-safe={true}
+                                disabled={false}
+                                id="remove_pf-random-id-12"
+                                onClick={[Function]}
+                                role={null}
+                                type="button"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  aria-labelledby={null}
+                                  fill="currentColor"
+                                  height="1em"
+                                  role="img"
+                                  style={
+                                    Object {
+                                      "verticalAlign": "-0.125em",
+                                    }
+                                  }
+                                  viewBox="0 0 352 512"
+                                  width="1em"
+                                >
+                                  <path
+                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-4-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="PR.DS Data Security"
+                      type="text"
+                      value=""
+                    />
                   </div>
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
+                  <button
                     aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="categories pf-select-toggle-id-4"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
-                    id="downshift-4-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="PR.DS Data Security"
-                    role="combobox"
-                    value=""
-                  />
-                  
-                  <div
-                    className="bx--list-box__menu-icon"
+                    id="pf-select-toggle-id-4"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -627,93 +791,132 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                aria-label="controls"
-                className="bx--multi-select bx--combo-box bx--list-box"
-                onClick={[Function]}
-                onKeyDown={[Function]}
-                role="listbox"
-                tabIndex="-1"
+                className="pf-c-select"
+                data-ouia-component-id="OUIA-Generated-Select-typeaheadmulti-5"
+                data-ouia-component-type="PF4/Select"
+                data-ouia-safe={true}
               >
                 <div
-                  aria-controls={null}
-                  aria-expanded={false}
-                  aria-haspopup={true}
-                  aria-label="controls"
-                  aria-owns={null}
-                  className="bx--list-box__field"
-                  data-toggle={true}
-                  disabled={false}
-                  onBlur={[Function]}
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
-                  role="button"
-                  tabIndex="0"
-                  type="button"
                 >
                   <div
-                    className="bx--list-box__selection bx--list-box__selection--multi"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    role="button"
-                    tabIndex="0"
-                    title="Clear all selected items"
+                    className="pf-c-select__toggle-wrapper"
                   >
-                    1
-                    <svg
-                      alt="Clear all selected items"
-                      aria-label="Clear all selected items"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="10"
-                      role="img"
-                      viewBox="0 0 10 10"
-                      width="10"
+                    <div
+                      className="pf-c-chip-group"
+                      data-ouia-component-type="PF4/ChipGroup"
+                      data-ouia-safe={true}
                     >
-                      <title>
-                        Clear all selected items
-                      </title>
-                      <path
-                        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
-                      />
-                    </svg>
+                      <div
+                        className="pf-c-chip-group__main"
+                      >
+                        
+                        <ul
+                          aria-label="Chip group category"
+                          className="pf-c-chip-group__list"
+                          role="list"
+                        >
+                          <li
+                            className="pf-c-chip-group__list-item"
+                          >
+                            <div
+                              className="pf-c-chip"
+                              data-ouia-component-id="OUIA-Generated-Chip-5"
+                              data-ouia-component-type="PF4/Chip"
+                              data-ouia-safe={true}
+                            >
+                              <span
+                                className="pf-c-chip__text"
+                                id="pf-random-id-15"
+                              >
+                                PR.DS-2 Data-in-transit
+                              </span>
+                              <button
+                                aria-disabled={false}
+                                aria-label="Remove"
+                                aria-labelledby="remove_pf-random-id-15 pf-random-id-15"
+                                className="pf-c-button pf-m-plain"
+                                data-ouia-component-id="Remove"
+                                data-ouia-component-type="PF4/Button"
+                                data-ouia-safe={true}
+                                disabled={false}
+                                id="remove_pf-random-id-15"
+                                onClick={[Function]}
+                                role={null}
+                                type="button"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  aria-labelledby={null}
+                                  fill="currentColor"
+                                  height="1em"
+                                  role="img"
+                                  style={
+                                    Object {
+                                      "verticalAlign": "-0.125em",
+                                    }
+                                  }
+                                  viewBox="0 0 352 512"
+                                  width="1em"
+                                >
+                                  <path
+                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <input
+                      aria-activedescendant={null}
+                      aria-label=""
+                      autoComplete="off"
+                      className="pf-c-form-control pf-c-select__toggle-typeahead"
+                      disabled={false}
+                      id="pf-select-toggle-id-5-select-multi-typeahead-typeahead"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      placeholder="PR.DS-2 Data-in-transit"
+                      type="text"
+                      value=""
+                    />
                   </div>
-                  <input
-                    aria-activedescendant={null}
-                    aria-autocomplete="list"
+                  <button
                     aria-expanded={false}
-                    autoComplete="off"
-                    className="bx--text-input"
+                    aria-haspopup="listbox"
+                    aria-label="Options menu"
+                    aria-labelledby="controls pf-select-toggle-id-5"
+                    className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
-                    id="downshift-5-input"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="PR.DS-2 Data-in-transit"
-                    role="combobox"
-                    value=""
-                  />
-                  
-                  <div
-                    className="bx--list-box__menu-icon"
+                    id="pf-select-toggle-id-5"
+                    onClick={[Function]}
+                    tabIndex={-1}
+                    type="button"
                   >
                     <svg
-                      alt="Open menu"
-                      aria-label="Open menu"
-                      fillRule="evenodd"
-                      focusable="false"
-                      height="5"
+                      aria-hidden={true}
+                      aria-labelledby={null}
+                      className="pf-c-select__toggle-arrow"
+                      fill="currentColor"
+                      height="1em"
                       role="img"
-                      viewBox="0 0 10 5"
-                      width="10"
+                      style={
+                        Object {
+                          "verticalAlign": "-0.125em",
+                        }
+                      }
+                      viewBox="0 0 320 512"
+                      width="1em"
                     >
-                      <title>
-                        Open menu
-                      </title>
                       <path
-                        d="M0 0l5 4.998L10 0z"
+                        d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -743,60 +946,52 @@ exports[`TemplateEditor component renders as expected 1`] = `
                 </div>
               </div>
               <div
-                className="bx--form-item"
+                className="pf-c-radio"
               >
-                <div
-                  className="bx--radio-button-group radio-button-group"
+                <input
+                  aria-invalid={false}
+                  checked={true}
+                  className="pf-c-radio__input"
+                  data-ouia-component-id="OUIA-Generated-Radio-1"
+                  data-ouia-component-type="PF4/Radio"
+                  data-ouia-safe={true}
+                  disabled={false}
+                  id="remediation-inform"
+                  name="remediation-inform"
+                  onChange={[Function]}
+                  type="radio"
+                  value="inform"
+                />
+                <label
+                  className="pf-c-radio__label"
+                  htmlFor="remediation-inform"
                 >
-                  <div
-                    className="radio-button bx--radio-button-wrapper radioButtonWrapper"
-                  >
-                    <input
-                      aria-label="remediation-inform"
-                      checked={true}
-                      className="bx--radio-button"
-                      id="remediation-inform"
-                      name="radio-button-group"
-                      onChange={[Function]}
-                      type="radio"
-                      value="false"
-                    />
-                    <label
-                      aria-label="Inform - Reports the violation, which requires manual remediation."
-                      className="bx--radio-button__label"
-                      htmlFor="remediation-inform"
-                    >
-                      <span
-                        className="bx--radio-button__appearance"
-                      />
-                      Inform - Reports the violation, which requires manual remediation.
-                    </label>
-                  </div>
-                  <div
-                    className="radio-button bx--radio-button-wrapper radioButtonWrapper"
-                  >
-                    <input
-                      aria-label="remediation-enforce"
-                      checked={false}
-                      className="bx--radio-button"
-                      id="remediation-enforce"
-                      name="radio-button-group"
-                      onChange={[Function]}
-                      type="radio"
-                      value="true"
-                    />
-                    <label
-                      aria-label="Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported."
-                      className="bx--radio-button__label"
-                      htmlFor="remediation-enforce"
-                    >
-                      <span
-                        className="bx--radio-button__appearance"
-                      />
-                      Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
-                    </label>
-                  </div>
-                </div>
+                  Inform - Reports the violation, which requires manual remediation.
+                </label>
+              </div>
+              <div
+                className="pf-c-radio"
+              >
+                <input
+                  aria-invalid={false}
+                  checked={false}
+                  className="pf-c-radio__input"
+                  data-ouia-component-id="OUIA-Generated-Radio-2"
+                  data-ouia-component-type="PF4/Radio"
+                  data-ouia-safe={true}
+                  disabled={false}
+                  id="remediation-enforce"
+                  name="remediation-enforce"
+                  onChange={[Function]}
+                  type="radio"
+                  value="enforce"
+                />
+                <label
+                  className="pf-c-radio__label"
+                  htmlFor="remediation-enforce"
+                >
+                  Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
+                </label>
               </div>
             </div>
             <div
@@ -820,27 +1015,18 @@ exports[`TemplateEditor component renders as expected 1`] = `
               className="creation-view-controls-checkbox"
             >
               <div
-                className="bx--form-item bx--checkbox-wrapper"
+                className="pf-c-check pf-m-standalone"
               >
                 <input
+                  aria-invalid={false}
                   aria-label="disabled"
                   checked={false}
-                  className="bx--checkbox"
+                  className="pf-c-check__input"
+                  disabled={false}
                   id="disabled"
                   onChange={[Function]}
                   type="checkbox"
                 />
-                <label
-                  className="bx--checkbox-label checkbox"
-                  htmlFor="disabled"
-                  title={null}
-                >
-                  <span
-                    className="bx--visually-hidden"
-                  >
-                    
-                  </span>
-                </label>
               </div>
               <div>
                 Disabled
