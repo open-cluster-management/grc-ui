@@ -17,14 +17,8 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {
   Notification,
-  TextInput,
-  Checkbox,
-  DropdownV2,
-  MultiSelect,
-  RadioButtonGroup,
-  RadioButton,
   Modal} from 'carbon-components-react'
-import { Spinner, Tooltip } from '@patternfly/react-core'
+import { Checkbox, Spinner, Tooltip, Select, SelectVariant, SelectOption, TextInput, ValidatedOptions, Radio } from '@patternfly/react-core'
 import { initializeControlData, cacheUserData, updateControls, parseYAML, dumpYAMLFromPolicyDiscovered, dumpYAMLFromTemplateObject } from './utils/update-controls'
 import { generateYAML, highlightChanges } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
@@ -347,31 +341,32 @@ export default class TemplateEditor extends React.Component {
           <TextInput
             aria-label={id}
             id={id}
-            invalid={!validPolicyName || duplicateName}
-            hideLabel
-            labelText=''
-            spellCheck={false}
             value={value}
-            onChange={this.onChange.bind(this, id)} />
+            onChange={this.onChange.bind(this, id)}
+            isRequired={mustExist}
+            validated={!validPolicyName?ValidatedOptions.error:duplicateName?ValidatedOptions.warning:ValidatedOptions.default}
+            type="text"
+          />
         </div>
       </React.Fragment>
     )
   }
 
   renderCheckbox(control) {
-    const {id, name, description, checked, available} = control
+    const {id, name, description, checked, available, active} = control
     if (id === 'remediation') {
       const radioButtons=[]
       available.forEach((item) => {
-        radioButtons.push(<RadioButton
-          aria-label={`${id}-${item}`}
-          id={`${id}-${item}`}
-          key={`${id}-${item}`}
-          className='radio-button'
-          labelText={msgs.get(`creation.view.policy.${item}`)}
-          value={item === 'enforce' ? 'true' : 'false'}
-        />)
-      })
+        radioButtons.push(<Radio
+            isChecked={item===active}
+            name={`${id}-${item}`}
+            onChange={this.handleChange.bind(this, id)}
+            label={msgs.get(`creation.view.policy.${item}`)}
+            aria-label={`${id}-${item}`}
+            id={`${id}-${item}`}
+            key={`${id}-${item}`}
+            value={item} /> )
+        })
       return (
         <React.Fragment>
           <div className='creation-view-controls-radiobutton'>
@@ -384,18 +379,7 @@ export default class TemplateEditor extends React.Component {
                 </svg>
               </Tooltip>
             </div>
-            <RadioButtonGroup
-              aria-label={id}
-              id={id}
-              name='radio-button-group'
-              className='radio-button-group'
-              defaultSelected='inform'
-              valueSelected={checked.toString()}
-              orientation='vertical'
-              onChange={this.onChange.bind(this, id)}
-            >
-              {radioButtons}
-            </RadioButtonGroup>
+            {radioButtons}
           </div>
         </React.Fragment>
       )
@@ -411,15 +395,8 @@ export default class TemplateEditor extends React.Component {
           </Tooltip>
         </div>
         <div className='creation-view-controls-checkbox'>
-          <Checkbox
-            aria-label={id}
-            id={id}
-            className='checkbox'
-            hideLabel
-            labelText=''
-            checked={checked}
-            onChange={this.onChange.bind(this, id)} />
-            <div>{msgs.get(`description.title.${id}`)}</div>
+          <Checkbox aria-label={id} id={id} isChecked={checked} onChange={this.onChange.bind(this, id)} />
+          <div>{msgs.get(`description.title.${id}`)}</div>
         </div>
       </React.Fragment>
     )
@@ -427,11 +404,7 @@ export default class TemplateEditor extends React.Component {
 
   renderSingleSelect(control) {
     const {locale} = this.props
-    const {id, name, available, description, isOneSelection, mustExist} = control
-    let { active } = control
-    // for DropdownV2, empty initialSelectedItem means no pre-selected
-    active = (active && typeof active === 'string') ? active : ''
-    const key = `${id}-${active}`
+    const {id, name, available, description, isOneSelection, mustExist, active} = control
     return (
       <React.Fragment>
         <div className='creation-view-controls-singleselect'
@@ -445,23 +418,41 @@ export default class TemplateEditor extends React.Component {
               </svg>
             </Tooltip>
           </div>
-          <DropdownV2
-            aria-label={id}
-            key={key}
-            label={msgs.get('policy.create.namespace.tooltip', locale)}
-            items={available}
-            onChange={this.handleChange.bind(this, id)}
-            initialSelectedItem={active} />
+          <Select
+            variant={SelectVariant.typeahead}
+            onToggle={(isOpen)=>{
+              const {control={}} = this.state
+              control[id] = {isOpen}
+              this.setState({control})
+            }}
+            onSelect={(event, selection)=>{
+              const {control={}} = this.state
+              control[id] = {
+                selected: selection,
+                isOpen: false,
+              }
+              this.setState({control})
+              this.handleChange.bind(this, id)(selection, event)
+            }}
+            selections={active}
+            aria-labelledby={id}
+            placeholderText={msgs.get('policy.create.namespace.tooltip', locale)}
+            isOpen={this.state.control&&this.state.control[id]&&this.state.control[id].isOpen}
+          >
+            {available.map((option) => (
+              <SelectOption isDisabled={false} key={option} value={option} />
+            ))}
+          </Select>
         </div>
       </React.Fragment>
     )
   }
 
   renderMultiSelect(control) {
-    const {id, name, placeholder:ph, description, isOneSelection, mustExist} = control
+    const {id, name, placeholder:ph, description, isOneSelection, mustExist, active} = control
 
     // see if we need to add user additions to available (from editing the yaml file)
-    const {active=[], userData, userMap, hasCapturedUserSource} = control
+    const {userData, userMap, hasCapturedUserSource} = control
     let {available, availableMap} = control
     if (userData) {
       if (!hasCapturedUserSource) {
@@ -490,7 +481,7 @@ export default class TemplateEditor extends React.Component {
     }
 
     // change key if active changes so that carbon component is re-created with new initial values
-    const key = `${id}-${active.join('-')}`
+    // const key = `${id}-${active.join('-')}`
     return (
       <React.Fragment>
         <div className='creation-view-controls-multiselect'
@@ -504,14 +495,46 @@ export default class TemplateEditor extends React.Component {
               </svg>
             </Tooltip>
           </div>
-          <MultiSelect.Filterable
-            aria-label={id}
-            key={key}
-            items={available}
-            initialSelectedItems={active}
-            placeholder={placeholder}
-            itemToString={item=>item}
-            onChange={this.handleChange.bind(this, id)} />
+          <Select
+            variant={SelectVariant.typeaheadMulti}
+            onToggle={(isOpen)=>{
+              const {control={}} = this.state
+              control[id] = {isOpen}
+              this.setState({control})
+            }}
+            onSelect={(event, selection)=>{
+              if (!active.includes(selection)) {
+                active.push(selection)
+              } else {
+                _.remove(active, (item) => item === selection)
+              }
+              const {control={}} = this.state
+              control[id] = {
+                selected: active,
+                isOpen: false,
+              }
+              this.setState({control})
+              this.handleChange.bind(this, id)(active, event)
+            }}
+            onClear={this.clearSelection}
+            selections={active}
+            isOpen={this.state.control&&this.state.control[id]&&this.state.control[id].isOpen}
+            isPlain={false}
+            aria-labelledby={id}
+            placeholderText={placeholder}
+          >
+            {available.map((option) => (
+              <SelectOption isDisabled={false} key={option} value={option} />
+            ))}
+          </Select>
+            {/* <MultiSelect.Filterable
+              aria-label={id}
+              key={key}
+              items={available}
+              initialSelectedItems={active}
+              placeholder={placeholder}
+              itemToString={item=>item}
+              onChange={this.handleChange.bind(this, id)} /> */}
         </div>
       </React.Fragment>
     )
@@ -532,33 +555,36 @@ export default class TemplateEditor extends React.Component {
     )
   }
 
-  handleChange(field, evt) {
-    const multiSelect = this.multiSelectCmpMap[field]
+  handleChange(field, evt, other) {
+    console.log(field)
+    console.log(evt)
+    console.log(other)
+    // const multiSelect = this.multiSelectCmpMap[field]
 
     // if this multiselect has an isOneSelection option, close on any selection
-    if (multiSelect) {
-      // if menu is still open don't update until its gone
-      // unfortunately MultiSelect.Filterable doesn't have an onClose
-      const menu = multiSelect.getElementsByClassName('bx--list-box__menu')
-      if (menu && menu.length>0) {
-        multiSelect.selectedItems = evt.selectedItems
-        if (!multiSelect.observer) {
-          multiSelect.observer = new MutationObserver(() => {
-            this.onChange(field, {selectedItems: multiSelect.selectedItems})
-            multiSelect.observer.disconnect()
-            delete multiSelect.observer
-          })
-          multiSelect.observer.observe(menu[0].parentNode, {
-            childList: true
-          })
-        }
-        return
-      }
-    }
-    this.onChange(field, evt)
+    // if (multiSelect) {
+    //   // if menu is still open don't update until its gone
+    //   // unfortunately MultiSelect.Filterable doesn't have an onClose
+    //   const menu = multiSelect.getElementsByClassName('bx--list-box__menu')
+    //   if (menu && menu.length>0) {
+    //     multiSelect.selectedItems = evt.selectedItems
+    //     if (!multiSelect.observer) {
+    //       multiSelect.observer = new MutationObserver(() => {
+    //         this.onChange(field, {selectedItems: multiSelect.selectedItems})
+    //         multiSelect.observer.disconnect()
+    //         delete multiSelect.observer
+    //       })
+    //       multiSelect.observer.observe(menu[0].parentNode, {
+    //         childList: true
+    //       })
+    //     }
+    //     return
+    //   }
+    // }
+    this.onChange(field, evt, other)
   }
 
-  onChange(field, evt) {
+  onChange(field, evt, other) {
     const { locale } = this.props
     let updateName = false
     let { isCustomName } = this.state
@@ -566,14 +592,14 @@ export default class TemplateEditor extends React.Component {
     const control = controlData.find(({id})=>id===field)
     switch (control.type) {
     case 'text':
-      control.active = evt.target.value
+      control.active = evt
       isCustomName = field==='name'
       break
     case 'singleselect':
-      control.active = evt.selectedItem
+      control.active = evt
       break
     case 'multiselect':
-      control.active = evt.selectedItems
+      control.active = evt
       // if user was able to select something that automatically
       // generates the name, blow away the user name
       updateName = !isCustomName && control.updateNamePrefix
@@ -582,7 +608,7 @@ export default class TemplateEditor extends React.Component {
       if (typeof(evt) === 'string') {
         evt = (evt === 'true')
       }
-      control.active = evt ? control.available[1] : control.available[0]
+      control.active = other.currentTarget.value
       control.checked = evt
       break
     }
@@ -601,12 +627,11 @@ export default class TemplateEditor extends React.Component {
         nname.active = cname.toLowerCase()
       }
     }
-
     const {template} = this.props
     const newTemplateYAML = generateYAML(template, controlData)
     const { parsed: newTemplateObject, exceptions }= parseYAML(newTemplateYAML)
-    const finalTemplateObject = _.mergeWith(templateObject, newTemplateObject, (objValue, srcValue) => {
-      if (_.isArray(objValue) && _.isArray(srcValue) && srcValue.length === 0) {
+    const finalTemplateObject = _.mergeWith(templateObject, newTemplateObject, (objValue, srcValue, key) => {
+      if (key === 'policy-templates') {
         return srcValue
       }
       return undefined
