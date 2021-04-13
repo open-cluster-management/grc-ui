@@ -48,7 +48,7 @@ const editBtn = ({ userAccess, history, locale, name, namespace }) => {
   return (
     <AcmButton key='edit-policy' id='edit-policy' isDisabled={checkEditPermission(userAccess)===0}
       tooltip={msgs.get('error.permission.disabled', locale)}
-      onClick={() => history.push(`${config.contextPath}/${namespace}/${name}/edit`)}>
+      onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}/edit`)}>
       {msgs.get('routes.edit.policy', locale)}
     </AcmButton>
   )
