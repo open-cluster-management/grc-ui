@@ -7,15 +7,14 @@ import { describeT } from '../support/tagging'
 import { checkItems, verifyItemsChecked } from '../support/views'
 
 const specificationsList = ['CertificatePolicy', 'EtcdEncryption']
-const selectSpecsQuery = '.bx--multi-select[aria-label="specs"]'
+const selectSpecsQuery = '.pf-c-select__toggle-button[aria-label="specs"]'
 const standardsList = ['NIST-CSF']
-const selectStandardsQuery = '.bx--multi-select[aria-label="standards"]'
+const selectStandardsQuery = '.pf-c-select__toggle-button[aria-label="standards"]'
 const categoriesList = ['PR.DS Data Security']
-const selectCategoriesQuery = '.bx--multi-select[aria-label="categories"]'
+const selectCategoriesQuery = '.pf-c-select__toggle-button[aria-label="categories"]'
 const controlsList = ['PR.DS-1 Data-at-rest', 'PR.DS-2 Data-in-transit']
-const selectControlsQuery = '.bx--multi-select[aria-label="controls"]'
-const itemQuery = 'input[type="checkbox"]'
-const labelQuery = '.bx--checkbox-label'
+const selectControlsQuery = '.pf-c-select__toggle-button[aria-label="controls"]'
+const itemQuery = '.pf-c-select__menu-item'
 
 describeT('RHACM4K-1671 - GRC UI: [P2][Sev2][policy-grc] Test create policy multi-select acts correctly', () => {
 
@@ -26,31 +25,31 @@ describeT('RHACM4K-1671 - GRC UI: [P2][Sev2][policy-grc] Test create policy mult
   it(`Check Specifications ${specificationsList}`, () => {
     cy.then(() => {
       // while we could use only selectItems() which does both the check and verification, better be explicit here about both steps
-      checkItems(specificationsList, selectSpecsQuery, itemQuery, labelQuery)
+      checkItems(specificationsList, selectSpecsQuery, itemQuery)
     })
   })
 
   it(`Verify Specifications ${specificationsList} are selected`, () => {
     cy.then(() => {
-      verifyItemsChecked(specificationsList, selectSpecsQuery, itemQuery, labelQuery)
+      verifyItemsChecked(specificationsList, selectSpecsQuery)
     })
   })
 
   it(`Verify Standard ${standardsList} has been pre-selected`, () => {
     cy.then(() => {
-      verifyItemsChecked(standardsList, selectStandardsQuery, itemQuery, labelQuery)
+      verifyItemsChecked(standardsList, selectStandardsQuery)
     })
   })
 
   it(`Verify Category ${categoriesList} has been pre-selected`, () => {
     cy.then(() => {
-      verifyItemsChecked(categoriesList, selectCategoriesQuery, itemQuery, labelQuery)
+      verifyItemsChecked(categoriesList, selectCategoriesQuery)
     })
   })
 
   it(`Verify Controls ${controlsList} have been pre-selected`, () => {
     cy.then(() => {
-      verifyItemsChecked(controlsList, selectControlsQuery, itemQuery, labelQuery)
+      verifyItemsChecked(controlsList, selectControlsQuery)
     })
   })
 

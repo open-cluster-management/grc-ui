@@ -168,10 +168,10 @@ export default class TemplateEditor extends React.Component {
     if (isFailed) {
       if (error.name === 'PermissionError') {
         return <AcmAlert isInline={true} variant='danger'
-          title={msgs.get('error.permission.denied.create', locale)} />
+          subtitle={msgs.get('error.permission.denied.create', locale)} />
       }
       return <AcmAlert isInline={true} variant='danger'
-        title={msgs.get('overview.error.default', locale)} />
+        subtitle={msgs.get('overview.error.default', locale)} />
     }
 
     const viewClasses = classNames({
@@ -273,7 +273,8 @@ export default class TemplateEditor extends React.Component {
         tabIndex="0" aria-label={updateMessage} onKeyDown={handleKeyPress}>
         <div>
           <AcmAlert variant={updateMsgKind} isInline={true}
-            title={validPolicyName
+            title={msgs.get(`${updateMsgKind}.create.policy`, locale)}
+            subtitle={validPolicyName
               ? updateMessage
               : <span>
                   <br />{msgs.get('error.policy.nameFormat.hint', locale)}

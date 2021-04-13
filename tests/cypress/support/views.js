@@ -1258,12 +1258,11 @@ export const action_verifyPolicyViolationDetailsInHistory = (templateName, viola
 }
 
 export const action_checkNotificationMessage = (kind, title, notification, close=true) => {
-  cy.get('div[kind="'+kind+'"]').within( () => {
-    cy.get('.bx--inline-notification__title').should('contain', title)
-    cy.get('svg[fill-rule="evenodd"]').should('exist')
-    cy.get('.bx--inline-notification__subtitle').invoke('text').should('contain', notification)
+  cy.get('div[aria-label="'+kind+'"]').within( () => {
+    cy.get('.pf-c-alert__title').should('contain', title)
+    cy.get('.pf-c-alert__description').invoke('text').should('contain', notification)
     if (close) {
-      cy.get('button.bx--inline-notification__close-button').click()  // close the message
+      cy.get('.pf-c-alert__action > button').click()  // close the message
     }
   })
 }

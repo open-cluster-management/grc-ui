@@ -2026,14 +2026,13 @@ exports[`CreationView module renders with notification on general error 1`] = `
           >
             Danger alert:
           </span>
-          An unexpected error occurred. Try again.
         </h4>
         <div
           class="pf-c-alert__action"
         >
           <button
             aria-disabled="false"
-            aria-label="Close Danger alert: alert: An unexpected error occurred. Try again."
+            aria-label="Close Danger alert: alert: undefined"
             class="pf-c-button pf-m-plain"
             data-ouia-component-id="OUIA-Generated-Button-plain-2"
             data-ouia-component-type="PF4/Button"
@@ -2054,6 +2053,11 @@ exports[`CreationView module renders with notification on general error 1`] = `
               />
             </svg>
           </button>
+        </div>
+        <div
+          class="pf-c-alert__description"
+        >
+          An unexpected error occurred. Try again.
         </div>
       </div>
     </div>
@@ -2104,14 +2108,13 @@ exports[`CreationView module renders with notification on permission error 1`] =
           >
             Danger alert:
           </span>
-          You do not have permission to create policies in this namespace
         </h4>
         <div
           class="pf-c-alert__action"
         >
           <button
             aria-disabled="false"
-            aria-label="Close Danger alert: alert: You do not have permission to create policies in this namespace"
+            aria-label="Close Danger alert: alert: undefined"
             class="pf-c-button pf-m-plain"
             data-ouia-component-id="OUIA-Generated-Button-plain-1"
             data-ouia-component-type="PF4/Button"
@@ -2132,6 +2135,11 @@ exports[`CreationView module renders with notification on permission error 1`] =
               />
             </svg>
           </button>
+        </div>
+        <div
+          class="pf-c-alert__description"
+        >
+          You do not have permission to create policies in this namespace
         </div>
       </div>
     </div>
