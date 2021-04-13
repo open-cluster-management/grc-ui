@@ -115,7 +115,7 @@ export const verifyItemsChecked = (labels, listQuery) => {
     cy.get(listQuery)
       .then(() => {
         for (const label of labels) {
-          cy.get(listQuery).prev().within(() => {
+          cy.get(listQuery).prev().prev().within(() => {
             cy.get('span').contains(label)
           })
         }
@@ -274,7 +274,7 @@ export const action_verifyCreatePolicySelection = (policyName, policyConfig) => 
         verifyItemsChecked(policyConfig['specifications'], '.pf-c-select__toggle-button[aria-label="specs"]')
       })
       // also check that the number of selected items matches
-      .get('.pf-c-select__toggle-button[aria-label="specs"]').prev()
+      .get('.pf-c-select__toggle-button[aria-label="specs"]').prev().prev()
       .find('li').should('have.length', policyConfig['specifications'].length)
   }
   // cluster binding
@@ -283,7 +283,7 @@ export const action_verifyCreatePolicySelection = (policyName, policyConfig) => 
         verifyItemsChecked(policyConfig['cluster_binding'], '.pf-c-select__toggle-button[aria-label="clusters"]')
       })
       // also check that the number of selected items matches
-      .get('.pf-c-select__toggle-button[aria-label="clusters"]').prev()
+      .get('.pf-c-select__toggle-button[aria-label="clusters"]').prev().prev()
       .find('li').should('have.length', policyConfig['cluster_binding'].length)
   }
   // standards
@@ -292,7 +292,7 @@ export const action_verifyCreatePolicySelection = (policyName, policyConfig) => 
         verifyItemsChecked(policyConfig['standards'], '.pf-c-select__toggle-button[aria-label="standards"]')
       })
       // also check that the number of selected items matches
-      .get('.pf-c-select__toggle-button[aria-label="standards"]').prev()
+      .get('.pf-c-select__toggle-button[aria-label="standards"]').prev().prev()
       .find('li').should('have.length', policyConfig['standards'].length)
   }
   // categories
@@ -301,7 +301,7 @@ export const action_verifyCreatePolicySelection = (policyName, policyConfig) => 
         verifyItemsChecked(policyConfig['categories'], '.pf-c-select__toggle-button[aria-label="categories"]')
       })
       // also check that the number of selected items matches
-      .get('.pf-c-select__toggle-button[aria-label="categories"]').prev()
+      .get('.pf-c-select__toggle-button[aria-label="categories"]').prev().prev()
       .find('li').should('have.length', policyConfig['categories'].length)
   }
   // controls
@@ -310,7 +310,7 @@ export const action_verifyCreatePolicySelection = (policyName, policyConfig) => 
         verifyItemsChecked(policyConfig['controls'], '.pf-c-select__toggle-button[aria-label="controls"]')
       })
       // also check that the number of selected items matches
-      .get('.pf-c-select__toggle-button[aria-label="controls"]').prev()
+      .get('.pf-c-select__toggle-button[aria-label="controls"]').prev().prev()
       .find('li').should('have.length', policyConfig['controls'].length)
   }
   // enforce
