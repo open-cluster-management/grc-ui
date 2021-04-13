@@ -222,7 +222,7 @@ module.exports = {
       }
     }),
     new CompressionPlugin({
-      filename: '[path].gz',
+      filename: '[path][base].gz',
       algorithm: 'gzip',
       test: /\.js$|\.css$/,
       minRatio: 1,

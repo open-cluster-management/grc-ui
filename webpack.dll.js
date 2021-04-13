@@ -99,7 +99,7 @@ module.exports = {
       context: __dirname
     }),
     new CompressionPlugin({
-      filename: '[path].gz',
+      filename: '[path][base].gz',
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/
     }),
