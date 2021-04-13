@@ -22,10 +22,10 @@ class PolicyStatusHistoryView extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { history, cluster, template } = this.props
+    const { items=[], cluster, template } = this.props
     const { locale } = this.context
 
-    const tableData = transform(history, statusHistoryDef, locale)
+    const tableData = transform(items, statusHistoryDef, locale)
 
     return (
       <div className='policy-status-history-view'>
@@ -43,7 +43,7 @@ class PolicyStatusHistoryView extends React.Component {
 
 PolicyStatusHistoryView.propTypes = {
   cluster: PropTypes.string,
-  history: PropTypes.array,
+  items: PropTypes.array,
   template: PropTypes.string
 }
 

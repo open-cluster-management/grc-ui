@@ -11,30 +11,32 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: pod-nginx-pod
-      spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: low
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["default"]
-        object-templates:
-          - complianceType: musthave
-            objectDefinition:
-              apiVersion: v1
-              kind: Pod # nginx pod must exist
-              metadata:
-                name: nginx-pod
-              spec:
-                containers:
-                - image: nginx:1.7.9
-                  name: nginx
-                  ports:
-                  - containerPort: 80
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: pod-nginx-pod
+        spec:
+          remediationAction: inform
+          severity: low
+          namespaceSelector:
+            exclude:
+              - kube-*
+            include:
+              - default
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: Pod
+                metadata:
+                  name: nginx-pod
+                spec:
+                  containers:
+                    - image: 'nginx:1.18.0'
+                      name: nginx
+                      ports:
+                        - containerPort: 80
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -46,9 +48,9 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: pod
-  kind: Policy
-  apiGroup: policy.open-cluster-management.io
+  - name: pod
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -57,8 +59,11 @@ metadata:
   namespace: default
 spec:
   clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
+    - status: 'True'
+      type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: local-cluster, operator: In, values: ["true"]}
+      - key: local-cluster
+        operator: In
+        values:
+          - 'true'

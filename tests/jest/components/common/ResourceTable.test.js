@@ -16,7 +16,7 @@ import { ResourceTable } from '../../../../src-web/components/common/ResourceTab
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
 import GrcApolloClient from '../../../../lib/client/apollo-client'
-import { ApolloProvider } from 'react-apollo'
+import { ApolloProvider } from '@apollo/client/react'
 import { Provider } from 'react-redux'
 import { resourceType, resourceType2,
   itemIds, itemIds2, items, items2,

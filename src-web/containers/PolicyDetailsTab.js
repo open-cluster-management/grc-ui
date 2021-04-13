@@ -4,7 +4,7 @@
 'use strict'
 
 import React from 'react'
-import { Query } from 'react-apollo'
+import { Query } from '@apollo/client/react/components'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { getResourceData } from '../tableDefinitions'
@@ -19,6 +19,7 @@ import NoResource from '../components/common/NoResource'
 import { AcmButton, AcmPage, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime, AcmSecondaryNav, AcmSecondaryNavItem } from '@open-cluster-management/ui-components'
 import { INITIAL_REFRESH_TIME, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE, RESOURCE_TYPES } from '../../lib/shared/constants'
 import config from '../../lib/shared/config'
+import { checkEditPermission } from '../components/common/CheckUserPermission'
 
 class PolicyDetailsTab extends React.Component{
   constructor(props) {
@@ -41,6 +42,7 @@ class PolicyDetailsTab extends React.Component{
       },
       resourceType,
       history,
+      userAccess,
     } = this.props
     const { locale } = this.context
     return <Query
@@ -68,7 +70,7 @@ class PolicyDetailsTab extends React.Component{
                     refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
                     initRefreshTime={INITIAL_REFRESH_TIME} />
                   <AcmRefreshTime timestamp={this.timestamp} reloading={loading} />
-                  <AcmButton id='edit-policy' isDisabled={false}
+                  <AcmButton id='edit-policy' isDisabled={checkEditPermission(userAccess)===0}
                     tooltip={msgs.get('error.permission.disabled', locale)}
                     onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}/edit`)}>
                     {msgs.get('routes.edit.policy', locale)}
@@ -125,6 +127,7 @@ PolicyDetailsTab.propTypes = {
   history: PropTypes.object,
   match: PropTypes.object,
   resourceType: PropTypes.object,
+  userAccess: PropTypes.array,
 }
 
 export default withRouter(PolicyDetailsTab)

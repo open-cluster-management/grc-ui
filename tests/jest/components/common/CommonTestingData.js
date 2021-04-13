@@ -294,7 +294,7 @@ export const policies = [{
                     'spec': {
                       'containers': [
                         {
-                          'image': 'nginx:1.7.9',
+                          'image': 'nginx:1.18.0',
                           'name': 'nginx',
                           'ports': [
                             {
@@ -493,7 +493,7 @@ export const policies = [{
                     'spec': {
                       'containers': [
                         {
-                          'image': 'nginx:1.7.9',
+                          'image': 'nginx:1.18.0',
                           'name': 'nginx',
                           'ports': [
                             {
@@ -2744,7 +2744,7 @@ export const items = {
               'spec': {
                 'containers': [
                   {
-                    'image': 'nginx:1.7.9',
+                    'image': 'nginx:1.18.0',
                     'name': 'nginx',
                     'ports': [
                       {
@@ -2906,7 +2906,7 @@ export const items = {
               'spec': {
                 'containers': [
                   {
-                    'image': 'nginx:1.7.9',
+                    'image': 'nginx:1.18.0',
                     'name': 'nginx',
                     'ports': [
                       {
@@ -3068,7 +3068,7 @@ export const items = {
               'spec': {
                 'containers': [
                   {
-                    'image': 'nginx:1.7.9',
+                    'image': 'nginx:1.18.0',
                     'name': 'nginx',
                     'ports': [
                       {

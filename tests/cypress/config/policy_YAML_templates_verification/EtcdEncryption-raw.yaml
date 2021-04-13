@@ -11,27 +11,29 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: etcdencryption-etcd-encryption
-      spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: med
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["default"]
-        object-templates:
-          - complianceType: musthave
-            objectDefinition:
-              apiVersion: config.openshift.io/v1
-              kind: APIServer
-              metadata:
-                name: cluster
-              spec:
-                encryption:
-                  type: aescbc
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: etcdencryption-etcd-encryption
+        spec:
+          remediationAction: inform
+          severity: med
+          namespaceSelector:
+            exclude:
+              - kube-*
+            include:
+              - default
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: config.openshift.io/v1
+                kind: APIServer
+                metadata:
+                  name: cluster
+                spec:
+                  encryption:
+                    type: aescbc
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -43,9 +45,9 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: etcdencryption
-  kind: Policy
-  apiGroup: policy.open-cluster-management.io
+  - name: etcdencryption
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -54,8 +56,11 @@ metadata:
   namespace: default
 spec:
   clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
+    - status: 'True'
+      type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: local-cluster, operator: In, values: ["true"]}
+      - key: local-cluster
+        operator: In
+        values:
+          - 'true'

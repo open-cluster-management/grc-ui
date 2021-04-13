@@ -9,7 +9,9 @@ replacements: # if user select this choice, the template variable names and valu
   standards: |
     NIST-CSF
   categories: |
-    DE.CM Security Continuous Monitoring
+    PR.IP Information Protection Processes and Procedures
+  controls: |
+    PR.IP-1 Baseline Configuration
   policyTemplates: |
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1

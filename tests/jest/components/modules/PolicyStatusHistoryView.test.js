@@ -103,7 +103,7 @@ describe('PolicyStatusHistoryView component', () => {
   it('renders as expected', () => {
     const component = shallow(
       <PolicyStatusHistoryView
-        history={data}
+        items={data}
         template={'policy-imagemanifestvulnpolicy'}
         cluster={'ironman'}
       />
@@ -114,7 +114,7 @@ describe('PolicyStatusHistoryView component', () => {
   it('renders as expected with pagination', () => {
     const component = shallow(
       <PolicyStatusHistoryView
-        history={longData}
+        items={longData}
         template={'policy-imagemanifestvulnpolicy'}
         cluster={'ironman'}
       />
@@ -125,7 +125,7 @@ describe('PolicyStatusHistoryView component', () => {
   it('renders as expected -- empty list', () => {
     const component = shallow(
       <PolicyStatusHistoryView
-        history={[]}
+        items={[]}
         template={'policy-imagemanifestvulnpolicy'}
         cluster={'ironman'}
       />

@@ -665,7 +665,7 @@ export const policiesTestingDataSet1 = [
               'spec':{
                 'containers':[
                   {
-                    'image':'nginx:1.7.9',
+                    'image':'nginx:1.18.0',
                     'name':'nginx',
                     'ports':[
                       {
@@ -801,7 +801,7 @@ export const policiesTestingDataSet2 = [
               'spec':{
                 'containers':[
                   {
-                    'image':'nginx:1.7.9',
+                    'image':'nginx:1.18.0',
                     'name':'nginx',
                     'ports':[
                       {
@@ -939,7 +939,7 @@ export const policiesTestingDataSet2 = [
               'spec':{
                 'containers':[
                   {
-                    'image':'nginx:1.7.9',
+                    'image':'nginx:1.18.0',
                     'name':'nginx',
                     'ports':[
                       {
@@ -1208,7 +1208,7 @@ export const policiesTestingDataSet2 = [
               'spec':{
                 'containers':[
                   {
-                    'image':'nginx:1.7.9',
+                    'image':'nginx:1.18.0',
                     'name':'nginx',
                     'ports':[
                       {
@@ -1819,7 +1819,7 @@ export const clusterSubResourceListTestingItemData = [
               'spec': {
                 'containers': [
                   {
-                    'image': 'nginx:1.7.9',
+                    'image': 'nginx:1.18.0',
                     'name': 'nginx',
                     'ports': [
                       {
@@ -2329,7 +2329,7 @@ export const policiesTabModuleFilteredPolicies = [
               'spec': {
                 'containers': [
                   {
-                    'image': 'nginx:1.7.9',
+                    'image': 'nginx:1.18.0',
                     'name': 'nginx',
                     'ports': [
                       {

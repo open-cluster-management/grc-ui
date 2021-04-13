@@ -280,14 +280,14 @@ const dataWithSelfLink = {
 describe('PolicyTemplateDetailsView component', () => {
   it('renders as expected', () => {
     const component = renderer.create(
-      <PolicyTemplateDetailsView template={data} />
+      <PolicyTemplateDetailsView items={data} />
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
 
   it('renders as expected with SelfLinnk', () => {
     const component = renderer.create(
-      <PolicyTemplateDetailsView template={dataWithSelfLink} />
+      <PolicyTemplateDetailsView items={dataWithSelfLink} />
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -295,7 +295,7 @@ describe('PolicyTemplateDetailsView component', () => {
   it('renders as expected -- relatedObjects field is []', () => {
     data.status.relatedObjects = []
     const component = renderer.create(
-      <PolicyTemplateDetailsView template={data} />
+      <PolicyTemplateDetailsView items={data} />
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -303,7 +303,7 @@ describe('PolicyTemplateDetailsView component', () => {
   it('renders as expected -- no related object field', () => {
     delete data.status.relatedObjects
     const component = renderer.create(
-      <PolicyTemplateDetailsView template={data} />
+      <PolicyTemplateDetailsView items={data} />
     )
     expect(component.toJSON()).toMatchSnapshot()
   })

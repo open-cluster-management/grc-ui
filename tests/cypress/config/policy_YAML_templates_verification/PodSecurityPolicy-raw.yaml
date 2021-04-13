@@ -11,47 +11,49 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: podsecuritypolicy-restricted-psp
-      spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: high
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["default"]
-        object-templates:
-          - complianceType: musthave
-            objectDefinition:
-              apiVersion: policy/v1beta1
-              kind: PodSecurityPolicy # no privileged pods
-              metadata:
-                name: restricted-psp
-                annotations:
-                  seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
-              spec:
-                privileged: false # no priviliedged pods
-                allowPrivilegeEscalation: false
-                allowedCapabilities:
-                - '*'
-                volumes:
-                - '*'
-                hostNetwork: true
-                hostPorts:
-                - min: 1000 # ports < 1000 are reserved
-                  max: 65535
-                hostIPC: false
-                hostPID: false
-                runAsUser:
-                  rule: 'RunAsAny'
-                seLinux:
-                  rule: 'RunAsAny'
-                supplementalGroups:
-                  rule: 'RunAsAny'
-                fsGroup:
-                  rule: 'RunAsAny'
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: podsecuritypolicy-restricted-psp
+        spec:
+          remediationAction: inform
+          severity: high
+          namespaceSelector:
+            exclude:
+              - kube-*
+            include:
+              - default
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: policy/v1beta1
+                kind: PodSecurityPolicy
+                metadata:
+                  name: restricted-psp
+                  annotations:
+                    seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
+                spec:
+                  privileged: false
+                  allowPrivilegeEscalation: false
+                  allowedCapabilities:
+                    - '*'
+                  volumes:
+                    - '*'
+                  hostNetwork: true
+                  hostPorts:
+                    - min: 1000
+                      max: 65535
+                  hostIPC: false
+                  hostPID: false
+                  runAsUser:
+                    rule: RunAsAny
+                  seLinux:
+                    rule: RunAsAny
+                  supplementalGroups:
+                    rule: RunAsAny
+                  fsGroup:
+                    rule: RunAsAny
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -63,9 +65,9 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: podsecuritypolicy
-  kind: Policy
-  apiGroup: policy.open-cluster-management.io
+  - name: podsecuritypolicy
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -74,8 +76,11 @@ metadata:
   namespace: default
 spec:
   clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
+    - status: 'True'
+      type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: local-cluster, operator: In, values: ["true"]}
+      - key: local-cluster
+        operator: In
+        values:
+          - 'true'

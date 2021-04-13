@@ -9,6 +9,8 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
+process.env.TZ = 'UTC'
+
 const tapReporter = [
   'jest-tap-reporter',
   {
@@ -36,10 +38,10 @@ const jestConfig = {
   testURL: 'http://localhost/',
   coverageThreshold: {
     global: {
-      branches: 52,
-      functions: 54,
-      lines: 60.5,
-      statements: 60.5,
+      branches: 55,
+      functions: 55,
+      lines: 62,
+      statements: 62,
     },
   },
   testMatch: [
@@ -55,7 +57,7 @@ const jestConfig = {
   },
   globalSetup: '<rootDir>/tests/jest/config/properties-to-json.js',
   setupFiles: [
-    '<rootDir>/tests/jest/config/setup.js'
+    '<rootDir>/tests/jest/config/setup.js',
   ],
   moduleNameMapper: {
     '\\.(css|scss|svg|png)$': '<rootDir>/tests/jest/config/styleMock.js',

@@ -16,6 +16,7 @@ import { configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import 'cross-fetch/polyfill'
 import _uniqueId from 'lodash/uniqueId'
+import MockDate from 'mockdate'
 
 configure({ adapter: new Adapter() })
 
@@ -45,3 +46,6 @@ jest.mock('@patternfly/react-core', () => {
 jest.mock('lodash/uniqueId')
 let mockId = 1
 _uniqueId.mockImplementation(() => `mockLodashID-${mockId++}`)
+
+// set timezone and mock date for tests
+MockDate.set('2021-01-01T00:00:00.000Z')
