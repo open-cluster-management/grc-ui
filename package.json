@@ -71,7 +71,7 @@
     "classnames": "^2.3.1",
     "compression-webpack-plugin": "^7.1.2",
     "cookie-parser": "^1.4.5",
-    "copy-webpack-plugin": "^6.4.1",
+    "copy-webpack-plugin": "^8.1.1",
     "cross-env": "^7.0.3",
     "css-loader": "^3.6.0",
     "csurf": "^1.11.0",
