@@ -77,7 +77,11 @@ export const checkItems = (labels, listQuery, itemQuery=selectItemQuery) => {
       for (const label of labels) {
         cy.get(listQuery)
           .click()
-          .get(listQuery).parent().within(() => {
+          .get(listQuery).parent().within((parent) => {
+            // clear existing selection first
+            if(Cypress.$(parent).find('.pf-c-select__toggle-clear').length > 0){
+              cy.get('.pf-c-select__toggle-clear').click()
+            }
             cy.get('input.pf-c-select__toggle-typeahead')
               .first()
               .as('input')
