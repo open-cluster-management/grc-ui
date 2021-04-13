@@ -80,7 +80,7 @@ jobs:
     - stage: unit-test
       name: "Build and run unit tests"
       script:
-        - set -e
+        # - set -e
         - make component/test/unit
     - stage: e2e-test
       name: "Run unit tests and e2e tests"
