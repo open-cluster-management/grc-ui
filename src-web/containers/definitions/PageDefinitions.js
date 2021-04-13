@@ -81,7 +81,7 @@ const policiesPage = ({ locale }) => {
     query: ALL_POLICIES,
     refreshControls: true,
     buttons: [ createBtn ],
-    childern: (props) => <GrcView {...props} />
+    children: (props) => <GrcView {...props} />
   }
 }
 
@@ -101,7 +101,7 @@ const policyStatusPage = ({ name, namespace, locale }) => {
       statusNav
     ],
     buttons: [ editBtn ],
-    childern: (props) => <PolicyStatusView {...props} />
+    children: (props) => <PolicyStatusView {...props} searchValue={searchValue} />
   }
 }
 
@@ -119,7 +119,7 @@ const policyTemplateDetailsPage = ({ name, namespace, cluster, apiGroup, version
       { text: msgs.get('table.header.status', locale), to: `${config.contextPath}/all/${namespace}/${name}/status` },
       { text: template, to: template }
     ],
-    childern: (props) => <PolicyTemplateDetailsView {...props} selfLink={selfLink} />
+    children: (props) => <PolicyTemplateDetailsView {...props} selfLink={selfLink} />
   }
 }
 
@@ -136,7 +136,7 @@ const policyStatusHistoryPage = ({ name, namespace, cluster, template, locale })
       { text: msgs.get('table.header.status', locale), to: `${config.contextPath}/all/${namespace}/${name}/status`},
       { text: msgs.get(historyMsg, locale), to: msgs.get(historyMsg, locale) }
     ],
-    childern: (props) => <PolicyStatusHistoryView {...props} cluster={cluster} template={template} />
+    children: (props) => <PolicyStatusHistoryView {...props} cluster={cluster} template={template} />
   }
 }
 
