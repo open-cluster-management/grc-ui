@@ -32,9 +32,9 @@ resources(() => {
 class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
-    const { searchValue, handleSearch, handleClear } = props
+    const { searchValue } = props
     let searchText = ''
-    if (typeof handleSearch === 'function' && typeof handleClear === 'function' && typeof searchValue === 'string') {
+    if (typeof searchValue === 'string') {
       searchText = searchValue.trim()
     }
     this.state = {
