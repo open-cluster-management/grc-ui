@@ -103,6 +103,7 @@ export default class TemplateEditor extends React.Component {
       showEditor,
       updateMessage: '',
       resetInx: 0,
+      controlState: {},
     }
     this.multiSelectCmpMap = {}
     this.parseDebounced = _.debounce(()=>{
@@ -268,8 +269,6 @@ export default class TemplateEditor extends React.Component {
           handleClick()
         }
       }
-      console.log(updateMsgKind)
-
       return <div role='button' onClick={handleClick}
         tabIndex="0" aria-label={updateMessage} onKeyDown={handleKeyPress}>
         <div>
@@ -383,6 +382,7 @@ export default class TemplateEditor extends React.Component {
   renderSingleSelect(control) {
     const {locale} = this.props
     const {id, name, available, description, isOneSelection, mustExist, active} = control
+    const {controlState} = this.state
     return (
       <React.Fragment>
         <div className='creation-view-controls-singleselect'
@@ -394,25 +394,26 @@ export default class TemplateEditor extends React.Component {
           </div>
           <Select
             variant={SelectVariant.typeahead}
-            onToggle={(isOpen)=>{
-              const {control={}} = this.state
-              control[id] = {isOpen}
-              this.setState({control})
+            onToggle={(isOpen) => {
+              this.setState((state) => {
+                state.controlState[id] = { isOpen }
+                return state
+              })
             }}
             onSelect={(event, selection)=>{
-              const {control={}} = this.state
-              control[id] = {
+              const {controlState={}} = this.state
+              controlState[id] = {
                 selected: selection,
                 isOpen: false,
               }
-              this.setState({control})
+              this.setState({controlState})
               this.handleChange.bind(this, id)(selection, event)
             }}
             selections={active}
             aria-label={msgs.get('policy.create.namespace.tooltip', locale)}
             toggleAriaLabel={id}
             placeholderText={msgs.get('policy.create.namespace.tooltip', locale)}
-            isOpen={this.state.control&&this.state.control[id]&&this.state.control[id].isOpen}
+            isOpen={controlState[id]&&controlState[id].isOpen}
           >
             {available.map((option) => (
               <SelectOption isDisabled={false} key={option} value={option} />
@@ -425,6 +426,7 @@ export default class TemplateEditor extends React.Component {
 
   renderMultiSelect(control) {
     const {id, name, placeholder:ph, description, isOneSelection, mustExist, active=[]} = control
+    const {controlState} = this.state
 
     // see if we need to add user additions to available (from editing the yaml file)
     const {userData, userMap, hasCapturedUserSource} = control
@@ -468,10 +470,11 @@ export default class TemplateEditor extends React.Component {
           </div>
           <Select
             variant={SelectVariant.typeaheadMulti}
-            onToggle={(isOpen)=>{
-              const {control={}} = this.state
-              control[id] = {isOpen}
-              this.setState({control})
+            onToggle={(isOpen) => {
+              this.setState((state) => {
+                state.controlState[id] = { isOpen }
+                return state
+              })
             }}
             onSelect={(event, selection)=>{
               if (!active.includes(selection)) {
@@ -479,16 +482,15 @@ export default class TemplateEditor extends React.Component {
               } else {
                 _.remove(active, (item) => item === selection)
               }
-              const {control={}} = this.state
-              control[id] = {
+              controlState[id] = {
                 selected: active,
                 isOpen: false,
               }
-              this.setState({control})
+              this.setState({controlState})
               this.handleChange.bind(this, id)(active, event)
             }}
             selections={active}
-            isOpen={this.state.control&&this.state.control[id]&&this.state.control[id].isOpen}
+            isOpen={controlState[id]&&controlState[id].isOpen}
             aria-label={placeholder}
             toggleAriaLabel={id}
             placeholderText={placeholder}
@@ -522,9 +524,6 @@ export default class TemplateEditor extends React.Component {
   }
 
   onChange(field, evt, other) {
-    // console.log(field)
-    // console.log(evt)
-    // console.log(other)
     const { locale } = this.props
     let updateName = false
     let { isCustomName } = this.state
