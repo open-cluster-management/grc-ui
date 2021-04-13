@@ -401,7 +401,6 @@ export default class TemplateEditor extends React.Component {
               })
             }}
             onSelect={(event, selection)=>{
-              const {controlState={}} = this.state
               controlState[id] = {
                 selected: selection,
                 isOpen: false,
