@@ -53,7 +53,7 @@ function AcmGrcPage(props) {
           if (loading && !previousData || items === undefined ) {
             return <Spinner className='patternfly-spinner' />
           } else {
-            return page.children({ error, items,  })
+            return page.children({ error, items })
           }
         })()}
       </AcmPageContent>

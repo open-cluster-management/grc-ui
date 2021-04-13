@@ -20,7 +20,7 @@ import {
 
 class StatusField extends React.PureComponent {
   static propTypes = {
-    status: PropTypes.oneOf(['ok', 'warning', 'failed', 'critical', 'offline', 'unknown', 'invalid', 'compliant', 'noncompliant']),
+    status: PropTypes.oneOf(['ok', 'warning', 'failed', 'critical', 'offline', 'unknown', 'nostatus', 'invalid', 'compliant', 'noncompliant']),
     text: PropTypes.string
   }
 
@@ -42,6 +42,7 @@ class StatusField extends React.PureComponent {
     case 'offline':
     case 'invalid':
     case 'unknown':
+    case 'nostatus':
     default :
       IconName = YellowExclamationTriangleIcon
       break

@@ -15,10 +15,11 @@
 import React from 'react'
 import _ from 'lodash'
 import msgs from '../../nls/platform.properties'
-import { getAge, getLabelsToList } from '../../lib/client/resource-helper'
+import { getAge, getLabels } from '../../lib/client/resource-helper'
 import { Link } from 'react-router-dom'
 import StatusField from '../components/common/StatusField'
 import config from '../../lib/shared/config'
+import { wrappable, sortable, breakWord } from '@patternfly/react-table'
 
 export default {
   defaultSortField: 'metadata.name',
@@ -56,321 +57,31 @@ export default {
       },
     ],
   },
-  placementBindingKeys: {
-    title: 'application.placement.bindings',
-    defaultSortField: 'name',
-    resourceKey: 'placementBindings',
+  placementClusterKeys: {
     tableKeys: [
-      {
-        key: 'name',
-        resourceKey: 'metadata.name',
-        msgKey: 'table.header.name'
-      },
-      {
-        key: 'namespace',
-        resourceKey: 'metadata.namespace',
-        msgKey: 'table.header.namespace'
-      },
-      {
-        key: 'placementpolicy',
-        resourceKey: 'placementRef.name',
-        msgKey: 'table.header.placementpolicy'
-      },
-      {
-        key: 'subjects',
-        resourceKey: 'subjects',
-        msgKey: 'table.header.subjects',
-        transformFunction: getSubjects
-      },
-      {
-        key: 'timestamp',
-        resourceKey: 'metadata.creationTimestamp',
-        msgKey: 'table.header.created',
-        transformFunction: getAge
-      },
-    ],
-    detailKeys: {
-      title: 'policy.pb.details.title',
-      headerRows: ['type', 'detail'],
-      rows: [
-        {
-          cells: [
-            {
-              resourceKey: 'policy.pb.details.name',
-              type: 'i18n'
-            },
-            {
-              resourceKey: 'metadata.name'
-            }
-          ]
-        },
-        {
-          cells: [
-            {
-              resourceKey: 'policy.pb.details.namespace',
-              type: 'i18n'
-            },
-            {
-              resourceKey: 'metadata.namespace'
-            }
-          ]
-        },
-        {
-          cells: [
-            {
-              resourceKey: 'policy.pb.details.pp',
-              type: 'i18n'
-            },
-            {
-              resourceKey: 'placementRef.name'
-            }
-          ]
-        },
-        {
-          cells: [
-            {
-              resourceKey: 'policy.pb.details.subjects',
-              type: 'i18n'
-            },
-            {
-              resourceKey: 'subjects[0]',
-              transformFunction: getSubjects
-            }
-          ]
-        },
-        {
-          cells: [
-            {
-              resourceKey: 'policy.pb.details.timestamp',
-              type: 'i18n'
-            },
-            {
-              resourceKey: 'metadata.creationTimestamp',
-              transformFunction: getAge,
-            }
-          ]
-        },
-      ]
-    },
-    tableActions: [
-      'table.actions.edit',
-    ],
-  },
-  placementPolicyKeys: {
-    title: 'application.placement.policies',
-    defaultSortField: 'name',
-    resourceKey: 'placementPolicies',
-    tableKeys: [
-      {
-        key: 'name',
-        resourceKey: 'metadata.name',
-        msgKey: 'table.header.name'
-      },
-      {
-        key: 'namespace',
-        resourceKey: 'metadata.namespace',
-        msgKey: 'table.header.namespace'
-      },
       {
         key: 'clusterSelector',
-        resourceKey: 'clusterLabels',
+        resourceKey: 'placementPolicies',
+        transforms: [wrappable, sortable],
+        cellTransforms: [breakWord],
         msgKey: 'table.header.cluster.selector',
-        transformFunction: getLabelsToList,
+        transformFunction: getLabels,
+      },
+      {
+        key: 'cluster',
+        resourceKey: 'clusters',
+        transforms: [wrappable, sortable],
+        cellTransforms: [breakWord],
+        msgKey: 'table.header.clusters',
+        transformFunction: getDecisionCount,
       },
       {
         key: 'decisions',
         resourceKey: 'status',
-        msgKey: 'table.header.decisions',
-        transformFunction: getDecisions,
-      },
-      {
-        key: 'timestamp',
-        resourceKey: 'metadata.creationTimestamp',
-        msgKey: 'table.header.created',
-        transformFunction: getAge
-      },
-    ],
-    detailKeys: {
-      title: 'policy.pp.details.title',
-      headerRows: ['type', 'detail'],
-      rows: [
-        {
-          cells: [
-            {
-              resourceKey: 'policy.pp.details.name',
-              type: 'i18n'
-            },
-            {
-              resourceKey: 'metadata.name'
-            }
-          ]
-        },
-        {
-          cells: [
-            {
-              resourceKey: 'policy.pp.details.namespace',
-              type: 'i18n'
-            },
-            {
-              resourceKey: 'metadata.namespace'
-            }
-          ]
-        },
-        {
-          cells: [
-            {
-              resourceKey: 'policy.pp.details.clusterSelector',
-              type: 'i18n'
-            },
-            {
-              resourceKey: 'clusterLabels',
-              transformFunction: getLabelsToList
-            }
-          ]
-        },
-        {
-          cells: [
-            {
-              resourceKey: 'policy.pp.details.decisions',
-              type: 'i18n'
-            },
-            {
-              resourceKey: 'status',
-              transformFunction: getDecisions,
-            }
-          ]
-        },
-        {
-          cells: [
-            {
-              resourceKey: 'policy.pp.details.timestamp',
-              type: 'i18n'
-            },
-            {
-              resourceKey: 'metadata.creationTimestamp',
-              transformFunction: getAge,
-            }
-          ]
-        },
-      ]
-    },
-    tableActions: [
-      'table.actions.edit',
-    ],
-  },
-  roleTemplates:{
-    resourceKey: 'role-templates',
-    title: 'table.header.role.template',
-    defaultSortField: 'metadata.name',
-    normalizedKey: 'metadata.name',
-    tableKeys: [
-      {
-        msgKey: 'table.header.role.template.name',
-        resourceKey: 'metadata.name',
-        key: 'name',
-      },
-      {
-        msgKey: 'table.header.role.template.complianceType',
-        resourceKey: 'complianceType',
-        key: 'complianceType',
-      },
-      {
-        msgKey: 'table.header.role.template.apiVersion',
-        resourceKey: 'apiVersion',
-        key: 'apiVersion',
-      }
-    ],
-    rows: [{
-      cells: [
-        {
-          resourceKey: 'metadata.name',
-        },
-        {
-          resourceKey: 'complianceType',
-        },
-        {
-          resourceKey: 'apiVersion',
-        }
-      ]
-    }],
-    subHeaders :[
-      'table.header.role.template.complianceType',
-      'table.header.apiGroups',
-      'table.header.resources',
-      'table.header.ruleVerbs',
-    ]
-  },
-  objectTemplates:{
-    resourceKey: 'object-templates',
-    title: 'table.header.object.template',
-    defaultSortField: 'metadata.name',
-    normalizedKey: 'metadata.name',
-    tableKeys: [
-      {
-        msgKey: 'table.header.object.template.name',
-        resourceKey: 'metadata.name',
-        key: 'name',
-      },
-      {
-        msgKey: 'table.header.object.template.complianceType',
-        resourceKey: 'complianceType',
-        key: 'complianceType',
-      },
-      {
-        msgKey: 'table.header.object.template.apiVersion',
-        resourceKey: 'apiVersion',
-        key: 'apiVersion',
-      },
-      {
-        msgKey: 'table.header.object.template.kind',
-        resourceKey: 'kind',
-        key: 'kind',
-      }
-    ],
-  },
-  policyTemplates:{
-    resourceKey: 'policy-templates',
-    title: 'table.header.policy.template',
-    defaultSortField: 'metadata.name',
-    normalizedKey: 'metadata.name',
-    tableKeys: [
-      {
-        msgKey: 'table.header.object.template.name',
-        resourceKey: 'metadata.name',
-        key: 'name',
-      },
-      {
-        msgKey: 'table.header.object.template.apiVersion',
-        resourceKey: 'apiVersion',
-        key: 'apiVersion',
-      },
-      {
-        msgKey: 'table.header.object.template.kind',
-        resourceKey: 'kind',
-        key: 'kind',
-      }
-    ],
-  },
-  complianceStatus: {
-    resourceKey: 'complianceStatus',
-    title: 'table.header.compliance.compliant',
-    defaultSortField: 'clusterNamespace',
-    normalizedKey: 'clusterNamespace',
-    tableKeys: [
-      {
-        msgKey: 'table.header.cluster.namespace',
-        resourceKey: 'clusterNamespace',
-        key: 'clusterNamespace',
-      },
-      {
-        msgKey: 'table.header.compliance.policy.status',
-        resourceKey: 'localCompliantStatus',
-        key: 'localCompliantStatus',
-      },
-      {
-        msgKey: 'table.header.compliance.policy.valid',
-        resourceKey: 'localValidStatus',
-        key: 'localValidStatus',
+        transforms: [wrappable],
+        cellTransforms: [breakWord],
+        msgKey: 'table.header.status',
+        transformFunction: getDecisionList,
       },
     ],
   },
@@ -745,98 +456,6 @@ export default {
       },
     ]
   },
-  policyRoleTemplates: {
-    title: 'table.header.roleTemplates',
-    defaultSortField: 'name',
-    normalizedKey: 'name',
-    resourceKey: 'roleTemplates',
-    tableKeys: [
-      {
-        msgKey: 'table.header.name',
-        resourceKey: 'name',
-        key: 'name',
-      },
-      {
-        msgKey: 'table.header.complianceType',
-        resourceKey: 'complianceType',
-        key: 'complianceType',
-      },
-      {
-        msgKey: 'description.title.api.version',
-        resourceKey: 'apiVersion',
-        key: 'apiVersion',
-      },
-      {
-        msgKey: 'table.header.compliant',
-        resourceKey: 'compliant',
-        key: 'compliant',
-        transformFunction: getStatus
-      },
-    ],
-  },
-  policyRoleBindingTemplates: {
-    title: 'table.header.roleBindingTemplates',
-    defaultSortField: 'name',
-    normalizedKey: 'name',
-    resourceKey: 'roleBindingTemplates',
-    tableKeys: [
-      {
-        msgKey: 'table.header.name',
-        resourceKey: 'name',
-        key: 'name',
-      },
-      {
-        msgKey: 'table.header.complianceType',
-        resourceKey: 'complianceType',
-        key: 'complianceType',
-      },
-      {
-        msgKey: 'description.title.api.version',
-        resourceKey: 'apiVersion',
-        key: 'apiVersion',
-      },
-      {
-        msgKey: 'table.header.compliant',
-        resourceKey: 'compliant',
-        key: 'compliant',
-        transformFunction: getStatus
-      },
-    ],
-  },
-  policyObjectTemplates: {
-    title: 'table.header.objectTemplates',
-    defaultSortField: 'name',
-    normalizedKey: 'name',
-    resourceKey: 'objectTemplates',
-    tableKeys: [
-      {
-        msgKey: 'table.header.name',
-        resourceKey: 'name',
-        key: 'name',
-      },
-      {
-        msgKey: 'table.header.complianceType',
-        resourceKey: 'complianceType',
-        key: 'complianceType',
-      },
-      {
-        msgKey: 'description.title.api.version',
-        resourceKey: 'apiVersion',
-        key: 'apiVersion',
-      },
-      {
-        msgKey: 'table.header.kind',
-        resourceKey: 'kind',
-        key: 'kind',
-      },
-      {
-        msgKey: 'table.header.compliant',
-        resourceKey: 'compliant',
-        key: 'compliant',
-        transformFunction: getStatus
-      },
-    ],
-  },
   policyPolicyTemplates: {
     title: 'table.header.policyTemplates',
     defaultSortField: 'name',
@@ -963,12 +582,68 @@ export function formatAnnotationString(items){
   return '-'
 }
 
-export function getDecisions(item = {}){
+// Return a count of total clusters from the placementPolicy
+export function getDecisionCount(item = {}){
   const decisions = _.get(item, 'placementPolicies[0].status.decisions') || _.get(item, 'status.decisions')
   if (decisions) {
-    return decisions.map(decision => decision.clusterName).join(', ')
+    return decisions.map(decision => decision.clusterName).length
   }
-  return '-'
+  return 0
+}
+
+// Construct a list of compliant clusters and return a formatted list with icons and headings
+export function getDecisionList(policy = {}) {
+  // Gather full cluster list from placementPolicy status
+  const fullClusterList = _.get(policy, 'placementPolicies[0].status.decisions', []).map(decision => decision.clusterNamespace)
+  // Gather status list from policy status
+  const rawStatusList = _.get(policy, 'raw.status.status', [])
+  // Build lists of clusters, organized by status keys
+  const clusterList = {}
+  _.forEach(fullClusterList, (cluster) => {
+    const statusObject = _.filter(rawStatusList, (status) => status.clusternamespace === cluster)
+    // Log error if more than one status is returned since each cluster name should be unique
+    if (statusObject.length > 1) {
+      console.error(`Expected one cluster but got ${statusObject.length}:`, statusObject)
+    // Push a new cluster object if there is no status found
+    } else if (statusObject.length === 0) {
+      statusObject.push({clusternamespace: cluster})
+    }
+    const compliant = _.get(statusObject[0], 'compliant', 'nostatus').toLowerCase()
+    const clusterNamespace = _.get(statusObject[0], 'clusternamespace')
+    _.remove(fullClusterList, (cluster) => cluster === clusterNamespace)
+    // Add cluster to its associated status list in the clusterList object
+    if (Object.prototype.hasOwnProperty.call(clusterList, compliant)) {
+      // Each cluster name should be unique, so if one is already present, log an error
+      if (clusterList[compliant].has(clusterNamespace)) {
+        console.error(`Unexpected duplicate cluster in '${compliant}' cluster list: ${clusterNamespace}`)
+      } else {
+        clusterList[compliant].add(clusterNamespace)
+      }
+    } else {
+      clusterList[compliant] = new Set([clusterNamespace])
+    }
+  })
+  // Push lists of clusters along with status icon and heading
+  const statusList = []
+  for (const status of Object.keys(clusterList)) {
+    statusList.push(<div className={`${status}-status-list`}>
+      <StatusField status={status} text='' />
+      <span className='status-heading'>{msgs.get(`table.cell.${status}`, context.locale)}: </span>
+      {Array.from(clusterList[status]).map((cluster, i) =>
+        <span key={`${cluster}-link`}>
+          <Link key={`${cluster}-link`} to={`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?${cluster}`} >
+            {cluster}
+          </Link>
+          {i < clusterList[status].length && ', '}
+        </span>)
+      }
+    </div>)
+  }
+  // If there are no clusters, return a hyphen
+  if (statusList.length === 0) {
+    return '-'
+  }
+  return statusList
 }
 
 export function formLinkToCluster(item){

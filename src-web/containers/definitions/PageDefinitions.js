@@ -6,10 +6,11 @@
 import React from 'react'
 import { AcmButton, AcmSecondaryNavItem } from '@open-cluster-management/ui-components'
 
-import { ALL_POLICIES, POLICY_STATUS, POLICY_STATUS_HISTORY, POLICY_TEMPLATE_DETAILS } from '../../../lib/client/queries'
+import { ALL_POLICIES, SINGLE_POLICY, POLICY_STATUS, POLICY_STATUS_HISTORY, POLICY_TEMPLATE_DETAILS } from '../../../lib/client/queries'
 import config from '../../../lib/shared/config'
 // eslint-disable-next-line import/no-named-as-default
 import GrcView from '../../components/modules/GrcView'
+import PolicyDetailsOverview from '../../components/modules/PolicyDetailsOverview'
 import PolicyStatusView from '../../components/modules/PolicyStatusView'
 import PolicyTemplateDetailsView from '../../components/modules/PolicyTemplateDetailsView'
 import PolicyStatusHistoryView from '../../components/modules/PolicyStatusHistoryView'
@@ -24,6 +25,8 @@ export const getPageDefinition = (props) => {
   switch(type) {
     case 'ALL_POLICIES':
       return policiesPage(props)
+    case 'SINGLE_POLICY':
+      return policyDetailsPage(props)
     case 'POLICY_STATUS':
       return policyStatusPage(props)
     case 'POLICY_TEMPLATE_DETAILS':
@@ -85,7 +88,27 @@ const policiesPage = ({ locale }) => {
   }
 }
 
-const policyStatusPage = ({ name, namespace, locale }) => {
+const policyDetailsPage = ({ name, namespace, locale }) => {
+  return {
+    id: 'policy-details',
+    title: name,
+    query: SINGLE_POLICY,
+    query_variables: { name, namespace },
+    refreshControls: true,
+    breadcrumb: [
+      { text: msgs.get(policiesMsg, locale), to: config.contextPath },
+      { text: name, to: name }
+    ],
+    navigation: [
+      detailsNav,
+      statusNav
+    ],
+    buttons: [ editBtn ],
+    children: (props) => <PolicyDetailsOverview {...props} />
+  }
+}
+
+const policyStatusPage = ({ name, namespace, locale, searchValue }) => {
   return {
     id: 'policy-status',
     title: name,
