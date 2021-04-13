@@ -174,7 +174,6 @@ module.exports = {
     minimize: PRODUCTION,
     minimizer: [
       (compiler) => {
-          // eslint-disable-next-line import/no-unresolved
           const TerserPlugin = require('terser-webpack-plugin')
           new TerserPlugin({
             parallel: true,
