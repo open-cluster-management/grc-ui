@@ -489,6 +489,14 @@ export default class TemplateEditor extends React.Component {
               this.setState({controlState})
               this.handleChange.bind(this, id)(active, event)
             }}
+            onClear={() => {
+              controlState[id] = {
+                selected: [],
+                isOpen: false,
+              }
+              this.setState({controlState})
+              this.handleChange.bind(this, id)([], event)
+            }}
             selections={active}
             isOpen={controlState[id]&&controlState[id].isOpen}
             aria-label={placeholder}
