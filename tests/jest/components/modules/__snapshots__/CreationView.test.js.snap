@@ -133,8 +133,8 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="namespace pf-select-toggle-id-0"
+                    aria-label="namespace"
+                    aria-labelledby=" pf-select-toggle-id-0"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-0"
@@ -197,7 +197,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -221,8 +221,8 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="specs pf-select-toggle-id-1"
+                    aria-label="specs"
+                    aria-labelledby=" pf-select-toggle-id-1"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-1"
@@ -280,7 +280,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -304,8 +304,8 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="clusters pf-select-toggle-id-2"
+                    aria-label="clusters"
+                    aria-labelledby=" pf-select-toggle-id-2"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-2"
@@ -363,7 +363,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -387,8 +387,8 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="standards pf-select-toggle-id-3"
+                    aria-label="standards"
+                    aria-labelledby=" pf-select-toggle-id-3"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-3"
@@ -446,7 +446,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -470,8 +470,8 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="categories pf-select-toggle-id-4"
+                    aria-label="categories"
+                    aria-labelledby=" pf-select-toggle-id-4"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-4"
@@ -529,7 +529,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -553,8 +553,8 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="controls pf-select-toggle-id-5"
+                    aria-label="controls"
+                    aria-labelledby=" pf-select-toggle-id-5"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-5"
@@ -882,8 +882,8 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="namespace pf-select-toggle-id-6"
+                    aria-label="namespace"
+                    aria-labelledby=" pf-select-toggle-id-6"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-6"
@@ -946,7 +946,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -970,8 +970,8 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="specs pf-select-toggle-id-7"
+                    aria-label="specs"
+                    aria-labelledby=" pf-select-toggle-id-7"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-7"
@@ -1029,7 +1029,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1053,8 +1053,8 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="clusters pf-select-toggle-id-8"
+                    aria-label="clusters"
+                    aria-labelledby=" pf-select-toggle-id-8"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-8"
@@ -1112,7 +1112,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1136,8 +1136,8 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="standards pf-select-toggle-id-9"
+                    aria-label="standards"
+                    aria-labelledby=" pf-select-toggle-id-9"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-9"
@@ -1195,7 +1195,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1219,8 +1219,8 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="categories pf-select-toggle-id-10"
+                    aria-label="categories"
+                    aria-labelledby=" pf-select-toggle-id-10"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-10"
@@ -1278,7 +1278,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1302,8 +1302,8 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="controls pf-select-toggle-id-11"
+                    aria-label="controls"
+                    aria-labelledby=" pf-select-toggle-id-11"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-11"
@@ -1631,8 +1631,8 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="namespace pf-select-toggle-id-12"
+                    aria-label="namespace"
+                    aria-labelledby=" pf-select-toggle-id-12"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-12"
@@ -1695,7 +1695,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1719,8 +1719,8 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="specs pf-select-toggle-id-13"
+                    aria-label="specs"
+                    aria-labelledby=" pf-select-toggle-id-13"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-13"
@@ -1778,7 +1778,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1802,8 +1802,8 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="clusters pf-select-toggle-id-14"
+                    aria-label="clusters"
+                    aria-labelledby=" pf-select-toggle-id-14"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-14"
@@ -1861,7 +1861,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1885,8 +1885,8 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="standards pf-select-toggle-id-15"
+                    aria-label="standards"
+                    aria-labelledby=" pf-select-toggle-id-15"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-15"
@@ -1944,7 +1944,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -1968,8 +1968,8 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="categories pf-select-toggle-id-16"
+                    aria-label="categories"
+                    aria-labelledby=" pf-select-toggle-id-16"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-16"
@@ -2027,7 +2027,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                 data-ouia-safe={true}
               >
                 <div
-                  className="pf-c-select__toggle pf-m-plain pf-m-typeahead"
+                  className="pf-c-select__toggle pf-m-typeahead"
                   onClick={[Function]}
                   onKeyDown={[Function]}
                 >
@@ -2051,8 +2051,8 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   <button
                     aria-expanded={false}
                     aria-haspopup="listbox"
-                    aria-label="Options menu"
-                    aria-labelledby="controls pf-select-toggle-id-17"
+                    aria-label="controls"
+                    aria-labelledby=" pf-select-toggle-id-17"
                     className="pf-c-button pf-c-select__toggle-button pf-m-plain"
                     disabled={false}
                     id="pf-select-toggle-id-17"
@@ -2249,137 +2249,93 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
 
 exports[`CreationView module renders with notification on general error 1`] = `
 <div
-  className="bx--inline-notification bx--inline-notification--error overview-notification"
-  kind="error"
-  role="alert"
+  aria-label="Danger Alert"
+  className="pf-c-alert pf-m-inline pf-m-danger"
+  data-ouia-component-id="OUIA-Generated-Alert-danger-2"
+  data-ouia-component-type="PF4/Alert"
+  data-ouia-safe={true}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
-    className="bx--inline-notification__details"
+    className="pf-c-alert__icon"
   >
     <svg
-      alt="closes notification"
-      aria-label="closes notification"
-      className="bx--inline-notification__icon"
-      fillRule="evenodd"
-      height="16"
+      aria-hidden={true}
+      aria-labelledby={null}
+      fill="currentColor"
+      height="1em"
       role="img"
-      viewBox="0 0 16 16"
-      width="16"
+      style={
+        Object {
+          "verticalAlign": "-0.125em",
+        }
+      }
+      viewBox="0 0 512 512"
+      width="1em"
     >
-      <title>
-        closes notification
-      </title>
       <path
-        d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z"
+        d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
       />
     </svg>
-    <div
-      className="bx--inline-notification__text-wrapper"
-    >
-      <p
-        className="bx--inline-notification__title"
-      >
-        
-      </p>
-      <div
-        className="bx--inline-notification__subtitle"
-      >
-        An unexpected error occurred. Try again.
-      </div>
-    </div>
   </div>
-  <button
-    className="bx--inline-notification__close-button"
-    onClick={[Function]}
-    title="close icon"
-    type="button"
+  <h4
+    className="pf-c-alert__title"
   >
-    <svg
-      alt="close icon"
-      aria-label="close icon"
-      className="bx--inline-notification__close-icon"
-      fillRule="evenodd"
-      height="10"
-      role="img"
-      viewBox="0 0 10 10"
-      width="10"
+    <span
+      className="pf-u-screen-reader"
     >
-      <title>
-        close icon
-      </title>
-      <path
-        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
-      />
-    </svg>
-  </button>
+      Danger alert:
+    </span>
+    An unexpected error occurred. Try again.
+  </h4>
+  
 </div>
 `;
 
 exports[`CreationView module renders with notification on permission error 1`] = `
 <div
-  className="bx--inline-notification bx--inline-notification--error overview-notification"
-  kind="error"
-  role="alert"
+  aria-label="Danger Alert"
+  className="pf-c-alert pf-m-inline pf-m-danger"
+  data-ouia-component-id="OUIA-Generated-Alert-danger-1"
+  data-ouia-component-type="PF4/Alert"
+  data-ouia-safe={true}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
-    className="bx--inline-notification__details"
+    className="pf-c-alert__icon"
   >
     <svg
-      alt="closes notification"
-      aria-label="closes notification"
-      className="bx--inline-notification__icon"
-      fillRule="evenodd"
-      height="16"
+      aria-hidden={true}
+      aria-labelledby={null}
+      fill="currentColor"
+      height="1em"
       role="img"
-      viewBox="0 0 16 16"
-      width="16"
+      style={
+        Object {
+          "verticalAlign": "-0.125em",
+        }
+      }
+      viewBox="0 0 512 512"
+      width="1em"
     >
-      <title>
-        closes notification
-      </title>
       <path
-        d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z"
+        d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
       />
     </svg>
-    <div
-      className="bx--inline-notification__text-wrapper"
-    >
-      <p
-        className="bx--inline-notification__title"
-      >
-        
-      </p>
-      <div
-        className="bx--inline-notification__subtitle"
-      >
-        You do not have permission to create policies in this namespace
-      </div>
-    </div>
   </div>
-  <button
-    className="bx--inline-notification__close-button"
-    onClick={[Function]}
-    title="close icon"
-    type="button"
+  <h4
+    className="pf-c-alert__title"
   >
-    <svg
-      alt="close icon"
-      aria-label="close icon"
-      className="bx--inline-notification__close-icon"
-      fillRule="evenodd"
-      height="10"
-      role="img"
-      viewBox="0 0 10 10"
-      width="10"
+    <span
+      className="pf-u-screen-reader"
     >
-      <title>
-        close icon
-      </title>
-      <path
-        d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"
-      />
-    </svg>
-  </button>
+      Danger alert:
+    </span>
+    You do not have permission to create policies in this namespace
+  </h4>
+  
 </div>
 `;
 

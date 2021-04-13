@@ -8,9 +8,9 @@ import SplitPane from 'react-split-pane'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {
-  Notification,
+  // Notification,
   Modal} from 'carbon-components-react'
-import { Checkbox, Spinner, Tooltip, Select, SelectVariant, SelectOption, TextInput, ValidatedOptions, Radio } from '@patternfly/react-core'
+import { Alert, Checkbox, Spinner, Tooltip, Select, SelectVariant, SelectOption, TextInput, ValidatedOptions, Radio } from '@patternfly/react-core'
 import { initializeControlData, cacheUserData, updateControls, parseYAML, dumpYAMLFromPolicyDiscovered, dumpYAMLFromTemplateObject } from './utils/update-controls'
 import { generateYAML, highlightChanges } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
@@ -66,9 +66,9 @@ export default class TemplateEditor extends React.Component {
     const {creationStatus, creationMsg} = createControl
     const {createAndUpdateMsg} = createAndUpdateControl
     if (creationStatus === 'ERROR') {
-      return {updateMsgKind: 'error', updateMessage: creationMsg}
+      return {updateMsgKind: 'danger', updateMessage: creationMsg}
     } else if (createAndUpdateMsg) {
-      return {updateMsgKind: 'error', updateMessage: createAndUpdateMsg}
+      return {updateMsgKind: 'danger', updateMessage: createAndUpdateMsg}
     } else if (isLoaded) {
       const { template, controlData: initialControlData } = props
       let { controlData, templateYAML, templateObject } = state
@@ -167,11 +167,11 @@ export default class TemplateEditor extends React.Component {
 
     if (isFailed) {
       if (error.name === 'PermissionError') {
-        return <Notification title='' className='overview-notification' kind='error'
-          subtitle={msgs.get('error.permission.denied.create', locale)} />
+        return <Alert isInline={true} variant='danger'
+          title={msgs.get('error.permission.denied.create', locale)} />
       }
-      return <Notification title='' className='overview-notification' kind='error'
-        subtitle={msgs.get('overview.error.default', locale)} />
+      return <Alert isInline={true} variant='danger'
+        title={msgs.get('overview.error.default', locale)} />
     }
 
     const viewClasses = classNames({
@@ -269,11 +269,25 @@ export default class TemplateEditor extends React.Component {
           handleClick()
         }
       }
+      console.log(updateMsgKind)
 
       return <div role='button' onClick={handleClick}
         tabIndex="0" aria-label={updateMessage} onKeyDown={handleKeyPress}>
         <div>
-          <Notification
+          <Alert variant={updateMsgKind} isInline={true}
+            title={validPolicyName
+              ? updateMessage
+              : <span>
+                  <br />{msgs.get('error.policy.nameFormat.hint', locale)}
+                  <br />{msgs.get('error.policy.nameFormat', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule1', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule2', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule3', locale)}
+                  <br />{msgs.get('error.policy.nameFormat.Rule4', locale)}
+                </span>
+            }
+          />
+          {/* <Notification
             key={updateMessage}
             kind={updateMsgKind}
             title={msgs.get(`${updateMsgKind}.create.policy`, locale)}
@@ -291,7 +305,7 @@ export default class TemplateEditor extends React.Component {
             }
             className='persistent notification'
             onCloseButtonClick={this.handleUpdateMessageClosed}
-          />
+          /> */}
         </div>
       </div>
     }
@@ -511,7 +525,6 @@ export default class TemplateEditor extends React.Component {
             }}
             selections={active}
             isOpen={this.state.control&&this.state.control[id]&&this.state.control[id].isOpen}
-            isPlain={true}
             aria-label={placeholder}
             toggleAriaLabel={id}
             placeholderText={placeholder}
@@ -813,7 +826,7 @@ export default class TemplateEditor extends React.Component {
     const errorMsg = exceptions.length>0 ? exceptions[0].text : null
     const { validPolicyName } = this.state
     this.setState({
-      updateMsgKind: (errorMsg || !validPolicyName)?'error':'success',
+      updateMsgKind: (errorMsg || !validPolicyName)?'danger':'success',
       updateMessage: errorMsg||msgs.get(message, locale)
     })
     // We're heading to 'Create', so we no longer need the duplicate name alert
