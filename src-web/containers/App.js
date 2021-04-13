@@ -18,7 +18,6 @@ import Page from '../components/common/Page'
 // eslint-disable-next-line import/no-named-as-default
 import CreationTab from './CreationTab'
 import AcmGrcPage from './AcmGrcPage'
-import PolicyDetailsTab from './PolicyDetailsTab'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
@@ -73,7 +72,7 @@ class App extends React.Component {
               render={() => <AcmGrcPage type='POLICY_TEMPLATE_DETAILS' {...props} />} />
             <Route path={`${match.url}/all/:namespace/:name/edit`} exact component={CreationTab} />
             <Route path={`${match.url}/all/:namespace/:name/status`} exact render={() => <AcmGrcPage type='POLICY_STATUS' {...props} />} />
-            <Route path={`${match.url}/all/:namespace/:name`} exact render={() => <PolicyDetailsTab userAccess={userAccess} />} />
+            <Route path={`${match.url}/all/:namespace/:name`} exact render={() => <AcmGrcPage type='SINGLE_POLICY' {...props} />} />
             <Route path={`${match.url}/all`} exact render={() => <AcmGrcPage type='ALL_POLICIES' {...props} />} />
             <Route path={`${match.url}/create`} exact component={CreationTab} />
             <Redirect to={`${config.contextPath}/all`} />
