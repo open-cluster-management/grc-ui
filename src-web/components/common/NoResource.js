@@ -15,11 +15,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import msgs from '../../../nls/platform.properties'
 import config from '../../../lib/shared/config'
-import resources from '../../../lib/shared/resources'
-
-resources(() => {
-  require('../../../scss/no-resource.scss')
-})
 
 const NoResource = ({
   title,
