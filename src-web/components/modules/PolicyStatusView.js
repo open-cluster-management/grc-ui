@@ -36,7 +36,7 @@ class PolicyStatusView extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { items=[], userAccess } = this.props
+    const { items=[], userAccess, searchValue='' } = this.props
     const { locale } = this.context
     if (items.length === 0) {
       return <NoResource
@@ -98,6 +98,7 @@ class PolicyStatusView extends React.Component {
               <PatternFlyTable
                 {...data[1]}
                 noResultMsg={msgs.get('table.search.no.results', locale)}
+                searchValue={searchValue}
               />
             </div>
           })}
