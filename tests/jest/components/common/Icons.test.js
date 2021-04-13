@@ -9,6 +9,7 @@ import {
   GreenCheckCircleIcon,
   RedExclamationCircleIcon,
   YellowExclamationTriangleIcon,
+  BlueInfoCircleIcon,
 } from '../../../../src-web/components/common/Icons'
 import toJson from 'enzyme-to-json'
 
@@ -54,6 +55,21 @@ describe('test component YellowExclamationTriangleIcon', () => {
   it('renders tooltip as expected', () => {
     const component = mount(
       <YellowExclamationTriangleIcon />
+    )
+    expect(toJson(component)).toMatchSnapshot()
+  })
+})
+
+describe('test component BlueInfoCircleIcon', () => {
+  it('renders as expected', () => {
+    const component = mount(
+      <BlueInfoCircleIcon tooltip='aaaa' />
+    )
+    expect(toJson(component)).toMatchSnapshot()
+  })
+  it('renders tooltip as expected', () => {
+    const component = mount(
+      <BlueInfoCircleIcon />
     )
     expect(toJson(component)).toMatchSnapshot()
   })

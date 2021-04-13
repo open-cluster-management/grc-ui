@@ -7,11 +7,10 @@ import React from 'react'
 import SplitPane from 'react-split-pane'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import {
-  // Notification,
-  Modal} from 'carbon-components-react'
-import { Alert, Checkbox, Spinner, Tooltip, Select, SelectVariant, SelectOption, TextInput, ValidatedOptions, Radio } from '@patternfly/react-core'
+import { Checkbox, ButtonVariant, Spinner, Select, SelectVariant, SelectOption, TextInput, ValidatedOptions, Radio } from '@patternfly/react-core'
+import { AcmModal, AcmButton, AcmAlert } from '@open-cluster-management/ui-components'
 import { initializeControlData, cacheUserData, updateControls, parseYAML, dumpYAMLFromPolicyDiscovered, dumpYAMLFromTemplateObject } from './utils/update-controls'
+import { BlueInfoCircleIcon } from '../Icons'
 import { generateYAML, highlightChanges } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
 import YamlEditor from './components/YamlEditor'
@@ -22,7 +21,7 @@ import { LocaleContext } from '../../../components/common/LocaleContext'
 import _ from 'lodash'
 
 const tempCookie = 'template-editor-open-cookie'
-const diagramIconsInfoStr = '#diagramIcons_info'
+// const diagramIconsInfoStr = '#diagramIcons_info'
 // Regex to test valid policy name format
 // (it's 63 characters for `${policyNS}.${policyName}`)
 const policyNameRegex = RegExp(/^[a-z0-9][a-z0-9-.]{0,61}[a-z0-9]$/)
@@ -167,10 +166,10 @@ export default class TemplateEditor extends React.Component {
 
     if (isFailed) {
       if (error.name === 'PermissionError') {
-        return <Alert isInline={true} variant='danger'
+        return <AcmAlert isInline={true} variant='danger'
           title={msgs.get('error.permission.denied.create', locale)} />
       }
-      return <Alert isInline={true} variant='danger'
+      return <AcmAlert isInline={true} variant='danger'
         title={msgs.get('overview.error.default', locale)} />
     }
 
@@ -274,7 +273,7 @@ export default class TemplateEditor extends React.Component {
       return <div role='button' onClick={handleClick}
         tabIndex="0" aria-label={updateMessage} onKeyDown={handleKeyPress}>
         <div>
-          <Alert variant={updateMsgKind} isInline={true}
+          <AcmAlert variant={updateMsgKind} isInline={true}
             title={validPolicyName
               ? updateMessage
               : <span>
@@ -287,25 +286,6 @@ export default class TemplateEditor extends React.Component {
                 </span>
             }
           />
-          {/* <Notification
-            key={updateMessage}
-            kind={updateMsgKind}
-            title={msgs.get(`${updateMsgKind}.create.policy`, locale)}
-            iconDescription=''
-            subtitle={validPolicyName
-              ? updateMessage
-              : <span>
-                  <br />{msgs.get('error.policy.nameFormat.hint', locale)}
-                  <br />{msgs.get('error.policy.nameFormat', locale)}
-                  <br />{msgs.get('error.policy.nameFormat.Rule1', locale)}
-                  <br />{msgs.get('error.policy.nameFormat.Rule2', locale)}
-                  <br />{msgs.get('error.policy.nameFormat.Rule3', locale)}
-                  <br />{msgs.get('error.policy.nameFormat.Rule4', locale)}
-                </span>
-            }
-            className='persistent notification'
-            onCloseButtonClick={this.handleUpdateMessageClosed}
-          /> */}
         </div>
       </div>
     }
@@ -379,11 +359,7 @@ export default class TemplateEditor extends React.Component {
             <div className="creation-view-controls-textbox-title">
               {name}
               <div className='creation-view-controls-must-exist'>*</div>
-              <Tooltip content={description}>
-                <svg className='info-icon'>
-                  <use href={diagramIconsInfoStr} ></use>
-                </svg>
-              </Tooltip>
+              <BlueInfoCircleIcon tooltip={description} />
             </div>
             {radioButtons}
           </div>
@@ -394,11 +370,7 @@ export default class TemplateEditor extends React.Component {
       <React.Fragment>
         <div className="creation-view-controls-textbox-title">
           {name}
-          <Tooltip content={description}>
-            <svg className='info-icon'>
-              <use href={diagramIconsInfoStr} ></use>
-            </svg>
-          </Tooltip>
+          <BlueInfoCircleIcon tooltip={description} />
         </div>
         <div className='creation-view-controls-checkbox'>
           <Checkbox aria-label={id} id={id} isChecked={checked} onChange={this.onChange.bind(this, id)} />
@@ -418,11 +390,7 @@ export default class TemplateEditor extends React.Component {
           <div className="creation-view-controls-multiselect-title">
             {name}
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
-            <Tooltip content={description}>
-              <svg className='info-icon'>
-                <use href={diagramIconsInfoStr} ></use>
-              </svg>
-            </Tooltip>
+            <BlueInfoCircleIcon tooltip={description} />
           </div>
           <Select
             variant={SelectVariant.typeahead}
@@ -496,11 +464,7 @@ export default class TemplateEditor extends React.Component {
           <div className="creation-view-controls-multiselect-title">
             {name}
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
-            <Tooltip content={description}>
-              <svg className='info-icon'>
-                <use href={diagramIconsInfoStr} ></use>
-              </svg>
-            </Tooltip>
+            <BlueInfoCircleIcon tooltip={description} />
           </div>
           <Select
             variant={SelectVariant.typeaheadMulti}
@@ -533,14 +497,6 @@ export default class TemplateEditor extends React.Component {
               <SelectOption isDisabled={false} key={option} value={option} />
             ))}
           </Select>
-            {/* <MultiSelect.Filterable
-              aria-label={id}
-              key={key}
-              items={available}
-              initialSelectedItems={active}
-              placeholder={placeholder}
-              itemToString={item=>item}
-              onChange={this.handleChange.bind(this, id)} /> */}
         </div>
       </React.Fragment>
     )
@@ -562,28 +518,6 @@ export default class TemplateEditor extends React.Component {
   }
 
   handleChange(field, evt, other) {
-    // const multiSelect = this.multiSelectCmpMap[field]
-
-    // if this multiselect has an isOneSelection option, close on any selection
-    // if (multiSelect) {
-    //   // if menu is still open don't update until its gone
-    //   // unfortunately MultiSelect.Filterable doesn't have an onClose
-    //   const menu = multiSelect.getElementsByClassName('bx--list-box__menu')
-    //   if (menu && menu.length>0) {
-    //     multiSelect.selectedItems = evt.selectedItems
-    //     if (!multiSelect.observer) {
-    //       multiSelect.observer = new MutationObserver(() => {
-    //         this.onChange(field, {selectedItems: multiSelect.selectedItems})
-    //         multiSelect.observer.disconnect()
-    //         delete multiSelect.observer
-    //       })
-    //       multiSelect.observer.observe(menu[0].parentNode, {
-    //         childList: true
-    //       })
-    //     }
-    //     return
-    //   }
-    // }
     this.onChange(field, evt, other)
   }
 
@@ -876,28 +810,53 @@ export default class TemplateEditor extends React.Component {
       }
     }
     return (
-      <Modal
-        danger
+      <AcmModal
+        titleIconVariant='danger'
+        variant='medium'
         id='policy-update-modal'
-        open={this.state.canOpenModal}
-        primaryButtonText={msgs.get('update.apply', locale)}
-        secondaryButtonText={msgs.get('update.cancel', locale)}
-        modalLabel={msgs.get('update.existing', locale)}
-        modalHeading={msgs.get('update.existing', locale)}
-        onRequestClose={() => {
+        isOpen={this.state.canOpenModal}
+        showClose={true}
+        onClose={() => {
           this.setState({ canOpenModal: false })
         }}
-        onSecondarySubmit={() => {
-          this.setState({ canOpenModal: false })
-        }}
-        onRequestSubmit={() => {
-          this.handleUpdateResource(this.state.toCreate, this.state.toUpdate)
-          this.setState({ canOpenModal: false })
-        }}
-        role='region'
-        aria-label={'policy-update'}>
+        title={msgs.get('update.existing', locale)}
+        actions={[
+          <AcmButton key="cancel" variant={ButtonVariant.link} onClick={() => {
+            this.setState({ canOpenModal: false })
+          }}>
+            {msgs.get('update.cancel', locale)}
+          </AcmButton>,
+          <AcmButton key="confirm" variant={ButtonVariant.primary} onClick={() => {
+            this.handleUpdateResource(this.state.toCreate, this.state.toUpdate)
+            this.setState({ canOpenModal: false })
+          }}>
+            {msgs.get('update.apply', locale)}
+          </AcmButton>,
+        ]}>
         <p>{`${msgs.get('update.question', locale)} ${msg}`}</p>
-      </Modal>
+      </AcmModal>
+      // <Modal
+      //   danger
+      //   id='policy-update-modal'
+      //   open={this.state.canOpenModal}
+      //   primaryButtonText={msgs.get('update.apply', locale)}
+      //   secondaryButtonText={msgs.get('update.cancel', locale)}
+      //   modalLabel={msgs.get('update.existing', locale)}
+      //   modalHeading={msgs.get('update.existing', locale)}
+      //   onRequestClose={() => {
+      //     this.setState({ canOpenModal: false })
+      //   }}
+      //   onSecondarySubmit={() => {
+      //     this.setState({ canOpenModal: false })
+      //   }}
+      //   onRequestSubmit={() => {
+      //     this.handleUpdateResource(this.state.toCreate, this.state.toUpdate)
+      //     this.setState({ canOpenModal: false })
+      //   }}
+      //   role='region'
+      //   aria-label={'policy-update'}>
+      //   <p>{`${msgs.get('update.question', locale)} ${msg}`}</p>
+      // </Modal>
     )
   }
 

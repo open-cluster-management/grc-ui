@@ -10,10 +10,19 @@ import { reduxStorePolicyCluster } from '../ComponentsTestingData'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
-import renderer from 'react-test-renderer'
+// import renderer from 'react-test-renderer'
+import { render } from 'enzyme'
+import toJson from 'enzyme-to-json'
 
 const mockStore = configureMockStore()
 const storePolicyCluster = mockStore(reduxStorePolicyCluster)
+
+// Mock YamlEditor since we aren't passing it any actual data
+jest.mock('../../../../src-web/components/common/YamlEditor', () => {
+  return function mockYamlEditor() {
+    return <div data-testid='mockYamlEditor' />
+  }
+})
 
 const emptyDiscoveries = {
   '__typename': 'Discoveries',
@@ -62,7 +71,7 @@ const discoveries = {
 
 describe('CreationView module', () => {
   it('renders as expected with discovered data', () => {
-    const component = renderer.create(
+    const component = render(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
@@ -81,10 +90,10 @@ describe('CreationView module', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
   it('renders as expected with empty discovered data', () => {
-    const component = renderer.create(
+    const component = render(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
@@ -103,10 +112,10 @@ describe('CreationView module', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
   it('renders as expected without discovered data', () => {
-    const component = renderer.create(
+    const component = render(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
@@ -124,10 +133,10 @@ describe('CreationView module', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
   it('renders with spinner when loading', () => {
-    const component = renderer.create(
+    const component = render(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
@@ -145,10 +154,10 @@ describe('CreationView module', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
   it('renders with notification on permission error', () => {
-    const component = renderer.create(
+    const component = render(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
@@ -168,10 +177,10 @@ describe('CreationView module', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
   it('renders with notification on general error', () => {
-    const component = renderer.create(
+    const component = render(
       <Provider store={storePolicyCluster}>
         <BrowserRouter>
           <CreationView
@@ -191,6 +200,6 @@ describe('CreationView module', () => {
         </BrowserRouter>
       </Provider>
     )
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
