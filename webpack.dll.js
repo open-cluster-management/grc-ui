@@ -41,7 +41,9 @@ module.exports = {
       'reselect'
     ]
   },
-
+  stats: {
+    errorDetails: true,
+  },
   module: {
     rules: [
       {

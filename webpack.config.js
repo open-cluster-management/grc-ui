@@ -32,6 +32,7 @@ module.exports = {
   stats: {
     children: false,
     warningsFilter: [/Failed to parse source map/],
+    errorDetails: true,
   },
   entry: {
     'main': ['@babel/polyfill', './src-web/index.js'],
