@@ -16,8 +16,7 @@ const config = require('./config'),
       CompressionPlugin = require('compression-webpack-plugin'),
       CopyPlugin = require('copy-webpack-plugin'),
       MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin'),
-      TerserPlugin = require('terser-webpack-plugin')
+      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 const PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
@@ -173,9 +172,15 @@ module.exports = {
 
   optimization: {
     minimize: PRODUCTION,
-    minimizer: [new TerserPlugin({
-      parallel: true,
-    })],
+    minimizer: [
+      (compiler) => {
+          // eslint-disable-next-line import/no-unresolved
+          const TerserPlugin = require('terser-webpack-plugin')
+          new TerserPlugin({
+            parallel: true,
+          }).apply(compiler)
+      },
+    ]
   },
 
   output: {

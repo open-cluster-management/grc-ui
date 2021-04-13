@@ -11,7 +11,6 @@
 
 const path = require('path'),
       webpack = require('webpack'),
-      TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
       CompressionPlugin = require('compression-webpack-plugin')
 
@@ -77,9 +76,15 @@ module.exports = {
 
   optimization: {
     minimize: PRODUCTION,
-    minimizer: [new TerserPlugin({
-      parallel: true,
-    })],
+    minimizer: [
+      (compiler) => {
+          // eslint-disable-next-line import/no-unresolved
+          const TerserPlugin = require('terser-webpack-plugin')
+          new TerserPlugin({
+            parallel: true,
+          }).apply(compiler)
+      },
+    ]
   },
 
   plugins: [
