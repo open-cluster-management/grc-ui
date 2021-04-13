@@ -67,36 +67,40 @@ export const uncheckAllItems = (listQuery, itemQuery=selectItemQuery, useClearAl
   })
 }
 
-export const checkItems = (labels, listQuery, itemQuery=selectItemQuery, labelQuery='label') => {
+export const checkItems = (labels, listQuery, itemQuery=selectItemQuery) => {
   // we should use a promise to complete this task first prior moving on
   return new Cypress.Promise((resolve) => {
     // now check all the required values
+    let selected = false
     cy.get(listQuery)
       .then(() => {
       for (const label of labels) {
         cy.get(listQuery)
           .click()
-          .get(listQuery).within( () => {
-            cy.get('input.bx--text-input')
+          .get(listQuery).parent().within(() => {
+            cy.get('input.pf-c-select__toggle-typeahead')
               .first()
               .as('input')
           })
           .get('@input')
-          .clear()
           .type(label)
-          .get(listQuery).within( () => {
+          .get(listQuery).parent().next().within(() => {
             cy.get(itemQuery)
-              .next(labelQuery)
-              .contains(label)
-              .click()
+              .contains(label).within((button) => {
+                if(Cypress.$(button).find('span').length > 0){
+                  // already selected, do nothing
+                  selected = true
+                } else {
+                  cy.get(button).click()
+                }
+              })
+          }).then(()=>{
+            if (selected) {
+              // close dropdown
+              cy.get(listQuery).click()
+            }
           })
         }
-      })
-      // clear the input field
-      .then(() => {
-        cy.get(listQuery).within(() => {
-          cy.get('input.bx--text-input').first().clear()
-        })
       })
       .then(() => {
         resolve('checkItems')
@@ -104,32 +108,17 @@ export const checkItems = (labels, listQuery, itemQuery=selectItemQuery, labelQu
   })
 }
 
-export const verifyItemsChecked = (labels, listQuery, itemQuery=selectItemQuery, labelQuery='label') => {
+export const verifyItemsChecked = (labels, listQuery) => {
   // we should use a promise to complete this task first prior moving on
   return new Cypress.Promise((resolve) => {
     // now check all the required values
     cy.get(listQuery)
       .then(() => {
-        // first need to query the element again as it has been probably recreated
-        cy.then( () => {
-          if (!Cypress.$(listQuery).find(itemQuery).length) { // drow-down is collapsed, need to open it again
-            cy.get(listQuery)
-              .click()
-          }
-        })
-        // verify that the item is checked
-        .then(() => {
-          for (const label of labels) {
-            cy.get(listQuery).within(() => {
-              cy.get(labelQuery).contains(label).parents('label').siblings(itemQuery).should('be.checked')
-            })
-          }
-        })
-        // collapse the dropdown menu
-        .get(listQuery).within(() => {
-          cy.get(closeMenuQuery)
-            .click()
-        })
+        for (const label of labels) {
+          cy.get(listQuery).prev().within(() => {
+            cy.get('span').contains(label)
+          })
+        }
       })
       .then(() => {
         resolve('verifyItemsChecked')
@@ -138,7 +127,7 @@ export const verifyItemsChecked = (labels, listQuery, itemQuery=selectItemQuery,
 }
 
 
-export const selectItems = async (labels, listQuery, itemQuery='input[type="checkbox"]', labelQuery='.bx--checkbox-label', verifyChecked=true) => {
+export const selectItems = async (labels, listQuery, itemQuery='.pf-c-select__menu-item', labelQuery='.bx--checkbox-label', verifyChecked=true) => {
   uncheckAllItems(listQuery, itemQuery)
   .then( () => {
     if (labels.length) {
@@ -147,7 +136,7 @@ export const selectItems = async (labels, listQuery, itemQuery='input[type="chec
       })
       .then(() => {
         if (verifyChecked) {
-          verifyItemsChecked(labels, listQuery, itemQuery, labelQuery)
+          verifyItemsChecked(labels, listQuery)
         }
       })
     }
@@ -202,39 +191,40 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
     .type(uPolicyName)
   // namespace
   if (policyConfig['namespace']) {
-    cy.get('.bx--dropdown[aria-label="Choose an item"]')
+    cy.get('.pf-c-select__toggle-button[aria-label="namespace"]')
       .click()
+      .parent().next()
       .contains(policyConfig['namespace'])
       .click()
   }
   //specs
   if (policyConfig['specifications']) {
     cy.then(() => {
-      selectItems(policyConfig['specifications'], '.bx--multi-select[aria-label="specs"]')
+      selectItems(policyConfig['specifications'], '.pf-c-select__toggle-button[aria-label="specs"]')
     })
   }
   // cluster binding
   if (policyConfig['cluster_binding']) {
     cy.then(() => {
-      selectItems(policyConfig['cluster_binding'], '.bx--multi-select[aria-label="clusters"]', )
+      selectItems(policyConfig['cluster_binding'], '.pf-c-select__toggle-button[aria-label="clusters"]', )
     })
   }
   // standards
   if (policyConfig['standards']) {
     cy.then(() => {
-      selectItems(policyConfig['standards'], '.bx--multi-select[aria-label="standards"]', )
+      selectItems(policyConfig['standards'], '.pf-c-select__toggle-button[aria-label="standards"]', )
     })
   }
   // categories
   if (policyConfig['categories']) {
     cy.then(() => {
-      selectItems(policyConfig['categories'], '.bx--multi-select[aria-label="categories"]', )
+      selectItems(policyConfig['categories'], '.pf-c-select__toggle-button[aria-label="categories"]', )
     })
   }
   // controls
   if (policyConfig['controls']) {
     cy.then(() => {
-      selectItems(policyConfig['controls'], '.bx--multi-select[aria-label="controls"]', )
+      selectItems(policyConfig['controls'], '.pf-c-select__toggle-button[aria-label="controls"]', )
     })
   }
   // remediation
@@ -276,65 +266,60 @@ export const action_verifyCreatePolicySelection = (policyName, policyConfig) => 
   cy.get('#name').invoke('val').should('match', new RegExp('^'+policyName+'$'))
   // namespace
   if (policyConfig['namespace']) {
-    cy.get('div[aria-label="namespace"]').contains(new RegExp('^'+policyConfig['namespace']+'$'))
+    cy.get('.pf-c-select__toggle-button[aria-label="namespace"]').prev().invoke('attr', 'value').contains(new RegExp('^'+policyConfig['namespace']+'$'))
   }
   //specs
   if (policyConfig['specifications']) {
     cy.then(() => {
-        verifyItemsChecked(policyConfig['specifications'], '.bx--multi-select[aria-label="specs"]')
+        verifyItemsChecked(policyConfig['specifications'], '.pf-c-select__toggle-button[aria-label="specs"]')
       })
       // also check that the number of selected items matches
-      .get('.bx--multi-select[aria-label="specs"]').within(() => {
-        cy.get('div[title="Clear all selected items"]').contains(new RegExp('[^0-9]?'+policyConfig['specifications'].length+'[^0-9]?'))
-      })
+      .get('.pf-c-select__toggle-button[aria-label="specs"]').prev()
+      .find('li').should('have.length', policyConfig['specifications'].length)
   }
   // cluster binding
   if (policyConfig['cluster_binding']) {
     cy.then(() => {
-        verifyItemsChecked(policyConfig['cluster_binding'], '.bx--multi-select[aria-label="clusters"]')
+        verifyItemsChecked(policyConfig['cluster_binding'], '.pf-c-select__toggle-button[aria-label="clusters"]')
       })
       // also check that the number of selected items matches
-      .get('.bx--multi-select[aria-label="clusters"]').within(() => {
-        cy.get('div[title="Clear all selected items"]').contains(new RegExp('[^0-9]?'+policyConfig['cluster_binding'].length+'[^0-9]?'))
-      })
+      .get('.pf-c-select__toggle-button[aria-label="clusters"]').prev()
+      .find('li').should('have.length', policyConfig['cluster_binding'].length)
   }
   // standards
   if (policyConfig['standards']) {
     cy.then(() => {
-        verifyItemsChecked(policyConfig['standards'], '.bx--multi-select[aria-label="standards"]')
+        verifyItemsChecked(policyConfig['standards'], '.pf-c-select__toggle-button[aria-label="standards"]')
       })
       // also check that the number of selected items matches
-      .get('.bx--multi-select[aria-label="standards"]').within(() => {
-        cy.get('div[title="Clear all selected items"]').contains(new RegExp('[^0-9]?'+policyConfig['standards'].length+'[^0-9]?'))
-      })
+      .get('.pf-c-select__toggle-button[aria-label="standards"]').prev()
+      .find('li').should('have.length', policyConfig['standards'].length)
   }
   // categories
   if (policyConfig['categories']) {
     cy.then(() => {
-        verifyItemsChecked(policyConfig['categories'], '.bx--multi-select[aria-label="categories"]')
+        verifyItemsChecked(policyConfig['categories'], '.pf-c-select__toggle-button[aria-label="categories"]')
       })
       // also check that the number of selected items matches
-      .get('.bx--multi-select[aria-label="categories"]').within(() => {
-        cy.get('div[title="Clear all selected items"]').contains(new RegExp('[^0-9]?'+policyConfig['categories'].length+'[^0-9]?'))
-      })
+      .get('.pf-c-select__toggle-button[aria-label="categories"]').prev()
+      .find('li').should('have.length', policyConfig['categories'].length)
   }
   // controls
   if (policyConfig['controls']) {
     cy.then(() => {
-        verifyItemsChecked(policyConfig['controls'], '.bx--multi-select[aria-label="controls"]')
+        verifyItemsChecked(policyConfig['controls'], '.pf-c-select__toggle-button[aria-label="controls"]')
       })
       // also check that the number of selected items matches
-      .get('.bx--multi-select[aria-label="controls"]').within(() => {
-        cy.get('div[title="Clear all selected items"]').contains(new RegExp('[^0-9]?'+policyConfig['controls'].length+'[^0-9]?'))
-      })
+      .get('.pf-c-select__toggle-button[aria-label="controls"]').prev()
+      .find('li').should('have.length', policyConfig['controls'].length)
   }
   // enforce
   if (policyConfig['remediation']) {
     cy.then(() => {
       if (policyConfig['remediation']) {
-        cy.get('input[aria-label="remediation-enforce"][type="radio"]').should('be.checked')
+        cy.get('input[name="remediation-enforce"][type="radio"]').should('be.checked')
       } else {
-        cy.get('input[aria-label="remediation-enforce"][type="radio"]').should('not.be.checked')
+        cy.get('input[name="remediation-enforce"][type="radio"]').should('not.be.checked')
       }
     })
   }
@@ -1341,8 +1326,8 @@ export const action_verifyClusterViolationsInListing = (clusterName, violationsC
       // check violated policies
       // in fact there is no sense checking it precisely since policy listing woudl be truncated in the UI
       if (violatedPolicies.length > 0) {
-        if (policies.textContent.includes('...')) {  // policy listing is truncated
-          const [prefix, suffix] = policies.textContent.split('...', 2)
+        if (policies.textContent.includes('..')) {  // policy listing is truncated
+          const [prefix, suffix] = policies.textContent.split('..', 2)
           const allPolicies = violatedPolicies.join()
           expect(allPolicies).to.contain(prefix)
           expect(allPolicies).to.contain(suffix)

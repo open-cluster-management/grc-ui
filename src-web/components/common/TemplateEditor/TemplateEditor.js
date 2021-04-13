@@ -427,7 +427,8 @@ export default class TemplateEditor extends React.Component {
               this.handleChange.bind(this, id)(selection, event)
             }}
             selections={active}
-            aria-labelledby={id}
+            aria-label={msgs.get('policy.create.namespace.tooltip', locale)}
+            toggleAriaLabel={id}
             placeholderText={msgs.get('policy.create.namespace.tooltip', locale)}
             isOpen={this.state.control&&this.state.control[id]&&this.state.control[id].isOpen}
           >
@@ -511,7 +512,8 @@ export default class TemplateEditor extends React.Component {
             selections={active}
             isOpen={this.state.control&&this.state.control[id]&&this.state.control[id].isOpen}
             isPlain={true}
-            aria-labelledby={id}
+            aria-label={placeholder}
+            toggleAriaLabel={id}
             placeholderText={placeholder}
           >
             {available.map((option) => (

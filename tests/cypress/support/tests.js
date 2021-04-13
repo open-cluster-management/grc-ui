@@ -422,7 +422,7 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
     cy.visit('/multicloud/policies/create').waitForPageContentLoad()
     if (permissions.create || elevated) {
       // Check that specified namespaces are visible
-      cy.get('.bx--dropdown[aria-label="Choose an item"]').as('dropdown')
+      cy.get('.pf-c-select__toggle-button[aria-label="Choose an item"]').as('dropdown')
       cy.get('@dropdown').click().within(() => {
         for (const namespace of namespaces) {
           cy.get('div.bx--list-box__menu-item').contains(new RegExp(`^${namespace}$`))
