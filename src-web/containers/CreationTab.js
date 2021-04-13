@@ -35,7 +35,6 @@ export class CreationTab extends React.Component {
     handleCreateAndUpdateResources: PropTypes.func,
     handleCreateResources: PropTypes.func,
     handleFetchResource: PropTypes.func,
-    history: PropTypes.object.isRequired,
     match: PropTypes.object,
     mutateErrorMsg: PropTypes.string,
     mutatePBErrorMsg: PropTypes.string,
