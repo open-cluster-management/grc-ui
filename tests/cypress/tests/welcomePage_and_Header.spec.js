@@ -32,14 +32,14 @@ describeT('GRC UI: [P1][Sev1][policy-grc] Welcome page', () => {
     })
 
     it(`[P3][Sev3][${squad}] should show perspective switcher on kube 1.2`, () => {
-        cy.intercept('https://localhost:3000/multicloud/version', { 'gitVersion': 'v1.20.0+bd9e442' }).as('versionApi')
+        cy.intercept(Cypress.config().baseUrl + '/multicloud/version', { 'gitVersion': 'v1.20.0+bd9e442' }).as('versionApi')
         welcomePage.whenGoToWelcomePage()
         cy.wait('@versionApi')
         leftNav.validatePerspective()
     })
 
     it(`[P3][Sev3][${squad}] should not show perspective switcher on kube >1.2`, () => {
-        cy.intercept('https://localhost:3000/multicloud/version', { 'gitVersion': 'v1.19.0+bd9e442' }).as('versionApi')
+        cy.intercept(Cypress.config().baseUrl + '/multicloud/version', { 'gitVersion': 'v1.19.0+bd9e442' }).as('versionApi')
         welcomePage.whenGoToWelcomePage()
         cy.wait('@versionApi')
         leftNav.validateNoPerspective()
@@ -79,9 +79,9 @@ describeT('GRC UI: [P1][Sev1][policy-grc] Welcome page', () => {
     })
 
     it(`[P3][Sev3][${squad}] using header icons - should navigate to Create page`, () => {
-        cy.intercept('https://localhost:3000/multicloud/api/v1/namespaces/openshift-config-managed/configmaps/console-public/', {
+        cy.intercept(Cypress.config().baseUrl + '/multicloud/api/v1/namespaces/openshift-config-managed/configmaps/console-public/', {
             'data': {
-                'consoleURL': 'https://localhost:3000/multicloud'
+                'consoleURL': Cypress.config().baseUrl
             }
         }).as('ocpUrl')
         welcomePage.whenGoToWelcomePage()

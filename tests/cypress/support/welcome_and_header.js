@@ -105,7 +105,7 @@ export const userMenu = {
     },
     openCreate: () => {
         cy.get('[aria-label="create-button"]').click()
-        cy.url().should('equal', 'https://localhost:3000/multicloud/k8s/all-namespaces/import')
+        cy.url().should('equal', Cypress.config().baseUrl + '/k8s/all-namespaces/import')
         cy.visit('/multicloud/welcome')
     },
     openInfo: () => {
@@ -128,7 +128,7 @@ export const userMenu = {
         cy.get('[data-test="user-dropdown"]').click()
         cy.get('#configure').should('not.exist')
         cy.get('#logout').should('not.exist')
-        cy.request('https://localhost:3000/multicloud/common/configure').as('configureReq')
+        cy.request(Cypress.config().baseUrl + '/multicloud/common/configure').as('configureReq')
         cy.get('@configureReq').should((response) => {
             expect(response.body).to.have.property('token_endpoint')
             expect(response.body['token_endpoint']).to.include('oauth/token')
