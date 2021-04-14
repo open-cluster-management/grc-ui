@@ -82,6 +82,8 @@ Array [
 ]
 `;
 
+exports[`transform function test should correctly transform tag 3`] = `"-"`;
+
 exports[`transform function test should correctly transform the rest case 1`] = `"-"`;
 
 exports[`transform function test should correctly transform the rest case 2`] = `"-"`;

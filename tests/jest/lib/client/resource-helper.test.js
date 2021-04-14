@@ -21,6 +21,10 @@ const getData2 = (resource) =>{
   }
 }
 
+const getData3 = () =>{
+  return ''
+}
+
 describe('transform function test', () => {
   it('should correctly transform timestamp', () => {
     expect(transform({target: 'Dec 4th 53248 at 3:31 AM'}, {type:'timestamp', resourceKey:'target'}, 'en')).toMatchSnapshot()
@@ -39,6 +43,9 @@ describe('transform function test', () => {
   })
   it('should correctly transform tag', () => {
     expect(transform('tag', {type:'tag', resourceKey:'target', getData:getData2}, 'en')).toMatchSnapshot()
+  })
+  it('should correctly transform tag', () => {
+    expect(transform('tag', {type:'tag', resourceKey:'target', getData:getData3}, 'en')).toMatchSnapshot()
   })
   it('should correctly transform the rest case', () => {
     expect(transform('', {type:'tag', resourceKey:'target', getData:getData1}, 'en')).toMatchSnapshot()
