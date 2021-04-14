@@ -149,11 +149,20 @@ class PatternFlyTable extends React.Component {
     this.setState({
       searchState: value
     })
+    const searchQuery = new URLSearchParams(location.search.substring(1))
+    searchQuery.set('searchFilter', value)
+    window.history.replaceState({}, document.title, `${location.origin}${location.pathname}?${searchQuery.toString()}`)
   }
   handleClear = () => {
     this.setState({
       searchState: ''
     })
+    const searchQuery = new URLSearchParams(location.search.substring(1)).delete('searchFilter')
+    if (searchQuery) {
+      window.history.replaceState({}, document.title, `${location.origin}${location.pathname}?${searchQuery}`)
+    } else {
+      window.history.replaceState({}, document.title, `${location.origin}${location.pathname}`)
+    }
   }
 
   render() {

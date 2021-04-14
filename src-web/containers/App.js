@@ -23,7 +23,6 @@ import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
 import { getUserAccessData } from '../actions/access'
 import { connect } from 'react-redux'
-import _ from 'lodash'
 
 class App extends React.Component {
 
@@ -56,8 +55,7 @@ class App extends React.Component {
     const serverProps = this.getServerProps()
     const { match, userAccess } = this.props
     const locale = serverProps.context.locale
-    const searchValue = _.get(location, 'search', '').substring(1)
-    const props = { userAccess, locale, searchValue }
+    const props = { userAccess, locale }
     return (
       <LocaleContext.Provider value={serverProps.context}>
         <Page>

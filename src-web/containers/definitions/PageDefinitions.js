@@ -108,7 +108,7 @@ const policyDetailsPage = ({ name, namespace, locale }) => {
   }
 }
 
-const policyStatusPage = ({ name, namespace, locale, searchValue }) => {
+const policyStatusPage = ({ name, namespace, locale }) => {
   return {
     id: 'policy-status',
     title: name,
@@ -124,7 +124,7 @@ const policyStatusPage = ({ name, namespace, locale, searchValue }) => {
       statusNav
     ],
     buttons: [ editBtn ],
-    children: (props) => <PolicyStatusView {...props} searchValue={searchValue} />
+    children: (props) => <PolicyStatusView {...props} />
   }
 }
 

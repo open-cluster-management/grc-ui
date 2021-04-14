@@ -33,7 +33,8 @@ class PolicyStatusView extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { items=[], userAccess, searchValue='' } = this.props
+    const { items=[], userAccess } = this.props
+    const searchValue = new URLSearchParams(location.search.substring(1)).get('searchFilter')
     const { locale } = this.context
     if (items.length === 0) {
       return <NoResource
