@@ -70,6 +70,12 @@ export const uncheckAllItems = (listQuery, itemQuery=selectItemQuery, useClearAl
 export const checkItems = (labels, listQuery, itemQuery=selectItemQuery, clear=true) => {
   // we should use a promise to complete this task first prior moving on
   return new Cypress.Promise((resolve) => {
+    // clear existing selection first
+    cy.get(listQuery).parent().within((parent) => {
+      if(clear && Cypress.$(parent).find('.pf-c-select__toggle-clear').length > 0){
+        cy.get('.pf-c-select__toggle-clear').click()
+      }
+    })
     // now check all the required values
     let selected = false
     cy.get(listQuery)
@@ -77,11 +83,7 @@ export const checkItems = (labels, listQuery, itemQuery=selectItemQuery, clear=t
       for (const label of labels) {
         cy.get(listQuery)
           .click()
-          .get(listQuery).parent().within((parent) => {
-            // clear existing selection first
-            if(clear && Cypress.$(parent).find('.pf-c-select__toggle-clear').length > 0){
-              cy.get('.pf-c-select__toggle-clear').click()
-            }
+          .get(listQuery).parent().within(() => {
             cy.get('input.pf-c-select__toggle-typeahead')
               .first()
               .as('input')
