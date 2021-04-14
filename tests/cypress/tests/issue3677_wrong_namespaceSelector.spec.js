@@ -33,7 +33,8 @@ describeT('@extended RHACM4K-1648 - GRC UI: [P2][Sev2][policy-grc] CertPolicy wi
       .YAMLeditor()
       .invoke('getValue')
       .then((content) => {
-        const newContent = content.replace('include: ["default"]', 'include: ["no-such-namespace"]')
+        const newContent = content.replace('- default', '- no-such-namespace')
+        expect(newContent).to.contain('- no-such-namespace')
         cy.YAMLeditor()
           .invoke('setValue', newContent)
       })

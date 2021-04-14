@@ -15,8 +15,9 @@ import PatternFlyTable from '../common/PatternFlyTable'
 import { LocaleContext } from '../common/LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
+import NoResource from '../../components/common/NoResource'
 import { transform } from '../../tableDefinitions/utils'
-import checkCreatePermission from '../common/CheckCreatePermission'
+import { checkCreatePermission } from '../common/CheckUserPermission'
 import msgs from '../../../nls/platform.properties'
 import '../../../scss/policy-status-view.scss'
 
@@ -32,13 +33,19 @@ class PolicyStatusView extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { status, userAccess } = this.props
+    const { items=[], userAccess } = this.props
     const { locale } = this.context
+    if (items.length === 0) {
+      return <NoResource
+        title={msgs.get('no-status.title', [msgs.get('routes.grc', locale)], locale)}
+        svgName='EmptyPagePlanet-illus.png'>
+      </NoResource>
+    }
     // Check for "create" permissions in order to determine whether to enable
     // the "View Details" link, which requires creating a managedClusterView
     // (See https://github.com/open-cluster-management/backlog/issues/6135)
     const showDetailsLink = checkCreatePermission(userAccess)
-    const statusAccess = status.map(item => ({...item, showDetailsLink: showDetailsLink}))
+    const statusAccess = items.map(item => ({...item, showDetailsLink: showDetailsLink}))
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
     const tableDataByClusters = transform(statusAccess, statusByClustersDef, locale)
     const toggleIndex = this.state.toggleIndex
@@ -132,7 +139,7 @@ function groupByTemplate(status, locale) {
 }
 
 PolicyStatusView.propTypes = {
-  status: PropTypes.array,
+  items: PropTypes.array,
   userAccess: PropTypes.array
 }
 

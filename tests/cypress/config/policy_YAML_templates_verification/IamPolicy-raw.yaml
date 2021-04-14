@@ -11,18 +11,21 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: IamPolicy # limit clusteradmin roles
-      metadata:
-        name: iampolicy-limit-clusteradmin
-      spec:
-        severity: medium
-        namespaceSelector:
-          include: ["*"]
-          exclude: ["kube-*", "openshift-*"]
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        maxClusterRoleBindingUsers: 5
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: IamPolicy
+        metadata:
+          name: iampolicy-limit-clusteradmin
+        spec:
+          severity: medium
+          namespaceSelector:
+            include:
+              - '*'
+            exclude:
+              - kube-*
+              - openshift-*
+          remediationAction: inform
+          maxClusterRoleBindingUsers: 5
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -34,9 +37,9 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: iampolicy
-  kind: Policy
-  apiGroup: policy.open-cluster-management.io
+  - name: iampolicy
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -45,8 +48,11 @@ metadata:
   namespace: default
 spec:
   clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
+    - status: 'True'
+      type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: local-cluster, operator: In, values: ["true"]}
+      - key: local-cluster
+        operator: In
+        values:
+          - 'true'

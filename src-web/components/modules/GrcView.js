@@ -10,7 +10,6 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateAvailableFilters, updateActiveFilters } from '../../actions/common'
 import { AcmAlert } from '@open-cluster-management/ui-components'
-import { Spinner } from '@patternfly/react-core'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 // eslint-disable-next-line import/no-named-as-default
 import GrcCardsModule from '../modules/GrcCardsModule'
@@ -21,7 +20,7 @@ import {
 import NoResource from '../common/NoResource'
 import { createDocLink, createDetails } from '../common/CreateDocLink'
 import ResourceFilterBar from '../common/ResourceFilterBar'
-import checkCreatePermission from '../common/CheckCreatePermission'
+import { checkCreatePermission } from '../common/CheckUserPermission'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
@@ -65,12 +64,12 @@ export class GrcView extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     const {
-      grcItems,
+      items,
       updateAvailableFilters: localUpdateAvailableFilters,
       updateActiveFilters: localUpdateActiveFilters,
     } = nextProps
 
-    if (!_.isEqual(grcItems, this.props.grcItems)) {
+    if (!_.isEqual(items, this.props.items)) {
       const { locale } = this.context
       const displayType = location.pathname.split('/').pop()
       //if url has severity special para, store it into sessionStorage before updating active filters
@@ -83,7 +82,7 @@ export class GrcView extends React.Component {
       switch(displayType) {
       case 'all':
       default:
-        availableGrcFilters = getAvailableGrcFilters(grcItems, locale)
+        availableGrcFilters = getAvailableGrcFilters(items, locale)
         break
       }
       localUpdateAvailableFilters(availableGrcFilters)
@@ -120,11 +119,8 @@ export class GrcView extends React.Component {
     const { locale } = this.context
     const { viewState } = this.state
     const {
-      loading, error, grcItems, activeFilters={}, location, access, history
+      error, items, activeFilters={}, location, access, history
     } = this.props
-    if (loading) {
-      return <Spinner className='patternfly-spinner' />
-    }
 
     if (error) {
       if (error.name === 'PermissionError') {
@@ -141,7 +137,7 @@ export class GrcView extends React.Component {
     switch(displayType) {
     case 'all':
     default:
-      if (!grcItems || grcItems.length === 0) {
+      if (!items || items.length === 0) {
         return (
           <NoResource
             title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
@@ -156,8 +152,8 @@ export class GrcView extends React.Component {
         )
       }
       else {
-        filterGrcItems = filterPolicies(grcItems, activeFilters, locale, 'metadata.annotations')
-        if (grcItems.length > 0 && filterGrcItems.length === 0) {
+        filterGrcItems = filterPolicies(items, activeFilters, locale, 'metadata.annotations')
+        if (items.length > 0 && filterGrcItems.length === 0) {
           filterToEmpty = true
         }
       }
@@ -285,9 +281,8 @@ GrcView.propTypes = {
   access: PropTypes.array,
   activeFilters: PropTypes.object,
   error: PropTypes.object,
-  grcItems: PropTypes.array,
   history: PropTypes.object.isRequired,
-  loading: PropTypes.bool,
+  items: PropTypes.array,
   location: PropTypes.object,
   updateActiveFilters: PropTypes.func,
   updateAvailableFilters: PropTypes.func,

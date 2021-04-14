@@ -20,6 +20,11 @@ import { LocaleContext } from '../common/LocaleContext'
 import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
+import resources from '../../../lib/shared/resources'
+
+resources(() => {
+  require('../../../scss/policy-template-details.scss')
+})
 
 class PolicyTemplateDetailsView extends React.Component {
   constructor(props) {
@@ -52,14 +57,14 @@ class PolicyTemplateDetailsView extends React.Component {
   }
 
   render() {
-    const { template, selfLink } = this.props
+    const { items={}, selfLink } = this.props
     const { locale } = this.context
     // clone and inject cluster info into relatedObjects
-    let relatedObjects = _.get(_.cloneDeep(template), 'status.relatedObjects', [])
+    let relatedObjects = _.get(_.cloneDeep(items), 'status.relatedObjects', [])
     if (relatedObjects.length > 0) {
       relatedObjects = relatedObjects.map(o => {
-        o.cluster = template.metadata.namespace
-        if (!template.metadata.selfLink) {
+        o.cluster = items.metadata.namespace
+        if (!items.metadata.selfLink) {
           o.selfLink = selfLink
         }
         return o
@@ -75,32 +80,32 @@ class PolicyTemplateDetailsView extends React.Component {
             <DescriptionList>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.name', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>{_.get(template, 'metadata.name', '-')}</DescriptionListDescription>
+                <DescriptionListDescription>{_.get(items, 'metadata.name', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.cluster', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>
-                  {_.get(template, 'metadata.namespace', '-')}
+                  {_.get(items, 'metadata.namespace', '-')}
                 </DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.kind', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>{_.get(template, 'kind', '-')}</DescriptionListDescription>
+                <DescriptionListDescription>{_.get(items, 'kind', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.apiGroups', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>{_.get(template, 'apiVersion', '-')}</DescriptionListDescription>
+                <DescriptionListDescription>{_.get(items, 'apiVersion', '-')}</DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.compliant', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>
-                  {_.get(template, 'status.compliant', '-')}
+                  {_.get(items, 'status.compliant', '-')}
                 </DescriptionListDescription>
               </DescriptionListGroup>
               <DescriptionListGroup>
                 <DescriptionListTerm>{msgs.get('table.header.violation.detail', locale)}</DescriptionListTerm>
                 <DescriptionListDescription>
-                  {JSON.stringify(_.get(template, 'status.compliancyDetails', '-'))}
+                  {JSON.stringify(_.get(items, 'status.compliancyDetails', '-'))}
                 </DescriptionListDescription>
               </DescriptionListGroup>
             </DescriptionList>
@@ -113,7 +118,7 @@ class PolicyTemplateDetailsView extends React.Component {
                 height={'500px'}
                 readOnly
                 setEditor={this.setEditor}
-                yaml={jsYaml.safeDump(template)} />
+                yaml={jsYaml.safeDump(items)} />
             </div>
           </div>
         </div>
@@ -128,8 +133,8 @@ class PolicyTemplateDetailsView extends React.Component {
 }
 
 PolicyTemplateDetailsView.propTypes = {
+  items: PropTypes.object,
   selfLink: PropTypes.string,
-  template: PropTypes.object,
 }
 
 export default PolicyTemplateDetailsView

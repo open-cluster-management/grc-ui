@@ -4,61 +4,59 @@
 
 @import 'variables';
 
-.page-content-container {
-  .policy-template-details-view {
-    padding: 0 1.5rem;
-    .title {
-      font-family: RedHatText;
-      font-size: var(--pf-global--FontSize--md);
-      font-weight: var(--pf-global--FontWeight--bold);
-      // background-color: $acm-background-color;
-    }
-    
-    .details {
-      display: flex;
-      flex-direction: row;
-      .overview {
-        width: 50%;
-        background: $color__white;
-        margin-right: .75rem;
-        dl {
-          dd {
-            > div {
-              overflow-wrap: anywhere
-            }
+.policy-template-details-view {
+  padding: 0 1.5rem;
+  .title {
+    font-family: RedHatText;
+    font-size: var(--pf-global--FontSize--md);
+    font-weight: var(--pf-global--FontWeight--bold);
+    // background-color: $acm-background-color;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: row;
+    .overview {
+      width: 50%;
+      background: $color__white;
+      margin-right: .75rem;
+      dl {
+        dd {
+          > div {
+            overflow-wrap: anywhere
           }
         }
+      }
+    }
+    .yaml {
+      width: 50%;
+      margin-left: .75rem;
+      .yamlEditorContainer {
+        height: 100%;
+        & * {
+          font-family: unset;
+          font-size: var(--pf-global--FontSize--xs);
+        }
+        .codicon[class*='codicon-'] {
+          font-family: codicon;
+        }
+      }
+    }
+    @media screen and (max-width: 68rem) {
+      flex-direction: column;
+      .overview {
+        width: 100%;
+        margin-right: 0;
       }
       .yaml {
-        width: 50%;
-        margin-left: .75rem;
-        .yamlEditorContainer {
-          height: 100%;
-          & * {
-            font-family: unset;
-            font-size: var(--pf-global--FontSize--xs);
-          }
-          .codicon[class*='codicon-'] {
-            font-family: codicon;
-          }
-        }
-      }
-      @media screen and (max-width: 68rem) {
-        flex-direction: column;
-        .overview {
-          width: 100%;
-          margin-right: 0;
-        }
-        .yaml {
-          width: 100%;
-          margin-top: 1.5rem;
-          margin-left: 0;
-        }
+        width: 100%;
+        margin-top: 1.5rem;
+        margin-left: 0;
       }
     }
-    .table {
-      margin-top: 1.5rem;
-    }
+  }
+  .table {
+    margin-top: 1.5rem;
   }
 }
 

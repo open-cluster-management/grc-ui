@@ -174,6 +174,7 @@ export default class CreationView extends React.Component {
     const {onCreate, fetchControl, createControl, buildControl, updateControl, discovered, policyDiscovered, createAndUpdateControl} = this.props
     return (
       <TemplateEditor
+        isEdit={policyDiscovered ? true: false}
         policyDiscovered={policyDiscovered}
         onCreate={onCreate}
         template={policyTemplate}

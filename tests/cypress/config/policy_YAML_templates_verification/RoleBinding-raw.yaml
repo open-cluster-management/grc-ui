@@ -11,32 +11,34 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: rolebinding-operatoruser-rolebinding
-      spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: high
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["default"]
-        object-templates:
-          - complianceType: musthave
-            objectDefinition:
-              kind: RoleBinding # role binding must exist
-              apiVersion: rbac.authorization.k8s.io/v1
-              metadata:
-                name: operatoruser-rolebinding
-              subjects:
-              - kind: User
-                name: admin # Name is case sensitive
-                apiGroup: rbac.authorization.k8s.io
-              roleRef:
-                kind: Role #this must be Role or ClusterRole
-                name: operator # this must match the name of the Role or ClusterRole you wish to bind to
-                apiGroup: rbac.authorization.k8s.io
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: rolebinding-operatoruser-rolebinding
+        spec:
+          remediationAction: inform
+          severity: high
+          namespaceSelector:
+            exclude:
+              - kube-*
+            include:
+              - default
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                kind: RoleBinding
+                apiVersion: rbac.authorization.k8s.io/v1
+                metadata:
+                  name: operatoruser-rolebinding
+                subjects:
+                  - kind: User
+                    name: admin
+                    apiGroup: rbac.authorization.k8s.io
+                roleRef:
+                  kind: Role
+                  name: operator
+                  apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -48,9 +50,9 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: rolebinding
-  kind: Policy
-  apiGroup: policy.open-cluster-management.io
+  - name: rolebinding
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -59,8 +61,11 @@ metadata:
   namespace: default
 spec:
   clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
+    - status: 'True'
+      type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: local-cluster, operator: In, values: ["true"]}
+      - key: local-cluster
+        operator: In
+        values:
+          - 'true'

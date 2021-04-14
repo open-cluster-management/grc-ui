@@ -11,31 +11,33 @@ spec:
   remediationAction: inform
   disabled: false
   policy-templates:
-  - objectDefinition:
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: limitrange-container-mem-limit-range
-      spec:
-        remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: medium
-        namespaceSelector:
-          exclude: ["kube-*"]
-          include: ["default"]
-        object-templates:
-          - complianceType: musthave
-            objectDefinition:
-              apiVersion: v1
-              kind: LimitRange # limit memory usage
-              metadata:
-                name: container-mem-limit-range
-              spec:
-                limits:
-                - default:
-                    memory: 512Mi
-                  defaultRequest:
-                    memory: 256Mi
-                  type: Container
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: limitrange-container-mem-limit-range
+        spec:
+          remediationAction: inform
+          severity: medium
+          namespaceSelector:
+            exclude:
+              - kube-*
+            include:
+              - default
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: v1
+                kind: LimitRange
+                metadata:
+                  name: container-mem-limit-range
+                spec:
+                  limits:
+                    - default:
+                        memory: 512Mi
+                      defaultRequest:
+                        memory: 256Mi
+                      type: Container
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
@@ -47,9 +49,9 @@ placementRef:
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: limitrange
-  kind: Policy
-  apiGroup: policy.open-cluster-management.io
+  - name: limitrange
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
@@ -58,8 +60,11 @@ metadata:
   namespace: default
 spec:
   clusterConditions:
-  - status: "True"
-    type: ManagedClusterConditionAvailable
+    - status: 'True'
+      type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      - {key: local-cluster, operator: In, values: ["true"]}
+      - key: local-cluster
+        operator: In
+        values:
+          - 'true'
