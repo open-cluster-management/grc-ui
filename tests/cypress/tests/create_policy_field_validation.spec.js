@@ -37,7 +37,7 @@ describeT('RHACM4K-2349 - GRC UI: [P1][Sev1][policy-grc] Create policy page: Che
   it('Check warning about a policy with a duplicate name', () => {
     cy.FromGRCToCreatePolicyPage()
       .createPolicyFromSelection(longestValidName, false, {'namespace': 'default', 'specifications': ['IamPolicy']})
-      .checkNotificationMessage('warning', 'Alert:', alertMsg)
+      .checkNotificationMessage('Warning Alert', 'Alert:', alertMsg)
   })
 
   it('Cleanup: delete previously created policy', () => {
