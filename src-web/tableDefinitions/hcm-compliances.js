@@ -594,12 +594,13 @@ export function getDecisionCount(item = {}){
 // Construct a list of compliant clusters and return a formatted list with icons and headings
 export function getDecisionList(policy = {}) {
   // Gather full cluster list from placementPolicy status
-  const fullClusterList = _.get(policy, 'placementPolicies[0].status.decisions', []).map(decision => decision.clusterNamespace)
+  const fullClusterList = _.get(policy, 'placementPolicies[0].status.decisions', [])
   // Gather status list from policy status
   const rawStatusList = _.get(policy, 'raw.status.status', [])
   // Build lists of clusters, organized by status keys
   const clusterList = {}
-  _.forEach(fullClusterList, (cluster) => {
+  _.forEach(fullClusterList, (clusterObj) => {
+    const cluster = clusterObj.clusterNamespace
     const statusObject = _.filter(rawStatusList, (status) => status.clusternamespace === cluster)
     // Log error if more than one status is returned since each cluster name should be unique
     if (statusObject.length > 1) {
@@ -610,7 +611,6 @@ export function getDecisionList(policy = {}) {
     }
     const compliant = _.get(statusObject[0], 'compliant', 'nostatus').toLowerCase()
     const clusterNamespace = _.get(statusObject[0], 'clusternamespace')
-    _.remove(fullClusterList, (cluster) => cluster === clusterNamespace)
     // Add cluster to its associated status list in the clusterList object
     if (Object.prototype.hasOwnProperty.call(clusterList, compliant)) {
       // Each cluster name should be unique, so if one is already present, log an error
@@ -626,16 +626,24 @@ export function getDecisionList(policy = {}) {
   // Push lists of clusters along with status icon and heading
   const statusList = []
   for (const status of Object.keys(clusterList)) {
-    statusList.push(<div className={`${status}-status-list`}>
+    statusList.push(<div key={`${status}-status-list`} className={`${status}-status-list`}>
       <StatusField status={status} text='' />
       <span className='status-heading'>{msgs.get(`table.cell.${status}`, context.locale)}: </span>
-      {Array.from(clusterList[status]).map((cluster, i) =>
-        <span key={`${cluster}-link`}>
-          <Link key={`${cluster}-link`} to={`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?${cluster}`} >
-            {cluster}
-          </Link>
-          {i < clusterList[status].length && ', '}
-        </span>)
+      {Array.from(clusterList[status]).map((cluster, i) =>{
+          // If there's no status, there's no point in linking to the status page
+          if (status === 'nostatus') {
+            return (<span key={`${cluster}-link`}>
+                {cluster}{i < clusterList[status].size - 1 && ', '}
+              </span>)
+          }
+          // Return links to status page, filtered by selected cluster
+          return (<span key={`${cluster}-link`}>
+            <Link key={`${cluster}-link`} to={`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?${cluster}`} >
+              {cluster}
+            </Link>
+            {i < clusterList[status].size - 1 && ', '}
+          </span>)
+        })
       }
     </div>)
   }
