@@ -119,13 +119,13 @@ module.exports = {
         test: /\.css$/,
         include: [
           path.resolve(__dirname, './node_modules/monaco-editor'),
-          path.resolve(__dirname, './node_modules/@patternfly'),
+          path.resolve(__dirname, './node_modules/@open-cluster-management/ui-components'),
         ],
         use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.s?css$/,
-        include: path.resolve(__dirname, './node_modules/@open-cluster-management/ui-components'),
+        include: path.resolve(__dirname, './node_modules/@patternfly'),
         loader: 'null-loader'
       },
       {
