@@ -16,7 +16,9 @@ Array [
     isReadOnly={true}
     onClick={[Function]}
     tooltipPosition="top"
-  />,
+  >
+    tag1
+  </Chip>,
   <Chip
     className=""
     closeBtnAriaLabel="close"
@@ -25,7 +27,9 @@ Array [
     isReadOnly={true}
     onClick={[Function]}
     tooltipPosition="top"
-  />,
+  >
+    tag2
+  </Chip>,
   <Chip
     className=""
     closeBtnAriaLabel="close"
@@ -34,7 +38,47 @@ Array [
     isReadOnly={true}
     onClick={[Function]}
     tooltipPosition="top"
-  />,
+  >
+    tag3
+  </Chip>,
+]
+`;
+
+exports[`transform function test should correctly transform tag 2`] = `
+Array [
+  <Chip
+    className=""
+    closeBtnAriaLabel="close"
+    component="div"
+    isOverflowChip={false}
+    isReadOnly={true}
+    onClick={[Function]}
+    tooltipPosition="top"
+  >
+    undefined:tag1
+  </Chip>,
+  <Chip
+    className=""
+    closeBtnAriaLabel="close"
+    component="div"
+    isOverflowChip={false}
+    isReadOnly={true}
+    onClick={[Function]}
+    tooltipPosition="top"
+  >
+    undefined:tag2
+  </Chip>,
+  <Chip
+    className=""
+    closeBtnAriaLabel="close"
+    component="div"
+    isOverflowChip={false}
+    isReadOnly={true}
+    onClick={[Function]}
+    tooltipPosition="top"
+  >
+    undefined:tag3
+  </Chip>,
 ]
 `;
 

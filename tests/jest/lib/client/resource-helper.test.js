@@ -5,9 +5,17 @@
 
 import { transform } from '../../../../lib/client/resource-helper'
 
-const getData = (resource) =>{
+const getData1 = (resource) =>{
   if(resource) {
-    return [`${resource}1`, `${resource}2`, `${resource}3`]
+    return [{name: `${resource}1`}, {name: `${resource}2`}, {name: `${resource}3`}]
+  } else {
+    return ''
+  }
+}
+
+const getData2 = (resource) =>{
+  if(resource) {
+    return [{value: `${resource}1`}, {value: `${resource}2`}, {value: `${resource}3`}]
   } else {
     return ''
   }
@@ -27,12 +35,15 @@ describe('transform function test', () => {
     expect(transform({target: jest.fn()}, {type:'function', resourceKey:'target'}, 'en')).toMatchSnapshot()
   })
   it('should correctly transform tag', () => {
-    expect(transform('tag', {type:'tag', resourceKey:'target', getData}, 'en')).toMatchSnapshot()
+    expect(transform('tag', {type:'tag', resourceKey:'target', getData:getData1}, 'en')).toMatchSnapshot()
+  })
+  it('should correctly transform tag', () => {
+    expect(transform('tag', {type:'tag', resourceKey:'target', getData:getData2}, 'en')).toMatchSnapshot()
   })
   it('should correctly transform the rest case', () => {
-    expect(transform('', {type:'tag', resourceKey:'target', getData}, 'en')).toMatchSnapshot()
+    expect(transform('', {type:'tag', resourceKey:'target', getData:getData1}, 'en')).toMatchSnapshot()
   })
   it('should correctly transform the rest case', () => {
-    expect(transform('', {type:'', resourceKey:'target', getData}, 'en')).toMatchSnapshot()
+    expect(transform('', {type:'', resourceKey:'target', getData:getData1}, 'en')).toMatchSnapshot()
   })
 })
