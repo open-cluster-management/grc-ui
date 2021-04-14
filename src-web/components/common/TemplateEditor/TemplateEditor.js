@@ -380,7 +380,6 @@ export default class TemplateEditor extends React.Component {
     )
   }
   onToggle = (id, isOpen) => {
-    console.log(id)
     this.setState((state) => {
       state.controlState[id] = { isOpen }
       return state
