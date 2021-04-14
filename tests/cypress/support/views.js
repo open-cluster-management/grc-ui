@@ -212,25 +212,25 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
   // cluster binding
   if (policyConfig['cluster_binding']) {
     cy.then(() => {
-      selectItems(policyConfig['cluster_binding'], '.pf-c-select__toggle-button[aria-label="clusters"]', )
+      selectItems(policyConfig['cluster_binding'], '.pf-c-select__toggle-button[aria-label="clusters"]')
     })
   }
   // standards
   if (policyConfig['standards']) {
     cy.then(() => {
-      selectItems(policyConfig['standards'], '.pf-c-select__toggle-button[aria-label="standards"]', )
+      selectItems(policyConfig['standards'], '.pf-c-select__toggle-button[aria-label="standards"]')
     })
   }
   // categories
   if (policyConfig['categories']) {
     cy.then(() => {
-      selectItems(policyConfig['categories'], '.pf-c-select__toggle-button[aria-label="categories"]', )
+      selectItems(policyConfig['categories'], '.pf-c-select__toggle-button[aria-label="categories"]')
     })
   }
   // controls
   if (policyConfig['controls']) {
     cy.then(() => {
-      selectItems(policyConfig['controls'], '.pf-c-select__toggle-button[aria-label="controls"]', )
+      selectItems(policyConfig['controls'], '.pf-c-select__toggle-button[aria-label="controls"]')
     })
   }
   // remediation
@@ -238,7 +238,6 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
     cy.then(() => {
       if (policyConfig['remediation']) {
         cy.get('input[name="remediation-enforce"][type="radio"]')
-          .next('label')
           .click()
       }
     })
@@ -248,7 +247,6 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
     cy.then(() => {
       if (policyConfig['disable']) {
         cy.get('input[aria-label="disabled"][type="checkbox"]')
-          .next('label')
           .click()
       }
     })

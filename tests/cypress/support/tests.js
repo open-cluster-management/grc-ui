@@ -422,14 +422,14 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
     cy.visit('/multicloud/policies/create').waitForPageContentLoad()
     if (permissions.create || elevated) {
       // Check that specified namespaces are visible
-      cy.get('.pf-c-select__toggle-button[aria-label="Choose an item"]').as('dropdown')
-      cy.get('@dropdown').click().within(() => {
+      cy.get('button[aria-label="namespace"]').as('dropdown')
+      cy.get('@dropdown').click().parent().next().within(() => {
         for (const namespace of namespaces) {
-          cy.get('div.bx--list-box__menu-item').contains(new RegExp(`^${namespace}$`))
+          cy.get('li.pf-c-select__menu-wrapper').contains(new RegExp(`^${namespace}$`))
         }
         // If user has clusterwide permissions, they should see more namespaces
         // Otherwise, they should only see the namespaces specified
-        cy.get('div.bx--list-box__menu-item').then(items => {
+        cy.get('li.pf-c-select__menu-wrapper').then(items => {
           const count = items.length
           if (!namespaced) {
             assert.isAbove(count, namespaces.length, 'There should be additional namespaces available')
