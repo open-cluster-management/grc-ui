@@ -235,7 +235,7 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
   if (policyConfig['remediation']) {
     cy.then(() => {
       if (policyConfig['remediation']) {
-        cy.get('input[aria-label="remediation-enforce"][type="radio"]')
+        cy.get('input[name="remediation-enforce"][type="radio"]')
           .next('label')
           .click()
       }

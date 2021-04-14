@@ -29,7 +29,7 @@ const testPolicy = (policyConfFile, templateConfFile) => {
   it(`Set ${policyName} to an Enforced state and then back to Inform`, () => {
     const choices = ['enforce', 'inform']
     choices.forEach( (choice) => {
-      cy.get(`input[aria-label="remediation-${choice}"][type="radio"]`).as(`${choice}`)
+      cy.get(`input[name="remediation-${choice}"][type="radio"]`).as(`${choice}`)
       cy.get(`@${choice}`).next('label').as('label')
         .get('@label').click()
         .waitForDocumentUpdate()

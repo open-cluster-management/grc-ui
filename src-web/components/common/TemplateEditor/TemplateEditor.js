@@ -379,7 +379,13 @@ export default class TemplateEditor extends React.Component {
       </React.Fragment>
     )
   }
-
+  onToggle = (id, isOpen) => {
+    console.log(id)
+    this.setState((state) => {
+      state.controlState[id] = { isOpen }
+      return state
+    })
+  }
   renderSingleSelect(control) {
     const {locale} = this.props
     const {id, name, available, description, isOneSelection, mustExist, active} = control
@@ -395,12 +401,7 @@ export default class TemplateEditor extends React.Component {
           </div>
           <Select
             variant={SelectVariant.typeahead}
-            onToggle={(isOpen) => {
-              this.setState((state) => {
-                state.controlState[id] = { isOpen }
-                return state
-              })
-            }}
+            onToggle={this.onToggle.bind(this, id)}
             onSelect={(event, selection)=>{
               controlState[id] = {
                 selected: selection,
@@ -470,12 +471,7 @@ export default class TemplateEditor extends React.Component {
           </div>
           <Select
             variant={SelectVariant.typeaheadMulti}
-            onToggle={(isOpen) => {
-              this.setState((state) => {
-                state.controlState[id] = { isOpen }
-                return state
-              })
-            }}
+            onToggle={this.onToggle.bind(this, id)}
             onSelect={(event, selection)=>{
               if (!active.includes(selection)) {
                 active.push(selection)
