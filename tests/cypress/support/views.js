@@ -676,7 +676,7 @@ export const action_verifyPolicyInPolicyDetails = (
         // check the violation status
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            cy.wrap('.violationCell>svg').should('have.attr', 'fill', getStatusIconFillColor(targetStatus))
+            cy.get('.violationCell>svg').should('have.attr', 'fill', getStatusIconFillColor(targetStatus))
           }
         })
       }
@@ -1316,7 +1316,7 @@ export const action_verifyClusterViolationsInListing = (clusterName, violationsC
       if ([1,2].includes(targetStatus)) {
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
-            cy.wrap('.violationCell>svg').should('have.attr', 'fill', getStatusIconFillColor(targetStatus))
+            cy.get('.violationCell>svg').should('have.attr', 'fill', getStatusIconFillColor(targetStatus))
           }
         })
       }
