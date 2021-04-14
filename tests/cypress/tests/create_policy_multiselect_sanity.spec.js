@@ -25,7 +25,7 @@ describeT('RHACM4K-1671 - GRC UI: [P2][Sev2][policy-grc] Test create policy mult
   it(`Check Specifications ${specificationsList}`, () => {
     cy.then(() => {
       // while we could use only selectItems() which does both the check and verification, better be explicit here about both steps
-      checkItems(specificationsList, selectSpecsQuery, itemQuery)
+      checkItems(specificationsList, selectSpecsQuery, itemQuery, false)
     })
   })
 
