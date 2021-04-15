@@ -100,7 +100,7 @@ export const leftNav = {
 export const userMenu = {
     openSearch: () => {
         cy.get('[aria-label="search-button"]').click()
-        cy.url().should('equal', Cypress.config().baseUrl + '/search/')
+        cy.url().should('equal', Cypress.config().baseUrl + '/search')
         cy.visit('/multicloud/welcome')
     },
     openCreate: () => {
