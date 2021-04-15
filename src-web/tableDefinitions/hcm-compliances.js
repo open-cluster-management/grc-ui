@@ -18,6 +18,7 @@ import msgs from '../../nls/platform.properties'
 import { getAge, getLabels } from '../../lib/client/resource-helper'
 import { Link } from 'react-router-dom'
 import StatusField from '../components/common/StatusField'
+import { Label, LabelGroup } from '@patternfly/react-core'
 import config from '../../lib/shared/config'
 import { wrappable, sortable, breakWord } from '@patternfly/react-table'
 
@@ -623,28 +624,37 @@ export function getDecisionList(policy = {}) {
       clusterList[compliant] = new Set([clusterNamespace])
     }
   })
-  // Push lists of clusters along with status icon and heading
+  // Push lists of clusters along with status icon, heading, and overflow badge
   const statusList = []
   for (const status of Object.keys(clusterList)) {
     statusList.push(<div key={`${status}-status-list`} className={`${status}-status-list`}>
       <StatusField status={status} text='' />
       <span className='status-heading'>{msgs.get(`table.cell.${status}`, context.locale)}: </span>
-      {Array.from(clusterList[status]).map((cluster, i) =>{
+      <LabelGroup
+        collapsedText='+${remaining}'
+        numLabels='5'
+      >
+      {Array.from(clusterList[status]).map((cluster) =>{
           // If there's no status, there's no point in linking to the status page
           if (status === 'nostatus') {
             return (<span key={`${cluster}-link`}>
-                {cluster}{i < clusterList[status].size - 1 && ', '}
+                {cluster}
               </span>)
           }
           // Return links to status page, filtered by selected cluster
           return (<span key={`${cluster}-link`}>
-            <Link key={`${cluster}-link`} to={`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?clusterFilter=${cluster}&index=0`} >
+            <Label
+              key={`${cluster}-link`}
+              color='blue'
+              variant='outline'
+              href={`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?clusterFilter=${cluster}&index=0`}
+            >
               {cluster}
-            </Link>
-            {i < clusterList[status].size - 1 && ', '}
+            </Label>
           </span>)
         })
       }
+      </LabelGroup>
     </div>)
   }
   // If there are no clusters, return a hyphen
