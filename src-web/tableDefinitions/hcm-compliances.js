@@ -638,7 +638,7 @@ export function getDecisionList(policy = {}) {
           }
           // Return links to status page, filtered by selected cluster
           return (<span key={`${cluster}-link`}>
-            <Link key={`${cluster}-link`} to={`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?searchFilter=${cluster}`} >
+            <Link key={`${cluster}-link`} to={`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?clusterFilter=${cluster}&index=0`} >
               {cluster}
             </Link>
             {i < clusterList[status].size - 1 && ', '}
