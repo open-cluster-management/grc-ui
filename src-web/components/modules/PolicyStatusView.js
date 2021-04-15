@@ -37,7 +37,6 @@ class PolicyStatusView extends React.Component {
 
   render() {
     const { items=[], userAccess } = this.props
-    const searchValue = new URLSearchParams(location.search.substring(1)).get('searchFilter')
     const { locale } = this.context
     if (items.length === 0) {
       return <NoResource
@@ -99,7 +98,6 @@ class PolicyStatusView extends React.Component {
               <PatternFlyTable
                 {...data[1]}
                 noResultMsg={msgs.get('table.search.no.results', locale)}
-                searchValue={searchValue}
               />
             </div>
           })}
