@@ -627,35 +627,41 @@ export function getDecisionList(policy = {}) {
   // Push lists of clusters along with status icon, heading, and overflow badge
   const statusList = []
   for (const status of Object.keys(clusterList)) {
-    statusList.push(<div key={`${status}-status-list`} className={`${status}-status-list`}>
-      <StatusField status={status} text='' />
-      <span className='status-heading'>{msgs.get(`table.cell.${status}`, context.locale)}: </span>
-      <LabelGroup
-        collapsedText='+${remaining}'
-        numLabels='5'
-      >
-      {Array.from(clusterList[status]).map((cluster) =>{
-          // If there's no status, there's no point in linking to the status page
-          if (status === 'nostatus') {
-            return (<span key={`${cluster}-link`}>
-                {cluster}
-              </span>)
-          }
-          // Return links to status page, filtered by selected cluster
-          return (<span key={`${cluster}-link`}>
-            <Label
-              key={`${cluster}-link`}
-              color='blue'
-              variant='outline'
-              href={`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?clusterFilter=${cluster}&index=0`}
-            >
-              {cluster}
-            </Label>
-          </span>)
-        })
-      }
-      </LabelGroup>
-    </div>)
+    statusList.push(
+      <div className='status-list'>
+        <div key={`${status}-status-heading`} className={`${status}-status-heading`}>
+          <StatusField status={status} text='' />
+          <span className='status-heading'>{msgs.get(`table.cell.${status}`, context.locale)}: </span>
+        </div>
+        <div key={`${status}-status-list`} className={`${status}-status-list`}>
+          <LabelGroup
+            collapsedText='+${remaining}'
+            numLabels='5'
+          >
+            {Array.from(clusterList[status]).map((cluster) =>{
+                // If there's no status, there's no point in linking to the status page
+                let href='', color='grey'
+                if (status !== 'nostatus') {
+                  href=`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?clusterFilter=${cluster}&index=0`
+                  color='blue'
+                }
+                // Return links to status page, filtered by selected cluster
+                return (<span key={`${cluster}-link`}>
+                  <Label
+                    key={`${cluster}-link`}
+                    color={color}
+                    variant='outline'
+                    href={href}
+                  >
+                    {cluster}
+                  </Label>
+                </span>)
+              })
+            }
+          </LabelGroup>
+        </div>
+      </div>
+    )
   }
   // If there are no clusters, return a hyphen
   if (statusList.length === 0) {
