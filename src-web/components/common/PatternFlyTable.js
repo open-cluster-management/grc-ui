@@ -32,11 +32,17 @@ resources(() => {
 class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
-    const { searchValue } = props
+    const { searchQueryEnabled, searchQueryKey } = props
+    let { searchValue } = props
     let searchText = ''
-    if (typeof searchValue === 'string') {
-      searchText = searchValue.trim()
+    if (searchQueryEnabled) {
+      const searchQuery = new URLSearchParams(location.search.substring(1)).get(searchQueryKey)
+      // If there's a query, overwrite any provided searchValue
+      if (searchQuery) {
+        searchValue = searchQuery
+      }
     }
+    searchText = searchValue.trim()
     this.state = {
       perPage: this.props.perPage,
       page: 1,
@@ -53,7 +59,10 @@ class PatternFlyTable extends React.Component {
     perPage: 10,
     noResultMsg: 'No results found',
     searchable: true,
+    searchQueryEnabled: false,
+    searchQueryKey: 'searchFilter',
     searchPlaceholder: 'Find',
+    searchValue: '',
     sortBy: {}
   }
   static getDerivedStateFromProps(props, state) {
@@ -146,22 +155,41 @@ class PatternFlyTable extends React.Component {
     })
   }
   handleSearch = (value) => {
+    const { searchQueryKey, searchQueryEnabled } = this.props
     this.setState({
       searchState: value
     })
-    const searchQuery = new URLSearchParams(location.search.substring(1))
-    searchQuery.set('searchFilter', value)
-    window.history.replaceState({}, document.title, `${location.origin}${location.pathname}?${searchQuery.toString()}`)
+    // Update URL query (without adding to browser history)
+    if (searchQueryEnabled) {
+      const searchQuery = new URLSearchParams(location.search.substring(1))
+      if (value !== '') {
+        searchQuery.set(searchQueryKey, value)
+      } else {
+        searchQuery.delete(searchQueryKey)
+      }
+      // If there are other queries, keep them in the URL, otherwise return the URL without queries
+      if (searchQuery.toString() !== '') {
+        window.history.replaceState({}, document.title, `${location.origin}${location.pathname}?${searchQuery.toString()}`)
+      } else {
+        window.history.replaceState({}, document.title, `${location.origin}${location.pathname}`)
+      }
+    }
   }
   handleClear = () => {
+    const { searchQueryKey, searchQueryEnabled } = this.props
     this.setState({
       searchState: ''
     })
-    const searchQuery = new URLSearchParams(location.search.substring(1)).delete('searchFilter')
-    if (searchQuery) {
-      window.history.replaceState({}, document.title, `${location.origin}${location.pathname}?${searchQuery}`)
-    } else {
-      window.history.replaceState({}, document.title, `${location.origin}${location.pathname}`)
+    // Update URL query (without adding to browser history)
+    if (searchQueryEnabled) {
+      const searchQuery = new URLSearchParams(location.search.substring(1))
+      searchQuery.delete(searchQueryKey)
+      // If there are other queries, keep them in the URL, otherwise return the URL without queries
+      if (searchQuery.toString() !== '') {
+        window.history.replaceState({}, document.title, `${location.origin}${location.pathname}?${searchQuery.toString()}`)
+      } else {
+        window.history.replaceState({}, document.title, `${location.origin}${location.pathname}`)
+      }
     }
   }
 
@@ -268,6 +296,11 @@ PatternFlyTable.propTypes = {
   rows: PropTypes.array,
   /* Placeholder text for search input field */
   searchPlaceholder: PropTypes.string,
+  /* Enable updating the URL query for this table */
+  searchQueryEnabled: PropTypes.bool,
+  /* Key for URL query if enabled (in case there are
+    mutliple tables on a page or on differnt toggles) */
+  searchQueryKey: PropTypes.string,
   /* Initial search value from parent props */
   searchValue: PropTypes.string,
   /* Toggle search input (optional) */
