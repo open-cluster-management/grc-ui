@@ -108,11 +108,6 @@ export const userMenu = {
         cy.url().should('equal', Cypress.config().baseUrl + '/k8s/all-namespaces/import')
         cy.visit('/multicloud/welcome')
     },
-    openCreate: () => {
-        cy.get('[aria-label="create-button"]').click()
-        cy.url().should('equal', Cypress.config().baseUrl + '/k8s/all-namespaces/import')
-        cy.visit('/multicloud/welcome')
-    },
     openInfo: () => {
         cy.get('[data-test="about-dropdown"]').click()
         cy.get('[data-test="about-dropdown"] li').should('be.visible').and('have.length', 2)
