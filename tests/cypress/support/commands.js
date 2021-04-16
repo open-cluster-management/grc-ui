@@ -201,7 +201,7 @@ Cypress.Commands.add('waitForPolicyStatus', (name, violationsCounter) => {
 // optionally can wait for the specific violations counter to appear
 Cypress.Commands.add('waitForClusterViolationsStatus', (name, violationsCounter) => {
   cy.doTableSearch(name)
-    .waitUntil(() => isClusterViolationsStatusAvailable(name, violationsCounter), {'interval': 1000, 'timeout':120000})
+    .waitUntil(() => isClusterViolationsStatusAvailable(name, violationsCounter), {'interval': 1000, 'timeout':240000})
     .clearTableSearch()
 })
 
