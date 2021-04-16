@@ -13,9 +13,7 @@ exports[`ResourceTableModuleFromProps component test renders as expected 1`] = `
     >
       <h1
         className="bx--module__title"
-      >
-        Policy Templates
-      </h1>
+      />
     </div>
     <div
       className="bx--module__content"
@@ -548,9 +546,7 @@ exports[`ResourceTableModuleFromProps component test renders table with search v
     >
       <h1
         className="bx--module__title"
-      >
-        Policy Templates
-      </h1>
+      />
     </div>
     <div
       className="bx--module__content"

@@ -5,68 +5,9 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 1`] 
   className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
 >
   <thead>
-    <tr>
-      <th
-        className="bx--table-header-index-0"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Compliance Type
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-1"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          API groups
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-2"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Resources
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-3"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Verbs
-        </span>
-      </th>
-    </tr>
+    <tr />
   </thead>
-  <tbody>
-    <tr>
-      <td>
-        -
-      </td>
-      <td>
-        -
-      </td>
-      <td>
-        -
-      </td>
-      <td>
-        -
-      </td>
-      <td>
-        -
-      </td>
-    </tr>
-  </tbody>
+  <tbody />
 </table>
 `;
 
@@ -121,48 +62,7 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 5`] 
   className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
 >
   <thead>
-    <tr>
-      <th
-        className="bx--table-header-index-0"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Compliance Type
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-1"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          API groups
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-2"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Resources
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-3"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Verbs
-        </span>
-      </th>
-    </tr>
+    <tr />
   </thead>
   <tbody>
     <tr>
@@ -185,48 +85,7 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 6`] 
   className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
 >
   <thead>
-    <tr>
-      <th
-        className="bx--table-header-index-0"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Compliance Type
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-1"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          API groups
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-2"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Resources
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-3"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Verbs
-        </span>
-      </th>
-    </tr>
+    <tr />
   </thead>
   <tbody>
     <tr>
@@ -249,48 +108,7 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 7`] 
   className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
 >
   <thead>
-    <tr>
-      <th
-        className="bx--table-header-index-0"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Compliance Type
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-1"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          API groups
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-2"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Resources
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-3"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Verbs
-        </span>
-      </th>
-    </tr>
+    <tr />
   </thead>
   <tbody />
 </table>
@@ -301,48 +119,7 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 8`] 
   className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
 >
   <thead>
-    <tr>
-      <th
-        className="bx--table-header-index-0"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Compliance Type
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-1"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          API groups
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-2"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Resources
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-3"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Verbs
-        </span>
-      </th>
-    </tr>
+    <tr />
   </thead>
   <tbody>
     <tr>
@@ -371,48 +148,7 @@ exports[`ResourceTableRowExpandableTable component test renders as expected 9`] 
   className="bx--data-table-v2 resource-table-expandable bx--data-table-v2--zebra"
 >
   <thead>
-    <tr>
-      <th
-        className="bx--table-header-index-0"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Compliance Type
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-1"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          API groups
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-2"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Resources
-        </span>
-      </th>
-      <th
-        className="bx--table-header-index-3"
-        scope="col"
-      >
-        <span
-          className="bx--table-header-label"
-        >
-          Verbs
-        </span>
-      </th>
-    </tr>
+    <tr />
   </thead>
   <tbody>
     <tr>

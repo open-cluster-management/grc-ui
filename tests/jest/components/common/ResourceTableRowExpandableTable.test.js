@@ -35,8 +35,8 @@ describe('ResourceTableRowExpandableTable component test', () => {
         <Provider store={store}>
           <BrowserRouter>
             <ResourceTableRowExpandableTable
-              items={staticResourceDataPolicyOverview.roleTemplates.rows}
-              headers={staticResourceDataPolicyOverview.roleTemplates.subHeaders}
+              items={staticResourceDataPolicyOverview.policyTemplates.rows}
+              headers={staticResourceDataPolicyOverview.policyTemplates.subHeaders}
             />
           </BrowserRouter>
         </Provider>
@@ -139,7 +139,7 @@ describe('ResourceTableRowExpandableTable component test', () => {
           <BrowserRouter>
             <ResourceTableRowExpandableTable
               items={items1}
-              headers={staticResourceDataPolicyOverview.roleTemplates.subHeaders}
+              headers={staticResourceDataPolicyOverview.policyTemplates.subHeaders}
             />
           </BrowserRouter>
         </Provider>
@@ -174,7 +174,7 @@ describe('ResourceTableRowExpandableTable component test', () => {
           <BrowserRouter>
             <ResourceTableRowExpandableTable
               items={items2}
-              headers={staticResourceDataPolicyOverview.roleTemplates.subHeaders}
+              headers={staticResourceDataPolicyOverview.policyTemplates.subHeaders}
             />
           </BrowserRouter>
         </Provider>
@@ -210,7 +210,7 @@ describe('ResourceTableRowExpandableTable component test', () => {
           <BrowserRouter>
             <ResourceTableRowExpandableTable
               items={items3}
-              headers={staticResourceDataPolicyOverview.roleTemplates.subHeaders}
+              headers={staticResourceDataPolicyOverview.policyTemplates.subHeaders}
             />
           </BrowserRouter>
         </Provider>
@@ -250,7 +250,7 @@ describe('ResourceTableRowExpandableTable component test', () => {
           <BrowserRouter>
             <ResourceTableRowExpandableTable
               items={items4}
-              headers={staticResourceDataPolicyOverview.roleTemplates.subHeaders}
+              headers={staticResourceDataPolicyOverview.policyTemplates.subHeaders}
             />
           </BrowserRouter>
         </Provider>
@@ -284,7 +284,7 @@ describe('ResourceTableRowExpandableTable component test', () => {
           <BrowserRouter>
             <ResourceTableRowExpandableTable
               items={items5}
-              headers={staticResourceDataPolicyOverview.roleTemplates.subHeaders}
+              headers={staticResourceDataPolicyOverview.policyTemplates.subHeaders}
             />
           </BrowserRouter>
         </Provider>

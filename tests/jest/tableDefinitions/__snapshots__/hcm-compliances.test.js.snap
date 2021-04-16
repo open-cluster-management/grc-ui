@@ -84,9 +84,9 @@ exports[`hcm-compliances - getCompliancePolicyStatus should return compliance po
 
 exports[`hcm-compliances - getControls should return control status 1`] = `"1, 2, 3, 4, 5"`;
 
-exports[`hcm-compliances - getDecisions should return decisions status 1`] = `"clusterName1, clusterName2, clusterName3"`;
+exports[`hcm-compliances - getDecisionCount should return the total hcm-compliances - getDecisionCount should return 0 1`] = `0`;
 
-exports[`hcm-compliances - getDecisions should return default status 1`] = `"-"`;
+exports[`hcm-compliances - getDecisionCount should return the total should return decisions status 1`] = `3`;
 
 exports[`hcm-compliances - getStandards should return standards status 1`] = `"6, 7, 8, 9, 10"`;
 

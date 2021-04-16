@@ -42,7 +42,7 @@ describe('PolicyDetailsOverview component', () => {
     }
     const resourceType = {
       'name': 'HCMCompliance',
-      'query': 'ALL_POLICIES'
+      'query': 'POLICIES_BY_POLICY'
     }
     const refreshControl = {
       'reloading': false,
@@ -54,7 +54,7 @@ describe('PolicyDetailsOverview component', () => {
         <Provider store={store}>
           <BrowserRouter>
             <PolicyDetailsOverview
-              item={itemPolicyOverview_extra}
+              items={[itemPolicyOverview_extra]}
               updateResourceToolbar={jest.fn()}
               staticResourceData={staticResourceDataPolicyOverview}
               location={location}

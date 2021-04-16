@@ -21,7 +21,7 @@ import {
   getControls,
   getStandards,
   getCategories,
-  getDecisions,
+  getDecisionCount,
   getSubjects,
   formatAnnotationString,
   formLinkToCluster,
@@ -185,7 +185,7 @@ describe('hcm-compliances - getCategories', () => {
   })
 })
 
-describe('hcm-compliances - getDecisions', () => {
+describe('hcm-compliances - getDecisionCount should return the total', () => {
   it('should return decisions status', () => {
     const items = {
       status: {
@@ -196,11 +196,11 @@ describe('hcm-compliances - getDecisions', () => {
         ]
       },
     }
-    expect(getDecisions(items)).toMatchSnapshot()
+    expect(getDecisionCount(items)).toMatchSnapshot()
   })
-  it('should return default status', () => {
+  it('hcm-compliances - getDecisionCount should return 0', () => {
     const items = {}
-    expect(getDecisions(items)).toMatchSnapshot()
+    expect(getDecisionCount(items)).toMatchSnapshot()
   })
 })
 

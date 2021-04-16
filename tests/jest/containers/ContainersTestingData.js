@@ -1037,9 +1037,7 @@ export const items = [
               'uid': '1c260624-e556-11e9-8895-005056a061f1',
               '__typename': 'Metadata'
             },
-            'roleTemplates': [],
-            'roleBindingTemplates': [],
-            'objectTemplates': [],
+            'policyTemplates': [],
             'rules': [],
             'violations': [],
             '__typename': 'CompliancePolicy'
@@ -1068,7 +1066,7 @@ export const items = [
               'uid': '1c260624-e556-11e9-8895-005056a061f1',
               '__typename': 'Metadata'
             },
-            'roleTemplates': [],
+            'policyTemplates': [],
             'roleBindingTemplates': [],
             'objectTemplates': [],
             'rules': [],

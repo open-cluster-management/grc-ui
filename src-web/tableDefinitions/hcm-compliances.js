@@ -593,7 +593,7 @@ export function getDecisionCount(item = {}){
 }
 
 // Construct a list of compliant clusters and return a formatted list with icons and headings
-export function getDecisionList(policy = {}) {
+export function getDecisionList(policy = {}, locale) {
   // Gather full cluster list from placementPolicy status
   const fullClusterList = _.get(policy, 'placementPolicies[0].status.decisions', [])
   // Gather status list from policy status
@@ -628,12 +628,12 @@ export function getDecisionList(policy = {}) {
   const statusList = []
   for (const status of Object.keys(clusterList)) {
     statusList.push(
-      <div className='status-list'>
-        <div key={`${status}-status-heading`} className={`${status}-status-heading`}>
+      <div key={`${status}-status-container`} className='status-container'>
+        <div key={`${status}-status-heading`} className='status-heading'>
           <StatusField status={status} text='' />
-          <span className='status-heading'>{msgs.get(`table.cell.${status}`, context.locale)}: </span>
+          <span>{msgs.get(`table.cell.${status}`, locale)}: </span>
         </div>
-        <div key={`${status}-status-list`} className={`${status}-status-list`}>
+        <div key={`${status}-status-list`} className='status-list'>
           <LabelGroup
             collapsedText='+${remaining}'
             numLabels='5'

@@ -110,6 +110,9 @@ PolicyStatusHistoryView {
             perPage={10}
             rows={Array []}
             searchPlaceholder="Find"
+            searchQueryEnabled={false}
+            searchQueryKey="searchFilter"
+            searchValue=""
             searchable={true}
             sortBy={
               Object {
@@ -329,6 +332,9 @@ PolicyStatusHistoryView {
               ]
             }
             searchPlaceholder="Find"
+            searchQueryEnabled={false}
+            searchQueryKey="searchFilter"
+            searchValue=""
             searchable={true}
             sortBy={
               Object {
@@ -968,6 +974,9 @@ PolicyStatusHistoryView {
               ]
             }
             searchPlaceholder="Find"
+            searchQueryEnabled={false}
+            searchQueryKey="searchFilter"
+            searchValue=""
             searchable={true}
             sortBy={
               Object {
