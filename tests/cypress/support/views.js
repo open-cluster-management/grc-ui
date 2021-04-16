@@ -526,8 +526,8 @@ export const isClusterViolationsStatusAvailable = (name, violationsCounter) => {
       cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, counter) => {
         // check the violation status
         cy.wrap(counter).find('path').then((elems) => {
-          // when STANDALONE_TESTSUITE_EXECUTION !== FALSE, elems.length could be 2, only check the first icon in such case
-          if (elems.length === 1 || (elems.length === 2 && Cypress.env('STANDALONE_TESTSUITE_EXECUTION') !== 'FALSE')) {
+          // when STANDALONE_TESTSUITE_EXECUTION === FALSE, elems.length could be 2, only check the first icon in such case
+          if (elems.length === 1 || (elems.length === 2 && Cypress.env('STANDALONE_TESTSUITE_EXECUTION') === 'FALSE')) {
             const d = elems[0].getAttribute('d')
             // M569 seem to be unique to an icon telling that policy status is not available for some cluster
             statusAvailable = !d.startsWith('M569')
