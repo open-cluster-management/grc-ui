@@ -117,10 +117,6 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
         .verifyPolicyInPolicyDetails(policyName, confPolicies[policyName], 'enabled', violationsCounter)
     })
 
-    it(`Verify policy ${policyName} template details at the detailed page`, () => {
-      cy.verifyPolicyInPolicyDetailsTemplates(policyName, confPolicies[policyName])
-    })
-
     it(`Verify policy ${policyName} placement binding details at the detailed page`, () => {
       cy.verifyPlacementBindingInPolicyDetails(policyName, confPolicies[policyName])
     })
@@ -223,10 +219,6 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       it(`Verify policy ${policyName} details at the detailed page`, () => {
         cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`).waitForPageContentLoad()
           .verifyPolicyInPolicyDetails(policyName, confPolicies[policyName], 'enabled', violationsCounter)
-      })
-
-      it(`Verify policy ${policyName} template details at the detailed page`, () => {
-        cy.verifyPolicyInPolicyDetailsTemplates(policyName, confPolicies[policyName])
       })
 
       it(`Verify policy ${policyName} placement binding details at the detailed page`, () => {

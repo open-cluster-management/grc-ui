@@ -958,23 +958,6 @@ export const getViolationsCounter = (clusterViolations) => {
   return violations+'/'+clusters
 }
 
-export const action_verifyPolicyInPolicyDetailsTemplates = (uName, policyConfig) => {
-  cy.get('#policy-templates-table-container').within(() => {
-    const templates = getPolicyTemplatesNameAndKind(uName, policyConfig)
-    for (const template of templates) {
-      const [templateName, templateKind] = template.split('/', 2)
-      cy.get('tr[data-row-name="'+templateName+'"]').children().spread((name, visibleAPIver, visibleKind) => {
-        // double-check name
-        cy.wrap(name).contains(templateName)
-        // check api version
-        cy.wrap(visibleAPIver).contains(policyConfig['apiVersion'])
-        // check kind
-        cy.wrap(visibleKind).contains(templateKind)
-      })
-    }
-  })
-}
-
 export const action_verifyPlacementBindingInPolicyDetails = (uName, policyConfig) => {
   cy.get('section[aria-label="Placement binding"]').within(() => {
     cy.get('.bx--structured-list-td').spread((
