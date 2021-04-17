@@ -25,7 +25,7 @@ class PolicyStatusView extends React.Component {
   constructor(props) {
     super(props)
     const indexQuery = new URLSearchParams(location.search.substring(1)).get('index')
-    const toggleIndex = indexQuery && parseInt(indexQuery) < 2 ? parseInt(indexQuery) : 0
+    const toggleIndex = indexQuery && parseInt(indexQuery, 10) < 2 ? parseInt(indexQuery, 10) : 0
     this.state= {
       toggleIndex,
       toggleIndexQueryEnabled: Boolean(indexQuery !== null)

@@ -593,7 +593,7 @@ export function getDecisionCount(item = {}){
 }
 
 // Construct a list of compliant clusters and return a formatted list with icons and headings
-export function getDecisionList(policy = {}, locale) {
+export function getDecisionList(policy, locale) {
   // Gather full cluster list from placementPolicy status
   const fullClusterList = _.get(policy, 'placementPolicies[0].status.decisions', [])
   // Gather status list from policy status
