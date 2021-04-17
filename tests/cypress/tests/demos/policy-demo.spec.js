@@ -15,7 +15,6 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     // demo-policy-config.yaml is used for validating the policy "demo-policy"
     // demo-policy-config.yaml isn't raw policy yaml but config yaml and need be converted to a dictionary
     const { policyConfig } = getConfigObject('demos/policy-demo/demo-policy-config.yaml')
-    const confClusterViolations = getConfigObject('demos/policy-demo/violations.yaml', 'yaml', getDefaultSubstitutionRules({policyname:policyName}))
 
     it (`Can create new policy ${uPolicyName} from YAML editor`, () => {
       cy.FromGRCToCreatePolicyPage()

@@ -10,7 +10,7 @@ import { ALL_POLICIES, SINGLE_POLICY, POLICY_STATUS, POLICY_STATUS_HISTORY, POLI
 import config from '../../../lib/shared/config'
 // eslint-disable-next-line import/no-named-as-default
 import GrcView from '../../components/modules/GrcView'
-import PolicyDetailsOverview from '../../components/modules/PolicyDetailsOverview'
+import { PolicyDetailsOverview } from '../../components/modules/PolicyDetailsOverview'
 import PolicyStatusView from '../../components/modules/PolicyStatusView'
 import PolicyTemplateDetailsView from '../../components/modules/PolicyTemplateDetailsView'
 import PolicyStatusHistoryView from '../../components/modules/PolicyStatusHistoryView'
