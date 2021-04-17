@@ -71,8 +71,6 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
        // we need to find another way how to access this page
        cy.goToPolicyDetailsPage(uPolicyName, policyConfig['namespace'])
          .verifyPolicyInPolicyDetails(uPolicyName, policyConfig, 'enabled', '0/1')
-         .verifyPlacementRuleInPolicyDetails(uPolicyName, policyConfig, confClusterViolations)
-         .verifyPlacementBindingInPolicyDetails(uPolicyName, policyConfig)
     })
 
     it(`Policy ${uPolicyName} can be deleted in the policy listing`, () => {

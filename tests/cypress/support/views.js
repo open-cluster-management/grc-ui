@@ -724,58 +724,6 @@ const getStatusIconFillColor = (targetStatus) => {
   }
 }
 
-
-export const action_verifyPlacementRuleInPolicyDetails = (policyName, policyConfig, clusterViolations, checkLength=true) => {
-  cy.get('section[aria-label="Placement rule"]').within(() => {
-    cy.get('.bx--structured-list-td').spread((
-      label1, name, label2, namespace, label3,
-      selector, label4, decisions, label5, timestamp
-      ) => {
-      // check name
-      cy.wrap(name).contains('placement-'+policyName)
-      // check namespace
-      if (policyConfig['namespace']) {
-        cy.wrap(namespace).contains(policyConfig['namespace'])
-      }
-      // check binding selector
-      if (policyConfig['binding_selector']) {
-        // FIXME: in theory there could be multiple bindings
-        cy.wrap(selector).contains(policyConfig['binding_selector'][0])
-      }
-      // check Decisions
-      if (clusterViolations) {
-        // check the number of clusters listed matches the configuration
-        // for each cluster check that the expected status is listed
-        if (checkLength) {
-          cy.wrap(decisions).find('a').should('have.length', Object.keys(clusterViolations).length)
-        }
-        cy.then(() => {
-          for (const clusterName in clusterViolations) {
-            cy.wrap(decisions).within(() => {
-              // find cluster name
-              cy.get('a').contains(clusterName)
-                .next().as('clusterStatus')
-              // check status
-                .then(() => {
-                  const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName]).toLowerCase()
-                  cy.get('@clusterStatus').contains(new RegExp(clusterStatus))
-                  // check status icon
-                  // FIXME: we are not checking status icon if we do not know the expected policy status
-                  if (clusterStatus[0] != '(') {  // it is not regexp for unspecified status
-                    const fillColor = getStatusIconFillColor(clusterStatus)
-                    cy.get('@clusterStatus').find('svg[fill="'+fillColor+'"]').should('exist')
-                  }
-                })
-            })
-          }
-        })
-      }
-      // check creation time
-      cy.wrap(timestamp).contains(timestampRegexp)
-    })
-  })
-}
-
 // will add more check to enhance it later
 export const verifyPolicyInPolicyStatus = (uName) => {
   cy.get('.pf-c-toggle-group__button').contains('Templates')
@@ -957,28 +905,6 @@ export const getViolationsCounter = (clusterViolations) => {
   }
   return violations+'/'+clusters
 }
-
-export const action_verifyPlacementBindingInPolicyDetails = (uName, policyConfig) => {
-  cy.get('section[aria-label="Placement binding"]').within(() => {
-    cy.get('.bx--structured-list-td').spread((
-      label1, name, label2, namespace, label3,
-      placement_rule, label4, subjects, label5, timestamp
-      ) => {
-        cy.wrap(name).contains('binding-'+uName)
-        if (policyConfig['namespace']) {
-          cy.wrap(namespace).contains(policyConfig['namespace'])
-        }
-        cy.wrap(placement_rule).contains('placement-'+uName)
-        if (policyConfig['apiVersion']) {
-          let apiVer = policyConfig['apiVersion']
-          apiVer = apiVer.substring(0, apiVer.length - 3)
-          cy.wrap(subjects).contains(uName+'('+apiVer+')')
-        }
-        cy.wrap(timestamp).contains(timestampRegexp)
-      })
-    })
-}
-
 
 // does the search using the search form
 // so far tested only on the policy status page

@@ -117,15 +117,6 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
         .verifyPolicyInPolicyDetails(policyName, confPolicies[policyName], 'enabled', violationsCounter)
     })
 
-    it(`Verify policy ${policyName} placement binding details at the detailed page`, () => {
-      cy.verifyPlacementBindingInPolicyDetails(policyName, confPolicies[policyName])
-    })
-
-    it(`Verify policy ${policyName} placement rule at the detailed page`, () => {
-      cy.waitForClusterPolicyStatus(clusterViolations)  // since it could happen that some clusters do not have the status yet
-        .verifyPlacementRuleInPolicyDetails(policyName, confPolicies[policyName], clusterViolations)
-    })
-
     it(`Verify policy ${policyName} violations at the Status - Clusters page`, () => {
       cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}/status`).waitForPageContentLoad()
       // verify all violations per cluster
@@ -219,15 +210,6 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       it(`Verify policy ${policyName} details at the detailed page`, () => {
         cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`).waitForPageContentLoad()
           .verifyPolicyInPolicyDetails(policyName, confPolicies[policyName], 'enabled', violationsCounter)
-      })
-
-      it(`Verify policy ${policyName} placement binding details at the detailed page`, () => {
-        cy.verifyPlacementBindingInPolicyDetails(policyName, confPolicies[policyName])
-      })
-
-      it(`Verify policy ${policyName} placement rule at the detailed page`, () => {
-        cy.waitForClusterPolicyStatus(clusterViolations)  // since it could happen that some clusters do not have the status yet
-          .verifyPlacementRuleInPolicyDetails(policyName, confPolicies[policyName], clusterViolations)
       })
 
       it(`Verify policy ${policyName} violations at the Status - Clusters page`, () => {
