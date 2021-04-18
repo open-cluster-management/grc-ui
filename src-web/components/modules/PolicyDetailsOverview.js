@@ -49,10 +49,10 @@ export class PolicyDetailsOverview extends React.PureComponent{
   }
 
   render() {
-    const {items, resourceType} = this.props
+    const {items=[], resourceType} = this.props
     if (items.length === 0) {
       return <NoResource
-        title={msgs.get('no-resource.title', [msgs.get('routes.grc', locale)], locale)}
+        title={msgs.get('error.not.found', [msgs.get('routes.grc', locale)], locale)}
         svgName='EmptyPagePlanet-illus.png'>
       </NoResource>
     } else if (items.length > 1) {
