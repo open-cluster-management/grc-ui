@@ -53,11 +53,11 @@ exports[`PolicyStatusView component renders as expected 1`] = `
     <div
       className="policy-status-by-clusters-table"
     >
-      <h4
-        className="pf-c-title pf-m-md title"
+      <h3
+        className="pf-c-title pf-m-lg title"
       >
         Clusters
-      </h4>
+      </h3>
       <div
         className="pattern-fly-table-group"
       >
@@ -767,11 +767,11 @@ exports[`PolicyStatusView component renders as expected with empty object 1`] = 
     <div
       className="policy-status-by-clusters-table"
     >
-      <h4
-        className="pf-c-title pf-m-md title"
+      <h3
+        className="pf-c-title pf-m-lg title"
       >
         Clusters
-      </h4>
+      </h3>
       <div
         className="pattern-fly-table-group"
       >

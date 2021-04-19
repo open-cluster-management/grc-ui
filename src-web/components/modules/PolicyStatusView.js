@@ -74,7 +74,7 @@ class PolicyStatusView extends React.Component {
           {toggleIndex===0 && <div className='policy-status-by-clusters-table'>
             <Title
               className='title'
-              headingLevel="h4">
+              headingLevel="h3">
               {msgs.get('tabs.policy.status.toggle.clusters', locale)}
             </Title>
             <PatternFlyTable
@@ -92,8 +92,8 @@ class PolicyStatusView extends React.Component {
             >
               <Title
                 className='title'
-                headingLevel="h4">
-                {templateName}
+                headingLevel="h3">
+                {`${msgs.get('policy.template', locale)}: ${templateName}`}
               </Title>
               <PatternFlyTable
                 {...data[1]}

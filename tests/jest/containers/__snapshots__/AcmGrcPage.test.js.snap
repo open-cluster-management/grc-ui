@@ -25616,13 +25616,13 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                   >
                                     <Title
                                       className="title"
-                                      headingLevel="h4"
+                                      headingLevel="h3"
                                     >
-                                      <h4
-                                        className="pf-c-title pf-m-md title"
+                                      <h3
+                                        className="pf-c-title pf-m-lg title"
                                       >
                                         Clusters
-                                      </h4>
+                                      </h3>
                                     </Title>
                                     <PatternFlyTable
                                       columns={

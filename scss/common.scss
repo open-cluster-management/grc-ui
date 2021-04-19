@@ -44,10 +44,7 @@ body {
       }
     }
   }
-  // no leading blue line when selected
-  .pf-c-accordion__expanded-content-body::after, .pf-c-accordion__toggle::after {
-    background-color: unset;
-  }
+  
 }
 
 
@@ -55,29 +52,22 @@ body {
 // - no leading blue line when selected
 // - white background always
 // - Bold 16px left-aligned font on toggle title
-// .accordion-header.pf-c-accordion {
-//   .pf-c-accordion__toggle {
-//     background-color: unset;
-//     outline: none;
+.accordion-header.pf-c-accordion {
+  .pf-c-accordion__expanded-content-body::after, .pf-c-accordion__toggle::after {
+    background-color: unset;
+  }
+  .pf-c-accordion__toggle {
+    background-color: unset;
+    outline: none;
 
-//     &::before {
-//       background-color: unset;
-//     }
-
-//     .pf-c-accordion__toggle-text {
-//       color: unset;
-//       font-size: 1rem;
-//       font-weight: 600;
-//       text-align: left;
-//     }
-//   }
-
-//   .pf-c-accordion__expanded-content-body {
-//     &::before {
-//       background-color: unset;
-//     }
-//   }
-// }
+    .pf-c-accordion__toggle-text {
+      color: unset;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+    }
+  }
+}
 
 
 div.disable-tooltip {
