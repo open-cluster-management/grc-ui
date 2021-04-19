@@ -1,14 +1,13 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
-@import "variables";
-
 .grc-toggle {
-  background: #FFFFFF;
+  background: var(--pf-global--BackgroundColor--100);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   margin-top: 1.5rem;
   .grc-toggle-button {
     float: right;
+    margin: 1rem 1rem 0 0;
     .pf-c-toggle-group__button {
       width: 9rem;
       .pf-c-toggle-group__text {
@@ -18,6 +17,9 @@
   }
   .resource-table {
     .pattern-fly-table-group {
+      .pf-c-search-input__bar {
+        margin: 1rem 0 0 1rem;
+      }
       .link-disabled {
         color: var(--pf-global--disabled-color--200);
         cursor: not-allowed;
@@ -25,16 +27,14 @@
     }
     .pf-c-title.pf-m-lg {
       margin-top: 2rem;
-      // font-family: RedHatText;
       font-size: var(--pf-global--FontSize--md);
       font-weight: var(--pf-global--FontWeight--bold);
-      background-color: $acm-background-color;
+      background-color: var(--pf-global--BackgroundColor--100);
     }
     .pf-c-title.pf-m-md {
       margin-top: 2rem;
-      // font-family: RedHatText;
       font-size: var(--pf-global--FontSize--md);
-      background-color: $acm-background-color;
+      background-color: var(--pf-global--BackgroundColor--100);
     }
 
     th:not(:first-child):not(:last-child),

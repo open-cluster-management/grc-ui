@@ -11,11 +11,6 @@
 .creation-view {
   display: flex;
   position: relative;
-  padding: 0 1.5rem;
-
-  &.showEditor {
-    margin: -22px 0 -3.125rem 0;
-  }
 
   .creation-view-split-container {
     width: 100%;

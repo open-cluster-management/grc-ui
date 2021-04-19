@@ -17,7 +17,7 @@ import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
 import { checkCreatePermission, checkEditPermission } from '../components/common/CheckUserPermission'
 import { LocaleContext } from '../components/common/LocaleContext'
-import { AcmButton, AcmPage, AcmPageHeader } from '@open-cluster-management/ui-components'
+import { AcmButton, AcmPageContent, AcmPageHeader } from '@open-cluster-management/ui-components'
 
 export class CreationTab extends React.Component {
 
@@ -226,7 +226,7 @@ export class CreationTab extends React.Component {
             createAndUpdateMsg: this.formatUpdateError(this.formatUpdateError(mutatePBErrorMsg, mutateErrorMsg), mutatePRErrorMsg),
           }
           return (
-            <AcmPage>
+            <React.Fragment>
               <AcmPageHeader title={isEdit?msgs.get('button.edit.policy', locale):msgs.get('button.create.policy', locale)}
                 titleTooltip={msgs.get('policy.create.tooltip', locale)}
                 controls={
@@ -243,16 +243,18 @@ export class CreationTab extends React.Component {
                   </React.Fragment>
                 }>
               </AcmPageHeader>
-              <CreationView
-                onCreate={click => this.clickChild = click}
-                policyDiscovered={policyDiscoveries && policyDiscoveries[0]}
-                discovered={discoveries}
-                fetchControl={fetchControl}
-                createControl={createControl}
-                buildControl={buildControl}
-                createAndUpdateControl={createAndUpdateControl}
-              />
-            </AcmPage>
+              <AcmPageContent>
+                <CreationView
+                  onCreate={click => this.clickChild = click}
+                  policyDiscovered={policyDiscoveries && policyDiscoveries[0]}
+                  discovered={discoveries}
+                  fetchControl={fetchControl}
+                  createControl={createControl}
+                  buildControl={buildControl}
+                  createAndUpdateControl={createAndUpdateControl}
+                />
+              </AcmPageContent>
+            </React.Fragment>
           )
         }}
       </Query>

@@ -1,9 +1,6 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
-
-@import 'variables';
-
 .policy-template-details-view {
   .title {
     font-size: var(--pf-global--FontSize--md);
@@ -15,8 +12,11 @@
     flex-direction: row;
     .overview {
       width: 50%;
-      background: $color__white;
+      background-color: var(--pf-global--BackgroundColor--100);
       margin-right: .75rem;
+      h2 {
+        background-color: var(--pf-c-page__main-section--BackgroundColor);
+      }
       dl {
         dd {
           > div {

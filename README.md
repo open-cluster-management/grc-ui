@@ -17,7 +17,6 @@ The UI Platform is developed as an isomorphic React application. View the list o
 * Webpack
 * Babel
 * Apollo/GraphQL
-* IBM Carbon Design System
 * RedHat PatternFly
 * Jest
 * Nightwatch
