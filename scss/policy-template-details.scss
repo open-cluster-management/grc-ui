@@ -5,12 +5,9 @@
 @import 'variables';
 
 .policy-template-details-view {
-  padding: 0 1.5rem;
   .title {
-    font-family: RedHatText;
     font-size: var(--pf-global--FontSize--md);
     font-weight: var(--pf-global--FontWeight--bold);
-    // background-color: $acm-background-color;
   }
   
   .details {

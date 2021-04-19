@@ -1,24 +1,20 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
-
-@import 'variables';
-
 .page-content-container {
   .policy-status-history-view {
-    padding: 0 1.5rem;
     .table {
       .pattern-fly-table {
         margin-top: 1.5rem;
       }
 
       .pf-c-title.pf-m-lg {
-        font-family: RedHatText;
+        // font-family: RedHatText;
         font-size: var(--pf-global--FontSize--md);
         font-weight: var(--pf-global--FontWeight--bold);
       }
       .pf-c-title.pf-m-md {
-        font-family: RedHatText;
+        // font-family: RedHatText;
         font-size: var(--pf-global--FontSize--md);
       }
     }

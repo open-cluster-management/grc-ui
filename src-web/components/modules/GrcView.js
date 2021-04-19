@@ -5,7 +5,6 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import resources from '../../../lib/shared/resources'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateAvailableFilters, updateActiveFilters } from '../../actions/common'
@@ -28,10 +27,6 @@ import config from '../../../lib/shared/config'
 import {
   getSessionState, saveSessionState, addSessionPair
 } from '../common/AccessStorage'
-
-resources(() => {
-  require('../../../scss/grc-view.scss')
-})
 
 export class GrcView extends React.Component {
 

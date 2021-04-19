@@ -27,14 +27,9 @@ import {
   Divider
 } from '@patternfly/react-core'
 import msgs from '../../../nls/platform.properties'
-import resources from '../../../lib/shared/resources'
 import moment from 'moment'
 import { getPolicyCompliantStatus } from '../../tableDefinitions/utils'
 import { LocaleContext } from './LocaleContext'
-
-resources(() => {
-  require('../../../scss/structured-list.scss')
-})
 
 class DetailsModule extends React.PureComponent {
   constructor(props) {
