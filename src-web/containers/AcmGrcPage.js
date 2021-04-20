@@ -10,7 +10,7 @@ import { AcmPageContent, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime, Ac
 import { Spinner } from '@patternfly/react-core'
 import { useHistory, useParams } from 'react-router-dom'
 
-import { INITIAL_REFRESH_TIME, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
+import { INITIAL_POLL_INTERVAL, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE } from '../../lib/shared/constants'
 import { getPageDefinition } from './definitions/PageDefinitions'
 
 let timestamp = new Date().toString()
@@ -39,7 +39,7 @@ function AcmGrcPage(props) {
                 <AcmAutoRefreshSelect refetch={refetch}
                   refreshIntervals={REFRESH_INTERVALS}
                   refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
-                  initRefreshTime={INITIAL_REFRESH_TIME} />
+                  initRefreshTime={INITIAL_POLL_INTERVAL} />
                 <AcmRefreshTime timestamp={timestamp} reloading={loading} />
               </React.Fragment>
             )}
