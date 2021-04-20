@@ -8488,7 +8488,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                 <React.Fragment>
                   <React.Fragment>
                     <AcmAutoRefreshSelect
-                      initRefreshTime={10}
+                      initPollInterval={10}
                       refetch={[Function]}
                       refreshIntervalCookie="acm-grc-refresh-interval"
                       refreshIntervals={
@@ -8670,7 +8670,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                                       }
                                     >
                                       <AcmAutoRefreshSelect
-                                        initRefreshTime={10}
+                                        initPollInterval={10}
                                         refetch={[Function]}
                                         refreshIntervalCookie="acm-grc-refresh-interval"
                                         refreshIntervals={
@@ -24511,7 +24511,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                 <React.Fragment>
                   <React.Fragment>
                     <AcmAutoRefreshSelect
-                      initRefreshTime={10}
+                      initPollInterval={10}
                       refetch={[Function]}
                       refreshIntervalCookie="acm-grc-refresh-interval"
                       refreshIntervals={
@@ -24977,7 +24977,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                       }
                                     >
                                       <AcmAutoRefreshSelect
-                                        initRefreshTime={10}
+                                        initPollInterval={10}
                                         refetch={[Function]}
                                         refreshIntervalCookie="acm-grc-refresh-interval"
                                         refreshIntervals={
@@ -34694,7 +34694,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                 <React.Fragment>
                   <React.Fragment>
                     <AcmAutoRefreshSelect
-                      initRefreshTime={10}
+                      initPollInterval={10}
                       refetch={[Function]}
                       refreshIntervalCookie="acm-grc-refresh-interval"
                       refreshIntervals={
@@ -35090,7 +35090,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                       }
                                     >
                                       <AcmAutoRefreshSelect
-                                        initRefreshTime={10}
+                                        initPollInterval={10}
                                         refetch={[Function]}
                                         refreshIntervalCookie="acm-grc-refresh-interval"
                                         refreshIntervals={
@@ -44923,7 +44923,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                 <React.Fragment>
                   <React.Fragment>
                     <AcmAutoRefreshSelect
-                      initRefreshTime={10}
+                      initPollInterval={10}
                       refetch={[Function]}
                       refreshIntervalCookie="acm-grc-refresh-interval"
                       refreshIntervals={
@@ -45319,7 +45319,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                       }
                                     >
                                       <AcmAutoRefreshSelect
-                                        initRefreshTime={10}
+                                        initPollInterval={10}
                                         refetch={[Function]}
                                         refreshIntervalCookie="acm-grc-refresh-interval"
                                         refreshIntervals={

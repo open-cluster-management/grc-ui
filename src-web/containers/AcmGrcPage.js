@@ -39,7 +39,7 @@ function AcmGrcPage(props) {
                 <AcmAutoRefreshSelect refetch={refetch}
                   refreshIntervals={REFRESH_INTERVALS}
                   refreshIntervalCookie={REFRESH_INTERVAL_COOKIE}
-                  initRefreshTime={INITIAL_POLL_INTERVAL} />
+                  initPollInterval={INITIAL_POLL_INTERVAL} />
                 <AcmRefreshTime timestamp={timestamp} reloading={loading} />
               </React.Fragment>
             )}
