@@ -16,7 +16,8 @@ const config = require('./config'),
       CompressionPlugin = require('compression-webpack-plugin'),
       CopyPlugin = require('copy-webpack-plugin'),
       MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin'),
+      TerserPlugin = require('terser-webpack-plugin')
 
 const PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
@@ -32,7 +33,6 @@ module.exports = {
   stats: {
     children: false,
     warningsFilter: [/Failed to parse source map/],
-    errorDetails: true,
   },
   entry: {
     'main': ['@babel/polyfill', './src-web/index.js'],
@@ -63,15 +63,11 @@ module.exports = {
         // Transpile React JSX to ES5
         test: [/\.jsx$/, /\.js$/],
         exclude: /node_modules|\.scss/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-              plugins: ['@babel/plugin-proposal-class-properties']
-            },
-          },
-        ]
+        loader: 'babel-loader?cacheDirectory',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: ['@babel/plugin-proposal-class-properties']
+        }
       },
       {
         test: [/\.s?css$/],
@@ -110,10 +106,7 @@ module.exports = {
       },
       {
         test: /\.woff2?$/,
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]'
-        }
+        loader: 'file-loader?name=fonts/[name].[ext]'
       },
       {
         test: /\.css$/,
@@ -173,14 +166,9 @@ module.exports = {
 
   optimization: {
     minimize: PRODUCTION,
-    minimizer: [
-      (compiler) => {
-          const TerserPlugin = require('terser-webpack-plugin')
-          new TerserPlugin({
-            parallel: true,
-          }).apply(compiler)
-      },
-    ]
+    minimizer: [new TerserPlugin({
+      parallel: true,
+    })],
   },
 
   output: {
@@ -189,7 +177,7 @@ module.exports = {
     // chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].js',
     path: __dirname + '/public',
     publicPath: config.get('contextPath').replace(/\/?$/, '/'),
-    chunkLoadingGlobal: 'webpackJsonpFunctionGrc',
+    jsonpFunction: 'webpackJsonpFunctionGrc',
   },
 
   plugins: [
@@ -222,7 +210,7 @@ module.exports = {
       }
     }),
     new CompressionPlugin({
-      filename: '[path][base].gz',
+      filename: '[path].gz',
       algorithm: 'gzip',
       test: /\.js$|\.css$/,
       minRatio: 1,

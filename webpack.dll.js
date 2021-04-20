@@ -11,6 +11,7 @@
 
 const path = require('path'),
       webpack = require('webpack'),
+      TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
       CompressionPlugin = require('compression-webpack-plugin')
 
@@ -40,9 +41,7 @@ module.exports = {
       'reselect'
     ]
   },
-  stats: {
-    errorDetails: true,
-  },
+
   module: {
     rules: [
       {
@@ -77,14 +76,9 @@ module.exports = {
 
   optimization: {
     minimize: PRODUCTION,
-    minimizer: [
-      (compiler) => {
-          const TerserPlugin = require('terser-webpack-plugin')
-          new TerserPlugin({
-            parallel: true,
-          }).apply(compiler)
-      },
-    ]
+    minimizer: [new TerserPlugin({
+      parallel: true,
+    })],
   },
 
   plugins: [
@@ -99,7 +93,7 @@ module.exports = {
       context: __dirname
     }),
     new CompressionPlugin({
-      filename: '[path][base].gz',
+      filename: '[path].gz',
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/
     }),
