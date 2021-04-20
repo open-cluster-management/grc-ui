@@ -413,7 +413,7 @@ export function getDecisionList(policy, locale) {
           >
             {Array.from(clusterList[status]).map((cluster) =>{
                 // If there's no status, there's no point in linking to the status page
-                let href='', color='grey'
+                let href=null, color='grey'
                 if (status !== 'nostatus') {
                   href=`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?clusterFilter=${cluster}&index=0`
                   color='blue'
@@ -430,8 +430,8 @@ export function getDecisionList(policy, locale) {
                         componentRef
                       })=>
                         <Link to={href} className={className} innerRef={componentRef}>
-                        {content}
-                      </Link>
+                          {content}
+                        </Link>
                     }
                   >
                     {cluster}
