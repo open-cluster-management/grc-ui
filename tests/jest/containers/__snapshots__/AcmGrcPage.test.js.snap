@@ -8791,7 +8791,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                                                 isDisabled={false}
                                                 onToggle={[Function]}
                                               >
-                                                Refresh every 1m
+                                                Refresh every 10s
                                               </DropdownToggle>
                                             }
                                           >
@@ -8867,7 +8867,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                                                   isDisabled={false}
                                                   onToggle={[Function]}
                                                 >
-                                                  Refresh every 1m
+                                                  Refresh every 10s
                                                 </DropdownToggle>
                                               }
                                             >
@@ -8914,7 +8914,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                                                           <span
                                                             class="pf-c-dropdown__toggle-text"
                                                           >
-                                                            Refresh every 1m
+                                                            Refresh every 10s
                                                           </span>
                                                           <span
                                                             class="pf-c-dropdown__toggle-icon"
@@ -8980,7 +8980,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                                                             <span
                                                               class="pf-c-dropdown__toggle-text"
                                                             >
-                                                              Refresh every 1m
+                                                              Refresh every 10s
                                                             </span>
                                                             <span
                                                               class="pf-c-dropdown__toggle-icon"
@@ -9021,7 +9021,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                                                       <span
                                                         className="pf-c-dropdown__toggle-text"
                                                       >
-                                                        Refresh every 1m
+                                                        Refresh every 10s
                                                       </span>
                                                       <span
                                                         className="pf-c-dropdown__toggle-icon"
@@ -25098,7 +25098,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                 isDisabled={false}
                                                 onToggle={[Function]}
                                               >
-                                                Refresh every 1m
+                                                Refresh every 10s
                                               </DropdownToggle>
                                             }
                                           >
@@ -25174,7 +25174,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                   isDisabled={false}
                                                   onToggle={[Function]}
                                                 >
-                                                  Refresh every 1m
+                                                  Refresh every 10s
                                                 </DropdownToggle>
                                               }
                                             >
@@ -25221,7 +25221,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                           <span
                                                             class="pf-c-dropdown__toggle-text"
                                                           >
-                                                            Refresh every 1m
+                                                            Refresh every 10s
                                                           </span>
                                                           <span
                                                             class="pf-c-dropdown__toggle-icon"
@@ -25287,7 +25287,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                             <span
                                                               class="pf-c-dropdown__toggle-text"
                                                             >
-                                                              Refresh every 1m
+                                                              Refresh every 10s
                                                             </span>
                                                             <span
                                                               class="pf-c-dropdown__toggle-icon"
@@ -25328,7 +25328,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                       <span
                                                         className="pf-c-dropdown__toggle-text"
                                                       >
-                                                        Refresh every 1m
+                                                        Refresh every 10s
                                                       </span>
                                                       <span
                                                         className="pf-c-dropdown__toggle-icon"
@@ -35211,7 +35211,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                 isDisabled={false}
                                                 onToggle={[Function]}
                                               >
-                                                Refresh every 1m
+                                                Refresh every 10s
                                               </DropdownToggle>
                                             }
                                           >
@@ -35287,7 +35287,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                   isDisabled={false}
                                                   onToggle={[Function]}
                                                 >
-                                                  Refresh every 1m
+                                                  Refresh every 10s
                                                 </DropdownToggle>
                                               }
                                             >
@@ -35334,7 +35334,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                           <span
                                                             class="pf-c-dropdown__toggle-text"
                                                           >
-                                                            Refresh every 1m
+                                                            Refresh every 10s
                                                           </span>
                                                           <span
                                                             class="pf-c-dropdown__toggle-icon"
@@ -35400,7 +35400,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                             <span
                                                               class="pf-c-dropdown__toggle-text"
                                                             >
-                                                              Refresh every 1m
+                                                              Refresh every 10s
                                                             </span>
                                                             <span
                                                               class="pf-c-dropdown__toggle-icon"
@@ -35441,7 +35441,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                       <span
                                                         className="pf-c-dropdown__toggle-text"
                                                       >
-                                                        Refresh every 1m
+                                                        Refresh every 10s
                                                       </span>
                                                       <span
                                                         className="pf-c-dropdown__toggle-icon"
@@ -45440,7 +45440,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                                 isDisabled={false}
                                                 onToggle={[Function]}
                                               >
-                                                Refresh every 1m
+                                                Refresh every 10s
                                               </DropdownToggle>
                                             }
                                           >
@@ -45516,7 +45516,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                                   isDisabled={false}
                                                   onToggle={[Function]}
                                                 >
-                                                  Refresh every 1m
+                                                  Refresh every 10s
                                                 </DropdownToggle>
                                               }
                                             >
@@ -45563,7 +45563,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                                           <span
                                                             class="pf-c-dropdown__toggle-text"
                                                           >
-                                                            Refresh every 1m
+                                                            Refresh every 10s
                                                           </span>
                                                           <span
                                                             class="pf-c-dropdown__toggle-icon"
@@ -45629,7 +45629,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                                             <span
                                                               class="pf-c-dropdown__toggle-text"
                                                             >
-                                                              Refresh every 1m
+                                                              Refresh every 10s
                                                             </span>
                                                             <span
                                                               class="pf-c-dropdown__toggle-icon"
@@ -45670,7 +45670,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                                       <span
                                                         className="pf-c-dropdown__toggle-text"
                                                       >
-                                                        Refresh every 1m
+                                                        Refresh every 10s
                                                       </span>
                                                       <span
                                                         className="pf-c-dropdown__toggle-icon"
@@ -51465,7 +51465,7 @@ Array [
                     <span
                       class="pf-c-dropdown__toggle-text"
                     >
-                      Refresh every 1m
+                      Refresh every 10s
                     </span>
                     <span
                       class="pf-c-dropdown__toggle-icon"
