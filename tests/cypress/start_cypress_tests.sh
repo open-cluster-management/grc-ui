@@ -49,8 +49,8 @@ fi
 echo -e "\nLogging into Kube API server\n"
 oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
 
-
-RHACM_CONSOLE_URL=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
+acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
+RHACM_CONSOLE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
 export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-$RHACM_CONSOLE_URL}
 if [ "$CYPRESS_BASE_URL" = "https://localhost:3000" ]; then
   export CYPRESS_coverage=true
@@ -92,9 +92,9 @@ else
 fi
 
 if [ "$NODE_ENV" == "dev" ]; then
-  npx cypress run --browser $BROWSER $HEADLESS --spec "./tests/cypress/tests/*.spec.js" --reporter cypress-multi-reporters  
+  npx cypress run --browser $BROWSER $HEADLESS --spec "./tests/cypress/tests/*.spec.js" --reporter cypress-multi-reporters
 elif [ "$NODE_ENV" == "debug" ]; then
   npx cypress open --browser $BROWSER --config numTestsKeptInMemory=0
-else 
+else
   cypress run --browser $BROWSER $HEADLESS --spec "./tests/cypress/tests/*.spec.js" --reporter cypress-multi-reporters
 fi

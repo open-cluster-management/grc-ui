@@ -18,12 +18,13 @@ fi
 
 #Get env from Docker arguments
 export FAIL_FAST=${FAIL_FAST:-false}
-export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
+acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
+export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
 # show all envs
 printenv
 # test oauth server and see if idp has been setup
 i=0
-while true; do 
+while true; do
   IDP=`curl -L -k ${CYPRESS_BASE_URL} | grep ${OC_IDP}` || true
   if [ -z ${IDP// /} ]; then
     echo "wait for idp ${OC_IDP} to take effect..."
