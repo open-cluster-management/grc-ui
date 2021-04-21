@@ -1171,7 +1171,7 @@ export const action_verifyPolicyViolationDetailsInHistory = (templateName, viola
   })
 }
 
-export const action_checkNotificationMessage = (kind, title, notification, close=false) => {
+export const action_checkNotificationMessage = (kind, title, notification, close=true) => {
   cy.get('div[aria-label="'+kind+'"]').within(() => {
     cy.get('.pf-c-alert__title').should('contain', title)
     cy.get('.pf-c-alert__description').invoke('text').should('contain', notification)
