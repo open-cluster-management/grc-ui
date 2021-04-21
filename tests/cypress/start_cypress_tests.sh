@@ -12,26 +12,30 @@ if [ -z "$BROWSER" ]; then
 fi
 
 if [ ! -z "$OC_HUB_CLUSTER_URL" ] && [ ! -z "$OC_CLUSTER_USER" ] && [ ! -z "$OC_HUB_CLUSTER_PASS" ]; then
-  echo -e "Using cypess config from Travis env variables.\n"
+  echo -e "Using cypress config from Travis env variables.\n"
   export CYPRESS_OPTIONS_HUB_CLUSTER_URL=$OC_HUB_CLUSTER_URL
   export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
   export CYPRESS_OPTIONS_HUB_PASSWORD=$OC_HUB_CLUSTER_PASS
 elif [ ! -z "$OC_CLUSTER_URL" ] && [ ! -z "$OC_CLUSTER_USER" ] && [ ! -z "$OC_CLUSTER_PASS" ]; then
-  echo -e "Using cypess config from Docker env variables.\n"
+  echo -e "Using cypress config from Docker env variables.\n"
   export CYPRESS_OPTIONS_HUB_CLUSTER_URL=$OC_CLUSTER_URL
   export CYPRESS_OPTIONS_HUB_USER=$OC_CLUSTER_USER
   export CYPRESS_OPTIONS_HUB_PASSWORD=$OC_CLUSTER_PASS
+elif [ ! -z "$OC_CLUSTER_URL" ] && [ ! -z "$OC_CLUSTER_TOKEN" ]; then
+  echo -e "Using cypress config from Docker env variable.\n"
+  export CYPRESS_OPTIONS_HUB_CLUSTER_URL=$OC_CLUSTER_URL
+  export CYPRESS_OPTIONS_HUB_TOKEN=$OC_CLUSTER_TOKEN
 else
   USER_OPTIONS_FILE=./cypressEnvConfig.yaml
   echo -e "System env variables don't exist, loading local config from '$USER_OPTIONS_FILE' file.\n"
   if [ -f $USER_OPTIONS_FILE ]; then
-    echo "Using cypess config from '$USER_OPTIONS_FILE' file."
+    echo "Using cypress config from '$USER_OPTIONS_FILE' file."
     export CYPRESS_OPTIONS_HUB_CLUSTER_URL=`yq r $USER_OPTIONS_FILE 'options.hub.hubClusterURL'`
     export CYPRESS_OPTIONS_HUB_USER=`yq r $USER_OPTIONS_FILE 'options.hub.user'`
     export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $USER_OPTIONS_FILE 'options.hub.password'`
     export CYPRESS_BASE_URL=`yq r $USER_OPTIONS_FILE 'options.hub.baseURL'`
   else
-    echo "Can't find '$USER_OPTIONS_FILE' locally and set all cypess config to empty."
+    echo "Can't find '$USER_OPTIONS_FILE' locally and set all cypress config to empty."
     export CYPRESS_OPTIONS_HUB_CLUSTER_URL=""
     export CYPRESS_OPTIONS_HUB_USER=""
     export CYPRESS_OPTIONS_HUB_PASSWORD=""
@@ -47,7 +51,11 @@ else
 fi
 
 echo -e "\nLogging into Kube API server\n"
-oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
+if [ -z $CYPRESS_OPTIONS_HUB_TOKEN ]; then
+  oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} -u $CYPRESS_OPTIONS_HUB_USER -p $CYPRESS_OPTIONS_HUB_PASSWORD --insecure-skip-tls-verify
+else
+  oc login --server=${CYPRESS_OPTIONS_HUB_CLUSTER_URL} --token=$CYPRESS_OPTIONS_HUB_TOKEN --insecure-skip-tls-verify
+fi
 
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
 RHACM_CONSOLE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
@@ -73,7 +81,7 @@ echo -e "\tCYPRESS_STANDALONE_TESTSUITE_EXECUTION: $CYPRESS_STANDALONE_TESTSUITE
 echo -e "\tCYPRESS_coverage                : $CYPRESS_coverage"
 echo -e "\tCYPRESS_TAGS_INCLUDE            : $CYPRESS_TAGS_INCLUDE"
 echo -e "\tCYPRESS_TAGS_EXCLUDE            : $CYPRESS_TAGS_EXCLUDE"
-[ -n "$CYPRESS_RBAC_PASS" ] && echo -e "CYPRESS_RBAC_PASS set" || echo -e "Error: CYPRESS_RBAC_PASS is not set"
+[ -n "$CYPRESS_RBAC_PASS" ] && echo -e "RBAC_PASS set" || echo -e "Error: RBAC_PASS is not set"
 
 # save a list of available clusters to .tests/cypress/config/clusters.yaml file so tests can use it
 oc get managedclusters -o custom-columns='name:.metadata.name,available:.status.conditions[?(@.reason=="ManagedClusterAvailable")].status,vendor:.metadata.labels.vendor' --no-headers | awk '/True/ { printf "%s:\n  vendor: %s\n", $1, $3 }' > ./tests/cypress/config/clusters.yaml
@@ -86,9 +94,9 @@ testCode=0
 HEADLESS="--headless"
 if [[ "$LIVE_MODE" == true ]]; then
   HEADLESS=""
-  echo "Running cypess under browser headful model."
+  echo "Running cypress under browser headful model."
 else
-  echo "Running cypess under browser headless model."
+  echo "Running cypress under browser headless model."
 fi
 
 if [ "$NODE_ENV" == "dev" ]; then

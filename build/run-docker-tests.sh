@@ -4,7 +4,11 @@
 
 
 # log into hub
-oc login ${OC_CLUSTER_URL} --insecure-skip-tls-verify=true -u ${OC_CLUSTER_USER} -p ${OC_CLUSTER_PASS}
+if [ -z ${OC_CLUSTER_TOKEN} ]; then
+  oc login ${OC_CLUSTER_URL} --insecure-skip-tls-verify=true -u ${OC_CLUSTER_USER} -p ${OC_CLUSTER_PASS}
+else
+  oc login ${OC_CLUSTER_URL} --insecure-skip-tls-verify=true --token=${OC_CLUSTER_TOKEN}
+fi
 
 # setup RBAC roles
 if [ -z ${RBAC_PASS} ]; then
