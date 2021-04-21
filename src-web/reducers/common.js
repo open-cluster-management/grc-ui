@@ -22,6 +22,7 @@ It is simple: for any part of the store that an application needs access to, def
 when given the full store, returns the desired part (or derivation) of the store.
 */
 
+import { createSelector } from 'reselect'
 import _ from 'lodash'
 import { normalize } from 'normalizr'
 import ReactDOMServer from 'react-dom/server'
@@ -89,6 +90,159 @@ function searchTableCell(item, tableKey, context, searchText){
       .toString().toLowerCase().indexOf(searchText.toLowerCase()) !== -1
   }
 }
+
+function searchTableCellHelper(search, tableKeys, item, context) {
+  const searchKey = search.substring(0, search.indexOf('='))
+  const searchField = search.substring(search.indexOf('=')+1)
+
+  if (searchKey === 'textsearch') {
+    return tableKeys.find(
+      localTableKey =>
+        searchTableCell(item, localTableKey, context, searchField.replace(/[{}]/g, ''))
+    )
+  }
+  const tableKey = tableKeys.find(
+    localTableKey =>
+      msgs.get(localTableKey.msgKey, context.locale).toLowerCase() === searchKey.toLowerCase()
+  )
+  if (!_.isEmpty(searchField)) {
+    if (!searchField.includes('{')) {
+      if (tableKey) {
+        return searchTableCell(item, tableKey, context, searchField)
+      }
+    } else {
+      let found = false
+      const searchKeys = searchField.replace(/[{}]/g, '').split(',')
+      if (searchKeys && tableKey) {
+        searchKeys.forEach(localSearchKey => {
+          if (searchTableCell(item, tableKey, context, localSearchKey)) {
+            found = true
+          }
+        })
+      }
+      return found
+    }
+  }
+  // return all results when user types cluster=
+  if (searchField === '') {
+    return true
+  }
+
+  // by default, search all fields
+  return tableKeys.find(localTableKey => searchTableCell(item, localTableKey, context, search))
+}
+
+const makeGetFilteredItemsSelector = (resourceType) => {
+  return createSelector(
+    [getItems, getSearch],
+    (items, search) => items.filter((item) => {
+      if (_.isEmpty(search)) {
+        return true
+      }
+
+      const tableKeys = getTableKeys(resourceType)
+      if(document.getElementById('context')) {
+        const context = JSON.parse(document.getElementById('context').textContent)
+
+        if (search.includes('},')) {
+        // special case like status={healthy}, labels={cloud=IBM}
+          let found = false
+          const searchFields = search.replace('},', '}},').toLowerCase().split('},')
+          searchFields.forEach(searchField => {
+            if (searchTableCellHelper(searchField, tableKeys, item, context)) {
+              found = true
+            }
+          })
+          return found
+        } else {
+          return searchTableCellHelper(search, tableKeys, item, context)
+        }
+      }
+      return undefined
+    })
+  )
+}
+
+const makeGetTransformedItemsSelector = (resourceType) => {
+  return createSelector(
+    [makeGetFilteredItemsSelector(resourceType)],
+    (items) => {
+      const resourceData = getResourceData(resourceType)
+      return items.map(item => {
+        if(document) {
+          const customData = {}
+          if(document.getElementById('context')) {
+            const context = JSON.parse(document.getElementById('context').textContent)
+            resourceData.tableKeys.forEach(key => {
+              if (key.transformFunction && typeof key.transformFunction === 'function') {
+                customData[key.resourceKey.replace('custom.', '')] = key.transformFunction(item, context.locale)
+              }
+            })
+          }
+          item.custom = customData
+        }
+        return item
+      })
+    }
+  )
+}
+
+//TODO could we do better? - we have one selector thus one cache for sorting.
+//Thus if the sort direction change is toggled back we re-calculate.
+const makeGetSortedItemsSelector = (resourceType) => {
+  return createSelector(
+    [makeGetTransformedItemsSelector(resourceType), getSortColumn, getSortDirection],
+    (items, sortColumn, sortDirection) => {
+      const initialSortField = sortColumn ? sortColumn : getDefaultSortField(resourceType)
+      const sortField = initialSortField === 'custom.age' ? 'metadata.creationTimestamp' : initialSortField // sort by the actual date, not formatted value
+      const sortDir = sortField === 'metadata.creationTimestamp'
+        ? (sortDirection === SORT_DIRECTION_ASCENDING
+          ? SORT_DIRECTION_DESCENDING
+          : SORT_DIRECTION_ASCENDING)
+        : sortDirection // date fields should initially sort from latest to oldest
+      return _.orderBy(items, item => _.get(item, sortField), [sortDir])
+    }
+  )
+}
+
+const makeGetPagedItemsSelector = (resourceType) => {
+  return createSelector(
+    [makeGetSortedItemsSelector(resourceType), getPage, getItemsPerPage],
+    (items, page, itemsPerPage) => {
+      const offset = (page - 1) * itemsPerPage
+      let lastIndex = offset + itemsPerPage
+      lastIndex = lastIndex <= items.length ? lastIndex : items.length
+      return {
+        items: items.slice(offset, lastIndex),
+        totalResults: items.length,
+        totalPages: Math.ceil(items.length / itemsPerPage)
+      }
+    }
+  )
+}
+
+export const makeGetVisibleTableItemsSelector = (resourceType) => {
+  const pk = getPrimaryKey(resourceType)
+  const sk = getSecondaryKey(resourceType)
+  return createSelector(
+    [makeGetPagedItemsSelector(resourceType)],
+    result => {
+      const normalizedItems = normalize(result.items, [createResourcesSchema(pk, sk)]).entities.items
+      return Object.assign(result, {
+        normalizedItems: normalizedItems,
+        // to support multi cluster, use ${name}-${cluster} as unique id
+        items: result.items.map(item => sk ? `${_.get(item, pk)}-${_.get(item, sk)}`:`${_.get(item, pk)}`)
+      })
+    }
+  )
+}
+
+const getItemProps= (state, props) => props
+
+export const getSingleResourceItem = createSelector(
+  [getItems, getItemProps],
+  (items, props) => items && items.length > 0 && props.predicate(items, props)
+)
 
 export const resourceItemByName = (items, props) => {
   const key = getURIKey(props.resourceType)
