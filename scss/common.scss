@@ -45,6 +45,13 @@ body {
     }
   }
   
+  // button layout in page header
+  .page-header-button-group {
+    flex-direction: row;
+    button {
+      margin-left: 1rem;
+    }
+  }
 }
 
 

@@ -231,15 +231,17 @@ export class CreationTab extends React.Component {
                 titleTooltip={msgs.get('policy.create.tooltip', locale)}
                 controls={
                   <React.Fragment>
-                    <AcmButton id='cancel' variant='secondary'
-                      onClick={() => this.handleCancel()}>
-                      {msgs.get('button.cancel', locale)}
-                    </AcmButton>
-                    <AcmButton id={isEdit?'edit':'create'}
-                      tooltip={msgs.get('error.permission.disabled', locale)}
-                      onClick={() => this.clickChild()}>
-                      {isEdit?msgs.get('button.save', locale):msgs.get('button.create', locale)}
-                    </AcmButton>
+                    <div className='page-header-button-group'>
+                      <AcmButton id='cancel' variant='secondary'
+                        onClick={() => this.handleCancel()}>
+                        {msgs.get('button.cancel', locale)}
+                      </AcmButton>
+                      <AcmButton id={isEdit?'edit':'create'}
+                        tooltip={msgs.get('error.permission.disabled', locale)}
+                        onClick={() => this.clickChild()}>
+                        {isEdit?msgs.get('button.save', locale):msgs.get('button.create', locale)}
+                      </AcmButton>
+                    </div>
                   </React.Fragment>
                 }>
               </AcmPageHeader>

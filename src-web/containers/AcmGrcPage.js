@@ -43,9 +43,11 @@ function AcmGrcPage(props) {
                 <AcmRefreshTime timestamp={timestamp} reloading={loading} />
               </React.Fragment>
             )}
+            <div className='page-header-button-group'>
             {page.buttons && (
               page.buttons.map(btn => btn(allProps))
             )}
+            </div>
           </React.Fragment>}>
       </AcmPageHeader>
       <AcmPageContent id={page.id}>
