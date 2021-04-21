@@ -617,7 +617,7 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
               class="creation-view-controls-checkbox"
             >
               <div
-                class="pf-c-check pf-m-standalone"
+                class="pf-c-check"
               >
                 <input
                   aria-invalid="false"
@@ -626,9 +626,12 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   id="disabled"
                   type="checkbox"
                 />
-              </div>
-              <div>
-                Disabled
+                <label
+                  class="pf-c-check__label"
+                  for="disabled"
+                >
+                  Disabled
+                </label>
               </div>
             </div>
           </div>
@@ -1278,7 +1281,7 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
               class="creation-view-controls-checkbox"
             >
               <div
-                class="pf-c-check pf-m-standalone"
+                class="pf-c-check"
               >
                 <input
                   aria-invalid="false"
@@ -1287,9 +1290,12 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   id="disabled"
                   type="checkbox"
                 />
-              </div>
-              <div>
-                Disabled
+                <label
+                  class="pf-c-check__label"
+                  for="disabled"
+                >
+                  Disabled
+                </label>
               </div>
             </div>
           </div>
@@ -1939,7 +1945,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
               class="creation-view-controls-checkbox"
             >
               <div
-                class="pf-c-check pf-m-standalone"
+                class="pf-c-check"
               >
                 <input
                   aria-invalid="false"
@@ -1948,9 +1954,12 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   id="disabled"
                   type="checkbox"
                 />
-              </div>
-              <div>
-                Disabled
+                <label
+                  class="pf-c-check__label"
+                  for="disabled"
+                >
+                  Disabled
+                </label>
               </div>
             </div>
           </div>

@@ -98,15 +98,8 @@ module.exports = {
           },
           {
             loader: 'sass-loader?sourceMap',
-            options: {
-              prependData: '$font-path: "'+ config.get('contextPath') + '/fonts";'
-            },
           },
         ],
-      },
-      {
-        test: /\.woff2?$/,
-        loader: 'file-loader?name=fonts/[name].[ext]'
       },
       {
         test: /\.css$/,
@@ -143,7 +136,7 @@ module.exports = {
         loader: 'js-yaml-loader',
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|woff2?|ttf|eot|otf)(\?.*$|$)/,
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2?|ttf|eot|otf)(\?.*$|$)/,
         exclude: [overpassTest, path.resolve(__dirname, './graphics')],
         loader: 'file-loader',
         options: {
@@ -227,7 +220,6 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: 'graphics', to: 'graphics' },
-        { from: 'fonts', to: 'fonts' },
       ],
       options: {
         concurrency: 100,

@@ -6,7 +6,7 @@
 
 import React from 'react'
 import { useQuery } from '@apollo/client'
-import { AcmPageContent, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime, AcmSecondaryNav } from '@open-cluster-management/ui-components'
+import { AcmPageContent, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime, AcmSecondaryNav, AcmAlert } from '@open-cluster-management/ui-components'
 import { Spinner } from '@patternfly/react-core'
 import { useHistory, useParams } from 'react-router-dom'
 
@@ -50,10 +50,14 @@ function AcmGrcPage(props) {
       </AcmPageHeader>
       <AcmPageContent id={page.id}>
         {(() => {
+          if(error) {
+            return <AcmAlert isInline={true} variant='danger'
+              subtitle={error} />
+          }
           if (loading && !previousData || items === undefined ) {
             return <Spinner className='patternfly-spinner' />
           } else {
-            return page.children({ error, items })
+            return page.children({ items })
           }
         })()}
       </AcmPageContent>

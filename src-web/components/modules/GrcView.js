@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateAvailableFilters, updateActiveFilters } from '../../actions/common'
-import { AcmAlert } from '@open-cluster-management/ui-components'
 import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 // eslint-disable-next-line import/no-named-as-default
 import GrcCardsModule from '../modules/GrcCardsModule'
@@ -114,17 +113,8 @@ export class GrcView extends React.Component {
     const { locale } = this.context
     const { viewState } = this.state
     const {
-      error, items, activeFilters={}, location, access, history
+      items, activeFilters={}, location, access, history
     } = this.props
-
-    if (error) {
-      if (error.name === 'PermissionError') {
-        return <AcmAlert title='' className='overview-notification' variant='danger'
-          subtitle={msgs.get('error.permission.denied', locale)} />
-      }
-      return <AcmAlert title='' className='overview-notification' variant='danger'
-        subtitle={msgs.get('overview.error.default', locale)} />
-    }
 
     const displayType = location.pathname.split('/').pop()
     let filterGrcItems, filterToEmpty = false
@@ -275,7 +265,6 @@ export class GrcView extends React.Component {
 GrcView.propTypes = {
   access: PropTypes.array,
   activeFilters: PropTypes.object,
-  error: PropTypes.object,
   history: PropTypes.object.isRequired,
   items: PropTypes.array,
   location: PropTypes.object,

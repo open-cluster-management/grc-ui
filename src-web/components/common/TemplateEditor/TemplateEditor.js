@@ -7,9 +7,11 @@ import React from 'react'
 import SplitPane from 'react-split-pane'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { Checkbox, ButtonVariant, Spinner, Select, SelectVariant, SelectOption, TextInput, ValidatedOptions, Radio } from '@patternfly/react-core'
+import { Alert, AlertActionCloseButton, Checkbox, ButtonVariant, Spinner, Select,
+  SelectVariant, SelectOption, TextInput, ValidatedOptions, Radio } from '@patternfly/react-core'
 import { AcmModal, AcmButton, AcmAlert } from '@open-cluster-management/ui-components'
-import { initializeControlData, cacheUserData, updateControls, parseYAML, dumpYAMLFromPolicyDiscovered, dumpYAMLFromTemplateObject } from './utils/update-controls'
+import { initializeControlData, cacheUserData, updateControls, parseYAML,
+  dumpYAMLFromPolicyDiscovered, dumpYAMLFromTemplateObject } from './utils/update-controls'
 import { BlueInfoCircleIcon } from '../Icons'
 import { generateYAML, highlightChanges } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
@@ -254,40 +256,29 @@ export default class TemplateEditor extends React.Component {
   renderNotifications() {
     const { locale } = this.props
     let { updateMessage, updateMsgKind } = this.state
-    const { validPolicyName, duplicateName } = this.state
+    const { validPolicyName, duplicateName, notificationOpen } = this.state
     // If the name is duplicate and there are no other errors, display an alert
     if ((!updateMessage || updateMsgKind === 'success') && duplicateName) {
       updateMsgKind = 'warning'
       updateMessage = msgs.get('warning.policy.duplicateName', locale)
     }
-    if (updateMessage) {
-      const handleClick = () => {
-        //This is intentional
-      }
-      const handleKeyPress = (e) => {
-        if ( e.key === 'Enter') {
-          handleClick()
-        }
-      }
-      return <div role='button' onClick={handleClick}
-        tabIndex="0" aria-label={updateMessage} onKeyDown={handleKeyPress}>
-        <div>
-          <AcmAlert variant={updateMsgKind} isInline={true}
-            title={msgs.get(`${updateMsgKind}.create.policy`, locale)}
-            subtitle={validPolicyName
-              ? updateMessage
-              : <span>
-                  <br />{msgs.get('error.policy.nameFormat.hint', locale)}
-                  <br />{msgs.get('error.policy.nameFormat', locale)}
-                  <br />{msgs.get('error.policy.nameFormat.Rule1', locale)}
-                  <br />{msgs.get('error.policy.nameFormat.Rule2', locale)}
-                  <br />{msgs.get('error.policy.nameFormat.Rule3', locale)}
-                  <br />{msgs.get('error.policy.nameFormat.Rule4', locale)}
-                </span>
-            }
-          />
-        </div>
-      </div>
+    if (updateMessage && notificationOpen) {
+      return (
+        <Alert variant={updateMsgKind} isInline={true} variantLabel={msgs.get(`${updateMsgKind}.create.policy`, locale)}
+          actionClose={<AlertActionCloseButton onClose={() => this.setState({ notificationOpen: false})} />}>
+          {validPolicyName
+            ? updateMessage
+            : <span>
+                <br />{msgs.get('error.policy.nameFormat.hint', locale)}
+                <br />{msgs.get('error.policy.nameFormat', locale)}
+                <br />{msgs.get('error.policy.nameFormat.Rule1', locale)}
+                <br />{msgs.get('error.policy.nameFormat.Rule2', locale)}
+                <br />{msgs.get('error.policy.nameFormat.Rule3', locale)}
+                <br />{msgs.get('error.policy.nameFormat.Rule4', locale)}
+              </span>
+          }
+        </Alert>
+      )
     }
     return null
   }
@@ -373,8 +364,7 @@ export default class TemplateEditor extends React.Component {
           <BlueInfoCircleIcon tooltip={description} />
         </div>
         <div className='creation-view-controls-checkbox'>
-          <Checkbox aria-label={id} id={id} isChecked={checked} onChange={this.onChange.bind(this, id)} />
-          <div>{msgs.get(`description.title.${id}`)}</div>
+          <Checkbox aria-label={id} id={id} isChecked={checked} label={msgs.get(`description.title.${id}`)} onChange={this.onChange.bind(this, id)} />
         </div>
       </React.Fragment>
     )
@@ -763,7 +753,8 @@ export default class TemplateEditor extends React.Component {
     const { validPolicyName } = this.state
     this.setState({
       updateMsgKind: (errorMsg || !validPolicyName)?'danger':'success',
-      updateMessage: errorMsg||msgs.get(message, locale)
+      updateMessage: errorMsg||msgs.get(message, locale),
+      notificationOpen: true
     })
     // We're heading to 'Create', so we no longer need the duplicate name alert
     if (!errorMsg && message === 'success.create.policy.check') {
@@ -837,28 +828,6 @@ export default class TemplateEditor extends React.Component {
         ]}>
         <p>{`${msgs.get('update.question', locale)} ${msg}`}</p>
       </AcmModal>
-      // <Modal
-      //   danger
-      //   id='policy-update-modal'
-      //   open={this.state.canOpenModal}
-      //   primaryButtonText={msgs.get('update.apply', locale)}
-      //   secondaryButtonText={msgs.get('update.cancel', locale)}
-      //   modalLabel={msgs.get('update.existing', locale)}
-      //   modalHeading={msgs.get('update.existing', locale)}
-      //   onRequestClose={() => {
-      //     this.setState({ canOpenModal: false })
-      //   }}
-      //   onSecondarySubmit={() => {
-      //     this.setState({ canOpenModal: false })
-      //   }}
-      //   onRequestSubmit={() => {
-      //     this.handleUpdateResource(this.state.toCreate, this.state.toUpdate)
-      //     this.setState({ canOpenModal: false })
-      //   }}
-      //   role='region'
-      //   aria-label={'policy-update'}>
-      //   <p>{`${msgs.get('update.question', locale)} ${msg}`}</p>
-      // </Modal>
     )
   }
 

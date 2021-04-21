@@ -18,6 +18,13 @@
       .creation-view-controls-container {
         display: flex;
         flex-direction: column;
+        .creation-view-controls {
+          &-multiselect-title, &-singleselect, &-textbox-title {
+            > svg {
+              margin-left: 0.5rem;
+            }
+          }
+        }
       }
 
       .creation-view-yaml {
@@ -89,26 +96,7 @@
 
     &-radiobutton {
       padding: 0 0.3125rem 1.125rem 0;
-
-      .radio-button-group {
-        align-items: flex-start;
-        flex-direction: column;
-
-        .radio-button:last-child {
-          padding-top: 0.75rem;
-        }
-      }
     }
-
-    &-checkbox {
-      padding: 0 0.3125rem 1.125rem 0;
-      display: flex;
-
-      > * {
-        margin-top: 0.5rem
-      }
-    }
-
   }
 
   .Resizer {

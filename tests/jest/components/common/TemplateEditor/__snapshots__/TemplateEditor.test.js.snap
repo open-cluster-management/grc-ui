@@ -1270,7 +1270,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
               className="creation-view-controls-checkbox"
             >
               <div
-                className="pf-c-check pf-m-standalone"
+                className="pf-c-check"
               >
                 <input
                   aria-invalid={false}
@@ -1282,9 +1282,12 @@ exports[`TemplateEditor component renders as expected 1`] = `
                   onChange={[Function]}
                   type="checkbox"
                 />
-              </div>
-              <div>
-                Disabled
+                <label
+                  className="pf-c-check__label"
+                  htmlFor="disabled"
+                >
+                  Disabled
+                </label>
               </div>
             </div>
           </div>

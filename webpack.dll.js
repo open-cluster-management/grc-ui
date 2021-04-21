@@ -19,8 +19,6 @@ const PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_E
 
 process.env.BABEL_ENV = process.env.BABEL_ENV ? process.env.BABEL_ENV : 'client'
 
-const overpassTest = /overpass-.*\.(woff2?|ttf|eot|otf)(\?.*$|$)/
-
 module.exports = {
   entry: {
     'vendorhcm': [
@@ -49,21 +47,6 @@ module.exports = {
         include: path.resolve(__dirname, './node_modules/monaco-editor'),
         use: [{ loader: 'style-loader', options: { base: 2000 } },
           'css-loader',],
-      },
-      {
-        test: /\.(woff2?|ttf|eot|otf)(\?.*$|$)/,
-        exclude: overpassTest,
-        loader: 'file-loader',
-        options: {
-          name: 'assets/[name].[ext]',
-        },
-      },
-      {
-        // Resolve to an empty module for overpass fonts included in SASS files.
-        // This way file-loader won't parse them. Make sure this is BELOW the
-        // file-loader rule.
-        test: overpassTest,
-        loader: 'null-loader',
       },
     ],
   },
