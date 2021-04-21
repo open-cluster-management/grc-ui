@@ -99,10 +99,10 @@ npm run test:unit
 1. Before you run any cypress test, make sure the following envs are set.
 
    ```bash
-   export OC_HUB_CLUSTER_URL=https://api.grcui-e2e.dev08.red-chesterfield.com:6443
-   export OC_CLUSTER_USER=kubeadmin
-   export OC_HUB_CLUSTER_PASS=XXXXXXXXX
-   export OC_IDP=kube:admin
+   export OC_HUB_CLUSTER_URL=    # API URL for remote hub cluster
+   export OC_CLUSTER_USER=       # User with which to log into the hub cluster
+   export OC_HUB_CLUSTER_PASS=   # Password for user to authenticate to hub cluster
+   export OC_IDP=                # Identity Provider to log in with (Use 'kube:admin' for logging in with kubeadmin)
    ```
 
 2. The RBAC tests require a set of users to exist in the remote cluster. To set up these users, first log in to your remote cluster. Decide on a password you'd like to use for these users. Then, from the `grc-ui` folder, run these commands (the script will also export `OC_CLUSTER_USER`, `OC_HUB_CLUSTER_PASS`, and `OC_IDP` to match the RBAC users and use in place of `kubeadmin`):
@@ -134,15 +134,16 @@ npm run test:unit
    ```
 
 4. Run the following command to start the cypress test:
-   ```bash
-   npm run test:cypress
-   ```
+   - To run the tests with a live browser:
+     ```bash
+     npm run test:cypress
+     ```
+     **NOTE:** To open Cypress to interact and run tests individually, first run `export NODE_ENV=debug` before starting the headful tests
 
-   To run the tests headless (i.e. with the browser running in the background):
-
-   ```bash
-   npm run test:cypress-headless
-   ```
+   - To run the tests headless (i.e. with the browser running in the background):
+     ```bash
+     npm run test:cypress-headless
+     ```
 
 
 ## NPM Commands
