@@ -42,7 +42,13 @@ else
   fi
 fi
 
-export CYPRESS_RESOURCE_ID=$(date +"%s")
+# Set resource ID to timestamp if not given
+if [ -n "${RESOURCE_ID}" ]; then
+  export CYPRESS_RESOURCE_ID=${RESOURCE_ID}
+else
+  export CYPRESS_RESOURCE_ID=$(date +"%s")
+fi
+
 if [ -z "$MANAGED_CLUSTER_NAME" ]; then
   echo "MANAGED_CLUSTER_NAME not set."
 else
