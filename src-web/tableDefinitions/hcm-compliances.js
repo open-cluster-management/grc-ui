@@ -403,8 +403,7 @@ export function getDecisionList(policy, locale) {
     statusList.push(
       <div key={`${status}-status-container`} className='status-container'>
         <div key={`${status}-status-heading`} className='status-heading'>
-          <StatusField status={status} text='' />
-          <span>{msgs.get(`table.cell.${status}`, locale)}: </span>
+          <StatusField status={status} text={`${msgs.get(`table.cell.${status}`, locale)}:`} />
         </div>
         <div key={`${status}-status-list`} className='status-list'>
           <LabelGroup

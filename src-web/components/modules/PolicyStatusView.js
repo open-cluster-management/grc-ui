@@ -24,11 +24,14 @@ import '../../../scss/policy-status-view.scss'
 class PolicyStatusView extends React.Component {
   constructor(props) {
     super(props)
-    const indexQuery = new URLSearchParams(location.search.substring(1)).get('index')
+    const paramQuery = new URLSearchParams(location.search.substring(1))
+    const indexQuery = paramQuery.get('index')
+    const clusterQuery = Boolean(paramQuery.get('clusterFilter'))
     const toggleIndex = indexQuery && parseInt(indexQuery, 10) < 2 ? parseInt(indexQuery, 10) : 0
     this.state= {
       toggleIndex,
-      toggleIndexQueryEnabled: Boolean(indexQuery !== null)
+      toggleIndexQueryEnabled: Boolean(indexQuery !== null),
+      clusterQuery
     }
     this.toggleClick = this.toggleClick.bind(this)
   }
@@ -51,7 +54,7 @@ class PolicyStatusView extends React.Component {
     const statusAccess = items.map(item => ({...item, showDetailsLink: showDetailsLink}))
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
     const tableDataByClusters = transform(statusAccess, statusByClustersDef, locale)
-    const toggleIndex = this.state.toggleIndex
+    const {toggleIndex, clusterQuery} = this.state
     return (
       <div className='policy-status-view'>
         <ToggleGroup className='policy-status-toggle' variant='light'>
@@ -80,8 +83,9 @@ class PolicyStatusView extends React.Component {
             <PatternFlyTable
               {...tableDataByClusters}
               noResultMsg={msgs.get('table.search.no.results', locale)}
-              searchQueryEnabled
+              searchQueryEnabled={clusterQuery}
               searchQueryKey='clusterFilter'
+              strictSearch={clusterQuery}
             />
           </div>}
           {toggleIndex===1 && tableDataByTemplate.map((data)=> {

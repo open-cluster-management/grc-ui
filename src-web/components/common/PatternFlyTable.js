@@ -32,7 +32,7 @@ resources(() => {
 class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)
-    const { searchQueryEnabled, searchQueryKey } = props
+    const { searchQueryEnabled, searchQueryKey, strictSearch } = props
     let { searchValue } = props
     let searchText = ''
     if (searchQueryEnabled) {
@@ -51,7 +51,9 @@ class PatternFlyTable extends React.Component {
       sortBy: this.props.sortBy,
       startIdx: 0,
       endIdx: this.props.perPage,
-      searchState: searchText
+      searchState: searchText,
+      searchQueryEnabled,
+      strictSearch
     }
   }
   static defaultProps = {
@@ -66,7 +68,7 @@ class PatternFlyTable extends React.Component {
     sortBy: {}
   }
   static getDerivedStateFromProps(props, state) {
-    const { searchState, sortBy } = state
+    const { searchState, sortBy, strictSearch } = state
     const { searchValue, handleSearch, handleClear, pagination, rows, searchable } = props
     let trimmedSearchValue = typeof searchState === 'string' ? searchState.trim() : ''
     if (typeof handleSearch === 'function' && typeof handleClear === 'function' && typeof searchValue === 'string') {
@@ -96,6 +98,9 @@ class PatternFlyTable extends React.Component {
         return cells.some(item => {
           let parsedCell = parseCell(item)
           parsedCell = (typeof parsedCell === 'string') ? parsedCell : parsedCell.fromNow
+          if (strictSearch) {
+            return parsedCell.toLowerCase() === trimmedSearchValue.toLowerCase()
+          }
           return parsedCell.toLowerCase().includes(trimmedSearchValue.toLowerCase())
         })
       })
@@ -155,18 +160,12 @@ class PatternFlyTable extends React.Component {
     })
   }
   handleSearch = (value) => {
-    const { searchQueryKey, searchQueryEnabled } = this.props
-    this.setState({
-      searchState: value
-    })
-    // Update URL query (without adding to browser history)
+    const { searchQueryKey } = this.props
+    const { searchQueryEnabled } = this.state
+    // Update URL query if it changes (without adding to browser history)
     if (searchQueryEnabled) {
       const searchQuery = new URLSearchParams(location.search.substring(1))
-      if (value !== '') {
-        searchQuery.set(searchQueryKey, value)
-      } else {
-        searchQuery.delete(searchQueryKey)
-      }
+      searchQuery.delete(searchQueryKey)
       // If there are other queries, keep them in the URL, otherwise return the URL without queries
       if (searchQuery.toString() !== '') {
         window.history.replaceState({}, document.title, `${location.origin}${location.pathname}?${searchQuery.toString()}`)
@@ -174,12 +173,15 @@ class PatternFlyTable extends React.Component {
         window.history.replaceState({}, document.title, `${location.origin}${location.pathname}`)
       }
     }
+    this.setState({
+      searchState: value,
+      searchQueryEnabled: false,
+      strictSearch: false
+    })
   }
   handleClear = () => {
-    const { searchQueryKey, searchQueryEnabled } = this.props
-    this.setState({
-      searchState: ''
-    })
+    const { searchQueryKey } = this.props
+    const { searchQueryEnabled } = this.state
     // Update URL query (without adding to browser history)
     if (searchQueryEnabled) {
       const searchQuery = new URLSearchParams(location.search.substring(1))
@@ -191,6 +193,11 @@ class PatternFlyTable extends React.Component {
         window.history.replaceState({}, document.title, `${location.origin}${location.pathname}`)
       }
     }
+    this.setState({
+      searchState: '',
+      searchQueryEnabled: false,
+      strictSearch: false
+    })
   }
 
   render() {
@@ -310,6 +317,8 @@ PatternFlyTable.propTypes = {
     index: PropTypes.number,
     direction: PropTypes.oneOf(['asc', 'desc']),
   }),
+  /* Whether to match strings exactly */
+  strictSearch: PropTypes.bool,
   /* call back function to pass in and handle table action in patternfly table*/
   tableActionResolver: PropTypes.func
 }
