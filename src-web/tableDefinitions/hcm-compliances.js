@@ -416,6 +416,8 @@ export function getDecisionList(policy, locale) {
                 if (status !== 'nostatus') {
                   href=`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?clusterFilter=${cluster}&index=0`
                   color='blue'
+                } else {
+                  href=`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}`
                 }
                 // Return links to status page, filtered by selected cluster
                 return (<span key={`${cluster}-link`}>
