@@ -42,13 +42,6 @@ else
   fi
 fi
 
-# Set resource ID to timestamp if not given
-if [ -n "${RESOURCE_ID}" ]; then
-  export CYPRESS_RESOURCE_ID=${RESOURCE_ID}
-else
-  export CYPRESS_RESOURCE_ID=$(date +"%s")
-fi
-
 if [ -z "$MANAGED_CLUSTER_NAME" ]; then
   echo "MANAGED_CLUSTER_NAME not set."
 else
@@ -66,17 +59,18 @@ fi
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
 RHACM_CONSOLE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
 export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-$RHACM_CONSOLE_URL}
-if [ "$CYPRESS_BASE_URL" = "https://localhost:3000" ]; then
+if [ "$CYPRESS_BASE_URL" = "https://localhost:3000" || "${CYPRESS_coverage}" != "false" ]; then
   export CYPRESS_coverage=true
 else
   export CYPRESS_coverage=false
 fi
 
+export CYPRESS_RESOURCE_ID=${CYPRESS_RESOURCE_ID:-"$(date +"%s")"}
 export CYPRESS_RBAC_PASS=$RBAC_PASS
 export CYPRESS_FAIL_FAST_PLUGIN=${CYPRESS_FAIL_FAST_PLUGIN:-"true"}
 export CYPRESS_OC_IDP=$OC_IDP
 echo -e "Running Cypress tests with the following environment:\n"
-echo -e "\tCYPRESS_RESOURCE_ID (used as policy time stamp) : $CYPRESS_RESOURCE_ID"
+echo -e "\tCYPRESS_RESOURCE_ID (used for policy identifier) : $CYPRESS_RESOURCE_ID"
 echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL) : $CYPRESS_BASE_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_USER        : $CYPRESS_OPTIONS_HUB_USER"
