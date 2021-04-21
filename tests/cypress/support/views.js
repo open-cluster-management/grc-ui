@@ -175,7 +175,6 @@ export const getDefaultSubstitutionRules = (rules = {}) => {
 }
 
 export const action_createPolicyFromYAML = (policyYAML, create=true) => {
-  console.log(policyYAML)
   cy/*.toggleYAMLeditor('On')*/
     .YAMLeditor()
     .invoke('setValue', policyYAML)
@@ -359,7 +358,6 @@ export const action_verifyPolicyInListing = (
   }
   cy.doTableSearch(uName)
     .get('.grc-view-by-policies-table').within(() => {
-    console.log(uName)
     cy.log(uName)
     cy.get('a').contains(uName).parents('td').siblings('td')
     .spread((namespace, remediation, violations, standards, categories, controls) => {
@@ -466,54 +464,6 @@ export const action_actionPolicyActionInListing = (uName, action, cancel=false) 
   // after mainpage table action, always return to grc main page
   cy.CheckGrcMainPage()
     .clearTableSearch()
-}
-
-// needs to be run only on /multicloud/policies/all/default/${policyName}
-// where it checks whether all clusters have the expected status available
-export const isClusterPolicyStatusAvailable = (clusterViolations, clusterList=null) => {
-  let statusAvailable = true
-  if (clusterList == null) { clusterList = Object.keys(clusterViolations) }
-  // search for the cluster status in a Placement rule section
-  return cy.then(() => {
-    cy.get('section[aria-label="Placement rule"]').within(() => {
-    cy.get('.bx--structured-list-td').spread((
-      label1, name, label2, namespace, label3,
-      selector, label4, decisions
-      ) => {
-      // check Decisions
-      // for each cluster check that the expected status is listed
-      cy.then(() => {
-        for (const clusterName in clusterViolations) {
-          cy.wrap(decisions).within(() => {
-            // find cluster name
-            cy.get('.one-cluster-status').contains(clusterName)
-              .get('.table-status-row').as('clusterStatus')
-              // check status
-              .then(() => {
-                if (clusterViolations[clusterName]) {  // do the check only if we have violation details for the cluster
-                  const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName]).toLowerCase()
-                  cy.get('@clusterStatus').then((e) => {
-                    // check the cluster status
-                    if (! e[0].textContent.match(new RegExp(clusterStatus))) {
-                      statusAvailable = false
-                    }
-                  })
-                }
-                // always check that status icon doesn't indicate status not being available
-                cy.get('@clusterStatus').find('path').then((elems) => {
-                  const d = elems[0].getAttribute('d')
-                  // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-                  if (d.startsWith('M569')) {
-                    statusAvailable = false
-                  }
-                })
-              })
-          })
-        }
-      })
-    })
-  }).then(() => statusAvailable )
-})
 }
 
 // needs to be run at /multicloud/policies/all at ClusterViolations tab
@@ -865,9 +815,9 @@ export const getClusterPolicyStatus = (clusterViolations, format='long') => {
   for (const violation of clusterViolations) {
     const id = violation.replace(/^.*-/, '')
     if (id == '?') {  // if the status is unknown
-      result = '(Compliant|Not Compliant)'
+      result = 'No status'
     } else if (id[0] != '0') {  // if there is an actual violation (non-zero ID)
-      result = 'Not Compliant'
+      result = 'Not compliant'
       break
     }
   }
@@ -1096,6 +1046,53 @@ export const action_verifyPolicyDetailsInCluster =  (policyName, policyConfig, c
         } else {
           cy.wrap(message).contains(new RegExp(templateName+': '+clusterStatus2))
         }
+      }
+    })
+  })
+}
+
+export const action_verifyClusterListInPolicyDetails = (policyConfig, clusterViolations, checkLength=true) => {
+  cy.get('div.cluster-list').within(() => {
+    // Check headings
+    cy.get('.pattern-fly-table-header > tr > th').spread((
+      label1, label2, label3
+    ) => {
+      cy.wrap(label1).should('have.text', 'Cluster selector')
+      cy.wrap(label2).should('have.text', 'Clusters')
+      cy.wrap(label3).should('have.text', 'Status')
+    })
+    cy.get('.pattern-fly-table-body > tr > td').spread((
+      selector, clusters, status
+    ) => {
+      // check binding selector
+      if (policyConfig['binding_selector']) {
+        // FIXME: in theory there could be multiple bindings
+        cy.wrap(selector).should('have.text', policyConfig['binding_selector'][0].replace(/\s/g, ''))
+      }
+      // check cluster statuses
+      if (clusterViolations) {
+        // check the number of clusters listed matches the configuration
+        // for each cluster check that the expected status is listed and links correctly
+        if (checkLength) {
+          cy.wrap(status).find('a').should('have.length', Object.keys(clusterViolations).length)
+          cy.wrap(clusters).contains(Object.keys(clusterViolations).length)
+        }
+        cy.then(() => {
+          for (const clusterName in clusterViolations) {
+            cy.wrap(status).within(() => {
+              // find cluster name
+              cy.get('a').contains(clusterName).as('clusterStatus').should('have.text', clusterName)
+              cy.get('@clusterStatus').parents('div.status-list').siblings('div.status-heading').get('.table-status-row').children().spread((icon, status) => {
+                // check status
+                const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName])
+                cy.wrap(status).should('have.text', `${clusterStatus}:`)
+                // check status icon
+                const fillColor = getStatusIconFillColor(clusterStatus.toLowerCase())
+                cy.wrap(icon).find('svg[fill="'+fillColor+'"]').should('exist')
+              })
+            })
+          }
+        })
       }
     })
   })

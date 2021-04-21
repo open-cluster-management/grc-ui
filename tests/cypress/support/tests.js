@@ -115,6 +115,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
     it(`Verify policy ${policyName} details at the detailed page`, () => {
       cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`).waitForPageContentLoad()
         .verifyPolicyInPolicyDetails(policyName, confPolicies[policyName], 'enabled', violationsCounter)
+        .verifyClusterListInPolicyDetails(confPolicies[policyName], clusterViolations, violationsCounter)
     })
 
     it(`Verify policy ${policyName} violations at the Status - Clusters page`, () => {
@@ -210,6 +211,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       it(`Verify policy ${policyName} details at the detailed page`, () => {
         cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}`).waitForPageContentLoad()
           .verifyPolicyInPolicyDetails(policyName, confPolicies[policyName], 'enabled', violationsCounter)
+          .verifyClusterListInPolicyDetails(confPolicies[policyName], clusterViolations, violationsCounter)
       })
 
       it(`Verify policy ${policyName} violations at the Status - Clusters page`, () => {
