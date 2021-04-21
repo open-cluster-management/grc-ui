@@ -13,31 +13,10 @@
 
 .resource-filter-bar {
 
+  margin-bottom: 1rem;
+
   .title {
     font-weight: bold;
-  }
-
-  .bx--tag.bx--tag--custom {
-    margin-left: 0.625rem;
-    background-color: $grc_view_filter;
-    color: $color__blue-90;
-    font-size: .9rem;
-    padding: .8rem;
-    line-height: 1.25rem;
-    white-space: nowrap;
-
-    &:focus {
-      box-shadow: 0 0 0 $grc_focus_shaldow_width $grc_focus_shaldow_color;
-      outline: 0.0625rem solid transparent;
-      border: none;
-    }
-
-    .closeIcon {
-      // font-family: RedHatText;
-      fill: $color__blue-90;
-      cursor: pointer;
-      margin-left: 0.3125rem;
-    }
   }
 
   .button {
