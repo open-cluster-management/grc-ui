@@ -134,11 +134,12 @@ npm run test:unit
    ```
 
 4. Run the following command to start the cypress test:
+   **NOTE:** Running `npx cypress ...` is not recommended. There is logic in the script called in the `npm` commands that will customize the test run for your cluster.
    - To run the tests with a live browser:
      ```bash
      npm run test:cypress
      ```
-     **NOTE:** To open Cypress to interact and run tests individually, first run `export NODE_ENV=debug` before starting the headful tests
+     **NOTE:** To open Cypress in an interactive mode and run tests individually, first run `export NODE_ENV=debug` before starting the headful tests
 
    - To run the tests headless (i.e. with the browser running in the background):
      ```bash
