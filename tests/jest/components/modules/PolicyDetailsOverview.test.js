@@ -68,6 +68,34 @@ describe('PolicyDetailsOverview component', () => {
     )
     expect(component.toJSON()).toMatchSnapshot()
   })
+  it('renders a cluster list expander with more than 5 clusters', () => {
+    // Add more clusters to the list to get it over the overflow limit of 5 clusters
+    for (let i = 1; i < 6; i++) {
+      itemPolicyOverview_extra.placementPolicies[0].status.decisions.push({
+        clusterName: `cluster${i}`,
+        clusterNamespace: `cluster${i}`,
+      })
+    }
+    const component = renderer.create(
+      <ApolloProvider client={GrcApolloClient.getGrcClient()}>
+        <Provider store={store}>
+          <BrowserRouter>
+            <PolicyDetailsOverview
+              items={[itemPolicyOverview_extra]}
+              updateResourceToolbar={jest.fn()}
+              staticResourceData={staticResourceDataPolicyOverview}
+              location={location}
+              resourceType={resourceType}
+              refreshControl={refreshControl}
+              error={null}
+              loading={false}
+            />
+          </BrowserRouter>
+        </Provider>
+      </ApolloProvider>
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
   it('renders no resource', () => {
     const component = renderer.create(
       <ApolloProvider client={GrcApolloClient.getGrcClient()}>

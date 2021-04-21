@@ -25920,7 +25920,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                         ]
                                       }
                                       searchPlaceholder="Find"
-                                      searchQueryEnabled={true}
+                                      searchQueryEnabled={false}
                                       searchQueryKey="clusterFilter"
                                       searchValue=""
                                       searchable={true}
@@ -25930,6 +25930,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                           "index": 1,
                                         }
                                       }
+                                      strictSearch={false}
                                     >
                                       <div
                                         className="pattern-fly-table-group"
