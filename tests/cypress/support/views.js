@@ -815,7 +815,7 @@ export const getClusterPolicyStatus = (clusterViolations, format='long') => {
   for (const violation of clusterViolations) {
     const id = violation.replace(/^.*-/, '')
     if (id == '?') {  // if the status is unknown
-      result = '(Compliant|NonCompliant)'
+      result = '(Compliant|Not compliant)'
     } else if (id[0] != '0') {  // if there is an actual violation (non-zero ID)
       result = 'Not compliant'
       break
