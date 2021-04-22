@@ -1087,9 +1087,11 @@ export const action_verifyClusterListInPolicyDetails = (policyConfig, clusterVio
                 const clusterStatusExp = getClusterPolicyStatus(clusterViolations[clusterName])
                 const clusterStatus = new RegExp(`^${clusterStatusExp}[:]`)
                 cy.wrap(status.textContent).should('match', clusterStatus)
-                // check status icon
-                const fillColor = getStatusIconFillColor(clusterStatusExp.toLowerCase())
-                cy.wrap(icon).find('svg[fill="'+fillColor+'"]').should('exist')
+                if (!clusterStatusExp.startsWith('(')) {
+                  // check status icon only if we absolutely know the status
+                  const fillColor = getStatusIconFillColor(clusterStatusExp.toLowerCase())
+                  cy.wrap(icon).find('svg[fill="'+fillColor+'"]').should('exist')
+                }
               })
             })
           }
