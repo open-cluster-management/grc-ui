@@ -400,10 +400,11 @@ export function getDecisionList(policy, locale) {
   // Push lists of clusters along with status icon, heading, and overflow badge
   const statusList = []
   for (const status of Object.keys(clusterList)) {
+    const statusMsg = msgs.get(`table.cell.${status}`, locale)
     statusList.push(
       <div key={`${status}-status-container`} className='status-container'>
         <div key={`${status}-status-heading`} className='status-heading'>
-          <StatusField status={status} text={`${msgs.get(`table.cell.${status}`, locale)}:`} />
+          <StatusField status={status} text={`${statusMsg}:`} />
         </div>
         <div key={`${status}-status-list`} className='status-list'>
           <LabelGroup
