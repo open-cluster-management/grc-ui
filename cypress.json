@@ -13,6 +13,7 @@
   "screenshotsFolder" : "test-output/cypress/screenshots",
   "supportFile": "tests/cypress/support/index.js",
   "videosFolder": "test-output/cypress/videos",
+  "videoCompression": 51,
   "videoUploadOnPasses": false,
   "watchForFileChanges": true,
   "nodeVersion": "system",
@@ -30,6 +31,6 @@
       "mochaFile": "test-output/cypress/cypress-[hash].xml"
     }
   },
-  "viewportHeight": 525,
-  "viewportWidth": 840
+  "viewportHeight": 1050,
+  "viewportWidth": 1680
 }
