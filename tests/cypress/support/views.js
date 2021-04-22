@@ -815,7 +815,7 @@ export const getClusterPolicyStatus = (clusterViolations, format='long') => {
   for (const violation of clusterViolations) {
     const id = violation.replace(/^.*-/, '')
     if (id == '?') {  // if the status is unknown
-      result = 'No status'
+      result = '(Compliant|NonCompliant)'
     } else if (id[0] != '0') {  // if there is an actual violation (non-zero ID)
       result = 'Not compliant'
       break
@@ -1084,7 +1084,8 @@ export const action_verifyClusterListInPolicyDetails = (policyConfig, clusterVio
               cy.get('a').contains(clusterName).as('clusterStatus').should('have.text', clusterName)
               cy.get('@clusterStatus').parents('div.status-list').siblings('div.status-heading').get('.table-status-row').children().spread((icon, status) => {
                 // check status
-                const clusterStatus = getClusterPolicyStatus(clusterViolations[clusterName])
+                const clusterStatusExp = getClusterPolicyStatus(clusterViolations[clusterName])
+                const clusterStatus = clusterStatusExp.startsWith('(') ? 'No status' : clusterStatusExp
                 cy.wrap(status).should('have.text', `${clusterStatus}:`)
                 // check status icon
                 const fillColor = getStatusIconFillColor(clusterStatus.toLowerCase())
