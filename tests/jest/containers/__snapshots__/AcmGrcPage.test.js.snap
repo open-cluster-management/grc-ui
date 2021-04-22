@@ -9025,7 +9025,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                                                       <span
                                                         className="pf-c-dropdown__toggle-text"
                                                       >
-                                                        Refresh every 1m
+                                                        Refresh every 10s
                                                       </span>
                                                       <span
                                                         className="pf-c-dropdown__toggle-icon"
@@ -9126,83 +9126,6 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                                           </TooltipWrapper>
                                         </AcmButton>
                                       </div>
-                                    </div>
-                                  </AcmAutoRefreshSelect>
-                                  <AcmRefreshTime
-                                    reloading={false}
-                                    timestamp="Fri Jan 01 2021 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                                  >
-                                    <div
-                                      className="makeStyles-timestamp-5"
-                                    >
-                                      <p>
-                                        Last update: 
-                                        12:00:00 AM
-                                      </p>
-                                    </div>
-                                  </AcmRefreshTime>
-                                  <AcmButton
-                                    id="create-policy"
-                                    isDisabled={true}
-                                    key="create-policy"
-                                    onClick={[Function]}
-                                    tooltip="You are not authorized to complete this action. See your cluster administrator for role-based access information."
-                                  >
-                                    <TooltipWrapper
-                                      showTooltip={true}
-                                      tooltip="You are not authorized to complete this action. See your cluster administrator for role-based access information."
-                                    >
-                                      <Tooltip
-                                        content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
-                                        position="top"
-                                      >
-                                        <Popper
-                                          appendTo={[Function]}
-                                          distance={15}
-                                          enableFlip={true}
-                                          flipBehavior={
-                                            Array [
-                                              "top",
-                                              "right",
-                                              "bottom",
-                                              "left",
-                                              "top",
-                                              "right",
-                                              "bottom",
-                                            ]
-                                          }
-                                          isVisible={false}
-                                          onBlur={[Function]}
-                                          onDocumentClick={false}
-                                          onDocumentKeyDown={[Function]}
-                                          onFocus={[Function]}
-                                          onMouseEnter={[Function]}
-                                          onMouseLeave={[Function]}
-                                          onTriggerEnter={[Function]}
-                                          placement="top"
-                                          popper={
-                                            <div
-                                              className="pf-c-tooltip"
-                                              id="pf-tooltip-5"
-                                              role="tooltip"
-                                              style={
-                                                Object {
-                                                  "maxWidth": null,
-                                                  "opacity": 0,
-                                                  "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
-                                                }
-                                              }
-                                            >
-                                              <TooltipArrow />
-                                              <TooltipContent
-                                                isLeftAligned={false}
-                                              >
-                                                You are not authorized to complete this action. See your cluster administrator for role-based access information.
-                                              </TooltipContent>
-                                            </div>
-                                          </mockTooltip>
-                                        </TooltipWrapper>
-                                      </AcmButton>
                                     </div>
                                   </StackItem>
                                 </div>
@@ -25417,7 +25340,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                       <span
                                                         className="pf-c-dropdown__toggle-text"
                                                       >
-                                                        Refresh every 1m
+                                                        Refresh every 10s
                                                       </span>
                                                       <span
                                                         className="pf-c-dropdown__toggle-icon"
@@ -25518,83 +25441,6 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                           </TooltipWrapper>
                                         </AcmButton>
                                       </div>
-                                    </div>
-                                  </AcmAutoRefreshSelect>
-                                  <AcmRefreshTime
-                                    reloading={false}
-                                    timestamp="Fri Jan 01 2021 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                                  >
-                                    <div
-                                      className="makeStyles-timestamp-5"
-                                    >
-                                      <p>
-                                        Last update: 
-                                        12:00:00 AM
-                                      </p>
-                                    </div>
-                                  </AcmRefreshTime>
-                                  <AcmButton
-                                    id="edit-policy"
-                                    isDisabled={true}
-                                    key="edit-policy"
-                                    onClick={[Function]}
-                                    tooltip="You are not authorized to complete this action. See your cluster administrator for role-based access information."
-                                  >
-                                    <TooltipWrapper
-                                      showTooltip={true}
-                                      tooltip="You are not authorized to complete this action. See your cluster administrator for role-based access information."
-                                    >
-                                      <Tooltip
-                                        content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
-                                        position="top"
-                                      >
-                                        <Popper
-                                          appendTo={[Function]}
-                                          distance={15}
-                                          enableFlip={true}
-                                          flipBehavior={
-                                            Array [
-                                              "top",
-                                              "right",
-                                              "bottom",
-                                              "left",
-                                              "top",
-                                              "right",
-                                              "bottom",
-                                            ]
-                                          }
-                                          isVisible={false}
-                                          onBlur={[Function]}
-                                          onDocumentClick={false}
-                                          onDocumentKeyDown={[Function]}
-                                          onFocus={[Function]}
-                                          onMouseEnter={[Function]}
-                                          onMouseLeave={[Function]}
-                                          onTriggerEnter={[Function]}
-                                          placement="top"
-                                          popper={
-                                            <div
-                                              className="pf-c-tooltip"
-                                              id="pf-tooltip-9"
-                                              role="tooltip"
-                                              style={
-                                                Object {
-                                                  "maxWidth": null,
-                                                  "opacity": 0,
-                                                  "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
-                                                }
-                                              }
-                                            >
-                                              <TooltipArrow />
-                                              <TooltipContent
-                                                isLeftAligned={false}
-                                              >
-                                                You are not authorized to complete this action. See your cluster administrator for role-based access information.
-                                              </TooltipContent>
-                                            </div>
-                                          </mockTooltip>
-                                        </TooltipWrapper>
-                                      </AcmButton>
                                     </div>
                                   </StackItem>
                                 </div>
@@ -35369,168 +35215,6 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                   id="refresh-disable"
                                                   onClick={[Function]}
                                                   pi={0}
-                                                >
-                                                  Disable refresh
-                                                </DropdownItem>,
-                                              ]
-                                            }
-                                            id="refresh-dropdown"
-                                            isOpen={false}
-                                            isPlain={true}
-                                            onSelect={[Function]}
-                                            toggle={
-                                              <DropdownToggle
-                                                aria-label="refresh-label"
-                                                id="refresh-toggle"
-                                                isDisabled={false}
-                                                onToggle={[Function]}
-                                              >
-                                                Refresh every 1m
-                                              </DropdownToggle>
-                                            }
-                                          >
-                                            <DropdownWithContext
-                                              aria-label="refetch-intervals"
-                                              autoFocus={true}
-                                              className="makeStyles-buttonTitle-3"
-                                              direction="down"
-                                              dropdownItems={
-                                                Array [
-                                                  <DropdownItem
-                                                    id="refresh-5s"
-                                                    onClick={[Function]}
-                                                    pi={5000}
-                                                  >
-                                                    Refresh every 5s
-                                                  </DropdownItem>,
-                                                  <DropdownItem
-                                                    id="refresh-10s"
-                                                    onClick={[Function]}
-                                                    pi={10000}
-                                                  >
-                                                    Refresh every 10s
-                                                  </DropdownItem>,
-                                                  <DropdownItem
-                                                    id="refresh-30s"
-                                                    onClick={[Function]}
-                                                    pi={30000}
-                                                  >
-                                                    Refresh every 30s
-                                                  </DropdownItem>,
-                                                  <DropdownItem
-                                                    id="refresh-1m"
-                                                    onClick={[Function]}
-                                                    pi={60000}
-                                                  >
-                                                    Refresh every 1m
-                                                  </DropdownItem>,
-                                                  <DropdownItem
-                                                    id="refresh-5m"
-                                                    onClick={[Function]}
-                                                    pi={300000}
-                                                  >
-                                                    Refresh every 5m
-                                                  </DropdownItem>,
-                                                  <DropdownItem
-                                                    id="refresh-30m"
-                                                    onClick={[Function]}
-                                                    pi={1800000}
-                                                  >
-                                                    Refresh every 30m
-                                                  </DropdownItem>,
-                                                  <DropdownItem
-                                                    id="refresh-disable"
-                                                    onClick={[Function]}
-                                                    pi={0}
-                                                  >
-                                                    Disable refresh
-                                                  </DropdownItem>,
-                                                ]
-                                              }
-                                              id="refresh-dropdown"
-                                              isGrouped={false}
-                                              isOpen={false}
-                                              isPlain={true}
-                                              menuAppendTo="inline"
-                                              onSelect={[Function]}
-                                              position="left"
-                                              toggle={
-                                                <DropdownToggle
-                                                  aria-label="refresh-label"
-                                                  id="refresh-toggle"
-                                                  isDisabled={false}
-                                                  onToggle={[Function]}
-                                                >
-                                                  Refresh every 1m
-                                                </DropdownToggle>
-                                              }
-                                            >
-                                              <div
-                                                aria-label="refetch-intervals"
-                                                className="pf-c-dropdown makeStyles-buttonTitle-3"
-                                                data-ouia-component-id="OUIA-Generated-Dropdown-6"
-                                                data-ouia-component-type="PF4/Dropdown"
-                                                data-ouia-safe={true}
-                                                id="refresh-dropdown"
-                                              >
-                                                <DropdownToggle
-                                                  aria-haspopup={true}
-                                                  aria-label="refresh-label"
-                                                  getMenuRef={[Function]}
-                                                  id="refresh-toggle"
-                                                  isDisabled={false}
-                                                  isOpen={false}
-                                                  isPlain={true}
-                                                  key=".0"
-                                                  onEnter={[Function]}
-                                                  onToggle={[Function]}
-                                                  parentRef={
-                                                    Object {
-                                                      "current": <div
-                                                        aria-label="refetch-intervals"
-                                                        class="pf-c-dropdown makeStyles-buttonTitle-3"
-                                                        data-ouia-component-id="OUIA-Generated-Dropdown-6"
-                                                        data-ouia-component-type="PF4/Dropdown"
-                                                        data-ouia-safe="true"
-                                                        id="refresh-dropdown"
-                                                      >
-                                                        <button
-                                                          aria-expanded="false"
-                                                          aria-haspopup="true"
-                                                          aria-label="refresh-label"
-                                                          class="pf-c-dropdown__toggle pf-m-plain"
-                                                          data-ouia-component-id="OUIA-Generated-DropdownToggle-9"
-                                                          data-ouia-component-type="PF4/DropdownToggle"
-                                                          data-ouia-safe="true"
-                                                          id="refresh-toggle"
-                                                          type="button"
-                                                        >
-                                                          <span
-                                                            class="pf-c-dropdown__toggle-text"
-                                                          >
-                                                            Refresh every 1m
-                                                          </span>
-                                                          <span
-                                                            class="pf-c-dropdown__toggle-icon"
-                                                          >
-                                                            <svg
-                                                              aria-hidden="true"
-                                                              fill="currentColor"
-                                                              height="1em"
-                                                              role="img"
-                                                              style="vertical-align: -0.125em;"
-                                                              viewBox="0 0 320 512"
-                                                              width="1em"
-                                                            >
-                                                              <path
-                                                                d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-                                                              />
-                                                            </svg>
-                                                          </span>
-                                                        </button>
-                                                      </div>,
-                                                    }
-                                                  }
                                                 >
                                                   Disable refresh
                                                 </DropdownItem>,
@@ -46012,7 +45696,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                                       <span
                                                         className="pf-c-dropdown__toggle-text"
                                                       >
-                                                        Refresh every 1m
+                                                        Refresh every 10s
                                                       </span>
                                                       <span
                                                         className="pf-c-dropdown__toggle-icon"
@@ -51796,29 +51480,6 @@ Array [
                   data-ouia-safe="true"
                   id="refresh-dropdown"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="makeStyles-icon-4"
-                    fill="currentColor"
-                    height="1em"
-                    role="img"
-                    style="vertical-align:-0.125em"
-                    viewBox="0 0 512 512"
-                    width="1em"
-                  >
-                    <path
-                      d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z"
-                    />
-                  </svg>
-                </div>
-                <div
-                  aria-label="refetch-intervals"
-                  class="pf-c-dropdown makeStyles-buttonTitle-3"
-                  data-ouia-component-id="OUIA-Generated-Dropdown-1"
-                  data-ouia-component-type="PF4/Dropdown"
-                  data-ouia-safe="true"
-                  id="refresh-dropdown"
-                >
                   <button
                     aria-expanded="false"
                     aria-haspopup="true"
@@ -51865,6 +51526,12 @@ Array [
                 >
                   <span
                     class="pf-c-spinner__clipper"
+                  />
+                  <span
+                    class="pf-c-spinner__lead-ball"
+                  />
+                  <span
+                    class="pf-c-spinner__tail-ball"
                   />
                 </span>
                 <p>
