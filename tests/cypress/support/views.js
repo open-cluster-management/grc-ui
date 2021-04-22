@@ -1085,7 +1085,7 @@ export const action_verifyClusterListInPolicyDetails = (policyConfig, clusterVio
               cy.get('@clusterStatus').parents('div.status-list').siblings('div.status-heading').get('.table-status-row').children().spread((icon, status) => {
                 // check status
                 const clusterStatusExp = getClusterPolicyStatus(clusterViolations[clusterName])
-                const clusterStatus = clusterStatusExp.startsWith('(') ? 'No status' : clusterStatusExp
+                const clusterStatus = new RegExp(`^${clusterStatusExp}[:]`)
                 cy.wrap(status).should('have.text', `${clusterStatus}:`)
                 // check status icon
                 const fillColor = getStatusIconFillColor(clusterStatus.toLowerCase())
