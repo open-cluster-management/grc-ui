@@ -1088,7 +1088,7 @@ export const action_verifyClusterListInPolicyDetails = (policyConfig, clusterVio
                 const clusterStatus = new RegExp(`^${clusterStatusExp}[:]`)
                 cy.wrap(status).should('have.text', `${clusterStatus}:`)
                 // check status icon
-                const fillColor = getStatusIconFillColor(clusterStatus.toLowerCase())
+                const fillColor = getStatusIconFillColor(clusterStatusExp.toLowerCase())
                 cy.wrap(icon).find('svg[fill="'+fillColor+'"]').should('exist')
               })
             })
