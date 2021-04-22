@@ -180,24 +180,7 @@ class PatternFlyTable extends React.Component {
     })
   }
   handleClear = () => {
-    const { searchQueryKey } = this.props
-    const { searchQueryEnabled } = this.state
-    // Update URL query (without adding to browser history)
-    if (searchQueryEnabled) {
-      const searchQuery = new URLSearchParams(location.search.substring(1))
-      searchQuery.delete(searchQueryKey)
-      // If there are other queries, keep them in the URL, otherwise return the URL without queries
-      if (searchQuery.toString() !== '') {
-        window.history.replaceState({}, document.title, `${location.origin}${location.pathname}?${searchQuery.toString()}`)
-      } else {
-        window.history.replaceState({}, document.title, `${location.origin}${location.pathname}`)
-      }
-    }
-    this.setState({
-      searchState: '',
-      searchQueryEnabled: false,
-      strictSearch: false
-    })
+    this.handleSearch('')
   }
 
   render() {
