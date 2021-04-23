@@ -10,7 +10,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 const path = require('path')
-const platformFilePath = path.join(__dirname, '../../nls/platform.properties')
+const platformFilePath = path.join(__dirname, '../../../src-web/nls/platform.properties')
 const propertiesParser = require('properties-parser')
 const jsonfile = require('jsonfile')
 const fs = require('fs')
