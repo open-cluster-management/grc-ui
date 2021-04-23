@@ -13,7 +13,7 @@
 
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client'
 import _ from 'lodash'
-import config from '../shared/config'
+import config from '../../../lib/shared/config'
 import * as Query from './queries'
 
 const defaultOptions = {

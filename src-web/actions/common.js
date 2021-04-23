@@ -11,7 +11,7 @@
 
 import _ from 'lodash'
 
-import GrcApolloClient from '../../lib/client/apollo-client'
+import GrcApolloClient from '../utils/client/apollo-client'
 import { formatExpandablePolicies } from '../utils/FormatTableData'
 import { buildSelfLinK } from '../utils/BuildSelfLink'
 import {

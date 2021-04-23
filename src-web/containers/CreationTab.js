@@ -11,7 +11,7 @@ import { createResources, createAndUpdateResources,
   clearRequestStatus, fetchSingleResource } from '../actions/common'
 import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { CREATE_POLICY_DISCOVERY, EDIT_POLICY_DISCOVERY } from '../../lib/client/queries'
+import { CREATE_POLICY_DISCOVERY, EDIT_POLICY_DISCOVERY } from '../utils/client/queries'
 import CreationView from '../components/modules/CreationView'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'

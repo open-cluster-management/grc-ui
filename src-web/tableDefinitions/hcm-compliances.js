@@ -15,7 +15,7 @@
 import React from 'react'
 import _ from 'lodash'
 import msgs from '../../nls/platform.properties'
-import { getLabels } from '../../lib/client/resource-helper'
+import { getLabels } from '../utils/resource-helper'
 import { Link } from 'react-router-dom'
 import StatusField from '../components/common/StatusField'
 import { Label, LabelGroup } from '@patternfly/react-core'

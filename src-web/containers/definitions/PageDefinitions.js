@@ -6,7 +6,7 @@
 import React from 'react'
 import { AcmButton, AcmSecondaryNavItem } from '@open-cluster-management/ui-components'
 
-import { ALL_POLICIES, SINGLE_POLICY, POLICY_STATUS, POLICY_STATUS_HISTORY, POLICY_TEMPLATE_DETAILS } from '../../../lib/client/queries'
+import { ALL_POLICIES, SINGLE_POLICY, POLICY_STATUS, POLICY_STATUS_HISTORY, POLICY_TEMPLATE_DETAILS } from '../../utils/client/queries'
 import config from '../../../lib/shared/config'
 // eslint-disable-next-line import/no-named-as-default
 import GrcView from '../../components/modules/GrcView'
