@@ -59,7 +59,7 @@ fi
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
 RHACM_CONSOLE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
 export CYPRESS_BASE_URL=${CYPRESS_BASE_URL:-$RHACM_CONSOLE_URL}
-if [ "$CYPRESS_BASE_URL" = "https://localhost:3000" || "${CYPRESS_coverage}" != "false" ]; then
+if [ "$CYPRESS_BASE_URL" == "https://localhost:3000" ] || [ "${CYPRESS_coverage}" != "false" ]; then
   export CYPRESS_coverage=true
 else
   export CYPRESS_coverage=false
