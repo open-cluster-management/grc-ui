@@ -206,3 +206,7 @@ export function getClusterCompliantStatus(item, locale) {
 export function getClusterViolationLabels(item) {
   return <TruncateText text={item.nonCompliant.join(', ')} />
 }
+
+export function getAutomationLink() { //item, locale) {
+  return 'Automation Link'
+}
