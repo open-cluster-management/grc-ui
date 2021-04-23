@@ -8,9 +8,13 @@ import {
   buildTimestamp,
   createComplianceLink,
   getPolicyCompliantStatus,
+<<<<<<< HEAD
   getCategories,
   getControls,
   getStandards
+=======
+  getAutomationLink,
+>>>>>>> Add "Automation" column and action menu item
 } from './utils'
 import {
   breakWord,
@@ -19,10 +23,12 @@ import {
 } from '@patternfly/react-table'
 export default {
   tableActions: [
-    'table.actions.edit',
-    'table.actions.disable',
+    'table.actions.policy.details',
+    'table.actions.policy.edit',
+    'table.actions.policy.disable',
     'table.actions.enforce',
-    'table.actions.remove',
+    'table.actions.automation.edit',
+    'table.actions.policy.remove',
   ],
   tableKeys: [
     {
@@ -62,13 +68,18 @@ export default {
       msgKey: 'table.header.categories',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/categories"]',
       transforms: [wrappable, sortable],
-      transformFunction: getCategories
+      transformFunction: getCategories,
     },
     {
       msgKey: 'table.header.controls',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/controls"]',
       transforms: [wrappable, sortable],
       transformFunction: getControls,
+    },
+    {
+      msgKey: 'table.header.automation',
+      transforms: [sortable, wrappable],
+      transformFunction: getAutomationLink,
     },
     {
       msgKey: 'table.header.created',

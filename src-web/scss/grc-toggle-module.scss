@@ -45,7 +45,7 @@
       margin-right: 1px;
     }
 
-    .pf-c-dropdown__menu :nth-child(5) {
+    .pf-c-dropdown__menu :last-child {
       .pf-c-dropdown__menu-item {
         &:hover {
           background-color: var(--pf-global--danger-color--100);

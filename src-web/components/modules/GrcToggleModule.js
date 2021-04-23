@@ -48,7 +48,7 @@ class GrcToggleModule extends React.Component {
     const { locale } = this.context
     const { searchValue } = this.state
     const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
-    const tableDataByCLusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
+    const tableDataByClusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
     if (status !== REQUEST_STATUS.INCEPTION && status !== REQUEST_STATUS.DONE){
       return <Spinner className='patternfly-spinner' />
     }
@@ -87,7 +87,7 @@ class GrcToggleModule extends React.Component {
           </div>}
           {grcTabToggleIndex===1 && <div className='grc-view-by-clusters-table'>
             <PatternFlyTable
-              {...tableDataByCLusters}
+              {...tableDataByClusters}
               searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
               noResultMsg={msgs.get('table.search.no.results', locale)}
               areActionsDisabled={false}

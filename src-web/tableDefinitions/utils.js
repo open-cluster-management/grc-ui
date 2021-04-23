@@ -343,3 +343,7 @@ export function getDecisionList(policy, locale) {
   }
   return statusList
 }
+
+export function getAutomationLink() { //item, locale) {
+  return 'Automation Link'
+}
