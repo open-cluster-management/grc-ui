@@ -13,7 +13,7 @@ import { Chip } from '@patternfly/react-core'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
-import { saveSessionState } from '../../components/common/AccessStorage'
+import { saveSessionState } from '../../utils/AccessStorage'
 import { GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
 import TruncateText from '../../components/common/TruncateText'
 

@@ -10,7 +10,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 'use strict'
-import truncate from'../../../src-web/util/truncate-middle'
+import truncate from'../../../src-web/utils/truncate-middle'
 
 describe('truncate middle', () => {
   it('should truncate string as expected', () => {

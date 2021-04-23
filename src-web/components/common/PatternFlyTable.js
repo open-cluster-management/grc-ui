@@ -5,7 +5,7 @@
 
 import classNames from 'classnames'
 import React from 'react'
-import purifyReactNode from './PurifyReactNode'
+import purifyReactNode from '../../utils/PurifyReactNode'
 import PropTypes from 'prop-types'
 import {
   EmptyState,

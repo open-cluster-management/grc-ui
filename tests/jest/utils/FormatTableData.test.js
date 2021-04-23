@@ -14,11 +14,11 @@
 // Policy data was generated from a running cluster by logging the `policies`
 // input to `FormatTableData` and includes compliant, noncompliant, and
 // pending (just created) data
-import { policies, policies2, policies3 } from './CommonTestingData'
+import { policies, policies2, policies3 } from '../components/common/CommonTestingData'
 import {
   formatPoliciesToClustersTableData,
   formatExpandablePolicies
-} from '../../../../src-web/components/common/FormatTableData'
+} from '../../../src-web/utils/FormatTableData'
 
 describe('formatPoliciesToClustersTableData', () => {
   // Tests whether policy data can be consolidated from individual policies to

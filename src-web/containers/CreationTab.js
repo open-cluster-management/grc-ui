@@ -15,7 +15,7 @@ import { CREATE_POLICY_DISCOVERY, EDIT_POLICY_DISCOVERY } from '../../lib/client
 import CreationView from '../components/modules/CreationView'
 import msgs from '../../nls/platform.properties'
 import config from '../../lib/shared/config'
-import { checkCreatePermission, checkEditPermission } from '../components/common/CheckUserPermission'
+import { checkCreatePermission, checkEditPermission } from '../utils/CheckUserPermission'
 import { LocaleContext } from '../components/common/LocaleContext'
 import { AcmButton, AcmPageContent, AcmPageHeader } from '@open-cluster-management/ui-components'
 

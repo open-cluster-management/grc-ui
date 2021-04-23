@@ -17,18 +17,18 @@ import grcPoliciesViewDef from '../../tableDefinitions/grcPoliciesViewDef'
 import grcClustersViewDef from '../../tableDefinitions/grcClustersViewDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../../nls/platform.properties'
-import { formatPoliciesToClustersTableData } from '../common/FormatTableData'
+import { formatPoliciesToClustersTableData } from '../../utils/FormatTableData'
 import resources from '../../../lib/shared/resources'
 import { RESOURCE_TYPES, GRC_SEARCH_STATE_COOKIE } from '../../../lib/shared/constants'
 import _ from 'lodash'
 import { resourceActions } from '../common/ResourceTableRowMenuItemActions'
-import formatUserAccess from '../common/FormatUserAccess'
-import filterUserAction from '../common/FilterUserAction'
+import formatUserAccess from '../../utils/FormatUserAccess'
+import filterUserAction from '../../utils/FilterUserAction'
 import { REQUEST_STATUS } from '../../actions/index'
 import { createDisableTooltip } from '../common/DisableTooltip'
 import {
   getSessionState, replaceSessionPair
-} from '../common/AccessStorage'
+} from '../../utils/AccessStorage'
 
 resources(() => {
   require('../../../scss/grc-toggle-module.scss')

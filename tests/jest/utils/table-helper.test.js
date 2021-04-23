@@ -10,7 +10,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 'use strict'
-import tableHelper from'../../../src-web/util/table-helper'
+import tableHelper from'../../../src-web/utils/table-helper'
 
 describe('table-helper handleInputValue', () => {
   const item = {

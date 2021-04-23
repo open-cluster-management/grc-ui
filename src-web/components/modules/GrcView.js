@@ -14,18 +14,18 @@ import GrcCardsModule from '../modules/GrcCardsModule'
 import GrcToggleModule from '../modules/GrcToggleModule'
 import {
   filterPolicies, getAvailableGrcFilters, combineResourceFilters
-} from '../../../lib/client/filter-helper'
+} from '../../utils/filter-helper'
 import NoResource from '../common/NoResource'
 import { createDocLink, createDetails } from '../common/CreateDocLink'
 import ResourceFilterBar from '../common/ResourceFilterBar'
-import { checkCreatePermission } from '../common/CheckUserPermission'
+import { checkCreatePermission } from '../../utils/CheckUserPermission'
 import msgs from '../../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
 import config from '../../../lib/shared/config'
 import {
   getSessionState, saveSessionState, addSessionPair
-} from '../common/AccessStorage'
+} from '../../utils/AccessStorage'
 
 export class GrcView extends React.Component {
 

@@ -2,7 +2,7 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 'use strict'
-import purifyReactNode from '../../../../src-web/components/common/PurifyReactNode'
+import purifyReactNode from '../../../src-web/utils/PurifyReactNode'
 
 describe('test purifyReactNode', () => {
   it('renders null node', () => {

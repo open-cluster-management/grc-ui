@@ -15,7 +15,7 @@ import PolicyStatusView from '../../components/modules/PolicyStatusView'
 import PolicyTemplateDetailsView from '../../components/modules/PolicyTemplateDetailsView'
 import PolicyStatusHistoryView from '../../components/modules/PolicyStatusHistoryView'
 import msgs from '../../../nls/platform.properties'
-import { checkCreatePermission, checkEditPermission } from '../../components/common/CheckUserPermission'
+import { checkCreatePermission, checkEditPermission } from '../../utils/CheckUserPermission'
 
 const policiesMsg = 'routes.policies'
 const historyMsg = 'table.header.history'

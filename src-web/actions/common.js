@@ -12,8 +12,8 @@
 import _ from 'lodash'
 
 import GrcApolloClient from '../../lib/client/apollo-client'
-import { formatExpandablePolicies } from '../components/common/FormatTableData'
-import { buildSelfLinK } from '../components/common/BuildSelfLink'
+import { formatExpandablePolicies } from '../utils/FormatTableData'
+import { buildSelfLinK } from '../utils/BuildSelfLink'
 import {
   TABLE_PAGE_CHANGE, TABLE_SEARCH, TABLE_SORT, RESOURCE_RECEIVE_SUCCESS,
   REQUEST_STATUS, RESOURCE_RECEIVE_FAILURE, RESOURCE_REQUEST, RESOURCE_ADD,

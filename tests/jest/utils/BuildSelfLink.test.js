@@ -3,7 +3,7 @@
 
 'use strict'
 
-import { buildSelfLinK } from '../../../../src-web/components/common/BuildSelfLink'
+import { buildSelfLinK } from '../../../src-web/utils/BuildSelfLink'
 
 const data1 = {
   'kind': 'Policy',

@@ -3,7 +3,7 @@
 
 'use strict'
 
-import { transform } from '../../../../lib/client/resource-helper'
+import { transform } from '../../../src-web/utils/resource-helper'
 
 const getData1 = (resource) =>{
   if(resource) {

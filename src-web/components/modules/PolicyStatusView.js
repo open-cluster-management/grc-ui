@@ -17,7 +17,7 @@ import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import NoResource from '../../components/common/NoResource'
 import { transform } from '../../tableDefinitions/utils'
-import { checkCreatePermission } from '../common/CheckUserPermission'
+import { checkCreatePermission } from '../../utils/CheckUserPermission'
 import msgs from '../../../nls/platform.properties'
 import '../../../scss/policy-status-view.scss'
 

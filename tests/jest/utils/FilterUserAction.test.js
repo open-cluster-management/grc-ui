@@ -3,7 +3,7 @@
 
 'use strict'
 
-import filterUserAction from '../../../../src-web/components/common/FilterUserAction'
+import filterUserAction from '../../../src-web/utils/FilterUserAction'
 
 const policyActions = [
   'table.actions.edit',
