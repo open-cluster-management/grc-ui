@@ -53,7 +53,6 @@ function AcmGrcPage(props) {
       <AcmPageContent id={page.id}>
         {(() => {
           if (error) {
-            console.log(JSON.stringify(error))
             // Handle Apollo networkError type
             const eMsg = []
             if (error.networkError) {
