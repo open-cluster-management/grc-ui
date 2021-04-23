@@ -149,8 +149,9 @@ class RemoveResourceModal extends React.Component {
             {reqStatus === REQUEST_STATUS.ERROR &&
               <AcmAlert
                 variant='danger'
-                title=''
-                subtitle={reqErrorMsg || msgs.get('error.default.description', locale)} />}
+                isInline={true}
+                noClose={true}
+                title={reqErrorMsg || msgs.get('error.default.description', locale)} />}
           </div>
           {this.modalBody(data, label, locale)}
         </AcmModal>

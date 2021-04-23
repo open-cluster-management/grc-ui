@@ -104,9 +104,10 @@ export class PolicyActionModal extends React.Component {
           <div>
             {reqStatus === REQUEST_STATUS.ERROR &&
               <AcmAlert
+                isInline={true}
+                noClose={true}
                 variant='danger'
-                title=''
-                subtitle={reqErrorMsg || msgs.get('error.default.description', locale)} />}
+                title={reqErrorMsg || msgs.get('error.default.description', locale)} />}
           </div>
            {msgs.get(modalMsg, locale)}
         </AcmModal>
