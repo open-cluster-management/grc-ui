@@ -52,9 +52,17 @@ function AcmGrcPage(props) {
       </AcmPageHeader>
       <AcmPageContent id={page.id}>
         {(() => {
-          if(error) {
+          if (error) {
+            let errorMsg
+            // Network errors are returned as a single object,
+            // so we need to turn it into an array for the Alert
+            if (Array.isArray(error)) {
+              errorMsg = error
+            } else {
+              errorMsg = [error]
+            }
             return <AcmAlert isInline={true} variant='danger'
-              subtitle={error} />
+              subtitle={errorMsg} />
           }
           if (loading && !previousData || items === undefined ) {
             return <Spinner className='patternfly-spinner' />
