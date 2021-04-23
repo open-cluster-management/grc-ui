@@ -69,8 +69,8 @@ function AcmGrcPage(props) {
               eHeader = <p key='eHeader'>GraphQL Error</p>
               eMsg.push(<p key='eMessage'>{error.errors.map((e) => e.message).join(';')}</p>)
             }
-            return <AcmAlert isInline={true} variant='danger'
-              title={eHeader} subtitle={eMsg} noClose canClose={false} />
+            return <AcmAlert isInline={true} noClose={true} variant='danger'
+              title={eHeader} subtitle={eMsg} />
           }
           if (loading && !previousData || items === undefined ) {
             return <Spinner className='patternfly-spinner' />
