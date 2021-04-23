@@ -264,7 +264,7 @@ export default class TemplateEditor extends React.Component {
     }
     if (updateMessage && notificationOpen || duplicateName) {
       return (
-        <Alert variant={updateMsgKind} isInline={true} variantLabel={msgs.get(`${updateMsgKind}.create.policy`, locale)}
+        <Alert variant={updateMsgKind} isInline={true} title={msgs.get(`${updateMsgKind}.create.policy`, locale)}
           actionClose={<AlertActionCloseButton onClose={() => this.setState({ notificationOpen: false, duplicateName: false})} />}>
           {validPolicyName
             ? updateMessage

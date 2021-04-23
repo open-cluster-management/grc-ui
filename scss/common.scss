@@ -54,6 +54,12 @@ body {
   }
 }
 
+// hide screen reader text in modal
+div[id$='resource-modal'], .pf-c-alert__title {
+  .pf-u-screen-reader {
+    display: none;
+  }
+}
 
 // Style Accordion elements with class 'accordion-header' with:
 // - no leading blue line when selected
