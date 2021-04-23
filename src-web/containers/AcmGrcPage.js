@@ -53,16 +53,24 @@ function AcmGrcPage(props) {
       <AcmPageContent id={page.id}>
         {(() => {
           if (error) {
-            let errorMsg
-            // Network errors are returned as a single object,
-            // so we need to turn it into an array for the Alert
-            if (Array.isArray(error)) {
-              errorMsg = error
+            console.log(JSON.stringify(error))
+            // Handle Apollo networkError type
+            const eMsg = []
+            if (error.networkError) {
+              const { statusCode='', bodyText='', message='', result='' } = error.networkError
+              eMsg.push(<p>Network Error {statusCode}</p>)
+              eMsg.push(<p>{bodyText}</p>)
+              eMsg.push(<p>{message}</p>)
+              if (result.errors) {
+                eMsg.push(<p>{result.errors.map((e) => e.message).join(';')}</p>)
+              }
+            // Handle Apollo graphQLErrors type
             } else {
-              errorMsg = [error]
+              eMsg.push(<p>GraphQL Error</p>)
+              eMsg.push(<p>{error.errors.map((e) => e.message).join(';')}</p>)
             }
             return <AcmAlert isInline={true} variant='danger'
-              subtitle={errorMsg} />
+              subtitle={eMsg} />
           }
           if (loading && !previousData || items === undefined ) {
             return <Spinner className='patternfly-spinner' />
