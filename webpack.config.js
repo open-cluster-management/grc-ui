@@ -9,7 +9,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
-const config = require('./config'),
+const config = require('./server/config'),
       path = require('path'),
       webpack = require('webpack'),
       AssetsPlugin = require('assets-webpack-plugin'),
@@ -219,7 +219,7 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: 'graphics', to: 'graphics' },
+        { from: 'src-web/graphics', to: 'graphics' },
       ],
       options: {
         concurrency: 100,

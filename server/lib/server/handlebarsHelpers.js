@@ -8,7 +8,7 @@ const i18n = require('node-i18n-util'),
 
 module.exports = function (href, locale) {
   if (href && locale) {
-    const relativePath = `../../${href}` // load the properties
+    const relativePath = `../../../${href}` // load the properties
     require(relativePath)
     // resolve the bundle locale being used
     const bundlePath = path.join(__dirname, relativePath),

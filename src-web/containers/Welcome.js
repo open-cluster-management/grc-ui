@@ -10,12 +10,10 @@
 'use strict'
 
 import React from 'react'
-import resources from '../../lib/shared/resources'
-resources(() => {
-  require('../../scss/welcome.scss')
-})
-import config from '../../lib/shared/config'
-import msgs from '../../nls/platform.properties'
+import config from '../../server/lib/shared/config'
+import msgs from '../nls/platform.properties'
+
+import '../scss/welcome.scss'
 
 export default class WelcomeStatic extends React.Component {
 

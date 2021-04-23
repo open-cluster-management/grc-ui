@@ -20,7 +20,7 @@ import {
   resourceReducerFunction,
   resourceItemByName, INITIAL_STATE
 } from '../../../src-web/reducers/common'
-import { RESOURCE_TYPES } from '../../../lib/shared/constants'
+import { RESOURCE_TYPES } from '../../../src-web/utils/constants'
 
 describe('resourceToolbar creation', () => {
   it('should return a default state', () => {

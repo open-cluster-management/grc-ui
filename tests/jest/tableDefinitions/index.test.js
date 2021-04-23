@@ -15,7 +15,7 @@ import {
   getLink, getPrimaryKey, getSecondaryKey,
   getTableKeys, getURIKey
 } from '../../../src-web/tableDefinitions/index'
-import { RESOURCE_TYPES } from '../../../lib/shared/constants'
+import { RESOURCE_TYPES } from '../../../src-web/utils/constants'
 
 // eslint-disable-next-line no-console
 console.log('Below console logs are just unit test results, not actual errors:')

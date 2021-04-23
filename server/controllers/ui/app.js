@@ -13,7 +13,7 @@
 
 const express = require('express'),
       context = require('../../lib/shared/context'),
-      msgs = require('../../nls/platform.properties'),
+      msgs = require('../../../src-web/nls/platform.properties'),
       config = require('../../config'),
       appUtil = require('../../lib/server/app-util'),
       router = express.Router({ mergeParams: true })
@@ -21,11 +21,11 @@ const express = require('express'),
 router.get('*', (req, res) => {
 
   const ctx = getContext(req)
-      return res.render('home', Object.assign({
-        manifest: appUtil.app().locals.manifest,
-        contextPath: config.get('contextPath'),
-        props: ctx,
-      }, ctx))
+  return res.render('home', Object.assign({
+    manifest: appUtil.app().locals.manifest,
+    contextPath: config.get('contextPath'),
+    props: ctx,
+  }, ctx))
 })
 
 function getContext(req) {

@@ -23,12 +23,9 @@ import {
   SortByDirection
 } from '@patternfly/react-table'
 import { SearchIcon } from '@patternfly/react-icons'
-import resources from '../../../lib/shared/resources'
+import '../../scss/pattern-fly-table.scss'
 import moment from 'moment'
 
-resources(() => {
-  require('../../../scss/pattern-fly-table.scss')
-})
 class PatternFlyTable extends React.Component {
   constructor(props) {
     super(props)

@@ -6,7 +6,7 @@
 import React from 'react'
 import moment from 'moment'
 import _ from 'lodash'
-import msgs from '../../nls/platform.properties'
+import msgs from '../nls/platform.properties'
 import { Chip } from '@patternfly/react-core'
 import _uniqueId from 'lodash/uniqueId'
 

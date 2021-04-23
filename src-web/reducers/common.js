@@ -28,8 +28,8 @@ import { normalize } from 'normalizr'
 import ReactDOMServer from 'react-dom/server'
 import { createResourcesSchema } from '../utils/resource-schema'
 import { transform } from '../utils/resource-helper'
-import { RESOURCE_TYPES } from '../../lib/shared/constants'
-import msgs from '../../nls/platform.properties'
+import { RESOURCE_TYPES } from '../utils/constants'
+import msgs from '../nls/platform.properties'
 import {
   getTableKeys, getDefaultSortField, getPrimaryKey,
   getSecondaryKey, getURIKey, getResourceData

@@ -24,7 +24,7 @@
  */
 
 import { createResourceReducer, resourceReducerFunction } from './common'
-import { RESOURCE_TYPES } from '../../lib/shared/constants'
+import { RESOURCE_TYPES } from '../utils/constants'
 import _ from 'lodash'
 
 export { userAccess } from './access'

@@ -5,14 +5,10 @@
 'use strict'
 
 import React from 'react'
-import resources from '../../lib/shared/resources'
-resources(() => {
-  require('../../scss/common.scss')
-})
 import PropTypes from 'prop-types'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
-import client from '../../lib/shared/client'
-import config from '../../lib/shared/config'
+import client from '../../server/lib/shared/client'
+import config from '../../server/lib/shared/config'
 import Modal from '../components/common/Modal'
 import Page from '../components/common/Page'
 // eslint-disable-next-line import/no-named-as-default
@@ -23,6 +19,8 @@ import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
 import { getUserAccessData } from '../actions/access'
 import { connect } from 'react-redux'
+
+import '../scss/common.scss'
 
 class App extends React.Component {
 

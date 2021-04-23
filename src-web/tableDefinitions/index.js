@@ -13,7 +13,7 @@
 
 import _ from 'lodash'
 
-import { RESOURCE_TYPES } from '../../lib/shared/constants'
+import { RESOURCE_TYPES } from '../utils/constants'
 
 import hcmcompliances from './hcm-compliances'
 

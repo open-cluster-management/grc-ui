@@ -16,7 +16,7 @@ import PropTypes from 'prop-types'
 import { TemplateEditor } from '../common/TemplateEditor'
 import policyTemplate from '../common/templates/policy-template.hbs'
 import Choices from '../common/templates'
-import msgs from '../../../nls/platform.properties'
+import msgs from '../../nls/platform.properties'
 import { LocaleContext } from '../common/LocaleContext'
 import _ from 'lodash'
 

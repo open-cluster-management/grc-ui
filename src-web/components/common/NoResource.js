@@ -13,8 +13,8 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import msgs from '../../../nls/platform.properties'
-import config from '../../../lib/shared/config'
+import msgs from '../../nls/platform.properties'
+import config from '../../../server/lib/shared/config'
 
 const NoResource = ({
   title,

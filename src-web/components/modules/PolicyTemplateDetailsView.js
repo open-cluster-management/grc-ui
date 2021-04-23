@@ -19,12 +19,9 @@ import PatternFlyTable from '../common/PatternFlyTable'
 import { LocaleContext } from '../common/LocaleContext'
 import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
 import { transform } from '../../tableDefinitions/utils'
-import msgs from '../../../nls/platform.properties'
-import resources from '../../../lib/shared/resources'
+import msgs from '../../nls/platform.properties'
 
-resources(() => {
-  require('../../../scss/policy-template-details.scss')
-})
+import '../../scss/policy-template-details.scss'
 
 class PolicyTemplateDetailsView extends React.Component {
   constructor(props) {

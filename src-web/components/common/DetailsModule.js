@@ -26,7 +26,7 @@ import {
   Tooltip,
   Divider
 } from '@patternfly/react-core'
-import msgs from '../../../nls/platform.properties'
+import msgs from '../../nls/platform.properties'
 import moment from 'moment'
 import { getPolicyCompliantStatus } from '../../tableDefinitions/utils'
 import { LocaleContext } from './LocaleContext'
