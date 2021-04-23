@@ -57,16 +57,16 @@ function AcmGrcPage(props) {
             const eMsg = []
             if (error.networkError) {
               const { statusCode='', bodyText='', message='', result='' } = error.networkError
-              eMsg.push(<p>Network Error {statusCode}</p>)
-              eMsg.push(<p>{bodyText}</p>)
-              eMsg.push(<p>{message}</p>)
+              eMsg.push(<p key='eHeader'>Network Error {statusCode}</p>)
+              eMsg.push(<p key='eBodyText'>{bodyText}</p>)
+              eMsg.push(<p key='eMessage'>{message}</p>)
               if (result.errors) {
-                eMsg.push(<p>{result.errors.map((e) => e.message).join(';')}</p>)
+                eMsg.push(<p key='eMsgDetails'>{result.errors.map((e) => e.message).join(';')}</p>)
               }
             // Handle Apollo graphQLErrors type
             } else {
-              eMsg.push(<p>GraphQL Error</p>)
-              eMsg.push(<p>{error.errors.map((e) => e.message).join(';')}</p>)
+              eMsg.push(<p key='eHeader'>GraphQL Error</p>)
+              eMsg.push(<p key='eMessage'>{error.errors.map((e) => e.message).join(';')}</p>)
             }
             return <AcmAlert isInline={true} variant='danger'
               subtitle={eMsg} />
