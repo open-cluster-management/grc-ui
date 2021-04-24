@@ -1198,7 +1198,7 @@ export const verifyPolicyTemplateViolationDetailsForCluster = (policyName, polic
       cy.wrap(api).contains(policyConfig['apiVersion'])
     }
     // check status
-    cy.wrap(compliant).contains(clusterStatus)
+    cy.wrap(compliant).contains(new RegExp(clusterStatus))
     // check details
     for (const violation of violations) {
       const templateName = violation.replace(/-[^-]*$/, '')
