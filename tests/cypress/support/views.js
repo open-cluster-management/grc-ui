@@ -1082,7 +1082,7 @@ export const action_verifyClusterListInPolicyDetails = (policyConfig, clusterVio
             cy.wrap(status).within(() => {
               // find cluster name
               cy.get('a').contains(clusterName).as('clusterStatus').should('have.text', clusterName)
-              cy.get('@clusterStatus').parents('div.status-list').siblings('div.status-heading').get('.table-status-row').children().spread((icon, status) => {
+              cy.get('@clusterStatus').parents('.status-list').siblings('.status-heading').get('.table-status-row').children().spread((icon, status) => {
                 // check status
                 const clusterStatusExp = getClusterPolicyStatus(clusterViolations[clusterName])
                 const clusterStatus = new RegExp(`^${clusterStatusExp}[:]`)
