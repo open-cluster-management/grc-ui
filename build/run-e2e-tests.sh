@@ -44,6 +44,7 @@ export OAUTH2_REDIRECT_URL=${OAUTH2_REDIRECT_URL:-"https://localhost:3000/multic
 export OAUTH2_CLIENT_ID=${OAUTH2_CLIENT_ID:-"multicloudingress"}
 export OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET:-"multicloudingresssecret"}
 export CYPRESS_BASE_URL="https://localhost:3000"
+export CYPRESS_coverage=${CYPRESS_coverage:-"true"}
 
 make docker/login
 export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:${GRCUIAPI_VERSION:-"latest-dev"}
