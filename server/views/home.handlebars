@@ -1,0 +1,13 @@
+{{!-- Copyright (c) 2020 Red Hat, Inc. --}}
+
+<body aria-label="{{title}}">
+    <input type="hidden" id="app-access" value="{{props.xsrfToken}}">
+    <div id="page">{{{content}}}</div>
+    {{{body}}}
+    <script id='config' type='application/json'>{{{json config}}}</script>
+    <script id='context' type='application/json'>{{{json context}}}</script>
+    <script id='propshcm' type='application/json'>{{{json props}}}</script>
+    <script src="{{contextPath}}/{{manifest.vendorhcm.js}}"></script>
+    <script src="{{contextPath}}/{{{properties 'src-web/nls/platform.properties' context.locale}}}"></script>
+    <script src="{{contextPath}}/{{manifest.main.js}}"></script>
+</body>

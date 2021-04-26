@@ -15,14 +15,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import loadable from '@loadable/component'
 
-let RemoveResourceModal, ResourceModal, PolicyActionModal
+let RemoveResourceModal, PolicyActionModal
 
 const Modal = ({ type, open, ...rest }) => {
   switch (type) {
   case 'resource-remove':
     return open && getRemoveResourceModal({ type, open, ...rest })
-  case 'resource-edit':
-    return open && getResourceModal({ type, open, ...rest })
   case 'resource-disable':
   case 'resource-enable':
   case 'resource-enforce':
@@ -38,13 +36,6 @@ const getPolicyActionModal = props => {
     ? loadable(() => import(/* webpackChunkName: "policy-action-modal" */ '../modals/PolicyActionModal'))
     : PolicyActionModal
   return getModal(PolicyActionModal, props)
-}
-
-const getResourceModal = props => {
-  ResourceModal = ResourceModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "edit-resource-modal" */ '../modals/ResourceModal'))
-    : ResourceModal
-  return getModal(ResourceModal, props)
 }
 
 const getRemoveResourceModal = props => {

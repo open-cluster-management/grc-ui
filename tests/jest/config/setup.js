@@ -20,7 +20,7 @@ import MockDate from 'mockdate'
 
 configure({ adapter: new Adapter() })
 
-jest.mock('../../../nls/platform.properties', () => ({
+jest.mock('../../../src-web/nls/platform.properties', () => ({
   get: jest.fn((key) => {
     const msgs = require('./platform-properties.json')
     return msgs[key]

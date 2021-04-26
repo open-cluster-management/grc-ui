@@ -11,7 +11,7 @@ import {
   wrappable,
 } from '@patternfly/react-table'
 import { buildCompliantCell } from './utils'
-import msgs from '../../nls/platform.properties'
+import msgs from '../nls/platform.properties'
 
 export default {
   tableKeys: [

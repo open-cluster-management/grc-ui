@@ -15,19 +15,16 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Alert } from '@patternfly/react-core'
-import msgs from '../../../nls/platform.properties'
-import resources from '../../../lib/shared/resources'
+import msgs from '../../nls/platform.properties'
 import DetailsModule from '../common/DetailsModule'
 import PatternFlyTable from '../common/PatternFlyTable'
 import NoResource from '../../components/common/NoResource'
 import { getResourceData } from '../../tableDefinitions'
 import { transform } from '../../tableDefinitions/utils'
-import { RESOURCE_TYPES } from '../../../lib/shared/constants'
+import { RESOURCE_TYPES } from '../../utils/constants'
 
 
-resources(() => {
-  require('../../../scss/policy-details-overview.scss')
-})
+import '../../scss/policy-details-overview.scss'
 
 export class PolicyDetailsOverview extends React.PureComponent{
   constructor(props) {

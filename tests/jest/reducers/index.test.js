@@ -3,7 +3,7 @@
 
 
 import { predicate } from '../../../src-web/reducers/index'
-import { RESOURCE_TYPES } from '../../../lib/shared/constants'
+import { RESOURCE_TYPES } from '../../../src-web/utils/constants'
 
 describe('predicate', () => {
   it('should return true', () => {

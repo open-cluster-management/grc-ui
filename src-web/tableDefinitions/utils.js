@@ -7,7 +7,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import _ from 'lodash'
-import config from '../../lib/shared/config'
+import config from '../../server/lib/shared/config'
 import { Tooltip, Label } from '@patternfly/react-core'
 import {
   GreenCheckCircleIcon,
@@ -15,7 +15,7 @@ import {
   YellowExclamationTriangleIcon,
 } from '../components/common/Icons'
 import TableTimestamp from '../components/common/TableTimestamp'
-import msgs from '../../nls/platform.properties'
+import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
 import { LocaleContext } from '../components/common/LocaleContext'
 

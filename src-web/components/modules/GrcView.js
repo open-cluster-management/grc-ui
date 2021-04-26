@@ -8,24 +8,24 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateAvailableFilters, updateActiveFilters } from '../../actions/common'
-import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
+import { GRC_VIEW_STATE_COOKIE, GRC_FILTER_STATE_COOKIE } from '../../utils/constants'
 // eslint-disable-next-line import/no-named-as-default
 import GrcCardsModule from '../modules/GrcCardsModule'
 import GrcToggleModule from '../modules/GrcToggleModule'
 import {
   filterPolicies, getAvailableGrcFilters, combineResourceFilters
-} from '../../../lib/client/filter-helper'
+} from '../../utils/filter-helper'
 import NoResource from '../common/NoResource'
 import { createDocLink, createDetails } from '../common/CreateDocLink'
 import ResourceFilterBar from '../common/ResourceFilterBar'
-import { checkCreatePermission } from '../common/CheckUserPermission'
-import msgs from '../../../nls/platform.properties'
+import { checkCreatePermission } from '../../utils/CheckUserPermission'
+import msgs from '../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
-import config from '../../../lib/shared/config'
+import config from '../../../server/lib/shared/config'
 import {
   getSessionState, saveSessionState, addSessionPair
-} from '../common/AccessStorage'
+} from '../../utils/AccessStorage'
 
 export class GrcView extends React.Component {
 

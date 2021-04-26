@@ -14,8 +14,8 @@
 import React from 'react'
 import { Button } from '@patternfly/react-core'
 import { createDisableTooltip } from './DisableTooltip'
-import msgs from '../../../nls/platform.properties'
-import config from '../../../lib/shared/config'
+import msgs from '../../nls/platform.properties'
+import config from '../../../server/lib/shared/config'
 
 // createFlag=0 nonclickable create button, createFlag=1 clickable create button
 export const createDocLink = (locale, handleCreateResource, submitBtnTextKey, createFlag=0) => {

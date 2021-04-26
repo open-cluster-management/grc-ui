@@ -4,7 +4,7 @@
 import {
   USER_ACCESS_SUCCESS, USER_ACCESS_FAILURE,
 } from './index'
-import GrcApolloClient from '../../lib/client/apollo-client'
+import GrcApolloClient from '../utils/client/apollo-client'
 
 export const userAccessSuccess = access => ({
   type: USER_ACCESS_SUCCESS,

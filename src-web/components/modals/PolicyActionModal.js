@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { AcmModal, AcmButton, AcmAlert } from '@open-cluster-management/ui-components'
 import { Spinner, ButtonVariant } from '@patternfly/react-core'
-import msgs from '../../../nls/platform.properties'
+import msgs from '../../nls/platform.properties'
 import { withRouter } from 'react-router-dom'
 import { REQUEST_STATUS } from '../../actions/index'
 import {
@@ -104,9 +104,10 @@ export class PolicyActionModal extends React.Component {
           <div>
             {reqStatus === REQUEST_STATUS.ERROR &&
               <AcmAlert
+                isInline={true}
+                noClose={true}
                 variant='danger'
-                title=''
-                subtitle={reqErrorMsg || msgs.get('error.default.description', locale)} />}
+                title={reqErrorMsg || msgs.get('error.default.description', locale)} />}
           </div>
            {msgs.get(modalMsg, locale)}
         </AcmModal>

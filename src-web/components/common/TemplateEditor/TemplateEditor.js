@@ -17,8 +17,8 @@ import { generateYAML, highlightChanges } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
 import YamlEditor from './components/YamlEditor'
 import './scss/template-editor.scss'
-import msgs from '../../../../nls/platform.properties'
-import '../../../../graphics/diagramIcons.svg'
+import msgs from '../../../nls/platform.properties'
+import '../../../graphics/diagramIcons.svg'
 import { LocaleContext } from '../../../components/common/LocaleContext'
 import _ from 'lodash'
 
@@ -264,7 +264,7 @@ export default class TemplateEditor extends React.Component {
     }
     if (updateMessage && notificationOpen || duplicateName) {
       return (
-        <Alert variant={updateMsgKind} isInline={true} variantLabel={msgs.get(`${updateMsgKind}.create.policy`, locale)}
+        <Alert variant={updateMsgKind} isInline={true} title={msgs.get(`${updateMsgKind}.create.policy`, locale)}
           actionClose={<AlertActionCloseButton onClose={() => this.setState({ notificationOpen: false, duplicateName: false})} />}>
           {validPolicyName
             ? updateMessage

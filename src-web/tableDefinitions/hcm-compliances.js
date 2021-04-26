@@ -14,12 +14,12 @@
 
 import React from 'react'
 import _ from 'lodash'
-import msgs from '../../nls/platform.properties'
-import { getLabels } from '../../lib/client/resource-helper'
+import msgs from '../nls/platform.properties'
+import { getLabels } from '../utils/resource-helper'
 import { Link } from 'react-router-dom'
 import StatusField from '../components/common/StatusField'
 import { Label, LabelGroup } from '@patternfly/react-core'
-import config from '../../lib/shared/config'
+import config from '../../server/lib/shared/config'
 import { wrappable, sortable, breakWord } from '@patternfly/react-table'
 
 export default {

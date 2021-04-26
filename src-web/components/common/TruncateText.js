@@ -13,7 +13,7 @@
 import React from 'react'
 import { Tooltip } from '@patternfly/react-core'
 import PropTypes from 'prop-types'
-import truncate from '../../util/truncate-middle'
+import truncate from '../../utils/truncate-middle'
 
 class TruncateText extends React.PureComponent {
   static propTypes = {

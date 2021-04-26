@@ -7,19 +7,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import resources from '../../../lib/shared/resources'
 import { updateActiveFilters } from '../../actions/common'
 import { Chip } from '@patternfly/react-core'
-import msgs from '../../../nls/platform.properties'
+import msgs from '../../nls/platform.properties'
 import _ from 'lodash'
 import queryString from 'query-string'
-import { saveSessionState } from '../../components/common/AccessStorage'
-import { GRC_FILTER_STATE_COOKIE } from '../../../lib/shared/constants'
+import { saveSessionState } from '../../utils/AccessStorage'
+import { GRC_FILTER_STATE_COOKIE } from '../../utils/constants'
 import TruncateText from '../../components/common/TruncateText'
 
-resources(() => {
-  require('../../../scss/resource-filterbar.scss')
-})
+import '../../scss/resource-filterbar.scss'
 
 class ResourceFilterBar extends React.Component {
   constructor (props) {

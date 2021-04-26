@@ -26,10 +26,10 @@ import { createSelector } from 'reselect'
 import _ from 'lodash'
 import { normalize } from 'normalizr'
 import ReactDOMServer from 'react-dom/server'
-import { createResourcesSchema } from '../../lib/client/resource-schema'
-import { transform } from '../../lib/client/resource-helper'
-import { RESOURCE_TYPES } from '../../lib/shared/constants'
-import msgs from '../../nls/platform.properties'
+import { createResourcesSchema } from '../utils/resource-schema'
+import { transform } from '../utils/resource-helper'
+import { RESOURCE_TYPES } from '../utils/constants'
+import msgs from '../nls/platform.properties'
 import {
   getTableKeys, getDefaultSortField, getPrimaryKey,
   getSecondaryKey, getURIKey, getResourceData

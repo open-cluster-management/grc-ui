@@ -11,9 +11,9 @@
 
 import _ from 'lodash'
 
-import GrcApolloClient from '../../lib/client/apollo-client'
+import GrcApolloClient from '../utils/client/apollo-client'
 import { receiveResourceError, requestResource}  from './common'
-import { RESOURCE_TYPES } from '../../lib/shared/constants'
+import { RESOURCE_TYPES } from '../utils/constants'
 import {
   REQUEST_STATUS, RESOURCE_FILTERS_RECEIVE_SUCCESS, RESOURCE_FILTERS_UPDATE,
 } from './index'

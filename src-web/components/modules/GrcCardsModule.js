@@ -20,17 +20,14 @@ import {
   Divider, Label
 } from '@patternfly/react-core'
 import CaretDownIcon from '@patternfly/react-icons/dist/js/icons/caret-down-icon'
-import resources from '../../../lib/shared/resources'
-import msgs from '../../../nls/platform.properties'
+import msgs from '../../nls/platform.properties'
 import _ from 'lodash'
 import { withRouter } from 'react-router-dom'
 import queryString from 'query-string'
 import NoResource from '../common/NoResource'
 import TruncateText from '../common/TruncateText'
 
-resources(() => {
-  require('../../../scss/module-grc-cards.scss')
-})
+import '../../scss/module-grc-cards.scss'
 
 const GrcCardsSelections = Object.freeze({
   categories: 0,

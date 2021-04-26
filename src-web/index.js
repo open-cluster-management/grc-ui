@@ -19,8 +19,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client/react'
 import App from './containers/App'
 import * as reducers from './reducers'
-import config from '../lib/shared/config'
-import GrcApolloClient from '../lib/client/apollo-client'
+import config from '../server/lib/shared/config'
+import GrcApolloClient from './utils/client/apollo-client'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

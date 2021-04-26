@@ -14,7 +14,7 @@ import thunkMiddleware from 'redux-thunk'
 
 import * as reducers from '../../../src-web/reducers'
 import AcmGrcPage from '../../../src-web/containers/AcmGrcPage'
-import { ALL_POLICIES, POLICY_STATUS, POLICY_TEMPLATE_DETAILS, POLICY_STATUS_HISTORY } from '../../../lib/client/queries'
+import { ALL_POLICIES, POLICY_STATUS, POLICY_TEMPLATE_DETAILS, POLICY_STATUS_HISTORY } from '../../../src-web/utils/client/queries'
 import ALL_POLICIES_QUERY_DATA from './data/ALL_POLICIES_QUERY_DATA'
 import POLICY_STATUS_QUERY_DATA from './data/POLICY_STATUS_QUERY_DATA'
 import POLICY_TEMPLATE_DETAILS_QUERY_DATA from './data/POLICY_TEMPLATE_DETAILS_QUERY_DATA'

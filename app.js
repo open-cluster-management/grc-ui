@@ -22,16 +22,16 @@ const acmAccessTokenCookieStr = 'acm-access-token-cookie'
 const xContentTypeOptions = 'X-Content-Type-Options'
 
 const log4jsConfig = process.env.LOG4JS_CONFIG ? JSON.parse(process.env.LOG4JS_CONFIG) : undefined
-log4js.configure(log4jsConfig || 'config/log4js.json')
+log4js.configure(log4jsConfig || './server/config/log4js.json')
 
 logger.info(`[pid ${process.pid}] [env ${process.env.NODE_ENV}] started.`)
 
 const express = require('express'),
       exphbs  = require('express-handlebars'),
-      handlebarsHelpers = require('./lib/shared/handlebarsHelpers'),
+      handlebarsHelpers = require('./server/lib/server/handlebarsHelpers'),
       path = require('path'),
-      appConfig = require('./config'),
-      appUtil = require('./lib/server/app-util')
+      appConfig = require('./server/config'),
+      appUtil = require('./server/lib/server/app-util')
 
 //early initialization
 require('node-i18n-util')
@@ -43,8 +43,8 @@ require('ignore-styles')
 const bodyParser = require('body-parser'),
       cookieParser = require('cookie-parser'),
       csurf = require('csurf'),
-      requestLogger = require('./middleware/request-logger'),
-      controllers = require('./controllers')
+      requestLogger = require('./server/middleware/request-logger'),
+      controllers = require('./server/controllers')
 
 const app = express()
 
@@ -131,7 +131,7 @@ const hbs = exphbs.create({
 
 app.engine('handlebars', hbs.engine)
 app.set('env', 'production')
-app.set('views', `${__dirname}/views`)
+app.set('views', `${__dirname}/server/views`)
 app.set('view engine', 'handlebars')
 app.set('view cache', true)
 
@@ -174,7 +174,7 @@ app.use(cookieParser())
 
 app.get('/favicon.ico', (req, res) => res.sendStatus(204))
 
-app.locals.config = require('./lib/shared/config')
+app.locals.config = require('./server/lib/shared/config')
 // this path only existing after npm build
 // eslint-disable-next-line import/no-unresolved
 app.locals.manifest = require('./public/webpack-assets.json')
@@ -182,8 +182,8 @@ app.locals.manifest = require('./public/webpack-assets.json')
 let server
 if (process.env.NODE_ENV === 'development') {
   const https = require('https')
-  const privateKey  = fs.readFileSync('./sslcert/server.key', 'utf8')
-  const certificate = fs.readFileSync('./sslcert/server.crt', 'utf8')
+  const privateKey  = fs.readFileSync('./server/sslcert/server.key', 'utf8')
+  const certificate = fs.readFileSync('./server/sslcert/server.crt', 'utf8')
   const credentials = {key: privateKey, cert: certificate}
   server = https.createServer(credentials, app)
 } else {

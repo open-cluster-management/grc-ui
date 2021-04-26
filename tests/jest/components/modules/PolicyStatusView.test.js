@@ -9,7 +9,7 @@ import PolicyStatusView from '../../../../src-web/components/modules/PolicyStatu
 import * as reducers from '../../../../src-web/reducers'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import GrcApolloClient from '../../../../lib/client/apollo-client'
+import GrcApolloClient from '../../../../src-web/utils/client/apollo-client'
 import { ApolloProvider } from '@apollo/client/react'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'

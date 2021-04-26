@@ -12,7 +12,7 @@
 'use strict'
 
 import { updateModal } from '../../actions/common'
-import config from '../../../lib/shared/config'
+import config from '../../../server/lib/shared/config'
 import _ from 'lodash'
 
 export const resourceActions = (action, dispatch, resourceType, data, history) => {
