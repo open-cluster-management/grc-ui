@@ -406,12 +406,12 @@ export function getDecisionList(policy, locale) {
         <span key={`${status}-status-heading`} className='status-heading'>
           <StatusField status={status} text={`${statusMsg}: `} />
         </span>
-        <span key={`${status}-status-list`} className='status-list'>
+        <span key={`${status}-status-list`} className={`status-list status-list__${status}`}>
           <LabelGroup
-            collapsedText='+${remaining}'
+            collapsedText='${remaining} more'
             numLabels='5'
           >
-            {Array.from(clusterList[status]).map((cluster) =>{
+            {Array.from(clusterList[status]).map((cluster, index) =>{
                 // If there's no status, there's no point in linking to the status page
                 let href=null, color='grey'
                 if (status !== 'nostatus') {
@@ -432,7 +432,7 @@ export function getDecisionList(policy, locale) {
                         componentRef
                       })=>
                         <Link to={href} className={className} innerRef={componentRef}>
-                          {content}
+                          {content}{index < clusterList[status].size - 1 && ', '}
                         </Link>
                     }
                   >
