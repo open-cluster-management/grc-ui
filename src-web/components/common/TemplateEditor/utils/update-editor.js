@@ -135,7 +135,6 @@ export const generateYAML = (template, controlData) => {
     }
   }
   let yaml = template(templateData) || ''
-  yaml = yaml.replace(/[\r\n]+/g, '\n')
 
   // find indent of key and indent the whole snippet
   Object.entries(snippetMap).forEach(([key, replace]) => {
