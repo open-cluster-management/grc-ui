@@ -5,6 +5,8 @@
 'use strict'
 
 import React from 'react'
+import '../scss/common.scss'
+
 import PropTypes from 'prop-types'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import client from '../../server/lib/shared/client'
@@ -19,8 +21,6 @@ import { AcmHeader, AcmRoute } from '@open-cluster-management/ui-components'
 import WelcomeStatic from './Welcome'
 import { getUserAccessData } from '../actions/access'
 import { connect } from 'react-redux'
-
-import '../scss/common.scss'
 
 class App extends React.Component {
 
