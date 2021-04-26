@@ -369,16 +369,6 @@ export function getDecisionCount(item = {}){
 export function getDecisionList(policy, locale) {
   // Gather full cluster list from placementPolicy status
   const fullClusterList = _.get(policy, 'placementPolicies[0].status.decisions', [])
-    .flatMap((item)=>{
-      const policyArray = []
-      for (let i = 2; i < 100; i++) {
-        policyArray.push({
-          clusterName: `${item.clusterName}${i}`,
-          clusterNamespace: `${item.clusterNamespace}${i}`,
-        })
-      }
-      return [item, ...policyArray]
-    })
   // Gather status list from policy status
   const rawStatusList = _.get(policy, 'raw.status.status', [])
   // Build lists of clusters, organized by status keys
