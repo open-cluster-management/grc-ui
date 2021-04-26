@@ -48,12 +48,12 @@ class StatusField extends React.PureComponent {
       break
     }
     return (
-      <div className='table-status-row'>
-        <div className={`table-status-icon table-status-icon__${className}`}>
+      <span className='table-status-row'>
+        <span className={`table-status-icon table-status-icon__${className}`}>
           {<IconName /> }
-        </div>
-        <p>{this.props.text}</p>
-      </div>
+        </span>
+        <span className='table-status-label'>{this.props.text}</span>
+      </span>
     )
   }
 }
