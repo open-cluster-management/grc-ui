@@ -346,98 +346,22 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
               hidden={false}
             >
               <th
-                aria-sort="ascending"
-                className="pf-m-wrap pf-c-table__sort pf-m-selected"
+                className="pf-m-wrap"
                 data-key={0}
                 data-label="Cluster selector"
                 onMouseEnter={[Function]}
                 scope="col"
               >
-                <button
-                  className="pf-c-table__button"
-                  onClick={[Function]}
-                  type="button"
-                >
-                  <div
-                    className="pf-c-table__button-content"
-                  >
-                    <span
-                      className="pf-c-table__text"
-                      onMouseEnter={[Function]}
-                    >
-                      Cluster selector
-                    </span>
-                    <span
-                      className="pf-c-table__sort-indicator"
-                    >
-                      <svg
-                        aria-hidden={true}
-                        aria-labelledby={null}
-                        fill="currentColor"
-                        height="1em"
-                        role="img"
-                        style={
-                          Object {
-                            "verticalAlign": "-0.125em",
-                          }
-                        }
-                        viewBox="0 0 256 512"
-                        width="1em"
-                      >
-                        <path
-                          d="M88 166.059V468c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12V166.059h46.059c21.382 0 32.09-25.851 16.971-40.971l-86.059-86.059c-9.373-9.373-24.569-9.373-33.941 0l-86.059 86.059c-15.119 15.119-4.411 40.971 16.971 40.971H88z"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </button>
+                Cluster selector
               </th>
               <th
-                aria-sort="none"
-                className="pf-m-wrap pf-c-table__sort"
+                className="pf-m-wrap"
                 data-key={1}
                 data-label="Clusters"
                 onMouseEnter={[Function]}
                 scope="col"
               >
-                <button
-                  className="pf-c-table__button"
-                  onClick={[Function]}
-                  type="button"
-                >
-                  <div
-                    className="pf-c-table__button-content"
-                  >
-                    <span
-                      className="pf-c-table__text"
-                      onMouseEnter={[Function]}
-                    >
-                      Clusters
-                    </span>
-                    <span
-                      className="pf-c-table__sort-indicator"
-                    >
-                      <svg
-                        aria-hidden={true}
-                        aria-labelledby={null}
-                        fill="currentColor"
-                        height="1em"
-                        role="img"
-                        style={
-                          Object {
-                            "verticalAlign": "-0.125em",
-                          }
-                        }
-                        viewBox="0 0 256 512"
-                        width="1em"
-                      >
-                        <path
-                          d="M214.059 377.941H168V134.059h46.059c21.382 0 32.09-25.851 16.971-40.971L144.971 7.029c-9.373-9.373-24.568-9.373-33.941 0L24.971 93.088c-15.119 15.119-4.411 40.971 16.971 40.971H88v243.882H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.568 9.373 33.941 0l86.059-86.059c15.12-15.119 4.412-40.971-16.97-40.971z"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </button>
+                Clusters
               </th>
               <th
                 className="pf-m-wrap"
@@ -487,13 +411,13 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                 <div
                   className="status-container"
                 >
-                  <div
+                  <span
                     className="status-heading"
                   >
-                    <div
+                    <span
                       className="table-status-row"
                     >
-                      <div
+                      <span
                         className="table-status-icon table-status-icon__nostatus"
                       >
                         <svg
@@ -514,13 +438,15 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                             d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
                           />
                         </svg>
-                      </div>
-                      <p>
-                        No status:
-                      </p>
-                    </div>
-                  </div>
-                  <div
+                      </span>
+                      <span
+                        className="table-status-label"
+                      >
+                        No status: 
+                      </span>
+                    </span>
+                  </span>
+                  <span
                     className="status-list"
                   >
                     <div
@@ -637,7 +563,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </span>
                 </div>
               </td>
             </tr>
@@ -993,98 +919,22 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
               hidden={false}
             >
               <th
-                aria-sort="ascending"
-                className="pf-m-wrap pf-c-table__sort pf-m-selected"
+                className="pf-m-wrap"
                 data-key={0}
                 data-label="Cluster selector"
                 onMouseEnter={[Function]}
                 scope="col"
               >
-                <button
-                  className="pf-c-table__button"
-                  onClick={[Function]}
-                  type="button"
-                >
-                  <div
-                    className="pf-c-table__button-content"
-                  >
-                    <span
-                      className="pf-c-table__text"
-                      onMouseEnter={[Function]}
-                    >
-                      Cluster selector
-                    </span>
-                    <span
-                      className="pf-c-table__sort-indicator"
-                    >
-                      <svg
-                        aria-hidden={true}
-                        aria-labelledby={null}
-                        fill="currentColor"
-                        height="1em"
-                        role="img"
-                        style={
-                          Object {
-                            "verticalAlign": "-0.125em",
-                          }
-                        }
-                        viewBox="0 0 256 512"
-                        width="1em"
-                      >
-                        <path
-                          d="M88 166.059V468c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12V166.059h46.059c21.382 0 32.09-25.851 16.971-40.971l-86.059-86.059c-9.373-9.373-24.569-9.373-33.941 0l-86.059 86.059c-15.119 15.119-4.411 40.971 16.971 40.971H88z"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </button>
+                Cluster selector
               </th>
               <th
-                aria-sort="none"
-                className="pf-m-wrap pf-c-table__sort"
+                className="pf-m-wrap"
                 data-key={1}
                 data-label="Clusters"
                 onMouseEnter={[Function]}
                 scope="col"
               >
-                <button
-                  className="pf-c-table__button"
-                  onClick={[Function]}
-                  type="button"
-                >
-                  <div
-                    className="pf-c-table__button-content"
-                  >
-                    <span
-                      className="pf-c-table__text"
-                      onMouseEnter={[Function]}
-                    >
-                      Clusters
-                    </span>
-                    <span
-                      className="pf-c-table__sort-indicator"
-                    >
-                      <svg
-                        aria-hidden={true}
-                        aria-labelledby={null}
-                        fill="currentColor"
-                        height="1em"
-                        role="img"
-                        style={
-                          Object {
-                            "verticalAlign": "-0.125em",
-                          }
-                        }
-                        viewBox="0 0 256 512"
-                        width="1em"
-                      >
-                        <path
-                          d="M214.059 377.941H168V134.059h46.059c21.382 0 32.09-25.851 16.971-40.971L144.971 7.029c-9.373-9.373-24.568-9.373-33.941 0L24.971 93.088c-15.119 15.119-4.411 40.971 16.971 40.971H88v243.882H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.568 9.373 33.941 0l86.059-86.059c15.12-15.119 4.412-40.971-16.97-40.971z"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </button>
+                Clusters
               </th>
               <th
                 className="pf-m-wrap"
@@ -1134,13 +984,13 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                 <div
                   className="status-container"
                 >
-                  <div
+                  <span
                     className="status-heading"
                   >
-                    <div
+                    <span
                       className="table-status-row"
                     >
-                      <div
+                      <span
                         className="table-status-icon table-status-icon__nostatus"
                       >
                         <svg
@@ -1161,13 +1011,15 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                             d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
                           />
                         </svg>
-                      </div>
-                      <p>
-                        No status:
-                      </p>
-                    </div>
-                  </div>
-                  <div
+                      </span>
+                      <span
+                        className="table-status-label"
+                      >
+                        No status: 
+                      </span>
+                    </span>
+                  </span>
+                  <span
                     className="status-list"
                   >
                     <div
@@ -1202,7 +1054,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </span>
                 </div>
               </td>
             </tr>

@@ -355,7 +355,7 @@ exports[`Welcome component renders as expected 1`] = `
         </p>
         <a
           aria-describedby="launchWindow"
-          className="bx--link"
+          className="welcome--link"
           href="https://www.redhat.com/en/blog/products"
           target="dev-community"
         >
@@ -411,7 +411,7 @@ exports[`Welcome component renders as expected 1`] = `
         </p>
         <a
           aria-describedby="launchWindow"
-          className="bx--link"
+          className="welcome--link"
           href="https://access.redhat.com/support"
           target="support"
         >
