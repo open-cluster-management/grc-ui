@@ -447,7 +447,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                     </span>
                   </span>
                   <span
-                    className="status-list"
+                    className="status-list status-list__nostatus"
                   >
                     <div
                       className="pf-c-label-group"
@@ -474,6 +474,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                                   onClick={[Function]}
                                 >
                                   calamari
+                                  , 
                                 </a>
                               </span>
                             </span>
@@ -491,6 +492,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                                   onClick={[Function]}
                                 >
                                   cluster1
+                                  , 
                                 </a>
                               </span>
                             </span>
@@ -508,6 +510,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                                   onClick={[Function]}
                                 >
                                   cluster2
+                                  , 
                                 </a>
                               </span>
                             </span>
@@ -525,6 +528,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                                   onClick={[Function]}
                                 >
                                   cluster3
+                                  , 
                                 </a>
                               </span>
                             </span>
@@ -542,6 +546,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                                   onClick={[Function]}
                                 >
                                   cluster4
+                                  , 
                                 </a>
                               </span>
                             </span>
@@ -556,7 +561,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                               <span
                                 className="pf-c-label__content"
                               >
-                                +1
+                                1 more
                               </span>
                             </button>
                           </li>
@@ -1020,7 +1025,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                     </span>
                   </span>
                   <span
-                    className="status-list"
+                    className="status-list status-list__nostatus"
                   >
                     <div
                       className="pf-c-label-group"
