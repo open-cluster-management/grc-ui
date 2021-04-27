@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom'
 import StatusField from '../components/common/StatusField'
 import { Label, LabelGroup } from '@patternfly/react-core'
 import config from '../../server/lib/shared/config'
-import { wrappable, sortable, breakWord } from '@patternfly/react-table'
+import { wrappable, breakWord } from '@patternfly/react-table'
 
 export default {
   defaultSortField: 'metadata.name',
@@ -63,7 +63,7 @@ export default {
       {
         key: 'clusterSelector',
         resourceKey: 'placementPolicies',
-        transforms: [wrappable, sortable],
+        transforms: [wrappable],
         cellTransforms: [breakWord],
         msgKey: 'table.header.cluster.selector',
         transformFunction: getLabels,
@@ -71,7 +71,7 @@ export default {
       {
         key: 'cluster',
         resourceKey: 'clusters',
-        transforms: [wrappable, sortable],
+        transforms: [wrappable],
         cellTransforms: [breakWord],
         msgKey: 'table.header.clusters',
         transformFunction: getDecisionCount,
@@ -403,15 +403,15 @@ export function getDecisionList(policy, locale) {
     const statusMsg = msgs.get(`table.cell.${status}`, locale)
     statusList.push(
       <div key={`${status}-status-container`} className='status-container'>
-        <div key={`${status}-status-heading`} className='status-heading'>
-          <StatusField status={status} text={`${statusMsg}:`} />
-        </div>
-        <div key={`${status}-status-list`} className='status-list'>
+        <span key={`${status}-status-heading`} className='status-heading'>
+          <StatusField status={status} text={`${statusMsg}: `} />
+        </span>
+        <span key={`${status}-status-list`} className={`status-list status-list__${status}`}>
           <LabelGroup
-            collapsedText='+${remaining}'
+            collapsedText='${remaining} more'
             numLabels='5'
           >
-            {Array.from(clusterList[status]).map((cluster) =>{
+            {Array.from(clusterList[status]).map((cluster, index) =>{
                 // If there's no status, there's no point in linking to the status page
                 let href=null, color='grey'
                 if (status !== 'nostatus') {
@@ -432,7 +432,7 @@ export function getDecisionList(policy, locale) {
                         componentRef
                       })=>
                         <Link to={href} className={className} innerRef={componentRef}>
-                          {content}
+                          {content}{index < clusterList[status].size - 1 && ', '}
                         </Link>
                     }
                   >
@@ -442,7 +442,7 @@ export function getDecisionList(policy, locale) {
               })
             }
           </LabelGroup>
-        </div>
+        </span>
       </div>
     )
   }

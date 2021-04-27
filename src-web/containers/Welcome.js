@@ -148,7 +148,7 @@ export default class WelcomeStatic extends React.Component {
               <a
                 target='dev-community'
                 href='https://www.redhat.com/en/blog/products'
-                className='bx--link'
+                className='welcome--link'
                 aria-describedby='launchWindow'>
                 {msgs.get(welcomeBoxLinkStr, locale)}
                 <img
@@ -177,7 +177,7 @@ export default class WelcomeStatic extends React.Component {
               <a
                 target='support'
                 href='https://access.redhat.com/support'
-                className='bx--link'
+                className='welcome--link'
                 aria-describedby='launchWindow'>
                 {msgs.get(welcomeBoxLinkStr, locale)}
                 <img
