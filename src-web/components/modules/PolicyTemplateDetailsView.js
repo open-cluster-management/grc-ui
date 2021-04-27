@@ -115,7 +115,7 @@ class PolicyTemplateDetailsView extends React.Component {
                 height={'500px'}
                 readOnly
                 setEditor={this.setEditor}
-                yaml={jsYaml.safeDump(items)} />
+                yaml={jsYaml.dump(items, {lineWidth: -1})} />
             </div>
           </div>
         </div>

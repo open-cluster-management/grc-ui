@@ -129,7 +129,9 @@ export const generateYAML = (template, controlData) => {
     // Only process if it's valid, otherwise throw it out
     if (parsed['parsed']['unknown']) {
       const raw = parsed['parsed']['unknown'][0]['$raw']
-      templateData['specsCapture'] = jsYaml.safeDump(raw)
+      console.log(raw)
+      templateData['specsCapture'] = jsYaml.dump(raw, {lineWidth: -1})
+      console.log(templateData.specsCapture)
     } else {
       templateData['specsCapture'] = []
     }

@@ -286,7 +286,7 @@ export const dumpYAMLFromTemplateObject = (templateObject) => {
       if (yaml !== '') {
         yaml += '---\n'
       }
-      yaml += jsYaml.dump(obj.$raw)
+      yaml += jsYaml.dump(obj.$raw, {lineWidth: -1})
     })
   })
   return yaml
@@ -295,17 +295,17 @@ export const dumpYAMLFromPolicyDiscovered = (policyDiscovered) => {
   let yaml = ''
   const policy = policyDiscovered.policy
   if (policy) {
-    yaml = jsYaml.dump(policy) + '\n'
+    yaml = jsYaml.dump(policy, {lineWidth: -1}) + '\n'
   }
   const placementbindings = policyDiscovered.placementBindings
   placementbindings.map(pb=>{
     yaml += '---\n'
-    yaml += jsYaml.dump(pb.raw)
+    yaml += jsYaml.dump(pb.raw, {lineWidth: -1})
   })
   const placementrules = policyDiscovered.placementPolicies
   placementrules.map(plr=>{
     yaml += '---\n'
-    yaml += jsYaml.dump(plr.raw)
+    yaml += jsYaml.dump(plr.raw, {lineWidth: -1})
   })
   return yaml
 }
@@ -318,7 +318,7 @@ export const parseYAML = (yaml) => {
   // check for syntax errors
   try {
     yamls.forEach((snip)=>{
-      const obj = jsYaml.safeLoad(snip)
+      const obj = jsYaml.load(snip)
       const key = _.get(obj, 'kind', 'unknown')
       let values = parsed[key]
       if (!values) {
