@@ -87,7 +87,7 @@ export const leftNav = {
         cy.get('#page-sidebar').contains('Applications').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/applications')
     },
     goToGRC: () => {
-        cy.get('#page-sidebar').contains('Risk and Compliance').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
+        cy.get('#page-sidebar').contains('Risk and compliance').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
     },
     goToCredentials: () => {
         cy.get('#page-sidebar').contains('Credentials').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/credentials')
