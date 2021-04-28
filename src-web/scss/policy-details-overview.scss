@@ -87,14 +87,12 @@
 
           .status-list {
             .pf-c-label-group__list {
-              max-height: 10.25rem;
-              min-height: 2.15rem;
+              max-height: 9.5rem;
               overflow-x: hidden;
               overflow-y: auto;
+              margin-bottom: 0.25rem;
 
               .pf-c-label-group__list-item :not(.pf-m-overflow) {
-                margin: 0;
-
                 .pf-c-label {
                   padding: 0.25rem 0 0 0;
 
