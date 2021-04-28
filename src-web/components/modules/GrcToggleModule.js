@@ -11,11 +11,13 @@ import {
   ToggleGroupItem,
   Spinner
 } from '@patternfly/react-core'
-import PatternFlyTable from '../common/PatternFlyTable'
+import {
+  AcmTable
+} from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import grcPoliciesViewDef from '../../tableDefinitions/grcPoliciesViewDef'
 import grcClustersViewDef from '../../tableDefinitions/grcClustersViewDef'
-import { transform } from '../../tableDefinitions/utils'
+import { transform_new } from '../../tableDefinitions/utils'
 import msgs from '../../nls/platform.properties'
 import { formatPoliciesToClustersTableData } from '../../utils/FormatTableData'
 import { RESOURCE_TYPES, GRC_SEARCH_STATE_COOKIE } from '../../utils/constants'
@@ -44,17 +46,19 @@ class GrcToggleModule extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { grcItems, showGrcTabToggle, grcTabToggleIndex, handleToggleClick, status } = this.props
+    const { grcItems, grcTabToggleIndex, handleToggleClick, status } = this.props
     const { locale } = this.context
     const { searchValue } = this.state
-    const tableDataByPolicies = transform(grcItems, grcPoliciesViewDef, locale)
-    const tableDataByClusters = transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale)
+    const tableType = grcTabToggleIndex == 0 ? 'policies' : 'clusters'
+    const tableData = [
+      transform_new(grcItems, grcPoliciesViewDef, locale),
+      transform_new(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale),
+    ]
     if (status !== REQUEST_STATUS.INCEPTION && status !== REQUEST_STATUS.DONE){
       return <Spinner className='patternfly-spinner' />
     }
-    return (
-      <div className='grc-toggle'>
-        {showGrcTabToggle && <ToggleGroup className='grc-toggle-button'>
+    const extraToolbarControls = (
+      <ToggleGroup className='grc-toggle-button'>
           <ToggleGroupItem
             buttonId={'grc-policies-view'}
             onChange={handleToggleClick}
@@ -69,36 +73,21 @@ class GrcToggleModule extends React.Component {
             text={msgs.get('tabs.grc.toggle.clusterViolations', locale)}
           >
           </ToggleGroupItem>
-        </ToggleGroup>}
-        <div className='resource-table'>
-          {grcTabToggleIndex===0 && <div className='grc-view-by-policies-table'>
-            <PatternFlyTable
-              {...tableDataByPolicies}
-              searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
-              noResultMsg={msgs.get('table.search.no.results', locale)}
-              areActionsDisabled={false}
-              dropdownPosition={'right'}
-              dropdownDirection={'down'}
-              tableActionResolver={this.tableActionResolver}
-              handleClear={this.handleSearch}
-              handleSearch={this.handleSearch}
-              searchValue={searchValue}
-            />
-          </div>}
-          {grcTabToggleIndex===1 && <div className='grc-view-by-clusters-table'>
-            <PatternFlyTable
-              {...tableDataByClusters}
-              searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
-              noResultMsg={msgs.get('table.search.no.results', locale)}
-              areActionsDisabled={false}
-              dropdownPosition={'right'}
-              dropdownDirection={'down'}
-              tableActionResolver={this.tableActionResolver}
-              handleClear={this.handleSearch}
-              handleSearch={this.handleSearch}
-              searchValue={searchValue}
-            />
-          </div>}
+        </ToggleGroup>
+    )
+    return (
+      <div className='grc-toggle'>
+        <div className={`grc-view-by-${tableType}-table`}>
+          <AcmTable
+            items={tableData[grcTabToggleIndex].rows}
+            columns={tableData[grcTabToggleIndex].columns}
+            keyFn={(item) => item.uid.toString()}
+            setSearch={searchValue}
+            gridBreakPoint=''
+            extraToolbarControls={extraToolbarControls}
+            searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
+            paginationAtBottom
+          />
         </div>
       </div>
     )
@@ -192,7 +181,6 @@ GrcToggleModule.propTypes = {
   grcTabToggleIndex: PropTypes.number,
   handleToggleClick: PropTypes.func,
   history: PropTypes.object.isRequired,
-  showGrcTabToggle: PropTypes.bool,
   status: PropTypes.string,
   userAccess: PropTypes.array,
 }

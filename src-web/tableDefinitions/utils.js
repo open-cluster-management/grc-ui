@@ -51,6 +51,45 @@ export const transform = (items, def, locale) => {
   return { columns, rows, sortBy }
 }
 
+// use console.log(JSON.stringify(result, circular())) to test return result from transform
+export const transform_new = (items, def, locale) => {
+  const rows = items.map((item, index) => {
+    const rowObj = {
+      uid: index
+    }
+    def.tableKeys.forEach(key => {
+      const label = key.label
+      let value = _.get(item, key.resourceKey)
+      if (key.type === 'timestamp') {
+        rowObj[label] = moment.unix(value).format('MMM Do YYYY \\at h:mm A')
+      } else if (key.type === 'i18n') {
+        rowObj[label] =  msgs.get(key.resourceKey, locale)
+      } else if (key.type === 'boolean') {
+        value = (Boolean(value)).toString()
+        rowObj[label] =  msgs.get(value, locale)
+      } else if (key.transformFunction && typeof key.transformFunction === 'function') {
+        rowObj[label] =  { title: key.transformFunction(item, locale) }
+      } else {
+        rowObj[label] =  (value || value === 0) ? value : '-'
+      }
+    })
+    return rowObj
+  })
+
+  const columns = def.tableKeys.map(key => {
+    return {
+      header: key.msgKey ? msgs.get(key.msgKey, locale): '',
+      sort: key.sortable ? key.label : undefined,
+      cell: key.label,
+      search: key.label,
+      transforms: key.transforms,
+      cellTransforms: key.cellTransforms,
+    }
+  })
+
+  return { columns, rows }
+}
+
 export const buildCompliantCell = (item, locale) => {
   const compliant = _.get(item, 'compliant', '-')
   if (compliant.toLowerCase() === 'compliant') {

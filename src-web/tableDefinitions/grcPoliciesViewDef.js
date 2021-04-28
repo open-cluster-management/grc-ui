@@ -12,8 +12,7 @@ import {
 } from './utils'
 import {
   breakWord,
-  wrappable,
-  sortable
+  wrappable
 } from '@patternfly/react-table'
 import {
   getCategories,
@@ -32,59 +31,77 @@ export default {
   ],
   tableKeys: [
     {
+      label: 'name',
       msgKey: 'table.header.policy.name',
       resourceKey: 'metadata.name',
-      transforms: [wrappable, sortable],
+      sortable: true,
+      transforms: [wrappable],
       cellTransforms: [breakWord],
       transformFunction: createComplianceLink
     },
     {
+      label: 'namespace',
       msgKey: 'table.header.namespace',
       resourceKey: 'namespace',
-      transforms: [wrappable, sortable],
+      sortable: true,
+      transforms: [wrappable],
       cellTransforms: [breakWord],
     },
     {
+      label: 'remediation',
       msgKey: 'table.header.remediation',
       information: 'grc.remediation.tooltip',
       resourceKey: 'remediation',
-      transforms: [wrappable, sortable],
+      sortable: true,
+      transforms: [wrappable],
       cellTransforms: [breakWord],
     },
     {
+      label: 'violations',
       msgKey: 'table.header.cluster.violation',
       resourceKey: 'clusterCompliant',
-      transforms: [wrappable, sortable],
+      transforms: [wrappable],
+      sortable: true,
       cellTransforms: [breakWord],
       transformFunction: getPolicyCompliantStatus
     },
     {
+      label: 'standards',
       msgKey: 'table.header.standards',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/standards"]',
-      transforms: [wrappable, sortable],
+      sortable: true,
+      transforms: [wrappable],
       transformFunction: getStandards,
     },
     {
+      label: 'categories',
       msgKey: 'table.header.categories',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/categories"]',
-      transforms: [wrappable, sortable],
+      sortable: true,
+      transforms: [wrappable],
       transformFunction: getCategories,
     },
     {
+      label: 'controls',
       msgKey: 'table.header.controls',
       resourceKey: 'metadata.annotations["policy.open-cluster-management.io/controls"]',
-      transforms: [wrappable, sortable],
+      sortable: true,
+      transforms: [wrappable],
       transformFunction: getControls,
     },
     {
+      label: 'automation',
       msgKey: 'table.header.automation',
-      transforms: [sortable, wrappable],
+      sortable: true,
+      transforms: [wrappable],
       transformFunction: getAutomationLink,
     },
     {
+      label: 'creation',
       msgKey: 'table.header.created',
       resourceKey: 'raw.metadata.creationTimestamp',
-      transforms: [sortable, wrappable],
+      sortable: true,
+      transforms: [wrappable],
       transformFunction: buildTimestamp,
     },
   ],
