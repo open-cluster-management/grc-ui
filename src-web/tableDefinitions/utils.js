@@ -92,7 +92,9 @@ export const transform_new = (items, def, locale) => {
     }
   })
 
-  return { columns, rows }
+  const sortBy = def.sortBy ? def.sortBy : { index: 0, direction: 'asc' } // default if doesn't exist
+
+  return { columns, rows, sortBy }
 }
 
 export const buildCompliantCell = (item, locale) => {
