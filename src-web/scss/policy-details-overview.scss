@@ -91,6 +91,7 @@
               overflow-x: hidden;
               overflow-y: auto;
               margin-bottom: 0.25rem;
+              --pf-c-label-group__list-item--MarginBottom: 0;
 
               .pf-c-label-group__list-item :not(.pf-m-overflow) {
                 .pf-c-label {
