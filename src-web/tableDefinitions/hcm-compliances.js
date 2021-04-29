@@ -409,6 +409,7 @@ export function getDecisionList(policy, locale) {
         <span key={`${status}-status-list`} className={`status-list status-list__${status}`}>
           <LabelGroup
             collapsedText='${remaining} more'
+            expandedText='Show less'
             numLabels='5'
           >
             {Array.from(clusterList[status]).map((cluster, index) =>{
