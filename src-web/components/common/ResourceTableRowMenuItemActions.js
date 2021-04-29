@@ -17,6 +17,9 @@ import _ from 'lodash'
 
 export const resourceActions = (action, dispatch, resourceType, data, history) => {
   switch (action) {
+  case 'table.actions.policy.details': {
+    return history.push(`${config.contextPath}/all/${data.namespace}/${data.name}`)
+  }
   case 'table.actions.policy.edit':
   case 'table.actions.edit': {
     return history.push(`${config.contextPath}/all/${data.namespace}/${data.name}/edit`)
@@ -82,6 +85,7 @@ export const resourceActions = (action, dispatch, resourceType, data, history) =
         },
         data: { apiVersion: resourceType.api_version, kind: resourceType.name, ...data }}))
   }
+  case 'table.actions.automation.edit':
   default:
     return undefined
   }
