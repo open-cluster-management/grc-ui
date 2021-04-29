@@ -81,11 +81,13 @@ class GrcToggleModule extends React.Component {
           <AcmTable
             items={tableData[grcTabToggleIndex].rows}
             columns={tableData[grcTabToggleIndex].columns}
+            rowActionResolver={this.tableActionResolver}
             keyFn={(item) => item.uid.toString()}
             setSearch={searchValue}
             sort={tableData[grcTabToggleIndex].sortBy}
             gridBreakPoint=''
             extraToolbarControls={extraToolbarControls}
+            extraToolbarEmbed
             searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
             paginationAtBottom
           />
@@ -107,22 +109,22 @@ class GrcToggleModule extends React.Component {
     const { locale } = this.context
     const userAccessHash = formatUserAccess(userAccess)
     const actionsList = []
-    const rowName = typeof _.get(rowData, ['0', 'title', 'props', 'children']) === 'string'
-      ? _.get(rowData, ['0', 'title', 'props', 'children'])
-      : _.get(rowData, ['0', 'title', 'props', 'children', '0', 'props', 'children'])
-    let rowArray = _.get(rowData, ['0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
-      ? _.get(rowData, ['0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
-      : _.get(rowData, ['0', 'title', 'props', 'children[0]', '_owner', 'stateNode', 'props', 'grcItems'])
-      let resourceType, tableActions
-      // Set table definitions and actions based on toggle position
-      if (grcTabToggleIndex === 1) {
-        resourceType = RESOURCE_TYPES.POLICIES_BY_CLUSTER
-        tableActions = grcClustersViewDef.tableActions
-        rowArray = formatPoliciesToClustersTableData(rowArray)
-      } else {
-        resourceType = RESOURCE_TYPES.POLICIES_BY_POLICY
-        tableActions = grcPoliciesViewDef.tableActions
-      }
+    const rowName = typeof _.get(rowData, ['cells', '0', 'title', 'props', 'children']) === 'string'
+      ? _.get(rowData, ['cells', '0', 'title', 'props', 'children'])
+      : _.get(rowData, ['cells', '0', 'title', 'props', 'children', '0', 'props', 'children'])
+    let rowArray = _.get(rowData, ['cells', '0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
+      ? _.get(rowData, ['cells', '0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
+      : _.get(rowData, ['cells', '0', 'title', 'props', 'children[0]', '_owner', 'stateNode', 'props', 'grcItems'])
+    let resourceType, tableActions
+    // Set table definitions and actions based on toggle position
+    if (grcTabToggleIndex === 1) {
+      resourceType = RESOURCE_TYPES.POLICIES_BY_CLUSTER
+      tableActions = grcClustersViewDef.tableActions
+      rowArray = formatPoliciesToClustersTableData(rowArray)
+    } else {
+      resourceType = RESOURCE_TYPES.POLICIES_BY_POLICY
+      tableActions = grcPoliciesViewDef.tableActions
+    }
     if (rowName && Array.isArray(rowArray) && rowArray.length > 0) {
       const row = rowArray.find(arrElement => {
         if (grcTabToggleIndex === 0) {
@@ -135,9 +137,9 @@ class GrcToggleModule extends React.Component {
         ? filterUserAction(row, tableActions, userAccessHash, resourceType)
         : []
       if (_.get(row, 'raw.spec.disabled', false)) {
-        filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
+        filteredActions[filteredActions.indexOf('table.actions.policy.disable')] = 'table.actions.policy.enable'
       } else {
-        filteredActions[filteredActions.indexOf('table.actions.enable')] = 'table.actions.disable'
+        filteredActions[filteredActions.indexOf('table.actions.policy.enable')] = 'table.actions.policy.disable'
       }
       if (_.get(row, 'raw.spec.remediationAction', 'inform') === 'enforce') {
         filteredActions[filteredActions.indexOf('table.actions.enforce', locale)] = 'table.actions.inform'
@@ -150,7 +152,7 @@ class GrcToggleModule extends React.Component {
           if (disableFlag) {
             action = action.replace('disabled.', '')
           }
-          if (action === 'table.actions.remove') {
+          if (action === 'table.actions.policy.remove') {
             actionsList.push(
               {
                 isSeparator: true
