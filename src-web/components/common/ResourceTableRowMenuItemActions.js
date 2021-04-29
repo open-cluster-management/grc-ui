@@ -17,6 +17,7 @@ import _ from 'lodash'
 
 export const resourceActions = (action, dispatch, resourceType, data, history) => {
   switch (action) {
+  case 'table.actions.policy.edit':
   case 'table.actions.edit': {
     return history.push(`${config.contextPath}/all/${data.namespace}/${data.name}/edit`)
   }
@@ -39,6 +40,7 @@ export const resourceActions = (action, dispatch, resourceType, data, history) =
         },
         data: { apiVersion: resourceType.api_version, kind: resourceType.name, ...data }}))
   }
+  case 'table.actions.policy.disable':
   case 'table.actions.disable': {
     return dispatch(updateModal(
       { open: true, type: 'resource-disable', resourceType,
@@ -49,6 +51,7 @@ export const resourceActions = (action, dispatch, resourceType, data, history) =
         },
         data: { apiVersion: resourceType.api_version, kind: resourceType.name, ...data }}))
   }
+  case 'table.actions.policy.enable':
   case 'table.actions.enable': {
     return dispatch(updateModal(
       { open: true, type: 'resource-enable', resourceType,
