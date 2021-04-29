@@ -129,13 +129,12 @@ export const generateYAML = (template, controlData) => {
     // Only process if it's valid, otherwise throw it out
     if (parsed['parsed']['unknown']) {
       const raw = parsed['parsed']['unknown'][0]['$raw']
-      templateData['specsCapture'] = jsYaml.safeDump(raw)
+      templateData['specsCapture'] = jsYaml.dump(raw, {lineWidth: -1})
     } else {
       templateData['specsCapture'] = []
     }
   }
   let yaml = template(templateData) || ''
-  yaml = yaml.replace(/[\r\n]+/g, '\n')
 
   // find indent of key and indent the whole snippet
   Object.entries(snippetMap).forEach(([key, replace]) => {

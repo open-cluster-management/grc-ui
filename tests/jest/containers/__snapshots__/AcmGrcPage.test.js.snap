@@ -46202,43 +46202,43 @@ metadata:
     - apiVersion: policy.open-cluster-management.io/v1
       fieldsType: FieldsV1
       fieldsV1:
-        'f:metadata':
-          'f:labels':
+        f:metadata:
+          f:labels:
             .: {}
-            'f:cluster-name': {}
-            'f:cluster-namespace': {}
-            'f:policy.open-cluster-management.io/cluster-name': {}
-            'f:policy.open-cluster-management.io/cluster-namespace': {}
-          'f:ownerReferences':
+            f:cluster-name: {}
+            f:cluster-namespace: {}
+            f:policy.open-cluster-management.io/cluster-name: {}
+            f:policy.open-cluster-management.io/cluster-namespace: {}
+          f:ownerReferences:
             .: {}
-            'k:{\\"uid\\":\\"cc918967-492a-4b67-91c4-16a1b19d0c33\\"}':
+            k:{\\"uid\\":\\"cc918967-492a-4b67-91c4-16a1b19d0c33\\"}:
               .: {}
-              'f:apiVersion': {}
-              'f:blockOwnerDeletion': {}
-              'f:controller': {}
-              'f:kind': {}
-              'f:name': {}
-              'f:uid': {}
-        'f:spec':
+              f:apiVersion: {}
+              f:blockOwnerDeletion: {}
+              f:controller: {}
+              f:kind: {}
+              f:name: {}
+              f:uid: {}
+        f:spec:
           .: {}
-          'f:namespaceSelector':
+          f:namespaceSelector:
             .: {}
-            'f:exclude': {}
-            'f:include': {}
-          'f:object-templates': {}
-          'f:remediationAction': {}
-          'f:severity': {}
+            f:exclude: {}
+            f:include: {}
+          f:object-templates: {}
+          f:remediationAction: {}
+          f:severity: {}
       manager: governance-policy-template-sync
       operation: Update
       time: '2021-04-08T23:33:17Z'
     - apiVersion: policy.open-cluster-management.io/v1
       fieldsType: FieldsV1
       fieldsV1:
-        'f:status':
+        f:status:
           .: {}
-          'f:compliancyDetails': {}
-          'f:compliant': {}
-          'f:relatedObjects': {}
+          f:compliancyDetails: {}
+          f:compliant: {}
+          f:relatedObjects: {}
       manager: config-policy-controller
       operation: Update
       time: '2021-04-08T23:33:32Z'
@@ -46252,8 +46252,7 @@ metadata:
       name: default.policy-pod
       uid: cc918967-492a-4b67-91c4-16a1b19d0c33
   resourceVersion: '11119715'
-  selfLink: >-
-    /apis/policy.open-cluster-management.io/v1/namespaces/local-cluster/configurationpolicies/policy-pod-nginx-pod
+  selfLink: /apis/policy.open-cluster-management.io/v1/namespaces/local-cluster/configurationpolicies/policy-pod-nginx-pod
   uid: 45ca9249-6b0b-4522-bcce-271da96dc624
 spec:
   namespaceSelector:
@@ -46270,7 +46269,7 @@ spec:
           name: nginx-pod
         spec:
           containers:
-            - image: 'nginx:1.18.0'
+            - image: nginx:1.18.0
               name: nginx
               ports:
                 - containerPort: 80

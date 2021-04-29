@@ -13,33 +13,32 @@ metadata:
     - apiVersion: policy.open-cluster-management.io/v1
       fieldsType: FieldsV1
       fieldsV1:
-        'f:metadata':
-          'f:annotations':
+        f:metadata:
+          f:annotations:
             .: {}
-            'f:policy.open-cluster-management.io/categories': {}
-            'f:policy.open-cluster-management.io/controls': {}
-            'f:policy.open-cluster-management.io/standards': {}
-        'f:spec':
+            f:policy.open-cluster-management.io/categories: {}
+            f:policy.open-cluster-management.io/controls: {}
+            f:policy.open-cluster-management.io/standards: {}
+        f:spec:
           .: {}
-          'f:disabled': {}
-          'f:policy-templates': {}
-          'f:remediationAction': {}
+          f:disabled: {}
+          f:policy-templates: {}
+          f:remediationAction: {}
       manager: unknown
       operation: Update
       time: '2021-01-22T16:36:36Z'
     - apiVersion: policy.open-cluster-management.io/v1
       fieldsType: FieldsV1
       fieldsV1:
-        'f:status':
+        f:status:
           .: {}
-          'f:placement': {}
-          'f:status': {}
+          f:placement: {}
+          f:status: {}
       manager: governance-policy-propagator
       operation: Update
       time: '2021-01-22T16:36:55Z'
   resourceVersion: '193480'
-  selfLink: >-
-    /apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-limitrange-[ID]
+  selfLink: /apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-limitrange-[ID]
   uid: 0c0cd92c-c98b-4a05-9155-9ebd1ea8aa4e
 spec:
   disabled: false
