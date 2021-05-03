@@ -23,6 +23,7 @@ import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
 import { LocaleContext } from '../components/common/LocaleContext'
+import purifyReactNode from '../utils/PurifyReactNode'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
@@ -54,6 +55,61 @@ export const transform = (items, def, locale) => {
   const sortBy = def.sortBy ? def.sortBy : { index: 0, direction: 'asc' } // default if doesn't exist
 
   return { columns, rows, sortBy }
+}
+
+// use console.log(JSON.stringify(result, circular())) to test return result from transform
+export const transform_new = (items, def, locale) => {
+  const rows = items.map((item, index) => {
+    const rowObj = {
+      uid: index
+    }
+    def.tableKeys.forEach(key => {
+      const label = key.label
+      let value = _.get(item, key.resourceKey)
+      if (key.type === 'timestamp') {
+        rowObj[label] = moment.unix(value).format('MMM Do YYYY \\at h:mm A')
+      } else if (key.type === 'i18n') {
+        rowObj[label] =  msgs.get(key.resourceKey, locale)
+      } else if (key.type === 'boolean') {
+        value = (Boolean(value)).toString()
+        rowObj[label] =  msgs.get(value, locale)
+      } else if (key.transformFunction && typeof key.transformFunction === 'function') {
+        rowObj[label] =  { title: key.transformFunction(item, locale) }
+      } else {
+        rowObj[label] =  (value || value === 0) ? value : '-'
+      }
+    })
+    return rowObj
+  })
+
+  const columns = def.tableKeys.map(key => {
+    return {
+      header: key.msgKey ? msgs.get(key.msgKey, locale) : '',
+      sort: key.sortable ? key.label : undefined,
+      cell: key.label,
+      search: key.searchable ? parseCell(key.label) : undefined,
+      transforms: key.transforms,
+      cellTransforms: key.cellTransforms,
+    }
+  })
+
+  const sortBy = def.sortBy || { index: 0, direction: 'asc' } // default if doesn't exist
+
+  return { columns, rows, sortBy }
+}
+
+function parseCell(label) {
+  return (cell) => {
+    cell = cell[label]
+    if (cell.title?.props?.timestamp) {
+      return moment(cell.title.props.timestamp, 'YYYY-MM-DDTHH:mm:ssZ').fromNow().toString()
+    }
+    if (typeof cell === 'object') {
+      // get the pure text from table cell
+      return purifyReactNode(cell.title)
+    }
+    return cell
+  }
 }
 
 export const buildCompliantCell = (item, locale) => {

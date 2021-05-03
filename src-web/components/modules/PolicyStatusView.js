@@ -11,12 +11,13 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from '@patternfly/react-core'
+import { AcmTable } from '@open-cluster-management/ui-components'
 import PatternFlyTable from '../common/PatternFlyTable'
 import { LocaleContext } from '../common/LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import NoResource from '../../components/common/NoResource'
-import { transform } from '../../tableDefinitions/utils'
+import { transform, transform_new } from '../../tableDefinitions/utils'
 import { checkCreatePermission } from '../../utils/CheckUserPermission'
 import msgs from '../../nls/platform.properties'
 import '../../scss/policy-status-view.scss'
@@ -26,7 +27,7 @@ class PolicyStatusView extends React.Component {
     super(props)
     const paramQuery = new URLSearchParams(location.search.substring(1))
     const indexQuery = paramQuery.get('index')
-    const clusterQuery = Boolean(paramQuery.get('clusterFilter'))
+    const clusterQuery = paramQuery.get('clusterFilter')
     const toggleIndex = indexQuery && parseInt(indexQuery, 10) < 2 ? parseInt(indexQuery, 10) : 0
     this.state= {
       toggleIndex,
@@ -53,26 +54,29 @@ class PolicyStatusView extends React.Component {
     const showDetailsLink = checkCreatePermission(userAccess)
     const statusAccess = items.map(item => ({...item, showDetailsLink: showDetailsLink}))
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
-    const tableDataByClusters = transform(statusAccess, statusByClustersDef, locale)
+    // const tableDataByClusters = transform(statusAccess, statusByClustersDef, locale)
+    const newTableDataByClusters = transform_new(statusAccess, statusByClustersDef, locale)
     const {toggleIndex, clusterQuery} = this.state
+    const extraToolbarControls = (
+      <ToggleGroup className='policy-status-toggle' variant='light'>
+        <ToggleGroupItem
+          buttonId={'policy-status-clusters'}
+          onChange={this.toggleClick}
+          isSelected={toggleIndex===0}
+          text={msgs.get('tabs.policy.status.toggle.clusters', locale)}
+          >
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          buttonId={'policy-status-templates'}
+          onChange={this.toggleClick}
+          isSelected={toggleIndex===1}
+          text={msgs.get('tabs.policy.status.toggle.templates', locale)}
+          >
+        </ToggleGroupItem>
+      </ToggleGroup>
+    )
     return (
       <div className='policy-status-view'>
-        <ToggleGroup className='policy-status-toggle' variant='light'>
-          <ToggleGroupItem
-            buttonId={'policy-status-clusters'}
-            onChange={this.toggleClick}
-            isSelected={toggleIndex===0}
-            text={msgs.get('tabs.policy.status.toggle.clusters', locale)}
-            >
-          </ToggleGroupItem>
-          <ToggleGroupItem
-            buttonId={'policy-status-templates'}
-            onChange={this.toggleClick}
-            isSelected={toggleIndex===1}
-            text={msgs.get('tabs.policy.status.toggle.templates', locale)}
-            >
-          </ToggleGroupItem>
-        </ToggleGroup>
         <div className='policy-status-tab'>
           {toggleIndex===0 && <div className='policy-status-by-clusters-table'>
             <Title
@@ -80,12 +84,16 @@ class PolicyStatusView extends React.Component {
               headingLevel="h3">
               {msgs.get('tabs.policy.status.toggle.clusters', locale)}
             </Title>
-            <PatternFlyTable
-              {...tableDataByClusters}
-              noResultMsg={msgs.get('table.search.no.results', locale)}
-              searchQueryEnabled={clusterQuery}
-              searchQueryKey='clusterFilter'
-              strictSearch={clusterQuery}
+            <AcmTable
+              items={newTableDataByClusters.rows}
+              columns={newTableDataByClusters.columns}
+              keyFn={(item) => item.uid.toString()}
+              sortBy={newTableDataByClusters.sortBy}
+              gridBreakPoint=''
+              search={clusterQuery}
+              setSearch={this.handleSearch}
+              extraToolbarControls={extraToolbarControls}
+              searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
             />
           </div>}
           {toggleIndex===1 && tableDataByTemplate.map((data)=> {
@@ -108,6 +116,23 @@ class PolicyStatusView extends React.Component {
         </div>
       </div>
     )
+  }
+
+  handleSearch = (value) => {
+    // Update URL query if it changes (without adding to browser history)
+
+    const searchQuery = new URLSearchParams(location.search.substring(1))
+    searchQuery.delete('clusterFilter')
+    // If there are other queries, keep them in the URL, otherwise return the URL without queries
+    if (searchQuery.toString() !== '') {
+      window.history.replaceState({}, document.title, `${location.origin}${location.pathname}?${searchQuery.toString()}`)
+    } else {
+      window.history.replaceState({}, document.title, `${location.origin}${location.pathname}`)
+    }
+
+    this.setState({
+      clusterQuery: value,
+    })
   }
 
   toggleClick(isSelected, event) {
