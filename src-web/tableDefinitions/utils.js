@@ -9,12 +9,14 @@ import moment from 'moment'
 import _ from 'lodash'
 import config from '../../server/lib/shared/config'
 import {
+  AcmTable
+} from '@open-cluster-management/ui-components'
+import {
   Label,
   LabelGroup,
   Tooltip,
 } from '@patternfly/react-core'
 import StatusField from '../components/common/StatusField'
-import { AcmTable } from '@open-cluster-management/ui-components'
 import {
   GreenCheckCircleIcon,
   RedExclamationCircleIcon,
@@ -333,6 +335,7 @@ export function getClusterViolationLabels(item) {
   return <TruncateText text={item.nonCompliant.join(', ')} />
 }
 
+<<<<<<< HEAD
 export function getControls(item) {
   return formatAnnotationString(item, 'policy.open-cluster-management.io/controls')
 }
@@ -350,6 +353,87 @@ export function formatAnnotationString(policy, annotationKey){
   const values = annotations[annotationKey]
   if (values) {
     return values.split(',').map(item => item.trim()).join(', ')
+=======
+
+export function getStatus(item, locale) {
+  const status = _.get(item, 'status', '-')
+  if (status.compliant){
+    return <StatusField status={status.compliant.toLowerCase()} text={msgs.get(`policy.status.${status.compliant.toLowerCase()}`, locale)} />
+  } else if (status && typeof(status)==='string' && status !== '-'){
+    return <StatusField status={status.toLowerCase()} text={msgs.get(`policy.status.${status.toLowerCase()}`, locale)} />
+  }
+  return '-'
+}
+
+export function getCompliancePolicyStatus(item, locale) {
+  if (item.clusterNotCompliant && item.clusterNotCompliant.length > 0){
+    return <StatusField status='noncompliant' text={msgs.get('policy.status.noncompliant', locale)} />
+  }
+  return <StatusField status='compliant' text={msgs.get('policy.status.compliant', locale)} />
+}
+
+export function createCompliancePolicyLink(item = {}, ...param){
+  const policyKeys = item[param[1]]
+  const policyArray = []
+  policyKeys && policyKeys.forEach(policyKey => {
+    const targetPolicy = item.policies.find(policy => item.name === policy.name && policyKey === policy.cluster)
+    policyArray.push(targetPolicy)
+  })
+
+  return policyArray.length > 0 ?
+    <ul>{policyArray.map(policy => (<li key={`${policy.cluster}-${policy.name}`}>
+      <Link
+        to={`${config.contextPath}/all/${encodeURIComponent(policy.complianceNamespace)}/${encodeURIComponent(policy.complianceName)}/compliancePolicy/${encodeURIComponent(policy.name)}/${policy.cluster}`}>
+        {policy.cluster}
+      </Link>
+    </li>))}</ul>
+    :
+    '-'
+}
+
+export function createPolicyLink(item = {}){
+  return  <Link
+    to={`${config.contextPath}/all/${encodeURIComponent(item.complianceNamespace)}/${encodeURIComponent(item.complianceName)}/compliancePolicy/${encodeURIComponent(item.name)}`}>
+    {item.name}
+  </Link>
+}
+
+export function getStatusCount(item) {
+  return `${item.policyCompliant}/${item.policyTotal}`
+}
+
+export function getClusterCount(item) {
+  return `${item.clusterCompliant}/${item.clusterTotal}`
+}
+
+export function getSubjects(item) {
+  if(item && item.subjects){
+    return item.subjects.map(subject => `${subject.name}(${subject.apiGroup})`).join(', ')
+  }
+  else{
+    return '-'
+  }
+}
+
+export function getControls(item) {
+  const annotations = _.get(item, 'metadata.annotations') || {}
+  return formatAnnotationString(annotations['policy.open-cluster-management.io/controls'])
+}
+
+export function getStandards(item) {
+  const annotations = _.get(item, 'metadata.annotations') || {}
+  return formatAnnotationString(annotations['policy.open-cluster-management.io/standards'])
+}
+
+export function getCategories(item) {
+  const annotations = _.get(item, 'metadata.annotations') || {}
+  return formatAnnotationString(annotations['policy.open-cluster-management.io/categories'])
+}
+
+export function formatAnnotationString(items){
+  if (items) {
+    return items.split(',').map(item => item.trim()).join(', ')
+>>>>>>> Migrate policyDetailsOverview to new data structure
   }
   return '-'
 }
@@ -417,7 +501,11 @@ export function getDecisionList(policy, locale) {
         <span key={`${status}-status-list`} className={`status-list status-list__${status}`}>
           <LabelGroup
             collapsedText='${remaining} more'
+<<<<<<< HEAD
             expandedText='Show fewer'
+=======
+            expandedText='Show less'
+>>>>>>> Migrate policyDetailsOverview to new data structure
             numLabels='5'
           >
             {Array.from(clusterList[status]).map((cluster, index) =>{
@@ -460,8 +548,11 @@ export function getDecisionList(policy, locale) {
     return '-'
   }
   return statusList
+<<<<<<< HEAD
 }
 
 export function getAutomationLink() { //item, locale) {
   return 'Automation Link'
+=======
+>>>>>>> Migrate policyDetailsOverview to new data structure
 }
