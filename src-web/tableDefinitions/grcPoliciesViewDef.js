@@ -9,17 +9,14 @@ import {
   createComplianceLink,
   getPolicyCompliantStatus,
   getAutomationLink,
+  getCategories,
+  getControls,
+  getStandards
 } from './utils'
 import {
   breakWord,
   wrappable
 } from '@patternfly/react-table'
-import {
-  getCategories,
-  getControls,
-  getStandards
-} from './hcm-compliances'
-
 export default {
   tableActions: [
     'table.actions.policy.details',
