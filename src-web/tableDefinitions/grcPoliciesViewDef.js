@@ -8,18 +8,15 @@ import {
   buildTimestamp,
   createComplianceLink,
   getPolicyCompliantStatus,
+  getCategories,
+  getControls,
+  getStandards
 } from './utils'
 import {
   breakWord,
   wrappable,
   sortable
 } from '@patternfly/react-table'
-import {
-  getCategories,
-  getControls,
-  getStandards
-} from './hcm-compliances'
-
 export default {
   tableActions: [
     'table.actions.edit',
