@@ -19,10 +19,9 @@ import msgs from '../../nls/platform.properties'
 import DetailsModule from '../common/DetailsModule'
 import PatternFlyTable from '../common/PatternFlyTable'
 import NoResource from '../../components/common/NoResource'
-import { getResourceData } from '../../tableDefinitions'
+import policyDetailsClusterListDef from '../../tableDefinitions/policyDetailsClusterListDef'
+import policyDetailsOverviewDef from '../../tableDefinitions/policyDetailsOverviewDef'
 import { transform } from '../../tableDefinitions/utils'
-import { RESOURCE_TYPES } from '../../utils/constants'
-
 
 import '../../scss/policy-details-overview.scss'
 
@@ -41,12 +40,8 @@ export class PolicyDetailsOverview extends React.PureComponent{
     locale: PropTypes.string
   }
 
-  static defaultProps = {
-    resourceType: RESOURCE_TYPES.POLICIES_BY_POLICY,
-  }
-
   render() {
-    const {items=[], resourceType} = this.props
+    const {items=[]} = this.props
     if (items.length === 0) {
       return <NoResource
         title={msgs.get('error.not.found', [msgs.get('routes.grc', locale)], locale)}
@@ -56,9 +51,8 @@ export class PolicyDetailsOverview extends React.PureComponent{
       console.error(`Only one policy was expected but ${items.length} were received. The other policies will be ignored.`)
     }
     const localItem = items[0]
-    const staticResourceData = getResourceData(resourceType)
     const { locale } = this.context
-    const clusterList = transform([localItem], staticResourceData.placementClusterKeys, locale)
+    const clusterList = transform([localItem], policyDetailsClusterListDef, locale)
 
     const modulesSecond = [
       <PatternFlyTable
@@ -69,6 +63,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
         searchable={false}
       />
     ]
+
     let itemPR = null, itemPB = null
     if (localItem && localItem.placementPolicies && Array.isArray(localItem.placementPolicies)) {
       if (localItem.placementPolicies.length > 0) {
@@ -85,8 +80,8 @@ export class PolicyDetailsOverview extends React.PureComponent{
         <div className='vertical-expend'>
           <DetailsModule
             listData = {localItem}
-            listItem = {staticResourceData.detailKeys.rows}
-            title = {staticResourceData.detailKeys.title}
+            listItem = {policyDetailsOverviewDef.rows}
+            title = {policyDetailsOverviewDef.title}
             showHeader={false}
           />
         </div>
@@ -99,10 +94,6 @@ export class PolicyDetailsOverview extends React.PureComponent{
       </div>
     )
   }
-
-  // handleClusterClick(cluster) {
-
-  // }
 }
 
 export default withRouter(PolicyDetailsOverview)
