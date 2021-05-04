@@ -144,10 +144,13 @@ Cypress.Commands.add('logout', () => {
     //logout when test starts since we need to use the app idp user
     cy.log('Logging out existing user')
       .get($btn).click()
-    cy.contains('Logout').click()
-    cy.location('pathname').should('match', new RegExp('/oauth/authorize(\\?.*)?$'))
-//      .waitForPageContentLoad()
-      .clearCookies()
+    if (Cypress.config().baseUrl.includes('localhost')) {
+      cy.contains('Logout').click().clearCookies()
+    } else {
+      cy.contains('Logout').click()
+      cy.location('pathname').should('match', new RegExp('/oauth/authorize(\\?.*)?$'))
+        .clearCookies()
+    }
   })
 })
 
