@@ -8,13 +8,10 @@ import {
   buildTimestamp,
   createComplianceLink,
   getPolicyCompliantStatus,
-<<<<<<< HEAD
   getCategories,
   getControls,
-  getStandards
-=======
+  getStandards,
   getAutomationLink,
->>>>>>> Add "Automation" column and action menu item
 } from './utils'
 import {
   breakWord,
