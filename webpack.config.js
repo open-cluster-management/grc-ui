@@ -1,11 +1,3 @@
-/*******************************************************************************
- * Licensed Materials - Property of IBM
- * (c) Copyright IBM Corporation 2019. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- * Use, duplication or disclosure restricted by GSA ADP Schedule
- * Contract with IBM Corp.
- *******************************************************************************/
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
@@ -30,9 +22,10 @@ const overpassTest = /overpass-.*\.(woff2?|ttf|eot|otf)(\?.*$|$)/
 module.exports = {
   context: __dirname,
   devtool: PRODUCTION ? 'source-map' : 'cheap-module-source-map',
+  ignoreWarnings: [/Failed to parse source map/],
   stats: {
     children: false,
-    warningsFilter: [/Failed to parse source map/],
+    errorDetails: true,
   },
   entry: {
     'main': ['@babel/polyfill', './src-web/index.js'],
@@ -63,11 +56,16 @@ module.exports = {
         // Transpile React JSX to ES5
         test: [/\.jsx$/, /\.js$/],
         exclude: /node_modules|\.scss/,
-        loader: 'babel-loader?cacheDirectory',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-          plugins: ['@babel/plugin-proposal-class-properties']
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: ['@babel/plugin-proposal-class-properties']
+            },
+          },
+        ]
       },
       {
         test: [/\.s?css$/],
@@ -81,19 +79,16 @@ module.exports = {
             },
           },
           {
-            loader: 'postcss-loader?sourceMap',
-            options: {
-              plugins: function () {
-                return [
-                  require('autoprefixer')
-                ]
-              },
-            },
-          },
-          {
-            loader: 'resolve-url-loader',
+            loader: 'postcss-loader',
             options: {
               sourceMap: true,
+              postcssOptions: {
+                plugins: [
+                  [
+                    'autoprefixer',
+                  ],
+                ],
+              },
             },
           },
           {
@@ -117,15 +112,6 @@ module.exports = {
       {
         test: /\.properties$/,
         loader: 'properties-loader'
-      },
-      {
-        test: /\.svg$/,
-        include: [
-          path.resolve(__dirname, './graphics'),
-        ],
-        use: [
-          'svg-sprite-loader'
-        ]
       },
       {
         test: [/\.handlebars$/, /\.hbs$/],
@@ -170,7 +156,6 @@ module.exports = {
     // chunkFilename: PRODUCTION ? 'js/[name].[chunkhash].min.js' : 'js/[name].js',
     path: __dirname + '/public',
     publicPath: config.get('contextPath').replace(/\/?$/, '/'),
-    jsonpFunction: 'webpackJsonpFunctionGrc',
   },
 
   plugins: [
@@ -187,7 +172,6 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: PRODUCTION ? 'css/[name].[contenthash].css' : 'css/[name].css',
-      allChunks: true
     }),
     new webpack.LoaderOptionsPlugin({
       options: {
@@ -203,7 +187,7 @@ module.exports = {
       }
     }),
     new CompressionPlugin({
-      filename: '[path].gz',
+      filename: '[path][base].gz',
       algorithm: 'gzip',
       test: /\.js$|\.css$/,
       minRatio: 1,
