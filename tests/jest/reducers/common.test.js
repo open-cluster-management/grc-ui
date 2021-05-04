@@ -18,7 +18,7 @@ For a given input, a selector should always produce the same output.
 import {
   resourceToolbar, secondaryHeader,
   resourceReducerFunction,
-  resourceItemByName, INITIAL_STATE
+  INITIAL_STATE
 } from '../../../src-web/reducers/common'
 import { RESOURCE_TYPES } from '../../../src-web/utils/constants'
 
@@ -85,30 +85,6 @@ describe('secondaryHeader creation', () => {
       links: ''
     }
     expect(secondaryHeader(state, action)).toEqual(expectedValue)
-  })
-})
-
-describe('resourceItemByName', () => {
-  it('should resourceItemByName', () => {
-    const items = {'POLICIES_BY_POLICY':'test'}
-    const props = {
-      resourceType:{name:'HCMCompliance'},
-    }
-    const expectedValue = 'test'
-    expect(resourceItemByName(items, props)).toEqual(expectedValue)
-  })
-})
-
-describe('resourceItemByName', () => {
-  it('should resourceItemByName', () => {
-    const items = {'POLICIES_BY_POLICY':'test'}
-    const props = {
-      resourceType:{name:'JustTesting'},
-    }
-    const expectedValue = 'test'
-    // eslint-disable-next-line no-console
-    console.log('Below console logs are just unit test results, not actual errors: ')
-    expect(resourceItemByName(items, props)).toEqual(expectedValue)
   })
 })
 
