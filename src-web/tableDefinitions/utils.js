@@ -190,7 +190,7 @@ export function getPolicyCompliantStatus(item, locale) {
 }
 
 export function getClusterCompliantStatus(item, locale) {
-  const statusArray = _.get(item, 'violation').split('/')
+  const statusArray = _.get(item, 'violation', '0/0/0').split('/')
   const violationCount = parseInt(statusArray[0], 10)
   const totalCount = parseInt(statusArray[1], 10)
   const unknownCount = parseInt(statusArray[2], 10)
