@@ -24,7 +24,7 @@ import {
   getDecisionCount,
   getSubjects,
   formatAnnotationString,
-} from '../../../src-web/tableDefinitions/hcm-compliances'
+} from '../../../src-web/tableDefinitions/utils'
 
 describe('hcm-compliances - createComplianceLink', () => {
   it('should return valid compliance link', () => {

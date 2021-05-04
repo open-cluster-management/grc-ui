@@ -22,24 +22,13 @@ It is simple: for any part of the store that an application needs access to, def
 when given the full store, returns the desired part (or derivation) of the store.
 */
 
-import { createSelector } from 'reselect'
 import _ from 'lodash'
-import { normalize } from 'normalizr'
-import ReactDOMServer from 'react-dom/server'
-import { createResourcesSchema } from '../utils/resource-schema'
-import { transform } from '../utils/resource-helper'
 import { RESOURCE_TYPES } from '../utils/constants'
-import msgs from '../nls/platform.properties'
-import {
-  getTableKeys, getDefaultSortField, getPrimaryKey,
-  getSecondaryKey, getURIKey, getResourceData
-} from '../tableDefinitions'
 import {
   PAGE_SIZES, CLEAR_REQUEST_STATUS, POST_REQUEST, PUT_REQUEST,
   PATCH_REQUEST, ACTIVE_FILTER_UPDATE, AVAILABLE_FILTER_UPDATE, REQUEST_STATUS, POST_RECEIVE_SUCCESS,
   PUT_RECEIVE_SUCCESS, PATCH_RECEIVE_SUCCESS, DEL_RECEIVE_SUCCESS,
   POST_RECEIVE_FAILURE, PUT_RECEIVE_FAILURE, PATCH_RECEIVE_FAILURE,
-  SORT_DIRECTION_ASCENDING, SORT_DIRECTION_DESCENDING,
   SECONDARY_HEADER_UPDATE, RESOURCE_REQUEST, RESOURCE_RECEIVE_SUCCESS,
   RESOURCE_RECEIVE_FAILURE, TABLE_SEARCH, TABLE_SORT, TABLE_PAGE_CHANGE,
   RESOURCE_ADD, RESOURCE_MODIFY, RESOURCE_MUTATE, RESOURCE_MUTATE_FAILURE,
@@ -69,7 +58,6 @@ export const INITIAL_STATE = {
   page: 1,
   search: '',
   sortColumn: undefined,
-  sortDirection: SORT_DIRECTION_ASCENDING,
   status: REQUEST_STATUS.INCEPTION,
   patchStatus: undefined,
   patchErrorMsg: '',
@@ -79,176 +67,6 @@ export const INITIAL_STATE = {
   postStatusCode: undefined,
   postErrorMsg: '',
   pendingActions: [],
-}
-
-function searchTableCell(item, tableKey, context, searchText){
-  const renderedElement = transform(item, tableKey, context.locale, true)
-  if (typeof renderedElement === 'string') {
-    return renderedElement.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
-  } else {
-    return ReactDOMServer.renderToString(transform(item, tableKey, context.locale, true))
-      .toString().toLowerCase().indexOf(searchText.toLowerCase()) !== -1
-  }
-}
-
-function searchTableCellHelper(search, tableKeys, item, context) {
-  const searchKey = search.substring(0, search.indexOf('='))
-  const searchField = search.substring(search.indexOf('=')+1)
-
-  if (searchKey === 'textsearch') {
-    return tableKeys.find(
-      localTableKey =>
-        searchTableCell(item, localTableKey, context, searchField.replace(/[{}]/g, ''))
-    )
-  }
-  const tableKey = tableKeys.find(
-    localTableKey =>
-      msgs.get(localTableKey.msgKey, context.locale).toLowerCase() === searchKey.toLowerCase()
-  )
-  if (!_.isEmpty(searchField)) {
-    if (!searchField.includes('{')) {
-      if (tableKey) {
-        return searchTableCell(item, tableKey, context, searchField)
-      }
-    } else {
-      let found = false
-      const searchKeys = searchField.replace(/[{}]/g, '').split(',')
-      if (searchKeys && tableKey) {
-        searchKeys.forEach(localSearchKey => {
-          if (searchTableCell(item, tableKey, context, localSearchKey)) {
-            found = true
-          }
-        })
-      }
-      return found
-    }
-  }
-  // return all results when user types cluster=
-  if (searchField === '') {
-    return true
-  }
-
-  // by default, search all fields
-  return tableKeys.find(localTableKey => searchTableCell(item, localTableKey, context, search))
-}
-
-const makeGetFilteredItemsSelector = (resourceType) => {
-  return createSelector(
-    [getItems, getSearch],
-    (items, search) => items.filter((item) => {
-      if (_.isEmpty(search)) {
-        return true
-      }
-
-      const tableKeys = getTableKeys(resourceType)
-      if(document.getElementById('context')) {
-        const context = JSON.parse(document.getElementById('context').textContent)
-
-        if (search.includes('},')) {
-        // special case like status={healthy}, labels={cloud=IBM}
-          let found = false
-          const searchFields = search.replace('},', '}},').toLowerCase().split('},')
-          searchFields.forEach(searchField => {
-            if (searchTableCellHelper(searchField, tableKeys, item, context)) {
-              found = true
-            }
-          })
-          return found
-        } else {
-          return searchTableCellHelper(search, tableKeys, item, context)
-        }
-      }
-      return undefined
-    })
-  )
-}
-
-const makeGetTransformedItemsSelector = (resourceType) => {
-  return createSelector(
-    [makeGetFilteredItemsSelector(resourceType)],
-    (items) => {
-      const resourceData = getResourceData(resourceType)
-      return items.map(item => {
-        if(document) {
-          const customData = {}
-          if(document.getElementById('context')) {
-            const context = JSON.parse(document.getElementById('context').textContent)
-            resourceData.tableKeys.forEach(key => {
-              if (key.transformFunction && typeof key.transformFunction === 'function') {
-                customData[key.resourceKey.replace('custom.', '')] = key.transformFunction(item, context.locale)
-              }
-            })
-          }
-          item.custom = customData
-        }
-        return item
-      })
-    }
-  )
-}
-
-//TODO could we do better? - we have one selector thus one cache for sorting.
-//Thus if the sort direction change is toggled back we re-calculate.
-const makeGetSortedItemsSelector = (resourceType) => {
-  return createSelector(
-    [makeGetTransformedItemsSelector(resourceType), getSortColumn, getSortDirection],
-    (items, sortColumn, sortDirection) => {
-      const initialSortField = sortColumn ? sortColumn : getDefaultSortField(resourceType)
-      const sortField = initialSortField === 'custom.age' ? 'metadata.creationTimestamp' : initialSortField // sort by the actual date, not formatted value
-      const sortDir = sortField === 'metadata.creationTimestamp'
-        ? (sortDirection === SORT_DIRECTION_ASCENDING
-          ? SORT_DIRECTION_DESCENDING
-          : SORT_DIRECTION_ASCENDING)
-        : sortDirection // date fields should initially sort from latest to oldest
-      return _.orderBy(items, item => _.get(item, sortField), [sortDir])
-    }
-  )
-}
-
-const makeGetPagedItemsSelector = (resourceType) => {
-  return createSelector(
-    [makeGetSortedItemsSelector(resourceType), getPage, getItemsPerPage],
-    (items, page, itemsPerPage) => {
-      const offset = (page - 1) * itemsPerPage
-      let lastIndex = offset + itemsPerPage
-      lastIndex = lastIndex <= items.length ? lastIndex : items.length
-      return {
-        items: items.slice(offset, lastIndex),
-        totalResults: items.length,
-        totalPages: Math.ceil(items.length / itemsPerPage)
-      }
-    }
-  )
-}
-
-export const makeGetVisibleTableItemsSelector = (resourceType) => {
-  const pk = getPrimaryKey(resourceType)
-  const sk = getSecondaryKey(resourceType)
-  return createSelector(
-    [makeGetPagedItemsSelector(resourceType)],
-    result => {
-      const normalizedItems = normalize(result.items, [createResourcesSchema(pk, sk)]).entities.items
-      return Object.assign(result, {
-        normalizedItems: normalizedItems,
-        // to support multi cluster, use ${name}-${cluster} as unique id
-        items: result.items.map(item => sk ? `${_.get(item, pk)}-${_.get(item, sk)}`:`${_.get(item, pk)}`)
-      })
-    }
-  )
-}
-
-const getItemProps= (state, props) => props
-
-export const getSingleResourceItem = createSelector(
-  [getItems, getItemProps],
-  (items, props) => items && items.length > 0 && props.predicate(items, props)
-)
-
-export const resourceItemByName = (items, props) => {
-  const key = getURIKey(props.resourceType)
-  return _.find(items, item =>
-    _.get(item, key) === props.name
-  )
 }
 
 export const resourceToolbar = (state = {}, action) => {
@@ -379,8 +197,7 @@ export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
     })
   case RESOURCE_ADD: /* eslint-disable no-case-declarations */
   case RESOURCE_MODIFY:
-    const resourceTypeObj = !_.isObject(action.resourceType) ? RESOURCE_TYPES[_.findKey(RESOURCE_TYPES, { name: action.resourceType })] : action.resourceType
-    const primaryKey = getPrimaryKey(resourceTypeObj)
+    const primaryKey = 'metadata.uid'
     items = state.items.slice(0)
     index = _.findIndex(items, o => (_.get(o, primaryKey) === _.get(action.item, primaryKey)))
     index > -1 ? items.splice(index, 1, action.item) : items.push(action.item)
