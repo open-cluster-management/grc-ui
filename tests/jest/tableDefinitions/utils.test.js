@@ -120,21 +120,9 @@ describe('tableDefinitions utils - formatAnnotationString', () => {
     metadata: {
       annotations: {
         'testKey': 'test1 test2,test3 ,  test4 test5',
-        'policy.open-cluster-management.io/controls': 'controls',
-        'policy.open-cluster-management.io/categories': 'categories',
-        'policy.open-cluster-management.io/standards': 'standards',
       }
     }
   }
-  it('getControls - should return controls', () => {
-    expect(getControls(policy)).toEqual('controls')
-  })
-  it('getCategories - should return categories', () => {
-    expect(getCategories(policy)).toEqual('categories')
-  })
-  it('getStandards - should return standards', () => {
-    expect(getStandards(policy)).toEqual('standards')
-  })
   it('should get list of annotations back with proper whitespace', () => {
     expect(formatAnnotationString(policy, 'testKey')).toMatchSnapshot()
   })
