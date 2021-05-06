@@ -35,8 +35,8 @@ describeT('RHACM4K-2342 - GRC UI: [P1][Sev1][policy-grc] Verify create policy wi
   })
   it('Delete created policies', () => {
     for (const policyName of policyNames) {
-       cy.actionPolicyActionInListing(policyName, 'Remove')
-       cy.verifyPolicyNotInListing(policyName)
+       cy.visit('/multicloud/policies/all').waitForPageContentLoad()
+       .actionPolicyActionInListing(policyName, 'Remove')
     }
   })
 })
