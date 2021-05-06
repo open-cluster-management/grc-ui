@@ -7,7 +7,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import { AcmPageContent, AcmPageHeader, AcmAutoRefreshSelect, AcmRefreshTime, AcmSecondaryNav, AcmAlert, AcmPage } from '@open-cluster-management/ui-components'
-import { Spinner } from '@patternfly/react-core'
+import { Spinner, PageSection } from '@patternfly/react-core'
 import { useHistory, useParams } from 'react-router-dom'
 
 import { INITIAL_POLL_INTERVAL, REFRESH_INTERVALS, REFRESH_INTERVAL_COOKIE } from '../utils/constants'
@@ -55,32 +55,34 @@ function AcmGrcPage(props) {
         }
       >
         <AcmPageContent id={page.id}>
-          {(() => {
-            if (error) {
-              // Handle Apollo networkError type
-              const eMsg = []
-              if (error.networkError) {
-                const { statusCode='', bodyText='', message='', result='' } = error.networkError
-                eMsg.push(<p key='eHeader'>Network Error {statusCode}</p>)
-                eMsg.push(<p key='eBodyText'>{bodyText}</p>)
-                eMsg.push(<p key='eMessage'>{message}</p>)
-                if (result.errors) {
-                  eMsg.push(<p key='eMsgDetails'>{result.errors.map((e) => e.message).join(';')}</p>)
+          <PageSection>
+            {(() => {
+              if (error) {
+                // Handle Apollo networkError type
+                const eMsg = []
+                if (error.networkError) {
+                  const { statusCode='', bodyText='', message='', result='' } = error.networkError
+                  eMsg.push(<p key='eHeader'>Network Error {statusCode}</p>)
+                  eMsg.push(<p key='eBodyText'>{bodyText}</p>)
+                  eMsg.push(<p key='eMessage'>{message}</p>)
+                  if (result.errors) {
+                    eMsg.push(<p key='eMsgDetails'>{result.errors.map((e) => e.message).join(';')}</p>)
+                  }
+                // Handle Apollo graphQLErrors type
+                } else {
+                  eMsg.push(<p key='eHeader'>GraphQL Error</p>)
+                  eMsg.push(<p key='eMessage'>{error.errors.map((e) => e.message).join(';')}</p>)
                 }
-              // Handle Apollo graphQLErrors type
-              } else {
-                eMsg.push(<p key='eHeader'>GraphQL Error</p>)
-                eMsg.push(<p key='eMessage'>{error.errors.map((e) => e.message).join(';')}</p>)
+                return <AcmAlert isInline={true} variant='danger'
+                  subtitle={eMsg} />
               }
-              return <AcmAlert isInline={true} variant='danger'
-                subtitle={eMsg} />
-            }
-            if (loading && !previousData || items === undefined ) {
-              return <Spinner className='patternfly-spinner' />
-            } else {
-              return page.children({ items })
-            }
-          })()}
+              if (loading && !previousData || items === undefined ) {
+                return <Spinner className='patternfly-spinner' />
+              } else {
+                return page.children({ items })
+              }
+            })()}
+          </PageSection>
         </AcmPageContent>
       </AcmPage>
     </React.Fragment>
