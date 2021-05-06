@@ -15,10 +15,10 @@ import {
 import jsYaml from 'js-yaml'
 import _ from 'lodash'
 import YamlEditor from '../common/YamlEditor'
-import PatternFlyTable from '../common/PatternFlyTable'
+import { AcmTable } from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
-import { transform } from '../../tableDefinitions/utils'
+import { transform_new } from '../../tableDefinitions/utils'
 import msgs from '../../nls/platform.properties'
 
 import '../../scss/policy-template-details.scss'
@@ -67,7 +67,7 @@ class PolicyTemplateDetailsView extends React.Component {
         return o
       })
     }
-    const tableData = transform(relatedObjects, relatedObjectsDef, locale)
+    const tableData = transform_new(relatedObjects, relatedObjectsDef, locale)
 
     return (
       <div className='policy-template-details-view'>
@@ -121,7 +121,13 @@ class PolicyTemplateDetailsView extends React.Component {
         </div>
         <div className='table'>
           <Title className='title' headingLevel="h2">{msgs.get('panel.header.related.resources', locale)}</Title>
-          <PatternFlyTable {...tableData} noResultMsg={msgs.get('table.search.no.results', locale)} />
+          <AcmTable
+            items={tableData.rows}
+            columns={tableData.columns}
+            keyFn={(item) => item.uid.toString()}
+            sortBy={tableData.sortBy}
+            gridBreakPoint=''
+          />
         </div>
       </div>
 
