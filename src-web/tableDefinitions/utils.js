@@ -9,11 +9,13 @@ import moment from 'moment'
 import _ from 'lodash'
 import config from '../../server/lib/shared/config'
 import {
+  AcmButton,
   AcmTable
 } from '@open-cluster-management/ui-components'
 import {
   Label,
   LabelGroup,
+  Popover,
   Tooltip,
 } from '@patternfly/react-core'
 import StatusField from '../components/common/StatusField'
@@ -22,6 +24,7 @@ import {
   RedExclamationCircleIcon,
   YellowExclamationTriangleIcon,
 } from '../components/common/Icons'
+import { ExternalLinkAltIcon } from '@patternfly/react-icons'
 import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
@@ -332,6 +335,41 @@ export function getClusterViolationLabels(item) {
   return <TruncateText text={item.nonCompliant.join(', ')} />
 }
 
+export function getAutomationLink(item, locale) {
+  const automationLink = <div className='automation-link'>
+      <ExternalLinkAltIcon />link-to-ansible-tower-instance
+    </div>
+  const editAutomationButton = <AcmButton
+      onClick={()=>{}}
+      text={msgs.get('table.actions.automation.edit', locale)}
+    >
+      {msgs.get('table.actions.automation.edit', locale)}
+    </AcmButton>
+  const automationBody = <div className='automation-body'>
+      <div className='connection-name'>
+        <span className='title'>
+          {msgs.get('table.actions.automation.popover.connection', locale)}:
+        </span>
+        <span>type-of-provider-connection</span>
+      </div>
+      <div>
+        description-of-connection-provided-at-connection-creation-time
+      </div>
+      {automationLink}
+      {editAutomationButton}
+    </div>
+  // TODO: Figure out logic for "Configure automation" vs "Ansible tower"
+  // TODO: Create popover for "Ansible tower"
+  // TODO: For "Configure automation", figure out action to open side panel
+  return (
+    <Popover
+      headerContent={msgs.get('table.actions.automation.popover.title', locale)}
+      bodyContent={automationBody}
+    >
+      <Label>type-of-automation<ExternalLinkAltIcon /></Label>
+    </Popover>
+  )
+}
 
 export function getStatus(item, locale) {
   const status = _.get(item, 'status', '-')
