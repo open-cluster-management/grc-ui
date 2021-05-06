@@ -17,11 +17,11 @@ import PropTypes from 'prop-types'
 import { Alert } from '@patternfly/react-core'
 import msgs from '../../nls/platform.properties'
 import DetailsModule from '../common/DetailsModule'
-import PatternFlyTable from '../common/PatternFlyTable'
+import { AcmTable } from '@open-cluster-management/ui-components'
 import NoResource from '../../components/common/NoResource'
 import policyDetailsClusterListDef from '../../tableDefinitions/policyDetailsClusterListDef'
 import policyDetailsOverviewDef from '../../tableDefinitions/policyDetailsOverviewDef'
-import { transform } from '../../tableDefinitions/utils'
+import { transform_new } from '../../tableDefinitions/utils'
 
 import '../../scss/policy-details-overview.scss'
 
@@ -32,8 +32,8 @@ export class PolicyDetailsOverview extends React.PureComponent{
 
   static propTypes = {
     items: PropTypes.array,
-    location: PropTypes.object,
-    resourceType: PropTypes.object,
+    // location: PropTypes.object,
+    // resourceType: PropTypes.object,
   }
 
   static contextTypes = {
@@ -52,15 +52,18 @@ export class PolicyDetailsOverview extends React.PureComponent{
     }
     const localItem = items[0]
     const { locale } = this.context
-    const clusterList = transform([localItem], policyDetailsClusterListDef, locale)
+    const clusterList = transform_new([localItem], policyDetailsClusterListDef, locale)
 
     const modulesSecond = [
-      <PatternFlyTable
+      <AcmTable
         key='cluster-list'
         className={'cluster-list'}
-        {...clusterList}
-        pagination={false}
-        searchable={false}
+        items={clusterList.rows}
+        columns={clusterList.columns}
+        keyFn={(item) => item.uid.toString()}
+        sortBy={clusterList.sortBy}
+        gridBreakPoint=''
+        autoHidePagination={true}
       />
     ]
 
