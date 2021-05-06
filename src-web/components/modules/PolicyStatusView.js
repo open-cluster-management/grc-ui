@@ -94,23 +94,21 @@ class PolicyStatusView extends React.Component {
               searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
             />
           </div>}
-          {toggleIndex===1 && tableDataByTemplate.map((data)=> {
-            const templateName = data[0].toString()
-            const templateTableData = data[1]
+          {toggleIndex===1 && tableDataByTemplate.map((table)=> {
             return <div
               className='policy-status-by-templates-table'
-              key={`template-index-${templateName}`}
+              key={`template-index-${table.name}`}
             >
               <Title
                 className='title'
                 headingLevel="h3">
-                {`${msgs.get('policy.template', locale)}: ${templateName}`}
+                {`${msgs.get('policy.template', locale)}: ${table.name}`}
               </Title>
               <AcmTable
-                items={templateTableData.rows}
-                columns={templateTableData.columns}
+                items={table.data.rows}
+                columns={table.data.columns}
                 keyFn={(item) => item.uid.toString()}
-                sortBy={templateTableData.sortBy}
+                sortBy={table.data.sortBy}
                 gridBreakPoint=''
                 search={clusterQuery}
                 setSearch={this.handleSearch}
@@ -161,24 +159,18 @@ class PolicyStatusView extends React.Component {
 }
 
 function groupByTemplate(status, locale) {
-  const statusByTemplates = {}
-  const tableDataByTemplate = []
-  if (Array.isArray(status) && status.length > 0){
-    status.forEach((singleStatus) => {
-      const templateName = singleStatus.templateName
-      if (templateName) {
-        if (!Array.isArray(statusByTemplates[templateName])) {
-          statusByTemplates[templateName] = []
-        }
-        statusByTemplates[templateName].push(singleStatus)
-      }
-    })
-    Object.entries(statusByTemplates).forEach(([key, value])=> {
-      const templateName = key
-      const tableData = transform_new(value, statusByTemplatesDef, locale)
-      tableDataByTemplate.push([templateName, tableData])
-    })
+  if (!(Array.isArray(status) && status.length > 0)) {
+    return []
   }
+  const tableDataByTemplate = []
+  const templateNames = new Set(status.map((s) => s.templateName))
+  templateNames.forEach((tname) => {
+    const matchingStatuses = status.filter((s) => s.templateName === tname)
+    tableDataByTemplate.push({
+      name: tname?.toString(),
+      data: transform_new(matchingStatuses, statusByTemplatesDef, locale)
+    })
+  })
   return tableDataByTemplate
 }
 
