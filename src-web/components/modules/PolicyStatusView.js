@@ -12,12 +12,11 @@ import {
   ToggleGroupItem,
 } from '@patternfly/react-core'
 import { AcmTable } from '@open-cluster-management/ui-components'
-import PatternFlyTable from '../common/PatternFlyTable'
 import { LocaleContext } from '../common/LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import NoResource from '../../components/common/NoResource'
-import { transform, transform_new } from '../../tableDefinitions/utils'
+import { transform_new } from '../../tableDefinitions/utils'
 import { checkCreatePermission } from '../../utils/CheckUserPermission'
 import msgs from '../../nls/platform.properties'
 import '../../scss/policy-status-view.scss'
@@ -54,8 +53,7 @@ class PolicyStatusView extends React.Component {
     const showDetailsLink = checkCreatePermission(userAccess)
     const statusAccess = items.map(item => ({...item, showDetailsLink: showDetailsLink}))
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
-    // const tableDataByClusters = transform(statusAccess, statusByClustersDef, locale)
-    const newTableDataByClusters = transform_new(statusAccess, statusByClustersDef, locale)
+    const tableDataByClusters = transform_new(statusAccess, statusByClustersDef, locale)
     const {toggleIndex, clusterQuery} = this.state
     const extraToolbarControls = (
       <ToggleGroup className='policy-status-toggle' variant='light'>
@@ -85,10 +83,10 @@ class PolicyStatusView extends React.Component {
               {msgs.get('tabs.policy.status.toggle.clusters', locale)}
             </Title>
             <AcmTable
-              items={newTableDataByClusters.rows}
-              columns={newTableDataByClusters.columns}
+              items={tableDataByClusters.rows}
+              columns={tableDataByClusters.columns}
               keyFn={(item) => item.uid.toString()}
-              sortBy={newTableDataByClusters.sortBy}
+              sortBy={tableDataByClusters.sortBy}
               gridBreakPoint=''
               search={clusterQuery}
               setSearch={this.handleSearch}
@@ -98,6 +96,7 @@ class PolicyStatusView extends React.Component {
           </div>}
           {toggleIndex===1 && tableDataByTemplate.map((data)=> {
             const templateName = data[0].toString()
+            const templateTableData = data[1]
             return <div
               className='policy-status-by-templates-table'
               key={`template-index-${templateName}`}
@@ -107,9 +106,16 @@ class PolicyStatusView extends React.Component {
                 headingLevel="h3">
                 {`${msgs.get('policy.template', locale)}: ${templateName}`}
               </Title>
-              <PatternFlyTable
-                {...data[1]}
-                noResultMsg={msgs.get('table.search.no.results', locale)}
+              <AcmTable
+                items={templateTableData.rows}
+                columns={templateTableData.columns}
+                keyFn={(item) => item.uid.toString()}
+                sortBy={templateTableData.sortBy}
+                gridBreakPoint=''
+                search={clusterQuery}
+                setSearch={this.handleSearch}
+                extraToolbarControls={extraToolbarControls}
+                searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
               />
             </div>
           })}
@@ -169,7 +175,7 @@ function groupByTemplate(status, locale) {
     })
     Object.entries(statusByTemplates).forEach(([key, value])=> {
       const templateName = key
-      const tableData = transform(value, statusByTemplatesDef, locale)
+      const tableData = transform_new(value, statusByTemplatesDef, locale)
       tableDataByTemplate.push([templateName, tableData])
     })
   }
@@ -178,7 +184,7 @@ function groupByTemplate(status, locale) {
 
 PolicyStatusView.propTypes = {
   items: PropTypes.array,
-  searchValue: PropTypes.string,
+  // searchValue: PropTypes.string,
   userAccess: PropTypes.array,
 }
 
