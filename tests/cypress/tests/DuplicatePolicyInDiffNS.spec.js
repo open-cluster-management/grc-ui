@@ -16,6 +16,7 @@ describeT('RHACM4K-2342 - GRC UI: [P1][Sev1][policy-grc] Verify create policy wi
     cy.visit('/multicloud/policies/create')
       .createPolicyFromYAML(rawPolicyYAML)
     policyNames.push(policyName)
+    cy.waitForPolicyStatus(policyName, '0/1')
   })
   it('Create Pod policy with default as namespace', () => {
     const confFilePolicy = 'duplicatePolicyInDiffNS/pod_template_original.yaml'
@@ -37,6 +38,9 @@ describeT('RHACM4K-2342 - GRC UI: [P1][Sev1][policy-grc] Verify create policy wi
     for (const policyName of policyNames) {
        cy.visit('/multicloud/policies/all').waitForPageContentLoad()
        .actionPolicyActionInListing(policyName, 'Remove')
+    }
+    for (const policyName of policyNames) {
+      cy.verifyPolicyNotInListing(policyName)
     }
   })
 })
