@@ -20,6 +20,8 @@ export default {
   tableKeys: [
     {
       msgKey: 'table.header.status',
+      label: 'status',
+      searchable: true,
       resourceKey: 'status',
       transforms: [wrappable, sortable],
       cellTransforms: [breakWord],
@@ -27,6 +29,8 @@ export default {
     },
     {
       msgKey: 'table.header.message',
+      label: 'message',
+      searchable: true,
       resourceKey: 'message',
       transforms: [cellWidth(70), wrappable, sortable],
       cellTransforms: [breakWord],
@@ -34,6 +38,7 @@ export default {
     },
     {
       msgKey: 'table.header.lastReport',
+      label: 'timestamp',
       resourceKey: 'timestamp',
       transforms: [wrappable, sortable],
       transformFunction: buildTimestamp
