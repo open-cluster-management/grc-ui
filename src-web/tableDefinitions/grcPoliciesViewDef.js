@@ -27,6 +27,7 @@ export default {
     'table.actions.policy.remove',
   ],
   tableKeys: [
+    // Primary rows of expandable table
     {
       label: 'name',
       msgKey: 'table.header.policy.name',
@@ -35,7 +36,7 @@ export default {
       sortable: true,
       transforms: [wrappable],
       cellTransforms: [breakWord],
-      transformFunction: createComplianceLink
+      transformFunction: createComplianceLink,
     },
     {
       label: 'namespace',
@@ -64,7 +65,7 @@ export default {
       searchable: true,
       sortable: true,
       cellTransforms: [breakWord],
-      transformFunction: getPolicyCompliantStatus
+      transformFunction: getPolicyCompliantStatus,
     },
     {
       label: 'standards',
@@ -75,6 +76,7 @@ export default {
       transforms: [wrappable],
       transformFunction: getStandards,
     },
+    // Expandable table subrows
     {
       label: 'categories',
       msgKey: 'table.header.categories',
@@ -108,6 +110,17 @@ export default {
       transforms: [wrappable],
       transformFunction: buildTimestamp,
     },
+    // Row metadata
+    {
+      hidden: true,
+      label: 'disabled',
+      resourceKey: 'raw.spec.disabled',
+    },
+    {
+      hidden: true,
+      label: 'disabled',
+      resourceKey: 'raw.spec.remediationAction',
+    }
   ],
   sortBy: {
     index: 'creation',

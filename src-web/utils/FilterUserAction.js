@@ -7,8 +7,8 @@ const filterUserAction = (data,actions,userAccessHash,resourceType) => {
   let actionList = []
   if(resourceType && resourceType.name && Array.isArray(actions)) {
     let adminRules = [], typeRules = []
-    const namespace = (data && data.metadata && data.metadata.namespace)
-      ? data.metadata.namespace
+    const namespace = (data && data.namespace)
+      ? data.namespace
       : ''
     switch (resourceType.name) {
     case 'HCMCompliance':
