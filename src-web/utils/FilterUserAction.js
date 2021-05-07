@@ -65,7 +65,7 @@ function buildActionList(actions, rulesSet, actionList) {
   const removeFlag = actions.includes('table.actions.policy.remove')
   const editFlag = actions.includes('table.actions.policy.edit')
   const disableFlag = actions.includes('table.actions.policy.disable')
-  const enforceFlag = actions.includes('table.actions.enforce')
+  const enforceFlag = actions.includes('table.actions.policy.enforce')
   if (rulesSet.includes('update') || rulesSet.includes('patch')) {
     if (editFlag) {
       actionList.push('table.actions.policy.edit')
@@ -74,7 +74,7 @@ function buildActionList(actions, rulesSet, actionList) {
       actionList.push('table.actions.policy.disable')
     }
     if (enforceFlag) {
-      actionList.push('table.actions.enforce')
+      actionList.push('table.actions.policy.enforce')
     }
   } else {
     if (editFlag) {
@@ -84,7 +84,7 @@ function buildActionList(actions, rulesSet, actionList) {
       actionList.push('disabled.table.actions.policy.disable')
     }
     if (enforceFlag) {
-      actionList.push('disabled.table.actions.enforce')
+      actionList.push('disabled.table.actions.policy.enforce')
     }
   }
   if (rulesSet.includes('delete') || rulesSet.includes('deletecollection')) {

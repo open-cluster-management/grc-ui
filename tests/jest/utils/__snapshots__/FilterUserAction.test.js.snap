@@ -2,45 +2,45 @@
 
 exports[`adminAccessDefault action list on different namespaces  should get all permission on default namespace 1`] = `
 Array [
-  "table.actions.edit",
-  "table.actions.disable",
-  "table.actions.enforce",
-  "table.actions.remove",
+  "table.actions.policy.edit",
+  "table.actions.policy.disable",
+  "table.actions.policy.enforce",
+  "table.actions.policy.remove",
 ]
 `;
 
 exports[`adminAccessDefault action list on different namespaces  should only get only has view permission on calamari namespace 1`] = `
 Array [
-  "disabled.table.actions.edit",
-  "disabled.table.actions.disable",
-  "disabled.table.actions.enforce",
-  "disabled.table.actions.remove",
+  "disabled.table.actions.policy.edit",
+  "disabled.table.actions.policy.disable",
+  "disabled.table.actions.policy.enforce",
+  "disabled.table.actions.policy.remove",
 ]
 `;
 
 exports[`test1AccessDefault action list on different namespaces  should get all permission on calamari namespace 1`] = `
 Array [
-  "table.actions.edit",
-  "table.actions.disable",
-  "table.actions.enforce",
-  "table.actions.remove",
+  "table.actions.policy.edit",
+  "table.actions.policy.disable",
+  "table.actions.policy.enforce",
+  "table.actions.policy.remove",
 ]
 `;
 
 exports[`test1AccessDefault action list on different namespaces  should only get only has edit permission on avengers namespace 1`] = `
 Array [
-  "table.actions.edit",
-  "table.actions.disable",
-  "table.actions.enforce",
-  "disabled.table.actions.remove",
+  "table.actions.policy.edit",
+  "table.actions.policy.disable",
+  "table.actions.policy.enforce",
+  "disabled.table.actions.policy.remove",
 ]
 `;
 
 exports[`test1AccessDefault action list on different namespaces  should only get only has view permission on ironman namespace 1`] = `
 Array [
-  "disabled.table.actions.edit",
-  "disabled.table.actions.disable",
-  "disabled.table.actions.enforce",
-  "disabled.table.actions.remove",
+  "disabled.table.actions.policy.edit",
+  "disabled.table.actions.policy.disable",
+  "disabled.table.actions.policy.enforce",
+  "disabled.table.actions.policy.remove",
 ]
 `;
