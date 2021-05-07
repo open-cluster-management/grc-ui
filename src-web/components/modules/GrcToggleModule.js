@@ -88,9 +88,7 @@ class GrcToggleModule extends React.Component {
             sort={tableData[grcTabToggleIndex].sortBy}
             gridBreakPoint=''
             extraToolbarControls={extraToolbarControls}
-            extraToolbarEmbed
             searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
-            paginationAtBottom
           />
         </div>
       </div>
@@ -106,68 +104,61 @@ class GrcToggleModule extends React.Component {
   }
 
   tableActionResolver = (rowData) => {
-    const { getResourceAction, userAccess, grcTabToggleIndex, history } = this.props
+    const { getResourceAction, userAccess, grcTabToggleIndex, history, grcItems } = this.props
     const { locale } = this.context
-    const userAccessHash = formatUserAccess(userAccess)
-    const actionsList = []
-    const rowName = typeof _.get(rowData, ['cells', '0', 'title', 'props', 'children']) === 'string'
-      ? _.get(rowData, ['cells', '0', 'title', 'props', 'children'])
-      : _.get(rowData, ['cells', '0', 'title', 'props', 'children', '0', 'props', 'children'])
-    let rowArray = _.get(rowData, ['cells', '0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
-      ? _.get(rowData, ['cells', '0', 'title', '_owner', 'stateNode', 'props', 'grcItems'])
-      : _.get(rowData, ['cells', '0', 'title', 'props', 'children[0]', '_owner', 'stateNode', 'props', 'grcItems'])
-    let resourceType, tableActions
+    let rowName, resourceType, tableActions, rowArray
     // Set table definitions and actions based on toggle position
-    if (grcTabToggleIndex === 1) {
-      resourceType = RESOURCE_TYPES.POLICIES_BY_CLUSTER
-      tableActions = grcClustersViewDef.tableActions
-      rowArray = formatPoliciesToClustersTableData(rowArray)
-    } else {
+    if (grcTabToggleIndex === 0) {
+      rowName = _.get(rowData, 'name').rawData
       resourceType = RESOURCE_TYPES.POLICIES_BY_POLICY
       tableActions = grcPoliciesViewDef.tableActions
+      rowArray = grcItems
+    } else {
+      rowName = _.get(rowData, 'cluster').rawData
+      resourceType = RESOURCE_TYPES.POLICIES_BY_CLUSTER
+      tableActions = grcClustersViewDef.tableActions
+      rowArray = formatPoliciesToClustersTableData(grcItems)
     }
+    const actionsList = []
+    const userAccessHash = formatUserAccess(userAccess)
     if (rowName && Array.isArray(rowArray) && rowArray.length > 0) {
-      const row = rowArray.find(arrElement => {
-        if (grcTabToggleIndex === 0) {
-          return _.get(arrElement, 'metadata.name') === rowName
-        } else {
-          return _.get(arrElement, 'cluster') === rowName
-        }
-      })
       const filteredActions = (Array.isArray(tableActions) && tableActions.length > 0)
-        ? filterUserAction(row, tableActions, userAccessHash, resourceType)
+        ? filterUserAction(rowData, tableActions, userAccessHash, resourceType)
         : []
-      if (_.get(row, 'raw.spec.disabled', false)) {
+      if (_.get(rowData, 'disabled', false)) {
         filteredActions[filteredActions.indexOf('table.actions.policy.disable')] = 'table.actions.policy.enable'
       } else {
         filteredActions[filteredActions.indexOf('table.actions.policy.enable')] = 'table.actions.policy.disable'
       }
-      if (_.get(row, 'raw.spec.remediationAction', 'inform') === 'enforce') {
+      if (_.get(rowData, 'remediationAction', 'inform') === 'enforce') {
         filteredActions[filteredActions.indexOf('table.actions.enforce', locale)] = 'table.actions.inform'
       } else {
         filteredActions[filteredActions.indexOf('table.actions.inform')] = 'table.actions.enforce'
       }
       if (filteredActions.length > 0) {
+        const row = rowArray.find(arrElement => {
+          if (grcTabToggleIndex === 0) {
+            return _.get(arrElement, 'metadata.name') === rowName
+          } else {
+            return _.get(arrElement, 'cluster') === rowName
+          }
+        })
         filteredActions.forEach((action) => {
           const disableFlag = action.includes('disabled.')
           if (disableFlag) {
             action = action.replace('disabled.', '')
           }
-          if (action === 'table.actions.policy.remove') {
-            actionsList.push(
-              {
-                isSeparator: true
-              }
-            )
-          }
           // if consoleURL is unavailable then don't show launch cluster button
-          const removeLaunchCluster = (action.includes('launch.cluster')) && ((row && !row.consoleURL) || (row && row.consoleURL && row.consoleURL === '-'))
+          const removeLaunchCluster = (action.includes('launch.cluster')) && ((rowData && !rowData.consoleURL) || (rowData && rowData.consoleURL && rowData.consoleURL === '-'))
+          // Push actions for the row
           if (!removeLaunchCluster) {
             actionsList.push(
               {
+                id: action,
                 title: createDisableTooltip(disableFlag, action, locale, msgs.get(action, locale)),
                 isDisabled: disableFlag ? true : false,
-                onClick: () =>
+                addSeparator: action === 'table.actions.policy.remove' ? true : false,
+                click: () =>
                   (disableFlag ? null : getResourceAction(action, row, resourceType, history))
               }
             )

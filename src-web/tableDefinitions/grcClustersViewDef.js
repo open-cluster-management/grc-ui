@@ -43,7 +43,7 @@ export default {
       sortable: true,
       transforms: [wrappable],
       cellTransforms: [breakWord],
-      transformFunction: getClusterCompliantStatus
+      transformFunction: getClusterCompliantStatus,
     },
     {
       label: 'nonCompliant',
@@ -54,6 +54,12 @@ export default {
       cellTransforms: [breakWord],
       transformFunction: getClusterViolationLabels,
     },
+    // Row metadata
+    {
+      hidden: true,
+      label: 'consoleURL',
+      resourceKey: 'consoleURL',
+    }
   ],
   sortBy: {
     index: 2,

@@ -216,6 +216,8 @@
   "table.actions.policy.enable": "Enable policy",
   "table.actions.policy.remove": "Remove policy",
   "table.actions.automation.edit": "Edit automation",
+  "table.actions.automation.popover.title": "Policy violation automation",
+  "table.actions.automation.popover.connection": "Provider connection",
   "table.actions.remove": "Remove",
   "table.actions.inapplicable": "N/A",
   "table.actions.disable": "Disable",

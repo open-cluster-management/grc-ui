@@ -78,11 +78,14 @@ export const transform_new = (items, def, locale) => {
       transforms: key.transforms,
       cellTransforms: key.cellTransforms,
     }
-    // Add to parent table columns and expandable table columns separately
-    if (key.subRow) {
-      columns.colChild.push(colData)
-    } else {
-      columns.colParent.push(colData)
+    // If it's a hidden column, don't add it to the table (it's metadata for the row)
+    if (!key.hidden) {
+      // Add to parent table columns and expandable table columns separately
+      if (key.subRow) {
+        columns.colChild.push(colData)
+      } else {
+        columns.colParent.push(colData)
+      }
     }
   })
   // Create row data for parent table and expandable (child) tables
@@ -109,7 +112,11 @@ export const transform_new = (items, def, locale) => {
         const valueBoolean = (Boolean(value)).toString()
         value =  msgs.get(valueBoolean, locale)
       } else if (key.transformFunction && typeof key.transformFunction === 'function') {
-        value =  { title: key.transformFunction(item, locale) }
+        // Leverage the defined transformFunction to render content and store the raw value as metadata
+        value = {
+          title: key.transformFunction(item, locale),
+          rawData: value
+        }
       } else {
         value =  (value || value === 0) ? value : '-'
       }
@@ -146,7 +153,6 @@ export const transform_new = (items, def, locale) => {
   if (columns.colChild.length > 0) {
     addSubRows = (item) => {
       const subRows = rows.rowChild.filter((row) => row.uid?.toString() === item.uid?.toString())
-      console.log({item, subRows, columns: columns.colChild, rows: rows.rowChild})
       return [
         {
           cells: [
@@ -339,15 +345,19 @@ export function getClusterViolationLabels(item) {
 }
 
 export function getAutomationLink(item, locale) {
+  // Link to external automation platform
   const automationLink = <div className='automation-link'>
-      <ExternalLinkAltIcon />link-to-ansible-tower-instance
+      <ExternalLinkAltIcon color='var(--pf-global--primary-color--100)' />
+      link-to-ansible-tower-instance
     </div>
+  // Button to edit attached automation in sidebar
   const editAutomationButton = <AcmButton
       onClick={()=>{}}
       text={msgs.get('table.actions.automation.edit', locale)}
     >
       {msgs.get('table.actions.automation.edit', locale)}
     </AcmButton>
+  // Body of automation popover
   const automationBody = <div className='automation-body'>
       <div className='connection-name'>
         <span className='title'>
@@ -362,8 +372,8 @@ export function getAutomationLink(item, locale) {
       {editAutomationButton}
     </div>
   // TODO: Figure out logic for "Configure automation" vs "Ansible tower"
-  // TODO: Create popover for "Ansible tower"
   // TODO: For "Configure automation", figure out action to open side panel
+  // Return either a label that launches a popover or a link to open the automation sidebar
   return (
     <Popover
       headerContent={msgs.get('table.actions.automation.popover.title', locale)}
