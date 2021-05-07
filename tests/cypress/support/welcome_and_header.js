@@ -41,7 +41,7 @@ export const welcomePage = {
         cy.get('.welcome--svcs').should('contain', 'Go to Overview').and('contain', 'Go to Clusters').and('contain', 'Go to Applications').and('contain', 'Go to Governance and risk')
     },
     validateSvcs: () => {
-        cy.contains('Go to Overview').should('have.prop', 'href', Cypress.config().baseUrl + '/overview')
+        cy.contains('Go to Overview').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/overview')
         cy.contains('Go to Clusters').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/clusters')
         cy.contains('Go to Applications').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/applications')
         cy.contains('Go to Governance and risk').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
