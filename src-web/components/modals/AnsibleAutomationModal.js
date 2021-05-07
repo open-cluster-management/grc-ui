@@ -7,28 +7,54 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
-  AcmModal, AcmButton, AcmAlert
+  AcmModal, AcmButton, AcmAlert, AcmLaunchLink
 } from '@open-cluster-management/ui-components'
 import {
   Text, Spinner, ButtonVariant, Nav,
   NavItem, NavList, Select, Title,
   SelectOption, SelectVariant, Radio
 } from '@patternfly/react-core'
-import AceEditor from 'react-ace'
+import {
+  global_BackgroundColor_100 as lineNumberActiveForeground,
+  global_BackgroundColor_dark_100 as editorBackground,
+} from '@patternfly/react-tokens'
+import MonacoEditor from 'react-monaco-editor'
 import msgs from '../../nls/platform.properties'
-import { withRouter, Link } from 'react-router-dom'
 import { REQUEST_STATUS } from '../../actions/index'
 import {
-  createAndUpdateAnsibleJobs, clearRequestStatus, updateModal, copyAnsibleSecret
+  modifyPolicyAutomation, clearRequestStatus,
+  updateModal, copyAnsibleSecret, getPolicyAutomation
 } from '../../actions/common'
 import {
   getPolicyCompliantStatus,
 } from '../../tableDefinitions/utils'
 import { Query } from '@apollo/client/react/components'
 import {
-  GET_ANSIBLE_CREDENTIALS, GET_ANSIBLE_HISTORY, GET_ANSIBLE_JOB_TEMPLATE,
+  GET_ANSIBLE_CREDENTIALS, GET_ANSIBLE_HISTORY,
+  GET_ANSIBLE_JOB_TEMPLATE,
 } from '../../utils/client/queries'
 import _ from 'lodash'
+
+if (window.monaco) {
+  window.monaco.editor.defineTheme('console', {
+    base: 'vs-dark',
+    inherit: true,
+    rules: [
+    // avoid pf tokens for `rules` since tokens are opaque strings that might not be hex values
+      { token: 'number', foreground: 'ace12e' },
+      { token: 'type', foreground: '73bcf7' },
+      { token: 'string', foreground: 'f0ab00' },
+      { token: 'keyword', foreground: 'cbc0ff' },
+    ],
+    colors: {
+      'editor.background': editorBackground.value,
+      'editorGutter.background': '#292e34', // no pf token defined
+      'editorLineNumber.activeForeground': lineNumberActiveForeground.value,
+      'editorLineNumber.foreground': '#ededed',  // no pf token defined
+    },
+  })
+}
+
 export class AnsibleAutomationModal extends React.Component {
   constructor(props) {
     super(props)
@@ -37,13 +63,99 @@ export class AnsibleAutomationModal extends React.Component {
     this.state = {
       activeItem: 0,
       credentialName: null,
+      towerURL: '-',
       credentialNS: null,
       credentialIsOpen: false,
       jobTemplateName: null,
       jobTemplateIsOpen: false,
-      jobTemplateExtra: null,
+      extra_vars: null,
       ansScheduleMode: '',
+      queryErrorMsg: '',
+      initialJSON: null,
+      latestJSON: null,
     }
+    this.initialize()
+  }
+
+  buildPolicyAutomationJSON({
+    policyAutoName, policyAutoNS, policyName, annotations, extra_vars, resourceVersion
+  }) {
+    const {credentialName, jobTemplateName, extra_vars:intial_extra_vars, ansScheduleMode} = this.state
+    let mode
+    switch (ansScheduleMode) {
+      case 'once':
+      case 'disabled':
+        mode = ansScheduleMode
+      break
+      case 'manual':
+      default:
+        mode = 'disabled'
+      break
+    }
+    const jsonTemp = {
+      kind: 'PolicyAutomation',
+      apiVersion: 'policy.open-cluster-management.io/v1beta1',
+      metadata: {
+        name: policyAutoName ? policyAutoName : '',
+        namespace: policyAutoNS ? policyAutoNS : '',
+      },
+      spec: {
+        policyRef: policyName ? policyName : '',
+        mode,
+        automationDef: {
+          type: 'AnsibleJob',
+          name: jobTemplateName ? jobTemplateName : '',
+          secret: credentialName ? credentialName : '',
+        },
+      }
+    }
+    if (annotations) {
+      jsonTemp.metadata.annotations = annotations
+    }
+    if (resourceVersion) {
+      jsonTemp.metadata.resourceVersion = resourceVersion
+    }
+    if (extra_vars || intial_extra_vars) {
+      jsonTemp.spec.automationDef.extra_vars = extra_vars || intial_extra_vars
+    }
+    return jsonTemp
+  }
+
+  async initialize(){
+    const {  data:policyData, handleGetPolicyAutomation } = this.props
+    const policyName = _.get(policyData, 'name')
+    const policyNS = _.get(policyData, 'namespace')
+    // step to check and loading exisiting policyAutomations
+    const {data:initialData} = await handleGetPolicyAutomation(policyNS)
+    const policyAutomations = initialData.policyAutomations
+    if ( Array.isArray(policyAutomations) && policyAutomations.length > 0) {
+      // targetPolicyAutomation must match policy name and ns
+      const targetPolicyAutomation = _.find(policyAutomations, ['spec.policyRef', policyName])
+      if (targetPolicyAutomation) {
+        const policyAutoName = _.get(targetPolicyAutomation, 'metadata.name')
+        const policyAutoNS = _.get(targetPolicyAutomation, 'metadata.namespace')
+        const annotations = _.get(targetPolicyAutomation, 'metadata.annotations')
+        const resourceVersion = _.get(targetPolicyAutomation, 'metadata.resourceVersion')
+        const credentialName = _.get(targetPolicyAutomation, 'spec.automationDef.secret')
+        const jobTemplateName = _.get(targetPolicyAutomation, 'spec.automationDef.name')
+        const extra_vars = _.get(targetPolicyAutomation, 'spec.automationDef.extra_vars')
+        let ansScheduleMode = _.get(targetPolicyAutomation, 'spec.mode')
+        if (annotations && annotations['policy.open-cluster-management.io/rerun']) {
+          ansScheduleMode = 'manual'
+        }
+        const initialJSON = this.buildPolicyAutomationJSON({
+          policyAutoName, policyAutoNS, policyName, annotations, extra_vars, resourceVersion
+        })
+        this.setState({
+          credentialName,
+          jobTemplateName,
+          extra_vars,
+          ansScheduleMode,
+          initialJSON
+        })
+      }
+    }
+    console.log(JSON.stringify(this.state))
   }
 
   onSelect = result => {
@@ -53,7 +165,7 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   handleSubmitClick() {
-    this.buildAnsibleJSON()
+    this.modifyPolicyAutomation()
   }
 
   handleCloseClick() {
@@ -61,37 +173,60 @@ export class AnsibleAutomationModal extends React.Component {
     handleClose(modalType)
   }
 
-  async buildAnsibleJSON() {
-    const {jobTemplateName, credentialName, credentialNS, ansScheduleMode} = this.state
+  async modifyPolicyAutomation() {
+    const {jobTemplateName, credentialName, credentialNS,
+      ansScheduleMode, extra_vars, initialJSON
+    } = this.state
     const { data:policyData} = this.props
     const policyName = _.get(policyData, 'name')
     const policyNS = _.get(policyData, 'namespace')
-    const ansibleJSON = {}
     if (jobTemplateName && credentialName && credentialNS && ansScheduleMode && policyName && policyNS) {
-      const {data} = await this.props.handleCopyAnsibleSecret(credentialName, credentialNS, policyNS)
-      ansibleJSON.kind = 'PolicyAutomation'
-      ansibleJSON.apiVersion = 'policy.open-cluster-management.io/v1alpha1'
-      ansibleJSON.metadata = {
-        name: `${policyName}-AnsibleJob`,
-        namespace: policyNS
-      }
-      ansibleJSON.spec = {
-        policyRef: policyName,
-        mode: ansScheduleMode,
-        automation: {
-          type: 'AnsibleJob',
-          name: jobTemplateName,
-          secret: data.copyAnsibleSecret.name
+      // step to copy secret to target ns
+      const secretData = await this.props.handleCopyAnsibleSecret(credentialName, credentialNS, policyNS)
+      const secretName = _.get(secretData, 'data.copyAnsibleSecret.name')
+      const secretErrors = _.get(secretData, 'errors')
+      if (Array.isArray(secretErrors) && secretErrors.length > 0) {
+        this.setState({
+          queryErrorMsg: _.get(secretErrors[0], 'message')
+        })
+      } else if (secretName) {
+        const policyAutoName = `${policyName}-policy-automation`
+        const policyAutoNS = policyNS
+        let annotations = ''
+        if (ansScheduleMode === 'manual') {
+          annotations = {'policy.open-cluster-management.io/rerun':'true'}
+        }
+        let action ='post', resourceVersion = ''
+        if (initialJSON) {
+          action = 'put'
+          resourceVersion = _.get(initialJSON, 'metadata.resourceVersion')
+        }
+        const latestJSON = this.buildPolicyAutomationJSON({
+          policyAutoName, policyAutoNS, policyName, annotations, extra_vars, resourceVersion
+        })
+        this.setState({
+          latestJSON
+        })
+        const {data:resData} = await this.props.handleModifyPolicyAutomation(latestJSON, action)
+        const errors = _.get(resData, 'modifyPolicyAutomation.errors')
+        if (Array.isArray(errors) && errors.length > 0)  {
+          const error = errors[0]
+          if (_.get(error, 'kind') === 'PolicyAutomation' && _.get(error, 'message')) {
+            this.setState({
+              queryErrorMsg: _.get(error, 'message')
+            })
+          }
+        } else {
+          this.handleCloseClick()
         }
       }
     }
-    console.log(JSON.stringify(ansibleJSON))
-    this.props.handleCreateAndUpdateResources(ansibleJSON, {})
   }
 
   render() {
     const { data:policyData, label, locale, open, reqErrorMsg, reqStatus } = this.props
-    const { activeItem } = this.state
+    const { activeItem, towerURL, queryErrorMsg } = this.state
+    console.log(JSON.stringify(this.state))
     const policyName = _.get(policyData, 'name')
     const policyNS = _.get(policyData, 'namespace')
     const dangerFlag = 'default', modalId = 'automation-resource-modal', modalMsg = 'modal.ansible.automation.description'
@@ -123,12 +258,12 @@ export class AnsibleAutomationModal extends React.Component {
               ]}
             >
               <React.Fragment>
-                {reqStatus === REQUEST_STATUS.ERROR &&
+                {(queryErrorMsg ||reqStatus === REQUEST_STATUS.ERROR) &&
                   <AcmAlert
                     isInline={true}
                     noClose={true}
                     variant='danger'
-                    title={reqErrorMsg || msgs.get('error.default.description', locale)} />}
+                    title={queryErrorMsg || reqErrorMsg || msgs.get('error.default.description', locale)} />}
               </React.Fragment>
               <Text>
                 {msgs.get(modalMsg, locale)}
@@ -149,7 +284,7 @@ export class AnsibleAutomationModal extends React.Component {
                 {msgs.get('modal.ansible.launch.connection', locale)}
               </Text>
               <div>
-                {'-'}
+                {towerURL && this.renderURL('towerURL', towerURL, towerURL)}
               </div>
               <Nav onSelect={this.onSelect} variant="tertiary">
                 <NavList>
@@ -177,6 +312,11 @@ export class AnsibleAutomationModal extends React.Component {
     )
   }
 
+  renderURL = (id, text, URL) => {
+    const link = { id, text: text, href: URL }
+  return <AcmLaunchLink links={[link]} />
+  }
+
   setCredentialsSelectionValue = (event, selection) => {
     this.setState({
         credentialName: selection,
@@ -198,6 +338,7 @@ export class AnsibleAutomationModal extends React.Component {
       if (credentialNS !== targetCredential.namespace) {
         this.setState({
           credentialNS: targetCredential.namespace,
+          towerURL:targetCredential.host,
         })
       }
       ansibleConnection.towerURL = targetCredential.host
@@ -235,18 +376,14 @@ export class AnsibleAutomationModal extends React.Component {
             />
           ))}
         </Select>
-        <Link to={'/multicloud/credentials'}>
-          {msgs.get('modal.ansible.launch.createCredential', locale)}
-        </Link>
+        {this.renderURL('createCredentialLink', msgs.get('modal.ansible.launch.createCredential', locale), '/multicloud/credentials')}
         {credentialName && this.renderAnsibleJobTemplatesSelection(this.getAnsibleConnection(ansCredentials), locale)}
       </React.Fragment>}
       {!ansCredentialFlag &&
         <React.Fragment>
           <Text>
             {msgs.get('modal.ansible.no.credential', locale)}
-            <Link to={'/multicloud/credentials'}>
-            {msgs.get('modal.ansible.launch.createCredential', locale)}
-            </Link>
+            {this.renderURL('createCredentialLink', msgs.get('modal.ansible.launch.createCredential', locale), '/multicloud/credentials')}
           </Text>
         </React.Fragment>
       }
@@ -321,42 +458,31 @@ export class AnsibleAutomationModal extends React.Component {
     </React.Fragment>
   }
 
-  getOriginalExtra = () => {
-    const {jobTemplateExtra} = this.state
-    return jobTemplateExtra
-  }
-
   editorOnChange = newValue => {
-    console.log('change', newValue)
-    // const {jobTemplateExtra} = this.state
+    this.setState({
+      extra_vars:newValue
+    })
   }
 
   renderAnsibleJobTemplateEditor(locale) {
-    return <div>
-    <Title headingLevel="h2">
-      {msgs.get('modal.ansible.jobTemplates.editor.title', locale)}
-    </Title>
-    <AceEditor
-      placeholder={msgs.get('modal.ansible.jobTemplates.editor.placeholder', locale)}
-      mode="json"
-      theme="github"
-      name="AnsibleJobTemplateEditor"
-      onChange={this.editorOnChange}
-      fontSize={14}
-      showPrintMargin={true}
-      showGutter={true}
-      highlightActiveLine={true}
-      value={''}
-      setOptions={{
-      showLineNumbers: true,
-      tabSize: 2,
-      maxLines: 8
-      }}>
-    </AceEditor>
-    </div>
+    return (
+      <div>
+        <Title headingLevel="h2">
+          {msgs.get('modal.ansible.jobTemplates.editor.title', locale)}
+        </Title>
+        <MonacoEditor
+          width="100%"
+          height="100"
+          language="yaml"
+          theme="console"
+          onChange={this.editorOnChange}
+          value={this.state.extra_vars}
+        />
+      </div>
+    )
   }
 
-  handleScheduleModeRadioChange = (_, event) => {
+  handleScheduleModeRadioChange = (update, event) => {
     const { value } = event.currentTarget
     this.setState({ansScheduleMode:value})
   };
@@ -390,13 +516,13 @@ export class AnsibleAutomationModal extends React.Component {
           description={msgs.get('modal.ansible.scheduleMode.once.info', locale)}
         />
         <Radio
-          isChecked={ansScheduleMode==='disable'}
+          isChecked={ansScheduleMode==='disabled'}
           name="disableRadio"
           onChange={this.handleScheduleModeRadioChange}
-          label={msgs.get('modal.ansible.scheduleMode.disable.title', locale)}
+          label={msgs.get('modal.ansible.scheduleMode.disabled.title', locale)}
           id="disableRadio"
-          value="disable"
-          description={msgs.get('modal.ansible.scheduleMode.disable.info', locale)}
+          value="disabled"
+          description={msgs.get('modal.ansible.scheduleMode.disabled.info', locale)}
         />
       </React.Fragment>
     </React.Fragment>
@@ -420,7 +546,8 @@ AnsibleAutomationModal.propTypes = {
   }),
   handleClose: PropTypes.func,
   handleCopyAnsibleSecret: PropTypes.func,
-  handleCreateAndUpdateResources: PropTypes.func,
+  handleGetPolicyAutomation: PropTypes.func,
+  handleModifyPolicyAutomation: PropTypes.func,
   label: PropTypes.shape({
     heading: PropTypes.string,
     label: PropTypes.string,
@@ -443,11 +570,13 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(clearRequestStatus())
       dispatch(updateModal({open: false, type: modalType}))
     },
-    handleCreateAndUpdateResources: (types, create, update) =>
-      dispatch(createAndUpdateAnsibleJobs(types, create, update)),
+    handleModifyPolicyAutomation: (poliyAutomationJSON, action) =>
+      dispatch(modifyPolicyAutomation(poliyAutomationJSON, action)),
     handleCopyAnsibleSecret: (name, namespace, targetNamespace) =>
       dispatch(copyAnsibleSecret(name, namespace, targetNamespace)),
+    handleGetPolicyAutomation: (namespace) =>
+      dispatch(getPolicyAutomation(namespace)),
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AnsibleAutomationModal))
+export default connect(mapStateToProps, mapDispatchToProps)(AnsibleAutomationModal)
