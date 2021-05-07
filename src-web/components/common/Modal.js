@@ -15,10 +15,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import loadable from '@loadable/component'
 
-let RemoveResourceModal, PolicyActionModal
+let RemoveResourceModal, PolicyActionModal, AnsibleAutomationModal
 
 const Modal = ({ type, open, ...rest }) => {
   switch (type) {
+  case 'resource-automation':
+    return open && getAnsibleAutomationModal({ type, open, ...rest })
   case 'resource-remove':
     return open && getRemoveResourceModal({ type, open, ...rest })
   case 'resource-disable':
@@ -29,6 +31,13 @@ const Modal = ({ type, open, ...rest }) => {
   default:
     return null
   }
+}
+
+const getAnsibleAutomationModal = props => {
+  AnsibleAutomationModal = AnsibleAutomationModal === undefined
+    ? loadable(() => import(/* webpackChunkName: "policy-action-modal" */ '../modals/AnsibleAutomationModal'))
+    : AnsibleAutomationModal
+  return getModal(AnsibleAutomationModal, props)
 }
 
 const getPolicyActionModal = props => {

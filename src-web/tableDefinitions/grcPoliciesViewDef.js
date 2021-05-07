@@ -20,6 +20,7 @@ import {
 export default {
   tableActions: [
     'table.actions.edit',
+    'table.actions.automation',
     'table.actions.disable',
     'table.actions.enforce',
     'table.actions.remove',
