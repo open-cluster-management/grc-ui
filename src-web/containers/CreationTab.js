@@ -245,7 +245,7 @@ export class CreationTab extends React.Component {
                   </React.Fragment>
                 }>
               </AcmPageHeader>
-              <AcmPageContent>
+              <AcmPageContent className='page-content-container-form'>
                 <CreationView
                   onCreate={click => this.clickChild = click}
                   policyDiscovered={policyDiscoveries && policyDiscoveries[0]}
