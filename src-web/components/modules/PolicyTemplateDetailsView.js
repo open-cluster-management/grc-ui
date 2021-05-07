@@ -5,17 +5,11 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  DescriptionList,
-  DescriptionListTerm,
-  DescriptionListGroup,
-  DescriptionListDescription,
-  Title,
-} from '@patternfly/react-core'
+import { Title } from '@patternfly/react-core'
 import jsYaml from 'js-yaml'
 import _ from 'lodash'
 import YamlEditor from '../common/YamlEditor'
-import { AcmTable } from '@open-cluster-management/ui-components'
+import { AcmTable, AcmDescriptionList } from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
 import { transform_new } from '../../tableDefinitions/utils'
@@ -69,43 +63,36 @@ class PolicyTemplateDetailsView extends React.Component {
     }
     const tableData = transform_new(relatedObjects, relatedObjectsDef, locale)
 
+    const descriptionItems = [
+      {
+        key: msgs.get('table.header.name', locale),
+        value: _.get(items, 'metadata.name', '-')
+      },{
+        key: msgs.get('table.header.cluster', locale),
+        value: _.get(items, 'metadata.namespace', '-')
+      },{
+        key: msgs.get('table.header.kind', locale),
+        value: _.get(items, 'kind', '-')
+      },{
+        key: msgs.get('table.header.apiGroups', locale),
+        value: _.get(items, 'apiVersion', '-')
+      },{
+        key: msgs.get('table.header.compliant', locale),
+        value: _.get(items, 'status.compliant', '-')
+      },{
+        key: msgs.get('table.header.violation.detail', locale),
+        value: JSON.stringify(_.get(items, 'status.compliancyDetails', '-'))
+      }
+    ]
+
     return (
       <div className='policy-template-details-view'>
         <div className='details'>
           <div className='overview'>
-            <Title className='title' headingLevel="h2">{msgs.get('panel.header.template.details', locale)}</Title>
-            <DescriptionList>
-              <DescriptionListGroup>
-                <DescriptionListTerm>{msgs.get('table.header.name', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>{_.get(items, 'metadata.name', '-')}</DescriptionListDescription>
-              </DescriptionListGroup>
-              <DescriptionListGroup>
-                <DescriptionListTerm>{msgs.get('table.header.cluster', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>
-                  {_.get(items, 'metadata.namespace', '-')}
-                </DescriptionListDescription>
-              </DescriptionListGroup>
-              <DescriptionListGroup>
-                <DescriptionListTerm>{msgs.get('table.header.kind', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>{_.get(items, 'kind', '-')}</DescriptionListDescription>
-              </DescriptionListGroup>
-              <DescriptionListGroup>
-                <DescriptionListTerm>{msgs.get('table.header.apiGroups', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>{_.get(items, 'apiVersion', '-')}</DescriptionListDescription>
-              </DescriptionListGroup>
-              <DescriptionListGroup>
-                <DescriptionListTerm>{msgs.get('table.header.compliant', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>
-                  {_.get(items, 'status.compliant', '-')}
-                </DescriptionListDescription>
-              </DescriptionListGroup>
-              <DescriptionListGroup>
-                <DescriptionListTerm>{msgs.get('table.header.violation.detail', locale)}</DescriptionListTerm>
-                <DescriptionListDescription>
-                  {JSON.stringify(_.get(items, 'status.compliancyDetails', '-'))}
-                </DescriptionListDescription>
-              </DescriptionListGroup>
-            </DescriptionList>
+            <AcmDescriptionList
+              title={msgs.get('panel.header.template.details', locale)}
+              leftItems={descriptionItems}
+            />
           </div>
           <div className='yaml' ref={this.setContainerRef}>
             <Title className='title' headingLevel="h2">{msgs.get('panel.header.template.yaml', locale)}</Title>
