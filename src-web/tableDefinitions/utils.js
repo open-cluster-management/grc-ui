@@ -318,15 +318,18 @@ export function getPolicyCompliantStatus(item, locale) {
 }
 
 export function getClusterCompliantStatus(item, locale) {
-  const statusArray = _.get(item, 'violation').split('/')
+  const statusArray = _.get(item, 'violation', '0/0/0').split('/')
+  const violationCount = parseInt(statusArray[0], 10)
+  const totalCount = parseInt(statusArray[1], 10)
+  const unknownCount = parseInt(statusArray[2], 10)
   return (
     <div className='violationCell'>
-      { parseInt(statusArray[0], 10) > 0 ?
-        <RedExclamationCircleIcon tooltip={msgs.get('table.tooltip.noncompliant', locale)} /> :
-        <GreenCheckCircleIcon tooltip={msgs.get('table.tooltip.compliant', locale)} /> }
-      { parseInt(statusArray[2], 10) > 0 &&
+      { violationCount > 0 ?
+        <RedExclamationCircleIcon tooltip={msgs.get('table.tooltip.noncompliant', locale)} /> : unknownCount !== totalCount ?
+        <GreenCheckCircleIcon tooltip={msgs.get('table.tooltip.compliant', locale)} /> : null }
+      { unknownCount > 0 &&
         <YellowExclamationTriangleIcon tooltip={msgs.get('table.tooltip.nostatus', locale)} /> }
-      {`${statusArray[0]}/${statusArray[1]}`}
+      {`${violationCount}/${totalCount}`}
     </div>
   )
 }
@@ -432,23 +435,22 @@ export function getSubjects(item) {
 }
 
 export function getControls(item) {
-  const annotations = _.get(item, 'metadata.annotations') || {}
-  return formatAnnotationString(annotations['policy.open-cluster-management.io/controls'])
+  return formatAnnotationString(item, 'policy.open-cluster-management.io/controls')
 }
 
 export function getStandards(item) {
-  const annotations = _.get(item, 'metadata.annotations') || {}
-  return formatAnnotationString(annotations['policy.open-cluster-management.io/standards'])
+  return formatAnnotationString(item, 'policy.open-cluster-management.io/standards')
 }
 
 export function getCategories(item) {
-  const annotations = _.get(item, 'metadata.annotations') || {}
-  return formatAnnotationString(annotations['policy.open-cluster-management.io/categories'])
+  return formatAnnotationString(item, 'policy.open-cluster-management.io/categories')
 }
 
-export function formatAnnotationString(items){
-  if (items) {
-    return items.split(',').map(item => item.trim()).join(', ')
+export function formatAnnotationString(policy, annotationKey){
+  const annotations = _.get(policy, 'metadata.annotations') || {}
+  const values = annotations[annotationKey]
+  if (values) {
+    return values.split(',').map(item => item.trim()).join(', ')
   }
   return '-'
 }
@@ -516,7 +518,7 @@ export function getDecisionList(policy, locale) {
         <span key={`${status}-status-list`} className={`status-list status-list__${status}`}>
           <LabelGroup
             collapsedText='${remaining} more'
-            expandedText='Show less'
+            expandedText='Show fewer'
             numLabels='5'
           >
             {Array.from(clusterList[status]).map((cluster, index) =>{

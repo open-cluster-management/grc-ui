@@ -56,7 +56,7 @@ body {
 }
 
 // hide screen reader text in modal
-div[id$='resource-modal'], .pf-c-alert__title {
+div[id$='resource-modal'], div[id$='policy-update-modal'], .pf-c-alert__title {
   .pf-u-screen-reader {
     display: none;
   }
