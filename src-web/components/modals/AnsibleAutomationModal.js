@@ -19,7 +19,7 @@ import msgs from '../../nls/platform.properties'
 import { withRouter, Link } from 'react-router-dom'
 import { REQUEST_STATUS } from '../../actions/index'
 import {
-  createAndUpdateResources, clearRequestStatus, updateModal, copyAnsibleSecret
+  createAndUpdateAnsibleJobs, clearRequestStatus, updateModal, copyAnsibleSecret
 } from '../../actions/common'
 import {
   getPolicyCompliantStatus,
@@ -29,7 +29,6 @@ import {
   GET_ANSIBLE_CREDENTIALS, GET_ANSIBLE_HISTORY, GET_ANSIBLE_JOB_TEMPLATE,
 } from '../../utils/client/queries'
 import _ from 'lodash'
-import { RESOURCE_TYPES } from '../../utils/constants'
 export class AnsibleAutomationModal extends React.Component {
   constructor(props) {
     super(props)
@@ -87,9 +86,7 @@ export class AnsibleAutomationModal extends React.Component {
       }
     }
     console.log(JSON.stringify(ansibleJSON))
-    this.props.handleCreateAndUpdateResources([
-      RESOURCE_TYPES.ANSIBLE_JOB
-    ], ansibleJSON, {})
+    this.props.handleCreateAndUpdateResources(ansibleJSON, {})
   }
 
   render() {
@@ -351,9 +348,6 @@ export class AnsibleAutomationModal extends React.Component {
       highlightActiveLine={true}
       value={''}
       setOptions={{
-      enableBasicAutocompletion: true,
-      enableLiveAutocompletion: true,
-      enableSnippets: true,
       showLineNumbers: true,
       tabSize: 2,
       maxLines: 8
@@ -436,7 +430,6 @@ AnsibleAutomationModal.propTypes = {
   open:  PropTypes.bool,
   reqErrorMsg:  PropTypes.string,
   reqStatus:  PropTypes.string,
-  // resourceType: PropTypes.object,
   type: PropTypes.string,
 }
 
@@ -451,7 +444,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(updateModal({open: false, type: modalType}))
     },
     handleCreateAndUpdateResources: (types, create, update) =>
-      dispatch(createAndUpdateResources(types, create, update)),
+      dispatch(createAndUpdateAnsibleJobs(types, create, update)),
     handleCopyAnsibleSecret: (name, namespace, targetNamespace) =>
       dispatch(copyAnsibleSecret(name, namespace, targetNamespace)),
   }

@@ -416,3 +416,13 @@ export const copyAnsibleSecret = (name, namespace, targetNamespace) => {
       .catch(err => dispatch(receivePostError(err)))
   }
 }
+
+export const createAndUpdateAnsibleJobs = (createList, updateList) => {
+  return (dispatch) => {
+    return GrcApolloClient.createAndUpdateAnsibleJobs(createList, updateList)
+      .then(response => {
+        return response
+      })
+      .catch(err => dispatch(receivePostError(err)))
+  }
+}

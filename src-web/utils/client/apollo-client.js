@@ -102,6 +102,10 @@ class GrcApolloClient {
     return client.query({ query: Query.COPY_ANSIBLE_SECRET, variables: { name, namespace, targetNamespace} })
   }
 
+  createAndUpdateAnsibleJobs(toCreate, toUpdate) {
+      return client.mutate({ mutation: Query.createAndUpdateAnsibleJobs, variables: { toCreate, toUpdate } })
+  }
+
   // gets one resource
   getResource(resourceType, variables = {}) {
     return client.query({ query: _.get(Query, resourceType.name), variables })
