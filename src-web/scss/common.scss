@@ -66,11 +66,15 @@ body {
   // - spacing
   > div {
     background-color: var(--pf-c-page__main-section--BackgroundColor);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    position: relative;
+    
     > div {
       padding: 0 1.5rem;
-      > div {
-        margin-top: 1rem;
-      }
+      margin-top: 1rem;
     }
   }
   
