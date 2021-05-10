@@ -6,10 +6,10 @@
 import filterUserAction from '../../../src-web/utils/FilterUserAction'
 
 const policyActions = [
-  'table.actions.edit',
-  'table.actions.disable',
-  'table.actions.enforce',
-  'table.actions.remove'
+  'table.actions.policy.edit',
+  'table.actions.policy.disable',
+  'table.actions.policy.enforce',
+  'table.actions.policy.remove'
 ]
 
 const resourceType = {
@@ -34,9 +34,7 @@ describe('adminAccessDefault action list on different namespaces ', () => {
   it('should get all permission on default namespace', () => {
     expect(filterUserAction(
       {
-        metadata: {
-          namespace: 'default'
-        }
+        namespace: 'default'
       },
       policyActions,
       adminAccessDefault,
@@ -47,9 +45,7 @@ describe('adminAccessDefault action list on different namespaces ', () => {
   it('should only get only has view permission on calamari namespace', () => {
     expect(filterUserAction(
       {
-        metadata: {
-          namespace: 'calamari'
-        }
+        namespace: 'calamari'
       },
       policyActions,
       adminAccessDefault,
@@ -90,9 +86,7 @@ describe('test1AccessDefault action list on different namespaces ', () => {
   it('should get all permission on calamari namespace', () => {
     expect(filterUserAction(
       {
-        metadata: {
-          namespace: 'calamari'
-        }
+        namespace: 'calamari'
       },
       policyActions,
       test1AccessDefault,
@@ -102,9 +96,7 @@ describe('test1AccessDefault action list on different namespaces ', () => {
   it('should only get only has edit permission on avengers namespace', () => {
     expect(filterUserAction(
       {
-        metadata: {
-          namespace: 'avengers'
-        }
+        namespace: 'avengers'
       },
       policyActions,
       test1AccessDefault,
@@ -114,9 +106,7 @@ describe('test1AccessDefault action list on different namespaces ', () => {
   it('should only get only has view permission on ironman namespace', () => {
     expect(filterUserAction(
       {
-        metadata: {
-          namespace: 'ironman'
-        }
+        namespace: 'ironman'
       },
       policyActions,
       test1AccessDefault,

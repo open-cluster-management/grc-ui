@@ -1,11 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`adminAccessDefault action list on different namespaces  should get all permission on default namespace 1`] = `Array []`;
+exports[`adminAccessDefault action list on different namespaces  should get all permission on default namespace 1`] = `
+Array [
+  "table.actions.policy.edit",
+  "table.actions.policy.disable",
+  "table.actions.policy.enforce",
+  "table.actions.policy.remove",
+]
+`;
 
-exports[`adminAccessDefault action list on different namespaces  should only get only has view permission on calamari namespace 1`] = `Array []`;
+exports[`adminAccessDefault action list on different namespaces  should only get only has view permission on calamari namespace 1`] = `
+Array [
+  "disabled.table.actions.policy.edit",
+  "disabled.table.actions.policy.disable",
+  "disabled.table.actions.policy.remove",
+]
+`;
 
-exports[`test1AccessDefault action list on different namespaces  should get all permission on calamari namespace 1`] = `Array []`;
+exports[`test1AccessDefault action list on different namespaces  should get all permission on calamari namespace 1`] = `
+Array [
+  "table.actions.policy.edit",
+  "table.actions.policy.disable",
+  "table.actions.policy.remove",
+]
+`;
 
-exports[`test1AccessDefault action list on different namespaces  should only get only has edit permission on avengers namespace 1`] = `Array []`;
+exports[`test1AccessDefault action list on different namespaces  should only get only has edit permission on avengers namespace 1`] = `
+Array [
+  "table.actions.policy.edit",
+  "table.actions.policy.disable",
+  "disabled.table.actions.policy.remove",
+]
+`;
 
-exports[`test1AccessDefault action list on different namespaces  should only get only has view permission on ironman namespace 1`] = `Array []`;
+exports[`test1AccessDefault action list on different namespaces  should only get only has view permission on ironman namespace 1`] = `
+Array [
+  "disabled.table.actions.policy.edit",
+  "disabled.table.actions.policy.disable",
+  "disabled.table.actions.policy.remove",
+]
+`;
