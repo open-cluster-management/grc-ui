@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-/* Copyright (c) 2021 Red Hat, Inc. */
-=======
->>>>>>> Migrate policyDetailsOverview to new data structure
 /* Copyright Contributors to the Open Cluster Management project */
 
 'use strict'

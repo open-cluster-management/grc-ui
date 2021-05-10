@@ -365,8 +365,6 @@ export function formatAnnotationString(policy, annotationKey){
 }
 
 export function getAutomationLink(item, locale) {
-  console.log('----- getting automation data ------')
-  console.log(item)
   // Link to external automation platform
   const automationLink = <div className='automation-link'>
       <ExternalLinkAltIcon color='var(--pf-global--primary-color--100)' />
@@ -464,28 +462,6 @@ export function getSubjects(item) {
   else{
     return '-'
   }
-}
-
-export function getControls(item) {
-  const annotations = _.get(item, 'metadata.annotations') || {}
-  return formatAnnotationString(annotations['policy.open-cluster-management.io/controls'])
-}
-
-export function getStandards(item) {
-  const annotations = _.get(item, 'metadata.annotations') || {}
-  return formatAnnotationString(annotations['policy.open-cluster-management.io/standards'])
-}
-
-export function getCategories(item) {
-  const annotations = _.get(item, 'metadata.annotations') || {}
-  return formatAnnotationString(annotations['policy.open-cluster-management.io/categories'])
-}
-
-export function formatAnnotationString(items){
-  if (items) {
-    return items.split(',').map(item => item.trim()).join(', ')
-  }
-  return '-'
 }
 
 export function getLabels(item) {
