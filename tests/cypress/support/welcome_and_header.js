@@ -78,7 +78,7 @@ export const leftNav = {
         cy.get('#page-sidebar').contains('Overview').should('not.be.visible')
         cy.get('#page-sidebar').contains('Home').click()
         cy.get('#page-sidebar').contains('Overview').should('be.visible')
-        cy.get('#page-sidebar').contains('Overview').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/overview')
+        cy.get('#page-sidebar').contains('Overview').should('have.prop', 'href', Cypress.config().baseUrl + '/overview')
     },
     goToClusters: () => {
         cy.get('#page-sidebar').contains('Clusters').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/clusters')
@@ -87,7 +87,7 @@ export const leftNav = {
         cy.get('#page-sidebar').contains('Applications').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/applications')
     },
     goToGRC: () => {
-        cy.get('#page-sidebar').contains('Risk and Compliance').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
+        cy.get('#page-sidebar').contains('Risk and compliance').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
     },
     goToCredentials: () => {
         cy.get('#page-sidebar').contains('Credentials').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/credentials')
