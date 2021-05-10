@@ -55,26 +55,25 @@ class PolicyStatusView extends React.Component {
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
     const tableDataByClusters = transform_new(statusAccess, statusByClustersDef, locale)
     const {toggleIndex, clusterQuery} = this.state
-    const extraToolbarControls = (
-      <ToggleGroup className='policy-status-toggle' variant='light'>
-        <ToggleGroupItem
-          buttonId={'policy-status-clusters'}
-          onChange={this.toggleClick}
-          isSelected={toggleIndex===0}
-          text={msgs.get('tabs.policy.status.toggle.clusters', locale)}
-          >
-        </ToggleGroupItem>
-        <ToggleGroupItem
-          buttonId={'policy-status-templates'}
-          onChange={this.toggleClick}
-          isSelected={toggleIndex===1}
-          text={msgs.get('tabs.policy.status.toggle.templates', locale)}
-          >
-        </ToggleGroupItem>
-      </ToggleGroup>
-    )
+
     return (
       <div className='policy-status-view'>
+        <ToggleGroup className='policy-status-toggle' variant='light'>
+          <ToggleGroupItem
+            buttonId={'policy-status-clusters'}
+            onChange={this.toggleClick}
+            isSelected={toggleIndex===0}
+            text={msgs.get('tabs.policy.status.toggle.clusters', locale)}
+            >
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            buttonId={'policy-status-templates'}
+            onChange={this.toggleClick}
+            isSelected={toggleIndex===1}
+            text={msgs.get('tabs.policy.status.toggle.templates', locale)}
+            >
+          </ToggleGroupItem>
+        </ToggleGroup>
         <div className='policy-status-tab'>
           {toggleIndex===0 && <div className='policy-status-by-clusters-table'>
             <Title
@@ -90,11 +89,10 @@ class PolicyStatusView extends React.Component {
               gridBreakPoint=''
               search={clusterQuery}
               setSearch={this.handleSearch}
-              extraToolbarControls={extraToolbarControls}
               searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
             />
           </div>}
-          {toggleIndex===1 && tableDataByTemplate.map((table)=> {
+          {toggleIndex===1 && tableDataByTemplate.map((table) => {
             return <div
               className='policy-status-by-templates-table'
               key={`template-index-${table.name}`}
@@ -112,7 +110,6 @@ class PolicyStatusView extends React.Component {
                 gridBreakPoint=''
                 search={clusterQuery}
                 setSearch={this.handleSearch}
-                extraToolbarControls={extraToolbarControls}
                 searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
               />
             </div>
