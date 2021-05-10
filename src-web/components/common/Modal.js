@@ -35,7 +35,7 @@ const Modal = ({ type, open, ...rest }) => {
 
 const getAnsibleAutomationModal = props => {
   AnsibleAutomationModal = AnsibleAutomationModal === undefined
-    ? loadable(() => import(/* webpackChunkName: "policy-action-modal" */ '../modals/AnsibleAutomationModal'))
+    ? loadable(() => import(/* webpackChunkName: "ansible-job-modal" */ '../modals/AnsibleAutomationModal'))
     : AnsibleAutomationModal
   return getModal(AnsibleAutomationModal, props)
 }

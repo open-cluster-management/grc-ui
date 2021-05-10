@@ -122,7 +122,7 @@
   "modal.disable.description": "Are you sure you want to disable this policy?",
   "modal.inform.description": "Are you sure you want to change the remediation action of this policy to inform? You must manually remediate the policy violations.",
   "modal.enforce.description": "Are you sure you want to enforce this policy? The policy makes any necessary changes to the applied cluster to remediate the violations.",
-  "modal.ansible.automation.description": "Modify an existing provider connection, or create a new one to automate your selected policy and violation. You can also schedule the automation to run once, continuously, or disable for now.",
+  "modal.ansible.automation.description": "Modify an existing provider credentials, or create a new one to automate your selected policy and violation. You can also schedule the automation to run once, continuously, or disable for now.",
   "nested.table.selected": "Selected",
   "no-cluster.title": "No clusters found.",
   "no-cluster.detail": "Add a cluster to manage.",
