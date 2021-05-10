@@ -108,8 +108,6 @@ class PolicyStatusView extends React.Component {
                 keyFn={(item) => item.uid.toString()}
                 sortBy={table.data.sortBy}
                 gridBreakPoint=''
-                search={clusterQuery}
-                setSearch={this.handleSearch}
                 searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
               />
             </div>
