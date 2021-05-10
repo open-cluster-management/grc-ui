@@ -326,3 +326,12 @@ export const GET_ANSIBLE_HISTORY = gql`
     }
   }
 `
+
+// retrieve ansible secret
+export const COPY_ANSIBLE_SECRET = gql`
+  query copyAnsibleSecret($name: String!, $namespace: String!, $targetNamespace: String!) {
+    copyAnsibleSecret(name: $name, namespace: $namespace, targetNamespace: $targetNamespace) {
+      name
+    }
+  }
+`

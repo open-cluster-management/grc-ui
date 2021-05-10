@@ -14,21 +14,22 @@ import {
   NavItem, NavList, Select, Title,
   SelectOption, SelectVariant, Radio
 } from '@patternfly/react-core'
+import AceEditor from 'react-ace'
 import msgs from '../../nls/platform.properties'
 import { withRouter, Link } from 'react-router-dom'
 import { REQUEST_STATUS } from '../../actions/index'
 import {
-  clearRequestStatus, receivePatchError, updateModal,
+  createAndUpdateResources, clearRequestStatus, updateModal, copyAnsibleSecret
 } from '../../actions/common'
 import {
   getPolicyCompliantStatus,
 } from '../../tableDefinitions/utils'
 import { Query } from '@apollo/client/react/components'
 import {
-  GET_ANSIBLE_CREDENTIALS, GET_ANSIBLE_HISTORY, GET_ANSIBLE_JOB_TEMPLATE
+  GET_ANSIBLE_CREDENTIALS, GET_ANSIBLE_HISTORY, GET_ANSIBLE_JOB_TEMPLATE,
 } from '../../utils/client/queries'
 import _ from 'lodash'
-
+import { RESOURCE_TYPES } from '../../utils/constants'
 export class AnsibleAutomationModal extends React.Component {
   constructor(props) {
     super(props)
@@ -37,9 +38,11 @@ export class AnsibleAutomationModal extends React.Component {
     this.state = {
       activeItem: 0,
       credentialName: null,
+      credentialNS: null,
       credentialIsOpen: false,
       jobTemplateName: null,
       jobTemplateIsOpen: false,
+      jobTemplateExtra: null,
       ansScheduleMode: '',
     }
   }
@@ -51,11 +54,42 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   handleSubmitClick() {
+    this.buildAnsibleJSON()
   }
 
   handleCloseClick() {
     const { type:modalType, handleClose } = this.props
     handleClose(modalType)
+  }
+
+  async buildAnsibleJSON() {
+    const {jobTemplateName, credentialName, credentialNS, ansScheduleMode} = this.state
+    const { data:policyData} = this.props
+    const policyName = _.get(policyData, 'name')
+    const policyNS = _.get(policyData, 'namespace')
+    const ansibleJSON = {}
+    if (jobTemplateName && credentialName && credentialNS && ansScheduleMode && policyName && policyNS) {
+      const {data} = await this.props.handleCopyAnsibleSecret(credentialName, credentialNS, policyNS)
+      ansibleJSON.kind = 'PolicyAutomation'
+      ansibleJSON.apiVersion = 'policy.open-cluster-management.io/v1alpha1'
+      ansibleJSON.metadata = {
+        name: `${policyName}-AnsibleJob`,
+        namespace: policyNS
+      }
+      ansibleJSON.spec = {
+        policyRef: policyName,
+        mode: ansScheduleMode,
+        automation: {
+          type: 'AnsibleJob',
+          name: jobTemplateName,
+          secret: data.copyAnsibleSecret.name
+        }
+      }
+    }
+    console.log(JSON.stringify(ansibleJSON))
+    this.props.handleCreateAndUpdateResources([
+      RESOURCE_TYPES.ANSIBLE_JOB
+    ], ansibleJSON, {})
   }
 
   render() {
@@ -160,10 +194,15 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   getAnsibleConnection = (ansCredentials) => {
-    const {credentialName} = this.state
+    const {credentialName, credentialNS} = this.state
     const ansibleConnection = {towerURL:'', token:''}
     const targetCredential = _.find(ansCredentials, ['name', credentialName])
-    if (targetCredential && targetCredential.host && targetCredential.token) {
+    if (targetCredential && targetCredential.namespace && targetCredential.host && targetCredential.token) {
+      if (credentialNS !== targetCredential.namespace) {
+        this.setState({
+          credentialNS: targetCredential.namespace,
+        })
+      }
       ansibleConnection.towerURL = targetCredential.host
       ansibleConnection.token = targetCredential.token
     }
@@ -267,7 +306,7 @@ export class AnsibleAutomationModal extends React.Component {
                     />
                   ))}
                 </Select>
-                {jobTemplateName && this.renderAnsibleJobTemplateEditor(ansJobTemplates)}
+                {jobTemplateName && this.renderAnsibleJobTemplateEditor(locale)}
                 {jobTemplateName && this.renderAnsibleScheduleMode(locale)}
               </React.Fragment>}
               {!ansJobTemplateFlag &&
@@ -285,9 +324,41 @@ export class AnsibleAutomationModal extends React.Component {
     </React.Fragment>
   }
 
-  renderAnsibleJobTemplateEditor(ansJobTemplates) {
+  getOriginalExtra = () => {
+    const {jobTemplateExtra} = this.state
+    return jobTemplateExtra
+  }
+
+  editorOnChange = newValue => {
+    console.log('change', newValue)
+    // const {jobTemplateExtra} = this.state
+  }
+
+  renderAnsibleJobTemplateEditor(locale) {
     return <div>
-      {JSON.stringify(ansJobTemplates)}
+    <Title headingLevel="h2">
+      {msgs.get('modal.ansible.jobTemplates.editor.title', locale)}
+    </Title>
+    <AceEditor
+      placeholder={msgs.get('modal.ansible.jobTemplates.editor.placeholder', locale)}
+      mode="json"
+      theme="github"
+      name="AnsibleJobTemplateEditor"
+      onChange={this.editorOnChange}
+      fontSize={14}
+      showPrintMargin={true}
+      showGutter={true}
+      highlightActiveLine={true}
+      value={''}
+      setOptions={{
+      enableBasicAutocompletion: true,
+      enableLiveAutocompletion: true,
+      enableSnippets: true,
+      showLineNumbers: true,
+      tabSize: 2,
+      maxLines: 8
+      }}>
+    </AceEditor>
     </div>
   }
 
@@ -349,9 +420,13 @@ AnsibleAutomationModal.propTypes = {
     metadata: PropTypes.object,
     name: PropTypes.string,
     namespace: PropTypes.string,
+    copyAnsibleSecret: {
+      name: PropTypes.string,
+    }
   }),
   handleClose: PropTypes.func,
-  // handleSubmit: PropTypes.func,
+  handleCopyAnsibleSecret: PropTypes.func,
+  handleCreateAndUpdateResources: PropTypes.func,
   label: PropTypes.shape({
     heading: PropTypes.string,
     label: PropTypes.string,
@@ -371,16 +446,14 @@ const mapStateToProps = state =>  {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSubmit: (resourceType, namespace, name, data, resourceData, resourcePath, dispatchFun) => {
-      dispatch(dispatchFun(resourceType, namespace, name, data, resourceData, resourcePath))
-    },
     handleClose: (modalType) => {
       dispatch(clearRequestStatus())
       dispatch(updateModal({open: false, type: modalType}))
     },
-    receivePatchError: (resourceType, err) => {
-      dispatch(receivePatchError(err, resourceType))
-    }
+    handleCreateAndUpdateResources: (types, create, update) =>
+      dispatch(createAndUpdateResources(types, create, update)),
+    handleCopyAnsibleSecret: (name, namespace, targetNamespace) =>
+      dispatch(copyAnsibleSecret(name, namespace, targetNamespace)),
   }
 }
 

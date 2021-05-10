@@ -406,3 +406,13 @@ export const createResource = (resourceType, variables) => {
       .catch(err => dispatch(receivePostError(err, resourceType)))
   }
 }
+
+export const copyAnsibleSecret = (name, namespace, targetNamespace) => {
+  return (dispatch) => {
+    return GrcApolloClient.copyAnsibleSecret(name, namespace, targetNamespace)
+      .then(response => {
+        return response
+      })
+      .catch(err => dispatch(receivePostError(err)))
+  }
+}

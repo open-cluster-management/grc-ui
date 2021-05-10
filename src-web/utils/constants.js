@@ -27,8 +27,8 @@ module.exports.RESOURCE_TYPES = {
   POLICY: { name: 'Policy', query: 'PoliciesList' },
   PLACEMENT_RULE: { name: 'PlacementRule', query: 'PlacementRulesList' },
   PLACEMENT_BINDING: { name: 'PlacementBinding', query: 'PlacementBindingsList' },
+  ANSIBLE_JOB: {name: 'AnsibleJob', query: 'AnsibleJob'}
 }
-
 
 module.exports.INITIAL_POLL_INTERVAL = 10
 module.exports.REFRESH_INTERVALS = [5, 10, 30, 60, 5 * 60, 30 * 60, 0]
