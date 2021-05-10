@@ -12,21 +12,14 @@
 'use strict'
 import {
   createComplianceLink,
-  createPolicyLink,
-  createCompliancePolicyLink,
-  getStatus,
-  getCompliancePolicyStatus,
-  getStatusCount,
-  getClusterCount,
   getControls,
   getStandards,
   getCategories,
   getDecisionCount,
-  getSubjects,
   formatAnnotationString,
 } from '../../../src-web/tableDefinitions/utils'
 
-describe('hcm-compliances - createComplianceLink', () => {
+describe('tableDefinitions utils - createComplianceLink', () => {
   it('should return valid compliance link', () => {
     const item1 = {
       metadata: {
@@ -61,87 +54,7 @@ describe('hcm-compliances - createComplianceLink', () => {
   })
 })
 
-describe('hcm-compliances - getCompliancePolicyStatus', () => {
-  it('should return compliance policy status', () => {
-    const item1 = {
-      clusterNotCompliant: 'clusterNotCompliant'
-    }
-    expect(getCompliancePolicyStatus(item1, 'en-US')).toMatchSnapshot()
-
-    const item2 = {
-      clusterNotCompliant: ''
-    }
-    expect(getCompliancePolicyStatus(item2, 'en-US')).toMatchSnapshot()
-  })
-})
-
-describe('hcm-compliances - createPolicyLink', () => {
-  it('should return valid policy link', () => {
-    const item = {
-      metadata: {
-        name: 'testName',
-        namespace: 'testNamespace'
-      }
-    }
-    expect(createPolicyLink(item)).toMatchSnapshot()
-  })
-})
-
-describe('hcm-compliances - createCompliancePolicyLink', () => {
-  it('should return valid compliance policy link', () => {
-    const item = {
-      cluster: 'clusterName',
-      complianceName: 'testComplianceName',
-      complianceNamespace: 'testComplianceNamespace',
-      metadata: {
-        name: 'testName',
-      }
-    }
-    expect(createCompliancePolicyLink(item)).toMatchSnapshot()
-  })
-})
-
-describe('hcm-compliances - getStatus', () => {
-  it('should return compliant status', () => {
-    const item = {
-      status: 'compliant'
-    }
-    expect(getStatus(item, 'en-US')).toMatchSnapshot()
-  })
-  it('should return compliant status', () => {
-    const item = {
-      status: 'noncompliant'
-    }
-    expect(getStatus(item, 'en-US')).toMatchSnapshot()
-  })
-  it('should return "-"', () => {
-    const item = {
-    }
-    expect(getStatus(item, 'en-US')).toBe('-')
-  })
-})
-
-describe('hcm-compliances - getStatusCount', () => {
-  it('should return status count', () => {
-    const item = {
-      policyCompliant: 5,
-      policyTotal: 10
-    }
-    expect(getStatusCount(item)).toMatchSnapshot()
-  })
-})
-
-describe('hcm-compliances - getClusterCount', () => {
-  it('should return cluster count', () => {
-    const item = {
-      clusterCompliant: 7,
-      clusterTotal: 15
-    }
-    expect(getClusterCount(item)).toMatchSnapshot()
-  })
-})
-
-describe('hcm-compliances - getControls', () => {
+describe('tableDefinitions utils - getControls', () => {
   it('should return control status', () => {
     const items = {
       metadata: {
@@ -155,7 +68,7 @@ describe('hcm-compliances - getControls', () => {
   })
 })
 
-describe('hcm-compliances - getStandards', () => {
+describe('tableDefinitions utils - getStandards', () => {
   it('should return standards status', () => {
     const items = {
       metadata: {
@@ -169,7 +82,7 @@ describe('hcm-compliances - getStandards', () => {
   })
 })
 
-describe('hcm-compliances - getCategories', () => {
+describe('tableDefinitions utils - getCategories', () => {
   it('should return categories status', () => {
     const items = {
       metadata: {
@@ -183,7 +96,7 @@ describe('hcm-compliances - getCategories', () => {
   })
 })
 
-describe('hcm-compliances - getDecisionCount should return the total', () => {
+describe('tableDefinitions utils - getDecisionCount should return the total', () => {
   it('should return decisions status', () => {
     const items = {
       status: {
@@ -196,37 +109,22 @@ describe('hcm-compliances - getDecisionCount should return the total', () => {
     }
     expect(getDecisionCount(items)).toMatchSnapshot()
   })
-  it('hcm-compliances - getDecisionCount should return 0', () => {
+  it('tableDefinitions utils - getDecisionCount should return 0', () => {
     const items = {}
     expect(getDecisionCount(items)).toMatchSnapshot()
   })
 })
 
-describe('hcm-compliances - getSubjects', () => {
-  it('should get subjects', () => {
-    const item = {
-      'subjects': [
-        {'name': 'testName1', 'apiGroup': 'testApiGroup1'},
-        {'name': 'testName2', 'apiGroup': 'testApiGroup2'}
-      ]
-
+describe('tableDefinitions utils - formatAnnotationString', () => {
+  const policy = {
+    metadata: {
+      annotations: {
+        'testKey': 'test1 test2,test3 ,  test4 test5',
+      }
     }
-    expect(getSubjects(item)).toMatchSnapshot()
-  })
-  it('should get "-" ', () => {
-    const item = {}
-    expect(getSubjects(item)).toMatchSnapshot()
-  })
-  it('should get "" ', () => {
-    const item = {'subjects':[]}
-    expect(getSubjects(item)).toMatchSnapshot()
-  })
-})
-
-describe('hcm-compliances - formatAnnotationString', () => {
+  }
   it('should get list of annotations back with proper whitespace', () => {
-    const item = 'test1 test2,test3 ,  test4 test5'
-    expect(formatAnnotationString(item)).toMatchSnapshot()
+    expect(formatAnnotationString(policy, 'testKey')).toMatchSnapshot()
   })
   it('should get "-" ', () => {
     const item = ''
