@@ -365,6 +365,8 @@ export function formatAnnotationString(policy, annotationKey){
 }
 
 export function getAutomationLink(item, locale) {
+  console.log('----- getting automation data ------')
+  console.log(item)
   // Link to external automation platform
   const automationLink = <div className='automation-link'>
       <ExternalLinkAltIcon color='var(--pf-global--primary-color--100)' />
