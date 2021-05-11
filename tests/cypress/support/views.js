@@ -600,7 +600,7 @@ export const action_verifyPolicyInPolicyDetails = (
     }
   }
   //cy.get('div.vertical-expend').then((e) => {
-  cy.get('#compliance\\.details-expand').within(() => {
+  cy.get('#compliance\\.details').within(() => {
     cy.get('div.pf-c-description-list__text').spread((
       name, namespace, remediation, disabled, violations,
       categories, controls, standards, created
@@ -1054,14 +1054,14 @@ export const action_verifyPolicyDetailsInCluster =  (policyName, policyConfig, c
 export const action_verifyClusterListInPolicyDetails = (policyConfig, clusterViolations, checkLength=true) => {
   cy.get('div.cluster-list').within(() => {
     // Check headings
-    cy.get('.pattern-fly-table-header > tr > th').spread((
+    cy.get('table > thead > tr > th').spread((
       label1, label2, label3
     ) => {
       cy.wrap(label1).should('have.text', 'Cluster selector')
       cy.wrap(label2).should('have.text', 'Clusters')
       cy.wrap(label3).should('have.text', 'Status')
     })
-    cy.get('.pattern-fly-table-body > tr > td').spread((
+    cy.get('table > tbody > tr > td').spread((
       selector, clusters, status
     ) => {
       // check binding selector
@@ -1156,7 +1156,7 @@ export const action_verifyPolicyViolationDetailsInCluster = (policyName, policyC
 }
 
 export const action_verifyPolicyViolationDetailsInHistory = (templateName, violations, violationPatterns) => {
-  cy.get('table[aria-label="Sortable Table"]').within(() => {
+  cy.get('table[aria-label="Simple Table"]').within(() => {
     for (const violation of violations) {
       const id = violation.replace(/^.*-/, '')
       const pattern = violationPatterns[templateName][id]

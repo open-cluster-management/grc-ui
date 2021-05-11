@@ -481,7 +481,7 @@ Cypress.Commands.add('checkPolicyStatusPageUserPermissions', (policyName, permis
     cy.get('#edit-policy').should('have.attr', 'aria-disabled', btnState)
     // The "View details" link should be disabled with a tooltip since it requires
     // permissions to create a managedClusterView
-    cy.get('table[aria-label="Sortable Table"]').each(($table) => {  // for each table, on templates tab there could be more
+    cy.get('table[aria-label="Simple Table"]').each(($table) => {  // for each table, on templates tab there could be more
       cy.wrap($table).within(() => {
         cy.get('tbody').find('tr').each(($row) => {  // for each table row
           cy.wrap($row).find('td').then(columns => {  // get all columns

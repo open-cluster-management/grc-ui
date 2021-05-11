@@ -58,7 +58,6 @@ export class PolicyDetailsOverview extends React.PureComponent{
     const modulesSecond = [
       <AcmTable
         key='cluster-list'
-        className={'cluster-list'}
         items={clusterList.rows}
         columns={clusterList.columns}
         keyFn={(item) => item.uid.toString()}
@@ -96,14 +95,14 @@ export class PolicyDetailsOverview extends React.PureComponent{
 
     return (
       <div className='overview-content'>
-        <div className='vertical-expend'>
+        <div className='vertical-expend' id='compliance.details'>
           <AcmDescriptionList
             title={msgs.get(policyDetailsOverviewDef.title, locale)}
             leftItems={descriptionItems.slice(0, itemsHalfCount)}
             rightItems={descriptionItems.slice(itemsHalfCount)}
           />
         </div>
-        <div className='vertical-expend'>
+        <div className='vertical-expend cluster-list'>
           <h5 className='section-title'>{msgs.get('table.header.placement', locale)}</h5>
           {itemPR && itemPB
             ? modulesSecond
