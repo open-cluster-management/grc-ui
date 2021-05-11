@@ -29,6 +29,7 @@ import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
 import { LocaleContext } from '../components/common/LocaleContext'
+import purifyReactNode from '../utils/PurifyReactNode'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
@@ -74,7 +75,7 @@ export const transform_new = (items, def, locale) => {
       header: key.msgKey ? msgs.get(key.msgKey, locale): '',
       sort: key.sortable ? key.label : undefined,
       cell: key.label,
-      search: key.label,
+      search: key.searchable ? parseCell(key.label) : undefined,
       transforms: key.transforms,
       cellTransforms: key.cellTransforms,
     }
@@ -184,6 +185,19 @@ export const transform_new = (items, def, locale) => {
   }
 }
 
+function parseCell(label) {
+  return (cell) => {
+    cell = cell[label]
+    if (cell.title?.props?.timestamp) {
+      return moment(cell.title.props.timestamp, 'YYYY-MM-DDTHH:mm:ssZ').fromNow().toString()
+    }
+    if (typeof cell === 'object') {
+      // get the pure text from table cell
+      return purifyReactNode(cell.title)
+    }
+    return cell
+  }
+}
 
 export const buildCompliantCell = (item, locale) => {
   const compliant = _.get(item, 'compliant', '-')
