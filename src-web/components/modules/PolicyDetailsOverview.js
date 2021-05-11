@@ -62,7 +62,6 @@ export class PolicyDetailsOverview extends React.PureComponent{
         items={clusterList.rows}
         columns={clusterList.columns}
         keyFn={(item) => item.uid.toString()}
-        sortBy={clusterList.sortBy}
         gridBreakPoint=''
         autoHidePagination={true}
       />
@@ -83,8 +82,8 @@ export class PolicyDetailsOverview extends React.PureComponent{
         } else {
           entry.value = entryData
         }
-        if (item.cells[1].resourceKey) {
-          if(item.cells[1].type === 'timestamp') {
+        if (item.cells[0].resourceKey) {
+          if(item.cells[0].type === 'timestamp') {
             entry.value = moment(entry.value, 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
           } else if(item.cells[1]?.resourceKey === 'clusterCompliant') {
             entry.value = getPolicyCompliantStatus({clusterCompliant: entry.value}, locale)

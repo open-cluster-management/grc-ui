@@ -85,7 +85,6 @@ class PolicyStatusView extends React.Component {
               items={tableDataByClusters.rows}
               columns={tableDataByClusters.columns}
               keyFn={(item) => item.uid.toString()}
-              sortBy={tableDataByClusters.sortBy}
               gridBreakPoint=''
               search={clusterQuery}
               setSearch={this.handleSearch}
@@ -106,7 +105,6 @@ class PolicyStatusView extends React.Component {
                 items={table.data.rows}
                 columns={table.data.columns}
                 keyFn={(item) => item.uid.toString()}
-                sortBy={table.data.sortBy}
                 gridBreakPoint=''
                 searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
               />
