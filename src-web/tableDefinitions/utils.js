@@ -9,6 +9,10 @@ import moment from 'moment'
 import _ from 'lodash'
 import config from '../../server/lib/shared/config'
 import {
+  // AcmButton,
+  AcmTable
+} from '@open-cluster-management/ui-components'
+import {
   Label,
   LabelGroup,
   Tooltip,
@@ -59,43 +63,124 @@ export const transform = (items, def, locale) => {
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform_new = (items, def, locale) => {
-  const rows = items.map((item, index) => {
-    const rowObj = {
-      uid: index
-    }
-    def.tableKeys.forEach(key => {
-      const label = key.label
-      let value = _.get(item, key.resourceKey)
-      if (key.type === 'timestamp') {
-        rowObj[label] = moment.unix(value).format('MMM Do YYYY \\at h:mm A')
-      } else if (key.type === 'i18n') {
-        rowObj[label] =  msgs.get(key.resourceKey, locale)
-      } else if (key.type === 'boolean') {
-        value = (Boolean(value)).toString()
-        rowObj[label] =  msgs.get(value, locale)
-      } else if (key.transformFunction && typeof key.transformFunction === 'function') {
-        rowObj[label] =  { title: key.transformFunction(item, locale) }
-      } else {
-        rowObj[label] =  (value || value === 0) ? value : '-'
-      }
-    })
-    return rowObj
-  })
-
-  const columns = def.tableKeys.map(key => {
-    return {
-      header: key.msgKey ? msgs.get(key.msgKey, locale) : '',
+  // Create column data for parent table and expandable (child) tables
+  const columns = {
+    colParent: [],
+    colChild: [],
+  }
+  def.tableKeys.forEach(key => {
+    const colData = {
+      header: key.msgKey ? msgs.get(key.msgKey, locale): '',
       sort: key.sortable ? key.label : undefined,
       cell: key.label,
       search: key.searchable ? parseCell(key.label) : undefined,
       transforms: key.transforms,
       cellTransforms: key.cellTransforms,
     }
+    // If it's a hidden column, don't add it to the table (it's metadata for the row)
+    if (!key.hidden) {
+      // Add to parent table columns and expandable table columns separately
+      if (key.subRow) {
+        columns.colChild.push(colData)
+      } else {
+        columns.colParent.push(colData)
+      }
+    }
   })
-
-  const sortBy = def.sortBy || { index: 0, direction: 'asc' } // default if doesn't exist
-
-  return { columns, rows, sortBy }
+  // Create row data for parent table and expandable (child) tables
+  let subUid = 0, expandable
+  const rows = {
+    rowParent: [],
+    rowChild: [],
+  }
+  items.forEach((item, index) => {
+    expandable = false
+    const rowChildObj = {}
+    const rowParentObj = {
+      uid: index
+    }
+    // For each column, parse the row values based on its type
+    def.tableKeys.forEach(key => {
+      const label = key.label
+      let value = _.get(item, key.resourceKey)
+      if (key.type === 'timestamp') {
+        value = moment.unix(value).format('MMM Do YYYY \\at h:mm A')
+      } else if (key.type === 'i18n') {
+        value =  msgs.get(key.resourceKey, locale)
+      } else if (key.type === 'boolean') {
+        const valueBoolean = (Boolean(value)).toString()
+        value =  msgs.get(valueBoolean, locale)
+      } else if (key.transformFunction && typeof key.transformFunction === 'function') {
+        // Leverage the defined transformFunction to render content and store the raw value as metadata
+        value = {
+          title: key.transformFunction(item, locale),
+          rawData: value
+        }
+      } else {
+        value =  (value || value === 0) ? value : '-'
+      }
+      // Add to parent table or expandable (child) table as specified by the column
+      if (key.subRow) {
+        expandable = true
+        rowChildObj[label] = value
+      } else {
+        rowParentObj[label] = value
+      }
+    })
+    // If there's an expandable row, add to the expandable (child) rows
+    if (expandable) {
+      rowChildObj.uid = index
+      rowChildObj.subUid = subUid++
+      rows.rowChild.push(rowChildObj)
+    }
+    // Add our row to the table
+    rows.rowParent.push(rowParentObj)
+  })
+  // Specify a default sortBy object for the table if it doesn't exist
+  const sortBy = def.sortBy ? def.sortBy : { direction: 'asc' }
+  // The index can either be an integer or a string matching the column label
+  if (typeof sortBy.index === 'string') {
+    sortBy.index = columns.colParent.findIndex(col => sortBy.index === col.cell)
+  }
+  // If it wasn't found or wasn't defined, we'll set it to the first column
+  if (!sortBy.index || sortBy.index < 0 ) {
+    sortBy.index = 0
+  }
+  // Create keyFn and expandable row function
+  const keyFn = (item) => item.uid.toString()
+  let addSubRows
+  if (columns.colChild.length > 0) {
+    addSubRows = (item) => {
+      const subRows = rows.rowChild.filter((row) => row.uid?.toString() === item.uid?.toString())
+      return [
+        {
+          cells: [
+            {
+              title: (
+                <AcmTable
+                  items={subRows}
+                  columns={columns.colChild}
+                  keyFn={keyFn}
+                  gridBreakPoint=''
+                  showToolbar={false}
+                  autoHidePagination
+                  noBorders
+                />
+              )
+            }
+          ]
+        }
+      ]
+    }
+  }
+  // Return table data
+  return {
+    columns: columns.colParent,
+    rows: rows.rowParent,
+    sortBy,
+    keyFn,
+    addSubRows
+  }
 }
 
 function parseCell(label) {
