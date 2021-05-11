@@ -59,10 +59,11 @@ function AcmGrcPage(props) {
             {(() => {
               if (error) {
                 // Handle Apollo networkError type
+                let eHeader
                 const eMsg = []
                 if (error.networkError) {
                   const { statusCode='', bodyText='', message='', result='' } = error.networkError
-                  eMsg.push(<p key='eHeader'>Network Error {statusCode}</p>)
+                  eHeader = <p key='eHeader'>Network Error {statusCode}</p>
                   eMsg.push(<p key='eBodyText'>{bodyText}</p>)
                   eMsg.push(<p key='eMessage'>{message}</p>)
                   if (result.errors) {
@@ -70,11 +71,11 @@ function AcmGrcPage(props) {
                   }
                 // Handle Apollo graphQLErrors type
                 } else {
-                  eMsg.push(<p key='eHeader'>GraphQL Error</p>)
+                  eHeader = <p key='eHeader'>GraphQL Error</p>
                   eMsg.push(<p key='eMessage'>{error.errors.map((e) => e.message).join(';')}</p>)
                 }
-                return <AcmAlert isInline={true} variant='danger'
-                  subtitle={eMsg} />
+                return <AcmAlert isInline={true} noClose={true} variant='danger'
+                  title={eHeader} subtitle={eMsg} />
               }
               if (loading && !previousData || items === undefined ) {
                 return <Spinner className='patternfly-spinner' />
