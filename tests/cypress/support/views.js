@@ -665,9 +665,9 @@ export const action_verifyPolicyInPolicyDetails = (
 
 const getStatusIconFillColor = (targetStatus) => {
   switch(targetStatus) {
-    case 1: // 467f40 is the unique non-volation status color
+    case 1: // 3e8635 is the unique non-volation status color
     case 'compliant':
-      return '#467f40'
+      return '#3e8635'
     case 2: // c9190b is the unique violation status color
     case 'not compliant':
       return '#c9190b'

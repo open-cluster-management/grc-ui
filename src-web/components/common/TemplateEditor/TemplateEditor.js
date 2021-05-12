@@ -12,7 +12,7 @@ import { Alert, AlertActionCloseButton, Checkbox, ButtonVariant, Spinner, Select
 import { AcmModal, AcmButton, AcmAlert } from '@open-cluster-management/ui-components'
 import { initializeControlData, cacheUserData, updateControls, parseYAML,
   dumpYAMLFromPolicyDiscovered, dumpYAMLFromTemplateObject } from './utils/update-controls'
-import { BlueInfoCircleIcon } from '../Icons'
+import { GrayOutlinedQuestionCircleIcon } from '../Icons'
 import { generateYAML, highlightChanges } from './utils/update-editor'
 import { validateYAML } from './utils/validate-yaml'
 import YamlEditor from './components/YamlEditor'
@@ -350,7 +350,7 @@ export default class TemplateEditor extends React.Component {
             <div className="creation-view-controls-textbox-title">
               {name}
               <div className='creation-view-controls-must-exist'>*</div>
-              <BlueInfoCircleIcon tooltip={description} />
+              <GrayOutlinedQuestionCircleIcon tooltip={description} />
             </div>
             {radioButtons}
           </div>
@@ -361,7 +361,7 @@ export default class TemplateEditor extends React.Component {
       <React.Fragment>
         <div className="creation-view-controls-textbox-title">
           {name}
-          <BlueInfoCircleIcon tooltip={description} />
+          <GrayOutlinedQuestionCircleIcon tooltip={description} />
         </div>
         <div className='creation-view-controls-checkbox'>
           <Checkbox aria-label={id} id={id} isChecked={checked} label={msgs.get(`description.title.${id}`)} onChange={this.onChange.bind(this, id)} />
@@ -386,7 +386,7 @@ export default class TemplateEditor extends React.Component {
           <div className="creation-view-controls-multiselect-title">
             {name}
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
-            <BlueInfoCircleIcon tooltip={description} />
+            <GrayOutlinedQuestionCircleIcon tooltip={description} />
           </div>
           <Select
             variant={SelectVariant.typeahead}
@@ -456,7 +456,7 @@ export default class TemplateEditor extends React.Component {
           <div className="creation-view-controls-multiselect-title">
             {name}
             {mustExist ? <div className='creation-view-controls-must-exist'>*</div> : null}
-            <BlueInfoCircleIcon tooltip={description} />
+            <GrayOutlinedQuestionCircleIcon tooltip={description} />
           </div>
           <Select
             variant={SelectVariant.typeaheadMulti}
