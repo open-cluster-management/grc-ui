@@ -288,3 +288,18 @@ export const getUserAccess = gql`
     items: getUserAccessCredentials
   }
 `
+
+// retrieve ansible access info
+export const GET_ANSIBLE_AUTOMATIONS = gql`
+  query getAnsibleAutomations($ns: String) {
+    ansibleAutomations(namespace: $ns) {
+      kind
+      apiVersion
+      metadata {
+        name
+        namespace
+      }
+      spec
+    }
+  }
+`

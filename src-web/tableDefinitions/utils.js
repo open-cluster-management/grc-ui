@@ -9,13 +9,12 @@ import moment from 'moment'
 import _ from 'lodash'
 import config from '../../server/lib/shared/config'
 import {
-  AcmButton,
   AcmTable
 } from '@open-cluster-management/ui-components'
 import {
   Label,
   LabelGroup,
-  Popover,
+  Button,
   Tooltip,
 } from '@patternfly/react-core'
 import StatusField from '../components/common/StatusField'
@@ -24,12 +23,13 @@ import {
   RedExclamationCircleIcon,
   YellowExclamationTriangleIcon,
 } from '../components/common/Icons'
-import { ExternalLinkAltIcon } from '@patternfly/react-icons'
 import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
 import { LocaleContext } from '../components/common/LocaleContext'
 import purifyReactNode from '../utils/PurifyReactNode'
+import { GET_ANSIBLE_AUTOMATIONS } from '../utils/client/queries'
+import { Query } from '@apollo/client/react/components'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
@@ -378,43 +378,27 @@ export function formatAnnotationString(policy, annotationKey){
   }
 }
 
-export function getAutomationLink(item, locale) {
-  // Link to external automation platform
-  const automationLink = <div className='automation-link'>
-      <ExternalLinkAltIcon color='var(--pf-global--primary-color--100)' />
-      link-to-ansible-tower-instance
-    </div>
-  // Button to edit attached automation in sidebar
-  const editAutomationButton = <AcmButton
-      onClick={()=>{}}
-      text={msgs.get('table.actions.automation.edit', locale)}
-    >
-      {msgs.get('table.actions.automation.edit', locale)}
-    </AcmButton>
-  // Body of automation popover
-  const automationBody = <div className='automation-body'>
-      <div className='connection-name'>
-        <span className='title'>
-          {msgs.get('table.actions.automation.popover.connection', locale)}:
-        </span>
-        <span>type-of-provider-connection</span>
-      </div>
-      <div>
-        description-of-connection-provided-at-connection-creation-time
-      </div>
-      {automationLink}
-      {editAutomationButton}
-    </div>
-  // TODO: Figure out logic for "Configure automation" vs "Ansible tower"
+export function getAutomationLink(item) {
   // TODO: For "Configure automation", figure out action to open side panel
+  // TODO: externalize strings
   // Return either a label that launches a popover or a link to open the automation sidebar
   return (
-    <Popover
-      headerContent={msgs.get('table.actions.automation.popover.title', locale)}
-      bodyContent={automationBody}
-    >
-      <Label>type-of-automation<ExternalLinkAltIcon /></Label>
-    </Popover>
+    <Query query={GET_ANSIBLE_AUTOMATIONS} variables={{ namespace: item.metadata.namespace }}>
+    {( result ) => {
+      const { data={ansibleAutomations: []} } = result
+      var found = false
+      data.ansibleAutomations.forEach((automation) => {
+        if (automation.metadata && automation.metadata.name === item.metadata.name) {
+          found = true
+        }
+      })
+      return (
+        <Button component="a" variant="link">
+          {found ? 'Edit automation' : 'Configure automation'}
+        </Button>
+      )
+    }}
+    </Query>
   )
 }
 
