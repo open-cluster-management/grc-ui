@@ -360,7 +360,7 @@ export const action_verifyPolicyInListing = (
     .get('.grc-view-by-policies-table').within(() => {
     cy.log(uName)
     cy.get('a').contains(uName).parents('td').siblings('td')
-    .spread((namespace, remediation, violations, standards, categories, controls) => {
+    .spread((toggle, namespace, remediation, violations, standards) => {
       // check namespace
       if (policyConfig['namespace']) {
         cy.wrap(namespace).contains(policyConfig['namespace'].trim(), { matchCase: false })
@@ -391,15 +391,19 @@ export const action_verifyPolicyInListing = (
       }
       // check categories
       if (policyConfig['categories']) {
+        cy.wrap(toggle).click()
         for (const cat of policyConfig['categories']) {
-          cy.wrap(categories).contains(cat.trim())
+          cy.get('td[data-label="Categories"]').contains(cat.trim())
         }
+        cy.wrap(toggle).click()
       }
       // check controls
       if (policyConfig['controls']) {
+        cy.wrap(toggle).click()
         for (const ctl of policyConfig['controls']) {
-          cy.wrap(controls).contains(ctl.trim())
+          cy.get('td[data-label="Controls"]').contains(ctl.trim())
         }
+        cy.wrap(toggle).click()
       }
     })
 
