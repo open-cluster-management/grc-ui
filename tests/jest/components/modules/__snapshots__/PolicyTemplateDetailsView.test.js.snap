@@ -2555,7 +2555,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                   <svg
                     aria-hidden={true}
                     aria-labelledby={null}
-                    fill="#467f40"
+                    fill="#3e8635"
                     height="1em"
                     role="img"
                     style={
@@ -3822,7 +3822,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                   <svg
                     aria-hidden={true}
                     aria-labelledby={null}
-                    fill="#467f40"
+                    fill="#3e8635"
                     height="1em"
                     role="img"
                     style={

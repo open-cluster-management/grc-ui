@@ -9,13 +9,13 @@ import {
   ExclamationCircleIcon,
   ExclamationTriangleIcon,
   CheckCircleIcon,
-  InfoCircleIcon,
+  OutlinedQuestionCircleIcon,
 } from '@patternfly/react-icons'
 import { Tooltip } from '@patternfly/react-core'
 import dangerColor from '@patternfly/react-tokens/dist/js/global_danger_color_100'
 import okColor from '@patternfly/react-tokens/dist/js/global_palette_green_500'
 import warningColor from '@patternfly/react-tokens/dist/js/global_warning_color_100'
-import infoColor from '@patternfly/react-tokens/dist/js/global_info_color_100'
+import questionInfoColor from '@patternfly/react-tokens/dist/js/global_icon_Color_light'
 
 export const GreenCheckCircleIcon = ({tooltip}) => {
   if (tooltip) {
@@ -62,18 +62,17 @@ YellowExclamationTriangleIcon.propTypes = {
   tooltip: PropTypes.string,
 }
 
-
-export const BlueInfoCircleIcon = ({tooltip}) => {
+export const GrayOutlinedQuestionCircleIcon= ({tooltip}) => {
   if (tooltip) {
     return (
       <Tooltip content={<div>{tooltip}</div>}>
-        <InfoCircleIcon color={infoColor.value} />
+        <OutlinedQuestionCircleIcon color={questionInfoColor.value} />
       </Tooltip>
     )
   }
-  return <InfoCircleIcon color={infoColor.value} />
+  return <OutlinedQuestionCircleIcon color={questionInfoColor.value} />
 }
 
-BlueInfoCircleIcon.propTypes = {
+GrayOutlinedQuestionCircleIcon.propTypes = {
   tooltip: PropTypes.string,
 }
