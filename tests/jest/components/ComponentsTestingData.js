@@ -3343,7 +3343,7 @@ export const reduxStoreFindingCluster = {
     }
   },
   secondaryHeader: {
-    title: 'Governance and risk',
+    title: 'Governance',
     tabs: [
       {
         id: 'grc-overview',

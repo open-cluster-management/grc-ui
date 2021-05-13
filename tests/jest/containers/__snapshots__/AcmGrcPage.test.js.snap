@@ -8524,7 +8524,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                       </div>
                     </React.Fragment>
                   }
-                  title="Governance and risk"
+                  title="Governance"
                 />
               }
             >
@@ -8570,7 +8570,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                           </div>
                         </React.Fragment>
                       }
-                      title="Governance and risk"
+                      title="Governance"
                     />
                   </React.Fragment>
                 }
@@ -8639,7 +8639,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                               </div>
                             </React.Fragment>
                           }
-                          title="Governance and risk"
+                          title="Governance"
                         >
                           <PageSection
                             padding={
@@ -8724,7 +8724,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
                                                                         <h1
                                                                           className="pf-c-title pf-m-2xl"
                                                                         >
-                                                                          Governance and risk
+                                                                          Governance
                                                                         </h1>
                                                                       </Title>
                                                                     </div>
@@ -52056,7 +52056,7 @@ exports[`AcmGrcPage container should render loading spinner 1`] = `
                             <h1
                               class="pf-c-title pf-m-2xl"
                             >
-                              Governance and risk
+                              Governance
                             </h1>
                           </div>
                         </div>
