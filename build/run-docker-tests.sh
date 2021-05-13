@@ -39,7 +39,7 @@ while true; do
     break
   fi
   i=$[i + 1]
-  if [[ "$i" == '12' ]]; then
+  if [[ "$i" == '24' ]]; then
     echo "timeout waiting for idp ${OC_IDP}..."
     exit 1
   fi
