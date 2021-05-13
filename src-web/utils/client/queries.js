@@ -291,8 +291,8 @@ export const getUserAccess = gql`
 
 // retrieve ansible access info
 export const GET_ANSIBLE_AUTOMATIONS = gql`
-  query getAnsibleAutomations($ns: String) {
-    ansibleAutomations(namespace: $ns) {
+  query getPolicyAutomations($ns: String) {
+    policyAutomations(namespace: $ns) {
       kind
       apiVersion
       metadata {

@@ -384,15 +384,15 @@ export function getAutomationLink(item) {
   return (
     <Query query={GET_ANSIBLE_AUTOMATIONS} variables={{ namespace: item.metadata.namespace }}>
     {( result ) => {
-      const { data={ansibleAutomations: []} } = result
+      const { data={policyAutomations: []} } = result
       var found = false
-      data.ansibleAutomations.forEach((automation) => {
+      data.policyAutomations.forEach((automation) => {
         if (automation.metadata && automation.metadata.name === item.metadata.name) {
           found = true
         }
       })
       return (
-        <Button component="a" variant="link">
+        <Button component="a" variant="link" className="automationButton">
           {found ? 'Edit automation' : 'Configure automation'}
         </Button>
       )
