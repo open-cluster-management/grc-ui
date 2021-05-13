@@ -11,7 +11,7 @@ import {
 import { AcmTable } from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import statusHistoryDef from '../../tableDefinitions/statusHistoryDef'
-import { transform_new } from '../../tableDefinitions/utils'
+import { transformNew } from '../../tableDefinitions/utils'
 import msgs from '../../nls/platform.properties'
 
 class PolicyStatusHistoryView extends React.Component {
@@ -25,7 +25,7 @@ class PolicyStatusHistoryView extends React.Component {
     const { items=[], cluster, template } = this.props
     const { locale } = this.context
 
-    const tableData = transform_new(items, statusHistoryDef, locale)
+    const tableData = transformNew(items, statusHistoryDef, locale)
 
     return (
       <div className='policy-status-history-view'>

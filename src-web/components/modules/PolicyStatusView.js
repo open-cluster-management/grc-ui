@@ -16,7 +16,7 @@ import { LocaleContext } from '../common/LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import NoResource from '../../components/common/NoResource'
-import { transform_new } from '../../tableDefinitions/utils'
+import { transformNew } from '../../tableDefinitions/utils'
 import { checkCreatePermission } from '../../utils/CheckUserPermission'
 import msgs from '../../nls/platform.properties'
 import '../../scss/policy-status-view.scss'
@@ -53,7 +53,7 @@ class PolicyStatusView extends React.Component {
     const showDetailsLink = checkCreatePermission(userAccess)
     const statusAccess = items.map(item => ({...item, showDetailsLink: showDetailsLink}))
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
-    const tableDataByClusters = transform_new(statusAccess, statusByClustersDef, locale)
+    const tableDataByClusters = transformNew(statusAccess, statusByClustersDef, locale)
     const {toggleIndex, clusterQuery} = this.state
 
     return (
@@ -161,7 +161,7 @@ function groupByTemplate(status, locale) {
     const matchingStatuses = status.filter((s) => s.templateName === tname)
     tableDataByTemplate.push({
       name: tname?.toString(),
-      data: transform_new(matchingStatuses, statusByTemplatesDef, locale)
+      data: transformNew(matchingStatuses, statusByTemplatesDef, locale)
     })
   })
   return tableDataByTemplate

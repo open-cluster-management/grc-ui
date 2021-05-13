@@ -12,7 +12,7 @@ import YamlEditor from '../common/YamlEditor'
 import { AcmTable, AcmDescriptionList } from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
-import { transform_new } from '../../tableDefinitions/utils'
+import { transformNew } from '../../tableDefinitions/utils'
 import msgs from '../../nls/platform.properties'
 
 import '../../scss/policy-template-details.scss'
@@ -61,7 +61,7 @@ class PolicyTemplateDetailsView extends React.Component {
         return o
       })
     }
-    const tableData = transform_new(relatedObjects, relatedObjectsDef, locale)
+    const tableData = transformNew(relatedObjects, relatedObjectsDef, locale)
 
     const descriptionItems = [
       {

@@ -21,7 +21,7 @@ import { AcmDescriptionList, AcmTable } from '@open-cluster-management/ui-compon
 import NoResource from '../../components/common/NoResource'
 import policyDetailsClusterListDef from '../../tableDefinitions/policyDetailsClusterListDef'
 import policyDetailsOverviewDef from '../../tableDefinitions/policyDetailsOverviewDef'
-import { transform_new, getPolicyCompliantStatus } from '../../tableDefinitions/utils'
+import { transformNew, getPolicyCompliantStatus } from '../../tableDefinitions/utils'
 import moment from 'moment'
 
 import '../../scss/policy-details-overview.scss'
@@ -53,7 +53,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
     }
     const localItem = items[0]
     const { locale } = this.context
-    const clusterList = transform_new([localItem], policyDetailsClusterListDef, locale)
+    const clusterList = transformNew([localItem], policyDetailsClusterListDef, locale)
 
     const modulesSecond = [
       <AcmTable
