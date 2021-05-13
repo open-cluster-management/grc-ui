@@ -25,9 +25,9 @@ export const createAndUpdateResources = gql`
     createAndUpdateResources(toCreate: $toCreate, toUpdate: $toUpdate)
   }
 `
-export const createAndUpdateAnsibleJobs = gql`
-  mutation createAndUpdateAnsibleJobs($toCreate: [JSON], $toUpdate: [JSON]) {
-    createAndUpdateAnsibleJobs(toCreate: $toCreate, toUpdate: $toUpdate)
+export const createAndUpdatePolicyAutomation = gql`
+  mutation createAndUpdatePolicyAutomation($toCreateJSON: [JSON], $toUpdateJSON: [JSON]) {
+    createAndUpdatePolicyAutomation(toCreateJSON: $toCreateJSON, toUpdateJSON: $toUpdateJSON)
   }
 `
 export const updateResource = gql`
