@@ -23,7 +23,7 @@ RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 RUN ./build/download-clis.sh
 
 RUN npm install \
-    cypress@7.2.0 \
+    cypress@7.3.0 \
     cypress-multi-reporters \
     cypress-terminal-report \
     cypress-wait-until \
@@ -32,7 +32,7 @@ RUN npm install \
     mocha \
     mocha-junit-reporter \
     mochawesome \
-    js-yaml@3.14.1 \
+    js-yaml@4.1.0 \
     @slack/web-api@5.15.0
 
 CMD ["./build/run-docker-tests.sh"]
