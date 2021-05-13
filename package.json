@@ -17,8 +17,8 @@
     "lint:fix": "eslint --ext .jsx,.js --fix .",
     "test:unit": "jest --colors",
     "test": "jest --silent",
-    "test:cypress": "export LIVE_MODE=true && export BROWSER=chrome && ./tests/cypress/start_cypress_tests.sh",
-    "test:cypress-headless": "export BROWSER=chrome && ./tests/cypress/start_cypress_tests.sh",
+    "test:cypress": "export BABEL_ENV=e2e && export LIVE_MODE=true && export BROWSER=chrome && ./tests/cypress/start_cypress_tests.sh",
+    "test:cypress-headless": "export BABEL_ENV=e2e && export BROWSER=chrome && ./tests/cypress/start_cypress_tests.sh",
     "test:watch": "jest --watch",
     "test:update-snapshot": "jest --updateSnapshot",
     "merge:coverage": "lcov-result-merger test-output/**/lcov.info ./lcov-merged.info"
