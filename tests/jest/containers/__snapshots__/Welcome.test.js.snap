@@ -193,7 +193,7 @@ exports[`Welcome component renders as expected 1`] = `
               className="links-link"
               href="/multicloud/policies"
             >
-              Go to Governance and risk
+              Go to Governance
             </a>
           </div>
         </div>

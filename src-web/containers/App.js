@@ -105,7 +105,7 @@ const getAcmRoute = (props) => {
     path = props.url
   }
   if (path.includes(config.contextPath)) {
-    return AcmRoute.RiskAndCompliance
+    return AcmRoute.Governance
   }
   return AcmRoute.Welcome
 }

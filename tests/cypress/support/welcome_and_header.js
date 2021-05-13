@@ -38,13 +38,13 @@ export const welcomePage = {
     whenGoToWelcomePage:() => cy.visit('/multicloud/welcome'),
     shouldExist: () => {
         cy.get('.welcome--introduction').should('contain', 'Welcome! Let’s get started.')
-        cy.get('.welcome--svcs').should('contain', 'Go to Overview').and('contain', 'Go to Clusters').and('contain', 'Go to Applications').and('contain', 'Go to Governance and risk')
+        cy.get('.welcome--svcs').should('contain', 'Go to Overview').and('contain', 'Go to Clusters').and('contain', 'Go to Applications').and('contain', 'Go to Governance')
     },
     validateSvcs: () => {
         cy.contains('Go to Overview').should('have.prop', 'href', Cypress.config().baseUrl + '/overview')
         cy.contains('Go to Clusters').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/clusters')
         cy.contains('Go to Applications').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/applications')
-        cy.contains('Go to Governance and risk').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
+        cy.contains('Go to Governance').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
     },
     validateConnect: () => {
         cy.get('[target="dev-community"]').should('have.prop', 'href', 'https://www.redhat.com/en/blog/products')
@@ -54,7 +54,7 @@ export const welcomePage = {
 
 export const leftNav = {
     validateMenu: () => {
-        cy.get('#page-sidebar li').should('be.visible').and('have.length', 9)
+        cy.get('#page-sidebar li.pf-c-nav__item').should('be.visible').and('have.length', 11)
         cy.get('#nav-toggle').click()
         cy.get('#page-sidebar').should('not.be.visible')
         cy.get('#nav-toggle').click()
@@ -87,7 +87,7 @@ export const leftNav = {
         cy.get('#page-sidebar').contains('Applications').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/applications')
     },
     goToGRC: () => {
-        cy.get('#page-sidebar').contains('Risk and compliance').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
+        cy.get('#page-sidebar').contains('Governance').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/policies')
     },
     goToCredentials: () => {
         cy.get('#page-sidebar').contains('Credentials').should('have.prop', 'href', Cypress.config().baseUrl + '/multicloud/credentials')
