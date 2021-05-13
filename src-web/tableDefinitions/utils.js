@@ -110,8 +110,7 @@ export const transform_new = (items, def, locale) => {
       } else if (key.type === 'i18n') {
         value =  msgs.get(key.resourceKey, locale)
       } else if (key.type === 'boolean') {
-        const valueBoolean = (Boolean(value)).toString()
-        value =  msgs.get(valueBoolean, locale)
+        value = value ? true : false
       } else if (key.transformFunction && typeof key.transformFunction === 'function') {
         // Leverage the defined transformFunction to render content and store the raw value as metadata
         value = {

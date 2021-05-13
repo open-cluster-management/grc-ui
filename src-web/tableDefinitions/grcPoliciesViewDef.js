@@ -115,12 +115,8 @@ export default {
       hidden: true,
       label: 'disabled',
       resourceKey: 'raw.spec.disabled',
+      type: 'boolean'
     },
-    {
-      hidden: true,
-      label: 'disabled',
-      resourceKey: 'raw.spec.remediationAction',
-    }
   ],
   sortBy: {
     index: 'creation',
