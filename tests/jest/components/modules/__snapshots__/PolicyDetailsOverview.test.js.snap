@@ -342,7 +342,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
     </h5>
     <div
       className="pf-c-toolbar"
-      id="pf-random-id-1"
+      id="pf-random-id-2"
     >
       <div
         className="pf-c-toolbar__content"
@@ -413,7 +413,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
         </div>
         <div
           className="pf-c-toolbar__expandable-content"
-          id="pf-random-id-1-expandable-content-3"
+          id="pf-random-id-2-expandable-content-3"
         >
           <div
             className="pf-c-toolbar__group"
@@ -693,6 +693,12 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                 data-key={3}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
           </tbody>
@@ -1307,6 +1313,12 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                 data-key={3}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
           </tbody>

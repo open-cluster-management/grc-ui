@@ -20,11 +20,11 @@ exports[`Modal component renders DisableResource as expected 1`] = `
   open={true}
   store={
     Object {
+      "@@observable": [Function],
       "dispatch": [Function],
       "getState": [Function],
       "replaceReducer": [Function],
       "subscribe": [Function],
-      Symbol(observable): [Function],
     }
   }
   type="resource-disable"
@@ -49,16 +49,16 @@ exports[`Modal component renders DisableResource as expected 1`] = `
     open={true}
     store={
       Object {
+        "@@observable": [Function],
         "dispatch": [Function],
         "getState": [Function],
         "replaceReducer": [Function],
         "subscribe": [Function],
-        Symbol(observable): [Function],
       }
     }
     type="resource-disable"
   >
-    <ForwardRef
+    <Loadable
       data={
         Object {
           "kind": "Policy",
@@ -78,16 +78,16 @@ exports[`Modal component renders DisableResource as expected 1`] = `
       open={true}
       store={
         Object {
+          "@@observable": [Function],
           "dispatch": [Function],
           "getState": [Function],
           "replaceReducer": [Function],
           "subscribe": [Function],
-          Symbol(observable): [Function],
         }
       }
       type="resource-disable"
     >
-      <Component
+      <LoadableWithChunkExtractor
         data={
           Object {
             "kind": "Policy",
@@ -108,11 +108,11 @@ exports[`Modal component renders DisableResource as expected 1`] = `
         open={true}
         store={
           Object {
+            "@@observable": [Function],
             "dispatch": [Function],
             "getState": [Function],
             "replaceReducer": [Function],
             "subscribe": [Function],
-            Symbol(observable): [Function],
           }
         }
         type="resource-disable"
@@ -138,17 +138,17 @@ exports[`Modal component renders DisableResource as expected 1`] = `
           open={true}
           store={
             Object {
+              "@@observable": [Function],
               "dispatch": [Function],
               "getState": [Function],
               "replaceReducer": [Function],
               "subscribe": [Function],
-              Symbol(observable): [Function],
             }
           }
           type="resource-disable"
         />
-      </Component>
-    </ForwardRef>
+      </LoadableWithChunkExtractor>
+    </Loadable>
   </Modal>
 </Connect(Modal)>
 `;
@@ -179,11 +179,11 @@ exports[`Modal component renders EditResource as expected 1`] = `
   }
   store={
     Object {
+      "@@observable": [Function],
       "dispatch": [Function],
       "getState": [Function],
       "replaceReducer": [Function],
       "subscribe": [Function],
-      Symbol(observable): [Function],
     }
   }
   type="resource-edit"
@@ -214,11 +214,11 @@ exports[`Modal component renders EditResource as expected 1`] = `
     }
     store={
       Object {
+        "@@observable": [Function],
         "dispatch": [Function],
         "getState": [Function],
         "replaceReducer": [Function],
         "subscribe": [Function],
-        Symbol(observable): [Function],
       }
     }
     type="resource-edit"
@@ -246,11 +246,11 @@ exports[`Modal component renders EnableResource as expected 1`] = `
   open={true}
   store={
     Object {
+      "@@observable": [Function],
       "dispatch": [Function],
       "getState": [Function],
       "replaceReducer": [Function],
       "subscribe": [Function],
-      Symbol(observable): [Function],
     }
   }
   type="resource-enable"
@@ -275,16 +275,16 @@ exports[`Modal component renders EnableResource as expected 1`] = `
     open={true}
     store={
       Object {
+        "@@observable": [Function],
         "dispatch": [Function],
         "getState": [Function],
         "replaceReducer": [Function],
         "subscribe": [Function],
-        Symbol(observable): [Function],
       }
     }
     type="resource-enable"
   >
-    <ForwardRef
+    <Loadable
       data={
         Object {
           "kind": "Policy",
@@ -304,16 +304,16 @@ exports[`Modal component renders EnableResource as expected 1`] = `
       open={true}
       store={
         Object {
+          "@@observable": [Function],
           "dispatch": [Function],
           "getState": [Function],
           "replaceReducer": [Function],
           "subscribe": [Function],
-          Symbol(observable): [Function],
         }
       }
       type="resource-enable"
     >
-      <Component
+      <LoadableWithChunkExtractor
         data={
           Object {
             "kind": "Policy",
@@ -334,11 +334,11 @@ exports[`Modal component renders EnableResource as expected 1`] = `
         open={true}
         store={
           Object {
+            "@@observable": [Function],
             "dispatch": [Function],
             "getState": [Function],
             "replaceReducer": [Function],
             "subscribe": [Function],
-            Symbol(observable): [Function],
           }
         }
         type="resource-enable"
@@ -364,17 +364,17 @@ exports[`Modal component renders EnableResource as expected 1`] = `
           open={true}
           store={
             Object {
+              "@@observable": [Function],
               "dispatch": [Function],
               "getState": [Function],
               "replaceReducer": [Function],
               "subscribe": [Function],
-              Symbol(observable): [Function],
             }
           }
           type="resource-enable"
         />
-      </Component>
-    </ForwardRef>
+      </LoadableWithChunkExtractor>
+    </Loadable>
   </Modal>
 </Connect(Modal)>
 `;
@@ -399,11 +399,11 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
   open={true}
   store={
     Object {
+      "@@observable": [Function],
       "dispatch": [Function],
       "getState": [Function],
       "replaceReducer": [Function],
       "subscribe": [Function],
-      Symbol(observable): [Function],
     }
   }
   type="resource-enforce"
@@ -428,16 +428,16 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
     open={true}
     store={
       Object {
+        "@@observable": [Function],
         "dispatch": [Function],
         "getState": [Function],
         "replaceReducer": [Function],
         "subscribe": [Function],
-        Symbol(observable): [Function],
       }
     }
     type="resource-enforce"
   >
-    <ForwardRef
+    <Loadable
       data={
         Object {
           "kind": "Policy",
@@ -457,16 +457,16 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
       open={true}
       store={
         Object {
+          "@@observable": [Function],
           "dispatch": [Function],
           "getState": [Function],
           "replaceReducer": [Function],
           "subscribe": [Function],
-          Symbol(observable): [Function],
         }
       }
       type="resource-enforce"
     >
-      <Component
+      <LoadableWithChunkExtractor
         data={
           Object {
             "kind": "Policy",
@@ -487,11 +487,11 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
         open={true}
         store={
           Object {
+            "@@observable": [Function],
             "dispatch": [Function],
             "getState": [Function],
             "replaceReducer": [Function],
             "subscribe": [Function],
-            Symbol(observable): [Function],
           }
         }
         type="resource-enforce"
@@ -517,17 +517,17 @@ exports[`Modal component renders EnforceResource as expected 1`] = `
           open={true}
           store={
             Object {
+              "@@observable": [Function],
               "dispatch": [Function],
               "getState": [Function],
               "replaceReducer": [Function],
               "subscribe": [Function],
-              Symbol(observable): [Function],
             }
           }
           type="resource-enforce"
         />
-      </Component>
-    </ForwardRef>
+      </LoadableWithChunkExtractor>
+    </Loadable>
   </Modal>
 </Connect(Modal)>
 `;
@@ -552,11 +552,11 @@ exports[`Modal component renders InformResource as expected 1`] = `
   open={true}
   store={
     Object {
+      "@@observable": [Function],
       "dispatch": [Function],
       "getState": [Function],
       "replaceReducer": [Function],
       "subscribe": [Function],
-      Symbol(observable): [Function],
     }
   }
   type="resource-inform"
@@ -581,16 +581,16 @@ exports[`Modal component renders InformResource as expected 1`] = `
     open={true}
     store={
       Object {
+        "@@observable": [Function],
         "dispatch": [Function],
         "getState": [Function],
         "replaceReducer": [Function],
         "subscribe": [Function],
-        Symbol(observable): [Function],
       }
     }
     type="resource-inform"
   >
-    <ForwardRef
+    <Loadable
       data={
         Object {
           "kind": "Policy",
@@ -610,16 +610,16 @@ exports[`Modal component renders InformResource as expected 1`] = `
       open={true}
       store={
         Object {
+          "@@observable": [Function],
           "dispatch": [Function],
           "getState": [Function],
           "replaceReducer": [Function],
           "subscribe": [Function],
-          Symbol(observable): [Function],
         }
       }
       type="resource-inform"
     >
-      <Component
+      <LoadableWithChunkExtractor
         data={
           Object {
             "kind": "Policy",
@@ -640,11 +640,11 @@ exports[`Modal component renders InformResource as expected 1`] = `
         open={true}
         store={
           Object {
+            "@@observable": [Function],
             "dispatch": [Function],
             "getState": [Function],
             "replaceReducer": [Function],
             "subscribe": [Function],
-            Symbol(observable): [Function],
           }
         }
         type="resource-inform"
@@ -670,17 +670,17 @@ exports[`Modal component renders InformResource as expected 1`] = `
           open={true}
           store={
             Object {
+              "@@observable": [Function],
               "dispatch": [Function],
               "getState": [Function],
               "replaceReducer": [Function],
               "subscribe": [Function],
-              Symbol(observable): [Function],
             }
           }
           type="resource-inform"
         />
-      </Component>
-    </ForwardRef>
+      </LoadableWithChunkExtractor>
+    </Loadable>
   </Modal>
 </Connect(Modal)>
 `;
@@ -705,11 +705,11 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
   open={true}
   store={
     Object {
+      "@@observable": [Function],
       "dispatch": [Function],
       "getState": [Function],
       "replaceReducer": [Function],
       "subscribe": [Function],
-      Symbol(observable): [Function],
     }
   }
   type="resource-remove"
@@ -734,16 +734,16 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
     open={true}
     store={
       Object {
+        "@@observable": [Function],
         "dispatch": [Function],
         "getState": [Function],
         "replaceReducer": [Function],
         "subscribe": [Function],
-        Symbol(observable): [Function],
       }
     }
     type="resource-remove"
   >
-    <ForwardRef
+    <Loadable
       data={
         Object {
           "kind": "Policy",
@@ -763,16 +763,16 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
       open={true}
       store={
         Object {
+          "@@observable": [Function],
           "dispatch": [Function],
           "getState": [Function],
           "replaceReducer": [Function],
           "subscribe": [Function],
-          Symbol(observable): [Function],
         }
       }
       type="resource-remove"
     >
-      <Component
+      <LoadableWithChunkExtractor
         data={
           Object {
             "kind": "Policy",
@@ -793,11 +793,11 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
         open={true}
         store={
           Object {
+            "@@observable": [Function],
             "dispatch": [Function],
             "getState": [Function],
             "replaceReducer": [Function],
             "subscribe": [Function],
-            Symbol(observable): [Function],
           }
         }
         type="resource-remove"
@@ -823,17 +823,17 @@ exports[`Modal component renders RemoveResource as expected 1`] = `
           open={true}
           store={
             Object {
+              "@@observable": [Function],
               "dispatch": [Function],
               "getState": [Function],
               "replaceReducer": [Function],
               "subscribe": [Function],
-              Symbol(observable): [Function],
             }
           }
           type="resource-remove"
         />
-      </Component>
-    </ForwardRef>
+      </LoadableWithChunkExtractor>
+    </Loadable>
   </Modal>
 </Connect(Modal)>
 `;

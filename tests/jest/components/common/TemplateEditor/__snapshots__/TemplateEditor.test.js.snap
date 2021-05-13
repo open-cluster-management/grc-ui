@@ -303,6 +303,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     </div>
                     <input
                       aria-activedescendant={null}
+                      aria-invalid={false}
                       aria-label=""
                       autoComplete="off"
                       className="pf-c-form-control pf-c-select__toggle-typeahead"
@@ -495,6 +496,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     </div>
                     <input
                       aria-activedescendant={null}
+                      aria-invalid={false}
                       aria-label=""
                       autoComplete="off"
                       className="pf-c-form-control pf-c-select__toggle-typeahead"
@@ -687,6 +689,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     </div>
                     <input
                       aria-activedescendant={null}
+                      aria-invalid={false}
                       aria-label=""
                       autoComplete="off"
                       className="pf-c-form-control pf-c-select__toggle-typeahead"
@@ -879,6 +882,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     </div>
                     <input
                       aria-activedescendant={null}
+                      aria-invalid={false}
                       aria-label=""
                       autoComplete="off"
                       className="pf-c-form-control pf-c-select__toggle-typeahead"
@@ -1071,6 +1075,7 @@ exports[`TemplateEditor component renders as expected 1`] = `
                     </div>
                     <input
                       aria-activedescendant={null}
+                      aria-invalid={false}
                       aria-label=""
                       autoComplete="off"
                       className="pf-c-form-control pf-c-select__toggle-typeahead"
