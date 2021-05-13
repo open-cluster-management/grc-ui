@@ -155,10 +155,10 @@ View the full list of npm scripts that are described in the following table:
 | Command                          | Description                                                                                                                      |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | `npm start`                      | Starts the application with NODE_ENV='development'.                                                                               |
-| `npm test:unit`                  | Runs jest tests.                                                                                                                |
-| `npm test:update-snapshot`       | Updates snapshots for jest tests. This command should only be used if you have made changes to a component that requires an updated snapshot artifact for a test case.|
-| `npm test:cypress`               | Runs Cypress e2e tests. |
-| `npm test:cypress-headless`      | Runs Cypress e2e tests with headless browser (i.e. browser runs in the background). |
+| `npm run test:unit`                  | Runs jest tests.                                                                                                                |
+| `npm run test:update-snapshot`       | Updates snapshots for jest tests. This command should only be used if you have made changes to a component that requires an updated snapshot artifact for a test case.|
+| `npm run test:cypress`               | Runs Cypress e2e tests. |
+| `npm run test:cypress-headless`      | Runs Cypress e2e tests with headless browser (i.e. browser runs in the background). |
 | `npm run start:production`       | Starts the application with NODE_ENV='production'.                                                                                |
 | `npm run clean`                  | Deletes the generated files from public folder.                                                                                  |
 | `npm run build`                  | Does a FULL development build.  (caching disabled and dev source maps)                                                           |

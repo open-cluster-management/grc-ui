@@ -17,38 +17,49 @@ export default {
   tableKeys: [
     {
       msgKey: 'table.header.name',
+      label: 'name',
+      searchable: true,
       resourceKey: 'object.metadata.name',
       transforms: [sortable, wrappable],
       cellTransforms: [breakWord],
     },
     {
       msgKey: 'table.header.namespace',
+      label: 'namespace',
+      searchable: true,
       resourceKey: 'object.metadata.namespace',
       transforms: [sortable, wrappable],
     },
     {
       msgKey: 'table.header.kind',
+      label: 'kind',
+      searchable: true,
       resourceKey: 'object.kind',
       transforms: [sortable, wrappable],
     },
     {
       msgKey: 'table.header.apiGroups',
+      label: 'apiGroups',
       resourceKey: 'object.apiVersion',
       transforms: [sortable, wrappable],
       cellTransforms: [breakWord],
     },
     {
       msgKey: 'table.header.compliant',
+      label: 'compliant',
       resourceKey: 'compliant',
       transforms: [sortable, wrappable],
       transformFunction: buildCompliantCell,
     },
     {
       msgKey: 'table.header.reason',
+      label: 'reason',
+      searchable: true,
       resourceKey: 'reason',
       transforms: [sortable, wrappable],
     },
     {
+      label: 'link',
       transformFunction: buildViewYamlLink
     },
   ],

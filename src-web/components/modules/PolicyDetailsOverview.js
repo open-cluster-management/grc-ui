@@ -14,14 +14,15 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import { Alert } from '@patternfly/react-core'
 import msgs from '../../nls/platform.properties'
-import DetailsModule from '../common/DetailsModule'
-import PatternFlyTable from '../common/PatternFlyTable'
+import { AcmDescriptionList, AcmTable } from '@open-cluster-management/ui-components'
 import NoResource from '../../components/common/NoResource'
 import policyDetailsClusterListDef from '../../tableDefinitions/policyDetailsClusterListDef'
 import policyDetailsOverviewDef from '../../tableDefinitions/policyDetailsOverviewDef'
-import { transform } from '../../tableDefinitions/utils'
+import { transform_new, getPolicyCompliantStatus } from '../../tableDefinitions/utils'
+import moment from 'moment'
 
 import '../../scss/policy-details-overview.scss'
 
@@ -32,8 +33,8 @@ export class PolicyDetailsOverview extends React.PureComponent{
 
   static propTypes = {
     items: PropTypes.array,
-    location: PropTypes.object,
-    resourceType: PropTypes.object,
+    // location: PropTypes.object,
+    // resourceType: PropTypes.object,
   }
 
   static contextTypes = {
@@ -52,40 +53,56 @@ export class PolicyDetailsOverview extends React.PureComponent{
     }
     const localItem = items[0]
     const { locale } = this.context
-    const clusterList = transform([localItem], policyDetailsClusterListDef, locale)
+    const clusterList = transform_new([localItem], policyDetailsClusterListDef, locale)
 
     const modulesSecond = [
-      <PatternFlyTable
+      <AcmTable
         key='cluster-list'
-        className={'cluster-list'}
-        {...clusterList}
-        pagination={false}
-        searchable={false}
+        items={clusterList.rows}
+        columns={clusterList.columns}
+        keyFn={(item) => item.uid.toString()}
+        gridBreakPoint=''
+        autoHidePagination={true}
       />
     ]
+    const itemPR = Array.isArray(localItem?.placementPolicies) && localItem.placementPolicies.length > 0
+    const itemPB = Array.isArray(localItem?.placementBindings) && localItem.placementBindings.length > 0
 
-    let itemPR = null, itemPB = null
-    if (localItem && localItem.placementPolicies && Array.isArray(localItem.placementPolicies)) {
-      if (localItem.placementPolicies.length > 0) {
-        itemPR = true
+    const descriptionItems = policyDetailsOverviewDef.rows.map((item) => {
+      // AcmDescriptionList wants the items in {key: ..., value: ...} form
+      const entry = {}
+      if (Array.isArray(item.cells) && item.cells[0]) {
+        const keyPath = item.cells[0].resourceKey || '-'
+        entry.key = msgs.get(keyPath, locale)
+
+        const entryData = item.cells[1] ? _.get(localItem, item.cells[1].resourceKey, '-') : '-'
+        if (typeof(entryData) === 'object' || typeof(entryData) === 'boolean') {
+          entry.value = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
+        } else {
+          entry.value = entryData
+        }
+        if (item.cells[0].resourceKey) {
+          if(item.cells[0].type === 'timestamp') {
+            entry.value = moment(entry.value, 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
+          } else if(item.cells[1]?.resourceKey === 'clusterCompliant') {
+            entry.value = getPolicyCompliantStatus({clusterCompliant: entry.value}, locale)
+          }
+        }
       }
-    }
-    if (localItem && localItem.placementBindings && Array.isArray(localItem.placementBindings)) {
-      if (localItem.placementBindings.length > 0) {
-        itemPB = true
-      }
-    }
+      return entry
+    })
+    const itemsHalfCount = Math.ceil(descriptionItems.length / 2)
+
     return (
       <div className='overview-content'>
-        <div className='vertical-expend'>
-          <DetailsModule
-            listData = {localItem}
-            listItem = {policyDetailsOverviewDef.rows}
-            title = {policyDetailsOverviewDef.title}
-            showHeader={false}
+        <div className='vertical-expend' id='compliance.details'>
+          <AcmDescriptionList
+            title={msgs.get(policyDetailsOverviewDef.title, locale)}
+            leftItems={descriptionItems.slice(0, itemsHalfCount)}
+            rightItems={descriptionItems.slice(itemsHalfCount)}
           />
         </div>
-        <div className='vertical-expend'>
+        <div className='vertical-expend cluster-list'>
           <h5 className='section-title'>{msgs.get('table.header.placement', locale)}</h5>
           {itemPR && itemPB
             ? modulesSecond

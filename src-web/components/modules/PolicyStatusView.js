@@ -11,12 +11,12 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from '@patternfly/react-core'
-import PatternFlyTable from '../common/PatternFlyTable'
+import { AcmTable } from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
 import NoResource from '../../components/common/NoResource'
-import { transform } from '../../tableDefinitions/utils'
+import { transform_new } from '../../tableDefinitions/utils'
 import { checkCreatePermission } from '../../utils/CheckUserPermission'
 import msgs from '../../nls/platform.properties'
 import '../../scss/policy-status-view.scss'
@@ -26,7 +26,7 @@ class PolicyStatusView extends React.Component {
     super(props)
     const paramQuery = new URLSearchParams(location.search.substring(1))
     const indexQuery = paramQuery.get('index')
-    const clusterQuery = Boolean(paramQuery.get('clusterFilter'))
+    const clusterQuery = paramQuery.get('clusterFilter')
     const toggleIndex = indexQuery && parseInt(indexQuery, 10) < 2 ? parseInt(indexQuery, 10) : 0
     this.state= {
       toggleIndex,
@@ -53,8 +53,9 @@ class PolicyStatusView extends React.Component {
     const showDetailsLink = checkCreatePermission(userAccess)
     const statusAccess = items.map(item => ({...item, showDetailsLink: showDetailsLink}))
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
-    const tableDataByClusters = transform(statusAccess, statusByClustersDef, locale)
+    const tableDataByClusters = transform_new(statusAccess, statusByClustersDef, locale)
     const {toggleIndex, clusterQuery} = this.state
+
     return (
       <div className='policy-status-view'>
         <ToggleGroup className='policy-status-toggle' variant='light'>
@@ -80,34 +81,55 @@ class PolicyStatusView extends React.Component {
               headingLevel="h3">
               {msgs.get('tabs.policy.status.toggle.clusters', locale)}
             </Title>
-            <PatternFlyTable
-              {...tableDataByClusters}
-              noResultMsg={msgs.get('table.search.no.results', locale)}
-              searchQueryEnabled={clusterQuery}
-              searchQueryKey='clusterFilter'
-              strictSearch={clusterQuery}
+            <AcmTable
+              items={tableDataByClusters.rows}
+              columns={tableDataByClusters.columns}
+              keyFn={(item) => item.uid.toString()}
+              gridBreakPoint=''
+              search={clusterQuery}
+              setSearch={this.handleSearch}
+              searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
             />
           </div>}
-          {toggleIndex===1 && tableDataByTemplate.map((data)=> {
-            const templateName = data[0].toString()
+          {toggleIndex===1 && tableDataByTemplate.map((table) => {
             return <div
               className='policy-status-by-templates-table'
-              key={`template-index-${templateName}`}
+              key={`template-index-${table.name}`}
             >
               <Title
                 className='title'
                 headingLevel="h3">
-                {`${msgs.get('policy.template', locale)}: ${templateName}`}
+                {`${msgs.get('policy.template', locale)}: ${table.name}`}
               </Title>
-              <PatternFlyTable
-                {...data[1]}
-                noResultMsg={msgs.get('table.search.no.results', locale)}
+              <AcmTable
+                items={table.data.rows}
+                columns={table.data.columns}
+                keyFn={(item) => item.uid.toString()}
+                gridBreakPoint=''
+                searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
               />
             </div>
           })}
         </div>
       </div>
     )
+  }
+
+  handleSearch = (value) => {
+    // Update URL query if it changes (without adding to browser history)
+
+    const searchQuery = new URLSearchParams(location.search.substring(1))
+    searchQuery.delete('clusterFilter')
+    // If there are other queries, keep them in the URL, otherwise return the URL without queries
+    if (searchQuery.toString() !== '') {
+      window.history.replaceState({}, document.title, `${location.origin}${location.pathname}?${searchQuery.toString()}`)
+    } else {
+      window.history.replaceState({}, document.title, `${location.origin}${location.pathname}`)
+    }
+
+    this.setState({
+      clusterQuery: value,
+    })
   }
 
   toggleClick(isSelected, event) {
@@ -130,30 +152,24 @@ class PolicyStatusView extends React.Component {
 }
 
 function groupByTemplate(status, locale) {
-  const statusByTemplates = {}
-  const tableDataByTemplate = []
-  if (Array.isArray(status) && status.length > 0){
-    status.forEach((singleStatus) => {
-      const templateName = singleStatus.templateName
-      if (templateName) {
-        if (!Array.isArray(statusByTemplates[templateName])) {
-          statusByTemplates[templateName] = []
-        }
-        statusByTemplates[templateName].push(singleStatus)
-      }
-    })
-    Object.entries(statusByTemplates).forEach(([key, value])=> {
-      const templateName = key
-      const tableData = transform(value, statusByTemplatesDef, locale)
-      tableDataByTemplate.push([templateName, tableData])
-    })
+  if (!(Array.isArray(status) && status.length > 0)) {
+    return []
   }
+  const tableDataByTemplate = []
+  const templateNames = new Set(status.map((s) => s.templateName))
+  templateNames.forEach((tname) => {
+    const matchingStatuses = status.filter((s) => s.templateName === tname)
+    tableDataByTemplate.push({
+      name: tname?.toString(),
+      data: transform_new(matchingStatuses, statusByTemplatesDef, locale)
+    })
+  })
   return tableDataByTemplate
 }
 
 PolicyStatusView.propTypes = {
   items: PropTypes.array,
-  searchValue: PropTypes.string,
+  // searchValue: PropTypes.string,
   userAccess: PropTypes.array,
 }
 

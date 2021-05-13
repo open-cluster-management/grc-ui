@@ -21,17 +21,23 @@ export default {
   tableKeys: [
     {
       msgKey: 'table.header.cluster',
+      label: 'cluster',
+      searchable: true,
       transforms: [sortable, wrappable],
       transformFunction: buildClusterLink
     },
     {
       msgKey: 'table.header.status',
+      label: 'status',
+      searchable: true,
       resourceKey: 'status',
       transforms: [cellWidth(15), sortable],
       transformFunction: buildCompliantCellFromMessage
     },
     {
       msgKey: 'table.header.message',
+      label: 'message',
+      searchable: true,
       resourceKey: 'message',
       transforms: [cellWidth(70), sortable, wrappable],
       cellTransforms: [breakWord],
@@ -39,12 +45,14 @@ export default {
     },
     {
       msgKey: 'table.header.timestamp',
+      label: 'timestamp',
       resourceKey: 'timestamp',
       transforms: [sortable, wrappable],
       transformFunction: buildTimestamp,
     },
     {
       msgKey: 'table.header.history',
+      label: 'history',
       transforms: [wrappable],
       transformFunction: buildStatusHistoryLink
     },
