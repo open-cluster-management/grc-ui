@@ -1,4 +1,3 @@
-sudo: required
 language: node_js
 
 services:
@@ -25,6 +24,8 @@ env:
     - COMPONENT_BUILD_COMMAND=${TRAVIS_BUILD_DIR}/build/build.sh
     - COMPONENT_UNIT_TEST_COMMAND=${TRAVIS_BUILD_DIR}/build/run-unit-tests.sh
     - COMPONENT_E2E_TEST_COMMAND=${TRAVIS_BUILD_DIR}/build/run-e2e-tests.sh
+
+install: echo skipping install
 
 stages:
   - build

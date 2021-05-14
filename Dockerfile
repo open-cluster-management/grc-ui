@@ -5,7 +5,12 @@ FROM registry.access.redhat.com/ubi8/nodejs-14:1 as builder
 USER root
 RUN yum install git python2 -y
 
+ENV USER_UID=1001
+USER ${USER_UID}
+
+RUN mkdir -p /opt/app-root/src/grc-ui
 WORKDIR /opt/app-root/src/grc-ui
+
 COPY . .
 
 RUN make install
