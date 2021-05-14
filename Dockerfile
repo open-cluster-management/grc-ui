@@ -3,7 +3,7 @@
 FROM registry.access.redhat.com/ubi8/nodejs-14:1 as builder
 
 USER root
-RUN yum install git -y
+RUN yum install git python2 -y
 
 WORKDIR /opt/app-root/src/grc-ui
 COPY . .
