@@ -380,7 +380,7 @@ export function formatAnnotationString(policy, annotationKey){
   if (values) {
     return values.split(',').map(item => item.trim()).join(', ')
   }
-  return ''
+  return '-'
 }
 
 export function getAutomationLink(item, locale) {

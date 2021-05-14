@@ -19,9 +19,9 @@ exports[`tableDefinitions utils - createComplianceLink should return valid compl
 </Link>
 `;
 
-exports[`tableDefinitions utils - formatAnnotationString should get "-"  1`] = `undefined`;
+exports[`tableDefinitions utils - formatAnnotationString should get "-"  1`] = `"-"`;
 
-exports[`tableDefinitions utils - formatAnnotationString should get "-"  2`] = `undefined`;
+exports[`tableDefinitions utils - formatAnnotationString should get "-"  2`] = `"-"`;
 
 exports[`tableDefinitions utils - formatAnnotationString should get list of annotations back with proper whitespace 1`] = `"test1 test2, test3, test4 test5"`;
 
