@@ -119,7 +119,7 @@ export default {
     },
   ],
   sortBy: {
-    index: 'creation',
+    index: 7,
     direction: 'desc',
   }
 }

@@ -48,7 +48,6 @@ class GrcToggleModule extends React.Component {
   render() {
     const { grcItems, grcTabToggleIndex, handleToggleClick, status } = this.props
     const { locale } = this.context
-    const { searchValue } = this.state
     const tableType = grcTabToggleIndex === 0 ? 'policies' : 'clusters'
     const tableData = [
       transformNew(grcItems, grcPoliciesViewDef, locale),
@@ -57,6 +56,11 @@ class GrcToggleModule extends React.Component {
     if (status !== REQUEST_STATUS.INCEPTION && status !== REQUEST_STATUS.DONE){
       return <Spinner className='patternfly-spinner' />
     }
+    const { searchValue, policySortValue, clusterSortValue } = this.state
+    const sortValues = [
+      policySortValue || tableData[0].sortBy,
+      clusterSortValue || tableData[1].sortBy
+    ]
     const extraToolbarControls = (
       <ToggleGroup className='grc-toggle-button'>
           <ToggleGroupItem
@@ -85,7 +89,8 @@ class GrcToggleModule extends React.Component {
             addSubRows={tableData[grcTabToggleIndex].addSubRows}
             keyFn={tableData[grcTabToggleIndex].keyFn}
             setSearch={searchValue}
-            sort={tableData[grcTabToggleIndex].sortBy}
+            sort={sortValues[grcTabToggleIndex]}
+            setSort={this.setSort(grcTabToggleIndex)}
             gridBreakPoint=''
             extraToolbarControls={extraToolbarControls}
             searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
@@ -101,6 +106,20 @@ class GrcToggleModule extends React.Component {
     this.setState({
       searchValue: searchValue
     })
+  }
+
+  setSort = (grcTabToggleIndex) => {
+    return (sortValue) => {
+      if (grcTabToggleIndex === 0) {
+        this.setState({
+          policySortValue: sortValue
+        })
+      } else {
+        this.setState({
+          clusterSortValue: sortValue
+        })
+      }
+    }
   }
 
   tableActionResolver = (rowData) => {
