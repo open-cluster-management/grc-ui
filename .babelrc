@@ -23,7 +23,10 @@
             "plugins": ["dynamic-import-node", "@babel/plugin-proposal-object-rest-spread"]
         },
         "test": {
-            "plugins": ["dynamic-import-node"]
+            "plugins": [
+              ["@babel/plugin-proposal-private-methods", { "loose": true }]
+            ]
+            // "plugins": ["dynamic-import-node"]
         },
         "e2e": {
             "plugins": [
@@ -34,7 +37,6 @@
         "cypress": {
           "plugins": [
             ["@babel/plugin-proposal-private-methods", { "loose": true }]
-            
           ]
       }
     }
