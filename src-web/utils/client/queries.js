@@ -25,9 +25,9 @@ export const createAndUpdateResources = gql`
     createAndUpdateResources(toCreate: $toCreate, toUpdate: $toUpdate)
   }
 `
-export const createAndUpdatePolicyAutomation = gql`
-  mutation createAndUpdatePolicyAutomation($toCreateJSON: [JSON], $toUpdateJSON: [JSON]) {
-    createAndUpdatePolicyAutomation(toCreateJSON: $toCreateJSON, toUpdateJSON: $toUpdateJSON)
+export const modifyPolicyAutomation = gql`
+  mutation modifyPolicyAutomation($poliyAutomationJSON: [JSON], $action: String!) {
+    modifyPolicyAutomation(poliyAutomationJSON: $poliyAutomationJSON, action: $action)
   }
 `
 export const updateResource = gql`
@@ -292,5 +292,68 @@ export const GET_REFRESH_CONTROL = gql`
 export const getUserAccess = gql`
   query getUserAccess {
     items: getUserAccessCredentials
+  }
+`
+
+// retrieve ansible access info
+export const GET_ANSIBLE_CREDENTIALS = gql`
+  query getAnsibleCredentials {
+    ansibleCredentials {
+      name
+      namespace
+      host
+      token
+    }
+  }
+`
+
+// retrieve ansible job template
+export const GET_ANSIBLE_JOB_TEMPLATE = gql`
+  query getAnsibleJobTemplates($towerURL: String!, $token: String!) {
+    ansibleJobTemplates(host: $towerURL, token: $token) {
+      name
+      description
+      extra_vars
+    }
+  }
+`
+
+// retrieve ansible history
+export const GET_ANSIBLE_HISTORY = gql`
+  query ansibleAutomationHistories($name: String!, $namespace: String!) {
+    ansibleAutomationHistories(name: $name, namespace: $namespace) {
+      name
+      namespace
+      status
+      started
+      finished
+      job
+    }
+  }
+`
+
+// retrieve ansible secret
+export const COPY_ANSIBLE_SECRET = gql`
+  query copyAnsibleSecret($name: String!, $namespace: String!, $targetNamespace: String!) {
+    copyAnsibleSecret(name: $name, namespace: $namespace, targetNamespace: $targetNamespace) {
+      name
+    }
+  }
+`
+
+// retrieve Policy Automations
+export const POLICY_AUTOMATIONS = gql`
+  query policyAutomations($namespace: String) {
+    policyAutomations(namespace: $namespace) {
+      kind
+      apiVersion
+      metadata {
+        name
+        namespace
+        annotations
+        resourceVersion
+      }
+      spec
+    }
   }
 `
