@@ -9,7 +9,7 @@ import { Title } from '@patternfly/react-core'
 import jsYaml from 'js-yaml'
 import _ from 'lodash'
 import YamlEditor from '../common/YamlEditor'
-import { AcmTable, AcmDescriptionList } from '@open-cluster-management/ui-components'
+import { AcmTable, AcmDescriptionList, AcmExpandableCard } from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
 import { transform_new } from '../../tableDefinitions/utils'
@@ -95,15 +95,15 @@ class PolicyTemplateDetailsView extends React.Component {
             />
           </div>
           <div className='yaml' ref={this.setContainerRef}>
-            <Title className='title' headingLevel="h2">{msgs.get('panel.header.template.yaml', locale)}</Title>
-            <div>
+            <AcmExpandableCard title={msgs.get('panel.header.template.yaml', locale)}>
               <YamlEditor
                 width={'100%'}
-                height={'500px'}
+                height={'100%'}
                 readOnly
                 setEditor={this.setEditor}
-                yaml={jsYaml.dump(items, {lineWidth: -1})} />
-            </div>
+                yaml={jsYaml.dump(items, {lineWidth: -1})}
+              />
+            </AcmExpandableCard>
           </div>
         </div>
         <div className='table'>
