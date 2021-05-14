@@ -22,16 +22,17 @@ USER root
 RUN yum -y remove nodejs-nodemon
 RUN yum -y update
 
+ENV USER_UID=1001
+USER ${USER_UID}
+
 RUN mkdir -p /opt/app-root/src/grc-ui
 WORKDIR /opt/app-root/src/grc-ui
 
 COPY --from=builder /opt/app-root/src/grc-ui /opt/app-root/src/grc-ui
 
 ENV BABEL_DISABLE_CACHE=1 \
-    NODE_ENV=production \
-    USER_UID=1001
+    NODE_ENV=production 
 
 EXPOSE 3000
 
-USER ${USER_UID}
 CMD ["node", "app.js"]
