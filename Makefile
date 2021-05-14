@@ -23,7 +23,7 @@ default::
 	@echo "Build Harness Bootstrapped"
 
 install:
-	npm ci
+	CYPRESS_INSTALL_BINARY=0 npm ci --unsafe-perm
 
 copyright-check:
 	./build/copyright-check.sh $(TRAVIS_BRANCH)
