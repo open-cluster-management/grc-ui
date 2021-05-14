@@ -8450,7 +8450,7 @@ exports[`AcmGrcPage container should render ALL_POLICIES page  1`] = `
           "resetStore": [Function],
           "resetStoreCallbacks": Array [],
           "typeDefs": undefined,
-          "version": "3.3.17",
+          "version": "3.3.18",
           "watchQuery": [Function],
         }
       }
@@ -24670,7 +24670,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
           "resetStore": [Function],
           "resetStoreCallbacks": Array [],
           "typeDefs": undefined,
-          "version": "3.3.17",
+          "version": "3.3.18",
           "watchQuery": [Function],
         }
       }
@@ -36547,7 +36547,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
           "resetStore": [Function],
           "resetStoreCallbacks": Array [],
           "typeDefs": undefined,
-          "version": "3.3.17",
+          "version": "3.3.18",
           "watchQuery": [Function],
         }
       }
@@ -48306,7 +48306,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
           "resetStore": [Function],
           "resetStoreCallbacks": Array [],
           "typeDefs": undefined,
-          "version": "3.3.17",
+          "version": "3.3.18",
           "watchQuery": [Function],
         }
       }

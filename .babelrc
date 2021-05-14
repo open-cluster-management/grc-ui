@@ -28,9 +28,14 @@
         "e2e": {
             "plugins": [
               "@babel/plugin-syntax-dynamic-import", 
-              "istanbul",
-              ["@babel/plugin-proposal-private-methods", { "loose": true }]
+              "istanbul"
             ]
-        }
+        },
+        "cypress": {
+          "plugins": [
+            ["@babel/plugin-proposal-private-methods", { "loose": true }]
+            
+          ]
+      }
     }
 }
