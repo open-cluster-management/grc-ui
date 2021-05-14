@@ -17,7 +17,6 @@ npm-shrinkwrap.json
 README.md
 **/__snapshots__/**
 .build-harness
-Makefile*
 Dockerfile*
 build-harness
 copyright-check.sh
@@ -28,7 +27,6 @@ travis-env.sh
 .dockerignore
 .eslint*
 .nvmrc
-travis-scripts
 copy.sh
 webpack*
 version.ejs
