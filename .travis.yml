@@ -25,8 +25,6 @@ env:
     - COMPONENT_UNIT_TEST_COMMAND=${TRAVIS_BUILD_DIR}/build/run-unit-tests.sh
     - COMPONENT_E2E_TEST_COMMAND=${TRAVIS_BUILD_DIR}/build/run-e2e-tests.sh
 
-install: echo skipping install
-
 stages:
   - build
   - unit-test
@@ -40,6 +38,7 @@ jobs:
   include:
     - stage: build
       name: "Build the image"
+      install: echo skipping install
       script:
         - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
@@ -59,6 +58,7 @@ jobs:
     - stage: build
       name: "Build the test image"
       if: type != pull_request AND type != cron AND branch = main
+      install: echo skipping install
       script:
         - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
@@ -71,6 +71,7 @@ jobs:
     - stage: build
       name: "Build the test image"
       if: type = push AND branch =~ /^release-[0-9]+\..*$/
+      install: echo skipping install
       script:
         - set -e
         - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}-${TRAVIS_COMMIT}"; fi;
