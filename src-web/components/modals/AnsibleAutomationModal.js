@@ -140,7 +140,7 @@ export class AnsibleAutomationModal extends React.Component {
         const jobTemplateName = _.get(targetPolicyAutomation, 'spec.automationDef.name')
         const extra_vars = _.get(targetPolicyAutomation, 'spec.automationDef.extra_vars')
         let ansScheduleMode = _.get(targetPolicyAutomation, 'spec.mode')
-        if (annotations && annotations['policy.open-cluster-management.io/rerun']) {
+        if (annotations && annotations['policy.open-cluster-management.io/rerun'] === 'true') {
           ansScheduleMode = 'manual'
         }
         const initialJSON = this.buildPolicyAutomationJSON({
@@ -200,6 +200,12 @@ export class AnsibleAutomationModal extends React.Component {
         if (initialJSON) {
           action = 'patch'
           resourceVersion = _.get(initialJSON, 'metadata.resourceVersion')
+          if (ansScheduleMode !== 'manual') { // override existing annotations
+            const initialAnnotations = _.get(initialJSON, 'metadata.annotations')
+            if (initialAnnotations && initialAnnotations['policy.open-cluster-management.io/rerun'] === 'true') {
+              annotations = {'policy.open-cluster-management.io/rerun':'false'}
+            }
+          }
         }
         const latestJSON = this.buildPolicyAutomationJSON({
           policyAutoName, policyAutoNS, policyName, annotations, extra_vars, resourceVersion
