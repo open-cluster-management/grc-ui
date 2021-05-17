@@ -155,7 +155,6 @@ export class AnsibleAutomationModal extends React.Component {
         })
       }
     }
-    console.log(JSON.stringify(this.state))
   }
 
   onSelect = result => {
@@ -232,7 +231,6 @@ export class AnsibleAutomationModal extends React.Component {
   render() {
     const { data:policyData, label, locale, open, reqErrorMsg, reqStatus } = this.props
     const { activeItem, towerURL, queryErrorMsg } = this.state
-    console.log(JSON.stringify(this.state))
     const policyName = _.get(policyData, 'name')
     const policyNS = _.get(policyData, 'namespace')
     const dangerFlag = 'default', modalId = 'automation-resource-modal', modalMsg = 'modal.ansible.automation.description'
