@@ -26987,10 +26987,10 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                               </GenerateId>
                                             </Toolbar>
                                             <div
-                                              className="makeStyles-outerDiv-19"
+                                              className="makeStyles-outerDiv-14"
                                             >
                                               <div
-                                                className="makeStyles-tableDiv-18"
+                                                className="makeStyles-tableDiv-13"
                                               >
                                                 <Table
                                                   actions={Array []}
@@ -27066,7 +27066,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                       },
                                                     ]
                                                   }
-                                                  className="makeStyles-table-20"
+                                                  className="makeStyles-table-15"
                                                   contentId="expanded-content"
                                                   dropdownDirection="down"
                                                   dropdownPosition="right"
@@ -27158,7 +27158,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                   <Provider
                                                     aria-label="Simple Table"
                                                     borders={true}
-                                                    className="makeStyles-table-20"
+                                                    className="makeStyles-table-15"
                                                     columns={
                                                       Array [
                                                         Object {
@@ -27557,7 +27557,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                     <TableComposable
                                                       aria-label="Simple Table"
                                                       borders={true}
-                                                      className="makeStyles-table-20"
+                                                      className="makeStyles-table-15"
                                                       gridBreakPoint=""
                                                       isStickyHeader={false}
                                                       isTreeTable={false}
@@ -27568,7 +27568,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                       <TableComposableBase
                                                         aria-label="Simple Table"
                                                         borders={true}
-                                                        className="makeStyles-table-20"
+                                                        className="makeStyles-table-15"
                                                         gridBreakPoint=""
                                                         innerRef={null}
                                                         isStickyHeader={false}
@@ -27579,7 +27579,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                       >
                                                         <table
                                                           aria-label="Simple Table"
-                                                          className="makeStyles-table-20 pf-c-table pf-m-compact"
+                                                          className="makeStyles-table-15 pf-c-table pf-m-compact"
                                                           data-ouia-component-id="OUIA-Generated-Table-4"
                                                           data-ouia-component-type="PF4/Table"
                                                           data-ouia-safe={true}
@@ -38568,10 +38568,10 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                           </GenerateId>
                                         </Toolbar>
                                         <div
-                                          className="makeStyles-outerDiv-19"
+                                          className="makeStyles-outerDiv-14"
                                         >
                                           <div
-                                            className="makeStyles-tableDiv-18"
+                                            className="makeStyles-tableDiv-13"
                                           >
                                             <Table
                                               actions={Array []}
@@ -38618,7 +38618,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                   },
                                                 ]
                                               }
-                                              className="makeStyles-table-20"
+                                              className="makeStyles-table-15"
                                               contentId="expanded-content"
                                               dropdownDirection="down"
                                               dropdownPosition="right"
@@ -38678,7 +38678,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                               <Provider
                                                 aria-label="Simple Table"
                                                 borders={true}
-                                                className="makeStyles-table-20"
+                                                className="makeStyles-table-15"
                                                 columns={
                                                   Array [
                                                     Object {
@@ -38919,7 +38919,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                 <TableComposable
                                                   aria-label="Simple Table"
                                                   borders={true}
-                                                  className="makeStyles-table-20"
+                                                  className="makeStyles-table-15"
                                                   gridBreakPoint=""
                                                   isStickyHeader={false}
                                                   isTreeTable={false}
@@ -38930,7 +38930,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                   <TableComposableBase
                                                     aria-label="Simple Table"
                                                     borders={true}
-                                                    className="makeStyles-table-20"
+                                                    className="makeStyles-table-15"
                                                     gridBreakPoint=""
                                                     innerRef={null}
                                                     isStickyHeader={false}
@@ -38941,7 +38941,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                   >
                                                     <table
                                                       aria-label="Simple Table"
-                                                      className="makeStyles-table-20 pf-c-table pf-m-compact"
+                                                      className="makeStyles-table-15 pf-c-table pf-m-compact"
                                                       data-ouia-component-id="OUIA-Generated-Table-8"
                                                       data-ouia-component-type="PF4/Table"
                                                       data-ouia-safe={true}
@@ -49572,7 +49572,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                                 id=""
                                               >
                                                 <CardHeader
-                                                  className="makeStyles-header-22"
+                                                  className="makeStyles-header-17"
                                                   onClick={[Function]}
                                                   onExpand={[Function]}
                                                   toggleButtonProps={
@@ -49584,7 +49584,7 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                                   }
                                                 >
                                                   <div
-                                                    className="pf-c-card__header makeStyles-header-22"
+                                                    className="pf-c-card__header makeStyles-header-17"
                                                     onClick={[Function]}
                                                   >
                                                     <div
@@ -49654,10 +49654,10 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                                   </div>
                                                 </CardHeader>
                                                 <CardExpandableContent
-                                                  className="makeStyles-body-23"
+                                                  className="makeStyles-body-18"
                                                 >
                                                   <div
-                                                    className="pf-c-card__expandable-content makeStyles-body-23"
+                                                    className="pf-c-card__expandable-content makeStyles-body-18"
                                                   >
                                                     <CardBody>
                                                       <div
@@ -49671,10 +49671,10 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                                             className="pf-l-grid pf-m-all-12-col-on-sm pf-m-all-12-col-on-md"
                                                           >
                                                             <GridItem
-                                                              className="makeStyles-leftCol-21"
+                                                              className="makeStyles-leftCol-16"
                                                             >
                                                               <div
-                                                                className="pf-l-grid__item makeStyles-leftCol-21"
+                                                                className="pf-l-grid__item makeStyles-leftCol-16"
                                                               >
                                                                 <List
                                                                   items={
@@ -51040,10 +51040,10 @@ status:
                                           </GenerateId>
                                         </Toolbar>
                                         <div
-                                          className="makeStyles-outerDiv-19"
+                                          className="makeStyles-outerDiv-14"
                                         >
                                           <div
-                                            className="makeStyles-tableDiv-18"
+                                            className="makeStyles-tableDiv-13"
                                           >
                                             <Table
                                               actions={Array []}
@@ -51127,7 +51127,7 @@ status:
                                                   },
                                                 ]
                                               }
-                                              className="makeStyles-table-20"
+                                              className="makeStyles-table-15"
                                               contentId="expanded-content"
                                               dropdownDirection="down"
                                               dropdownPosition="right"
@@ -51189,7 +51189,7 @@ status:
                                               <Provider
                                                 aria-label="Simple Table"
                                                 borders={true}
-                                                className="makeStyles-table-20"
+                                                className="makeStyles-table-15"
                                                 columns={
                                                   Array [
                                                     Object {
@@ -51639,7 +51639,7 @@ status:
                                                 <TableComposable
                                                   aria-label="Simple Table"
                                                   borders={true}
-                                                  className="makeStyles-table-20"
+                                                  className="makeStyles-table-15"
                                                   gridBreakPoint=""
                                                   isStickyHeader={false}
                                                   isTreeTable={false}
@@ -51650,7 +51650,7 @@ status:
                                                   <TableComposableBase
                                                     aria-label="Simple Table"
                                                     borders={true}
-                                                    className="makeStyles-table-20"
+                                                    className="makeStyles-table-15"
                                                     gridBreakPoint=""
                                                     innerRef={null}
                                                     isStickyHeader={false}
@@ -51661,7 +51661,7 @@ status:
                                                   >
                                                     <table
                                                       aria-label="Simple Table"
-                                                      className="makeStyles-table-20 pf-c-table pf-m-compact"
+                                                      className="makeStyles-table-15 pf-c-table pf-m-compact"
                                                       data-ouia-component-id="OUIA-Generated-Table-6"
                                                       data-ouia-component-type="PF4/Table"
                                                       data-ouia-safe={true}
