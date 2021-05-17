@@ -34,6 +34,7 @@ import {
   GET_ANSIBLE_JOB_TEMPLATE,
 } from '../../utils/client/queries'
 import _ from 'lodash'
+import {stringify} from 'flatted'
 
 if (window.monaco) {
   window.monaco.editor.defineTheme('console', {
@@ -70,9 +71,12 @@ export class AnsibleAutomationModal extends React.Component {
       jobTemplateIsOpen: false,
       extra_vars: null,
       ansScheduleMode: '',
-      queryErrorMsg: '',
+      queryMsg: {
+        msg: '',
+        type: '',
+      },
       initialJSON: null,
-      latestJSON: null,
+      confirmClose: false,
     }
     this.initialize()
   }
@@ -163,16 +167,60 @@ export class AnsibleAutomationModal extends React.Component {
     })
   }
 
-  handleSubmitClick() {
-    this.modifyPolicyAutomation()
+  async handleSubmitClick() {
+    const {latestJSON, action} = await this.generateJSON()
+    if (latestJSON && action) {
+      const {data:resData} = await this.props.handleModifyPolicyAutomation(latestJSON, action)
+      const errors = _.get(resData, 'modifyPolicyAutomation.errors')
+      if (Array.isArray(errors) && errors.length > 0)  {
+        const error = errors[0]
+        if (_.get(error, 'kind') === 'PolicyAutomation' && _.get(error, 'message')) {
+          this.setState({
+            queryMsg: {
+              msg: _.get(error, 'message'),
+              type: 'danger',
+            }
+          })
+        }
+      } else {
+        this.handleCloseClick('directlyClose')
+      }
+    }
   }
 
-  handleCloseClick() {
+  async handleCloseClick(directlyClose) {
     const { type:modalType, handleClose } = this.props
-    handleClose(modalType)
+    if (directlyClose === 'directlyClose') {
+      handleClose(modalType)
+    } else {
+      const { locale } = this.context
+      const { initialJSON, confirmClose } = this.state
+      const { latestJSON } = await this.generateJSON()
+      let ifChanged = false
+      if (initialJSON && latestJSON) {
+        if (stringify(initialJSON) !== stringify(latestJSON)) {
+          ifChanged = true
+          this.setState({
+            queryMsg: {
+              msg: msgs.get('modal.ansible.unsaved.data', locale),
+              type: 'warning',
+            }
+          })
+        }
+      }
+      if (confirmClose || !ifChanged) {
+        handleClose(modalType)
+      } else {
+        // prevent double-click
+        setTimeout(this.setState({
+          confirmClose: true
+        }), 500)
+      }
+    }
   }
 
-  async modifyPolicyAutomation() {
+  async generateJSON() {
+    let latestJSON, action ='post'
     const {jobTemplateName, credentialName, credentialNS,
       ansScheduleMode, extra_vars, initialJSON
     } = this.state
@@ -186,7 +234,10 @@ export class AnsibleAutomationModal extends React.Component {
       const secretErrors = _.get(secretData, 'errors')
       if (Array.isArray(secretErrors) && secretErrors.length > 0) {
         this.setState({
-          queryErrorMsg: _.get(secretErrors[0], 'message')
+          queryMsg: {
+            msg: _.get(secretErrors[0], 'message'),
+            type: 'danger',
+          }
         })
       } else if (secretName) {
         const policyAutoName = `${policyName}-policy-automation`
@@ -195,7 +246,7 @@ export class AnsibleAutomationModal extends React.Component {
         if (ansScheduleMode === 'manual') {
           annotations = {'policy.open-cluster-management.io/rerun':'true'}
         }
-        let action ='post', resourceVersion = ''
+        let resourceVersion = ''
         if (initialJSON) {
           action = 'patch'
           resourceVersion = _.get(initialJSON, 'metadata.resourceVersion')
@@ -206,31 +257,17 @@ export class AnsibleAutomationModal extends React.Component {
             }
           }
         }
-        const latestJSON = this.buildPolicyAutomationJSON({
+        latestJSON = this.buildPolicyAutomationJSON({
           policyAutoName, policyAutoNS, policyName, annotations, extra_vars, resourceVersion
         })
-        this.setState({
-          latestJSON
-        })
-        const {data:resData} = await this.props.handleModifyPolicyAutomation(latestJSON, action)
-        const errors = _.get(resData, 'modifyPolicyAutomation.errors')
-        if (Array.isArray(errors) && errors.length > 0)  {
-          const error = errors[0]
-          if (_.get(error, 'kind') === 'PolicyAutomation' && _.get(error, 'message')) {
-            this.setState({
-              queryErrorMsg: _.get(error, 'message')
-            })
-          }
-        } else {
-          this.handleCloseClick()
-        }
       }
     }
+    return {latestJSON, action}
   }
 
   render() {
     const { data:policyData, label, locale, open, reqErrorMsg, reqStatus } = this.props
-    const { activeItem, towerURL, queryErrorMsg } = this.state
+    const { activeItem, towerURL, queryMsg } = this.state
     const policyName = _.get(policyData, 'name')
     const policyNS = _.get(policyData, 'namespace')
     const dangerFlag = 'default', modalId = 'automation-resource-modal', modalMsg = 'modal.ansible.automation.description'
@@ -262,12 +299,12 @@ export class AnsibleAutomationModal extends React.Component {
               ]}
             >
               <React.Fragment>
-                {(queryErrorMsg ||reqStatus === REQUEST_STATUS.ERROR) &&
+                {(queryMsg.msg ||reqStatus === REQUEST_STATUS.ERROR) &&
                   <AcmAlert
                     isInline={true}
                     noClose={true}
-                    variant='danger'
-                    title={queryErrorMsg || reqErrorMsg || msgs.get('error.default.description', locale)} />}
+                    variant={queryMsg.type ? queryMsg.type : 'danger'}
+                    title={queryMsg.msg || reqErrorMsg || msgs.get('error.default.description', locale)} />}
               </React.Fragment>
               <Text>
                 {msgs.get(modalMsg, locale)}

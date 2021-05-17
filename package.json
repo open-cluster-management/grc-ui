@@ -71,6 +71,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",
     "file-loader": "6.2.0",
+    "flatted": "^3.1.1",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.4",
     "handlebars": "^4.7.7",
