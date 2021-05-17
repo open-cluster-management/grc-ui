@@ -1070,6 +1070,10 @@ export const action_verifyClusterListInPolicyDetails = (policyConfig, clusterVio
       selector, clusters, status
     ) => {
       // check binding selector
+      // if MANAGED_CLUSTER_NAME is set, use the MANAGED_CLUSTER_NAME as default cluster selector
+      if (Cypress.env('MANAGED_CLUSTER_NAME') !== undefined) {
+        policyConfig['binding_selector'] = [`matchExpressions=[{"key":"name","operator":"In","values":["${Cypress.env('MANAGED_CLUSTER_NAME')}"]}]`]
+      }
       if (policyConfig['binding_selector']) {
         // FIXME: in theory there could be multiple bindings
         cy.wrap(selector).should('have.text', policyConfig['binding_selector'][0].replace(/\s/g, ''))
