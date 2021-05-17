@@ -28,7 +28,7 @@ import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
 import { LocaleContext } from '../components/common/LocaleContext'
 import purifyReactNode from '../utils/PurifyReactNode'
-import { GET_ANSIBLE_AUTOMATIONS } from '../utils/client/queries'
+import { POLICY_AUTOMATIONS } from '../utils/client/queries'
 import { Query } from '@apollo/client/react/components'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
@@ -385,7 +385,7 @@ export function formatAnnotationString(policy, annotationKey){
 
 export function getAutomationLink(item, locale) {
   return (
-    <Query query={GET_ANSIBLE_AUTOMATIONS} variables={{ namespace: item.metadata.namespace }}>
+    <Query query={POLICY_AUTOMATIONS} variables={{ namespace: item.metadata.namespace }}>
     {( result ) => {
       const { data={policyAutomations: []} } = result
       let found = false
