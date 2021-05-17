@@ -69,7 +69,7 @@ export class AnsibleAutomationModal extends React.Component {
       credentialIsOpen: false,
       jobTemplateName: null,
       jobTemplateIsOpen: false,
-      extra_vars: null,
+      extraVars: null,
       ansScheduleMode: '',
       queryMsg: {
         msg: '',
@@ -82,9 +82,9 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   buildPolicyAutomationJSON({
-    policyAutoName, policyAutoNS, policyName, annotations, extra_vars, resourceVersion
+    policyAutoName, policyAutoNS, policyName, annotations, extraVars, resourceVersion
   }) {
-    const {credentialName, jobTemplateName, extra_vars:intial_extra_vars, ansScheduleMode} = this.state
+    const {credentialName, jobTemplateName, extraVars:intialExtraVars, ansScheduleMode} = this.state
     let mode
     switch (ansScheduleMode) {
       case 'once':
@@ -119,8 +119,8 @@ export class AnsibleAutomationModal extends React.Component {
     if (resourceVersion) {
       jsonTemp.metadata.resourceVersion = resourceVersion
     }
-    if (extra_vars || intial_extra_vars) {
-      jsonTemp.spec.automationDef.extra_vars = extra_vars || intial_extra_vars
+    if (extraVars || intialExtraVars) {
+      jsonTemp.spec.automationDef.extra_vars = extraVars || intialExtraVars
     }
     return jsonTemp
   }
@@ -142,18 +142,18 @@ export class AnsibleAutomationModal extends React.Component {
         const resourceVersion = _.get(targetPolicyAutomation, 'metadata.resourceVersion')
         const credentialName = _.get(targetPolicyAutomation, 'spec.automationDef.secret')
         const jobTemplateName = _.get(targetPolicyAutomation, 'spec.automationDef.name')
-        const extra_vars = _.get(targetPolicyAutomation, 'spec.automationDef.extra_vars')
+        const extraVars = _.get(targetPolicyAutomation, 'spec.automationDef.extra_vars')
         let ansScheduleMode = _.get(targetPolicyAutomation, 'spec.mode')
         if (annotations && annotations['policy.open-cluster-management.io/rerun'] === 'true') {
           ansScheduleMode = 'manual'
         }
         const initialJSON = this.buildPolicyAutomationJSON({
-          policyAutoName, policyAutoNS, policyName, annotations, extra_vars, resourceVersion
+          policyAutoName, policyAutoNS, policyName, annotations, extraVars, resourceVersion
         })
         this.setState({
           credentialName,
           jobTemplateName,
-          extra_vars,
+          extraVars,
           ansScheduleMode,
           initialJSON
         })
@@ -222,7 +222,7 @@ export class AnsibleAutomationModal extends React.Component {
   async generateJSON() {
     let latestJSON, action ='post'
     const {jobTemplateName, credentialName, credentialNS,
-      ansScheduleMode, extra_vars, initialJSON
+      ansScheduleMode, extraVars, initialJSON
     } = this.state
     const { data:policyData} = this.props
     const policyName = _.get(policyData, 'name')
@@ -258,7 +258,7 @@ export class AnsibleAutomationModal extends React.Component {
           }
         }
         latestJSON = this.buildPolicyAutomationJSON({
-          policyAutoName, policyAutoNS, policyName, annotations, extra_vars, resourceVersion
+          policyAutoName, policyAutoNS, policyName, annotations, extraVars, resourceVersion
         })
       }
     }
@@ -501,7 +501,7 @@ export class AnsibleAutomationModal extends React.Component {
 
   editorOnChange = newValue => {
     this.setState({
-      extra_vars:newValue
+      extraVars:newValue
     })
   }
 
@@ -517,7 +517,7 @@ export class AnsibleAutomationModal extends React.Component {
           language="yaml"
           theme="console"
           onChange={this.editorOnChange}
-          value={this.state.extra_vars}
+          value={this.state.extraVars}
         />
       </div>
     )
