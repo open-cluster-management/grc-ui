@@ -198,7 +198,7 @@ export class AnsibleAutomationModal extends React.Component {
         }
         let action ='post', resourceVersion = ''
         if (initialJSON) {
-          action = 'put'
+          action = 'patch'
           resourceVersion = _.get(initialJSON, 'metadata.resourceVersion')
         }
         const latestJSON = this.buildPolicyAutomationJSON({
