@@ -5,8 +5,8 @@
     ],
     "plugins": [
         "@babel/plugin-transform-runtime",
-        [ "@babel/plugin-proposal-class-properties", { "loose": true } ],
-        [ "@babel/plugin-transform-spread", { "loose": true }],
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        ["@babel/plugin-transform-spread", { "loose": true }],
         "@babel/plugin-syntax-dynamic-import",
         "@babel/plugin-transform-async-to-generator",
         "@babel/plugin-transform-react-jsx"
@@ -23,10 +23,21 @@
             "plugins": ["dynamic-import-node", "@babel/plugin-proposal-object-rest-spread"]
         },
         "test": {
-            "plugins": ["dynamic-import-node"]
+            "plugins": [
+              ["@babel/plugin-proposal-private-methods", { "loose": true }]
+            ]
+            // "plugins": ["dynamic-import-node"]
         },
         "e2e": {
-            "plugins": ["@babel/plugin-syntax-dynamic-import", "istanbul"]
-        }
+            "plugins": [
+              "@babel/plugin-syntax-dynamic-import", 
+              "istanbul"
+            ]
+        },
+        "cypress": {
+          "plugins": [
+            ["@babel/plugin-proposal-private-methods", { "loose": true }]
+          ]
+      }
     }
 }

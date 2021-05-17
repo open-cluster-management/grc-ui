@@ -7,13 +7,14 @@ exports[`PolicyStatusView component renders as expected 1`] = `
   <div
     className="pf-c-toggle-group policy-status-toggle"
     role="group"
+    variant="light"
   >
     <div
       className="pf-c-toggle-group__item"
     >
       <button
         aria-pressed={true}
-        className="pf-c-toggle-group__button pf-m-light pf-m-selected"
+        className="pf-c-toggle-group__button pf-m-selected"
         id="policy-status-clusters"
         onClick={[Function]}
         type="button"
@@ -26,15 +27,11 @@ exports[`PolicyStatusView component renders as expected 1`] = `
       </button>
     </div>
     <div
-      className="pf-c-divider pf-m-vertical"
-      role="separator"
-    />
-    <div
       className="pf-c-toggle-group__item"
     >
       <button
         aria-pressed={false}
-        className="pf-c-toggle-group__button pf-m-light"
+        className="pf-c-toggle-group__button"
         id="policy-status-templates"
         onClick={[Function]}
         type="button"
@@ -686,6 +683,12 @@ exports[`PolicyStatusView component renders as expected 1`] = `
                   data-key={6}
                   data-label={null}
                   onMouseEnter={[Function]}
+                  style={
+                    Object {
+                      "paddingRight": 0,
+                      "width": "auto",
+                    }
+                  }
                 />
               </tr>
             </tbody>
@@ -951,13 +954,14 @@ exports[`PolicyStatusView component renders as expected with empty object 1`] = 
   <div
     className="pf-c-toggle-group policy-status-toggle"
     role="group"
+    variant="light"
   >
     <div
       className="pf-c-toggle-group__item"
     >
       <button
         aria-pressed={true}
-        className="pf-c-toggle-group__button pf-m-light pf-m-selected"
+        className="pf-c-toggle-group__button pf-m-selected"
         id="policy-status-clusters"
         onClick={[Function]}
         type="button"
@@ -970,15 +974,11 @@ exports[`PolicyStatusView component renders as expected with empty object 1`] = 
       </button>
     </div>
     <div
-      className="pf-c-divider pf-m-vertical"
-      role="separator"
-    />
-    <div
       className="pf-c-toggle-group__item"
     >
       <button
         aria-pressed={false}
-        className="pf-c-toggle-group__button pf-m-light"
+        className="pf-c-toggle-group__button"
         id="policy-status-templates"
         onClick={[Function]}
         type="button"
@@ -1630,6 +1630,12 @@ exports[`PolicyStatusView component renders as expected with empty object 1`] = 
                   data-key={6}
                   data-label={null}
                   onMouseEnter={[Function]}
+                  style={
+                    Object {
+                      "paddingRight": 0,
+                      "width": "auto",
+                    }
+                  }
                 />
               </tr>
             </tbody>

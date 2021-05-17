@@ -97,6 +97,19 @@ class GrcApolloClient {
     return client.query({ query: Query.getUserAccess })
   }
 
+  //copy ansible secret
+  copyAnsibleSecret(name, namespace, targetNamespace) {
+    return client.query({ query: Query.COPY_ANSIBLE_SECRET, variables: { name, namespace, targetNamespace} })
+  }
+
+  getPolicyAutomation(namespace) {
+    return client.query({ query: Query.POLICY_AUTOMATIONS, variables: { namespace } })
+  }
+
+  modifyPolicyAutomation(poliyAutomationJSON, action) {
+      return client.mutate({ mutation: Query.modifyPolicyAutomation, variables: { poliyAutomationJSON, action } })
+  }
+
   // gets one resource
   getResource(resourceType, variables = {}) {
     return client.query({ query: _.get(Query, resourceType.name), variables })

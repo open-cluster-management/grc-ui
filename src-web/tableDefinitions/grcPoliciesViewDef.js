@@ -19,9 +19,9 @@ import {
 } from '@patternfly/react-table'
 export default {
   tableActions: [
-    'table.actions.policy.details',
-    'table.actions.policy.edit',
-    'table.actions.policy.disable',
+    'table.actions.edit',
+    'table.actions.automation',
+    'table.actions.disable',
     'table.actions.enforce',
     'table.actions.automation.edit',
     'table.actions.policy.remove',

@@ -1546,6 +1546,12 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-key={7}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
             <tr
@@ -1644,6 +1650,12 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-key={7}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
             <tr
@@ -1742,6 +1754,12 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-key={7}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
             <tr
@@ -1840,6 +1858,12 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-key={7}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
             <tr
@@ -1938,6 +1962,12 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                 data-key={7}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
           </tbody>
@@ -3143,6 +3173,12 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                 data-key={7}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
             <tr
@@ -3241,6 +3277,12 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                 data-key={7}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
             <tr
@@ -3339,6 +3381,12 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                 data-key={7}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
             <tr
@@ -3437,6 +3485,12 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                 data-key={7}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
             <tr
@@ -3535,6 +3589,12 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                 data-key={7}
                 data-label={null}
                 onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "paddingRight": 0,
+                    "width": "auto",
+                  }
+                }
               />
             </tr>
           </tbody>

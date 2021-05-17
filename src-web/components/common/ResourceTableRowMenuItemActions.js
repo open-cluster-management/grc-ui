@@ -31,6 +31,16 @@ export const resourceActions = (action, dispatch, resourceType, data, history) =
     }
     return
   }
+  case 'table.actions.automation': {
+    return dispatch(updateModal(
+      { open: true, type: 'resource-automation', resourceType,
+        label: {
+          primaryBtn: `modal.automation-${resourceType.name.toLowerCase()}.heading`,
+          label: `modal.automation-${resourceType.name.toLowerCase()}.label`,
+          heading: `modal.automation-${resourceType.name.toLowerCase()}.heading`
+        },
+        data: { apiVersion: resourceType.api_version, kind: resourceType.name, ...data }}))
+  }
   case 'table.actions.compliance.remove':
   case 'table.actions.policy.remove':
   case 'table.actions.remove': {

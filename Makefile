@@ -14,7 +14,7 @@ include build/Configfile
 USE_VENDORIZED_BUILD_HARNESS ?=
 
 ifndef USE_VENDORIZED_BUILD_HARNESS
--include $(shell curl -s -H 'Authorization: token ${GITHUB_TOKEN}' -H 'Accept: application/vnd.github.v4.raw' -L https://api.github.com/repos/open-cluster-management/build-harness-extensions/contents/templates/Makefile.build-harness-bootstrap -o .build-harness-bootstrap; echo .build-harness-bootstrap)
+-include $(shell curl -s -H 'Accept: application/vnd.github.v4.raw' -L https://api.github.com/repos/open-cluster-management/build-harness-extensions/contents/templates/Makefile.build-harness-bootstrap -o .build-harness-bootstrap; echo .build-harness-bootstrap)
 else
 -include vbh/.build-harness-bootstrap
 endif
@@ -23,7 +23,7 @@ default::
 	@echo "Build Harness Bootstrapped"
 
 install:
-	npm install
+	CYPRESS_INSTALL_BINARY=0 npm ci --unsafe-perm
 
 copyright-check:
 	./build/copyright-check.sh $(TRAVIS_BRANCH)
@@ -54,4 +54,4 @@ push-test-image:
 
 publish-test-image:
 	rm -rf pipeline
-	make pipeline-manifest/update COMPONENT_NAME=$(COMPONENT_NAME)-tests PIPELINE_MANIFEST_COMPONENT_SHA256=${TRAVIS_COMMIT} PIPELINE_MANIFEST_COMPONENT_REPO=${TRAVIS_REPO_SLUG} PIPELINE_MANIFEST_BRANCH=${TRAVIS_BRANCH}
+	make pipeline-manifest/update COMPONENT_NAME=$(COMPONENT_NAME) PIPELINE_MANIFEST_COMPONENT_SHA256=${TRAVIS_COMMIT} PIPELINE_MANIFEST_COMPONENT_REPO=${TRAVIS_REPO_SLUG} PIPELINE_MANIFEST_BRANCH=${TRAVIS_BRANCH}
