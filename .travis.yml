@@ -27,24 +27,13 @@ stages:
   - build-publish-test-image
   - e2e-test
 
-
 before_script:
   - make init
 
 jobs:
   include:
-    - stage: build-publish-test-image
-      name: "Build and publish grc-ui-tests"
-      # if: type = push AND branch =~ /^release-[0-9]+\..*$/
-      script: 
-        - set -e
-        - export COMPONENT_BUILD_COMMAND="docker build . -f Dockerfile.e2etest -t "
-        - export COMPONENT_NAME="grc-ui-tests"
-        - make build-test-image
-        - make push-test-image
-        - make publish-test-image
     - stage: e2e-test
-      name: "Run unit tests and e2e tests"
+      name: "Run unit test and e2e test"
       if: type = cron OR type = pull_request
       script:
         - set -e
@@ -59,4 +48,14 @@ jobs:
       after_failure:
         - make travis-slack-reporter
         - docker logs grcuiapi
-
+    - stage: build-publish-test-image
+      name: "Build and publish grc-ui-tests"
+      if: type = push AND branch =~ /^release-[0-9]+\..*$/
+      install: echo skipping install
+      script: 
+        - set -e
+        - export COMPONENT_BUILD_COMMAND="docker build . -f Dockerfile.e2etest -t "
+        - export COMPONENT_NAME="grc-ui-tests"
+        - make build-test-image
+        - make push-test-image
+        - make publish-test-image
