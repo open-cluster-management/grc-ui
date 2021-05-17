@@ -208,7 +208,12 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
       selectItems(policyConfig['specifications'], '.pf-c-select__toggle-button[aria-label="specs"]')
     })
   }
+
   // cluster binding
+  // if MANAGED_CLUSTER_NAME is set, use the MANAGED_CLUSTER_NAME as default cluster selector
+  if (Cypress.env('MANAGED_CLUSTER_NAME') !== undefined) {
+    policyConfig['cluster_binding'] = [`name: "${Cypress.env('MANAGED_CLUSTER_NAME')}"`]
+  }
   if (policyConfig['cluster_binding']) {
     cy.then(() => {
       selectItems(policyConfig['cluster_binding'], '.pf-c-select__toggle-button[aria-label="clusters"]')

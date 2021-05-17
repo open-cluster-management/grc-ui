@@ -4,8 +4,8 @@ test-role-binding-policy-[ID]:
 #  cluster_binding:
 #    - 'name: "dhaks1020-2-dho-461"'
 #    - 'local-cluster: "true"'
-  binding_selector:
-    - 'matchExpressions =[]'
+  # binding_selector:
+  #   - 'matchExpressions =[]'
 #    - 'matchExpressions =[ { "key": "name", "operator": "In", "values": [ "dhaks1020-2-dho-461" ] } ]'
 #    - 'matchExpressions =[ { "key": "local-cluster", "operator": "In", "values": [ "true" ] } ]'
   kind: 'ConfigurationPolicy'

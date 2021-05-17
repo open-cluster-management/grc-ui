@@ -300,6 +300,7 @@ export const test_applyPolicyYAML = (confFilePolicy, substitutionRules=null) => 
   if (substitutionRules === null) {
     substitutionRules = getDefaultSubstitutionRules()
   }
+  console.log(substitutionRules)
   const rawPolicyYAML = getConfigObject(confFilePolicy, 'raw', substitutionRules)
   const policyName = rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
 
