@@ -40,8 +40,8 @@ const jestConfig = {
     global: {
       branches: 50,
       functions: 50,
-      lines: 60,
-      statements: 60,
+      lines: 58,
+      statements: 58,
     },
   },
   testMatch: [
