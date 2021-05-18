@@ -12,7 +12,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
     >
       <article
         className="pf-c-card pf-m-expanded"
-        data-ouia-component-id="OUIA-Generated-Card-4"
+        data-ouia-component-id="OUIA-Generated-Card-7"
         data-ouia-component-type="PF4/Card"
         data-ouia-safe={true}
         id=""
@@ -29,7 +29,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
               aria-expanded={true}
               aria-label="Toggle details"
               className="pf-c-button pf-m-plain"
-              data-ouia-component-id="OUIA-Generated-Button-plain-16"
+              data-ouia-component-id="OUIA-Generated-Button-plain-19"
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={false}
@@ -231,26 +231,158 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
     <div
       className="yaml"
     >
-      <h2
-        className="pf-c-title pf-m-xl title"
+      <article
+        className="pf-c-card pf-m-expanded"
+        data-ouia-component-id="OUIA-Generated-Card-8"
+        data-ouia-component-type="PF4/Card"
+        data-ouia-safe={true}
+        id=""
       >
-        Template yaml
-      </h2>
-      <div>
         <div
-          className="yamlEditorContainer"
+          className="pf-c-card__header makeStyles-header-2"
+          onClick={[Function]}
         >
           <div
-            className="react-monaco-editor-container"
-            style={
-              Object {
-                "height": "500px",
-                "width": "100%",
-              }
-            }
-          />
+            className="pf-c-card__header-toggle"
+          >
+            <button
+              aria-disabled={false}
+              aria-expanded={true}
+              aria-label="Toggle details"
+              className="pf-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-20"
+              data-ouia-component-type="PF4/Button"
+              data-ouia-safe={true}
+              disabled={false}
+              id="toggle-button"
+              onClick={[Function]}
+              role={null}
+              type="button"
+            >
+              <span
+                className="pf-c-card__header-toggle-icon"
+              >
+                <svg
+                  aria-hidden="true"
+                  aria-labelledby={null}
+                  fill="currentColor"
+                  height="1em"
+                  role="img"
+                  style={
+                    Object {
+                      "verticalAlign": "-0.125em",
+                    }
+                  }
+                  viewBox="0 0 256 512"
+                  width="1em"
+                >
+                  <path
+                    d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+          <div
+            className="pf-c-card__title"
+          >
+            Template yaml
+          </div>
         </div>
-      </div>
+        <div
+          className="pf-c-card__expandable-content makeStyles-body-3"
+        >
+          <div
+            className="pf-c-card__body"
+          >
+            <div
+              className="yamlEditorContainer"
+            >
+              <div
+                className="react-monaco-editor-container"
+                style={
+                  Object {
+                    "height": "500px",
+                    "width": "100%",
+                  }
+                }
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "overflow": "hidden",
+                  "pointerEvents": "none",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "visibility": "hidden",
+                  "zIndex": -1,
+                }
+              }
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "overflow": "hidden",
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "visibility": "hidden",
+                    "zIndex": -1,
+                  }
+                }
+              >
+                <div
+                  style={
+                    Object {
+                      "height": 100000,
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "transition": "0s",
+                      "width": 100000,
+                    }
+                  }
+                />
+              </div>
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "overflow": "hidden",
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "visibility": "hidden",
+                    "zIndex": -1,
+                  }
+                }
+              >
+                <div
+                  style={
+                    Object {
+                      "height": "200%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "transition": "0s",
+                      "width": "200%",
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
   <div
@@ -311,7 +443,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
     >
       <article
         className="pf-c-card pf-m-expanded"
-        data-ouia-component-id="OUIA-Generated-Card-3"
+        data-ouia-component-id="OUIA-Generated-Card-5"
         data-ouia-component-type="PF4/Card"
         data-ouia-safe={true}
         id=""
@@ -328,7 +460,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
               aria-expanded={true}
               aria-label="Toggle details"
               className="pf-c-button pf-m-plain"
-              data-ouia-component-id="OUIA-Generated-Button-plain-15"
+              data-ouia-component-id="OUIA-Generated-Button-plain-17"
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={false}
@@ -530,26 +662,158 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
     <div
       className="yaml"
     >
-      <h2
-        className="pf-c-title pf-m-xl title"
+      <article
+        className="pf-c-card pf-m-expanded"
+        data-ouia-component-id="OUIA-Generated-Card-6"
+        data-ouia-component-type="PF4/Card"
+        data-ouia-safe={true}
+        id=""
       >
-        Template yaml
-      </h2>
-      <div>
         <div
-          className="yamlEditorContainer"
+          className="pf-c-card__header makeStyles-header-2"
+          onClick={[Function]}
         >
           <div
-            className="react-monaco-editor-container"
-            style={
-              Object {
-                "height": "500px",
-                "width": "100%",
-              }
-            }
-          />
+            className="pf-c-card__header-toggle"
+          >
+            <button
+              aria-disabled={false}
+              aria-expanded={true}
+              aria-label="Toggle details"
+              className="pf-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-18"
+              data-ouia-component-type="PF4/Button"
+              data-ouia-safe={true}
+              disabled={false}
+              id="toggle-button"
+              onClick={[Function]}
+              role={null}
+              type="button"
+            >
+              <span
+                className="pf-c-card__header-toggle-icon"
+              >
+                <svg
+                  aria-hidden="true"
+                  aria-labelledby={null}
+                  fill="currentColor"
+                  height="1em"
+                  role="img"
+                  style={
+                    Object {
+                      "verticalAlign": "-0.125em",
+                    }
+                  }
+                  viewBox="0 0 256 512"
+                  width="1em"
+                >
+                  <path
+                    d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+          <div
+            className="pf-c-card__title"
+          >
+            Template yaml
+          </div>
         </div>
-      </div>
+        <div
+          className="pf-c-card__expandable-content makeStyles-body-3"
+        >
+          <div
+            className="pf-c-card__body"
+          >
+            <div
+              className="yamlEditorContainer"
+            >
+              <div
+                className="react-monaco-editor-container"
+                style={
+                  Object {
+                    "height": "500px",
+                    "width": "100%",
+                  }
+                }
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "overflow": "hidden",
+                  "pointerEvents": "none",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "visibility": "hidden",
+                  "zIndex": -1,
+                }
+              }
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "overflow": "hidden",
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "visibility": "hidden",
+                    "zIndex": -1,
+                  }
+                }
+              >
+                <div
+                  style={
+                    Object {
+                      "height": 100000,
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "transition": "0s",
+                      "width": 100000,
+                    }
+                  }
+                />
+              </div>
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "overflow": "hidden",
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "visibility": "hidden",
+                    "zIndex": -1,
+                  }
+                }
+              >
+                <div
+                  style={
+                    Object {
+                      "height": "200%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "transition": "0s",
+                      "width": "200%",
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
   <div
@@ -829,26 +1093,158 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
     <div
       className="yaml"
     >
-      <h2
-        className="pf-c-title pf-m-xl title"
+      <article
+        className="pf-c-card pf-m-expanded"
+        data-ouia-component-id="OUIA-Generated-Card-2"
+        data-ouia-component-type="PF4/Card"
+        data-ouia-safe={true}
+        id=""
       >
-        Template yaml
-      </h2>
-      <div>
         <div
-          className="yamlEditorContainer"
+          className="pf-c-card__header makeStyles-header-2"
+          onClick={[Function]}
         >
           <div
-            className="react-monaco-editor-container"
-            style={
-              Object {
-                "height": "500px",
-                "width": "100%",
-              }
-            }
-          />
+            className="pf-c-card__header-toggle"
+          >
+            <button
+              aria-disabled={false}
+              aria-expanded={true}
+              aria-label="Toggle details"
+              className="pf-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-2"
+              data-ouia-component-type="PF4/Button"
+              data-ouia-safe={true}
+              disabled={false}
+              id="toggle-button"
+              onClick={[Function]}
+              role={null}
+              type="button"
+            >
+              <span
+                className="pf-c-card__header-toggle-icon"
+              >
+                <svg
+                  aria-hidden="true"
+                  aria-labelledby={null}
+                  fill="currentColor"
+                  height="1em"
+                  role="img"
+                  style={
+                    Object {
+                      "verticalAlign": "-0.125em",
+                    }
+                  }
+                  viewBox="0 0 256 512"
+                  width="1em"
+                >
+                  <path
+                    d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+          <div
+            className="pf-c-card__title"
+          >
+            Template yaml
+          </div>
         </div>
-      </div>
+        <div
+          className="pf-c-card__expandable-content makeStyles-body-3"
+        >
+          <div
+            className="pf-c-card__body"
+          >
+            <div
+              className="yamlEditorContainer"
+            >
+              <div
+                className="react-monaco-editor-container"
+                style={
+                  Object {
+                    "height": "500px",
+                    "width": "100%",
+                  }
+                }
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "overflow": "hidden",
+                  "pointerEvents": "none",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "visibility": "hidden",
+                  "zIndex": -1,
+                }
+              }
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "overflow": "hidden",
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "visibility": "hidden",
+                    "zIndex": -1,
+                  }
+                }
+              >
+                <div
+                  style={
+                    Object {
+                      "height": 100000,
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "transition": "0s",
+                      "width": 100000,
+                    }
+                  }
+                />
+              </div>
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "overflow": "hidden",
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "visibility": "hidden",
+                    "zIndex": -1,
+                  }
+                }
+              >
+                <div
+                  style={
+                    Object {
+                      "height": "200%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "transition": "0s",
+                      "width": "200%",
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
   <div
@@ -1032,7 +1428,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                     aria-label="Go to previous page"
                     className="pf-c-button pf-m-plain pf-m-disabled"
                     data-action="previous"
-                    data-ouia-component-id="OUIA-Generated-Button-plain-2"
+                    data-ouia-component-id="OUIA-Generated-Button-plain-3"
                     data-ouia-component-type="PF4/Button"
                     data-ouia-safe={true}
                     disabled={true}
@@ -1069,7 +1465,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
                     aria-label="Go to next page"
                     className="pf-c-button pf-m-plain pf-m-disabled"
                     data-action="next"
-                    data-ouia-component-id="OUIA-Generated-Button-plain-3"
+                    data-ouia-component-id="OUIA-Generated-Button-plain-4"
                     data-ouia-component-type="PF4/Button"
                     data-ouia-safe={true}
                     disabled={true}
@@ -2057,7 +2453,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
             aria-label="Go to first page"
             className="pf-c-button pf-m-plain pf-m-disabled"
             data-action="first"
-            data-ouia-component-id="OUIA-Generated-Button-plain-4"
+            data-ouia-component-id="OUIA-Generated-Button-plain-5"
             data-ouia-component-type="PF4/Button"
             data-ouia-safe={true}
             disabled={true}
@@ -2094,7 +2490,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
             aria-label="Go to previous page"
             className="pf-c-button pf-m-plain pf-m-disabled"
             data-action="previous"
-            data-ouia-component-id="OUIA-Generated-Button-plain-5"
+            data-ouia-component-id="OUIA-Generated-Button-plain-6"
             data-ouia-component-type="PF4/Button"
             data-ouia-safe={true}
             disabled={true}
@@ -2153,7 +2549,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
             aria-label="Go to next page"
             className="pf-c-button pf-m-plain pf-m-disabled"
             data-action="next"
-            data-ouia-component-id="OUIA-Generated-Button-plain-6"
+            data-ouia-component-id="OUIA-Generated-Button-plain-7"
             data-ouia-component-type="PF4/Button"
             data-ouia-safe={true}
             disabled={true}
@@ -2190,7 +2586,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
             aria-label="Go to last page"
             className="pf-c-button pf-m-plain pf-m-disabled"
             data-action="last"
-            data-ouia-component-id="OUIA-Generated-Button-plain-7"
+            data-ouia-component-id="OUIA-Generated-Button-plain-8"
             data-ouia-component-type="PF4/Button"
             data-ouia-safe={true}
             disabled={true}
@@ -2237,7 +2633,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
     >
       <article
         className="pf-c-card pf-m-expanded"
-        data-ouia-component-id="OUIA-Generated-Card-2"
+        data-ouia-component-id="OUIA-Generated-Card-3"
         data-ouia-component-type="PF4/Card"
         data-ouia-safe={true}
         id=""
@@ -2254,7 +2650,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
               aria-expanded={true}
               aria-label="Toggle details"
               className="pf-c-button pf-m-plain"
-              data-ouia-component-id="OUIA-Generated-Button-plain-8"
+              data-ouia-component-id="OUIA-Generated-Button-plain-9"
               data-ouia-component-type="PF4/Button"
               data-ouia-safe={true}
               disabled={false}
@@ -2456,26 +2852,158 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
     <div
       className="yaml"
     >
-      <h2
-        className="pf-c-title pf-m-xl title"
+      <article
+        className="pf-c-card pf-m-expanded"
+        data-ouia-component-id="OUIA-Generated-Card-4"
+        data-ouia-component-type="PF4/Card"
+        data-ouia-safe={true}
+        id=""
       >
-        Template yaml
-      </h2>
-      <div>
         <div
-          className="yamlEditorContainer"
+          className="pf-c-card__header makeStyles-header-2"
+          onClick={[Function]}
         >
           <div
-            className="react-monaco-editor-container"
-            style={
-              Object {
-                "height": "500px",
-                "width": "100%",
-              }
-            }
-          />
+            className="pf-c-card__header-toggle"
+          >
+            <button
+              aria-disabled={false}
+              aria-expanded={true}
+              aria-label="Toggle details"
+              className="pf-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-10"
+              data-ouia-component-type="PF4/Button"
+              data-ouia-safe={true}
+              disabled={false}
+              id="toggle-button"
+              onClick={[Function]}
+              role={null}
+              type="button"
+            >
+              <span
+                className="pf-c-card__header-toggle-icon"
+              >
+                <svg
+                  aria-hidden="true"
+                  aria-labelledby={null}
+                  fill="currentColor"
+                  height="1em"
+                  role="img"
+                  style={
+                    Object {
+                      "verticalAlign": "-0.125em",
+                    }
+                  }
+                  viewBox="0 0 256 512"
+                  width="1em"
+                >
+                  <path
+                    d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+          <div
+            className="pf-c-card__title"
+          >
+            Template yaml
+          </div>
         </div>
-      </div>
+        <div
+          className="pf-c-card__expandable-content makeStyles-body-3"
+        >
+          <div
+            className="pf-c-card__body"
+          >
+            <div
+              className="yamlEditorContainer"
+            >
+              <div
+                className="react-monaco-editor-container"
+                style={
+                  Object {
+                    "height": "500px",
+                    "width": "100%",
+                  }
+                }
+              />
+            </div>
+            <div
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "overflow": "hidden",
+                  "pointerEvents": "none",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "visibility": "hidden",
+                  "zIndex": -1,
+                }
+              }
+            >
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "overflow": "hidden",
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "visibility": "hidden",
+                    "zIndex": -1,
+                  }
+                }
+              >
+                <div
+                  style={
+                    Object {
+                      "height": 100000,
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "transition": "0s",
+                      "width": 100000,
+                    }
+                  }
+                />
+              </div>
+              <div
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "overflow": "hidden",
+                    "pointerEvents": "none",
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "visibility": "hidden",
+                    "zIndex": -1,
+                  }
+                }
+              >
+                <div
+                  style={
+                    Object {
+                      "height": "200%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "transition": "0s",
+                      "width": "200%",
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
   <div
@@ -2659,7 +3187,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                     aria-label="Go to previous page"
                     className="pf-c-button pf-m-plain pf-m-disabled"
                     data-action="previous"
-                    data-ouia-component-id="OUIA-Generated-Button-plain-9"
+                    data-ouia-component-id="OUIA-Generated-Button-plain-11"
                     data-ouia-component-type="PF4/Button"
                     data-ouia-safe={true}
                     disabled={true}
@@ -2696,7 +3224,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
                     aria-label="Go to next page"
                     className="pf-c-button pf-m-plain pf-m-disabled"
                     data-action="next"
-                    data-ouia-component-id="OUIA-Generated-Button-plain-10"
+                    data-ouia-component-id="OUIA-Generated-Button-plain-12"
                     data-ouia-component-type="PF4/Button"
                     data-ouia-safe={true}
                     disabled={true}
@@ -3684,7 +4212,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
             aria-label="Go to first page"
             className="pf-c-button pf-m-plain pf-m-disabled"
             data-action="first"
-            data-ouia-component-id="OUIA-Generated-Button-plain-11"
+            data-ouia-component-id="OUIA-Generated-Button-plain-13"
             data-ouia-component-type="PF4/Button"
             data-ouia-safe={true}
             disabled={true}
@@ -3721,7 +4249,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
             aria-label="Go to previous page"
             className="pf-c-button pf-m-plain pf-m-disabled"
             data-action="previous"
-            data-ouia-component-id="OUIA-Generated-Button-plain-12"
+            data-ouia-component-id="OUIA-Generated-Button-plain-14"
             data-ouia-component-type="PF4/Button"
             data-ouia-safe={true}
             disabled={true}
@@ -3780,7 +4308,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
             aria-label="Go to next page"
             className="pf-c-button pf-m-plain pf-m-disabled"
             data-action="next"
-            data-ouia-component-id="OUIA-Generated-Button-plain-13"
+            data-ouia-component-id="OUIA-Generated-Button-plain-15"
             data-ouia-component-type="PF4/Button"
             data-ouia-safe={true}
             disabled={true}
@@ -3817,7 +4345,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
             aria-label="Go to last page"
             className="pf-c-button pf-m-plain pf-m-disabled"
             data-action="last"
-            data-ouia-component-id="OUIA-Generated-Button-plain-14"
+            data-ouia-component-id="OUIA-Generated-Button-plain-16"
             data-ouia-component-type="PF4/Button"
             data-ouia-safe={true}
             disabled={true}

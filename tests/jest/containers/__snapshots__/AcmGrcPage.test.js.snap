@@ -38393,7 +38393,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                       aria-label="Go to previous page"
                                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                                       data-action="previous"
-                                                                      data-ouia-component-id="OUIA-Generated-Button-plain-18"
+                                                                      data-ouia-component-id="OUIA-Generated-Button-plain-19"
                                                                       data-ouia-component-type="PF4/Button"
                                                                       data-ouia-safe={true}
                                                                       disabled={true}
@@ -38444,7 +38444,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                       aria-label="Go to next page"
                                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                                       data-action="next"
-                                                                      data-ouia-component-id="OUIA-Generated-Button-plain-19"
+                                                                      data-ouia-component-id="OUIA-Generated-Button-plain-20"
                                                                       data-ouia-component-type="PF4/Button"
                                                                       data-ouia-safe={true}
                                                                       disabled={true}
@@ -41923,7 +41923,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                       aria-label="Go to first page"
                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                       data-action="first"
-                                                      data-ouia-component-id="OUIA-Generated-Button-plain-20"
+                                                      data-ouia-component-id="OUIA-Generated-Button-plain-21"
                                                       data-ouia-component-type="PF4/Button"
                                                       data-ouia-safe={true}
                                                       disabled={true}
@@ -41974,7 +41974,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                       aria-label="Go to previous page"
                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                       data-action="previous"
-                                                      data-ouia-component-id="OUIA-Generated-Button-plain-21"
+                                                      data-ouia-component-id="OUIA-Generated-Button-plain-22"
                                                       data-ouia-component-type="PF4/Button"
                                                       data-ouia-safe={true}
                                                       disabled={true}
@@ -42047,7 +42047,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                       aria-label="Go to next page"
                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                       data-action="next"
-                                                      data-ouia-component-id="OUIA-Generated-Button-plain-22"
+                                                      data-ouia-component-id="OUIA-Generated-Button-plain-23"
                                                       data-ouia-component-type="PF4/Button"
                                                       data-ouia-safe={true}
                                                       disabled={true}
@@ -42098,7 +42098,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                       aria-label="Go to last page"
                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                       data-action="last"
-                                                      data-ouia-component-id="OUIA-Generated-Button-plain-23"
+                                                      data-ouia-component-id="OUIA-Generated-Button-plain-24"
                                                       data-ouia-component-type="PF4/Button"
                                                       data-ouia-safe={true}
                                                       disabled={true}
@@ -49917,23 +49917,117 @@ exports[`AcmGrcPage container should render POLICY_TEMPLATE_DETAILS page  1`] = 
                                       <div
                                         className="yaml"
                                       >
-                                        <Title
-                                          className="title"
-                                          headingLevel="h2"
+                                        <AcmExpandableCard
+                                          title="Template yaml"
                                         >
-                                          <h2
-                                            className="pf-c-title pf-m-xl title"
+                                          <Card
+                                            isExpanded={true}
                                           >
-                                            Template yaml
-                                          </h2>
-                                        </Title>
-                                        <div>
-                                          <mockYamlEditor
-                                            height="500px"
-                                            readOnly={true}
-                                            setEditor={[Function]}
-                                            width="100%"
-                                            yaml="apiVersion: policy.open-cluster-management.io/v1
+                                            <article
+                                              className="pf-c-card pf-m-expanded"
+                                              data-ouia-component-id="OUIA-Generated-Card-2"
+                                              data-ouia-component-type="PF4/Card"
+                                              data-ouia-safe={true}
+                                              id=""
+                                            >
+                                              <CardHeader
+                                                className="makeStyles-header-17"
+                                                onClick={[Function]}
+                                                onExpand={[Function]}
+                                                toggleButtonProps={
+                                                  Object {
+                                                    "aria-expanded": true,
+                                                    "aria-label": "Toggle details",
+                                                    "id": "toggle-button",
+                                                  }
+                                                }
+                                              >
+                                                <div
+                                                  className="pf-c-card__header makeStyles-header-17"
+                                                  onClick={[Function]}
+                                                >
+                                                  <div
+                                                    className="pf-c-card__header-toggle"
+                                                  >
+                                                    <Button
+                                                      aria-expanded={true}
+                                                      aria-label="Toggle details"
+                                                      id="toggle-button"
+                                                      onClick={[Function]}
+                                                      type="button"
+                                                      variant="plain"
+                                                    >
+                                                      <button
+                                                        aria-disabled={false}
+                                                        aria-expanded={true}
+                                                        aria-label="Toggle details"
+                                                        className="pf-c-button pf-m-plain"
+                                                        data-ouia-component-id="OUIA-Generated-Button-plain-12"
+                                                        data-ouia-component-type="PF4/Button"
+                                                        data-ouia-safe={true}
+                                                        disabled={false}
+                                                        id="toggle-button"
+                                                        onClick={[Function]}
+                                                        role={null}
+                                                        type="button"
+                                                      >
+                                                        <span
+                                                          className="pf-c-card__header-toggle-icon"
+                                                        >
+                                                          <AngleRightIcon
+                                                            aria-hidden="true"
+                                                            color="currentColor"
+                                                            noVerticalAlign={false}
+                                                            size="sm"
+                                                          >
+                                                            <svg
+                                                              aria-hidden="true"
+                                                              aria-labelledby={null}
+                                                              fill="currentColor"
+                                                              height="1em"
+                                                              role="img"
+                                                              style={
+                                                                Object {
+                                                                  "verticalAlign": "-0.125em",
+                                                                }
+                                                              }
+                                                              viewBox="0 0 256 512"
+                                                              width="1em"
+                                                            >
+                                                              <path
+                                                                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                                                              />
+                                                            </svg>
+                                                          </AngleRightIcon>
+                                                        </span>
+                                                      </button>
+                                                    </Button>
+                                                  </div>
+                                                  <CardTitle>
+                                                    <div
+                                                      className="pf-c-card__title"
+                                                    >
+                                                      Template yaml
+                                                    </div>
+                                                  </CardTitle>
+                                                </div>
+                                              </CardHeader>
+                                              <CardExpandableContent
+                                                className="makeStyles-body-18"
+                                              >
+                                                <div
+                                                  className="pf-c-card__expandable-content makeStyles-body-18"
+                                                >
+                                                  <CardBody>
+                                                    <div
+                                                      className="pf-c-card__body"
+                                                    >
+                                                      <mockYamlEditor
+                                                        height="500px"
+                                                        readOnly={true}
+                                                        setEditor={[Function]}
+                                                        width="100%"
+                                                        yaml="apiVersion: policy.open-cluster-management.io/v1
 kind: ConfigurationPolicy
 metadata:
   creationTimestamp: '2021-04-08T23:33:17Z'
@@ -50041,12 +50135,94 @@ status:
           namespace: default
       reason: Resource not found but should exist
 "
-                                          >
-                                            <div
-                                              data-testid="mockYamlEditor"
-                                            />
-                                          </mockYamlEditor>
-                                        </div>
+                                                      >
+                                                        <div
+                                                          data-testid="mockYamlEditor"
+                                                        />
+                                                      </mockYamlEditor>
+                                                      <ResizeObserver
+                                                        onReflow={[Function]}
+                                                      >
+                                                        <div
+                                                          style={
+                                                            Object {
+                                                              "bottom": 0,
+                                                              "left": 0,
+                                                              "overflow": "hidden",
+                                                              "pointerEvents": "none",
+                                                              "position": "absolute",
+                                                              "right": 0,
+                                                              "top": 0,
+                                                              "visibility": "hidden",
+                                                              "zIndex": -1,
+                                                            }
+                                                          }
+                                                        >
+                                                          <div
+                                                            style={
+                                                              Object {
+                                                                "bottom": 0,
+                                                                "left": 0,
+                                                                "overflow": "hidden",
+                                                                "pointerEvents": "none",
+                                                                "position": "absolute",
+                                                                "right": 0,
+                                                                "top": 0,
+                                                                "visibility": "hidden",
+                                                                "zIndex": -1,
+                                                              }
+                                                            }
+                                                          >
+                                                            <div
+                                                              style={
+                                                                Object {
+                                                                  "height": 100000,
+                                                                  "left": 0,
+                                                                  "position": "absolute",
+                                                                  "top": 0,
+                                                                  "transition": "0s",
+                                                                  "width": 100000,
+                                                                }
+                                                              }
+                                                            />
+                                                          </div>
+                                                          <div
+                                                            style={
+                                                              Object {
+                                                                "bottom": 0,
+                                                                "left": 0,
+                                                                "overflow": "hidden",
+                                                                "pointerEvents": "none",
+                                                                "position": "absolute",
+                                                                "right": 0,
+                                                                "top": 0,
+                                                                "visibility": "hidden",
+                                                                "zIndex": -1,
+                                                              }
+                                                            }
+                                                          >
+                                                            <div
+                                                              style={
+                                                                Object {
+                                                                  "height": "200%",
+                                                                  "left": 0,
+                                                                  "position": "absolute",
+                                                                  "top": 0,
+                                                                  "transition": "0s",
+                                                                  "width": "200%",
+                                                                }
+                                                              }
+                                                            />
+                                                          </div>
+                                                        </div>
+                                                      </ResizeObserver>
+                                                    </div>
+                                                  </CardBody>
+                                                </div>
+                                              </CardExpandableContent>
+                                            </article>
+                                          </Card>
+                                        </AcmExpandableCard>
                                       </div>
                                     </div>
                                     <div
@@ -50865,7 +51041,7 @@ status:
                                                                       aria-label="Go to previous page"
                                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                                       data-action="previous"
-                                                                      data-ouia-component-id="OUIA-Generated-Button-plain-12"
+                                                                      data-ouia-component-id="OUIA-Generated-Button-plain-13"
                                                                       data-ouia-component-type="PF4/Button"
                                                                       data-ouia-safe={true}
                                                                       disabled={true}
@@ -50916,7 +51092,7 @@ status:
                                                                       aria-label="Go to next page"
                                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                                       data-action="next"
-                                                                      data-ouia-component-id="OUIA-Generated-Button-plain-13"
+                                                                      data-ouia-component-id="OUIA-Generated-Button-plain-14"
                                                                       data-ouia-component-type="PF4/Button"
                                                                       data-ouia-safe={true}
                                                                       disabled={true}
@@ -56392,7 +56568,7 @@ status:
                                                       aria-label="Go to first page"
                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                       data-action="first"
-                                                      data-ouia-component-id="OUIA-Generated-Button-plain-14"
+                                                      data-ouia-component-id="OUIA-Generated-Button-plain-15"
                                                       data-ouia-component-type="PF4/Button"
                                                       data-ouia-safe={true}
                                                       disabled={true}
@@ -56443,7 +56619,7 @@ status:
                                                       aria-label="Go to previous page"
                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                       data-action="previous"
-                                                      data-ouia-component-id="OUIA-Generated-Button-plain-15"
+                                                      data-ouia-component-id="OUIA-Generated-Button-plain-16"
                                                       data-ouia-component-type="PF4/Button"
                                                       data-ouia-safe={true}
                                                       disabled={true}
@@ -56516,7 +56692,7 @@ status:
                                                       aria-label="Go to next page"
                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                       data-action="next"
-                                                      data-ouia-component-id="OUIA-Generated-Button-plain-16"
+                                                      data-ouia-component-id="OUIA-Generated-Button-plain-17"
                                                       data-ouia-component-type="PF4/Button"
                                                       data-ouia-safe={true}
                                                       disabled={true}
@@ -56567,7 +56743,7 @@ status:
                                                       aria-label="Go to last page"
                                                       className="pf-c-button pf-m-plain pf-m-disabled"
                                                       data-action="last"
-                                                      data-ouia-component-id="OUIA-Generated-Button-plain-17"
+                                                      data-ouia-component-id="OUIA-Generated-Button-plain-18"
                                                       data-ouia-component-type="PF4/Button"
                                                       data-ouia-safe={true}
                                                       disabled={true}
