@@ -3,8 +3,6 @@
 test-policy-1-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
-  binding_selector:
-    - 'matchExpressions =[]'
   kind: 'ConfigurationPolicy'
   specifications:
     - 'Namespace'
@@ -21,8 +19,6 @@ test-policy-1-[ID]:
 test-policy-2-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
-  binding_selector:
-    - 'matchExpressions =[]'
   kind: 'ConfigurationPolicy'
   specifications:
     - 'Namespace'
@@ -39,8 +35,6 @@ test-policy-2-[ID]:
 test-policy-3-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'
-  binding_selector:
-    - 'matchExpressions =[]'
   kind: 'ConfigurationPolicy'
   specifications:
     - 'Namespace'

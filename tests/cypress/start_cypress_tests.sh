@@ -47,6 +47,7 @@ if [ -z "$MANAGED_CLUSTER_NAME" ]; then
 else
   export CYPRESS_MANAGED_CLUSTER_NAME=$MANAGED_CLUSTER_NAME
   echo "MANAGED_CLUSTER_NAME is set, set CYPRESS_MANAGED_CLUSTER_NAME to $MANAGED_CLUSTER_NAME"
+  export CLUSTER_LABEL_SELECTOR="-l name=$MANAGED_CLUSTER_NAME"
 fi
 
 echo -e "\nLogging into Kube API server\n"
@@ -77,10 +78,11 @@ echo -e "\tCYPRESS_STANDALONE_TESTSUITE_EXECUTION: $CYPRESS_STANDALONE_TESTSUITE
 echo -e "\tCYPRESS_coverage                : $CYPRESS_coverage"
 echo -e "\tCYPRESS_TAGS_INCLUDE            : $CYPRESS_TAGS_INCLUDE"
 echo -e "\tCYPRESS_TAGS_EXCLUDE            : $CYPRESS_TAGS_EXCLUDE"
+echo -e "\tCLUSTER_LABEL_SELECTOR          : $CLUSTER_LABEL_SELECTOR"
 [ -n "$CYPRESS_RBAC_PASS" ] && echo -e "RBAC_PASS set" || echo -e "Error: RBAC_PASS is not set"
 
 # save a list of available clusters to .tests/cypress/config/clusters.yaml file so tests can use it
-oc get managedclusters -o custom-columns='name:.metadata.name,available:.status.conditions[?(@.reason=="ManagedClusterAvailable")].status,vendor:.metadata.labels.vendor' --no-headers | awk '/True/ { printf "%s:\n  vendor: %s\n", $1, $3 }' > ./tests/cypress/config/clusters.yaml
+oc get managedclusters $CLUSTER_LABEL_SELECTOR -o custom-columns='name:.metadata.name,available:.status.conditions[?(@.reason=="ManagedClusterAvailable")].status,vendor:.metadata.labels.vendor' --no-headers | awk '/True/ { printf "%s:\n  vendor: %s\n", $1, $3 }' > ./tests/cypress/config/clusters.yaml
 echo "Available clusters stored in ./tests/cypress/config/clusters.yaml:"
 cat ./tests/cypress/config/clusters.yaml
 

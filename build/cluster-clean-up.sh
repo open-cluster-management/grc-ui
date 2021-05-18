@@ -24,7 +24,7 @@ function managed() {
     oc delete secret -n default rsa-ca-sample-secret || true 
     oc delete clusterrolebinding -l e2e=true || true
     oc delete subscriptions.operators.coreos.com container-security-operator -n openshift-operators || true
-    oc delete ClusterServiceVersion -n openshift-operators container-security-operator.v3.3.4 || true
+    oc delete csv -n openshift-operators `oc get -n openshift-operators csv -o jsonpath='{.items[?(@.spec.displayName=="Quay Container Security")].metadata.name}'` || true
     oc delete crd imagemanifestvulns.secscan.quay.redhat.com || true
     oc delete LimitRange container-mem-limit-range -n default || true
     oc delete ns prod || true
