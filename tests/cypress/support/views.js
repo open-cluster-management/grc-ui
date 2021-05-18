@@ -1339,7 +1339,7 @@ export const action_checkPolicyListingPageUserPermissions = (policyNames = [], c
           if (permissions.delete) {
             cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).should('have.attr', 'aria-disabled', 'false')
           } else {
-            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).parent().should('have.attr', 'aria-disabled', 'true')
+            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).find('button').should('have.attr', 'aria-disabled', 'true')
           }
         })
         // close the menu again

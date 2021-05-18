@@ -26,7 +26,6 @@ import { resourceActions } from '../common/ResourceTableRowMenuItemActions'
 import formatUserAccess from '../../utils/FormatUserAccess'
 import filterUserAction from '../../utils/FilterUserAction'
 import { REQUEST_STATUS } from '../../actions/index'
-import { createDisableTooltip } from '../common/DisableTooltip'
 import {
   getSessionState, replaceSessionPair
 } from '../../utils/AccessStorage'
@@ -174,7 +173,8 @@ class GrcToggleModule extends React.Component {
             actionsList.push(
               {
                 id: action,
-                title: createDisableTooltip(disableFlag, action, locale, msgs.get(action, locale)),
+                title: msgs.get(action, locale),
+                tooltip: msgs.get('error.permission.disabled', locale),
                 isDisabled: disableFlag ? true : false,
                 addSeparator: action === 'table.actions.policy.remove' ? true : false,
                 click: () =>
