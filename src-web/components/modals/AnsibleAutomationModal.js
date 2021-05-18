@@ -34,7 +34,6 @@ import {
   GET_ANSIBLE_JOB_TEMPLATE,
 } from '../../utils/client/queries'
 import _ from 'lodash'
-import {stringify} from 'flatted'
 
 if (window.monaco) {
   window.monaco.editor.defineTheme('console', {
@@ -86,7 +85,8 @@ export class AnsibleAutomationModal extends React.Component {
     resourceVersion, extraVars, credentialName, jobTemplateName
   }) {
     const {
-      credentialName:stateCredentialName, jobTemplateName:stateJobTemplateName,
+      credentialName:stateCredentialName,
+      jobTemplateName:stateJobTemplateName,
       extraVars:stateExtraVars, ansScheduleMode
     } = this.state
     let mode
@@ -155,7 +155,6 @@ export class AnsibleAutomationModal extends React.Component {
           policyAutoName, policyAutoNS, policyName, annotations, resourceVersion,
           extraVars, credentialName, jobTemplateName
         })
-        console.log(JSON.stringify(initialJSON))
         this.setState({
           credentialName,
           jobTemplateName,
@@ -203,18 +202,14 @@ export class AnsibleAutomationModal extends React.Component {
       const { initialJSON, confirmClose } = this.state
       const { latestJSON } = await this.generateJSON()
       let ifChanged = false
-      console.log(JSON.stringify(initialJSON))
-      console.log(JSON.stringify(latestJSON))
-      if (initialJSON && latestJSON) {
-        if (stringify(initialJSON) !== stringify(latestJSON)) {
-          ifChanged = true
-          this.setState({
-            queryMsg: {
-              msg: msgs.get('ansible.unsaved.data', locale),
-              type: 'warning',
-            }
-          })
-        }
+      if (initialJSON && latestJSON && _.isEqual(initialJSON, latestJSON)) {
+        ifChanged = true
+        this.setState({
+          queryMsg: {
+            msg: msgs.get('ansible.unsaved.data', locale),
+            type: 'warning',
+          }
+        })
       }
       if (confirmClose || !ifChanged) {
         handleClose(modalType)
@@ -489,8 +484,8 @@ export class AnsibleAutomationModal extends React.Component {
                     />
                   ))}
                 </Select>
-                {jobTemplateName && this.renderAnsibleJobTemplateEditor(locale)}
-                {jobTemplateName && this.renderAnsibleScheduleMode(locale)}
+                {jobTemplateName && this.renderAnsibleJobTemplateEditor()}
+                {jobTemplateName && this.renderAnsibleScheduleMode()}
               </React.Fragment>}
               {!ansJobTemplateFlag &&
                 <AcmAlert
@@ -513,7 +508,8 @@ export class AnsibleAutomationModal extends React.Component {
     })
   }
 
-  renderAnsibleJobTemplateEditor(locale) {
+  renderAnsibleJobTemplateEditor() {
+    const { locale } = this.context
     return (
       <div>
         <Title headingLevel="h2">
@@ -536,7 +532,8 @@ export class AnsibleAutomationModal extends React.Component {
     this.setState({ansScheduleMode:value})
   };
 
-  renderAnsibleScheduleMode(locale) {
+  renderAnsibleScheduleMode() {
+    const { locale } = this.context
     const {ansScheduleMode} = this.state
     return <React.Fragment>
       <Title headingLevel="h2">
@@ -546,35 +543,24 @@ export class AnsibleAutomationModal extends React.Component {
         {msgs.get('ansible.scheduleMode.info', locale)}
       </Text>
       <React.Fragment>
-        <Radio
-          isChecked={ansScheduleMode==='manual'}
-          name="manualRadio"
-          onChange={this.handleScheduleModeRadioChange}
-          label={msgs.get('ansible.scheduleMode.manual.title', locale)}
-          id="manualRadio"
-          value="manual"
-          description={msgs.get('ansible.scheduleMode.manual.info', locale)}
-        />
-        <Radio
-          isChecked={ansScheduleMode==='once'}
-          name="onceRadio"
-          onChange={this.handleScheduleModeRadioChange}
-          label={msgs.get('ansible.scheduleMode.once.title', locale)}
-          id="onceRadio"
-          value="once"
-          description={msgs.get('ansible.scheduleMode.once.info', locale)}
-        />
-        <Radio
-          isChecked={ansScheduleMode==='disabled'}
-          name="disableRadio"
-          onChange={this.handleScheduleModeRadioChange}
-          label={msgs.get('ansible.scheduleMode.disabled.title', locale)}
-          id="disableRadio"
-          value="disabled"
-          description={msgs.get('ansible.scheduleMode.disabled.info', locale)}
-        />
+        {this.renderAnsibleScheduleRadio((ansScheduleMode==='manual'), 'manualRadio', 'manualRadio', 'manual')}
+        {this.renderAnsibleScheduleRadio((ansScheduleMode==='once'), 'onceRadio', 'onceRadio', 'once')}
+        {this.renderAnsibleScheduleRadio((ansScheduleMode==='disabled'), 'disableRadio', 'disableRadio', 'disabled')}
       </React.Fragment>
     </React.Fragment>
+  }
+
+  renderAnsibleScheduleRadio(isChecked, name, id, value) {
+    const { locale } = this.context
+    return <Radio
+      isChecked={isChecked}
+      name={name}
+      onChange={this.handleScheduleModeRadioChange}
+      label={msgs.get(`ansible.scheduleMode.${value}.title`, locale)}
+      id={id}
+      value={value}
+      description={msgs.get(`ansible.scheduleMode.${value}.info`, locale)}
+    />
   }
 
   renderAnsibleHisotry(historyData) {
