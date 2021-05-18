@@ -7,7 +7,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
-  AcmModal, AcmButton, AcmAlert, AcmLaunchLink
+  AcmModal, AcmButton, AcmAlert, AcmLaunchLink, AcmTable
 } from '@open-cluster-management/ui-components'
 import {
   Text, Spinner, ButtonVariant, Nav,
@@ -25,8 +25,9 @@ import {
   modifyPolicyAutomation, clearRequestStatus,
   updateModal, copyAnsibleSecret, getPolicyAutomation
 } from '../../actions/common'
+import ansibleJobHistoryDef from '../../tableDefinitions/ansibleJobHistoryDef'
 import {
-  getPolicyCompliantStatus,
+  getPolicyCompliantStatus, transform_new
 } from '../../tableDefinitions/utils'
 import { Query } from '@apollo/client/react/components'
 import {
@@ -247,11 +248,10 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   async handleCloseClick(directlyClose) {
-    const { type:modalType, handleClose } = this.props
+    const { type:modalType, handleClose, locale } = this.props
     if (directlyClose === 'directlyClose') {
       handleClose(modalType)
     } else {
-      const { locale } = this.context
       const { initialJSON, confirmClose } = this.state
       const { latestJSON } = await this.generateJSON()
       let ifChanged = false
@@ -325,13 +325,13 @@ export class AnsibleAutomationModal extends React.Component {
   render() {
     const { data:policyData, locale, open, reqErrorMsg, reqStatus } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON, initializeFinished, policyAutoName } = this.state
-    console.log(JSON.stringify(this.state))
     const policyNS = _.get(policyData, 'namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
     const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
+    const pollInterval = activeItem ? 10000 : 0
     const panelType = initialJSON ? 'edit' : 'create'
     return (
-      <Query query={query} variables={variables}>
+      <Query query={query} pollInterval={pollInterval} variables={variables}>
         {( result ) => {
           const { loading } = result
           const { data={} } = result
@@ -576,7 +576,7 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   renderAnsibleJobTemplateEditor() {
-    const { locale } = this.context
+    const { locale } = this.props
     const { extraVars } = this.state
     return (
       <div>
@@ -601,7 +601,7 @@ export class AnsibleAutomationModal extends React.Component {
   };
 
   renderAnsibleScheduleMode() {
-    const { locale } = this.context
+    const { locale } = this.props
     const {ansScheduleMode} = this.state
     return <React.Fragment>
       <Title headingLevel="h2">
@@ -619,7 +619,7 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   renderAnsibleScheduleRadio(isChecked, name, id, value) {
-    const { locale } = this.context
+    const { locale } = this.props
     return <Radio
       isChecked={isChecked}
       name={name}
@@ -632,9 +632,15 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   renderAnsibleHisotry(historyData) {
-    return <div>
-      {JSON.stringify(historyData)}
-    </div>
+    const { locale } = this.props
+    const tableData = transform_new(_.get(historyData, 'items', []), ansibleJobHistoryDef, locale)
+    return <AcmTable
+      plural='ansible jobs'
+      items={tableData.rows}
+      columns={tableData.columns}
+      keyFn={(item) => item.uid.toString()}
+      gridBreakPoint=''
+    />
   }
 }
 

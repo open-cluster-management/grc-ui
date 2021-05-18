@@ -321,9 +321,9 @@ export const GET_ANSIBLE_JOB_TEMPLATE = gql`
 // retrieve ansible history
 export const GET_ANSIBLE_HISTORY = gql`
   query ansibleAutomationHistories($name: String!, $namespace: String!) {
-    ansibleAutomationHistories(name: $name, namespace: $namespace) {
+    items: ansibleAutomationHistories(name: $name, namespace: $namespace) {
       name
-      namespace
+      message
       status
       started
       finished
