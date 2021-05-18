@@ -63,6 +63,7 @@ export class AnsibleAutomationModal extends React.Component {
     this.handleSubmitClick = this.handleSubmitClick.bind(this)
     this.handleCloseClick = this.handleCloseClick.bind(this)
     this.state = {
+      initializeFinished: false,
       activeItem: 0,
       credentialName: null,
       towerURL: '-',
@@ -167,6 +168,9 @@ export class AnsibleAutomationModal extends React.Component {
         })
       }
     }
+    this.setState({
+      initializeFinished: true,
+    })
   }
 
   yamlToJSON = yaml => {
@@ -302,7 +306,8 @@ export class AnsibleAutomationModal extends React.Component {
 
   render() {
     const { data:policyData, locale, open, reqErrorMsg, reqStatus } = this.props
-    const { activeItem, towerURL, queryMsg, initialJSON } = this.state
+    const { activeItem, towerURL, queryMsg, initialJSON, initializeFinished } = this.state
+    console.log(JSON.stringify(this.state))
     const policyName = _.get(policyData, 'name')
     const policyNS = _.get(policyData, 'namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
@@ -313,10 +318,10 @@ export class AnsibleAutomationModal extends React.Component {
         {( result ) => {
           const { loading } = result
           const { data={} } = result
+          const readyFlag = (initializeFinished && !(reqStatus === REQUEST_STATUS.IN_PROGRESS || loading))
           return (
             <React.Fragment>
-            {(reqStatus === REQUEST_STATUS.IN_PROGRESS || loading) && <Spinner className='patternfly-spinner' />}
-            <AcmModal
+              <AcmModal
               titleIconVariant={'default'}
               variant='small'
               id={'automation-resource-panel'}
@@ -333,53 +338,56 @@ export class AnsibleAutomationModal extends React.Component {
                 </AcmButton>,
               ]}
             >
-              <React.Fragment>
-                {(queryMsg.msg ||reqStatus === REQUEST_STATUS.ERROR) &&
-                  <AcmAlert
-                    isInline={true}
-                    noClose={true}
-                    variant={queryMsg.type ? queryMsg.type : 'danger'}
-                    title={queryMsg.msg || reqErrorMsg || msgs.get('error.default.description', locale)} />}
-              </React.Fragment>
-              <Text>
-                {msgs.get(`ansible.automation.description.${panelType}`, locale)}
-              </Text>
-              <Text>
-                {msgs.get('table.header.policy.name', locale)}
-              </Text>
-              <Text>
-                {policyData.name}
-              </Text>
-              <Text>
-                {msgs.get('table.header.cluster.violation', locale)}
-              </Text>
-              <Text>
-                {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
-              </Text>
-              <Text>
-                {msgs.get('ansible.launch.connection', locale)}
-              </Text>
-              <div>
-                {towerURL && this.renderURL('towerURL', towerURL, towerURL, 60)}
+              {!readyFlag && <Spinner className='patternfly-spinner' />}
+              {readyFlag && <React.Fragment>
+                <React.Fragment>
+                  {(queryMsg.msg ||reqStatus === REQUEST_STATUS.ERROR) &&
+                    <AcmAlert
+                      isInline={true}
+                      noClose={true}
+                      variant={queryMsg.type ? queryMsg.type : 'danger'}
+                      title={queryMsg.msg || reqErrorMsg || msgs.get('error.default.description', locale)} />}
+                </React.Fragment>
+                <Text>
+                  {msgs.get(`ansible.automation.description.${panelType}`, locale)}
+                </Text>
+                <Text>
+                  {msgs.get('table.header.policy.name', locale)}
+                </Text>
+                <Text>
+                  {policyData.name}
+                </Text>
+                <Text>
+                  {msgs.get('table.header.cluster.violation', locale)}
+                </Text>
+                <Text>
+                  {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
+                </Text>
+                <Text>
+                  {msgs.get('ansible.launch.connection', locale)}
+                </Text>
+                <div>
+                  {towerURL && this.renderURL('towerURL', towerURL, towerURL, 60)}
+                </div>
+                <Nav onSelect={this.onSelect} variant="tertiary">
+                  <NavList>
+                    <NavItem key={'Configure'} itemId={0} isActive={activeItem === 0} href="#">
+                      Configure
+                    </NavItem>
+                    <NavItem key={'History'} itemId={1} isActive={activeItem === 1} href="#">
+                      History
+                    </NavItem>
+                  </NavList>
+                </Nav>
+                <div className='ansible-table'>
+                {activeItem===0 && data && <div className='ansible-configure-table'>
+                  {this.renderAnsibleCredentialsSelection(data, locale)}
+                </div>}
+                {activeItem===1 && data && <div className='ansible-history-table'>
+                  {this.renderAnsibleHisotry(data)}
+                </div>}
               </div>
-              <Nav onSelect={this.onSelect} variant="tertiary">
-                <NavList>
-                  <NavItem key={'Configure'} itemId={0} isActive={activeItem === 0} href="#">
-                    Configure
-                  </NavItem>
-                  <NavItem key={'History'} itemId={1} isActive={activeItem === 1} href="#">
-                    History
-                  </NavItem>
-                </NavList>
-              </Nav>
-              <div className='ansible-table'>
-              {activeItem===0 && data && <div className='ansible-configure-table'>
-                {this.renderAnsibleCredentialsSelection(data, locale)}
-              </div>}
-              {activeItem===1 && data && <div className='ansible-history-table'>
-                {this.renderAnsibleHisotry(data)}
-              </div>}
-            </div>
+              </React.Fragment>}
             </AcmModal>
           </React.Fragment>
           )
