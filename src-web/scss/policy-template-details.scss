@@ -10,6 +10,12 @@
   .details {
     display: flex;
     flex-direction: row;
+    > div {
+      display: flex;
+      > article {
+        width: 100%;
+      }
+    }
     .overview {
       width: 50%;
       background-color: var(--pf-global--BackgroundColor--100);
@@ -38,6 +44,9 @@
         .codicon[class*='codicon-'] {
           font-family: codicon;
         }
+      }
+      > article > .pf-c-card__expandable-content {
+        padding: 0px;
       }
     }
     @media screen and (max-width: 68rem) {

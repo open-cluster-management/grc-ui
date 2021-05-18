@@ -9,11 +9,12 @@ import { Title } from '@patternfly/react-core'
 import jsYaml from 'js-yaml'
 import _ from 'lodash'
 import YamlEditor from '../common/YamlEditor'
-import { AcmTable, AcmDescriptionList } from '@open-cluster-management/ui-components'
+import { AcmTable, AcmDescriptionList, AcmExpandableCard } from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
 import { transformNew } from '../../tableDefinitions/utils'
 import msgs from '../../nls/platform.properties'
+import ResizeObserver from 'react-resize-observer'
 
 import '../../scss/policy-template-details.scss'
 
@@ -38,13 +39,9 @@ class PolicyTemplateDetailsView extends React.Component {
     if (this.containerRef && this.editor) {
       const rect = this.containerRef.getBoundingClientRect()
       const width = rect.width
-      const height = rect.height - 24 // minus height of title
+      const height = rect.height - 65 // minus height of title / card header
       this.editor.layout({width, height})
     }
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize',  this.layoutEditors.bind(this))
   }
 
   render() {
@@ -95,15 +92,20 @@ class PolicyTemplateDetailsView extends React.Component {
             />
           </div>
           <div className='yaml' ref={this.setContainerRef}>
-            <Title className='title' headingLevel="h2">{msgs.get('panel.header.template.yaml', locale)}</Title>
-            <div>
+            <AcmExpandableCard title={msgs.get('panel.header.template.yaml', locale)}>
               <YamlEditor
                 width={'100%'}
                 height={'500px'}
                 readOnly
                 setEditor={this.setEditor}
-                yaml={jsYaml.dump(items, {lineWidth: -1})} />
-            </div>
+                yaml={jsYaml.dump(items, {lineWidth: -1})}
+              />
+              <ResizeObserver
+                onReflow={() => {
+                  this.layoutEditors()
+                }}
+              />
+            </AcmExpandableCard>
           </div>
         </div>
         <div className='table'>
