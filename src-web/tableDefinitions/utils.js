@@ -37,7 +37,7 @@ export const transform = (items, def, locale) => {
     return def.tableKeys.map(key => {
       let value = _.get(item, key.resourceKey)
       if (key.type === 'timestamp') {
-        return moment.unix(value).format('MMM Do YYYY \\at h:mm A')
+        return <TableTimestamp timestamp={value} />
       } else if (key.type === 'i18n') {
         return msgs.get(key.resourceKey, locale)
       } else if (key.type === 'boolean') {
@@ -155,7 +155,10 @@ function pushRows(items, rows, def, locale) {
       const label = key.label
       let value = _.get(item, key.resourceKey)
       if (key.type === 'timestamp') {
-        value = moment.unix(value).format('MMM Do YYYY \\at h:mm A')
+        value = {
+          title: <TableTimestamp timestamp={value} />,
+          rawData: value
+        }
       } else if (key.type === 'i18n') {
         value =  msgs.get(key.resourceKey, locale)
       } else if (key.type === 'boolean') {
