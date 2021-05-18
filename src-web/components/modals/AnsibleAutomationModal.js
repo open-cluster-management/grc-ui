@@ -319,6 +319,9 @@ export class AnsibleAutomationModal extends React.Component {
           const { loading } = result
           const { data={} } = result
           const readyFlag = (initializeFinished && !(reqStatus === REQUEST_STATUS.IN_PROGRESS || loading))
+          const titleText = readyFlag
+            ? msgs.get(`ansible.automation.heading.${panelType}`, locale)
+            : msgs.get('ansible.loading.info', locale)
           return (
             <React.Fragment>
               <AcmModal
@@ -328,7 +331,7 @@ export class AnsibleAutomationModal extends React.Component {
               isOpen={open}
               showClose={true}
               onClose={this.handleCloseClick}
-              title={msgs.get(`ansible.automation.heading.${panelType}`, locale)}
+              title={titleText}
               actions={[
                 <AcmButton key="confirm" variant={ButtonVariant.primary} onClick={this.handleSubmitClick}>
                     {msgs.get('modal.button.save', locale)}
