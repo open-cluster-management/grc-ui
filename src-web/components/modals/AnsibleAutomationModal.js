@@ -35,6 +35,7 @@ import {
 } from '../../utils/client/queries'
 import TruncateText from '../../components/common/TruncateText'
 import _ from 'lodash'
+import YAML from 'yamljs'
 
 if (window.monaco) {
   window.monaco.editor.defineTheme('console', {
@@ -125,7 +126,7 @@ export class AnsibleAutomationModal extends React.Component {
       jsonTemp.metadata.resourceVersion = resourceVersion
     }
     if (stateExtraVars || extraVars) {
-      jsonTemp.spec.automationDef.extra_vars = stateExtraVars || extraVars
+      jsonTemp.spec.automationDef.extra_vars = this.yamlToJSON(stateExtraVars || extraVars)
     }
     return jsonTemp
   }
@@ -147,7 +148,8 @@ export class AnsibleAutomationModal extends React.Component {
         const resourceVersion = _.get(targetPolicyAutomation, 'metadata.resourceVersion')
         const credentialName = _.get(targetPolicyAutomation, 'spec.automationDef.secret')
         const jobTemplateName = _.get(targetPolicyAutomation, 'spec.automationDef.name')
-        const extraVars = _.get(targetPolicyAutomation, 'spec.automationDef.extra_vars')
+        const extraVarsJSON = _.get(targetPolicyAutomation, 'spec.automationDef.extra_vars')
+        const extraVars = this.jsonToYaml(extraVarsJSON)
         let ansScheduleMode = _.get(targetPolicyAutomation, 'spec.mode')
         if (annotations && annotations['policy.open-cluster-management.io/rerun'] === 'true') {
           ansScheduleMode = 'manual'
@@ -165,6 +167,34 @@ export class AnsibleAutomationModal extends React.Component {
         })
       }
     }
+  }
+
+  yamlToJSON = yaml => {
+    let resultJSON = null
+    if (typeof yaml === 'string') {
+      try {
+        resultJSON =YAML.parse(yaml)
+      } catch (error) {
+        console.error(error)
+      }
+    } else if (typeof yaml === 'object') {
+      resultJSON = yaml
+    }
+    return resultJSON
+  }
+
+  jsonToYaml = json => {
+    let resultYaml = null
+    if (typeof json === 'string') {
+      resultYaml = json
+    } else if (typeof json === 'object') {
+      try {
+        resultYaml =YAML.stringify(json)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    return resultYaml
   }
 
   onSelect = result => {
@@ -262,7 +292,8 @@ export class AnsibleAutomationModal extends React.Component {
           }
         }
         latestJSON = this.buildPolicyAutomationJSON({
-          policyAutoName, policyAutoNS, policyName, annotations, resourceVersion
+          policyAutoName, policyAutoNS, policyName, annotations, resourceVersion,
+          extraVars:null, credentialName:secretName, jobTemplateName:null
         })
       }
     }
@@ -272,6 +303,7 @@ export class AnsibleAutomationModal extends React.Component {
   render() {
     const { data:policyData, locale, open, reqErrorMsg, reqStatus } = this.props
     const { activeItem, towerURL, queryMsg, initialJSON } = this.state
+    console.log(JSON.stringify(this.state))
     const policyName = _.get(policyData, 'name')
     const policyNS = _.get(policyData, 'namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
@@ -507,13 +539,6 @@ export class AnsibleAutomationModal extends React.Component {
     </React.Fragment>
   }
 
-  // getExtraVars = () => {
-  //   const { extraVars } = this.state
-  //   if (extraVars) {
-
-  //   }
-  // }
-
   editorOnChange = newValue => {
     this.setState({
       extraVars:newValue
@@ -522,6 +547,7 @@ export class AnsibleAutomationModal extends React.Component {
 
   renderAnsibleJobTemplateEditor() {
     const { locale } = this.context
+    const { extraVars } = this.state
     return (
       <div>
         <Title headingLevel="h2">
@@ -533,7 +559,7 @@ export class AnsibleAutomationModal extends React.Component {
           language="yaml"
           theme="console"
           onChange={this.editorOnChange}
-          value={this.state.extraVars}
+          value={extraVars}
         />
       </div>
     )
