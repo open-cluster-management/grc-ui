@@ -35,7 +35,7 @@ import {
 } from '../../utils/client/queries'
 import TruncateText from '../../components/common/TruncateText'
 import _ from 'lodash'
-import YAML from 'yamljs'
+import jsYaml from 'js-yaml'
 
 if (window.monaco) {
   window.monaco.editor.defineTheme('console', {
@@ -173,7 +173,7 @@ export class AnsibleAutomationModal extends React.Component {
     let resultJSON = null
     if (typeof yaml === 'string') {
       try {
-        resultJSON =YAML.parse(yaml)
+        resultJSON = jsYaml.load(yaml)
       } catch (error) {
         console.error(error)
       }
@@ -189,7 +189,7 @@ export class AnsibleAutomationModal extends React.Component {
       resultYaml = json
     } else if (typeof json === 'object') {
       try {
-        resultYaml =YAML.stringify(json)
+        resultYaml = jsYaml.dump(json)
       } catch (error) {
         console.error(error)
       }
@@ -303,7 +303,6 @@ export class AnsibleAutomationModal extends React.Component {
   render() {
     const { data:policyData, locale, open, reqErrorMsg, reqStatus } = this.props
     const { activeItem, towerURL, queryMsg, initialJSON } = this.state
-    console.log(JSON.stringify(this.state))
     const policyName = _.get(policyData, 'name')
     const policyNS = _.get(policyData, 'namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
