@@ -18,7 +18,6 @@ export default {
     {
       key: 'clusterSelector',
       label: 'clusterSelector',
-      searchable: true,
       resourceKey: 'placementPolicies',
       transforms: [wrappable],
       cellTransforms: [breakWord],
@@ -37,7 +36,6 @@ export default {
     {
       key: 'decisions',
       label: 'status',
-      searchable: true,
       resourceKey: 'status',
       transforms: [wrappable],
       cellTransforms: [breakWord],
