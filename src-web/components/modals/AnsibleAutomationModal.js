@@ -27,7 +27,7 @@ import {
 } from '../../actions/common'
 import ansibleJobHistoryDef from '../../tableDefinitions/ansibleJobHistoryDef'
 import {
-  getPolicyCompliantStatus, transform_new
+  getPolicyCompliantStatus, transformNew
 } from '../../tableDefinitions/utils'
 import { Query } from '@apollo/client/react/components'
 import {
@@ -633,7 +633,7 @@ export class AnsibleAutomationModal extends React.Component {
 
   renderAnsibleHisotry(historyData) {
     const { locale } = this.props
-    const tableData = transform_new(_.get(historyData, 'items', []), ansibleJobHistoryDef, locale)
+    const tableData = transformNew(_.get(historyData, 'items', []), ansibleJobHistoryDef, locale)
     return <AcmTable
       showToolbar={false}
       autoHidePagination={true}
