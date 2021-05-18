@@ -107,6 +107,12 @@ PolicyStatusHistoryView {
               ]
             }
             gridBreakPoint=""
+            initialSort={
+              Object {
+                "direction": "desc",
+                "index": 2,
+              }
+            }
             items={Array []}
             keyFn={[Function]}
           />
@@ -255,6 +261,12 @@ PolicyStatusHistoryView {
               ]
             }
             gridBreakPoint=""
+            initialSort={
+              Object {
+                "direction": "desc",
+                "index": 2,
+              }
+            }
             items={
               Array [
                 Object {
@@ -598,6 +610,12 @@ PolicyStatusHistoryView {
               ]
             }
             gridBreakPoint=""
+            initialSort={
+              Object {
+                "direction": "desc",
+                "index": 2,
+              }
+            }
             items={
               Array [
                 Object {

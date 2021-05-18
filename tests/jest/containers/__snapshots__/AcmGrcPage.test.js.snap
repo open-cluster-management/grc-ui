@@ -26060,6 +26060,12 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                               ]
                                             }
                                             gridBreakPoint=""
+                                            initialSort={
+                                              Object {
+                                                "direction": "desc",
+                                                "index": 1,
+                                              }
+                                            }
                                             items={
                                               Array [
                                                 Object {
@@ -27149,8 +27155,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                   selectVariant="checkbox"
                                                   sortBy={
                                                     Object {
-                                                      "direction": "asc",
-                                                      "index": 0,
+                                                      "direction": "desc",
+                                                      "index": 1,
                                                     }
                                                   }
                                                   variant="compact"
@@ -27193,8 +27199,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                             "rowLabeledBy": "simple-node",
                                                             "selectVariant": "checkbox",
                                                             "sortBy": Object {
-                                                              "direction": "asc",
-                                                              "index": 0,
+                                                              "direction": "desc",
+                                                              "index": 1,
                                                             },
                                                           },
                                                           "header": Object {
@@ -27246,8 +27252,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                             "rowLabeledBy": "simple-node",
                                                             "selectVariant": "checkbox",
                                                             "sortBy": Object {
-                                                              "direction": "asc",
-                                                              "index": 0,
+                                                              "direction": "desc",
+                                                              "index": 1,
                                                             },
                                                           },
                                                           "header": Object {
@@ -27300,8 +27306,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                             "rowLabeledBy": "simple-node",
                                                             "selectVariant": "checkbox",
                                                             "sortBy": Object {
-                                                              "direction": "asc",
-                                                              "index": 0,
+                                                              "direction": "desc",
+                                                              "index": 1,
                                                             },
                                                           },
                                                           "header": Object {
@@ -27354,8 +27360,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                             "rowLabeledBy": "simple-node",
                                                             "selectVariant": "checkbox",
                                                             "sortBy": Object {
-                                                              "direction": "asc",
-                                                              "index": 0,
+                                                              "direction": "desc",
+                                                              "index": 1,
                                                             },
                                                           },
                                                           "header": Object {
@@ -27408,8 +27414,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                             "rowLabeledBy": "simple-node",
                                                             "selectVariant": "checkbox",
                                                             "sortBy": Object {
-                                                              "direction": "asc",
-                                                              "index": 0,
+                                                              "direction": "desc",
+                                                              "index": 1,
                                                             },
                                                           },
                                                           "header": Object {
@@ -27461,8 +27467,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                             "rowLabeledBy": "simple-node",
                                                             "selectVariant": "checkbox",
                                                             "sortBy": Object {
-                                                              "direction": "asc",
-                                                              "index": 0,
+                                                              "direction": "desc",
+                                                              "index": 1,
                                                             },
                                                           },
                                                           "header": Object {
@@ -27514,8 +27520,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                             "rowLabeledBy": "simple-node",
                                                             "selectVariant": "checkbox",
                                                             "sortBy": Object {
-                                                              "direction": "asc",
-                                                              "index": 0,
+                                                              "direction": "desc",
+                                                              "index": 1,
                                                             },
                                                           },
                                                           "header": Object {
@@ -27629,8 +27635,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -27682,8 +27688,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -27736,8 +27742,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -27790,8 +27796,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -27844,8 +27850,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -27897,8 +27903,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -27950,8 +27956,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -28061,8 +28067,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                   "rowLabeledBy": "simple-node",
                                                                                   "selectVariant": "checkbox",
                                                                                   "sortBy": Object {
-                                                                                    "direction": "asc",
-                                                                                    "index": 0,
+                                                                                    "direction": "desc",
+                                                                                    "index": 1,
                                                                                   },
                                                                                 },
                                                                                 "header": Object {
@@ -28114,8 +28120,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                   "rowLabeledBy": "simple-node",
                                                                                   "selectVariant": "checkbox",
                                                                                   "sortBy": Object {
-                                                                                    "direction": "asc",
-                                                                                    "index": 0,
+                                                                                    "direction": "desc",
+                                                                                    "index": 1,
                                                                                   },
                                                                                 },
                                                                                 "header": Object {
@@ -28168,8 +28174,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                   "rowLabeledBy": "simple-node",
                                                                                   "selectVariant": "checkbox",
                                                                                   "sortBy": Object {
-                                                                                    "direction": "asc",
-                                                                                    "index": 0,
+                                                                                    "direction": "desc",
+                                                                                    "index": 1,
                                                                                   },
                                                                                 },
                                                                                 "header": Object {
@@ -28222,8 +28228,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                   "rowLabeledBy": "simple-node",
                                                                                   "selectVariant": "checkbox",
                                                                                   "sortBy": Object {
-                                                                                    "direction": "asc",
-                                                                                    "index": 0,
+                                                                                    "direction": "desc",
+                                                                                    "index": 1,
                                                                                   },
                                                                                 },
                                                                                 "header": Object {
@@ -28276,8 +28282,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                   "rowLabeledBy": "simple-node",
                                                                                   "selectVariant": "checkbox",
                                                                                   "sortBy": Object {
-                                                                                    "direction": "asc",
-                                                                                    "index": 0,
+                                                                                    "direction": "desc",
+                                                                                    "index": 1,
                                                                                   },
                                                                                 },
                                                                                 "header": Object {
@@ -28329,8 +28335,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                   "rowLabeledBy": "simple-node",
                                                                                   "selectVariant": "checkbox",
                                                                                   "sortBy": Object {
-                                                                                    "direction": "asc",
-                                                                                    "index": 0,
+                                                                                    "direction": "desc",
+                                                                                    "index": 1,
                                                                                   },
                                                                                 },
                                                                                 "header": Object {
@@ -28382,8 +28388,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                   "rowLabeledBy": "simple-node",
                                                                                   "selectVariant": "checkbox",
                                                                                   "sortBy": Object {
-                                                                                    "direction": "asc",
-                                                                                    "index": 0,
+                                                                                    "direction": "desc",
+                                                                                    "index": 1,
                                                                                   },
                                                                                 },
                                                                                 "header": Object {
@@ -28417,16 +28423,16 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                 hidden={false}
                                                                               >
                                                                                 <HeaderCell
-                                                                                  aria-sort="ascending"
-                                                                                  className="pf-m-nowrap pf-c-table__sort pf-m-selected pf-m-wrap"
+                                                                                  aria-sort="none"
+                                                                                  className="pf-m-nowrap pf-c-table__sort pf-m-wrap"
                                                                                   data-key={0}
                                                                                   data-label="Cluster"
                                                                                   key="0-header"
                                                                                   scope="col"
                                                                                 >
                                                                                   <Th
-                                                                                    aria-sort="ascending"
-                                                                                    className="pf-m-nowrap pf-c-table__sort pf-m-selected pf-m-wrap"
+                                                                                    aria-sort="none"
+                                                                                    className="pf-m-nowrap pf-c-table__sort pf-m-wrap"
                                                                                     component="th"
                                                                                     data-key={0}
                                                                                     data-label="Cluster"
@@ -28436,8 +28442,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                     tooltip=""
                                                                                   >
                                                                                     <ThBase
-                                                                                      aria-sort="ascending"
-                                                                                      className="pf-m-nowrap pf-c-table__sort pf-m-selected pf-m-wrap"
+                                                                                      aria-sort="none"
+                                                                                      className="pf-m-nowrap pf-c-table__sort pf-m-wrap"
                                                                                       component="th"
                                                                                       data-key={0}
                                                                                       data-label="Cluster"
@@ -28448,105 +28454,10 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                       tooltip=""
                                                                                     >
                                                                                       <th
-                                                                                        aria-sort="ascending"
-                                                                                        className="pf-m-nowrap pf-c-table__sort pf-m-selected pf-m-wrap"
+                                                                                        aria-sort="none"
+                                                                                        className="pf-m-nowrap pf-c-table__sort pf-m-wrap"
                                                                                         data-key={0}
                                                                                         data-label="Cluster"
-                                                                                        onMouseEnter={[Function]}
-                                                                                        scope="col"
-                                                                                      >
-                                                                                        <SortColumn
-                                                                                          isSortedBy={true}
-                                                                                          onSort={[Function]}
-                                                                                          sortDirection="asc"
-                                                                                        >
-                                                                                          <button
-                                                                                            className="pf-c-table__button"
-                                                                                            onClick={[Function]}
-                                                                                            type="button"
-                                                                                          >
-                                                                                            <div
-                                                                                              className="pf-c-table__button-content"
-                                                                                            >
-                                                                                              <TableText>
-                                                                                                <span
-                                                                                                  className="pf-c-table__text"
-                                                                                                  onMouseEnter={[Function]}
-                                                                                                >
-                                                                                                  Cluster
-                                                                                                </span>
-                                                                                              </TableText>
-                                                                                              <span
-                                                                                                className="pf-c-table__sort-indicator"
-                                                                                              >
-                                                                                                <LongArrowAltUpIcon
-                                                                                                  color="currentColor"
-                                                                                                  noVerticalAlign={false}
-                                                                                                  size="sm"
-                                                                                                >
-                                                                                                  <svg
-                                                                                                    aria-hidden={true}
-                                                                                                    aria-labelledby={null}
-                                                                                                    fill="currentColor"
-                                                                                                    height="1em"
-                                                                                                    role="img"
-                                                                                                    style={
-                                                                                                      Object {
-                                                                                                        "verticalAlign": "-0.125em",
-                                                                                                      }
-                                                                                                    }
-                                                                                                    viewBox="0 0 256 512"
-                                                                                                    width="1em"
-                                                                                                  >
-                                                                                                    <path
-                                                                                                      d="M88 166.059V468c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12V166.059h46.059c21.382 0 32.09-25.851 16.971-40.971l-86.059-86.059c-9.373-9.373-24.569-9.373-33.941 0l-86.059 86.059c-15.119 15.119-4.411 40.971 16.971 40.971H88z"
-                                                                                                    />
-                                                                                                  </svg>
-                                                                                                </LongArrowAltUpIcon>
-                                                                                              </span>
-                                                                                            </div>
-                                                                                          </button>
-                                                                                        </SortColumn>
-                                                                                      </th>
-                                                                                    </ThBase>
-                                                                                  </Th>
-                                                                                </HeaderCell>
-                                                                                <HeaderCell
-                                                                                  aria-sort="none"
-                                                                                  className="pf-m-nowrap pf-m-width-15 pf-c-table__sort"
-                                                                                  data-key={1}
-                                                                                  data-label="Status"
-                                                                                  key="1-header"
-                                                                                  scope="col"
-                                                                                >
-                                                                                  <Th
-                                                                                    aria-sort="none"
-                                                                                    className="pf-m-nowrap pf-m-width-15 pf-c-table__sort"
-                                                                                    component="th"
-                                                                                    data-key={1}
-                                                                                    data-label="Status"
-                                                                                    onMouseEnter={[Function]}
-                                                                                    scope="col"
-                                                                                    textCenter={false}
-                                                                                    tooltip=""
-                                                                                  >
-                                                                                    <ThBase
-                                                                                      aria-sort="none"
-                                                                                      className="pf-m-nowrap pf-m-width-15 pf-c-table__sort"
-                                                                                      component="th"
-                                                                                      data-key={1}
-                                                                                      data-label="Status"
-                                                                                      innerRef={null}
-                                                                                      onMouseEnter={[Function]}
-                                                                                      scope="col"
-                                                                                      textCenter={false}
-                                                                                      tooltip=""
-                                                                                    >
-                                                                                      <th
-                                                                                        aria-sort="none"
-                                                                                        className="pf-m-nowrap pf-m-width-15 pf-c-table__sort"
-                                                                                        data-key={1}
-                                                                                        data-label="Status"
                                                                                         onMouseEnter={[Function]}
                                                                                         scope="col"
                                                                                       >
@@ -28568,7 +28479,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                                   className="pf-c-table__text"
                                                                                                   onMouseEnter={[Function]}
                                                                                                 >
-                                                                                                  Status
+                                                                                                  Cluster
                                                                                                 </span>
                                                                                               </TableText>
                                                                                               <span
@@ -28598,6 +28509,101 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                                     />
                                                                                                   </svg>
                                                                                                 </ArrowsAltVIcon>
+                                                                                              </span>
+                                                                                            </div>
+                                                                                          </button>
+                                                                                        </SortColumn>
+                                                                                      </th>
+                                                                                    </ThBase>
+                                                                                  </Th>
+                                                                                </HeaderCell>
+                                                                                <HeaderCell
+                                                                                  aria-sort="descending"
+                                                                                  className="pf-m-nowrap pf-m-width-15 pf-c-table__sort pf-m-selected"
+                                                                                  data-key={1}
+                                                                                  data-label="Status"
+                                                                                  key="1-header"
+                                                                                  scope="col"
+                                                                                >
+                                                                                  <Th
+                                                                                    aria-sort="descending"
+                                                                                    className="pf-m-nowrap pf-m-width-15 pf-c-table__sort pf-m-selected"
+                                                                                    component="th"
+                                                                                    data-key={1}
+                                                                                    data-label="Status"
+                                                                                    onMouseEnter={[Function]}
+                                                                                    scope="col"
+                                                                                    textCenter={false}
+                                                                                    tooltip=""
+                                                                                  >
+                                                                                    <ThBase
+                                                                                      aria-sort="descending"
+                                                                                      className="pf-m-nowrap pf-m-width-15 pf-c-table__sort pf-m-selected"
+                                                                                      component="th"
+                                                                                      data-key={1}
+                                                                                      data-label="Status"
+                                                                                      innerRef={null}
+                                                                                      onMouseEnter={[Function]}
+                                                                                      scope="col"
+                                                                                      textCenter={false}
+                                                                                      tooltip=""
+                                                                                    >
+                                                                                      <th
+                                                                                        aria-sort="descending"
+                                                                                        className="pf-m-nowrap pf-m-width-15 pf-c-table__sort pf-m-selected"
+                                                                                        data-key={1}
+                                                                                        data-label="Status"
+                                                                                        onMouseEnter={[Function]}
+                                                                                        scope="col"
+                                                                                      >
+                                                                                        <SortColumn
+                                                                                          isSortedBy={true}
+                                                                                          onSort={[Function]}
+                                                                                          sortDirection="desc"
+                                                                                        >
+                                                                                          <button
+                                                                                            className="pf-c-table__button"
+                                                                                            onClick={[Function]}
+                                                                                            type="button"
+                                                                                          >
+                                                                                            <div
+                                                                                              className="pf-c-table__button-content"
+                                                                                            >
+                                                                                              <TableText>
+                                                                                                <span
+                                                                                                  className="pf-c-table__text"
+                                                                                                  onMouseEnter={[Function]}
+                                                                                                >
+                                                                                                  Status
+                                                                                                </span>
+                                                                                              </TableText>
+                                                                                              <span
+                                                                                                className="pf-c-table__sort-indicator"
+                                                                                              >
+                                                                                                <LongArrowAltDownIcon
+                                                                                                  color="currentColor"
+                                                                                                  noVerticalAlign={false}
+                                                                                                  size="sm"
+                                                                                                >
+                                                                                                  <svg
+                                                                                                    aria-hidden={true}
+                                                                                                    aria-labelledby={null}
+                                                                                                    fill="currentColor"
+                                                                                                    height="1em"
+                                                                                                    role="img"
+                                                                                                    style={
+                                                                                                      Object {
+                                                                                                        "verticalAlign": "-0.125em",
+                                                                                                      }
+                                                                                                    }
+                                                                                                    viewBox="0 0 256 512"
+                                                                                                    width="1em"
+                                                                                                  >
+                                                                                                    <path
+                                                                                                      d="M168 345.941V44c0-6.627-5.373-12-12-12h-56c-6.627 0-12 5.373-12 12v301.941H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.569 9.373 33.941 0l86.059-86.059c15.119-15.119 4.411-40.971-16.971-40.971H168z"
+                                                                                                    />
+                                                                                                  </svg>
+                                                                                                </LongArrowAltDownIcon>
                                                                                               </span>
                                                                                             </div>
                                                                                           </button>
@@ -29017,8 +29023,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 1,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -29070,8 +29076,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 1,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -29124,8 +29130,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 1,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -29178,8 +29184,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 1,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -29232,8 +29238,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 1,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -29285,8 +29291,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 1,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -29338,8 +29344,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 1,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -29769,8 +29775,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -29822,8 +29828,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -29876,8 +29882,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -29930,8 +29936,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -29984,8 +29990,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -30037,8 +30043,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -30090,8 +30096,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                           "rowLabeledBy": "simple-node",
                                                                           "selectVariant": "checkbox",
                                                                           "sortBy": Object {
-                                                                            "direction": "asc",
-                                                                            "index": 0,
+                                                                            "direction": "desc",
+                                                                            "index": 1,
                                                                           },
                                                                         },
                                                                         "header": Object {
@@ -30636,8 +30642,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                     "rowLabeledBy": "simple-node",
                                                                                     "selectVariant": "checkbox",
                                                                                     "sortBy": Object {
-                                                                                      "direction": "asc",
-                                                                                      "index": 0,
+                                                                                      "direction": "desc",
+                                                                                      "index": 1,
                                                                                     },
                                                                                   },
                                                                                   "header": Object {
@@ -30689,8 +30695,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                     "rowLabeledBy": "simple-node",
                                                                                     "selectVariant": "checkbox",
                                                                                     "sortBy": Object {
-                                                                                      "direction": "asc",
-                                                                                      "index": 0,
+                                                                                      "direction": "desc",
+                                                                                      "index": 1,
                                                                                     },
                                                                                   },
                                                                                   "header": Object {
@@ -30743,8 +30749,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                     "rowLabeledBy": "simple-node",
                                                                                     "selectVariant": "checkbox",
                                                                                     "sortBy": Object {
-                                                                                      "direction": "asc",
-                                                                                      "index": 0,
+                                                                                      "direction": "desc",
+                                                                                      "index": 1,
                                                                                     },
                                                                                   },
                                                                                   "header": Object {
@@ -30797,8 +30803,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                     "rowLabeledBy": "simple-node",
                                                                                     "selectVariant": "checkbox",
                                                                                     "sortBy": Object {
-                                                                                      "direction": "asc",
-                                                                                      "index": 0,
+                                                                                      "direction": "desc",
+                                                                                      "index": 1,
                                                                                     },
                                                                                   },
                                                                                   "header": Object {
@@ -30851,8 +30857,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                     "rowLabeledBy": "simple-node",
                                                                                     "selectVariant": "checkbox",
                                                                                     "sortBy": Object {
-                                                                                      "direction": "asc",
-                                                                                      "index": 0,
+                                                                                      "direction": "desc",
+                                                                                      "index": 1,
                                                                                     },
                                                                                   },
                                                                                   "header": Object {
@@ -30904,8 +30910,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                     "rowLabeledBy": "simple-node",
                                                                                     "selectVariant": "checkbox",
                                                                                     "sortBy": Object {
-                                                                                      "direction": "asc",
-                                                                                      "index": 0,
+                                                                                      "direction": "desc",
+                                                                                      "index": 1,
                                                                                     },
                                                                                   },
                                                                                   "header": Object {
@@ -30957,8 +30963,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS page  1`] = `
                                                                                     "rowLabeledBy": "simple-node",
                                                                                     "selectVariant": "checkbox",
                                                                                     "sortBy": Object {
-                                                                                      "direction": "asc",
-                                                                                      "index": 0,
+                                                                                      "direction": "desc",
+                                                                                      "index": 1,
                                                                                     },
                                                                                   },
                                                                                   "header": Object {
@@ -37676,6 +37682,12 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                           ]
                                         }
                                         gridBreakPoint=""
+                                        initialSort={
+                                          Object {
+                                            "direction": "desc",
+                                            "index": 2,
+                                          }
+                                        }
                                         items={
                                           Array [
                                             Object {
@@ -38669,8 +38681,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                               selectVariant="checkbox"
                                               sortBy={
                                                 Object {
-                                                  "direction": "asc",
-                                                  "index": 0,
+                                                  "direction": "desc",
+                                                  "index": 2,
                                                 }
                                               }
                                               variant="compact"
@@ -38714,8 +38726,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                         "rowLabeledBy": "simple-node",
                                                         "selectVariant": "checkbox",
                                                         "sortBy": Object {
-                                                          "direction": "asc",
-                                                          "index": 0,
+                                                          "direction": "desc",
+                                                          "index": 2,
                                                         },
                                                       },
                                                       "header": Object {
@@ -38768,8 +38780,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                         "rowLabeledBy": "simple-node",
                                                         "selectVariant": "checkbox",
                                                         "sortBy": Object {
-                                                          "direction": "asc",
-                                                          "index": 0,
+                                                          "direction": "desc",
+                                                          "index": 2,
                                                         },
                                                       },
                                                       "header": Object {
@@ -38822,8 +38834,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                         "rowLabeledBy": "simple-node",
                                                         "selectVariant": "checkbox",
                                                         "sortBy": Object {
-                                                          "direction": "asc",
-                                                          "index": 0,
+                                                          "direction": "desc",
+                                                          "index": 2,
                                                         },
                                                       },
                                                       "header": Object {
@@ -38876,8 +38888,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                         "rowLabeledBy": "simple-node",
                                                         "selectVariant": "checkbox",
                                                         "sortBy": Object {
-                                                          "direction": "asc",
-                                                          "index": 0,
+                                                          "direction": "desc",
+                                                          "index": 2,
                                                         },
                                                       },
                                                       "header": Object {
@@ -38992,8 +39004,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 2,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -39046,8 +39058,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 2,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -39100,8 +39112,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 2,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -39154,8 +39166,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 2,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -39266,8 +39278,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                               "rowLabeledBy": "simple-node",
                                                                               "selectVariant": "checkbox",
                                                                               "sortBy": Object {
-                                                                                "direction": "asc",
-                                                                                "index": 0,
+                                                                                "direction": "desc",
+                                                                                "index": 2,
                                                                               },
                                                                             },
                                                                             "header": Object {
@@ -39320,8 +39332,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                               "rowLabeledBy": "simple-node",
                                                                               "selectVariant": "checkbox",
                                                                               "sortBy": Object {
-                                                                                "direction": "asc",
-                                                                                "index": 0,
+                                                                                "direction": "desc",
+                                                                                "index": 2,
                                                                               },
                                                                             },
                                                                             "header": Object {
@@ -39374,8 +39386,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                               "rowLabeledBy": "simple-node",
                                                                               "selectVariant": "checkbox",
                                                                               "sortBy": Object {
-                                                                                "direction": "asc",
-                                                                                "index": 0,
+                                                                                "direction": "desc",
+                                                                                "index": 2,
                                                                               },
                                                                             },
                                                                             "header": Object {
@@ -39428,8 +39440,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                               "rowLabeledBy": "simple-node",
                                                                               "selectVariant": "checkbox",
                                                                               "sortBy": Object {
-                                                                                "direction": "asc",
-                                                                                "index": 0,
+                                                                                "direction": "desc",
+                                                                                "index": 2,
                                                                               },
                                                                             },
                                                                             "header": Object {
@@ -39463,16 +39475,16 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                             hidden={false}
                                                                           >
                                                                             <HeaderCell
-                                                                              aria-sort="ascending"
-                                                                              className="pf-m-nowrap pf-m-wrap pf-c-table__sort pf-m-selected"
+                                                                              aria-sort="none"
+                                                                              className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
                                                                               data-key={0}
                                                                               data-label="Status"
                                                                               key="0-header"
                                                                               scope="col"
                                                                             >
                                                                               <Th
-                                                                                aria-sort="ascending"
-                                                                                className="pf-m-nowrap pf-m-wrap pf-c-table__sort pf-m-selected"
+                                                                                aria-sort="none"
+                                                                                className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
                                                                                 component="th"
                                                                                 data-key={0}
                                                                                 data-label="Status"
@@ -39482,8 +39494,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                 tooltip=""
                                                                               >
                                                                                 <ThBase
-                                                                                  aria-sort="ascending"
-                                                                                  className="pf-m-nowrap pf-m-wrap pf-c-table__sort pf-m-selected"
+                                                                                  aria-sort="none"
+                                                                                  className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
                                                                                   component="th"
                                                                                   data-key={0}
                                                                                   data-label="Status"
@@ -39494,17 +39506,17 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                   tooltip=""
                                                                                 >
                                                                                   <th
-                                                                                    aria-sort="ascending"
-                                                                                    className="pf-m-nowrap pf-m-wrap pf-c-table__sort pf-m-selected"
+                                                                                    aria-sort="none"
+                                                                                    className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
                                                                                     data-key={0}
                                                                                     data-label="Status"
                                                                                     onMouseEnter={[Function]}
                                                                                     scope="col"
                                                                                   >
                                                                                     <SortColumn
-                                                                                      isSortedBy={true}
+                                                                                      isSortedBy={false}
                                                                                       onSort={[Function]}
-                                                                                      sortDirection="asc"
+                                                                                      sortDirection=""
                                                                                     >
                                                                                       <button
                                                                                         className="pf-c-table__button"
@@ -39525,7 +39537,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                           <span
                                                                                             className="pf-c-table__sort-indicator"
                                                                                           >
-                                                                                            <LongArrowAltUpIcon
+                                                                                            <ArrowsAltVIcon
                                                                                               color="currentColor"
                                                                                               noVerticalAlign={false}
                                                                                               size="sm"
@@ -39545,10 +39557,10 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                                 width="1em"
                                                                                               >
                                                                                                 <path
-                                                                                                  d="M88 166.059V468c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12V166.059h46.059c21.382 0 32.09-25.851 16.971-40.971l-86.059-86.059c-9.373-9.373-24.569-9.373-33.941 0l-86.059 86.059c-15.119 15.119-4.411 40.971 16.971 40.971H88z"
+                                                                                                  d="M214.059 377.941H168V134.059h46.059c21.382 0 32.09-25.851 16.971-40.971L144.971 7.029c-9.373-9.373-24.568-9.373-33.941 0L24.971 93.088c-15.119 15.119-4.411 40.971 16.971 40.971H88v243.882H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.568 9.373 33.941 0l86.059-86.059c15.12-15.119 4.412-40.971-16.97-40.971z"
                                                                                                 />
                                                                                               </svg>
-                                                                                            </LongArrowAltUpIcon>
+                                                                                            </ArrowsAltVIcon>
                                                                                           </span>
                                                                                         </div>
                                                                                       </button>
@@ -39653,16 +39665,16 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                               </Th>
                                                                             </HeaderCell>
                                                                             <HeaderCell
-                                                                              aria-sort="none"
-                                                                              className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
+                                                                              aria-sort="descending"
+                                                                              className="pf-m-nowrap pf-m-wrap pf-c-table__sort pf-m-selected"
                                                                               data-key={2}
                                                                               data-label="Last Report"
                                                                               key="2-header"
                                                                               scope="col"
                                                                             >
                                                                               <Th
-                                                                                aria-sort="none"
-                                                                                className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
+                                                                                aria-sort="descending"
+                                                                                className="pf-m-nowrap pf-m-wrap pf-c-table__sort pf-m-selected"
                                                                                 component="th"
                                                                                 data-key={2}
                                                                                 data-label="Last Report"
@@ -39672,8 +39684,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                 tooltip=""
                                                                               >
                                                                                 <ThBase
-                                                                                  aria-sort="none"
-                                                                                  className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
+                                                                                  aria-sort="descending"
+                                                                                  className="pf-m-nowrap pf-m-wrap pf-c-table__sort pf-m-selected"
                                                                                   component="th"
                                                                                   data-key={2}
                                                                                   data-label="Last Report"
@@ -39684,17 +39696,17 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                   tooltip=""
                                                                                 >
                                                                                   <th
-                                                                                    aria-sort="none"
-                                                                                    className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
+                                                                                    aria-sort="descending"
+                                                                                    className="pf-m-nowrap pf-m-wrap pf-c-table__sort pf-m-selected"
                                                                                     data-key={2}
                                                                                     data-label="Last Report"
                                                                                     onMouseEnter={[Function]}
                                                                                     scope="col"
                                                                                   >
                                                                                     <SortColumn
-                                                                                      isSortedBy={false}
+                                                                                      isSortedBy={true}
                                                                                       onSort={[Function]}
-                                                                                      sortDirection=""
+                                                                                      sortDirection="desc"
                                                                                     >
                                                                                       <button
                                                                                         className="pf-c-table__button"
@@ -39715,7 +39727,7 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                           <span
                                                                                             className="pf-c-table__sort-indicator"
                                                                                           >
-                                                                                            <ArrowsAltVIcon
+                                                                                            <LongArrowAltDownIcon
                                                                                               color="currentColor"
                                                                                               noVerticalAlign={false}
                                                                                               size="sm"
@@ -39735,10 +39747,10 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                                 width="1em"
                                                                                               >
                                                                                                 <path
-                                                                                                  d="M214.059 377.941H168V134.059h46.059c21.382 0 32.09-25.851 16.971-40.971L144.971 7.029c-9.373-9.373-24.568-9.373-33.941 0L24.971 93.088c-15.119 15.119-4.411 40.971 16.971 40.971H88v243.882H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.568 9.373 33.941 0l86.059-86.059c15.12-15.119 4.412-40.971-16.97-40.971z"
+                                                                                                  d="M168 345.941V44c0-6.627-5.373-12-12-12h-56c-6.627 0-12 5.373-12 12v301.941H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.569 9.373 33.941 0l86.059-86.059c15.119-15.119 4.411-40.971-16.971-40.971H168z"
                                                                                                 />
                                                                                               </svg>
-                                                                                            </ArrowsAltVIcon>
+                                                                                            </LongArrowAltDownIcon>
                                                                                           </span>
                                                                                         </div>
                                                                                       </button>
@@ -39834,8 +39846,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                   "rowLabeledBy": "simple-node",
                                                                   "selectVariant": "checkbox",
                                                                   "sortBy": Object {
-                                                                    "direction": "asc",
-                                                                    "index": 0,
+                                                                    "direction": "desc",
+                                                                    "index": 2,
                                                                   },
                                                                 },
                                                                 "header": Object {
@@ -39888,8 +39900,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                   "rowLabeledBy": "simple-node",
                                                                   "selectVariant": "checkbox",
                                                                   "sortBy": Object {
-                                                                    "direction": "asc",
-                                                                    "index": 0,
+                                                                    "direction": "desc",
+                                                                    "index": 2,
                                                                   },
                                                                 },
                                                                 "header": Object {
@@ -39942,8 +39954,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                   "rowLabeledBy": "simple-node",
                                                                   "selectVariant": "checkbox",
                                                                   "sortBy": Object {
-                                                                    "direction": "asc",
-                                                                    "index": 0,
+                                                                    "direction": "desc",
+                                                                    "index": 2,
                                                                   },
                                                                 },
                                                                 "header": Object {
@@ -39996,8 +40008,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                   "rowLabeledBy": "simple-node",
                                                                   "selectVariant": "checkbox",
                                                                   "sortBy": Object {
-                                                                    "direction": "asc",
-                                                                    "index": 0,
+                                                                    "direction": "desc",
+                                                                    "index": 2,
                                                                   },
                                                                 },
                                                                 "header": Object {
@@ -40244,8 +40256,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 2,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -40298,8 +40310,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 2,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -40352,8 +40364,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 2,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -40406,8 +40418,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                       "rowLabeledBy": "simple-node",
                                                                       "selectVariant": "checkbox",
                                                                       "sortBy": Object {
-                                                                        "direction": "asc",
-                                                                        "index": 0,
+                                                                        "direction": "desc",
+                                                                        "index": 2,
                                                                       },
                                                                     },
                                                                     "header": Object {
@@ -40725,8 +40737,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                 "rowLabeledBy": "simple-node",
                                                                                 "selectVariant": "checkbox",
                                                                                 "sortBy": Object {
-                                                                                  "direction": "asc",
-                                                                                  "index": 0,
+                                                                                  "direction": "desc",
+                                                                                  "index": 2,
                                                                                 },
                                                                               },
                                                                               "header": Object {
@@ -40779,8 +40791,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                 "rowLabeledBy": "simple-node",
                                                                                 "selectVariant": "checkbox",
                                                                                 "sortBy": Object {
-                                                                                  "direction": "asc",
-                                                                                  "index": 0,
+                                                                                  "direction": "desc",
+                                                                                  "index": 2,
                                                                                 },
                                                                               },
                                                                               "header": Object {
@@ -40833,8 +40845,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                 "rowLabeledBy": "simple-node",
                                                                                 "selectVariant": "checkbox",
                                                                                 "sortBy": Object {
-                                                                                  "direction": "asc",
-                                                                                  "index": 0,
+                                                                                  "direction": "desc",
+                                                                                  "index": 2,
                                                                                 },
                                                                               },
                                                                               "header": Object {
@@ -40887,8 +40899,8 @@ exports[`AcmGrcPage container should render POLICY_STATUS_HISTORY page  1`] = `
                                                                                 "rowLabeledBy": "simple-node",
                                                                                 "selectVariant": "checkbox",
                                                                                 "sortBy": Object {
-                                                                                  "direction": "asc",
-                                                                                  "index": 0,
+                                                                                  "direction": "desc",
+                                                                                  "index": 2,
                                                                                 },
                                                                               },
                                                                               "header": Object {
@@ -50322,6 +50334,12 @@ status:
                                           ]
                                         }
                                         gridBreakPoint=""
+                                        initialSort={
+                                          Object {
+                                            "direction": "asc",
+                                            "index": 0,
+                                          }
+                                        }
                                         items={
                                           Array [
                                             Object {
