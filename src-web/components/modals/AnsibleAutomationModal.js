@@ -33,6 +33,7 @@ import {
   GET_ANSIBLE_CREDENTIALS, GET_ANSIBLE_HISTORY,
   GET_ANSIBLE_JOB_TEMPLATE,
 } from '../../utils/client/queries'
+import TruncateText from '../../components/common/TruncateText'
 import _ from 'lodash'
 
 if (window.monaco) {
@@ -328,7 +329,7 @@ export class AnsibleAutomationModal extends React.Component {
                 {msgs.get('ansible.launch.connection', locale)}
               </Text>
               <div>
-                {towerURL && this.renderURL('towerURL', towerURL, towerURL)}
+                {towerURL && this.renderURL('towerURL', towerURL, towerURL, 60)}
               </div>
               <Nav onSelect={this.onSelect} variant="tertiary">
                 <NavList>
@@ -356,8 +357,12 @@ export class AnsibleAutomationModal extends React.Component {
     )
   }
 
-  renderURL = (id, text, URL) => {
-    const link = { id, text: text, href: URL }
+  renderURL = (id, text, URL, truncateLength) => {
+    let linkText = text
+    if (truncateLength) {
+      linkText = <TruncateText maxCharacters={truncateLength} text={linkText} />
+    }
+    const link = { id, text: linkText, href: URL }
   return <AcmLaunchLink links={[link]} />
   }
 
@@ -501,6 +506,13 @@ export class AnsibleAutomationModal extends React.Component {
         </Query>
     </React.Fragment>
   }
+
+  // getExtraVars = () => {
+  //   const { extraVars } = this.state
+  //   if (extraVars) {
+
+  //   }
+  // }
 
   editorOnChange = newValue => {
     this.setState({
