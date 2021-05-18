@@ -160,6 +160,7 @@ export class AnsibleAutomationModal extends React.Component {
           extraVars, credentialName, jobTemplateName
         })
         this.setState({
+          policyAutoName,
           credentialName,
           jobTemplateName,
           extraVars,
@@ -306,12 +307,11 @@ export class AnsibleAutomationModal extends React.Component {
 
   render() {
     const { data:policyData, locale, open, reqErrorMsg, reqStatus } = this.props
-    const { activeItem, towerURL, queryMsg, initialJSON, initializeFinished } = this.state
+    const { activeItem, towerURL, queryMsg, initialJSON, initializeFinished, policyAutoName } = this.state
     console.log(JSON.stringify(this.state))
-    const policyName = _.get(policyData, 'name')
     const policyNS = _.get(policyData, 'namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
-    const variables = activeItem ? {name:policyName, namespace:policyNS} : {}
+    const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
     const panelType = initialJSON ? 'edit' : 'create'
     return (
       <Query query={query} variables={variables}>
