@@ -174,7 +174,7 @@ class GrcToggleModule extends React.Component {
               {
                 id: action,
                 title: msgs.get(action, locale),
-                tooltip: msgs.get('error.permission.disabled', locale),
+                tooltip: disableFlag ? msgs.get('error.permission.disabled', locale) : undefined,
                 isDisabled: disableFlag ? true : false,
                 addSeparator: action === 'table.actions.policy.remove' ? true : false,
                 click: () =>
