@@ -77,6 +77,10 @@ export class AnsibleAutomationModal extends React.Component {
         msg: '',
         type: '',
       },
+      yamlMsg: {
+        msg: '',
+        type: '',
+      },
       initialJSON: null,
       confirmClose: false,
     }
@@ -181,6 +185,12 @@ export class AnsibleAutomationModal extends React.Component {
         resultJSON = jsYaml.load(yaml)
       } catch (error) {
         console.error(error)
+        this.setState({
+          yamlMsg: {
+            msg: JSON.stringify(error),
+            type: 'danger',
+          }
+        })
       }
     } else if (typeof yaml === 'object') {
       resultJSON = yaml
@@ -197,6 +207,12 @@ export class AnsibleAutomationModal extends React.Component {
         resultYaml = jsYaml.dump(json)
       } catch (error) {
         console.error(error)
+        this.setState({
+          yamlMsg: {
+            msg: JSON.stringify(error),
+            type: 'danger',
+          }
+        })
       }
     }
     return resultYaml
@@ -209,8 +225,9 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   async handleSubmitClick() {
+    const { yamlMsg } = this.state
     const {latestJSON, action} = await this.generateJSON()
-    if (latestJSON && action) {
+    if (yamlMsg.msg && latestJSON && action) {
       const {data:resData} = await this.props.handleModifyPolicyAutomation(latestJSON, action)
       const errors = _.get(resData, 'modifyPolicyAutomation.errors')
       if (Array.isArray(errors) && errors.length > 0)  {
@@ -307,7 +324,7 @@ export class AnsibleAutomationModal extends React.Component {
 
   render() {
     const { data:policyData, locale, open, reqErrorMsg, reqStatus } = this.props
-    const { activeItem, towerURL, queryMsg, initialJSON, initializeFinished, policyAutoName } = this.state
+    const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON, initializeFinished, policyAutoName } = this.state
     console.log(JSON.stringify(this.state))
     const policyNS = _.get(policyData, 'namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
@@ -322,6 +339,9 @@ export class AnsibleAutomationModal extends React.Component {
           const titleText = readyFlag
             ? msgs.get(`ansible.automation.heading.${panelType}`, locale)
             : msgs.get('ansible.loading.info', locale)
+          const alertFlag = (yamlMsg.msg || queryMsg.msg ||reqStatus === REQUEST_STATUS.ERROR)
+          const alertVariant = (yamlMsg.type || queryMsg.type || 'danger')
+          const alertTitle = (yamlMsg.msg || queryMsg.msg || reqErrorMsg || msgs.get('error.default.description', locale))
           return (
             <React.Fragment>
               <AcmModal
@@ -344,12 +364,12 @@ export class AnsibleAutomationModal extends React.Component {
               {!readyFlag && <Spinner className='patternfly-spinner' />}
               {readyFlag && <React.Fragment>
                 <React.Fragment>
-                  {(queryMsg.msg ||reqStatus === REQUEST_STATUS.ERROR) &&
+                  {alertFlag &&
                     <AcmAlert
                       isInline={true}
                       noClose={true}
-                      variant={queryMsg.type ? queryMsg.type : 'danger'}
-                      title={queryMsg.msg || reqErrorMsg || msgs.get('error.default.description', locale)} />}
+                      variant={alertVariant}
+                      title={alertTitle} />}
                 </React.Fragment>
                 <Text>
                   {msgs.get(`ansible.automation.description.${panelType}`, locale)}
