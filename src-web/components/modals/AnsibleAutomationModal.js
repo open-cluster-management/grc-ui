@@ -635,6 +635,8 @@ export class AnsibleAutomationModal extends React.Component {
     const { locale } = this.props
     const tableData = transform_new(_.get(historyData, 'items', []), ansibleJobHistoryDef, locale)
     return <AcmTable
+      showToolbar={false}
+      autoHidePagination={true}
       plural='ansible jobs'
       items={tableData.rows}
       columns={tableData.columns}
