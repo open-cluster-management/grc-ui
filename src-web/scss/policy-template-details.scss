@@ -10,8 +10,13 @@
   .details {
     display: flex;
     flex-direction: row;
-    .overview {
+    > div {
       display: flex;
+      > article {
+        width: 100%;
+      }
+    }
+    .overview {
       width: 50%;
       background-color: var(--pf-global--BackgroundColor--100);
       margin-right: .75rem;
@@ -40,7 +45,7 @@
           font-family: codicon;
         }
       }
-      .pf-c-card__expandable-content {
+      > article > .pf-c-card__expandable-content {
         padding: 0px;
       }
     }
