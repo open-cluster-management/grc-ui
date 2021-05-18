@@ -144,9 +144,9 @@ class GrcToggleModule extends React.Component {
         ? filterUserAction(rowData, tableActions, userAccessHash, resourceType)
         : []
       if (_.get(rowData, 'disabled', false)) {
-        filteredActions[filteredActions.indexOf('table.actions.policy.disable')] = 'table.actions.policy.enable'
+        filteredActions[filteredActions.indexOf('table.actions.disable')] = 'table.actions.enable'
       } else {
-        filteredActions[filteredActions.indexOf('table.actions.policy.enable')] = 'table.actions.policy.disable'
+        filteredActions[filteredActions.indexOf('table.actions.enable')] = 'table.actions.disable'
       }
       if (_.get(rowData, 'remediation', 'inform') === 'enforce') {
         filteredActions[filteredActions.indexOf('table.actions.enforce')] = 'table.actions.inform'
