@@ -6,10 +6,10 @@
 import filterUserAction from '../../../src-web/utils/FilterUserAction'
 
 const policyActions = [
-  'table.actions.policy.edit',
-  'table.actions.policy.disable',
-  'table.actions.policy.enforce',
-  'table.actions.policy.remove'
+  'table.actions.edit',
+  'table.actions.disable',
+  'table.actions.enforce',
+  'table.actions.remove'
 ]
 
 const resourceType = {

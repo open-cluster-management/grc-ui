@@ -62,26 +62,26 @@ function buildActionByUser(adminRules, typeRules, actions, actionList) {
 }
 
 function buildActionList(actions, rulesSet, actionList) {
-  const removeFlag = actions.includes('table.actions.policy.remove')
-  const editFlag = actions.includes('table.actions.policy.edit')
-  const disableFlag = actions.includes('table.actions.policy.disable')
+  const removeFlag = actions.includes('table.actions.remove')
+  const editFlag = actions.includes('table.actions.edit')
+  const disableFlag = actions.includes('table.actions.disable')
   const enforceFlag = actions.includes('table.actions.enforce')
   if (rulesSet.includes('update') || rulesSet.includes('patch')) {
     if (editFlag) {
-      actionList.push('table.actions.policy.edit')
+      actionList.push('table.actions.edit')
     }
     if (disableFlag) {
-      actionList.push('table.actions.policy.disable')
+      actionList.push('table.actions.disable')
     }
     if (enforceFlag) {
       actionList.push('table.actions.enforce')
     }
   } else {
     if (editFlag) {
-      actionList.push('disabled.table.actions.policy.edit')
+      actionList.push('disabled.table.actions.edit')
     }
     if (disableFlag) {
-      actionList.push('disabled.table.actions.policy.disable')
+      actionList.push('disabled.table.actions.disable')
     }
     if (enforceFlag) {
       actionList.push('disabled.table.actions.enforce')
@@ -89,11 +89,11 @@ function buildActionList(actions, rulesSet, actionList) {
   }
   if (rulesSet.includes('delete') || rulesSet.includes('deletecollection')) {
     if (removeFlag) {
-      actionList.push('table.actions.policy.remove')
+      actionList.push('table.actions.remove')
     }
   } else {
     if (removeFlag) {
-      actionList.push('disabled.table.actions.policy.remove')
+      actionList.push('disabled.table.actions.remove')
     }
   }
   return actionList

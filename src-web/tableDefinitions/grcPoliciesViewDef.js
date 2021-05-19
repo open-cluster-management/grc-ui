@@ -24,7 +24,7 @@ export default {
     'table.actions.disable',
     'table.actions.enforce',
     'table.actions.automation.edit',
-    'table.actions.policy.remove',
+    'table.actions.remove',
   ],
   tableKeys: [
     // Primary rows of expandable table
