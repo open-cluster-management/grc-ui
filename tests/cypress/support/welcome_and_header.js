@@ -104,8 +104,12 @@ export const userMenu = {
         cy.visit('/multicloud/welcome')
     },
     openCreate: () => {
+        // This is an Openshift console link, so it would be in a new window
+        cy.window().then((window) => {
+            cy.stub(window, 'open').as('windowOpen')
+        })
         cy.get('[aria-label="create-button"]').click()
-        cy.url().should('equal', Cypress.config().baseUrl + '/k8s/all-namespaces/import')
+        cy.get('@windowOpen').should('be.calledWith', Cypress.config().baseUrl + '/k8s/all-namespaces/import')
         cy.visit('/multicloud/welcome')
     },
     openInfo: () => {
