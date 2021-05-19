@@ -93,6 +93,7 @@ class GrcToggleModule extends React.Component {
             gridBreakPoint=''
             extraToolbarControls={extraToolbarControls}
             searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
+            fuseThreshold={0}
           />
         </div>
       </div>
