@@ -28,6 +28,7 @@ import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
 import { LocaleContext } from '../components/common/LocaleContext'
 import purifyReactNode from '../utils/PurifyReactNode'
+import AnsibleAutomationPanel from '../components/common/AnsibleAutomationPanel'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
@@ -486,4 +487,18 @@ export function getDecisionList(policy, locale) {
     return '-'
   }
   return statusList
+}
+
+export function getAnsiblePanel(item, locale) {
+ const policyData = {
+  policyName : _.get(item, 'metadata.name'),
+  policyNS : _.get(item, 'metadata.namespace'),
+  clusterCompliant : _.get(item, 'clusterCompliant'),
+  compliant: _.get(item, 'raw.status.compliant')
+ }
+  return <AnsibleAutomationPanel
+    policyData={policyData}
+    locale={locale}
+  >
+  </AnsibleAutomationPanel>
 }

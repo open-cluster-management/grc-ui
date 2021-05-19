@@ -3,6 +3,10 @@
 
 'use strict'
 
+import {
+  getAnsiblePanel
+} from './utils'
+
 export default {
   title: 'compliance.details',
   headerRows: ['type', 'detail'],
@@ -104,6 +108,19 @@ export default {
         },
         {
           resourceKey: 'metadata.creationTimestamp'
+        }
+      ]
+    },
+    {
+      cells: [
+        {
+          resourceKey: 'description.title.ansible.automation',
+          type: 'i18n',
+        },
+        {
+          resourceKey: 'rawData',
+          type: 'transformFunction',
+          transformFunction: getAnsiblePanel,
         }
       ]
     },

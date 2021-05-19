@@ -75,17 +75,27 @@ export class PolicyDetailsOverview extends React.PureComponent{
         const keyPath = item.cells[0].resourceKey || '-'
         entry.key = msgs.get(keyPath, locale)
 
-        const entryData = item.cells[1] ? _.get(localItem, item.cells[1].resourceKey, '-') : '-'
-        if (typeof(entryData) === 'object' || typeof(entryData) === 'boolean') {
+        let entryData = '-', rawDataFlag = false
+        if (item.cells[1] && item.cells[1].resourceKey) {
+          if (item.cells[1].resourceKey === 'rawData') {
+            rawDataFlag = true
+            entryData = localItem // the case need whole raw policy data
+          } else {
+            entryData = _.get(localItem, item.cells[1].resourceKey, '-')
+          }
+        }
+        if ((typeof(entryData) === 'object' || typeof(entryData) === 'boolean') && !rawDataFlag) {
           entry.value = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
         } else {
           entry.value = entryData
         }
         if (item.cells[0].resourceKey) {
-          if(item.cells[0].type === 'timestamp') {
+          if (item.cells[0].type === 'timestamp') {
             entry.value = moment(entry.value, 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
-          } else if(item.cells[1]?.resourceKey === 'clusterCompliant') {
+          } else if (item.cells[1]?.resourceKey === 'clusterCompliant') {
             entry.value = getPolicyCompliantStatus({clusterCompliant: entry.value}, locale)
+          } else if (item.cells[1]?.type === 'transformFunction') {
+            entry.value = item.cells[1]?.transformFunction(entry.value, locale)
           }
         }
       }
