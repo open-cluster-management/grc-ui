@@ -20,7 +20,6 @@ import {
 } from '@patternfly/react-tokens'
 import MonacoEditor from 'react-monaco-editor'
 import msgs from '../../nls/platform.properties'
-import { REQUEST_STATUS } from '../../actions/index'
 import {
   modifyPolicyAutomation, clearRequestStatus,
   updateModal, copyAnsibleSecret, getPolicyAutomation
@@ -88,10 +87,10 @@ export class AnsibleAutomationModal extends React.Component {
     this.initialize()
   }
 
-  buildPolicyAutomationJSON({
+  buildPolicyAutomationJSON = ({
     policyAutoName, policyAutoNS, policyName, annotations,
     resourceVersion, extraVars, credentialName, jobTemplateName
-  }) {
+  }) => {
     const {
       credentialName:stateCredentialName,
       jobTemplateName:stateJobTemplateName,
@@ -155,7 +154,7 @@ export class AnsibleAutomationModal extends React.Component {
         const credentialName = _.get(targetPolicyAutomation, 'spec.automationDef.secret')
         const jobTemplateName = _.get(targetPolicyAutomation, 'spec.automationDef.name')
         const extraVarsJSON = _.get(targetPolicyAutomation, 'spec.automationDef.extra_vars')
-        const extraVars = this.jsonToYaml(extraVarsJSON)
+        const extraVars = this.jsonToYAML(extraVarsJSON)
         let ansScheduleMode = _.get(targetPolicyAutomation, 'spec.mode')
         if (annotations && annotations['policy.open-cluster-management.io/rerun'] === 'true') {
           ansScheduleMode = 'manual'
@@ -199,7 +198,7 @@ export class AnsibleAutomationModal extends React.Component {
     return resultJSON
   }
 
-  jsonToYaml = json => {
+  jsonToYAML = json => {
     let resultYaml = null
     if (typeof json === 'string') {
       resultYaml = json
@@ -219,6 +218,15 @@ export class AnsibleAutomationModal extends React.Component {
     return resultYaml
   }
 
+  setQueryAlert = (msg, type) => {
+    this.setState({
+      queryMsg: {
+        msg: msg,
+        type: type,
+      }
+    })
+  }
+
   onSelect = result => {
     this.setState({
       activeItem: result.itemId
@@ -228,18 +236,13 @@ export class AnsibleAutomationModal extends React.Component {
   async handleSubmitClick() {
     const { yamlMsg } = this.state
     const {latestJSON, action} = await this.generateJSON()
-    if (yamlMsg.msg && latestJSON && action) {
+    if (!yamlMsg.msg && latestJSON && action) {
       const {data:resData} = await this.props.handleModifyPolicyAutomation(latestJSON, action)
       const errors = _.get(resData, 'modifyPolicyAutomation.errors')
       if (Array.isArray(errors) && errors.length > 0)  {
         const error = errors[0]
         if (_.get(error, 'kind') === 'PolicyAutomation' && _.get(error, 'message')) {
-          this.setState({
-            queryMsg: {
-              msg: _.get(error, 'message'),
-              type: 'danger',
-            }
-          })
+          this.setQueryAlert(_.get(error, 'message'), 'danger')
         }
       } else {
         this.handleCloseClick('directlyClose')
@@ -257,12 +260,7 @@ export class AnsibleAutomationModal extends React.Component {
       let ifChanged = false
       if (initialJSON && latestJSON && _.isEqual(initialJSON, latestJSON)) {
         ifChanged = true
-        this.setState({
-          queryMsg: {
-            msg: msgs.get('ansible.unsaved.data', locale),
-            type: 'warning',
-          }
-        })
+        this.setQueryAlert(msgs.get('ansible.unsaved.data', locale), 'warning')
       }
       if (confirmClose || !ifChanged) {
         handleClose(modalType)
@@ -280,21 +278,19 @@ export class AnsibleAutomationModal extends React.Component {
     const {jobTemplateName, credentialName, credentialNS,
       ansScheduleMode, initialJSON
     } = this.state
-    const { data:policyData} = this.props
+    const { data:policyData } = this.props
     const policyName = _.get(policyData, 'name')
     const policyNS = _.get(policyData, 'namespace')
-    if (jobTemplateName && credentialName && credentialNS && ansScheduleMode && policyName && policyNS) {
+    if (jobTemplateName && credentialName && credentialNS && ansScheduleMode
+       && policyName && policyNS) {
       // step to copy secret to target ns
-      const secretData = await this.props.handleCopyAnsibleSecret(credentialName, credentialNS, policyNS)
+      const secretData = await this.props.handleCopyAnsibleSecret(
+        credentialName, credentialNS, policyNS
+      )
       const secretName = _.get(secretData, 'data.copyAnsibleSecret.name')
       const secretErrors = _.get(secretData, 'errors')
       if (Array.isArray(secretErrors) && secretErrors.length > 0) {
-        this.setState({
-          queryMsg: {
-            msg: _.get(secretErrors[0], 'message'),
-            type: 'danger',
-          }
-        })
+        this.setQueryAlert(_.get(secretErrors[0], 'message'), 'danger')
       } else if (secretName) {
         const policyAutoName = `${policyName}-policy-automation`
         const policyAutoNS = policyNS
@@ -307,8 +303,8 @@ export class AnsibleAutomationModal extends React.Component {
           action = 'patch'
           resourceVersion = _.get(initialJSON, 'metadata.resourceVersion')
           if (ansScheduleMode !== 'manual') { // override existing annotations
-            const initialAnnotations = _.get(initialJSON, 'metadata.annotations')
-            if (initialAnnotations && initialAnnotations['policy.open-cluster-management.io/rerun'] === 'true') {
+            const preAnnotations = _.get(initialJSON, 'metadata.annotations')
+            if (preAnnotations && preAnnotations['policy.open-cluster-management.io/rerun'] === 'true') {
               annotations = {'policy.open-cluster-management.io/rerun':'false'}
             }
           }
@@ -323,8 +319,9 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   render() {
-    const { data:policyData, locale, open, reqErrorMsg, reqStatus } = this.props
-    const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON, initializeFinished, policyAutoName } = this.state
+    const { data:policyData, locale, open } = this.props
+    const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
+      initializeFinished, policyAutoName } = this.state
     const policyNS = _.get(policyData, 'namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
     const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
@@ -335,13 +332,13 @@ export class AnsibleAutomationModal extends React.Component {
         {( result ) => {
           const { loading } = result
           const { data={} } = result
-          const readyFlag = (initializeFinished && !(reqStatus === REQUEST_STATUS.IN_PROGRESS || loading))
+          const readyFlag = (initializeFinished && !loading)
           const titleText = readyFlag
             ? msgs.get(`ansible.automation.heading.${panelType}`, locale)
             : msgs.get('ansible.loading.info', locale)
-          const alertFlag = (yamlMsg.msg || queryMsg.msg ||reqStatus === REQUEST_STATUS.ERROR)
+          const alertFlag = (yamlMsg.msg || queryMsg.msg)
           const alertVariant = (yamlMsg.type || queryMsg.type || 'danger')
-          const alertTitle = (yamlMsg.msg || queryMsg.msg || reqErrorMsg || msgs.get('error.default.description', locale))
+          const alertTitle = (yamlMsg.msg || queryMsg.msg || msgs.get('error.default.description', locale))
           return (
             <React.Fragment>
               <AcmModal
@@ -353,70 +350,88 @@ export class AnsibleAutomationModal extends React.Component {
               onClose={this.handleCloseClick}
               title={titleText}
               actions={[
-                <AcmButton key="confirm" variant={ButtonVariant.primary} onClick={this.handleSubmitClick}>
+                <AcmButton
+                  key="confirm"
+                  variant={ButtonVariant.primary}
+                  onClick={this.handleSubmitClick}
+                >
                     {msgs.get('modal.button.save', locale)}
                 </AcmButton>,
-                <AcmButton key="cancel" variant={ButtonVariant.link} onClick={this.handleCloseClick}>
+                <AcmButton
+                  key="cancel"
+                  variant={ButtonVariant.link}
+                  onClick={this.handleCloseClick}
+                >
                     {msgs.get('modal.button.cancel', locale)}
                 </AcmButton>,
               ]}
             >
               {!readyFlag && <Spinner className='patternfly-spinner' />}
-              {readyFlag && <React.Fragment>
-                <React.Fragment>
-                  {alertFlag &&
-                    <AcmAlert
-                      isInline={true}
-                      noClose={true}
-                      variant={alertVariant}
-                      title={alertTitle} />}
-                </React.Fragment>
-                <Text>
-                  {msgs.get(`ansible.automation.description.${panelType}`, locale)}
-                </Text>
-                <Text>
-                  {msgs.get('table.header.policy.name', locale)}
-                </Text>
-                <Text>
-                  {policyData.name}
-                </Text>
-                <Text>
-                  {msgs.get('table.header.cluster.violation', locale)}
-                </Text>
-                <Text>
-                  {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
-                </Text>
-                <Text>
-                  {msgs.get('ansible.launch.connection', locale)}
-                </Text>
-                <div>
-                  {towerURL && this.renderURL('towerURL', towerURL, towerURL, 60)}
-                </div>
-                <Nav onSelect={this.onSelect} variant="tertiary">
-                  <NavList>
-                    <NavItem key={'Configure'} itemId={0} isActive={activeItem === 0} href="#">
-                      Configure
-                    </NavItem>
-                    <NavItem key={'History'} itemId={1} isActive={activeItem === 1} href="#">
-                      History
-                    </NavItem>
-                  </NavList>
-                </Nav>
-                <div className='ansible-table'>
-                {activeItem===0 && data && <div className='ansible-configure-table'>
-                  {this.renderAnsibleCredentialsSelection(data, locale)}
-                </div>}
-                {activeItem===1 && data && <div className='ansible-history-table'>
-                  {this.renderAnsibleHisotry(data)}
-                </div>}
-              </div>
-              </React.Fragment>}
+              {readyFlag && this.renderAnsiblePanelContent({
+                alertFlag, alertVariant, alertTitle, panelType,
+                policyData, data, towerURL, activeItem, locale})
+              }
             </AcmModal>
           </React.Fragment>
           )
         }}
       </Query>
     )
+  }
+
+  renderAnsiblePanelContent = ({
+    alertFlag, alertVariant, alertTitle, panelType,
+    policyData, data, towerURL, activeItem, locale
+  }) => {
+    return <React.Fragment>
+    <React.Fragment>
+      {alertFlag &&
+          <AcmAlert
+            isInline={true}
+            noClose={true}
+            variant={alertVariant}
+            title={alertTitle} />}
+      </React.Fragment>
+      <Text>
+        {msgs.get(`ansible.automation.description.${panelType}`, locale)}
+      </Text>
+      <Text>
+        {msgs.get('table.header.policy.name', locale)}
+      </Text>
+      <Text>
+        {policyData.name}
+      </Text>
+      <Text>
+        {msgs.get('table.header.cluster.violation', locale)}
+      </Text>
+      <Text>
+        {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
+      </Text>
+      <Text>
+        {msgs.get('ansible.launch.connection', locale)}
+      </Text>
+      <div>
+        {towerURL && this.renderURL('towerURL', towerURL, towerURL, 60)}
+      </div>
+      <Nav onSelect={this.onSelect} variant="tertiary">
+        <NavList>
+          <NavItem key={'Configure'} itemId={0} isActive={activeItem === 0} href="#">
+            Configure
+          </NavItem>
+          <NavItem key={'History'} itemId={1} isActive={activeItem === 1} href="#">
+            History
+          </NavItem>
+        </NavList>
+      </Nav>
+      <div className='ansible-table'>
+      {activeItem===0 && data && <div className='ansible-configure-table'>
+        {this.renderAnsibleCredentialsSelection(data, locale)}
+      </div>}
+      {activeItem===1 && data && <div className='ansible-history-table'>
+        {this.renderAnsibleHisotry(data)}
+      </div>}
+    </div>
+  </React.Fragment>
   }
 
   renderURL = (id, text, URL, truncateLength) => {
@@ -445,7 +460,8 @@ export class AnsibleAutomationModal extends React.Component {
     const {credentialName, credentialNS} = this.state
     const ansibleConnection = {towerURL:'', token:''}
     const targetCredential = _.find(ansCredentials, ['name', credentialName])
-    if (targetCredential && targetCredential.namespace && targetCredential.host && targetCredential.token) {
+    if (targetCredential && targetCredential.namespace
+      && targetCredential.host && targetCredential.token) {
       if (credentialNS !== targetCredential.namespace) {
         this.setState({
           credentialNS: targetCredential.namespace,
@@ -458,7 +474,7 @@ export class AnsibleAutomationModal extends React.Component {
     return ansibleConnection
   }
 
-  renderAnsibleCredentialsSelection(credentialsData, locale) {
+  renderAnsibleCredentialsSelection = (credentialsData, locale) => {
     const ansCredentials = credentialsData.ansibleCredentials
     const ansCredentialFlag = Array.isArray(ansCredentials) && ansCredentials.length > 0
     const {credentialName, credentialIsOpen} = this.state
@@ -487,14 +503,24 @@ export class AnsibleAutomationModal extends React.Component {
             />
           ))}
         </Select>
-        {this.renderURL('createCredentialLink', msgs.get('ansible.launch.createCredential', locale), '/multicloud/credentials')}
-        {credentialName && this.renderAnsibleJobTemplatesSelection(this.getAnsibleConnection(ansCredentials), locale)}
+        {this.renderURL(
+          'createCredentialLink',
+          msgs.get('ansible.launch.createCredential', locale),
+          '/multicloud/credentials'
+        )}
+        {credentialName && this.renderAnsibleJobTemplatesSelection(
+          this.getAnsibleConnection(ansCredentials), locale
+        )}
       </React.Fragment>}
       {!ansCredentialFlag &&
         <React.Fragment>
           <Text>
             {msgs.get('ansible.no.credential', locale)}
-            {this.renderURL('createCredentialLink', msgs.get('ansible.launch.createCredential', locale), '/multicloud/credentials')}
+            {this.renderURL(
+              'createCredentialLink',
+              msgs.get('ansible.launch.createCredential', locale),
+              '/multicloud/credentials'
+            )}
           </Text>
         </React.Fragment>
       }
@@ -515,7 +541,7 @@ export class AnsibleAutomationModal extends React.Component {
     })
   }
 
-  renderAnsibleJobTemplatesSelection(ansibleConnection, locale) {
+  renderAnsibleJobTemplatesSelection = (ansibleConnection, locale) => {
     return <React.Fragment>
       <Query query={GET_ANSIBLE_JOB_TEMPLATE} variables={ansibleConnection}>
         {( result ) => {
@@ -575,7 +601,7 @@ export class AnsibleAutomationModal extends React.Component {
     })
   }
 
-  renderAnsibleJobTemplateEditor() {
+  renderAnsibleJobTemplateEditor = () => {
     const { locale } = this.props
     const { extraVars } = this.state
     return (
@@ -600,7 +626,7 @@ export class AnsibleAutomationModal extends React.Component {
     this.setState({ansScheduleMode:value})
   };
 
-  renderAnsibleScheduleMode() {
+  renderAnsibleScheduleMode = () => {
     const { locale } = this.props
     const {ansScheduleMode} = this.state
     return <React.Fragment>
@@ -611,14 +637,29 @@ export class AnsibleAutomationModal extends React.Component {
         {msgs.get('ansible.scheduleMode.info', locale)}
       </Text>
       <React.Fragment>
-        {this.renderAnsibleScheduleRadio((ansScheduleMode==='manual'), 'manualRadio', 'manualRadio', 'manual')}
-        {this.renderAnsibleScheduleRadio((ansScheduleMode==='once'), 'onceRadio', 'onceRadio', 'once')}
-        {this.renderAnsibleScheduleRadio((ansScheduleMode==='disabled'), 'disableRadio', 'disableRadio', 'disabled')}
+        {this.renderAnsibleScheduleRadio(
+          (ansScheduleMode==='manual'),
+          'manualRadio',
+          'manualRadio',
+          'manual'
+        )}
+        {this.renderAnsibleScheduleRadio(
+          (ansScheduleMode==='once'),
+          'onceRadio',
+          'onceRadio',
+          'once'
+        )}
+        {this.renderAnsibleScheduleRadio(
+          (ansScheduleMode==='disabled'),
+          'disableRadio',
+          'disableRadio',
+          'disabled'
+        )}
       </React.Fragment>
     </React.Fragment>
   }
 
-  renderAnsibleScheduleRadio(isChecked, name, id, value) {
+  renderAnsibleScheduleRadio = (isChecked, name, id, value) => {
     const { locale } = this.props
     return <Radio
       isChecked={isChecked}
@@ -631,7 +672,7 @@ export class AnsibleAutomationModal extends React.Component {
     />
   }
 
-  renderAnsibleHisotry(historyData) {
+  renderAnsibleHisotry = (historyData) => {
     const { locale } = this.props
     const tableData = transformNew(_.get(historyData, 'items', []), ansibleJobHistoryDef, locale)
     return <AcmTable
@@ -647,22 +688,13 @@ export class AnsibleAutomationModal extends React.Component {
 }
 
 AnsibleAutomationModal.propTypes = {
-  data: PropTypes.shape({
-    metadata: PropTypes.object,
-    name: PropTypes.string,
-    namespace: PropTypes.string,
-    copyAnsibleSecret: {
-      name: PropTypes.string,
-    }
-  }),
+  data: PropTypes.object,
   handleClose: PropTypes.func,
   handleCopyAnsibleSecret: PropTypes.func,
   handleGetPolicyAutomation: PropTypes.func,
   handleModifyPolicyAutomation: PropTypes.func,
   locale: PropTypes.string,
-  open:  PropTypes.bool,
-  reqErrorMsg:  PropTypes.string,
-  reqStatus:  PropTypes.string,
+  open: PropTypes.bool,
   type: PropTypes.string,
 }
 
