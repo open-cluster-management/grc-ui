@@ -62,10 +62,11 @@ if (window.monaco) {
 export class AnsibleAutomationModal extends React.Component {
   constructor(props) {
     super(props)
+    const { open } = this.props
     this.handleSubmitClick = this.handleSubmitClick.bind(this)
     this.handleCloseClick = this.handleCloseClick.bind(this)
     this.state = {
-      openDrawer: false,
+      openDrawer: open,
       initializeFinished: false,
       activeItem: 0,
       credentialName: null,
@@ -140,8 +141,9 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   async initialize(){
-    const {  policyData, handleGetPolicyAutomation } = this.props
-    const { policyName, policyNS } = policyData
+    const {  data:policyData, handleGetPolicyAutomation } = this.props
+    const policyName = _.get(policyData, 'name')
+    const policyNS = _.get(policyData, 'namespace')
     // step to check and loading exisiting policyAutomations
     const {data:initialData} = await handleGetPolicyAutomation(policyNS)
     const policyAutomations = initialData.policyAutomations
@@ -229,7 +231,7 @@ export class AnsibleAutomationModal extends React.Component {
   async handleSubmitClick() {
     const { yamlMsg } = this.state
     const {latestJSON, action} = await this.generateJSON()
-    if (yamlMsg.msg && latestJSON && action) {
+    if (!yamlMsg.msg && latestJSON && action) {
       const {data:resData} = await this.props.handleModifyPolicyAutomation(latestJSON, action)
       const errors = _.get(resData, 'modifyPolicyAutomation.errors')
       if (Array.isArray(errors) && errors.length > 0)  {
@@ -252,9 +254,6 @@ export class AnsibleAutomationModal extends React.Component {
     const { type:modalType, handleClose, locale } = this.props
     if (directlyClose === 'directlyClose') {
       handleClose(modalType)
-      this.setState({
-        openDrawer: false
-      })
     } else {
       const { initialJSON, confirmClose } = this.state
       const { latestJSON } = await this.generateJSON()
@@ -270,9 +269,6 @@ export class AnsibleAutomationModal extends React.Component {
       }
       if (confirmClose || !ifChanged) {
         handleClose(modalType)
-        this.setState({
-          openDrawer: false
-        })
       } else {
         // prevent double-click
         setTimeout(this.setState({
@@ -287,8 +283,9 @@ export class AnsibleAutomationModal extends React.Component {
     const {jobTemplateName, credentialName, credentialNS,
       ansScheduleMode, initialJSON
     } = this.state
-    const { policyData } = this.props
-    const { policyName, policyNS } = policyData
+    const { data:policyData } = this.props
+    const policyName = _.get(policyData, 'name')
+    const policyNS = _.get(policyData, 'namespace')
     if (jobTemplateName && credentialName && credentialNS && ansScheduleMode && policyName && policyNS) {
       // step to copy secret to target ns
       const secretData = await this.props.handleCopyAnsibleSecret(credentialName, credentialNS, policyNS)
@@ -328,22 +325,17 @@ export class AnsibleAutomationModal extends React.Component {
     return {latestJSON, action}
   }
 
-  openAnsibleDrawer = () => {
-    this.setState({
-      openDrawer: true
-    })
-  }
-
   render() {
-    const { policyData, locale } = this.props
+    console.log(JSON.stringify(this.props))
+    console.log(JSON.stringify(this.state))
+    const { data:policyData, locale } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
       initializeFinished, policyAutoName, openDrawer } = this.state
-    const { policyNS } = policyData
+      const policyNS = _.get(policyData, 'namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
     const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
     const pollInterval = activeItem ? 10000 : 0
     const panelType = initialJSON ? 'edit' : 'create'
-    console.log(JSON.stringify(this.state))
     return (
       <Query query={query} pollInterval={pollInterval} variables={variables}>
         {( result ) => {
@@ -366,8 +358,8 @@ export class AnsibleAutomationModal extends React.Component {
                   <React.Fragment>
                     {!readyFlag && <Spinner className='patternfly-spinner' />}
                     {readyFlag && this.renderAnsiblePanelContent({
-                      alertFlag, alertVariant, alertTitle, panelType, policyData, data,
-                      towerURL, activeItem, locale
+                      alertFlag, alertVariant, alertTitle, panelType,
+                      policyData, data, towerURL, activeItem, locale
                     })}
                     <ActionGroup>
                       <AcmButton key="confirm" variant={ButtonVariant.primary} onClick={this.handleSubmitClick}>
@@ -381,9 +373,6 @@ export class AnsibleAutomationModal extends React.Component {
                 }
             >
             </AcmDrawer>
-            <AcmButton key="openAnsibleDrawer" onClick={this.openAnsibleDrawer}>
-            {'Ansible tower'}
-            </AcmButton>
           </React.Fragment>
           )
         }}
@@ -674,17 +663,13 @@ export class AnsibleAutomationModal extends React.Component {
 }
 
 AnsibleAutomationModal.propTypes = {
+  data: PropTypes.object,
   handleClose: PropTypes.func,
   handleCopyAnsibleSecret: PropTypes.func,
   handleGetPolicyAutomation: PropTypes.func,
   handleModifyPolicyAutomation: PropTypes.func,
   locale: PropTypes.string,
-  policyData: PropTypes.shape({
-    compliant:PropTypes.string,
-    clusterCompliant:PropTypes.string,
-    policyName:PropTypes.string,
-    policyNS:PropTypes.string
-  }),
+  open: PropTypes.string,
   type: PropTypes.string,
 }
 

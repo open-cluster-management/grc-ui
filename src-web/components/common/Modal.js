@@ -15,10 +15,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import loadable from '@loadable/component'
 
-let RemoveResourceModal, PolicyActionModal
+let RemoveResourceModal, PolicyActionModal, AnsibleAutomationPanel
 
 const Modal = ({ type, open, ...rest }) => {
   switch (type) {
+  case 'resource-automation':
+    return open && getAnsibleAutomationPanel({ type, open, ...rest })
   case 'resource-remove':
     return open && getRemoveResourceModal({ type, open, ...rest })
   case 'resource-disable':
@@ -31,21 +33,28 @@ const Modal = ({ type, open, ...rest }) => {
   }
 }
 
+const getAnsibleAutomationPanel = props => {
+  AnsibleAutomationPanel = AnsibleAutomationPanel === undefined
+    ? loadable(() => import(/* webpackChunkName: "ansible-job-modal" */ '../common/AnsibleAutomationPanel'))
+    : AnsibleAutomationPanel
+  return getComponent(AnsibleAutomationPanel, props)
+}
+
 const getPolicyActionModal = props => {
   PolicyActionModal = PolicyActionModal === undefined
     ? loadable(() => import(/* webpackChunkName: "policy-action-modal" */ '../modals/PolicyActionModal'))
     : PolicyActionModal
-  return getModal(PolicyActionModal, props)
+  return getComponent(PolicyActionModal, props)
 }
 
 const getRemoveResourceModal = props => {
   RemoveResourceModal = RemoveResourceModal === undefined
     ? loadable(() => import(/* webpackChunkName: "remove-resource-modal" */ '../modals/RemoveResourceModal'))
     : RemoveResourceModal
-  return getModal(RemoveResourceModal, props)
+  return getComponent(RemoveResourceModal, props)
 }
 
-const getModal = (Component, props) => <Component {...props} />
+const getComponent = (Component, props) => <Component {...props} />
 
 const mapStateToProps = state => state.modal
 
