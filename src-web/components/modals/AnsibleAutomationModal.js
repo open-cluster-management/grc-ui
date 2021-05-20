@@ -138,7 +138,7 @@ export class AnsibleAutomationModal extends React.Component {
     return jsonTemp
   }
 
-  async initialize(){
+  initialize = async () => {
     const {  data:policyData, handleGetPolicyAutomation } = this.props
     const policyName = _.get(policyData, 'name')
     const policyNS = _.get(policyData, 'namespace')
@@ -237,7 +237,7 @@ export class AnsibleAutomationModal extends React.Component {
     })
   }
 
-  async handleSubmitClick() {
+  handleSubmitClick = async () => {
     const { yamlMsg } = this.state
     const {latestJSON, action} = await this.generateJSON()
     if (!yamlMsg.msg && latestJSON && action) {
@@ -254,7 +254,7 @@ export class AnsibleAutomationModal extends React.Component {
     }
   }
 
-  async handleCloseClick(directlyClose) {
+  handleCloseClick = async(directlyClose) => {
     const { type:modalType, handleClose, locale } = this.props
     if (directlyClose === 'directlyClose') {
       handleClose(modalType)
@@ -280,7 +280,7 @@ export class AnsibleAutomationModal extends React.Component {
     }
   }
 
-  async generateJSON() {
+  generateJSON = async () => {
     let latestJSON, action ='post'
     const {jobTemplateName, credentialName, credentialNS,
       ansScheduleMode, initialJSON
@@ -322,11 +322,7 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   getQueryError = error => {
-    const graphQLErrors = _.get(error, 'graphQLErrors')
-    if (Array.isArray(graphQLErrors) && graphQLErrors.length > 0) {
-      return graphQLErrors[0].message
-    }
-     return ''
+     return _.get(error, 'message') || ''
   }
 
   render() {

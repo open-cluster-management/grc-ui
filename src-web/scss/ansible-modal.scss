@@ -1,44 +1,46 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
-.pf-c-modal-box__title-icon {
-  margin-right:0rem
-}
-
-.pf-c-nav__list {
-  padding-bottom: 0.875rem;
-}
-
-.pf-c-title.pf-m-lg {
-  padding-top: 0.875rem;
-  padding-bottom: 0.25rem;
-}
-
-.pf-c-button.pf-m-link {
-  padding-left: 0rem;
-}
-
-.pf-c-modal-box	{
-  --pf-c-modal-box__body--MinHeight: 80vh;
-  --pf-c-modal-box--MaxHeight: 98vh;
-}
-
-.pf-c-nav.pf-m-horizontal .pf-c-nav__link, .pf-c-nav.pf-m-tertiary .pf-c-nav__link {
-  font-weight: 600;
-  padding-left: 0rem;
-}
-
-.pf-c-radio {
-  padding-top: 0.875rem;
-  .pf-c-radio__label {
-    font-weight: 600;
+#automation-resource-panel {
+  .pf-c-modal-box__title-icon {
+    margin-right:0rem
   }
-}
-
-.ansible_scheduleMode_info {
-  font-size: 0.875rem;
-}
-
-.pf-c-table tr > * {
-  padding-left: 0rem;
+  
+  .pf-c-nav__list {
+    padding-bottom: 0.875rem;
+  }
+  
+  .pf-c-title.pf-m-lg {
+    padding-top: 0.875rem;
+    padding-bottom: 0.25rem;
+  }
+  
+  .pf-c-button.pf-m-link {
+    padding-left: 0rem;
+  }
+  
+  .pf-c-modal-box	{
+    --pf-c-modal-box__body--MinHeight: 80vh;
+    --pf-c-modal-box--MaxHeight: 98vh;
+  }
+  
+  .pf-c-nav.pf-m-horizontal .pf-c-nav__link, .pf-c-nav.pf-m-tertiary .pf-c-nav__link {
+    font-weight: 600;
+    padding-left: 0rem;
+  }
+  
+  .pf-c-radio {
+    padding-top: 0.875rem;
+    .pf-c-radio__label {
+      font-weight: 600;
+    }
+  }
+  
+  .ansible_scheduleMode_info {
+    font-size: 0.875rem;
+  }
+  
+  .pf-c-table tr > * {
+    padding-left: 0rem;
+  }
 }
