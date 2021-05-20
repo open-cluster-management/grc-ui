@@ -37,6 +37,8 @@ import TruncateText from '../../components/common/TruncateText'
 import _ from 'lodash'
 import jsYaml from 'js-yaml'
 
+import '../../scss/ansible-modal.scss'
+
 if (window.monaco) {
   window.monaco.editor.defineTheme('console', {
     base: 'vs-dark',
@@ -149,7 +151,7 @@ export class AnsibleAutomationModal extends React.Component {
       if (targetPolicyAutomation) {
         const policyAutoName = _.get(targetPolicyAutomation, 'metadata.name')
         const policyAutoNS = _.get(targetPolicyAutomation, 'metadata.namespace')
-        const annotations = _.get(targetPolicyAutomation, 'metadata.annotations')
+        let annotations = _.get(targetPolicyAutomation, 'metadata.annotations')
         const resourceVersion = _.get(targetPolicyAutomation, 'metadata.resourceVersion')
         const credentialName = _.get(targetPolicyAutomation, 'spec.automationDef.secret')
         const jobTemplateName = _.get(targetPolicyAutomation, 'spec.automationDef.name')
@@ -158,6 +160,8 @@ export class AnsibleAutomationModal extends React.Component {
         let ansScheduleMode = _.get(targetPolicyAutomation, 'spec.mode')
         if (annotations && annotations['policy.open-cluster-management.io/rerun'] === 'true') {
           ansScheduleMode = 'manual'
+        } else {
+          annotations = {'policy.open-cluster-management.io/rerun':'false'}
         }
         const initialJSON = this.buildPolicyAutomationJSON({
           policyAutoName, policyAutoNS, policyName, annotations, resourceVersion,
@@ -258,7 +262,7 @@ export class AnsibleAutomationModal extends React.Component {
       const { initialJSON, confirmClose } = this.state
       const { latestJSON } = await this.generateJSON()
       let ifChanged = false
-      if (initialJSON && latestJSON && _.isEqual(initialJSON, latestJSON)) {
+      if (initialJSON && latestJSON && !_.isEqual(initialJSON, latestJSON)) {
         ifChanged = true
         this.setQueryAlert(msgs.get('ansible.unsaved.data', locale), 'warning')
       }
@@ -297,17 +301,13 @@ export class AnsibleAutomationModal extends React.Component {
         let annotations = ''
         if (ansScheduleMode === 'manual') {
           annotations = {'policy.open-cluster-management.io/rerun':'true'}
+        } else {
+          annotations = {'policy.open-cluster-management.io/rerun':'false'}
         }
         let resourceVersion = ''
         if (initialJSON) {
           action = 'patch'
           resourceVersion = _.get(initialJSON, 'metadata.resourceVersion')
-          if (ansScheduleMode !== 'manual') { // override existing annotations
-            const preAnnotations = _.get(initialJSON, 'metadata.annotations')
-            if (preAnnotations && preAnnotations['policy.open-cluster-management.io/rerun'] === 'true') {
-              annotations = {'policy.open-cluster-management.io/rerun':'false'}
-            }
-          }
         }
         latestJSON = this.buildPolicyAutomationJSON({
           policyAutoName, policyAutoNS, policyName, annotations, resourceVersion,
@@ -349,6 +349,7 @@ export class AnsibleAutomationModal extends React.Component {
               showClose={true}
               onClose={this.handleCloseClick}
               title={titleText}
+              positionOffset={0.5}
               actions={[
                 <AcmButton
                   key="confirm"
@@ -366,7 +367,9 @@ export class AnsibleAutomationModal extends React.Component {
                 </AcmButton>,
               ]}
             >
-              {!readyFlag && <Spinner className='patternfly-spinner' />}
+              <div>
+                {!readyFlag && <Spinner className='patternfly-spinner' />}
+              </div>
               {readyFlag && this.renderAnsiblePanelContent({
                 alertFlag, alertVariant, alertTitle, panelType,
                 policyData, data, towerURL, activeItem, locale})
@@ -395,21 +398,21 @@ export class AnsibleAutomationModal extends React.Component {
       <Text>
         {msgs.get(`ansible.automation.description.${panelType}`, locale)}
       </Text>
-      <Text>
+      <Title headingLevel="h3">
         {msgs.get('table.header.policy.name', locale)}
-      </Text>
+      </Title>
       <Text>
         {policyData.name}
       </Text>
-      <Text>
+      <Title headingLevel="h3">
         {msgs.get('table.header.cluster.violation', locale)}
-      </Text>
+      </Title>
       <Text>
         {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
       </Text>
-      <Text>
+      <Title headingLevel="h3">
         {msgs.get('ansible.launch.connection', locale)}
-      </Text>
+      </Title>
       <div>
         {towerURL && this.renderURL('towerURL', towerURL, towerURL, 60)}
       </div>
@@ -482,7 +485,7 @@ export class AnsibleAutomationModal extends React.Component {
       <React.Fragment>
       {ansCredentialFlag &&
       <React.Fragment>
-        <Title headingLevel="h2">
+        <Title headingLevel="h3">
           {msgs.get('ansible.credential.selection.title', locale)}
         </Title>
         <Select
@@ -552,11 +555,13 @@ export class AnsibleAutomationModal extends React.Component {
           const {jobTemplateName, jobTemplateIsOpen} = this.state
           return (
             <React.Fragment>
-            {loading && <Spinner className='patternfly-spinner' />}
+            <div>
+              {loading && <Spinner className='patternfly-spinner' />}
+            </div>
             <React.Fragment>
             {ansJobTemplateFlag &&
               <React.Fragment>
-              <Title headingLevel="h2">
+              <Title headingLevel="h3">
                 {msgs.get('ansible.jobTemplates.selection.title', locale)}
               </Title>
               <Select
@@ -606,7 +611,7 @@ export class AnsibleAutomationModal extends React.Component {
     const { extraVars } = this.state
     return (
       <div>
-        <Title headingLevel="h2">
+        <Title headingLevel="h3">
           {msgs.get('ansible.jobTemplates.editor.title', locale)}
         </Title>
         <MonacoEditor
@@ -630,10 +635,10 @@ export class AnsibleAutomationModal extends React.Component {
     const { locale } = this.props
     const {ansScheduleMode} = this.state
     return <React.Fragment>
-      <Title headingLevel="h2">
+      <Title headingLevel="h3">
         {msgs.get('ansible.scheduleMode.title', locale)}
       </Title>
-      <Text>
+      <Text className='ansible_scheduleMode_info'>
         {msgs.get('ansible.scheduleMode.info', locale)}
       </Text>
       <React.Fragment>
