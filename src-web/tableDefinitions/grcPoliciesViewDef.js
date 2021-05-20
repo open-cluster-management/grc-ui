@@ -68,13 +68,13 @@ export default {
       transformFunction: getPolicyCompliantStatus,
     },
     {
-      label: 'standards',
-      msgKey: 'table.header.standards',
-      resourceKey: 'metadata.annotations["policy.open-cluster-management.io/standards"]',
+      label: 'controls',
+      msgKey: 'table.header.controls',
+      resourceKey: 'metadata.annotations["policy.open-cluster-management.io/controls"]',
       searchable: true,
       sortable: true,
       transforms: [wrappable],
-      transformFunction: getStandards,
+      transformFunction: getControls,
     },
     // Expandable table subrows
     {
@@ -87,13 +87,13 @@ export default {
       transformFunction: getCategories,
     },
     {
-      label: 'controls',
-      msgKey: 'table.header.controls',
-      resourceKey: 'metadata.annotations["policy.open-cluster-management.io/controls"]',
+      label: 'standards',
+      msgKey: 'table.header.standards',
+      resourceKey: 'metadata.annotations["policy.open-cluster-management.io/standards"]',
       searchable: true,
       subRow: true,
       transforms: [wrappable],
-      transformFunction: getControls,
+      transformFunction: getStandards,
     },
     {
       label: 'automation',
