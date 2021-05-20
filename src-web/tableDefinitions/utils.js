@@ -30,6 +30,7 @@ import { LocaleContext } from '../components/common/LocaleContext'
 import purifyReactNode from '../utils/PurifyReactNode'
 import { POLICY_AUTOMATIONS } from '../utils/client/queries'
 import { Query } from '@apollo/client/react/components'
+import ExternalLinkAltIcon from '@patternfly/react-icons/dist/js/icons/external-link-alt-icon'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
@@ -392,14 +393,21 @@ export function getAutomationLink(item, locale) {
     {( result ) => {
       const { data={policyAutomations: []} } = result
       let found = false
+      let automationName = ''
       data.policyAutomations.forEach((automation) => {
-        if (automation.metadata && automation.metadata.name === item.metadata.name) {
+        if (automation.spec && automation.spec.policyRef === item.metadata.name) {
           found = true
+          automationName = automation.metadata.name
         }
       })
       return (
         <Button component="a" variant="link" className="automationButton">
-          {found ? msgs.get('table.actions.automation.edit', locale) : msgs.get('table.actions.automation.configure', locale)}
+          {found ? (
+            <Label>
+              <span className="automationLabel">{automationName}</span>
+              <ExternalLinkAltIcon></ExternalLinkAltIcon>
+            </Label>
+          ) : msgs.get('table.actions.automation.configure', locale)}
         </Button>
       )
     }}
