@@ -20,8 +20,12 @@
   }
   
   .pf-c-modal-box	{
-    --pf-c-modal-box__body--MinHeight: 80vh;
+    --pf-c-modal-box__body--MinHeight: 70vh;
     --pf-c-modal-box--MaxHeight: 98vh;
+  }
+  
+  .pf-c-nav.pf-m-tertiary .pf-c-nav__link::before {
+    left: 0rem;
   }
   
   .pf-c-nav.pf-m-horizontal .pf-c-nav__link, .pf-c-nav.pf-m-tertiary .pf-c-nav__link {
