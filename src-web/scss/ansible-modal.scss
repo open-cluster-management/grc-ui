@@ -1,9 +1,13 @@
-/* Copyright (c) 2020 Red Hat, Inc. */
+/* Copyright (c) 2021 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
 #automation-resource-panel {
   .pf-c-modal-box__title-icon {
     margin-right:0rem
+  }
+
+  p {
+    font-size: 0.875rem;
   }
   
   .pf-c-nav__list {
@@ -46,5 +50,17 @@
   
   .pf-c-table tr > * {
     padding-left: 0rem;
+  }
+
+  .titleWithTooltip {
+    display: flex;
+    span {
+      padding-left: 0.375rem;
+      padding-top: 1.125rem;
+      img {
+        width: 0.875rem;
+        height: 0.875rem;
+      }
+    }
   }
 }
