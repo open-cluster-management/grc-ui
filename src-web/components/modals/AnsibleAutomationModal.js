@@ -259,8 +259,11 @@ export class AnsibleAutomationModal extends React.Component {
     if (directlyClose === 'directlyClose') {
       handleClose(modalType)
     } else {
-      const { initialJSON, confirmClose } = this.state
+      const { initialJSON, confirmClose, credentialName } = this.state
       const { latestJSON } = await this.generateJSON()
+      if (_.get(latestJSON, 'spec.automationDef.secret')) {
+        latestJSON.spec.automationDef.secret = credentialName
+      }
       let ifChanged = false
       if (initialJSON && latestJSON && !_.isEqual(initialJSON, latestJSON)) {
         ifChanged = true
@@ -318,6 +321,14 @@ export class AnsibleAutomationModal extends React.Component {
     return {latestJSON, action}
   }
 
+  getQueryError = error => {
+    const graphQLErrors = _.get(error, 'graphQLErrors')
+    if (Array.isArray(graphQLErrors) && graphQLErrors.length > 0) {
+      return graphQLErrors[0].message
+    }
+     return ''
+  }
+
   render() {
     const { data:policyData, locale, open } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
@@ -331,14 +342,15 @@ export class AnsibleAutomationModal extends React.Component {
       <Query query={query} pollInterval={pollInterval} variables={variables}>
         {( result ) => {
           const { loading } = result
-          const { data={} } = result
+          const { error={}, data={} } = result
+          const queryError = this.getQueryError(error)
           const readyFlag = (initializeFinished && !loading)
           const titleText = readyFlag
             ? msgs.get(`ansible.automation.heading.${panelType}`, locale)
             : msgs.get('ansible.loading.info', locale)
-          const alertFlag = (yamlMsg.msg || queryMsg.msg)
+          const alertFlag = (queryError || yamlMsg.msg || queryMsg.msg)
           const alertVariant = (yamlMsg.type || queryMsg.type || 'danger')
-          const alertTitle = (yamlMsg.msg || queryMsg.msg || msgs.get('error.default.description', locale))
+          const alertTitle = (queryError || yamlMsg.msg || queryMsg.msg || msgs.get('error.default.description', locale))
           return (
             <React.Fragment>
               <AcmModal
@@ -549,9 +561,10 @@ export class AnsibleAutomationModal extends React.Component {
       <Query query={GET_ANSIBLE_JOB_TEMPLATE} variables={ansibleConnection}>
         {( result ) => {
           const { loading } = result
-          const { data={} } = result
+          const { data={}, error={} } = result
+          const queryError = this.getQueryError(error)
           const ansJobTemplates = data ? data.ansibleJobTemplates : data
-          const ansJobTemplateFlag = Array.isArray(ansJobTemplates) && ansJobTemplates.length > 0
+          const ansJobTemplateFlag = !queryError && Array.isArray(ansJobTemplates) && ansJobTemplates.length > 0
           const {jobTemplateName, jobTemplateIsOpen} = this.state
           return (
             <React.Fragment>
@@ -590,7 +603,7 @@ export class AnsibleAutomationModal extends React.Component {
                   isInline={true}
                   noClose={true}
                   variant='info'
-                  title={msgs.get('ansible.no.jobTemplates.info', locale)} />
+                  title={queryError ? queryError : msgs.get('ansible.no.jobTemplates.info', locale)} />
               }
             </React.Fragment>
           </React.Fragment>
@@ -679,7 +692,7 @@ export class AnsibleAutomationModal extends React.Component {
 
   renderAnsibleHisotry = (historyData) => {
     const { locale } = this.props
-    const tableData = transformNew(_.get(historyData, 'items', []), ansibleJobHistoryDef, locale)
+    const tableData = transformNew(_.get(historyData.items ? historyData : {'items':[]}, 'items', []), ansibleJobHistoryDef, locale)
     return <AcmTable
       showToolbar={false}
       autoHidePagination={true}
