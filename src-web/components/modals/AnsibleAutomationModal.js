@@ -121,8 +121,8 @@ export class AnsibleAutomationModal extends React.Component {
         mode,
         automationDef: {
           type: 'AnsibleJob',
-          name: stateJobTemplateName ? stateJobTemplateName : jobTemplateName,
-          secret: stateCredentialName ? stateCredentialName : credentialName,
+          name: jobTemplateName ? jobTemplateName : stateJobTemplateName,
+          secret: credentialName ? credentialName : stateCredentialName,
         },
       }
     }
@@ -502,7 +502,7 @@ export class AnsibleAutomationModal extends React.Component {
               key={credential.name}
               value={credential.name ? credential.name : '-'}
               isPlaceholder={credential.name ? credential.name : '-'}
-              description="Ansible Credentials Name"
+              description={`host: ${credential.host ? credential.host : '-'}`}
             />
           ))}
         </Select>
