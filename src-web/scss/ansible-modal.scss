@@ -2,6 +2,9 @@
 /* Copyright Contributors to the Open Cluster Management project */
 
 #automation-resource-panel {
+  position: absolute;
+  right: 2rem;
+
   .pf-c-modal-box__title-icon {
     margin-right:0rem
   }
@@ -24,8 +27,8 @@
   }
   
   .pf-c-modal-box	{
-    --pf-c-modal-box__body--MinHeight: 70vh;
-    --pf-c-modal-box--MaxHeight: 98vh;
+    --pf-c-modal-box__body--MinHeight: 88vh;
+    --pf-c-modal-box--MaxHeight: 90vh;
   }
   
   .pf-c-nav.pf-m-tertiary .pf-c-nav__link::before {
@@ -62,5 +65,9 @@
         height: 0.875rem;
       }
     }
+  }
+
+  .pf-c-modal-box__body {
+    min-height: 75vh;
   }
 }

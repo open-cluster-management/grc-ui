@@ -239,7 +239,8 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   handleSubmitClick = async () => {
-    const { yamlMsg } = this.state
+    const { yamlMsg, initialJSON } = this.state
+    const { locale } = this.props
     const {latestJSON, action} = await this.generateJSON()
     if (!yamlMsg.msg && latestJSON && action) {
       const {data:resData} = await this.props.handleModifyPolicyAutomation(latestJSON, action)
@@ -250,14 +251,18 @@ export class AnsibleAutomationModal extends React.Component {
           this.setQueryAlert(_.get(error, 'message'), 'danger')
         }
       } else {
-        this.handleCloseClick('directlyClose')
+        const panelType = initialJSON ? 'edit' : 'create'
+        const policyAutoName = _.get(latestJSON, 'metadata.name')
+        const policyAutoNS = _.get(latestJSON, 'metadata.namespace')
+        this.setQueryAlert(msgs.get(`ansible.${panelType}.success`, [policyAutoName, policyAutoNS], locale), 'success')
       }
     }
   }
 
-  handleCloseClick = async(directlyClose) => {
+  handleCloseClick = async() => {
+    const { queryMsg } = this.state
     const { type:modalType, handleClose, locale } = this.props
-    if (directlyClose === 'directlyClose') {
+    if (_.get(queryMsg, 'type') === 'success') {
       handleClose(modalType)
     } else {
       const { initialJSON, confirmClose, credentialName } = this.state
