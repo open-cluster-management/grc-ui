@@ -440,11 +440,13 @@ export class AnsibleAutomationModal extends React.Component {
       <Text>
         {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
       </Text>
-      {TitleWithTooltip(
-        msgs.get('ansible.tower.URL.title', locale),
-        msgs.get('ansible.launch.connection', locale),
-        'titleWithTooltip', 'h3', 'top'
-      )}
+      {TitleWithTooltip({
+        className: 'titleWithTooltip',
+        headingLevel: 'h3',
+        position: 'top',
+        title: msgs.get('ansible.tower.URL.title', locale),
+        tooltip: msgs.get('ansible.launch.connection', locale),
+      })}
       <div>
         {towerURL && this.renderURL('towerURL', towerURL, towerURL, 60)}
       </div>
@@ -517,11 +519,13 @@ export class AnsibleAutomationModal extends React.Component {
       <React.Fragment>
       {ansCredentialFlag &&
         <React.Fragment>
-          {TitleWithTooltip(
-            msgs.get('ansible.credential.selection.title', locale),
-            msgs.get('ansible.credential.selection.title', locale),
-            'titleWithTooltip', 'h3', 'top'
-           )}
+          {TitleWithTooltip({
+            className: 'titleWithTooltip',
+            headingLevel: 'h3',
+            position: 'top',
+            title: msgs.get('ansible.credential.selection.title', locale),
+            tooltip: msgs.get('ansible.credential.selection.title', locale),
+          })}
           <Select
             variant={SelectVariant.single}
             placeholderText={msgs.get('ansible.credential.selection.placeholder', locale)}
@@ -596,11 +600,13 @@ export class AnsibleAutomationModal extends React.Component {
             <React.Fragment>
             {ansJobTemplateFlag &&
               <React.Fragment>
-              {TitleWithTooltip(
-                msgs.get('ansible.jobTemplates.selection.title', locale),
-                msgs.get('ansible.jobTemplates.selection.title', locale),
-                'titleWithTooltip', 'h3', 'top'
-              )}
+              {TitleWithTooltip({
+                className: 'titleWithTooltip',
+                headingLevel: 'h3',
+                position: 'top',
+                title: msgs.get('ansible.jobTemplates.selection.title', locale),
+                tooltip: msgs.get('ansible.jobTemplates.selection.title', locale),
+              })}
               <Select
                 variant={SelectVariant.single}
                 placeholderText={msgs.get('ansible.jobTemplates.selection.placeholder', locale)}
@@ -648,11 +654,13 @@ export class AnsibleAutomationModal extends React.Component {
     const { extraVars } = this.state
     return (
       <div>
-       {TitleWithTooltip(
-          msgs.get('ansible.jobTemplates.editor.title', locale),
-          msgs.get('ansible.jobTemplates.editor.tooltip', locale),
-         'titleWithTooltip', 'h3', 'top'
-        )}
+       {TitleWithTooltip({
+          className: 'titleWithTooltip',
+          headingLevel: 'h3',
+          position: 'top',
+          title: msgs.get('ansible.jobTemplates.editor.title', locale),
+          tooltip: msgs.get('ansible.jobTemplates.editor.title', locale),
+        })}
         <MonacoEditor
           width="100%"
           height="100"
@@ -674,11 +682,13 @@ export class AnsibleAutomationModal extends React.Component {
     const { locale } = this.props
     const {ansScheduleMode} = this.state
     return <React.Fragment>
-      {TitleWithTooltip(
-          msgs.get('ansible.scheduleMode.title', locale),
-          msgs.get('ansible.scheduleMode.title', locale),
-         'titleWithTooltip', 'h3', 'bottom'
-      )}
+      {TitleWithTooltip({
+          className: 'titleWithTooltip',
+          headingLevel: 'h3',
+          position: 'bottom',
+          title: msgs.get('ansible.scheduleMode.title', locale),
+          tooltip: msgs.get('ansible.scheduleMode.title', locale),
+      })}
       <Text className='ansible_scheduleMode_info'>
         {msgs.get('ansible.scheduleMode.info', locale)}
       </Text>
