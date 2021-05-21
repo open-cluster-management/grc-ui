@@ -268,7 +268,7 @@ export class AnsibleAutomationModal extends React.Component {
     },() => {
       setTimeout(()=> {
         handleClose(modalType)
-      }, 401)
+      }, 399)
     })
   }
 
@@ -292,9 +292,11 @@ export class AnsibleAutomationModal extends React.Component {
         this.handleCloseSlideOut()
       } else {
         // prevent double-click
-        setTimeout(this.setState({
-          confirmClose: true
-        }), 200)
+        setTimeout(()=> {
+          this.setState({
+            confirmClose: true
+          })
+        }, 150)
       }
     }
   }
