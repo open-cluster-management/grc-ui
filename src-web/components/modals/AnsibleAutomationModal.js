@@ -86,6 +86,7 @@ export class AnsibleAutomationModal extends React.Component {
       },
       initialJSON: null,
       confirmClose: false,
+      slideFlag: false,
     }
     this.initialize()
   }
@@ -180,6 +181,7 @@ export class AnsibleAutomationModal extends React.Component {
     }
     this.setState({
       initializeFinished: true,
+      slideFlag: true,
     })
   }
 
@@ -259,11 +261,22 @@ export class AnsibleAutomationModal extends React.Component {
     }
   }
 
+  handleCloseSlideOut = () => {
+    const { type:modalType, handleClose } = this.props
+    this.setState({
+      slideFlag: false
+    },() => {
+      setTimeout(()=> {
+        handleClose(modalType)
+      }, 401)
+    })
+  }
+
   handleCloseClick = async() => {
     const { queryMsg } = this.state
-    const { type:modalType, handleClose, locale } = this.props
+    const { locale } = this.props
     if (_.get(queryMsg, 'type') === 'success') {
-      handleClose(modalType)
+      this.handleCloseSlideOut()
     } else {
       const { initialJSON, confirmClose, credentialName } = this.state
       const { latestJSON } = await this.generateJSON()
@@ -276,7 +289,7 @@ export class AnsibleAutomationModal extends React.Component {
         this.setQueryAlert(msgs.get('ansible.unsaved.data', locale), 'warning')
       }
       if (confirmClose || !ifChanged) {
-        handleClose(modalType)
+        this.handleCloseSlideOut()
       } else {
         // prevent double-click
         setTimeout(this.setState({
@@ -334,7 +347,7 @@ export class AnsibleAutomationModal extends React.Component {
   render() {
     const { data:policyData, locale, open } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
-      initializeFinished, policyAutoName } = this.state
+      initializeFinished, policyAutoName, slideFlag } = this.state
     const policyNS = _.get(policyData, 'namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
     const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
@@ -347,6 +360,7 @@ export class AnsibleAutomationModal extends React.Component {
           const { error={}, data={} } = result
           const queryError = this.getQueryError(error)
           const readyFlag = (initializeFinished && !loading)
+          const modalName = slideFlag ? 'automation-resource-panel slide-in': 'automation-resource-panel'
           const titleText = readyFlag
             ? msgs.get(`ansible.automation.heading.${panelType}`, locale)
             : msgs.get('ansible.loading.info', locale)
@@ -356,6 +370,7 @@ export class AnsibleAutomationModal extends React.Component {
           return (
             <React.Fragment>
               <AcmModal
+              className={modalName}
               titleIconVariant={'default'}
               variant='small'
               id={'automation-resource-panel'}
