@@ -7,7 +7,7 @@ import React from 'react'
 import { Title } from '@patternfly/react-core'
 import { GrayOutlinedQuestionCircleIcon } from '../common/Icons'
 
-const renderTitleWithTooltip = (title, toolTipContent, className, headingLevel, position) => {
+const TitleWithTooltip = (title, toolTipContent, className, headingLevel, position) => {
   return <div className={className}>
       <Title headingLevel={headingLevel}>
         {title}
@@ -16,4 +16,4 @@ const renderTitleWithTooltip = (title, toolTipContent, className, headingLevel, 
     </div>
 }
 
-export default renderTitleWithTooltip
+export default TitleWithTooltip

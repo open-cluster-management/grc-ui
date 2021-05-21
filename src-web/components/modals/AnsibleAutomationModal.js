@@ -36,7 +36,7 @@ import {
 import TruncateText from '../../components/common/TruncateText'
 import _ from 'lodash'
 import jsYaml from 'js-yaml'
-import renderTitleWithTooltip from '../common/TitleWithInfoTooltip'
+import TitleWithTooltip from '../common/TitleWithInfoTooltip'
 
 import '../../scss/ansible-modal.scss'
 
@@ -423,7 +423,7 @@ export class AnsibleAutomationModal extends React.Component {
       <Text>
         {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
       </Text>
-      {renderTitleWithTooltip(
+      {TitleWithTooltip(
         msgs.get('ansible.tower.URL.title', locale),
         msgs.get('ansible.launch.connection', locale),
         'titleWithTooltip', 'h3', 'top'
@@ -500,7 +500,7 @@ export class AnsibleAutomationModal extends React.Component {
       <React.Fragment>
       {ansCredentialFlag &&
         <React.Fragment>
-          {renderTitleWithTooltip(
+          {TitleWithTooltip(
             msgs.get('ansible.credential.selection.title', locale),
             msgs.get('ansible.credential.selection.title', locale),
             'titleWithTooltip', 'h3', 'top'
@@ -579,7 +579,7 @@ export class AnsibleAutomationModal extends React.Component {
             <React.Fragment>
             {ansJobTemplateFlag &&
               <React.Fragment>
-              {renderTitleWithTooltip(
+              {TitleWithTooltip(
                 msgs.get('ansible.jobTemplates.selection.title', locale),
                 msgs.get('ansible.jobTemplates.selection.title', locale),
                 'titleWithTooltip', 'h3', 'top'
@@ -631,7 +631,7 @@ export class AnsibleAutomationModal extends React.Component {
     const { extraVars } = this.state
     return (
       <div>
-       {renderTitleWithTooltip(
+       {TitleWithTooltip(
           msgs.get('ansible.jobTemplates.editor.title', locale),
           msgs.get('ansible.jobTemplates.editor.tooltip', locale),
          'titleWithTooltip', 'h3', 'top'
@@ -657,7 +657,7 @@ export class AnsibleAutomationModal extends React.Component {
     const { locale } = this.props
     const {ansScheduleMode} = this.state
     return <React.Fragment>
-      {renderTitleWithTooltip(
+      {TitleWithTooltip(
           msgs.get('ansible.scheduleMode.title', locale),
           msgs.get('ansible.scheduleMode.title', locale),
          'titleWithTooltip', 'h3', 'bottom'
