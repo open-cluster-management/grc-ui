@@ -62,10 +62,10 @@ YellowExclamationTriangleIcon.propTypes = {
   tooltip: PropTypes.string,
 }
 
-export const GrayOutlinedQuestionCircleIcon= ({tooltip}) => {
+export const GrayOutlinedQuestionCircleIcon= ({tooltip, position}) => {
   if (tooltip) {
     return (
-      <Tooltip content={<div>{tooltip}</div>}>
+      <Tooltip content={<div>{tooltip}</div>} position={position}>
         <OutlinedQuestionCircleIcon color={questionInfoColor.value} />
       </Tooltip>
     )
@@ -74,5 +74,6 @@ export const GrayOutlinedQuestionCircleIcon= ({tooltip}) => {
 }
 
 GrayOutlinedQuestionCircleIcon.propTypes = {
+  position: PropTypes.string,
   tooltip: PropTypes.string,
 }

@@ -5,14 +5,14 @@
 
 import React from 'react'
 import { Title } from '@patternfly/react-core'
-import createInfoTooltip from './InfoTooltip'
+import { GrayOutlinedQuestionCircleIcon } from '../common/Icons'
 
 const renderTitleWithTooltip = (title, toolTipContent, className, headingLevel, position) => {
   return <div className={className}>
       <Title headingLevel={headingLevel}>
         {title}
       </Title>
-      {createInfoTooltip(toolTipContent, position)}
+      {GrayOutlinedQuestionCircleIcon(toolTipContent, position)}
     </div>
 }
 

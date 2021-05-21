@@ -519,7 +519,7 @@ export class AnsibleAutomationModal extends React.Component {
                 key={credential.name}
                 value={credential.name ? credential.name : '-'}
                 isPlaceholder={credential.name ? credential.name : '-'}
-                description={`host: ${credential.host ? credential.host : '-'}`}
+                description={`${credential.host ? credential.host : '-'}`}
               />
             ))}
           </Select>
