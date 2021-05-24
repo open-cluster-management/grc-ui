@@ -380,6 +380,7 @@ export class AnsibleAutomationModal extends React.Component {
               isOpen={open}
               showClose={true}
               onClose={this.handleCloseClick}
+              aria-label={titleText}
               header={
                 <React.Fragment>
                 <div className='ansible_modal_title'>{titleText}</div>

@@ -594,3 +594,26 @@ export function getDecisionList(policy, locale) {
   return statusList
 }
 
+
+export const buildAnsibleJobStatus = (item, locale) => {
+  let ansibleJobStatus = _.get(item, 'status', '-')
+  ansibleJobStatus = (ansibleJobStatus && typeof ansibleJobStatus === 'string')
+    ? ansibleJobStatus.trim().toLowerCase() : '-'
+
+  switch (ansibleJobStatus) {
+    case 'successful':
+      ansibleJobStatus = <div><GreenCheckCircleIcon /> {msgs.get('table.cell.successful', locale)}</div>
+      break
+    case 'failed':
+      ansibleJobStatus = <div><RedExclamationCircleIcon /> {msgs.get('table.cell.failed', locale)}</div>
+      break
+    case '-':
+      ansibleJobStatus = <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
+      break
+    default :
+      ansibleJobStatus = <div><YellowExclamationTriangleIcon /> {ansibleJobStatus}</div>
+      break
+  }
+
+  return ansibleJobStatus
+}
