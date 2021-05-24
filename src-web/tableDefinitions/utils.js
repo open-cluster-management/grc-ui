@@ -602,16 +602,17 @@ export const buildAnsibleJobStatus = (item, locale) => {
 
   switch (ansibleJobStatus) {
     case 'successful':
-      ansibleJobStatus = <div><GreenCheckCircleIcon /> {msgs.get('table.cell.successful', locale)}</div>
+      ansibleJobStatus = <div><GreenCheckCircleIcon tooltip={item.message} /> {msgs.get('table.cell.successful', locale)}</div>
       break
+    case 'error':
     case 'failed':
-      ansibleJobStatus = <div><RedExclamationCircleIcon /> {msgs.get('table.cell.failed', locale)}</div>
+      ansibleJobStatus = <div><RedExclamationCircleIcon tooltip={item.message} /> {msgs.get('table.cell.failed', locale)}</div>
       break
     case '-':
-      ansibleJobStatus = <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
+      ansibleJobStatus = <div><YellowExclamationTriangleIcon tooltip={item.message} /> {msgs.get('table.cell.nostatus', locale)}</div>
       break
     default :
-      ansibleJobStatus = <div><YellowExclamationTriangleIcon /> {ansibleJobStatus}</div>
+      ansibleJobStatus = <div><YellowExclamationTriangleIcon tooltip={item.message} /> {ansibleJobStatus}</div>
       break
   }
 

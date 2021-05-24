@@ -21,7 +21,7 @@ export const GreenCheckCircleIcon = ({tooltip}) => {
   if (tooltip) {
     return (
       <Tooltip content={<div>{tooltip}</div>}>
-        <CheckCircleIcon  color={okColor.value} />
+        <CheckCircleIcon color={okColor.value} />
       </Tooltip>
     )
   }
