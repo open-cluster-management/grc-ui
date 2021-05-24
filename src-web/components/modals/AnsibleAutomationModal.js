@@ -36,7 +36,7 @@ import {
 import TruncateText from '../../components/common/TruncateText'
 import _ from 'lodash'
 import jsYaml from 'js-yaml'
-import TitleWithTooltip from '../common/TitleWithInfoTooltip'
+import TitleWithTooltip from '../common/TitleWithTooltip'
 
 import '../../scss/ansible-modal.scss'
 
@@ -379,9 +379,9 @@ export class AnsibleAutomationModal extends React.Component {
               isOpen={open}
               showClose={true}
               onClose={this.handleCloseClick}
-              title={titleText}
               header={
                 <React.Fragment>
+                <div className='ansible_modal_title'>{titleText}</div>
                 {alertFlag &&
                     <AcmAlert
                       isInline={true}

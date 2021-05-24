@@ -6,7 +6,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Title } from '@patternfly/react-core'
-import { GrayOutlinedQuestionCircleIcon } from '../common/Icons'
+import { GrayOutlinedQuestionCircleIcon } from './Icons'
 
 const TitleWithTooltip = ({className, headingLevel, position, title, tooltip}) => {
   return <div className={className}>
