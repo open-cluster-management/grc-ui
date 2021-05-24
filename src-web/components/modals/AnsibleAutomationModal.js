@@ -67,6 +67,7 @@ export class AnsibleAutomationModal extends React.Component {
     this.handleCloseClick = this.handleCloseClick.bind(this)
     this.state = {
       initializeFinished: false,
+      policyAutoName: '',
       activeItem: 0,
       credentialName: null,
       towerURL: '-',
