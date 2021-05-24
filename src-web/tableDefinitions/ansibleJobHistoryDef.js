@@ -10,7 +10,11 @@ import {
   sortable
 } from '@patternfly/react-table'
 import _ from 'lodash'
-import { buildAnsibleJobStatus } from './utils'
+import {
+  GreenCheckCircleIcon,
+  RedExclamationCircleIcon,
+  YellowExclamationTriangleIcon,
+} from '../components/common/Icons'
 import msgs from '../nls/platform.properties'
 
 export default {
@@ -49,8 +53,31 @@ export default {
   }
 }
 
+const buildAnsibleJobStatus = (item, locale) => {
+  let ansibleJobStatus = _.get(item, 'status', '-')
+  ansibleJobStatus = (ansibleJobStatus && typeof ansibleJobStatus === 'string')
+    ? ansibleJobStatus.trim().toLowerCase() : '-'
 
-function buildViewJobLink(item, locale) {
+  switch (ansibleJobStatus) {
+    case 'successful':
+      ansibleJobStatus = <div><GreenCheckCircleIcon tooltip={item.message} /> {msgs.get('table.cell.successful', locale)}</div>
+      break
+    case 'error':
+    case 'failed':
+      ansibleJobStatus = <div><RedExclamationCircleIcon tooltip={item.message} /> {msgs.get('table.cell.failed', locale)}</div>
+      break
+    case '-':
+      ansibleJobStatus = <div><YellowExclamationTriangleIcon tooltip={item.message} /> {msgs.get('table.cell.nostatus', locale)}</div>
+      break
+    default :
+      ansibleJobStatus = <div><YellowExclamationTriangleIcon tooltip={item.message} /> {ansibleJobStatus}</div>
+      break
+  }
+
+  return ansibleJobStatus
+}
+
+const buildViewJobLink = (item, locale) => {
   const job = _.get(item, 'job')
   if (job) {
     const jobNamespace = job.split('/')[0]

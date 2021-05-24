@@ -593,28 +593,3 @@ export function getDecisionList(policy, locale) {
   }
   return statusList
 }
-
-
-export const buildAnsibleJobStatus = (item, locale) => {
-  let ansibleJobStatus = _.get(item, 'status', '-')
-  ansibleJobStatus = (ansibleJobStatus && typeof ansibleJobStatus === 'string')
-    ? ansibleJobStatus.trim().toLowerCase() : '-'
-
-  switch (ansibleJobStatus) {
-    case 'successful':
-      ansibleJobStatus = <div><GreenCheckCircleIcon tooltip={item.message} /> {msgs.get('table.cell.successful', locale)}</div>
-      break
-    case 'error':
-    case 'failed':
-      ansibleJobStatus = <div><RedExclamationCircleIcon tooltip={item.message} /> {msgs.get('table.cell.failed', locale)}</div>
-      break
-    case '-':
-      ansibleJobStatus = <div><YellowExclamationTriangleIcon tooltip={item.message} /> {msgs.get('table.cell.nostatus', locale)}</div>
-      break
-    default :
-      ansibleJobStatus = <div><YellowExclamationTriangleIcon tooltip={item.message} /> {ansibleJobStatus}</div>
-      break
-  }
-
-  return ansibleJobStatus
-}
