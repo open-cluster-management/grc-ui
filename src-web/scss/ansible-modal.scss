@@ -12,6 +12,11 @@
 }
 
 #automation-resource-panel {
+  .violationCell {
+    > svg {
+      margin-right: 0.25rem;
+    }
+  }
   .ansible_modal_title {
     font-size: 1.5rem;
     font-weight: 600;
