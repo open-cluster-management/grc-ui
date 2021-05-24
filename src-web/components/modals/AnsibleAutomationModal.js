@@ -385,7 +385,7 @@ export class AnsibleAutomationModal extends React.Component {
                 {alertFlag &&
                     <AcmAlert
                       isInline={true}
-                      noClose={true}
+                      noClose={false}
                       variant={alertVariant}
                       title={alertTitle} />}
                 </React.Fragment>
