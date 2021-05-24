@@ -9,7 +9,8 @@ import moment from 'moment'
 import _ from 'lodash'
 import config from '../../server/lib/shared/config'
 import {
-  AcmTable
+  AcmTable,
+  AcmLaunchLink
 } from '@open-cluster-management/ui-components'
 import {
   Label,
@@ -30,7 +31,6 @@ import { LocaleContext } from '../components/common/LocaleContext'
 import purifyReactNode from '../utils/PurifyReactNode'
 import { POLICY_AUTOMATIONS } from '../utils/client/queries'
 import { Query } from '@apollo/client/react/components'
-import ExternalLinkAltIcon from '@patternfly/react-icons/dist/js/icons/external-link-alt-icon'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
@@ -400,14 +400,21 @@ export function getAutomationLink(item, locale) {
           automationName = automation.metadata.name
         }
       })
+      if (found) {
+        return <AcmLaunchLink links={[
+          {
+              id: `automationButton-${automationName}`,
+              text: <TruncateText maxCharacters={20} text={automationName} />,
+              onClick: () => {
+                  alert('clicked')
+              },
+              label: true,
+          },
+        ]}></AcmLaunchLink>
+      }
       return (
         <Button component="a" variant="link" className="automationButton">
-          {found ? (
-            <Label>
-              <span className="automationLabel">{automationName}</span>
-              <ExternalLinkAltIcon></ExternalLinkAltIcon>
-            </Label>
-          ) : msgs.get('table.actions.automation.configure', locale)}
+          {msgs.get('table.actions.automation.configure', locale)}
         </Button>
       )
     }}
