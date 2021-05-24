@@ -21,16 +21,26 @@ import msgs from '../nls/platform.properties'
 
 
 const buildAnsibleJobStatus = (item, locale) => {
-  const message = _.get(item, 'status', '-')
-  if (message.toLowerCase() === 'successful') {
-    return <div><GreenCheckCircleIcon /> {msgs.get('table.cell.successful', locale)}</div>
-  } else if (message.toLowerCase() === 'failed') {
-    return <div><RedExclamationCircleIcon /> {msgs.get('table.cell.failed', locale)}</div>
-  } else if (message.toLowerCase() === '-') {
-    return <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
-  } else {
-    return <div><YellowExclamationTriangleIcon /> {message}</div>
+  let ansibleJobStatus = _.get(item, 'status', '-')
+  ansibleJobStatus = (ansibleJobStatus && typeof ansibleJobStatus === 'string')
+    ? ansibleJobStatus.trim().toLowerCase() : '-'
+
+  switch (ansibleJobStatus) {
+    case 'successful':
+      ansibleJobStatus = <div><GreenCheckCircleIcon /> {msgs.get('table.cell.successful', locale)}</div>
+      break
+    case 'failed':
+      ansibleJobStatus = <div><RedExclamationCircleIcon /> {msgs.get('table.cell.failed', locale)}</div>
+      break
+    case '-':
+      ansibleJobStatus = <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
+      break
+    default :
+      ansibleJobStatus = <div><YellowExclamationTriangleIcon /> {ansibleJobStatus}</div>
+      break
   }
+
+  return ansibleJobStatus
 }
 
 export default {
