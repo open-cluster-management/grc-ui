@@ -380,6 +380,16 @@ export class AnsibleAutomationModal extends React.Component {
               showClose={true}
               onClose={this.handleCloseClick}
               title={titleText}
+              header={
+                <React.Fragment>
+                {alertFlag &&
+                    <AcmAlert
+                      isInline={true}
+                      noClose={true}
+                      variant={alertVariant}
+                      title={alertTitle} />}
+                </React.Fragment>
+              }
               actions={[
                 <AcmButton
                   key="confirm"
@@ -401,8 +411,7 @@ export class AnsibleAutomationModal extends React.Component {
                 {!readyFlag && <Spinner className='patternfly-spinner' />}
               </div>
               {readyFlag && this.renderAnsiblePanelContent({
-                alertFlag, alertVariant, alertTitle, panelType,
-                policyData, data, towerURL, activeItem, locale})
+                panelType, policyData, data, towerURL, activeItem, locale})
               }
               </AcmModal>
             </React.Fragment>
@@ -413,18 +422,9 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   renderAnsiblePanelContent = ({
-    alertFlag, alertVariant, alertTitle, panelType,
-    policyData, data, towerURL, activeItem, locale
+    panelType, policyData, data, towerURL, activeItem, locale
   }) => {
     return <React.Fragment>
-      <React.Fragment>
-        {alertFlag &&
-            <AcmAlert
-              isInline={true}
-              noClose={true}
-              variant={alertVariant}
-              title={alertTitle} />}
-      </React.Fragment>
       <Text>
         {msgs.get(`ansible.automation.description.${panelType}`, locale)}
       </Text>
