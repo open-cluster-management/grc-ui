@@ -29,7 +29,6 @@ import { REQUEST_STATUS } from '../../actions/index'
 import {
   getSessionState, replaceSessionPair
 } from '../../utils/AccessStorage'
-import { updateModal } from '../../actions/common'
 import '../../scss/grc-toggle-module.scss'
 
 const componentName = 'GrcToggleModule'
@@ -45,11 +44,11 @@ class GrcToggleModule extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { grcItems, grcTabToggleIndex, handleToggleClick, status, handleOpenAutomation } = this.props
+    const { grcItems, grcTabToggleIndex, handleToggleClick, status } = this.props
     const { locale } = this.context
     const tableType = grcTabToggleIndex === 0 ? 'policies' : 'clusters'
     const tableData = [
-      transformNew(grcItems, grcPoliciesViewDef, locale, (data) => {handleOpenAutomation(data)}),
+      transformNew(grcItems, grcPoliciesViewDef, locale),
       transformNew(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale),
     ]
     if (status !== REQUEST_STATUS.INCEPTION && status !== REQUEST_STATUS.DONE){
@@ -194,7 +193,6 @@ GrcToggleModule.propTypes = {
   getResourceAction: PropTypes.func,
   grcItems: PropTypes.array,
   grcTabToggleIndex: PropTypes.number,
-  handleOpenAutomation: PropTypes.func,
   handleToggleClick: PropTypes.func,
   history: PropTypes.object.isRequired,
   status: PropTypes.string,
@@ -211,20 +209,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const resourceTypeAuto = {
-    name: 'HCMCompliance',
-  }
   return {
-    handleOpenAutomation: (data) => {
-      dispatch(updateModal(
-        { open: true, type: 'resource-automation', resourceTypeAuto,
-          label: {
-            primaryBtn: `modal.automation-${resourceTypeAuto.name.toLowerCase()}.heading`,
-            label: `modal.automation-${resourceTypeAuto.name.toLowerCase()}.label`,
-            heading: `modal.automation-${resourceTypeAuto.name.toLowerCase()}.heading`
-          },
-          data: { kind: resourceTypeAuto.name, ...data }}))
-    },
     getResourceAction: (action, resource, resourceType, history) =>
       resourceActions(action, dispatch, resourceType, resource, history)
   }
