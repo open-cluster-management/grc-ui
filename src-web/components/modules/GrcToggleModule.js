@@ -211,19 +211,19 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  const resourceType = {
+  const resourceTypeAuto = {
     name: 'HCMCompliance',
   }
   return {
     handleOpenAutomation: (data) => {
       dispatch(updateModal(
-        { open: true, type: 'resource-automation', resourceType,
+        { open: true, type: 'resource-automation', resourceTypeAuto,
           label: {
-            primaryBtn: `modal.automation-${resourceType.name.toLowerCase()}.heading`,
-            label: `modal.automation-${resourceType.name.toLowerCase()}.label`,
-            heading: `modal.automation-${resourceType.name.toLowerCase()}.heading`
+            primaryBtn: `modal.automation-${resourceTypeAuto.name.toLowerCase()}.heading`,
+            label: `modal.automation-${resourceTypeAuto.name.toLowerCase()}.label`,
+            heading: `modal.automation-${resourceTypeAuto.name.toLowerCase()}.heading`
           },
-          data: { kind: resourceType.name, ...data }}))
+          data: { kind: resourceTypeAuto.name, ...data }}))
     },
     getResourceAction: (action, resource, resourceType, history) =>
       resourceActions(action, dispatch, resourceType, resource, history)
