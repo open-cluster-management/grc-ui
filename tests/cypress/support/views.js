@@ -612,7 +612,7 @@ export const action_verifyPolicyInPolicyDetails = (
   cy.get('#compliance\\.details').within(() => {
     cy.get('div.pf-c-description-list__text').spread((
       name, namespace, remediation, disabled, violations,
-      categories, controls, standards, created
+      categories, standards, controls, created
       ) => {
       // check name
       cy.wrap(name).contains(uName)
