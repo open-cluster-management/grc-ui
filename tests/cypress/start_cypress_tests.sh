@@ -5,7 +5,10 @@
 # Copyright Contributors to the Open Cluster Management project
 ###############################################################################
 echo "Initiating tests..."
-
+path_to_tests="./tests/cypress/tests/*.spec.js"
+if [[ "$1" == "--spec" ]] && [ ! -z "$2" ]; then
+  path_to_tests=$2
+fi
 if [ -z "$BROWSER" ]; then
   echo "BROWSER not exported; setting to 'chrome' (options available: 'chrome', 'firefox')"
   export BROWSER="chrome"
@@ -98,9 +101,9 @@ else
 fi
 
 if [ "$NODE_ENV" == "dev" ]; then
-  npx cypress run --browser $BROWSER $HEADLESS --spec "./tests/cypress/tests/*.spec.js" --reporter cypress-multi-reporters
+  npx cypress run --browser $BROWSER $HEADLESS --spec $path_to_tests --reporter cypress-multi-reporters
 elif [ "$NODE_ENV" == "debug" ]; then
   npx cypress open --browser $BROWSER --config numTestsKeptInMemory=0
 else
-  cypress run --browser $BROWSER $HEADLESS --spec "./tests/cypress/tests/*.spec.js" --reporter cypress-multi-reporters
+  cypress run --browser $BROWSER $HEADLESS --spec $path_to_tests --reporter cypress-multi-reporters
 fi

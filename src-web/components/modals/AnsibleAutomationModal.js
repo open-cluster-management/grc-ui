@@ -94,18 +94,20 @@ export class AnsibleAutomationModal extends React.Component {
 
   buildPolicyAutomationJSON = ({
     policyAutoName, policyAutoNS, policyName, annotations,
-    resourceVersion, extraVars, credentialName, jobTemplateName
+    resourceVersion, extraVars, credentialName, jobTemplateName,
+    ansScheduleMode
   }) => {
     const {
       credentialName:stateCredentialName,
       jobTemplateName:stateJobTemplateName,
-      extraVars:stateExtraVars, ansScheduleMode
+      extraVars:stateExtraVars, ansScheduleMode:stateAnsScheduleMode
     } = this.state
+    const modalData =  ansScheduleMode ? ansScheduleMode : stateAnsScheduleMode
     let mode
-    switch (ansScheduleMode) {
+    switch (modalData) {
       case 'once':
       case 'disabled':
-        mode = ansScheduleMode
+        mode = modalData
       break
       case 'manual':
       default:
@@ -168,7 +170,7 @@ export class AnsibleAutomationModal extends React.Component {
         }
         const initialJSON = this.buildPolicyAutomationJSON({
           policyAutoName, policyAutoNS, policyName, annotations, resourceVersion,
-          extraVars, credentialName, jobTemplateName
+          extraVars, credentialName, jobTemplateName, ansScheduleMode
         })
         this.setState({
           policyAutoName,
@@ -241,8 +243,18 @@ export class AnsibleAutomationModal extends React.Component {
     })
   }
 
+  getAnsScheduleMode = json => {
+    let ansScheduleMode = _.get(json, 'spec.mode')
+    ansScheduleMode = ansScheduleMode || 'disabled'
+    const annotations = _.get(json, 'metadata.annotations')
+    if (annotations && annotations['policy.open-cluster-management.io/rerun'] === 'true') {
+      ansScheduleMode = 'manual'
+    }
+    return ansScheduleMode
+  }
+
   handleSubmitClick = async () => {
-    const { yamlMsg, initialJSON } = this.state
+    const { yamlMsg } = this.state
     const { locale } = this.props
     const {latestJSON, action} = await this.generateJSON()
     if (!yamlMsg.msg && latestJSON && action) {
@@ -254,10 +266,9 @@ export class AnsibleAutomationModal extends React.Component {
           this.setQueryAlert(_.get(error, 'message'), 'danger')
         }
       } else {
-        const panelType = initialJSON ? 'edit' : 'create'
-        const policyAutoName = _.get(latestJSON, 'metadata.name')
-        const policyAutoNS = _.get(latestJSON, 'metadata.namespace')
-        this.setQueryAlert(msgs.get(`ansible.${panelType}.success`, [policyAutoName, policyAutoNS], locale), 'success')
+        const ansScheduleMode = this.getAnsScheduleMode(latestJSON)
+        this.initialize()
+        this.setQueryAlert(msgs.get(`ansible.${ansScheduleMode}.success`, locale), 'success')
       }
     }
   }
@@ -427,21 +438,21 @@ export class AnsibleAutomationModal extends React.Component {
     panelType, policyData, data, towerURL, activeItem, locale
   }) => {
     return <React.Fragment>
-      <Text>
+      <div>
         {msgs.get(`ansible.automation.description.${panelType}`, locale)}
-      </Text>
+      </div>
       <Title headingLevel="h3">
         {msgs.get('table.header.policy.name', locale)}
       </Title>
-      <Text>
+      <div>
         {policyData.name}
-      </Text>
+      </div>
       <Title headingLevel="h3">
         {msgs.get('table.header.cluster.violation', locale)}
       </Title>
-      <Text>
+      <div>
         {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
-      </Text>
+      </div>
       {TitleWithTooltip({
         className: 'titleWithTooltip',
         headingLevel: 'h3',
