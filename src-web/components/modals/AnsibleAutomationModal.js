@@ -67,6 +67,7 @@ export class AnsibleAutomationModal extends React.Component {
     this.handleCloseClick = this.handleCloseClick.bind(this)
     this.state = {
       initializeFinished: false,
+      policyAutoName: '',
       activeItem: 0,
       credentialName: null,
       towerURL: '-',
@@ -379,6 +380,7 @@ export class AnsibleAutomationModal extends React.Component {
               isOpen={open}
               showClose={true}
               onClose={this.handleCloseClick}
+              aria-label={titleText}
               header={
                 <React.Fragment>
                 <div className='ansible_modal_title'>{titleText}</div>
@@ -732,6 +734,7 @@ export class AnsibleAutomationModal extends React.Component {
     const { locale } = this.props
     const tableData = transformNew(_.get(historyData.items ? historyData : {'items':[]}, 'items', []), ansibleJobHistoryDef, locale)
     return <AcmTable
+      initialSort={tableData.sortBy}
       showToolbar={false}
       autoHidePagination={true}
       plural='ansible jobs'

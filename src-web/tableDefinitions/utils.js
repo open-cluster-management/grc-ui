@@ -219,26 +219,43 @@ function parseCell(label) {
 }
 
 export const buildCompliantCell = (item, locale) => {
-  const compliant = _.get(item, 'compliant', '-')
-  if (compliant.toLowerCase() === 'compliant') {
-    return <div><GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}</div>
-  } else if (compliant.toLowerCase() === 'noncompliant') {
-    return <div><RedExclamationCircleIcon /> {msgs.get('table.cell.noncompliant', locale)}</div>
-  } else {
-    return <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
+  let compliant = _.get(item, 'compliant', '-')
+  compliant = (compliant && typeof compliant === 'string')
+  ? compliant.trim().toLowerCase() : '-'
+
+  switch (compliant) {
+    case 'compliant':
+      compliant = <div><GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}</div>
+      break
+    case 'noncompliant':
+      compliant = <div><RedExclamationCircleIcon /> {msgs.get('table.cell.noncompliant', locale)}</div>
+      break
+    default :
+      compliant = <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
+      break
   }
+
+  return compliant
 }
 
 export const buildCompliantCellFromMessage = (item, locale) => {
   const message = _.get(item, 'message', '-')
-  const compliant = message.split(';')[0]
-  if (compliant.toLowerCase() === 'compliant') {
-    return <div><GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}</div>
-  } else if (compliant.toLowerCase() === 'noncompliant') {
-    return <div><RedExclamationCircleIcon /> {msgs.get('table.cell.noncompliant', locale)}</div>
-  } else {
-    return <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
+  let compliant = (message && typeof message === 'string')
+  ? message.split(';')[0] : '-'
+  compliant = compliant ? compliant.trim().toLowerCase() : '-'
+  switch (compliant) {
+    case 'compliant':
+      compliant = <div><GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}</div>
+      break
+    case 'noncompliant':
+      compliant = <div><RedExclamationCircleIcon /> {msgs.get('table.cell.noncompliant', locale)}</div>
+      break
+    default :
+      compliant = <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
+      break
   }
+
+  return compliant
 }
 
 export const buildTimestamp = (item) => {
@@ -613,4 +630,3 @@ export function getDecisionList(policy, locale) {
   }
   return statusList
 }
-
