@@ -438,21 +438,21 @@ export class AnsibleAutomationModal extends React.Component {
     panelType, policyData, data, towerURL, activeItem, locale
   }) => {
     return <React.Fragment>
-      <Text>
+      <div>
         {msgs.get(`ansible.automation.description.${panelType}`, locale)}
-      </Text>
+      </div>
       <Title headingLevel="h3">
         {msgs.get('table.header.policy.name', locale)}
       </Title>
-      <Text>
+      <div>
         {policyData.name}
-      </Text>
+      </div>
       <Title headingLevel="h3">
         {msgs.get('table.header.cluster.violation', locale)}
       </Title>
-      <Text>
+      <div>
         {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
-      </Text>
+      </div>
       {TitleWithTooltip({
         className: 'titleWithTooltip',
         headingLevel: 'h3',
