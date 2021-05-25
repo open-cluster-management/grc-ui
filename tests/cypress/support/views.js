@@ -388,10 +388,10 @@ export const action_verifyPolicyInListing = (
       if (violationsCounter) {
         cy.wrap(violations.textContent).should('match', new RegExp('^'+violationsCounter+'$'))
       }
-      // check standard
-      if (policyConfig['standards']) {
-        for (const std of policyConfig['standards']) {
-          cy.wrap(standards).contains(std.trim())
+      // check controls
+      if (policyConfig['controls']) {
+        for (const ctl of policyConfig['controls']) {
+          cy.wrap(controls).contains(ctl.trim())
         }
       }
       // check categories
@@ -403,10 +403,10 @@ export const action_verifyPolicyInListing = (
         cy.wrap(toggle).click()
       }
       // check controls
-      if (policyConfig['controls']) {
+      if (policyConfig['standards']) {
         cy.wrap(toggle).click()
-        for (const ctl of policyConfig['controls']) {
-          cy.get('td[data-label="Controls"]').contains(ctl.trim())
+        for (const std of policyConfig['standards']) {
+          cy.get('td[data-label="Standards"]').contains(std.trim())
         }
         cy.wrap(toggle).click()
       }
