@@ -73,21 +73,22 @@ export class PolicyDetailsOverview extends React.PureComponent{
       const entry = {}
       if (Array.isArray(item.cells) && item.cells[0]) {
         const keyPath = item.cells[0].resourceKey || '-'
+        const keyType = item.cells[0].type || '-'
+        const dataResourceKey = item.cells[1] ? item.cells[1].resourceKey : '-'
         entry.key = msgs.get(keyPath, locale)
-
-        const entryData = item.cells[1] ? _.get(localItem, item.cells[1].resourceKey, '-') : '-'
-        if (typeof(entryData) === 'object' || typeof(entryData) === 'boolean') {
+        const entryData = (dataResourceKey === '-') ? localItem : _.get(localItem, dataResourceKey, '-')
+        if ((keyType !== 'automation') && (typeof(entryData) === 'object' || typeof(entryData) === 'boolean')) {
           entry.value = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
         } else {
           entry.value = entryData
         }
-        if (item.cells[0].resourceKey) {
-          if(item.cells[0].type === 'timestamp') {
+        if (keyPath && keyPath !== '-') {
+          if(keyType === 'timestamp') {
             entry.value = moment(entry.value, 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
-          } else if(item.cells[1]?.resourceKey === 'clusterCompliant') {
+          } else if(dataResourceKey === 'clusterCompliant') {
             entry.value = getPolicyCompliantStatus({clusterCompliant: entry.value}, locale)
-          } else if (item.cells[1]?.resourceKey === 'automation') {
-            entry.value = getAutomationLink({}, locale)
+          } else if (dataResourceKey === 'automation') {
+            entry.value = getAutomationLink(entry.value, locale)
           }
         }
       }

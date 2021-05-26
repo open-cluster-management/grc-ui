@@ -112,9 +112,6 @@ export default {
         {
           resourceKey: 'table.header.automation',
           type: 'automation'
-        },
-        {
-          resourceKey: 'automation'
         }
       ]
     },
