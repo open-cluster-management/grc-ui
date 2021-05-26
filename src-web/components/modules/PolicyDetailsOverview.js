@@ -21,7 +21,7 @@ import { AcmDescriptionList, AcmTable } from '@open-cluster-management/ui-compon
 import NoResource from '../../components/common/NoResource'
 import policyDetailsClusterListDef from '../../tableDefinitions/policyDetailsClusterListDef'
 import policyDetailsOverviewDef from '../../tableDefinitions/policyDetailsOverviewDef'
-import { transformNew, getPolicyCompliantStatus } from '../../tableDefinitions/utils'
+import { transformNew, getPolicyCompliantStatus, getAutomationLink } from '../../tableDefinitions/utils'
 import moment from 'moment'
 
 import '../../scss/policy-details-overview.scss'
@@ -86,6 +86,8 @@ export class PolicyDetailsOverview extends React.PureComponent{
             entry.value = moment(entry.value, 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
           } else if(item.cells[1]?.resourceKey === 'clusterCompliant') {
             entry.value = getPolicyCompliantStatus({clusterCompliant: entry.value}, locale)
+          } else if (item.cells[1]?.resourceKey === 'automation') {
+            entry.value = getAutomationLink({}, locale)
           }
         }
       }
