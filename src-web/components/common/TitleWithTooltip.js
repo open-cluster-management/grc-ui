@@ -13,7 +13,9 @@ const TitleWithTooltip = ({className, headingLevel, position, title, tooltip}) =
       <Title headingLevel={headingLevel}>
         {title}
       </Title>
-      {GrayOutlinedQuestionCircleIcon({tooltip, position})}
+      <div className='GrayOutlinedQuestionCircleIcon'>
+        {GrayOutlinedQuestionCircleIcon({tooltip, position})}
+      </div>
     </div>
 }
 

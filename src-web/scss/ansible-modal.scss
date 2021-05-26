@@ -44,8 +44,8 @@
   }
   
   .pf-c-modal-box	{
-    --pf-c-modal-box__body--MinHeight: 83vh;
-    --pf-c-modal-box--MaxHeight: 90vh;
+    --pf-c-modal-box__body--MinHeight: 88vh;
+    --pf-c-modal-box--MaxHeight: 95vh;
   }
   
   .pf-c-nav.pf-m-tertiary .pf-c-nav__link::before {
@@ -75,14 +75,13 @@
   .titleWithTooltip {
     display: flex;
     flex-direction: row;
-    svg {
-      padding-top: 1.3rem;
-      width: 2rem;
-      height: 2.375rem;
+    .GrayOutlinedQuestionCircleIcon{
+      padding-top: 0.98rem;
+      padding-left: 0.25rem;
     }
   }
 
   .pf-c-modal-box__body {
-    min-height: 70vh;
+    min-height: 60vh;
   }
 }

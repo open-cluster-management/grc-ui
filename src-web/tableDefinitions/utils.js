@@ -15,6 +15,7 @@ import {
   Label,
   LabelGroup,
   Tooltip,
+  Spinner,
 } from '@patternfly/react-core'
 import StatusField from '../components/common/StatusField'
 import {
@@ -62,7 +63,7 @@ export const transform = (items, def, locale) => {
 }
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
-export const transformNew = (items, def, locale) => {
+export const transformNew = (items, def, locale, automationOnClick) => {
   // Create column data for parent table and expandable (child) tables
   const columns = {
     colParent: [],
@@ -92,7 +93,7 @@ export const transformNew = (items, def, locale) => {
     rowParent: [],
     rowChild: [],
   }
-  pushRows(items, rows, def, locale)
+  pushRows(items, rows, def, locale, automationOnClick)
   // Specify a default sortBy object for the table if it doesn't exist
   const sortBy = def.sortBy ? def.sortBy : { direction: 'asc' }
   // The index can either be an integer or a string matching the column label
@@ -140,7 +141,7 @@ export const transformNew = (items, def, locale) => {
   }
 }
 
-function pushRows(items, rows, def, locale) {
+function pushRows(items, rows, def, locale, onClickAutomation) {
   let subUid = 0, expandable
   items.forEach((item, index) => {
     expandable = false
@@ -161,6 +162,16 @@ function pushRows(items, rows, def, locale) {
         value =  msgs.get(key.resourceKey, locale)
       } else if (key.type === 'boolean') {
         value = value ? true : false
+      } else if (key.label === 'automation') {
+        // Leverage the defined transformFunction to render content and store the raw value as metadata
+        value = {
+          title: key.transformFunction(item, locale, {
+            onClickAutomation: (data) => {
+              onClickAutomation(data)
+            }
+          }),
+          rawData: value
+        }
       } else if (key.transformFunction && typeof key.transformFunction === 'function') {
         // Leverage the defined transformFunction to render content and store the raw value as metadata
         value = {
@@ -244,7 +255,7 @@ export const buildCompliantCellFromMessage = (item, locale) => {
   return compliant
 }
 
-export const buildTimestamp = (item) => {
+export function buildTimestamp(item) {
   const createdTime = _.get(item, 'timestamp') ? _.get(item, 'timestamp') : _.get(item, 'raw.metadata.creationTimestamp')
   return <TableTimestamp timestamp={createdTime} />
 }
@@ -401,7 +412,7 @@ export function formatAnnotationString(policy, annotationKey){
   return '-'
 }
 
-export function getAutomationLink(item, locale) {
+export function getAutomationLink(item, locale, args) {
   return (
     <AutomationButton item={item} locale={locale}></AutomationButton>
   )
