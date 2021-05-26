@@ -29,7 +29,6 @@ module.exports = {
       'prop-types',
       'react-dom',
       'react-dom/server',
-      'react-monaco-editor',
       'react-redux',
       'react-router-dom',
       'react',

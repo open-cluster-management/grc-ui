@@ -598,7 +598,7 @@ export default class TemplateEditor extends React.Component {
     if (this.containerRef && this.editor) {
       const controlsSize = this.handleSplitterDefault()
       const rect = this.containerRef.getBoundingClientRect()
-      const width = rect.width - controlsSize - 15
+      const width = rect.width - controlsSize - 75
       const height = rect.height
       this.editor.layout({width, height})
     }

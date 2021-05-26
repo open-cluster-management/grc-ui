@@ -14,10 +14,13 @@
 
   .creation-view-split-container {
     width: 100%;
+    height: calc(100vh - 200px);
+
     &.showEditor {
       .creation-view-controls-container {
         display: flex;
         flex-direction: column;
+        height: calc(100vh - 200px);
         .creation-view-controls {
           &-multiselect-title, &-singleselect, &-textbox-title {
             > svg {
@@ -52,7 +55,6 @@
           width: 100%;
           & * {
             font-family: unset;
-            font-size: var(--pf-global--FontSize--xs);
           }
 
          .codicon[class*='codicon-'] {
