@@ -44,8 +44,7 @@
   }
   
   .pf-c-modal-box	{
-    --pf-c-modal-box__body--MinHeight: 88vh;
-    --pf-c-modal-box--MaxHeight: 95vh;
+    height: 60rem;
   }
   
   .pf-c-nav.pf-m-tertiary .pf-c-nav__link::before {
@@ -82,6 +81,6 @@
   }
 
   .pf-c-modal-box__body {
-    min-height: 60vh;
+    height: 54rem;
   }
 }

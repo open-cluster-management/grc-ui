@@ -378,9 +378,8 @@ export class AnsibleAutomationModal extends React.Component {
           const titleText = readyFlag
             ? msgs.get(`ansible.automation.heading.${panelType}`, locale)
             : msgs.get('ansible.loading.info', locale)
-          const alertFlag = (queryError || yamlMsg.msg || queryMsg.msg)
-          const alertVariant = (yamlMsg.type || queryMsg.type || 'danger')
-          const alertTitle = (queryError || yamlMsg.msg || queryMsg.msg || msgs.get('error.default.description', locale))
+          const alertTitle = (queryError || yamlMsg.msg || queryMsg.msg)
+          const alertVariant = queryError ? 'danger' : (yamlMsg.type || queryMsg.type || 'danger')
           return (
             <React.Fragment>
               <AcmModal
@@ -395,7 +394,7 @@ export class AnsibleAutomationModal extends React.Component {
               header={
                 <React.Fragment>
                 <div className='ansible_modal_title'>{titleText}</div>
-                {alertFlag &&
+                {alertTitle &&
                     <AcmAlert
                       isInline={true}
                       noClose={false}
@@ -403,7 +402,7 @@ export class AnsibleAutomationModal extends React.Component {
                       title={alertTitle} />}
                 </React.Fragment>
               }
-              actions={[
+              actions={!activeItem && [
                 <AcmButton
                   key="confirm"
                   variant={ButtonVariant.primary}
