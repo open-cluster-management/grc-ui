@@ -402,9 +402,12 @@ export function formatAnnotationString(policy, annotationKey){
 }
 
 export function getAutomationLink(item, locale) {
-  return (
-    <AutomationButton item={item} locale={locale}></AutomationButton>
-  )
+  if (_.get(item, 'metadata.namespace')) {
+    return (
+      <AutomationButton item={item} locale={locale}></AutomationButton>
+    )
+  }
+  return '-'
 }
 
 export function getStatus(item, locale) {

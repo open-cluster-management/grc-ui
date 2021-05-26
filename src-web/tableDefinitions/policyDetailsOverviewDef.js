@@ -107,5 +107,16 @@ export default {
         }
       ]
     },
+    {
+      cells: [
+        {
+          resourceKey: 'table.header.automation',
+          type: 'automation'
+        },
+        {
+          resourceKey: 'automation'
+        }
+      ]
+    },
   ]
 }

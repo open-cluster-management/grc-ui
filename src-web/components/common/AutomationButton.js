@@ -28,7 +28,6 @@ class AutomationButton extends React.Component {
 
   render() {
     const { item, locale, onClickAutomation } = this.props
-
     return (
         <Query query={POLICY_AUTOMATIONS} variables={{ namespace: item.metadata.namespace }}>
         {( result ) => {
