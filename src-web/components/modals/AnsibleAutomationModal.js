@@ -363,7 +363,7 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   getQueryError = error => {
-    return _.get(error, 'message') || ''
+      return _.get(error, 'message') || ''
   }
 
   closeAlert = () => {
@@ -379,7 +379,6 @@ export class AnsibleAutomationModal extends React.Component {
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
       initializeFinished, policyAutoName, slideFlag, notificationOpen
     } = this.state
-    console.log(notificationOpen)
     const policyNS = _.get(policyData, metaNSStr)
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
     const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
