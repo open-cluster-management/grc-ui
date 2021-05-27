@@ -380,13 +380,17 @@ export class AnsibleAutomationModal extends React.Component {
       initializeFinished, policyAutoName, slideFlag, notificationOpen
     } = this.state
     const policyNS = _.get(policyData, metaNSStr)
-    let query = GET_ANSIBLE_CREDENTIALS,  variables = {}, pollInterval = 0
-    let actionClose = <AlertActionCloseButton onClose={this.closeAlert} />
-    if (activeItem) {
+    let query, variables, pollInterval, actionClose
+    if (activeItem) { // ansible history page
       query = GET_ANSIBLE_HISTORY
       variables = {name:policyAutoName, namespace:policyNS}
       actionClose = ''
       pollInterval = 10000
+    } else { // configuration page
+      query = GET_ANSIBLE_CREDENTIALS
+      variables = {}
+      actionClose = <AlertActionCloseButton onClose={this.closeAlert} />
+      pollInterval = 0
     }
     const panelType = initialJSON ? 'edit' : 'create'
     return (
