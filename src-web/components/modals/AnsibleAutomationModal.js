@@ -41,6 +41,9 @@ import TitleWithTooltip from '../common/TitleWithTooltip'
 
 import '../../scss/ansible-modal.scss'
 
+const metaNameStr = 'metadata.name'
+const metaNSStr = 'metadata.namespace'
+
 if (window.monaco) {
   window.monaco.editor.defineTheme('console', {
     base: 'vs-dark',
@@ -147,8 +150,8 @@ export class AnsibleAutomationModal extends React.Component {
 
   initialize = async () => {
     const {  data:policyData, handleGetPolicyAutomation } = this.props
-    const policyName = _.get(policyData, 'metadata.name')
-    const policyNS = _.get(policyData, 'metadata.namespace')
+    const policyName = _.get(policyData, metaNameStr)
+    const policyNS = _.get(policyData, metaNSStr)
     // step to check and loading exisiting policyAutomations
     const {data:initialData} = await handleGetPolicyAutomation(policyNS)
     const policyAutomations = initialData.policyAutomations
@@ -156,8 +159,8 @@ export class AnsibleAutomationModal extends React.Component {
       // targetPolicyAutomation must match policy name and ns
       const targetPolicyAutomation = _.find(policyAutomations, ['spec.policyRef', policyName])
       if (targetPolicyAutomation) {
-        const policyAutoName = _.get(targetPolicyAutomation, 'metadata.name')
-        const policyAutoNS = _.get(targetPolicyAutomation, 'metadata.namespace')
+        const policyAutoName = _.get(targetPolicyAutomation, metaNameStr)
+        const policyAutoNS = _.get(targetPolicyAutomation, metaNSStr)
         let annotations = _.get(targetPolicyAutomation, 'metadata.annotations')
         const resourceVersion = _.get(targetPolicyAutomation, 'metadata.resourceVersion')
         const credentialName = _.get(targetPolicyAutomation, 'spec.automationDef.secret')
@@ -324,8 +327,8 @@ export class AnsibleAutomationModal extends React.Component {
       ansScheduleMode, initialJSON
     } = this.state
     const { data:policyData } = this.props
-    const policyName = _.get(policyData, 'metadata.name')
-    const policyNS = _.get(policyData, 'metadata.namespace')
+    const policyName = _.get(policyData, metaNameStr)
+    const policyNS = _.get(policyData, metaNSStr)
     if (jobTemplateName && credentialName && credentialNS && ansScheduleMode
        && policyName && policyNS) {
       // step to copy secret to target ns
@@ -380,7 +383,7 @@ export class AnsibleAutomationModal extends React.Component {
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
       initializeFinished, policyAutoName, slideFlag, notificationOpen
     } = this.state
-    const policyNS = _.get(policyData, 'metadata.namespace')
+    const policyNS = _.get(policyData, metaNSStr)
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
     const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
     const pollInterval = activeItem ? 10000 : 0
