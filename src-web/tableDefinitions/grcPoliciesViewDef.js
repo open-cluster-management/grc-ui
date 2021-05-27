@@ -22,7 +22,6 @@ export default {
     'table.actions.edit',
     'table.actions.disable',
     'table.actions.enforce',
-    'table.actions.automation',
     'table.actions.remove',
   ],
   tableKeys: [

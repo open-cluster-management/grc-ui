@@ -3,9 +3,9 @@
 
 'use strict'
 
-import  TitleWithTooltip from '../../../../src-web/components/common/TitleWithTooltip'
+import TitleWithTooltip from '../../../../src-web/components/common/TitleWithTooltip'
 
-describe(' TitleWithTooltip', () => {
+describe('TitleWithTooltip', () => {
   it('renders as expected for TitleWithTooltip', () => {
     const props = {
       className:'testingTitleWithTooltip',
