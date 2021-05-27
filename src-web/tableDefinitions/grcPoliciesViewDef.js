@@ -5,7 +5,6 @@
 'use strict'
 
 import {
-  buildTimestamp,
   createComplianceLink,
   getPolicyCompliantStatus,
   getCategories,
@@ -106,7 +105,7 @@ export default {
       resourceKey: 'raw.metadata.creationTimestamp',
       sortable: true,
       transforms: [wrappable],
-      transformFunction: buildTimestamp,
+      type: 'timestamp'
     },
     // Row metadata
     {

@@ -244,11 +244,6 @@ export const buildCompliantCellFromMessage = (item, locale) => {
   return compliant
 }
 
-export function buildTimestamp(item) {
-  const createdTime = _.get(item, 'timestamp') ? _.get(item, 'timestamp') : _.get(item, 'raw.metadata.creationTimestamp')
-  return <TableTimestamp timestamp={createdTime} />
-}
-
 export function buildClusterLink(item) {
   const cluster = _.get(item, 'cluster')
   if (cluster) {

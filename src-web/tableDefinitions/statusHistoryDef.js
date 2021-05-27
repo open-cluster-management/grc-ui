@@ -5,7 +5,6 @@
 'use strict'
 
 import {
-  buildTimestamp,
   buildCompliantCellFromMessage,
   statusHistoryMessageTooltip,
 } from './utils'
@@ -40,8 +39,7 @@ export default {
       msgKey: 'table.header.lastReport',
       label: 'timestamp',
       resourceKey: 'timestamp',
-      transforms: [wrappable, sortable],
-      transformFunction: buildTimestamp
+      type: 'timestamp'
     },
   ],
   sortBy: {
