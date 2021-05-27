@@ -71,7 +71,7 @@ export const transformNew = (items, def, locale) => {
   def.tableKeys.forEach(key => {
     const colData = {
       header: key.msgKey ? msgs.get(key.msgKey, locale): '',
-      sort: key.sortable ? key.label : undefined,
+      sort: key.sortable ? (key.sortLabel || key.label) : undefined,
       cell: key.label,
       search: key.searchable ? parseCell(key.label) : undefined,
       transforms: key.transforms,

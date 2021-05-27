@@ -22,7 +22,8 @@ export default {
       label: 'cluster',
       searchable: true,
       sortable: true,
-      transforms: [sortable, wrappable],
+      sortLabel: 'cluster.rawData',
+      resourceKey: 'cluster',
       transforms: [wrappable],
       transformFunction: buildClusterLink
     },
@@ -31,6 +32,7 @@ export default {
       label: 'status',
       searchable: true,
       sortable: true,
+      sortLabel: 'status.rawData',
       resourceKey: 'status',
       transforms: [cellWidth(15)],
       transformFunction: buildCompliantCellFromMessage
@@ -49,6 +51,7 @@ export default {
       label: 'message',
       searchable: true,
       sortable: true,
+      sortLabel: 'message.rawData',
       resourceKey: 'message',
       transforms: [cellWidth(70), wrappable],
       cellTransforms: [breakWord],
@@ -58,6 +61,7 @@ export default {
       msgKey: 'table.header.timestamp',
       label: 'timestamp',
       sortable: true,
+      sortLabel: 'timestamp.rawData',
       resourceKey: 'timestamp',
       transforms: [wrappable],
       type: 'timestamp'

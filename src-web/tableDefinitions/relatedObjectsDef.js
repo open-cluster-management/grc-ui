@@ -51,6 +51,7 @@ export default {
       msgKey: 'table.header.compliant',
       label: 'compliant',
       sortable: true,
+      sortLabel: 'compliant.rawData',
       resourceKey: 'compliant',
       transforms: [wrappable],
       transformFunction: buildCompliantCell,

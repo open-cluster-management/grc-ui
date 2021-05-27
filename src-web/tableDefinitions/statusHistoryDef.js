@@ -21,6 +21,8 @@ export default {
       label: 'status',
       searchable: true,
       sortable: true,
+      sortLabel: 'status.rawData',
+      resourceKey: 'message', // because the cell content is actually built from the message
       transforms: [wrappable],
       cellTransforms: [breakWord],
       transformFunction: buildCompliantCellFromMessage
@@ -30,6 +32,7 @@ export default {
       label: 'message',
       searchable: true,
       sortable: true,
+      sortLabel: 'message.rawData',
       resourceKey: 'message',
       transforms: [cellWidth(70), wrappable],
       cellTransforms: [breakWord],
@@ -39,6 +42,7 @@ export default {
       msgKey: 'table.header.lastReport',
       label: 'timestamp',
       sortable: true,
+      sortLabel: 'message.rawData',
       resourceKey: 'timestamp',
       transforms: [wrappable],
       type: 'timestamp'
