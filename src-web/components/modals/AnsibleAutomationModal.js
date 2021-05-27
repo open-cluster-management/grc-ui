@@ -7,12 +7,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
-  AcmModal, AcmButton, AcmAlert, AcmLaunchLink, AcmTable
+  AcmModal, AcmButton, AcmLaunchLink, AcmTable
 } from '@open-cluster-management/ui-components'
 import {
   Text, Spinner, ButtonVariant, Nav,
   NavItem, NavList, Select, Title,
-  SelectOption, SelectVariant, Radio
+  SelectOption, SelectVariant, Radio,
+  Alert, AlertActionCloseButton
 } from '@patternfly/react-core'
 import {
   global_BackgroundColor_100 as lineNumberActiveForeground,
@@ -88,6 +89,7 @@ export class AnsibleAutomationModal extends React.Component {
       initialJSON: null,
       confirmClose: false,
       slideFlag: false,
+      notificationOpen: true
     }
     this.initialize()
   }
@@ -196,6 +198,7 @@ export class AnsibleAutomationModal extends React.Component {
       } catch (error) {
         console.error(error)
         this.setState({
+          notificationOpen: true,
           yamlMsg: {
             msg: JSON.stringify(error),
             type: 'danger',
@@ -218,6 +221,7 @@ export class AnsibleAutomationModal extends React.Component {
       } catch (error) {
         console.error(error)
         this.setState({
+          notificationOpen: true,
           yamlMsg: {
             msg: JSON.stringify(error),
             type: 'danger',
@@ -233,7 +237,8 @@ export class AnsibleAutomationModal extends React.Component {
       queryMsg: {
         msg: msg,
         type: type,
-      }
+      },
+      notificationOpen: true
     })
   }
 
@@ -355,13 +360,26 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   getQueryError = error => {
-     return _.get(error, 'message') || ''
+    const  queryErrorMsg = _.get(error, 'message') || ''
+    if (queryErrorMsg) {
+      this.setState({
+        notificationOpen: true
+      })
+    }
+     return queryErrorMsg
+  }
+
+  closeAlert = () => {
+    this.setState({
+      notificationOpen: false
+    })
   }
 
   render() {
     const { data:policyData, locale, open } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
-      initializeFinished, policyAutoName, slideFlag } = this.state
+      initializeFinished, policyAutoName, slideFlag, notificationOpen
+    } = this.state
     const policyNS = _.get(policyData, 'metadata.namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
     const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
@@ -394,12 +412,15 @@ export class AnsibleAutomationModal extends React.Component {
               header={
                 <React.Fragment>
                 <div className='ansible_modal_title'>{titleText}</div>
-                {alertTitle &&
-                    <AcmAlert
-                      isInline={true}
-                      noClose={false}
+                {alertTitle && notificationOpen &&
+                    <Alert
                       variant={alertVariant}
-                      title={alertTitle} />}
+                      isInline={true}
+                      title={alertTitle}
+                      actionClose={<AlertActionCloseButton onClose={this.closeAlert} />}
+                    >
+                    </Alert>
+                }
                 </React.Fragment>
               }
               actions={!activeItem && [
@@ -603,7 +624,7 @@ export class AnsibleAutomationModal extends React.Component {
           const queryError = this.getQueryError(error)
           const ansJobTemplates = data ? data.ansibleJobTemplates : data
           const ansJobTemplateFlag = !queryError && Array.isArray(ansJobTemplates) && ansJobTemplates.length > 0
-          const {jobTemplateName, jobTemplateIsOpen} = this.state
+          const {jobTemplateName, jobTemplateIsOpen, notificationOpen} = this.state
           return (
             <React.Fragment>
             <div>
@@ -640,13 +661,15 @@ export class AnsibleAutomationModal extends React.Component {
                 {jobTemplateName && this.renderAnsibleJobTemplateEditor()}
                 {jobTemplateName && this.renderAnsibleScheduleMode()}
               </React.Fragment>}
-              {!ansJobTemplateFlag &&
-                <AcmAlert
-                  isInline={true}
-                  noClose={true}
-                  variant='info'
-                  title={queryError ? queryError : msgs.get('ansible.no.jobTemplates.info', locale)} />
-              }
+              {!ansJobTemplateFlag && notificationOpen &&
+                    <Alert
+                      variant={'info'}
+                      isInline={true}
+                      title={queryError ? queryError : msgs.get('ansible.no.jobTemplates.info', locale)}
+                      actionClose={<AlertActionCloseButton onClose={this.closeAlert} />}
+                    >
+                    </Alert>
+                }
             </React.Fragment>
           </React.Fragment>
           )
