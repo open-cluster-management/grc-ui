@@ -363,19 +363,15 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   getQueryError = error => {
-    const  queryErrorMsg = _.get(error, 'message') || ''
-    if (queryErrorMsg) {
-      this.setState({
-        notificationOpen: true
-      })
-    }
-     return queryErrorMsg
+    return _.get(error, 'message') || ''
   }
 
   closeAlert = () => {
-    this.setState({
-      notificationOpen: false
-    })
+    if (this.state.notificationOpen) {
+      this.setState({
+        notificationOpen: false
+      })
+    }
   }
 
   render() {
@@ -383,9 +379,11 @@ export class AnsibleAutomationModal extends React.Component {
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
       initializeFinished, policyAutoName, slideFlag, notificationOpen
     } = this.state
+    console.log(notificationOpen)
     const policyNS = _.get(policyData, metaNSStr)
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
     const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
+    const actionClose = activeItem ? '' : <AlertActionCloseButton onClose={this.closeAlert} />
     const pollInterval = activeItem ? 10000 : 0
     const panelType = initialJSON ? 'edit' : 'create'
     return (
@@ -400,7 +398,12 @@ export class AnsibleAutomationModal extends React.Component {
             ? msgs.get(`ansible.automation.heading.${panelType}`, locale)
             : msgs.get('ansible.loading.info', locale)
           const alertTitle = (queryError || yamlMsg.msg || queryMsg.msg)
-          const alertVariant = queryError ? 'danger' : (yamlMsg.type || queryMsg.type || 'danger')
+          let alertVariant = 'danger'
+          if (queryError && typeof queryError === 'string' && queryError.includes('not installed')) {
+            alertVariant = 'info'
+          } else if (yamlMsg.type || queryMsg.type){
+            alertVariant = (yamlMsg.type || queryMsg.type)
+          }
           return (
             <React.Fragment>
               <AcmModal
@@ -414,16 +417,16 @@ export class AnsibleAutomationModal extends React.Component {
               aria-label={titleText}
               header={
                 <React.Fragment>
-                <div className='ansible_modal_title'>{titleText}</div>
-                {alertTitle && notificationOpen &&
-                    <Alert
-                      variant={alertVariant}
-                      isInline={true}
-                      title={alertTitle}
-                      actionClose={<AlertActionCloseButton onClose={this.closeAlert} />}
-                    >
-                    </Alert>
-                }
+                  <div className='ansible_modal_title'>{titleText}</div>
+                  {alertTitle && notificationOpen &&
+                      <Alert
+                        variant={alertVariant}
+                        isInline={true}
+                        title={alertTitle}
+                        actionClose={actionClose}
+                      >
+                      </Alert>
+                  }
                 </React.Fragment>
               }
               actions={!activeItem && [
@@ -553,54 +556,54 @@ export class AnsibleAutomationModal extends React.Component {
     const {credentialName, credentialIsOpen} = this.state
     return (
       <React.Fragment>
-      {ansCredentialFlag &&
-        <React.Fragment>
-          {TitleWithTooltip({
-            className: 'titleWithTooltip',
-            headingLevel: 'h3',
-            position: 'top',
-            title: msgs.get('ansible.credential.selection.title', locale),
-            tooltip: msgs.get('ansible.credential.selection.title', locale),
-          })}
-          <Select
-            variant={SelectVariant.single}
-            placeholderText={msgs.get('ansible.credential.selection.placeholder', locale)}
-            aria-label={msgs.get('ansible.credential.selection.placeholder', locale)}
-            onSelect={this.setCredentialsSelectionValue}
-            onToggle={this.onCredentialsSelectionToggle}
-            selections={credentialName}
-            isOpen={credentialIsOpen}
-          >
-            {ansCredentials.map((credential) => (
-              <SelectOption
-                key={credential.name}
-                value={credential.name ? credential.name : '-'}
-                isPlaceholder={credential.name ? credential.name : '-'}
-                description={`${credential.host ? credential.host : '-'}`}
-              />
-            ))}
-          </Select>
-          {this.renderURL(
-            'createCredentialLink',
-            msgs.get('ansible.launch.createCredential', locale),
-            '/multicloud/credentials'
-          )}
-          {credentialName && this.renderAnsibleJobTemplatesSelection(
-            this.getAnsibleConnection(ansCredentials), locale
-          )}
-        </React.Fragment>}
-      {!ansCredentialFlag &&
-        <React.Fragment>
-          <Text>
-            {msgs.get('ansible.no.credential', locale)}
+        {ansCredentialFlag &&
+          <React.Fragment>
+            {TitleWithTooltip({
+              className: 'titleWithTooltip',
+              headingLevel: 'h3',
+              position: 'top',
+              title: msgs.get('ansible.credential.selection.title', locale),
+              tooltip: msgs.get('ansible.credential.selection.title', locale),
+            })}
+            <Select
+              variant={SelectVariant.single}
+              placeholderText={msgs.get('ansible.credential.selection.placeholder', locale)}
+              aria-label={msgs.get('ansible.credential.selection.placeholder', locale)}
+              onSelect={this.setCredentialsSelectionValue}
+              onToggle={this.onCredentialsSelectionToggle}
+              selections={credentialName}
+              isOpen={credentialIsOpen}
+            >
+              {ansCredentials.map((credential) => (
+                <SelectOption
+                  key={credential.name}
+                  value={credential.name ? credential.name : '-'}
+                  isPlaceholder={credential.name ? credential.name : '-'}
+                  description={`${credential.host ? credential.host : '-'}`}
+                />
+              ))}
+            </Select>
             {this.renderURL(
               'createCredentialLink',
               msgs.get('ansible.launch.createCredential', locale),
               '/multicloud/credentials'
             )}
-          </Text>
-        </React.Fragment>
-      }
+            {credentialName && this.renderAnsibleJobTemplatesSelection(
+              this.getAnsibleConnection(ansCredentials), locale
+            )}
+          </React.Fragment>}
+        {!ansCredentialFlag &&
+          <React.Fragment>
+            <Text>
+              {msgs.get('ansible.no.credential', locale)}
+              {this.renderURL(
+                'createCredentialLink',
+                msgs.get('ansible.launch.createCredential', locale),
+                '/multicloud/credentials'
+              )}
+            </Text>
+          </React.Fragment>
+        }
       </React.Fragment>
     )
   }
@@ -630,51 +633,51 @@ export class AnsibleAutomationModal extends React.Component {
           const {jobTemplateName, jobTemplateIsOpen, notificationOpen} = this.state
           return (
             <React.Fragment>
-            <div>
-              {loading && <Spinner className='patternfly-spinner' />}
-            </div>
-            <React.Fragment>
-            {ansJobTemplateFlag &&
+              <div>
+                {loading && <Spinner className='patternfly-spinner' />}
+              </div>
               <React.Fragment>
-              {TitleWithTooltip({
-                className: 'titleWithTooltip',
-                headingLevel: 'h3',
-                position: 'top',
-                title: msgs.get('ansible.jobTemplates.selection.title', locale),
-                tooltip: msgs.get('ansible.jobTemplates.selection.title', locale),
-              })}
-              <Select
-                variant={SelectVariant.single}
-                placeholderText={msgs.get('ansible.jobTemplates.selection.placeholder', locale)}
-                aria-label={msgs.get('ansible.jobTemplates.selection.placeholder', locale)}
-                  onSelect={this.setJobTemplatesSelectionValue}
-                  onToggle={this.onJobTemplatesSelectionToggle}
-                  selections={jobTemplateName}
-                  isOpen={jobTemplateIsOpen}
-                >
-                  {ansJobTemplates.map((jobTemplate) => (
-                    <SelectOption
-                      key={jobTemplate.name}
-                      value={jobTemplate.name ? jobTemplate.name : '-'}
-                      isPlaceholder={jobTemplate.name ? jobTemplate.name : '-'}
-                      description={jobTemplate.description ? jobTemplate.description : '-'}
-                    />
-                  ))}
-                </Select>
-                {jobTemplateName && this.renderAnsibleJobTemplateEditor()}
-                {jobTemplateName && this.renderAnsibleScheduleMode()}
-              </React.Fragment>}
-              {!ansJobTemplateFlag && notificationOpen &&
-                    <Alert
-                      variant={'info'}
-                      isInline={true}
-                      title={queryError ? queryError : msgs.get('ansible.no.jobTemplates.info', locale)}
-                      actionClose={<AlertActionCloseButton onClose={this.closeAlert} />}
+                {ansJobTemplateFlag &&
+                <React.Fragment>
+                  {TitleWithTooltip({
+                    className: 'titleWithTooltip',
+                    headingLevel: 'h3',
+                    position: 'top',
+                    title: msgs.get('ansible.jobTemplates.selection.title', locale),
+                    tooltip: msgs.get('ansible.jobTemplates.selection.title', locale),
+                  })}
+                  <Select
+                    variant={SelectVariant.single}
+                    placeholderText={msgs.get('ansible.jobTemplates.selection.placeholder', locale)}
+                    aria-label={msgs.get('ansible.jobTemplates.selection.placeholder', locale)}
+                      onSelect={this.setJobTemplatesSelectionValue}
+                      onToggle={this.onJobTemplatesSelectionToggle}
+                      selections={jobTemplateName}
+                      isOpen={jobTemplateIsOpen}
                     >
-                    </Alert>
+                    {ansJobTemplates.map((jobTemplate) => (
+                      <SelectOption
+                        key={jobTemplate.name}
+                        value={jobTemplate.name ? jobTemplate.name : '-'}
+                        isPlaceholder={jobTemplate.name ? jobTemplate.name : '-'}
+                        description={jobTemplate.description ? jobTemplate.description : '-'}
+                      />
+                    ))}
+                  </Select>
+                  {jobTemplateName && this.renderAnsibleJobTemplateEditor()}
+                  {jobTemplateName && this.renderAnsibleScheduleMode()}
+                </React.Fragment>}
+                {!ansJobTemplateFlag && notificationOpen &&
+                  <Alert
+                    variant={'info'}
+                    isInline={true}
+                    title={queryError ? queryError : msgs.get('ansible.no.jobTemplates.info', locale)}
+                    actionClose={<AlertActionCloseButton onClose={this.closeAlert} />}
+                  >
+                  </Alert>
                 }
+              </React.Fragment>
             </React.Fragment>
-          </React.Fragment>
           )
         }}
         </Query>
