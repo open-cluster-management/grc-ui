@@ -406,7 +406,7 @@ export class AnsibleAutomationModal extends React.Component {
             : msgs.get('ansible.loading.info', locale)
           const alertTitle = (queryError || yamlMsg.msg || queryMsg.msg)
           let alertVariant = 'danger'
-          if (queryError && typeof queryError === 'string' && queryError.includes('not installed')) {
+          if (queryError && _.includes(queryError, 'not installed')) {
             alertVariant = 'info'
           } else if (yamlMsg.type || queryMsg.type){
             alertVariant = (yamlMsg.type || queryMsg.type)
