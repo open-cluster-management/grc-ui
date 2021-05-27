@@ -325,6 +325,43 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                     </div>
                   </dd>
                 </div>
+                <div
+                  className="pf-c-description-list__group"
+                >
+                  <dt
+                    className="pf-c-description-list__term"
+                  >
+                    <span
+                      className="pf-c-description-list__text"
+                    >
+                      Automation
+                       
+                    </span>
+                  </dt>
+                  <dd
+                    className="pf-c-description-list__description"
+                  >
+                    <div
+                      className="pf-c-description-list__text"
+                    >
+                      <span
+                        aria-valuetext="Loading..."
+                        className="pf-c-spinner pf-m-md"
+                        role="progressbar"
+                      >
+                        <span
+                          className="pf-c-spinner__clipper"
+                        />
+                        <span
+                          className="pf-c-spinner__lead-ball"
+                        />
+                        <span
+                          className="pf-c-spinner__tail-ball"
+                        />
+                      </span>
+                    </div>
+                  </dd>
+                </div>
               </dl>
             </div>
           </div>
@@ -968,6 +1005,43 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                       className="pf-c-description-list__text"
                     >
                       7 months ago
+                    </div>
+                  </dd>
+                </div>
+                <div
+                  className="pf-c-description-list__group"
+                >
+                  <dt
+                    className="pf-c-description-list__term"
+                  >
+                    <span
+                      className="pf-c-description-list__text"
+                    >
+                      Automation
+                       
+                    </span>
+                  </dt>
+                  <dd
+                    className="pf-c-description-list__description"
+                  >
+                    <div
+                      className="pf-c-description-list__text"
+                    >
+                      <span
+                        aria-valuetext="Loading..."
+                        className="pf-c-spinner pf-m-md"
+                        role="progressbar"
+                      >
+                        <span
+                          className="pf-c-spinner__clipper"
+                        />
+                        <span
+                          className="pf-c-spinner__lead-ball"
+                        />
+                        <span
+                          className="pf-c-spinner__tail-ball"
+                        />
+                      </span>
                     </div>
                   </dd>
                 </div>
