@@ -363,7 +363,7 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   getQueryError = error => {
-      return _.get(error, 'message') || ''
+    return _.get(error, 'message') || ''
   }
 
   closeAlert = () => {
@@ -380,10 +380,14 @@ export class AnsibleAutomationModal extends React.Component {
       initializeFinished, policyAutoName, slideFlag, notificationOpen
     } = this.state
     const policyNS = _.get(policyData, metaNSStr)
-    const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
-    const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
-    const actionClose = activeItem ? '' : <AlertActionCloseButton onClose={this.closeAlert} />
-    const pollInterval = activeItem ? 10000 : 0
+    let query = GET_ANSIBLE_CREDENTIALS,  variables = {}, pollInterval = 0
+    let actionClose = <AlertActionCloseButton onClose={this.closeAlert} />
+    if (activeItem) {
+      query = GET_ANSIBLE_HISTORY
+      variables = {name:policyAutoName, namespace:policyNS}
+      actionClose = ''
+      pollInterval = 10000
+    }
     const panelType = initialJSON ? 'edit' : 'create'
     return (
       <Query query={query} pollInterval={pollInterval} variables={variables}>
