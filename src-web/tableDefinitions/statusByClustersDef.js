@@ -6,7 +6,6 @@
 import {
   breakWord,
   cellWidth,
-  sortable,
   wrappable,
 } from '@patternfly/react-table'
 import {
@@ -22,38 +21,45 @@ export default {
       msgKey: 'table.header.cluster',
       label: 'cluster',
       searchable: true,
+      sortable: true,
       transforms: [sortable, wrappable],
+      transforms: [wrappable],
       transformFunction: buildClusterLink
     },
     {
       msgKey: 'table.header.status',
       label: 'status',
       searchable: true,
+      sortable: true,
       resourceKey: 'status',
-      transforms: [cellWidth(15), sortable],
+      transforms: [cellWidth(15)],
       transformFunction: buildCompliantCellFromMessage
     },
     {
       msgKey: 'table.header.template',
       label: 'templateName',
       searchable: true,
+      sortable: true,
       resourceKey: 'templateName',
-      transforms: [sortable, wrappable],
+      transforms: [wrappable],
       cellTransforms: [breakWord],
     },
     {
       msgKey: 'table.header.message',
       label: 'message',
       searchable: true,
+      sortable: true,
       resourceKey: 'message',
-      transforms: [cellWidth(70), sortable, wrappable],
+      transforms: [cellWidth(70), wrappable],
       cellTransforms: [breakWord],
       transformFunction: buildTemplateDetailLink
     },
     {
       msgKey: 'table.header.timestamp',
       label: 'timestamp',
+      sortable: true,
       resourceKey: 'timestamp',
+      transforms: [wrappable],
       type: 'timestamp'
     },
     {

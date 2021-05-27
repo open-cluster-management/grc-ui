@@ -7,7 +7,6 @@ import React from 'react'
 import {
   breakWord,
   wrappable,
-  sortable
 } from '@patternfly/react-table'
 import _ from 'lodash'
 import {
@@ -23,23 +22,25 @@ export default {
       msgKey: 'table.header.status',
       label: 'status',
       searchable: true,
+      sortable: true,
       resourceKey: 'status',
-      transforms: [sortable],
       cellTransforms: [breakWord],
       transformFunction: buildAnsibleJobStatus
     },
     {
       msgKey: 'table.header.started',
       label: 'started',
+      sortable: true,
       resourceKey: 'started',
-      transforms: [wrappable, sortable],
+      transforms: [wrappable],
       type: 'timestamp'
     },
     {
       msgKey: 'table.header.finished',
       label: 'finished',
+      sortable: true,
       resourceKey: 'finished',
-      transforms: [wrappable, sortable],
+      transforms: [wrappable],
       type: 'timestamp'
     },
     {

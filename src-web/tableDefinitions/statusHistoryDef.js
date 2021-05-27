@@ -12,7 +12,6 @@ import {
   breakWord,
   wrappable,
   cellWidth,
-  sortable
 } from '@patternfly/react-table'
 
 export default {
@@ -21,8 +20,8 @@ export default {
       msgKey: 'table.header.status',
       label: 'status',
       searchable: true,
-      resourceKey: 'status',
-      transforms: [wrappable, sortable],
+      sortable: true,
+      transforms: [wrappable],
       cellTransforms: [breakWord],
       transformFunction: buildCompliantCellFromMessage
     },
@@ -30,15 +29,18 @@ export default {
       msgKey: 'table.header.message',
       label: 'message',
       searchable: true,
+      sortable: true,
       resourceKey: 'message',
-      transforms: [cellWidth(70), wrappable, sortable],
+      transforms: [cellWidth(70), wrappable],
       cellTransforms: [breakWord],
       transformFunction: statusHistoryMessageTooltip
     },
     {
       msgKey: 'table.header.lastReport',
       label: 'timestamp',
+      sortable: true,
       resourceKey: 'timestamp',
+      transforms: [wrappable],
       type: 'timestamp'
     },
   ],
