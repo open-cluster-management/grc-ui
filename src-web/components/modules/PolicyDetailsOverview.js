@@ -75,19 +75,19 @@ export class PolicyDetailsOverview extends React.PureComponent{
         const keyPath = item.cells[0].resourceKey || '-'
         const keyType = item.cells[0].type || '-'
         const dataResourceKey = item.cells[1] ? item.cells[1].resourceKey : '-'
-        entry.key = msgs.get(keyPath, locale)
+        entry.key = msgs.get(keyPath, locale) ? msgs.get(keyPath, locale) : '-'
         const entryData = (dataResourceKey === '-') ? localItem : _.get(localItem, dataResourceKey, '-')
         if ((keyType !== 'automation') && (typeof(entryData) === 'object' || typeof(entryData) === 'boolean')) {
           entry.value = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
         } else {
           entry.value = entryData
         }
-        if (keyPath && keyPath !== '-') {
+        if (keyPath) {
           if(keyType === 'timestamp') {
             entry.value = moment(entry.value, 'YYYY-MM-DDTHH:mm:ssZ').fromNow()
           } else if(dataResourceKey === 'clusterCompliant') {
             entry.value = getPolicyCompliantStatus({clusterCompliant: entry.value}, locale)
-          } else if (dataResourceKey === 'automation') {
+          } else if (keyType === 'automation') {
             entry.value = getAutomationLink(entry.value, locale)
           }
         }

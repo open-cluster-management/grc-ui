@@ -145,8 +145,8 @@ export class AnsibleAutomationModal extends React.Component {
 
   initialize = async () => {
     const {  data:policyData, handleGetPolicyAutomation } = this.props
-    const policyName = _.get(policyData, 'name')
-    const policyNS = _.get(policyData, 'namespace')
+    const policyName = _.get(policyData, 'metadata.name')
+    const policyNS = _.get(policyData, 'metadata.namespace')
     // step to check and loading exisiting policyAutomations
     const {data:initialData} = await handleGetPolicyAutomation(policyNS)
     const policyAutomations = initialData.policyAutomations
@@ -319,8 +319,8 @@ export class AnsibleAutomationModal extends React.Component {
       ansScheduleMode, initialJSON
     } = this.state
     const { data:policyData } = this.props
-    const policyName = _.get(policyData, 'name')
-    const policyNS = _.get(policyData, 'namespace')
+    const policyName = _.get(policyData, 'metadata.name')
+    const policyNS = _.get(policyData, 'metadata.namespace')
     if (jobTemplateName && credentialName && credentialNS && ansScheduleMode
        && policyName && policyNS) {
       // step to copy secret to target ns
@@ -362,7 +362,7 @@ export class AnsibleAutomationModal extends React.Component {
     const { data:policyData, locale, open } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
       initializeFinished, policyAutoName, slideFlag } = this.state
-    const policyNS = _.get(policyData, 'namespace')
+    const policyNS = _.get(policyData, 'metadata.namespace')
     const query = activeItem ? GET_ANSIBLE_HISTORY : GET_ANSIBLE_CREDENTIALS
     const variables = activeItem ? {name:policyAutoName, namespace:policyNS} : {}
     const pollInterval = activeItem ? 10000 : 0
