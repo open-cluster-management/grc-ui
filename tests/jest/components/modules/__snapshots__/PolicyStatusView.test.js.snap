@@ -342,7 +342,7 @@ exports[`PolicyStatusView component renders as expected 1`] = `
               >
                 <th
                   aria-sort="none"
-                  className="pf-m-nowrap pf-c-table__sort pf-m-wrap"
+                  className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
                   data-key={0}
                   data-label="Cluster"
                   onMouseEnter={[Function]}
@@ -436,7 +436,7 @@ exports[`PolicyStatusView component renders as expected 1`] = `
                 </th>
                 <th
                   aria-sort="none"
-                  className="pf-m-nowrap pf-c-table__sort pf-m-wrap"
+                  className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
                   data-key={2}
                   data-label="Template"
                   onMouseEnter={[Function]}
@@ -483,7 +483,7 @@ exports[`PolicyStatusView component renders as expected 1`] = `
                 </th>
                 <th
                   aria-sort="none"
-                  className="pf-m-nowrap pf-m-width-70 pf-c-table__sort pf-m-wrap"
+                  className="pf-m-nowrap pf-m-width-70 pf-m-wrap pf-c-table__sort"
                   data-key={3}
                   data-label="Message"
                   onMouseEnter={[Function]}
@@ -530,7 +530,7 @@ exports[`PolicyStatusView component renders as expected 1`] = `
                 </th>
                 <th
                   aria-sort="none"
-                  className="pf-m-nowrap pf-c-table__sort pf-m-wrap"
+                  className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
                   data-key={4}
                   data-label="Last Report"
                   onMouseEnter={[Function]}
@@ -1289,7 +1289,7 @@ exports[`PolicyStatusView component renders as expected with empty object 1`] = 
               >
                 <th
                   aria-sort="none"
-                  className="pf-m-nowrap pf-c-table__sort pf-m-wrap"
+                  className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
                   data-key={0}
                   data-label="Cluster"
                   onMouseEnter={[Function]}
@@ -1383,7 +1383,7 @@ exports[`PolicyStatusView component renders as expected with empty object 1`] = 
                 </th>
                 <th
                   aria-sort="none"
-                  className="pf-m-nowrap pf-c-table__sort pf-m-wrap"
+                  className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
                   data-key={2}
                   data-label="Template"
                   onMouseEnter={[Function]}
@@ -1430,7 +1430,7 @@ exports[`PolicyStatusView component renders as expected with empty object 1`] = 
                 </th>
                 <th
                   aria-sort="none"
-                  className="pf-m-nowrap pf-m-width-70 pf-c-table__sort pf-m-wrap"
+                  className="pf-m-nowrap pf-m-width-70 pf-m-wrap pf-c-table__sort"
                   data-key={3}
                   data-label="Message"
                   onMouseEnter={[Function]}
@@ -1477,7 +1477,7 @@ exports[`PolicyStatusView component renders as expected with empty object 1`] = 
                 </th>
                 <th
                   aria-sort="none"
-                  className="pf-m-nowrap pf-c-table__sort pf-m-wrap"
+                  className="pf-m-nowrap pf-m-wrap pf-c-table__sort"
                   data-key={4}
                   data-label="Last Report"
                   onMouseEnter={[Function]}
