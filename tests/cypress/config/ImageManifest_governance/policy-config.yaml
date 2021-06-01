@@ -1,5 +1,6 @@
 # these are policies required by following Polarion test cases:
 
+# t-imp := Test ImageManifest Policy
 t-imp-[ID]:
   apiVersion: 'policy.open-cluster-management.io/v1'
   namespace: 'default'

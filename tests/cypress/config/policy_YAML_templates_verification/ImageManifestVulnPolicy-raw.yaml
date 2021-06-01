@@ -15,7 +15,7 @@ spec:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
         metadata:
-          name: imagemanifestvulnpolicy-subresrouce-img-vuln
+          name: imagemanifestvulnpolicy-subscription
         spec:
           remediationAction: inform
           severity: high

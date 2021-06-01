@@ -214,7 +214,7 @@ export const action_createPolicyFromSelection = (uPolicyName, create=true, polic
   if (!policyConfig['cluster_binding'] && Cypress.env('MANAGED_CLUSTER_NAME') !== undefined) {
     policyConfig['cluster_binding'] = [`name: "${Cypress.env('MANAGED_CLUSTER_NAME')}"`]
   }
-  if (policyConfig['cluster_binding']?.length > 0) {
+  if (policyConfig['cluster_binding'] && policyConfig['cluster_binding'].length > 0) {
     cy.then(() => {
       selectItems(policyConfig['cluster_binding'], '.pf-c-select__toggle-button[aria-label="clusters"]')
     })
@@ -757,7 +757,7 @@ export const getPolicyTemplatesNameAndKind = (policyName, policyConfig) => {
       break
     case 'ImageManifestVulnPolicy':
       templates.add(policyName+'-image-vulnerability'+'/'+'ConfigurationPolicy')
-      templates.add(policyName+'-subresrouce-img-vuln'+'/'+'ConfigurationPolicy')
+      templates.add(policyName+'-subscription'+'/'+'ConfigurationPolicy')
       break
     case 'LimitRange':
       templates.add(policyName+'-container-mem-limit-range'+'/'+'ConfigurationPolicy')
