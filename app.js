@@ -49,6 +49,7 @@ const bodyParser = require('body-parser'),
 const app = express()
 
 app.use(helmet({ // in production these headers are set by icp-management-ingress
+  contentSecurityPolicy: false,// https://github.com/helmetjs/helmet/wiki/Helmet-4-upgrade-guide
   frameguard: false
 }))
 
