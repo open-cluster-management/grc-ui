@@ -11,7 +11,6 @@
 
 const path = require('path'),
       webpack = require('webpack'),
-      TerserPlugin = require('terser-webpack-plugin'),
       AssetsPlugin = require('assets-webpack-plugin'),
       CompressionPlugin = require('compression-webpack-plugin')
 
@@ -54,13 +53,6 @@ module.exports = {
     path: __dirname + '/public',
     filename: PRODUCTION ? 'dll.[name].[contenthash].min.js' : 'dll.[name].js',
     library: '[name]'
-  },
-
-  optimization: {
-    minimize: PRODUCTION,
-    minimizer: [new TerserPlugin({
-      parallel: true,
-    })],
   },
 
   plugins: [

@@ -8,8 +8,7 @@ const config = require('./server/config'),
       CompressionPlugin = require('compression-webpack-plugin'),
       CopyPlugin = require('copy-webpack-plugin'),
       MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin'),
-      TerserPlugin = require('terser-webpack-plugin')
+      MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 const PRODUCTION = process.env.BUILD_ENV ? /production/.test(process.env.BUILD_ENV) : false
 
@@ -144,13 +143,6 @@ module.exports = {
       // don't parse minified bundles (vendor libs) for faster builds
       /\.min\.js$/
     ]
-  },
-
-  optimization: {
-    minimize: PRODUCTION,
-    minimizer: [new TerserPlugin({
-      parallel: true,
-    })],
   },
 
   output: {
