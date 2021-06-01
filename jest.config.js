@@ -36,6 +36,7 @@ const jestConfig = {
   ],
   testResultsProcessor: 'jest-sonar-reporter',
   testURL: 'http://localhost/',
+  testEnvironment: 'jsdom',
   coverageThreshold: {
     global: {
       branches: 45,
