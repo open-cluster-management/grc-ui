@@ -31,38 +31,6 @@ import AutomationButton from '../components/common/AutomationButton'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
-  const rows = items.map(item => {
-    return def.tableKeys.map(key => {
-      let value = _.get(item, key.resourceKey)
-      if (key.type === 'timestamp') {
-        return <TableTimestamp timestamp={value} />
-      } else if (key.type === 'i18n') {
-        return msgs.get(key.resourceKey, locale)
-      } else if (key.type === 'boolean') {
-        value = (Boolean(value)).toString()
-        return msgs.get(value, locale)
-      } else if (key.transformFunction && typeof key.transformFunction === 'function') {
-        return { title: key.transformFunction(item, locale) }
-      } else {
-        return (value || value === 0) ? value : '-'
-      }
-    })
-  })
-
-  const columns = def.tableKeys.map(key => {
-    return {
-      title: key.msgKey ? msgs.get(key.msgKey, locale): '',
-      ...key
-    }
-  })
-
-  const sortBy = def.sortBy ? def.sortBy : { index: 0, direction: 'asc' } // default if doesn't exist
-
-  return { columns, rows, sortBy }
-}
-
-// use console.log(JSON.stringify(result, circular())) to test return result from transform
-export const transformNew = (items, def, locale) => {
   // Create column data for parent table and expandable (child) tables
   const columns = {
     colParent: [],

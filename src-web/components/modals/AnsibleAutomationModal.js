@@ -27,7 +27,7 @@ import {
 } from '../../actions/common'
 import ansibleJobHistoryDef from '../../tableDefinitions/ansibleJobHistoryDef'
 import {
-  getPolicyCompliantStatus, transformNew
+  getPolicyCompliantStatus, transform
 } from '../../tableDefinitions/utils'
 import { Query } from '@apollo/client/react/components'
 import {
@@ -778,7 +778,7 @@ export class AnsibleAutomationModal extends React.Component {
 
   renderAnsibleHisotry = (historyData) => {
     const { locale } = this.props
-    const tableData = transformNew(_.get(historyData.items ? historyData : {'items':[]}, 'items', []), ansibleJobHistoryDef, locale)
+    const tableData = transform(_.get(historyData.items ? historyData : {'items':[]}, 'items', []), ansibleJobHistoryDef, locale)
     return <AcmTable
       initialSort={tableData.sortBy}
       showToolbar={false}

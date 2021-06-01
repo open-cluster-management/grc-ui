@@ -17,7 +17,7 @@ import {
 import { LocaleContext } from '../common/LocaleContext'
 import grcPoliciesViewDef from '../../tableDefinitions/grcPoliciesViewDef'
 import grcClustersViewDef from '../../tableDefinitions/grcClustersViewDef'
-import { transformNew } from '../../tableDefinitions/utils'
+import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../nls/platform.properties'
 import { formatPoliciesToClustersTableData } from '../../utils/FormatTableData'
 import { RESOURCE_TYPES, GRC_SEARCH_STATE_COOKIE } from '../../utils/constants'
@@ -48,8 +48,8 @@ class GrcToggleModule extends React.Component {
     const { locale } = this.context
     const tableType = grcTabToggleIndex === 0 ? 'policies' : 'clusters'
     const tableData = [
-      transformNew(grcItems, grcPoliciesViewDef, locale),
-      transformNew(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale),
+      transform(grcItems, grcPoliciesViewDef, locale),
+      transform(formatPoliciesToClustersTableData(grcItems), grcClustersViewDef, locale),
     ]
     if (status !== REQUEST_STATUS.INCEPTION && status !== REQUEST_STATUS.DONE){
       return <Spinner className='patternfly-spinner' />
