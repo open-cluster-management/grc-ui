@@ -37,10 +37,8 @@ body {
   }
 
   // AcmPageContent styling
-  // - gray background
   // - spacing
   > div {
-    background-color: var(--pf-c-page__main-section--BackgroundColor);
     display: flex;
     flex-direction: column;
     flex-grow: 1;
