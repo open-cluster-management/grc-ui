@@ -60,7 +60,7 @@ gatekeeper-operator-subscription:
  ?: "(notification|violation)"
  0: "notification - imagemanifestvulns"
  1: "violation - couldn't find mapping resource with kind ImageManifestVuln, please check if you have CRD deployed"
-[POLICYNAME]-image-vulnerability-sub:
+[POLICYNAME]-subresrouce-img-vuln:
  ?: "(notification|violation)"
  0: "notification - subscriptions \\[container-security-operator\\] in namespace openshift-operators (found as specified|was missing), (therefore this Object template is compliant|and was created successfully)"
  1: "violation - couldn't find mapping resource with kind Subscription, please check if you have CRD deployed"
