@@ -5,7 +5,7 @@
 # Copyright Contributors to the Open Cluster Management project
 ###############################################################################
 echo "Initiating tests..."
-path_to_tests="./tests/cypress/tests/*.spec.js"
+path_to_tests=./tests/cypress/tests/*.spec.js
 if [[ "$1" == "--spec" ]] && [ ! -z "$2" ]; then
   path_to_tests=$2
 fi
