@@ -101,9 +101,9 @@ else
 fi
 
 if [ "$NODE_ENV" == "dev" ]; then
-  npx cypress run --browser $BROWSER $HEADLESS --spec $path_to_tests --reporter cypress-multi-reporters
+  npx cypress run --browser $BROWSER $HEADLESS --spec "$path_to_tests" --reporter cypress-multi-reporters
 elif [ "$NODE_ENV" == "debug" ]; then
   npx cypress open --browser $BROWSER --config numTestsKeptInMemory=0
 else
-  cypress run --browser $BROWSER $HEADLESS --spec $path_to_tests --reporter cypress-multi-reporters
+  cypress run --browser $BROWSER $HEADLESS --spec "$path_to_tests" --reporter cypress-multi-reporters
 fi
