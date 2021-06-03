@@ -14,7 +14,6 @@ import { LocaleContext } from '../common/LocaleContext'
 import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
 import { transform } from '../../tableDefinitions/utils'
 import msgs from '../../nls/platform.properties'
-import ResizeObserver from 'react-resize-observer'
 
 import '../../scss/policy-template-details.scss'
 
@@ -41,6 +40,17 @@ class PolicyTemplateDetailsView extends React.Component {
       const width = rect.width
       const height = rect.height - 65 // minus height of title / card header
       this.editor.layout({width, height})
+    }
+  }
+
+  componentDidMount() {
+    if (window.ResizeObserver) {
+      new ResizeObserver(this.layoutEditors.bind(this))
+        .observe(document.querySelector('.policy-template-details-view .yaml'))
+    } else {
+      // The ResizeObserver API might not be available on all browsers, but this
+      // is a good fallback covering many cases where the editor should resize
+      window.addEventListener('resize', this.layoutEditors.bind(this))
     }
   }
 
@@ -99,11 +109,6 @@ class PolicyTemplateDetailsView extends React.Component {
                 readOnly
                 setEditor={this.setEditor}
                 yaml={jsYaml.dump(items, {lineWidth: -1})}
-              />
-              <ResizeObserver
-                onReflow={() => {
-                  this.layoutEditors()
-                }}
               />
             </AcmExpandableCard>
           </div>

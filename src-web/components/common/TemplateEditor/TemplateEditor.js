@@ -119,8 +119,22 @@ export default class TemplateEditor extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize',  this.layoutEditors.bind(this))
     this.props.onCreate(this.handleCreateResource.bind(this))
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isLoaded, isFailed } = this.props.fetchControl || { isLoaded:true }
+    if (!prevProps.fetchControl?.isLoaded && isLoaded && !isFailed) {
+      // if the content was just now loaded, and did not fail.
+      if (window.ResizeObserver) {
+        new ResizeObserver(this.layoutEditors.bind(this))
+          .observe(document.querySelector('.creation-view'))
+      } else {
+        // The ResizeObserver API might not be available on all browsers, but this
+        // is a good fallback covering many cases where the editor should resize
+        window.addEventListener('resize', this.layoutEditors.bind(this))
+      }
+    }
   }
 
   setSplitPaneRef = splitPane => (this.splitPane = splitPane);
