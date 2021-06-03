@@ -728,7 +728,6 @@ export default class TemplateEditor extends React.Component {
 
     // Parse, validate, and add exception decorations
     const { parsed: newParsed, exceptions } = parseYAML(templateYAML)
-    console.log(exceptions)
     if (isEdit && exceptions.length === 0) {
       // in edit mode, revert any change to policy/pb/plr name and namespace
       ['Policy', 'PlacementRule', 'PlacementBinding'].forEach(e => {
