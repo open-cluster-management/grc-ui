@@ -686,8 +686,29 @@ export default class TemplateEditor extends React.Component {
   }
 
   handleEditorChange = (templateYAML) => {
-    this.setState({templateYAML})
-    this.parseDebounced()
+    const { isEdit } = this.props
+    const { templateObject } = this.state
+    const { parsed: newParsed, exceptions } = parseYAML(templateYAML)
+    let undo = false
+    if (isEdit && exceptions.length === 0) {
+      // in edit mode, revert any change to policy/pb/plr name and namespace
+      const yamls = ['Policy', 'PlacementRule', 'PlacementBinding']
+      yamls.forEach(e => {
+        if (_.get(newParsed,`${e}[0].$raw.metadata.name`) !== _.get(templateObject,`${e}[0].$raw.metadata.name`) ||
+          _.get(newParsed,`${e}[0].$raw.metadata.namespace`) !== _.get(templateObject,`${e}[0].$raw.metadata.namespace`)) {
+            undo = true
+        }
+        if (!templateObject[e]) {
+          undo = false
+        }
+      })
+    }
+    if (undo) {
+      this.editor.trigger('api', 'undo')
+    } else {
+      this.setState({templateYAML})
+      this.parseDebounced()
+    }
   }
 
   handleExceptions = (exceptions, decorationList=[]) => {
@@ -721,22 +742,13 @@ export default class TemplateEditor extends React.Component {
   }
 
   handleParse = () => {
-    const { locale, isEdit }= this.props
+    const { locale }= this.props
     let { isCustomName } = this.state
     const { templateYAML, templateObject, updateMessage } = this.state
     let { controlData } = this.state
 
     // Parse, validate, and add exception decorations
     const { parsed: newParsed, exceptions } = parseYAML(templateYAML)
-    if (isEdit && exceptions.length === 0) {
-      // in edit mode, revert any change to policy/pb/plr name and namespace
-      ['Policy', 'PlacementRule', 'PlacementBinding'].forEach(e => {
-        if (_.get(newParsed,`${e}[0].$raw.metadata.name`) !== _.get(templateObject,`${e}[0].$raw.metadata.name`) ||
-          _.get(newParsed,`${e}[0].$raw.metadata.namespace`) !== _.get(templateObject,`${e}[0].$raw.metadata.namespace`)) {
-          this.editor.trigger('api', 'undo')
-        }
-      })
-    }
     validateYAML(newParsed, controlData, exceptions, locale)
     this.handleExceptions(exceptions)
     // If updateMessage is not empty, then there might be a notification message that we'll need to update
