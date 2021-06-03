@@ -1369,3 +1369,219 @@ export const action_checkPolicyListingPageUserPermissions = (policyNames = [], c
   cy.clearTableSearch()
 
 }
+
+export const action_verifyCredentialsInSidebar = (uName, credentialName) => {
+  //search for policy and click to configure
+  cy.CheckGrcMainPage()
+    .doTableSearch(uName)
+    .get('.grc-view-by-policies-table').within(() => {
+    cy.get('a')
+      .contains(uName)
+      .parents('td')
+      .siblings('td')
+      .contains('td', 'Configure').within(() => {
+        cy.get('a').click()
+      })
+  })
+  .then(() => {
+    cy.get('.ansible-configure-table').within(() => {
+      if (credentialName === '') {
+        cy.get('p').should('contain', 'Ansible credential is required to create an Ansible job. Create your console by clicking the following link:')
+      } else {
+        cy.get('.pf-c-select').click()
+        cy.contains(credentialName).should('exist')
+      }
+    })
+  })
+  .then(() => {
+    cy.get('#automation-resource-panel').within(() => {
+      cy.get('button[aria-label="Close"]').click()
+    })
+  })
+  // wait for the dialog to be closed
+  .then(() => {
+    cy.get('#automation-resource-panel').should('not.exist')
+  })
+  // after mainpage table action, always return to grc main page
+  cy.CheckGrcMainPage()
+}
+
+export const action_scheduleAutomation = (uName, credentialName, mode) => {
+  const demoTemplateName = 'Demo Job Template'
+
+  //mock call to graphQL to get job templates to avoid needing to use a real tower
+  cy.intercept('POST', 'https://localhost:3000/multicloud/policies/graphql', (req) => {
+    if (req.body.operationName === 'getAnsibleJobTemplates') {
+        req.reply({
+          data: {
+            ansibleJobTemplates: [
+              {
+                name: demoTemplateName,
+                description: 'hello world ansible job template',
+                extra_vars: 'target_clusters:\n  - local-cluster'
+              }
+            ]
+          }
+        });
+    }
+  }).as('templatesQuery')
+
+  let failures = 0
+
+  cy.CheckGrcMainPage()
+    .doTableSearch(uName)
+    .get('.grc-view-by-policies-table').within(() => {
+    cy.get('a')
+      .contains(uName)
+      .parents('td')
+      .siblings('td[data-label="Automation"]').within(() => {
+        cy.get('a').click()
+      })
+  })
+  .then(() => {
+    cy.get('.ansible-configure-table').within(() => {
+      cy.get('.pf-c-select').click()
+      cy.contains(credentialName).should('exist')
+      cy.contains(credentialName).click()
+    })
+  })
+  .then(() => {
+    cy.get('.ansible-configure-table').within(() => {
+      cy.get('.pf-c-select').eq(1).click()
+      cy.contains(demoTemplateName).should('exist')
+      cy.contains(demoTemplateName).click()
+    })
+  })
+  .then(() => {
+    //select automation mode based on parameter
+    if (mode === 'manual') {
+      cy.get('.ansible-configure-table').within(() => {
+        cy.get('.pf-c-radio__label').eq(0).click()
+        failures = 2
+      })
+    } else if (mode === 'once') {
+      cy.get('.ansible-configure-table').within(() => {
+        cy.get('.pf-c-radio__label').eq(1).click()
+        failures = 1
+      })
+    } else {
+      cy.get('.ansible-configure-table').within(() => {
+        cy.get('.pf-c-radio__label').eq(2).click()
+        failures = 0
+      })
+    }
+  })
+  .then(() => {
+    //submit automation and check history page
+    cy.get('.pf-c-modal-box__footer').within(() => {
+      cy.get('button').eq(0).click()
+    })
+    verifyHistoryPage(mode, failures)
+  })
+  .then(() => {
+    cy.get('button[aria-label="Close"]').click()
+    cy.get('#automation-resource-panel').should('not.exist')
+  })
+}
+
+export const action_verifyHistoryPageWithMock = (uName) => {
+  //open modal
+  cy.CheckGrcMainPage()
+    .doTableSearch(uName)
+    .get('.grc-view-by-policies-table').within(() => {
+      cy.get('a')
+        .contains(uName)
+        .parents('td')
+        .siblings('td[data-label="Automation"]').within(() => {
+          cy.get('a').click()
+        })
+    })
+  //use mock data to check successes in history tab
+  cy.intercept('POST', 'https://localhost:3000/multicloud/policies/graphql', (req) => {
+    if (req.body.operationName === 'ansibleAutomationHistories') {
+        req.reply({
+          data: {
+            items: [
+              {
+                finished: '2021-06-03T14:45:59.635136Z',
+                job: 'default/policy-pod-1111-policy-automation-once-hd5xz',
+                message: 'Awaiting next reconciliation',
+                name: 'policy-pod-1111-policy-automation-once-hd5xz',
+                started: '2021-06-03T14:45:53.237671Z',
+                status: 'successful',
+              }
+            ]
+          }
+        });
+    }
+  }).as('historyQuery')
+
+  cy.get('#automation-resource-panel').within(() => {
+    cy.get('a').contains('History').click()
+  })
+
+  cy.get('.ansible-history-table').within(() => {
+    cy.get('div').contains('Successful').should('exist')
+  })
+
+  cy.get('button[aria-label="Close"]').click()
+  cy.get('#automation-resource-panel').should('not.exist')
+}
+
+const verifyHistoryPage = (mode, failuresExpected) => {
+  if (mode === 'manual') {
+    checkWithPolicy('automation/verify_run_manual.yaml')
+  } else if (mode === 'once') {
+    checkWithPolicy('automation/verify_run_once.yaml')
+  }
+
+  cy.get('a').contains('History').click()
+  if (failuresExpected === 0) {
+    cy.get('.ansible-history-table').within(() => {
+      cy.get('.pf-c-empty-state').should('exist')
+    })
+  } else {
+    cy.get('.ansible-history-table').within(() => {
+      cy.get('svg[fill="#c9190b"]').should('have.length', failuresExpected)
+    })
+  }
+}
+
+const checkWithPolicy = (policyYaml) => {
+  //create policy
+  const substitutionRules = getDefaultSubstitutionRules()
+  const rawPolicyYAML = getConfigObject(policyYaml, 'raw', substitutionRules)
+  const policyName = rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
+
+  it('Creates a subscription to install the Ansible operator', () => {
+    cy.visit('/multicloud/policies/create')
+    cy.log(rawPolicyYAML)
+      .createPolicyFromYAML(rawPolicyYAML, true)
+  })
+
+  it(`Check that policy ${policyName} is present in the policy listing`, () => {
+    cy.verifyPolicyInListing(policyName, {})
+  })
+
+  it(`Wait for ${policyName} status to become available`, () => {
+    cy.waitForPolicyStatus(policyName, '0/')
+    verifyCompliant(policyName)
+  })
+
+  //remove policy
+  it(`Delete policy ${policyName}`, () => {
+    cy.actionPolicyActionInListing(policyName, 'Remove')
+  })
+}
+
+const verifyCompliant = (policyName) => {
+  cy.doTableSearch(policyName)
+    .get('.grc-view-by-policies-table').within(() => {
+      cy.get('a')
+        .contains(policyName)
+        .parents('td')
+        .siblings('td[data-label="Cluster violations"]').within(() => {
+          cy.get('svg[fill="#3e8635"]').should('exist')
+        })
+    })
+}

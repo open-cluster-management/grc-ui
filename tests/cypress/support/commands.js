@@ -11,7 +11,8 @@ import { pageLoader, isPolicyStatusAvailable, isClusterTemplateStatusAvailable,
          action_verifyPolicyDetailsInCluster, action_verifyPolicyTemplatesInCluster,
          action_verifyPolicyViolationDetailsInCluster, action_verifyPolicyViolationDetailsInHistory,
          action_verifyCreatePolicySelection, isClusterViolationsStatusAvailable, action_verifyClusterViolationsInListing,
-         action_checkNotificationMessage, action_checkPolicyListingPageUserPermissions
+         action_checkNotificationMessage, action_checkPolicyListingPageUserPermissions, action_verifyCredentialsInSidebar,
+         action_scheduleAutomation, action_verifyHistoryPageWithMock
 } from '../support/views'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='', force=false) => {
@@ -503,4 +504,16 @@ Cypress.Commands.add('checkPolicyYAMLPageUserPermissions', (permissions) => {
   const btnState = permissions.patch ? 'false' : 'true'
   cy.get('#edit-button').should('have.attr', 'aria-disabled', btnState)
   cy.get('#submit-button').should('have.attr', 'aria-disabled', btnState)
+})
+
+Cypress.Commands.add('verifyCredentialsInSidebar', (uPolicyName, credentialName) => {
+  cy.then(() => action_verifyCredentialsInSidebar(uPolicyName, credentialName))
+})
+
+Cypress.Commands.add('scheduleAutomation', (uName, credentialName, mode) => {
+  cy.then(() => action_scheduleAutomation(uName, credentialName, mode))
+})
+
+Cypress.Commands.add('verifyHistoryPageWithMock', (uName) => {
+  cy.then(() => action_verifyHistoryPageWithMock)
 })
