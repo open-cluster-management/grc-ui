@@ -5,8 +5,8 @@ import { getOpt } from '../scripts/utils'
 import 'cypress-wait-until'
 import { pageLoader, isPolicyStatusAvailable, isClusterTemplateStatusAvailable,
          action_doTableSearch, action_clearTableSearch, action_createPolicyFromSelection, action_verifyPolicyInListing,
-         action_verifyPolicyNotInListing, action_actionPolicyActionInListing, action_createPolicyFromYAML,
-         action_verifyPolicyInPolicyDetails, action_verifyClusterListInPolicyDetails,
+         action_verifyPolicyNotInListing, action_actionPolicyActionInListing, action_editPolicyActionInListing, action_createPolicyFromYAML,
+         action_verifyPolicyInPolicyDetails, action_verifyClusterListInPolicyDetails, action_verifyPolicyEditForm,
          action_verifyViolationsInPolicyStatusClusters, action_verifyViolationsInPolicyStatusTemplates,
          action_verifyPolicyDetailsInCluster, action_verifyPolicyTemplatesInCluster,
          action_verifyPolicyViolationDetailsInCluster, action_verifyPolicyViolationDetailsInHistory,
@@ -290,6 +290,14 @@ Cypress.Commands.add('verifyPolicyNotInListing', (uPolicyName) => {
 
 Cypress.Commands.add('actionPolicyActionInListing', (uName, action, cancel=false) => {
   cy.then(() => action_actionPolicyActionInListing(uName, action, cancel))
+})
+
+Cypress.Commands.add('editPolicyActionInListing', (uName) => {
+  cy.then(() => action_editPolicyActionInListing(uName))
+})
+
+Cypress.Commands.add('verifyPolicyEditForm', (uName, policyConfig) => {
+  cy.then(() => action_verifyPolicyEditForm(uName, policyConfig))
 })
 
 Cypress.Commands.add('createPolicyFromYAML', (policyYAML, create=true) => {

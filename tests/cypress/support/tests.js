@@ -279,6 +279,15 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
     }
   }
 
+  // edit policy
+  for (const policyName in confPolicies) {
+    it(`Edit policy ${policyName}`, () => {
+      cy.visit('/multicloud/policies/all').waitForPageContentLoad()
+        .editPolicyActionInListing(policyName)
+      cy.verifyPolicyEditForm(policyName, confPolicies[policyName])
+    })
+  }
+
   // delete created policies at the end
   for (const policyName in confPolicies) {
     it(`Policy ${policyName} can be deleted in the policy listing`, () => {

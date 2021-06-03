@@ -475,6 +475,33 @@ export const action_actionPolicyActionInListing = (uName, action, cancel=false) 
     .clearTableSearch()
 }
 
+export const action_editPolicyActionInListing = (uName, action='edit') => {
+  cy.CheckGrcMainPage()
+    .doTableSearch(uName)
+    .get('.grc-view-by-policies-table').within(() => {
+    cy.get('a')
+      .contains(uName)
+      .parents('td')
+      .siblings('td')
+      .last().within(() => {
+        cy.get('button').click()
+      })
+  })
+  .then(() => {
+    cy.get('button').contains(action, { matchCase: false }).click()
+  })
+}
+
+export const action_verifyPolicyEditForm = (uName, policyConfig) => {
+  cy.location('pathname').should('eq', `/multicloud/policies/all/${policyConfig['namespace']}/${uName}/edit`)
+  pageLoader.shouldNotExist()
+  cy.get('.pf-c-page__main-section .pf-c-title').contains('Edit policy')
+  cy.get('input[aria-label="name"]').should('be.disabled')
+  cy.get('button[aria-label="namespace"]').should('be.disabled')
+  cy.get('#cancel').click()
+  cy.location('pathname').should('eq', '/multicloud/policies/all')
+}
+
 // needs to be run at /multicloud/policies/all at ClusterViolations tab
 // optionally, specific violationsCounter value can be provided
 export const isClusterViolationsStatusAvailable = (name, violationsCounter) => {
