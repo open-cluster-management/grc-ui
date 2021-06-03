@@ -728,18 +728,18 @@ export default class TemplateEditor extends React.Component {
 
     // Parse, validate, and add exception decorations
     const { parsed: newParsed, exceptions } = parseYAML(templateYAML)
-    validateYAML(newParsed, controlData, exceptions, locale)
-    this.handleExceptions(exceptions)
-    if (isEdit) {
+    console.log(exceptions)
+    if (isEdit && exceptions.length === 0) {
       // in edit mode, revert any change to policy/pb/plr name and namespace
       ['Policy', 'PlacementRule', 'PlacementBinding'].forEach(e => {
-        if (newParsed[e][0].$raw.metadata.name !== templateObject[e][0].$raw.metadata.name ||
-            newParsed[e][0].$raw.metadata.namespace !== templateObject[e][0].$raw.metadata.namespace) {
+        if (_.get(newParsed,`${e}[0].$raw.metadata.name`) !== _.get(templateObject,`${e}[0].$raw.metadata.name`) ||
+          _.get(newParsed,`${e}[0].$raw.metadata.namespace`) !== _.get(templateObject,`${e}[0].$raw.metadata.namespace`)) {
           this.editor.trigger('api', 'undo')
-          return
         }
       })
     }
+    validateYAML(newParsed, controlData, exceptions, locale)
+    this.handleExceptions(exceptions)
     // If updateMessage is not empty, then there might be a notification message that we'll need to update
     if (updateMessage) {
       this.handleExceptionNotification(exceptions, 'success.edit.policy.check', locale)
