@@ -323,6 +323,7 @@ export default class TemplateEditor extends React.Component {
             isRequired={mustExist}
             validated={!validPolicyName?ValidatedOptions.error:duplicateName?ValidatedOptions.warning:ValidatedOptions.default}
             type="text"
+            isDisabled={this.props.isEdit}
           />
         </div>
       </React.Fragment>
@@ -376,7 +377,7 @@ export default class TemplateEditor extends React.Component {
     })
   }
   renderSingleSelect(control) {
-    const {locale} = this.props
+    const {locale, isEdit} = this.props
     const {id, name, available, description, isOneSelection, mustExist, active} = control
     const {controlState} = this.state
     return (
@@ -404,6 +405,7 @@ export default class TemplateEditor extends React.Component {
             toggleAriaLabel={id}
             placeholderText={msgs.get('policy.create.namespace.tooltip', locale)}
             isOpen={controlState[id]&&controlState[id].isOpen}
+            isDisabled={isEdit}
           >
             {available.map((option) => (
               <SelectOption isDisabled={false} key={option} value={option} />
@@ -719,15 +721,25 @@ export default class TemplateEditor extends React.Component {
   }
 
   handleParse = () => {
-    const {locale}= this.props
+    const { locale, isEdit }= this.props
     let { isCustomName } = this.state
     const { templateYAML, templateObject, updateMessage } = this.state
     let { controlData } = this.state
 
     // Parse, validate, and add exception decorations
-    const { parsed: newParsed, exceptions} = parseYAML(templateYAML)
+    const { parsed: newParsed, exceptions } = parseYAML(templateYAML)
     validateYAML(newParsed, controlData, exceptions, locale)
     this.handleExceptions(exceptions)
+    if (isEdit) {
+      // in edit mode, revert any change to policy/pb/plr name and namespace
+      ['Policy', 'PlacementRule', 'PlacementBinding'].forEach(e => {
+        if (newParsed[e][0].$raw.metadata.name !== templateObject[e][0].$raw.metadata.name ||
+            newParsed[e][0].$raw.metadata.namespace !== templateObject[e][0].$raw.metadata.namespace) {
+          this.editor.trigger('api', 'undo')
+          return
+        }
+      })
+    }
     // If updateMessage is not empty, then there might be a notification message that we'll need to update
     if (updateMessage) {
       this.handleExceptionNotification(exceptions, 'success.edit.policy.check', locale)
