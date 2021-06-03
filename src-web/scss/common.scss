@@ -88,7 +88,6 @@ div[id$='resource-modal'], div[id$='policy-update-modal'], .pf-c-alert__title {
   }
 }
 
-
 div.disable-tooltip {
   cursor: not-allowed;
 }
@@ -156,3 +155,7 @@ div.no-resource {
   }
 }
 
+// Ensure other components don't display on top of the secondary header
+.pf-c-page__main-group.pf-m-sticky-top {
+  z-index: 1001;
+}
