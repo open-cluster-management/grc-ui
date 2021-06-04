@@ -36,6 +36,11 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
     cy.waitForPolicyStatus(subPolicyName, '0/')
   })
 
+  it(`Delete policy ${subPolicyName}`, () => {
+    cy.actionPolicyActionInListing(subPolicyName, 'Remove')
+  })
+
+  //create policy to automate
   const rawPolicyYAML = getConfigObject(confFilePolicy, 'raw', substitutionRules)
   const policyName = rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
 
@@ -50,7 +55,7 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
   })
 
   it(`Wait for ${policyName} status to become available`, () => {
-    cy.waitForPolicyStatus(policyName, '0/')
+    cy.waitForPolicyStatus(policyName, '1/1')
   })
 
   //check credential table before creation
@@ -93,9 +98,7 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
   it(`Delete policy ${policyName}`, () => {
     cy.actionPolicyActionInListing(policyName, 'Remove')
   })
-  it(`Delete policy ${subPolicyName}`, () => {
-    cy.actionPolicyActionInListing(subPolicyName, 'Remove')
-  })
+
   const cleanUprawPolicyYAML = getConfigObject(cleanUpPolicy, 'raw', substitutionRules)
   const cleanUppolicyName = rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
 
