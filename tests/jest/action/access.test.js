@@ -11,19 +11,7 @@ import {
 import { accessItem } from './accessTestingData'
 
 describe('test userAccessSuccess', () => {
-  it('get userAccessSuccess as expected', () => {
+  it('renders as expected', () => {
     expect(userAccessSuccess(accessItem)).toMatchSnapshot()
-  })
-})
-
-describe('test userAccessFailure', () => {
-  it('get userAccessFailure as expected', () => {
-    expect(userAccessFailure('Unable get user access info')).toMatchSnapshot()
-  })
-})
-
-describe('test getUserAccessData', () => {
-  it('get getUserAccessData as expected', () => {
-    expect(getUserAccessData()).toMatchSnapshot()
   })
 })
