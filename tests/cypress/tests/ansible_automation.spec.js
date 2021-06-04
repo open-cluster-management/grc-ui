@@ -59,9 +59,6 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
   })
 
   //create credential
-  if (substitutionRules === null) {
-    substitutionRules = getDefaultSubstitutionRules()
-  }
   const rawCredPolicyYAML = getConfigObject(credentialPolicy, 'raw', substitutionRules)
   const credPolicyName = rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
 
