@@ -113,6 +113,13 @@ spec:
                 metadata:
                   name: to-automate-[ID]-policy-automation
                   namespace: default
+            - complianceType: mustnothave
+              objectDefinition:
+                apiVersion: operators.coreos.com/v1alpha1
+                kind: ClusterServiceVersion
+                metadata:
+                  name: awx-resource-operator.v0.1.1
+                  namespace: default
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
