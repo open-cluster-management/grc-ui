@@ -515,5 +515,5 @@ Cypress.Commands.add('scheduleAutomation', (uName, credentialName, mode) => {
 })
 
 Cypress.Commands.add('verifyHistoryPageWithMock', (uName) => {
-  cy.then(() => action_verifyHistoryPageWithMock)
+  cy.then(() => action_verifyHistoryPageWithMock(uName))
 })

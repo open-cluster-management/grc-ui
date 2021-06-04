@@ -1422,7 +1422,7 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
               }
             ]
           }
-        });
+        })
     }
   }).as('templatesQuery')
 
@@ -1512,7 +1512,7 @@ export const action_verifyHistoryPageWithMock = (uName) => {
               }
             ]
           }
-        });
+        })
     }
   }).as('historyQuery')
 

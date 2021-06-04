@@ -36,10 +36,6 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
     cy.waitForPolicyStatus(subPolicyName, '0/')
   })
 
-  //create policy to create automations for
-  if (substitutionRules === null) {
-    substitutionRules = getDefaultSubstitutionRules()
-  }
   const rawPolicyYAML = getConfigObject(confFilePolicy, 'raw', substitutionRules)
   const policyName = rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
 
