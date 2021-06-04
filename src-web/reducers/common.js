@@ -35,23 +35,6 @@ import {
   RESOURCE_MUTATE_SUCCESS, RESOURCE_DELETE
 } from '../actions'
 
-function getFromState(state, root, attribute) {
-  if(root && state) {
-    const storeRoot = state[root]
-    if (attribute && storeRoot && storeRoot[attribute]) {
-      return storeRoot[attribute]
-    }
-  }
-  return []
-}
-
-export const getItems = (state, props) => getFromState(state,props.storeRoot, 'items')
-export const getItemsPerPage = (state, props) => getFromState(state,props.storeRoot, 'itemsPerPage')
-export const getPage = (state, props) => getFromState(state,props.storeRoot, 'page')
-export const getSearch = (state, props) => getFromState(state,props.storeRoot, 'search')
-export const getSortColumn = (state, props) => getFromState(state,props.storeRoot, 'sortColumn')
-export const getSortDirection = (state, props) => getFromState(state,props.storeRoot, 'sortDirection')
-
 export const INITIAL_STATE = {
   items: [],
   itemsPerPage: PAGE_SIZES.DEFAULT,
@@ -102,156 +85,169 @@ export const secondaryHeader = (state = {title: '', tabs: [], breadcrumbItems: [
 
 export const resourceReducerFunction = (state = INITIAL_STATE, action) => {
   let items,index
-  switch (action.type) {
-  case RESOURCE_REQUEST:
-    return Object.assign({}, state, {
-      status: REQUEST_STATUS.IN_PROGRESS
-    })
-  case RESOURCE_RECEIVE_SUCCESS:
-    return Object.assign({}, state, {
-      status: REQUEST_STATUS.DONE,
-      items: action.items,
-      page: action.items.length === 0 ? 1 : action.items.length > state.itemsPerPage * (state.page - 1) ? state.page : state.page - 1,
-      resourceVersion: action.resourceVersion
-    })
-  case RESOURCE_RECEIVE_FAILURE:
-    return Object.assign({}, state, {
-      status: REQUEST_STATUS.ERROR,
-      err: action.err
-    })
-  case POST_REQUEST:
-    return Object.assign({}, state, {
-      postStatus: REQUEST_STATUS.IN_PROGRESS
-    })
-  case POST_RECEIVE_SUCCESS:
-    items = state.items.slice(0)
-    if (action.item.length > 0) { // if returned as an array due to making async calls, push action.item elements to the items array
-      action.item.forEach(el => {
-        items.push(el)
-      })
-    } else {
-      items.push(action.item)
-    }
-    return Object.assign({}, state, {
-      items: items,
-      postStatus: REQUEST_STATUS.DONE
-    })
-  case POST_RECEIVE_FAILURE:
-    return Object.assign({}, state, {
-      postStatus: REQUEST_STATUS.ERROR,
-      postStatusCode: action.err.error && action.err.error.response && action.err.error.response.status,
-      postErrorMsg: action.err.error && action.err.error.message
-    })
-  case PUT_REQUEST:
-    return Object.assign({}, state, {
-      putStatus: REQUEST_STATUS.IN_PROGRESS
-    })
-  case PUT_RECEIVE_SUCCESS:
-    return Object.assign({}, state, {
-      putStatus: REQUEST_STATUS.DONE,
-    })
-  case PUT_RECEIVE_FAILURE:
-    return Object.assign({}, state, {
-      putStatus: REQUEST_STATUS.ERROR,
-      putErrorMsg: action.err.error ? action.err.error.message : action.err.message
-    })
-  case PATCH_REQUEST:
-    return Object.assign({}, state, {
-      patchStatus: REQUEST_STATUS.IN_PROGRESS
-    })
-  case PATCH_RECEIVE_SUCCESS:
-    return Object.assign({}, state, {
-      patchStatus: REQUEST_STATUS.DONE,
-    })
-  case PATCH_RECEIVE_FAILURE:
-    return Object.assign({}, state, {
-      patchStatus: REQUEST_STATUS.ERROR,
-      patchErrorMsg: action.err.error ? action.err.error.message : action.err.message
-    })
-  case CLEAR_REQUEST_STATUS:
-    return Object.assign({}, state, {
-      mutateStatus: undefined,
-      mutateErrorMsg: undefined,
-      postStatus: undefined,
-      postStatusCode: undefined,
-      postErrorMsg: undefined,
-      putStatus: undefined,
-      putErrorMsg: undefined,
-      patchStatus: undefined,
-      patchErrorMsg: undefined
-    })
-  case TABLE_SEARCH:
-    return Object.assign({}, state, {
-      search: action.search,
-      page: 1
-    })
-  case TABLE_SORT:
-    return Object.assign({}, state, {
-      sortDirection: action.sortDirection,
-      sortColumn: action.sortColumn
-    })
-  case TABLE_PAGE_CHANGE:
-    return Object.assign({}, state, {
-      page: action.page,
-      itemsPerPage: action.pageSize
-    })
-  case RESOURCE_ADD: /* eslint-disable no-case-declarations */
-  case RESOURCE_MODIFY:
-    const primaryKey = 'metadata.uid'
-    items = state.items.slice(0)
-    index = _.findIndex(items, o => (_.get(o, primaryKey) === _.get(action.item, primaryKey)))
-    index > -1 ? items.splice(index, 1, action.item) : items.push(action.item)
-    return Object.assign({}, state, {
-      items: items
-    })
-  case RESOURCE_MUTATE:
-    return Object.assign({}, state, {
-      mutateStatus: REQUEST_STATUS.IN_PROGRESS,
-      mutateErrorMsg: null,
-      pendingActions: [...state.pendingActions, { name: action.resourceName, action: RESOURCE_MUTATE }]
-    })
-  case RESOURCE_MUTATE_FAILURE:
-    return Object.assign({}, state, {
-      mutateStatus: REQUEST_STATUS.ERROR,
-      mutateErrorMsg: action.err.message || action.err.error && (action.err.error.message ||
-        (action.err.error.data && action.err.error.data.Message)),
-      pendingActions: state.pendingActions.filter(r => r && r.name !== action.resourceName),
-    })
-  case RESOURCE_MUTATE_SUCCESS:
-    return Object.assign({}, state, {
-      mutateStatus: REQUEST_STATUS.DONE,
-      pendingActions: state.pendingActions.filter(r => r && r.name !== action.resourceName),
-    })
-  case RESOURCE_DELETE:
-    items = [...state.items]
-    index = _.findIndex(items, o => _.get(o, 'metadata.uid') === _.get(action, 'item.metadata.uid'))
-    if(index > -1) {
-      items.splice(index, 1)
-      return Object.assign({}, state, {
-        items: items
-      })
-    }
-    return state
-  case DEL_RECEIVE_SUCCESS:
-    items = [...state.items]
-    switch (action.resourceType) {
-    case RESOURCE_TYPES.POLICIES_BY_POLICY:
-    case RESOURCE_TYPES.POLICY:
-      const policy = _.get(action, 'resource')
-      index = _.findIndex(items, { 'name':policy.name, 'namespace':policy.namespace })
-      break
-    default:
-      index = _.findIndex(items, o => _.get(o, 'Name') === _.get(action, 'resourceName'))
-      break
-    }
-    if(index > -1) {
-      items.splice(index, 1)
-      return Object.assign({}, state, {
-        items: items
-      })
-    }
-    return state
-  default:
+  if (action && action.type) {
+    switch (action.type) {
+      case RESOURCE_REQUEST:
+        return Object.assign({}, state, {
+          status: REQUEST_STATUS.IN_PROGRESS
+        })
+      case RESOURCE_RECEIVE_SUCCESS: {
+       let pageNumber = 1
+        if (action.items.length !== 0 && state.page && state.itemsPerPage) {
+          if (action.items.length > state.itemsPerPage * (state.page - 1)) {
+            pageNumber = state.page
+          } else {
+            pageNumber = state.page - 1
+          }
+        }
+        return Object.assign({}, state, {
+          status: REQUEST_STATUS.DONE,
+          items: action.items,
+          page: pageNumber,
+          resourceVersion: action.resourceVersion
+        })
+      }
+      case RESOURCE_RECEIVE_FAILURE:
+        return Object.assign({}, state, {
+          status: REQUEST_STATUS.ERROR,
+          err: action.err
+        })
+      case POST_REQUEST:
+        return Object.assign({}, state, {
+          postStatus: REQUEST_STATUS.IN_PROGRESS
+        })
+      case POST_RECEIVE_SUCCESS:
+        items = state.items.slice(0)
+        if (action.item.length > 0) { // if returned as an array due to making async calls, push action.item elements to the items array
+          action.item.forEach(el => {
+            items.push(el)
+          })
+        } else {
+          items.push(action.item)
+        }
+        return Object.assign({}, state, {
+          items: items,
+          postStatus: REQUEST_STATUS.DONE
+        })
+      case POST_RECEIVE_FAILURE:
+        return Object.assign({}, state, {
+          postStatus: REQUEST_STATUS.ERROR,
+          postStatusCode: action.err.error && action.err.error.response && action.err.error.response.status,
+          postErrorMsg: action.err.error && action.err.error.message
+        })
+      case PUT_REQUEST:
+        return Object.assign({}, state, {
+          putStatus: REQUEST_STATUS.IN_PROGRESS
+        })
+      case PUT_RECEIVE_SUCCESS:
+        return Object.assign({}, state, {
+          putStatus: REQUEST_STATUS.DONE,
+        })
+      case PUT_RECEIVE_FAILURE:
+        return Object.assign({}, state, {
+          putStatus: REQUEST_STATUS.ERROR,
+          putErrorMsg: action.err.error ? action.err.error.message : action.err.message
+        })
+      case PATCH_REQUEST:
+        return Object.assign({}, state, {
+          patchStatus: REQUEST_STATUS.IN_PROGRESS
+        })
+      case PATCH_RECEIVE_SUCCESS:
+        return Object.assign({}, state, {
+          patchStatus: REQUEST_STATUS.DONE,
+        })
+      case PATCH_RECEIVE_FAILURE:
+        return Object.assign({}, state, {
+          patchStatus: REQUEST_STATUS.ERROR,
+          patchErrorMsg: action.err.error ? action.err.error.message : action.err.message
+        })
+      case CLEAR_REQUEST_STATUS:
+        return Object.assign({}, state, {
+          mutateStatus: undefined,
+          mutateErrorMsg: undefined,
+          postStatus: undefined,
+          postStatusCode: undefined,
+          postErrorMsg: undefined,
+          putStatus: undefined,
+          putErrorMsg: undefined,
+          patchStatus: undefined,
+          patchErrorMsg: undefined
+        })
+      case TABLE_SEARCH:
+        return Object.assign({}, state, {
+          search: action.search,
+          page: 1
+        })
+      case TABLE_SORT:
+        return Object.assign({}, state, {
+          sortDirection: action.sortDirection,
+          sortColumn: action.sortColumn
+        })
+      case TABLE_PAGE_CHANGE:
+        return Object.assign({}, state, {
+          page: action.page,
+          itemsPerPage: action.pageSize
+        })
+      case RESOURCE_ADD: /* eslint-disable no-case-declarations */
+      case RESOURCE_MODIFY:
+        const primaryKey = 'metadata.uid'
+        items = state.items.slice(0)
+        index = _.findIndex(items, o => (_.get(o, primaryKey) === _.get(action.item, primaryKey)))
+        index > -1 ? items.splice(index, 1, action.item) : items.push(action.item)
+        return Object.assign({}, state, {
+          items: items
+        })
+      case RESOURCE_MUTATE:
+        return Object.assign({}, state, {
+          mutateStatus: REQUEST_STATUS.IN_PROGRESS,
+          mutateErrorMsg: null,
+          pendingActions: [...state.pendingActions, { name: action.resourceName, action: RESOURCE_MUTATE }]
+        })
+      case RESOURCE_MUTATE_FAILURE:
+        return Object.assign({}, state, {
+          mutateStatus: REQUEST_STATUS.ERROR,
+          mutateErrorMsg: action.err.message || action.err.error && (action.err.error.message ||
+            (action.err.error.data && action.err.error.data.Message)),
+          pendingActions: state.pendingActions.filter(r => r && r.name !== action.resourceName),
+        })
+      case RESOURCE_MUTATE_SUCCESS:
+        return Object.assign({}, state, {
+          mutateStatus: REQUEST_STATUS.DONE,
+          pendingActions: state.pendingActions.filter(r => r && r.name !== action.resourceName),
+        })
+      case RESOURCE_DELETE:
+        items = [...state.items]
+        index = _.findIndex(items, o => _.get(o, 'metadata.uid') === _.get(action, 'item.metadata.uid'))
+        if(index > -1) {
+          items.splice(index, 1)
+          return Object.assign({}, state, {
+            items: items
+          })
+        }
+        return state
+      case DEL_RECEIVE_SUCCESS:
+        items = [...state.items]
+        switch (action.resourceType) {
+        case RESOURCE_TYPES.POLICIES_BY_POLICY:
+        case RESOURCE_TYPES.POLICY:
+          const policy = _.get(action, 'resource')
+          index = _.findIndex(items, { 'name':policy.name, 'namespace':policy.namespace })
+          break
+        default:
+          index = _.findIndex(items, o => _.get(o, 'Name') === _.get(action, 'resourceName'))
+          break
+        }
+        if(index > -1) {
+          items.splice(index, 1)
+          return Object.assign({}, state, {
+            items: items
+          })
+        }
+        return state
+      default:
+        return state
+      }
+  } else {
     return state
   }
 }
