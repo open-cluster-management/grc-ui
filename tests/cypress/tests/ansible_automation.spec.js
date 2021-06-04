@@ -54,6 +54,10 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
     cy.verifyPolicyInListing(policyName, {})
   })
 
+  it(`Wait for ${policyName} status to become available`, () => {
+    cy.waitForPolicyStatus(policyName, '1/1')
+  })
+
   //check credential table before creation
   it('verifies sidebar credentials not existing', () => {
     cy.verifyCredentialsInSidebar(policyName, '')
@@ -61,7 +65,7 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
 
   //create credential
   const rawCredPolicyYAML = getConfigObject(credentialPolicy, 'raw', substitutionRules)
-  const credPolicyName = rawPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
+  const credPolicyName = rawCredPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
 
   it('Create the credential policy using the YAML', () => {
     cy.visit('/multicloud/policies/create')
