@@ -1,15 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test getUserAccessData get getUserAccessData as expected 1`] = `[Function]`;
-
-exports[`test userAccessFailure get userAccessFailure as expected 1`] = `
-Object {
-  "err": "Unable get user access info",
-  "type": "USER_ACCESS_FAILURE",
-}
-`;
-
-exports[`test userAccessSuccess get userAccessSuccess as expected 1`] = `
+exports[`test userAccessSuccess renders as expected 1`] = `
 Object {
   "access": Array [
     Object {
