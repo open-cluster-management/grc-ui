@@ -54,10 +54,6 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
     cy.verifyPolicyInListing(policyName, {})
   })
 
-  it(`Wait for ${policyName} status to become available`, () => {
-    cy.waitForPolicyStatus(policyName, '1/1')
-  })
-
   //check credential table before creation
   it('verifies sidebar credentials not existing', () => {
     cy.verifyCredentialsInSidebar(policyName, '')
