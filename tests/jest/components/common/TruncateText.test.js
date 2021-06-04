@@ -47,7 +47,7 @@ describe('TruncateText', () => {
   })
 
   it('renders as expected for null', () => {
-    const props = { maxCharacters: 25, text: null}
+    const props = { maxCharacters: 25, text: ''}
     const component = shallow(
       <TruncateText  {...props} />
     )

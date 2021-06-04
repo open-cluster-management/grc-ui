@@ -75,7 +75,7 @@ export default {
   }
 }
 
-function buildViewYamlLink(item, locale) {
+export function buildViewYamlLink(item, locale) {
   const cluster = _.get(item, 'cluster')
   const name = _.get(item, 'object.metadata.name')
   const namespace = _.get(item, 'object.metadata.namespace', '')
