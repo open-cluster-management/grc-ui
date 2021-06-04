@@ -54,7 +54,7 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
   })
 
   it(`Wait for ${policyName} status to become available`, () => {
-    cy.waitForPolicyStatus(policyName, '0/')
+    cy.waitForPolicyStatus(policyName, '1/')
   })
 
   //check credential table before creation
