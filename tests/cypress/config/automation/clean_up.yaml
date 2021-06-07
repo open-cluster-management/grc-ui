@@ -29,14 +29,7 @@ spec:
                 kind: Subscription
                 metadata:
                   name: awx-resource-operator
-                  namespace: openshift-operators
-                  labels:
-                    operators.coreos.com/awx-resource-operator.default: ''
-                spec:
-                  installPlanApproval: Automatic
-                  name: awx-resource-operator
-                  source: redhat-operators
-                  sourceNamespace: openshift-marketplace
+                  namespace: default
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
@@ -54,13 +47,8 @@ spec:
                 apiVersion: operators.coreos.com/v1
                 kind: OperatorGroup
                 metadata:
-                  annotations:
-                    olm.providedAPIs: AnsibleJob.v1alpha1.tower.ansible.com,JobTemplate.v1alpha1.tower.ansible.com
-                  name: default-4bg7t
+                  name: awx-resource-operator-operatorgroup
                   namespace: default
-                spec:
-                  targetNamespaces:
-                  - default
             - complianceType: mustnothave
               objectDefinition:
                 apiVersion: operators.coreos.com/v1
