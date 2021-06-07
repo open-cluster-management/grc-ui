@@ -26,8 +26,8 @@ function managed() {
     oc delete subscriptions.operators.coreos.com container-security-operator -n openshift-operators || true
     oc delete csv -n openshift-operators `oc get -n openshift-operators csv -o jsonpath='{.items[?(@.spec.displayName=="Quay Container Security")].metadata.name}'` || true
     oc delete crd imagemanifestvulns.secscan.quay.redhat.com || true
-    oc delete operatorgroup default-4bg7t
-    oc delete subscriptions.operators.coreos.com awx-resource-operator -n openshift-operators || true
+    oc delete operatorgroup awx-resource-operator-operatorgroup
+    oc delete subscriptions.operators.coreos.com awx-resource-operator -n default || true
     oc delete csv awx-resource-operator.v0.1.1 || true
     oc delete secret grcui-e2e-credential || true
     oc delete LimitRange container-mem-limit-range -n default || true
