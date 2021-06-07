@@ -1446,8 +1446,9 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
       cy.get('.pf-c-select__menu').should('not.exist')
       cy.get('div.pf-c-select').last().should('exist')
       cy.get('div.pf-c-select').last().click()
-      cy.contains(demoTemplateName).should('exist')
-      cy.contains(demoTemplateName).click()
+      cy.get('div.pf-c-select').last().within(() => {
+        cy.get('li').click()
+      })
     })
   })
   .then(() => {
