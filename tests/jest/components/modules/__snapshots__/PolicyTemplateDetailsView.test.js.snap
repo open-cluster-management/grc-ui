@@ -322,7 +322,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
       Related resources
     </h2>
     <section
-      className="pf-c-page__main-section pf-m-no-padding"
+      className="pf-c-page__main-section pf-m-no-padding pf-m-light"
     >
       <div
         className="pf-c-empty-state pf-m-lg"
@@ -681,7 +681,7 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
       Related resources
     </h2>
     <section
-      className="pf-c-page__main-section pf-m-no-padding"
+      className="pf-c-page__main-section pf-m-no-padding pf-m-light"
     >
       <div
         className="pf-c-empty-state pf-m-lg"
