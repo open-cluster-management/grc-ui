@@ -1,6 +1,11 @@
 /* Copyright (c) 2021 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
+.pf-c-backdrop {
+  --pf-c-backdrop--BackgroundColor: var(--pf-chart-voronoi--data--Fill)
+}
+
 .automation-resource-panel {
+  height: 100%;
   position: absolute;
   right: -60rem;
   transition: right 0.4s
@@ -12,6 +17,7 @@
 }
 
 #automation-resource-panel {
+  font-size: var(--pf-global--FontSize--md);
   .violationCell {
     > svg {
       margin-right: 0.25rem;
@@ -26,25 +32,37 @@
     margin-right:0rem
   }
 
-  p {
-    font-size: 0.875rem;
+  .infoArea {
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 32px;
+  }
+
+  .createCredential {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    span {
+      margin-left: 8px;
+    }
   }
   
   .pf-c-nav__list {
-    padding-bottom: 0.875rem;
+    padding-bottom: 8px;
+    .pf-c-nav__item {
+      width: 50%;
+    }
   }
   
   .pf-c-title.pf-m-lg {
-    padding-top: 0.875rem;
-    padding-bottom: 0.25rem;
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 8px;
   }
   
   .pf-c-button.pf-m-link {
     padding-left: 0rem;
-  }
-  
-  .pf-c-modal-box	{
-    height: 60rem;
+    padding-right: 0rem;
   }
   
   .pf-c-nav.pf-m-tertiary .pf-c-nav__link::before {
@@ -57,9 +75,13 @@
   }
   
   .pf-c-radio {
-    padding-top: 0.875rem;
+    margin-top: 0px;
+    padding-top: 0px;
     .pf-c-radio__label {
       font-weight: 600;
+    }
+    .pf-c-radio__description {
+      padding-bottom: 32px;
     }
   }
   
@@ -74,13 +96,16 @@
   .titleWithTooltip {
     display: flex;
     flex-direction: row;
-    .GrayOutlinedQuestionCircleIcon{
-      padding-top: 0.98rem;
-      padding-left: 0.25rem;
+    align-items: baseline;
+    .GrayOutlinedQuestionCircleIcon {
+      margin-left: 4px;
     }
   }
 
-  .pf-c-modal-box__body {
-    height: 54rem;
+  .pf-c-modal-box__footer {
+    .pf-c-button {
+      width: 25%;
+      margin-right: 8px;
+    }
   }
 }
