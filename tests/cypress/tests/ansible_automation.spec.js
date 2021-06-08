@@ -86,6 +86,10 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
     cy.verifyCredentialsInSidebar(policyName, 'grcui-e2e-credential')
   })
 
+  it(`Delete policy ${credPolicyName}`, () => {
+    cy.actionPolicyActionInListing(credPolicyName, 'Remove')
+  })
+
   //verify contents of modal
   it('Successfully can schedule a disabled automation', () => {
     cy.scheduleAutomation(policyName, 'grcui-e2e-credential', 'disabled')
@@ -122,6 +126,9 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
 
   it(`Verify that policy ${policyName} is not present in the policy listing`, () => {
     cy.verifyPolicyNotInListing(policyName)
+  })
+  it(`Verify that policy ${credPolicyName} is not present in the policy listing`, () => {
+    cy.verifyPolicyNotInListing(credPolicyName)
   })
   it(`Verify that policy ${subPolicyName} is not present in the policy listing`, () => {
     cy.verifyPolicyNotInListing(subPolicyName)
