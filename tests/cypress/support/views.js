@@ -1437,7 +1437,7 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
   const demoTemplateName = 'Demo Job Template'
 
   //mock call to graphQL to get job templates to avoid needing to use a real tower
-  cy.intercept('POST', 'https://localhost:3000/multicloud/policies/graphql', (req) => {
+  cy.intercept('POST', Cypress.config().baseUrl + '/multicloud/policies/graphql', (req) => {
     if (req.body.operationName === 'getAnsibleJobTemplates') {
         req.reply({
           data: {
@@ -1526,7 +1526,7 @@ export const action_verifyHistoryPageWithMock = (uName) => {
         })
     })
   //use mock data to check successes in history tab
-  cy.intercept('POST', 'https://localhost:3000/multicloud/policies/graphql', (req) => {
+  cy.intercept('POST', Cypress.config().baseUrl + '/multicloud/policies/graphql', (req) => {
     if (req.body.operationName === 'ansibleAutomationHistories') {
         req.reply({
           data: {
