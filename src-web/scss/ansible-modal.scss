@@ -17,8 +17,7 @@
 }
 
 #automation-resource-panel {
-  --pf-c-modal-box--MaxHeight: 100%
-  font-size: var(--pf-global--FontSize--sm);
+  --pf-c-modal-box--MaxHeight: 100%;
   .violationCell {
     > svg {
       margin-right: 0.25rem;
@@ -34,6 +33,7 @@
   }
 
   .infoArea {
+    font-size: var(--pf-global--FontSize--sm);
     margin-top: 0px;
     padding-top: 0px;
     padding-bottom: 32px;
