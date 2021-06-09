@@ -539,7 +539,7 @@ export class AnsibleAutomationModal extends React.Component {
         credentialName: selection,
         credentialIsOpen: false
       })
-    this.getAnsibleConnection(selection, ansCredentials)
+    this.getAnsibleConnection(ansCredentials, selection, 'edit')
   }
 
   onCredentialsSelectionToggle = isOpen => {
@@ -548,9 +548,9 @@ export class AnsibleAutomationModal extends React.Component {
     })
   }
 
-  getAnsibleConnection = (credentialName, ansCredentials) => {
-    const { credentialNS } = this.state
-    const targetCredential = _.find(ansCredentials, ['name', credentialName])
+  getAnsibleConnection = (ansCredentials, credentialNameNew, type) => {
+    const { credentialName:credentialNameOld, credentialNS } = this.state
+    const targetCredential = _.find(ansCredentials, ['name', (credentialNameNew || credentialNameOld)])
     if (targetCredential && targetCredential.namespace
       && targetCredential.host && targetCredential.token) {
       if (credentialNS !== targetCredential.namespace) {
@@ -559,12 +559,19 @@ export class AnsibleAutomationModal extends React.Component {
           towerURL:targetCredential.host,
         })
       }
-      this.setState({
-        ansibleConnection: {
+      if (type === 'edit') {
+        this.setState({
+          ansibleConnection: {
+            towerURL: targetCredential.host,
+            token: targetCredential.token
+          }
+        })
+      } else {
+        return {
           towerURL: targetCredential.host,
           token: targetCredential.token
         }
-      })
+      }
     }
   }
 
@@ -609,7 +616,9 @@ export class AnsibleAutomationModal extends React.Component {
               '/multicloud/credentials'
             )}
             </div>
-            {credentialName && this.state.ansibleConnection && this.renderAnsibleJobTemplatesSelection(this.state.ansibleConnection)}
+            {credentialName && this.renderAnsibleJobTemplatesSelection(
+              this.getAnsibleConnection(ansCredentials)
+            )}
           </React.Fragment>}
         {!ansCredentialFlag &&
           <div className='infoArea createCredential'>
@@ -640,10 +649,11 @@ export class AnsibleAutomationModal extends React.Component {
     })
   }
 
-  renderAnsibleJobTemplatesSelection = (ansibleConnection) => {
+  renderAnsibleJobTemplatesSelection = (ansibleConnectionOld) => {
+    const { ansibleConnection: ansibleConnectionNew } = this.state
     const { locale } = this.props
     return <React.Fragment>
-      <Query query={GET_ANSIBLE_JOB_TEMPLATE} variables={ansibleConnection}>
+      <Query query={GET_ANSIBLE_JOB_TEMPLATE} variables={(ansibleConnectionNew || ansibleConnectionOld)}>
         {( result ) => {
           const { loading } = result
           const { data={}, error={} } = result
