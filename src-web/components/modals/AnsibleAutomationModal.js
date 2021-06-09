@@ -666,7 +666,7 @@ export class AnsibleAutomationModal extends React.Component {
                     title: msgs.get('ansible.jobTemplates.selection.title', locale),
                     tooltip: msgs.get('ansible.jobTemplates.selection.title', locale),
                   })}
-                  <div className='infoArea'>
+                  <div className='infoArea createJobTemplate'>
                     <Select
                       variant={SelectVariant.single}
                       placeholderText={msgs.get('ansible.jobTemplates.selection.placeholder', locale)}

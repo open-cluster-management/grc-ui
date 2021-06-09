@@ -18,7 +18,7 @@
 
 #automation-resource-panel {
   --pf-c-modal-box--MaxHeight: 100%
-  font-size: var(--pf-global--FontSize--md);
+  font-size: var(--pf-global--FontSize--sm);
   .violationCell {
     > svg {
       margin-right: 0.25rem;
@@ -68,6 +68,7 @@
   
   .pf-c-nav.pf-m-tertiary .pf-c-nav__link::before {
     left: 0rem;
+    right: 0rem;
   }
   
   .pf-c-nav.pf-m-horizontal .pf-c-nav__link, .pf-c-nav.pf-m-tertiary .pf-c-nav__link {

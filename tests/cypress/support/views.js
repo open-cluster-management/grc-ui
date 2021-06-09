@@ -1466,16 +1466,16 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
       })
   })
   .then(() => {
-    cy.get('.ansible-configure-table').within(() => {
-      cy.get('div.pf-c-select').click()
+    cy.get('.createCredential').within(() => {
+      cy.get('.pf-c-select').click()
       cy.contains(credentialName).should('exist')
       cy.contains(credentialName).click()
       cy.get('.pf-c-select__menu').should('not.exist')
-      cy.get('div.pf-c-select').should('have.length', 2)
     })
-    cy.get('.ansible-configure-table').within(() => {
-      cy.get('div.pf-c-select').last().click()
-      cy.get('div.pf-c-select.pf-m-expanded').within(() => {
+    cy.get('.createJobTemplate').within(() => {
+      cy.get('.pf-c-select').should('exist')
+      cy.get('.pf-c-select').click()
+      cy.get('.pf-c-select.pf-m-expanded').within(() => {
         cy.contains(demoTemplateName).should('exist')
         cy.contains(demoTemplateName).click()
       })
