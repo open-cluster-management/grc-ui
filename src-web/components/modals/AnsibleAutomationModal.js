@@ -539,7 +539,7 @@ export class AnsibleAutomationModal extends React.Component {
         credentialName: selection,
         credentialIsOpen: false
       })
-    this.getAnsibleConnection(ansCredentials)
+    this.getAnsibleConnection(selection, ansCredentials)
   }
 
   onCredentialsSelectionToggle = isOpen => {
@@ -548,8 +548,8 @@ export class AnsibleAutomationModal extends React.Component {
     })
   }
 
-  getAnsibleConnection = (ansCredentials) => {
-    const {credentialName, credentialNS} = this.state
+  getAnsibleConnection = (credentialName, ansCredentials) => {
+    const { credentialNS } = this.state
     const targetCredential = _.find(ansCredentials, ['name', credentialName])
     if (targetCredential && targetCredential.namespace
       && targetCredential.host && targetCredential.token) {
@@ -612,7 +612,7 @@ export class AnsibleAutomationModal extends React.Component {
             {credentialName && this.state.ansibleConnection && this.renderAnsibleJobTemplatesSelection(this.state.ansibleConnection)}
           </React.Fragment>}
         {!ansCredentialFlag &&
-          <div className='infoArea'>
+          <div className='infoArea createCredential'>
             <Text>
               {msgs.get('ansible.no.credential', locale)}
               {this.renderURL(

@@ -17,6 +17,7 @@
 }
 
 #automation-resource-panel {
+  --pf-c-modal-box--MaxHeight: 100%
   font-size: var(--pf-global--FontSize--md);
   .violationCell {
     > svg {
