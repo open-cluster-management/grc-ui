@@ -567,12 +567,11 @@ export class AnsibleAutomationModal extends React.Component {
             token: targetCredential.token
           }
         })
-      } else {
-        return {
-          towerURL: targetCredential.host,
-          token: targetCredential.token
-        }
       }
+    }
+    return {
+      towerURL: targetCredential.host,
+      token: targetCredential.token
     }
   }
 
