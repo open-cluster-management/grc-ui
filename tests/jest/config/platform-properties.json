@@ -131,13 +131,8 @@
   "ansible.launch.connection": "Launch to Ansible Tower URL",
   "ansible.credential.selection.title": "Credential",
   "ansible.credential.selection.placeholder": "Select Ansible credential",
-<<<<<<< Updated upstream
-  "ansible.no.credential": "Ansible credential is required to create an Ansible job. Create your console by clicking the following link:",
-  "ansible.launch.createCredential": "Add credentials",
-=======
   "ansible.no.credential": "Ansible credential is required to create an Ansible job. Create your credential by clicking the following link:",
-  "ansible.launch.createCredential": "Create new credentials",
->>>>>>> Stashed changes
+  "ansible.launch.createCredential": "Add credentials",
   "ansible.jobTemplates.selection.title": "Job template",
   "ansible.jobTemplates.selection.placeholder": "Select Ansible job template",
   "ansible.jobTemplates.editor.title": "Extra variables",
