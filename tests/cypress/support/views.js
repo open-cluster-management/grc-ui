@@ -1424,7 +1424,7 @@ export const action_verifyCredentialsInSidebar = (uName, credentialName) => {
   .then(() => {
     cy.get('.ansible-configure-table').within(() => {
       if (credentialName === '') {
-        cy.get('p').should('contain', 'Ansible credential is required to create an Ansible job. Create your console by clicking the following link:')
+        cy.get('p').should('contain', 'Ansible credential is required to create an Ansible job. Create your credential by clicking the following link:')
       } else {
         cy.get('.pf-c-select').click()
         cy.contains(credentialName).should('exist')
