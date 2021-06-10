@@ -44,6 +44,7 @@ import '../../scss/ansible-modal.scss'
 
 const metaNameStr = 'metadata.name'
 const metaNSStr = 'metadata.namespace'
+const extraVarsStr= 'spec.automationDef.extra_vars'
 
 if (window.monaco) {
   window.monaco.editor.defineTheme('console', {
@@ -145,7 +146,7 @@ export class AnsibleAutomationModal extends React.Component {
       jsonTemp.metadata.resourceVersion = resourceVersion
     }
     if (stateExtraVars || extraVars) {
-      jsonTemp.spec.automationDef.extra_vars = this.yamlToJSON(stateExtraVars || extraVars)
+      _.set(jsonTemp, extraVarsStr, this.yamlToJSON(stateExtraVars || extraVars))
     }
     return jsonTemp
   }
@@ -167,7 +168,7 @@ export class AnsibleAutomationModal extends React.Component {
         const resourceVersion = _.get(targetPolicyAutomation, 'metadata.resourceVersion')
         const credentialName = _.get(targetPolicyAutomation, 'spec.automationDef.secret')
         const jobTemplateName = _.get(targetPolicyAutomation, 'spec.automationDef.name')
-        const extraVarsJSON = _.get(targetPolicyAutomation, 'spec.automationDef.extra_vars')
+        const extraVarsJSON = _.get(targetPolicyAutomation, extraVarsStr)
         let extraVars = null
         if (typeof extraVarsJSON === 'object' && Object.keys(extraVarsJSON).length > 0) {
           extraVars = this.jsonToYAML(extraVarsJSON)
@@ -271,8 +272,8 @@ export class AnsibleAutomationModal extends React.Component {
   removedExtraVars = (initialJSON, latestJSON) => {
     const updatedJSON = latestJSON
     if (initialJSON && latestJSON) {
-      const initialExtraVars= _.get(initialJSON, 'spec.automationDef.extra_vars')
-      let latestExtraVars= _.get(latestJSON, 'spec.automationDef.extra_vars')
+      const initialExtraVars= _.get(initialJSON, extraVarsStr)
+      let latestExtraVars= _.get(latestJSON, extraVarsStr)
       if (initialExtraVars) {
         Object.keys(initialExtraVars).forEach((key) => {
           if(latestExtraVars){
@@ -284,7 +285,7 @@ export class AnsibleAutomationModal extends React.Component {
             _.set(latestExtraVars, key, null)
             }
         })
-        _.set(updatedJSON, 'spec.automationDef.extra_vars', latestExtraVars)
+        _.set(updatedJSON, extraVarsStr, latestExtraVars)
       }
     }
     return updatedJSON
