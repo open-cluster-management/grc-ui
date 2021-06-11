@@ -63,4 +63,7 @@ spec:
     type: ManagedClusterConditionAvailable
   clusterSelector:
     matchExpressions:
-      [LABEL]
+      - key: name
+        operator: In
+        values:
+          - local-cluster
