@@ -34,7 +34,7 @@ replacements: # if user select this choice, the template variable names and valu
                   name: container-security-operator
                   namespace: openshift-operators
                 spec:
-                  channel: quay-v3.3
+                  # channel: quay-v3.3 # specify a specific channel if desired
                   installPlanApproval: Automatic
                   name: container-security-operator
                   source: redhat-operators
