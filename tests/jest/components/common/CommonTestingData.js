@@ -1092,7 +1092,6 @@ export const policies3 = [{
                       'namespace': 'openshift-operators'
                     },
                     'spec': {
-                      'channel': 'quay-v3.3',
                       'installPlanApproval': 'Automatic',
                       'name': 'container-security-operator',
                       'source': 'redhat-operators',
