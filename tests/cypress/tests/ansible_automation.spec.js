@@ -88,13 +88,19 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
   })
 
   //verify contents of modal
-  it('Successfully can schedule a disabled automation', () => {
+  it('Successfully can schedule a disabled automation', {
+    defaultCommandTimeout: 60000
+  }, () => {
     cy.scheduleAutomation(policyName, 'grcui-e2e-credential', 'disabled')
   })
-  it('Successfully can schedule a "run once" automation', () => {
+  it('Successfully can schedule a "run once" automation', {
+    defaultCommandTimeout: 60000
+  }, () => {
     cy.scheduleAutomation(policyName, 'grcui-e2e-credential', 'once')
   })
-  it('Successfully can schedule a "manual" automation', () => {
+  it('Successfully can schedule a "manual" automation', {
+    defaultCommandTimeout: 60000
+  }, () => {
     cy.scheduleAutomation(policyName, 'grcui-e2e-credential', 'manual')
   })
   it('Verifies successful job history with mock', () => {
