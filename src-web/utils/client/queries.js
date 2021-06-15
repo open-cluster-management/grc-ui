@@ -332,6 +332,15 @@ export const GET_ANSIBLE_HISTORY = gql`
   }
 `
 
+// check if ansible operator installed
+export const GET_ANSIBLE_OPERATOR_INSTALLED = gql`
+  query ansibleOperatorInstalled {
+    ansibleOperatorInstalled {
+      installed
+    }
+  }
+`
+
 // retrieve ansible secret
 export const COPY_ANSIBLE_SECRET = gql`
   query copyAnsibleSecret($name: String!, $namespace: String!, $targetNamespace: String!) {

@@ -12,7 +12,7 @@ import { pageLoader, isPolicyStatusAvailable, isClusterTemplateStatusAvailable,
          action_verifyPolicyViolationDetailsInCluster, action_verifyPolicyViolationDetailsInHistory,
          action_verifyCreatePolicySelection, isClusterViolationsStatusAvailable, action_verifyClusterViolationsInListing,
          action_checkNotificationMessage, action_checkPolicyListingPageUserPermissions, action_verifyCredentialsInSidebar,
-         action_scheduleAutomation, action_verifyHistoryPageWithMock
+         action_verifyAnsibleInstallPrompt, action_scheduleAutomation, action_verifyHistoryPageWithMock
 } from '../support/views'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='', force=false) => {
@@ -516,6 +516,10 @@ Cypress.Commands.add('checkPolicyYAMLPageUserPermissions', (permissions) => {
 
 Cypress.Commands.add('verifyCredentialsInSidebar', (uPolicyName, credentialName) => {
   cy.then(() => action_verifyCredentialsInSidebar(uPolicyName, credentialName))
+})
+
+Cypress.Commands.add('verifyAnsibleInstallPrompt', (uPolicyName, opInstalled) => {
+  cy.then(() => action_verifyAnsibleInstallPrompt(uPolicyName, opInstalled))
 })
 
 Cypress.Commands.add('scheduleAutomation', (uName, credentialName, mode) => {

@@ -1444,6 +1444,53 @@ export const action_verifyCredentialsInSidebar = (uName, credentialName) => {
   cy.CheckGrcMainPage()
 }
 
+export const action_verifyAnsibleInstallPrompt = (uName, opInstalled) => {
+  // mock call to check behavior
+  cy.intercept('POST', Cypress.config().baseUrl + '/multicloud/policies/graphql', (req) => {
+    if (req.body.operationName === 'ansibleOperatorInstalled') {
+      req.reply({
+        data: {
+          ansibleOperatorInstalled: {
+            installed: opInstalled
+          }
+        }
+      })
+    }
+  }).as('ansibleOpInstallQuery')
+
+  //search for policy and click to configure
+  cy.CheckGrcMainPage()
+    .doTableSearch(uName)
+    .get('.grc-view-by-policies-table').within(() => {
+    cy.get('a')
+      .contains(uName)
+      .parents('td')
+      .siblings('td[data-label="Automation"]').within(() => {
+        cy.get('a').click()
+      })
+  })
+  .then(() => {
+    cy.get('.pf-c-modal-box__header').within(() => {
+      if (opInstalled) {
+        cy.get('#installAnsibleOperatorLink').should('not.exist')
+      } else {
+        cy.get('#installAnsibleOperatorLink').should('exist')
+      }
+    })
+  })
+  .then(() => {
+    cy.get('#automation-resource-panel').within(() => {
+      cy.get('button[aria-label="Close"]').click()
+    })
+  })
+  // wait for the dialog to be closed
+  .then(() => {
+    cy.get('#automation-resource-panel').should('not.exist')
+  })
+  // after mainpage table action, always return to grc main page
+  cy.CheckGrcMainPage()
+}
+
 export const action_scheduleAutomation = (uName, credentialName, mode) => {
   const demoTemplateName = 'Demo Job Template'
 

@@ -33,7 +33,7 @@ import {
 import { Query } from '@apollo/client/react/components'
 import {
   GET_ANSIBLE_CREDENTIALS, GET_ANSIBLE_HISTORY,
-  GET_ANSIBLE_JOB_TEMPLATE,
+  GET_ANSIBLE_JOB_TEMPLATE, GET_ANSIBLE_OPERATOR_INSTALLED,
 } from '../../utils/client/queries'
 import TruncateText from '../../components/common/TruncateText'
 import _ from 'lodash'
@@ -408,6 +408,18 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   render() {
+    return (
+      <Query query={GET_ANSIBLE_OPERATOR_INSTALLED}>
+        {( result ) => {
+          const { loading, error={}, data={} } = result
+          const queryError = this.getQueryError(error)
+          return this.renderAnsiblePanel(data.ansibleOperatorInstalled?.installed, loading, queryError)
+        }}
+      </Query>
+    )
+  }
+
+  renderAnsiblePanel = (opInstalled, opInstalledLoading, opInstalledError) => {
     const { data:policyData, locale, open } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
       initializeFinished, policyAutoName, slideFlag, notificationOpen
@@ -432,12 +444,12 @@ export class AnsibleAutomationModal extends React.Component {
           const { loading } = result
           const { error={}, data={} } = result
           const queryError = this.getQueryError(error)
-          const readyFlag = (initializeFinished && !loading)
-          const modalName = slideFlag ? 'automation-resource-panel slide-in': 'automation-resource-panel'
+          const readyFlag = (initializeFinished && !loading && !opInstalledLoading)
+          const modalName = slideFlag ? 'automation-resource-panel slide-in' : 'automation-resource-panel'
           const titleText = readyFlag
             ? msgs.get(`ansible.automation.heading.${panelType}`, locale)
             : msgs.get('ansible.loading.info', locale)
-          const alertTitle = (queryError || yamlMsg.msg || queryMsg.msg)
+          const alertTitle = (opInstalledError || queryError || yamlMsg.msg || queryMsg.msg)
           let alertVariant = 'danger'
           if (queryError && _.includes(queryError, 'not installed')) {
             alertVariant = 'info'
@@ -458,6 +470,9 @@ export class AnsibleAutomationModal extends React.Component {
               header={
                 <React.Fragment>
                   <div className='ansible_modal_title'>{titleText}</div>
+                  {!opInstalledLoading && !opInstalled &&
+                    this.renderAnsibleOperatorNotInstalled()
+                  }
                   {alertTitle && notificationOpen &&
                       <Alert
                         variant={alertVariant}
@@ -469,7 +484,7 @@ export class AnsibleAutomationModal extends React.Component {
                   }
                 </React.Fragment>
               }
-              actions={!activeItem && [
+              actions={!activeItem && opInstalled && [
                 <AcmButton
                   key="confirm"
                   variant={ButtonVariant.primary}
@@ -511,6 +526,39 @@ export class AnsibleAutomationModal extends React.Component {
     } else {
       return text
     }
+  }
+
+  renderAnsibleOperatorNotInstalled = () => {
+    const { locale } = this.props
+    const link = {
+      id: 'installAnsibleOperatorLink',
+      text: msgs.get('ansible.operator.installLink', locale),
+      onClick: () => {
+        fetch('/multicloud/api/v1/namespaces/openshift-config-managed/configmaps/console-public/')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.statusText)
+          }
+          return response.json()
+        })
+        .then((respJSON) => {
+          window.open(respJSON.data.consoleURL + '/operatorhub/all-namespaces?keyword=ansible+automation+platform')
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+      }
+    }
+    return (
+      <Alert
+        variant='danger'
+        isInline={true}
+        title={msgs.get('ansible.operator.notInstalled', locale)}
+        actionClose=''
+      >
+        <AcmLaunchLink links={[link]} />
+      </Alert>
+    )
   }
 
   renderAnsiblePanelContent = ({
@@ -558,7 +606,7 @@ export class AnsibleAutomationModal extends React.Component {
           {this.renderAnsibleCredentialsSelection(data)}
         </div>}
         {activeItem===1 && data && <div className='ansible-history-table'>
-          {this.renderAnsibleHisotry(data)}
+          {this.renderAnsibleHistory(data)}
         </div>}
       </div>
     </React.Fragment>
@@ -829,7 +877,7 @@ export class AnsibleAutomationModal extends React.Component {
     />
   }
 
-  renderAnsibleHisotry = (historyData) => {
+  renderAnsibleHistory = (historyData) => {
     const { locale } = this.props
     const tableData = transform(_.get(historyData.items ? historyData : {'items':[]}, 'items', []), ansibleJobHistoryDef, locale)
     return <AcmTable

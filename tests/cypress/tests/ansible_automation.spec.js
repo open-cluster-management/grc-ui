@@ -112,6 +112,16 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
     cy.verifyCredentialsInSidebar(policyName, '')
   })
 
+  //check modal contents if operator not installed
+  it('Prompts the user to install the ansible operator', () => {
+    cy.verifyAnsibleInstallPrompt(policyName, false)
+  })
+
+  //check modal contents if operator is installed
+  it('Skips install prompt if the ansible operator is installed', () => {
+    cy.verifyAnsibleInstallPrompt(policyName, true)
+  })
+
   //clean up
   it(`Delete policy ${policyName}`, () => {
     cy.actionPolicyActionInListing(policyName, 'Remove')
