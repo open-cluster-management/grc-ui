@@ -11,7 +11,8 @@ else
   source ./build/rbac-setup.sh
 fi
 
-export SELENIUM_CLUSTER=https://`oc get route multicloud-console -n open-cluster-management -o=jsonpath='{.spec.host}'`
+installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk 'NR==1'| awk '{print $1}'`
+export SELENIUM_CLUSTER=https://`oc get route multicloud-console -n $installed_namespace -o=jsonpath='{.spec.host}'`
 export SELENIUM_USER=${SELENIUM_USER:-${OC_CLUSTER_USER}}
 export SELENIUM_PASSWORD=${SELENIUM_PASSWORD:-${OC_CLUSTER_PASS}}
 
