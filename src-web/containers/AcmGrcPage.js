@@ -71,8 +71,14 @@ function AcmGrcPage(props) {
                   }
                 // Handle Apollo graphQLErrors type
                 } else {
+                  let errorMessages = []
+                  if (error.graphQLErrors.length > 0) {
+                    errorMessages = error.graphQLErrors
+                  } else {
+                    errorMessages = error.errors
+                  }
                   eHeader = <p key='eHeader'>GraphQL Error</p>
-                  eMsg.push(<p key='eMessage'>{error.errors.map((e) => e.message).join(';')}</p>)
+                  eMsg.push(<p key='eMessage'>{errorMessages.map((e) => e.message).join(';')}</p>)
                 }
                 return <AcmAlert isInline={true} noClose={true} variant='danger'
                   title={eHeader} subtitle={eMsg} />
