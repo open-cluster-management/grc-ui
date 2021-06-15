@@ -21,27 +21,26 @@ import {
   global_BackgroundColor_dark_100 as editorBackground,
 } from '@patternfly/react-tokens'
 import MonacoEditor from 'react-monaco-editor'
-import msgs from '../../../nls/platform.properties'
+import msgs from '../../nls/platform.properties'
 import {
   modifyPolicyAutomation, clearRequestStatus,
   updateModal, copyAnsibleSecret, getPolicyAutomation
-} from '../../../actions/common'
-import ansibleJobHistoryDef from '../../../tableDefinitions/ansibleJobHistoryDef'
+} from '../../actions/common'
+import ansibleJobHistoryDef from '../../tableDefinitions/ansibleJobHistoryDef'
 import {
   getPolicyCompliantStatus, transform
-} from '../../../tableDefinitions/utils'
+} from '../../tableDefinitions/utils'
 import { Query } from '@apollo/client/react/components'
 import {
   GET_ANSIBLE_CREDENTIALS, GET_ANSIBLE_HISTORY,
   GET_ANSIBLE_JOB_TEMPLATE, GET_ANSIBLE_OPERATOR_INSTALLED,
-} from '../../../utils/client/queries'
-import TruncateText from '../../../components/common/TruncateText'
+} from '../../utils/client/queries'
+import TruncateText from '../../components/common/TruncateText'
 import _ from 'lodash'
 import jsYaml from 'js-yaml'
-import TitleWithTooltip from '../../common/TitleWithTooltip'
-import { renderAnsibleOperatorNotInstalled } from './AnsibleOperatorNotInstalled'
+import TitleWithTooltip from '../common/TitleWithTooltip'
 
-import '../../../scss/ansible-modal.scss'
+import '../../scss/ansible-modal.scss'
 
 const metaNameStr = 'metadata.name'
 const metaNSStr = 'metadata.namespace'
@@ -471,7 +470,9 @@ export class AnsibleAutomationModal extends React.Component {
               header={
                 <React.Fragment>
                   <div className='ansible_modal_title'>{titleText}</div>
-                  {!opInstalledLoading && !opInstalled && renderAnsibleOperatorNotInstalled(locale)}
+                  {!opInstalledLoading && !opInstalled &&
+                    this.renderAnsibleOperatorNotInstalled()
+                  }
                   {alertTitle && notificationOpen &&
                       <Alert
                         variant={alertVariant}
@@ -525,6 +526,39 @@ export class AnsibleAutomationModal extends React.Component {
     } else {
       return text
     }
+  }
+
+  renderAnsibleOperatorNotInstalled = () => {
+    const { locale } = this.props
+    const link = {
+      id: 'installAnsibleOperatorLink',
+      text: msgs.get('ansible.operator.installLink', locale),
+      onClick: () => {
+        fetch('/multicloud/api/v1/namespaces/openshift-config-managed/configmaps/console-public/')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.statusText)
+          }
+          return response.json()
+        })
+        .then((respJSON) => {
+          window.open(respJSON.data.consoleURL + '/operatorhub/all-namespaces?keyword=ansible+automation+platform')
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+      }
+    }
+    return (
+      <Alert
+        variant='danger'
+        isInline={true}
+        title={msgs.get('ansible.operator.notInstalled', locale)}
+        actionClose=''
+      >
+        <AcmLaunchLink links={[link]} />
+      </Alert>
+    )
   }
 
   renderAnsiblePanelContent = ({
