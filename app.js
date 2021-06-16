@@ -188,7 +188,7 @@ if (process.env.NODE_ENV === 'development') {
   const credentials = {key: privateKey, cert: certificate}
   server = https.createServer(credentials, app)
 } else {
-  // NOTE: In production, SSL is provided by the ICP ingress.
+  // NOTE: In production, SSL is provided by the ingress
   const http = require('http')
   server = http.createServer(app)
 }
