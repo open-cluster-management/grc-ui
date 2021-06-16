@@ -16,7 +16,8 @@ const express = require('express'),
       security = require('@open-cluster-management/security-middleware'),
       oauth = require('./oauth-info'),
       user = require('./userinfo'),
-      version = require('./acmversion')
+      version = require('./acmversion'),
+      uiConfig = require('./ui-config')
 
 //controllers
 const status = require('./status'),
@@ -27,6 +28,7 @@ router.get('/multicloud/logout', security.logout)
 router.get('/multicloud/common/configure', oauth.oauthInfo)
 router.get('/multicloud/common/username', user.userInfo)
 router.get('/multicloud/common/version', version.version)
+router.get('/multicloud/common/applinks', uiConfig.uiConfig)
 router.use('/multicloud/welcome', ui)
 router.use(config.get('contextPath'), ui)
 
