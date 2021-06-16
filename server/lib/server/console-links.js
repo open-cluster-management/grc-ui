@@ -60,6 +60,6 @@ module.exports.getConsoleLinks = (cb) => {
         }
       }
     }
-    cb(err, formattedLinks)
+    return cb(err, formattedLinks)
   })
 }
