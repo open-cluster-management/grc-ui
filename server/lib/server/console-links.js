@@ -37,7 +37,7 @@ module.exports.getConsoleLinks = (req, cb) => {
     }
 
     const consoleLinks = _.get(body, 'items', null)
-    
+
     const formattedLinks = {}
     for (let i = 0; i < consoleLinks.length; i++) {
       const link = consoleLinks[i]
