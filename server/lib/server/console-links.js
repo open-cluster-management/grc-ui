@@ -7,7 +7,7 @@ const request = require('request').defaults({ rejectUnauthorized: false }),
       serviceAccountPath = '/var/run/secrets/kubernetes.io/serviceaccount',
       _ = require('lodash')
 
-module.exports.getConsoleLinks = (req, cb) => {
+module.exports.getConsoleLinks = (cb) => {
   let serviceaccountToken = null
   try {
     if(process.env.NODE_ENV === 'production'){

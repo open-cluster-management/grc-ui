@@ -3,7 +3,7 @@
 const linksClient = require('../lib/server/console-links')
 
 module.exports.consoleLinks = (req, res) => {
-  linksClient.getConsoleLinks(req, (err, response) => {
+  linksClient.getConsoleLinks((err, response) => {
     if(err) {
       return res.status(500).send(err)
     }
