@@ -148,11 +148,6 @@ export const userMenu = {
         cy.contains('ArgoCD').should('exist')
         cy.get('[data-test="app-dropdown"]').click()
         cy.contains('ArgoCD').should('not.exist')
-        cy.request(Cypress.config().baseUrl + '/multicloud/common/applinks').as('appLinkReq')
-        cy.get('@appLinkReq').should((response) => {
-            expect(response.body).to.have.property('data')
-            expect(response.body['data']).to.have.property('OpenShift GitOps')
-        })
     },
     openAppsNoArgo: () => {
         cy.request(Cypress.config().baseUrl + '/multicloud/common/applinks').as('appLinkReq')
