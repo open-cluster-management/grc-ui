@@ -41,4 +41,12 @@ describe('Access reducer', () => {
     }
     expect(userAccess(state, action)).toEqual(expectedValue)
   })
+
+  it('should return undefine', () => {
+    const state = {
+      test: 'test'
+    }
+    const expectedValue = undefined
+    expect(userAccess(state, null)).toEqual(expectedValue)
+  })
 })

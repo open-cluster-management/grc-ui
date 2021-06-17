@@ -123,6 +123,12 @@ describe('ResourceReducer creation', () => {
 describe('resourceReducerFunction', () => {
   it('should return the initial state', () => {
     const action = {
+      type: null
+    }
+    expect(resourceReducerFunction(undefined, action)).toEqual(INITIAL_STATE)
+  })
+  it('should return the initial state', () => {
+    const action = {
       type: 'unit-test'
     }
     expect(resourceReducerFunction(undefined, action)).toEqual(INITIAL_STATE)
@@ -143,12 +149,97 @@ describe('resourceReducerFunction', () => {
     expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
   })
   it('should return a state with DONE status', () => {
-    const state = {
+    const state1 = {
       test: 'test',
+      itemsPerPage: 1,
+      page: 1
     }
-    const action = {
+    const state2 = {
+      test: 'test',
+      itemsPerPage: 100,
+      page: 5
+    }
+    const action1 = {
       type: 'RESOURCE_RECEIVE_SUCCESS',
       items: [],
+      resourceVersion: 0
+    }
+    const action2 = {
+      type: 'RESOURCE_RECEIVE_SUCCESS',
+      items: [
+        {
+          '__typename': 'Compliance',
+          'metadata': {
+            '__typename': 'Metadata',
+            'name': 'policy-complianceoperator',
+            'namespace': 'default',
+            'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-complianceoperator',
+            'annotations': {
+              'policy.open-cluster-management.io/categories': 'PR.IP Information Protection Processes and Procedures',
+              'policy.open-cluster-management.io/controls': 'PR.IP-1 Baseline Configuration',
+              'policy.open-cluster-management.io/standards': 'NIST-CSF'
+            },
+            'resourceVersion': '91729'
+          },
+          'name': 'policy-complianceoperator',
+          'namespace': 'default',
+          'remediation': 'enforce',
+          'policyCompliant': '0/0',
+          'clusterCompliant': '0/1/0',
+          'clusterNS': {
+            'local-cluster': 'local-cluster'
+          },
+          'clusterConsoleURL': {
+            'local-cluster': 'https://console-openshift-console.apps.policy-grc-cp-autoclaims-9jswd.dev08.red-chesterfield.com'
+          },
+          'subItems': [
+            {
+              'name': 'policy.pb',
+              'items': []
+            },
+            {
+              'name': 'policy.pp',
+              'items': []
+            }
+          ]
+        },
+        {
+          '__typename': 'Compliance',
+          'metadata': {
+            '__typename': 'Metadata',
+            'name': 'policy-e8-scan',
+            'namespace': 'default',
+            'selfLink': '/apis/policy.open-cluster-management.io/v1/namespaces/default/policies/policy-e8-scan',
+            'annotations': {
+              'policy.open-cluster-management.io/categories': 'CM Configuration Management',
+              'policy.open-cluster-management.io/controls': 'CM-6 Configuration Settings',
+              'policy.open-cluster-management.io/standards': 'NIST SP 800-53'
+            },
+            'resourceVersion': '289855'
+          },
+          'name': 'policy-e8-scan',
+          'namespace': 'default',
+          'remediation': 'enforce',
+          'policyCompliant': '0/0',
+          'clusterCompliant': '-',
+          'clusterNS': {
+            'local-cluster': 'local-cluster'
+          },
+          'clusterConsoleURL': {
+            'local-cluster': 'https://console-openshift-console.apps.policy-grc-cp-autoclaims-9jswd.dev08.red-chesterfield.com'
+          },
+          'subItems': [
+            {
+              'name': 'policy.pb',
+              'items': []
+            },
+            {
+              'name': 'policy.pp',
+              'items': []
+            }
+          ]
+        }
+      ],
       resourceVersion: 0
     }
     const expectedValue = {
@@ -156,9 +247,12 @@ describe('resourceReducerFunction', () => {
       status: 'DONE',
       items: [],
       page: 1,
+      itemsPerPage: 1,
       resourceVersion: 0
     }
-    expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
+    expect(resourceReducerFunction(state1, action1)).toEqual(expectedValue)
+    expect(resourceReducerFunction(state1, action2)).toMatchSnapshot()
+    expect(resourceReducerFunction(state2, action2)).toMatchSnapshot()
   })
   it('should return a state with ERROR status', () => {
     const state = {
@@ -269,7 +363,7 @@ describe('resourceReducerFunction', () => {
     const state = {
       test: 'test'
     }
-    const action = {
+    const action1 = {
       type: 'PUT_RECEIVE_FAILURE',
       err: {
         error: {
@@ -277,12 +371,19 @@ describe('resourceReducerFunction', () => {
         }
       }
     }
+    const action2 = {
+      type: 'PUT_RECEIVE_FAILURE',
+      err: {
+        message: 'error'
+      }
+    }
     const expectedValue = {
       test: 'test',
       putErrorMsg: 'error',
       putStatus: 'ERROR'
     }
-    expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
+    expect(resourceReducerFunction(state, action1)).toEqual(expectedValue)
+    expect(resourceReducerFunction(state, action2)).toEqual(expectedValue)
   })
 
   it('should return a state with PATCH request', () => {
@@ -317,7 +418,7 @@ describe('resourceReducerFunction', () => {
     const state = {
       test: 'test'
     }
-    const action = {
+    const action1 = {
       type: 'PATCH_RECEIVE_FAILURE',
       err: {
         error: {
@@ -325,12 +426,19 @@ describe('resourceReducerFunction', () => {
         }
       }
     }
+    const action2 = {
+      type: 'PATCH_RECEIVE_FAILURE',
+      err: {
+        message: 'error'
+      }
+    }
     const expectedValue = {
       test: 'test',
       patchErrorMsg: 'error',
       patchStatus: 'ERROR'
     }
-    expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
+    expect(resourceReducerFunction(state, action1)).toEqual(expectedValue)
+    expect(resourceReducerFunction(state, action2)).toEqual(expectedValue)
   })
 
   it('should return a state with clear action', () => {
@@ -347,71 +455,6 @@ describe('resourceReducerFunction', () => {
       postErrorMsg: undefined,
       putStatus: undefined,
       putErrorMsg: undefined
-    }
-    expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
-  })
-  it('should return a state for table search action', () => {
-    const state = {
-      test: 'test',
-    }
-    const action = {
-      type: 'TABLE_SEARCH',
-      search: 'search'
-    }
-    const expectedValue = {
-      test: 'test',
-      search: 'search',
-      page: 1
-    }
-    expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
-  })
-  it('should return a state for table sort action', () => {
-    const state = {
-      test: 'test',
-    }
-    const action = {
-      type: 'TABLE_SORT',
-      sortDirection: 'test',
-      sortColumn: 'test'
-    }
-    const expectedValue = {
-      test: 'test',
-      sortDirection: 'test',
-      sortColumn: 'test'
-    }
-    expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
-  })
-  it('should return a state for table page change action', () => {
-    const state = {
-      test: 'test',
-    }
-    const action = {
-      type: 'TABLE_PAGE_CHANGE',
-      page: 1,
-      pageSize: 10
-    }
-    const expectedValue = {
-      test: 'test',
-      page: 1,
-      itemsPerPage: 10
-    }
-    expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
-  })
-  it('should return a state for resource modify action', () => {
-    const state = {
-      test: 'test',
-      items: ['test']
-    }
-    const action = {
-      type: 'RESOURCE_MODIFY',
-      resourceType:{
-        query: 'PoliciesList',
-        name: 'Policy'
-      }
-    }
-    const expectedValue = {
-      test: 'test',
-      items: [undefined]
     }
     expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
   })
@@ -513,34 +556,6 @@ describe('resourceReducerFunction', () => {
         }
       ],
       'test': 'test'
-    }
-    expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
-  })
-  it('should return a state for resource delete action', () => {
-    const state = {
-      test: 'test',
-      items: ['test']
-    }
-    const action = {
-      type: 'RESOURCE_DELETE'
-    }
-    const expectedValue = {
-      test: 'test',
-      items: []
-    }
-    expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
-  })
-  it('should return default state for resource delete action', () => {
-    const state = {
-      test: 'test',
-      items: []
-    }
-    const action = {
-      type: 'RESOURCE_DELETE'
-    }
-    const expectedValue = {
-      test: 'test',
-      items: []
     }
     expect(resourceReducerFunction(state, action)).toEqual(expectedValue)
   })

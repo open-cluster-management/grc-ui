@@ -15,35 +15,15 @@ import GrcApolloClient from '../utils/client/apollo-client'
 import { formatExpandablePolicies } from '../utils/FormatTableData'
 import { buildSelfLinK } from '../utils/BuildSelfLink'
 import {
-  TABLE_PAGE_CHANGE, TABLE_SEARCH, TABLE_SORT, RESOURCE_RECEIVE_SUCCESS,
-  REQUEST_STATUS, RESOURCE_RECEIVE_FAILURE, RESOURCE_REQUEST, RESOURCE_ADD,
-  RESOURCE_MODIFY, RESOURCE_DELETE, RESOURCE_MUTATE, RESOURCE_MUTATE_SUCCESS,
+  RESOURCE_RECEIVE_SUCCESS,
+  REQUEST_STATUS, RESOURCE_RECEIVE_FAILURE, RESOURCE_REQUEST,
+  RESOURCE_MUTATE, RESOURCE_MUTATE_SUCCESS,
   RESOURCE_MUTATE_FAILURE, AVAILABLE_FILTER_UPDATE, ACTIVE_FILTER_UPDATE,
   SECONDARY_HEADER_UPDATE, MODAL_UPDATE, POST_REQUEST, POST_RECEIVE_SUCCESS,
   POST_RECEIVE_FAILURE, PUT_REQUEST, PUT_RECEIVE_SUCCESS, PUT_RECEIVE_FAILURE,
   PATCH_REQUEST, PATCH_RECEIVE_SUCCESS, PATCH_RECEIVE_FAILURE, DEL_REQUEST,
-  DEL_RECEIVE_SUCCESS, DEL_RECEIVE_FAILURE, CLEAR_REQUEST_STATUS, RESOURCE_RESET,
+  DEL_RECEIVE_SUCCESS, DEL_RECEIVE_FAILURE, CLEAR_REQUEST_STATUS
 } from './index'
-
-export const changeTablePage = ({page, pageSize}, resourceType) => ({
-  type: TABLE_PAGE_CHANGE,
-  page,
-  pageSize,
-  resourceType
-})
-
-export const searchTable = (search, resourceType) => ({
-  type: TABLE_SEARCH,
-  search,
-  resourceType
-})
-
-export const sortTable = (sortDirection, sortColumn, resourceType) => ({
-  type: TABLE_SORT,
-  sortDirection,
-  sortColumn,
-  resourceType
-})
 
 export const receiveResourceSuccess = (response, resourceType) => ({
   type: RESOURCE_RECEIVE_SUCCESS,
@@ -64,24 +44,6 @@ export const requestResource = (resourceType) => ({
   type: RESOURCE_REQUEST,
   status: REQUEST_STATUS.IN_PROGRESS,
   resourceType
-})
-
-export const addResource = (item, resourceType) => ({
-  type: RESOURCE_ADD,
-  resourceType: item.kind || resourceType,
-  item
-})
-
-export const modifyResource = (item, resourceType) => ({
-  type: RESOURCE_MODIFY,
-  resourceType: item.kind || resourceType,
-  item
-})
-
-export const deleteResource = (item, resourceType) => ({
-  type: RESOURCE_DELETE,
-  resourceType: item.kind || resourceType,
-  item
 })
 
 export const mutateResource = (resourceType, resourceName) => ({
@@ -130,35 +92,6 @@ export const fetchSingleResource = (resourceType, args) => {
       .catch(err => dispatch(receiveResourceError(err, resourceType)))
   }
 }
-
-export const fetchResource = (resourceType, namespace, name) => {
-  return (dispatch) => {
-    dispatch(requestResource(resourceType))
-    return GrcApolloClient.getResource(resourceType, {namespace, name})
-      .then(response => {
-        if (response.errors) {
-          return dispatch(receiveResourceError(response.errors[0], resourceType))
-        }
-        return dispatch(receiveResourceSuccess({items: _.cloneDeep(response.data.items)}, resourceType))
-      })
-      .catch(err => dispatch(receiveResourceError(err, resourceType)))
-  }
-}
-
-export const editResource = (resourceType, namespace, name, body, resourceData, resourcePath) => (dispatch => {
-  dispatch(putResource(resourceType))
-  const selfLink = buildSelfLinK(body) ? buildSelfLinK(body) : buildSelfLinK(resourceData)
-  return GrcApolloClient.updateResource(namespace, name, body, selfLink, resourcePath)
-    .then(response => {
-      if (response.errors) {
-        return dispatch(receivePutError(response.errors[0], resourceType))
-      } else {
-        dispatch(updateModal({open: false, type: 'resource-edit'}))
-      }
-      dispatch(fetchResources(resourceType))
-      return dispatch(receivePutResource(response, resourceType))
-    })
-})
 
 export const disableResource = (resourceType, namespace, name, body, resourceData, resourcePath) => (dispatch => {
   dispatch(patchResource(resourceType))
@@ -318,11 +251,6 @@ export const receiveDelError = (err, resourceType) => ({
 
 export const clearRequestStatus = (resourceType) => ({
   type: CLEAR_REQUEST_STATUS,
-  resourceType: resourceType
-})
-
-export const resetResource = (resourceType) => ({
-  type: RESOURCE_RESET,
   resourceType: resourceType
 })
 

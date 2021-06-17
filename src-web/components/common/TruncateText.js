@@ -18,9 +18,9 @@ import truncate from '../../utils/truncate-middle'
 class TruncateText extends React.PureComponent {
   static propTypes = {
     maxCharacters: PropTypes.number,
-    maxWidth: PropTypes.number,
+    maxWidth: PropTypes.string,
     position: PropTypes.string,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
     textEnd: PropTypes.string
   }
 

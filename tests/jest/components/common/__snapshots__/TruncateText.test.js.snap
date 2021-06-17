@@ -117,7 +117,7 @@ TruncateText {
   "context": Object {},
   "props": Object {
     "maxCharacters": 25,
-    "text": null,
+    "text": "",
   },
   "refs": Object {},
   "setState": [Function],
@@ -145,7 +145,7 @@ TruncateText {
       },
       "_element": <TruncateText
         maxCharacters={25}
-        text={null}
+        text=""
       />,
       "_firstWorkInProgressHook": null,
       "_forcedUpdate": false,

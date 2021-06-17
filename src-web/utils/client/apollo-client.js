@@ -51,36 +51,10 @@ const client = new ApolloClient({
   defaultOptions,
 })
 
-const searchClient = new ApolloClient({
-  connectDevTools: process.env.NODE_ENV === 'development',
-  cache: new InMemoryCache(),
-  link: ApolloLink.from([
-    new HttpLink({
-      uri: `${config.contextPath}/search/graphql`,
-      credentials: 'same-origin',
-      headers: {
-        'XSRF-Token': getXsrfToken(),
-      },
-    })
-  ]),
-  defaultOptions,
-})
-
 class GrcApolloClient {
 
   getGrcClient(){
     return client
-  }
-
-  getSearchClient() {
-    // TODO - use flag while ironing out the chart changes
-    return config['feature_search-api'] ? searchClient : client
-  }
-
-  // general search using search-api
-  search(q, variables = {}) {
-    // TODO - use flag while ironing out the chart changes
-    return config['feature_search-api'] ? searchClient.query({ query: q, variables }) : client.query({ query: q, variables })
   }
 
   // gets list

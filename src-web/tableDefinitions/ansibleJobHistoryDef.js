@@ -54,7 +54,7 @@ export default {
   }
 }
 
-function buildAnsibleJobStatus(item, locale) {
+export function buildAnsibleJobStatus(item, locale) {
   let ansibleJobStatus = _.get(item, 'status', '-')
   ansibleJobStatus = (ansibleJobStatus && typeof ansibleJobStatus === 'string')
     ? ansibleJobStatus.trim().toLowerCase() : '-'
@@ -78,7 +78,7 @@ function buildAnsibleJobStatus(item, locale) {
   return ansibleJobStatus
 }
 
-function buildViewJobLink(item, locale) {
+export function buildViewJobLink(item, locale) {
   const job = _.get(item, 'job')
   if (job) {
     const jobNamespace = job.split('/')[0]

@@ -49,13 +49,14 @@ describe('modal reducer', () => {
 
   it('should return a state with POST_REQUEST status', () => {
     const state = {
-      test: 'test'
+      test: 'test',
+      reqCount: 2
     }
     const action = {
       type: Actions.POST_REQUEST
     }
     const expectedValue = {
-      reqCount: 1,
+      reqCount: 3,
       reqStatus: 'IN_PROGRESS',
       test: 'test'
     }
@@ -64,10 +65,26 @@ describe('modal reducer', () => {
 
   it('should return a state with PUT_REQUEST status', () => {
     const state = {
-      test: 'test'
+      test: 'test',
+      reqCount: 1
     }
     const action = {
       type: Actions.PUT_REQUEST
+    }
+    const expectedValue = {
+      reqCount: 2,
+      reqStatus: 'IN_PROGRESS',
+      test: 'test'
+    }
+    expect(modal(state, action)).toEqual(expectedValue)
+  })
+
+  it('should return a state with PATCH_REQUEST status', () => {
+    const state = {
+      test: 'test'
+    }
+    const action = {
+      type: Actions.PATCH_REQUEST
     }
     const expectedValue = {
       reqCount: 1,

@@ -18,7 +18,6 @@ import policyTemplate from '../../../../../src-web/components/common/templates/p
 import { shallow } from 'enzyme'
 import _ from 'lodash'
 const msgs = require('../../../config/platform-properties.json')
-//import { existing } from '../ComponentsTestingData'
 
 const Portals = Object.freeze({
   createBtn: 'create-button-portal-id',
@@ -257,6 +256,8 @@ describe('TemplateEditor component', () => {
         template={policyTemplate}
         controlData={controlData}
         portals={Portals}
+        createControl={{}}
+        type={''}
       />
     )
     expect(component.toJSON()).toMatchSnapshot()
@@ -271,6 +272,8 @@ describe('on control change function with active selections', () => {
         template={policyTemplate}
         controlData={controlData}
         portals={Portals}
+        createControl={{}}
+        type={''}
       />
     )
     const evt = ['selectedItems-testing-1', 'selectedItems-testing-2']
@@ -315,6 +318,8 @@ describe('on control change function without active selections', () => {
         template={policyTemplate}
         controlData={deepCopy}
         portals={Portals}
+        createControl={{}}
+        type={''}
       />
     )
     const evt = ['selectedItems-testing-1', 'selectedItems-testing-2']
@@ -366,6 +371,8 @@ describe('on editor change function', () => {
         template={policyTemplate}
         controlData={controlData}
         portals={Portals}
+        createControl={{}}
+        type={''}
       />
     )
     expect(wrapper.instance().handleParse()).toMatchSnapshot()
@@ -384,6 +391,8 @@ describe('on editor change function', () => {
         template={policyTemplate}
         controlData={deepCopy}
         portals={Portals}
+        createControl={{}}
+        type={''}
       />
     )
     expect(wrapper.instance().handleParse()).toMatchSnapshot()
@@ -402,6 +411,8 @@ describe('on editor change function', () => {
         template={policyTemplate}
         controlData={deepCopy}
         portals={Portals}
+        createControl={{}}
+        type={''}
       />
     )
     expect(wrapper.instance().handleParse()).toMatchSnapshot()
@@ -416,6 +427,8 @@ describe('handleEditorCommand function', () => {
         template={policyTemplate}
         controlData={controlData}
         portals={Portals}
+        createControl={{}}
+        type={''}
       />
     )
     expect(wrapper.instance().handleEditorCommand('next')).toEqual('next')
@@ -433,6 +446,8 @@ describe('getResourceJSON function', () => {
         template={policyTemplate}
         controlData={controlData}
         portals={Portals}
+        createControl={{}}
+        type={''}
       />
     )
     expect(wrapper.instance().getResourceJSON()).toEqual(null)
