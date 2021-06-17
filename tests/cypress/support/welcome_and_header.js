@@ -155,6 +155,10 @@ export const userMenu = {
         })
     },
     openAppsNoArgo: () => {
+        cy.request(Cypress.config().baseUrl + '/multicloud/common/applinks').as('appLinkReq')
+        cy.get('@appLinkReq').should((response) => {
+            expect(response.body).to.have.property('data')
+        })
         cy.get('[data-test="app-dropdown"]').should('exist')
         cy.get('[data-test="app-dropdown"]').click()
         cy.contains('Red Hat applications').should('exist')
