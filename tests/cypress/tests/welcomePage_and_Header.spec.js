@@ -97,6 +97,8 @@ describeT('GRC UI: [P1][Sev1][policy-grc] Welcome page', () => {
     })
 
     it(`[P3][Sev3][${squad}] using header icons - should properly format apps dropdown`, () => {
+        welcomePage.whenGoToWelcomePage()
+        userMenu.openAppsNoArgo()
         cy.intercept(Cypress.config().baseUrl + '/multicloud/common/applinks', {
             data: {
                 'OpenShift GitOps': [

@@ -153,5 +153,11 @@ export const userMenu = {
             expect(response.body).to.have.property('data')
             expect(response.body['data']).to.have.property('OpenShift GitOps')
         })
+    },
+    openAppsNoArgo: () => {
+        cy.get('[data-test="app-dropdown"]').should('exist')
+        cy.get('[data-test="app-dropdown"]').click()
+        cy.contains('Red Hat applications').should('exist')
+        cy.contains('Red Hat Openshift Container Platform').should('exist')
     }
 }
