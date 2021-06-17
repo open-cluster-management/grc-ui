@@ -137,5 +137,21 @@ export const userMenu = {
             expect(response.body).to.have.property('token_endpoint')
             expect(response.body['token_endpoint']).to.include('oauth/token')
         })
+    },
+    openApps: () => {
+        cy.get('[data-test="app-dropdown"]').should('exist')
+        cy.get('[data-test="app-dropdown"]').click()
+        cy.get('[data-test="app-dropdown"] li').should('be.visible').and('have.length', 4)
+        cy.contains('Red Hat applications').should('exist')
+        cy.contains('Red Hat Openshift Container Platform').should('exist')
+        cy.contains('OpenShift GitOps').should('exist')
+        cy.contains('ArgoCD').should('exist')
+        cy.get('[data-test="app-dropdown"]').click()
+        cy.contains('ArgoCD').should('not.exist')
+        cy.request(Cypress.config().baseUrl + '/multicloud/common/applinks').as('appLinkReq')
+        cy.get('@appLinkReq').should((response) => {
+            expect(response.body).to.have.property('data')
+            expect(response.body['data']).to.have.property('OpenShift GitOps')
+        })
     }
 }
