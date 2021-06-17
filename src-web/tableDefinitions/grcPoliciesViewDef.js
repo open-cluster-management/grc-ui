@@ -121,7 +121,7 @@ export default {
     },
   ],
   sortBy: {
-    index: 7,
+    index: 6,
     direction: 'desc',
   }
 }
