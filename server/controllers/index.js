@@ -24,7 +24,7 @@ const status = require('./status'),
       ui = require('./ui')
 
 router.all(['/status', '/livenessProbe', '/readinessProbe'], status)
-router.all(['/', '/multicloud'], (req, res) => {
+router.get('/', (req, res) => {
     res.redirect('/multicloud/welcome')
 })
 router.get('/multicloud/logout', security.logout)
