@@ -23,7 +23,10 @@ const express = require('express'),
 const status = require('./status'),
       ui = require('./ui')
 
-router.all(['/', '/status', '/livenessProbe', '/readinessProbe'], status)
+router.all(['/status', '/livenessProbe', '/readinessProbe'], status)
+router.all(['/', '/multicloud'], (req, res) => {
+    res.redirect('/multicloud/welcome')
+})
 router.get('/multicloud/logout', security.logout)
 router.get('/multicloud/common/configure', oauth.oauthInfo)
 router.get('/multicloud/common/username', user.userInfo)
