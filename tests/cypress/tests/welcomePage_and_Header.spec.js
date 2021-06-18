@@ -20,6 +20,13 @@ describeT('GRC UI: [P1][Sev1][policy-grc] Welcome page', () => {
         welcomePage.shouldExist()
     })
 
+    it(`[P1][Sev1][${squad}] should redirect from base and /multicloud`, () => {
+        cy.visit('/')
+        welcomePage.shouldExist()
+        cy.visit('/multicloud')
+        welcomePage.shouldExist()
+    })
+
     // FIXME: Skipping tests until welcome page is fixed.
     it('validate links on Welcome page', () => {
         welcomePage.validateSvcs()
