@@ -52,7 +52,7 @@ make docker/pull
 
 docker run -d -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$API_SERVER_URL $DOCKER_URI
 
-printenv
+printenv | sed 's/\(SERVICEACCT_TOKEN\)=.*/\1=[secure]/'
 
 npm run build
 npm run start:instrument &>/dev/null &
