@@ -39,7 +39,6 @@ jobs:
         - make sonar/js/jest-init
         - make unit-test
         - set +e
-        - if [[ "${TRAVIS_EVENT_TYPE}" == "pull_request" ]]; then export COMPONENT_VERSION="2.3.0"; export COMPONENT_TAG_EXTENSION="-PR${TRAVIS_PULL_REQUEST}${COMPONENT_TAG_EXTENSION}"; fi
         - make component/test/e2e
         - npm run merge:coverage
         - echo '"start sonar checking..."' && echo -en 'travis_fold:start:script.build\\r'
