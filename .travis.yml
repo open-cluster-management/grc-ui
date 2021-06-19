@@ -18,7 +18,8 @@ env:
   global:
     # Required
     - OS=linux
-    - COMPONENT_TAG_EXTENSION="-${TRAVIS_COMMIT}"
+    - COMPONENT_VERSION="$(if [[ TRAVIS_PULL_REQUEST != "false" ]]; then echo "2.3.0"; fi)"
+    - COMPONENT_TAG_EXTENSION="$(if [[ TRAVIS_PULL_REQUEST != "false" ]]; then echo "-PR${TRAVIS_PULL_REQUEST}"); fi)-${TRAVIS_COMMIT}"
     # Component Specific
     - COMPONENT_INIT_COMMAND=${TRAVIS_BUILD_DIR}/build/install-dependencies.sh
     - COMPONENT_E2E_TEST_COMMAND=${TRAVIS_BUILD_DIR}/build/run-e2e-tests.sh
