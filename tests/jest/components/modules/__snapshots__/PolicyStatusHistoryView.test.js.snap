@@ -96,7 +96,7 @@ PolicyStatusHistoryView {
                   "cellTransforms": undefined,
                   "header": "Last Report",
                   "search": undefined,
-                  "sort": "message.rawData",
+                  "sort": "timestamp.rawData",
                   "transforms": Array [
                     [Function],
                   ],
@@ -247,7 +247,7 @@ PolicyStatusHistoryView {
                   "cellTransforms": undefined,
                   "header": "Last Report",
                   "search": undefined,
-                  "sort": "message.rawData",
+                  "sort": "timestamp.rawData",
                   "transforms": Array [
                     [Function],
                   ],
@@ -593,7 +593,7 @@ PolicyStatusHistoryView {
                   "cellTransforms": undefined,
                   "header": "Last Report",
                   "search": undefined,
-                  "sort": "message.rawData",
+                  "sort": "timestamp.rawData",
                   "transforms": Array [
                     [Function],
                   ],
