@@ -42,7 +42,7 @@ export default {
       msgKey: 'table.header.lastReport',
       label: 'timestamp',
       sortable: true,
-      sortLabel: 'message.rawData',
+      sortLabel: 'timestamp.rawData',
       resourceKey: 'timestamp',
       transforms: [wrappable],
       type: 'timestamp'
