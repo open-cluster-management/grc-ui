@@ -7,8 +7,9 @@ import React from 'react'
 import { AcmLaunchLink } from '@open-cluster-management/ui-components'
 import { Alert } from '@patternfly/react-core'
 import msgs from '../../../nls/platform.properties'
-import '../../../scss/ansible-modal.scss'
 import { getAnsibleOperatorLink } from '../../../../server/lib/server/ansibleOperatorLink'
+
+import '../../../scss/ansible-modal.scss'
 
 export const renderAnsibleOperatorNotInstalled = (locale) => {
   const link = {
