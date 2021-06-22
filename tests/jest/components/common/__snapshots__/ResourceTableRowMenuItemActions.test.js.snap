@@ -11,7 +11,7 @@ Array [
       "label": Object {
         "heading": "modal.remove-hcmcompliance.heading",
         "label": "modal.remove-hcmcompliance.label",
-        "primaryBtn": "modal.remove-hcmcompliance.heading",
+        "primaryBtn": "modal.remove-hcmcompliance.primaryBtn",
       },
       "open": true,
       "resourceType": Object {
@@ -149,7 +149,7 @@ Array [
       "label": Object {
         "heading": "modal.remove-hcmcompliance.heading",
         "label": "modal.remove-hcmcompliance.label",
-        "primaryBtn": "modal.remove-hcmcompliance.heading",
+        "primaryBtn": "modal.remove-hcmcompliance.primaryBtn",
       },
       "open": true,
       "resourceType": Object {
@@ -174,7 +174,7 @@ Array [
       "label": Object {
         "heading": "modal.remove-hcmcompliance.heading",
         "label": "modal.remove-hcmcompliance.label",
-        "primaryBtn": "modal.remove-hcmcompliance.heading",
+        "primaryBtn": "modal.remove-hcmcompliance.primaryBtn",
       },
       "open": true,
       "resourceType": Object {

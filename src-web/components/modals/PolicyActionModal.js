@@ -58,10 +58,10 @@ export class PolicyActionModal extends React.Component {
 
   render() {
     const { type:modalType, label, locale, open, reqErrorMsg, reqStatus } = this.props
-    let dangerFlag = 'default', modalId = '', modalMsg = ''
+    let warningFlag = 'default', modalId = '', modalMsg = ''
     switch(modalType) {
     case 'resource-disable':
-      dangerFlag = 'danger'
+      warningFlag = 'warning'
       modalId = 'disable-resource-modal'
       modalMsg = 'modal.disable.description'
       break
@@ -70,7 +70,7 @@ export class PolicyActionModal extends React.Component {
       modalMsg = 'modal.enable.description'
       break
     case 'resource-enforce':
-      dangerFlag = 'danger'
+      warningFlag = 'warning'
       modalId = 'enforce-resource-modal'
       modalMsg = 'modal.enforce.description'
       break
@@ -85,7 +85,7 @@ export class PolicyActionModal extends React.Component {
       <div>
         {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Spinner className='patternfly-spinner' />}
         <AcmModal
-          titleIconVariant={dangerFlag}
+          titleIconVariant={warningFlag}
           variant='medium'
           id={modalId}
           isOpen={open}
@@ -93,11 +93,11 @@ export class PolicyActionModal extends React.Component {
           onClose={this.handleCloseClick}
           title={msgs.get(label.heading, locale)}
           actions={[
+            <AcmButton key="confirm" variant={ButtonVariant.primary} onClick={this.handleSubmitClick}>
+            {msgs.get(label.primaryBtn, locale)}
+            </AcmButton>,
             <AcmButton key="cancel" variant={ButtonVariant.link} onClick={this.handleCloseClick}>
             {msgs.get('modal.button.cancel', locale)}
-            </AcmButton>,
-            <AcmButton key="confirm" variant={ButtonVariant.primary} onClick={this.handleSubmitClick}>
-                {msgs.get(label.primaryBtn, locale)}
             </AcmButton>,
           ]}
         >
@@ -106,7 +106,7 @@ export class PolicyActionModal extends React.Component {
               <AcmAlert
                 isInline={true}
                 noClose={true}
-                variant='danger'
+                variant='warning'
                 title={reqErrorMsg || msgs.get('error.default.description', locale)} />}
           </div>
            {msgs.get(modalMsg, locale)}

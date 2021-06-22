@@ -841,7 +841,7 @@ export default class TemplateEditor extends React.Component {
     }
     return (
       <AcmModal
-        titleIconVariant='danger'
+        titleIconVariant='warning'
         variant='medium'
         id='policy-update-modal'
         isOpen={this.state.canOpenModal}
@@ -851,16 +851,16 @@ export default class TemplateEditor extends React.Component {
         }}
         title={msgs.get('update.existing', locale)}
         actions={[
-          <AcmButton key="cancel" variant={ButtonVariant.link} onClick={() => {
-            this.setState({ canOpenModal: false })
-          }}>
-            {msgs.get('update.cancel', locale)}
-          </AcmButton>,
           <AcmButton key="confirm" variant={ButtonVariant.primary} onClick={() => {
             this.handleUpdateResource(this.state.toCreate, this.state.toUpdate)
             this.setState({ canOpenModal: false })
           }}>
             {msgs.get('update.apply', locale)}
+          </AcmButton>,
+          <AcmButton key="cancel" variant={ButtonVariant.link} onClick={() => {
+            this.setState({ canOpenModal: false })
+          }}>
+            {msgs.get('update.cancel', locale)}
           </AcmButton>,
         ]}>
         <p>{`${msgs.get('update.question', locale)} ${msg}`}</p>

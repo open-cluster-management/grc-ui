@@ -53,6 +53,7 @@ class AutomationButton extends React.Component {
                     onClickAutomation(item)
                   },
                   label: true,
+                  noIcon: true,
               },
             ]}></AcmLaunchLink>
           }

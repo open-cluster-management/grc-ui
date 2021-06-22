@@ -7,15 +7,15 @@ exports[`PolicyActionModal component Disable modal renders as expected 1`] = `
       Array [
         <AcmButton
           onClick={[Function]}
-          variant="link"
-        >
-          Cancel
-        </AcmButton>,
-        <AcmButton
-          onClick={[Function]}
           variant="primary"
         >
           Disable policy
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
         </AcmButton>,
       ]
     }
@@ -24,7 +24,7 @@ exports[`PolicyActionModal component Disable modal renders as expected 1`] = `
     onClose={[Function]}
     showClose={true}
     title="Disable policy"
-    titleIconVariant="danger"
+    titleIconVariant="warning"
     variant="medium"
   >
     <div />
@@ -40,15 +40,15 @@ exports[`PolicyActionModal component Enable modal renders as expected 1`] = `
       Array [
         <AcmButton
           onClick={[Function]}
-          variant="link"
-        >
-          Cancel
-        </AcmButton>,
-        <AcmButton
-          onClick={[Function]}
           variant="primary"
         >
           Enable policy
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
         </AcmButton>,
       ]
     }
@@ -73,15 +73,15 @@ exports[`PolicyActionModal component Enforce modal renders as expected 1`] = `
       Array [
         <AcmButton
           onClick={[Function]}
-          variant="link"
-        >
-          Cancel
-        </AcmButton>,
-        <AcmButton
-          onClick={[Function]}
           variant="primary"
         >
           Enforce policy
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
         </AcmButton>,
       ]
     }
@@ -90,7 +90,7 @@ exports[`PolicyActionModal component Enforce modal renders as expected 1`] = `
     onClose={[Function]}
     showClose={true}
     title="Enforce policy"
-    titleIconVariant="danger"
+    titleIconVariant="warning"
     variant="medium"
   >
     <div />
@@ -106,15 +106,15 @@ exports[`PolicyActionModal component Inform modal renders as expected 1`] = `
       Array [
         <AcmButton
           onClick={[Function]}
-          variant="link"
-        >
-          Cancel
-        </AcmButton>,
-        <AcmButton
-          onClick={[Function]}
           variant="primary"
         >
           Inform policy
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
         </AcmButton>,
       ]
     }
@@ -139,14 +139,14 @@ exports[`PolicyActionModal component Modal renders without data 1`] = `
       Array [
         <AcmButton
           onClick={[Function]}
+          variant="primary"
+        />,
+        <AcmButton
+          onClick={[Function]}
           variant="link"
         >
           Cancel
         </AcmButton>,
-        <AcmButton
-          onClick={[Function]}
-          variant="primary"
-        />,
       ]
     }
     id=""
@@ -168,14 +168,14 @@ exports[`PolicyActionModal component Modal returns notification on error 1`] = `
       Array [
         <AcmButton
           onClick={[Function]}
+          variant="primary"
+        />,
+        <AcmButton
+          onClick={[Function]}
           variant="link"
         >
           Cancel
         </AcmButton>,
-        <AcmButton
-          onClick={[Function]}
-          variant="primary"
-        />,
       ]
     }
     id=""
@@ -190,7 +190,7 @@ exports[`PolicyActionModal component Modal returns notification on error 1`] = `
         isInline={true}
         noClose={true}
         title="There was an error."
-        variant="danger"
+        variant="warning"
       />
     </div>
   </AcmModal>
@@ -207,14 +207,14 @@ exports[`PolicyActionModal component Modal returns spinner when loading 1`] = `
       Array [
         <AcmButton
           onClick={[Function]}
+          variant="primary"
+        />,
+        <AcmButton
+          onClick={[Function]}
           variant="link"
         >
           Cancel
         </AcmButton>,
-        <AcmButton
-          onClick={[Function]}
-          variant="primary"
-        />,
       ]
     }
     id=""

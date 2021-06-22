@@ -696,15 +696,15 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                 Array [
                   <AcmButton
                     onClick={[Function]}
-                    variant="link"
+                    variant="danger"
                   >
-                    Cancel
+                    Remove policy
                   </AcmButton>,
                   <AcmButton
                     onClick={[Function]}
-                    variant="primary"
+                    variant="link"
                   >
-                    Remove policy
+                    Cancel
                   </AcmButton>,
                 ]
               }
@@ -713,7 +713,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
               onClose={[Function]}
               showClose={true}
               title="Remove policy"
-              titleIconVariant="danger"
+              titleIconVariant="warning"
               variant="medium"
             >
               <AcmAlertProvider>
@@ -722,15 +722,15 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                     Array [
                       <AcmButton
                         onClick={[Function]}
-                        variant="link"
+                        variant="danger"
                       >
-                        Cancel
+                        Remove policy
                       </AcmButton>,
                       <AcmButton
                         onClick={[Function]}
-                        variant="primary"
+                        variant="link"
                       >
-                        Remove policy
+                        Cancel
                       </AcmButton>,
                     ]
                   }
@@ -739,7 +739,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                   onClose={[Function]}
                   showClose={true}
                   title="Remove policy"
-                  titleIconVariant="danger"
+                  titleIconVariant="warning"
                   variant="medium"
                 >
                   <Modal
@@ -747,15 +747,15 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                       Array [
                         <AcmButton
                           onClick={[Function]}
-                          variant="link"
+                          variant="danger"
                         >
-                          Cancel
+                          Remove policy
                         </AcmButton>,
                         <AcmButton
                           onClick={[Function]}
-                          variant="primary"
+                          variant="link"
                         >
-                          Remove policy
+                          Cancel
                         </AcmButton>,
                       ]
                     }
@@ -771,7 +771,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                     ouiaSafe={true}
                     showClose={true}
                     title="Remove policy"
-                    titleIconVariant="danger"
+                    titleIconVariant="warning"
                     titleLabel=""
                     variant="medium"
                   >
@@ -788,7 +788,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                 aria-describedby="pf-modal-part-2"
                                 aria-labelledby="pf-modal-part-1"
                                 aria-modal="true"
-                                class="pf-c-modal-box pf-m-danger pf-m-md"
+                                class="pf-c-modal-box pf-m-warning pf-m-md"
                                 data-ouia-component-id="OUIA-Generated-Modal-medium-1"
                                 data-ouia-component-type="PF4/ModalContent"
                                 data-ouia-safe="true"
@@ -834,18 +834,18 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                         height="1em"
                                         role="img"
                                         style="vertical-align: -0.125em;"
-                                        viewBox="0 0 512 512"
+                                        viewBox="0 0 576 512"
                                         width="1em"
                                       >
                                         <path
-                                          d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                                          d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
                                         />
                                       </svg>
                                     </span>
                                     <span
                                       class="pf-u-screen-reader"
                                     >
-                                      Danger alert:
+                                      Warning alert:
                                     </span>
                                     <span
                                       class="pf-c-modal-box__title-text"
@@ -868,6 +868,16 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                 >
                                   <button
                                     aria-disabled="false"
+                                    class="pf-c-button pf-m-danger"
+                                    data-ouia-component-id="OUIA-Generated-Button-danger-1"
+                                    data-ouia-component-type="PF4/Button"
+                                    data-ouia-safe="true"
+                                    type="button"
+                                  >
+                                    Remove policy
+                                  </button>
+                                  <button
+                                    aria-disabled="false"
                                     class="pf-c-button pf-m-link"
                                     data-ouia-component-id="OUIA-Generated-Button-link-1"
                                     data-ouia-component-type="PF4/Button"
@@ -875,16 +885,6 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                     type="button"
                                   >
                                     Cancel
-                                  </button>
-                                  <button
-                                    aria-disabled="false"
-                                    class="pf-c-button pf-m-primary"
-                                    data-ouia-component-id="OUIA-Generated-Button-primary-1"
-                                    data-ouia-component-type="PF4/Button"
-                                    data-ouia-safe="true"
-                                    type="button"
-                                  >
-                                    Remove policy
                                   </button>
                                 </footer>
                               </div>
@@ -898,15 +898,15 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                           Array [
                             <AcmButton
                               onClick={[Function]}
-                              variant="link"
+                              variant="danger"
                             >
-                              Cancel
+                              Remove policy
                             </AcmButton>,
                             <AcmButton
                               onClick={[Function]}
-                              variant="primary"
+                              variant="link"
                             >
-                              Remove policy
+                              Cancel
                             </AcmButton>,
                           ]
                         }
@@ -925,7 +925,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                         ouiaSafe={true}
                         showClose={true}
                         title="Remove policy"
-                        titleIconVariant="danger"
+                        titleIconVariant="warning"
                         titleLabel=""
                         variant="medium"
                       >
@@ -951,7 +951,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                   aria-describedby="pf-modal-part-2"
                                   aria-label=""
                                   aria-labelledby="pf-modal-part-1"
-                                  className="pf-m-danger"
+                                  className="pf-m-warning"
                                   data-ouia-component-id="OUIA-Generated-Modal-medium-1"
                                   data-ouia-component-type="PF4/ModalContent"
                                   data-ouia-safe={true}
@@ -964,7 +964,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                     aria-label={null}
                                     aria-labelledby="pf-modal-part-1"
                                     aria-modal="true"
-                                    className="pf-c-modal-box pf-m-danger pf-m-md"
+                                    className="pf-c-modal-box pf-m-warning pf-m-md"
                                     data-ouia-component-id="OUIA-Generated-Modal-medium-1"
                                     data-ouia-component-type="PF4/ModalContent"
                                     data-ouia-safe={true}
@@ -1029,7 +1029,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                         <ModalBoxTitle
                                           id="pf-modal-part-1"
                                           title="Remove policy"
-                                          titleIconVariant="danger"
+                                          titleIconVariant="warning"
                                           titleLabel=""
                                         >
                                           <h1
@@ -1039,7 +1039,7 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                             <span
                                               className="pf-c-modal-box__title-icon"
                                             >
-                                              <ExclamationCircleIcon
+                                              <ExclamationTriangleIcon
                                                 color="currentColor"
                                                 noVerticalAlign={false}
                                                 size="sm"
@@ -1055,19 +1055,19 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                                       "verticalAlign": "-0.125em",
                                                     }
                                                   }
-                                                  viewBox="0 0 512 512"
+                                                  viewBox="0 0 576 512"
                                                   width="1em"
                                                 >
                                                   <path
-                                                    d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                                                    d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
                                                   />
                                                 </svg>
-                                              </ExclamationCircleIcon>
+                                              </ExclamationTriangleIcon>
                                             </span>
                                             <span
                                               className="pf-u-screen-reader"
                                             >
-                                              Danger alert:
+                                              Warning alert:
                                             </span>
                                             <span
                                               className="pf-c-modal-box__title-text"
@@ -1096,6 +1096,33 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                         className="pf-c-modal-box__footer"
                                       >
                                         <AcmButton
+                                          key="confirm"
+                                          onClick={[Function]}
+                                          variant="danger"
+                                        >
+                                          <TooltipWrapper>
+                                            <Button
+                                              onClick={[Function]}
+                                              variant="danger"
+                                            >
+                                              <button
+                                                aria-disabled={false}
+                                                aria-label={null}
+                                                className="pf-c-button pf-m-danger"
+                                                data-ouia-component-id="OUIA-Generated-Button-danger-1"
+                                                data-ouia-component-type="PF4/Button"
+                                                data-ouia-safe={true}
+                                                disabled={false}
+                                                onClick={[Function]}
+                                                role={null}
+                                                type="button"
+                                              >
+                                                Remove policy
+                                              </button>
+                                            </Button>
+                                          </TooltipWrapper>
+                                        </AcmButton>
+                                        <AcmButton
                                           key="cancel"
                                           onClick={[Function]}
                                           variant="link"
@@ -1118,33 +1145,6 @@ exports[`RemoveResourceModal test renders as expected 2`] = `
                                                 type="button"
                                               >
                                                 Cancel
-                                              </button>
-                                            </Button>
-                                          </TooltipWrapper>
-                                        </AcmButton>
-                                        <AcmButton
-                                          key="confirm"
-                                          onClick={[Function]}
-                                          variant="primary"
-                                        >
-                                          <TooltipWrapper>
-                                            <Button
-                                              onClick={[Function]}
-                                              variant="primary"
-                                            >
-                                              <button
-                                                aria-disabled={false}
-                                                aria-label={null}
-                                                className="pf-c-button pf-m-primary"
-                                                data-ouia-component-id="OUIA-Generated-Button-primary-1"
-                                                data-ouia-component-type="PF4/Button"
-                                                data-ouia-safe={true}
-                                                disabled={false}
-                                                onClick={[Function]}
-                                                role={null}
-                                                type="button"
-                                              >
-                                                Remove policy
                                               </button>
                                             </Button>
                                           </TooltipWrapper>
@@ -1865,15 +1865,15 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                 Array [
                   <AcmButton
                     onClick={[Function]}
-                    variant="link"
+                    variant="danger"
                   >
-                    Cancel
+                    Remove policy
                   </AcmButton>,
                   <AcmButton
                     onClick={[Function]}
-                    variant="primary"
+                    variant="link"
                   >
-                    Remove policy
+                    Cancel
                   </AcmButton>,
                 ]
               }
@@ -1882,7 +1882,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
               onClose={[Function]}
               showClose={true}
               title="Remove policy"
-              titleIconVariant="danger"
+              titleIconVariant="warning"
               variant="medium"
             >
               <AcmAlertProvider>
@@ -1891,15 +1891,15 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                     Array [
                       <AcmButton
                         onClick={[Function]}
-                        variant="link"
+                        variant="danger"
                       >
-                        Cancel
+                        Remove policy
                       </AcmButton>,
                       <AcmButton
                         onClick={[Function]}
-                        variant="primary"
+                        variant="link"
                       >
-                        Remove policy
+                        Cancel
                       </AcmButton>,
                     ]
                   }
@@ -1908,7 +1908,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                   onClose={[Function]}
                   showClose={true}
                   title="Remove policy"
-                  titleIconVariant="danger"
+                  titleIconVariant="warning"
                   variant="medium"
                 >
                   <Modal
@@ -1916,15 +1916,15 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                       Array [
                         <AcmButton
                           onClick={[Function]}
-                          variant="link"
+                          variant="danger"
                         >
-                          Cancel
+                          Remove policy
                         </AcmButton>,
                         <AcmButton
                           onClick={[Function]}
-                          variant="primary"
+                          variant="link"
                         >
-                          Remove policy
+                          Cancel
                         </AcmButton>,
                       ]
                     }
@@ -1940,7 +1940,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                     ouiaSafe={true}
                     showClose={true}
                     title="Remove policy"
-                    titleIconVariant="danger"
+                    titleIconVariant="warning"
                     titleLabel=""
                     variant="medium"
                   >
@@ -1957,7 +1957,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                 aria-describedby="pf-modal-part-2"
                                 aria-labelledby="pf-modal-part-1"
                                 aria-modal="true"
-                                class="pf-c-modal-box pf-m-danger pf-m-md"
+                                class="pf-c-modal-box pf-m-warning pf-m-md"
                                 data-ouia-component-id="OUIA-Generated-Modal-medium-1"
                                 data-ouia-component-type="PF4/ModalContent"
                                 data-ouia-safe="true"
@@ -2003,18 +2003,18 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                         height="1em"
                                         role="img"
                                         style="vertical-align: -0.125em;"
-                                        viewBox="0 0 512 512"
+                                        viewBox="0 0 576 512"
                                         width="1em"
                                       >
                                         <path
-                                          d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                                          d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
                                         />
                                       </svg>
                                     </span>
                                     <span
                                       class="pf-u-screen-reader"
                                     >
-                                      Danger alert:
+                                      Warning alert:
                                     </span>
                                     <span
                                       class="pf-c-modal-box__title-text"
@@ -2037,6 +2037,16 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                 >
                                   <button
                                     aria-disabled="false"
+                                    class="pf-c-button pf-m-danger"
+                                    data-ouia-component-id="OUIA-Generated-Button-danger-1"
+                                    data-ouia-component-type="PF4/Button"
+                                    data-ouia-safe="true"
+                                    type="button"
+                                  >
+                                    Remove policy
+                                  </button>
+                                  <button
+                                    aria-disabled="false"
                                     class="pf-c-button pf-m-link"
                                     data-ouia-component-id="OUIA-Generated-Button-link-1"
                                     data-ouia-component-type="PF4/Button"
@@ -2044,16 +2054,6 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                     type="button"
                                   >
                                     Cancel
-                                  </button>
-                                  <button
-                                    aria-disabled="false"
-                                    class="pf-c-button pf-m-primary"
-                                    data-ouia-component-id="OUIA-Generated-Button-primary-1"
-                                    data-ouia-component-type="PF4/Button"
-                                    data-ouia-safe="true"
-                                    type="button"
-                                  >
-                                    Remove policy
                                   </button>
                                 </footer>
                               </div>
@@ -2067,15 +2067,15 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                           Array [
                             <AcmButton
                               onClick={[Function]}
-                              variant="link"
+                              variant="danger"
                             >
-                              Cancel
+                              Remove policy
                             </AcmButton>,
                             <AcmButton
                               onClick={[Function]}
-                              variant="primary"
+                              variant="link"
                             >
-                              Remove policy
+                              Cancel
                             </AcmButton>,
                           ]
                         }
@@ -2094,7 +2094,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                         ouiaSafe={true}
                         showClose={true}
                         title="Remove policy"
-                        titleIconVariant="danger"
+                        titleIconVariant="warning"
                         titleLabel=""
                         variant="medium"
                       >
@@ -2120,7 +2120,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                   aria-describedby="pf-modal-part-2"
                                   aria-label=""
                                   aria-labelledby="pf-modal-part-1"
-                                  className="pf-m-danger"
+                                  className="pf-m-warning"
                                   data-ouia-component-id="OUIA-Generated-Modal-medium-1"
                                   data-ouia-component-type="PF4/ModalContent"
                                   data-ouia-safe={true}
@@ -2133,7 +2133,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                     aria-label={null}
                                     aria-labelledby="pf-modal-part-1"
                                     aria-modal="true"
-                                    className="pf-c-modal-box pf-m-danger pf-m-md"
+                                    className="pf-c-modal-box pf-m-warning pf-m-md"
                                     data-ouia-component-id="OUIA-Generated-Modal-medium-1"
                                     data-ouia-component-type="PF4/ModalContent"
                                     data-ouia-safe={true}
@@ -2198,7 +2198,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                         <ModalBoxTitle
                                           id="pf-modal-part-1"
                                           title="Remove policy"
-                                          titleIconVariant="danger"
+                                          titleIconVariant="warning"
                                           titleLabel=""
                                         >
                                           <h1
@@ -2208,7 +2208,7 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                             <span
                                               className="pf-c-modal-box__title-icon"
                                             >
-                                              <ExclamationCircleIcon
+                                              <ExclamationTriangleIcon
                                                 color="currentColor"
                                                 noVerticalAlign={false}
                                                 size="sm"
@@ -2224,19 +2224,19 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                                       "verticalAlign": "-0.125em",
                                                     }
                                                   }
-                                                  viewBox="0 0 512 512"
+                                                  viewBox="0 0 576 512"
                                                   width="1em"
                                                 >
                                                   <path
-                                                    d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                                                    d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
                                                   />
                                                 </svg>
-                                              </ExclamationCircleIcon>
+                                              </ExclamationTriangleIcon>
                                             </span>
                                             <span
                                               className="pf-u-screen-reader"
                                             >
-                                              Danger alert:
+                                              Warning alert:
                                             </span>
                                             <span
                                               className="pf-c-modal-box__title-text"
@@ -2265,6 +2265,33 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                         className="pf-c-modal-box__footer"
                                       >
                                         <AcmButton
+                                          key="confirm"
+                                          onClick={[Function]}
+                                          variant="danger"
+                                        >
+                                          <TooltipWrapper>
+                                            <Button
+                                              onClick={[Function]}
+                                              variant="danger"
+                                            >
+                                              <button
+                                                aria-disabled={false}
+                                                aria-label={null}
+                                                className="pf-c-button pf-m-danger"
+                                                data-ouia-component-id="OUIA-Generated-Button-danger-1"
+                                                data-ouia-component-type="PF4/Button"
+                                                data-ouia-safe={true}
+                                                disabled={false}
+                                                onClick={[Function]}
+                                                role={null}
+                                                type="button"
+                                              >
+                                                Remove policy
+                                              </button>
+                                            </Button>
+                                          </TooltipWrapper>
+                                        </AcmButton>
+                                        <AcmButton
                                           key="cancel"
                                           onClick={[Function]}
                                           variant="link"
@@ -2287,33 +2314,6 @@ exports[`RemoveResourceModal test renders as expected 3`] = `
                                                 type="button"
                                               >
                                                 Cancel
-                                              </button>
-                                            </Button>
-                                          </TooltipWrapper>
-                                        </AcmButton>
-                                        <AcmButton
-                                          key="confirm"
-                                          onClick={[Function]}
-                                          variant="primary"
-                                        >
-                                          <TooltipWrapper>
-                                            <Button
-                                              onClick={[Function]}
-                                              variant="primary"
-                                            >
-                                              <button
-                                                aria-disabled={false}
-                                                aria-label={null}
-                                                className="pf-c-button pf-m-primary"
-                                                data-ouia-component-id="OUIA-Generated-Button-primary-1"
-                                                data-ouia-component-type="PF4/Button"
-                                                data-ouia-safe={true}
-                                                disabled={false}
-                                                onClick={[Function]}
-                                                role={null}
-                                                type="button"
-                                              >
-                                                Remove policy
                                               </button>
                                             </Button>
                                           </TooltipWrapper>

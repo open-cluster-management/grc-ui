@@ -35,7 +35,7 @@ export const resourceActions = (action, dispatch, resourceType, data, history) =
     return dispatch(updateModal(
       { open: true, type: 'resource-automation', resourceType,
         label: {
-          primaryBtn: `modal.automation-${resourceType.name.toLowerCase()}.heading`,
+          primaryBtn: `modal.automation-${resourceType.name.toLowerCase()}.primaryBtn`,
           label: `modal.automation-${resourceType.name.toLowerCase()}.label`,
           heading: `modal.automation-${resourceType.name.toLowerCase()}.heading`
         },
@@ -47,7 +47,7 @@ export const resourceActions = (action, dispatch, resourceType, data, history) =
     return dispatch(updateModal(
       { open: true, type: 'resource-remove', resourceType,
         label: {
-          primaryBtn: `modal.remove-${resourceType.name.toLowerCase()}.heading`,
+          primaryBtn: `modal.remove-${resourceType.name.toLowerCase()}.primaryBtn`,
           label: `modal.remove-${resourceType.name.toLowerCase()}.label`,
           heading: `modal.remove-${resourceType.name.toLowerCase()}.heading`
         },
@@ -58,7 +58,7 @@ export const resourceActions = (action, dispatch, resourceType, data, history) =
     return dispatch(updateModal(
       { open: true, type: 'resource-disable', resourceType,
         label: {
-          primaryBtn: `modal.disable-${resourceType.name.toLowerCase()}.heading`,
+          primaryBtn: `modal.disable-${resourceType.name.toLowerCase()}.primaryBtn`,
           label: `modal.disable-${resourceType.name.toLowerCase()}.label`,
           heading: `modal.disable-${resourceType.name.toLowerCase()}.heading`
         },
@@ -69,7 +69,7 @@ export const resourceActions = (action, dispatch, resourceType, data, history) =
     return dispatch(updateModal(
       { open: true, type: 'resource-enable', resourceType,
         label: {
-          primaryBtn: `modal.enable-${resourceType.name.toLowerCase()}.heading`,
+          primaryBtn: `modal.enable-${resourceType.name.toLowerCase()}.primaryBtn`,
           label: `modal.enable-${resourceType.name.toLowerCase()}.label`,
           heading: `modal.enable-${resourceType.name.toLowerCase()}.heading`
         },
@@ -79,7 +79,7 @@ export const resourceActions = (action, dispatch, resourceType, data, history) =
     return dispatch(updateModal(
       { open: true, type: 'resource-enforce', resourceType,
         label: {
-          primaryBtn: `modal.enforce-${resourceType.name.toLowerCase()}.heading`,
+          primaryBtn: `modal.enforce-${resourceType.name.toLowerCase()}.primaryBtn`,
           label: `modal.enforce-${resourceType.name.toLowerCase()}.label`,
           heading: `modal.enforce-${resourceType.name.toLowerCase()}.heading`
         },
@@ -89,7 +89,7 @@ export const resourceActions = (action, dispatch, resourceType, data, history) =
     return dispatch(updateModal(
       { open: true, type: 'resource-inform', resourceType,
         label: {
-          primaryBtn: `modal.inform-${resourceType.name.toLowerCase()}.heading`,
+          primaryBtn: `modal.inform-${resourceType.name.toLowerCase()}.primaryBtn`,
           label: `modal.inform-${resourceType.name.toLowerCase()}.label`,
           heading: `modal.inform-${resourceType.name.toLowerCase()}.heading`
         },

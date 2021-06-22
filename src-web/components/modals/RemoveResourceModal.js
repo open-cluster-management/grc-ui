@@ -129,7 +129,7 @@ class RemoveResourceModal extends React.Component {
       <div>
         {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Spinner className='patternfly-spinner' />}
         <AcmModal
-          titleIconVariant={'danger'}
+          titleIconVariant={'warning'}
           variant='medium'
           id='remove-resource-modal'
           isOpen={open}
@@ -137,12 +137,12 @@ class RemoveResourceModal extends React.Component {
           onClose={handleClose}
           title={msgs.get(label.heading, locale)}
           actions={[
+            <AcmButton key="confirm" variant={ButtonVariant.danger} onClick={this.handleSubmitClick}>
+            {msgs.get(label.primaryBtn, locale)}
+            </AcmButton>,
             <AcmButton key="cancel" variant={ButtonVariant.link} onClick={handleClose}>
             {msgs.get('modal.button.cancel', locale)}
-            </AcmButton>,
-            <AcmButton key="confirm" variant={ButtonVariant.primary} onClick={this.handleSubmitClick}>
-                {msgs.get(label.primaryBtn, locale)}
-            </AcmButton>,
+            </AcmButton>
           ]}
           >
           <div>
