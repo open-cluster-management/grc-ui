@@ -8,7 +8,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
   AcmModal, AcmButton, AcmLaunchLink,
-  AcmTable, AcmExpandableCard
+  AcmTable, AcmExpandableCard, AcmIcon,
+  AcmIconVariant
 } from '@open-cluster-management/ui-components'
 import {
   Text, Spinner, ButtonVariant, Nav,
@@ -520,7 +521,13 @@ export class AnsibleAutomationModal extends React.Component {
       if (truncateLength) {
         linkText = <TruncateText maxCharacters={truncateLength} text={linkText} />
       }
-      const link = { id, text: linkText, href: URL }
+      const link = {
+        id,
+        text: linkText,
+        href: URL,
+        noIcon: false,
+        icon: <AcmIcon icon={AcmIconVariant.openNewTab} />
+      }
       return <AcmLaunchLink links={[link]} />
     } else {
       return text
