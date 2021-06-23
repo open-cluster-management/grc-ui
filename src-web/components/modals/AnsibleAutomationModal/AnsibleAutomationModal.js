@@ -12,8 +12,8 @@ import {
   AcmIconVariant
 } from '@open-cluster-management/ui-components'
 import {
-  Text, Spinner, ButtonVariant, Nav,
-  NavItem, NavList, Select, Title,
+  Text, Spinner, ButtonVariant, Tabs, Tab,
+  TabTitleText, Select, Title,
   SelectOption, SelectVariant, Radio,
   Alert, AlertActionCloseButton
 } from '@patternfly/react-core'
@@ -253,9 +253,9 @@ export class AnsibleAutomationModal extends React.Component {
     })
   }
 
-  onSelect = result => {
+  handleTabClick = (result, tabIndex) => {
     this.setState({
-      activeItem: result.itemId
+      activeItem: tabIndex
     })
   }
 
@@ -311,6 +311,7 @@ export class AnsibleAutomationModal extends React.Component {
         const ansScheduleMode = this.getAnsScheduleMode(updatedJSON)
         this.initialize()
         this.setQueryAlert(msgs.get(`ansible.${ansScheduleMode}.success`, locale), 'success')
+        this.handleCloseSlideOut()
       }
     }
   }
@@ -441,77 +442,102 @@ export class AnsibleAutomationModal extends React.Component {
     }
     const panelType = initialJSON ? 'edit' : 'create'
     return (
-      <Query query={query} pollInterval={pollInterval} variables={variables}>
-        {( result ) => {
-          const { loading } = result
-          const { error={}, data={} } = result
-          const queryError = this.getQueryError(error)
-          const readyFlag = (initializeFinished && !loading && !opInstalledLoading)
-          const modalName = slideFlag ? 'automation-resource-panel slide-in' : 'automation-resource-panel'
-          const titleText = readyFlag
-            ? msgs.get(`ansible.automation.heading.${panelType}`, locale)
-            : msgs.get('ansible.loading.info', locale)
-          const alertTitle = (opInstalledError || queryError || yamlMsg.msg || queryMsg.msg)
-          let alertVariant = 'danger'
-          if (queryError && _.includes(queryError, 'not installed')) {
-            alertVariant = 'info'
-          } else if (yamlMsg.type || queryMsg.type){
-            alertVariant = (yamlMsg.type || queryMsg.type)
-          }
-          return (
-            <React.Fragment>
-              <AcmModal
-              className={modalName}
-              titleIconVariant={'default'}
-              variant='small'
-              id={'automation-resource-panel'}
-              isOpen={open}
-              showClose={true}
-              onClose={this.handleCloseClick}
-              aria-label={titleText}
-              header={
+      <div>
+        <Query query={query} pollInterval={pollInterval} variables={variables}>
+            {( result ) => {
+              const { loading } = result
+              const { error={}, data={} } = result
+              const queryError = this.getQueryError(error)
+              const readyFlag = (initializeFinished && !loading && !opInstalledLoading)
+              const modalName = slideFlag ? 'automation-resource-panel slide-in' : 'automation-resource-panel'
+              const titleText = msgs.get(`ansible.automation.heading.${panelType}`, locale)
+              const alertTitle = (opInstalledError || queryError || yamlMsg.msg || queryMsg.msg)
+              let alertVariant = 'danger'
+              if (queryError && _.includes(queryError, 'not installed')) {
+                alertVariant = 'info'
+              } else if (yamlMsg.type || queryMsg.type){
+                alertVariant = (yamlMsg.type || queryMsg.type)
+              }
+              return (
                 <React.Fragment>
-                  <div className='ansible_modal_title'>{titleText}</div>
-                  {!opInstalledLoading && !opInstalled && renderAnsibleOperatorNotInstalled(locale)}
-                  {alertTitle && notificationOpen &&
-                      <Alert
-                        variant={alertVariant}
-                        isInline={true}
-                        title={alertTitle}
-                        actionClose={actionClose}
-                      >
-                      </Alert>
+                  <AcmModal
+                  className={modalName}
+                  titleIconVariant={'default'}
+                  variant='small'
+                  id={'automation-resource-panel'}
+                  isOpen={open}
+                  showClose={true}
+                  onClose={this.handleCloseClick}
+                  aria-label={titleText}
+                  header={
+                    <React.Fragment>
+                      <div className='ansible_modal_title'>{titleText}</div>
+                      {!opInstalledLoading && !opInstalled && renderAnsibleOperatorNotInstalled(locale)}
+                      {alertTitle && notificationOpen &&
+                          <Alert
+                            variant={alertVariant}
+                            isInline={true}
+                            title={alertTitle}
+                            actionClose={actionClose}
+                          >
+                          </Alert>
+                      }
+                      <div className='infoArea'>
+                        {msgs.get(`ansible.automation.description.${panelType}`, locale)}
+                      </div>
+                      <Title headingLevel="h3">
+                        {msgs.get('table.header.policy.name', locale)}
+                      </Title>
+                      <div className='infoArea'>
+                        {policyData.name}
+                      </div>
+                      <Title headingLevel="h3">
+                        {msgs.get('table.header.cluster.violation', locale)}
+                      </Title>
+                      <div className='infoArea'>
+                        {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
+                      </div>
+                      {TitleWithTooltip({
+                        className: 'titleWithTooltip',
+                        headingLevel: 'h3',
+                        position: 'top',
+                        title: msgs.get('ansible.tower.URL.title', locale),
+                        tooltip: msgs.get('ansible.launch.connection', locale),
+                      })}
+                      <div className='infoArea'>
+                        {towerURL && this.renderURL('towerURL', towerURL, towerURL, 60)}
+                      </div>
+                    </React.Fragment>
                   }
+                  actions={!activeItem && opInstalled && [
+                    <AcmButton
+                      key="confirm"
+                      variant={ButtonVariant.primary}
+                      onClick={this.handleSubmitClick}
+                    >
+                        {msgs.get('modal.button.save', locale)}
+                    </AcmButton>,
+                    <AcmButton
+                      key="cancel"
+                      variant={ButtonVariant.link}
+                      onClick={this.handleCloseClick}
+                    >
+                        {msgs.get('modal.button.cancel', locale)}
+                    </AcmButton>,
+                  ]}
+                  >
+                  <div>
+                    {!readyFlag && <Spinner className='patternfly-spinner' />}
+                  </div>
+                  {readyFlag && this.renderAnsiblePanelContent({
+                    data, activeItem})
+                  }
+                  </AcmModal>
                 </React.Fragment>
-              }
-              actions={!activeItem && opInstalled && [
-                <AcmButton
-                  key="confirm"
-                  variant={ButtonVariant.primary}
-                  onClick={this.handleSubmitClick}
-                >
-                    {msgs.get('modal.button.save', locale)}
-                </AcmButton>,
-                <AcmButton
-                  key="cancel"
-                  variant={ButtonVariant.link}
-                  onClick={this.handleCloseClick}
-                >
-                    {msgs.get('modal.button.cancel', locale)}
-                </AcmButton>,
-              ]}
-              >
-              <div>
-                {!readyFlag && <Spinner className='patternfly-spinner' />}
-              </div>
-              {readyFlag && this.renderAnsiblePanelContent({
-                panelType, policyData, data, towerURL, activeItem})
-              }
-              </AcmModal>
-            </React.Fragment>
-          )
-        }}
-      </Query>
+              )
+            }}
+          </Query>
+    </div>
     )
   }
 
@@ -534,54 +560,30 @@ export class AnsibleAutomationModal extends React.Component {
     }
   }
 
-  renderAnsiblePanelContent = ({
-    panelType, policyData, data, towerURL, activeItem
-  }) => {
+  renderAnsiblePanelContent = ({data, activeItem}) => {
     const { locale } = this.props
     return <React.Fragment>
-      <div className='infoArea'>
-        {msgs.get(`ansible.automation.description.${panelType}`, locale)}
-      </div>
-      <Title headingLevel="h3">
-        {msgs.get('table.header.policy.name', locale)}
-      </Title>
-      <div className='infoArea'>
-        {policyData.name}
-      </div>
-      <Title headingLevel="h3">
-        {msgs.get('table.header.cluster.violation', locale)}
-      </Title>
-      <div className='infoArea'>
-        {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
-      </div>
-      {TitleWithTooltip({
-        className: 'titleWithTooltip',
-        headingLevel: 'h3',
-        position: 'top',
-        title: msgs.get('ansible.tower.URL.title', locale),
-        tooltip: msgs.get('ansible.launch.connection', locale),
-      })}
-      <div className='infoArea'>
-        {towerURL && this.renderURL('towerURL', towerURL, towerURL, 60)}
-      </div>
-      <Nav onSelect={this.onSelect} variant="tertiary">
-        <NavList>
-          <NavItem key={'Configure'} itemId={0} isActive={activeItem === 0} href="#">
-            Configure
-          </NavItem>
-          <NavItem key={'History'} itemId={1} isActive={activeItem === 1} href="#">
-            History
-          </NavItem>
-        </NavList>
-      </Nav>
-      <div className='ansible-table'>
-        {activeItem===0 && data && <div className='ansible-configure-table'>
-          {this.renderAnsibleCredentialsSelection(data)}
-        </div>}
-        {activeItem===1 && data && <div className='ansible-history-table'>
-          {this.renderAnsibleHistory(data)}
-        </div>}
-      </div>
+      <Tabs className='ansible-switch' isFilled activeKey={activeItem} onSelect={this.handleTabClick}>
+          <Tab
+            eventKey={0}
+            title={<TabTitleText>{msgs.get('table.actions.automation.configure', locale)}</TabTitleText>}
+          >
+          {data &&
+          <div className='ansible-configure-table'>
+            {this.renderAnsibleCredentialsSelection(data)}
+          </div>}
+          </Tab>
+          <Tab
+            eventKey={1}
+            title={<TabTitleText>{msgs.get('table.actions.automation.history', locale)}</TabTitleText>}
+          >
+          {data &&
+            <div className='ansible-history-table'>
+              {this.renderAnsibleHistory(data)}
+            </div>
+          }
+          </Tab>
+      </Tabs>
     </React.Fragment>
   }
 

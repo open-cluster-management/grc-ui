@@ -48,11 +48,8 @@
     }
   }
   
-  .pf-c-nav__list {
-    padding-bottom: 8px;
-    .pf-c-nav__item {
-      width: 50%;
-    }
+  .ansible-switch {
+    margin-bottom: 8px;
   }
   
   .pf-c-title.pf-m-lg {
@@ -64,16 +61,6 @@
   .pf-c-button.pf-m-link {
     padding-left: 0rem;
     padding-right: 0rem;
-  }
-  
-  .pf-c-nav.pf-m-tertiary .pf-c-nav__link::before {
-    left: 0rem;
-    right: 0rem;
-  }
-  
-  .pf-c-nav.pf-m-horizontal .pf-c-nav__link, .pf-c-nav.pf-m-tertiary .pf-c-nav__link {
-    font-weight: 600;
-    padding-left: 0rem;
   }
   
   .pf-c-radio {
