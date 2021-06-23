@@ -7,13 +7,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
-  AcmModal, AcmButton, AcmTable, AcmExpandableCard,
+  AcmModal, AcmButton, AcmExpandableCard,
 } from '@open-cluster-management/ui-components'
 import {
-  Text, Spinner, ButtonVariant, Tabs, Tab,
-  TabTitleText, Select, Title,
-  SelectOption, SelectVariant, Radio,
-  Alert, AlertActionCloseButton
+  Text, Spinner, ButtonVariant, Select, Title,
+  SelectOption, SelectVariant, Radio, Alert,
+  AlertActionCloseButton
 } from '@patternfly/react-core'
 import {
   global_BackgroundColor_100 as lineNumberActiveForeground,
@@ -25,10 +24,7 @@ import {
   modifyPolicyAutomation, clearRequestStatus,
   updateModal, copyAnsibleSecret, getPolicyAutomation
 } from '../../../actions/common'
-import ansibleJobHistoryDef from '../../../tableDefinitions/ansibleJobHistoryDef'
-import {
-  getPolicyCompliantStatus, transform
-} from '../../../tableDefinitions/utils'
+import { getPolicyCompliantStatus } from '../../../tableDefinitions/utils'
 import { Query } from '@apollo/client/react/components'
 import {
   GET_ANSIBLE_CREDENTIALS, GET_ANSIBLE_HISTORY,
@@ -39,6 +35,7 @@ import jsYaml from 'js-yaml'
 import TitleWithTooltip from '../../common/TitleWithTooltip'
 import { renderAnsibleOperatorNotInstalled } from './AnsibleOperatorNotInstalled'
 import { renderAnsibleURL } from './AnsibleURL'
+import { renderAnsiblePanelContent } from './AnsiblePanelContent'
 
 import '../../../scss/ansible-modal.scss'
 
@@ -423,7 +420,8 @@ export class AnsibleAutomationModal extends React.Component {
   renderAnsiblePanel = (opInstalled, opInstalledLoading, opInstalledError) => {
     const { data:policyData, locale, open } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
-      initializeFinished, policyAutoName, slideFlag, notificationOpen
+      initializeFinished, policyAutoName, slideFlag, notificationOpen,
+      credentialName, credentialIsOpen
     } = this.state
     const policyNS = _.get(policyData, metaNSStr)
     let query, variables, pollInterval, actionClose
@@ -527,9 +525,14 @@ export class AnsibleAutomationModal extends React.Component {
                   <div>
                     {!readyFlag && <Spinner className='patternfly-spinner' />}
                   </div>
-                  {readyFlag && this.renderAnsiblePanelContent({
-                    data, activeItem})
-                  }
+                  {readyFlag && renderAnsiblePanelContent({
+                    data, activeItem, locale, handleTabClick:this.handleTabClick,
+                    credentialName, credentialIsOpen,
+                    setCredentialsSelectionValue:this.setCredentialsSelectionValue,
+                    onCredentialsSelectionToggle:this.onCredentialsSelectionToggle,
+                    renderAnsibleJobTemplatesSelection:this.renderAnsibleJobTemplatesSelection,
+                    getAnsibleConnection:this.getAnsibleConnection,
+                  })}
                   </AcmModal>
                 </React.Fragment>
               )
@@ -537,33 +540,6 @@ export class AnsibleAutomationModal extends React.Component {
           </Query>
     </div>
     )
-  }
-
-  renderAnsiblePanelContent = ({data, activeItem}) => {
-    const { locale } = this.props
-    return <React.Fragment>
-      <Tabs className='ansible-switch' isFilled activeKey={activeItem} onSelect={this.handleTabClick}>
-          <Tab
-            eventKey={0}
-            title={<TabTitleText>{msgs.get('table.actions.automation.configure', locale)}</TabTitleText>}
-          >
-          {data &&
-          <div className='ansible-configure-table'>
-            {this.renderAnsibleCredentialsSelection(data)}
-          </div>}
-          </Tab>
-          <Tab
-            eventKey={1}
-            title={<TabTitleText>{msgs.get('table.actions.automation.history', locale)}</TabTitleText>}
-          >
-          {data &&
-            <div className='ansible-history-table'>
-              {this.renderAnsibleHistory(data)}
-            </div>
-          }
-          </Tab>
-      </Tabs>
-    </React.Fragment>
   }
 
   setCredentialsSelectionValue = (event, selection, ansCredentials) => {
@@ -604,67 +580,6 @@ export class AnsibleAutomationModal extends React.Component {
       towerURL: targetCredential.host,
       token: targetCredential.token
     }
-  }
-
-  renderAnsibleCredentialsSelection = (credentialsData) => {
-    const { locale } = this.props
-    const ansCredentials = credentialsData.ansibleCredentials
-    const ansCredentialFlag = Array.isArray(ansCredentials) && ansCredentials.length > 0
-    const {credentialName, credentialIsOpen} = this.state
-    return (
-      <React.Fragment>
-        {ansCredentialFlag &&
-          <React.Fragment>
-            {TitleWithTooltip({
-              className: 'titleWithTooltip',
-              headingLevel: 'h3',
-              position: 'top',
-              title: msgs.get('ansible.credential.selection.title', locale),
-              tooltip: msgs.get('ansible.credential.selection.title', locale),
-            })}
-           <div className='infoArea createCredential'>
-              <Select
-                variant={SelectVariant.single}
-                placeholderText={msgs.get('ansible.credential.selection.placeholder', locale)}
-                aria-label={msgs.get('ansible.credential.selection.placeholder', locale)}
-                onSelect={(event,selection) => this.setCredentialsSelectionValue(event, selection, ansCredentials)}
-                onToggle={this.onCredentialsSelectionToggle}
-                selections={credentialName}
-                isOpen={credentialIsOpen}
-              >
-                {ansCredentials.map((credential) => (
-                  <SelectOption
-                    key={credential.name}
-                    value={credential.name ? credential.name : '-'}
-                    isPlaceholder={credential.name ? credential.name : '-'}
-                    description={`${credential.host ? credential.host : '-'}`}
-                  />
-                ))}
-              </Select>
-            {renderAnsibleURL(
-              'createCredentialLink',
-              msgs.get('ansible.launch.createCredential', locale),
-              '/multicloud/credentials'
-            )}
-            </div>
-            {credentialName && this.renderAnsibleJobTemplatesSelection(
-              this.getAnsibleConnection(ansCredentials)
-            )}
-          </React.Fragment>}
-        {!ansCredentialFlag &&
-          <div className='infoArea createCredential'>
-            <Text>
-              {msgs.get('ansible.no.credential', locale)}
-              {renderAnsibleURL(
-                'createCredentialLink',
-                msgs.get('ansible.launch.createCredential', locale),
-                '/multicloud/credentials'
-              )}
-            </Text>
-          </div>
-        }
-      </React.Fragment>
-    )
   }
 
   setJobTemplatesSelectionValue = (event, selection) => {
@@ -828,21 +743,6 @@ export class AnsibleAutomationModal extends React.Component {
       id={id}
       value={value}
       description={msgs.get(`ansible.scheduleMode.${value}.info`, locale)}
-    />
-  }
-
-  renderAnsibleHistory = (historyData) => {
-    const { locale } = this.props
-    const tableData = transform(_.get(historyData.items ? historyData : {'items':[]}, 'items', []), ansibleJobHistoryDef, locale)
-    return <AcmTable
-      initialSort={tableData.sortBy}
-      showToolbar={false}
-      autoHidePagination={true}
-      plural='ansible jobs'
-      items={tableData.rows}
-      columns={tableData.columns}
-      keyFn={(item) => item.uid.toString()}
-      gridBreakPoint=''
     />
   }
 }
