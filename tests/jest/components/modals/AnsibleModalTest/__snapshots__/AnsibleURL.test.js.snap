@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render AnsibleURL component AnsibleURL link renders as "-" text 1`] = `"-"`;
+
+exports[`render AnsibleURL component AnsibleURL link renders as empty text 1`] = `
+<AcmLaunchLink
+  links={
+    Array [
+      Object {
+        "href": "/multicloud/credentials",
+        "icon": <AcmIcon
+          icon="opennewtab"
+        />,
+        "id": "testAnsibleURL",
+        "noIcon": false,
+        "text": <TruncateText
+          maxCharacters={3}
+          text=""
+        />,
+      },
+    ]
+  }
+/>
+`;
+
+exports[`render AnsibleURL component AnsibleURL link renders as normal text with truncate 1`] = `
+<AcmLaunchLink
+  links={
+    Array [
+      Object {
+        "href": "/multicloud/credentials",
+        "icon": <AcmIcon
+          icon="opennewtab"
+        />,
+        "id": "testAnsibleURL",
+        "noIcon": false,
+        "text": <TruncateText
+          maxCharacters={3}
+          text="This is an ansible url"
+        />,
+      },
+    ]
+  }
+/>
+`;
+
+exports[`render AnsibleURL component AnsibleURL link renders as normal text without truncate 1`] = `
+<AcmLaunchLink
+  links={
+    Array [
+      Object {
+        "href": "/multicloud/credentials",
+        "icon": <AcmIcon
+          icon="opennewtab"
+        />,
+        "id": "testAnsibleURL",
+        "noIcon": false,
+        "text": "This is an ansible url",
+      },
+    ]
+  }
+/>
+`;

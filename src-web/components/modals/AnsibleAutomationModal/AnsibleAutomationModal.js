@@ -7,9 +7,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
-  AcmModal, AcmButton, AcmLaunchLink,
-  AcmTable, AcmExpandableCard, AcmIcon,
-  AcmIconVariant
+  AcmModal, AcmButton, AcmTable, AcmExpandableCard,
 } from '@open-cluster-management/ui-components'
 import {
   Text, Spinner, ButtonVariant, Tabs, Tab,
@@ -36,11 +34,11 @@ import {
   GET_ANSIBLE_CREDENTIALS, GET_ANSIBLE_HISTORY,
   GET_ANSIBLE_JOB_TEMPLATE, GET_ANSIBLE_OPERATOR_INSTALLED,
 } from '../../../utils/client/queries'
-import TruncateText from '../../../components/common/TruncateText'
 import _ from 'lodash'
 import jsYaml from 'js-yaml'
 import TitleWithTooltip from '../../common/TitleWithTooltip'
 import { renderAnsibleOperatorNotInstalled } from './AnsibleOperatorNotInstalled'
+import { renderAnsibleURL } from './AnsibleURL'
 
 import '../../../scss/ansible-modal.scss'
 
@@ -505,7 +503,7 @@ export class AnsibleAutomationModal extends React.Component {
                         tooltip: msgs.get('ansible.launch.connection', locale),
                       })}
                       <div className='infoArea'>
-                        {towerURL && this.renderURL('towerURL', towerURL, towerURL, 60)}
+                        {towerURL && renderAnsibleURL('towerURL', towerURL, towerURL, 60)}
                       </div>
                     </React.Fragment>
                   }
@@ -539,25 +537,6 @@ export class AnsibleAutomationModal extends React.Component {
           </Query>
     </div>
     )
-  }
-
-  renderURL = (id, text, URL, truncateLength) => {
-    if (!text || text !== '-') {
-      let linkText = text
-      if (truncateLength) {
-        linkText = <TruncateText maxCharacters={truncateLength} text={linkText} />
-      }
-      const link = {
-        id,
-        text: linkText,
-        href: URL,
-        noIcon: false,
-        icon: <AcmIcon icon={AcmIconVariant.openNewTab} />
-      }
-      return <AcmLaunchLink links={[link]} />
-    } else {
-      return text
-    }
   }
 
   renderAnsiblePanelContent = ({data, activeItem}) => {
@@ -662,7 +641,7 @@ export class AnsibleAutomationModal extends React.Component {
                   />
                 ))}
               </Select>
-            {this.renderURL(
+            {renderAnsibleURL(
               'createCredentialLink',
               msgs.get('ansible.launch.createCredential', locale),
               '/multicloud/credentials'
@@ -676,7 +655,7 @@ export class AnsibleAutomationModal extends React.Component {
           <div className='infoArea createCredential'>
             <Text>
               {msgs.get('ansible.no.credential', locale)}
-              {this.renderURL(
+              {renderAnsibleURL(
                 'createCredentialLink',
                 msgs.get('ansible.launch.createCredential', locale),
                 '/multicloud/credentials'

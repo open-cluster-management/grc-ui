@@ -3,7 +3,7 @@
 
 'use strict'
 
-import { renderAnsibleOperatorNotInstalled } from '../../../../src-web/components/modals/AnsibleAutomationModal/AnsibleOperatorNotInstalled'
+import { renderAnsibleOperatorNotInstalled } from '../../../../../src-web/components/modals/AnsibleAutomationModal/AnsibleOperatorNotInstalled'
 
 describe('render AnsibleOperatorNotInstalled component', () => {
   it('AnsibleOperatorNotInstalled link renders as expected', () => {
