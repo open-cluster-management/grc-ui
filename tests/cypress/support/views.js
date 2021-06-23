@@ -1623,7 +1623,7 @@ export const action_verifyHistoryPageWithMock = (uName) => {
   }).as('historyQuery')
 
   cy.get('#automation-resource-panel').within(() => {
-    cy.get('a').contains('History').click()
+    cy.get('span').contains('History').click()
   })
 
   cy.get('.ansible-history-table').within(() => {
