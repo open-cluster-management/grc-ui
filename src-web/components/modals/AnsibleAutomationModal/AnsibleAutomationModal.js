@@ -71,6 +71,7 @@ if (window.monaco) {
 export class AnsibleAutomationModal extends React.Component {
   constructor(props) {
     super(props)
+    const { open } = this.props
     this.handleSubmitClick = this.handleSubmitClick.bind(this)
     this.handleCloseClick = this.handleCloseClick.bind(this)
     this.state = {
@@ -96,7 +97,7 @@ export class AnsibleAutomationModal extends React.Component {
       },
       initialJSON: null,
       confirmClose: false,
-      slideFlag: false,
+      slideFlag: open,
       notificationOpen: true
     }
     this.initialize()
@@ -197,7 +198,6 @@ export class AnsibleAutomationModal extends React.Component {
     }
     this.setState({
       initializeFinished: true,
-      slideFlag: true,
     })
   }
 
