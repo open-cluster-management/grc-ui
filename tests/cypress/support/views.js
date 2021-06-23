@@ -1563,6 +1563,21 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
     cy.get('.pf-c-modal-box__footer').within(() => {
       cy.get('button').eq(0).click()
     })
+  })
+  .then(() => {
+    // after successfully creating automation
+    // panel will automatically closed and need to reopen it
+    cy.CheckGrcMainPage()
+    .doTableSearch(uName)
+    .get('.grc-view-by-policies-table').within(() => {
+    cy.get('a')
+      .contains(uName)
+      .parents('td')
+      .siblings('td[data-label="Automation"]').within(() => {
+        cy.get('a').click()
+      })
+    })
+
     verifyHistoryPage(mode, failures)
   })
   .then(() => {
