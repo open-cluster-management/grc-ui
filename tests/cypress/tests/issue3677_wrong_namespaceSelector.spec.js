@@ -65,7 +65,7 @@ describeT('@extended RHACM4K-1648 - GRC UI: [P2][Sev2][policy-grc] CertPolicy wi
   it(`Delete policy ${policyName}`, () => {
     // we could use a different way how to return to this page
     cy.visit('/multicloud/policies/all').waitForPageContentLoad()
-      .actionPolicyActionInListing(policyName, 'Remove')
+      .actionPolicyActionInListing(policyName, 'Delete')
   })
 
   it(`Deleted policy ${policyName} is not present in the policy listing`, () => {

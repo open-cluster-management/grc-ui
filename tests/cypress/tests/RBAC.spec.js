@@ -80,9 +80,9 @@ describeT('@rbac RHACM4K-2584 - GRC UI: [P1][Sev1][policy-grc] Role Based Access
     cy.login()
   })
 
-  it('Remove test policies', () => {
+  it('Delete test policies', () => {
     for (const policyName of policyNames) {
-      cy.actionPolicyActionInListing(policyName, 'Remove')
+      cy.actionPolicyActionInListing(policyName, 'Delete')
         .verifyPolicyNotInListing(policyName)
     }
   })

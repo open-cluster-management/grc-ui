@@ -1373,9 +1373,9 @@ export const action_checkPolicyListingPageUserPermissions = (policyNames = [], c
             }
           }
           if (permissions.delete) {
-            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).should('have.attr', 'aria-disabled', 'false')
+            cy.get('button.pf-c-dropdown__menu-item').contains('Delete', { matchCase: false }).should('have.attr', 'aria-disabled', 'false')
           } else {
-            cy.get('button.pf-c-dropdown__menu-item').contains('Remove', { matchCase: false }).should('have.attr', 'aria-disabled', 'true')
+            cy.get('button.pf-c-dropdown__menu-item').contains('Delete', { matchCase: false }).should('have.attr', 'aria-disabled', 'true')
           }
         })
         // close the menu again
@@ -1655,9 +1655,9 @@ const checkWithPolicy = (policyYaml) => {
     verifyCompliant(policyName)
   })
 
-  //remove policy
+  //Delete policy
   it(`Delete policy ${policyName}`, () => {
-    cy.actionPolicyActionInListing(policyName, 'Remove')
+    cy.actionPolicyActionInListing(policyName, 'Delete')
   })
 }
 

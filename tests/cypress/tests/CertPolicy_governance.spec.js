@@ -108,8 +108,8 @@ describeT('@extended RHACM4K-2294 - GRC UI: [P1][Sev1][policy-grc] - Certificate
     cy.verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', '', 2)
   })
 
-  it(`Remove created policy ${uCertificatePolicyName}`, () => {
-    cy.actionPolicyActionInListing(uCertificatePolicyName, 'Remove')
+  it(`Delete created policy ${uCertificatePolicyName}`, () => {
+    cy.actionPolicyActionInListing(uCertificatePolicyName, 'Delete')
       .CheckGrcMainPage()
   })
 
@@ -192,8 +192,8 @@ describeT('@extended RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - Certificate
     cy.verifyPolicyInListing(uCertificatePolicyName,  certificatePolicyConfig, 'enabled', '', 2)
   })
 
-  it(`Remove created policy ${uCertificatePolicyName}`, () => {
-    cy.actionPolicyActionInListing(uCertificatePolicyName, 'Remove')
+  it(`Delete created policy ${uCertificatePolicyName}`, () => {
+    cy.actionPolicyActionInListing(uCertificatePolicyName, 'Delete')
       .CheckGrcMainPage()
   })
 

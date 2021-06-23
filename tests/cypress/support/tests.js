@@ -293,7 +293,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
     it(`Policy ${policyName} can be deleted in the policy listing`, () => {
       // we could use a different way how to return to this page
       cy.visit('/multicloud/policies/all').waitForPageContentLoad()
-        .actionPolicyActionInListing(policyName, 'Remove')
+        .actionPolicyActionInListing(policyName, 'Delete')
     })
 
     it(`Deleted policy ${policyName} is not present in the policy listing`, () => {
@@ -327,7 +327,7 @@ export const test_applyPolicyYAML = (confFilePolicy, substitutionRules=null) => 
   })
 
   it(`Delete policy ${policyName}`, () => {
-    cy.actionPolicyActionInListing(policyName, 'Remove')
+    cy.actionPolicyActionInListing(policyName, 'Delete')
   })
 
   it(`Verify that policy ${policyName} is not present in the policy listing`, () => {
@@ -440,7 +440,7 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
   if (permissions.delete) {  // Should this be (permissions.delete || elevated) ???
 
     it(`Check policy removal as ${userName}`, () => {
-      cy.actionPolicyActionInListing(newPolicyName, 'Remove')
+      cy.actionPolicyActionInListing(newPolicyName, 'Delete')
       .verifyPolicyNotInListing(newPolicyName)
     })
 

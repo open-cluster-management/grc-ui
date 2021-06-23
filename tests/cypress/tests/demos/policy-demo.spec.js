@@ -75,7 +75,7 @@ describe('Testing policy named demo-policy in demo.yaml file', () => {
     it(`Policy ${uPolicyName} can be deleted in the policy listing`, () => {
       // we could use a different way how to return to this page
       cy.visit('/multicloud/policies/all')
-        .actionPolicyActionInListing(uPolicyName, 'Remove')
+        .actionPolicyActionInListing(uPolicyName, 'Delete')
     })
 
     it(`Deleted policy ${uPolicyName} is not present in the policy listing`, () => {

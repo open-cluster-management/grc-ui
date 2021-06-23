@@ -163,9 +163,9 @@ describeT('@extended RHACM4K-1691 - GRC UI: [P2][Sev2][policy-grc] Certificate p
   })
 
   // delete cert policy
-  it(`Remove cert policy ${certPolicyName}`, () => {
+  it(`Delete cert policy ${certPolicyName}`, () => {
     cy.visit('/multicloud/policies/all')
-      .actionPolicyActionInListing(certPolicyName, 'Remove')
+      .actionPolicyActionInListing(certPolicyName, 'Delete')
   })
 
   // delete namespace ns1

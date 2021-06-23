@@ -37,7 +37,7 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
   })
 
   it(`Delete policy ${subPolicyName}`, () => {
-    cy.actionPolicyActionInListing(subPolicyName, 'Remove')
+    cy.actionPolicyActionInListing(subPolicyName, 'Delete')
   })
 
   //create policy to automate
@@ -84,7 +84,7 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
   })
 
   it(`Delete policy ${credPolicyName}`, () => {
-    cy.actionPolicyActionInListing(credPolicyName, 'Remove')
+    cy.actionPolicyActionInListing(credPolicyName, 'Delete')
   })
 
   //verify contents of modal
@@ -124,7 +124,7 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
 
   //clean up
   it(`Delete policy ${policyName}`, () => {
-    cy.actionPolicyActionInListing(policyName, 'Remove')
+    cy.actionPolicyActionInListing(policyName, 'Delete')
   })
 
   const cleanUprawPolicyYAML = getConfigObject(cleanUpPolicy, 'raw', substitutionRules)
@@ -139,7 +139,7 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify autom
     cy.waitForPolicyStatus(cleanUppolicyName, '0/')
   })
   it(`Delete policy ${cleanUppolicyName}`, () => {
-    cy.actionPolicyActionInListing(cleanUppolicyName, 'Remove')
+    cy.actionPolicyActionInListing(cleanUppolicyName, 'Delete')
   })
 
   it(`Verify that policy ${policyName} is not present in the policy listing`, () => {

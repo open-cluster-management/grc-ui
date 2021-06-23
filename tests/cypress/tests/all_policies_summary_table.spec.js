@@ -93,7 +93,7 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify summa
   for (const policyName in confPolicies) {
     it(`Policy ${policyName} can be deleted in the policy listing`, () => {
       // we could use a different way how to return to this page
-      cy.actionPolicyActionInListing(policyName, 'Remove')
+      cy.actionPolicyActionInListing(policyName, 'Delete')
         .verifyPolicyNotInListing(policyName)
     })
   }

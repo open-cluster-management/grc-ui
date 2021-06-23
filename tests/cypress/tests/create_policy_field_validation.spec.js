@@ -43,7 +43,7 @@ describeT('RHACM4K-2349 - GRC UI: [P1][Sev1][policy-grc] Create policy page: Che
   it('Cleanup: delete previously created policy', () => {
     cy.visit('/multicloud/policies')
       .waitForPolicyStatus(longestValidName)  // wait for policy status to make sure we are deleting it also with binding
-      .actionPolicyActionInListing(longestValidName, 'Remove')  // using that long name here seems to make some problems in the cypress code
+      .actionPolicyActionInListing(longestValidName, 'Delete')  // using that long name here seems to make some problems in the cypress code
   })
 
 })

@@ -30,7 +30,7 @@ describeT('RHACM4K-2354 - GRC UI: [P1][Sev1][policy-grc] Check existent and non-
   })
   it('Delete the policy', () => {
     cy.visit('/multicloud/policies/all').waitForPageContentLoad()
-    .actionPolicyActionInListing(policyName, 'Remove')
+    .actionPolicyActionInListing(policyName, 'Delete')
     .verifyPolicyNotInListing(policyName)
   })
 })

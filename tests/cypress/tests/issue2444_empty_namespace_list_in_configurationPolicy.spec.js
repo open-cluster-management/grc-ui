@@ -39,7 +39,7 @@ describeT('RHACM4K-1650 - GRC UI: [P1][Sev1][policy-grc] configurationPoicy cont
 
   it(`Delete Pod policy ${policyName}`, () => {
     cy.visit('/multicloud/policies/all')
-      .actionPolicyActionInListing(policyName, 'Remove')
+      .actionPolicyActionInListing(policyName, 'Delete')
       .verifyPolicyNotInListing(policyName)
   })
 
