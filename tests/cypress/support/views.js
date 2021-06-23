@@ -1623,7 +1623,7 @@ export const action_verifyHistoryPageWithMock = (uName) => {
   }).as('historyQuery')
 
   cy.get('#automation-resource-panel').within(() => {
-    cy.get('span').contains('History').click()
+    cy.get('.pf-c-tabs__item-text').contains('History').click()
   })
 
   cy.get('.ansible-history-table').within(() => {
@@ -1641,7 +1641,7 @@ const verifyHistoryPage = (mode, failuresExpected) => {
     checkWithPolicy('automation/verify_run_once.yaml')
   }
 
-  cy.get('span').contains('History').click()
+  cy.get('.pf-c-tabs__item-text').contains('History').click()
   if (failuresExpected === 0) {
     cy.get('.ansible-history-table').within(() => {
       cy.get('.pf-c-empty-state').should('exist')
