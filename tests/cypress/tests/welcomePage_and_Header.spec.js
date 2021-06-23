@@ -43,12 +43,12 @@ describeT('GRC UI: [P1][Sev1][policy-grc] Welcome page', () => {
         leftNav.validatePerspective()
     })
 
-    it(`[P3][Sev3][${squad}] should not show perspective switcher on kube >1.2`, () => {
-        cy.intercept(Cypress.config().baseUrl + '/multicloud/version', { 'gitVersion': 'v1.19.0+bd9e442' }).as('versionApi')
-        welcomePage.whenGoToWelcomePage()
-        cy.wait('@versionApi')
-        leftNav.validateNoPerspective()
-    })
+    // it(`[P3][Sev3][${squad}] should not show perspective switcher on kube >1.2`, () => {
+    //     cy.intercept(Cypress.config().baseUrl + '/multicloud/version', { 'gitVersion': 'v1.19.0+bd9e442' }).as('versionApi')
+    //     welcomePage.whenGoToWelcomePage()
+    //     cy.wait('@versionApi')
+    //     leftNav.validateNoPerspective()
+    // })
 
     it(`[P3][Sev3][${squad}] using left navigation - should navigate to Clusters page`, () => {
         leftNav.goToClusters()
