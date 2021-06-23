@@ -141,7 +141,8 @@ export const userMenu = {
     openApps: () => {
         cy.get('[data-test="app-dropdown"]').should('exist')
         cy.get('[data-test="app-dropdown"]').click()
-        cy.get('[data-test="app-dropdown"] li').should('be.visible').and('have.length', 4)
+        // seems the split line is also li
+        cy.get('[data-test="app-dropdown"] li').should('be.visible').and('have.length', 5)
         cy.contains('Red Hat applications').should('exist')
         cy.contains('Red Hat Openshift Container Platform').should('exist')
         cy.contains('OpenShift GitOps').should('exist')
