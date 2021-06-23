@@ -1641,7 +1641,7 @@ const verifyHistoryPage = (mode, failuresExpected) => {
     checkWithPolicy('automation/verify_run_once.yaml')
   }
 
-  cy.get('a').contains('History').click()
+  cy.get('span').contains('History').click()
   if (failuresExpected === 0) {
     cy.get('.ansible-history-table').within(() => {
       cy.get('.pf-c-empty-state').should('exist')
