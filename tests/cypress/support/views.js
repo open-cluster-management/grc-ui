@@ -1577,8 +1577,12 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
         cy.get('a').click()
       })
     })
-
-    verifyHistoryPage(mode, failures)
+    .then(() => {
+      cy.get('#automation-resource-panel').should('exist')
+    })
+    .then(() => {
+      verifyHistoryPage(mode, failures)
+    })
   })
   .then(() => {
     cy.get('button[aria-label="Close"]').click()
