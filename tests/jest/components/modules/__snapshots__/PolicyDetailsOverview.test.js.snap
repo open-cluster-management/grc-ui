@@ -379,7 +379,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
     </h5>
     <div
       className="pf-c-toolbar"
-      id="pf-random-id-1"
+      id="pf-random-id-2"
     >
       <div
         className="pf-c-toolbar__content"
@@ -389,7 +389,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
         />
         <div
           className="pf-c-toolbar__expandable-content"
-          id="pf-random-id-1-expandable-content-3"
+          id="pf-random-id-2-expandable-content-3"
         >
           <div
             className="pf-c-toolbar__group"
