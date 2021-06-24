@@ -101,27 +101,27 @@ describeT('GRC UI: [P1][Sev1][policy-grc] Welcome page', () => {
         userMenu.openUser()
     })
 
-    it(`[P3][Sev3][${squad}] using header icons - should properly format apps dropdown`, () => {
-        welcomePage.whenGoToWelcomePage()
-        userMenu.openAppsNoArgo()
-        cy.intercept(Cypress.config().baseUrl + '/multicloud/common/applinks', {
-            data: {
-                'OpenShift GitOps': [
-                    {
-                        url: 'https://openshift-gitops-server-openshift-gitops.apps.policy-grc-cp-autoclaims-fj8vp.dev08.red-chesterfield.com',
-                        name: 'ArgoCD',
-                        icon: 'https://picsum.photos/10'
-                    },
-                    {
-                        url: 'https://openshift-gitops-server-openshift-gitops.apps.policy-grc-cp-autoclaims-fj8vp.dev08.red-chesterfield.com',
-                        name: 'Test app',
-                        icon: 'https://picsum.photos/10'
-                    },
-                ]
-            }
-        }).as('appUrl')
-        welcomePage.whenGoToWelcomePage()
-        cy.wait('@appUrl')
-        userMenu.openApps()
-    })
+    // it(`[P3][Sev3][${squad}] using header icons - should properly format apps dropdown`, () => {
+    //     welcomePage.whenGoToWelcomePage()
+    //     userMenu.openAppsNoArgo()
+    //     cy.intercept(Cypress.config().baseUrl + '/multicloud/common/applinks', {
+    //         data: {
+    //             'OpenShift GitOps': [
+    //                 {
+    //                     url: 'https://openshift-gitops-server-openshift-gitops.apps.policy-grc-cp-autoclaims-fj8vp.dev08.red-chesterfield.com',
+    //                     name: 'ArgoCD',
+    //                     icon: 'https://picsum.photos/10'
+    //                 },
+    //                 {
+    //                     url: 'https://openshift-gitops-server-openshift-gitops.apps.policy-grc-cp-autoclaims-fj8vp.dev08.red-chesterfield.com',
+    //                     name: 'Test app',
+    //                     icon: 'https://picsum.photos/10'
+    //                 },
+    //             ]
+    //         }
+    //     }).as('appUrl')
+    //     welcomePage.whenGoToWelcomePage()
+    //     cy.wait('@appUrl')
+    //     userMenu.openApps()
+    // })
 })
