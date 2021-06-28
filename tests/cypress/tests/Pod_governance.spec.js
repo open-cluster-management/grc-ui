@@ -1,7 +1,7 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 /* Copyright Contributors to the Open Cluster Management project */
 
-//// <reference types="cypress" />
+/// <reference types="cypress" />
 // import { describeT } from '../support/tagging'
 // import { test_genericPolicyGovernance, test_applyPolicyYAML } from '../support/tests'
 
