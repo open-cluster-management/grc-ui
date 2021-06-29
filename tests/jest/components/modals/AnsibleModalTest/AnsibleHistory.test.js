@@ -54,7 +54,6 @@ const mockAnsibleJobListResponse2 = {
           ],
         },
         job_template_name: 'Demo Job Template',
-        tower_auth_secret: 'toweraccess',
       },
       status: {
         ansibleJobResult: {
@@ -85,7 +84,6 @@ const mockAnsibleJobListResponse2 = {
         k8sJob: {
           created: true,
           env: {
-            secretNamespacedName: 'default/toweraccess',
             templateName: 'Demo Job Template',
             verifySSL: false,
           },
@@ -130,7 +128,6 @@ const mockAnsibleJobListResponse2 = {
           ],
         },
         job_template_name: 'Demo Job Template',
-        tower_auth_secret: 'toweraccess',
       },
       status: {
         ansibleJobResult: {
@@ -161,7 +158,6 @@ const mockAnsibleJobListResponse2 = {
         k8sJob: {
           created: true,
           env: {
-            secretNamespacedName: 'default/toweraccess',
             templateName: 'Demo Job Template',
             verifySSL: false,
           },
@@ -206,7 +202,6 @@ const mockAnsibleJobListResponse2 = {
           ],
         },
         job_template_name: 'Demo Job Template',
-        tower_auth_secret: 'toweraccess',
       },
       status: {
         conditions: [

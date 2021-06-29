@@ -97,7 +97,6 @@ exports[`render AnsibleHistory component render AnsibleHistory page 1`] = `
             "k8sJob": Object {
               "created": true,
               "env": Object {
-                "secretNamespacedName": "default/toweraccess",
                 "templateName": "Demo Job Template",
                 "verifySSL": false,
               },
@@ -160,7 +159,6 @@ exports[`render AnsibleHistory component render AnsibleHistory page 1`] = `
             "k8sJob": Object {
               "created": true,
               "env": Object {
-                "secretNamespacedName": "default/toweraccess",
                 "templateName": "Demo Job Template",
                 "verifySSL": false,
               },
