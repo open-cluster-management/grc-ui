@@ -81,6 +81,10 @@ export function buildViewYamlLink(item, locale) {
   const namespace = _.get(item, 'object.metadata.namespace', '')
   const apiVersion = _.get(item, 'object.apiVersion')
   const kind = _.get(item, 'object.kind')
+  const reason = _.get(item, 'reason')
+  if (reason === 'Resource not found but should exist') {
+    return ''
+  }
   if (cluster && kind && apiVersion && name) {
     if (namespace !== '') {
       return <a target='_blank' rel='noopener noreferrer'
