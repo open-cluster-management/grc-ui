@@ -198,7 +198,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                         className="violationCell"
                       >
                         <div
-                          content="Policy is non-compliant"
+                          content="Policy is non-compliant."
                           data-testid="mockTooltip"
                         >
                           <svg
@@ -881,7 +881,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                         className="violationCell"
                       >
                         <div
-                          content="Policy is non-compliant"
+                          content="Policy is non-compliant."
                           data-testid="mockTooltip"
                         >
                           <svg

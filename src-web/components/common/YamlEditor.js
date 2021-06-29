@@ -20,7 +20,7 @@ import {
 } from '@patternfly/react-tokens'
 
 import 'monaco-editor/esm/vs/editor/editor.all.js'
-import 'monaco-editor/esm/vs/editor/standalone/browser/quickOpen/quickCommand.js'
+import 'monaco-editor/esm/vs/editor/standalone/browser/quickAccess/standaloneCommandsQuickAccess'
 import 'monaco-editor/esm/vs/basic-languages/yaml/yaml.contribution.js'
 import config from '../../../server/lib/shared/config'
 
