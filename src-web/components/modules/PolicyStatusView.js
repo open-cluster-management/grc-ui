@@ -91,6 +91,7 @@ class PolicyStatusView extends React.Component {
                 setSearch={this.handleSearch}
                 initialSort={tableDataByClusters.sortBy}
                 searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
+                fuseThreshold={0}
               />
             </AcmTablePaginationContextProvider>
           </div>}
@@ -112,6 +113,7 @@ class PolicyStatusView extends React.Component {
                   gridBreakPoint=''
                   initialSort={table.data.sortBy}
                   searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
+                  fuseThreshold={0}
                 />
               </AcmTablePaginationContextProvider>
             </div>
