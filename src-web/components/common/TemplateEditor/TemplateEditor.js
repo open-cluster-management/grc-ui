@@ -540,7 +540,7 @@ export default class TemplateEditor extends React.Component {
     const control = controlData.find(({id})=>id===field)
     switch (control.type) {
     case 'text':
-      control.active = evt
+      control.active = evt.trim()
       isCustomName = field==='name'
       break
     case 'singleselect':
