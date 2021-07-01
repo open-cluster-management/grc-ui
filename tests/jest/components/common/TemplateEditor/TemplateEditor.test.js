@@ -277,19 +277,14 @@ describe('on control change function with active selections', () => {
       />
     )
     const evt = ['selectedItems-testing-1', 'selectedItems-testing-2']
-    expect(wrapper.instance().onChange('name', evt)).toEqual('name')
-    const evt_duplicateName = {
-      target: { value: 'policy-pod' }
-    }
+    const evt_name = 'new_name'
+    expect(wrapper.instance().onChange('name', evt_name)).toEqual('name')
+    const evt_duplicateName = 'policy-pod'
     expect(wrapper.instance().onChange('name', evt_duplicateName)).toEqual('name')
     expect(wrapper.instance().state.duplicateName).toEqual(false)
-    const evt_emptyName = {
-      target: { value: '' }
-    }
+    const evt_emptyName = ''
     expect(wrapper.instance().onChange('name', evt_emptyName)).toEqual('name')
-    const evt_badName = {
-      target: { value: 'a-b-' }
-    }
+    const evt_badName = 'a-b-'
     expect(wrapper.instance().onChange('name', evt_badName)).toEqual('name')
     expect(wrapper.instance().state.duplicateName).toEqual(false)
     expect(wrapper.instance().state.validPolicyName).toEqual(false)
@@ -323,20 +318,14 @@ describe('on control change function without active selections', () => {
       />
     )
     const evt = ['selectedItems-testing-1', 'selectedItems-testing-2']
-
-    expect(wrapper.instance().onChange('name', evt)).toEqual('name')
-    const evt_duplicateName = {
-      target: { value: 'policy-pod' }
-    }
+    const evt_name = 'new_name'
+    expect(wrapper.instance().onChange('name', evt_name)).toEqual('name')
+    const evt_duplicateName = 'policy-pod'
     expect(wrapper.instance().onChange('name', evt_duplicateName)).toEqual('name')
     expect(wrapper.instance().state.duplicateName).toEqual(false)
-    const evt_emptyName = {
-      target: { value: '' }
-    }
+    const evt_emptyName =''
     expect(wrapper.instance().onChange('name', evt_emptyName)).toEqual('name')
-    const evt_badName = {
-      target: { value: 'a-b-' }
-    }
+    const evt_badName = 'a-b-'
     const evt_namespace = {
       selectedItem: 'test-namespace'
     }
