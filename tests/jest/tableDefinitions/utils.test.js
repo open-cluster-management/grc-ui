@@ -21,8 +21,9 @@ import {
 } from '../../../src-web/tableDefinitions/utils'
 import {
   disabledPolicyCompliantStatusItem,
-  withoutClusterCompliant,
-  withClusterCompliant,
+  unknownClusterCompliant,
+  withClusterViolation,
+  withoutClusterViolation
  } from './DefinitionsTestingData'
 
 describe('tableDefinitions utils - createComplianceLink', () => {
@@ -147,11 +148,15 @@ describe('tableDefinitions utils - getPolicyCompliantStatus', () => {
     expect(getPolicyCompliantStatus(disabledPolicyCompliantStatusItem, 'us')).toMatchSnapshot()
   })
 
-  it('should return policy compliant status without cluster compliant', () => {
-    expect(getPolicyCompliantStatus(withoutClusterCompliant, 'us')).toMatchSnapshot()
+  it('should return policy compliant status with unknown cluster compliant', () => {
+    expect(getPolicyCompliantStatus(unknownClusterCompliant, 'us')).toMatchSnapshot()
   })
 
-  it('should return policy compliant status with cluster compliant', () => {
-    expect(getPolicyCompliantStatus(withClusterCompliant, 'us')).toMatchSnapshot()
+  it('should return policy compliant status with cluster violation', () => {
+    expect(getPolicyCompliantStatus(withClusterViolation, 'us')).toMatchSnapshot()
+  })
+
+  it('should return policy compliant status without cluster violation', () => {
+    expect(getPolicyCompliantStatus(withoutClusterViolation, 'us')).toMatchSnapshot()
   })
 })

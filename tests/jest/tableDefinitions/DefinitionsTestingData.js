@@ -345,7 +345,7 @@ export const disabledPolicyCompliantStatusItem = {
   'clusterCompliant': '-',
 }
 
-export const withoutClusterCompliant = {
+export const unknownClusterCompliant = {
   '__typename': 'Compliance',
   'name': 'policy-etcdencryption',
   'namespace': 'default',
@@ -370,7 +370,7 @@ export const withoutClusterCompliant = {
   'clusterCompliant': '-',
 }
 
-export const withClusterCompliant = {
+export const withClusterViolation = {
   '__typename': 'Compliance',
   'name': 'policy-etcdencryption',
   'namespace': 'default',
@@ -395,3 +395,28 @@ export const withClusterCompliant = {
   'clusterCompliant': '1/3',
 }
 
+
+export const withoutClusterViolation = {
+  '__typename': 'Compliance',
+  'name': 'policy-etcdencryption',
+  'namespace': 'default',
+  'raw': {
+    'apiVersion': 'policy.open-cluster-management.io/v1',
+    'kind': 'Policy',
+    'spec': {
+      'disabled': false,
+      'remediationAction': 'inform'
+    },
+    'status': {
+      'placement': [
+        {
+          'placementBinding': 'binding-policy-etcdencryption',
+          'placementRule': 'placement-policy-etcdencryption'
+        }
+      ]
+    }
+  },
+  'remediation': 'inform',
+  'policyCompliant': '0/0',
+  'clusterCompliant': '1/3',
+}

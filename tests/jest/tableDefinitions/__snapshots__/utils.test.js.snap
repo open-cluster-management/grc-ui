@@ -46,6 +46,28 @@ exports[`tableDefinitions utils - getPolicyCompliantStatus should return policy 
 </div>
 `;
 
+exports[`tableDefinitions utils - getPolicyCompliantStatus should return policy compliant status with cluster violation 1`] = `
+<div
+  className="violationCell"
+>
+  <RedExclamationCircleIcon
+    tooltip="Policy is non-compliant."
+  />
+  1/3
+</div>
+`;
+
+exports[`tableDefinitions utils - getPolicyCompliantStatus should return policy compliant status with unknown cluster compliant 1`] = `
+<div
+  className="violationCell"
+>
+  <YellowExclamationTriangleIcon
+    tooltip="Policy status is unavailable for some clusters."
+  />
+  -
+</div>
+`;
+
 exports[`tableDefinitions utils - getPolicyCompliantStatus should return policy compliant status without cluster compliant 1`] = `
 <div
   className="violationCell"
@@ -54,6 +76,17 @@ exports[`tableDefinitions utils - getPolicyCompliantStatus should return policy 
     tooltip="Policy status is unavailable for some clusters."
   />
   -
+</div>
+`;
+
+exports[`tableDefinitions utils - getPolicyCompliantStatus should return policy compliant status without cluster violation 1`] = `
+<div
+  className="violationCell"
+>
+  <RedExclamationCircleIcon
+    tooltip="Policy is non-compliant."
+  />
+  1/3
 </div>
 `;
 
