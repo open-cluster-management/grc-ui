@@ -9,12 +9,14 @@
 /* Copyright (c) 2020 Red Hat, Inc. */
 
 .creation-view {
-  display: flex;
-  position: relative;
+  display: unset !important;
+  flex-grow: unset !important;
+  margin-top: 1rem;
 
   .creation-view-split-container {
     width: 100%;
     height: calc(100vh - 200px);
+    margin-top: unset;
 
     &.showEditor {
       .creation-view-controls-container {
