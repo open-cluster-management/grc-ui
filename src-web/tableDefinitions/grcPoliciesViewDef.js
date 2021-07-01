@@ -98,8 +98,6 @@ export default {
     {
       label: 'automation',
       msgKey: 'table.header.automation',
-      sortable: true,
-      sortLabel: 'automation.rawData',
       transforms: [wrappable],
       transformFunction: getAutomationLink,
     },
