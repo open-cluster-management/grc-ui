@@ -11,7 +11,7 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from '@patternfly/react-core'
-import { AcmTable } from '@open-cluster-management/ui-components'
+import { AcmTable, AcmTablePaginationContextProvider } from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
@@ -81,18 +81,20 @@ class PolicyStatusView extends React.Component {
               headingLevel="h3">
               {msgs.get('tabs.policy.status.toggle.clusters', locale)}
             </Title>
-            <AcmTable
-              items={tableDataByClusters.rows}
-              columns={tableDataByClusters.columns}
-              keyFn={(item) => item.uid.toString()}
-              gridBreakPoint=''
-              search={clusterQuery}
-              setSearch={this.handleSearch}
-              initialSort={tableDataByClusters.sortBy}
-              searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
-              fuseThreshold={0}
-              plural={'clusters'}
-            />
+            <AcmTablePaginationContextProvider localStorageKey='grc-status-view'>
+              <AcmTable
+                items={tableDataByClusters.rows}
+                columns={tableDataByClusters.columns}
+                keyFn={(item) => item.uid.toString()}
+                gridBreakPoint=''
+                search={clusterQuery}
+                setSearch={this.handleSearch}
+                initialSort={tableDataByClusters.sortBy}
+                searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
+                fuseThreshold={0}
+                plural={'clusters'}
+              />
+            </AcmTablePaginationContextProvider>
           </div>}
           {toggleIndex===1 && tableDataByTemplate.map((table) => {
             return <div
@@ -104,16 +106,18 @@ class PolicyStatusView extends React.Component {
                 headingLevel="h3">
                 {`${msgs.get('policy.template', locale)}: ${table.name}`}
               </Title>
-              <AcmTable
-                items={table.data.rows}
-                columns={table.data.columns}
-                keyFn={(item) => item.uid.toString()}
-                gridBreakPoint=''
-                initialSort={table.data.sortBy}
-                searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
-                fuseThreshold={0}
-                plural={'templates'}
-              />
+              <AcmTablePaginationContextProvider localStorageKey='grc-status-view'>
+                <AcmTable
+                  items={table.data.rows}
+                  columns={table.data.columns}
+                  keyFn={(item) => item.uid.toString()}
+                  gridBreakPoint=''
+                  initialSort={table.data.sortBy}
+                  searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
+                  fuseThreshold={0}
+                  plural={'templates'}
+                />
+              </AcmTablePaginationContextProvider>
             </div>
           })}
         </div>

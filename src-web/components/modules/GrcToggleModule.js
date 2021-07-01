@@ -12,7 +12,8 @@ import {
   Spinner
 } from '@patternfly/react-core'
 import {
-  AcmTable
+  AcmTable,
+  AcmTablePaginationContextProvider
 } from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import grcPoliciesViewDef from '../../tableDefinitions/grcPoliciesViewDef'
@@ -80,21 +81,23 @@ class GrcToggleModule extends React.Component {
     return (
       <div className='grc-toggle'>
         <div className={`grc-view-by-${tableType}-table`}>
-          <AcmTable
-            items={tableData[grcTabToggleIndex].rows}
-            columns={tableData[grcTabToggleIndex].columns}
-            rowActionResolver={this.tableActionResolver}
-            addSubRows={tableData[grcTabToggleIndex].addSubRows}
-            keyFn={tableData[grcTabToggleIndex].keyFn}
-            setSearch={searchValue}
-            sort={sortValues[grcTabToggleIndex]}
-            setSort={this.setSort(grcTabToggleIndex)}
-            gridBreakPoint=''
-            extraToolbarControls={extraToolbarControls}
-            searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
-            fuseThreshold={0}
-            plural={grcTabToggleIndex === 0 ? 'policies' : 'violations'}
-          />
+          <AcmTablePaginationContextProvider localStorageKey="grc-toggle">
+            <AcmTable
+              items={tableData[grcTabToggleIndex].rows}
+              columns={tableData[grcTabToggleIndex].columns}
+              rowActionResolver={this.tableActionResolver}
+              addSubRows={tableData[grcTabToggleIndex].addSubRows}
+              keyFn={tableData[grcTabToggleIndex].keyFn}
+              setSearch={searchValue}
+              sort={sortValues[grcTabToggleIndex]}
+              setSort={this.setSort(grcTabToggleIndex)}
+              gridBreakPoint=''
+              extraToolbarControls={extraToolbarControls}
+              searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
+              fuseThreshold={0}
+              plural={grcTabToggleIndex === 0 ? 'policies' : 'violations'}
+            />
+          </AcmTablePaginationContextProvider>
         </div>
       </div>
     )

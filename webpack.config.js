@@ -61,7 +61,10 @@ module.exports = {
             options: {
               cacheDirectory: true,
               presets: ['@babel/preset-env', '@babel/preset-react'],
-              plugins: ['@babel/plugin-proposal-class-properties']
+              plugins: [
+                '@babel/plugin-proposal-class-properties',
+                '@babel/plugin-proposal-private-methods',
+              ]
             },
           },
         ]
