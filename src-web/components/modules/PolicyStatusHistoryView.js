@@ -39,6 +39,7 @@ class PolicyStatusHistoryView extends React.Component {
             keyFn={(item) => item.uid.toString()}
             initialSort={tableData.sortBy}
             gridBreakPoint=''
+            plural={'history'}
           />
         </div>
       </div>

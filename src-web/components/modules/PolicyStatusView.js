@@ -91,6 +91,7 @@ class PolicyStatusView extends React.Component {
               initialSort={tableDataByClusters.sortBy}
               searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
               fuseThreshold={0}
+              plural={'clusters'}
             />
           </div>}
           {toggleIndex===1 && tableDataByTemplate.map((table) => {
@@ -111,6 +112,7 @@ class PolicyStatusView extends React.Component {
                 initialSort={table.data.sortBy}
                 searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
                 fuseThreshold={0}
+                plural={'templates'}
               />
             </div>
           })}
