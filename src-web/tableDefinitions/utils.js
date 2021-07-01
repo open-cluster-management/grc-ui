@@ -298,6 +298,9 @@ export function createComplianceLink(item = {}, ...param){
 }
 
 export function getPolicyCompliantStatus(item, locale) {
+  if (_.get(item, 'raw.spec.disabled')) {
+    return '--'
+  }
   const clusterCompliant =  _.get(item, 'clusterCompliant', '-')
   const tooltip = msgs.get('table.tooltip.nostatus', locale)
   if (clusterCompliant === '-') {

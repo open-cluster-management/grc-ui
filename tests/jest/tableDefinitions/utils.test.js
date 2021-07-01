@@ -17,7 +17,13 @@ import {
   getCategories,
   getDecisionCount,
   formatAnnotationString,
+  getPolicyCompliantStatus
 } from '../../../src-web/tableDefinitions/utils'
+import {
+  disabledPolicyCompliantStatusItem,
+  withoutClusterCompliant,
+  withClusterCompliant,
+ } from './DefinitionsTestingData'
 
 describe('tableDefinitions utils - createComplianceLink', () => {
   it('should return valid compliance link', () => {
@@ -133,5 +139,19 @@ describe('tableDefinitions utils - formatAnnotationString', () => {
   it('should get "-" ', () => {
     const item = null
     expect(formatAnnotationString(item)).toMatchSnapshot()
+  })
+})
+
+describe('tableDefinitions utils - getPolicyCompliantStatus', () => {
+  it('should return disabled policy compliant status', () => {
+    expect(getPolicyCompliantStatus(disabledPolicyCompliantStatusItem, 'us')).toMatchSnapshot()
+  })
+
+  it('should return policy compliant status without cluster compliant', () => {
+    expect(getPolicyCompliantStatus(withoutClusterCompliant, 'us')).toMatchSnapshot()
+  })
+
+  it('should return policy compliant status with cluster compliant', () => {
+    expect(getPolicyCompliantStatus(withClusterCompliant, 'us')).toMatchSnapshot()
   })
 })
