@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import {
   Title,
 } from '@patternfly/react-core'
-import { AcmTable } from '@open-cluster-management/ui-components'
+import { AcmTable, AcmTablePaginationContextProvider } from '@open-cluster-management/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import statusHistoryDef from '../../tableDefinitions/statusHistoryDef'
 import { transform } from '../../tableDefinitions/utils'
@@ -33,13 +33,15 @@ class PolicyStatusHistoryView extends React.Component {
           <Title className='title' headingLevel="h3">{cluster}</Title>
           <Title className='title' headingLevel="h4">{`${msgs.get('policy.template', locale)}: ${template}`}</Title>
           <br></br>
-          <AcmTable
-            items={tableData.rows}
-            columns={tableData.columns}
-            keyFn={(item) => item.uid.toString()}
-            initialSort={tableData.sortBy}
-            gridBreakPoint=''
-          />
+          <AcmTablePaginationContextProvider localStorageKey='grc-status-history'>
+            <AcmTable
+              items={tableData.rows}
+              columns={tableData.columns}
+              keyFn={(item) => item.uid.toString()}
+              initialSort={tableData.sortBy}
+              gridBreakPoint=''
+            />
+          </AcmTablePaginationContextProvider>
         </div>
       </div>
 
