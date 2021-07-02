@@ -686,7 +686,7 @@ exports[`render AnsiblePanel component render empty AnsiblePanel component4 1`] 
             className="infoArea createCredential"
           >
             <Text>
-              Ansible credential is required to create an Ansible job. Create your credential by clicking the following link:
+              Ansible credential is required to create an Ansible job. Create your credential by clicking the following link: 
               <AcmLaunchLink
                 links={
                   Array [
