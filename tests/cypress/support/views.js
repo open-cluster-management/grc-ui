@@ -385,7 +385,7 @@ export const action_verifyPolicyInListing = (
         })
       } else if (targetStatus === 3) {
         // disabled and no icon
-        cy.wrap(violations).contains('--')
+        cy.wrap(violations).contains('.disabledStatus')
       }
       // check the cluster violations value
       if (violationsCounter) {
@@ -513,7 +513,7 @@ export const isClusterViolationsStatusAvailable = (name, violationsCounter) => {
   return cy.then(() => {
     cy.get('[aria-label="Simple Table"]').within(() => {
       cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, counter) => {
-        if (cy.wrap(counter).contains('path')) {
+        if (cy.wrap(counter).find('.disabledStatus').length > 0) {
           // check the violation status
           cy.wrap(counter).find('path').then((elems) => {
             // when STANDALONE_TESTSUITE_EXECUTION === FALSE, elems.length could be 2, only check the first icon in such case
@@ -548,7 +548,7 @@ return cy.url().then((pageURL) => {
   if (pageURL.endsWith('/multicloud/policies/all')) {
     cy.get('[aria-label="Simple Table"]').within(() => {
     cy.get('a').contains(uName).parents('td').siblings('td').spread((toggle, namespace, remediation, violations) => {
-      if (cy.wrap(violations).contains('path')) {
+      if (cy.wrap(violations).find('.disabledStatus').length > 0) {
         // check the violation status
         cy.wrap(violations).find('path').then((elems) => {
           if (elems.length === 1) {
