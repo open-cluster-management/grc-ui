@@ -342,12 +342,12 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
           <h4
             className="pf-c-title pf-m-lg"
           >
-            No undefined found
+            No related resources found
           </h4>
           <div
             className="pf-c-empty-state__body"
           >
-            You do not have any undefined yet.
+            You do not have any related resources yet.
           </div>
           <div
             className="pf-c-empty-state__primary"
@@ -701,12 +701,12 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
           <h4
             className="pf-c-title pf-m-lg"
           >
-            No undefined found
+            No related resources found
           </h4>
           <div
             className="pf-c-empty-state__body"
           >
-            You do not have any undefined yet.
+            You do not have any related resources yet.
           </div>
           <div
             className="pf-c-empty-state__primary"
