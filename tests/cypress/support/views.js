@@ -384,6 +384,7 @@ export const action_verifyPolicyInListing = (
           }
         })
       } else if (targetStatus === 3) {
+        // disabled and no icon
         cy.wrap(violations).contains('--')
       }
       // check the cluster violations value
@@ -528,6 +529,7 @@ export const isClusterViolationsStatusAvailable = (name, violationsCounter) => {
             }
           })
         } else {
+          // disabled and no icon
           cy.wrap(counter).contains('--')
         }
       })
@@ -561,6 +563,7 @@ return cy.url().then((pageURL) => {
           }
         })
       } else {
+        // disabled and no icon
         cy.wrap(violations).contains('--')
       }
     })
