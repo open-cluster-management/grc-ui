@@ -346,7 +346,7 @@ export const action_verifyCreatePolicySelection = (policyName, policyConfig) => 
 
 // enabled='enabled', checking if policy is enabled; enabled='disabled', checking if policy is disabled
 // targetStatus = 0, don't check policy status; targetStatus = 1, check policy status is non-violation
-// targetStatus = 2, check policy status is violation; targetStatus = 3, check policy status is pending
+// targetStatus = 2, check policy status is violation; targetStatus = 3, check policy status === '--'
 export const action_verifyPolicyInListing = (
   uName, policyConfig, enabled='enabled',
   violationsCounter='', targetStatus = null
@@ -377,12 +377,14 @@ export const action_verifyPolicyInListing = (
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
       // check the violation status
-      if ([1,2,3].includes(targetStatus)) {
+      if ([1,2].includes(targetStatus)) {
         cy.wrap(violations).find('svg').then((elems) => {
           if (elems.length === 1) {
             cy.get('.violationCell>svg').should('have.attr', 'fill', getStatusIconFillColor(targetStatus))
           }
         })
+      } else if (targetStatus === 3) {
+        cy.wrap(violations).find('--')
       }
       // check the cluster violations value
       if (violationsCounter) {
