@@ -384,7 +384,7 @@ export const action_verifyPolicyInListing = (
           }
         })
       } else if (targetStatus === 3) {
-        cy.wrap(violations).find('--')
+        cy.wrap(violations).contains('--')
       }
       // check the cluster violations value
       if (violationsCounter) {
