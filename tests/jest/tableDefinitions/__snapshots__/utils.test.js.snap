@@ -33,7 +33,13 @@ exports[`tableDefinitions utils - getDecisionCount should return the total shoul
 
 exports[`tableDefinitions utils - getDecisionCount should return the total tableDefinitions utils - getDecisionCount should return 0 1`] = `0`;
 
-exports[`tableDefinitions utils - getPolicyCompliantStatus should return disabled policy compliant status 1`] = `"--"`;
+exports[`tableDefinitions utils - getPolicyCompliantStatus should return disabled policy compliant status 1`] = `
+<div
+  className="disabledStatus"
+>
+  --
+</div>
+`;
 
 exports[`tableDefinitions utils - getPolicyCompliantStatus should return policy compliant status with cluster violation 1`] = `
 <div
