@@ -14,10 +14,6 @@ import {
   SelectOption, SelectVariant, Radio, Alert,
   AlertActionCloseButton
 } from '@patternfly/react-core'
-import {
-  global_BackgroundColor_100 as lineNumberActiveForeground,
-  global_BackgroundColor_dark_100 as editorBackground,
-} from '@patternfly/react-tokens'
 import MonacoEditor from 'react-monaco-editor'
 import msgs from '../../../nls/platform.properties'
 import {
@@ -42,27 +38,6 @@ import '../../../scss/ansible-modal.scss'
 const metaNameStr = 'metadata.name'
 const metaNSStr = 'metadata.namespace'
 const extraVarsStr= 'spec.automationDef.extra_vars'
-
-if (window.monaco) {
-  window.monaco.editor.defineTheme('console', {
-    base: 'vs-dark',
-    inherit: true,
-    rules: [
-    // avoid pf tokens for `rules` since tokens are opaque strings that might not be hex values
-      { token: 'number', foreground: 'ace12e' },
-      { token: 'type', foreground: '73bcf7' },
-      { token: 'string', foreground: 'f0ab00' },
-      { token: 'keyword', foreground: 'cbc0ff' },
-    ],
-    colors: {
-      'editor.background': editorBackground.value,
-      'editorGutter.background': '#292e34', // no pf token defined
-      'editorLineNumber.activeForeground': lineNumberActiveForeground.value,
-      'editorLineNumber.foreground': '#ededed',  // no pf token defined
-    },
-  })
-}
-
 export class AnsibleAutomationModal extends React.Component {
   constructor(props) {
     super(props)
@@ -680,7 +655,6 @@ export class AnsibleAutomationModal extends React.Component {
             width="100%"
             height="100"
             language="yaml"
-            theme="vs"
             onChange={this.editorOnChange}
             value={extraVars}
           />
