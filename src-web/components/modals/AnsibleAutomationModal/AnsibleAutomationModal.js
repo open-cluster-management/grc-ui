@@ -424,8 +424,6 @@ export class AnsibleAutomationModal extends React.Component {
       credentialName, credentialIsOpen
     } = this.state
     const policyName = _.get(policyData, metaNameStr)
-    ? _.get(policyData, metaNameStr)
-    : _.get(policyData, 'name')
     const policyNS = _.get(policyData, metaNSStr)
     let query, variables, pollInterval, actionClose
     if (activeItem) { // ansible history page
