@@ -151,9 +151,7 @@ export class AnsibleAutomationModal extends React.Component {
 
   initialize = async () => {
     const {  data:policyData, handleGetPolicyAutomation } = this.props
-    console.log(JSON.stringify(policyData))
     const policyName = _.get(policyData, metaNameStr)
-    console.log(JSON.stringify(policyName))
     const policyNS = _.get(policyData, metaNSStr)
     // step to check and loading exisiting policyAutomations
     const {data:initialData} = await handleGetPolicyAutomation(policyNS)
