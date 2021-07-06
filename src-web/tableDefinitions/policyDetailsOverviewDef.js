@@ -110,7 +110,7 @@ export default {
     {
       cells: [
         {
-          resourceKey: 'table.header.automation',
+          resourceKey: 'description.title.ansible.automation',
           type: 'automation'
         }
       ]

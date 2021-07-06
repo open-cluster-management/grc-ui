@@ -151,7 +151,9 @@ export class AnsibleAutomationModal extends React.Component {
 
   initialize = async () => {
     const {  data:policyData, handleGetPolicyAutomation } = this.props
+    console.log(JSON.stringify(policyData))
     const policyName = _.get(policyData, metaNameStr)
+    console.log(JSON.stringify(policyName))
     const policyNS = _.get(policyData, metaNSStr)
     // step to check and loading exisiting policyAutomations
     const {data:initialData} = await handleGetPolicyAutomation(policyNS)
@@ -423,6 +425,9 @@ export class AnsibleAutomationModal extends React.Component {
       initializeFinished, policyAutoName, slideFlag, notificationOpen,
       credentialName, credentialIsOpen
     } = this.state
+    const policyName = _.get(policyData, metaNameStr)
+    ? _.get(policyData, metaNameStr)
+    : _.get(policyData, 'name')
     const policyNS = _.get(policyData, metaNSStr)
     let query, variables, pollInterval, actionClose
     if (activeItem) { // ansible history page
@@ -485,7 +490,7 @@ export class AnsibleAutomationModal extends React.Component {
                         {msgs.get('table.header.policy.name', locale)}
                       </Title>
                       <div className='infoArea'>
-                        {policyData.name}
+                        {policyName}
                       </div>
                       <Title headingLevel="h3">
                         {msgs.get('table.header.cluster.violation', locale)}
