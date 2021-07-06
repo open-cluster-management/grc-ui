@@ -61,7 +61,7 @@ export const renderAnsibleCredentialsSelection = ({
       {!ansCredentialFlag &&
         <div className='infoArea createCredential'>
           <Text>
-            {`${msgs.get('ansible.no.credential', locale)} `}
+            {msgs.get('ansible.no.credential', locale)}
             {renderAnsibleURL(
               'createCredentialLink',
               msgs.get('ansible.launch.createCredential', locale),
