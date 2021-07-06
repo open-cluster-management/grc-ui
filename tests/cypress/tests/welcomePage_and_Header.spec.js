@@ -102,7 +102,11 @@ describeT('GRC UI: [P1][Sev1][policy-grc] Welcome page', () => {
     })
 
     it(`[P3][Sev3][${squad}] using header icons - should properly format apps dropdown`, () => {
+        cy.intercept(Cypress.config().baseUrl + '/multicloud/common/applinks', {
+            data: {}
+        }).as('appUrlNoData')
         welcomePage.whenGoToWelcomePage()
+        cy.wait('@appUrlNoData')
         userMenu.openAppsNoArgo()
         cy.intercept(Cypress.config().baseUrl + '/multicloud/common/applinks', {
             data: {
