@@ -144,7 +144,7 @@ export const userMenu = {
             expect(response.body).to.have.property('data')
         })
         cy.waitUntil(() => {
-            cy.get('[data-test="app-dropdown"]')
+            return cy.get('[data-test="app-dropdown"]')
                 .should('be.visible')
                 .click()
         }, {'interval': 1000, 'timeout':120000})
@@ -163,7 +163,7 @@ export const userMenu = {
             expect(response.body).to.have.property('data')
         })
         cy.waitUntil(() => {
-            cy.get('[data-test="app-dropdown"]')
+            return cy.get('[data-test="app-dropdown"]')
                 .should('be.visible')
                 .click()
         }, {'interval': 1000, 'timeout':120000})
