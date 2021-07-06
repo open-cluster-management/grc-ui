@@ -513,7 +513,7 @@ export const isClusterViolationsStatusAvailable = (name, violationsCounter) => {
   return cy.then(() => {
     cy.get('[aria-label="Simple Table"]').within(() => {
       cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, counter) => {
-        if (cy.get('a').contains(name).parents('td').siblings('td').find('.disabledStatus').length) {
+        if (Cypress.$('[aria-label="Simple Table"]').find('.disabledStatus').length === 0) {
           // check the violation status
           cy.wrap(counter).find('path').then((elems) => {
             // when STANDALONE_TESTSUITE_EXECUTION === FALSE, elems.length could be 2, only check the first icon in such case
@@ -548,7 +548,7 @@ return cy.url().then((pageURL) => {
   if (pageURL.endsWith('/multicloud/policies/all')) {
     cy.get('[aria-label="Simple Table"]').within(() => {
     cy.get('a').contains(uName).parents('td').siblings('td').spread((toggle, namespace, remediation, violations) => {
-      if (cy.get('a').contains(uName).parents('td').siblings('td').find('.disabledStatus').length) {
+      if (Cypress.$('[aria-label="Simple Table"]').find('.disabledStatus').length === 0) {
         // check the violation status
         cy.wrap(violations).find('path').then((elems) => {
           if (elems.length === 1) {
