@@ -143,8 +143,11 @@ export const userMenu = {
         cy.get('@appLinkReq').should((response) => {
             expect(response.body).to.have.property('data')
         })
-        cy.get('[data-test="app-dropdown"]').should('exist')
-        cy.get('[data-test="app-dropdown"]').click()
+        cy.waitUntil(() => {
+            cy.get('[data-test="app-dropdown"]')
+                .should('be.visible')
+                .click()
+        }, {'interval': 1000, 'timeout':120000})
         // seems the split line is also li
         cy.get('[data-test="app-dropdown"] li').should('be.visible').and('have.length', 5)
         cy.contains('Red Hat applications').should('exist')
@@ -159,8 +162,11 @@ export const userMenu = {
         cy.get('@appLinkReq').should((response) => {
             expect(response.body).to.have.property('data')
         })
-        cy.get('[data-test="app-dropdown"]').should('exist')
-        cy.get('[data-test="app-dropdown"]').click()
+        cy.waitUntil(() => {
+            cy.get('[data-test="app-dropdown"]')
+                .should('be.visible')
+                .click()
+        }, {'interval': 1000, 'timeout':120000})
         cy.contains('Red Hat applications').should('exist')
         cy.contains('Red Hat Openshift Container Platform').should('exist')
     }
