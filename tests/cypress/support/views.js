@@ -513,25 +513,26 @@ export const isClusterViolationsStatusAvailable = (name, violationsCounter) => {
   return cy.then(() => {
     cy.get('[aria-label="Simple Table"]').within(() => {
       cy.get('a').contains(name).parents('td').siblings('td').spread((namespace, counter) => {
-        if (cy.wrap(counter).find('.disabledStatus').length === 0) {
-          // check the violation status
-          cy.wrap(counter).find('path').then((elems) => {
-            // when STANDALONE_TESTSUITE_EXECUTION === FALSE, elems.length could be 2, only check the first icon in such case
-            if (elems.length === 1 || (elems.length === 2 && Cypress.env('STANDALONE_TESTSUITE_EXECUTION') === 'FALSE')) {
-              const d = elems[0].getAttribute('d')
-              // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-              statusAvailable = !d.startsWith('M569')
-              if (statusAvailable && violationsCounter) { // also check if violations counter matches
-                if (!counter.textContent.match('\\b'+violationsCounter+'\\b')) { // not found
-                  statusAvailable = false
+        cy.wrap(counter).find('.disabledStatus').its('length').then(res=>{
+          if (res > 0) {
+            // disabled and no icon
+            cy.wrap(counter).contains('--')
+          } else {
+            cy.wrap(counter).find('path').then((elems) => {
+              // when STANDALONE_TESTSUITE_EXECUTION === FALSE, elems.length could be 2, only check the first icon in such case
+              if (elems.length === 1 || (elems.length === 2 && Cypress.env('STANDALONE_TESTSUITE_EXECUTION') === 'FALSE')) {
+                const d = elems[0].getAttribute('d')
+                // M569 seem to be unique to an icon telling that policy status is not available for some cluster
+                statusAvailable = !d.startsWith('M569')
+                if (statusAvailable && violationsCounter) { // also check if violations counter matches
+                  if (!counter.textContent.match('\\b'+violationsCounter+'\\b')) { // not found
+                    statusAvailable = false
+                  }
                 }
               }
-            }
-          })
-        } else {
-          // disabled and no icon
-          cy.wrap(counter).contains('--')
-        }
+            })
+          }
+        })
       })
     })
     .then(() => statusAvailable)
@@ -548,24 +549,26 @@ return cy.url().then((pageURL) => {
   if (pageURL.endsWith('/multicloud/policies/all')) {
     cy.get('[aria-label="Simple Table"]').within(() => {
     cy.get('a').contains(uName).parents('td').siblings('td').spread((toggle, namespace, remediation, violations) => {
-      if (cy.wrap(violations).find('.disabledStatus').length === 0) {
-        // check the violation status
-        cy.wrap(violations).find('path').then((elems) => {
-          if (elems.length === 1) {
-            const d = elems[0].getAttribute('d')
-            // M569 seem to be unique to an icon telling that policy status is not available for some cluster
-            statusAvailable = !d.startsWith('M569')
-            if (statusAvailable && violationsCounter) { // also check if violations counter matches
-              if (!violations.textContent.match('\\b'+violationsCounter+'\\b')) { // not found
-                statusAvailable = false
-              }
-            }
-          }
-        })
-      } else {
+      cy.wrap(violations).find('.disabledStatus').its('length').then(res=>{
+        if (res > 0) {
         // disabled and no icon
         cy.wrap(violations).contains('--')
-      }
+        } else {
+          // check the violation status
+          cy.wrap(violations).find('path').then((elems) => {
+            if (elems.length === 1) {
+              const d = elems[0].getAttribute('d')
+              // M569 seem to be unique to an icon telling that policy status is not available for some cluster
+              statusAvailable = !d.startsWith('M569')
+              if (statusAvailable && violationsCounter) { // also check if violations counter matches
+                if (!violations.textContent.match('\\b'+violationsCounter+'\\b')) { // not found
+                  statusAvailable = false
+                }
+              }
+            }
+          })
+        }
+      })
     })
   })
   .then(() => statusAvailable)
