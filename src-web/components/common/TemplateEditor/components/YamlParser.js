@@ -229,11 +229,6 @@ class YamlInline {
         throw new YamlParseException(`Malformed inline YAML string (${scalar}).`)
       }
 
-      // unended inline string
-      const end = output.slice(-1)
-      if (end === '}' || end === ']') {
-        throw new YamlParseException(`Malformed inline YAML string (${scalar}).`)
-      }
       output = evaluate ? this.evaluateScalar(output) : output
     }
 
