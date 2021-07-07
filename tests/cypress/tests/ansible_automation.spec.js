@@ -22,7 +22,7 @@ describeT('RHACM4K-3471 - [P1][Sev1][policy-grc] All policies page: Verify autom
   const rawSubPolicyYAML = getConfigObject(subscriptionPolicy, 'raw', substitutionRules)
   const subPolicyName = rawSubPolicyYAML.replace(/\r?\n|\r/g, ' ').replace(/^.*?name:\s*/m, '').replace(/\s.*/m,'')
 
-  it('Creates a subscription to install the Ansible operator', () => {
+  it('Create a subscription to install the Ansible operator', () => {
     cy.visit('/multicloud/policies/create')
     cy.log(rawSubPolicyYAML)
       .createPolicyFromYAML(rawSubPolicyYAML, true)
