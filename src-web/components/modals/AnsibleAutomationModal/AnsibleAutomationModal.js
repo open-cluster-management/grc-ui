@@ -7,10 +7,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
-  AcmModal, AcmButton, AcmExpandableCard,
+  AcmModal, AcmExpandableCard,
 } from '@open-cluster-management/ui-components'
 import {
-  Text, Spinner, ButtonVariant, Select, Title,
+  Text, Spinner, Select, Title,
   SelectOption, SelectVariant, Radio, Alert,
   AlertActionCloseButton
 } from '@patternfly/react-core'
@@ -33,6 +33,8 @@ import TitleWithTooltip from '../../common/TitleWithTooltip'
 import { renderAnsibleOperatorNotInstalled } from './AnsibleOperatorNotInstalled'
 import { renderAnsibleURL } from './AnsibleURL'
 import { renderAnsiblePanelContent } from './AnsiblePanelContent'
+import { buildModalButtonList } from './AnisbleModalButtonList'
+import { renderAnsibleRemovalModal } from './AnsibleRemovalModal'
 
 import '../../../scss/ansible-modal.scss'
 
@@ -415,44 +417,6 @@ export class AnsibleAutomationModal extends React.Component {
     )
   }
 
-
-  buildActionList = ({activeItem, opInstalled, policyAutoName}) => {
-    const { locale } = this.props
-    const actions = []
-    if (!activeItem && opInstalled) {
-      actions.push(
-        <AcmButton
-          key="confirm"
-          variant={ButtonVariant.primary}
-          onClick={this.handleSubmitClick}
-        >
-            {msgs.get('modal.button.save', locale)}
-        </AcmButton>
-      )
-      actions.push(
-        <AcmButton
-          key="cancel"
-          variant={ButtonVariant.secondary}
-          onClick={this.handleCloseClick}
-        >
-            {msgs.get('modal.button.cancel', locale)}
-        </AcmButton>
-      )
-      if (policyAutoName) {
-        actions.push(
-          <AcmButton
-          key="delete"
-          variant={ButtonVariant.danger}
-          onClick={this.handleOpenDelModal}
-          >
-            {msgs.get('modal.button.delete', locale)}
-          </AcmButton>
-        )
-      }
-    }
-    return actions
-  }
-
   renderAnsiblePanel = (opInstalled, opInstalledLoading, opInstalledError) => {
     const { data:policyData, locale, open } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
@@ -542,34 +506,21 @@ export class AnsibleAutomationModal extends React.Component {
                       </div>
                     </React.Fragment>
                   }
-                  actions={this.buildActionList({activeItem, opInstalled, policyAutoName})}
+                  actions={buildModalButtonList({
+                    activeItem, opInstalled, policyAutoName, locale,
+                    handleSubmitClick:this.handleSubmitClick,
+                    handleCloseClick:this.handleCloseClick,
+                    handleOpenDelModal:this.handleOpenDelModal
+                  })}
                   >
                   <div>
                     {!readyFlag && <Spinner className='patternfly-spinner' />}
                   </div>
-                  <AcmModal
-                  titleIconVariant={'warning'}
-                  variant='medium'
-                  id='remove-ansible-modal'
-                  isOpen={openDelModal}
-                  showClose={true}
-                  onClose={this.handleCloseDelModal}
-                  title={msgs.get('modal.delete.automation.heading', locale)}
-                  actions={[
-                    <AcmButton key="confirm" variant={ButtonVariant.danger} onClick={this.handleDeleteClick}>
-                    {msgs.get('modal.button.delete.automation', locale)}
-                    </AcmButton>,
-                    <AcmButton key="cancel" variant={ButtonVariant.link} onClick={this.handleCloseDelModal}>
-                    {msgs.get('modal.button.cancel', locale)}
-                    </AcmButton>
-                  ]}
-                  >
-                    {msgs.get(
-                      'modal.delete.automation.description',
-                      [policyAutoName || msgs.get('modal.delete.automation.name.backup', locale)],
-                      locale
-                    )}
-                  </AcmModal>
+                  {renderAnsibleRemovalModal({
+                    openDelModal, policyAutoName, locale,
+                    handleDeleteClick:this.handleDeleteClick,
+                    handleCloseDelModal:this.handleCloseDelModal,
+                  })}
                   {readyFlag && renderAnsiblePanelContent({
                     data, activeItem, locale, handleTabClick:this.handleTabClick,
                     credentialName, credentialIsOpen,
