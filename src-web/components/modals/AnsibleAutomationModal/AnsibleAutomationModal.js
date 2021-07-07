@@ -293,7 +293,7 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   handleDeleteClick = () => {
-    this.handleCloseDelModal
+    this.handleCloseDelModal()
     this.handleSubmitClick('delete')
   }
 
