@@ -15,10 +15,28 @@ describe('render ansible removal modal', () => {
     expect(component).toMatchSnapshot()
   })
 
+  it('render opened ansible removal modal without policy automation name', () => {
+    const component = renderAnsibleRemovalModal({
+      openDelModal:true,
+      policyAutoName: '', locale: 'us',
+      handleDeleteClick:jest.fn(), handleCloseDelModal:jest.fn()
+    })
+    expect(component).toMatchSnapshot()
+  })
+
   it('render closed ansible removal modal', () => {
     const component = renderAnsibleRemovalModal({
       openDelModal:false,
       policyAutoName: 'test-policy-3-1624936287-policy-automation', locale: 'us',
+      handleDeleteClick:jest.fn(), handleCloseDelModal:jest.fn()
+    })
+    expect(component).toMatchSnapshot()
+  })
+
+  it('render closed ansible removal modal without policy automation name', () => {
+    const component = renderAnsibleRemovalModal({
+      openDelModal:true,
+      policyAutoName: '', locale: 'us',
       handleDeleteClick:jest.fn(), handleCloseDelModal:jest.fn()
     })
     expect(component).toMatchSnapshot()
