@@ -106,6 +106,9 @@ describeT('@rbac RHACM4K-2584 - GRC UI: [P1][Sev1][policy-grc] Role Based Access
     cy.logout()
   })
 
+  /*******************
+   * RBAC User Tests *
+   *******************/
   test_userPermissionsPageContentCheck('e2e-cluster-admin-cluster', RBACpass, IDP, policyNames, confPolicies, namespaces, permissions['clusterAdmin'], false, false, policyNameFilter)
 
   test_userPermissionsPageContentCheck('e2e-admin-cluster', RBACpass, IDP, policyNames, confPolicies, namespaces, permissions['admin'], false, false, policyNameFilter)
@@ -128,6 +131,9 @@ describeT('@rbac RHACM4K-2584 - GRC UI: [P1][Sev1][policy-grc] Role Based Access
 
   test_userPermissionsPageContentCheck('e2e-group-ns', RBACpass, IDP, policyNamesNS1, confPolicies, namespaces, permissions['view'], true, false, policyNameFilter)
 
+  /***********
+   * Cleanup *
+   ***********/
   it('Login again as kubeadmin', () => {
     cy.login()
   })
