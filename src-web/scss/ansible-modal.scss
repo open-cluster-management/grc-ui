@@ -43,8 +43,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    span {
+    a {
       margin-left: 8px;
+      span {
+        margin-left: 8px;
+      }
     }
   }
   

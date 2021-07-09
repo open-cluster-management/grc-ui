@@ -426,16 +426,16 @@ export class AnsibleAutomationModal extends React.Component {
     const policyName = _.get(policyData, metaNameStr)
     const policyNS = _.get(policyData, metaNSStr)
     let query, variables, pollInterval, actionClose
-    if (activeItem) { // ansible history page
-      query = GET_ANSIBLE_HISTORY
-      variables = {name:policyAutoName, namespace:policyNS}
-      actionClose = ''
-      pollInterval = 10000
-    } else { // configuration page
+    if (!activeItem) { // configuration page
       query = GET_ANSIBLE_CREDENTIALS
       variables = {}
       actionClose = <AlertActionCloseButton onClose={this.closeAlert} />
       pollInterval = 0
+    } else { // ansible history page
+      query = GET_ANSIBLE_HISTORY
+      variables = {name:policyAutoName, namespace:policyNS}
+      actionClose = ''
+      pollInterval = 10000
     }
     const panelType = initialJSON ? 'edit' : 'create'
     return (
@@ -447,8 +447,12 @@ export class AnsibleAutomationModal extends React.Component {
               const queryError = this.getQueryError(error)
               const readyFlag = (initializeFinished && !loading && !opInstalledLoading)
               const modalName = slideFlag ? 'automation-resource-panel slide-in' : 'automation-resource-panel'
-              const titleText = msgs.get(`ansible.automation.heading.${panelType}`, locale)
+              const titleText = readyFlag ? msgs.get(`ansible.automation.heading.${panelType}`, locale) : ''
               const alertTitle = (opInstalledError || queryError || yamlMsg.msg || queryMsg.msg)
+              // Using panelType for the resource check is equivalent to "loading" since the panelType
+              // doesn't actually update from 'create' to 'edit' until resources have loaded
+              const inaccessible = (panelType === 'edit' && data.ansibleCredentials && !data.ansibleCredentials.includes(credentialName)
+                                    && !opInstalled)
               let alertVariant = 'danger'
               if (queryError && _.includes(queryError, 'not installed')) {
                 alertVariant = 'info'
@@ -469,44 +473,54 @@ export class AnsibleAutomationModal extends React.Component {
                   header={
                     <React.Fragment>
                       <div className='ansible_modal_title'>{titleText}</div>
-                      {!opInstalledLoading && !opInstalled && renderAnsibleOperatorNotInstalled(locale)}
-                      {alertTitle && notificationOpen &&
-                          <Alert
-                            variant={alertVariant}
-                            isInline={true}
-                            title={alertTitle}
-                            actionClose={actionClose}
-                          >
-                          </Alert>
-                      }
-                      <div className='infoArea'>
-                        {msgs.get(`ansible.automation.description.${panelType}`, locale)}
-                      </div>
-                      <Title headingLevel="h3">
-                        {msgs.get('table.header.policy.name', locale)}
-                      </Title>
-                      <div className='infoArea'>
-                        {policyName}
-                      </div>
-                      <Title headingLevel="h3">
-                        {msgs.get('table.header.cluster.violation', locale)}
-                      </Title>
-                      <div className='infoArea'>
-                        {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
-                      </div>
-                      {TitleWithTooltip({
-                        className: 'titleWithTooltip',
-                        headingLevel: 'h3',
-                        position: 'top',
-                        title: msgs.get('ansible.tower.URL.title', locale),
-                        tooltip: msgs.get('ansible.launch.connection', locale),
-                      })}
-                      <div className='infoArea'>
-                        {towerURL && renderAnsibleURL('towerURL', towerURL, towerURL, 60)}
-                      </div>
+                      {inaccessible ?
+                        <Alert
+                          variant={'danger'}
+                          isInline={true}
+                          title={msgs.get('error.permission.denied.automation', locale)}
+                        />
+                      :
+                        readyFlag && <div>
+                          {!opInstalledLoading && !opInstalled && renderAnsibleOperatorNotInstalled(locale)}
+                          {alertTitle && notificationOpen &&
+                              <Alert
+                                variant={alertVariant}
+                                isInline={true}
+                                title={alertTitle}
+                                actionClose={actionClose}
+                              >
+                              </Alert>
+                          }
+                          <div className='infoArea'>
+                            {msgs.get(`ansible.automation.description.${panelType}`, locale)}
+                          </div>
+                          <Title headingLevel="h3">
+                            {msgs.get('table.header.policy.name', locale)}
+                          </Title>
+                          <div className='infoArea'>
+                            {policyName}
+                          </div>
+                          <Title headingLevel="h3">
+                            {msgs.get('table.header.cluster.violation', locale)}
+                          </Title>
+                          <div className='infoArea'>
+                            {getPolicyCompliantStatus(policyData, locale, 'clusterCompliant')}
+                          </div>
+                          {TitleWithTooltip({
+                            className: 'titleWithTooltip',
+                            headingLevel: 'h3',
+                            position: 'top',
+                            title: msgs.get('ansible.tower.URL.title', locale),
+                            tooltip: msgs.get('ansible.launch.connection', locale),
+                          })}
+                          <div className='infoArea'>
+                            {towerURL && renderAnsibleURL('towerURL', towerURL, towerURL, 60)}
+                          </div>
+                        </div>
+                    }
                     </React.Fragment>
                   }
-                  actions={buildModalButtonList({
+                  actions={!inaccessible && readyFlag && buildModalButtonList({
                     activeItem, opInstalled, policyAutoName, locale,
                     handleSubmitClick:this.handleSubmitClick,
                     handleCloseClick:this.handleCloseClick,
@@ -521,7 +535,7 @@ export class AnsibleAutomationModal extends React.Component {
                     handleDeleteClick:this.handleDeleteClick,
                     handleCloseDelModal:this.handleCloseDelModal,
                   })}
-                  {readyFlag && renderAnsiblePanelContent({
+                  {!inaccessible && readyFlag && renderAnsiblePanelContent({
                     data, activeItem, locale, handleTabClick:this.handleTabClick,
                     credentialName, credentialIsOpen,
                     setCredentialsSelectionValue:this.setCredentialsSelectionValue,
