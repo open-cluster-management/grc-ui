@@ -3,47 +3,52 @@
 
 'use strict'
 
+const policyKey = 'policy.open-cluster-management.io/policies'
+
 export const checkCreatePermission = (userAccess) => {
   // if create policy permission on any ns, set flag to 1
-  let createFlag = 0
   if (userAccess && typeof userAccess === 'object') {
-    const policyKey = 'policy.open-cluster-management.io/policies'
     for (const singleNSAccess of userAccess) {
-      const rules = singleNSAccess.rules
-      if (Array.isArray(rules['*/*']) &&
-              (rules['*/*'].includes('*') || rules['*/*'].includes('create'))) {
-        createFlag = 1
-        break
-      }
-      if (Array.isArray(rules[policyKey]) &&
-              (rules[policyKey].includes('*') || rules[policyKey].includes('create'))) {
-        createFlag = 1
-        break
+      if (checkCreateRole(singleNSAccess.rules) === 1) {
+        return 1
       }
     }
   }
-  return createFlag
+  return 0
 }
 
+export const checkCreateRole = (rules) => {
+  if (Array.isArray(rules['*/*']) &&
+          (rules['*/*'].includes('*') || rules['*/*'].includes('create'))) {
+    return 1
+  }
+  if (Array.isArray(rules[policyKey]) &&
+          (rules[policyKey].includes('*') || rules[policyKey].includes('create'))) {
+    return 1
+  }
+  return 0
+}
 
 export const checkEditPermission = (userAccess) => {
   // if edit policy permission on any ns, set flag to 1
-  let editFlag = 0
   if (userAccess && typeof userAccess === 'object') {
-    const policyKey = 'policy.open-cluster-management.io/policies'
     for (const singleNSAccess of userAccess) {
-      const rules = singleNSAccess.rules
-      if (Array.isArray(rules['*/*']) &&
-              (rules['*/*'].includes('*') || rules['*/*'].includes('update'))) {
-        editFlag = 1
-        break
-      }
-      if (Array.isArray(rules[policyKey]) &&
-              (rules[policyKey].includes('*') || rules[policyKey].includes('update'))) {
-        editFlag = 1
-        break
+      if (checkEditRole(singleNSAccess.rules) === 1) {
+        return 1
       }
     }
   }
-  return editFlag
+  return 0
+}
+
+export const checkEditRole = (rules) => {
+  if (Array.isArray(rules['*/*']) &&
+          (rules['*/*'].includes('*') || rules['*/*'].includes('update'))) {
+    return 1
+  }
+  if (Array.isArray(rules[policyKey]) &&
+          (rules[policyKey].includes('*') || rules[policyKey].includes('update'))) {
+    return 1
+  }
+  return 0
 }
