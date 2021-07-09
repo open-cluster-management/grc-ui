@@ -8,6 +8,7 @@ import { Text, Select, SelectOption, SelectVariant } from '@patternfly/react-cor
 import msgs from '../../../nls/platform.properties'
 import TitleWithTooltip from '../../common/TitleWithTooltip'
 import { renderAnsibleURL } from './AnsibleURL'
+import _uniqueId from 'lodash/uniqueId'
 
 import '../../../scss/ansible-modal.scss'
 
@@ -41,7 +42,7 @@ export const renderAnsibleCredentialsSelection = ({
             >
               {ansCredentials.map((credential) => (
                 <SelectOption
-                  key={credential.name}
+                  key={_uniqueId(credential.name)}
                   value={credential.name ? credential.name : '-'}
                   isPlaceholder={credential.name ? credential.name : '-'}
                   description={`${credential.host ? credential.host : '-'}`}

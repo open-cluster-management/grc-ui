@@ -7,10 +7,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
-  AcmModal, AcmButton, AcmExpandableCard,
+  AcmModal, AcmExpandableCard,
 } from '@open-cluster-management/ui-components'
 import {
-  Text, Spinner, ButtonVariant, Select, Title,
+  Text, Spinner, Select, Title,
   SelectOption, SelectVariant, Radio, Alert,
   AlertActionCloseButton
 } from '@patternfly/react-core'
@@ -27,11 +27,14 @@ import {
   GET_ANSIBLE_JOB_TEMPLATE, GET_ANSIBLE_OPERATOR_INSTALLED,
 } from '../../../utils/client/queries'
 import _ from 'lodash'
+import _uniqueId from 'lodash/uniqueId'
 import jsYaml from 'js-yaml'
 import TitleWithTooltip from '../../common/TitleWithTooltip'
 import { renderAnsibleOperatorNotInstalled } from './AnsibleOperatorNotInstalled'
 import { renderAnsibleURL } from './AnsibleURL'
 import { renderAnsiblePanelContent } from './AnsiblePanelContent'
+import { buildModalButtonList } from './AnisbleModalButtonList'
+import { renderAnsibleRemovalModal } from './AnsibleRemovalModal'
 
 import '../../../scss/ansible-modal.scss'
 
@@ -68,7 +71,8 @@ export class AnsibleAutomationModal extends React.Component {
       initialJSON: null,
       confirmClose: false,
       slideFlag: open,
-      notificationOpen: true
+      notificationOpen: true,
+      openDelModal:false,
     }
     this.initialize()
   }
@@ -263,14 +267,18 @@ export class AnsibleAutomationModal extends React.Component {
     return updatedJSON
   }
 
-  handleSubmitClick = async () => {
+  handleSubmitClick = async (inputAction) => {
     const { yamlMsg, initialJSON } = this.state
     const { locale } = this.props
     const generateJSONResult = Promise.resolve(this.generateJSON())
     const {latestJSON, action} = await generateJSONResult
-    if (!yamlMsg.msg && latestJSON && action) {
+    let submitAction = action
+    if (typeof inputAction === 'string') {
+      submitAction = inputAction
+    }
+    if (!yamlMsg.msg && latestJSON && submitAction) {
       const updatedJSON = this.removedExtraVars(initialJSON, latestJSON)
-      const {data:resData} = await this.props.handleModifyPolicyAutomation(updatedJSON, action)
+      const {data:resData} = await this.props.handleModifyPolicyAutomation(updatedJSON, submitAction)
       const errors = _.get(resData, 'modifyPolicyAutomation.errors')
       if (Array.isArray(errors) && errors.length > 0)  {
         const error = errors[0]
@@ -284,6 +292,23 @@ export class AnsibleAutomationModal extends React.Component {
         this.handleCloseSlideOut()
       }
     }
+  }
+
+  handleDeleteClick = () => {
+    this.handleCloseDelModal()
+    this.handleSubmitClick('delete')
+  }
+
+  handleCloseDelModal = () => {
+    this.setState({
+      openDelModal: false
+    })
+  }
+
+  handleOpenDelModal = () => {
+    this.setState({
+      openDelModal: true
+    })
   }
 
   handleCloseSlideOut = () => {
@@ -396,7 +421,7 @@ export class AnsibleAutomationModal extends React.Component {
     const { data:policyData, locale, open } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
       initializeFinished, policyAutoName, slideFlag, notificationOpen,
-      credentialName, credentialIsOpen
+      credentialName, credentialIsOpen, openDelModal
     } = this.state
     const policyName = _.get(policyData, metaNameStr)
     const policyNS = _.get(policyData, metaNSStr)
@@ -481,26 +506,21 @@ export class AnsibleAutomationModal extends React.Component {
                       </div>
                     </React.Fragment>
                   }
-                  actions={!activeItem && opInstalled && [
-                    <AcmButton
-                      key="confirm"
-                      variant={ButtonVariant.primary}
-                      onClick={this.handleSubmitClick}
-                    >
-                        {msgs.get('modal.button.save', locale)}
-                    </AcmButton>,
-                    <AcmButton
-                      key="cancel"
-                      variant={ButtonVariant.link}
-                      onClick={this.handleCloseClick}
-                    >
-                        {msgs.get('modal.button.cancel', locale)}
-                    </AcmButton>,
-                  ]}
+                  actions={buildModalButtonList({
+                    activeItem, opInstalled, policyAutoName, locale,
+                    handleSubmitClick:this.handleSubmitClick,
+                    handleCloseClick:this.handleCloseClick,
+                    handleOpenDelModal:this.handleOpenDelModal
+                  })}
                   >
                   <div>
                     {!readyFlag && <Spinner className='patternfly-spinner' />}
                   </div>
+                  {renderAnsibleRemovalModal({
+                    openDelModal, policyAutoName, locale,
+                    handleDeleteClick:this.handleDeleteClick,
+                    handleCloseDelModal:this.handleCloseDelModal,
+                  })}
                   {readyFlag && renderAnsiblePanelContent({
                     data, activeItem, locale, handleTabClick:this.handleTabClick,
                     credentialName, credentialIsOpen,
@@ -610,7 +630,7 @@ export class AnsibleAutomationModal extends React.Component {
                       >
                       {ansJobTemplates.map((jobTemplate) => (
                         <SelectOption
-                          key={jobTemplate.name}
+                          key={_uniqueId(jobTemplate.name)}
                           value={jobTemplate.name ? jobTemplate.name : '-'}
                           isPlaceholder={jobTemplate.name ? jobTemplate.name : '-'}
                           description={jobTemplate.description ? jobTemplate.description : '-'}
