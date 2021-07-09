@@ -17,13 +17,21 @@ export const checkCreatePermission = (userAccess) => {
   return 0
 }
 
-export const checkCreateRole = (rules) => {
+export const checkCreateRole = (rules, policyKeys=[]) => {
   if (Array.isArray(rules['*/*']) &&
           (rules['*/*'].includes('*') || rules['*/*'].includes('create'))) {
     return 1
   }
-  if (Array.isArray(rules[policyKey]) &&
-          (rules[policyKey].includes('*') || rules[policyKey].includes('create'))) {
+  // Assumption is that create permissions are needed for all resources provided in policyKeys
+  policyKeys.push(policyKey)
+  const permissions = policyKeys.map((key) => {
+    if (Array.isArray(rules[key]) &&
+          (rules[key].includes('*') || rules[key].includes('create'))) {
+      return 1
+    }
+    return 0
+  })
+  if (!permissions.includes(0)) {
     return 1
   }
   return 0
@@ -41,13 +49,21 @@ export const checkEditPermission = (userAccess) => {
   return 0
 }
 
-export const checkEditRole = (rules) => {
+export const checkEditRole = (rules, policyKeys=[]) => {
   if (Array.isArray(rules['*/*']) &&
           (rules['*/*'].includes('*') || rules['*/*'].includes('update'))) {
     return 1
   }
-  if (Array.isArray(rules[policyKey]) &&
-          (rules[policyKey].includes('*') || rules[policyKey].includes('update'))) {
+  // Assumption is that edit permissions are needed for all resources provided in policyKeys
+  policyKeys.push(policyKey)
+  const permissions = policyKeys.map((key) => {
+    if (Array.isArray(rules[key]) &&
+            (rules[key].includes('*') || rules[key].includes('update'))) {
+      return 1
+    }
+    return 0
+  })
+  if (!permissions.includes(0)) {
     return 1
   }
   return 0

@@ -11,7 +11,7 @@ import TruncateText from '../../components/common/TruncateText'
 import { updateModal } from '../../actions/common'
 import { POLICY_AUTOMATIONS } from '../../utils/client/queries'
 import { Query } from '@apollo/client/react/components'
-import { checkCreateRole } from '../../utils/CheckUserPermission'
+import { checkCreateRole, checkEditRole } from '../../utils/CheckUserPermission'
 import {
     AcmLaunchLink
 } from '@open-cluster-management/ui-components'
@@ -30,6 +30,7 @@ class AutomationButton extends React.Component {
 
   render() {
     const { item, locale, userAccess } = this.props
+    const automationAccess = this.checkPermissions(userAccess, item.metadata.namespace)
     return (
         <Query query={POLICY_AUTOMATIONS} variables={{ namespace: item.metadata.namespace }}>
         {( result ) => {
@@ -47,21 +48,23 @@ class AutomationButton extends React.Component {
             return <Spinner size='md' />
           }
           if (found) {
-            return this.automationLaunch(item, automationName)
+            return this.automationLaunch(item, automationName, automationAccess, locale)
           }
-          return this.automationConfigure(item, userAccess, locale)
+          return this.automationConfigure(item, automationAccess, locale)
         }}
         </Query>
       )
   }
 
-  automationLaunch(item, automationName) {
-    return (
+  automationLaunch(item, automationName, automationAccess, locale) {
+    const label = 'automationButton'
+    const isDisabled = !automationAccess.CREATE && !automationAccess.EDIT
+    const configureButton = (
       <AcmLaunchLink links={[
         {
-            id: `automationButton-${automationName}`,
+            id: `${label}-${automationName}`,
             text: <TruncateText maxCharacters={20} text={automationName} />,
-            onClick: () => {
+            onClick: isDisabled ? undefined : () => {
               this.props.onClickAutomation(item)
             },
             label: true,
@@ -69,17 +72,17 @@ class AutomationButton extends React.Component {
         },
       ]}></AcmLaunchLink>
     )
+    return createDisableTooltip(isDisabled, label, locale, configureButton)
   }
 
-  automationConfigure(item, userAccess, locale) {
+  automationConfigure(item, automationAccess, locale) {
     const label = 'automationButton'
-    const isDisabled = !this.checkPermissions(userAccess, item.metadata.namespace)
+    const isDisabled = !automationAccess.CREATE
     const configureButton = (
       <Button
         component="a"
         variant="link"
         className={label}
-        tooltip={msgs.get('error.permission.disabled', locale)}
         isDisabled={isDisabled}
         onClick= {() => {
           this.props.onClickAutomation(item)
@@ -93,12 +96,18 @@ class AutomationButton extends React.Component {
 
   checkPermissions(access, ns) {
     // Filter for the namespace of the policy
+    const automationAccess = {
+      CREATE: false,
+      EDIT: false
+    }
     const accessObj = access.filter(role => role.namespace === ns)
     if (accessObj.length > 0 && accessObj[0].rules) {
-      // Check for create permissions on policies
-      return checkCreateRole(accessObj[0].rules) === 1
+      // Check for permissions on Policy and PolicyAutomation resources
+      const resources = [ 'policy.open-cluster-management.io/policyautomations' ]
+      automationAccess.CREATE = checkCreateRole(accessObj[0].rules, resources) === 1
+      automationAccess.EDIT = checkEditRole(accessObj[0].rules, resources) === 1
     }
-    return false
+    return automationAccess
   }
 }
 
