@@ -22,11 +22,11 @@ exports[`render ansible removal modal render closed ansible removal modal 1`] = 
   isOpen={false}
   onClose={[MockFunction]}
   showClose={true}
-  title="Permanetly delete policy violation automation?"
+  title="Permanently delete policy violation automation?"
   titleIconVariant="warning"
   variant="medium"
 >
-  If you delete {0}, you will permanetly lose all of its information.
+  If you delete {0}, you will permanently lose all of its information.
 </AcmModal>
 `;
 
@@ -52,11 +52,11 @@ exports[`render ansible removal modal render closed ansible removal modal withou
   isOpen={true}
   onClose={[MockFunction]}
   showClose={true}
-  title="Permanetly delete policy violation automation?"
+  title="Permanently delete policy violation automation?"
   titleIconVariant="warning"
   variant="medium"
 >
-  If you delete {0}, you will permanetly lose all of its information.
+  If you delete {0}, you will permanently lose all of its information.
 </AcmModal>
 `;
 
@@ -82,11 +82,11 @@ exports[`render ansible removal modal render opened ansible removal modal 1`] = 
   isOpen={true}
   onClose={[MockFunction]}
   showClose={true}
-  title="Permanetly delete policy violation automation?"
+  title="Permanently delete policy violation automation?"
   titleIconVariant="warning"
   variant="medium"
 >
-  If you delete {0}, you will permanetly lose all of its information.
+  If you delete {0}, you will permanently lose all of its information.
 </AcmModal>
 `;
 
@@ -112,10 +112,10 @@ exports[`render ansible removal modal render opened ansible removal modal withou
   isOpen={true}
   onClose={[MockFunction]}
   showClose={true}
-  title="Permanetly delete policy violation automation?"
+  title="Permanently delete policy violation automation?"
   titleIconVariant="warning"
   variant="medium"
 >
-  If you delete {0}, you will permanetly lose all of its information.
+  If you delete {0}, you will permanently lose all of its information.
 </AcmModal>
 `;
