@@ -585,10 +585,10 @@ export class AnsibleAutomationModal extends React.Component {
           }
         })
       }
-    }
-    return {
-      towerURL: targetCredential.host,
-      token: targetCredential.token
+      return {
+        towerURL: targetCredential.host,
+        token: targetCredential.token
+      }
     }
   }
 
