@@ -418,7 +418,7 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   renderAnsiblePanel = (opInstalled, opInstalledLoading, opInstalledError) => {
-    const { data:policyData, locale, open } = this.props
+    const { data:policyData, locale, open, onlyEdit } = this.props
     const { activeItem, towerURL, queryMsg, yamlMsg, initialJSON,
       initializeFinished, policyAutoName, slideFlag, notificationOpen,
       credentialName, credentialIsOpen, openDelModal
@@ -521,7 +521,7 @@ export class AnsibleAutomationModal extends React.Component {
                     </React.Fragment>
                   }
                   actions={!inaccessible && readyFlag && buildModalButtonList({
-                    activeItem, opInstalled, policyAutoName, locale,
+                    onlyEdit, activeItem, opInstalled, policyAutoName, locale,
                     handleSubmitClick:this.handleSubmitClick,
                     handleCloseClick:this.handleCloseClick,
                     handleOpenDelModal:this.handleOpenDelModal
@@ -763,6 +763,7 @@ AnsibleAutomationModal.propTypes = {
   handleGetPolicyAutomation: PropTypes.func,
   handleModifyPolicyAutomation: PropTypes.func,
   locale: PropTypes.string,
+  onlyEdit: PropTypes.bool,
   open: PropTypes.bool,
   type: PropTypes.string,
 }

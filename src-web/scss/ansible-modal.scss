@@ -104,5 +104,11 @@
       width: 25%;
       margin-right: 8px;
     }
+    .disable-tooltip {
+      width: 25%;
+      .pf-c-button {
+        width: 100%;
+      }
+    }
   }
 }

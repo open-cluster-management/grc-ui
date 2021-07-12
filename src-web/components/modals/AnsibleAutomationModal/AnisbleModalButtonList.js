@@ -6,10 +6,11 @@
 import React from 'react'
 import { AcmButton } from '@open-cluster-management/ui-components'
 import { ButtonVariant } from '@patternfly/react-core'
+import { createDisableTooltip } from '../../common/DisableTooltip'
 import msgs from '../../../nls/platform.properties'
 
 export const buildModalButtonList = ({
-    activeItem, opInstalled, policyAutoName, locale,
+    onlyEdit, activeItem, opInstalled, policyAutoName, locale,
     handleSubmitClick, handleCloseClick, handleOpenDelModal
 }) => {
     const actions = []
@@ -33,15 +34,16 @@ export const buildModalButtonList = ({
         </AcmButton>
       )
       if (policyAutoName) {
-        actions.push(
+        const delButton = (
           <AcmButton
-          key="delete"
-          variant={ButtonVariant.danger}
-          onClick={handleOpenDelModal}
-          >
-            {msgs.get('modal.button.delete', locale)}
-          </AcmButton>
-        )
+            key="delete"
+            variant={ButtonVariant.danger}
+            isDisabled={onlyEdit}
+            onClick={onlyEdit? undefined : handleOpenDelModal}
+            >
+              {msgs.get('modal.button.delete', locale)}
+            </AcmButton>)
+        actions.push(createDisableTooltip(onlyEdit, 'delete', locale, delButton))
       }
     }
     return actions

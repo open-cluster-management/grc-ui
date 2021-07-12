@@ -58,6 +58,7 @@ class AutomationButton extends React.Component {
 
   automationLaunch(item, automationName, automationAccess, locale) {
     const label = 'automationButton'
+    const onlyEdit = !automationAccess.CREATE
     const isDisabled = !automationAccess.CREATE && !automationAccess.EDIT
     const configureButton = (
       <AcmLaunchLink links={[
@@ -65,7 +66,7 @@ class AutomationButton extends React.Component {
             id: `${label}-${automationName}`,
             text: <TruncateText maxCharacters={20} text={automationName} />,
             onClick: isDisabled ? undefined : () => {
-              this.props.onClickAutomation(item)
+              this.props.onClickAutomation(item, onlyEdit)
             },
             label: true,
             noIcon: true,
@@ -123,7 +124,7 @@ const mapDispatchToProps = (dispatch) => {
     name: 'HCMCompliance',
   }
   return {
-    onClickAutomation: (data) => {
+    onClickAutomation: (data, onlyEdit) => {
       dispatch(updateModal(
         { open: true, type: 'resource-automation', resourceTypeAuto,
           label: {
@@ -131,7 +132,9 @@ const mapDispatchToProps = (dispatch) => {
             label: `modal.automation-${resourceTypeAuto.name.toLowerCase()}.label`,
             heading: `modal.automation-${resourceTypeAuto.name.toLowerCase()}.heading`
           },
-          data: { kind: resourceTypeAuto.name, ...data }}))
+          data: { kind: resourceTypeAuto.name, ...data },
+          onlyEdit
+        }))
     }
   }
 }
