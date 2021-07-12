@@ -8,7 +8,7 @@ import { getConfigObject } from '../config'
 const closeMenuQuery = 'svg[aria-label="Close menu"]'
 const clearAllBtnQuery = 'svg[aria-label="Clear all selected items"]'
 const selectItemQuery = 'input[type="checkbox"]'
-const timestampRegexp = /^(a?|an?|one?|[0-9]+) (day?|hour?|minute?|second?|days?|hours?|minutes?|few seconds)$/
+const timestampRegexp = /^((a?|an?|one?|[0-9]+) (day?|hour?|minute?|second?|days?|hours?|minutes?|few seconds) ago|in (a?|an?|one?|[0-9]+) (day?|hour?|minute?|second?|days?|hours?|minutes?|few seconds))$/
 
 export const pageLoader = {
   shouldExist: () => cy.get('.patternfly-spinner').should('exist')  ,
