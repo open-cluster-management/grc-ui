@@ -27,6 +27,38 @@ Array [
 ]
 `;
 
+exports[`render action buttons on ansible modal render three action buttons with disabled delete button with editOnly 1`] = `
+Array [
+  <AcmButton
+    onClick={[MockFunction]}
+    variant="primary"
+  >
+    Save
+  </AcmButton>,
+  <AcmButton
+    onClick={[MockFunction]}
+    variant="secondary"
+  >
+    Cancel
+  </AcmButton>,
+  <mockTooltip
+    content="You are not authorized to complete this action. See your cluster administrator for role-based access information."
+    zIndex={10001}
+  >
+    <div
+      className="disable-tooltip"
+    >
+      <AcmButton
+        isDisabled={true}
+        variant="danger"
+      >
+        Delete
+      </AcmButton>
+    </div>
+  </mockTooltip>,
+]
+`;
+
 exports[`render action buttons on ansible modal render two action buttons without delete button when no policy automation 1`] = `
 Array [
   <AcmButton

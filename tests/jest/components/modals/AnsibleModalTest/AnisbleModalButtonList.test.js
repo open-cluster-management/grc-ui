@@ -42,4 +42,13 @@ describe('render action buttons on ansible modal', () => {
     })
     expect(component).toMatchSnapshot()
   })
+
+  it('render three action buttons with disabled delete button with editOnly', () => {
+    const component = buildModalButtonList({
+      onlyEdit: true, activeItem: 0, opInstalled: true,
+      policyAutoName: 'test-policy-3-1624936287-policy-automation', locale: 'us',
+      handleSubmitClick:jest.fn(), handleCloseClick:jest.fn(), handleOpenDelModal:jest.fn()
+    })
+    expect(component).toMatchSnapshot()
+  })
 })
