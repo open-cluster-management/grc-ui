@@ -44,7 +44,9 @@ const checkRole = (rules, policyKeys, action) => {
     return 1
   }
   // Assumption is that create permissions are needed for all resources provided in policyKeys
-  policyKeys.push(policyKey)
+  if (!policyKeys.includes(policyKey)) {
+    policyKeys.push(policyKey)
+  }
   const permissions = policyKeys.map((key) => {
     if (Array.isArray(rules[key]) &&
           (rules[key].includes('*') || rules[key].includes(action))) {
