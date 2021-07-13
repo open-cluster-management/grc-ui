@@ -9,6 +9,7 @@ import msgs from '../../../nls/platform.properties'
 import TitleWithTooltip from '../../common/TitleWithTooltip'
 import { renderAnsibleURL } from './AnsibleURL'
 import _uniqueId from 'lodash/uniqueId'
+import { AcmIcon, AcmIconVariant } from '@open-cluster-management/ui-components'
 
 import '../../../scss/ansible-modal.scss'
 
@@ -52,7 +53,10 @@ export const renderAnsibleCredentialsSelection = ({
           {renderAnsibleURL(
             'createCredentialLink',
             msgs.get('ansible.launch.createCredential', locale),
-            '/multicloud/credentials'
+            '/multicloud/credentials',
+            60,
+            false,
+            <AcmIcon icon={AcmIconVariant.openNewTab} />
           )}
           </div>
           {credentialName && renderAnsibleJobTemplatesSelection(
@@ -66,7 +70,10 @@ export const renderAnsibleCredentialsSelection = ({
             {renderAnsibleURL(
               'createCredentialLink',
               msgs.get('ansible.launch.createCredential', locale),
-              '/multicloud/credentials'
+              '/multicloud/credentials',
+              60,
+              false,
+              <AcmIcon icon={AcmIconVariant.openNewTab} />
             )}
           </Text>
         </div>

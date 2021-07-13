@@ -501,8 +501,8 @@ export class AnsibleAutomationModal extends React.Component {
                         title: msgs.get('ansible.tower.URL.title', locale),
                         tooltip: msgs.get('ansible.launch.connection', locale),
                       })}
-                      <div className='infoArea'>
-                        {towerURL && renderAnsibleURL('towerURL', towerURL, towerURL, 60)}
+                      <div className='infoArea ansibleTowerURL'>
+                        {towerURL && renderAnsibleURL('towerURL', towerURL, towerURL, 60, false, null)}
                       </div>
                     </React.Fragment>
                   }
