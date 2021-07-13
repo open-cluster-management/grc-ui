@@ -14,10 +14,11 @@ export const buildModalButtonList = ({
     handleSubmitClick, handleCloseClick, handleOpenDelModal
 }) => {
     const actions = []
-    if (!activeItem && opInstalled) {
+    if (!activeItem) {
       actions.push(
         <AcmButton
           key="confirm"
+          isDisabled={!opInstalled}
           variant={ButtonVariant.primary}
           onClick={handleSubmitClick}
         >
