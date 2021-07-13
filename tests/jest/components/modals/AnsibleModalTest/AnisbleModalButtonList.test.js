@@ -16,7 +16,7 @@ describe('render action buttons on ansible modal', () => {
     expect(component).toMatchSnapshot()
   })
 
-  it('render no action button when ansible operator isn not installed', () => {
+  it('render disabled action button when ansible operator isn not installed but there is automation', () => {
     const component = buildModalButtonList({
       activeItem: 0, opInstalled: false,
       policyAutoName: 'test-policy-3-1624936287-policy-automation', locale: 'us',
