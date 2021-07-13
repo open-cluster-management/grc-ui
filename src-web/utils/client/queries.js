@@ -320,7 +320,7 @@ export const GET_ANSIBLE_JOB_TEMPLATE = gql`
 
 // retrieve ansible history
 export const GET_ANSIBLE_HISTORY = gql`
-  query ansibleAutomationHistories($name: String!, $namespace: String!) {
+  query ansibleAutomationHistories($name: String, $namespace: String) {
     items: ansibleAutomationHistories(name: $name, namespace: $namespace) {
       name
       message
@@ -334,8 +334,8 @@ export const GET_ANSIBLE_HISTORY = gql`
 
 // check if ansible operator installed
 export const GET_ANSIBLE_OPERATOR_INSTALLED = gql`
-  query ansibleOperatorInstalled {
-    ansibleOperatorInstalled {
+  query ansibleOperatorInstalled($namespace: String!) {
+    ansibleOperatorInstalled(namespace: $namespace) {
       installed
     }
   }

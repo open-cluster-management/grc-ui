@@ -276,8 +276,8 @@ export class AnsibleAutomationModal extends React.Component {
     if (typeof inputAction === 'string') {
       submitAction = inputAction
     }
-    if (!yamlMsg.msg && latestJSON && submitAction) {
-      const updatedJSON = this.removedExtraVars(initialJSON, latestJSON)
+    if (!yamlMsg.msg && latestJSON && submitAction || submitAction === 'delete') {
+      const updatedJSON = this.removedExtraVars(initialJSON, latestJSON) || initialJSON
       const {data:resData} = await this.props.handleModifyPolicyAutomation(updatedJSON, submitAction)
       const errors = _.get(resData, 'modifyPolicyAutomation.errors')
       if (Array.isArray(errors) && errors.length > 0)  {
@@ -406,8 +406,9 @@ export class AnsibleAutomationModal extends React.Component {
   }
 
   render() {
+    const namespace = _.get(this.props.data, metaNSStr, '')
     return (
-      <Query query={GET_ANSIBLE_OPERATOR_INSTALLED}>
+      <Query query={GET_ANSIBLE_OPERATOR_INSTALLED} variables={{namespace}}>
         {( result ) => {
           const { loading, error={}, data={} } = result
           const queryError = this.getQueryError(error)
@@ -428,7 +429,7 @@ export class AnsibleAutomationModal extends React.Component {
     let query, variables, pollInterval, actionClose
     if (!activeItem) { // configuration page
       query = GET_ANSIBLE_CREDENTIALS
-      variables = {}
+      variables = { name: credentialName, namespace: policyNS }
       actionClose = <AlertActionCloseButton onClose={this.closeAlert} />
       pollInterval = 0
     } else { // ansible history page
@@ -520,12 +521,13 @@ export class AnsibleAutomationModal extends React.Component {
                     }
                     </React.Fragment>
                   }
-                  actions={!inaccessible && readyFlag && buildModalButtonList({
-                    onlyEdit, activeItem, opInstalled, policyAutoName, locale,
-                    handleSubmitClick:this.handleSubmitClick,
-                    handleCloseClick:this.handleCloseClick,
-                    handleOpenDelModal:this.handleOpenDelModal
-                  })}
+                  actions={(panelType === 'create' && opInstalled || policyAutoName !== '') && readyFlag &&
+                    buildModalButtonList({
+                      onlyEdit, activeItem, opInstalled, policyAutoName, locale,
+                      handleSubmitClick:this.handleSubmitClick,
+                      handleCloseClick:this.handleCloseClick,
+                      handleOpenDelModal:this.handleOpenDelModal
+                    })}
                   >
                   <div>
                     {!readyFlag && <Spinner className='patternfly-spinner' />}
@@ -535,14 +537,15 @@ export class AnsibleAutomationModal extends React.Component {
                     handleDeleteClick:this.handleDeleteClick,
                     handleCloseDelModal:this.handleCloseDelModal,
                   })}
-                  {!inaccessible && readyFlag && renderAnsiblePanelContent({
-                    data, activeItem, locale, handleTabClick:this.handleTabClick,
-                    credentialName, credentialIsOpen,
-                    setCredentialsSelectionValue:this.setCredentialsSelectionValue,
-                    onCredentialsSelectionToggle:this.onCredentialsSelectionToggle,
-                    renderAnsibleJobTemplatesSelection:this.renderAnsibleJobTemplatesSelection,
-                    getAnsibleConnection:this.getAnsibleConnection,
-                  })}
+                  {readyFlag &&
+                    renderAnsiblePanelContent({
+                      data, activeItem, locale, handleTabClick:this.handleTabClick,
+                      credentialName, credentialIsOpen,
+                      setCredentialsSelectionValue:this.setCredentialsSelectionValue,
+                      onCredentialsSelectionToggle:this.onCredentialsSelectionToggle,
+                      renderAnsibleJobTemplatesSelection:this.renderAnsibleJobTemplatesSelection,
+                      getAnsibleConnection:this.getAnsibleConnection,
+                    })}
                   </AcmModal>
                 </React.Fragment>
               )
