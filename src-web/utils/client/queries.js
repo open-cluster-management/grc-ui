@@ -297,8 +297,8 @@ export const getUserAccess = gql`
 
 // retrieve ansible access info
 export const GET_ANSIBLE_CREDENTIALS = gql`
-  query getAnsibleCredentials {
-    ansibleCredentials {
+  query getAnsibleCredentials($name: String, $namespace: String) {
+    ansibleCredentials(name: $name, namespace: $namespace) {
       name
       namespace
       host
@@ -320,7 +320,7 @@ export const GET_ANSIBLE_JOB_TEMPLATE = gql`
 
 // retrieve ansible history
 export const GET_ANSIBLE_HISTORY = gql`
-  query ansibleAutomationHistories($name: String, $namespace: String) {
+  query ansibleAutomationHistories($name: String!, $namespace: String!) {
     items: ansibleAutomationHistories(name: $name, namespace: $namespace) {
       name
       message

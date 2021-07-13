@@ -441,6 +441,7 @@ export class AnsibleAutomationModal extends React.Component {
     const panelType = initialJSON ? 'edit' : 'create'
     return (
       <div>
+        {initializeFinished &&
         <Query query={query} pollInterval={pollInterval} variables={variables}>
             {( result ) => {
               const { loading } = result
@@ -550,7 +551,7 @@ export class AnsibleAutomationModal extends React.Component {
                 </React.Fragment>
               )
             }}
-          </Query>
+          </Query>}
     </div>
     )
   }
