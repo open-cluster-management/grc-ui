@@ -64,7 +64,7 @@ export const renderAnsibleCredentialsSelection = ({
           )}
         </React.Fragment>}
       {!ansCredentialFlag &&
-        <div className='infoArea createCredential'>
+        <div className='infoArea createCredential noExistingCredential'>
           <Text>
             {msgs.get('ansible.no.credential', locale)}
             {renderAnsibleURL(

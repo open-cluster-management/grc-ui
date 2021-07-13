@@ -61,6 +61,12 @@
       }
     }
   }
+
+  .noExistingCredential {
+    .pf-c-button.pf-m-link {
+      margin-left: 8px;
+    }
+  }
   
   .ansible-switch {
     margin-bottom: 8px;
