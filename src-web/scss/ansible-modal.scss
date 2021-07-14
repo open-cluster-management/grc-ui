@@ -39,15 +39,32 @@
     padding-bottom: 32px;
   }
 
+  .ansibleTowerURL {
+    .pf-c-button__icon {
+      margin-left: 8px;
+      svg {
+        width: 16px;
+         height: 14.95px;
+      }
+    }
+  }
+
   .createCredential {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    a {
+    span {
       margin-left: 8px;
-      span {
-        margin-left: 8px;
+      svg {
+        width: 16px;
+        height: 14.95px;
       }
+    }
+  }
+
+  .noExistingCredential {
+    .pf-c-button.pf-m-link {
+      margin-left: 8px;
     }
   }
   

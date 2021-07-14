@@ -471,7 +471,8 @@ export class AnsibleAutomationModal extends React.Component {
                   header={
                     <React.Fragment>
                       <div className='ansible_modal_title'>{titleText}</div>
-                      {readyFlag && <div>
+                      {readyFlag &&
+                        <div>
                         {!opInstalledLoading && !opInstalled && renderAnsibleOperatorNotInstalled(locale)}
                         {alertTitle && notificationOpen &&
                             <Alert
@@ -504,8 +505,8 @@ export class AnsibleAutomationModal extends React.Component {
                           title: msgs.get('ansible.tower.URL.title', locale),
                           tooltip: msgs.get('ansible.launch.connection', locale),
                         })}
-                        <div className='infoArea'>
-                          {towerURL && renderAnsibleURL('towerURL', towerURL, towerURL, 60)}
+                        <div className='infoArea ansibleTowerURL'>
+                          {towerURL && renderAnsibleURL('towerURL', towerURL, towerURL, 60, false, null)}
                         </div>
                       </div>
                     }

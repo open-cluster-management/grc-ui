@@ -4,14 +4,12 @@
 'use strict'
 
 import React from 'react'
-import {
-  AcmLaunchLink, AcmIcon, AcmIconVariant
-} from '@open-cluster-management/ui-components'
+import { AcmLaunchLink } from '@open-cluster-management/ui-components'
 import TruncateText from '../../common/TruncateText'
 
 import '../../../scss/ansible-modal.scss'
 
-export const renderAnsibleURL = (id, text, URL, truncateLength) => {
+export const renderAnsibleURL = (id, text, URL, truncateLength, noIcon, icon) => {
   if (!text || text !== '-') {
     let linkText = text
     if (truncateLength) {
@@ -21,8 +19,8 @@ export const renderAnsibleURL = (id, text, URL, truncateLength) => {
       id,
       text: linkText,
       href: URL,
-      noIcon: false,
-      icon: <AcmIcon icon={AcmIconVariant.openNewTab} />
+      noIcon,
+      icon,
     }
     return <AcmLaunchLink links={[link]} />
   } else {

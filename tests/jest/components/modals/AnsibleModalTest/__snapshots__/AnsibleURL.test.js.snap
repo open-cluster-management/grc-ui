@@ -2,17 +2,36 @@
 
 exports[`render AnsibleURL component AnsibleURL link renders as "-" text 1`] = `"-"`;
 
+exports[`render AnsibleURL component AnsibleURL link renders as "-" text 2`] = `"-"`;
+
 exports[`render AnsibleURL component AnsibleURL link renders as empty text 1`] = `
 <AcmLaunchLink
   links={
     Array [
       Object {
         "href": "/multicloud/credentials",
-        "icon": <AcmIcon
-          icon="opennewtab"
-        />,
+        "icon": undefined,
         "id": "testAnsibleURL",
-        "noIcon": false,
+        "noIcon": undefined,
+        "text": <TruncateText
+          maxCharacters={3}
+          text=""
+        />,
+      },
+    ]
+  }
+/>
+`;
+
+exports[`render AnsibleURL component AnsibleURL link renders as empty text 2`] = `
+<AcmLaunchLink
+  links={
+    Array [
+      Object {
+        "href": "/multicloud/credentials",
+        "icon": null,
+        "id": "testAnsibleURL",
+        "noIcon": true,
         "text": <TruncateText
           maxCharacters={3}
           text=""
@@ -24,6 +43,25 @@ exports[`render AnsibleURL component AnsibleURL link renders as empty text 1`] =
 `;
 
 exports[`render AnsibleURL component AnsibleURL link renders as normal text with truncate 1`] = `
+<AcmLaunchLink
+  links={
+    Array [
+      Object {
+        "href": "/multicloud/credentials",
+        "icon": undefined,
+        "id": "testAnsibleURL",
+        "noIcon": undefined,
+        "text": <TruncateText
+          maxCharacters={3}
+          text="This is an ansible url"
+        />,
+      },
+    ]
+  }
+/>
+`;
+
+exports[`render AnsibleURL component AnsibleURL link renders as normal text with truncate 2`] = `
 <AcmLaunchLink
   links={
     Array [
@@ -45,6 +83,22 @@ exports[`render AnsibleURL component AnsibleURL link renders as normal text with
 `;
 
 exports[`render AnsibleURL component AnsibleURL link renders as normal text without truncate 1`] = `
+<AcmLaunchLink
+  links={
+    Array [
+      Object {
+        "href": "/multicloud/credentials",
+        "icon": undefined,
+        "id": "testAnsibleURL",
+        "noIcon": undefined,
+        "text": "This is an ansible url",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`render AnsibleURL component AnsibleURL link renders as normal text without truncate 2`] = `
 <AcmLaunchLink
   links={
     Array [
