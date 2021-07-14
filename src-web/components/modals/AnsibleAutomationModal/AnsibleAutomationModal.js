@@ -431,7 +431,7 @@ export class AnsibleAutomationModal extends React.Component {
       query = GET_ANSIBLE_CREDENTIALS
       variables = { name: credentialName, namespace: policyNS }
       actionClose = <AlertActionCloseButton onClose={this.closeAlert} />
-      pollInterval = initializeFinished ? 0 : 1000
+      pollInterval = 0
     } else { // ansible history page
       query = GET_ANSIBLE_HISTORY
       variables = {name:policyAutoName, namespace:policyNS}
