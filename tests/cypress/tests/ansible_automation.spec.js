@@ -72,7 +72,15 @@ describeT('RHACM4K-3471 - [P1][Sev1][policy-grc] All policies page: Verify autom
     cy.verifyPolicyInListing(credPolicyName, {})
   })
 
-  it(`Wait for ${credPolicyName} status to become available`, () => {
+  it(`Wait for ${credPolicyName} status to become NonCompliant`, () => {
+    cy.waitForPolicyStatus(credPolicyName, '[^0]/')
+  })
+
+  it(`Enforce ${credPolicyName}`, () => {
+    cy.actionPolicyActionInListing(credPolicyName, 'Enforce')
+  })
+
+  it(`Wait for ${credPolicyName} status to be Compliant`, () => {
     cy.waitForPolicyStatus(credPolicyName, '0/')
   })
 

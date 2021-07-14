@@ -89,7 +89,13 @@ describeT('@rbac RHACM4K-2584 - GRC UI: [P1][Sev1][policy-grc] Role Based Access
   it(`Ansible setup: Check that policy ${credPolicyName} is present in the policy listing`, () => {
     cy.verifyPolicyInListing(credPolicyName, {})
   })
-  it(`Ansible setup: Wait for ${credPolicyName} status to become available`, () => {
+  it(`Ansible setup: Wait for ${credPolicyName} status to become NonCompliant`, () => {
+    cy.waitForPolicyStatus(credPolicyName, '[^0]/')
+  })
+  it(`Ansible setup: Enforce ${credPolicyName}`, () => {
+    cy.actionPolicyActionInListing(credPolicyName, 'Enforce')
+  })
+  it(`Ansible setup: Wait for ${credPolicyName} status to be Compliant`, () => {
     cy.waitForPolicyStatus(credPolicyName, '0/')
   })
   //check modal post credential creation
