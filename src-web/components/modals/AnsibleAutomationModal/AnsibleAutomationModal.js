@@ -562,27 +562,27 @@ export class AnsibleAutomationModal extends React.Component {
   getAnsibleConnection = (ansCredentials, credentialNameNew, type) => {
     const { credentialName:credentialNameOld, credentialNS } = this.state
     const targetCredential = _.find(ansCredentials, ['name', (credentialNameNew || credentialNameOld)])
+    let towerURL='', token=''
     if (targetCredential && targetCredential.namespace
       && targetCredential.host && targetCredential.token) {
+      towerURL = targetCredential.host
+      token = targetCredential.token
       if (credentialNS !== targetCredential.namespace) {
         this.setState({
           credentialNS: targetCredential.namespace,
-          towerURL:targetCredential.host,
+          towerURL,
         })
       }
       if (type === 'edit') {
         this.setState({
           ansibleConnection: {
-            towerURL: targetCredential.host,
-            token: targetCredential.token
+            towerURL,
+            token,
           }
         })
       }
-      return {
-        towerURL: targetCredential.host,
-        token: targetCredential.token
-      }
     }
+    return { towerURL, token }
   }
 
   setJobTemplatesSelectionValue = (event, selection) => {
