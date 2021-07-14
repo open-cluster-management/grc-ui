@@ -135,7 +135,14 @@ describeT('RHACM4K-3471 - [P1][Sev1][policy-grc] All policies page: Verify autom
     cy.log(cleanUprawPolicyYAML)
       .createPolicyFromYAML(cleanUprawPolicyYAML, true)
   })
-  it(`Wait for ${cleanUppolicyName} status to become available`, () => {
+  it(`Wait for ${cleanUppolicyName} status to become NonCompliant`, () => {
+    cy.waitForPolicyStatus(cleanUppolicyName, '0/')
+      .waitForPolicyStatus(cleanUppolicyName, '[^0]/')
+  })
+  it(`Enforce ${cleanUppolicyName}`, () => {
+    cy.actionPolicyActionInListing(cleanUppolicyName, 'Enforce')
+  })
+  it(`Wait for ${cleanUppolicyName} status to be Compliant`, () => {
     cy.waitForPolicyStatus(cleanUppolicyName, '0/')
   })
   it(`Delete policy ${cleanUppolicyName}`, () => {
