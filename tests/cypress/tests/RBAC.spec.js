@@ -153,8 +153,7 @@ describeT('@rbac RHACM4K-2584 - GRC UI: [P1][Sev1][policy-grc] Role Based Access
       .createPolicyFromYAML(cleanUprawPolicyYAML, true)
   })
   it(`Ansible cleanup: Wait for ${cleanUppolicyName} status to become NonCompliant`, () => {
-    cy.waitForPolicyStatus(cleanUppolicyName, '0/')
-      .waitForPolicyStatus(cleanUppolicyName, '[^0]/')
+    cy.waitForPolicyStatus(cleanUppolicyName, '[^0]/')
   })
   it(`Ansible cleanup: Enforce ${cleanUppolicyName}`, () => {
     cy.actionPolicyActionInListing(cleanUppolicyName, 'Enforce')
