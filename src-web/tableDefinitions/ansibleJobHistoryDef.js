@@ -31,6 +31,7 @@ export default {
       msgKey: 'table.header.started',
       label: 'started',
       sortable: true,
+      sortLabel: 'started.rawData',
       resourceKey: 'started',
       transforms: [wrappable],
       type: 'timestamp'
@@ -39,6 +40,7 @@ export default {
       msgKey: 'table.header.finished',
       label: 'finished',
       sortable: true,
+      sortLabel: 'finished.rawData',
       resourceKey: 'finished',
       transforms: [wrappable],
       type: 'timestamp'
