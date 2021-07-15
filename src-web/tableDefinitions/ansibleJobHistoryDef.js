@@ -85,7 +85,7 @@ export function buildViewJobLink(item, locale) {
     const jobName = job.split('/')[1]
     return (
       <a target='_blank' rel='noopener noreferrer'
-        href={`/search?filters={%22textsearch%22:%22cluster%3Alocal-cluster%20kind%3Ajob%20namespace%3A${jobNamespace}%20name%3A${jobName}%22}`}>
+        href={`/search?filters={%22textsearch%22:%22cluster%3Alocal-cluster%20kind%3Aansiblejob%20namespace%3A${jobNamespace}%20name%3A${jobName}%22}`}>
           {msgs.get('table.actions.view.job', locale)}
       </a>
     )
