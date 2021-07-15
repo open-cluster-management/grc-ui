@@ -177,7 +177,7 @@ exports[`render AnsiblePanel component render AnsiblePanel component1 1`] = `
                 "cellTransforms": undefined,
                 "header": "Started",
                 "search": undefined,
-                "sort": "started",
+                "sort": "started.rawData",
                 "transforms": Array [
                   [Function],
                 ],
@@ -187,7 +187,7 @@ exports[`render AnsiblePanel component render AnsiblePanel component1 1`] = `
                 "cellTransforms": undefined,
                 "header": "Finished",
                 "search": undefined,
-                "sort": "finished",
+                "sort": "finished.rawData",
                 "transforms": Array [
                   [Function],
                 ],
@@ -397,7 +397,7 @@ exports[`render AnsiblePanel component render AnsiblePanel component2 1`] = `
                 "cellTransforms": undefined,
                 "header": "Started",
                 "search": undefined,
-                "sort": "started",
+                "sort": "started.rawData",
                 "transforms": Array [
                   [Function],
                 ],
@@ -407,7 +407,7 @@ exports[`render AnsiblePanel component render AnsiblePanel component2 1`] = `
                 "cellTransforms": undefined,
                 "header": "Finished",
                 "search": undefined,
-                "sort": "finished",
+                "sort": "finished.rawData",
                 "transforms": Array [
                   [Function],
                 ],
@@ -618,7 +618,7 @@ exports[`render AnsiblePanel component render AnsiblePanel component3 1`] = `
                 "cellTransforms": undefined,
                 "header": "Started",
                 "search": undefined,
-                "sort": "started",
+                "sort": "started.rawData",
                 "transforms": Array [
                   [Function],
                 ],
@@ -628,7 +628,7 @@ exports[`render AnsiblePanel component render AnsiblePanel component3 1`] = `
                 "cellTransforms": undefined,
                 "header": "Finished",
                 "search": undefined,
-                "sort": "finished",
+                "sort": "finished.rawData",
                 "transforms": Array [
                   [Function],
                 ],
@@ -749,7 +749,7 @@ exports[`render AnsiblePanel component render empty AnsiblePanel component4 1`] 
                 "cellTransforms": undefined,
                 "header": "Started",
                 "search": undefined,
-                "sort": "started",
+                "sort": "started.rawData",
                 "transforms": Array [
                   [Function],
                 ],
@@ -759,7 +759,7 @@ exports[`render AnsiblePanel component render empty AnsiblePanel component4 1`] 
                 "cellTransforms": undefined,
                 "header": "Finished",
                 "search": undefined,
-                "sort": "finished",
+                "sort": "finished.rawData",
                 "transforms": Array [
                   [Function],
                 ],

@@ -20,7 +20,7 @@ exports[`render AnsibleHistory component render AnsibleHistory page 1`] = `
         "cellTransforms": undefined,
         "header": "Started",
         "search": undefined,
-        "sort": "started",
+        "sort": "started.rawData",
         "transforms": Array [
           [Function],
         ],
@@ -30,7 +30,7 @@ exports[`render AnsibleHistory component render AnsibleHistory page 1`] = `
         "cellTransforms": undefined,
         "header": "Finished",
         "search": undefined,
-        "sort": "finished",
+        "sort": "finished.rawData",
         "transforms": Array [
           [Function],
         ],
@@ -246,7 +246,7 @@ exports[`render AnsibleHistory component render empty AnsibleHistory page 1`] = 
         "cellTransforms": undefined,
         "header": "Started",
         "search": undefined,
-        "sort": "started",
+        "sort": "started.rawData",
         "transforms": Array [
           [Function],
         ],
@@ -256,7 +256,7 @@ exports[`render AnsibleHistory component render empty AnsibleHistory page 1`] = 
         "cellTransforms": undefined,
         "header": "Finished",
         "search": undefined,
-        "sort": "finished",
+        "sort": "finished.rawData",
         "transforms": Array [
           [Function],
         ],
