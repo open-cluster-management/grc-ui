@@ -64,7 +64,7 @@ exports[`tableDefinitions ansibleJobHistoryDef - buildViewJobLink should return 
 
 exports[`tableDefinitions ansibleJobHistoryDef - buildViewJobLink should return valid anisble job link 1`] = `
 <a
-  href="/search?filters={%22textsearch%22:%22cluster%3Alocal-cluster%20kind%3Ajob%20namespace%3Adefault%20name%3Apolicy-pod-policy-automation-once-hd5xz%22}"
+  href="/search?filters={%22textsearch%22:%22cluster%3Alocal-cluster%20kind%3Aansiblejob%20namespace%3Adefault%20name%3Apolicy-pod-policy-automation-once-hd5xz%22}"
   rel="noopener noreferrer"
   target="_blank"
 >
