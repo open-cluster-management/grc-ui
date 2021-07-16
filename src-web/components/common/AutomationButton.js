@@ -101,14 +101,12 @@ class AutomationButton extends React.Component {
       CREATE: false,
       EDIT: false
     }
-    if(Array.isArray(access) && access.length > 0) {
-      const accessObj = access.filter(role => role.namespace === ns)
-      if (accessObj.length > 0 && accessObj[0].rules) {
-        // Check for permissions on Policy and PolicyAutomation resources
-        const resources = [ 'policy.open-cluster-management.io/policyautomations' ]
-        automationAccess.CREATE = checkCreateRole(accessObj[0].rules, resources) === 1
-        automationAccess.EDIT = checkEditRole(accessObj[0].rules, resources) === 1
-      }
+    const accessObj = access.filter(role => role.namespace === ns)
+    if (accessObj.length > 0 && accessObj[0].rules) {
+      // Check for permissions on Policy and PolicyAutomation resources
+      const resources = [ 'policy.open-cluster-management.io/policyautomations' ]
+      automationAccess.CREATE = checkCreateRole(accessObj[0].rules, resources) === 1
+      automationAccess.EDIT = checkEditRole(accessObj[0].rules, resources) === 1
     }
     return automationAccess
   }
