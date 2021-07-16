@@ -648,7 +648,7 @@ export class AnsibleAutomationModal extends React.Component {
                   {jobTemplateName && this.renderAnsibleJobTemplateEditor()}
                   {jobTemplateName && this.renderAnsibleScheduleMode()}
                 </React.Fragment>}
-                {!ansJobTemplateFlag && notificationOpen &&
+                {!ansJobTemplateFlag && !loading && notificationOpen &&
                 <div className='infoArea'>
                   <Alert
                     variant={'info'}
