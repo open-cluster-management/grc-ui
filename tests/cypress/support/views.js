@@ -1508,21 +1508,28 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
   //mock call to graphQL to get job templates to avoid needing to use a real tower
   cy.intercept('POST', Cypress.config().baseUrl + '/multicloud/policies/graphql', (req) => {
     if (req.body.operationName === 'getAnsibleJobTemplates') {
-        req.reply({
-          data: {
-            ansibleJobTemplates: [
-              {
-                name: demoTemplateName,
-                description: 'hello world ansible job template',
-                extra_vars: 'target_clusters:\n  - local-cluster'
-              }
-            ]
-          }
-        })
+      req.reply({
+        data: {
+          ansibleJobTemplates: [
+            {
+              name: demoTemplateName,
+              description: 'hello world ansible job template',
+              extra_vars: 'target_clusters:\n  - local-cluster'
+            }
+          ]
+        }
+      })
     }
   }).as('templatesQuery')
 
   let failures = 0
+
+  // Check for open Automation modal and close it if it's open
+  if (Cypress.$('#automation-resource-panel').length === 1) {
+    cy.get('#automation-resource-panel').within(() => {
+      cy.get('button[aria-label="Close"]').click()
+    })
+  }
 
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
@@ -1602,6 +1609,12 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
 }
 
 export const action_verifyHistoryPageWithMock = (uName) => {
+  // Check for open Automation modal and close it if it's open
+  if (Cypress.$('#automation-resource-panel').length === 1) {
+    cy.get('#automation-resource-panel').within(() => {
+      cy.get('button[aria-label="Close"]').click()
+    })
+  }
   //open modal
   cy.CheckGrcMainPage()
     .doTableSearch(uName)

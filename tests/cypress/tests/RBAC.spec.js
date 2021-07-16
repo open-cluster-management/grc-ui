@@ -70,7 +70,13 @@ describeT('@rbac RHACM4K-2584 - GRC UI: [P1][Sev1][policy-grc] Role Based Access
   it(`Ansible setup: Check that policy ${subPolicyName} is present in the policy listing`, () => {
     cy.verifyPolicyInListing(subPolicyName, {})
   })
-  it(`Ansible setup: Wait for ${subPolicyName} status to become available`, () => {
+  it(`Ansible setup: Wait for ${subPolicyName} status to become NonCompliant`, () => {
+    cy.waitForPolicyStatus(subPolicyName, '[^0]/')
+  })
+  it(`Ansible setup: Enforce ${subPolicyName}`, () => {
+    cy.actionPolicyActionInListing(subPolicyName, 'Enforce')
+  })
+  it(`Ansible setup: Wait for ${subPolicyName} status to be Compliant`, () => {
     cy.waitForPolicyStatus(subPolicyName, '0/')
   })
   it(`Ansible setup: Delete policy ${subPolicyName}`, () => {
