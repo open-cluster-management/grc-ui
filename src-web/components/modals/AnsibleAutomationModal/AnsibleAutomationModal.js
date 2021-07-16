@@ -608,7 +608,7 @@ export class AnsibleAutomationModal extends React.Component {
           const { data={}, error={} } = result
           const queryError = this.getQueryError(error)
           const ansJobTemplates = data ? data.ansibleJobTemplates : data
-          const ansJobTemplateFlag = !queryError && Array.isArray(ansJobTemplates) && ansJobTemplates.length > 0
+          const ansJobTemplateFlag = !queryError && !loading && Array.isArray(ansJobTemplates) && ansJobTemplates.length > 0
           const {jobTemplateName, jobTemplateIsOpen, notificationOpen} = this.state
           return (
             <React.Fragment>
