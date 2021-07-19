@@ -19,6 +19,7 @@ class TruncateText extends React.PureComponent {
   static propTypes = {
     maxCharacters: PropTypes.number,
     maxWidth: PropTypes.string,
+    noTooltip: PropTypes.bool,
     position: PropTypes.string,
     text: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
     textEnd: PropTypes.string
@@ -29,7 +30,7 @@ class TruncateText extends React.PureComponent {
   }
 
   render() {
-    const {text, maxCharacters, maxWidth, position, textEnd} = this.props
+    const {text, maxCharacters, maxWidth, noTooltip, position, textEnd} = this.props
     const postfix = textEnd ? textEnd : ''
     if (!text) {
       return ''
@@ -39,16 +40,24 @@ class TruncateText extends React.PureComponent {
     }
     else if (text.length <= maxCharacters){
       return `${text}${postfix}`
+    } else {
+      if (noTooltip) {
+        return <span className='textWithTruncation'>
+          {`${truncate(text, maxCharacters)}${postfix}`}
+        </span>
+      } else {
+        return <Tooltip
+          maxWidth = {maxWidth ? maxWidth : '80rem'}
+          enableFlip = {false}
+          position = {position ? position : 'top'}
+          content = {<div>{text}</div>}
+          >
+            <span className='textWithTruncation'>
+              {`${truncate(text, maxCharacters)}${postfix}`}
+            </span>
+        </Tooltip>
+      }
     }
-
-    return <Tooltip
-      maxWidth = {maxWidth ? maxWidth : '80rem'}
-      enableFlip = {false}
-      position = {position ? position : 'top'}
-      content = {<div>{text}</div>}
-    >
-      <span className='textWithTruncation'>{`${truncate(text, maxCharacters)}${postfix}`}</span>
-    </Tooltip>
   }
 }
 
