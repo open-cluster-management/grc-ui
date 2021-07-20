@@ -300,3 +300,66 @@ TruncateText {
   },
 }
 `;
+
+exports[`TruncateText renders without tooltip 1`] = `
+TruncateText {
+  "context": Object {},
+  "props": Object {
+    "maxCharacters": 5,
+    "maxWidth": "30rem",
+    "noTooltip": true,
+    "position": "bottom",
+    "text": "TruncateText",
+    "textEnd": ".",
+  },
+  "refs": Object {},
+  "setState": [Function],
+  "state": null,
+  "updater": Updater {
+    "_callbacks": Array [],
+    "_renderer": ReactShallowRenderer {
+      "_context": Object {},
+      "_didScheduleRenderPhaseUpdate": false,
+      "_dispatcher": Object {
+        "readContext": [Function],
+        "useCallback": [Function],
+        "useContext": [Function],
+        "useDebugValue": [Function],
+        "useDeferredValue": [Function],
+        "useEffect": [Function],
+        "useImperativeHandle": [Function],
+        "useLayoutEffect": [Function],
+        "useMemo": [Function],
+        "useReducer": [Function],
+        "useRef": [Function],
+        "useResponder": [Function],
+        "useState": [Function],
+        "useTransition": [Function],
+      },
+      "_element": <TruncateText
+        maxCharacters={5}
+        maxWidth="30rem"
+        noTooltip={true}
+        position="bottom"
+        text="TruncateText"
+        textEnd="."
+      />,
+      "_firstWorkInProgressHook": null,
+      "_forcedUpdate": false,
+      "_instance": [Circular],
+      "_isReRender": false,
+      "_newState": null,
+      "_numberOfReRenders": 0,
+      "_renderPhaseUpdates": null,
+      "_rendered": <span
+        className="textWithTruncation"
+      >
+        T...t.
+      </span>,
+      "_rendering": false,
+      "_updater": [Circular],
+      "_workInProgressHook": null,
+    },
+  },
+}
+`;

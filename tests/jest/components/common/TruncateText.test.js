@@ -38,6 +38,21 @@ describe('TruncateText', () => {
     expect(component.instance()).toMatchSnapshot()
   })
 
+  it('renders without tooltip', () => {
+    const props = {
+      maxCharacters: 5,
+      text: 'TruncateText',
+      position: 'bottom',
+      noTooltip: true,
+      textEnd: '.',
+      maxWidth: '30rem'
+    }
+    const component = shallow(
+      <TruncateText  {...props} />
+    )
+    expect(component.instance()).toMatchSnapshot()
+  })
+
   it('renders as expected for non truncated text', () => {
     const props = { maxCharacters: 25, text: 'NonTruncateText'}
     const component = shallow(
