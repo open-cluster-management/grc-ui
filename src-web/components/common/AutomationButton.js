@@ -63,8 +63,14 @@ class AutomationButton extends React.Component {
     const configureButton = (
       <AcmLaunchLink links={[
         {
-            id: `${label}-${automationName}`,
-            text: <TruncateText maxCharacters={20} text={automationName} />,
+            id: isDisabled
+              ? 'disabledAutomationButton'
+              : `${label}-${automationName}`,
+            text: <TruncateText
+            maxCharacters={20}
+            text={automationName}
+            noTooltip={isDisabled ? true : false}
+            />,
             onClick: isDisabled ? undefined : () => {
               this.props.onClickAutomation(item, onlyEdit)
             },

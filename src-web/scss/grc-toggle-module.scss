@@ -21,6 +21,13 @@
   }
 }
 
+#disabledAutomationButton {
+  cursor: not-allowed;
+  .textWithTruncation {
+    color: black
+  }
+}
+
 .pf-c-button.pf-m-link.automationButton {
   padding: 0px;
   font-size: 14px;
