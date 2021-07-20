@@ -2009,7 +2009,7 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
 
 exports[`CreationView module renders with notification on general error 1`] = `
 <div
-  class="MuiCollapse-container MuiCollapse-hidden"
+  class="MuiCollapse-root MuiCollapse-hidden"
   style="min-height:0px"
 >
   <div
@@ -2091,7 +2091,7 @@ exports[`CreationView module renders with notification on general error 1`] = `
 
 exports[`CreationView module renders with notification on permission error 1`] = `
 <div
-  class="MuiCollapse-container MuiCollapse-hidden"
+  class="MuiCollapse-root MuiCollapse-hidden"
   style="min-height:0px"
 >
   <div
