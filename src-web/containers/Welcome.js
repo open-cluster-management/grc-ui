@@ -173,7 +173,11 @@ export default class WelcomeStatic extends React.Component {
                 alt={msgs.get('svg.description.support', locale)}
               />
               <p className='welcome--connect__section-title'>{msgs.get('welcome.connect.box.three.title.one', locale)}</p>
-              <p className='welcome--connect__section-body'>{msgs.get('welcome.connect.box.three.title.two', locale)}</p>
+              <div className='welcome--connect__section-body'>
+                {msgs.get('welcome.connect.box.three.title.two', locale)}
+                <br />
+                {msgs.get('welcome.connect.box.three.title.three', locale)}
+              </div>
               <a
                 target='support'
                 href='https://access.redhat.com/support'
