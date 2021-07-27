@@ -7,29 +7,29 @@
 ######################
 
 NODE_ENV=development
-echo NODE_ENV=$NODE_ENV >> .env
+echo export NODE_ENV=$NODE_ENV >> .env
 
 API_SERVER_URL=`oc get infrastructure cluster -o jsonpath={.status.apiServerURL}`
-echo API_SERVER_URL=$API_SERVER_URL >> .env
+echo export API_SERVER_URL=$API_SERVER_URL >> .env
 
 SERVICEACCT_TOKEN=$(oc whoami -t)
-echo SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN >> .env
+echo export SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN >> .env
 
 OCM_ADDRESS=https://`oc -n open-cluster-management get route multicloud-console -o json | jq -r '.spec.host'`
 grcUiApiUrl=$OCM_ADDRESS/multicloud/policies/graphql
-echo grcUiApiUrl=$grcUiApiUrl >> .env
+echo export grcUiApiUrl=$grcUiApiUrl >> .env
 
 searchApiUrl=$OCM_ADDRESS/multicloud/policies/search/graphql
-echo searchApiUrl=$searchApiUrl >> .env
+echo export searchApiUrl=$searchApiUrl >> .env
 
 OAUTH2_CLIENT_ID=multicloudingress
-echo OAUTH2_CLIENT_ID=$OAUTH2_CLIENT_ID >> .env
+echo export OAUTH2_CLIENT_ID=$OAUTH2_CLIENT_ID >> .env
 
 OAUTH2_CLIENT_SECRET=multicloudingresssecret
-echo OAUTH2_CLIENT_SECRET=$OAUTH2_CLIENT_SECRET >> .env
+echo export OAUTH2_CLIENT_SECRET=$OAUTH2_CLIENT_SECRET >> .env
 
 OAUTH2_REDIRECT_URL=https://localhost:3000/multicloud/policies/auth/callback
-echo OAUTH2_REDIRECT_URL=$OAUTH2_REDIRECT_URL >> .env
+echo export OAUTH2_REDIRECT_URL=$OAUTH2_REDIRECT_URL >> .env
 
 REDIRECT_URIS=$(oc get OAuthClient $OAUTH2_CLIENT_ID -o json | jq -c "[.redirectURIs[], \"$OAUTH2_REDIRECT_URL\"] | unique")
 oc patch OAuthClient multicloudingress --type json -p "[{\"op\": \"add\", \"path\": \"/redirectURIs\", \"value\": ${REDIRECT_URIS}}]"
