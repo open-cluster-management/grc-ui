@@ -404,11 +404,13 @@ exports[`Welcome component renders as expected 1`] = `
         >
           Support center
         </p>
-        <p
+        <div
           className="welcome--connect__section-body"
         >
-          Need technical support? Contact us.
-        </p>
+          Need technical support?
+          <br />
+          Contact us.
+        </div>
         <a
           aria-describedby="launchWindow"
           className="welcome--link"
