@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`render action buttons on ansible modal render cancel only button for ansible history page 1`] = `
+Array [
+  <AcmButton
+    onClick={[MockFunction]}
+    variant="secondary"
+  >
+    Cancel
+  </AcmButton>,
+]
+`;
+
 exports[`render action buttons on ansible modal render disabled action button when ansible operator isn not installed but there is automation 1`] = `
 Array [
   <AcmButton
@@ -23,8 +34,6 @@ Array [
   </AcmButton>,
 ]
 `;
-
-exports[`render action buttons on ansible modal render no action button for ansible history page 1`] = `Array []`;
 
 exports[`render action buttons on ansible modal render three action buttons with delete button 1`] = `
 Array [

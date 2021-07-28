@@ -6,7 +6,7 @@
 import { buildModalButtonList } from '../../../../../src-web/components/modals/AnsibleAutomationModal/AnisbleModalButtonList'
 
 describe('render action buttons on ansible modal', () => {
-  it('render no action button for ansible history page', () => {
+  it('render cancel only button for ansible history page', () => {
     // activeItem === 1 means ansible history page
     const component = buildModalButtonList({
       activeItem: 1, opInstalled: true,
