@@ -10,6 +10,7 @@ import {
   getCategories,
   getControls,
   getStandards,
+  getStatus,
   getAutomationLink,
 } from './utils'
 import {
@@ -44,6 +45,16 @@ export default {
       sortable: true,
       transforms: [wrappable],
       cellTransforms: [breakWord],
+    },
+    {
+      label: 'status',
+      msgKey: 'table.header.status',
+      resourceKey: 'raw.spec.disabled',
+      searchable: true,
+      sortable: true,
+      transforms: [wrappable],
+      cellTransforms: [breakWord],
+      transformFunction: getStatus,
     },
     {
       label: 'remediation',
@@ -122,7 +133,7 @@ export default {
     },
   ],
   sortBy: {
-    index: 6,
+    index: 7,
     direction: 'desc',
   }
 }

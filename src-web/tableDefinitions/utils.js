@@ -25,7 +25,6 @@ import {
 import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
-import { LocaleContext } from '../components/common/LocaleContext'
 import purifyReactNode from '../utils/PurifyReactNode'
 import AutomationButton from '../components/common/AutomationButton'
 
@@ -287,14 +286,6 @@ export function createComplianceLink(item = {}, ...param){
       policyName = <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.namespace)}/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
     }
   }
-  if (_.get(item, 'raw.spec.disabled')) {
-    policyName = <div className='policy-table-name-ctr'>
-      {policyName}{' '} {' '}
-      <Label className='disabled-label'>
-        {msgs.get('policy.disabled.label', LocaleContext.locale)}
-      </Label>
-    </div>
-  }
   return policyName
 }
 
@@ -352,6 +343,12 @@ export function getControls(item) {
   return formatAnnotationString(item, 'policy.open-cluster-management.io/controls')
 }
 
+export function getStatus(item, locale) {
+  return _.get(item, 'raw.spec.disabled')
+    ? msgs.get('policy.disabled.label', locale)
+    : msgs.get('policy.enabled.label', locale)
+}
+
 export function getStandards(item) {
   return formatAnnotationString(item, 'policy.open-cluster-management.io/standards')
 }
@@ -374,16 +371,6 @@ export function getAutomationLink(item, locale, refetch) {
     return (
       <AutomationButton item={item} locale={locale} refetch={refetch}></AutomationButton>
     )
-  }
-  return '-'
-}
-
-export function getStatus(item, locale) {
-  const status = _.get(item, 'status', '-')
-  if (status.compliant){
-    return <StatusField status={status.compliant.toLowerCase()} text={msgs.get(`policy.status.${status.compliant.toLowerCase()}`, locale)} />
-  } else if (status && typeof(status)==='string' && status !== '-'){
-    return <StatusField status={status.toLowerCase()} text={msgs.get(`policy.status.${status.toLowerCase()}`, locale)} />
   }
   return '-'
 }

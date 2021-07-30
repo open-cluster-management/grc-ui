@@ -48,10 +48,13 @@ export class PolicyDetailsOverview extends React.PureComponent{
       if (Array.isArray(item.cells) && item.cells[0]) {
         const keyPath = item.cells[0].resourceKey || '-'
         const keyType = item.cells[0].type || '-'
+        const transformFunction = item.cells[0].transformFunction
         const dataResourceKey = item.cells[1] ? item.cells[1].resourceKey : '-'
-        entry.key = msgs.get(keyPath, locale) ? msgs.get(keyPath, locale) : '-'
+        entry.key = msgs.get(keyPath, locale) || '-'
         const entryData = (dataResourceKey === '-') ? localItem : _.get(localItem, dataResourceKey, '-')
-        if ((keyType !== 'automation') && (typeof(entryData) === 'object' || typeof(entryData) === 'boolean')) {
+        if (transformFunction) {
+          entry.value = transformFunction(localItem, locale)
+        } else if ((keyType !== 'automation') && (typeof(entryData) === 'object' || typeof(entryData) === 'boolean')) {
           entry.value = JSON.stringify(entryData).replace(/\[|\]|"/g, ' ')
         } else {
           entry.value = entryData

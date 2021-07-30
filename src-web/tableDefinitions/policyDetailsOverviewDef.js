@@ -3,6 +3,10 @@
 
 'use strict'
 
+import {
+  getStatus
+} from './utils'
+
 export default {
   title: 'compliance.details',
   headerRows: ['type', 'detail'],
@@ -44,8 +48,9 @@ export default {
     {
       cells: [
         {
-          resourceKey: 'description.title.disabled',
-          type: 'i18n'
+          resourceKey: 'description.title.status',
+          type: 'i18n',
+          transformFunction: getStatus
         },
         {
           resourceKey: 'raw.spec.disabled'
