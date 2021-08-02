@@ -30,7 +30,7 @@ export KUBECONFIG=${HUB_KUBE}
 
 $DIR/cluster-clean-up.sh hub
 
-export "Set up default envs"
+echo "Set up default envs"
 $DIR/setup-env.sh
 source $DIR/../.env
 
