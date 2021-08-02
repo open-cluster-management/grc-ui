@@ -9,7 +9,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 NODE_ENV=development
-echo export NODE_ENV=$NODE_ENV >> ${DIR}/../.env
+echo export NODE_ENV=$NODE_ENV > ${DIR}/../.env
 
 API_SERVER_URL=`oc get infrastructure cluster -o jsonpath={.status.apiServerURL}`
 echo export API_SERVER_URL=$API_SERVER_URL >> ${DIR}/../.env

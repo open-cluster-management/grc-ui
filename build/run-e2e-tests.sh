@@ -14,7 +14,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 HUB_KUBE=${HUB_KUBE:-"${SHARED_DIR}/hub-1.kc"}
 MANAGED_KUBE=${MANAGED_KUBE:-"${SHARED_DIR}/managed-1.kc"}
 
-echo "Login managed"
+echo "Clean up managed"
 if (ls "${MANAGED_KUBE}" &>/dev/null); then
   export KUBECONFIG=${MANAGED_KUBE}
 else
@@ -25,14 +25,10 @@ fi
 $DIR/install-cert-manager.sh
 $DIR/cluster-clean-up.sh managed
 
-echo "Login hub"
+echo "Clean up hub"
 export KUBECONFIG=${HUB_KUBE}
 
 $DIR/cluster-clean-up.sh hub
-
-echo "Set up default envs"
-$DIR/setup-env.sh
-source $DIR/../.env
 
 echo "Create RBAC users"
 export RBAC_PASS=$(head /dev/urandom | tr -dc 'A-Za-z0-9' | head -c $((32 + RANDOM % 8)))
@@ -40,6 +36,16 @@ source $DIR/rbac-setup.sh
 
 echo "Set up cluster for test"
 $DIR/cluster-setup.sh
+
+echo "Login hub"
+export OC_CLUSTER_URL=$(echo $HUB_CREDS | jq -r '.api_url')
+# The password for the cluster-admin RBAC user was set in rbac-setup.sh :
+export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
+make oc/login
+
+echo "Set up default envs for hub"
+$DIR/setup-env.sh
+source $DIR/../.env
 
 echo "Export envs to run E2E"
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
