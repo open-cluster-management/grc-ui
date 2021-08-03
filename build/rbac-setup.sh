@@ -14,7 +14,11 @@
 set -e
 RBAC_DIR=./tests/cypress/config/rbac-setup
 # Set WORK_DIR to the default Prow directory
-WORK_DIR=${"/tmp":-"${RBAC_DIR}"}
+if [[ -n "${ARTIFACT_DIR}" ]]; then
+  WORK_DIR="/tmp"
+else
+  WORK_DIR=${RBAC_DIR}
+fi
 
 if [ ! -d ${RBAC_DIR} ]; then
   echo "Error: Directory ${RBAC_DIR} does not exist. Not creating RBAC resources."
@@ -68,7 +72,7 @@ export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n $acm_install
 # test oauth server and see if idp has been setup
 i=0
 while true; do
-  IDP=`curl -L -k ${CYPRESS_BASE_URL} | grep ${OC_IDP}` || true
+  IDP=`curl -sSL -k ${CYPRESS_BASE_URL} | grep ${OC_IDP} 1>/dev/null` || true
   if [ -z ${IDP// /} ]; then
     echo "* Wait for IDP ${OC_IDP} to take effect..."
     sleep 10
