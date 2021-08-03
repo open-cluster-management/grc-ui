@@ -35,8 +35,9 @@ $DIR/cluster-clean-up.sh hub
 echo "Create RBAC users"
 export RBAC_PASS=$(head /dev/urandom | tr -dc 'A-Za-z0-9' | head -c $((32 + RANDOM % 8)))
 source $DIR/rbac-setup.sh
+# If in Prow, store in credentials file for E2E step
 if [[ -n "${SHARED_DIR}" ]]; then
-  jq -n '{ "rbac_user":  env.OC_CLUSTER_USER, "rbac_pass": env.RBAC_PASS }' > ${SHARED_DIR}/${HUB_NAME}.rbac
+  jq -n '{ "rbac_user":  env.OC_CLUSTER_USER, "rbac_pass": env.RBAC_PASS, "rbac_idp": env.OC_IDP }' > ${SHARED_DIR}/${HUB_NAME}.rbac
 fi
 
 echo "Set up cluster for test"
