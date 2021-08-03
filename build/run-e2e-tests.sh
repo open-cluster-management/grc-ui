@@ -11,38 +11,12 @@ set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-# Specify kubeconfig files (the defaults are the ones generated in Prow)
-HUB_KUBE=${HUB_KUBE:-"${SHARED_DIR}/hub-1.kc"}
-MANAGED_KUBE=${MANAGED_KUBE:-"${SHARED_DIR}/managed-1.kc"}
-
-echo "Clean up managed"
-if (ls "${MANAGED_KUBE}" &>/dev/null); then
-  export KUBECONFIG=${MANAGED_KUBE}
-else
-  echo "* Managed cluster not found. Continuing using Hub as managed."
-  export KUBECONFIG=${HUB_KUBE}
-fi
-
-$DIR/install-cert-manager.sh
-$DIR/cluster-clean-up.sh managed
-
-echo "Clean up hub"
-export KUBECONFIG=${HUB_KUBE}
-
-$DIR/cluster-clean-up.sh hub
-
-echo "Create RBAC users"
-export RBAC_PASS=$(head /dev/urandom | tr -dc 'A-Za-z0-9' | head -c $((32 + RANDOM % 8)))
-source $DIR/rbac-setup.sh
-
-echo "Set up cluster for test"
-$DIR/cluster-setup.sh
-
 echo "Login hub"
-# Set cluster URL (the default is generated in Prow)
-export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(echo $HUB_CREDS | jq -r '.api_url')"}
-# The password for the cluster-admin RBAC user was set in rbac-setup.sh :
-export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
+# Set cluster URL and password (the defaults are the ones generated in Prow)
+HUB_NAME=${HUB_NAME:-"hub-1"}
+export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(jq -r '.api_url' ${SHARED_DIR}/${HUB_NAME}.json)"}
+# This credential file is created in run-e2e-setup.sh
+export OC_CLUSTER_PASS=${OC_CLUSTER_PASS:-"$(cat ${SHARED_DIR}/${HUB_NAME}.rbac)"}
 make oc/login
 
 echo "Set up default envs for hub"
@@ -55,10 +29,13 @@ export CYPRESS_BASE_URL="https://localhost:3000"
 export CYPRESS_coverage=${CYPRESS_coverage:-"true"}
 export FAIL_FAST=${FAIL_FAST:-"true"}
 
-docker pull quay.io/open-cluster-management/grc-ui-api:${GRCUIAPI_VERSION:-"latest"}
-
+GRCUIAPI_VERSION=${GRCUIAPI_VERSION:-"latest"}
+echo "Starting grcuiapi:${GRCUIAPI_VERSION}"
+export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:${GRCUIAPI_VERSION}
+docker pull ${DOCKER_URI}
 docker run -d -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$API_SERVER_URL $DOCKER_URI
 
+echo "Building and running grcui"
 npm run build
 npm run start:instrument &>/dev/null &
 sleep 10
