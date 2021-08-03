@@ -26,11 +26,11 @@ fi
 
 if ! which htpasswd &>/dev/null; then
   if which apt-get &>/dev/null; then
-    apt-get update
-    apt-get install -y apache2-utils
+    sudo apt-get update
+    sudo apt-get install -y apache2-utils
   elif which yum &>/dev/null; then
-    yum update
-    yum install -y httpd-tools
+    sudo yum update
+    sudo yum install -y httpd-tools
   else
     echo "Error: Package manager not found. Failed to find or install htpasswd."
     exit 1

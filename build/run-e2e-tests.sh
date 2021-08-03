@@ -11,6 +11,7 @@ set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+# Specify kubeconfig files (the defaults are the ones generated in Prow)
 HUB_KUBE=${HUB_KUBE:-"${SHARED_DIR}/hub-1.kc"}
 MANAGED_KUBE=${MANAGED_KUBE:-"${SHARED_DIR}/managed-1.kc"}
 
@@ -38,7 +39,8 @@ echo "Set up cluster for test"
 $DIR/cluster-setup.sh
 
 echo "Login hub"
-export OC_CLUSTER_URL=$(echo $HUB_CREDS | jq -r '.api_url')
+# Set cluster URL (the default is generated in Prow)
+export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(echo $HUB_CREDS | jq -r '.api_url')"}
 # The password for the cluster-admin RBAC user was set in rbac-setup.sh :
 export OC_CLUSTER_PASS=$OC_HUB_CLUSTER_PASS
 make oc/login
@@ -51,6 +53,7 @@ echo "Export envs to run E2E"
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
 export CYPRESS_BASE_URL="https://localhost:3000"
 export CYPRESS_coverage=${CYPRESS_coverage:-"true"}
+export FAIL_FAST=${FAIL_FAST:-"true"}
 
 docker pull quay.io/open-cluster-management/grc-ui-api:${GRCUIAPI_VERSION:-"latest"}
 
