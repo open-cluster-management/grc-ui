@@ -12,7 +12,9 @@
 #     export RBAC_PASS=<your-password>
 
 set -e
-RBAC_DIR=${TRAVIS_BUILD_DIR:-.}/tests/cypress/config/rbac-setup
+RBAC_DIR=./tests/cypress/config/rbac-setup
+# Set WORK_DIR to the default Prow directory
+WORK_DIR=${ARTIFACT_DIR:-"${RBAC_DIR}"}
 
 if [ ! -d ${RBAC_DIR} ]; then
   echo "Error: Directory ${RBAC_DIR} does not exist. Not creating RBAC resources."
@@ -37,16 +39,16 @@ if ! which htpasswd &>/dev/null; then
   fi
 fi
 
-touch ${RBAC_DIR}/htpasswd
+touch ${WORK_DIR}/htpasswd
 for access in cluster ns; do
   for role in cluster-admin admin edit view group; do
-    htpasswd -b ${RBAC_DIR}/htpasswd e2e-${role}-${access} ${RBAC_PASS}
+    htpasswd -b ${WORK_DIR}/htpasswd e2e-${role}-${access} ${RBAC_PASS}
   done
 done
 
 set +e
-oc create secret generic e2e-users --from-file=htpasswd=${RBAC_DIR}/htpasswd -n openshift-config
-rm ${RBAC_DIR}/htpasswd
+oc create secret generic e2e-users --from-file=htpasswd=${WORK_DIR}/htpasswd -n openshift-config
+rm ${WORK_DIR}/htpasswd
 if [[ -z "$(oc -n openshift-config get oauth cluster -o jsonpath='{.spec.identityProviders}')" ]]; then
   oc patch -n openshift-config oauth cluster --type json --patch '[{"op":"add","path":"/spec/identityProviders","value":[]}]'
 fi
