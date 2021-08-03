@@ -34,10 +34,10 @@ $DIR/cluster-clean-up.sh hub
 
 echo "Create RBAC users"
 export RBAC_PASS=$(head /dev/urandom | tr -dc 'A-Za-z0-9' | head -c $((32 + RANDOM % 8)))
-if [[ -n "${SHARED_DIR}" ]]; then
-  echo ${RBAC_PASS} > ${SHARED_DIR}/${HUB_NAME}.rbac
-fi
 source $DIR/rbac-setup.sh
+if [[ -n "${SHARED_DIR}" ]]; then
+  jq -n '{ "rbac_user":  env.OC_CLUSTER_USER, "rbac_pass": env.RBAC_PASS }' > ${SHARED_DIR}/${HUB_NAME}.rbac
+fi
 
 echo "Set up cluster for test"
 $DIR/cluster-setup.sh
