@@ -72,7 +72,7 @@ export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n $acm_install
 # test oauth server and see if idp has been setup
 i=0
 while true; do
-  IDP=`curl -sSL -k ${CYPRESS_BASE_URL} | grep ${OC_IDP} 1>/dev/null` || true
+  IDP=`curl -sSL -k ${CYPRESS_BASE_URL} | grep ${OC_IDP}` || true
   if [ -z ${IDP// /} ]; then
     echo "* Wait for IDP ${OC_IDP} to take effect..."
     sleep 10
