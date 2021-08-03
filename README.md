@@ -1,7 +1,8 @@
 [comment]: # ( Copyright Contributors to the Open Cluster Management project )
 
 # grc-ui
-[![Build Status](https://travis-ci.com/open-cluster-management/grc-ui.svg?token=2jHocNax82kqKsGV1uTE&branch=main)](https://travis-ci.com/open-cluster-management/grc-ui)
+[![Build](https://img.shields.io/badge/build-Prow-informational)](https://prow.ci.openshift.org/?repo=open-cluster-management%2Fgrc-ui)
+[![License](https://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 The UI microservice, `grc-ui`, is the governance and risk dashboard for Red Hat Advanced Cluster Management. (See [`grc-ui-api`](https://github.com/open-cluster-management/grc-ui-api) for the API Server microservice it uses)
 
