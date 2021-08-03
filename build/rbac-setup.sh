@@ -14,7 +14,7 @@
 set -e
 RBAC_DIR=./tests/cypress/config/rbac-setup
 # Set WORK_DIR to the default Prow directory
-WORK_DIR=${ARTIFACT_DIR:-"${RBAC_DIR}"}
+WORK_DIR=${"/tmp":-"${RBAC_DIR}"}
 
 if [ ! -d ${RBAC_DIR} ]; then
   echo "Error: Directory ${RBAC_DIR} does not exist. Not creating RBAC resources."
