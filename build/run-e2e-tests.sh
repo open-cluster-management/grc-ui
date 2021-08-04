@@ -45,7 +45,6 @@ $DIR/cluster-setup.sh
 
 echo "===== E2E Environment Setup ====="
 
-echo "* Login hub"
 # Set cluster URL and password (the defaults are the ones generated in Prow)
 HUB_NAME=${HUB_NAME:-"hub-1"}
 export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(jq -r '.api_url' ${SHARED_DIR}/${HUB_NAME}.json)"}
@@ -92,6 +91,7 @@ fi
 
 echo "===== E2E Test ====="
 echo "* Launching Cypress E2E test"
+npx cypress install
 npm run test:cypress-headless
 
 # kill the node process to let nyc generate coverage report
