@@ -39,10 +39,22 @@ export CYPRESS_coverage=${CYPRESS_coverage:-"true"}
 export FAIL_FAST=${FAIL_FAST:-"true"}
 
 GRCUIAPI_VERSION=${GRCUIAPI_VERSION:-"latest"}
-echo "* Starting grcuiapi:${GRCUIAPI_VERSION}"
-export DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:${GRCUIAPI_VERSION}
-docker pull ${DOCKER_URI}
-docker run -d -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$API_SERVER_URL $DOCKER_URI
+echo "* Patching GRC UI API with grcuiapi:${GRCUIAPI_VERSION}"
+DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:${GRCUIAPI_VERSION}
+GRCUIAPI=$(oc get deployment -l component=ocm-grcuiapi -n ${acm_installed_namespace} -o=jsonpath='{.items[*].metadata.name}')
+oc patch deployment ${GRCUIAPI} -n open-cluster-management -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"grc-ui-api\",\"image\":\"${DOCKER_URI}\"}]}}}}"
+oc delete pod -l component=ocm-grcuiapi -n ${acm_installed_namespace} -A
+i=0
+while (oc get pod -l component=ocm-grcuiapi -n ${acm_installed_namespace} -o json | jq -r '.items[].status.phase' | grep -v "Running"); do
+  sleep 10
+  echo "* Waiting for the API to be running"
+  # Try for up to 5 minutes
+  i=$[i + 1]
+  if [[ "$i" == '30' ]]; then
+    echo "* ERROR: Timeout waiting for the API"
+    exit 1
+  fi
+done
 
 echo "* Building and running grcui"
 npm run build
