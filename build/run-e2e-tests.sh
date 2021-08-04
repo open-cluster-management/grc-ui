@@ -41,11 +41,12 @@ export FAIL_FAST=${FAIL_FAST:-"true"}
 GRCUIAPI_VERSION=${GRCUIAPI_VERSION:-"latest"}
 echo "* Patching GRC UI API with grcuiapi:${GRCUIAPI_VERSION}"
 DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:${GRCUIAPI_VERSION}
-GRCUIAPI=$(oc get deployment -l component=ocm-grcuiapi -n ${acm_installed_namespace} -o=jsonpath='{.items[*].metadata.name}')
-oc patch deployment ${GRCUIAPI} -n open-cluster-management -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"grc-ui-api\",\"image\":\"${DOCKER_URI}\"}]}}}}"
-oc delete pod -l component=ocm-grcuiapi -n ${acm_installed_namespace} -A
+GRCUIAPI_LABEL="component=ocm-grcuiapi"
+GRCUIAPI=$(oc get deployment -l ${GRCUIAPI_LABEL} -n ${acm_installed_namespace} -o=jsonpath='{.items[*].metadata.name}')
+oc patch deployment ${GRCUIAPI} -n ${acm_installed_namespace} -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"grc-ui-api\",\"image\":\"${DOCKER_URI}\"}]}}}}"
+oc delete pod -l ${GRCUIAPI_LABEL} -n ${acm_installed_namespace}
 i=0
-while (oc get pod -l component=ocm-grcuiapi -n ${acm_installed_namespace} -o json | jq -r '.items[].status.phase' | grep -v "Running"); do
+while (oc get pod -l ${GRCUIAPI_LABEL} -n ${acm_installed_namespace} -o json | jq -r '.items[].status.phase' | grep -v "Running"); do
   sleep 10
   echo "* Waiting for the API to be running"
   # Try for up to 5 minutes
