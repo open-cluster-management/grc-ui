@@ -15,8 +15,9 @@ echo "===== E2E Cluster Setup ====="
 
 # Specify kubeconfig files (the defaults are the ones generated in Prow)
 HUB_NAME=${HUB_NAME:-"hub-1"}
+MANAGED_NAME=${MANAGED_NAME:-"managed-1"}
 HUB_KUBE=${HUB_KUBE:-"${SHARED_DIR}/${HUB_NAME}.kc"}
-MANAGED_KUBE=${MANAGED_KUBE:-"${SHARED_DIR}/managed-1.kc"}
+MANAGED_KUBE=${MANAGED_KUBE:-"${SHARED_DIR}/${MANAGED_NAME}.kc"}
 
 echo "* Clean up managed"
 if (ls "${MANAGED_KUBE}" &>/dev/null); then
@@ -35,6 +36,7 @@ export KUBECONFIG=${HUB_KUBE}
 $DIR/cluster-clean-up.sh hub
 
 echo "* Create RBAC users"
+# rbac-setup.sh also sets OC_CLUSTER_PASS and OC_CLUSTER_USER
 export RBAC_PASS=$(head /dev/urandom | tr -dc 'A-Za-z0-9' | head -c $((32 + RANDOM % 8)))
 source $DIR/rbac-setup.sh
 
@@ -47,21 +49,6 @@ echo "* Login hub"
 # Set cluster URL and password (the defaults are the ones generated in Prow)
 HUB_NAME=${HUB_NAME:-"hub-1"}
 export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(jq -r '.api_url' ${SHARED_DIR}/${HUB_NAME}.json)"}
-# The RBAC credential file in the default is created in run-e2e-setup.sh
-export OC_CLUSTER_USER=${OC_CLUSTER_USER:-"$(jq -r '.rbac_user' ${SHARED_DIR}/${HUB_NAME}.rbac)"}
-export RBAC_PASS=${RBAC_PASS:-"$(jq -r '.rbac_pass' ${SHARED_DIR}/${HUB_NAME}.rbac)"}
-export OC_CLUSTER_PASS=${OC_CLUSTER_PASS:-"${RBAC_PASS}"}
-export OC_IDP=${OC_IDP:-"$(jq -r '.rbac_idp' ${SHARED_DIR}/${HUB_NAME}.rbac)"}
-# log in to hub
-if [ -z "${OC_CLUSTER_TOKEN}" ]; then
-  oc login ${OC_CLUSTER_URL} --insecure-skip-tls-verify=true -u ${OC_CLUSTER_USER} -p ${OC_CLUSTER_PASS}
-else
-  oc login ${OC_CLUSTER_URL} --insecure-skip-tls-verify=true --token=${OC_CLUSTER_TOKEN}
-fi
-
-echo "* Set up default envs for hub"
-$DIR/setup-env.sh
-source $DIR/../.env
 
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
 
@@ -91,7 +78,9 @@ fi
 
 echo "* Export envs to run E2E"
 export CYPRESS_coverage=${CYPRESS_coverage:-"true"}
-export FAIL_FAST=${FAIL_FAST:-"true"}
+if [[ "${FAIL_FAST}" != "false" ]]; then
+  export  CYPRESS_FAIL_FAST_PLUGIN="true"
+fi
 
 if [[ "${RUN_LOCAL}" == "true" ]]; then
   echo "* Building and running grcui"
@@ -99,8 +88,6 @@ if [[ "${RUN_LOCAL}" == "true" ]]; then
   npm run build
   npm run start:instrument &>/dev/null &
   sleep 10
-else
-  export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n ${acm_installed_namespace} -o=jsonpath='{.spec.host}'`
 fi
 
 echo "===== E2E Test ====="
@@ -113,3 +100,5 @@ sleep 10
 
 sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/server/coverage/lcov.info
 sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/cypress/coverage/lcov.info
+
+exit 1
