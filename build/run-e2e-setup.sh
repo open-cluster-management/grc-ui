@@ -113,3 +113,5 @@ sleep 10
 
 sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/server/coverage/lcov.info
 sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/cypress/coverage/lcov.info
+
+exit 1
