@@ -17,11 +17,16 @@ echo "* Login hub"
 # Set cluster URL and password (the defaults are the ones generated in Prow)
 HUB_NAME=${HUB_NAME:-"hub-1"}
 export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(jq -r '.api_url' ${SHARED_DIR}/${HUB_NAME}.json)"}
-# This credential file is created in run-e2e-setup.sh
+# The RBAC credential file in the default is created in run-e2e-setup.sh
 export OC_CLUSTER_USER=${OC_CLUSTER_USER:-"$(jq -r '.rbac_user' ${SHARED_DIR}/${HUB_NAME}.rbac)"}
 export OC_CLUSTER_PASS=${OC_CLUSTER_PASS:-"$(jq -r '.rbac_pass' ${SHARED_DIR}/${HUB_NAME}.rbac)"}
 export OC_IDP=${OC_IDP:-"$(jq -r '.rbac_idp' ${SHARED_DIR}/${HUB_NAME}.rbac)"}
-make oc/login
+# log in to hub
+if [ -z "${OC_CLUSTER_TOKEN}" ]; then
+  oc login ${OC_CLUSTER_URL} --insecure-skip-tls-verify=true -u ${OC_CLUSTER_USER} -p ${OC_CLUSTER_PASS}
+else
+  oc login ${OC_CLUSTER_URL} --insecure-skip-tls-verify=true --token=${OC_CLUSTER_TOKEN}
+fi
 
 echo "* Set up default envs for hub"
 $DIR/setup-env.sh
