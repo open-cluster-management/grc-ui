@@ -91,7 +91,6 @@ fi
 
 echo "===== E2E Test ====="
 echo "* Launching Cypress E2E test"
-npx cypress install
 npm run test:cypress-headless
 
 # kill the node process to let nyc generate coverage report
