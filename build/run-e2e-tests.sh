@@ -19,7 +19,8 @@ HUB_NAME=${HUB_NAME:-"hub-1"}
 export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(jq -r '.api_url' ${SHARED_DIR}/${HUB_NAME}.json)"}
 # The RBAC credential file in the default is created in run-e2e-setup.sh
 export OC_CLUSTER_USER=${OC_CLUSTER_USER:-"$(jq -r '.rbac_user' ${SHARED_DIR}/${HUB_NAME}.rbac)"}
-export OC_CLUSTER_PASS=${OC_CLUSTER_PASS:-"$(jq -r '.rbac_pass' ${SHARED_DIR}/${HUB_NAME}.rbac)"}
+export RBAC_PASS=${RBAC_PASS:-"$(jq -r '.rbac_pass' ${SHARED_DIR}/${HUB_NAME}.rbac)"}
+export OC_CLUSTER_PASS=${OC_CLUSTER_PASS:-"${RBAC_PASS}"}
 export OC_IDP=${OC_IDP:-"$(jq -r '.rbac_idp' ${SHARED_DIR}/${HUB_NAME}.rbac)"}
 # log in to hub
 if [ -z "${OC_CLUSTER_TOKEN}" ]; then
@@ -64,6 +65,8 @@ sleep 10
 
 echo "===== E2E Test ====="
 echo "* Launching Cypress E2E test"
+# Make sure the Cypress binary is installed
+npx cypress install
 npm run test:cypress-headless
 
 # kill the node process to let nyc generate coverage report
