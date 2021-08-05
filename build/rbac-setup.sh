@@ -12,7 +12,7 @@
 #     export RBAC_PASS=<your-password>
 
 set -e
-RBAC_DIR=${TRAVIS_BUILD_DIR:-.}/tests/cypress/config/rbac-setup
+RBAC_DIR=./tests/cypress/config/rbac-setup
 
 if [ ! -d ${RBAC_DIR} ]; then
   echo "Error: Directory ${RBAC_DIR} does not exist. Not creating RBAC resources."
@@ -28,8 +28,11 @@ if ! which htpasswd &>/dev/null; then
   if which apt-get &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y apache2-utils
+  elif which yum &>/dev/null; then
+    sudo yum update
+    sudo yum install -y httpd-tools
   else
-    echo "Error: Package manager apt-get not found. Failed to find or install htpasswd."
+    echo "Error: Package manager not found. Failed to find or install htpasswd."
     exit 1
   fi
 fi
@@ -57,3 +60,25 @@ export OC_CLUSTER_USER=e2e-cluster-admin-cluster
 export OC_HUB_CLUSTER_PASS=${RBAC_PASS}
 export OC_CLUSTER_PASS=${RBAC_PASS}
 export OC_IDP=grc-e2e-htpasswd
+
+acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
+export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
+# test oauth server and see if idp has been setup
+i=0
+while true; do
+  IDP=`curl -sSL -k ${CYPRESS_BASE_URL} | grep ${OC_IDP}` || true
+  if [ -z ${IDP// /} ]; then
+    echo "* Wait for IDP ${OC_IDP} to take effect..."
+    sleep 10
+  else
+    echo "* IDP ${OC_IDP} has taken effect..."
+    echo ${IDP}
+    break
+  fi
+  # Try for up to 5 minutes
+  i=$[i + 1]
+  if [[ "$i" == '30' ]]; then
+    echo "* Timeout waiting for IDP ${OC_IDP}..."
+    exit 1
+  fi
+done
