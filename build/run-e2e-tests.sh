@@ -22,9 +22,11 @@ MANAGED_KUBE=${MANAGED_KUBE:-"${SHARED_DIR}/${MANAGED_NAME}.kc"}
 echo "* Clean up managed"
 if (ls "${MANAGED_KUBE}" &>/dev/null); then
   export KUBECONFIG=${MANAGED_KUBE}
+  export MANAGED_CLUSTER_NAME=${MANAGED_CLUSTER_NAME:-${MANAGED_NAME}}
 else
   echo "* Managed cluster not found. Continuing using Hub as managed."
   export KUBECONFIG=${HUB_KUBE}
+  export MANAGED_CLUSTER_NAME="local-cluster"
 fi
 
 $DIR/install-cert-manager.sh
