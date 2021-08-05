@@ -13,7 +13,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 echo "===== E2E Cluster Setup ====="
 
-# Specify kubeconfig files (the defaults are the ones generated in Prow)
+# Specify kubeconfig files (the default values are the ones generated in Prow)
 HUB_NAME=${HUB_NAME:-"hub-1"}
 MANAGED_NAME=${MANAGED_NAME:-"managed-1"}
 HUB_KUBE=${HUB_KUBE:-"${SHARED_DIR}/${HUB_NAME}.kc"}
@@ -47,7 +47,7 @@ $DIR/cluster-setup.sh
 
 echo "===== E2E Environment Setup ====="
 
-# Set cluster URL and password (the defaults are the ones generated in Prow)
+# Set cluster URL and password (the default values are the ones generated in Prow)
 HUB_NAME=${HUB_NAME:-"hub-1"}
 export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(jq -r '.api_url' ${SHARED_DIR}/${HUB_NAME}.json)"}
 
@@ -103,10 +103,11 @@ unset KUBECONFIG
 rm ${DIR}/tmpkube
 
 # kill the node process to let nyc generate coverage report
-ps -ef | grep 'node app.js' | grep -v grep | awk '{print $2}' | xargs kill
+NODE_PROCESS=$(ps -ef | grep 'node app.js' | grep -v grep)
+echo "* Killing NodeJS process:"
+echo "${NODE_PROCESS}"
+echo ${NODE_PROCESS} | awk '{print $2}' | xargs kill
 sleep 10
 
 sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/server/coverage/lcov.info
 sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/cypress/coverage/lcov.info
-
-exit 1

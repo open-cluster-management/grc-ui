@@ -51,7 +51,7 @@ The UI Platform is developed as an isomorphic React application. View the list o
    ```
    npm run setup
    OR
-   ./build/setup-env.sh
+   ./setup-env.sh
    ```
 
    This will create a `.env` file in the main directory containing the environment variables. You can run `source .env` to set the variables for use.
