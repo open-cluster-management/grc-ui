@@ -78,7 +78,8 @@ else
 fi
 
 echo "* Export envs to run E2E"
-export CYPRESS_coverage=${CYPRESS_coverage:-"true"}
+# Setting coverage to "false" until Sonar is restored for E2E
+export CYPRESS_coverage=${CYPRESS_coverage:-"false"}
 if [[ "${FAIL_FAST}" != "false" ]]; then
   export  CYPRESS_FAIL_FAST_PLUGIN="true"
 fi
@@ -103,11 +104,11 @@ unset KUBECONFIG
 rm ${DIR}/tmpkube
 
 # kill the node process to let nyc generate coverage report
-NODE_PROCESS=$(ps -ef | grep 'node app.js' | grep -v grep)
-echo "* Killing NodeJS process:"
-echo "${NODE_PROCESS}"
-echo ${NODE_PROCESS} | awk '{print $2}' | xargs kill
-sleep 10
+# NODE_PROCESS=$(ps -ef | grep 'node app.js' | grep -v grep)
+# echo "* Killing NodeJS process:"
+# echo "${NODE_PROCESS}"
+# echo ${NODE_PROCESS} | awk '{print $2}' | xargs kill
+# sleep 10
 
-sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/server/coverage/lcov.info
-sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/cypress/coverage/lcov.info
+# sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/server/coverage/lcov.info
+# sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/cypress/coverage/lcov.info
