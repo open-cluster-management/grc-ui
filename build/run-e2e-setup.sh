@@ -80,6 +80,7 @@ export CYPRESS_coverage=${CYPRESS_coverage:-"true"}
 if [[ "${FAIL_FAST}" != "false" ]]; then
   export  CYPRESS_FAIL_FAST_PLUGIN="true"
 fi
+export NO_COLOR=${NO_COLOR:-"1"}
 
 if [[ "${RUN_LOCAL}" == "true" ]]; then
   echo "* Building and running grcui"
@@ -91,7 +92,13 @@ fi
 
 echo "===== E2E Test ====="
 echo "* Launching Cypress E2E test"
+# Use a clean kubeconfig for login
+export KUBECONFIG=${DIR}/tmpkube
+# Run E2E tests
 npm run test:cypress-headless
+# Clean up the kubeconfig
+unset KUBECONFIG
+rm ${DIR}/tmpkube
 
 # kill the node process to let nyc generate coverage report
 ps -ef | grep 'node app.js' | grep -v grep | awk '{print $2}' | xargs kill
