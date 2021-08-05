@@ -58,10 +58,6 @@ describeT('GRC UI: [P1][Sev1][policy-grc] Welcome page', () => {
         leftNav.goToHome()
     })
 
-    it(`[P3][Sev3][${squad}] using left navigation - should navigate to KUI`, () => {
-        leftNav.goToKUI()
-    })
-
     it(`[P3][Sev3][${squad}] using left navigation - should navigate to Overview page`, () => {
         leftNav.goToOverview()
     })
