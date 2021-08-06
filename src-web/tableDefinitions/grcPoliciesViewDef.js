@@ -98,6 +98,8 @@ export default {
     {
       label: 'automation',
       msgKey: 'table.header.automation',
+      resourceKey: 'policyAutomations.metadata.name',
+      sortable: true,
       transforms: [wrappable],
       transformFunction: getAutomationLink,
     },
