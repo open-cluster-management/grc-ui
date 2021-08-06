@@ -128,7 +128,7 @@ function AcmGrcPage(props) {
                   let errorMessages = []
                   if (error.graphQLErrors.length > 0) {
                     errorMessages = error.graphQLErrors
-                  } else {
+                  } else if (error.errors) {
                     errorMessages = error.errors
                   }
                   eHeader = <p key='eHeader'>GraphQL Error</p>

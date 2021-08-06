@@ -318,6 +318,9 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
   >
     <h2
       className="pf-c-title pf-m-xl title"
+      data-ouia-component-id="OUIA-Generated-Title-5"
+      data-ouia-component-type="PF4/Title"
+      data-ouia-safe={true}
     >
       Related resources
     </h2>
@@ -341,6 +344,9 @@ exports[`PolicyTemplateDetailsView component renders as expected -- no related o
           />
           <h4
             className="pf-c-title pf-m-lg"
+            data-ouia-component-id="OUIA-Generated-Title-6"
+            data-ouia-component-type="PF4/Title"
+            data-ouia-safe={true}
           >
             No related resources found
           </h4>
@@ -677,6 +683,9 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
   >
     <h2
       className="pf-c-title pf-m-xl title"
+      data-ouia-component-id="OUIA-Generated-Title-3"
+      data-ouia-component-type="PF4/Title"
+      data-ouia-safe={true}
     >
       Related resources
     </h2>
@@ -700,6 +709,9 @@ exports[`PolicyTemplateDetailsView component renders as expected -- relatedObjec
           />
           <h4
             className="pf-c-title pf-m-lg"
+            data-ouia-component-id="OUIA-Generated-Title-4"
+            data-ouia-component-type="PF4/Title"
+            data-ouia-safe={true}
           >
             No related resources found
           </h4>
@@ -1036,11 +1048,17 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
   >
     <h2
       className="pf-c-title pf-m-xl title"
+      data-ouia-component-id="OUIA-Generated-Title-1"
+      data-ouia-component-type="PF4/Title"
+      data-ouia-safe={true}
     >
       Related resources
     </h2>
     <div
       className="pf-c-toolbar"
+      data-ouia-component-id="OUIA-Generated-Toolbar-1"
+      data-ouia-component-type="PF4/Toolbar"
+      data-ouia-safe={true}
       id="pf-random-id-0"
     >
       <div
@@ -2723,11 +2741,17 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
   >
     <h2
       className="pf-c-title pf-m-xl title"
+      data-ouia-component-id="OUIA-Generated-Title-2"
+      data-ouia-component-type="PF4/Title"
+      data-ouia-safe={true}
     >
       Related resources
     </h2>
     <div
       className="pf-c-toolbar"
+      data-ouia-component-id="OUIA-Generated-Toolbar-2"
+      data-ouia-component-type="PF4/Toolbar"
+      data-ouia-safe={true}
       id="pf-random-id-1"
     >
       <div
