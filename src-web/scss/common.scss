@@ -155,8 +155,3 @@ div.no-resource {
     }
   }
 }
-
-// Ensure other components don't display on top of the secondary header
-.pf-c-page__main-group.pf-m-sticky-top {
-  z-index: 1001;
-}
