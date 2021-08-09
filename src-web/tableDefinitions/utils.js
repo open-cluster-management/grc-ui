@@ -27,7 +27,6 @@ import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
 import purifyReactNode from '../utils/PurifyReactNode'
 import AutomationButton from '../components/common/AutomationButton'
-import classNames from 'classnames'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
