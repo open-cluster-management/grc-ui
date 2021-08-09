@@ -353,6 +353,14 @@ export function getStatusText(item, locale) {
     : msgs.get('policy.enabled.label', locale)
 }
 
+export function getRemediationText(item, locale) {
+  const remediation = _.get(item, 'raw.spec.remediationAction')
+  if (['inform', 'enforce'].includes(remediation)) {
+    return msgs.get(`policy.remediation.${remediation}`, locale)
+  }
+  return remediation
+}
+
 export function getStatus(item, locale, table=true) {
   const status = getStatusText(item, locale)
   return _.get(item, 'raw.spec.disabled') && table

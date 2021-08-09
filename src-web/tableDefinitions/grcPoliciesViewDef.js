@@ -10,8 +10,9 @@ import {
   getCategories,
   getControls,
   getStandards,
-  getStatus,
   getAutomationLink,
+  getRemediationText,
+  getStatus,
   getStatusText,
 } from './utils'
 import {
@@ -68,6 +69,7 @@ export default {
       sortable: true,
       transforms: [wrappable],
       cellTransforms: [breakWord],
+      transformFunction: getRemediationText,
     },
     {
       label: 'violations',

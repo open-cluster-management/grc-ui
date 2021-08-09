@@ -4,6 +4,7 @@
 'use strict'
 
 import {
+  getRemediationText,
   getStatus
 } from './utils'
 
@@ -38,7 +39,8 @@ export default {
         {
           resourceKey: 'description.title.remediation',
           information: 'grc.remediation.tooltip',
-          type: 'i18n'
+          type: 'i18n',
+          transformFunction: (item, locale) => getRemediationText(item, locale)
         },
         {
           resourceKey: 'raw.spec.remediationAction'
