@@ -12,6 +12,7 @@ import {
   getStandards,
   getStatus,
   getAutomationLink,
+  getStatusText,
 } from './utils'
 import {
   breakWord,
@@ -52,9 +53,11 @@ export default {
       resourceKey: 'raw.spec.disabled',
       searchable: true,
       sortable: true,
+      sortLabel: 'status.text',
       transforms: [wrappable],
       cellTransforms: [breakWord],
       transformFunction: getStatus,
+      textFunction: getStatusText,
     },
     {
       label: 'remediation',

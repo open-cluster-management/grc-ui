@@ -27,6 +27,7 @@ import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
 import purifyReactNode from '../utils/PurifyReactNode'
 import AutomationButton from '../components/common/AutomationButton'
+import classNames from 'classnames'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
@@ -134,6 +135,9 @@ function pushRows(items, rows, def, locale) {
         value = {
           title: refetch ? key.transformFunction(item, locale, refetch) : key.transformFunction(item, locale),
           rawData: value
+        }
+        if (key.textFunction && typeof key.textFunction === 'function') {
+          value.text = key.textFunction(item, locale)
         }
       } else {
         value =  (value || value === 0) ? value : '-'
@@ -343,10 +347,17 @@ export function getControls(item) {
   return formatAnnotationString(item, 'policy.open-cluster-management.io/controls')
 }
 
-export function getStatus(item, locale) {
+export function getStatusText(item, locale) {
   return _.get(item, 'raw.spec.disabled')
     ? msgs.get('policy.disabled.label', locale)
     : msgs.get('policy.enabled.label', locale)
+}
+
+export function getStatus(item, locale, table=true) {
+  const status = getStatusText(item, locale)
+  return _.get(item, 'raw.spec.disabled') && table
+    ? <div className='pf-u-disabled-color-200'>{status}</div>
+    : status
 }
 
 export function getStandards(item) {

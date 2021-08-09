@@ -50,7 +50,7 @@ export default {
         {
           resourceKey: 'description.title.status',
           type: 'i18n',
-          transformFunction: getStatus
+          transformFunction: (item, locale) => getStatus(item, locale, false)
         },
         {
           resourceKey: 'raw.spec.disabled'
