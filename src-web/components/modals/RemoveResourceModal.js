@@ -17,14 +17,9 @@ import { removeResource, clearRequestStatus, receiveDelError, updateModal } from
 class RemoveResourceModal extends React.Component {
   constructor(props) {
     super(props)
-    this.handleSubmitClick = this.handleSubmitClick.bind(this)
-    this.state = {
-      selected: [],
-    }
-  }
-
-  UNSAFE_componentWillMount() {
     const { data } = this.props
+    let initialSelected = []
+    console.log(JSON.stringify(data))
     const placements = _.get(data, 'raw.status.placement', [])
     const placementBindings = placements.map(placement => {
       return {
@@ -60,8 +55,24 @@ class RemoveResourceModal extends React.Component {
         })
       }
     })
-    if (children.length > 0 && this.state.selected.length < 1) {
-      this.setState({selected: children})
+
+    const policyAutomationName = _.get(data, 'policyAutomation.metadata.name')
+    const policyAutomationNS = _.get(data, 'policyAutomation.metadata.namespace')
+    if (policyAutomationName && policyAutomationNS) {
+      const selfLink = `/apis/policy.open-cluster-management.io/v1beta1/namespaces/${policyAutomationNS}/policyautomations/${policyAutomationName}`
+      children.push({
+        id: 0 + '-policyAutomation-' + policyAutomationName,
+        selfLink,
+        label: policyAutomationName + ' [PolicyAutomation]',
+        selected: true
+      })
+    }
+    if (children.length > 0) {
+      initialSelected = children
+    }
+    this.handleSubmitClick = this.handleSubmitClick.bind(this)
+    this.state = {
+      selected: initialSelected,
     }
   }
 
