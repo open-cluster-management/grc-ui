@@ -48,7 +48,7 @@ export class PolicyDetailsOverview extends React.PureComponent{
       if (Array.isArray(item.cells) && item.cells[0]) {
         const keyPath = item.cells[0].resourceKey || '-'
         const keyType = item.cells[0].type || '-'
-        const transformFunction = item.cells[0].transformFunction
+        const transformFunction = item.cells[1] && item.cells[1].transformFunction
         const dataResourceKey = item.cells[1] ? item.cells[1].resourceKey : '-'
         entry.key = msgs.get(keyPath, locale) || '-'
         const entryData = (dataResourceKey === '-') ? localItem : _.get(localItem, dataResourceKey, '-')
