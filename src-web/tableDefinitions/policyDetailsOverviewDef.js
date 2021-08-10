@@ -37,6 +37,18 @@ export default {
     {
       cells: [
         {
+          resourceKey: 'description.title.status',
+          type: 'i18n',
+          transformFunction: (item, locale) => getStatus(item, locale, false)
+        },
+        {
+          resourceKey: 'raw.spec.disabled'
+        }
+      ]
+    },
+    {
+      cells: [
+        {
           resourceKey: 'description.title.remediation',
           information: 'grc.remediation.tooltip',
           type: 'i18n',
@@ -44,18 +56,6 @@ export default {
         },
         {
           resourceKey: 'raw.spec.remediationAction'
-        }
-      ]
-    },
-    {
-      cells: [
-        {
-          resourceKey: 'description.title.status',
-          type: 'i18n',
-          transformFunction: (item, locale) => getStatus(item, locale, false)
-        },
-        {
-          resourceKey: 'raw.spec.disabled'
         }
       ]
     },

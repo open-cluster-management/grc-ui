@@ -637,7 +637,7 @@ export const action_verifyPolicyInPolicyDetails = (
   //cy.get('div.vertical-expend').then((e) => {
   cy.get('#compliance\\.details').within(() => {
     cy.get('div.pf-c-description-list__text').spread((
-      name, namespace, remediation, disabled, violations,
+      name, namespace, status, remediation, violations,
       categories, controls, standards, created
       ) => {
       // check name
@@ -652,12 +652,8 @@ export const action_verifyPolicyInPolicyDetails = (
       } else if (policyConfig['remediation'] == false) {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
-      // check state
-      if (enabled == 'enabled') {
-        cy.wrap(disabled).contains('false')
-      } else {
-        cy.wrap(disabled).contains('true')
-      }
+      // check status
+      cy.wrap(status).contains(enabled, { matchCase: false })
       if ([1,2,3].includes(targetStatus)) {
         // check the violation status
         cy.wrap(violations).find('svg').then((elems) => {
