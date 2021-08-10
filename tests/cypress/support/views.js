@@ -365,11 +365,13 @@ export const action_verifyPolicyInListing = (
     .get('.grc-view-by-policies-table').within(() => {
     cy.log(uName)
     cy.get('a').contains(uName).parents('td').siblings('td')
-    .spread((toggle, namespace, remediation, violations, controls) => {
+    .spread((toggle, namespace, status, remediation, violations, controls) => {
       // check namespace
       if (policyConfig['namespace']) {
         cy.wrap(namespace).contains(policyConfig['namespace'].trim(), { matchCase: false })
       }
+      // check status (enabled/disabled)
+      cy.wrap(status).contains(enabled, { matchCase: false })
       // check enforce/inform
       if (policyConfig['remediation'] == true) {
         cy.wrap(remediation).contains('enforce', { matchCase: false })
@@ -414,20 +416,6 @@ export const action_verifyPolicyInListing = (
         cy.wrap(toggle).click()
       }
     })
-
-    if (enabled.toLowerCase() === 'disabled') { // check disabled policy
-      cy.get('a')
-      .contains(uName)
-      .siblings('span')
-      .contains('disabled', { matchCase: false })
-      .then(() => isPolicyStatusAvailable(uName)) // check policy status, it should not be available
-      .then((v) => expect(v).to.be.false)
-    } else { // check enabled policy
-      cy.get('a')
-        .contains(uName)
-        .siblings('span')
-        .should('not.exist')
-    }
   })
   cy.clearTableSearch()
 }
@@ -547,7 +535,7 @@ export const isPolicyStatusAvailable = (uName, violationsCounter) => {
 return cy.url().then((pageURL) => {
   if (pageURL.endsWith('/multicloud/policies/all')) {
     cy.get('[aria-label="Simple Table"]').within(() => {
-    cy.get('a').contains(uName).parents('td').siblings('td').spread((toggle, namespace, remediation, violations) => {
+    cy.get('a').contains(uName).parents('td').siblings('td').spread((toggle, namespace, status, remediation, violations) => {
       if (Cypress.$('[aria-label="Simple Table"]').find('.disabledStatus').length === 0) {
         // check the violation status
         cy.wrap(violations).find('path').then((elems) => {
