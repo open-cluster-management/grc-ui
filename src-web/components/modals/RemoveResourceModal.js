@@ -61,6 +61,8 @@ class RemoveResourceModal extends React.Component {
     if (policyAutomationName && policyAutomationNS) {
       const selfLink = `/apis/policy.open-cluster-management.io/v1beta1/namespaces/${policyAutomationNS}/policyautomations/${policyAutomationName}`
       children.push({
+        // each policy has only one policyAutomation
+        // but could have multi placementBindings/placementRules
         id: 0 + '-policyAutomation-' + policyAutomationName,
         selfLink,
         label: policyAutomationName + ' [PolicyAutomation]',
