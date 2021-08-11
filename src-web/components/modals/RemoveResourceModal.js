@@ -19,7 +19,6 @@ class RemoveResourceModal extends React.Component {
     super(props)
     const { data } = this.props
     let initialSelected = []
-    console.log(JSON.stringify(data))
     const placements = _.get(data, 'raw.status.placement', [])
     const placementBindings = placements.map(placement => {
       return {
@@ -55,7 +54,6 @@ class RemoveResourceModal extends React.Component {
         })
       }
     })
-
     const policyAutomationName = _.get(data, 'policyAutomation.metadata.name')
     const policyAutomationNS = _.get(data, 'policyAutomation.metadata.namespace')
     if (policyAutomationName && policyAutomationNS) {
