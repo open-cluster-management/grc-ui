@@ -53,7 +53,7 @@ export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(jq -r '.api_url' ${SHARED_DIR}/${HUB_
 
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
 
-VERSION_TAG=${VERSION_TAG:-"latest-dev"}
+VERSION_TAG=${VERSION_TAG:-"latest"}
 DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:${VERSION_TAG}
 if [[ "${RUN_LOCAL}" == "true" ]]; then
   docker pull ${DOCKER_URI}
