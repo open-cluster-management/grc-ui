@@ -53,13 +53,13 @@ export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(jq -r '.api_url' ${SHARED_DIR}/${HUB_
 
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
 
-GRCUIAPI_VERSION=${GRCUIAPI_VERSION:-"latest"}
-DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:${GRCUIAPI_VERSION}
+VERSION_TAG=${VERSION_TAG:-"latest-dev"}
+DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:${VERSION_TAG}
 if [[ "${RUN_LOCAL}" == "true" ]]; then
   docker pull ${DOCKER_URI}
   docker run -d -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$API_SERVER_URL $DOCKER_URI
 else
-  echo "* Patching GRC UI API with grcuiapi:${GRCUIAPI_VERSION}"
+  echo "* Patching GRC UI API with grcuiapi:${VERSION_TAG}"
   GRCUIAPI_LABEL="component=ocm-grcuiapi"
   GRCUIAPI=$(oc get deployment -l ${GRCUIAPI_LABEL} -n ${acm_installed_namespace} -o=jsonpath='{.items[*].metadata.name}')
   oc patch deployment ${GRCUIAPI} -n ${acm_installed_namespace} -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"grc-ui-api\",\"image\":\"${DOCKER_URI}\"}]}}}}"
