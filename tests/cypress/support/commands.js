@@ -33,7 +33,7 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
         cy.log(`Currently logged to 'oc' as ${currentUser}`)
         if (currentUser != user || force) {  // do oc login as the required user
           cy.log(`Doing 'oc login' as ${user}`)
-          cy.exec(`oc login --server=${APIServer} -u ${user} -p ${password}`).then(res => cy.log(res.stdout))
+          cy.exec(`oc login --server=${APIServer} -u ${user} -p ${password}`, { 'log': false }).then(res => cy.log(res.stdout))
         }
       })
       .then(() => {
@@ -44,24 +44,29 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
       })
     }
   })
-  cy.visit('/multicloud/policies')
-  .get('body').then(body => {
+  // A 403 could be the oauth-proxy screen loading, so we'll have Cypress ignore it
+  cy.visit('/multicloud/policies', { 'failOnStatusCode': false })
+  cy.get('body').then(() => {
     // if not yet logged in, do the regular login through Web UI
-    if (body.find('.pf-c-page__header').length === 0) {
-      // Check if identity providers are configured
-      if (body.find('form').length === 0) {
-        if (user === 'kubeadmin') {
-          idp = 'kube:admin'
+    if (Cypress.$('body').find('.pf-c-page__header').length === 0) {
+      // Handle Openshift oauth-proxy button
+      cy.get('button').contains('Log in with OpenShift').click()
+      cy.get('div.pf-c-login').should('exist').then(() => {
+        // Check if identity providers are configured
+        if (Cypress.$('body').find('form').length === 0) {
+          if (user === 'kubeadmin') {
+            idp = 'kube:admin'
+          }
+          cy.contains(idp).click()
         }
-        cy.contains(idp).click()
-      }
-      cy.get('#inputUsername').click().focused().type(user)
-      cy.get('#inputPassword').click().focused().type(password)
-      cy.get('button[type="submit"]').click()
-      cy.get('.pf-c-page__header').should('exist')
+        cy.get('#inputUsername').click().focused().type(user)
+        cy.get('#inputPassword').click().focused().type(password)
+        cy.get('button[type="submit"]').click()
+        cy.get('.pf-c-page__header').should('exist')
+      })
     }
   })
-  .CheckGrcMainPage()
+  cy.CheckGrcMainPage()
 })
 
 Cypress.Commands.add('reloadUntil', (condition, options) => {

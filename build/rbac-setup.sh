@@ -61,24 +61,5 @@ export OC_HUB_CLUSTER_PASS=${RBAC_PASS}
 export OC_CLUSTER_PASS=${RBAC_PASS}
 export OC_IDP=grc-e2e-htpasswd
 
-acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
-export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
-# test oauth server and see if idp has been setup
-i=0
-while true; do
-  IDP=`curl -sSL -k "${CYPRESS_BASE_URL}/oauth/start?rd=/" | grep ${OC_IDP}` || true
-  if [ -z ${IDP// /} ]; then
-    echo "* Wait for IDP ${OC_IDP} to take effect..."
-    sleep 10
-  else
-    echo "* IDP ${OC_IDP} has taken effect..."
-    echo ${IDP}
-    break
-  fi
-  # Try for up to 5 minutes
-  i=$[i + 1]
-  if [[ "$i" == '30' ]]; then
-    echo "* Timeout waiting for IDP ${OC_IDP}..."
-    exit 1
-  fi
-done
+# Give the IDP some time to instantiate
+sleep 15
