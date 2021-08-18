@@ -360,6 +360,17 @@ export function getRemediationText(item, locale) {
   return remediation
 }
 
+export function getSourceText(item, locale) {
+  const source = _.get(item, 'source', {}) || {}
+  if (source.type) {
+    return source.type
+  } else if (_.get(item, 'external')) {
+    return msgs.get('policy.source.external', locale)
+  } else {
+    return msgs.get('policy.source.local', locale)
+  }
+}
+
 export function getStatus(item, locale, table=true) {
   const status = getStatusText(item, locale)
   return _.get(item, 'raw.spec.disabled') && table

@@ -141,6 +141,10 @@ export default {
          'clusterConsoleURL': {
            'local-cluster': 'https://console-openshift-console.apps.policy-grc-cp-autoclaims-jgb6v.dev08.red-chesterfield.com'
          },
+         'external': true,
+         'source': {
+            'type': 'git'
+         },
          '__typename': 'Compliance'
        },
        {
@@ -269,6 +273,10 @@ export default {
          },
          'clusterConsoleURL': {
            'local-cluster': 'https://console-openshift-console.apps.policy-grc-cp-autoclaims-jgb6v.dev08.red-chesterfield.com'
+         },
+         'external': true,
+         'source': {
+            'type': 'git'
          },
          '__typename': 'Compliance'
        },
@@ -399,6 +407,8 @@ export default {
          'clusterConsoleURL': {
            'local-cluster': 'https://console-openshift-console.apps.policy-grc-cp-autoclaims-jgb6v.dev08.red-chesterfield.com'
          },
+         'external': false,
+         'source': null,
          '__typename': 'Compliance'
        },
        {
@@ -538,6 +548,8 @@ export default {
          'clusterConsoleURL': {
            'local-cluster': 'https://console-openshift-console.apps.policy-grc-cp-autoclaims-jgb6v.dev08.red-chesterfield.com'
          },
+         'external': false,
+         'source': null,
          '__typename': 'Compliance'
        },
        {
@@ -680,6 +692,8 @@ export default {
          'clusterConsoleURL': {
            'local-cluster': 'https://console-openshift-console.apps.policy-grc-cp-autoclaims-jgb6v.dev08.red-chesterfield.com'
          },
+         'external': false,
+         'source': null,
          '__typename': 'Compliance'
        },
        {
@@ -819,6 +833,8 @@ export default {
          'clusterConsoleURL': {
            'local-cluster': 'https://console-openshift-console.apps.policy-grc-cp-autoclaims-jgb6v.dev08.red-chesterfield.com'
          },
+         'external': false,
+         'source': null,
          '__typename': 'Compliance'
        },
        {
@@ -948,6 +964,8 @@ export default {
          'clusterConsoleURL': {
            'local-cluster': 'https://console-openshift-console.apps.policy-grc-cp-autoclaims-jgb6v.dev08.red-chesterfield.com'
          },
+         'external': false,
+         'source': null,
          '__typename': 'Compliance'
        },
        {
@@ -1151,6 +1169,8 @@ export default {
          'clusterConsoleURL': {
            'local-cluster': 'https://console-openshift-console.apps.policy-grc-cp-autoclaims-jgb6v.dev08.red-chesterfield.com'
          },
+         'external': true,
+         'source': null,
          '__typename': 'Compliance'
        }
      ],
