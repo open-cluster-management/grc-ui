@@ -1559,7 +1559,7 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
   cy.CheckGrcMainPage()
   .doTableSearch(uName)
   .get('.grc-view-by-policies-table').within(() => {
-  cy.get('a')
+    cy.get('a')
     .contains(uName)
     .parents('td')
     .siblings('td[data-label="Automation"]').within(() => {
@@ -1632,7 +1632,11 @@ const verifyHistoryPage = (mode, failuresExpected) => {
   cy.get('.pf-c-tabs__item-text').contains('History').click()
   if (failuresExpected === 0) {
     cy.get('.ansible-history-table').within(() => {
-      cy.get('.pf-c-empty-state').should('exist')
+      if (Cypress.$(`svg[fill="${getStatusIconFillColor('no status')}"]`).length > 0) {
+        cy.get(`svg[fill="${getStatusIconFillColor('no status')}"]`).should('have.length', 1)
+      } else {
+        cy.get('.pf-c-empty-state').should('exist')
+      }
     })
   } else {
     cy.get('.ansible-history-table').within(() => {
