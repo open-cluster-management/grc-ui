@@ -1412,10 +1412,10 @@ export const action_verifyCredentialsInSidebar = (uName, credentialName) => {
     cy.get('a')
       .contains(uName)
       .parents('td')
-      .siblings('td[data-label="Automation"]').within(() => {
-        cy.get('a').click()
+      .siblings('td[data-label="Automation"]').within(($automationButton) => {
+        cy.wrap($automationButton).get('a').click()
       })
-  })
+    })
   .then(() => {
     cy.get('.ansible-configure-table').within(() => {
       if (credentialName === '') {
@@ -1460,10 +1460,10 @@ export const action_verifyAnsibleInstallPrompt = (uName, opInstalled) => {
     cy.get('a')
       .contains(uName)
       .parents('td')
-      .siblings('td[data-label="Automation"]').within(() => {
-        cy.get('a').click()
+      .siblings('td[data-label="Automation"]').within(($automationButton) => {
+        cy.wrap($automationButton).get('a').click()
       })
-  })
+    })
   cy.get('.pf-c-modal-box__header').within(() => {
     if (opInstalled) {
       cy.get('#installAnsibleOperatorLink').should('not.exist')
@@ -1515,10 +1515,10 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
     cy.get('a')
       .contains(uName)
       .parents('td')
-      .siblings('td[data-label="Automation"]').within(() => {
-        cy.get('a').click()
+      .siblings('td[data-label="Automation"]').within(($automationButton) => {
+        cy.wrap($automationButton).get('a').click()
       })
-  })
+    })
   cy.get('.createCredential').within(() => {
     cy.get('.pf-c-select').click()
     cy.contains(credentialName).should('exist')
@@ -1557,15 +1557,15 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
   // after successfully creating automation
   // panel will automatically closed and need to reopen it
   cy.CheckGrcMainPage()
-  .doTableSearch(uName)
-  .get('.grc-view-by-policies-table').within(() => {
+    .doTableSearch(uName)
+    .get('.grc-view-by-policies-table').within(() => {
     cy.get('a')
-    .contains(uName)
-    .parents('td')
-    .siblings('td[data-label="Automation"]').within(() => {
-      cy.get('a').click()
+      .contains(uName)
+      .parents('td')
+      .siblings('td[data-label="Automation"]').within(($automationButton) => {
+        cy.wrap($automationButton).get('a').click()
+      })
     })
-  })
   cy.get('#automation-resource-panel').should('exist')
   verifyHistoryPage(mode, failures)
   cy.get('button[aria-label="Close"]').click()
@@ -1583,12 +1583,12 @@ export const action_verifyHistoryPageWithMock = (uName) => {
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
     .get('.grc-view-by-policies-table').within(() => {
-      cy.get('a')
-        .contains(uName)
-        .parents('td')
-        .siblings('td[data-label="Automation"]').within(() => {
-          cy.get('a').click()
-        })
+    cy.get('a')
+      .contains(uName)
+      .parents('td')
+      .siblings('td[data-label="Automation"]').within(($automationButton) => {
+        cy.wrap($automationButton).get('a').click()
+      })
     })
   //use mock data to check successes in history tab
   cy.intercept('POST', Cypress.config().baseUrl + '/multicloud/policies/graphql', (req) => {
