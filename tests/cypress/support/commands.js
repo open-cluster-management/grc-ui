@@ -154,7 +154,6 @@ Cypress.Commands.add('logout', () => {
       cy.contains('Logout').click().clearCookies()
     } else {
       cy.contains('Logout').click()
-      cy.location('pathname').should('match', new RegExp('/oauth/authorize(\\?.*)?$'))
     }
   })
 })
