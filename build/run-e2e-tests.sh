@@ -92,6 +92,8 @@ if [[ "${RUN_LOCAL}" == "true" ]]; then
   npm run build
   npm run start:instrument &>/dev/null &
   sleep 10
+else
+   export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
 fi
 
 echo "===== E2E Test ====="
