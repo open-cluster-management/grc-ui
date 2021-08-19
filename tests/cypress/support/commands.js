@@ -160,6 +160,7 @@ Cypress.Commands.add('logout', () => {
       cy.contains('Logout').click().clearCookies()
     } else {
       cy.contains('Logout').click()
+      cy.contains('Log in with OpenShift').should('exist')
     }
   })
 })
