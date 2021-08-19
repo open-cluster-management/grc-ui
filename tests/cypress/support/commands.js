@@ -26,11 +26,14 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
   // handle login by setting cookie explicitly when running against localhost
   .then(() => {
     if (Cypress.config().baseUrl.includes('localhost')) {
+      let currentUser
       expect(APIServer).to.not.equal(undefined)
       // check who is the current user
       cy.exec('oc whoami', {failOnNonZeroExit: false}).then(res => {
-        const currentUser = res.stdout.replace('kube:admin', 'kubeadmin')
+        currentUser = res.stdout.replace('kube:admin', 'kubeadmin')
         cy.log(`Currently logged to 'oc' as ${currentUser}`)
+      })
+      .then(() => {
         if (currentUser != user || force) {  // do oc login as the required user
           cy.log(`Doing 'oc login' as ${user}`)
           cy.exec('oc login --server=${APIServer} -u ${TEST_USER} -p ${TEST_PASSWORD}', { 'log': false, 'env': { TEST_USER: user, TEST_PASSWORD: password } }).then(res => cy.log(res.stdout))
