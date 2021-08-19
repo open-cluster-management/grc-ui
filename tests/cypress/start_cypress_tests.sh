@@ -55,8 +55,8 @@ fi
 
 echo -e "\nLogging into Kube API server\n"
 ATTEMPTS=0
-MAX_ATTEMPTS=5
-INTERVAL=10
+MAX_ATTEMPTS=10
+INTERVAL=15
 FAILED="true"
 while [[ "${FAILED}" == "true" ]] && (( ATTEMPTS != MAX_ATTEMPTS )); do
   if [ -z "$CYPRESS_OPTIONS_HUB_TOKEN" ]; then
@@ -72,7 +72,7 @@ while [[ "${FAILED}" == "true" ]] && (( ATTEMPTS != MAX_ATTEMPTS )); do
   fi
 done
 if [[ "${FAILED}" == "true" ]]; then
-  echo "ERROR: Failed to log in to cluster. The following commands will likely fail."
+  echo -e "\nERROR: Failed to log in to cluster. The following commands will likely fail.\n"
 fi
 
 if [[ "${CYPRESS_OPTIONS_HUB_CLUSTER_URL}" =~ "openshiftapps.com" ]]; then
