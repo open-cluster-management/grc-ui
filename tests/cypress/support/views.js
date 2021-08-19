@@ -1412,9 +1412,8 @@ export const action_verifyCredentialsInSidebar = (uName, credentialName) => {
     cy.get('a')
       .contains(uName)
       .parents('td')
-      .siblings('td[data-label="Automation"]').within(($automationButton) => {
-        cy.wrap($automationButton).get('a').click()
-      })
+      .siblings('td[data-label="Automation"]').as('automationButton')
+    cy.get('@automationButton').find('a').click()
     })
   .then(() => {
     cy.get('.ansible-configure-table').within(() => {
@@ -1460,9 +1459,8 @@ export const action_verifyAnsibleInstallPrompt = (uName, opInstalled) => {
     cy.get('a')
       .contains(uName)
       .parents('td')
-      .siblings('td[data-label="Automation"]').within(($automationButton) => {
-        cy.wrap($automationButton).get('a').click()
-      })
+      .siblings('td[data-label="Automation"]').as('automationButton')
+      cy.get('@automationButton').find('a').click()
     })
   cy.get('.pf-c-modal-box__header').within(() => {
     if (opInstalled) {
@@ -1515,9 +1513,8 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
     cy.get('a')
       .contains(uName)
       .parents('td')
-      .siblings('td[data-label="Automation"]').within(($automationButton) => {
-        cy.wrap($automationButton).get('a').click()
-      })
+      .siblings('td[data-label="Automation"]').as('automationButton')
+      cy.get('@automationButton').find('a').click()
     })
   cy.get('.createCredential').within(() => {
     cy.get('.pf-c-select').click()
@@ -1562,9 +1559,8 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
     cy.get('a')
       .contains(uName)
       .parents('td')
-      .siblings('td[data-label="Automation"]').within(($automationButton) => {
-        cy.wrap($automationButton).get('a').click()
-      })
+      .siblings('td[data-label="Automation"]').as('automationButton')
+      cy.get('@automationButton').find('a').click()
     })
   cy.get('#automation-resource-panel').should('exist')
   verifyHistoryPage(mode, failures)
@@ -1586,9 +1582,8 @@ export const action_verifyHistoryPageWithMock = (uName) => {
     cy.get('a')
       .contains(uName)
       .parents('td')
-      .siblings('td[data-label="Automation"]').within(($automationButton) => {
-        cy.wrap($automationButton).get('a').click()
-      })
+      .siblings('td[data-label="Automation"]').as('automationButton')
+      cy.get('@automationButton').find('a').click()
     })
   //use mock data to check successes in history tab
   cy.intercept('POST', Cypress.config().baseUrl + '/multicloud/policies/graphql', (req) => {
