@@ -50,7 +50,9 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
     // if not yet logged in, do the regular login through Web UI
     if (Cypress.$('body').find('.pf-c-page__header').length === 0) {
       // Handle Openshift oauth-proxy button
-      cy.get('button').contains('Log in with OpenShift').click()
+      if (Cypress.$('div.panel-login button').length > 0) {
+        cy.get('button').contains('Log in with OpenShift').click()
+      }
       cy.get('div.pf-c-login').should('exist').then(() => {
         // Check if identity providers are configured
         if (Cypress.$('body').find('form').length === 0) {

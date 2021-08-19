@@ -61,5 +61,3 @@ export OC_HUB_CLUSTER_PASS=${RBAC_PASS}
 export OC_CLUSTER_PASS=${RBAC_PASS}
 export OC_IDP=grc-e2e-htpasswd
 
-# Give the IDP some time to instantiate
-sleep 15
