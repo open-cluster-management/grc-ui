@@ -33,13 +33,14 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
         cy.log(`Currently logged to 'oc' as ${currentUser}`)
         if (currentUser != user || force) {  // do oc login as the required user
           cy.log(`Doing 'oc login' as ${user}`)
-          cy.exec(`oc login --server=${APIServer} -u ${user} -p ${password}`, { 'log': false }).then(res => cy.log(res.stdout))
+          cy.exec('oc login --server=${APIServer} -u ${TEST_USER} -p ${TEST_PASSWORD}', { 'log': false, 'env': { TEST_USER: user, TEST_PASSWORD: password } }).then(res => cy.log(res.stdout))
         }
       })
       .then(() => {
         cy.exec('oc whoami -t').then(res => {  // get token and set cookie and env var accordingly
           Cypress.env('token', res.stdout)
-          cy.setCookie('acm-access-token-cookie', Cypress.env('token'))
+          cy.log('Setting acm-access-token-cookie')
+          cy.setCookie('acm-access-token-cookie', Cypress.env('token'), { 'log': false })
         })
       })
     }
@@ -62,7 +63,7 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
           cy.contains(idp).click()
         }
         cy.get('#inputUsername').click().focused().type(user)
-        cy.get('#inputPassword').click().focused().type(password)
+        cy.get('#inputPassword').click().focused().type(password, { 'log': false })
         cy.get('button[type="submit"]').click()
         cy.get('.pf-c-page__header').should('exist')
       })
