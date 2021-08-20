@@ -1,0 +1,50 @@
+/* Copyright (c) 2020 Red Hat, Inc. */
+/* Copyright Contributors to the Open Cluster Management project */
+@import 'variables';
+
+.channel-labels {
+  --gutter: 0.5rem;
+  --margin: 1rem;
+
+  .pf-l-split {
+    --pf-l-split--m-gutter--MarginRight: var(--gutter);
+  }
+
+  .pf-l-stack {
+    --pf-l-stack--m-gutter--MarginBottom: var(--gutter);
+  }
+
+  .channel-label {
+    --pf-l-split--m-gutter--MarginRight: 8px;
+  }
+
+  .channel-entry {
+    margin: var(--margin);
+    padding-right: calc(3rem);
+  }
+
+  .channel-entry-link {
+    display: block;
+    color: $color__blue-51;
+    fill: $color__blue-51;
+    word-break: break-all;
+
+    svg {
+      margin-left: 8px;
+    }
+  }
+
+  .channel-entry-link + .channel-entry-attribute {
+    // extra padding for first attribute after link
+    padding-top: calc(2 * var(--gutter));
+  }
+
+  .channel-entry-attribute-name {
+    font-weight: 600;
+  }
+}
+
+.channel-labels-popover-content {
+  max-height: 360px;
+  overflow-y: auto;
+} 

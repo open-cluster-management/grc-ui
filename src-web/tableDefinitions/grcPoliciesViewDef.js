@@ -12,6 +12,7 @@ import {
   getStandards,
   getAutomationLink,
   getRemediationText,
+  getSource,
   getSourceText,
   getStatus,
   getStatusText,
@@ -92,7 +93,7 @@ export default {
       sortLabel: 'source.text',
       transforms: [wrappable],
       cellTransforms: [breakWord],
-      transformFunction: getSourceText,
+      transformFunction: getSource,
       textFunction: getSourceText,
     },
     {
