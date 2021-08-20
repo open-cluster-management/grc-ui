@@ -46,7 +46,7 @@ const ChannelLabels = ({
             key={`${chType}`}
             labelContent={labelContent}
             labelColor="blue"
-            popoverHeader={channelMap[chType].length > 1 && labelContent}
+            popoverHeader={channelMap[chType].length > 1 ? labelContent : undefined}
           >
             <Stack className="channel-labels channel-labels-popover-content">
               {channelSort(channelMap[chType]).map((channel, index) => {
