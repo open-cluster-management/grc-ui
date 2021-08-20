@@ -48,15 +48,10 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
       })
     }
   })
-  // A 403 could be the oauth-proxy screen loading, so we'll have Cypress ignore it
-  cy.visit('/multicloud/policies', { 'failOnStatusCode': false })
+  cy.visit('/multicloud/policies')
   cy.get('body').then(() => {
     // if not yet logged in, do the regular login through Web UI
     if (Cypress.$('body').find('.pf-c-page__header').length === 0) {
-      // Handle Openshift oauth-proxy button
-      if (Cypress.$('div.panel-login button').length > 0) {
-        cy.get('button').contains('Log in with OpenShift').click()
-      }
       cy.get('div.pf-c-login').should('exist').then(() => {
         // Check if identity providers are configured
         if (Cypress.$('body').find('form').length === 0) {
@@ -160,7 +155,7 @@ Cypress.Commands.add('logout', () => {
       cy.contains('Logout').click().clearCookies()
     } else {
       cy.contains('Logout').click()
-      cy.contains('Log in with OpenShift').should('exist')
+      cy.location('pathname').should('match', new RegExp('/oauth/authorize(\\?.*)?$'))
     }
   })
 })
