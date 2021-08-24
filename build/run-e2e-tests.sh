@@ -114,3 +114,10 @@ rm ${DIR}/tmpkube
 
 # sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/server/coverage/lcov.info
 # sed -i 's|SF:|SF:'"$(pwd)"/'|g' test-output/cypress/coverage/lcov.info
+
+echo "===== E2E Cleanup ====="
+echo "* Clean up hub"
+export KUBECONFIG=${HUB_KUBE}
+
+${DIR}/cluster-clean-up.sh hub
+${DIR}/rbac-clean.sh ${DIR}/..

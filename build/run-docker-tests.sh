@@ -24,8 +24,6 @@ fi
 export FAIL_FAST=${FAIL_FAST:-false}
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
 export CYPRESS_BASE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
-# show all envs
-printenv
 
 # run test
 export PAUSE=${PAUSE:-60}
@@ -41,3 +39,13 @@ else
   export CYPRESS_FAIL_FAST_PLUGIN=false
 fi
 npm run test:cypress-headless
+
+if [[ "${SKIP_CLEANUP}" != "true" ]]; then
+  echo "===== E2E Cleanup ====="
+  ${DIR}/cluster-clean-up.sh hub
+  if [ -z ${RBAC_PASS} ]; then
+    echo "RBAC_PASS not set. Skipping RBAC cleanup."
+  else
+    ./build/rbac-clean.sh
+  fi
+fi
