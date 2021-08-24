@@ -42,7 +42,7 @@ npm run test:cypress-headless
 
 if [[ "${SKIP_CLEANUP}" != "true" ]]; then
   echo "===== E2E Cleanup ====="
-  ${DIR}/cluster-clean-up.sh hub
+  ./build/cluster-clean-up.sh hub
   if [ -z ${RBAC_PASS} ]; then
     echo "RBAC_PASS not set. Skipping RBAC cleanup."
   else
