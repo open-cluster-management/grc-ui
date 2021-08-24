@@ -1556,6 +1556,15 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
   })
   // after successfully creating automation
   // panel will automatically closed and need to reopen it
+
+  // In case there's an "automation already exists" error,
+  // check for open Automation modal and close it if it's open
+  if (Cypress.$('#automation-resource-panel').length === 1) {
+    cy.get('#automation-resource-panel').within(() => {
+      cy.get('button[aria-label="Close"]').click()
+    })
+  }
+
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
     .get('.grc-view-by-policies-table').within(() => {
