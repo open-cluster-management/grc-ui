@@ -46,6 +46,6 @@ if [[ "${SKIP_CLEANUP}" != "true" ]]; then
   if [ -z ${RBAC_PASS} ]; then
     echo "RBAC_PASS not set. Skipping RBAC cleanup."
   else
-    ./build/rbac-clean.sh
+    npm run rbac:clean
   fi
 fi
