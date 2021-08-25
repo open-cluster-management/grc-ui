@@ -40,161 +40,177 @@ exports[`Welcome component renders as expected 1`] = `
     role="region"
   >
     <div
-      className="welcome--svcs-row"
+      className="pf-l-gallery pf-m-gutter welcome--svcs-gallery-container"
+      style={
+        Object {
+          "--pf-l-gallery--GridTemplateColumns--max-on-2xl": "70%",
+          "--pf-l-gallery--GridTemplateColumns--max-on-lg": "70%",
+          "--pf-l-gallery--GridTemplateColumns--max-on-md": "70%",
+          "--pf-l-gallery--GridTemplateColumns--max-on-xl": "70%",
+          "--pf-l-gallery--GridTemplateColumns--min-on-2xl": "70%",
+          "--pf-l-gallery--GridTemplateColumns--min-on-lg": "70%",
+          "--pf-l-gallery--GridTemplateColumns--min-on-md": "70%",
+          "--pf-l-gallery--GridTemplateColumns--min-on-xl": "70%",
+        }
+      }
     >
-      <div
-        className="welcome--svcs-container"
-      >
+      <div>
         <div
-          className="welcome--svcs-container-img"
+          className="welcome--svcs-container"
         >
-          <img
-            alt=""
-            height="32px"
-            src="undefined/graphics/welcome-card-1-icon.svg"
-            width="32px"
-          />
-        </div>
-        <div
-          className="welcome--svcs-container-body"
-        >
-          <p
-            className="title"
-          >
-            End-to-end visibility
-          </p>
-          <p
-            className="desc"
-          >
-            View system alerts, critical application metrics, and overall system health. Search, identify, and resolve issues that are impacting distributed workloads using an operational dashboard designed for Site Reliability Engineers (SREs).
-          </p>
           <div
-            className="links"
+            className="welcome--svcs-container-img"
           >
+            <img
+              alt=""
+              src="undefined/graphics/welcome-card-1-icon.svg"
+            />
+          </div>
+          <div
+            className="welcome--svcs-container-title"
+          >
+            <p>
+              End-to-end visibility
+            </p>
             <a
-              className="links-link"
+              className="welcome--svcs-container-title-link"
               href="/overview"
             >
               Go to Overview
             </a>
+            <p
+              className="welcome--svcs-container-desc"
+            >
+              View system alerts, critical application metrics, and overall system health. Search, identify, and resolve issues that are impacting distributed workloads using an operational dashboard designed for Site Reliability Engineers (SREs).
+            </p>
           </div>
         </div>
       </div>
-      <div
-        className="welcome--svcs-container"
-      >
+      <div>
         <div
-          className="welcome--svcs-container-img"
+          className="welcome--svcs-container"
         >
-          <img
-            alt=""
-            height="32px"
-            src="undefined/graphics/welcome-card-2-icon.svg"
-            width="32px"
-          />
-        </div>
-        <div
-          className="welcome--svcs-container-body"
-        >
-          <p
-            className="title"
-          >
-            Cluster lifecycle
-          </p>
-          <p
-            className="desc"
-          >
-            Create, update, scale, and remove clusters reliably, consistently using an open source programming model that supports and encourages Infrastructure as Code best practices and design principles.
-          </p>
           <div
-            className="links"
+            className="welcome--svcs-container-img"
           >
+            <img
+              alt=""
+              src="undefined/graphics/welcome-card-2-icon.svg"
+            />
+          </div>
+          <div
+            className="welcome--svcs-container-title"
+          >
+            <p>
+              Cluster lifecycle
+            </p>
             <a
-              className="links-link"
+              className="welcome--svcs-container-title-link"
               href="/multicloud/clusters"
             >
               Go to Clusters
             </a>
+            <p
+              className="welcome--svcs-container-desc"
+            >
+              Create, update, scale, and remove clusters reliably, consistently using an open source programming model that supports and encourages Infrastructure as Code best practices and design principles.
+            </p>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      className="welcome--svcs-row"
-    >
-      <div
-        className="welcome--svcs-container"
-      >
+      <div>
         <div
-          className="welcome--svcs-container-img"
+          className="welcome--svcs-container"
         >
-          <img
-            alt=""
-            height="32px"
-            src="undefined/graphics/welcome-card-3-icon.svg"
-            width="32px"
-          />
-        </div>
-        <div
-          className="welcome--svcs-container-body"
-        >
-          <p
-            className="title"
-          >
-            Application lifecycle
-          </p>
-          <p
-            className="desc"
-          >
-            Define a business application using open standards and deploy the applications using placement policies that are integrated into existing CI/CD pipelines and governance controls.
-          </p>
           <div
-            className="links"
+            className="welcome--svcs-container-img"
           >
+            <img
+              alt=""
+              src="undefined/graphics/welcome-card-3-icon.svg"
+            />
+          </div>
+          <div
+            className="welcome--svcs-container-title"
+          >
+            <p>
+              Application lifecycle
+            </p>
             <a
-              className="links-link"
+              className="welcome--svcs-container-title-link"
               href="/multicloud/applications"
             >
               Go to Applications
             </a>
+            <p
+              className="welcome--svcs-container-desc"
+            >
+              Define a business application using open standards and deploy the applications using placement policies that are integrated into existing CI/CD pipelines and governance controls.
+            </p>
           </div>
         </div>
       </div>
-      <div
-        className="welcome--svcs-container"
-      >
+      <div>
         <div
-          className="welcome--svcs-container-img"
+          className="welcome--svcs-container"
         >
-          <img
-            alt=""
-            height="32px"
-            src="undefined/graphics/welcome-card-4-icon.svg"
-            width="32px"
-          />
-        </div>
-        <div
-          className="welcome--svcs-container-body"
-        >
-          <p
-            className="title"
-          >
-            Governance, Risk, and Compliance
-          </p>
-          <p
-            className="desc"
-          >
-            Use policies to automatically configure and maintain consistency of security controls required by industry or other corporate standards. Prevent unintentional or malicious configuration drift that might expose unwanted and unnecessary threat vectors.
-          </p>
           <div
-            className="links"
+            className="welcome--svcs-container-img"
           >
+            <img
+              alt=""
+              src="undefined/graphics/welcome-card-4-icon.svg"
+            />
+          </div>
+          <div
+            className="welcome--svcs-container-title"
+          >
+            <p>
+              Governance, Risk, and Compliance
+            </p>
             <a
-              className="links-link"
+              className="welcome--svcs-container-title-link"
               href="/multicloud/policies"
             >
               Go to Governance
             </a>
+            <p
+              className="welcome--svcs-container-desc"
+            >
+              Use policies to automatically configure and maintain consistency of security controls required by industry or other corporate standards. Prevent unintentional or malicious configuration drift that might expose unwanted and unnecessary threat vectors.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          className="welcome--svcs-container"
+        >
+          <div
+            className="welcome--svcs-container-img"
+          >
+            <img
+              alt=""
+              src="undefined/graphics/welcome-card-5-icon.svg"
+            />
+          </div>
+          <div
+            className="welcome--svcs-container-title"
+          >
+            <p>
+              Multicluster networking
+            </p>
+            <a
+              className="welcome--svcs-container-title-link"
+              href="/multicloud/cluster-sets"
+            >
+              Go to Cluster sets
+            </a>
+            <p
+              className="welcome--svcs-container-desc"
+            >
+              Enable direct networking connection between different on-premises or cloud-hosted Kubernetes clusters by grouping them in cluster sets and enabling the Submariner add-on.
+            </p>
           </div>
         </div>
       </div>
