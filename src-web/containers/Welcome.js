@@ -28,10 +28,12 @@ export default class WelcomeStatic extends React.Component {
         <div className="welcome--svcs-container-img">
           <img src={`${config.contextPath}/graphics/${img}`} alt={''} />
         </div>
-        <div className="welcome--svcs-container-title">
-          <p>{title}</p>
-          <a href={linkRoute} className='welcome--svcs-container-title-link'>{linkText}</a>
-          <p className="welcome--svcs-container-desc">{desc}</p>
+        <div className="welcome--svcs-container-text">
+          <div className="welcome--svcs-container-text-title">
+            <p>{title}</p>
+            <a href={linkRoute} className='welcome--svcs-container-text-title-link'>{linkText}</a>
+          </div>
+          <p className="welcome--svcs-container-text-desc">{desc}</p>
         </div>
       </div>
     )

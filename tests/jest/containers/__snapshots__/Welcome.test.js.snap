@@ -67,19 +67,23 @@ exports[`Welcome component renders as expected 1`] = `
             />
           </div>
           <div
-            className="welcome--svcs-container-title"
+            className="welcome--svcs-container-text"
           >
-            <p>
-              End-to-end visibility
-            </p>
-            <a
-              className="welcome--svcs-container-title-link"
-              href="/overview"
+            <div
+              className="welcome--svcs-container-text-title"
             >
-              Go to Overview
-            </a>
+              <p>
+                End-to-end visibility
+              </p>
+              <a
+                className="welcome--svcs-container-text-title-link"
+                href="/overview"
+              >
+                Go to Overview
+              </a>
+            </div>
             <p
-              className="welcome--svcs-container-desc"
+              className="welcome--svcs-container-text-desc"
             >
               View system alerts, critical application metrics, and overall system health. Search, identify, and resolve issues that are impacting distributed workloads using an operational dashboard designed for Site Reliability Engineers (SREs).
             </p>
@@ -99,19 +103,23 @@ exports[`Welcome component renders as expected 1`] = `
             />
           </div>
           <div
-            className="welcome--svcs-container-title"
+            className="welcome--svcs-container-text"
           >
-            <p>
-              Cluster lifecycle
-            </p>
-            <a
-              className="welcome--svcs-container-title-link"
-              href="/multicloud/clusters"
+            <div
+              className="welcome--svcs-container-text-title"
             >
-              Go to Clusters
-            </a>
+              <p>
+                Cluster lifecycle
+              </p>
+              <a
+                className="welcome--svcs-container-text-title-link"
+                href="/multicloud/clusters"
+              >
+                Go to Clusters
+              </a>
+            </div>
             <p
-              className="welcome--svcs-container-desc"
+              className="welcome--svcs-container-text-desc"
             >
               Create, update, scale, and remove clusters reliably, consistently using an open source programming model that supports and encourages Infrastructure as Code best practices and design principles.
             </p>
@@ -131,19 +139,23 @@ exports[`Welcome component renders as expected 1`] = `
             />
           </div>
           <div
-            className="welcome--svcs-container-title"
+            className="welcome--svcs-container-text"
           >
-            <p>
-              Application lifecycle
-            </p>
-            <a
-              className="welcome--svcs-container-title-link"
-              href="/multicloud/applications"
+            <div
+              className="welcome--svcs-container-text-title"
             >
-              Go to Applications
-            </a>
+              <p>
+                Application lifecycle
+              </p>
+              <a
+                className="welcome--svcs-container-text-title-link"
+                href="/multicloud/applications"
+              >
+                Go to Applications
+              </a>
+            </div>
             <p
-              className="welcome--svcs-container-desc"
+              className="welcome--svcs-container-text-desc"
             >
               Define a business application using open standards and deploy the applications using placement policies that are integrated into existing CI/CD pipelines and governance controls.
             </p>
@@ -163,19 +175,23 @@ exports[`Welcome component renders as expected 1`] = `
             />
           </div>
           <div
-            className="welcome--svcs-container-title"
+            className="welcome--svcs-container-text"
           >
-            <p>
-              Governance, Risk, and Compliance
-            </p>
-            <a
-              className="welcome--svcs-container-title-link"
-              href="/multicloud/policies"
+            <div
+              className="welcome--svcs-container-text-title"
             >
-              Go to Governance
-            </a>
+              <p>
+                Governance, Risk, and Compliance
+              </p>
+              <a
+                className="welcome--svcs-container-text-title-link"
+                href="/multicloud/policies"
+              >
+                Go to Governance
+              </a>
+            </div>
             <p
-              className="welcome--svcs-container-desc"
+              className="welcome--svcs-container-text-desc"
             >
               Use policies to automatically configure and maintain consistency of security controls required by industry or other corporate standards. Prevent unintentional or malicious configuration drift that might expose unwanted and unnecessary threat vectors.
             </p>
@@ -195,19 +211,23 @@ exports[`Welcome component renders as expected 1`] = `
             />
           </div>
           <div
-            className="welcome--svcs-container-title"
+            className="welcome--svcs-container-text"
           >
-            <p>
-              Multicluster networking
-            </p>
-            <a
-              className="welcome--svcs-container-title-link"
-              href="/multicloud/cluster-sets"
+            <div
+              className="welcome--svcs-container-text-title"
             >
-              Go to Cluster sets
-            </a>
+              <p>
+                Multicluster networking
+              </p>
+              <a
+                className="welcome--svcs-container-text-title-link"
+                href="/multicloud/cluster-sets"
+              >
+                Go to Cluster sets
+              </a>
+            </div>
             <p
-              className="welcome--svcs-container-desc"
+              className="welcome--svcs-container-text-desc"
             >
               Enable direct networking connection between different on-premises or cloud-hosted Kubernetes clusters by grouping them in cluster sets and enabling the Submariner add-on.
             </p>
