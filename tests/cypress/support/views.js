@@ -1475,6 +1475,7 @@ export const action_verifyAnsibleInstallPrompt = (uName, opInstalled) => {
         .find('a').as('automationButton')
     })
   cy.get('@automationButton').click()
+  pageLoader.shouldNotExist()
   cy.get('.pf-c-modal-box__header').within(() => {
     if (opInstalled) {
       cy.get('#installAnsibleOperatorLink').should('not.exist')
@@ -1565,6 +1566,7 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
   cy.get('.pf-c-modal-box__footer').within(() => {
       cy.get('button').eq(0).click()
     })
+    .get('#automation-resource-panel').should('not.exist')
     .then(() => {
       // In case there's an error,
       // check for open Automation modal and close it if it's open
