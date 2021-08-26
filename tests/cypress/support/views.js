@@ -1567,15 +1567,6 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
       cy.get('button').eq(0).click()
     })
     .get('#automation-resource-panel').should('not.exist')
-    .then(() => {
-      // In case there's an error,
-      // check for open Automation modal and close it if it's open
-      if (Cypress.$('#automation-resource-panel').length === 1) {
-        cy.get('#automation-resource-panel').within(() => {
-          cy.get('button[aria-label="Close"]').click()
-        })
-      }
-    })
   // after successfully creating automation
   // panel will automatically closed and need to reopen it
   cy.CheckGrcMainPage()
