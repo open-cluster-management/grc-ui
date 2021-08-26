@@ -1405,6 +1405,12 @@ export const action_verifyCredentialsInSidebar = (uName, credentialName) => {
       }
     }).as('credsQuery')
   }
+  // Check for open Automation modal and close it if it's open
+  if (Cypress.$('#automation-resource-panel').length === 1) {
+    cy.get('#automation-resource-panel').within(() => {
+      cy.get('button[aria-label="Close"]').click()
+    })
+  }
   //search for policy and click to configure
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
@@ -1452,7 +1458,12 @@ export const action_verifyAnsibleInstallPrompt = (uName, opInstalled) => {
       })
     }
   }).as('ansibleOpInstallQuery')
-
+  // Check for open Automation modal and close it if it's open
+  if (Cypress.$('#automation-resource-panel').length === 1) {
+    cy.get('#automation-resource-panel').within(() => {
+      cy.get('button[aria-label="Close"]').click()
+    })
+  }
   //search for policy and click to configure
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
