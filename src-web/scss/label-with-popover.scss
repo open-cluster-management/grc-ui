@@ -1,0 +1,29 @@
+/* Copyright (c) 2020 Red Hat, Inc. */
+/* Copyright Contributors to the Open Cluster Management project */
+.label-with-popover-container {
+  display: flex;
+}
+
+.label-with-popover {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.label-with-popover.pf-c-popover {
+  --pf-c-popover__content--Padding: 0;
+  --pf-c-popover__content--PaddingTop: var(--pf-c-popover__content--Padding);
+  --pf-c-popover__content--PaddingLeft: var(--pf-c-popover__content--Padding);
+  --pf-c-popover__content--PaddingBottom: var(--pf-c-popover__content--Padding);
+  --pf-c-popover__content--PaddingRight: var(--pf-c-popover__content--Padding);
+  --pf-c-popover--c-button--sibling--PaddingRight: var(--pf-c-popover__content--Padding);
+  .pf-c-popover__content {
+
+    .pf-c-button {
+      --pf-c-button--PaddingTop: 1rem;
+    }
+
+    h6 {
+      padding: 1rem 1rem 0 1rem;
+    }
+  }
+}

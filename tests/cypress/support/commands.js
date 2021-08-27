@@ -26,42 +26,48 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
   // handle login by setting cookie explicitly when running against localhost
   .then(() => {
     if (Cypress.config().baseUrl.includes('localhost')) {
+      let currentUser
       expect(APIServer).to.not.equal(undefined)
       // check who is the current user
       cy.exec('oc whoami', {failOnNonZeroExit: false}).then(res => {
-        const currentUser = res.stdout.replace('kube:admin', 'kubeadmin')
+        currentUser = res.stdout.replace('kube:admin', 'kubeadmin')
         cy.log(`Currently logged to 'oc' as ${currentUser}`)
+      })
+      .then(() => {
         if (currentUser != user || force) {  // do oc login as the required user
           cy.log(`Doing 'oc login' as ${user}`)
-          cy.exec(`oc login --server=${APIServer} -u ${user} -p ${password}`).then(res => cy.log(res.stdout))
+          cy.exec('oc login --server=${APIServer} -u ${TEST_USER} -p ${TEST_PASSWORD}', { 'log': false, 'env': { TEST_USER: user, TEST_PASSWORD: password } }).then(res => cy.log(res.stdout))
         }
       })
       .then(() => {
         cy.exec('oc whoami -t').then(res => {  // get token and set cookie and env var accordingly
           Cypress.env('token', res.stdout)
-          cy.setCookie('acm-access-token-cookie', Cypress.env('token'))
+          cy.log('Setting acm-access-token-cookie')
+          cy.setCookie('acm-access-token-cookie', Cypress.env('token'), { 'log': false })
         })
       })
     }
   })
   cy.visit('/multicloud/policies')
-  .get('body').then(body => {
+  cy.get('body').then(() => {
     // if not yet logged in, do the regular login through Web UI
-    if (body.find('.pf-c-page__header').length === 0) {
-      // Check if identity providers are configured
-      if (body.find('form').length === 0) {
-        if (user === 'kubeadmin') {
-          idp = 'kube:admin'
+    if (Cypress.$('body').find('.pf-c-page__header').length === 0) {
+      cy.get('div.pf-c-login').should('exist').then(() => {
+        // Check if identity providers are configured
+        if (Cypress.$('body').find('form').length === 0) {
+          if (user === 'kubeadmin') {
+            idp = 'kube:admin'
+          }
+          cy.contains(idp).click()
         }
-        cy.contains(idp).click()
-      }
-      cy.get('#inputUsername').click().focused().type(user)
-      cy.get('#inputPassword').click().focused().type(password)
-      cy.get('button[type="submit"]').click()
-      cy.get('.pf-c-page__header').should('exist')
+        cy.get('#inputUsername').click().focused().type(user)
+        cy.get('#inputPassword').click().focused().type(password, { 'log': false })
+        cy.get('button[type="submit"]').click()
+        cy.get('.pf-c-page__header').should('exist')
+      })
     }
   })
-  .CheckGrcMainPage()
+  cy.CheckGrcMainPage()
 })
 
 Cypress.Commands.add('reloadUntil', (condition, options) => {

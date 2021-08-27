@@ -146,7 +146,7 @@ describeT('@rbac RHACM4K-2584 - GRC UI: [P1][Sev1][policy-grc] Role Based Access
   /***********
    * Cleanup *
    ***********/
-  it('Login again as kubeadmin', () => {
+  it('Login again as cluster admin', () => {
     cy.login()
   })
 

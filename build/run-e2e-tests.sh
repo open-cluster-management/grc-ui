@@ -69,6 +69,7 @@ fi
 echo "===== E2E Test ====="
 echo "* Launching Cypress E2E test"
 # Use a clean kubeconfig for login
+touch ${DIR}/tmpkube
 export KUBECONFIG=${DIR}/tmpkube
 # Run E2E tests
 npm run test:cypress-headless

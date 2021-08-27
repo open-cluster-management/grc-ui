@@ -11,17 +11,8 @@
 
 include build/Configfile
 
-USE_VENDORIZED_BUILD_HARNESS ?=
-
-ifndef USE_VENDORIZED_BUILD_HARNESS
--include $(shell curl -s -H 'Accept: application/vnd.github.v4.raw' -L https://api.github.com/repos/open-cluster-management/build-harness-extensions/contents/templates/Makefile.build-harness-bootstrap -o .build-harness-bootstrap; echo .build-harness-bootstrap)
-else
--include vbh/.build-harness-bootstrap
-endif
-
 default::
-	@echo "Build Harness Bootstrapped"
-
+	@echo "No target specified"
 install:
 	CYPRESS_INSTALL_BINARY=0 npm ci --unsafe-perm
 
@@ -45,13 +36,3 @@ unit-test:
 
 travis-slack-reporter:
 	node ./tests/utils/slack-reporter.js
-
-build-test-image:
-	make component/build
-
-push-test-image:
-	make component/push
-
-publish-test-image:
-	rm -rf pipeline
-	make pipeline-manifest/update COMPONENT_NAME=$(COMPONENT_NAME) PIPELINE_MANIFEST_COMPONENT_SHA256=${TRAVIS_COMMIT} PIPELINE_MANIFEST_COMPONENT_REPO=${TRAVIS_REPO_SLUG} PIPELINE_MANIFEST_BRANCH=${TRAVIS_BRANCH}

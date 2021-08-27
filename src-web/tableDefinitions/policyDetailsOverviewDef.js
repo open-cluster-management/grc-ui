@@ -3,6 +3,12 @@
 
 'use strict'
 
+import {
+  getPolicyCompliantStatus,
+  getRemediationText,
+  getStatus
+} from './utils'
+
 export default {
   title: 'compliance.details',
   headerRows: ['type', 'detail'],
@@ -32,23 +38,23 @@ export default {
     {
       cells: [
         {
-          resourceKey: 'description.title.remediation',
-          information: 'grc.remediation.tooltip',
-          type: 'i18n'
+          resourceKey: 'description.title.status',
+          type: 'i18n',
         },
         {
-          resourceKey: 'raw.spec.remediationAction'
+          transformFunction: (item, locale) => getStatus(item, locale, false)
         }
       ]
     },
     {
       cells: [
         {
-          resourceKey: 'description.title.disabled',
-          type: 'i18n'
+          resourceKey: 'description.title.remediation',
+          information: 'grc.remediation.tooltip',
+          type: 'i18n',
         },
         {
-          resourceKey: 'raw.spec.disabled'
+          transformFunction: (item, locale) => getRemediationText(item, locale)
         }
       ]
     },
@@ -59,7 +65,7 @@ export default {
           type: 'i18n'
         },
         {
-          resourceKey: 'clusterCompliant'
+          transformFunction: (item, locale) => getPolicyCompliantStatus(item, locale)
         }
       ]
     },

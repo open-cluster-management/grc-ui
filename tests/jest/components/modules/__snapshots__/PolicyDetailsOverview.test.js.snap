@@ -138,7 +138,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                     <span
                       className="pf-c-description-list__text"
                     >
-                      Remediation
+                      Status
                        
                     </span>
                   </dt>
@@ -148,7 +148,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                     <div
                       className="pf-c-description-list__text"
                     >
-                      inform
+                      Enabled
                     </div>
                   </dd>
                 </div>
@@ -161,7 +161,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                     <span
                       className="pf-c-description-list__text"
                     >
-                      Disabled
+                      Remediation
                        
                     </span>
                   </dt>
@@ -171,7 +171,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
                     <div
                       className="pf-c-description-list__text"
                     >
-                      false
+                      Inform
                     </div>
                   </dd>
                 </div>
@@ -830,7 +830,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                     <span
                       className="pf-c-description-list__text"
                     >
-                      Remediation
+                      Status
                        
                     </span>
                   </dt>
@@ -840,7 +840,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                     <div
                       className="pf-c-description-list__text"
                     >
-                      inform
+                      Enabled
                     </div>
                   </dd>
                 </div>
@@ -853,7 +853,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                     <span
                       className="pf-c-description-list__text"
                     >
-                      Disabled
+                      Remediation
                        
                     </span>
                   </dt>
@@ -863,7 +863,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
                     <div
                       className="pf-c-description-list__text"
                     >
-                      false
+                      Inform
                     </div>
                   </dd>
                 </div>

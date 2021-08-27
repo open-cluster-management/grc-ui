@@ -11,6 +11,11 @@ import {
   getControls,
   getStandards,
   getAutomationLink,
+  getRemediationText,
+  getSource,
+  getSourceText,
+  getStatus,
+  getStatusText,
 } from './utils'
 import {
   breakWord,
@@ -46,6 +51,18 @@ export default {
       cellTransforms: [breakWord],
     },
     {
+      label: 'status',
+      msgKey: 'table.header.status',
+      resourceKey: 'raw.spec.disabled',
+      searchable: true,
+      sortable: true,
+      sortLabel: 'status.text',
+      transforms: [wrappable],
+      cellTransforms: [breakWord],
+      transformFunction: getStatus,
+      textFunction: getStatusText,
+    },
+    {
       label: 'remediation',
       msgKey: 'table.header.remediation',
       information: 'grc.remediation.tooltip',
@@ -54,6 +71,7 @@ export default {
       sortable: true,
       transforms: [wrappable],
       cellTransforms: [breakWord],
+      transformFunction: getRemediationText,
     },
     {
       label: 'violations',
@@ -65,6 +83,18 @@ export default {
       sortLabel: 'violations.rawData',
       cellTransforms: [breakWord],
       transformFunction: getPolicyCompliantStatus,
+    },
+    {
+      label: 'source',
+      msgKey: 'table.header.source',
+      resourceKey: 'source',
+      searchable: true,
+      sortable: true,
+      sortLabel: 'source.text',
+      transforms: [wrappable],
+      cellTransforms: [breakWord],
+      transformFunction: getSource,
+      textFunction: getSourceText,
     },
     {
       label: 'controls',
@@ -122,7 +152,7 @@ export default {
     },
   ],
   sortBy: {
-    index: 6,
+    index: 8,
     direction: 'desc',
   }
 }

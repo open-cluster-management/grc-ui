@@ -7,7 +7,7 @@
 # From the grc-ui project directory, invoke as:
 #     ./build/rbac-clean.sh
 
-RBAC_DIR=${1:-.}/tests/e2e/yaml/rbac_test
+RBAC_DIR=${1:-.}/tests/cypress/config/rbac-setup
 
 if [ ! -d ${RBAC_DIR} ]; then
   echo "Error: Directory ${RBAC_DIR} does not exist."

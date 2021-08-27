@@ -21,6 +21,9 @@ import POLICY_STATUS_QUERY_DATA from './data/POLICY_STATUS_QUERY_DATA'
 import POLICY_TEMPLATE_DETAILS_QUERY_DATA from './data/POLICY_TEMPLATE_DETAILS_QUERY_DATA'
 import POLICY_STATUS_HISTORY_QUERY_DATA from './data/POLICY_STATUS_HISTORY_QUERY_DATA'
 
+// Make PatternFly random IDs stable
+Math.random = jest.fn(() => 0.4974758061502147)
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const middleware = [thunkMiddleware]
 const store = createStore(combineReducers(reducers), composeEnhancers(

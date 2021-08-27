@@ -10,6 +10,7 @@
 'use strict'
 
 import React from 'react'
+import { Gallery, GalleryItem } from '@patternfly/react-core'
 import config from '../../server/lib/shared/config'
 import msgs from '../nls/platform.properties'
 
@@ -25,14 +26,14 @@ export default class WelcomeStatic extends React.Component {
     return (
       <div className="welcome--svcs-container">
         <div className="welcome--svcs-container-img">
-          <img width="32px" height="32px" src={`${config.contextPath}/graphics/${img}`} alt={''} />
+          <img src={`${config.contextPath}/graphics/${img}`} alt={''} />
         </div>
-        <div className="welcome--svcs-container-body">
-          <p className="title">{title}</p>
-          <p className="desc">{desc}</p>
-          <div className="links">
-            <a href={linkRoute} className='links-link'>{linkText}</a>
+        <div className="welcome--svcs-container-text">
+          <div className="welcome--svcs-container-text-title">
+            <p>{title}</p>
+            <a href={linkRoute} className='welcome--svcs-container-text-title-link'>{linkText}</a>
           </div>
+          <p className="welcome--svcs-container-text-desc">{desc}</p>
         </div>
       </div>
     )
@@ -60,38 +61,67 @@ export default class WelcomeStatic extends React.Component {
           </div>
         </div>
         <div className='welcome--svcs' role='region' aria-label={msgs.get(welcomeBoxLabelStr, locale)} >
-          <div className="welcome--svcs-row">
-            {this.welcomeCard(
-              'welcome-card-1-icon.svg',
-              msgs.get('welcome.card.one.title', locale),
-              msgs.get('welcome.card.one.desc', locale),
-              msgs.get('welcome.card.one.link', locale),
-              '/overview'
-            )}
-            {this.welcomeCard(
-              'welcome-card-2-icon.svg',
-              msgs.get('welcome.card.two.title', locale),
-              msgs.get('welcome.card.two.desc', locale),
-              msgs.get('welcome.card.two.link', locale),
-              '/multicloud/clusters'
-            )}
-          </div>
-          <div className="welcome--svcs-row">
-            {this.welcomeCard(
-              'welcome-card-3-icon.svg',
-              msgs.get('welcome.card.three.title', locale),
-              msgs.get('welcome.card.three.desc', locale),
-              msgs.get('welcome.card.three.link', locale),
-              '/multicloud/applications'
-            )}
-            {this.welcomeCard(
-              'welcome-card-4-icon.svg',
-              msgs.get('welcome.card.four.title', locale),
-              msgs.get('welcome.card.four.desc', locale),
-              msgs.get('welcome.card.four.link', locale),
-              '/multicloud/policies'
-            )}
-          </div>
+          <Gallery
+            className='welcome--svcs-gallery-container'
+            hasGutter
+            minWidths={{
+              md: '70%',
+              lg: '70%',
+              xl: '70%',
+              '2xl': '70%'
+            }}
+            maxWidths={{
+              md: '70%',
+              lg: '70%',
+              xl: '70%',
+              '2xl': '70%'
+            }} >
+            <GalleryItem>
+              {this.welcomeCard(
+                'welcome-card-1-icon.svg',
+                msgs.get('welcome.card.one.title', locale),
+                msgs.get('welcome.card.one.desc', locale),
+                msgs.get('welcome.card.one.link', locale),
+                '/overview'
+              )}
+            </GalleryItem>
+            <GalleryItem>
+              {this.welcomeCard(
+                'welcome-card-2-icon.svg',
+                msgs.get('welcome.card.two.title', locale),
+                msgs.get('welcome.card.two.desc', locale),
+                msgs.get('welcome.card.two.link', locale),
+                '/multicloud/clusters'
+              )}
+            </GalleryItem>
+            <GalleryItem>
+              {this.welcomeCard(
+                'welcome-card-3-icon.svg',
+                msgs.get('welcome.card.three.title', locale),
+                msgs.get('welcome.card.three.desc', locale),
+                msgs.get('welcome.card.three.link', locale),
+                '/multicloud/applications'
+              )}
+            </GalleryItem>
+            <GalleryItem>
+              {this.welcomeCard(
+                'welcome-card-4-icon.svg',
+                msgs.get('welcome.card.four.title', locale),
+                msgs.get('welcome.card.four.desc', locale),
+                msgs.get('welcome.card.four.link', locale),
+                '/multicloud/policies'
+              )}
+            </GalleryItem>
+            <GalleryItem>
+              {this.welcomeCard(
+                'welcome-card-5-icon.svg',
+                msgs.get('welcome.card.five.title', locale),
+                msgs.get('welcome.card.five.desc', locale),
+                msgs.get('welcome.card.five.link', locale),
+                '/multicloud/cluster-sets'
+              )}
+            </GalleryItem>
+          </Gallery>
         </div>
         <div className='welcome--info' role='region' aria-label={msgs.get(welcomeBoxLabelStr, locale)} >
           <div className='welcome--info__heading'>

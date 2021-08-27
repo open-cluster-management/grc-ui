@@ -25,9 +25,10 @@ import {
 import TableTimestamp from '../components/common/TableTimestamp'
 import msgs from '../nls/platform.properties'
 import TruncateText from '../components/common/TruncateText'
-import { LocaleContext } from '../components/common/LocaleContext'
 import purifyReactNode from '../utils/PurifyReactNode'
 import AutomationButton from '../components/common/AutomationButton'
+import ChannelLabels from '../components/common/ChannelLabels'
+import { getChannelLabel, normalizeChannelType } from '../utils/resource-helper'
 
 // use console.log(JSON.stringify(result, circular())) to test return result from transform
 export const transform = (items, def, locale) => {
@@ -135,6 +136,9 @@ function pushRows(items, rows, def, locale) {
         value = {
           title: refetch ? key.transformFunction(item, locale, refetch) : key.transformFunction(item, locale),
           rawData: value
+        }
+        if (key.textFunction && typeof key.textFunction === 'function') {
+          value.text = key.textFunction(item, locale)
         }
       } else {
         value =  (value || value === 0) ? value : '-'
@@ -287,14 +291,6 @@ export function createComplianceLink(item = {}, ...param){
       policyName = <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.namespace)}/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
     }
   }
-  if (_.get(item, 'raw.spec.disabled')) {
-    policyName = <div className='policy-table-name-ctr'>
-      {policyName}{' '} {' '}
-      <Label className='disabled-label'>
-        {msgs.get('policy.disabled.label', LocaleContext.locale)}
-      </Label>
-    </div>
-  }
   return policyName
 }
 
@@ -352,6 +348,47 @@ export function getControls(item) {
   return formatAnnotationString(item, 'policy.open-cluster-management.io/controls')
 }
 
+export function getStatusText(item, locale) {
+  return _.get(item, 'raw.spec.disabled')
+    ? msgs.get('policy.disabled.label', locale)
+    : msgs.get('policy.enabled.label', locale)
+}
+
+export function getRemediationText(item, locale) {
+  const remediation = _.get(item, 'raw.spec.remediationAction')
+  if (['inform', 'enforce'].includes(remediation)) {
+    return msgs.get(`policy.remediation.${remediation}`, locale)
+  }
+  return remediation
+}
+
+export function getSourceText(item, locale) {
+  const source = _.get(item, 'source', {}) || {}
+  if (source.type) {
+    return getChannelLabel(normalizeChannelType(source.type), 0, locale)
+  } else if (_.get(item, 'external')) {
+    return msgs.get('policy.source.external', locale)
+  } else {
+    return msgs.get('policy.source.local', locale)
+  }
+}
+
+export function getSource(item, locale) {
+  const source = _.get(item, 'source', {}) || {}
+  if (source.type) {
+    return <ChannelLabels channels={[source]} locale={locale} />
+  } else {
+    return getSourceText(item, locale)
+  }
+}
+
+export function getStatus(item, locale, table=true) {
+  const status = getStatusText(item, locale)
+  return _.get(item, 'raw.spec.disabled') && table
+    ? <div className='pf-u-disabled-color-200'>{status}</div>
+    : status
+}
+
 export function getStandards(item) {
   return formatAnnotationString(item, 'policy.open-cluster-management.io/standards')
 }
@@ -374,16 +411,6 @@ export function getAutomationLink(item, locale, refetch) {
     return (
       <AutomationButton item={item} locale={locale} refetch={refetch}></AutomationButton>
     )
-  }
-  return '-'
-}
-
-export function getStatus(item, locale) {
-  const status = _.get(item, 'status', '-')
-  if (status.compliant){
-    return <StatusField status={status.compliant.toLowerCase()} text={msgs.get(`policy.status.${status.compliant.toLowerCase()}`, locale)} />
-  } else if (status && typeof(status)==='string' && status !== '-'){
-    return <StatusField status={status.toLowerCase()} text={msgs.get(`policy.status.${status.toLowerCase()}`, locale)} />
   }
   return '-'
 }

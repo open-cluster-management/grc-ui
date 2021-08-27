@@ -183,6 +183,8 @@ export const ALL_POLICIES = gql`
       clusterCompliant
       clusterNS
       clusterConsoleURL
+      external
+      source
     }
     policyAutomations {
       kind

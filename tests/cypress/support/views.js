@@ -365,11 +365,13 @@ export const action_verifyPolicyInListing = (
     .get('.grc-view-by-policies-table').within(() => {
     cy.log(uName)
     cy.get('a').contains(uName).parents('td').siblings('td')
-    .spread((toggle, namespace, remediation, violations, controls) => {
+    .spread((toggle, namespace, status, remediation, violations, _ /*source*/, controls) => {
       // check namespace
       if (policyConfig['namespace']) {
         cy.wrap(namespace).contains(policyConfig['namespace'].trim(), { matchCase: false })
       }
+      // check status (enabled/disabled)
+      cy.wrap(status).contains(enabled, { matchCase: false })
       // check enforce/inform
       if (policyConfig['remediation'] == true) {
         cy.wrap(remediation).contains('enforce', { matchCase: false })
@@ -414,20 +416,6 @@ export const action_verifyPolicyInListing = (
         cy.wrap(toggle).click()
       }
     })
-
-    if (enabled.toLowerCase() === 'disabled') { // check disabled policy
-      cy.get('a')
-      .contains(uName)
-      .siblings('span')
-      .contains('disabled', { matchCase: false })
-      .then(() => isPolicyStatusAvailable(uName)) // check policy status, it should not be available
-      .then((v) => expect(v).to.be.false)
-    } else { // check enabled policy
-      cy.get('a')
-        .contains(uName)
-        .siblings('span')
-        .should('not.exist')
-    }
   })
   cy.clearTableSearch()
 }
@@ -547,7 +535,7 @@ export const isPolicyStatusAvailable = (uName, violationsCounter) => {
 return cy.url().then((pageURL) => {
   if (pageURL.endsWith('/multicloud/policies/all')) {
     cy.get('[aria-label="Simple Table"]').within(() => {
-    cy.get('a').contains(uName).parents('td').siblings('td').spread((toggle, namespace, remediation, violations) => {
+    cy.get('a').contains(uName).parents('td').siblings('td').spread((toggle, namespace, status, remediation, violations) => {
       if (Cypress.$('[aria-label="Simple Table"]').find('.disabledStatus').length === 0) {
         // check the violation status
         cy.wrap(violations).find('path').then((elems) => {
@@ -649,7 +637,7 @@ export const action_verifyPolicyInPolicyDetails = (
   //cy.get('div.vertical-expend').then((e) => {
   cy.get('#compliance\\.details').within(() => {
     cy.get('div.pf-c-description-list__text').spread((
-      name, namespace, remediation, disabled, violations,
+      name, namespace, status, remediation, violations,
       categories, controls, standards, created
       ) => {
       // check name
@@ -664,12 +652,8 @@ export const action_verifyPolicyInPolicyDetails = (
       } else if (policyConfig['remediation'] == false) {
         cy.wrap(remediation).contains('inform', { matchCase: false })
       }
-      // check state
-      if (enabled == 'enabled') {
-        cy.wrap(disabled).contains('false')
-      } else {
-        cy.wrap(disabled).contains('true')
-      }
+      // check status
+      cy.wrap(status).contains(enabled, { matchCase: false })
       if ([1,2,3].includes(targetStatus)) {
         // check the violation status
         cy.wrap(violations).find('svg').then((elems) => {
@@ -1425,13 +1409,13 @@ export const action_verifyCredentialsInSidebar = (uName, credentialName) => {
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
     .get('.grc-view-by-policies-table').within(() => {
-    cy.get('a')
-      .contains(uName)
-      .parents('td')
-      .siblings('td[data-label="Automation"]').within(() => {
-        cy.get('a').click()
-      })
-  })
+      cy.get('a')
+        .contains(uName)
+        .parents('td')
+        .siblings('td[data-label="Automation"]')
+        .find('a').as('automationButton')
+    })
+  cy.get('@automationButton').click()
   .then(() => {
     cy.get('.ansible-configure-table').within(() => {
       if (credentialName === '') {
@@ -1473,31 +1457,25 @@ export const action_verifyAnsibleInstallPrompt = (uName, opInstalled) => {
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
     .get('.grc-view-by-policies-table').within(() => {
-    cy.get('a')
-      .contains(uName)
-      .parents('td')
-      .siblings('td[data-label="Automation"]').within(() => {
-        cy.get('a').click()
-      })
-  })
-  .then(() => {
-    cy.get('.pf-c-modal-box__header').within(() => {
-      if (opInstalled) {
-        cy.get('#installAnsibleOperatorLink').should('not.exist')
-      } else {
-        cy.get('#installAnsibleOperatorLink').should('exist')
-      }
+      cy.get('a')
+        .contains(uName)
+        .parents('td')
+        .siblings('td[data-label="Automation"]')
+        .find('a').as('automationButton')
     })
+  cy.get('@automationButton').click()
+  cy.get('.pf-c-modal-box__header').within(() => {
+    if (opInstalled) {
+      cy.get('#installAnsibleOperatorLink').should('not.exist')
+    } else {
+      cy.get('#installAnsibleOperatorLink').should('exist')
+    }
   })
-  .then(() => {
-    cy.get('#automation-resource-panel').within(() => {
-      cy.get('button[aria-label="Close"]').click()
-    })
+  cy.get('#automation-resource-panel').within(() => {
+    cy.get('button[aria-label="Close"]').click()
   })
   // wait for the dialog to be closed
-  .then(() => {
-    cy.get('#automation-resource-panel').should('not.exist')
-  })
+  cy.get('#automation-resource-panel').should('not.exist')
   // after mainpage table action, always return to grc main page
   cy.CheckGrcMainPage()
 }
@@ -1534,78 +1512,73 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
     .get('.grc-view-by-policies-table').within(() => {
-    cy.get('a')
-      .contains(uName)
-      .parents('td')
-      .siblings('td[data-label="Automation"]').within(() => {
-        cy.get('a').click()
-      })
-  })
-  .then(() => {
-    cy.get('.createCredential').within(() => {
-      cy.get('.pf-c-select').click()
-      cy.contains(credentialName).should('exist')
-      cy.contains(credentialName).click()
-      cy.get('.pf-c-select__menu').should('not.exist')
+      cy.get('a')
+        .contains(uName)
+        .parents('td')
+        .siblings('td[data-label="Automation"]')
+        .find('a').as('automationButton')
     })
-    cy.get('.createJobTemplate').within(() => {
-      cy.get('.pf-c-select').should('exist')
-      cy.get('.pf-c-select').click()
-      cy.get('.pf-c-select.pf-m-expanded').within(() => {
-        cy.contains(demoTemplateName).should('exist')
-        cy.contains(demoTemplateName).click()
-      })
+  cy.get('@automationButton').click()
+  cy.get('.createCredential').within(() => {
+    cy.get('.pf-c-select').click()
+    cy.contains(credentialName).should('exist')
+    cy.contains(credentialName).click()
+    cy.get('.pf-c-select__menu').should('not.exist')
+  })
+  cy.get('.createJobTemplate').within(() => {
+    cy.get('.pf-c-select').should('exist')
+    cy.get('.pf-c-select').click()
+    cy.get('.pf-c-select.pf-m-expanded').within(() => {
+      cy.contains(demoTemplateName).should('exist')
+      cy.contains(demoTemplateName).click()
     })
   })
-  .then(() => {
-    //select automation mode based on parameter
-    if (mode === 'manual') {
-      cy.get('.ansible-configure-table').within(() => {
-        cy.get('.pf-c-radio__label').eq(0).click()
-        failures = 2
-      })
-    } else if (mode === 'once') {
-      cy.get('.ansible-configure-table').within(() => {
-        cy.get('.pf-c-radio__label').eq(1).click()
-        failures = 1
-      })
-    } else {
-      cy.get('.ansible-configure-table').within(() => {
-        cy.get('.pf-c-radio__label').eq(2).click()
-        failures = 0
-      })
-    }
-  })
-  .then(() => {
-    //submit automation and check history page
-    cy.get('.pf-c-modal-box__footer').within(() => {
-      cy.get('button').eq(0).click()
+  //select automation mode based on parameter
+  if (mode === 'manual') {
+    cy.get('.ansible-configure-table').within(() => {
+      cy.get('.pf-c-radio__label').eq(0).click()
+      failures = 2
     })
+  } else if (mode === 'once') {
+    cy.get('.ansible-configure-table').within(() => {
+      cy.get('.pf-c-radio__label').eq(1).click()
+      failures = 1
+    })
+  } else {
+    cy.get('.ansible-configure-table').within(() => {
+      cy.get('.pf-c-radio__label').eq(2).click()
+      failures = 0
+    })
+  }
+  //submit automation and check history page
+  cy.get('.pf-c-modal-box__footer').within(() => {
+    cy.get('button').eq(0).click()
   })
-  .then(() => {
-    // after successfully creating automation
-    // panel will automatically closed and need to reopen it
-    cy.CheckGrcMainPage()
+  // after successfully creating automation
+  // panel will automatically closed and need to reopen it
+
+  // In case there's an "automation already exists" error,
+  // check for open Automation modal and close it if it's open
+  if (Cypress.$('#automation-resource-panel').length === 1) {
+    cy.get('#automation-resource-panel').within(() => {
+      cy.get('button[aria-label="Close"]').click()
+    })
+  }
+
+  cy.CheckGrcMainPage()
     .doTableSearch(uName)
     .get('.grc-view-by-policies-table').within(() => {
-    cy.get('a')
-      .contains(uName)
-      .parents('td')
-      .siblings('td[data-label="Automation"]').within(() => {
-        cy.get('a').click()
-      })
+      cy.get('a')
+        .contains(uName)
+        .parents('td')
+        .siblings('td[data-label="Automation"]')
+        .find('a').as('automationButton')
     })
-    .then(() => {
-      cy.get('#automation-resource-panel').should('exist')
-    })
-    .then(() => {
-      verifyHistoryPage(mode, failures)
-    })
-  })
-  .then(() => {
-    cy.get('button[aria-label="Close"]').click()
-    cy.get('#automation-resource-panel').should('not.exist')
-  })
+  cy.get('@automationButton').click()
+  cy.get('#automation-resource-panel').should('exist')
+  verifyHistoryPage(mode, failures)
+  cy.get('button[aria-label="Close"]').click()
+  cy.get('#automation-resource-panel').should('not.exist')
 }
 
 export const action_verifyHistoryPageWithMock = (uName) => {
@@ -1622,10 +1595,10 @@ export const action_verifyHistoryPageWithMock = (uName) => {
       cy.get('a')
         .contains(uName)
         .parents('td')
-        .siblings('td[data-label="Automation"]').within(() => {
-          cy.get('a').click()
-        })
+        .siblings('td[data-label="Automation"]')
+        .find('a').as('automationButton')
     })
+  cy.get('@automationButton').click()
   //use mock data to check successes in history tab
   cy.intercept('POST', Cypress.config().baseUrl + '/multicloud/policies/graphql', (req) => {
     if (req.body.operationName === 'ansibleAutomationHistories') {
@@ -1668,7 +1641,11 @@ const verifyHistoryPage = (mode, failuresExpected) => {
   cy.get('.pf-c-tabs__item-text').contains('History').click()
   if (failuresExpected === 0) {
     cy.get('.ansible-history-table').within(() => {
-      cy.get('.pf-c-empty-state').should('exist')
+      if (Cypress.$(`svg[fill="${getStatusIconFillColor('no status')}"]`).length > 0) {
+        cy.get(`svg[fill="${getStatusIconFillColor('no status')}"]`).should('have.length', 1)
+      } else {
+        cy.get('.pf-c-empty-state').should('exist')
+      }
     })
   } else {
     cy.get('.ansible-history-table').within(() => {

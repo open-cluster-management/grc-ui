@@ -38,11 +38,6 @@
             font-weight: 600;
           }
         }
-
-        .dev-preview {
-          font-style: italic;
-          font-size: 14px;
-        }
       }
       .welcome--image {
         display: flex;
@@ -66,95 +61,47 @@
     background: #EDEDED;
     padding: 3rem 0;
 
-    &-row {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      width: 100%;
+    &-gallery-container {
+      grid-template-columns: minmax(250px, 70%);
+      justify-content: space-around;
     }
 
     &-container {
       display: flex;
       margin: .5rem;
       padding: 1.5rem;
-      width: 50%;
-      max-width: 600px;
       background: #FFF;
       box-shadow: 0 1px 3px 0 rgba(0,0,0,0.12);
+      min-width: 550px;
+    
       &-img {
-        width: 32px;
-        height: 32px;
-        margin-right: 1rem;
+        min-width: 32px;
+        min-height: 32px;
+        max-width: 32px;
+        max-height: 32px;
+        margin-right: 2rem;
       }
-      &-body {
-        .title {
-          color: #45484B;
-          font-size: 18px;
-          font-weight: bold;
-          line-height: 20px;
-          margin: 0 0 .5rem 0;
-        }
-        .desc {
+      &-text {
+        display: flex;
+
+        &-title {
           color: #4E5156;
-          font-size: 14px;
-          line-height: 24px;
-          max-width: 390px;
-        }
-        .links {
-          margin-top: 1rem;
-          &-link{
+          font-size: 18px;
+          line-height: 20px;
+          min-width: 22rem;
+
+          &-link {
             color: #2A78E0;
-            font-size: 12px;
+            font-size: 14px;
             line-height: 24px;
             text-decoration: none;
           }
-          .spacer {
-            margin-left: .5rem;
-            padding-left: .5rem;
-            border-left: 1px solid #DCDCDC;
-          }
         }
-        .dev-preview {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          &-label {
-            font-size: 12px;
-            font-weight: 500;
-            margin-left: .5rem;
-            margin-bottom: .5rem;
-            padding: 0 .5rem;
-            color: #fff;
-            border-radius: 3px;
-            background-color: #D93F00;
-          }
-          .tooltip {
-            visibility: hidden;
-            position: absolute;
-            z-index: 1;
-            color: #EDEDED;
-            background: #333;
-            text-align: left;
-            padding: 1rem;
-            border-radius: 3px;
-            width: 18rem;
-            font-size: 12px;
-          }
-          .tooltip::after {
-            content: " ";
-            position: absolute;
-            bottom: 100%;  /* At the top of the tooltip */
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: transparent transparent #333 transparent;
-          }
-          &:hover .tooltip {
-            visibility: visible;
-            width: 18rem;
-            margin-left: -4.5rem
-          }
+        &-desc {
+          color: #585C60;
+          font-size: 14px;
+          line-height: 24px;
+          margin-right: 2rem;
         }
       }
     }
@@ -326,6 +273,17 @@
       &:before { right: 325px; }
       &:after { left: 325px; }
     }
+    &--svcs-container-text {
+      display: flex;
+      flex-direction: column;
+
+      &-title {
+        min-width: 15rem;
+      }
+      &-desc {
+        margin-top: .5rem;
+      }
+    }
   }
 }
 
@@ -348,6 +306,17 @@
       &:before { right: 300px; }
       &:after { left: 300px; }
     }
+    &--svcs-container-text {
+      display: flex;
+      flex-direction: column;
+
+      &-title {
+        min-width: 15rem;
+      }
+      &-desc {
+        margin-top: .5rem;
+      }
+    }
   }
 }
 
@@ -368,6 +337,17 @@
         margin-bottom: 40px;
         &:before, &:after { display: none; }
         p + p, img { margin-bottom: 10px; }
+      }
+    }
+    &--svcs-container-text {
+      display: flex;
+      flex-direction: column;
+
+      &-title {
+        min-width: 10rem;
+      }
+      &-desc {
+        margin-top: .5rem;
       }
     }
   }

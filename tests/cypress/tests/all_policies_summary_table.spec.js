@@ -18,7 +18,6 @@ describeT('RHACM4K-2343 - [P1][Sev1][policy-grc] All policies page: Verify summa
   // policy-config is used for policy creation and validation
   const confPolicies = getConfigObject('all_policies_summary_table/policy-config.yaml', 'yaml', substitutionRules)
 
-
   if (Cypress.env('STANDALONE_TESTSUITE_EXECUTION') !== 'FALSE') {
     // first check there are no policies, otherwise numbers won't match
     it('Verify there are no policies present', () => {
