@@ -27,13 +27,13 @@ else
   # Patch the API on the hub
   LABEL="component=ocm-grcuiapi"
   DEPLOYMENT=$(oc get deployment -l ${LABEL} -n ${acm_installed_namespace} -o=jsonpath='{.items[*].metadata.name}')
-  oc patch deployment ${DEPLOYMENT} -n ${acm_installed_namespace} -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"${COMPONENT}\",\"image\":\"${DOCKER_URI}/${COMPONENT}:${LABEL}\"}]}}}}"
+  oc patch deployment ${DEPLOYMENT} -n ${acm_installed_namespace} -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"${COMPONENT}\",\"image\":\"${DOCKER_URI}/${COMPONENT}:${VERSION_TAG}\"}]}}}}"
   
   # Patch the propagator on the hub
   COMPONENT="governance-policy-propagator"
   LABEL="component=ocm-policy-propagator"
   DEPLOYMENT=$(oc get deployment -l ${LABEL} -n ${acm_installed_namespace} -o=jsonpath='{.items[*].metadata.name}')
-  oc patch deployment ${DEPLOYMENT} -n ${acm_installed_namespace} -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"${COMPONENT}\",\"image\":\"${DOCKER_URI}/${COMPONENT}:${LABEL}\"}]}}}}"
+  oc patch deployment ${DEPLOYMENT} -n ${acm_installed_namespace} -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"${COMPONENT}\",\"image\":\"${DOCKER_URI}/${COMPONENT}:${VERSION_TAG}\"}]}}}}"
   
   # Patch managed cluster components
   echo "* Patching managed clusters to ${VERSION_TAG}"
