@@ -33,17 +33,16 @@ else
   # Patch the propagator on the hub
   COMPONENT="governance-policy-propagator"
   LABEL="component=ocm-policy-propagator"
-  DEPLOYMENT=$(oc get deployment -l ${POLICYPROPAGATOR_LABEL} -n ${acm_installed_namespace} -o=jsonpath='{.items[*].metadata.name}')
+  DEPLOYMENT=$(oc get deployment -l ${LABEL} -n ${acm_installed_namespace} -o=jsonpath='{.items[*].metadata.name}')
   oc patch deployment ${DEPLOYMENT} -n ${acm_installed_namespace} -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"${COMPONENT}\",\"image\":\"${DOCKER_URI}/${COMPONENT}:${LABEL}\"}]}}}}"
   
   # Patch managed cluster components
   echo "* Patching managed clusters to ${VERSION_TAG}"
-  managedclusters=$(oc get managedcluster -o=jsonpath='{.items[*].metadata.name}')
-  for managedcluster in $managedclusters
-  do
-      oc annotate klusterletaddonconfig -n $managedcluster $managedcluster klusterletaddonconfig-pause=true --overwrite=true
+  MANAGED_CLUSTERS=$(oc get managedcluster -o=jsonpath='{.items[*].metadata.name}')
+  for MANAGED_CLUSTER in ${MANAGED_CLUSTERS}; do
+      oc annotate klusterletaddonconfig -n ${MANAGED_CLUSTER} ${MANAGED_CLUSTER} klusterletaddonconfig-pause=true --overwrite=true
       for COMPONENT in $(ls ${DIR}/patches); do
-        oc patch manifestwork -n $managedcluster $managedcluster-klusterlet-addon-${COMPONENT} --type='json' -p=`cat $DIR/patches/${COMPONENT} | sed 's/:latest/:'${VERSION_TAG}'/g'` || true
+        oc patch manifestwork -n ${MANAGED_CLUSTER} ${MANAGED_CLUSTER}-klusterlet-addon-${COMPONENT} --type='json' -p=`cat $DIR/patches/${COMPONENT} | sed 's/:latest/:'${VERSION_TAG}'/g'` || true
       done
   done
 
