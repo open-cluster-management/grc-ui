@@ -28,7 +28,6 @@ else
   LABEL="component=ocm-grcuiapi"
   DEPLOYMENT=$(oc get deployment -l ${LABEL} -n ${acm_installed_namespace} -o=jsonpath='{.items[*].metadata.name}')
   oc patch deployment ${DEPLOYMENT} -n ${acm_installed_namespace} -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"${COMPONENT}\",\"image\":\"${DOCKER_URI}/${COMPONENT}:${LABEL}\"}]}}}}"
-  oc delete pod -l ${LABEL} -n ${acm_installed_namespace}
   
   # Patch the propagator on the hub
   COMPONENT="governance-policy-propagator"
