@@ -12,7 +12,13 @@ echo "===== E2E Environment Setup ====="
 
 oc create ns duplicatetest || true
 
+echo "* Check for a running ACM"
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
+while UNFINISHED="$(oc -n ${acm_installed_namespace} get pods | grep -v -e "Completed" -e "1/1     Running" \ 
+         -e "2/2     Running" -e "3/3     Running" -e "4/4     Running" -e "READY   STATUS" | wc -l)" && [[ "${UNFINISHED}" != "0" ]]; do
+  echo "* Waiting on ${UNFINISHED} pods in namespace ${acm_installed_namespace}..."
+  sleep 5
+done
 
 VERSION_TAG=${VERSION_TAG:-"latest"}
 DOCKER_URI="quay.io/open-cluster-management"
@@ -22,7 +28,7 @@ if [[ "${RUN_LOCAL}" == "true" ]]; then
   docker run -d -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=${SERVICEACCT_TOKEN} -e API_SERVER_URL=${API_SERVER_URL} ${DOCKER_URI}/${COMPONENT}:${VERSION_TAG}
 else
   echo "* Patching hub cluster to ${VERSION_TAG}"
-  oc annotate MultiClusterHub multiclusterhub -n open-cluster-management mch-pause=true --overwrite
+  oc annotate MultiClusterHub multiclusterhub -n ${acm_installed_namespace} mch-pause=true --overwrite
   
   # Patch the API on the hub
   LABEL="component=ocm-grcuiapi"
@@ -38,6 +44,10 @@ else
   # Patch managed cluster components
   echo "* Patching managed clusters to ${VERSION_TAG}"
   MANAGED_CLUSTERS=$(oc get managedcluster -o=jsonpath='{.items[*].metadata.name}')
+  
+  ##### DEBUG
+  oc get manifestwork -A
+  
   for MANAGED_CLUSTER in ${MANAGED_CLUSTERS}; do
       oc annotate klusterletaddonconfig -n ${MANAGED_CLUSTER} ${MANAGED_CLUSTER} klusterletaddonconfig-pause=true --overwrite=true
       for COMPONENT in $(ls ${DIR}/patches); do
