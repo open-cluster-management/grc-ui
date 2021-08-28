@@ -48,14 +48,14 @@ else
   oc get manifestwork -A
   
   for MANAGED_CLUSTER in ${MANAGED_CLUSTERS}; do      
-      FOUND=1
-      while ! ${FOUND}; do
+      FOUND="false"
+      while [[ "${FOUND}" == "false" ]]; do
         echo "* Wait for manifestwork on ${MANAGED_CLUSTER}:"
-        FOUND=0
+        FOUND="true"
         for COMPONENT in $(ls ${DIR}/patches); do
           oc get manifestwork -n ${MANAGED_CLUSTER} ${MANAGED_CLUSTER}-klusterlet-addon-${COMPONENT}
-          if ! $?; then
-            FOUND=1
+          if [[ "$?" != "0" ]]; then
+            FOUND="false"
           fi
         done
         sleep 5
