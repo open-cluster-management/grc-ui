@@ -47,7 +47,19 @@ else
   ##### DEBUG
   oc get manifestwork -A
   
-  for MANAGED_CLUSTER in ${MANAGED_CLUSTERS}; do
+  for MANAGED_CLUSTER in ${MANAGED_CLUSTERS}; do      
+      FOUND=1
+      while ! ${FOUND}; do
+        echo "* Wait for manifestwork on ${MANAGED_CLUSTER}:"
+        FOUND=0
+        for COMPONENT in $(ls ${DIR}/patches); do
+          oc get manifestwork -n ${MANAGED_CLUSTER} ${MANAGED_CLUSTER}-klusterlet-addon-${COMPONENT}
+          if ! $?; then
+            FOUND=1
+          fi
+        done
+        sleep 5
+      done
       oc annotate klusterletaddonconfig -n ${MANAGED_CLUSTER} ${MANAGED_CLUSTER} klusterletaddonconfig-pause=true --overwrite=true
       for COMPONENT in $(ls ${DIR}/patches); do
         oc patch manifestwork -n ${MANAGED_CLUSTER} ${MANAGED_CLUSTER}-klusterlet-addon-${COMPONENT} --type='json' -p=`cat $DIR/patches/${COMPONENT} | sed 's/:latest/:'${VERSION_TAG}'/g'` || true
