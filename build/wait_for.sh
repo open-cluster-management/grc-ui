@@ -11,6 +11,7 @@ TOP_PID=$$
 
 OC_ARGS=""
 WAIT_TIME="${WAIT_TIME:-2}" # seconds
+TIMEOUT="${TIMEOUT:-300}" # timeout in seconds (default: 5 min)
 DEBUG="${DEBUG:-0}"
 TREAT_ERRORS_AS_READY=0
 alias oc=kubectl
@@ -195,7 +196,7 @@ get_job_state() {
 wait_for_resource() {
     wait_for_resource_type=$1
     wait_for_resource_descriptor="$2"
-    total_time=0
+    total_time="0"
     while [ -n "$(get_${wait_for_resource_type}_state "$wait_for_resource_descriptor")" ] && (( total_time < TIMEOUT )) ; do
         print_OC_ARGS="$OC_ARGS"
         [ "$print_OC_ARGS" != "" ] && print_OC_ARGS=" $print_OC_ARGS"
