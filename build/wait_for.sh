@@ -197,7 +197,7 @@ wait_for_resource() {
     wait_for_resource_type=$1
     wait_for_resource_descriptor="$2"
     total_time="0"
-    while [ -n "$(get_${wait_for_resource_type}_state "$wait_for_resource_descriptor")" ] && (( total_time < TIMEOUT )) ; do
+    while [ -n "$(get_${wait_for_resource_type}_state "$wait_for_resource_descriptor")" ] && [[ ${total_time} -lt ${TIMEOUT} ]]; do
         print_OC_ARGS="$OC_ARGS"
         [ "$print_OC_ARGS" != "" ] && print_OC_ARGS=" $print_OC_ARGS"
         oc get $wait_for_resource_type $wait_for_resource_descriptor${print_OC_ARGS}
