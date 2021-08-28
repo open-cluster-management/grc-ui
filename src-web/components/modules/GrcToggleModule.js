@@ -78,6 +78,56 @@ class GrcToggleModule extends React.Component {
           </ToggleGroupItem>
         </ToggleGroup>
     )
+    const tableFilters = [
+      {
+        label: 'Cluster violation',
+        id: 'violations',
+        options: [
+          { label: 'Compliant', value: '0' },
+          { label: 'Non-compliant', value: '1/1/0' },
+          { label: 'Unknown', value: '-' },
+        ],
+        tableFilterFn: (selectedValues, item) => {
+          return selectedValues.includes(item['violations'].rawData)
+        },
+      },
+      {
+        label: 'Source',
+        id: 'source',
+        options: [
+          { label: 'Local', value: 'Local' },
+          { label: 'External', value: 'External' },
+          { label: 'Git', value: 'Git' },
+        ],
+        tableFilterFn: (selectedValues, item) => {
+          return selectedValues.includes(item['source'].text)
+        },
+      },
+      {
+        label: 'Remediation',
+        id: 'remediation',
+        options: [
+          { label: 'Inform', value: 'inform' },
+          { label: 'Enforce', value: 'enforce' },
+        ],
+        tableFilterFn: (selectedValues, item) => {
+          return selectedValues.includes(item['remediation'].rawData)
+        },
+      },
+      {
+        label: 'Status',
+        id: 'status',
+        options: [
+          { label: 'Enabled', value: 'Enabled' },
+          { label: 'Disabled', value: 'Disabled' },
+        ],
+        tableFilterFn: (selectedValues, item) => {
+          console.log('item: ', item)
+          return selectedValues.includes(item['status'].text)
+        },
+      },
+    ]
+
     return (
       <div className='grc-toggle'>
         <div className={`grc-view-by-${tableType}-table`}>
@@ -96,6 +146,7 @@ class GrcToggleModule extends React.Component {
               searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
               fuseThreshold={0}
               plural={grcTabToggleIndex === 0 ? 'policies' : 'violations'}
+              filters={grcTabToggleIndex === 0 ? tableFilters : null}
             />
           </AcmTablePaginationContextProvider>
         </div>
