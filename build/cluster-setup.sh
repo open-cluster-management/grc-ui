@@ -44,17 +44,13 @@ else
   echo "* Patching managed clusters to ${VERSION_TAG}"
   MANAGED_CLUSTERS=$(oc get managedcluster -o=jsonpath='{.items[*].metadata.name}')
   
-  ##### DEBUG
-  oc get manifestwork -A
-  
   for MANAGED_CLUSTER in ${MANAGED_CLUSTERS}; do      
       FOUND="false"
       while [[ "${FOUND}" == "false" ]]; do
         echo "* Wait for manifestwork on ${MANAGED_CLUSTER}:"
         FOUND="true"
         for COMPONENT in $(ls ${DIR}/patches); do
-          oc get manifestwork -n ${MANAGED_CLUSTER} ${MANAGED_CLUSTER}-klusterlet-addon-${COMPONENT}
-          if [[ "$?" != "0" ]]; then
+          if (! oc get manifestwork -n ${MANAGED_CLUSTER} ${MANAGED_CLUSTER}-klusterlet-addon-${COMPONENT}); then
             FOUND="false"
           fi
         done
