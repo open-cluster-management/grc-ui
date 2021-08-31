@@ -48,6 +48,7 @@ echo "* Set up cluster for test"
 HUB_NAME=${HUB_NAME:-"hub-1"}
 export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(jq -r '.api_url' ${SHARED_DIR}/${HUB_NAME}.json)"}
 $DIR/cluster-setup.sh
+$DIR/cluster-patch.sh
 
 echo "* Export envs to run E2E"
 # Setting coverage to "false" until Sonar is restored for E2E
