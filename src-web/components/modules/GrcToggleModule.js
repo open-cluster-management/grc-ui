@@ -18,7 +18,7 @@ import {
 import { LocaleContext } from '../common/LocaleContext'
 import grcPoliciesViewDef from '../../tableDefinitions/grcPoliciesViewDef'
 import grcClustersViewDef from '../../tableDefinitions/grcClustersViewDef'
-import { transform } from '../../tableDefinitions/utils'
+import { transform, getTableFilters } from '../../tableDefinitions/utils'
 import msgs from '../../nls/platform.properties'
 import { formatPoliciesToClustersTableData } from '../../utils/FormatTableData'
 import { RESOURCE_TYPES, GRC_SEARCH_STATE_COOKIE } from '../../utils/constants'
@@ -78,55 +78,6 @@ class GrcToggleModule extends React.Component {
           </ToggleGroupItem>
         </ToggleGroup>
     )
-    const tableFilters = [
-      {
-        label: 'Cluster violation',
-        id: 'violations',
-        options: [
-          { label: 'Compliant', value: '0' },
-          { label: 'Non-compliant', value: '1/1/0' },
-          { label: 'Unknown', value: '-' },
-        ],
-        tableFilterFn: (selectedValues, item) => {
-          return selectedValues.includes(item['violations'].rawData)
-        },
-      },
-      {
-        label: 'Source',
-        id: 'source',
-        options: [
-          { label: 'Local', value: 'Local' },
-          { label: 'External', value: 'External' },
-          { label: 'Git', value: 'Git' },
-        ],
-        tableFilterFn: (selectedValues, item) => {
-          return selectedValues.includes(item['source'].text)
-        },
-      },
-      {
-        label: 'Remediation',
-        id: 'remediation',
-        options: [
-          { label: 'Inform', value: 'inform' },
-          { label: 'Enforce', value: 'enforce' },
-        ],
-        tableFilterFn: (selectedValues, item) => {
-          return selectedValues.includes(item['remediation'].rawData)
-        },
-      },
-      {
-        label: 'Status',
-        id: 'status',
-        options: [
-          { label: 'Enabled', value: 'Enabled' },
-          { label: 'Disabled', value: 'Disabled' },
-        ],
-        tableFilterFn: (selectedValues, item) => {
-          console.log('item: ', item)
-          return selectedValues.includes(item['status'].text)
-        },
-      },
-    ]
 
     return (
       <div className='grc-toggle'>
@@ -146,7 +97,7 @@ class GrcToggleModule extends React.Component {
               searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
               fuseThreshold={0}
               plural={grcTabToggleIndex === 0 ? 'policies' : 'violations'}
-              filters={grcTabToggleIndex === 0 ? tableFilters : null}
+              filters={grcTabToggleIndex === 0 ? getTableFilters() : null}
             />
           </AcmTablePaginationContextProvider>
         </div>
