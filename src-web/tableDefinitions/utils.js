@@ -574,3 +574,56 @@ export function getDecisionList(policy, locale) {
   }
   return statusList
 }
+
+export function getTableFilters(){
+  console.log('getsource', getSource())
+  return [
+    {
+      label: 'Cluster violation',
+      id: 'violations',
+      options: [
+        { label: 'Compliant', value: '0/1/0' },
+        { label: 'Non-compliant', value: '1/1/0' },
+        { label: 'Unknown', value: '-' },
+      ],
+      tableFilterFn: (selectedValues, item) => {
+        return selectedValues.includes(item['violations'].rawData)
+      },
+    },
+    {
+      label: 'Source',
+      id: 'source',
+      options: [
+        { label: 'Local', value: 'Local' },
+        { label: 'External', value: 'External' },
+        { label: 'Git', value: 'Git' },
+      ],
+      tableFilterFn: (selectedValues, item) => {
+        return selectedValues.includes(item['source'].text)
+      },
+    },
+    {
+      label: 'Remediation',
+      id: 'remediation',
+      options: [
+        { label: 'Inform', value: 'inform' },
+        { label: 'Enforce', value: 'enforce' },
+      ],
+      tableFilterFn: (selectedValues, item) => {
+        return selectedValues.includes(item['remediation'].rawData)
+      },
+    },
+    {
+      label: 'Status',
+      id: 'status',
+      options: [
+        { label: 'Enabled', value: 'Enabled' },
+        { label: 'Disabled', value: 'Disabled' },
+      ],
+      tableFilterFn: (selectedValues, item) => {
+        console.log('item: ', item)
+        return selectedValues.includes(item['status'].text)
+      },
+    },
+  ]
+}
