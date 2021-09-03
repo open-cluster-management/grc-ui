@@ -8,14 +8,8 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import _ from 'lodash'
 import config from '../../server/lib/shared/config'
-import {
-  AcmTable,
-} from '@open-cluster-management/ui-components'
-import {
-  Label,
-  LabelGroup,
-  Tooltip,
-} from '@patternfly/react-core'
+import { AcmTable } from '@open-cluster-management/ui-components'
+import { Label, LabelGroup, Tooltip } from '@patternfly/react-core'
 import StatusField from '../components/common/StatusField'
 import {
   GreenCheckCircleIcon,
@@ -39,8 +33,8 @@ export const transform = (items, def, locale) => {
   }
   def.tableKeys.forEach(key => {
     const colData = {
-      header: key.msgKey ? msgs.get(key.msgKey, locale): '',
-      sort: key.sortable ? (key.sortLabel || key.label) : undefined,
+      header: key.msgKey ? msgs.get(key.msgKey, locale) : '',
+      sort: key.sortable ? key.sortLabel || key.label : undefined,
       cell: key.label,
       search: key.searchable ? parseCell(key.label) : undefined,
       transforms: key.transforms,
@@ -69,15 +63,17 @@ export const transform = (items, def, locale) => {
     sortBy.index = columns.colParent.findIndex(col => sortBy.index === col.cell)
   }
   // If it wasn't found or wasn't defined, we'll set it to the first column
-  if (!sortBy.index || sortBy.index < 0 ) {
+  if (!sortBy.index || sortBy.index < 0) {
     sortBy.index = 0
   }
   // Create keyFn and expandable row function
-  const keyFn = (item) => item.uid.toString()
+  const keyFn = item => item.uid.toString()
   let addSubRows
   if (columns.colChild.length > 0) {
-    addSubRows = (item) => {
-      const subRows = rows.rowChild.filter((row) => row.uid?.toString() === item.uid?.toString())
+    addSubRows = item => {
+      const subRows = rows.rowChild.filter(
+        row => row.uid?.toString() === item.uid?.toString()
+      )
       return [
         {
           cells: [
@@ -87,15 +83,15 @@ export const transform = (items, def, locale) => {
                   items={subRows}
                   columns={columns.colChild}
                   keyFn={keyFn}
-                  gridBreakPoint=''
+                  gridBreakPoint=""
                   showToolbar={false}
                   autoHidePagination
                   noBorders
                 />
-              )
-            }
-          ]
-        }
+              ),
+            },
+          ],
+        },
       ]
     }
   }
@@ -105,18 +101,19 @@ export const transform = (items, def, locale) => {
     rows: rows.rowParent,
     sortBy,
     keyFn,
-    addSubRows
+    addSubRows,
   }
 }
 
 function pushRows(items, rows, def, locale) {
-  let subUid = 0, expandable
+  let subUid = 0,
+    expandable
   const refetch = items.refetch
   items.forEach((item, index) => {
     expandable = false
     const rowChildObj = {}
     const rowParentObj = {
-      uid: index
+      uid: index,
     }
     // For each column, parse the row values based on its type
     def.tableKeys.forEach(key => {
@@ -125,23 +122,28 @@ function pushRows(items, rows, def, locale) {
       if (key.type === 'timestamp') {
         value = {
           title: <TableTimestamp timestamp={value} />,
-          rawData: value
+          rawData: value,
         }
       } else if (key.type === 'i18n') {
-        value =  msgs.get(key.resourceKey, locale)
+        value = msgs.get(key.resourceKey, locale)
       } else if (key.type === 'boolean') {
         value = value ? true : false
-      } else if (key.transformFunction && typeof key.transformFunction === 'function') {
+      } else if (
+        key.transformFunction &&
+        typeof key.transformFunction === 'function'
+      ) {
         // Leverage the defined transformFunction to render content and store the raw value as metadata
         value = {
-          title: refetch ? key.transformFunction(item, locale, refetch) : key.transformFunction(item, locale),
-          rawData: value
+          title: refetch
+            ? key.transformFunction(item, locale, refetch)
+            : key.transformFunction(item, locale),
+          rawData: value,
         }
         if (key.textFunction && typeof key.textFunction === 'function') {
           value.text = key.textFunction(item, locale)
         }
       } else {
-        value =  (value || value === 0) ? value : '-'
+        value = value || value === 0 ? value : '-'
       }
       // Add to parent table or expandable (child) table as specified by the column
       if (key.subRow) {
@@ -164,10 +166,12 @@ function pushRows(items, rows, def, locale) {
 }
 
 function parseCell(label) {
-  return (cell) => {
+  return cell => {
     cell = cell[label]
     if (cell.title?.props?.timestamp) {
-      return moment(cell.title.props.timestamp, 'YYYY-MM-DDTHH:mm:ssZ').fromNow().toString()
+      return moment(cell.title.props.timestamp, 'YYYY-MM-DDTHH:mm:ssZ')
+        .fromNow()
+        .toString()
     }
     if (typeof cell === 'object') {
       // get the pure text from table cell
@@ -179,18 +183,34 @@ function parseCell(label) {
 
 export const buildCompliantCell = (item, locale) => {
   let compliant = _.get(item, 'compliant', '-')
-  compliant = (compliant && typeof compliant === 'string')
-  ? compliant.trim().toLowerCase() : '-'
+  compliant =
+    compliant && typeof compliant === 'string'
+      ? compliant.trim().toLowerCase()
+      : '-'
 
   switch (compliant) {
     case 'compliant':
-      compliant = <div><GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}</div>
+      compliant = (
+        <div>
+          <GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}
+        </div>
+      )
       break
     case 'noncompliant':
-      compliant = <div><RedExclamationCircleIcon /> {msgs.get('table.cell.noncompliant', locale)}</div>
+      compliant = (
+        <div>
+          <RedExclamationCircleIcon />{' '}
+          {msgs.get('table.cell.noncompliant', locale)}
+        </div>
+      )
       break
-    default :
-      compliant = <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
+    default:
+      compliant = (
+        <div>
+          <YellowExclamationTriangleIcon />{' '}
+          {msgs.get('table.cell.nostatus', locale)}
+        </div>
+      )
       break
   }
 
@@ -199,18 +219,32 @@ export const buildCompliantCell = (item, locale) => {
 
 export const buildCompliantCellFromMessage = (item, locale) => {
   const message = _.get(item, 'message', '-')
-  let compliant = (message && typeof message === 'string')
-  ? message.split(';')[0] : '-'
+  let compliant =
+    message && typeof message === 'string' ? message.split(';')[0] : '-'
   compliant = compliant ? compliant.trim().toLowerCase() : '-'
   switch (compliant) {
     case 'compliant':
-      compliant = <div><GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}</div>
+      compliant = (
+        <div>
+          <GreenCheckCircleIcon /> {msgs.get('table.cell.compliant', locale)}
+        </div>
+      )
       break
     case 'noncompliant':
-      compliant = <div><RedExclamationCircleIcon /> {msgs.get('table.cell.noncompliant', locale)}</div>
+      compliant = (
+        <div>
+          <RedExclamationCircleIcon />{' '}
+          {msgs.get('table.cell.noncompliant', locale)}
+        </div>
+      )
       break
-    default :
-      compliant = <div><YellowExclamationTriangleIcon /> {msgs.get('table.cell.nostatus', locale)}</div>
+    default:
+      compliant = (
+        <div>
+          <YellowExclamationTriangleIcon />{' '}
+          {msgs.get('table.cell.nostatus', locale)}
+        </div>
+      )
       break
   }
 
@@ -221,11 +255,11 @@ export function buildClusterLink(item) {
   const cluster = _.get(item, 'cluster')
   if (cluster) {
     const clusterURL = `${config.clusterContextPath}/${cluster}/overview`
-    return <a
-      rel='noopener noreferrer'
-      href={clusterURL}>
-      {cluster}
-    </a>
+    return (
+      <a rel="noopener noreferrer" href={clusterURL}>
+        {cluster}
+      </a>
+    )
   }
   return '-'
 }
@@ -237,9 +271,11 @@ export function buildStatusHistoryLink(item, locale) {
   const templateName = _.get(item, 'templateName')
   if (policyName && policyNamespace && cluster && templateName) {
     const statusHistoryURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/status/${cluster}/templates/${templateName}/history`
-    return <Link to={statusHistoryURL}>
-      {msgs.get('table.actions.view.history', locale)}
-    </Link>
+    return (
+      <Link to={statusHistoryURL}>
+        {msgs.get('table.actions.view.history', locale)}
+      </Link>
+    )
   }
   return '-'
 }
@@ -253,42 +289,66 @@ export function buildTemplateDetailLink(item, locale) {
   const apiVersion = _.get(item, 'apiVersion')
   const kind = _.get(item, 'kind')
   const showDetailsLink = _.get(item, 'showDetailsLink', true)
-  if (message && policyName && policyNamespace && cluster && templateName && apiVersion && kind) {
+  if (
+    message &&
+    policyName &&
+    policyNamespace &&
+    cluster &&
+    templateName &&
+    apiVersion &&
+    kind
+  ) {
     const templateDetailURL = `/multicloud/policies/all/${policyNamespace}/${policyName}/template/${cluster}/${apiVersion}/${kind}/${templateName}`
-    return <div className='policy-details-message'>
-      <TruncateText text={message} maxCharacters={300} textEnd={' '} />
-      {showDetailsLink ?
-        <Link to={templateDetailURL}>
-          {msgs.get('table.actions.view.details', locale)}
-        </Link>
-        :
-        <Tooltip content={msgs.get('error.permission.disabled', locale)}>
-          <span className='link-disabled'>
+    return (
+      <div className="policy-details-message">
+        <TruncateText text={message} maxCharacters={300} textEnd={' '} />
+        {showDetailsLink ? (
+          <Link to={templateDetailURL}>
             {msgs.get('table.actions.view.details', locale)}
-          </span>
-        </Tooltip>
-      }
-    </div>
+          </Link>
+        ) : (
+          <Tooltip content={msgs.get('error.permission.disabled', locale)}>
+            <span className="link-disabled">
+              {msgs.get('table.actions.view.details', locale)}
+            </span>
+          </Tooltip>
+        )}
+      </div>
+    )
   }
   return ''
 }
 
 export function statusHistoryMessageTooltip(item) {
   const message = _.get(item, 'message')
-  return  <TruncateText text={message} maxCharacters={300} />
+  return <TruncateText text={message} maxCharacters={300} />
 }
 
-export function createComplianceLink(item = {}, ...param){
+export function createComplianceLink(item = {}, ...param) {
   let policyName = '-'
   if (param[2]) {
     policyName = item.metadata.name
-  } else if (item && item.metadata)
-  {
+  } else if (item && item.metadata) {
     if (_.get(item, 'raw.kind') === 'Compliance') {
-      policyName = <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name} (Deprecated)</Link>
-    }
-    else {
-      policyName = <Link to={`${config.contextPath}/all/${encodeURIComponent(item.metadata.namespace)}/${encodeURIComponent(item.metadata.name)}`}>{item.metadata.name}</Link>
+      policyName = (
+        <Link
+          to={`${config.contextPath}/all/${encodeURIComponent(
+            item.metadata.name
+          )}`}
+        >
+          {item.metadata.name} (Deprecated)
+        </Link>
+      )
+    } else {
+      policyName = (
+        <Link
+          to={`${config.contextPath}/all/${encodeURIComponent(
+            item.metadata.namespace
+          )}/${encodeURIComponent(item.metadata.name)}`}
+        >
+          {item.metadata.name}
+        </Link>
+      )
     }
   }
   return policyName
@@ -296,29 +356,37 @@ export function createComplianceLink(item = {}, ...param){
 
 export function getPolicyCompliantStatus(item, locale) {
   if (_.get(item, 'raw.spec.disabled')) {
-    return <div className='disabledStatus'>--</div>
+    return <div className="disabledStatus">--</div>
   }
-  const clusterCompliant =  _.get(item, 'clusterCompliant', '-')
+  const clusterCompliant = _.get(item, 'clusterCompliant', '-')
   const tooltip = msgs.get('table.tooltip.nostatus', locale)
   if (clusterCompliant === '-') {
     return (
-      <div className='violationCell'>
-        <YellowExclamationTriangleIcon tooltip={tooltip} />{clusterCompliant}
+      <div className="violationCell">
+        <YellowExclamationTriangleIcon tooltip={tooltip} />
+        {clusterCompliant}
       </div>
     )
   }
   const statusArray = _.get(item, 'clusterCompliant').split('/')
-  console.log('statusarray',statusArray)
-  console.log('item from get compliantpolicy', item)
   const violationCount = parseInt(statusArray[0], 10)
   const totalCount = parseInt(statusArray[1], 10)
-  const unknownCount = statusArray.length === 3 ? parseInt(statusArray[2], 10) : 0
+  const unknownCount =
+    statusArray.length === 3 ? parseInt(statusArray[2], 10) : 0
   return (
-    <div className='violationCell'>
-      { violationCount > 0
-        ? <RedExclamationCircleIcon tooltip={msgs.get('table.tooltip.noncompliant', locale)} />
-        : totalCount > unknownCount && <GreenCheckCircleIcon tooltip={msgs.get('table.tooltip.compliant', locale)} />}
-      { unknownCount > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} /> }
+    <div className="violationCell">
+      {violationCount > 0 ? (
+        <RedExclamationCircleIcon
+          tooltip={msgs.get('table.tooltip.noncompliant', locale)}
+        />
+      ) : (
+        totalCount > unknownCount && (
+          <GreenCheckCircleIcon
+            tooltip={msgs.get('table.tooltip.compliant', locale)}
+          />
+        )
+      )}
+      {unknownCount > 0 && <YellowExclamationTriangleIcon tooltip={tooltip} />}
       {`${violationCount}/${totalCount}`}
     </div>
   )
@@ -330,13 +398,21 @@ export function getClusterCompliantStatus(item, locale) {
   const totalCount = parseInt(statusArray[1], 10)
   const unknownCount = parseInt(statusArray[2], 10)
   return (
-    <div className='violationCell'>
-      { violationCount > 0
-        ? <RedExclamationCircleIcon tooltip={msgs.get('table.tooltip.noncompliant', locale)} />
-        : unknownCount !== totalCount
-          ? <GreenCheckCircleIcon tooltip={msgs.get('table.tooltip.compliant', locale)} />
-          : null }
-      { unknownCount > 0 && <YellowExclamationTriangleIcon tooltip={msgs.get('table.tooltip.nostatus', locale)} /> }
+    <div className="violationCell">
+      {violationCount > 0 ? (
+        <RedExclamationCircleIcon
+          tooltip={msgs.get('table.tooltip.noncompliant', locale)}
+        />
+      ) : unknownCount !== totalCount ? (
+        <GreenCheckCircleIcon
+          tooltip={msgs.get('table.tooltip.compliant', locale)}
+        />
+      ) : null}
+      {unknownCount > 0 && (
+        <YellowExclamationTriangleIcon
+          tooltip={msgs.get('table.tooltip.nostatus', locale)}
+        />
+      )}
       {`${violationCount}/${totalCount}`}
     </div>
   )
@@ -347,7 +423,10 @@ export function getClusterViolationLabels(item) {
 }
 
 export function getControls(item) {
-  return formatAnnotationString(item, 'policy.open-cluster-management.io/controls')
+  return formatAnnotationString(
+    item,
+    'policy.open-cluster-management.io/controls'
+  )
 }
 
 export function getStatusText(item, locale) {
@@ -384,26 +463,37 @@ export function getSource(item, locale) {
   }
 }
 
-export function getStatus(item, locale, table=true) {
+export function getStatus(item, locale, table = true) {
   const status = getStatusText(item, locale)
-  return _.get(item, 'raw.spec.disabled') && table
-    ? <div className='pf-u-disabled-color-200'>{status}</div>
-    : status
+  return _.get(item, 'raw.spec.disabled') && table ? (
+    <div className="pf-u-disabled-color-200">{status}</div>
+  ) : (
+    status
+  )
 }
 
 export function getStandards(item) {
-  return formatAnnotationString(item, 'policy.open-cluster-management.io/standards')
+  return formatAnnotationString(
+    item,
+    'policy.open-cluster-management.io/standards'
+  )
 }
 
 export function getCategories(item) {
-  return formatAnnotationString(item, 'policy.open-cluster-management.io/categories')
+  return formatAnnotationString(
+    item,
+    'policy.open-cluster-management.io/categories'
+  )
 }
 
-export function formatAnnotationString(policy, annotationKey){
+export function formatAnnotationString(policy, annotationKey) {
   const annotations = _.get(policy, 'metadata.annotations') || {}
   const values = annotations[annotationKey]
   if (values) {
-    return values.split(',').map(item => item.trim()).join(', ')
+    return values
+      .split(',')
+      .map(item => item.trim())
+      .join(', ')
   }
   return '-'
 }
@@ -411,45 +501,80 @@ export function formatAnnotationString(policy, annotationKey){
 export function getAutomationLink(item, locale, refetch) {
   if (_.get(item, 'metadata.namespace')) {
     return (
-      <AutomationButton item={item} locale={locale} refetch={refetch}></AutomationButton>
+      <AutomationButton
+        item={item}
+        locale={locale}
+        refetch={refetch}
+      ></AutomationButton>
     )
   }
   return '-'
 }
 
 export function getCompliancePolicyStatus(item, locale) {
-  if (item.clusterNotCompliant && item.clusterNotCompliant.length > 0){
-    return <StatusField status='noncompliant' text={msgs.get('policy.status.noncompliant', locale)} />
+  if (item.clusterNotCompliant && item.clusterNotCompliant.length > 0) {
+    return (
+      <StatusField
+        status="noncompliant"
+        text={msgs.get('policy.status.noncompliant', locale)}
+      />
+    )
   }
-  return <StatusField status='compliant' text={msgs.get('policy.status.compliant', locale)} />
+  return (
+    <StatusField
+      status="compliant"
+      text={msgs.get('policy.status.compliant', locale)}
+    />
+  )
 }
 
-export function createCompliancePolicyLink(item = {}, ...param){
+export function createCompliancePolicyLink(item = {}, ...param) {
   const policyKeys = item[param[1]]
   const policyArray = []
-  policyKeys && policyKeys.forEach(policyKey => {
-    const targetPolicy = item.policies.find(policy => item.name === policy.name && policyKey === policy.cluster)
-    policyArray.push(targetPolicy)
-  })
+  policyKeys &&
+    policyKeys.forEach(policyKey => {
+      const targetPolicy = item.policies.find(
+        policy => item.name === policy.name && policyKey === policy.cluster
+      )
+      policyArray.push(targetPolicy)
+    })
 
-  return policyArray.length > 0 ?
-    <ul>{policyArray.map(policy => (<li key={`${policy.cluster}-${policy.name}`}>
-      <Link
-        to={
-          `${config.contextPath}/all/${encodeURIComponent(policy.complianceNamespace)}/${encodeURIComponent(policy.complianceName)}`
-            + `/compliancePolicy/${encodeURIComponent(policy.name)}/${policy.cluster}`}>
-        {policy.cluster}
-      </Link>
-    </li>))}</ul>
-    :
+  return policyArray.length > 0 ? (
+    <ul>
+      {policyArray.map(policy => (
+        <li key={`${policy.cluster}-${policy.name}`}>
+          <Link
+            to={
+              `${config.contextPath}/all/${encodeURIComponent(
+                policy.complianceNamespace
+              )}/${encodeURIComponent(policy.complianceName)}` +
+              `/compliancePolicy/${encodeURIComponent(policy.name)}/${
+                policy.cluster
+              }`
+            }
+          >
+            {policy.cluster}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  ) : (
     '-'
+  )
 }
 
-export function createPolicyLink(item = {}){
-  return  <Link
-    to={`${config.contextPath}/all/${encodeURIComponent(item.complianceNamespace)}/${encodeURIComponent(item.complianceName)}/compliancePolicy/${encodeURIComponent(item.name)}`}>
-    {item.name}
-  </Link>
+export function createPolicyLink(item = {}) {
+  return (
+    <Link
+      to={`${config.contextPath}/all/${encodeURIComponent(
+        item.complianceNamespace
+      )}/${encodeURIComponent(
+        item.complianceName
+      )}/compliancePolicy/${encodeURIComponent(item.name)}`}
+    >
+      {item.name}
+    </Link>
+  )
 }
 
 export function getStatusCount(item) {
@@ -461,27 +586,30 @@ export function getClusterCount(item) {
 }
 
 export function getSubjects(item) {
-  if(item && item.subjects){
-    return item.subjects.map(subject => `${subject.name}(${subject.apiGroup})`).join(', ')
-  }
-  else{
+  if (item && item.subjects) {
+    return item.subjects
+      .map(subject => `${subject.name}(${subject.apiGroup})`)
+      .join(', ')
+  } else {
     return '-'
   }
 }
 
 export function getLabels(item) {
   const labels = _.get(item, 'placementPolicies[0].clusterLabels')
-  if (!labels || Object.keys(labels).length===0) {
+  if (!labels || Object.keys(labels).length === 0) {
     return '-'
   }
   return _.map(labels, (value, key) => {
-      return <p key={key}>{`${key}=${JSON.stringify(labels[key])}`}</p>
-    })
+    return <p key={key}>{`${key}=${JSON.stringify(labels[key])}`}</p>
+  })
 }
 
 // Return a count of total clusters from the placementPolicy
-export function getDecisionCount(item = {}){
-  const decisions = _.get(item, 'placementPolicies[0].status.decisions') || _.get(item, 'status.decisions')
+export function getDecisionCount(item = {}) {
+  const decisions =
+    _.get(item, 'placementPolicies[0].status.decisions') ||
+    _.get(item, 'status.decisions')
   if (decisions) {
     return decisions.map(decision => decision.clusterName).length
   }
@@ -491,28 +619,44 @@ export function getDecisionCount(item = {}){
 // Construct a list of compliant clusters and return a formatted list with icons and headings
 export function getDecisionList(policy, locale) {
   // Gather full cluster list from placementPolicy status
-  const fullClusterList = _.get(policy, 'placementPolicies[0].status.decisions', [])
+  const fullClusterList = _.get(
+    policy,
+    'placementPolicies[0].status.decisions',
+    []
+  )
   // Gather status list from policy status
   const rawStatusList = _.get(policy, 'raw.status.status', [])
   // Build lists of clusters, organized by status keys
   const clusterList = {}
-  _.forEach(fullClusterList, (clusterObj) => {
+  _.forEach(fullClusterList, clusterObj => {
     const cluster = clusterObj.clusterNamespace
-    const statusObject = _.filter(rawStatusList, (status) => status.clusternamespace === cluster)
+    const statusObject = _.filter(
+      rawStatusList,
+      status => status.clusternamespace === cluster
+    )
     // Log error if more than one status is returned since each cluster name should be unique
     if (statusObject.length > 1) {
-      console.error(`Expected one cluster but got ${statusObject.length}:`, statusObject)
-    // Push a new cluster object if there is no status found
+      console.error(
+        `Expected one cluster but got ${statusObject.length}:`,
+        statusObject
+      )
+      // Push a new cluster object if there is no status found
     } else if (statusObject.length === 0) {
-      statusObject.push({clusternamespace: cluster})
+      statusObject.push({ clusternamespace: cluster })
     }
-    const compliant = _.get(statusObject[0], 'compliant', 'nostatus').toLowerCase()
+    const compliant = _.get(
+      statusObject[0],
+      'compliant',
+      'nostatus'
+    ).toLowerCase()
     const clusterNamespace = _.get(statusObject[0], 'clusternamespace')
     // Add cluster to its associated status list in the clusterList object
     if (Object.prototype.hasOwnProperty.call(clusterList, compliant)) {
       // Each cluster name should be unique, so if one is already present, log an error
       if (clusterList[compliant].has(clusterNamespace)) {
-        console.error(`Unexpected duplicate cluster in '${compliant}' cluster list: ${clusterNamespace}`)
+        console.error(
+          `Unexpected duplicate cluster in '${compliant}' cluster list: ${clusterNamespace}`
+        )
       } else {
         clusterList[compliant].add(clusterNamespace)
       }
@@ -525,46 +669,52 @@ export function getDecisionList(policy, locale) {
   for (const status of Object.keys(clusterList)) {
     const statusMsg = msgs.get(`table.cell.${status}`, locale)
     statusList.push(
-      <div key={`${status}-status-container`} className='status-container'>
-        <span key={`${status}-status-heading`} className='status-heading'>
+      <div key={`${status}-status-container`} className="status-container">
+        <span key={`${status}-status-heading`} className="status-heading">
           <StatusField status={status} text={`${statusMsg}: `} />
         </span>
-        <span key={`${status}-status-list`} className={`status-list status-list__${status}`}>
+        <span
+          key={`${status}-status-list`}
+          className={`status-list status-list__${status}`}
+        >
           <LabelGroup
-            collapsedText='${remaining} more'
-            expandedText='Show fewer'
-            numLabels='5'
+            collapsedText="${remaining} more"
+            expandedText="Show fewer"
+            numLabels="5"
           >
-            {Array.from(clusterList[status]).map((cluster, index) =>{
-                // If there's no status, there's no point in linking to the status page
-                let href=null, color='grey'
-                if (status !== 'nostatus') {
-                  href=`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?clusterFilter=${cluster}&index=0`
-                  color='blue'
-                } else {
-                  href=`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}`
-                }
-                // Return links to status page, filtered by selected cluster
-                return (<span key={`${cluster}-link`}>
+            {Array.from(clusterList[status]).map((cluster, index) => {
+              // If there's no status, there's no point in linking to the status page
+              let href = null,
+                color = 'grey'
+              if (status !== 'nostatus') {
+                href = `${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?clusterFilter=${cluster}&index=0`
+                color = 'blue'
+              } else {
+                href = `${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}`
+              }
+              // Return links to status page, filtered by selected cluster
+              return (
+                <span key={`${cluster}-link`}>
                   <Label
                     key={`${cluster}-link`}
                     color={color}
-                    variant='outline'
-                    render={({
-                        className,
-                        content,
-                        componentRef
-                      })=>
-                        <Link to={href} className={className} innerRef={componentRef}>
-                          {content}{index < clusterList[status].size - 1 && ', '}
-                        </Link>
-                    }
+                    variant="outline"
+                    render={({ className, content, componentRef }) => (
+                      <Link
+                        to={href}
+                        className={className}
+                        innerRef={componentRef}
+                      >
+                        {content}
+                        {index < clusterList[status].size - 1 && ', '}
+                      </Link>
+                    )}
                   >
                     {cluster}
                   </Label>
-                </span>)
-              })
-            }
+                </span>
+              )
+            })}
           </LabelGroup>
         </span>
       </div>
@@ -577,29 +727,26 @@ export function getDecisionList(policy, locale) {
   return statusList
 }
 
-
-
-
-
-export const getTableFilters =(items)=>{
-
+// Create filter label values for violations, policy source, remediaton, and status
+export const getTableFilters = items => {
   // build array of options dependent on data received
-    function getOptions(items,filterHeader){
-      const filters = items.map(item => {
-        if(filterHeader !== 'violations'){
-          return item[filterHeader].text
-            ? {label: item[filterHeader].text , value: item[filterHeader].text }
-            : { label: item[filterHeader].title, value: item[filterHeader].title}
-        }
-        else {
-          return null
-        }
-      })
-      const filteredArr = Array.from(new Set(filters.map(item => item.label))).map(label => {
-        return filters.find(item => item.label === label)
-      })
-      return filteredArr
-    }
+  function getOptions(items, filterHeader) {
+    const filters = items.map(item => {
+      if (filterHeader !== 'violations') {
+        return item[filterHeader].text
+          ? { label: item[filterHeader].text, value: item[filterHeader].text }
+          : { label: item[filterHeader].title, value: item[filterHeader].title }
+      } else {
+        return null
+      }
+    })
+    const filteredArr = Array.from(
+      new Set(filters.map(item => item.label))
+    ).map(label => {
+      return filters.find(item => item.label === label)
+    })
+    return filteredArr
+  }
 
   return [
     {
@@ -607,29 +754,27 @@ export const getTableFilters =(items)=>{
       id: 'violations',
       options: [
         { label: 'Compliant', value: 'compliant' },
-        { label: 'Non-compliant', value: 'nonCompliant'},
+        { label: 'Non-compliant', value: 'nonCompliant' },
         { label: 'Unknown', value: '-' },
       ],
-      tableFilterFn: function (selectedValues, item){
+      tableFilterFn: function (selectedValues, item) {
         const violationArray = item[this.id].rawData.split('/')
         const checkCompliance = () => {
-          if (violationArray[0] !== '-'){
+          if (violationArray[0] !== '-') {
             return violationArray[0] > 0 ? 'nonCompliant' : 'compliant'
           } else {
             return '-'
           }
         }
 
-        return selectedValues.includes(
-          checkCompliance()
-        )
+        return selectedValues.includes(checkCompliance())
       },
     },
     {
       label: 'Source',
       id: 'source',
       options: getOptions(items, 'source'),
-      tableFilterFn: function (selectedValues, item){
+      tableFilterFn: function (selectedValues, item) {
         return selectedValues.includes(item[this.id].text)
       },
     },
@@ -637,7 +782,7 @@ export const getTableFilters =(items)=>{
       label: 'Remediation',
       id: 'remediation',
       options: getOptions(items, 'remediation'),
-      tableFilterFn: function (selectedValues, item){
+      tableFilterFn: function (selectedValues, item) {
         return selectedValues.includes(item[this.id].title)
       },
     },
@@ -645,7 +790,7 @@ export const getTableFilters =(items)=>{
       label: 'Status',
       id: 'status',
       options: getOptions(items, 'status'),
-      tableFilterFn: function (selectedValues, item){
+      tableFilterFn: function (selectedValues, item) {
         return selectedValues.includes(item[this.id].text)
       },
     },
