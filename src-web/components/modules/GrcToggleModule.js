@@ -97,7 +97,7 @@ class GrcToggleModule extends React.Component {
               searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
               fuseThreshold={0}
               plural={grcTabToggleIndex === 0 ? 'policies' : 'violations'}
-              filters={grcTabToggleIndex === 0 ? getTableFilters() : null}
+              filters={grcTabToggleIndex === 0 ? getTableFilters(tableData[0].rows) : null}
             />
           </AcmTablePaginationContextProvider>
         </div>
