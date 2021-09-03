@@ -308,6 +308,8 @@ export function getPolicyCompliantStatus(item, locale) {
     )
   }
   const statusArray = _.get(item, 'clusterCompliant').split('/')
+  console.log('statusarray',statusArray)
+  console.log('item from get compliantpolicy', item)
   const violationCount = parseInt(statusArray[0], 10)
   const totalCount = parseInt(statusArray[1], 10)
   const unknownCount = statusArray.length === 3 ? parseInt(statusArray[2], 10) : 0
@@ -575,54 +577,76 @@ export function getDecisionList(policy, locale) {
   return statusList
 }
 
-export function getTableFilters(){
-  console.log('getsource', getSource())
+
+
+
+
+export const getTableFilters =(items)=>{
+
+  // build array of options dependent on data received
+    function getOptions(items,filterHeader){
+      const filters = items.map(item => {
+        if(filterHeader !== 'violations'){
+          return item[filterHeader].text
+            ? {label: item[filterHeader].text , value: item[filterHeader].text }
+            : { label: item[filterHeader].title, value: item[filterHeader].title}
+        }
+        else {
+          return null
+        }
+      })
+      const filteredArr = Array.from(new Set(filters.map(item => item.label))).map(label => {
+        return filters.find(item => item.label === label)
+      })
+      return filteredArr
+    }
+
   return [
     {
       label: 'Cluster violation',
       id: 'violations',
       options: [
-        { label: 'Compliant', value: '0/1/0' },
-        { label: 'Non-compliant', value: '1/1/0' },
+        { label: 'Compliant', value: 'compliant' },
+        { label: 'Non-compliant', value: 'nonCompliant'},
         { label: 'Unknown', value: '-' },
       ],
-      tableFilterFn: (selectedValues, item) => {
-        return selectedValues.includes(item['violations'].rawData)
+      tableFilterFn: function (selectedValues, item){
+        const violationArray = item[this.id].rawData.split('/')
+        const checkCompliance = () => {
+          if (violationArray[0] !== '-'){
+            return violationArray[0] > 0 ? 'nonCompliant' : 'compliant'
+          } else {
+            return '-'
+          }
+        }
+
+        return selectedValues.includes(
+          checkCompliance()
+        )
       },
     },
     {
       label: 'Source',
       id: 'source',
-      options: [
-        { label: 'Local', value: 'Local' },
-        { label: 'External', value: 'External' },
-        { label: 'Git', value: 'Git' },
-      ],
-      tableFilterFn: (selectedValues, item) => {
-        return selectedValues.includes(item['source'].text)
+      options: getOptions(items, 'source'),
+      tableFilterFn: function (selectedValues, item){
+        return selectedValues.includes(item[this.id].text)
       },
     },
     {
       label: 'Remediation',
       id: 'remediation',
-      options: [
-        { label: 'Inform', value: 'inform' },
-        { label: 'Enforce', value: 'enforce' },
-      ],
-      tableFilterFn: (selectedValues, item) => {
-        return selectedValues.includes(item['remediation'].rawData)
+      options: getOptions(items, 'remediation'),
+      tableFilterFn: function (selectedValues, item){
+        return selectedValues.includes(item[this.id].title)
       },
     },
     {
       label: 'Status',
       id: 'status',
-      options: [
-        { label: 'Enabled', value: 'Enabled' },
-        { label: 'Disabled', value: 'Disabled' },
-      ],
-      tableFilterFn: (selectedValues, item) => {
-        console.log('item: ', item)
-        return selectedValues.includes(item['status'].text)
+      options: getOptions(items, 'status'),
+      tableFilterFn: function (selectedValues, item){
+        return selectedValues.includes(item[this.id].text)
       },
     },
   ]
