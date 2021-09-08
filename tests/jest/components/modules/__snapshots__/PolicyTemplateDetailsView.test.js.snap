@@ -1040,7 +1040,7 @@ exports[`PolicyTemplateDetailsView component renders as expected 1`] = `
       Related resources
     </h2>
     <div
-      className="pf-c-toolbar"
+      className="pf-c-toolbar pf-m-inset-md pf-m-inset-lg-on-xl"
       id="pf-random-id-0"
     >
       <div
@@ -2727,7 +2727,7 @@ exports[`PolicyTemplateDetailsView component renders as expected with SelfLinnk 
       Related resources
     </h2>
     <div
-      className="pf-c-toolbar"
+      className="pf-c-toolbar pf-m-inset-md pf-m-inset-lg-on-xl"
       id="pf-random-id-1"
     >
       <div

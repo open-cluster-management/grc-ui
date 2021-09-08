@@ -387,7 +387,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
       Placement
     </h5>
     <div
-      className="pf-c-toolbar"
+      className="pf-c-toolbar pf-m-inset-md pf-m-inset-lg-on-xl"
       id="pf-random-id-2"
     >
       <div
@@ -1079,7 +1079,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
       Placement
     </h5>
     <div
-      className="pf-c-toolbar"
+      className="pf-c-toolbar pf-m-inset-md pf-m-inset-lg-on-xl"
       id="pf-random-id-0"
     >
       <div
