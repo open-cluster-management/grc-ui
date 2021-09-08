@@ -42,40 +42,13 @@ echo "* Create RBAC users"
 export RBAC_PASS=$(head /dev/urandom | tr -dc 'A-Za-z0-9' | head -c $((32 + RANDOM % 8)))
 source $DIR/rbac-setup.sh
 
+
 echo "* Set up cluster for test"
-$DIR/cluster-setup.sh
-
-echo "===== E2E Environment Setup ====="
-
 # Set cluster URL and password (the default values are the ones generated in Prow)
 HUB_NAME=${HUB_NAME:-"hub-1"}
 export OC_CLUSTER_URL=${OC_CLUSTER_URL:-"$(jq -r '.api_url' ${SHARED_DIR}/${HUB_NAME}.json)"}
-
-acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
-
-GRCUIAPI_VERSION=${GRCUIAPI_VERSION:-"latest"}
-DOCKER_URI=quay.io/open-cluster-management/grc-ui-api:${GRCUIAPI_VERSION}
-if [[ "${RUN_LOCAL}" == "true" ]]; then
-  docker pull ${DOCKER_URI}
-  docker run -d -t -i -p 4000:4000 --name grcuiapi -e NODE_ENV=development -e SERVICEACCT_TOKEN=$SERVICEACCT_TOKEN -e API_SERVER_URL=$API_SERVER_URL $DOCKER_URI
-else
-  echo "* Patching GRC UI API with grcuiapi:${GRCUIAPI_VERSION}"
-  GRCUIAPI_LABEL="component=ocm-grcuiapi"
-  GRCUIAPI=$(oc get deployment -l ${GRCUIAPI_LABEL} -n ${acm_installed_namespace} -o=jsonpath='{.items[*].metadata.name}')
-  oc patch deployment ${GRCUIAPI} -n ${acm_installed_namespace} -p "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"grc-ui-api\",\"image\":\"${DOCKER_URI}\"}]}}}}"
-  oc delete pod -l ${GRCUIAPI_LABEL} -n ${acm_installed_namespace}
-  i=0
-  while (oc get pod -l ${GRCUIAPI_LABEL} -n ${acm_installed_namespace} -o json | jq -r '.items[].status.phase' | grep -v "Running"); do
-    sleep 10
-    echo "* Waiting for the API to be running"
-    # Try for up to 5 minutes
-    i=$[i + 1]
-    if [[ "$i" == '30' ]]; then
-      echo "* ERROR: Timeout waiting for the API"
-      exit 1
-    fi
-  done
-fi
+$DIR/cluster-setup.sh
+$DIR/cluster-patch.sh
 
 echo "* Export envs to run E2E"
 # Setting coverage to "false" until Sonar is restored for E2E

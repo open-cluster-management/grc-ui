@@ -1405,6 +1405,12 @@ export const action_verifyCredentialsInSidebar = (uName, credentialName) => {
       }
     }).as('credsQuery')
   }
+  // Check for open Automation modal and close it if it's open
+  if (Cypress.$('#automation-resource-panel').length === 1) {
+    cy.get('#automation-resource-panel').within(() => {
+      cy.get('button[aria-label="Close"]').click()
+    })
+  }
   //search for policy and click to configure
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
@@ -1452,7 +1458,12 @@ export const action_verifyAnsibleInstallPrompt = (uName, opInstalled) => {
       })
     }
   }).as('ansibleOpInstallQuery')
-
+  // Check for open Automation modal and close it if it's open
+  if (Cypress.$('#automation-resource-panel').length === 1) {
+    cy.get('#automation-resource-panel').within(() => {
+      cy.get('button[aria-label="Close"]').click()
+    })
+  }
   //search for policy and click to configure
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
@@ -1464,6 +1475,7 @@ export const action_verifyAnsibleInstallPrompt = (uName, opInstalled) => {
         .find('a').as('automationButton')
     })
   cy.get('@automationButton').click()
+  pageLoader.shouldNotExist()
   cy.get('.pf-c-modal-box__header').within(() => {
     if (opInstalled) {
       cy.get('#installAnsibleOperatorLink').should('not.exist')
@@ -1552,19 +1564,11 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
   }
   //submit automation and check history page
   cy.get('.pf-c-modal-box__footer').within(() => {
-    cy.get('button').eq(0).click()
-  })
+      cy.get('button').eq(0).click()
+    })
+    .get('#automation-resource-panel').should('not.exist')
   // after successfully creating automation
   // panel will automatically closed and need to reopen it
-
-  // In case there's an "automation already exists" error,
-  // check for open Automation modal and close it if it's open
-  if (Cypress.$('#automation-resource-panel').length === 1) {
-    cy.get('#automation-resource-panel').within(() => {
-      cy.get('button[aria-label="Close"]').click()
-    })
-  }
-
   cy.CheckGrcMainPage()
     .doTableSearch(uName)
     .get('.grc-view-by-policies-table').within(() => {

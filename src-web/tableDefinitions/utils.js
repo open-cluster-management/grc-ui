@@ -385,7 +385,7 @@ export function getSource(item, locale) {
 export function getStatus(item, locale, table=true) {
   const status = getStatusText(item, locale)
   return _.get(item, 'raw.spec.disabled') && table
-    ? <div className='pf-u-disabled-color-200'>{status}</div>
+    ? <div className='pf-u-disabled-color-100'>{status}</div>
     : status
 }
 

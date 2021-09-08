@@ -10,6 +10,17 @@ else
   oc login ${OC_CLUSTER_URL} --insecure-skip-tls-verify=true --token=${OC_CLUSTER_TOKEN}
 fi
 
+if [[ "${CLEAN_UP}" == "true" ]]; then
+  echo "===== E2E Cleanup ====="
+  ./build/cluster-clean-up.sh hub
+  if [ -z ${RBAC_PASS} ]; then
+    echo "RBAC_PASS not set. Skipping RBAC cleanup."
+  else
+    npm run rbac:clean
+  fi
+  exit
+fi
+
 # setup RBAC roles
 if [ -z ${RBAC_PASS} ]; then
   echo "RBAC_PASS not set. Skipping RBAC test"
@@ -39,13 +50,3 @@ else
   export CYPRESS_FAIL_FAST_PLUGIN=false
 fi
 npm run test:cypress-headless
-
-if [[ "${SKIP_CLEANUP}" != "true" ]]; then
-  echo "===== E2E Cleanup ====="
-  ./build/cluster-clean-up.sh hub
-  if [ -z ${RBAC_PASS} ]; then
-    echo "RBAC_PASS not set. Skipping RBAC cleanup."
-  else
-    npm run rbac:clean
-  fi
-fi
