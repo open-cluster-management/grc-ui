@@ -450,17 +450,13 @@ export const tableFiltersRawData = [
   {
     remediation: {
       rawData: 'inform',
-      title: 'Inform',
     },
     source: {
-      rawData: null,
       text: 'Local',
-      title: 'Local',
     },
     status: {
-      rawData: null,
-      text: 'Enabled',
-      title: 'Enabled',
+      rawData: false,
+      text: 'Enabled'
     },
     violations: {
       rawData: '1/1/0',
@@ -469,18 +465,13 @@ export const tableFiltersRawData = [
   {
     remediation: {
       rawData: 'inform',
-      title: 'Inform',
     },
     source: {
-      rawData: {
-        type: 'GitHub',
-      },
       text: 'Git'
     },
     status: {
-      rawData: null,
-      text: 'Enabled',
-      title: 'Enabled',
+      rawData: true,
+      text: 'Disabled'
     },
     violations: {
       rawData: '0/1/0',
@@ -489,18 +480,13 @@ export const tableFiltersRawData = [
   {
     remediation: {
       rawData: 'inform',
-      title: 'Inform',
     },
     source: {
-      rawData: {
-        type: 'GitHub',
-      },
       text: 'Git',
     },
     status: {
-      rawData: null,
+      rawData: true,
       text: 'Disabled',
-      title: 'Disabled',
     },
     violations: {
       rawData: '-',

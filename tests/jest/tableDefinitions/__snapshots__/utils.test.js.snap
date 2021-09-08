@@ -90,19 +90,19 @@ exports[`tableDefinitions utils - getPolicyCompliantStatus should return policy 
 
 exports[`tableDefinitions utils - getStandards should return standards status 1`] = `"6, 7, 8, 9, 10"`;
 
-exports[`tableDefinitions utils - getTableFilters test that violation filter is returned 1`] = `
+exports[`tableDefinitions utils - getTableFilters test that filters are returned 1`] = `
 Array [
   Object {
     "id": "violations",
     "label": "Cluster violation",
     "options": Array [
       Object {
-        "label": "Compliant",
-        "value": "compliant",
+        "label": "No violation",
+        "value": "no-violation",
       },
       Object {
-        "label": "Non-compliant",
-        "value": "nonCompliant",
+        "label": "Violation",
+        "value": "violation",
       },
       Object {
         "label": "Unknown",
@@ -132,7 +132,11 @@ Array [
     "options": Array [
       Object {
         "label": "Inform",
-        "value": "Inform",
+        "value": "inform",
+      },
+      Object {
+        "label": "Enforce",
+        "value": "enforce",
       },
     ],
     "tableFilterFn": [Function],
@@ -143,11 +147,11 @@ Array [
     "options": Array [
       Object {
         "label": "Enabled",
-        "value": "Enabled",
+        "value": false,
       },
       Object {
         "label": "Disabled",
-        "value": "Disabled",
+        "value": true,
       },
     ],
     "tableFilterFn": [Function],
