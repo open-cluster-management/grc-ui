@@ -169,7 +169,7 @@ describe('tableDefinitions utils - getPolicyCompliantStatus', () => {
 })
 
 describe('tableDefinitions utils - getTableFilters', () => {
-  it('test that violation filter is returned', () => {
+  it('test that filters are returned', () => {
     expect(getTableFilters(tableFiltersRawData, 'us')).toMatchSnapshot()
   })
 })
