@@ -17,14 +17,16 @@ import {
   getCategories,
   getDecisionCount,
   formatAnnotationString,
-  getPolicyCompliantStatus
+  getPolicyCompliantStatus,
+  getTableFilters
 } from '../../../src-web/tableDefinitions/utils'
 import {
   disabledPolicyCompliantStatusItem,
   unavailableClusterCompliant,
   withClusterViolation,
   withoutClusterViolation,
-  withUnknownClusterViolation
+  withUnknownClusterViolation,
+  tableFiltersRawData
  } from './DefinitionsTestingData'
 
 describe('tableDefinitions utils - createComplianceLink', () => {
@@ -163,5 +165,11 @@ describe('tableDefinitions utils - getPolicyCompliantStatus', () => {
 
   it('should return policy compliant status with unknown cluster violation', () => {
     expect(getPolicyCompliantStatus(withUnknownClusterViolation, 'us')).toMatchSnapshot()
+  })
+})
+
+describe('tableDefinitions utils - getTableFilters', () => {
+  it('test that filters are returned', () => {
+    expect(getTableFilters(tableFiltersRawData, 'us')).toMatchSnapshot()
   })
 })

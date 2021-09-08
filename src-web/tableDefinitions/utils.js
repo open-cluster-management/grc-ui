@@ -574,3 +574,73 @@ export function getDecisionList(policy, locale) {
   }
   return statusList
 }
+
+// Create filter label values for violations, policy source, remediation, and status
+export const getTableFilters =(items)=>{
+
+  // build array of source options dependent on data received
+    function getSourceOptions(items){
+      const filters = items.map(item => {
+        return {label: item['source'].text , value: item['source'].text }
+      })
+      const filteredArr = Array.from(new Set(filters.map(item => item.label))).map(label => {
+        return filters.find(item => item.label === label)
+      })
+      return filteredArr
+    }
+
+  return [
+    {
+      label: 'Cluster violation',
+      id: 'violations',
+      options: [
+        { label: 'No violation', value: 'no-violation' },
+        { label: 'Violation', value: 'violation'},
+        { label: 'Unknown', value: '-' },
+      ],
+      tableFilterFn: function (selectedValues, item){
+        const violationArray = item[this.id].rawData.split('/')
+        const checkCompliance = () => {
+          if (violationArray[0] !== '-'){
+            return violationArray[0] > 0 ? 'violation' : 'no-violation'
+          } else {
+            return '-'
+          }
+        }
+        return selectedValues.includes(
+          checkCompliance()
+        )
+      },
+    },
+    {
+      label: 'Source',
+      id: 'source',
+      options: getSourceOptions(items),
+      tableFilterFn: function (selectedValues, item){
+        return selectedValues.includes(item['source'].text)
+      },
+    },
+    {
+      label: 'Remediation',
+      id: 'remediation',
+      options: [
+        { label: 'Inform', value: 'inform'},
+        { label: 'Enforce', value: 'enforce'}
+      ],
+      tableFilterFn: function (selectedValues, item){
+        return selectedValues.includes(item['remediation'].rawData)
+      },
+    },
+    {
+      label: 'Status',
+      id: 'status',
+      options: [
+        { label: 'Enabled', value: false},
+        { label: 'Disabled', value: true}
+      ],
+      tableFilterFn: function (selectedValues, item){
+        return selectedValues.includes(item['status'].rawData)
+      },
+    },
+  ]
+}

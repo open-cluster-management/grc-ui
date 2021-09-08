@@ -18,7 +18,7 @@ import {
 import { LocaleContext } from '../common/LocaleContext'
 import grcPoliciesViewDef from '../../tableDefinitions/grcPoliciesViewDef'
 import grcClustersViewDef from '../../tableDefinitions/grcClustersViewDef'
-import { transform } from '../../tableDefinitions/utils'
+import { transform, getTableFilters } from '../../tableDefinitions/utils'
 import msgs from '../../nls/platform.properties'
 import { formatPoliciesToClustersTableData } from '../../utils/FormatTableData'
 import { RESOURCE_TYPES, GRC_SEARCH_STATE_COOKIE } from '../../utils/constants'
@@ -96,6 +96,7 @@ class GrcToggleModule extends React.Component {
               searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
               fuseThreshold={0}
               plural={grcTabToggleIndex === 0 ? 'policies' : 'violations'}
+              filters={grcTabToggleIndex === 0 ? getTableFilters(tableData[0].rows) : null}
             />
           </AcmTablePaginationContextProvider>
         </div>

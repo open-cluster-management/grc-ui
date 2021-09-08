@@ -89,3 +89,72 @@ exports[`tableDefinitions utils - getPolicyCompliantStatus should return policy 
 `;
 
 exports[`tableDefinitions utils - getStandards should return standards status 1`] = `"6, 7, 8, 9, 10"`;
+
+exports[`tableDefinitions utils - getTableFilters test that filters are returned 1`] = `
+Array [
+  Object {
+    "id": "violations",
+    "label": "Cluster violation",
+    "options": Array [
+      Object {
+        "label": "No violation",
+        "value": "no-violation",
+      },
+      Object {
+        "label": "Violation",
+        "value": "violation",
+      },
+      Object {
+        "label": "Unknown",
+        "value": "-",
+      },
+    ],
+    "tableFilterFn": [Function],
+  },
+  Object {
+    "id": "source",
+    "label": "Source",
+    "options": Array [
+      Object {
+        "label": "Local",
+        "value": "Local",
+      },
+      Object {
+        "label": "Git",
+        "value": "Git",
+      },
+    ],
+    "tableFilterFn": [Function],
+  },
+  Object {
+    "id": "remediation",
+    "label": "Remediation",
+    "options": Array [
+      Object {
+        "label": "Inform",
+        "value": "inform",
+      },
+      Object {
+        "label": "Enforce",
+        "value": "enforce",
+      },
+    ],
+    "tableFilterFn": [Function],
+  },
+  Object {
+    "id": "status",
+    "label": "Status",
+    "options": Array [
+      Object {
+        "label": "Enabled",
+        "value": false,
+      },
+      Object {
+        "label": "Disabled",
+        "value": true,
+      },
+    ],
+    "tableFilterFn": [Function],
+  },
+]
+`;
