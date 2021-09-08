@@ -614,7 +614,6 @@ export const getTableFilters =(items)=>{
             return '-'
           }
         }
-
         return selectedValues.includes(
           checkCompliance()
         )

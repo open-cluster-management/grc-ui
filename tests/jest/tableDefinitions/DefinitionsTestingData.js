@@ -445,3 +445,67 @@ export const withUnknownClusterViolation = {
   'policyCompliant': '0/0',
   'clusterCompliant': '1/3/1',
 }
+
+export const tableFiltersRawData = [
+  {
+    remediation: {
+      rawData: 'inform',
+      title: 'Inform',
+    },
+    source: {
+      rawData: null,
+      text: 'Local',
+      title: 'Local',
+    },
+    status: {
+      rawData: null,
+      text: 'Enabled',
+      title: 'Enabled',
+    },
+    violations: {
+      rawData: '1/1/0',
+    },
+  },
+  {
+    remediation: {
+      rawData: 'inform',
+      title: 'Inform',
+    },
+    source: {
+      rawData: {
+        type: 'GitHub',
+      },
+      text: 'Local',
+      title: 'Local',
+    },
+    status: {
+      rawData: null,
+      text: 'Enabled',
+      title: 'Enabled',
+    },
+    violations: {
+      rawData: '0/1/0',
+    },
+  },
+  {
+    remediation: {
+      rawData: 'inform',
+      title: 'Inform',
+    },
+    source: {
+      rawData: {
+        type: 'GitHub',
+      },
+      text: 'Local',
+      title: 'Local',
+    },
+    status: {
+      rawData: null,
+      text: 'Disabled',
+      title: 'Disabled',
+    },
+    violations: {
+      rawData: '-',
+    },
+  },
+]
