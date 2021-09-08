@@ -475,8 +475,7 @@ export const tableFiltersRawData = [
       rawData: {
         type: 'GitHub',
       },
-      text: 'Local',
-      title: 'Local',
+      text: 'Git'
     },
     status: {
       rawData: null,
@@ -496,8 +495,7 @@ export const tableFiltersRawData = [
       rawData: {
         type: 'GitHub',
       },
-      text: 'Local',
-      title: 'Local',
+      text: 'Git',
     },
     status: {
       rawData: null,

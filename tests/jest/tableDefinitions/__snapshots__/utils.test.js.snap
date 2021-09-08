@@ -119,6 +119,10 @@ Array [
         "label": "Local",
         "value": "Local",
       },
+      Object {
+        "label": "Git",
+        "value": "Git",
+      },
     ],
     "tableFilterFn": [Function],
   },
