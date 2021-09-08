@@ -89,3 +89,64 @@ exports[`tableDefinitions utils - getPolicyCompliantStatus should return policy 
 `;
 
 exports[`tableDefinitions utils - getStandards should return standards status 1`] = `"6, 7, 8, 9, 10"`;
+
+exports[`tableDefinitions utils - getTableFilters test that violation filter is returned 1`] = `
+Array [
+  Object {
+    "id": "violations",
+    "label": "Cluster violation",
+    "options": Array [
+      Object {
+        "label": "Compliant",
+        "value": "compliant",
+      },
+      Object {
+        "label": "Non-compliant",
+        "value": "nonCompliant",
+      },
+      Object {
+        "label": "Unknown",
+        "value": "-",
+      },
+    ],
+    "tableFilterFn": [Function],
+  },
+  Object {
+    "id": "source",
+    "label": "Source",
+    "options": Array [
+      Object {
+        "label": "Local",
+        "value": "Local",
+      },
+    ],
+    "tableFilterFn": [Function],
+  },
+  Object {
+    "id": "remediation",
+    "label": "Remediation",
+    "options": Array [
+      Object {
+        "label": "Inform",
+        "value": "Inform",
+      },
+    ],
+    "tableFilterFn": [Function],
+  },
+  Object {
+    "id": "status",
+    "label": "Status",
+    "options": Array [
+      Object {
+        "label": "Enabled",
+        "value": "Enabled",
+      },
+      Object {
+        "label": "Disabled",
+        "value": "Disabled",
+      },
+    ],
+    "tableFilterFn": [Function],
+  },
+]
+`;
