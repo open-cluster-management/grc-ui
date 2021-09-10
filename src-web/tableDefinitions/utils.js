@@ -630,6 +630,7 @@ export const getTableFilters =(items)=>{
       tableFilterFn: function (selectedValues, item){
         return selectedValues.includes(item['remediation'].rawData)
       },
+      showEmptyOptions: true,
     },
     {
       label: 'Status',
@@ -641,6 +642,7 @@ export const getTableFilters =(items)=>{
       tableFilterFn: function (selectedValues, item){
         return selectedValues.includes(item['status'].rawData.toString())
       },
+      showEmptyOptions: true,
     },
   ]
 }

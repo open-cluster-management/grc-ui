@@ -139,6 +139,7 @@ Array [
         "value": "enforce",
       },
     ],
+    "showEmptyOptions": true,
     "tableFilterFn": [Function],
   },
   Object {
@@ -154,6 +155,7 @@ Array [
         "value": "true",
       },
     ],
+    "showEmptyOptions": true,
     "tableFilterFn": [Function],
   },
 ]
