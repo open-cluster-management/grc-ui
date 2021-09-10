@@ -591,7 +591,7 @@ export const getTableFilters =(items)=>{
 
   return [
     {
-      label: 'Cluster violation',
+      label: 'Cluster violations',
       id: 'violations',
       options: [
         { label: 'No violation', value: 'no-violation' },
@@ -635,11 +635,11 @@ export const getTableFilters =(items)=>{
       label: 'Status',
       id: 'status',
       options: [
-        { label: 'Enabled', value: false},
-        { label: 'Disabled', value: true}
+        { label: 'Enabled', value: 'false'},
+        { label: 'Disabled', value: 'true'}
       ],
       tableFilterFn: function (selectedValues, item){
-        return selectedValues.includes(item['status'].rawData)
+        return selectedValues.includes(item['status'].rawData.toString())
       },
     },
   ]
