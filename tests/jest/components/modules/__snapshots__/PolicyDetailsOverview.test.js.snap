@@ -388,7 +388,10 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
     </h5>
     <div
       className="pf-c-toolbar pf-m-inset-md pf-m-inset-lg-on-xl"
-      id="pf-random-id-2"
+      data-ouia-component-id="OUIA-Generated-Toolbar-2"
+      data-ouia-component-type="PF4/Toolbar"
+      data-ouia-safe={true}
+      id="pf-random-id-1"
     >
       <div
         className="pf-c-toolbar__content"
@@ -398,7 +401,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
         />
         <div
           className="pf-c-toolbar__expandable-content"
-          id="pf-random-id-2-expandable-content-3"
+          id="pf-random-id-1-expandable-content-3"
         >
           <div
             className="pf-c-toolbar__group"
@@ -1080,6 +1083,9 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
     </h5>
     <div
       className="pf-c-toolbar pf-m-inset-md pf-m-inset-lg-on-xl"
+      data-ouia-component-id="OUIA-Generated-Toolbar-1"
+      data-ouia-component-type="PF4/Toolbar"
+      data-ouia-safe={true}
       id="pf-random-id-0"
     >
       <div

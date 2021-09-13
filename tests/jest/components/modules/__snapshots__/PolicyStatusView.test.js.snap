@@ -57,6 +57,9 @@ exports[`PolicyStatusView component renders as expected 1`] = `
       </h3>
       <div
         className="pf-c-toolbar pf-m-inset-md pf-m-inset-lg-on-xl"
+        data-ouia-component-id="OUIA-Generated-Toolbar-1"
+        data-ouia-component-type="PF4/Toolbar"
+        data-ouia-safe={true}
         id="pf-random-id-0"
       >
         <div
@@ -115,6 +118,7 @@ exports[`PolicyStatusView component renders as expected 1`] = `
                           className="pf-c-search-input__text-input"
                           disabled={false}
                           onChange={[Function]}
+                          onKeyDown={[Function]}
                           placeholder="Find clusters"
                           value=""
                         />
@@ -1004,6 +1008,9 @@ exports[`PolicyStatusView component renders as expected with empty object 1`] = 
       </h3>
       <div
         className="pf-c-toolbar pf-m-inset-md pf-m-inset-lg-on-xl"
+        data-ouia-component-id="OUIA-Generated-Toolbar-2"
+        data-ouia-component-type="PF4/Toolbar"
+        data-ouia-safe={true}
         id="pf-random-id-1"
       >
         <div
@@ -1062,6 +1069,7 @@ exports[`PolicyStatusView component renders as expected with empty object 1`] = 
                           className="pf-c-search-input__text-input"
                           disabled={false}
                           onChange={[Function]}
+                          onKeyDown={[Function]}
                           placeholder="Find clusters"
                           value=""
                         />
