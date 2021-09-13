@@ -591,7 +591,20 @@ exports[`CreationView module renders as expected with discovered data 1`] = `
                   class="pf-c-radio__label"
                   for="remediation-enforce"
                 >
-                  Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
+                  Enforce: Automatically runs remediation action that is defined in the source. Only configuration policies support this remediation action. To view a list of supported configuration policies, see the
+                  <a
+                    aria-describedby="launchWindow"
+                    aria-disabled="false"
+                    class="pf-c-button pf-m-link pf-m-inline"
+                    data-ouia-component-id="OUIA-Generated-Button-link-1"
+                    data-ouia-component-type="PF4/Button"
+                    data-ouia-safe="true"
+                    href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/governance/governance#kubernetes-configuration-policy-controller"
+                    id="doc-link"
+                    target="doc"
+                  >
+                     product documentation.
+                  </a>
                 </label>
               </div>
             </div>
@@ -1260,7 +1273,20 @@ exports[`CreationView module renders as expected with empty discovered data 1`] 
                   class="pf-c-radio__label"
                   for="remediation-enforce"
                 >
-                  Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
+                  Enforce: Automatically runs remediation action that is defined in the source. Only configuration policies support this remediation action. To view a list of supported configuration policies, see the
+                  <a
+                    aria-describedby="launchWindow"
+                    aria-disabled="false"
+                    class="pf-c-button pf-m-link pf-m-inline"
+                    data-ouia-component-id="OUIA-Generated-Button-link-2"
+                    data-ouia-component-type="PF4/Button"
+                    data-ouia-safe="true"
+                    href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/governance/governance#kubernetes-configuration-policy-controller"
+                    id="doc-link"
+                    target="doc"
+                  >
+                     product documentation.
+                  </a>
                 </label>
               </div>
             </div>
@@ -1929,7 +1955,20 @@ exports[`CreationView module renders as expected without discovered data 1`] = `
                   class="pf-c-radio__label"
                   for="remediation-enforce"
                 >
-                  Enforce - Automatically runs remediation action that is defined in the source, if this feature is supported.
+                  Enforce: Automatically runs remediation action that is defined in the source. Only configuration policies support this remediation action. To view a list of supported configuration policies, see the
+                  <a
+                    aria-describedby="launchWindow"
+                    aria-disabled="false"
+                    class="pf-c-button pf-m-link pf-m-inline"
+                    data-ouia-component-id="OUIA-Generated-Button-link-3"
+                    data-ouia-component-type="PF4/Button"
+                    data-ouia-safe="true"
+                    href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/governance/governance#kubernetes-configuration-policy-controller"
+                    id="doc-link"
+                    target="doc"
+                  >
+                     product documentation.
+                  </a>
                 </label>
               </div>
             </div>

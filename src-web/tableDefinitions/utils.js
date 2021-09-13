@@ -76,6 +76,7 @@ export const transform = (items, def, locale) => {
   const keyFn = (item) => item.uid.toString()
   let addSubRows
   if (columns.colChild.length > 0) {
+    // eslint-disable-next-line react/display-name
     addSubRows = (item) => {
       const subRows = rows.rowChild.filter((row) => row.uid?.toString() === item.uid?.toString())
       return [
