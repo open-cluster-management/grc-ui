@@ -21,6 +21,7 @@ import msgs from '../../../nls/platform.properties'
 import '../../../graphics/diagramIcons.svg'
 import { LocaleContext } from '../../../components/common/LocaleContext'
 import _ from 'lodash'
+import { generalDocLink } from '../CreateDocLink'
 
 const tempCookie = 'template-editor-open-cookie'
 // const diagramIconsInfoStr = '#diagramIcons_info'
@@ -345,6 +346,7 @@ export default class TemplateEditor extends React.Component {
   }
 
   renderCheckbox(control) {
+    const {locale} = this.props
     const {id, name, description, checked, available, active} = control
     if (id === 'remediation') {
       const radioButtons=[]
@@ -353,7 +355,13 @@ export default class TemplateEditor extends React.Component {
             isChecked={item===active}
             name={`${id}-${item}`}
             onChange={this.handleChange.bind(this, id)}
-            label={msgs.get(`creation.view.policy.${item}`)}
+            label={<React.Fragment>
+              {msgs.get(`creation.view.policy.${item}`)}
+              {item === 'enforce' && generalDocLink(
+                locale,
+                ` ${msgs.get('creation.view.policy.doc', locale)}`,
+                'html/governance/governance#kubernetes-configuration-policy-controller')}
+            </React.Fragment>}
             aria-label={`${id}-${item}`}
             id={`${id}-${item}`}
             key={`${id}-${item}`}

@@ -11,7 +11,7 @@
 
 'use strict'
 
-import { createDocLink } from '../../../../src-web/components/common/CreateDocLink'
+import { createDocLink, generalDocLink } from '../../../../src-web/components/common/CreateDocLink'
 
 describe('createDocLink view', () => {
   const handleCreatePolicy = jest.fn()
@@ -22,6 +22,14 @@ describe('createDocLink view', () => {
 
   it('renders does not show create link as expected', () => {
     const component = createDocLink('en-US', handleCreatePolicy, 'does not show create link')
+    expect(component).toMatchSnapshot()
+  })
+})
+
+describe('generalDocLink view', () => {
+  it('renders show general GRC doc link as expected', () => {
+    const component = generalDocLink('en-US', 'product documentation',
+    'html/governance/governance#kubernetes-configuration-policy-controller')
     expect(component).toMatchSnapshot()
   })
 })
