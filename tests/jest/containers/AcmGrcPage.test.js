@@ -106,7 +106,7 @@ describe('AcmGrcPage container', () => {
     expect(toJson(component)).toMatchSnapshot()
   })
 
-  it('should render POLICY_STATUS page ', async () => {
+  it('should render POLICY_CLUSTERS page ', async () => {
     const mocks = [
       {
         request: {
@@ -121,7 +121,33 @@ describe('AcmGrcPage container', () => {
       <Provider store={store}>
         <MockedProvider mocks={mocks} addTypename={false}>
           <BrowserRouter>
-            <AcmGrcPage type='POLICY_STATUS' {...props} />
+            <AcmGrcPage type='POLICY_CLUSTERS' {...props} />
+          </BrowserRouter>
+        </MockedProvider>
+      </Provider>
+    )
+
+    await new Promise(resolve => setTimeout(resolve, 0))
+    component.update()
+    expect(toJson(component)).toMatchSnapshot()
+  })
+
+  it('should render POLICY_TEMPLATES page ', async () => {
+    const mocks = [
+      {
+        request: {
+          query: POLICY_STATUS,
+        },
+        result: {
+          data: POLICY_STATUS_QUERY_DATA.data
+        },
+      },
+    ]
+    const component = mount(
+      <Provider store={store}>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <BrowserRouter>
+            <AcmGrcPage type='POLICY_TEMPLATES' {...props} />
           </BrowserRouter>
         </MockedProvider>
       </Provider>
