@@ -537,7 +537,7 @@ export function getDecisionList(policy, locale) {
                 // If there's no status, there's no point in linking to the status page
                 let href=null, color='grey'
                 if (status !== 'nostatus') {
-                  href=`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/status?clusterFilter=${cluster}&index=0`
+                  href=`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}/clusters?clusterFilter=${cluster}`
                   color='blue'
                 } else {
                   href=`${config.contextPath}/all/${policy.metadata.namespace}/${policy.metadata.name}`

@@ -67,7 +67,8 @@ class App extends React.Component {
             <Route path={`${match.url}/all/:namespace/:name/template/:cluster/:apiGroup/:version/:kind/:template`} exact
               render={() => <AcmGrcPage type='POLICY_TEMPLATE_DETAILS' {...props} />} />
             <Route path={`${match.url}/all/:namespace/:name/edit`} exact component={CreationTab} />
-            <Route path={`${match.url}/all/:namespace/:name/status`} exact render={() => <AcmGrcPage type='POLICY_STATUS' {...props} />} />
+            <Route path={`${match.url}/all/:namespace/:name/clusters`} exact render={() => <AcmGrcPage type='POLICY_CLUSTERS' {...props} />} />
+            <Route path={`${match.url}/all/:namespace/:name/templates`} exact render={() => <AcmGrcPage type='POLICY_TEMPLATES' {...props} />} />
             <Route path={`${match.url}/all/:namespace/:name`} exact render={() => <AcmGrcPage type='SINGLE_POLICY' {...props} />} />
             <Route path={`${match.url}/all`} exact render={() => <AcmGrcPage type='ALL_POLICIES' {...props} />} />
             <Route path={`${match.url}/create`} exact component={CreationTab} />

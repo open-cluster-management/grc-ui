@@ -27,8 +27,10 @@ export const getPageDefinition = (props) => {
       return policiesPage(props)
     case 'SINGLE_POLICY':
       return policyDetailsPage(props)
-    case 'POLICY_STATUS':
-      return policyStatusPage(props)
+    case 'POLICY_CLUSTERS':
+      return policyClustersPage(props)
+    case 'POLICY_TEMPLATES':
+      return policyTemplatesPage(props)
     case 'POLICY_TEMPLATE_DETAILS':
       return policyTemplateDetailsPage(props)
     case 'POLICY_STATUS_HISTORY':
@@ -67,12 +69,22 @@ const detailsNav = ({ history, locale, name, namespace }) => {
   )
 }
 
-const statusNav = ({ history, locale, name, namespace }) => {
-  const url = `${config.contextPath}/all/${namespace}/${name}/status`
+const clustersNav = ({ history, locale, name, namespace }) => {
+  const url = `${config.contextPath}/all/${namespace}/${name}/clusters`
   return (
-    <AcmSecondaryNavItem key='status' isActive={history.location.pathname===url}
+    <AcmSecondaryNavItem key='clusters' isActive={history.location.pathname===url}
       onClick={() => history.push(url)}>
-      {msgs.get('tabs.status', locale)}
+      {msgs.get('tabs.clusters', locale)}
+    </AcmSecondaryNavItem>
+  )
+}
+
+const templatesNav = ({ history, locale, name, namespace }) => {
+  const url = `${config.contextPath}/all/${namespace}/${name}/templates`
+  return (
+    <AcmSecondaryNavItem key='templates' isActive={history.location.pathname===url}
+      onClick={() => history.push(url)}>
+      {msgs.get('tabs.templates', locale)}
     </AcmSecondaryNavItem>
   )
 }
@@ -101,16 +113,17 @@ const policyDetailsPage = ({ name, namespace, locale }) => {
     ],
     navigation: [
       detailsNav,
-      statusNav
+      clustersNav,
+      templatesNav
     ],
     buttons: [ editBtn ],
     children: (props) => <PolicyDetailsOverview {...props} />
   }
 }
 
-const policyStatusPage = ({ name, namespace, locale }) => {
+const policyClustersPage = ({ name, namespace, locale }) => {
   return {
-    id: 'policy-status',
+    id: 'policy-clusters',
     title: name,
     query: POLICY_STATUS,
     query_variables: { policyName: name, hubNamespace: namespace },
@@ -121,10 +134,32 @@ const policyStatusPage = ({ name, namespace, locale }) => {
     ],
     navigation: [
       detailsNav,
-      statusNav
+      clustersNav,
+      templatesNav
     ],
     buttons: [ editBtn ],
-    children: (props) => <PolicyStatusView {...props} />
+    children: (props) => <PolicyStatusView {...props} grouping='clusters' />
+  }
+}
+
+const policyTemplatesPage = ({ name, namespace, locale }) => {
+  return {
+    id: 'policy-templates',
+    title: name,
+    query: POLICY_STATUS,
+    query_variables: { policyName: name, hubNamespace: namespace },
+    refreshControls: true,
+    breadcrumb: [
+      { text: msgs.get(policiesMsg, locale), to: config.contextPath },
+      { text: name, to: name }
+    ],
+    navigation: [
+      detailsNav,
+      clustersNav,
+      templatesNav
+    ],
+    buttons: [ editBtn ],
+    children: (props) => <PolicyStatusView {...props} grouping='templates' />
   }
 }
 
@@ -156,7 +191,6 @@ const policyStatusHistoryPage = ({ name, namespace, cluster, template, locale })
     breadcrumb: [
       { text: msgs.get(policiesMsg, locale), to: config.contextPath },
       { text: name, to: `${config.contextPath}/all/${namespace}/${name}`},
-      { text: msgs.get('table.header.status', locale), to: `${config.contextPath}/all/${namespace}/${name}/status`},
       { text: msgs.get(historyMsg, locale), to: msgs.get(historyMsg, locale) }
     ],
     children: (props) => <PolicyStatusHistoryView {...props} cluster={cluster} template={template} />

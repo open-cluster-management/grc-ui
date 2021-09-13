@@ -35,11 +35,11 @@ export default {
     },
     {
       key: 'decisions',
-      label: 'status',
+      label: 'compliance',
       resourceKey: 'status',
       transforms: [wrappable],
       cellTransforms: [breakWord],
-      msgKey: 'table.header.status',
+      msgKey: 'table.header.compliance',
       transformFunction: getDecisionList,
     },
   ],
