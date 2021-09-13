@@ -12,15 +12,22 @@ exports[`GrcView component 1 renders as expected 1`] = `
         "replaceReducer": [Function],
         "subscribe": [Function],
       },
-      "subscription": Object {
-        "addNestedSub": [Function],
-        "getListeners": [Function],
+      "subscription": Subscription {
         "handleChangeWrapper": [Function],
-        "isSubscribed": [Function],
-        "notifyNestedSubs": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
         "onStateChange": [Function],
-        "trySubscribe": [Function],
-        "tryUnsubscribe": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
       },
     }
   }
@@ -416,15 +423,22 @@ exports[`GrcView component 2 shows loading when given loading:true 1`] = `
         "replaceReducer": [Function],
         "subscribe": [Function],
       },
-      "subscription": Object {
-        "addNestedSub": [Function],
-        "getListeners": [Function],
+      "subscription": Subscription {
         "handleChangeWrapper": [Function],
-        "isSubscribed": [Function],
-        "notifyNestedSubs": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
         "onStateChange": [Function],
-        "trySubscribe": [Function],
-        "tryUnsubscribe": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
       },
     }
   }
@@ -1070,15 +1084,22 @@ exports[`GrcView component 3 gives an error notification given an error object 1
         "replaceReducer": [Function],
         "subscribe": [Function],
       },
-      "subscription": Object {
-        "addNestedSub": [Function],
-        "getListeners": [Function],
+      "subscription": Subscription {
         "handleChangeWrapper": [Function],
-        "isSubscribed": [Function],
-        "notifyNestedSubs": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
         "onStateChange": [Function],
-        "trySubscribe": [Function],
-        "tryUnsubscribe": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
       },
     }
   }
@@ -1724,15 +1745,22 @@ exports[`GrcView component 4 renders as expected 1`] = `
         "replaceReducer": [Function],
         "subscribe": [Function],
       },
-      "subscription": Object {
-        "addNestedSub": [Function],
-        "getListeners": [Function],
+      "subscription": Subscription {
         "handleChangeWrapper": [Function],
-        "isSubscribed": [Function],
-        "notifyNestedSubs": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
         "onStateChange": [Function],
-        "trySubscribe": [Function],
-        "tryUnsubscribe": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
       },
     }
   }
@@ -2385,15 +2413,22 @@ exports[`GrcView component 7 has create permission renders as expected 1`] = `
         "replaceReducer": [Function],
         "subscribe": [Function],
       },
-      "subscription": Object {
-        "addNestedSub": [Function],
-        "getListeners": [Function],
+      "subscription": Subscription {
         "handleChangeWrapper": [Function],
-        "isSubscribed": [Function],
-        "notifyNestedSubs": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
         "onStateChange": [Function],
-        "trySubscribe": [Function],
-        "tryUnsubscribe": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
       },
     }
   }
@@ -3022,15 +3057,22 @@ exports[`GrcView component 8 has not create permission renders as expected 1`] =
         "replaceReducer": [Function],
         "subscribe": [Function],
       },
-      "subscription": Object {
-        "addNestedSub": [Function],
-        "getListeners": [Function],
+      "subscription": Subscription {
         "handleChangeWrapper": [Function],
-        "isSubscribed": [Function],
-        "notifyNestedSubs": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
         "onStateChange": [Function],
-        "trySubscribe": [Function],
-        "tryUnsubscribe": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
       },
     }
   }
