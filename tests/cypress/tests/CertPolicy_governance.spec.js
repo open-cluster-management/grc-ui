@@ -64,7 +64,7 @@ describeT('@extended RHACM4K-2294 - GRC UI: [P1][Sev1][policy-grc] - Certificate
 
   it(`Validate violations/status of created policy ${uCertificatePolicyName} on the policy status/history page`, () => {
     // we need to find another way how to access this page
-    cy.visit(`/multicloud/policies/all/default/${uCertificatePolicyName}/status`)
+    cy.visit(`/multicloud/policies/all/default/${uCertificatePolicyName}/clusters`)
       .then(() => {
       verifyPolicyInPolicyStatus(uCertificatePolicyName)
     })
@@ -148,7 +148,7 @@ describeT('@extended RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - Certificate
 
   it(`Validate violations/status of created policy ${uCertificatePolicyName} on the policy status/history page`, () => {
     // we need to find another way how to access this page
-    cy.visit(`/multicloud/policies/all/default/${uCertificatePolicyName}/status`)
+    cy.visit(`/multicloud/policies/all/default/${uCertificatePolicyName}/clusters`)
       .then(() => {
       verifyPolicyInPolicyStatus(uCertificatePolicyName)
     })

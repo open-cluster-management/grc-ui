@@ -119,7 +119,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
     })
 
     it(`Verify policy ${policyName} violations at the Status - Clusters page`, () => {
-      cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}/status`).waitForPageContentLoad()
+      cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}/clusters`).waitForPageContentLoad()
       // verify all violations per cluster
       cy.waitForClusterTemplateStatus(clusterViolations)
         .verifyViolationsInPolicyStatusClusters(policyName, confPolicies[policyName], clusterViolations, confViolationPatterns)
@@ -127,7 +127,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
 
     it(`Verify policy ${policyName} violations at the Status - Templates page`, () => {
       // open the Templates tab - we should have a command for this
-      cy.get('#policy-status-templates').click()
+      cy.get('.pf-c-page__main-nav .pf-c-nav__link').contains('Templates').click().waitForPageContentLoad()
       // verify violations per template
         .verifyViolationsInPolicyStatusTemplates(policyName, confPolicies[policyName], clusterViolations, confViolationPatterns)
     })
@@ -215,7 +215,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
       })
 
       it(`Verify policy ${policyName} violations at the Status - Clusters page`, () => {
-        cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}/status`).waitForPageContentLoad()
+        cy.visit(`/multicloud/policies/all/${confPolicies[policyName]['namespace']}/${policyName}/clusters`).waitForPageContentLoad()
         // verify all violations per cluster
         cy.waitForClusterTemplateStatus(clusterViolations)
           .verifyViolationsInPolicyStatusClusters(policyName, confPolicies[policyName], clusterViolations, confViolationPatterns)
@@ -223,7 +223,7 @@ export const test_genericPolicyGovernance = (confFilePolicy, confFileViolationsI
 
       it(`Verify policy ${policyName} violations at the Status - Templates page`, () => {
         // open the Templates tab - we should have a command for this
-        cy.get('#policy-status-templates').click()
+        cy.get('.pf-c-page__main-nav .pf-c-nav__link').contains('Templates').click().waitForPageContentLoad()
         // verify violations per template
           .verifyViolationsInPolicyStatusTemplates(policyName, confPolicies[policyName], clusterViolations, confViolationPatterns)
       })
@@ -372,16 +372,16 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
         .checkDetailedPolicyPageUserPermissions(firstPolicyName, permissions)
     })
 
-    it(`Check ${firstPolicyName} policy Status page as ${userName}`, () => {
-      // click on Status tab
-      cy.get('.pf-c-page__main-nav .pf-c-nav__link').contains('Status').click().waitForPageContentLoad()
+    it(`Check ${firstPolicyName} policy Clusters page as ${userName}`, () => {
+      // click on Clusters tab
+      cy.get('.pf-c-page__main-nav .pf-c-nav__link').contains('Clusters').click().waitForPageContentLoad()
         // check permissions
         .checkPolicyStatusPageUserPermissions(firstPolicyName, permissions, namespaced)
         // check Templates tab only for a non-namespaced user
         .then(() => {
           if (!namespaced) {
             // click on Templates tab
-            cy.get('#policy-status-templates').click().waitForPageContentLoad()
+            cy.get('.pf-c-page__main-nav .pf-c-nav__link').contains('Templates').click().waitForPageContentLoad()
               .checkPolicyStatusPageUserPermissions(firstPolicyName, permissions, namespaced, 3)
           }
         })
@@ -389,7 +389,7 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
 
     it(`Check ${firstPolicyName} policy edit page as ${userName}`, () => {
       return cy.url().then((pageURL) => {
-        const editPageURL = pageURL.replace('/status', '/edit')
+        const editPageURL = pageURL.replace(/\/clusters|\/templates/, '/edit')
         cy.visit(editPageURL).waitForPageContentLoad()
         if (permissions.patch) {
           cy.url().should('eq', editPageURL)

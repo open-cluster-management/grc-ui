@@ -57,7 +57,7 @@ describeT('@extended RHACM4K-1648 - GRC UI: [P2][Sev2][policy-grc] CertPolicy wi
   })
 
   it(`Verify policy ${policyName} violations at the Status - Clusters page`, () => {
-    cy.visit(`/multicloud/policies/all/${confPolicy['namespace']}/${policyName}/status`).waitForPageContentLoad()
+    cy.visit(`/multicloud/policies/all/${confPolicy['namespace']}/${policyName}/clusters`).waitForPageContentLoad()
     // verify all violations per cluster
       .verifyViolationsInPolicyStatusClusters(policyName, confPolicy, clusterViolations, confViolationPatterns)
   })

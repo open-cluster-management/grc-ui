@@ -573,7 +573,7 @@ return cy.url().then((pageURL) => {
 })
 }
 
-// needs to be run only on /multicloud/policies/all/default/${policyName}/status
+// needs to be run only on /multicloud/policies/all/default/${policyName}/clusters
 // where it checks whether all listed (e.g. filtered) templates have status
 export const isClusterTemplateStatusAvailable = (clusterViolations = {}) => {
   let statusAvailable = true
