@@ -636,8 +636,8 @@ export const getTableFilters =(items, locale)=>{
       label: msgs.get('policy.status', locale),
       id: 'status',
       options: [
-        { label: msgs.get('policy.status.disabled.label'), value: 'false'},
-        { label: msgs.get('policy.status.enabled.label'), value: 'true'}
+        { label: msgs.get('policy.status.enabled.label'), value: 'false'},
+        { label: msgs.get('policy.status.disabled.label'), value: 'true'}
       ],
       tableFilterFn: function (selectedValues, item){
         return selectedValues.includes(item['status'].rawData.toString())
