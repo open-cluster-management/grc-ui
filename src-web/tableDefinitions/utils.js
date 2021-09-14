@@ -350,8 +350,8 @@ export function getControls(item) {
 
 export function getStatusText(item, locale) {
   return _.get(item, 'raw.spec.disabled')
-    ? msgs.get('policy.disabled.label', locale)
-    : msgs.get('policy.enabled.label', locale)
+    ? msgs.get('policy.status.disabled.label', locale)
+    : msgs.get('policy.status.enabled.label', locale)
 }
 
 export function getRemediationText(item, locale) {
@@ -417,9 +417,9 @@ export function getAutomationLink(item, locale, refetch) {
 
 export function getCompliancePolicyStatus(item, locale) {
   if (item.clusterNotCompliant && item.clusterNotCompliant.length > 0){
-    return <StatusField status='noncompliant' text={msgs.get('policy.status.noncompliant', locale)} />
+    return <StatusField status='noncompliant' text={msgs.get('policy.compliance.noncompliant', locale)} />
   }
-  return <StatusField status='compliant' text={msgs.get('policy.status.compliant', locale)} />
+  return <StatusField status='compliant' text={msgs.get('policy.compliance.compliant', locale)} />
 }
 
 export function createCompliancePolicyLink(item = {}, ...param){
@@ -576,7 +576,7 @@ export function getDecisionList(policy, locale) {
 }
 
 // Create filter label values for violations, policy source, remediation, and status
-export const getTableFilters =(items)=>{
+export const getTableFilters =(items, locale)=>{
 
   // build array of source options dependent on data received
     function getSourceOptions(items){
@@ -591,12 +591,12 @@ export const getTableFilters =(items)=>{
 
   return [
     {
-      label: 'Cluster violation',
+      label: msgs.get('policy.violations', locale),
       id: 'violations',
       options: [
-        { label: 'No violation', value: 'no-violation' },
-        { label: 'Violation', value: 'violation'},
-        { label: 'Unknown', value: '-' },
+        { label: msgs.get('policy.violations.false', locale), value: 'no-violation' },
+        { label: msgs.get('policy.violations.true', locale), value: 'violation'},
+        { label: msgs.get('policy.violations.unknown', locale), value: '-' },
       ],
       tableFilterFn: function (selectedValues, item){
         const violationArray = item[this.id].rawData.split('/')
@@ -613,7 +613,7 @@ export const getTableFilters =(items)=>{
       },
     },
     {
-      label: 'Source',
+      label: msgs.get('policy.source', locale),
       id: 'source',
       options: getSourceOptions(items),
       tableFilterFn: function (selectedValues, item){
@@ -621,26 +621,28 @@ export const getTableFilters =(items)=>{
       },
     },
     {
-      label: 'Remediation',
+      label: msgs.get('policy.remediation', locale),
       id: 'remediation',
       options: [
-        { label: 'Inform', value: 'inform'},
-        { label: 'Enforce', value: 'enforce'}
+        { label: msgs.get('policy.remediation.inform', locale), value: 'inform'},
+        { label: msgs.get('policy.remediation.enforce', locale), value: 'enforce'}
       ],
       tableFilterFn: function (selectedValues, item){
         return selectedValues.includes(item['remediation'].rawData)
       },
+      showEmptyOptions: true
     },
     {
-      label: 'Status',
+      label: msgs.get('policy.status', locale),
       id: 'status',
       options: [
-        { label: 'Enabled', value: false},
-        { label: 'Disabled', value: true}
+        { label: msgs.get('policy.status.disabled.label'), value: 'false'},
+        { label: msgs.get('policy.status.enabled.label'), value: 'true'}
       ],
       tableFilterFn: function (selectedValues, item){
-        return selectedValues.includes(item['status'].rawData)
+        return selectedValues.includes(item['status'].rawData.toString())
       },
+      showEmptyOptions: true
     },
   ]
 }
