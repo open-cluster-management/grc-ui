@@ -948,9 +948,6 @@ exports[`RemoveResourceModal test renders modal with PolicyAutomation as expecte
                                             aria-label="0-policyAutomation-policy-auditpolicy-will-sev-policy-automation"
                                             checked=""
                                             class="pf-c-check__input"
-                                            data-ouia-component-id="OUIA-Generated-Checkbox-1"
-                                            data-ouia-component-type="PF4/Checkbox"
-                                            data-ouia-safe="true"
                                             id="0-policyAutomation-policy-auditpolicy-will-sev-policy-automation"
                                             type="checkbox"
                                           />
@@ -1219,7 +1216,6 @@ exports[`RemoveResourceModal test renders modal with PolicyAutomation as expecte
                                                 label="policy-auditpolicy-will-sev-policy-automation [PolicyAutomation]"
                                                 onChange={[Function]}
                                                 onKeyPress={[Function]}
-                                                ouiaSafe={true}
                                               >
                                                 <div
                                                   className="pf-c-check"
@@ -1229,9 +1225,6 @@ exports[`RemoveResourceModal test renders modal with PolicyAutomation as expecte
                                                     aria-label="0-policyAutomation-policy-auditpolicy-will-sev-policy-automation"
                                                     checked={true}
                                                     className="pf-c-check__input"
-                                                    data-ouia-component-id="OUIA-Generated-Checkbox-1"
-                                                    data-ouia-component-type="PF4/Checkbox"
-                                                    data-ouia-safe={true}
                                                     disabled={false}
                                                     id="0-policyAutomation-policy-auditpolicy-will-sev-policy-automation"
                                                     onChange={[Function]}
@@ -2289,9 +2282,6 @@ exports[`RemoveResourceModal test renders modal with PolicyAutomation as expecte
                                             aria-label="0-policyAutomation-policy-auditpolicy-will-sev-policy-automation"
                                             checked=""
                                             class="pf-c-check__input"
-                                            data-ouia-component-id="OUIA-Generated-Checkbox-1"
-                                            data-ouia-component-type="PF4/Checkbox"
-                                            data-ouia-safe="true"
                                             id="0-policyAutomation-policy-auditpolicy-will-sev-policy-automation"
                                             type="checkbox"
                                           />
@@ -2560,7 +2550,6 @@ exports[`RemoveResourceModal test renders modal with PolicyAutomation as expecte
                                                 label="policy-auditpolicy-will-sev-policy-automation [PolicyAutomation]"
                                                 onChange={[Function]}
                                                 onKeyPress={[Function]}
-                                                ouiaSafe={true}
                                               >
                                                 <div
                                                   className="pf-c-check"
@@ -2570,9 +2559,6 @@ exports[`RemoveResourceModal test renders modal with PolicyAutomation as expecte
                                                     aria-label="0-policyAutomation-policy-auditpolicy-will-sev-policy-automation"
                                                     checked={true}
                                                     className="pf-c-check__input"
-                                                    data-ouia-component-id="OUIA-Generated-Checkbox-1"
-                                                    data-ouia-component-type="PF4/Checkbox"
-                                                    data-ouia-safe={true}
                                                     disabled={false}
                                                     id="0-policyAutomation-policy-auditpolicy-will-sev-policy-automation"
                                                     onChange={[Function]}
