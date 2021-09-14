@@ -17,8 +17,8 @@ import {
 export default {
   tableKeys: [
     {
-      msgKey: 'table.header.status',
-      label: 'status',
+      msgKey: 'table.header.compliance',
+      label: 'compliance',
       searchable: true,
       sortable: true,
       sortLabel: 'status.rawData',

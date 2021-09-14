@@ -87,3 +87,17 @@ exports[`createDocLink view renders show create link as expected 1`] = `
   </div>
 </div>
 `;
+
+exports[`generalDocLink view renders show general GRC doc link as expected 1`] = `
+<Button
+  aria-describedby="launchWindow"
+  component="a"
+  href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/undefined/html/governance/governance#kubernetes-configuration-policy-controller"
+  id="doc-link"
+  isInline={true}
+  target="doc"
+  variant="link"
+>
+  product documentation
+</Button>
+`;

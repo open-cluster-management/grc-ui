@@ -19,13 +19,13 @@ describeT('RHACM4K-2354 - GRC UI: [P1][Sev1][policy-grc] Check existent and non-
   it('Verify URLs for Namespace and policy that do exist', () => {
     cy.visit('/multicloud/policies/all/default/'+policyName).waitForPageContentLoad()
     .checkPolicyNoResourcesIconMessage()
-    cy.visit('/multicloud/policies/all/default/'+policyName+'/status').waitForPageContentLoad()
+    cy.visit('/multicloud/policies/all/default/'+policyName+'/clusters').waitForPageContentLoad()
     .checkPolicyNoResourcesIconMessage()
   })
   it('Verify URLs for Namespace and policy that dont exist', () => {
     cy.visit('/multicloud/policies/all/not-a-namespace/not-a-policy').waitForPageContentLoad()
     .checkPolicyNoResourcesIconMessage(false, 'Resource not found')
-    cy.visit('/multicloud/policies/all/not-a-namespace/not-a-policy/status').waitForPageContentLoad()
+    cy.visit('/multicloud/policies/all/not-a-namespace/not-a-policy/clusters').waitForPageContentLoad()
     .checkPolicyNoResourcesIconMessage(false, 'No policy status found')
   })
   it('Delete the policy', () => {

@@ -32,8 +32,8 @@ describeT('RHACM4K-1650 - GRC UI: [P1][Sev1][policy-grc] configurationPoicy cont
       .waitForPolicyStatus(policyName)
   })
 
-  it('Verify the violation is listed on a policy Status page', () => {
-    cy.visit(`/multicloud/policies/all/default/${policyName}/status`).waitForPageContentLoad()
+  it('Verify the violation is listed on a policy Status - Clusters page', () => {
+    cy.visit(`/multicloud/policies/all/default/${policyName}/clusters`).waitForPageContentLoad()
       .verifyViolationsInPolicyStatusClusters(policyName, policyConf, clusterViolations, confViolationPatterns)
   })
 

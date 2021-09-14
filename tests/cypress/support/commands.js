@@ -213,7 +213,7 @@ Cypress.Commands.add('waitForClusterViolationsStatus', (name, violationsCounter)
     .clearTableSearch()
 })
 
-// needs to be run on /multicloud/policies/all/{namespace}/{policy}/status page
+// needs to be run on /multicloud/policies/all/{namespace}/{policy}/clusters or /multicloud/policies/all/{namespace}/{policy}/templates page
 // see isClusterTemplateStatusAvailable()
 Cypress.Commands.add('waitForClusterTemplateStatus', (clusterViolations = {}) => {
   cy.waitUntil(() => { return isClusterTemplateStatusAvailable(clusterViolations) }, {'interval': 1000, 'timeout':60000})

@@ -68,3 +68,22 @@ export const createDetails = (msgPart1, msgCreate, msgPart2) => {
     ` ${msgPart2}`
   ]
 }
+
+export const generalDocLink = (locale, linkText, urlPostfix) => {
+  const vNumber = config['ACM_VERSION']
+  const rhPath = 'https://access.redhat.com/'
+  const acmPath = 'documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/'
+  const grcPath = `${vNumber}/${urlPostfix}`
+  const docURL = `${rhPath}${acmPath}${grcPath}`
+  return <Button
+          id='doc-link'
+          variant='link'
+          component='a'
+          href={docURL}
+          target='doc'
+          aria-describedby='launchWindow'
+          isInline
+        >
+          {linkText}
+        </Button>
+}
