@@ -93,6 +93,31 @@ export const fetchSingleResource = (resourceType, args) => {
   }
 }
 
+export const bulkPolicyActions = (policies, newData, resourcePath, modalType) => (dispatch => {
+  try {
+    Promise.all(
+      policies.map((policy) => {
+        return GrcApolloClient.updateResource(
+          policy.namespace,
+          policy.name.rawData,
+          newData,
+          `/apis/policy.open-cluster-management.io/v1/namespaces/${policy.namespace}/policies/${policy.name.rawData}`,
+          resourcePath
+        ).then(response => {
+          if (response.errors) {
+            return dispatch(receivePatchError(response.errors[0], 'HCMCompliance'))
+          } else {
+            dispatch(updateModal({open: false, type: modalType}))
+            dispatch(receivePatchResource(response, 'HCMCompliance'))
+          }
+        })
+      })
+    )
+  } catch (err) {
+    dispatch(receivePatchError(err, 'HCMCompliance'))
+  }
+})
+
 export const disableResource = (resourceType, namespace, name, body, resourceData, resourcePath) => (dispatch => {
   dispatch(patchResource(resourceType))
   const selfLink = buildSelfLinK(resourceData)
@@ -121,6 +146,31 @@ export const enforcResource = (resourceType, namespace, name, body, resourceData
       dispatch(fetchResources(resourceType))
       return dispatch(receivePatchResource(response, resourceType))
     })
+})
+
+export const bulkRemovePolicies = (policies, modalType) => (dispatch => {
+  try {
+    Promise.all(
+      policies.map((policy) => {
+        return GrcApolloClient.remove(
+          {
+            kind: 'policies',
+            selected: [],
+          },
+          `/apis/policy.open-cluster-management.io/v1/namespaces/${policy.namespace}/policies/${policy.name.rawData}`,
+        ).then(response => {
+          if (response.errors) {
+            return dispatch(receiveDelError(response.errors, 'HCMCompliance'))
+          } else {
+            dispatch(updateModal({open: false, type: modalType}))
+            dispatch(receiveDelResource(response, 'HCMCompliance', policy))
+          }
+        })
+      })
+    )
+  } catch (err) {
+    dispatch(receivePatchError(err, 'HCMCompliance'))
+  }
 })
 
 export const removeResource = (resourceType, resourceData) => async dispatch => {
