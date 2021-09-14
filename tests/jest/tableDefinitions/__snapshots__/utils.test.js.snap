@@ -94,7 +94,7 @@ exports[`tableDefinitions utils - getTableFilters test that filters are returned
 Array [
   Object {
     "id": "violations",
-    "label": "Cluster violation",
+    "label": "Cluster violations",
     "options": Array [
       Object {
         "label": "No violation",
