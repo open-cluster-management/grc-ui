@@ -27,6 +27,7 @@ import { resourceActions } from '../common/ResourceTableRowMenuItemActions'
 import formatUserAccess from '../../utils/FormatUserAccess'
 import filterUserAction from '../../utils/FilterUserAction'
 import { REQUEST_STATUS } from '../../actions/index'
+import { updateModal } from '../../actions/common'
 import {
   getSessionState, replaceSessionPair
 } from '../../utils/AccessStorage'
@@ -45,7 +46,7 @@ class GrcToggleModule extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { grcItems, grcTabToggleIndex, handleToggleClick, status } = this.props
+    const { grcItems, grcTabToggleIndex, handleToggleClick, status, onClickTableAction } = this.props
     const { locale } = this.context
     const tableType = grcTabToggleIndex === 0 ? 'policies' : 'clusters'
     const tableData = [
@@ -78,6 +79,60 @@ class GrcToggleModule extends React.Component {
           </ToggleGroupItem>
         </ToggleGroup>
     )
+    const policyActionDefs = [
+      {
+        id: 'status-group',
+        title: 'Status',
+        actions: [
+          {
+            id: 'enable',
+            title: 'Enable',
+            click: (it) => onClickTableAction(it, 'enable'),
+            variant: 'bulk-action',
+          },
+          {
+            id: 'disable',
+            title: 'Disable',
+            click: (it) => onClickTableAction(it, 'disable'),
+            variant: 'bulk-action',
+          },
+        ],
+        variant: 'action-group',
+      },
+      {
+        id: 'separator-1',
+        variant: 'action-seperator',
+      },
+      {
+        id: 'remediation-group',
+        title: 'Remediation',
+        actions: [
+          {
+            id: 'inform',
+            title: 'Inform',
+            click: (it) => onClickTableAction(it, 'inform'),
+            variant: 'bulk-action',
+          },
+          {
+            id: 'enforce',
+            title: 'Enforce',
+            click: (it) => onClickTableAction(it, 'enforce'),
+            variant: 'bulk-action',
+          },
+        ],
+        variant: 'action-group',
+      },
+      {
+        id: 'separator-2',
+        variant: 'action-seperator',
+      },
+      {
+        id: 'delete',
+        title: 'Delete',
+        click: (it) => onClickTableAction(it, 'delete'),
+        variant: 'bulk-action',
+      },
+    ]
     return (
       <div className='grc-toggle'>
         <div className={`grc-view-by-${tableType}-table`}>
@@ -96,6 +151,7 @@ class GrcToggleModule extends React.Component {
               searchPlaceholder={msgs.get('tabs.grc.toggle.allPolicies.placeHolderText', locale)}
               fuseThreshold={0}
               plural={grcTabToggleIndex === 0 ? 'policies' : 'violations'}
+              tableActions={grcTabToggleIndex === 0 ? policyActionDefs : []}
               filters={grcTabToggleIndex === 0 ? getTableFilters(tableData[0].rows) : null}
             />
           </AcmTablePaginationContextProvider>
@@ -200,6 +256,7 @@ GrcToggleModule.propTypes = {
   grcTabToggleIndex: PropTypes.number,
   handleToggleClick: PropTypes.func,
   history: PropTypes.object.isRequired,
+  onClickTableAction: PropTypes.func,
   status: PropTypes.string,
   userAccess: PropTypes.array,
 }
@@ -216,7 +273,21 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getResourceAction: (action, resource, resourceType, history) =>
-      resourceActions(action, dispatch, resourceType, resource, history)
+      resourceActions(action, dispatch, resourceType, resource, history),
+    onClickTableAction: (data, actionType) => {
+        dispatch(updateModal({
+          open: true,
+          actionType,
+          type: `bulk-policy-action-${actionType}`,
+          resourceType: 'Policy',
+          label: {
+            primaryBtn: `modal.actions.bulk.${actionType}.primaryBtn`,
+            label: 'label',
+            heading: `modal.actions.bulk.${actionType}.heading`
+          },
+          data,
+        }))
+      }
   }
 }
 
