@@ -462,11 +462,11 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
               <th
                 className="pf-m-nowrap pf-m-wrap"
                 data-key={2}
-                data-label="Status"
+                data-label="Compliance"
                 onMouseEnter={[Function]}
                 scope="col"
               >
-                Status
+                Compliance
               </th>
               <td
                 className=""
@@ -510,7 +510,7 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
               <td
                 className="pf-m-break-word"
                 data-key={2}
-                data-label="Status"
+                data-label="Compliance"
                 onMouseEnter={[Function]}
               >
                 <div
@@ -1157,11 +1157,11 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
               <th
                 className="pf-m-nowrap pf-m-wrap"
                 data-key={2}
-                data-label="Status"
+                data-label="Compliance"
                 onMouseEnter={[Function]}
                 scope="col"
               >
-                Status
+                Compliance
               </th>
               <td
                 className=""
@@ -1205,7 +1205,7 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
               <td
                 className="pf-m-break-word"
                 data-key={2}
-                data-label="Status"
+                data-label="Compliance"
                 onMouseEnter={[Function]}
               >
                 <div
