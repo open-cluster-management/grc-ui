@@ -1090,7 +1090,7 @@ export const action_verifyClusterListInPolicyDetails = (policyConfig, clusterVio
     ) => {
       cy.wrap(label1).should('have.text', 'Cluster selector')
       cy.wrap(label2).should('have.text', 'Clusters')
-      cy.wrap(label3).should('have.text', 'Status')
+      cy.wrap(label3).should('have.text', 'Compliance')
     })
     cy.get('table > tbody > tr > td').spread((
       selector, clusters, status
