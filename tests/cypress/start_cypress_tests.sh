@@ -109,7 +109,7 @@ echo -e "\tCLUSTER_LABEL_SELECTOR          : $CLUSTER_LABEL_SELECTOR"
 [ -n "$CYPRESS_RBAC_PASS" ] && echo -e "RBAC_PASS set" || echo -e "Error: RBAC_PASS is not set"
 
 # save a list of available clusters to .tests/cypress/config/clusters.yaml file so tests can use it
-oc get managedclusters "$CLUSTER_LABEL_SELECTOR" -o custom-columns='name:.metadata.name,available:.status.conditions[?(@.reason=="ManagedClusterAvailable")].status,vendor:.metadata.labels.vendor' --no-headers | awk '/True/ { printf "%s:\n  vendor: %s\n", $1, $3 }' > ./tests/cypress/config/clusters.yaml
+oc get managedclusters $CLUSTER_LABEL_SELECTOR -o custom-columns='name:.metadata.name,available:.status.conditions[?(@.reason=="ManagedClusterAvailable")].status,vendor:.metadata.labels.vendor' --no-headers | awk '/True/ { printf "%s:\n  vendor: %s\n", $1, $3 }' > ./tests/cypress/config/clusters.yaml
 echo "Available clusters stored in ./tests/cypress/config/clusters.yaml:"
 cat ./tests/cypress/config/clusters.yaml
 
