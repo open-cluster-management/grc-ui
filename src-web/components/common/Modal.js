@@ -15,7 +15,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import loadable from '@loadable/component'
 
-let RemoveResourceModal, PolicyActionModal, AnsibleAutomationModal
+let BulkPolicyActionModal, RemoveResourceModal, PolicyActionModal, AnsibleAutomationModal
 
 const Modal = ({ type, open, ...rest }) => {
   switch (type) {
@@ -28,6 +28,12 @@ const Modal = ({ type, open, ...rest }) => {
   case 'resource-enforce':
   case 'resource-inform':
     return open && getPolicyActionModal({ type, open, ...rest })
+  case 'bulk-policy-action-enable':
+    case 'bulk-policy-action-disable':
+    case 'bulk-policy-action-inform':
+    case 'bulk-policy-action-enforce':
+    case 'bulk-policy-action-delete':
+      return open && getBulkPolicyActionModal({ type, open, ...rest })
   default:
     return null
   }
@@ -45,6 +51,13 @@ const getPolicyActionModal = props => {
     ? loadable(() => import(/* webpackChunkName: "policy-action-modal" */ '../modals/PolicyActionModal'))
     : PolicyActionModal
   return getModal(PolicyActionModal, props)
+}
+
+const getBulkPolicyActionModal = props => {
+  BulkPolicyActionModal = BulkPolicyActionModal === undefined
+    ? loadable(() => import(/* webpackChunkName: "bulk-policy-action-modal" */ '../modals/BulkPolicyActionModal'))
+    : BulkPolicyActionModal
+  return getModal(BulkPolicyActionModal, props)
 }
 
 const getRemoveResourceModal = props => {

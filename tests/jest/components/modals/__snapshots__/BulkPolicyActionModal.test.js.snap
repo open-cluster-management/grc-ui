@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PolicyActionModal component Modal returns notification on error 1`] = `
+<div>
+  <AcmModal
+    actions={
+      Array [
+        <AcmButton
+          onClick={[Function]}
+          variant="primary"
+        >
+          Inform all
+        </AcmButton>,
+        <AcmButton
+          onClick={[Function]}
+          variant="link"
+        >
+          Cancel
+        </AcmButton>,
+      ]
+    }
+    id="bulk-inform-policy-modal'"
+    isOpen={true}
+    onClose={[Function]}
+    showClose={true}
+    title="Inform {0} policies?"
+    titleIconVariant={null}
+    variant="medium"
+  >
+    <AcmAlert
+      isInline={true}
+      noClose={true}
+      title="There was an error."
+      variant="warning"
+    />
+    <p
+      style={
+        Object {
+          "marginBottom": ".5rem",
+        }
+      }
+    >
+      After you set the selected policies to inform, violations are reported and manual remediation is required.
+    </p>
+    <AcmAlert
+      isInline={true}
+      message="Any changes made here may be overriden by the content of an upstream repository."
+      noClose={true}
+      title="{0} policies are managed externally"
+      variant="default"
+    />
+    <AcmTable
+      columns={
+        Array [
+          Object {
+            "cell": "name.rawData",
+            "header": "Policy name",
+            "search": "name.rawData",
+            "sort": "name.rawData",
+          },
+          Object {
+            "cell": "source.text",
+            "header": "Source",
+            "sort": "source.text",
+          },
+          Object {
+            "cell": "remediation.title",
+            "header": "Remediation",
+            "sort": "remediation.title",
+          },
+        ]
+      }
+      gridBreakPoint=""
+      items={
+        Array [
+          Object {
+            "name": Object {
+              "rawData": "test-external-policy",
+            },
+            "namespace": "policies",
+            "remediation": Object {
+              "rawData": "inform",
+              "title": "Inform",
+            },
+            "source": Object {
+              "rawData": Object {
+                "gitBranch": "main",
+                "gitPath": "stable",
+                "pathname": "https://github.com/open-cluster-management/policy-collection.git",
+                "type": "GitHub",
+              },
+              "text": "Git",
+            },
+            "status": Object {
+              "rawData": false,
+              "text": "Enabled",
+              "title": "Enabled",
+            },
+          },
+          Object {
+            "name": Object {
+              "rawData": "test-local-policy",
+            },
+            "namespace": "policies",
+            "remediation": Object {
+              "rawData": "enforce",
+              "title": "Enforce",
+            },
+            "source": Object {
+              "text": "local",
+            },
+            "status": Object {
+              "rawData": false,
+              "text": "Disabled",
+              "title": "Disabled",
+            },
+          },
+        ]
+      }
+      keyFn={[Function]}
+      plural="policy actions"
+      search=""
+      searchPlaceholder="Find by name"
+      setSearch={[Function]}
+    />
+  </AcmModal>
+</div>
+`;
