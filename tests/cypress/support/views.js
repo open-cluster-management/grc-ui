@@ -537,7 +537,7 @@ export const isPolicyStatusAvailable = (uName, violationsCounter) => {
 return cy.url().then((pageURL) => {
   if (pageURL.endsWith('/multicloud/policies/all')) {
     cy.get('[aria-label="Simple Table"]').within(() => {
-    cy.get('a').contains(uName).parents('td').siblings('td').spread((toggle, namespace, status, remediation, violations) => {
+    cy.get('a').contains(uName).parents('td').siblings('td').spread((toggle, rowCheckbox, namespace, status, remediation, violations) => {
       if (Cypress.$('[aria-label="Simple Table"]').find('.disabledStatus').length === 0) {
         // check the violation status
         cy.wrap(violations).find('path').then((elems) => {
