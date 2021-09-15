@@ -66,10 +66,10 @@ while [[ "${FAILED}" == "true" ]] && (( ATTEMPTS != MAX_ATTEMPTS )); do
   fi
   if [[ "$?" != "0" ]]; then
     echo "* Error logging in to cluster. Trying again in ${INTERVAL}s (Retry $((++ATTEMPTS))/${MAX_ATTEMPTS})"
-    sleep ${INTERVAL}
   else
     FAILED="false"
   fi
+  sleep ${INTERVAL}
 done
 if [[ "${FAILED}" == "true" ]]; then
   echo -e "\nERROR: Failed to log in to cluster. The following commands will likely fail.\n"
