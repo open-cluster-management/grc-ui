@@ -93,9 +93,10 @@ export const fetchSingleResource = (resourceType, args) => {
   }
 }
 
-export const bulkPolicyActions = (policies, newData, resourcePath, modalType) => (dispatch => {
+export const bulkPolicyActions = (policies, newData, resourcePath, modalType) => (async dispatch => {
+  dispatch(patchResource('HCMCompliance'))
   try {
-    Promise.all(
+    const result = await Promise.all(
       policies.map((policy) => {
         return GrcApolloClient.updateResource(
           policy.namespace,
@@ -107,12 +108,13 @@ export const bulkPolicyActions = (policies, newData, resourcePath, modalType) =>
           if (response.errors) {
             return dispatch(receivePatchError(response.errors[0], 'HCMCompliance'))
           } else {
-            dispatch(updateModal({open: false, type: modalType}))
-            dispatch(receivePatchResource(response, 'HCMCompliance'))
+            return response
           }
         })
       })
     )
+    dispatch(updateModal({open: false, type: modalType}))
+    dispatch(receivePatchResource(result, 'HCMCompliance'))
   } catch (err) {
     dispatch(receivePatchError(err, 'HCMCompliance'))
   }
@@ -148,9 +150,10 @@ export const enforcResource = (resourceType, namespace, name, body, resourceData
     })
 })
 
-export const bulkRemovePolicies = (policies, modalType) => (dispatch => {
+export const bulkRemovePolicies = (policies, modalType) => (async dispatch => {
+  dispatch(delResource('HCMCompliance'))
   try {
-    Promise.all(
+    const result = await Promise.all(
       policies.map((policy) => {
         return GrcApolloClient.remove(
           {
@@ -162,12 +165,13 @@ export const bulkRemovePolicies = (policies, modalType) => (dispatch => {
           if (response.errors) {
             return dispatch(receiveDelError(response.errors, 'HCMCompliance'))
           } else {
-            dispatch(updateModal({open: false, type: modalType}))
-            dispatch(receiveDelResource(response, 'HCMCompliance', policy))
+            return response
           }
         })
       })
     )
+    dispatch(updateModal({open: false, type: modalType}))
+    dispatch(receiveDelResource(result, 'HCMCompliance', policies))
   } catch (err) {
     dispatch(receivePatchError(err, 'HCMCompliance'))
   }

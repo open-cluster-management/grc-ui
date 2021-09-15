@@ -365,7 +365,9 @@ export const action_verifyPolicyInListing = (
     .get('.grc-view-by-policies-table').within(() => {
     cy.log(uName)
     cy.get('a').contains(uName).parents('td').siblings('td')
-    .spread((toggle, namespace, status, remediation, violations, _ /*source*/, controls) => {
+    .spread((toggle, rowCheckbox, namespace, status, remediation, violations, _ /*source*/, controls) => {
+      // check table row checkbox
+      cy.wrap(rowCheckbox).find('input')
       // check namespace
       if (policyConfig['namespace']) {
         cy.wrap(namespace).contains(policyConfig['namespace'].trim(), { matchCase: false })
