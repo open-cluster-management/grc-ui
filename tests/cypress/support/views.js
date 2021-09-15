@@ -709,7 +709,7 @@ const getStatusIconFillColor = (targetStatus) => {
 
 // will add more check to enhance it later
 export const verifyPolicyInPolicyStatus = (uName) => {
-  cy.get('.pf-c-toggle-group__button').contains('Templates')
+  cy.get('.pf-c-page__main-nav .pf-c-nav__link').contains('Templates')
   .click()
   .then(() => {
     cy.get('.policy-status-by-templates-table .pf-c-title').contains(uName)
