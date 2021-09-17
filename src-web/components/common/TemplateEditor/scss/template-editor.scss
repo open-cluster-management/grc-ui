@@ -18,11 +18,19 @@
     height: calc(100vh - 200px);
     margin-top: unset;
 
+    &.hasExternalAlert {
+      height: calc(90vh - 200px);
+    }
+
     &.showEditor {
       .creation-view-controls-container {
         display: flex;
         flex-direction: column;
         height: calc(100vh - 200px);
+
+        &.hasExternalAlert {
+          height: calc(90vh - 200px);
+        }
         .creation-view-controls {
           &-multiselect-title, &-singleselect, &-textbox-title {
             > svg {

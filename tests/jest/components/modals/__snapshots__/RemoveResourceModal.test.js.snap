@@ -936,7 +936,9 @@ exports[`RemoveResourceModal test renders modal with PolicyAutomation as expecte
                                     >
                                       Removing {0} is irreversible. Select any associated resources that need to be deleted in addition to {0}.
                                     </div>
-                                    <div>
+                                    <div
+                                      style="padding: .5rem 0px;"
+                                    >
                                       <div
                                         class="remove-app-modal-content-data"
                                       >
@@ -1201,7 +1203,13 @@ exports[`RemoveResourceModal test renders modal with PolicyAutomation as expecte
                                           >
                                             Removing {0} is irreversible. Select any associated resources that need to be deleted in addition to {0}.
                                           </div>
-                                          <div>
+                                          <div
+                                            style={
+                                              Object {
+                                                "padding": ".5rem 0",
+                                              }
+                                            }
+                                          >
                                             <div
                                               className="remove-app-modal-content-data"
                                               key="0-policyAutomation-policy-auditpolicy-will-sev-policy-automation"
@@ -2270,7 +2278,9 @@ exports[`RemoveResourceModal test renders modal with PolicyAutomation as expecte
                                     >
                                       Removing {0} is irreversible. Select any associated resources that need to be deleted in addition to {0}.
                                     </div>
-                                    <div>
+                                    <div
+                                      style="padding: .5rem 0px;"
+                                    >
                                       <div
                                         class="remove-app-modal-content-data"
                                       >
@@ -2535,7 +2545,13 @@ exports[`RemoveResourceModal test renders modal with PolicyAutomation as expecte
                                           >
                                             Removing {0} is irreversible. Select any associated resources that need to be deleted in addition to {0}.
                                           </div>
-                                          <div>
+                                          <div
+                                            style={
+                                              Object {
+                                                "padding": ".5rem 0",
+                                              }
+                                            }
+                                          >
                                             <div
                                               className="remove-app-modal-content-data"
                                               key="0-policyAutomation-policy-auditpolicy-will-sev-policy-automation"

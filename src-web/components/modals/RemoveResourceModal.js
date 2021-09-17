@@ -13,6 +13,7 @@ import msgs from '../../nls/platform.properties'
 import { withRouter } from 'react-router-dom'
 import { REQUEST_STATUS } from '../../actions/index'
 import { removeResource, clearRequestStatus, receiveDelError, updateModal } from '../../actions/common'
+import { getSource } from '../../tableDefinitions/utils'
 
 class RemoveResourceModal extends React.Component {
   constructor(props) {
@@ -104,25 +105,37 @@ class RemoveResourceModal extends React.Component {
     case 'modal.remove-hcmcompliance.label':
       return this.state.selected.length > 0
         ? <div className='remove-app-modal-content' >
-          <div className='remove-app-modal-content-text' >
-            {msgs.get('modal.remove.policy.confirm', [data.name || data.Name || data.metadata.name], locale)}
-          </div>
-          <div>
-            {this.state.selected.map((child) => {
-              return (
-                <div className='remove-app-modal-content-data' key={child.id} >
-                  <Checkbox
-                    id={child.id}
-                    isChecked={this.state.selected.some((i) => {return (i.id === child.id && child.selected === true)})}
-                    onChange={this.toggleSelected}
-                    onKeyPress={this.toggleSelectedKeyboard.bind(this, child.id)}
-                    label={child.label}
-                    aria-label={child.id} />
-                </div>
+            <div className='remove-app-modal-content-text' >
+              {msgs.get('modal.remove.policy.confirm', [data.name || data.Name || data.metadata.name], locale)}
+            </div>
+            <div style={{ padding: '.5rem 0' }}>
+              {this.state.selected.map((child) => {
+                return (
+                  <div className='remove-app-modal-content-data' key={child.id} >
+                    <Checkbox
+                      id={child.id}
+                      isChecked={this.state.selected.some((i) => {return (i.id === child.id && child.selected === true)})}
+                      onChange={this.toggleSelected}
+                      onKeyPress={this.toggleSelectedKeyboard.bind(this, child.id)}
+                      label={child.label}
+                      aria-label={child.id} />
+                  </div>
+                )}
               )}
+            </div>
+            {getSource(data) !== 'Local' && (
+              <AcmAlert
+                isInline={true}
+                noClose={true}
+                variant="default"
+                title={msgs.get('modal.actions.external.alert.title', locale)}
+                message={msgs.get(
+                  'modal.actions.external.alert.message',
+                  locale
+                )}
+              />
             )}
           </div>
-        </div>
         : <p>
           {msgs.get('modal.remove.confirm', [data.name || data.Name || data.metadata.name], locale)}
         </p>

@@ -19,6 +19,7 @@ import {
 } from '../utils/constants'
 import { getPageDefinition } from './definitions/PageDefinitions'
 import _ from 'lodash'
+import { getSource, getSourceText } from '../tableDefinitions/utils'
 
 let timestamp = new Date().toString()
 
@@ -49,6 +50,18 @@ function addAutomationToPolicy(policies, policyAutomations) {
     })
   }
   return policiesCopy
+}
+
+function getPolicyDetailSourceLabel(policyData) {
+  const source = _.get(policyData, 'source[0]')
+  if (source && getSourceText(source) !== 'Local') {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <p style={{ paddingRight: '.25rem' }}>Managed by</p>
+        {getSource(source)}
+      </div>
+    )
+  }
 }
 
 function AcmGrcPage(props) {
@@ -95,7 +108,15 @@ function AcmGrcPage(props) {
                   page.buttons.map(btn => btn(allProps))
                 )}
                 </div>
-              </React.Fragment>}>
+              </React.Fragment>
+            }
+            description={
+							(page.id === 'policy-details' ||
+								page.id === 'policy-clusters' ||
+								page.id === 'policy-templates') &&
+							getPolicyDetailSourceLabel(data)
+						}
+            >
           </AcmPageHeader>
         }
       >

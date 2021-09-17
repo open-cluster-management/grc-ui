@@ -52,6 +52,7 @@ export default class TemplateEditor extends React.Component {
       isFailed: PropTypes.bool,
       error: PropTypes.object
     }),
+    hasExternalAlert: PropTypes.bool,
     isEdit: PropTypes.bool,
     locale: PropTypes.string,
     onCreate: PropTypes.func.isRequired,
@@ -204,10 +205,12 @@ export default class TemplateEditor extends React.Component {
   }
 
   renderSplitEditor() {
+    const { hasExternalAlert } = this.props
     const { showEditor } = this.state
     const editorClasses = classNames({
       'creation-view-split-container': true,
-      showEditor
+      showEditor,
+      hasExternalAlert
     })
     return (
       <div className={editorClasses}>
@@ -234,10 +237,14 @@ export default class TemplateEditor extends React.Component {
   }
 
   renderControls() {
-    const { locale } = this.props
+    const { hasExternalAlert, locale } = this.props
     const {controlData} = this.state
+    const editorClasses = classNames({
+      'creation-view-controls-container': true,
+      hasExternalAlert
+    })
     return (
-      <div className='creation-view-controls-container' >
+      <div className={editorClasses} >
         {this.renderNotifications()}
         <div className='creation-view-controls-note'>{msgs.get('creation.view.required.mark', locale)}</div>
         <div className='creation-view-controls' >

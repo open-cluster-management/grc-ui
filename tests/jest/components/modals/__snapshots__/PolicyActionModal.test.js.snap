@@ -24,11 +24,18 @@ exports[`PolicyActionModal component Disable modal renders as expected 1`] = `
     onClose={[Function]}
     showClose={true}
     title="Disable policy"
-    titleIconVariant="warning"
     variant="medium"
   >
     <div />
-    Are you sure you want to disable this policy?
+    <p
+      style={
+        Object {
+          "marginBottom": ".5rem",
+        }
+      }
+    >
+      Are you sure you want to disable this policy?
+    </p>
   </AcmModal>
 </div>
 `;
@@ -57,11 +64,18 @@ exports[`PolicyActionModal component Enable modal renders as expected 1`] = `
     onClose={[Function]}
     showClose={true}
     title="Enable policy"
-    titleIconVariant="default"
     variant="medium"
   >
     <div />
-    Are you sure you want to enable this policy?
+    <p
+      style={
+        Object {
+          "marginBottom": ".5rem",
+        }
+      }
+    >
+      Are you sure you want to enable this policy?
+    </p>
   </AcmModal>
 </div>
 `;
@@ -90,11 +104,18 @@ exports[`PolicyActionModal component Enforce modal renders as expected 1`] = `
     onClose={[Function]}
     showClose={true}
     title="Enforce policy"
-    titleIconVariant="warning"
     variant="medium"
   >
     <div />
-    Are you sure you want to enforce this policy? The policy makes any necessary changes to the applied cluster to remediate the violations.
+    <p
+      style={
+        Object {
+          "marginBottom": ".5rem",
+        }
+      }
+    >
+      Are you sure you want to enforce this policy? The policy makes any necessary changes to the applied cluster to remediate the violations.
+    </p>
   </AcmModal>
 </div>
 `;
@@ -123,11 +144,18 @@ exports[`PolicyActionModal component Inform modal renders as expected 1`] = `
     onClose={[Function]}
     showClose={true}
     title="Inform policy"
-    titleIconVariant="default"
     variant="medium"
   >
     <div />
-    Are you sure you want to change the remediation action of this policy to inform? You must manually remediate the policy violations.
+    <p
+      style={
+        Object {
+          "marginBottom": ".5rem",
+        }
+      }
+    >
+      Are you sure you want to change the remediation action of this policy to inform? You must manually remediate the policy violations.
+    </p>
   </AcmModal>
 </div>
 `;
@@ -153,10 +181,16 @@ exports[`PolicyActionModal component Modal renders without data 1`] = `
     isOpen={true}
     onClose={[Function]}
     showClose={true}
-    titleIconVariant="default"
     variant="medium"
   >
     <div />
+    <p
+      style={
+        Object {
+          "marginBottom": ".5rem",
+        }
+      }
+    />
   </AcmModal>
 </div>
 `;
@@ -182,7 +216,6 @@ exports[`PolicyActionModal component Modal returns notification on error 1`] = `
     isOpen={true}
     onClose={[Function]}
     showClose={true}
-    titleIconVariant="default"
     variant="medium"
   >
     <div>
@@ -193,6 +226,13 @@ exports[`PolicyActionModal component Modal returns notification on error 1`] = `
         variant="warning"
       />
     </div>
+    <p
+      style={
+        Object {
+          "marginBottom": ".5rem",
+        }
+      }
+    />
   </AcmModal>
 </div>
 `;
@@ -221,10 +261,16 @@ exports[`PolicyActionModal component Modal returns spinner when loading 1`] = `
     isOpen={true}
     onClose={[Function]}
     showClose={true}
-    titleIconVariant="default"
     variant="medium"
   >
     <div />
+    <p
+      style={
+        Object {
+          "marginBottom": ".5rem",
+        }
+      }
+    />
   </AcmModal>
 </div>
 `;

@@ -13,11 +13,14 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { AcmAlert } from '@open-cluster-management/ui-components'
+import { ExternalLinkAltIcon } from '@patternfly/react-icons'
 import { TemplateEditor } from '../common/TemplateEditor'
 import policyTemplate from '../common/templates/policy-template.hbs'
 import Choices from '../common/templates'
 import msgs from '../../nls/platform.properties'
 import { LocaleContext } from '../common/LocaleContext'
+import { getSourceText } from '../../tableDefinitions/utils'
 import _ from 'lodash'
 
 // controlData is converted to templateData when template handlebar is rendered
@@ -172,21 +175,65 @@ export default class CreationView extends React.Component {
   render() {
     const { locale } = this.context
     const {onCreate, fetchControl, createControl, buildControl, updateControl, discovered, policyDiscovered, createAndUpdateControl} = this.props
+    const policyRepoPath = _.get(policyDiscovered, 'source.pathname')
     return (
-      <TemplateEditor
-        isEdit={policyDiscovered ? true: false}
-        policyDiscovered={policyDiscovered}
-        onCreate={onCreate}
-        template={policyTemplate}
-        controlData={getControlData(discovered, locale)}
-        fetchControl={fetchControl}
-        createControl={createControl}
-        buildControl={buildControl}
-        updateControl={updateControl}
-        createAndUpdateControl={createAndUpdateControl}
-        type={'policy'}
-        locale={locale}
-      />
+      <div>
+				{policyDiscovered &&
+					getSourceText(policyDiscovered) !== 'Local' && (
+						<div>
+							<AcmAlert
+								isInline={true}
+								noClose={true}
+								variant="default"
+								title={msgs.get('modal.actions.external.alert.title', locale)}
+								message={
+									<div
+										style={{
+											display: 'flex',
+											flexDirection: 'column',
+										}}
+									>
+										{msgs.get('modal.actions.external.alert.message', locale)}
+										{policyRepoPath && (
+											<a
+												href={policyRepoPath}
+												target="_blank"
+												rel="noreferrer"
+												style={{
+													display: 'flex',
+													alignItems: 'center',
+													width: 'fit-content',
+												}}
+											>
+												<p style={{ paddingRight: '.25rem' }} >
+													{policyRepoPath}
+												</p>
+												<ExternalLinkAltIcon />
+											</a>
+										)}
+									</div>
+								}
+							/>
+						</div>
+					)}
+				<div>
+					<TemplateEditor
+            isEdit={policyDiscovered ? true : false}
+            hasExternalAlert={policyDiscovered && getSourceText(policyDiscovered) !== 'Local'}
+						policyDiscovered={policyDiscovered}
+						onCreate={onCreate}
+						template={policyTemplate}
+						controlData={getControlData(discovered, locale)}
+						fetchControl={fetchControl}
+						createControl={createControl}
+						buildControl={buildControl}
+						updateControl={updateControl}
+						createAndUpdateControl={createAndUpdateControl}
+						type={'policy'}
+						locale={locale}
+					/>
+				</div>
+			</div>
     )
   }
 }

@@ -14,6 +14,8 @@ import { REQUEST_STATUS } from '../../actions/index'
 import {
   enforcResource, disableResource, clearRequestStatus, receivePatchError, updateModal,
 } from '../../actions/common'
+import { getSource } from '../../tableDefinitions/utils'
+
 export class PolicyActionModal extends React.Component {
   constructor(props) {
     super(props)
@@ -57,11 +59,10 @@ export class PolicyActionModal extends React.Component {
   }
 
   render() {
-    const { type:modalType, label, locale, open, reqErrorMsg, reqStatus } = this.props
-    let warningFlag = 'default', modalId = '', modalMsg = ''
+    const { type:modalType, label, locale, open, reqErrorMsg, reqStatus, data } = this.props
+    let modalId = '', modalMsg = ''
     switch(modalType) {
     case 'resource-disable':
-      warningFlag = 'warning'
       modalId = 'disable-resource-modal'
       modalMsg = 'modal.disable.description'
       break
@@ -70,7 +71,6 @@ export class PolicyActionModal extends React.Component {
       modalMsg = 'modal.enable.description'
       break
     case 'resource-enforce':
-      warningFlag = 'warning'
       modalId = 'enforce-resource-modal'
       modalMsg = 'modal.enforce.description'
       break
@@ -85,7 +85,6 @@ export class PolicyActionModal extends React.Component {
       <div>
         {reqStatus === REQUEST_STATUS.IN_PROGRESS && <Spinner className='patternfly-spinner' />}
         <AcmModal
-          titleIconVariant={warningFlag}
           variant='medium'
           id={modalId}
           isOpen={open}
@@ -109,7 +108,21 @@ export class PolicyActionModal extends React.Component {
                 variant='warning'
                 title={reqErrorMsg || msgs.get('error.default.description', locale)} />}
           </div>
-           {msgs.get(modalMsg, locale)}
+          <p style={{ marginBottom: '.5rem' }}>
+            {msgs.get(modalMsg, locale)}
+          </p>
+          {getSource(data) !== 'Local' && (
+              <AcmAlert
+                isInline={true}
+                noClose={true}
+                variant="default"
+                title={msgs.get('modal.actions.external.alert.title', locale)}
+                message={msgs.get(
+                  'modal.actions.external.alert.message',
+                  locale
+                )}
+              />
+            )}
         </AcmModal>
       </div>
     )
@@ -117,11 +130,7 @@ export class PolicyActionModal extends React.Component {
 }
 
 PolicyActionModal.propTypes = {
-  data: PropTypes.shape({
-    metadata: PropTypes.object,
-    name: PropTypes.string,
-    namespace: PropTypes.string,
-  }),
+  data: PropTypes.object,
   handleClose: PropTypes.func,
   handleSubmit: PropTypes.func,
   label: PropTypes.shape({
