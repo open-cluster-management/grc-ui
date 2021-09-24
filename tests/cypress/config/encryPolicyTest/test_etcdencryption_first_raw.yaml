@@ -18,7 +18,7 @@ spec:
         name: policy-etcdencryption-first-[ID]-example
       spec:
         remediationAction: inform # will be overridden by remediationAction in parent policy
-        severity: med
+        severity: medium
         namespaceSelector:
           exclude: ["kube-*"]
           include: ["default"]

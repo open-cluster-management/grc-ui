@@ -18,7 +18,7 @@ spec:
           name: etcdencryption-etcd-encryption
         spec:
           remediationAction: inform
-          severity: med
+          severity: medium
           namespaceSelector:
             exclude:
               - kube-*
