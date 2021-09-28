@@ -33,10 +33,10 @@ else
   echo -e "System env variables don't exist, loading local config from '$USER_OPTIONS_FILE' file.\n"
   if [ -f "$USER_OPTIONS_FILE" ]; then
     echo "Using cypress config from '$USER_OPTIONS_FILE' file."
-    export CYPRESS_OPTIONS_HUB_CLUSTER_URL=`yq r $USER_OPTIONS_FILE 'options.hub.hubClusterURL'`
-    export CYPRESS_OPTIONS_HUB_USER=`yq r $USER_OPTIONS_FILE 'options.hub.user'`
-    export CYPRESS_OPTIONS_HUB_PASSWORD=`yq r $USER_OPTIONS_FILE 'options.hub.password'`
-    export CYPRESS_BASE_URL=`yq r $USER_OPTIONS_FILE 'options.hub.baseURL'`
+    export CYPRESS_OPTIONS_HUB_CLUSTER_URL=`yq e '.options.hub.hubClusterURL' $USER_OPTIONS_FILE`
+    export CYPRESS_OPTIONS_HUB_USER=`yq e '.options.hub.user' $USER_OPTIONS_FILE`
+    export CYPRESS_OPTIONS_HUB_PASSWORD=`yq e '.options.hub.password' $USER_OPTIONS_FILE`
+    export CYPRESS_BASE_URL=`yq e '.options.hub.baseURL' $USER_OPTIONS_FILE`
   else
     echo "Can't find '$USER_OPTIONS_FILE' locally and set all cypress config to empty."
     export CYPRESS_OPTIONS_HUB_CLUSTER_URL=""
@@ -56,7 +56,7 @@ fi
 echo -e "\nLogging into Kube API server\n"
 ATTEMPTS=0
 MAX_ATTEMPTS=10
-INTERVAL=15
+INTERVAL=20
 FAILED="true"
 while [[ "${FAILED}" == "true" ]] && (( ATTEMPTS != MAX_ATTEMPTS )); do
   if [ -z "$CYPRESS_OPTIONS_HUB_TOKEN" ]; then
@@ -84,6 +84,12 @@ if [[ "${CYPRESS_OPTIONS_HUB_CLUSTER_URL}" =~ "openshiftapps.com" ]]; then
   fi
 fi
 
+# Determine whether an IDP is configured
+IDP=$(oc get oauth -o jsonpath={.items[*].spec.identityProviders})
+if [[ -n "${IDP}" ]] && [[ "${IDP}" != "[]" ]]; then
+  export CYPRESS_OC_IDP_CONFIGURED="true"
+fi
+
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
 RHACM_CONSOLE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
 
@@ -99,6 +105,7 @@ echo -e "\tCYPRESS_BASE_URL (used as cypress entry point URL) : $CYPRESS_BASE_UR
 echo -e "\tCYPRESS_OPTIONS_HUB_CLUSTER_URL : $CYPRESS_OPTIONS_HUB_CLUSTER_URL"
 echo -e "\tCYPRESS_OPTIONS_HUB_USER        : $CYPRESS_OPTIONS_HUB_USER"
 echo -e "\tCYPRESS_OC_IDP                  : $CYPRESS_OC_IDP"
+echo -e "\tCYPRESS_OC_IDP_CONFIGURED       : $CYPRESS_OC_IDP_CONFIGURED"
 echo -e "\tCYPRESS_MANAGED_CLUSTER_NAME    : $CYPRESS_MANAGED_CLUSTER_NAME"
 echo -e "\tCYPRESS_FAIL_FAST_PLUGIN        : $CYPRESS_FAIL_FAST_PLUGIN"
 echo -e "\tCYPRESS_STANDALONE_TESTSUITE_EXECUTION: $CYPRESS_STANDALONE_TESTSUITE_EXECUTION"
@@ -106,7 +113,7 @@ echo -e "\tCYPRESS_coverage                : $CYPRESS_coverage"
 echo -e "\tCYPRESS_TAGS_INCLUDE            : $CYPRESS_TAGS_INCLUDE"
 echo -e "\tCYPRESS_TAGS_EXCLUDE            : $CYPRESS_TAGS_EXCLUDE"
 echo -e "\tCLUSTER_LABEL_SELECTOR          : $CLUSTER_LABEL_SELECTOR"
-[ -n "$CYPRESS_RBAC_PASS" ] && echo -e "RBAC_PASS set" || echo -e "Error: RBAC_PASS is not set"
+[ -n "$CYPRESS_RBAC_PASS" ] && echo -e "RBAC_PASS set" || echo -e "Warning: RBAC_PASS is not set"
 
 # save a list of available clusters to .tests/cypress/config/clusters.yaml file so tests can use it
 oc get managedclusters $CLUSTER_LABEL_SELECTOR -o custom-columns='name:.metadata.name,available:.status.conditions[?(@.reason=="ManagedClusterAvailable")].status,vendor:.metadata.labels.vendor' --no-headers | awk '/True/ { printf "%s:\n  vendor: %s\n", $1, $3 }' > ./tests/cypress/config/clusters.yaml

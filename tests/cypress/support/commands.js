@@ -15,10 +15,14 @@ import { pageLoader, isPolicyStatusAvailable, isClusterTemplateStatusAvailable,
          action_verifyAnsibleInstallPrompt, action_scheduleAutomation, action_verifyHistoryPageWithMock
 } from '../support/views'
 
-Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='', force=false) => {
+Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='', OC_IDP_CONFIGURED=false, force=false) => {
   const user = OPTIONS_HUB_USER || Cypress.env('OPTIONS_HUB_USER')
   const password = OPTIONS_HUB_PASSWORD || Cypress.env('OPTIONS_HUB_PASSWORD')
+  const idp_configured = OC_IDP_CONFIGURED || Cypress.env('OC_IDP_CONFIGURED')
   let idp = OC_IDP || Cypress.env('OC_IDP')
+  if (user === 'kubeadmin') {
+    idp = 'kube:admin'
+  }
   const APIServer = Cypress.env('OPTIONS_HUB_CLUSTER_URL')
   cy.log(`Initiating login as ${user} idp ${idp}`)
 
@@ -54,12 +58,11 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
     if (Cypress.$('body').find('.pf-c-page__header').length === 0) {
       cy.get('div.pf-c-login').should('exist').then(() => {
         // Check if identity providers are configured
-        if (Cypress.$('body').find('form').length === 0) {
-          if (user === 'kubeadmin') {
-            idp = 'kube:admin'
-          }
-          cy.contains(idp).click()
+        if (idp_configured) {
+          cy.contains(idp).should('exist').click()
         }
+      })
+      .then(() => {
         cy.get('#inputUsername').click().focused().type(user)
         cy.get('#inputPassword').click().focused().type(password, { 'log': false })
         cy.get('button[type="submit"]').click()
