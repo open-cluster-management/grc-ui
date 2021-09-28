@@ -582,6 +582,7 @@ exports[`Welcome component renders as expected 1`] = `
           data-ouia-safe={true}
           data-pf-content={true}
           href="https://www.redhat.com/en/blog/products"
+          target="dev-community"
         >
           Learn more
           <img
@@ -674,6 +675,7 @@ exports[`Welcome component renders as expected 1`] = `
           data-ouia-safe={true}
           data-pf-content={true}
           href="https://access.redhat.com/support"
+          target="support"
         >
           Learn more
           <img

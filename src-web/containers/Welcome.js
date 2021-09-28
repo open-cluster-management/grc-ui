@@ -184,7 +184,7 @@ export default class WelcomeStatic extends React.Component {
                 alt={msgs.get('svg.description.blog', locale)} />
               <Text className="welcome--connect__section-title" component={TextVariants.p}>{msgs.get('welcome.connect.box.one.title.one', locale)}</Text>
               <Text className="welcome--connect__section-body" component={TextVariants.p}>{msgs.get('welcome.connect.box.one.title.two', locale)}</Text>
-              <Text className="welcome--link" component={TextVariants.a} href='https://www.redhat.com/en/blog/products'>{msgs.get(welcomeBoxLinkStr, locale)}
+              <Text className="welcome--link" target='dev-community' component={TextVariants.a} href='https://www.redhat.com/en/blog/products'>{msgs.get(welcomeBoxLinkStr, locale)}
                 <img
                   className='welcome--connect__section-launch'
                   src={`${config.contextPath}/graphics/arrow-right.svg`}
@@ -209,7 +209,7 @@ export default class WelcomeStatic extends React.Component {
               <Text className="welcome--connect__section-title" component={TextVariants.p}>{msgs.get('welcome.connect.box.three.title.one', locale)}</Text>
               <Text className="welcome--connect__section-body" component={TextVariants.p}>{msgs.get('welcome.connect.box.three.title.two', locale)}</Text>
               <Text className="welcome--connect__section-body" style={{ marginTop: 0 }} component={TextVariants.p}>{msgs.get('welcome.connect.box.three.title.three', locale)}</Text>
-              <Text className="welcome--link" component={TextVariants.a} href='https://access.redhat.com/support'>{msgs.get(welcomeBoxLinkStr, locale)}
+              <Text className="welcome--link" target='support' component={TextVariants.a} href='https://access.redhat.com/support'>{msgs.get(welcomeBoxLinkStr, locale)}
                 <img
                   className='welcome--connect__section-launch'
                   src={`${config.contextPath}/graphics/arrow-right.svg`}
