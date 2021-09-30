@@ -84,7 +84,7 @@ exports[`Welcome component renders as expected 1`] = `
             <div
               className="pf-c-content"
             >
-              <p
+              <h3
                 className="welcome--svcs-container-text-title"
                 data-ouia-component-id="OUIA-Generated-Text-3"
                 data-ouia-component-type="PF4/Text"
@@ -92,13 +92,12 @@ exports[`Welcome component renders as expected 1`] = `
                 data-pf-content={true}
                 style={
                   Object {
-                    "fontSize": "18px",
                     "marginBottom": 0,
                   }
                 }
               >
                 End-to-end visibility
-              </p>
+              </h3>
               <a
                 className="welcome--svcs-container-text-title-link"
                 data-ouia-component-id="OUIA-Generated-Text-4"
@@ -140,7 +139,7 @@ exports[`Welcome component renders as expected 1`] = `
             <div
               className="pf-c-content"
             >
-              <p
+              <h3
                 className="welcome--svcs-container-text-title"
                 data-ouia-component-id="OUIA-Generated-Text-6"
                 data-ouia-component-type="PF4/Text"
@@ -148,13 +147,12 @@ exports[`Welcome component renders as expected 1`] = `
                 data-pf-content={true}
                 style={
                   Object {
-                    "fontSize": "18px",
                     "marginBottom": 0,
                   }
                 }
               >
                 Cluster lifecycle
-              </p>
+              </h3>
               <a
                 className="welcome--svcs-container-text-title-link"
                 data-ouia-component-id="OUIA-Generated-Text-7"
@@ -196,7 +194,7 @@ exports[`Welcome component renders as expected 1`] = `
             <div
               className="pf-c-content"
             >
-              <p
+              <h3
                 className="welcome--svcs-container-text-title"
                 data-ouia-component-id="OUIA-Generated-Text-9"
                 data-ouia-component-type="PF4/Text"
@@ -204,13 +202,12 @@ exports[`Welcome component renders as expected 1`] = `
                 data-pf-content={true}
                 style={
                   Object {
-                    "fontSize": "18px",
                     "marginBottom": 0,
                   }
                 }
               >
                 Application lifecycle
-              </p>
+              </h3>
               <a
                 className="welcome--svcs-container-text-title-link"
                 data-ouia-component-id="OUIA-Generated-Text-10"
@@ -252,7 +249,7 @@ exports[`Welcome component renders as expected 1`] = `
             <div
               className="pf-c-content"
             >
-              <p
+              <h3
                 className="welcome--svcs-container-text-title"
                 data-ouia-component-id="OUIA-Generated-Text-12"
                 data-ouia-component-type="PF4/Text"
@@ -260,13 +257,12 @@ exports[`Welcome component renders as expected 1`] = `
                 data-pf-content={true}
                 style={
                   Object {
-                    "fontSize": "18px",
                     "marginBottom": 0,
                   }
                 }
               >
                 Governance, Risk, and Compliance
-              </p>
+              </h3>
               <a
                 className="welcome--svcs-container-text-title-link"
                 data-ouia-component-id="OUIA-Generated-Text-13"
@@ -308,7 +304,7 @@ exports[`Welcome component renders as expected 1`] = `
             <div
               className="pf-c-content"
             >
-              <p
+              <h3
                 className="welcome--svcs-container-text-title"
                 data-ouia-component-id="OUIA-Generated-Text-15"
                 data-ouia-component-type="PF4/Text"
@@ -316,13 +312,12 @@ exports[`Welcome component renders as expected 1`] = `
                 data-pf-content={true}
                 style={
                   Object {
-                    "fontSize": "18px",
                     "marginBottom": 0,
                   }
                 }
               >
                 Multicluster networking
-              </p>
+              </h3>
               <a
                 className="welcome--svcs-container-text-title-link"
                 data-ouia-component-id="OUIA-Generated-Text-16"

@@ -33,7 +33,7 @@ export default class WelcomeStatic extends React.Component {
 				</div>
 				<div className="welcome--svcs-container-text">
 					<TextContent>
-						<Text className={'welcome--svcs-container-text-title'} style={{ marginBottom: 0, fontSize: '18px' }} component={TextVariants.p}>{title}</Text>
+						<Text className={'welcome--svcs-container-text-title'} style={{ marginBottom: 0 }} component={TextVariants.h3}>{title}</Text>
 						<Text
 							className={'welcome--svcs-container-text-title-link'}
 							component={TextVariants.a}
