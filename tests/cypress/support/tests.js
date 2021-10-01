@@ -425,6 +425,10 @@ export const test_userPermissionsPageContentCheck = (userName, userPassword, IDP
       })
       // collapse the drop down again
       cy.get('@dropdown').click()
+      // if namespaced, remove cluster_binding from PolicyConf as namespaced user doesn't have access to it
+      if (namespaced) {
+        delete newPolicyConf['cluster_binding']
+      }
       // now create a test policy
       cy.createPolicyFromSelection(newPolicyName, true, newPolicyConf)
       .verifyPolicyInListing(newPolicyName, newPolicyConf, 'disabled')
