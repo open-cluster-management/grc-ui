@@ -49,11 +49,10 @@ const createBtn = ({ userAccess, history, locale }) => {
   )
 }
 
-const editBtn = ({ userAccess, history, locale, name, namespace, resourceNotFound }) => {
-  const noPermission = checkEditPermission(userAccess) === 0
+const editBtn = ({ userAccess, history, locale, name, namespace }) => {
   return (
-    <AcmButton key='edit-policy' id='edit-policy' isDisabled={noPermission || resourceNotFound}
-      tooltip={noPermission ? msgs.get('error.permission.disabled', locale) : msgs.get('error.not.found', locale)}
+    <AcmButton key='edit-policy' id='edit-policy' isDisabled={checkEditPermission(userAccess)===0}
+      tooltip={msgs.get('error.permission.disabled', locale)}
       onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}/edit`)}>
       {msgs.get('routes.edit.policy', locale)}
     </AcmButton>

@@ -46,7 +46,7 @@ const LabelWithPopover = ({
 LabelWithPopover.propTypes = {
   children: PropTypes.object,
   labelColor: PropTypes.string,
-  labelContent: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  labelContent: PropTypes.object,
   labelIcon: PropTypes.object,
   popoverHeader: PropTypes.object
 }

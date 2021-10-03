@@ -4,7 +4,6 @@
 'use strict'
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/client'
 import {
   AcmPageContent, AcmPageHeader, AcmAutoRefreshSelect,
@@ -20,8 +19,7 @@ import {
 } from '../utils/constants'
 import { getPageDefinition } from './definitions/PageDefinitions'
 import _ from 'lodash'
-import { getSource } from '../tableDefinitions/utils'
-import msgs from '../nls/platform.properties'
+import { getSource, getSourceText } from '../tableDefinitions/utils'
 
 let timestamp = new Date().toString()
 
@@ -54,27 +52,20 @@ function addAutomationToPolicy(policies, policyAutomations) {
   return policiesCopy
 }
 
-function getPolicyDetailSourceLabel(policyData, locale) {
-  const item = _.get(policyData, 'compliances[0]') ||  _.get(policyData, 'items[0]')
-  if (item?.external) {
+function getPolicyDetailSourceLabel(policyData) {
+  const source = _.get(policyData, 'source[0]')
+  if (source && getSourceText(source) !== 'Local') {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        { item.source ? (
-          <>
-            <p style={{ paddingRight: '.25rem' }}>{msgs.get('policy.source.managed.by', locale)}</p>
-            {getSource(item, locale)}
-          </>
-        ) :
-        <p>{msgs.get('policy.source.managed.externally', locale)}</p>
-        }
+        <p style={{ paddingRight: '.25rem' }}>Managed by</p>
+        {getSource(source)}
       </div>
     )
   }
 }
 
 function AcmGrcPage(props) {
-  const { locale } = props
-  const allProps = {...props, ...useParams(), history: useHistory() }
+  const allProps = {...props, ...useParams(), history: useHistory()}
   const page = getPageDefinition(allProps)
   const { loading, data={}, refetch, error, previousData } = useQuery(
     page.query,
@@ -86,12 +77,6 @@ function AcmGrcPage(props) {
     if (items && refetch) {
       items.refetch = refetch
     }
-  }
-  // Disable edit button if policy not found
-  let resourceNotFound = !items || items.length === 0
-  if (page.id === 'policy-clusters' || page.id === 'policy-templates') {
-    const { compliances } = data
-    resourceNotFound = !compliances || compliances.length === 0
   }
   if (!loading) {
     timestamp = new Date().toString()
@@ -120,7 +105,7 @@ function AcmGrcPage(props) {
                 )}
                 <div className='page-header-button-group'>
                 {page.buttons && (
-                  page.buttons.map(btn => btn({resourceNotFound, ...allProps}))
+                  page.buttons.map(btn => btn(allProps))
                 )}
                 </div>
               </React.Fragment>
@@ -129,7 +114,7 @@ function AcmGrcPage(props) {
 							(page.id === 'policy-details' ||
 								page.id === 'policy-clusters' ||
 								page.id === 'policy-templates') &&
-							getPolicyDetailSourceLabel(data, locale)
+							getPolicyDetailSourceLabel(data)
 						}
             >
           </AcmPageHeader>
@@ -180,7 +165,7 @@ function AcmGrcPage(props) {
               if (loading && !previousData || items === undefined ) {
                 return <Spinner className='patternfly-spinner' />
               } else {
-                return page.children({ items, resourceNotFound })
+                return page.children({ items })
               }
             })()}
           </PageSection>
@@ -188,10 +173,6 @@ function AcmGrcPage(props) {
       </AcmPage>
     </React.Fragment>
   )
-}
-
-AcmGrcPage.propTypes = {
-  locale: PropTypes.string,
 }
 
 export default AcmGrcPage
