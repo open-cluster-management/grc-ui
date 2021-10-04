@@ -61,8 +61,8 @@ const policyTableColumns = (modalType) => {
 				},
 				{
 					header: 'Status',
-					sort: 'status.title',
-					cell: 'status.title',
+					sort: 'status.text',
+					cell: 'status.text',
 				},
 			]
 		/* istanbul ignore next */
@@ -145,6 +145,7 @@ export class BulkPolicyActionModal extends React.Component {
 			reqErrorMsg,
 			reqStatus,
 		} = this.props
+		console.log(data)
 		return (
 			<div>
 				{reqStatus === REQUEST_STATUS.IN_PROGRESS && (
