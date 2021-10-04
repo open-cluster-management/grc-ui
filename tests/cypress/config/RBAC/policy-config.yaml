@@ -14,5 +14,5 @@ disabled-policy:
   namespace: e2e-rbac-test-1
   specifications:
     - 'IamPolicy'
-  cluster_binding: []
+  cluster_binding: [] # skip cluster_binding selection if empty
   disable: True
