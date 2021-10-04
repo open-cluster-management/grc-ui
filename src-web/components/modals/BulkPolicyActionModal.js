@@ -145,7 +145,6 @@ export class BulkPolicyActionModal extends React.Component {
 			reqErrorMsg,
 			reqStatus,
 		} = this.props
-		console.log(data)
 		return (
 			<div>
 				{reqStatus === REQUEST_STATUS.IN_PROGRESS && (
