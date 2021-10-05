@@ -55,36 +55,36 @@ export const welcomePage = {
 export const leftNav = {
     validateMenu: () => {
         cy.get('#page-sidebar li.pf-c-nav__item').should('be.visible').and('have.length', 11)
-        cy.waitUntil(() => cy.get('#nav-toggle').should('be.visible'))
-        cy.get('#nav-toggle').should('be.visible').click()
+        cy.waitUntil(() => cy.get('#nav-toggle').scrollIntoView().should('be.visible'))
+        cy.get('#nav-toggle').scrollIntoView().should('be.visible').click()
         cy.get('#page-sidebar').should('not.be.visible')
-        cy.waitUntil(() => cy.get('#nav-toggle').should('be.visible'))
-        cy.get('#nav-toggle').should('be.visible').click()
+        cy.waitUntil(() => cy.get('#nav-toggle').scrollIntoView().should('be.visible'))
+        cy.get('#nav-toggle').scrollIntoView().should('be.visible').click()
     },
     validatePerspective: () => {
-        cy.get('#toggle-perspective').should('be.visible')
+        cy.get('#toggle-perspective').scrollIntoView().should('be.visible')
     },
     validateNoPerspective: () => {
         cy.get('#toggle-perspective').should('not.be.visible')
     },
     goToHome: () => {
-        cy.waitUntil(() => cy.get('#page-sidebar').contains('Home').should('be.visible'))
-        cy.get('#page-sidebar').contains('Home').should('be.visible').click()
+        cy.waitUntil(() => cy.get('#page-sidebar').contains('Home').scrollIntoView().should('be.visible'))
+        cy.get('#page-sidebar').contains('Home').scrollIntoView().should('be.visible').click()
         cy.get('#page-sidebar').contains('Welcome').should('not.be.visible')
-        cy.waitUntil(() => cy.get('#page-sidebar').contains('Home').should('be.visible'))
-        cy.get('#page-sidebar').contains('Home').should('be.visible').click()
-        cy.get('#page-sidebar').contains('Welcome').should('be.visible')
-        cy.waitUntil(() => cy.get('#page-sidebar').contains('Welcome').should('be.visible'))
-        cy.get('#page-sidebar').contains('Welcome').should('be.visible').click()
+        cy.waitUntil(() => cy.get('#page-sidebar').contains('Home').scrollIntoView().should('be.visible'))
+        cy.get('#page-sidebar').contains('Home').scrollIntoView().should('be.visible').click()
+        cy.get('#page-sidebar').contains('Welcome').scrollIntoView().should('be.visible')
+        cy.waitUntil(() => cy.get('#page-sidebar').contains('Welcome').scrollIntoView().should('be.visible'))
+        cy.get('#page-sidebar').contains('Welcome').scrollIntoView().should('be.visible').click()
         welcomePage.shouldExist()
     },
     goToOverview: () => {
-        cy.waitUntil(() => cy.get('#page-sidebar').contains('Home').should('be.visible'))
-        cy.get('#page-sidebar').contains('Home').should('be.visible').click()
+        cy.waitUntil(() => cy.get('#page-sidebar').contains('Home').scrollIntoView().should('be.visible'))
+        cy.get('#page-sidebar').contains('Home').scrollIntoView().should('be.visible').click()
         cy.get('#page-sidebar').contains('Overview').should('not.be.visible')
-        cy.waitUntil(() => cy.get('#page-sidebar').contains('Home').should('be.visible'))
-        cy.get('#page-sidebar').contains('Home').should('be.visible').click()
-        cy.get('#page-sidebar').contains('Overview').should('be.visible')
+        cy.waitUntil(() => cy.get('#page-sidebar').contains('Home').scrollIntoView().should('be.visible'))
+        cy.get('#page-sidebar').contains('Home').scrollIntoView().should('be.visible').click()
+        cy.get('#page-sidebar').contains('Overview').scrollIntoView().should('be.visible')
         cy.get('#page-sidebar').contains('Overview').should('have.prop', 'href', Cypress.config().baseUrl + '/overview')
     },
     goToClusters: () => {
@@ -103,8 +103,8 @@ export const leftNav = {
 
 export const userMenu = {
     openSearch: () => {
-        cy.waitUntil(() => cy.get('[aria-label="search-button"]').should('be.visible'))
-        cy.get('[aria-label="search-button"]').should('be.visible').click()
+        cy.waitUntil(() => cy.get('[aria-label="search-button"]').scrollIntoView().should('be.visible'))
+        cy.get('[aria-label="search-button"]').scrollIntoView().should('be.visible').click()
         cy.url().should('equal', Cypress.config().baseUrl + '/search')
         cy.visit('/multicloud/welcome')
     },
@@ -113,35 +113,35 @@ export const userMenu = {
         cy.window().then((window) => {
             cy.stub(window, 'open').as('windowOpen')
         })
-        cy.waitUntil(() => cy.get('[aria-label="create-button"]').should('be.visible'))
-        cy.get('[aria-label="create-button"]').should('be.visible').click()
+        cy.waitUntil(() => cy.get('[aria-label="create-button"]').scrollIntoView().should('be.visible'))
+        cy.get('[aria-label="create-button"]').scrollIntoView().should('be.visible').click()
         cy.get('@windowOpen').should('be.calledWith', Cypress.config().baseUrl + '/k8s/all-namespaces/import')
         cy.visit('/multicloud/welcome')
     },
     openInfo: () => {
-        cy.waitUntil(() => cy.get('[data-test="about-dropdown"]').should('be.visible'))
-        cy.get('[data-test="about-dropdown"]').should('be.visible').click()
-        cy.get('[data-test="about-dropdown"] li').should('be.visible').and('have.length', 2)
+        cy.waitUntil(() => cy.get('[data-test="about-dropdown"]').scrollIntoView().should('be.visible'))
+        cy.get('[data-test="about-dropdown"]').scrollIntoView().should('be.visible').click()
+        cy.get('[data-test="about-dropdown"] li').scrollIntoView().should('be.visible').and('have.length', 2)
         // Since cypress doesn't support multitab testing, we can check to see if the link includes the documentation link.
         // For now we can exclude the doc version, since the docs might not be available for a certain release.
         cy.get('[data-test="about-dropdown"]').contains('Documentation').should('have.attr', 'href').and('contain', 'https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/')
         cy.getCookie('acm-access-token-cookie').should('exist').then((token) => {
             acmVersion(token.value).then((version) => {
-                cy.waitUntil(() => cy.get('[data-test="about-dropdown"]').contains('About').should('be.visible'))
-                cy.get('[data-test="about-dropdown"]').contains('About').should('be.visible').click()
+                cy.waitUntil(() => cy.get('[data-test="about-dropdown"]').contains('About').scrollIntoView().should('be.visible'))
+                cy.get('[data-test="about-dropdown"]').contains('About').scrollIntoView().should('be.visible').click()
                   .get('.pf-c-spinner', {timeout: 20000}).should('not.exist')
                 cy.get('.version-details__no').should('contain', version)
-                cy.waitUntil(() => cy.get('[aria-label="Close Dialog"]').should('be.visible'))
-                cy.get('[aria-label="Close Dialog"]').should('be.visible').click()
+                cy.waitUntil(() => cy.get('[aria-label="Close Dialog"]').scrollIntoView().should('be.visible'))
+                cy.get('[aria-label="Close Dialog"]').scrollIntoView().should('be.visible').click()
             })
         })
     },
     openUser: () => {
-        cy.waitUntil(() => cy.get('[data-test="user-dropdown"]').should('be.visible'))
-        cy.get('[data-test="user-dropdown"]').should('be.visible').click()
-        cy.get('[data-test="user-dropdown"] li').should('be.visible').and('have.length', 2)
-        cy.waitUntil(() => cy.get('[data-test="user-dropdown"]').should('be.visible'))
-        cy.get('[data-test="user-dropdown"]').should('be.visible').click()
+        cy.waitUntil(() => cy.get('[data-test="user-dropdown"]').scrollIntoView().should('be.visible'))
+        cy.get('[data-test="user-dropdown"]').scrollIntoView().should('be.visible').click()
+        cy.get('[data-test="user-dropdown"] li').scrollIntoView().should('be.visible').and('have.length', 2)
+        cy.waitUntil(() => cy.get('[data-test="user-dropdown"]').scrollIntoView().should('be.visible'))
+        cy.get('[data-test="user-dropdown"]').scrollIntoView().should('be.visible').click()
         cy.get('#configure').should('not.exist')
         cy.get('#logout').should('not.exist')
         cy.request(Cypress.config().baseUrl + '/multicloud/common/configure').as('configureReq')
@@ -156,17 +156,17 @@ export const userMenu = {
             expect(response.body).to.have.property('data')
         })
         cy.waitUntil(() => {
-            return cy.get('[data-test="app-dropdown"]').should('be.visible')
+            return cy.get('[data-test="app-dropdown"]').scrollIntoView().should('be.visible')
         }, {'interval': 1000, 'timeout':120000})
-        cy.get('[data-test="app-dropdown"]').should('be.visible').click()
+        cy.get('[data-test="app-dropdown"]').scrollIntoView().should('be.visible').click()
         // seems the split line is also li
-        cy.get('[data-test="app-dropdown"] li').should('be.visible').and('have.length', 5)
-        cy.contains('Red Hat applications').should('be.visible')
-        cy.contains('Red Hat Openshift Container Platform').should('be.visible')
-        cy.contains('OpenShift GitOps').should('be.visible')
-        cy.contains('ArgoCD').should('be.visible')
-        cy.waitUntil(() => cy.get('[data-test="app-dropdown"]').should('be.visible'))
-        cy.get('[data-test="app-dropdown"]').should('be.visible').click()
+        cy.get('[data-test="app-dropdown"] li').scrollIntoView().should('be.visible').and('have.length', 5)
+        cy.contains('Red Hat applications').scrollIntoView().should('be.visible')
+        cy.contains('Red Hat Openshift Container Platform').scrollIntoView().should('be.visible')
+        cy.contains('OpenShift GitOps').scrollIntoView().should('be.visible')
+        cy.contains('ArgoCD').scrollIntoView().should('be.visible')
+        cy.waitUntil(() => cy.get('[data-test="app-dropdown"]').scrollIntoView().should('be.visible'))
+        cy.get('[data-test="app-dropdown"]').scrollIntoView().should('be.visible').click()
         cy.contains('ArgoCD').should('not.exist')
     },
     openAppsNoArgo: () => {
@@ -175,10 +175,10 @@ export const userMenu = {
             expect(response.body).to.have.property('data')
         })
         cy.waitUntil(() => {
-            return cy.get('[data-test="app-dropdown"]').should('be.visible')
+            return cy.get('[data-test="app-dropdown"]').scrollIntoView().should('be.visible')
         }, {'interval': 1000, 'timeout':120000})
-        cy.get('[data-test="app-dropdown"]').should('be.visible').click()
-        cy.contains('Red Hat applications').should('be.visible')
-        cy.contains('Red Hat Openshift Container Platform').should('be.visible')
+        cy.get('[data-test="app-dropdown"]').scrollIntoView().should('be.visible').click()
+        cy.contains('Red Hat applications').scrollIntoView().should('be.visible')
+        cy.contains('Red Hat Openshift Container Platform').scrollIntoView().should('be.visible')
     }
 }
