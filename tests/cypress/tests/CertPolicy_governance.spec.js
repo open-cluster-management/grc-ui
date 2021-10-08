@@ -203,7 +203,7 @@ describeT('@extended RHACM4K_1205 - GRC UI: [P1][Sev1][policy-grc] - Certificate
 })
 
 
-describeT('@extended Cleanup - delete a certificate and an issuer', () => {
+describeT('@extended @bvt GRC UI: [P1][Sev1][policy-grc] Cleanup - delete a certificate and an issuer', () => {
   const substitutionRulesCleanup = getDefaultSubstitutionRules({
     clusterselector:`- {key: name, operator: In, values: ["${clusterList[0]}"]}`,
     compliancetype: 'mustnothave'
