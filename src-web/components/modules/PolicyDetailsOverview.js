@@ -94,7 +94,6 @@ export class PolicyDetailsOverview extends React.PureComponent{
         items={clusterList.rows}
         columns={clusterList.columns}
         keyFn={(item) => item.uid.toString()}
-        gridBreakPoint=''
         autoHidePagination={true}
       />
     ]
