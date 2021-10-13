@@ -158,7 +158,8 @@ export const userMenu = {
         cy.waitUntil(() => {
             return cy.get('[data-test="app-dropdown"]').should('be.visible')
         }, {'interval': 1000, 'timeout':120000})
-        cy.get('[data-test="app-dropdown"]').should('be.visible').click({ force: true })
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.get('[data-test="app-dropdown"]').should('be.visible').wait(200).click({ force: true }).wait(200)
         // seems the split line is also li
         cy.get('[data-test="app-dropdown"] li').should('be.visible').and('have.length', 5)
         cy.contains('Red Hat applications').should('be.visible')
@@ -166,7 +167,8 @@ export const userMenu = {
         cy.contains('OpenShift GitOps').should('be.visible')
         cy.contains('ArgoCD').should('be.visible')
         cy.waitUntil(() => cy.get('[data-test="app-dropdown"]').should('be.visible'))
-        cy.get('[data-test="app-dropdown"]').should('be.visible').click({ force: true })
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.get('[data-test="app-dropdown"]').should('be.visible').wait(200).click({ force: true }).wait(200)
         cy.contains('ArgoCD').should('not.exist')
     },
     openAppsNoArgo: () => {
@@ -177,7 +179,9 @@ export const userMenu = {
         cy.waitUntil(() => {
             return cy.get('[data-test="app-dropdown"]').should('be.visible')
         }, {'interval': 1000, 'timeout':120000})
-        cy.get('[data-test="app-dropdown"]').should('be.visible').click({ force: true })
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.get('[data-test="app-dropdown"]').should('be.visible').wait(200).click({ force: true }).wait(200)
+        cy.get('[data-test="app-dropdown"] li').should('be.visible').and('have.length', 2)
         cy.contains('Red Hat applications').should('be.visible')
         cy.contains('Red Hat Openshift Container Platform').should('be.visible')
     }
