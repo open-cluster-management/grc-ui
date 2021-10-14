@@ -888,6 +888,9 @@ export const action_doTableSearch = (text, inputSelector = null, parentSelector 
       cy.get(inputSelector, {withinSubject: parentSelector}).clear({force: true}).type(text, {force: true})
       // Fast-forward clock for search debounce
       cy.tick(500)
+      cy.clock().then((clock) => {
+        clock.restore()
+      })
       // }
     })
 }

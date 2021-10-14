@@ -280,6 +280,9 @@ Cypress.Commands.add('goToPolicyDetailsPage', (policyName, namespace='default', 
       .clear().type(policyName)
     // Fast-forward clock for search debounce
     cy.tick(500)
+    cy.clock().then((clock) => {
+      clock.restore()
+    })
 
     if(open)
     {
