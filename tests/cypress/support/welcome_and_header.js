@@ -159,8 +159,10 @@ export const userMenu = {
             return cy.get('[data-test="app-dropdown"]').should('be.visible')
         }, {'interval': 1000, 'timeout':120000})
         // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.get('[data-test="app-dropdown"]').should('be.visible').wait(200).click({ force: true }).wait(200)
+        cy.get('[data-test="app-dropdown"]').should('be.visible').wait(500).click().wait(500)
         // seems the split line is also li
+        // tested many times and can't use { force: true } on the above step
+        // will not open dropdown after force click and failed on the rest steps
         cy.get('[data-test="app-dropdown"] li').should('be.visible').and('have.length', 5)
         cy.contains('Red Hat applications').should('be.visible')
         cy.contains('Red Hat Openshift Container Platform').should('be.visible')
@@ -168,7 +170,7 @@ export const userMenu = {
         cy.contains('ArgoCD').should('be.visible')
         cy.waitUntil(() => cy.get('[data-test="app-dropdown"]').should('be.visible'))
         // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.get('[data-test="app-dropdown"]').should('be.visible').wait(200).click({ force: true }).wait(200)
+        cy.get('[data-test="app-dropdown"]').should('be.visible').wait(500).click().wait(500)
         cy.contains('ArgoCD').should('not.exist')
     },
     openAppsNoArgo: () => {
@@ -180,7 +182,9 @@ export const userMenu = {
             return cy.get('[data-test="app-dropdown"]').should('be.visible')
         }, {'interval': 1000, 'timeout':120000})
         // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.get('[data-test="app-dropdown"]').should('be.visible').wait(200).click({ force: true }).wait(200)
+        cy.get('[data-test="app-dropdown"]').should('be.visible').wait(500).click().wait(500)
+        // tested many times and can't use force: true on the above step
+        // will not open dropdown after force click and failed on the rest steps
         cy.get('[data-test="app-dropdown"] li').should('be.visible').and('have.length', 2)
         cy.contains('Red Hat applications').should('be.visible')
         cy.contains('Red Hat Openshift Container Platform').should('be.visible')
