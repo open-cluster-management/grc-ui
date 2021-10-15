@@ -1478,7 +1478,6 @@ export const action_verifyAnsibleInstallPrompt = (uName, opInstalled) => {
     cy.get('button[aria-label="Close"]').scrollIntoView().should('be.visible').click()
   })
   .then(() => {
-    // wait for the dialog to be closed
     cy.checkAndClosePolicyAutomationPanel(uName)
   })
 }
@@ -1600,7 +1599,7 @@ export const action_scheduleAutomation = (uName, credentialName, mode, action='S
     cy.waitUntil(() => cy.get('#remove-ansible-modal').scrollIntoView().should('be.visible'))
     cy.get('#remove-ansible-modal').scrollIntoView().should('be.visible').within(() => {
       cy.get('.pf-c-modal-box__footer').within(() => {
-        cy.get('.pf-m-danger').scrollIntoView().should('be.visible').click()
+        cy.get('button').contains('Delete automation', { matchCase: false }).scrollIntoView().should('be.visible').click()
       })
     })
     .then(() => {
@@ -1759,18 +1758,17 @@ export const action_verifyPolicyWithoutAutomation = (uPolicyName) => {
 // check if policy automation panel is successfully closed
 // if not log the error msg and force close
 export const action_checkAndClosePolicyAutomationPanel = (uName) => {
-  // wait 0.5s after policy automation panel automatically closing
+  // wait 2s after policy automation panel automatically closing
   // eslint-disable-next-line cypress/no-unnecessary-waiting
-  cy.wait(500)
-  cy.get('body')
+  cy.get('body').wait(2000)
   .then(($body) => {
     // // If policy automation panel is still opened
-    if ($body.find('#automation-resource-panel').length) {
+    if ($body.find('#automation-resource-panel').length === 1) {
       cy.log(`Poliy auotmation panel is open for policy ${uName}`)
       // check if there is an error msg on the panel and log it
       cy.get('#automation-resource-panel').then(($panel) => {
-        if ($panel.find('div[aria-label="Danger Alert"').length) {
-          cy.get('div[aria-label="Danger Alert"').within(() => {
+        if ($panel.find('div[aria-label="Danger Alert"]').length) {
+          cy.get('div[aria-label="Danger Alert"]').within(() => {
             cy.get('h4.pf-c-alert__title').then(($el) => {
               const policyAutomationErrorMsg = $el.text()
               if (policyAutomationErrorMsg) {
