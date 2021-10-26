@@ -142,97 +142,92 @@ export class BulkPolicyActionModal extends React.Component {
 			reqErrorMsg,
 			reqStatus,
 		} = this.props
+
+console.log('reqErrorMsg',reqErrorMsg)
+
 		return (
-			<div>
-				{reqStatus === REQUEST_STATUS.IN_PROGRESS && (
-					<Spinner className="patternfly-spinner" />
-				)}
-				<AcmModal
-					variant="medium"
-					id={`bulk-${actionType}-policy-modal'`}
-					isOpen={open}
-					showClose={true}
-					onClose={this.handleCloseClick}
-					title={
-						data.length > 1
-							? msgs.get(label.heading, [data.length], locale)
-							: msgs.get(
-									`modal.${actionType}-hcmcompliance.heading`,
-									locale
-							)
-					}
-					actions={[
-						<AcmButton
-							key="confirm"
-							variant={ButtonVariant.primary}
-							onClick={this.handleSubmitClick}
-						>
-							{msgs.get(label.primaryBtn, locale)}
-						</AcmButton>,
-						<AcmButton
-							key="cancel"
-							variant={ButtonVariant.link}
-							onClick={this.handleCloseClick}
-						>
-							{msgs.get('modal.button.cancel', locale)}
-						</AcmButton>,
-					]}
-				>
-					{reqStatus === REQUEST_STATUS.ERROR && (
-						<AcmAlert
-							isInline={true}
-							noClose={true}
-							variant="warning"
-							title={
-								reqErrorMsg ||
-								msgs.get('error.default.description', locale)
-							}
-						/>
-					)}
-					<p style={{ marginBottom: '.5rem' }}>
-						{msgs.get(
-							`modal.actions.bulk.${actionType}.description`,
-							locale
-						)}
-					</p>
-					{data.some(
-						(policy) => policy.source.text.toLowerCase() !== 'local'
-					) && (
-						<AcmAlert
-							isInline={true}
-							noClose={true}
-							variant="default"
-							title={msgs.get(
-								'modal.actions.bulk.external.alert.title',
-								[
-									data.filter(
-										(policy) =>
-											policy.source.text.toLowerCase() !==
-											'local'
-									).length,
-								],
-								locale
-							)}
-							message={msgs.get(
-								'modal.actions.bulk.external.alert.message',
-								locale
-							)}
-						/>
-					)}
-					<AcmTable
-						plural="policy actions"
-						items={data}
-						searchPlaceholder={msgs.get(
-							'modal.actions.bulk.table.search.placeholder',
-							locale
-						)}
-						columns={policyTableColumns(modalType)}
-						keyFn={(item) => item.uid.toString()}
-						gridBreakPoint=""
-					/>
-				</AcmModal>
-			</div>
-		)
+      <div>
+        {reqStatus === REQUEST_STATUS.IN_PROGRESS && (
+          <Spinner className="patternfly-spinner" />
+        )}
+        <AcmModal
+          variant="medium"
+          id={`bulk-${actionType}-policy-modal'`}
+          isOpen={open}
+          showClose={true}
+          onClose={this.handleCloseClick}
+          title={
+            data.length > 1
+              ? msgs.get(label.heading, [data.length], locale)
+              : msgs.get(`modal.${actionType}-hcmcompliance.heading`, locale)
+          }
+          actions={[
+            <AcmButton
+              key="confirm"
+              variant={ButtonVariant.primary}
+              onClick={this.handleSubmitClick}
+            >
+              {msgs.get(label.primaryBtn, locale)}
+            </AcmButton>,
+            <AcmButton
+              key="cancel"
+              variant={ButtonVariant.link}
+              onClick={this.handleCloseClick}
+            >
+              {msgs.get('modal.button.cancel', locale)}
+            </AcmButton>,
+          ]}
+        >
+
+          {reqStatus === REQUEST_STATUS.ERROR && (
+            <AcmAlert
+              isInline={true}
+              noClose={true}
+              variant="warning"
+							title={msgs.get('error.default.description', locale)}
+              subtitle={ reqErrorMsg }
+            />
+          )}
+          <p style={{ marginBottom: '.5rem' }}>
+            {msgs.get(`modal.actions.bulk.${actionType}.description`, locale)}
+          </p>
+          {data.some(
+            policy => policy.source.text.toLowerCase() !== 'local'
+          ) && (
+            <AcmAlert
+              isInline={true}
+              noClose={true}
+              variant="default"
+              title={msgs.get(
+                'modal.actions.bulk.external.alert.title',
+                [
+                  data.filter(
+                    policy => policy.source.text.toLowerCase() !== 'local'
+                  ).length,
+                ],
+                locale
+              )}
+              message={msgs.get(
+                'modal.actions.bulk.external.alert.message',
+                locale
+              )}
+            />
+          )}
+					{/* conditional here for result vs. error table*/}
+          <AcmTable
+            plural="policy actions"
+            items={data}
+            searchPlaceholder={msgs.get(
+              'modal.actions.bulk.table.search.placeholder',
+              locale
+            )}
+            columns={policyTableColumns(modalType)}
+            keyFn={item => item.uid.toString()}
+            gridBreakPoint=""
+          />
+        </AcmModal>
+      </div>
+    )
 	}
 }
 
