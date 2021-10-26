@@ -22,7 +22,6 @@ import {
     receivePatchError,
     updateModal,
 } from '../../actions/common'
-
 const policyTableColumns = modalType => {
     switch (modalType) {
     case 'bulk-policy-action-inform':
@@ -92,7 +91,7 @@ export class BulkPolicyActionModal extends React.Component {
             modalType,
             bulkPolicyActions
         )
-        break
+        return data
         case 'bulk-policy-action-enforce':
         handleSubmit(
             data,

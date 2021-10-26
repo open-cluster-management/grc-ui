@@ -96,11 +96,7 @@ export const fetchSingleResource = (resourceType, args) => {
 export const bulkPolicyActions = (policies, newData, resourcePath, modalType) => (async dispatch => {
   dispatch(patchResource('HCMCompliance'))
   try {
-    const results = {
-      success: [],
-      errors: [],
-    }
-    await Promise.all(
+    const result = await Promise.all(
       policies.map(policy => {
         return GrcApolloClient.updateResource(
           policy.namespace,
@@ -110,19 +106,16 @@ export const bulkPolicyActions = (policies, newData, resourcePath, modalType) =>
           resourcePath
         ).then(response => {
           if (response.errors) {
-            results.errors.push(response.errors)
+            dispatch(receivePatchError(response.errors[0], 'HCMCompliance'))
           } else {
-            results.success.push(response)
-            return response
+            dispatch(receivePatchResource(result, 'HCMCompliance'))
           }
+          return response
         })
       })
     )
-    if (results.errors) {
-      dispatch(receivePatchError(results.errors, 'HCMCompliance'))
-    } else {
-      dispatch(updateModal({ open: false, type: modalType }))
-      dispatch(receivePatchResource(results.success, 'HCMCompliance'))
+    if (!result.some(result => result.errors)) {
+      dispatch(updateModal({open: false, type: modalType}))
     }
   } catch (err) {
     dispatch(receivePatchError(err, 'HCMCompliance'))
