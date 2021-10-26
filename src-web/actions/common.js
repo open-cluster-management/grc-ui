@@ -93,34 +93,34 @@ export const fetchSingleResource = (resourceType, args) => {
   }
 }
 
-export const bulkPolicyActions = (policies, newData, resourcePath, modalType) => (async dispatch => {
-  dispatch(patchResource('HCMCompliance'))
-  try {
-    const result = await Promise.all(
-      policies.map(policy => {
-        return GrcApolloClient.updateResource(
-          policy.namespace,
-          policy.name.rawData,
-          newData,
-          `/apis/policy.open-cluster-management.io/v1/namespaces/${policy.namespace}/policies/${policy.name.rawData}`,
-          resourcePath
-        ).then(response => {
-          if (response.errors) {
-            dispatch(receivePatchError(response.errors[0], 'HCMCompliance'))
-          } else {
-            dispatch(receivePatchResource(result, 'HCMCompliance'))
-          }
-          return response
+export const bulkPolicyActions =
+  (policies, newData, resourcePath, modalType) => async dispatch => {
+    dispatch(patchResource('HCMCompliance'))
+    try {
+      const result = await Promise.all(
+        policies.map(policy => {
+          return GrcApolloClient.updateResource(
+            policy.namespace,
+            policy.name.rawData,
+            newData,
+            `/apis/policy.open-cluster-management.io/v1/namespaces/${policy.namespace}/policies/${policy.name.rawData}`,
+            resourcePath
+          ).then(response => {
+            if (response.errors) {
+              dispatch(receivePatchError(response.errors[0], 'HCMCompliance'))
+            }
+            return response
+          })
         })
-      })
-    )
-    if (!result.some(result => result.errors)) {
-      dispatch(updateModal({open: false, type: modalType}))
+      )
+      if (!result.some(result => result.errors)) {
+        dispatch(receivePatchResource(result[0], 'HCMCompliance'))
+        dispatch(updateModal({ open: false, type: modalType }))
+      }
+    } catch (err) {
+      dispatch(receivePatchError(err, 'HCMCompliance'))
     }
-  } catch (err) {
-    dispatch(receivePatchError(err, 'HCMCompliance'))
   }
-})
 
 export const disableResource = (resourceType, namespace, name, body, resourceData, resourcePath) => (dispatch => {
   dispatch(patchResource(resourceType))

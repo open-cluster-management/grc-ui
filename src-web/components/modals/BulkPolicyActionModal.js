@@ -81,37 +81,24 @@ export class BulkPolicyActionModal extends React.Component {
     const { type: modalType, handleSubmit, data = [] } = this.props
     switch (modalType) {
         case 'bulk-policy-action-disable':
-        handleSubmit(data, true, '/spec/disabled', modalType, bulkPolicyActions)
-        break
+            handleSubmit(data, true, '/spec/disabled', modalType, bulkPolicyActions)
+            break
         case 'bulk-policy-action-enable':
-        handleSubmit(
-            data,
-            false,
-            '/spec/disabled',
-            modalType,
-            bulkPolicyActions
-        )
-        return data
+            handleSubmit(
+                data,false, '/spec/disabled', modalType, bulkPolicyActions
+            )
+            break
         case 'bulk-policy-action-enforce':
-        handleSubmit(
-            data,
-            'enforce',
-            '/spec/remediationAction',
-            modalType,
-            bulkPolicyActions
-        )
-        break
+            handleSubmit(
+                data, 'enforce', '/spec/remediationAction', modalType, bulkPolicyActions
+            )
+            break
         case 'bulk-policy-action-inform':
-        handleSubmit(
-            data,
-            'inform',
-            '/spec/remediationAction',
-            modalType,
-            bulkPolicyActions
-        )
-        break
+            handleSubmit( data, 'inform', '/spec/remediationAction', modalType, bulkPolicyActions
+            )
+            break
         default:
-        break
+            break
     }
 }
 
@@ -195,7 +182,6 @@ export class BulkPolicyActionModal extends React.Component {
                 message={msgs.get('modal.actions.bulk.external.alert.message', locale)}
             />
         )}
-        {/* conditional here for result vs. error table*/}
         <AcmTable
             plural="policy actions"
             items={data}
