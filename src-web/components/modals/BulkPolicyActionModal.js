@@ -72,9 +72,9 @@ const policyTableColumns = modalType => {
 
 export class BulkPolicyActionModal extends React.Component {
     constructor(props) {
-    super(props)
-    this.handleSubmitClick = this.handleSubmitClick.bind(this)
-    this.handleCloseClick = this.handleCloseClick.bind(this)
+        super(props)
+        this.handleSubmitClick = this.handleSubmitClick.bind(this)
+        this.handleCloseClick = this.handleCloseClick.bind(this)
     }
 
     handleSubmitClick() {
@@ -203,10 +203,10 @@ BulkPolicyActionModal.propTypes = {
     handleClose: PropTypes.func,
     handleSubmit: PropTypes.func,
     label: PropTypes.shape({
-    heading: PropTypes.string,
-    label: PropTypes.string,
-    primaryBtn: PropTypes.string,
-    }),
+            heading: PropTypes.string,
+            label: PropTypes.string,
+            primaryBtn: PropTypes.string,
+        }),
     locale: PropTypes.string,
     open: PropTypes.bool,
     reqErrorMsg: PropTypes.string,
