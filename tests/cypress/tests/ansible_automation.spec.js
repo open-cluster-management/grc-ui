@@ -90,7 +90,10 @@ describeT('RHACM4K-3471 - GRC UI: [P1][Sev1][console] All policies page: Verify 
     cy.scheduleAutomation(policyName, 'grcui-e2e-credential', 'manual')
   })
   it('Verifies successful job history with mock', () => {
-    cy.verifyHistoryPageWithMock(policyName)
+    cy.verifyHistoryPageWithMock(policyName, true)
+  })
+  it('Verifies failed job history with mock', () => {
+    cy.verifyHistoryPageWithMock(policyName, false)
   })
 
   //check credential table empty state with mock

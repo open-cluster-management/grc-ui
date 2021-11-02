@@ -1611,7 +1611,7 @@ export const action_scheduleAutomation = (uName, credentialName, mode) => {
   })
 }
 
-export const action_verifyHistoryPageWithMock = (uName) => {
+export const action_verifyHistoryPageWithMock = (uName, successful) => {
   // mock ansible operator
   cy.mockAnsibleInstallQuery(true)
   // Check for open Automation modal and close it if it's open
@@ -1639,7 +1639,7 @@ export const action_verifyHistoryPageWithMock = (uName) => {
                 message: 'Awaiting next reconciliation',
                 name: 'policy-pod-1111-policy-automation-once-hd5xz',
                 started: '2021-06-03T14:45:53.237671Z',
-                status: 'successful',
+                status: successful ? 'successful' : 'error',
               }
             ]
           }
@@ -1652,7 +1652,11 @@ export const action_verifyHistoryPageWithMock = (uName) => {
   })
 
   cy.get('.ansible-history-table').within(() => {
-    cy.get('div').contains('Successful').should('exist')
+      if (successful) {
+        cy.get('div').contains('Successful').should('exist')
+      } else {
+        cy.get('svg[fill="#c9190b"]').should('have.length', 1)
+      }
   })
 
   cy.get('button[aria-label="Close"]').click()
@@ -1671,11 +1675,13 @@ const verifyHistoryPage = (mode, failuresExpected) => {
     cy.get('.ansible-history-table').within(() => {
       cy.get('.pf-c-empty-state').should('exist')
     })
-  } else {
-    cy.get('.ansible-history-table').within(() => {
-      cy.get('svg[fill="#c9190b"]').should('have.length', failuresExpected)
-    })
   }
+  // failed jobs not available when Ansible is mocked
+  // else {
+  //   cy.get('.ansible-history-table').within(() => {
+  //     cy.get('svg[fill="#c9190b"]').should('have.length', failuresExpected)
+  //   })
+  // }
 }
 
 const checkWithPolicy = (policyYaml) => {

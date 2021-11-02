@@ -527,8 +527,8 @@ Cypress.Commands.add('scheduleAutomation', (uName, credentialName, mode) => {
   cy.then(() => action_scheduleAutomation(uName, credentialName, mode))
 })
 
-Cypress.Commands.add('verifyHistoryPageWithMock', (uName) => {
-  cy.then(() => action_verifyHistoryPageWithMock(uName))
+Cypress.Commands.add('verifyHistoryPageWithMock', (uName, successful) => {
+  cy.then(() => action_verifyHistoryPageWithMock(uName, successful))
 })
 
 Cypress.Commands.add('checkAndClosePolicyAutomationPanel', (uName) => {
