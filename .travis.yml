@@ -50,9 +50,9 @@ jobs:
         - make component/push
         - echo '"finished image push"' && echo -en 'travis_fold:end:script.build\\r'
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
-        - if [ "$TRAVIS_PULL_REQUEST" == "false" -a "$TRAVIS_BRANCH" == "master" ]; then 
-            COMPONENT_NEWTAG="latest-dev" make component/tag;
-            COMPONENT_VERSION="latest" COMPONENT_TAG_EXTENSION="-dev" make component/push;
+        - if [ "$TRAVIS_PULL_REQUEST" == "false" -a "$TRAVIS_BRANCH" == "release-2.2" ]; then 
+            COMPONENT_NEWTAG="latest-2.2" make component/tag;
+            COMPONENT_VERSION="latest" COMPONENT_TAG_EXTENSION="-2.2" make component/push;
           fi;
         - if [ "$IMAGE_SCAN" != "false" ]; then make security/scans; fi;
     - stage: build
@@ -77,6 +77,8 @@ jobs:
         - export COMPONENT_NAME="grc-ui-tests"
         - make build-test-image
         - make push-test-image
+        - COMPONENT_NEWTAG="latest-2.2" make component/tag;
+        - COMPONENT_VERSION="latest" COMPONENT_TAG_EXTENSION="-2.2" make component/push;
     - stage: unit-test
       name: "Build and run unit tests"
       script:
