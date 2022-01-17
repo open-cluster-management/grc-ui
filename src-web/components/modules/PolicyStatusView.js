@@ -33,7 +33,7 @@ class PolicyStatusView extends React.Component {
     const { locale } = this.context
     // Check for "create" permissions in order to determine whether to enable
     // the "View Details" link, which requires creating a managedClusterView
-    // (See https://github.com/open-cluster-management/backlog/issues/6135)
+    // (See https://github.com/stolostron/backlog/issues/6135)
     const showDetailsLink = checkCreatePermission(userAccess)
     const statusAccess = status.map(item => ({...item, showDetailsLink: showDetailsLink}))
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
