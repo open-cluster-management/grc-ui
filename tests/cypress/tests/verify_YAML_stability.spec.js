@@ -30,8 +30,8 @@ const testPolicy = (policyConfFile, templateConfFile) => {
     const choices = ['enforce', 'inform']
     choices.forEach( (choice) => {
       cy.get(`input[name="remediation-${choice}"][type="radio"]`).as(`${choice}`)
-      cy.get(`@${choice}`).next('label').as('label')
-        .get('@label').click()
+      cy.waitUntil(() => cy.get(`@${choice}`).next('label').as('label').get('@label').scrollIntoView().should('be.visible'))
+      cy.get(`@${choice}`).next('label').as('label').get('@label').scrollIntoView().should('be.visible').click()
         .waitForDocumentUpdate()
         .get(`@${choice}`).should('be.checked')
     })
@@ -48,7 +48,7 @@ const testPolicy = (policyConfFile, templateConfFile) => {
 
 }
 
-describeT('RHACM4K-2509 - GRC UI: [P1][Sev1][policy-grc] All policy page: Verify stability of YAML', () => {
+describeT('RHACM4K-2509 - GRC UI: [P1][Sev1][console] All policy page: Verify stability of YAML', () => {
 
   testPolicy('verify_YAML_stability/Gatekeeper-template.yaml', 'verify_YAML_stability/Gatekeeper-template-verify.yaml')
   testPolicy('verify_YAML_stability/LimitRange_template-apply.yaml', 'verify_YAML_stability/LimitRange_template-verify.yaml')

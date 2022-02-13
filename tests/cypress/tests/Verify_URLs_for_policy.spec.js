@@ -7,7 +7,7 @@ import { describeT } from '../support/tagging'
 import { getConfigObject } from '../config'
 import { getDefaultSubstitutionRules } from '../support/views'
 
-describeT('RHACM4K-2354 - GRC UI: [P1][Sev1][policy-grc] Check existent and non-existent URLs for the policy', () => {
+describeT('RHACM4K-2354 - GRC UI: [P1][Sev1][console] Check existent and non-existent URLs for the policy', () => {
   const substitutionRules = getDefaultSubstitutionRules()
   const confFilePolicy = 'duplicatePolicyInDiffNS/create_ns_template.yaml'
   const rawPolicyYAML = getConfigObject(confFilePolicy, 'raw', substitutionRules)
@@ -26,7 +26,7 @@ describeT('RHACM4K-2354 - GRC UI: [P1][Sev1][policy-grc] Check existent and non-
     cy.visit('/multicloud/policies/all/not-a-namespace/not-a-policy').waitForPageContentLoad()
     .checkPolicyNoResourcesIconMessage(false, 'Resource not found')
     cy.visit('/multicloud/policies/all/not-a-namespace/not-a-policy/clusters').waitForPageContentLoad()
-    .checkPolicyNoResourcesIconMessage(false, 'No policy status found')
+    .checkPolicyNoResourcesIconMessage(false, 'Resource not found')
   })
   it('Delete the policy', () => {
     cy.visit('/multicloud/policies/all').waitForPageContentLoad()

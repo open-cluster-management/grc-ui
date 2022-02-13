@@ -14,7 +14,7 @@ import {
   AcmDescriptionList,
   AcmExpandableCard,
   AcmTablePaginationContextProvider
-} from '@open-cluster-management/ui-components'
+} from '@stolostron/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import relatedObjectsDef from '../../tableDefinitions/relatedObjectsDef'
 import { transform } from '../../tableDefinitions/utils'
@@ -125,7 +125,6 @@ class PolicyTemplateDetailsView extends React.Component {
               items={tableData.rows}
               columns={tableData.columns}
               keyFn={(item) => item.uid.toString()}
-              gridBreakPoint=''
               initialSort={tableData.sortBy}
               plural={'related resources'}
             />
