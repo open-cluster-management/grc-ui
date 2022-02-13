@@ -489,7 +489,8 @@ exports[`PolicyDetailsOverview component renders a cluster list expander with mo
               data-ouia-component-type="PF4/TableRow"
               data-ouia-safe={true}
               hidden={false}
-              onMouseDown={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
             >
               <td
                 className="pf-m-break-word"
@@ -1184,7 +1185,8 @@ exports[`PolicyDetailsOverview component renders as normal 1`] = `
               data-ouia-component-type="PF4/TableRow"
               data-ouia-safe={true}
               hidden={false}
-              onMouseDown={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
             >
               <td
                 className="pf-m-break-word"

@@ -7,7 +7,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Title } from '@patternfly/react-core'
-import { AcmTable, AcmTablePaginationContextProvider } from '@open-cluster-management/ui-components'
+import { AcmTable, AcmTablePaginationContextProvider } from '@stolostron/ui-components'
 import { LocaleContext } from '../common/LocaleContext'
 import statusByTemplatesDef from '../../tableDefinitions/statusByTemplatesDef'
 import statusByClustersDef from '../../tableDefinitions/statusByClustersDef'
@@ -30,17 +30,17 @@ class PolicyStatusView extends React.Component {
   static contextType = LocaleContext
 
   render() {
-    const { grouping, items=[], userAccess } = this.props
+    const { grouping, items=[], resourceNotFound, userAccess } = this.props
     const { locale } = this.context
     if (items.length === 0) {
       return <NoResource
-        title={msgs.get('no-status.title', [msgs.get('routes.grc', locale)], locale)}
+        title={msgs.get(resourceNotFound ? 'error.not.found' : 'no-status.title', [msgs.get('routes.grc', locale)], locale)}
         svgName='EmptyPagePlanet-illus.png'>
       </NoResource>
     }
     // Check for "create" permissions in order to determine whether to enable
     // the "View Details" link, which requires creating a managedClusterView
-    // (See https://github.com/open-cluster-management/backlog/issues/6135)
+    // (See https://github.com/stolostron/backlog/issues/6135)
     const showDetailsLink = checkCreatePermission(userAccess)
     const statusAccess = items.map(item => ({...item, showDetailsLink: showDetailsLink}))
     const tableDataByTemplate = groupByTemplate(statusAccess, locale)
@@ -61,7 +61,6 @@ class PolicyStatusView extends React.Component {
                 items={tableDataByClusters.rows}
                 columns={tableDataByClusters.columns}
                 keyFn={(item) => item.uid.toString()}
-                gridBreakPoint=''
                 search={clusterQuery}
                 setSearch={this.handleSearch}
                 initialSort={tableDataByClusters.sortBy}
@@ -86,7 +85,6 @@ class PolicyStatusView extends React.Component {
                   items={table.data.rows}
                   columns={table.data.columns}
                   keyFn={(item) => item.uid.toString()}
-                  gridBreakPoint=''
                   initialSort={table.data.sortBy}
                   searchPlaceholder={msgs.get('tabs.grc.toggle.clusterViolations.placeHolderText', locale)}
                   fuseThreshold={0}
@@ -135,9 +133,9 @@ function groupByTemplate(status, locale) {
 }
 
 PolicyStatusView.propTypes = {
-  grouping: PropTypes.oneOf(['clusters, templates']),
+  grouping: PropTypes.oneOf(['clusters', 'templates']),
   items: PropTypes.array,
-  // searchValue: PropTypes.string,
+  resourceNotFound: PropTypes.bool,
   userAccess: PropTypes.array,
 }
 

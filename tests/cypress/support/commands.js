@@ -12,7 +12,9 @@ import { pageLoader, isPolicyStatusAvailable, isClusterTemplateStatusAvailable,
          action_verifyPolicyViolationDetailsInCluster, action_verifyPolicyViolationDetailsInHistory,
          action_verifyCreatePolicySelection, isClusterViolationsStatusAvailable, action_verifyClusterViolationsInListing,
          action_checkNotificationMessage, action_checkPolicyListingPageUserPermissions, action_verifyCredentialsInSidebar,
-         action_verifyAnsibleInstallPrompt, action_scheduleAutomation, action_verifyHistoryPageWithMock
+         action_verifyAnsibleInstallPrompt, action_scheduleAutomation, action_verifyHistoryPageWithMock,
+         action_verifyPolicyWithAutomation, action_verifyPolicyWithoutAutomation, action_checkAndClosePolicyAutomationPanel,
+         action_mockAnsibleInstallQuery
 } from '../support/views'
 
 Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_IDP='', OC_IDP_CONFIGURED=false, force=false) => {
@@ -56,17 +58,21 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
   cy.get('body').then(() => {
     // if not yet logged in, do the regular login through Web UI
     if (Cypress.$('body').find('.pf-c-page__header').length === 0) {
-      cy.get('div.pf-c-login').should('exist').then(() => {
+      cy.get('div.pf-c-login').scrollIntoView().should('be.visible').then(() => {
         // Check if identity providers are configured
         if (idp_configured) {
-          cy.contains(idp).should('exist').click()
+          cy.waitUntil(() =>cy.contains(idp).scrollIntoView().should('be.visible'))
+          cy.contains(idp).scrollIntoView().should('be.visible').click()
         }
       })
       .then(() => {
-        cy.get('#inputUsername').click().focused().type(user)
-        cy.get('#inputPassword').click().focused().type(password, { 'log': false })
-        cy.get('button[type="submit"]').click()
-        cy.get('.pf-c-page__header').should('exist')
+        cy.waitUntil(() => cy.get('#inputUsername').scrollIntoView().should('be.visible'))
+        cy.get('#inputUsername').scrollIntoView().should('be.visible').click().focused().type(user)
+        cy.waitUntil(() => cy.get('#inputPassword').scrollIntoView().should('be.visible'))
+        cy.get('#inputPassword').scrollIntoView().should('be.visible').click().focused().type(password, { 'log': false })
+        cy.waitUntil(() => cy.get('button[type="submit"]').scrollIntoView().should('be.visible'))
+        cy.get('button[type="submit"]').scrollIntoView().should('be.visible').click()
+        cy.get('.pf-c-page__header').scrollIntoView().should('be.visible')
       })
     }
   })
@@ -152,12 +158,14 @@ Cypress.Commands.add('logout', () => {
   cy.log('Attempt to logout existing user')
   cy.get('.pf-c-app-launcher.pf-m-align-right.co-app-launcher.co-user-menu').then($btn => {
     //logout when test starts since we need to use the app idp user
-    cy.log('Logging out existing user')
-      .get($btn).click()
+    cy.waitUntil(() => cy.log('Logging out existing user').get($btn).scrollIntoView().should('be.visible'))
+    cy.log('Logging out existing user').get($btn).scrollIntoView().should('be.visible').click()
     if (Cypress.config().baseUrl.includes('localhost')) {
-      cy.contains('Logout').click().clearCookies()
+      cy.waitUntil(() => cy.contains('Logout').scrollIntoView().should('be.visible'))
+      cy.contains('Logout').scrollIntoView().should('be.visible').click().clearCookies()
     } else {
-      cy.contains('Logout').click()
+      cy.waitUntil(() => cy.contains('Logout').scrollIntoView().should('be.visible'))
+      cy.contains('Logout').scrollIntoView().should('be.visible').click()
       cy.location('pathname').should('match', new RegExp('/oauth/authorize(\\?.*)?$'))
     }
   })
@@ -181,7 +189,8 @@ Cypress.Commands.add('toggleYAMLeditor', (state = undefined) => {
         (e.textContent.includes('Off') && state === 'On') ||
         (e.textContent.includes('On') && state === 'Off'))
     {
-      cy.get('#edit-yaml').next('label').click()
+      cy.waitUntil(() => cy.get('#edit-yaml').next('label').scrollIntoView().should('be.visible'))
+      cy.get('#edit-yaml').next('label').scrollIntoView().should('be.visible').click()
     }
     return cy
   })
@@ -252,12 +261,13 @@ Cypress.Commands.add('CheckGrcMainPage', () => {
   window.localStorage.setItem('acm-grc-refresh-interval', 5000)
   pageLoader.shouldNotExist()
   cy.get('.pf-c-page__main-section .pf-c-title').contains('Governance')
-  cy.get('.page-content-container > div').should('be.visible')
+  cy.get('.page-content-container > div').scrollIntoView().should('be.visible')
 })
 
 Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
-  cy.get('#create-policy').should('exist')
-  cy.get('#create-policy').should('have.attr', 'aria-disabled', 'false').click()
+  cy.get('#create-policy').scrollIntoView().should('be.visible')
+  cy.waitUntil(() => cy.get('#create-policy').should('have.attr', 'aria-disabled', 'false').and('be.visible'))
+  cy.get('#create-policy').should('have.attr', 'aria-disabled', 'false').and('be.visible').click()
   cy.location('pathname').should('eq', '/multicloud/policies/create')
   pageLoader.shouldNotExist()
   cy.get('.pf-c-page__main-section .pf-c-title').contains('Create policy')
@@ -266,25 +276,23 @@ Cypress.Commands.add('FromGRCToCreatePolicyPage', () => {
 Cypress.Commands.add('goToPolicyDetailsPage', (policyName, namespace='default', open=true) => {
   cy.get('.resource-table').within(()=>
   {
-    cy.get('input[aria-label="Search input"]').clear().type(policyName) // This action remains on multicloud/policies/all
+    // This action remains on multicloud/policies/all
+    cy.waitUntil(() => cy.get('input[aria-label="Search input"]').should('be.visible'))
+      .clear().type(policyName)
+    // Wait for search debounce
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(500)
+
     if(open)
     {
-      cy.get('a').contains(policyName).click()
+      cy.waitUntil(() => cy.get('a').contains(policyName).scrollIntoView().should('be.visible'))
+      cy.get('a').contains(policyName).scrollIntoView().should('be.visible').click()
       cy.location('pathname').should('eq', '/multicloud/policies/all/'+namespace+'/'+policyName)
       pageLoader.shouldNotExist()
       cy.get('.pf-c-page__main-section .pf-c-title').contains(policyName)
     }
   })
 })
-// must be run on policy details page
-// Cypress.Commands.add('goToPolicyClusterPage', (policyName, policyConfig, clusterName) => {
-//   var namespace = policyConfig['namespace']
-//   cy.get('.one-cluster-status').children('a').contains(clusterName)
-//     .should('exist')
-//     .click({force: true})
-//   pageLoader.shouldNotExist()
-//   cy.location('pathname').should('eq', '/multicloud/policies/policy/'+clusterName+'/'+namespace+'.'+policyName)
-// })
 
 Cypress.Commands.add('createPolicyFromSelection', (uPolicyName, create=true, policyConfig) => {
   cy.then(() => action_createPolicyFromSelection(uPolicyName, create, policyConfig))
@@ -355,9 +363,11 @@ Cypress.Commands.add('verifyCardsOnPolicyListingPage', (cardName, cardValuesDict
   const numCards = Object.keys(cardValuesDict).length
   cy.url().should('match', /\/multicloud\/policies\/all[?]?/)
   // switch to the required card
-  cy.get('#grc-cards-toggle').click()
+  cy.waitUntil(() => cy.get('#grc-cards-toggle').scrollIntoView().should('be.visible'))
+  cy.get('#grc-cards-toggle').scrollIntoView().should('be.visible').click()
   cy.get('div.module-grc-cards').within(() => {
-    cy.get('li').contains(cardName).click()
+    cy.waitUntil(() => cy.get('li').contains(cardName).scrollIntoView().should('be.visible'))
+    cy.get('li').contains(cardName).scrollIntoView().should('be.visible').click()
   })
   // check the summary header and counter
   cy.get('#summary-toggle').within(() => {
@@ -389,10 +399,11 @@ Cypress.Commands.add('verifyCardsOnPolicyListingPage', (cardName, cardValuesDict
 // click on the button to set content visibility on or off
 Cypress.Commands.add('toggleVisibilityButton', (buttonSelector, contentSelector, state='') => {
   cy.get(contentSelector).then($content => {
-    if ((state == '') ||  // either we want to do the switch
-        (state == 'off' && $content.is(':visible')) ||  // or it is visible and we want to hide it
-        (state == 'on' && $content.is(':visible') == false)) {  // or it is hidden and we want to show it
-      cy.get(buttonSelector).click()
+    if ((state === '') ||  // either we want to do the switch
+        (state === 'off' && $content.is(':visible')) ||  // or it is visible and we want to hide it
+        (state === 'on' && !$content.is(':visible'))) {  // or it is hidden and we want to show it
+      cy.waitUntil(() => cy.get(buttonSelector).scrollIntoView().should('be.visible'))
+      cy.get(buttonSelector).scrollIntoView().should('be.visible').click()
     }
   })
 })
@@ -445,7 +456,7 @@ Cypress.Commands.add('checkPolicyNoResourcesIconMessage', (present=true, message
   else
   {
     cy.get('.no-resource-title').should('contain', message)
-    cy.get('img[alt="No resource"]').should('exist')
+    cy.get('img[alt="No resource"]').scrollIntoView().should('be.visible')
   }
 })
 
@@ -476,7 +487,8 @@ Cypress.Commands.add('checkPolicyListingPageUserPermissions', (policyNames = [],
 Cypress.Commands.add('fromGRCToPolicyDetailsPage', (policyName) => {
   cy.doTableSearch(policyName)
     .get('.grc-view-by-policies-table').within(() => {
-      cy.get('a').contains(new RegExp(`^${policyName}$`)).click()
+      cy.waitUntil(() => cy.get('a').contains(new RegExp(`^${policyName}$`)).scrollIntoView().should('be.visible'))
+      cy.get('a').contains(new RegExp(`^${policyName}$`)).scrollIntoView().should('be.visible').click()
     })
 })
 
@@ -531,10 +543,27 @@ Cypress.Commands.add('verifyAnsibleInstallPrompt', (uPolicyName, opInstalled) =>
   cy.then(() => action_verifyAnsibleInstallPrompt(uPolicyName, opInstalled))
 })
 
-Cypress.Commands.add('scheduleAutomation', (uName, credentialName, mode) => {
-  cy.then(() => action_scheduleAutomation(uName, credentialName, mode))
+Cypress.Commands.add('scheduleAutomation', (uName, credentialName, mode, action) => {
+  cy.then(() => action_scheduleAutomation(uName, credentialName, mode, action))
 })
 
 Cypress.Commands.add('verifyHistoryPageWithMock', (uName) => {
   cy.then(() => action_verifyHistoryPageWithMock(uName))
 })
+
+Cypress.Commands.add('verifyPolicyWithAutomation', (uPolicyName) => {
+  cy.then(() => action_verifyPolicyWithAutomation(uPolicyName))
+})
+
+Cypress.Commands.add('verifyPolicyWithoutAutomation', (uPolicyName) => {
+  cy.then(() => action_verifyPolicyWithoutAutomation(uPolicyName))
+})
+
+Cypress.Commands.add('checkAndClosePolicyAutomationPanel', (uName, waitTime) => {
+  cy.then(() => action_checkAndClosePolicyAutomationPanel(uName, waitTime))
+})
+
+Cypress.Commands.add('mockAnsibleInstallQuery', (opInstalled) => {
+  cy.then(() => action_mockAnsibleInstallQuery(opInstalled))
+})
+

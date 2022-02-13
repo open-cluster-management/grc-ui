@@ -1,10 +1,10 @@
 [comment]: # ( Copyright Contributors to the Open Cluster Management project )
 
 # grc-ui
-[![Build](https://img.shields.io/badge/build-Prow-informational)](https://prow.ci.openshift.org/?repo=open-cluster-management%2Fgrc-ui)
+[![Build](https://img.shields.io/badge/build-Prow-informational)](https://prow.ci.openshift.org/?repo=stolostron%2Fgrc-ui)
 [![License](https://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-The UI microservice, `grc-ui`, is the governance and risk dashboard for Red Hat Advanced Cluster Management. (See [`grc-ui-api`](https://github.com/open-cluster-management/grc-ui-api) for the API Server microservice it uses)
+The UI microservice, `grc-ui`, is the governance and risk dashboard for Red Hat Advanced Cluster Management. (See [`grc-ui-api`](https://github.com/stolostron/grc-ui-api) for the API Server microservice it uses)
 
 ## Design
 
@@ -66,7 +66,7 @@ The UI Platform is developed as an isomorphic React application. View the list o
          oc whoami -t
          ```
     
-    Note: If you want to develop against both the grc-ui & the grc-ui-api you can start the API server and configure the grc-ui to query against the local grc-ui-api server. If you have already sourced the `.env` file you can run `unset grcUiApiUrl` to revert to using the default localhost url for communication with grc-ui-api. See the following on how to setup the api server: [`grc-ui-api`](https://github.com/open-cluster-management/grc-ui-api).
+    Note: If you want to develop against both the grc-ui & the grc-ui-api you can start the API server and configure the grc-ui to query against the local grc-ui-api server. If you have already sourced the `.env` file you can run `unset grcUiApiUrl` to revert to using the default localhost url for communication with grc-ui-api. See the following on how to setup the api server: [`grc-ui-api`](https://github.com/stolostron/grc-ui-api).
 
 2. Start the server for production by running the following command:
 
@@ -186,6 +186,6 @@ These are a few useful links that provide technical reference and best practices
 - [Redux Best Practices](https://medium.com/@kylpo/redux-best-practices-eef55a20cc72)
 
 <!---
-Date: 09/27/2021
+Date: 01/17/2022
 -->
 
