@@ -19,6 +19,7 @@ import ALL_POLICIES_QUERY_DATA from './data/ALL_POLICIES_QUERY_DATA'
 import ALL_POLICIES_WITH_ATUOMATION_QUERY_DATA from './data/ALL_POLICIES_WITH_AUTOMATION_QUERY_DATA'
 import POLICY_STATUS_QUERY_DATA from './data/POLICY_STATUS_QUERY_DATA'
 import POLICY_TEMPLATE_DETAILS_QUERY_DATA from './data/POLICY_TEMPLATE_DETAILS_QUERY_DATA'
+import POLICY_TEMPLATE_DETAILS_QUERY_DATA_MUSTNOTHAVE from './data/POLICY_TEMPLATE_DETAILS_QUERY_DATA_MUSTNOTHAVE'
 import POLICY_STATUS_HISTORY_QUERY_DATA from './data/POLICY_STATUS_HISTORY_QUERY_DATA'
 
 // Make PatternFly random IDs stable
@@ -77,7 +78,7 @@ describe('AcmGrcPage container', () => {
 
     await new Promise(resolve => setTimeout(resolve, 0))
     component.update()
-    expect(toJson(component)).toMatchSnapshot()
+    expect(toJson(component, { noKey: true })).toMatchSnapshot()
   })
 
   it('should render ALL_POLICIES page with all policy automation ', async () => {
@@ -103,7 +104,7 @@ describe('AcmGrcPage container', () => {
 
     await new Promise(resolve => setTimeout(resolve, 0))
     component.update()
-    expect(toJson(component)).toMatchSnapshot()
+    expect(toJson(component, { noKey: true })).toMatchSnapshot()
   })
 
   it('should render POLICY_CLUSTERS page ', async () => {
@@ -196,7 +197,48 @@ describe('AcmGrcPage container', () => {
 
     await new Promise(resolve => setTimeout(resolve, 0))
     component.update()
-    expect(toJson(component)).toMatchSnapshot()
+    expect(toJson(component, { noKey: true })).toMatchSnapshot()
+  })
+
+  it('should render POLICY_TEMPLATE_DETAILS page with mustnothave', async () => {
+
+    const props = {
+      userAccess: [],
+      locale: 'en',
+      namespace:'default',
+      name:' policy-pod',
+      cluster: 'local-cluster',
+      apiGroup: 'policy.open-cluster-management.io',
+      version: 'v1',
+      kind: 'ConfigurationPolicy',
+      template: 'policy-pod-haproxy-pod',
+    }
+    const { cluster, apiGroup, version, kind, template } = props
+    const selfLink = `/apis/${apiGroup}/${version}/namespaces/${cluster}/${kind}/${template}`
+    const mocks = [
+      {
+        request: {
+          query: POLICY_TEMPLATE_DETAILS,
+          variables: { name:template, cluster, kind, selfLink },
+        },
+        result: {
+          data: POLICY_TEMPLATE_DETAILS_QUERY_DATA_MUSTNOTHAVE.data
+        },
+      },
+    ]
+    const component = mount(
+      <Provider store={store}>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <BrowserRouter>
+            <AcmGrcPage type='POLICY_TEMPLATE_DETAILS' {...props} />
+          </BrowserRouter>
+        </MockedProvider>
+      </Provider>
+    )
+
+    await new Promise(resolve => setTimeout(resolve, 0))
+    component.update()
+    expect(toJson(component, { noKey: true })).toMatchSnapshot()
   })
 
   it('should render POLICY_STATUS_HISTORY page ', async () => {
@@ -230,6 +272,6 @@ describe('AcmGrcPage container', () => {
 
     await new Promise(resolve => setTimeout(resolve, 0))
     component.update()
-    expect(toJson(component)).toMatchSnapshot()
+    expect(toJson(component, { noKey: true })).toMatchSnapshot()
   })
 })

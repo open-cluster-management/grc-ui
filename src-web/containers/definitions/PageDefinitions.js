@@ -4,7 +4,7 @@
 
 'use strict'
 import React from 'react'
-import { AcmButton, AcmSecondaryNavItem } from '@open-cluster-management/ui-components'
+import { AcmButton, AcmSecondaryNavItem } from '@stolostron/ui-components'
 
 import { ALL_POLICIES, SINGLE_POLICY, POLICY_STATUS, POLICY_STATUS_HISTORY, POLICY_TEMPLATE_DETAILS } from '../../utils/client/queries'
 import config from '../../../server/lib/shared/config'
@@ -49,10 +49,11 @@ const createBtn = ({ userAccess, history, locale }) => {
   )
 }
 
-const editBtn = ({ userAccess, history, locale, name, namespace }) => {
+const editBtn = ({ userAccess, history, locale, name, namespace, resourceNotFound }) => {
+  const noPermission = checkEditPermission(userAccess) === 0
   return (
-    <AcmButton key='edit-policy' id='edit-policy' isDisabled={checkEditPermission(userAccess)===0}
-      tooltip={msgs.get('error.permission.disabled', locale)}
+    <AcmButton key='edit-policy' id='edit-policy' isDisabled={noPermission || resourceNotFound}
+      tooltip={noPermission ? msgs.get('error.permission.disabled', locale) : msgs.get('error.not.found', locale)}
       onClick={() => history.push(`${config.contextPath}/all/${namespace}/${name}/edit`)}>
       {msgs.get('routes.edit.policy', locale)}
     </AcmButton>
@@ -174,7 +175,6 @@ const policyTemplateDetailsPage = ({ name, namespace, cluster, apiGroup, version
     breadcrumb: [
       { text: msgs.get(policiesMsg, locale), to: config.contextPath },
       { text: name, to: `${config.contextPath}/all/${namespace}/${name}`},
-      { text: msgs.get('table.header.status', locale), to: `${config.contextPath}/all/${namespace}/${name}/status` },
       { text: template, to: template }
     ],
     children: (props) => <PolicyTemplateDetailsView {...props} selfLink={selfLink} />

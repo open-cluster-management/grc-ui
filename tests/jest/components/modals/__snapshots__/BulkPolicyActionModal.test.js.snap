@@ -24,14 +24,14 @@ exports[`PolicyActionModal component Modal returns notification on error 1`] = `
     onClose={[Function]}
     showClose={true}
     title="Inform {0} policies?"
-    titleIconVariant={null}
     variant="medium"
   >
     <AcmAlert
       isInline={true}
       noClose={true}
-      title="There was an error."
-      variant="warning"
+      subtitle="There was an error."
+      title="There were errors processing the requests"
+      variant="danger"
     />
     <p
       style={
@@ -86,7 +86,7 @@ exports[`PolicyActionModal component Modal returns notification on error 1`] = `
               "rawData": Object {
                 "gitBranch": "main",
                 "gitPath": "stable",
-                "pathname": "https://github.com/open-cluster-management/policy-collection.git",
+                "pathname": "https://github.com/stolostron/policy-collection.git",
                 "type": "GitHub",
               },
               "text": "Git",
@@ -119,9 +119,7 @@ exports[`PolicyActionModal component Modal returns notification on error 1`] = `
       }
       keyFn={[Function]}
       plural="policy actions"
-      search=""
       searchPlaceholder="Find by name"
-      setSearch={[Function]}
     />
   </AcmModal>
 </div>
