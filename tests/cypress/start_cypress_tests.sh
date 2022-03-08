@@ -95,6 +95,10 @@ echo -e "\nFetching ACM namespace and console URL...\n"
 acm_installed_namespace=`oc get subscriptions.operators.coreos.com --all-namespaces | grep advanced-cluster-management | awk '{print $1}'`
 RHACM_CONSOLE_URL=https://`oc get route multicloud-console -n $acm_installed_namespace -o=jsonpath='{.spec.host}'`
 
+if [[ "${CYPRESS_TAGS_INCLUDE}" == "@bvt" ]]; then
+  export CYPRESS_FAIL_FAST_PLUGIN="true"
+fi
+
 export CYPRESS_BASE_URL="${CYPRESS_BASE_URL:-$RHACM_CONSOLE_URL}"
 export CYPRESS_coverage="${CYPRESS_coverage:-"false"}"
 export CYPRESS_RESOURCE_ID="${CYPRESS_RESOURCE_ID:-"$(date +"%s")"}"
