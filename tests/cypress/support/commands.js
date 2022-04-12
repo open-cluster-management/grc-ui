@@ -55,8 +55,8 @@ Cypress.Commands.add('login', (OPTIONS_HUB_USER='', OPTIONS_HUB_PASSWORD='', OC_
     }
   })
   cy.visit('/multicloud/policies', { failOnStatusCode: false })
-  cy.location().then(location => {
-    if (!location.href.includes('oauth-openshift')) {
+  cy.url().then(url => {
+    if (!url.includes('oauth-openshift')) {
       // handle provider button
       cy.log('Clicking \'Log in with OpenShift\' button')
       cy
