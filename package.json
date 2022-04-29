@@ -58,7 +58,7 @@
     "@patternfly/react-tokens": "^4.12.18",
     "@stolostron/security-middleware": "^1.0.5",
     "@stolostron/ui-components": "^1.32.0",
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "babel-loader": "^8.2.2",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-istanbul": "^6.0.0",
