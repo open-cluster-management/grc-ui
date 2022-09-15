@@ -53,6 +53,12 @@ app.use(helmet({ // in production these headers are set by management-ingress
   hsts: {
     maxAge:            63072000,
     preload:           true
+  },
+  contentSecurityPolicy: {
+    useDefaults: true,
+    directives: {
+      scriptSrc: ['\'self\'', '\'unsafe-eval\''],
+    }
   }
 }))
 
