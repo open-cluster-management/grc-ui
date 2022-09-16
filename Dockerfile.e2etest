@@ -30,7 +30,7 @@ RUN npm install \
     cypress-wait-until \
     cypress-fail-fast \
     @cypress/code-coverage \
-    del \
+    del@6.1.1 \
     mocha \
     mocha-junit-reporter \
     mochawesome \
