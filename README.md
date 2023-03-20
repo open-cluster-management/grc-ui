@@ -4,6 +4,12 @@
 [![Build](https://img.shields.io/badge/build-Prow-informational)](https://prow.ci.openshift.org/?repo=stolostron%2Fgrc-ui)
 [![License](https://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
+# Deprecation Notice
+
+The GRC UI is consolidated into the [console](https://github.com/stolostron/console) repository starting in RHACM 2.5.
+
+## Description
+
 The UI microservice, `grc-ui`, is the governance and risk dashboard for Red Hat Advanced Cluster Management. (See [`grc-ui-api`](https://github.com/stolostron/grc-ui-api) for the API Server microservice it uses)
 
 ## Design
